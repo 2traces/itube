@@ -1,0 +1,337 @@
+1
+1300,1300
+16
+137
+115
+0.1,0.1,0.1
+1010,740, 996,726, 979,709, 944,689, 896,678, 832,713, 774,724, 732,650, 683,635, 645,596, 598,595, 517,595, 480,595, 435,595, 386,581, 367,561, 343,538, 312,507, 279,475, 253,448, 219,414, 196,391, 174,369, 153,348, 133,328
+1027,742,61,18, 958,728,38,8, 980,698,54,9, 918,692,59,17, 867,688,30,9, 837,703,35,19, 773,706,37,19, 734,635,40,10, 684,624,35,10, 650,588,37,18, 556,604,43,10, 497,575,34,16, 365,576,111,18, 417,600,40,8, 387,569,48,9, 267,562,98,18, 282,527,58,17, 275,508,35,17, 285,461,81,18, 208,448,47,9, 181,411,36,19, 156,390,40,17, 126,368,47,19, 94,349,60,18, 136,313,37,18
+Chateau de Vincennes,Berault,Saint-Madre,Porte de Vincennes,Nation,Reuilly Diderot,Gare de Lyon,Bastille,St-Paul,Hotel de Ville,Chatelet,Louvre Rivoli,Palais Royal - Musee du Louvre,Tuileries,Concorde,Champs Elysees - Clemenceau,Franklin D. Roosevelt,George V,Charles De Gaulle - Etoile,Argentine,Porte Maillot,Les Sablons,Pont de Neuilly,Esplanade de La Defense,La Defense
+1,1,2,1,2,1,1,2,2,1,1,1,1,2,1,2,1,1,2,1,2,1,2,2
+0.1,0.0,0.1
+908,666, 883,640, 883,605, 883,569, 883,539, 855,503, 825,473, 802,437, 802,403, 794,364, 768,336, 706,336, 650,336, 599,336, 557,336, 501,336, 444,336, 410,344, 382,372, 358,396, 333,421, 307,447, 275,479, 225,518, 189,483
+867,688,30,9, 887,633,29,8, 887,601,49,19, 887,564,40,18, 884,518,42,18, 856,492,63,8, 827,462,52,9, 746,434,50,8, 805,399,39,18, 804,355,33,11, 772,330,53,9, 702,315,43,18, 614,314,68,19, 582,342,35,9, 520,339,35,9, 482,323,38,9, 448,339,43,17, 412,347,24,7, 388,368,38,9, 316,386,42,9, 276,410,56,10, 273,437,33,7, 284,461,82,18, 190,517,33,17, 193,464,42,19
+Nation,Avron,Alexandre Dumas,Philippe Auguste,Pere Lachaise,Menilmontant,Couronnes,Belleville,Colonel Fabien,Jaures,Stalingrad,La Chapelle,Barbes Rochechouart,Anvers,Pigalle,Blanche,Place de Clichy,Rome,Villiers,Monceau,Courcelles,Ternes,Charles De Gaulle - Etoile,Victor Hugo,Porte Dauphine
+1,1,1,2,1,1,1,1,2,1,1,2,2,1,1,2,1,2,1,2,1,1,2,2
+0.2,0.1,0.1
+1008,538, 975,538, 928,538, 876,538, 850,538, 826,523, 748,493, 721,513, 702,533, 639,543, 585,543, 546,543, 507,530, 480,503, 459,481, 439,442, 410,399, 382,372, 367,356, 351,340, 338,327, 318,307, 304,293, 291,280, 277,266
+1013,534,37,7, 937,516,60,18, 906,545,48,10, 884,518,42,18, 814,541,54,17, 777,525,52,9, 748,498,54,9, 687,503,32,8, 649,514,51,18, 606,522,56,17, 567,531,36,9, 530,531,35,9, 509,510,51,18, 488,502,30,8, 407,484,49,19, 395,433,33,18, 377,401,32,8, 388,368,38,9, 304,356,62,10, 313,341,37,9, 337,315,36,10, 247,307,70,18, 271,290,31,17, 244,273,40,17, 179,249,95,18
+Gallieni,Porte de Bagnolet,Gambetta,Pere Lachaise,Rue Saint-Maur,Parmentier,Republique,Temple,Arts et Metiers,Reaumur Sebastopol,Sentier,Bourse,Quatre Septembre,Opera,Havre Caumartin,Saint Lazare,Europe,Villiers,Malesherbes,Wagram,Pereire,Porte de Champerret,Louise Michel,Anatole France,Pont de Levallois - Becon
+1,1,2,1,1,2,1,1,1,1,2,1,1,1,1,2,1,2,1,1,1,1,2,2
+0.3,0.1,0.4
+928,533, 956,497, 982,460, 982,422
+906,545,48,10, 907,486,49,9, 938,454,40,17, 988,414,42,17
+Gambetta,Pelleport,Saint Fargeau,Porte des Lilas
+1,1,2
+0.2,0.6,0.1
+585,241, 604,260, 619,284, 619,307, 650,342, 698,361, 703,406, 677,434, 664,485, 639,548, 598,554, 598,576, 598,599, 583,630, 567,672, 558,692, 512,692, 499,721, 499,758, 499,788, 528,796, 561,809, 576,833, 576,866, 558,907, 541,923
+505,223,77,17, 604,248,38,8, 624,261,60,17, 623,294,40,16, 614,314,68,19, 649,354,37,17, 713,408,36,18, 678,436,39,17, 667,462,56,17, 606,522,56,17, 560,550,36,17, 563,566,33,19, 556,604,44,10, 561,622,19,10, 529,669,33,17, 544,703,30,9, 447,667,82,19, 503,712,36,17, 458,749,37,17, 425,770,68,18, 518,784,26,8, 524,819,36,10, 585,820,51,18, 528,857,45,16, 526,893,31,10, 489,920,48,18
+Porte De Clignancourt,Simplon,Marcadet Poissonniers,Chateau Rouge,Barbes Rochechouart,Gare du Nord,Gare de l'Est,Chateau d'eau,Strasbourg Saint Denis,Reaumur Sebastopol,Etienne Marcel,Les Halles,Chatelet,Cite,Saint Michel,Odeon,Saint Germain des Pres,Saint Sulpice,Saint Placide,Montparnasse Bienvenue,Vavin,Raspail,Denfert Rochereau,Mouton Duvernet,Alesia,Porte d'Orleans
+1,1,1,1,1,1,1,1,1,2,1,1,2,1,1,1,1,2,1,1,2,1,1,1,2
+0.1,0.2,0.5
+1009,254, 979,284, 959,304, 933,320, 890,320, 850,320, 820,339, 796,362, 772,350, 709,361, 709,406, 720,457, 741,500, 764,522, 779,586, 757,609, 732,647, 732,724, 732,777, 732,807, 715,831, 692,871
+1012,236,71,17, 893,266,83,18, 912,289,42,18, 918,324,31,10, 868,324,43,18, 835,326,31,11, 822,341,44,10, 804,355,33,11, 772,330,53,9, 649,354,37,17, 713,408,36,18, 725,445,58,17, 748,498,54,9, 766,511,50,10, 782,588,38,16, 759,612,40,16, 734,635,40,10, 674,717,54,18, 736,762,58,18, 736,803,35,18, 717,831,32,18, 694,851,34,17
+Bobigny Pablo Picasso,Bobigny-Pantin Raymond Queneau,Eglise de Pantin,Hoche,Porte de Pantin,Ourcq,Laumiere,Jaures,Stalingrad,Gare du Nord,Gare de l'Est,Jacques Bonsergent,Republique,Oberkampf,Richard Lenoir,Breguet Sabin,Bastille,Quai de la Rapee,Gare d'Austerlitz,Saint Marcel,Campo Formio,Place d'Italie
+3,2,1,2,1,1,2,1,2,3,2,1,2,1,2,1,2,2,1,1,3
+0.5,0.2,0.1
+891,683, 929,726, 908,746, 886,767, 860,792, 835,817, 799,854, 763,871, 729,871, 689,871, 662,871, 626,871, 598,856, 579,836, 557,813, 512,803, 491,803, 433,803, 391,784, 362,754, 312,744, 272,713, 245,686, 213,654, 210,596, 213,549, 247,514, 279,483
+867,688,30,9, 930,728,29,9, 910,748,33,9, 832,763,47,8, 860,794,52,10, 801,811,28,8, 750,834,49,18, 733,857,55,10, 706,874,45,10, 694,851,34,17, 637,857,47,10, 607,875,41,9, 601,845,64,9, 585,820,51,18, 524,819,36,10, 498,807,32,17, 425,770,68,18, 433,807,38,10, 347,788,44,17, 312,759,52,9, 315,717,108,18, 275,703,35,9, 248,671,32,17, 214,642,28,10, 214,598,50,10, 216,550,44,10, 247,517,34,8, 285,461,81,18
+Nation,Picpus,Bel-Air,Daumesnil,Dugommier,Bercy,Quai de la Gare,Chevaleret,Nationale,Place d'Italie,Corvisart,Glaciere,Saint-Jacques,Denfert Rochereau,Raspail,Edgar Quinet,Montparnasse Bienvenue,Pasteur,Sevres Lecourbe,Cambronne,La Motte Picquet - Grenelle,Dupleix,Bir Hakeim,Passy,Trocadero,Boissiere,Kleber,Charles De Gaulle - Etoile
+1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,2,1,1,2
+0.3,0.7,0.9
+887,171, 887,202, 859,239, 830,268, 812,286, 795,303, 779,319, 769,342, 762,369, 742,389, 706,406, 628,406, 574,413, 554,433, 507,480, 480,507, 480,549, 480,595, 551,602, 598,602, 650,638, 686,674, 666,751, 645,775, 645,807, 666,834, 685,871, 685,893, 685,917, 717,935, 753,935, 790,935, 815,949, 833,967, 685,945, 685,969, 685,992, 685,1014
+791,163,92,19, 811,190,72,18, 750,220,106,18, 833,260,64,17, 816,280,42,17, 799,298,32,10, 782,315,31,11, 772,330,53,9, 769,371,28,17, 745,389,38,17, 713,408,36,18, 602,409,61,10, 575,414,28,9, 557,428,39,17, 422,456,88,19, 488,502,30,8, 429,552,47,10, 365,576,111,18, 527,604,24,18, 556,604,44,10, 622,634,26,18, 641,672,42,18, 649,755,35,8, 648,770,31,16, 648,792,51,17, 667,817,43,17, 694,851,34,17, 647,890,36,9, 644,907,39,17, 697,907,34,17, 732,907,44,17, 778,907,27,17, 781,947,31,17, 799,966,30,17, 690,940,78,17, 689,964,69,18, 689,987,87,18, 689,1009,66,17
+La Courneuve 8 Mai 1945,Fort d'Aubervilliers,Aubervilliers - Pantin Quatre Chemins,Porte de la Villette,Corentin Cariou,Crimee,Riquet,Stalingrad,Louis Blanc,Chateau Landon,Gare de l'Est,Poissonniere,Cadet,Le Peletier,Chaussee d'Antin - La Fayette,Opera,Pyramides,Palais Royal - Musee du Louvre,Pont Neuf,Chatelet,Pont Marie,Sully Morland,Jussieu,Place Monge,Censier Daubenton,Les Gobelins,Place d'Italie,Tolbiac,Maison Blanche(Porte d'Italie,Tolbiac,Le Kremlin - Bicetre),Porte d'Italie,Porte de Choisy,Porte d'Ivry,Pierre Curie,Mairie d'Ivry(,Pierre Curie),Le Kremlin - Bicetre(Villejuif - Leo Lagrange,Maison Blanche),Villejuif - Leo Lagrange,Villejuif-Paul Vaillant-Couturier,Villejuif - Louis Aragon
+1,2,2,1,1,1,1,2,1,2,1,2,1,1,2,1,1,2,1,2,1,2,1,1,1,2,1,1,(1,1,2),1,2,1,3,(,3),(2,2),2,2
+0.7,0.7,0.1
+246,899, 276,869, 300,845, 312,813, 312,782, 312,741, 312,691, 338,652, 370,622, 382,577, 389,542, 478,504, 538,487, 581,487, 634,487, 664,487, 735,506, 727,551, 727,582, 727,612, 732,644, 758,668, 807,689, 832,713, 859,739, 887,767, 905,785, 917,808, 896,830, 915,862, 940,887, 966,913, 985,932, 985,955, 985,975, 985,995, 985,1014
+248,902,35,10, 277,871,42,10, 301,847,49,10, 315,804,28,18, 316,777,50,10, 315,717,108,18, 316,682,42,18, 286,634,50,18, 320,610,45,10, 387,569,48,9, 396,529,47,9, 488,502,30,8, 527,458,44,18, 546,491,56,17, 608,491,44,18, 667,462,56,17, 748,498,54,9, 730,543,54,17, 731,572,60,16, 692,604,32,17, 734,635,40,10, 760,658,61,9, 808,669,46,17, 837,703,35,19, 861,729,55,10, 832,763,47,8, 907,767,32,17, 919,809,29,17, 901,827,65,17, 917,852,34,8, 942,868,52,18, 967,894,140,19, 989,923,70,17, 989,946,71,17, 989,966,40,17, 989,987,48,17, 989,1008,55,17
+Balard,Lourmel,Boucicaut,Felix Faure,Commerce,La Motte Picquet - Grenelle,Ecole Militaire,Latour Maubourg,Invalides,Concorde,Madeleine,Opera,Richelieu Drouot,Grands Boulevards,Bonne Nouvelle,Strasbourg Saint Denis,Republique,Filles du Calvaire,St-Sebastien Froissart,Chemin Vert,Bastille,Ledru-Rollin,Faidherbe Chaligny,Reuilly Diderot,Montgallet,Daumesnil,Michel Bizot,Porte Doree,Porte de Charenton,Liberte,Charenton - Ecoles,Ecole Veterinaire de Maisons-Alfort,Maisons-Alfort Stade,Maisons-Alfort Les Juilliottes,Creteil - L'Echat,Creteil Universite,Creteil Prefecture
+1,1,1,1,1,2,1,1,2,2,1,1,2,1,1,1,1,1,1,1,1,2,1,2,1,2,1,2,2,1,2,2,2,2,1,3
+0.5,0.1,0.5
+1011,576, 996,591, 979,608, 965,622, 948,639, 934,653, 904,670, 874,640, 854,620, 834,600, 814,580, 760,526, 738,503, 664,481, 634,481, 581,481, 538,481, 506,481, 464,481, 417,465, 399,482, 378,504, 343,538, 306,576, 257,596, 210,596, 163,596, 154,644, 154,690, 154,733, 154,776, 154,807, 154,835, 154,863, 136,886, 118,904, 99,923
+1014,571,60,18, 999,590,52,18, 983,609,57,10, 968,622,61,18, 950,641,54,10, 936,656,44,9, 867,688,30,9, 815,640,57,18, 806,621,46,10, 836,589,41,9, 816,561,44,17, 766,511,50,10, 748,498,54,9, 667,462,56,17, 608,491,44,18, 546,491,56,17, 527,458,44,18, 422,456,88,19, 407,484,49,19, 372,447,43,17, 345,472,51,9, 299,485,77,19, 282,527,58,17, 263,555,41,17, 247,584,20,8, 214,598,50,10, 137,574,55,17, 158,635,34,18, 105,686,45,8, 120,729,30,10, 94,753,57,18, 88,811,64,19, 158,830,44,10, 158,858,55,18, 138,888,34,19, 120,907,58,10, 101,926,46,18
+Mairie de Montreuil,Croix de Chavaux,Robespierre,Porte de Montreuil,Maraichers,Buzenval,Nation,Rue des Boulets,Charonne,Voltaire,Saint Ambroise,Oberkampf,Republique,Strasbourg Saint Denis,Bonne Nouvelle,Grands Boulevards,Richelieu Drouot,Chaussee d'Antin - La Fayette,Havre Caumartin,Saint Augustin,Miromesnil,Saint-Philippe du-Roule,Franklin D. Roosevelt,Alma Marceau,Iena,Trocadero,Rue de la Pompe,La Muette,Ranelagh,Jasmin,Michel-Ange Auteuil,Michel-Ange Molitor,Exelmans,Porte de St Cloud,Marcel Sembat,Billancourt,Pont de Sevres
+1,2,2,1,2,1,2,1,1,1,2,2,1,1,1,2,1,1,1,2,1,2,1,2,1,1,3,1,1,2,1,1,2,1,2,2
+0.1,0.2,0.1
+80,834, 101,813, 154,807, 175,806, 202,794, 121,793, 154,776, 187,776, 237,776, 271,764, 286,750, 312,737, 381,766, 419,757, 443,734, 466,711, 522,697, 558,697, 588,697, 615,717, 634,737, 666,745, 726,780
+81,837,83,17, 40,794,60,17, 88,811,64,19, 160,810,40,18, 156,785,43,10, 76,773,43,18, 94,753,57,18, 164,754,43,18, 222,763,27,9, 269,769,39,18, 236,731,49,17, 315,717,108,18, 382,754,30,10, 425,753,30,10, 406,724,34,9, 410,701,45,18, 500,699,43,12, 544,703,30,9, 590,678,62,16, 617,698,47,16, 636,717,41,18, 649,755,35,8, 736,762,58,18
+Boulogne - Pont de St Cloud,Boulogne - Jean Jaures,Michel-Ange Molitor(Chardon Lagache),Chardon Lagache(Mirabeau),Mirabeau(Javel),Porte d'Auteuil(,Boulogne - Jean Jaures),Michel-Ange Auteuil(,Porte d'Auteuil),Eglise d'Auteuil(,Michel-Ange Auteuil),Javel,Charles Michels,Avenue Emile Zola,La Motte Picquet - Grenelle,Segur,Duroc,Vaneau,Sevres Babylone,Mabillon,Odeon,Cluny - La Sorbonne,Maubert Mutualite,Cardinal Lemoine,Jussieu,Gare d'Austerlitz
+1,2,(1),(2),(1),(,3),(,1),(,2),(2,1),1,1,2,1,2,1,1,2,1,1,1,1,3
+0.6,0.9,0.3
+1011,388, 982,419, 955,424, 918,424, 881,424, 837,424, 800,439, 773,468, 744,497, 707,536, 674,568, 645,595, 598,607
+1015,379,40,17, 988,414,42,17, 925,428,54,9, 891,428,45,18, 860,428,41,8, 814,428,44,10, 746,434,50,8, 775,470,46,10, 748,498,54,9, 649,514,51,18, 677,570,51,9, 650,588,37,18, 556,604,44,10
+Mairie des Lilas,Porte des Lilas,Telegraphe,Place des Fetes,Jourdain,Pyrenees,Belleville,Goncourt,Republique,Arts et Metiers,Rambuteau,Hotel de Ville,Chatelet
+1,1,1,1,1,1,1,1,2,1,1,2
+0.23,0.34,0.13
+267,969, 295,941, 321,915, 349,887, 374,862, 402,834, 433,803, 444,792, 497,792, 514,770, 490,736, 466,711, 441,687, 417,663, 389,636, 389,584, 389,537, 450,442, 488,418, 547,418, 557,377, 557,336, 557,312, 557,288, 587,284, 636,284, 709,273, 709,245
+269,971,29,19, 297,943,43,20, 323,915,65,18, 351,889,55,10, 376,863,50,10, 404,836,58,9, 433,807,38,10, 396,781,48,9, 425,770,68,18, 519,760,54,17, 456,738,34,8, 410,701,45,18, 442,668,33,16, 418,651,46,9, 392,618,49,17, 387,569,48,9, 396,529,46,9, 395,433,33,18, 415,396,86,18, 473,396,77,17, 511,368,42,17, 520,339,35,9, 508,308,45,9, 489,279,64,17, 567,262,36,17, 637,261,62,17, 713,263,37,17, 713,234,68,18
+Mairie d'Issy,Corentin Celton,Porte de Versailles,Convention,Vaugirard,Volontaires,Pasteur,Falguiere,Montparnasse Bienvenue,Notre-Dame des Champs,Rennes,Sevres Babylone,Rue du Bac,Solferino,Assemblee Nationale,Concorde,Madeleine,Saint Lazare,Trinite d'Estienne d'Orves,Notre Dame de Lorette,Saint Georges,Pigalle,Abbesses,Lamarck Caulaincourt,Jules Joffrin,Marcadet Poissonniers,Marx Dormoy,Porte de la Chapelle
+1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,2,2,1,1,2,1,1,1,2,1,2,2
+0.9,0.3,0.0
+408,1015, 408,983, 408,951, 422,921, 453,890, 478,865, 494,839, 494,798, 419,757, 383,722, 367,669, 367,625, 367,561, 403,486, 444,442, 444,377, 444,336, 444,309, 421,280, 396,255, 356,215, 320,179, 310,169, 300,159, 444,273, 444,242, 470,210, 498,182, 524,156, 589,139, 659,125, 690,94
+413,1014,53,17, 413,979,87,18, 413,945,88,17, 427,919,46,18, 456,893,46,10, 481,868,38,10, 498,836,25,8, 425,770,68,18, 425,753,30,10, 385,700,72,19, 371,665,38,9, 320,610,45,10, 267,562,98,18, 345,472,51,9, 395,433,33,18, 448,374,25,9, 448,339,43,17, 449,299,40,17, 373,280,45,9, 348,247,43,17, 311,216,43,18, 261,150,35,18, 270,184,51,17, 175,169,133,18, 449,268,36,17, 449,238,48,17, 473,212,44,10, 501,183,49,17, 527,158,51,17, 590,146,96,17, 660,130,76,19, 694,84,79,17
+Chatillon Montrouge,Malakoff - Rue Etienne Dolet,Malakoff - Plateau de Vanves,Porte de Vanves,Plaisance,Pernety,Gaite,Montparnasse Bienvenue,Duroc,St Francois Xavier,Varenne,Invalides,Champs Elysees - Clemenceau,Miromesnil,Saint Lazare,Liege,Place de Clichy,La Fourche(Brochant,Place de Clichy,Guy Moquet),Brochant,Porte de Clichy,Mairie de Clichy,Gabriel Peri,Les Angnettes,Asnieres Gennevilliers Les Courtilles(,Mairie de Clichy),Guy Moquet(Porte de St Ouen,La Fourche),Porte de St Ouen,Garibaldi,Mairie de St Ouen,Carrefour Pleyel,Saint Denis - Porte de Paris,Saint Denis - Basilique,Saint Denis - Universite
+1,2,2,1,1,2,1,2,1,1,1,2,2,2,1,1,1,(2,1,2),1,2,2,2,2,(,2),(2,2),1,3,2,2,2,3
+0.7,0.2,0.6
+746,903, 835,880, 855,858, 837,817, 759,739, 598,589, 480,549, 394,542, 433,442
+741,889,53,9, 736,870,95,17, 810,839,47,17, 801,811,28,8, 773,706,37,19, 556,604,44,10, 429,552,47,10, 396,529,46,9, 395,433,33,18
+Olympiades,Bibliotheque Francois Mitterrand,Cour St-Emilion,Bercy,Gare de Lyon,Chatelet,Pyramides,Madeleine,Saint Lazare
+1,1,1,1,3,2,2,1
+0.45,0.23,0.11
+767,373, 798,360, 820,382, 862,391, 884,391, 918,420, 945,385, 918,364
+769,371,28,17, 804,355,33,11, 822,372,37,10, 828,394,47,18, 889,386,41,10, 891,428,45,18, 946,365,48,18, 901,351,35,10
+Louis Blanc,Jaures,Bolivar,Buttes Chaumont,Botzaris,Place des Fetes(Pre St Gervais),Pre St Gervais(Danube),Danube(Botzaris)
+1,1,1,1,1,(3),(1),(2)
+1,Tuileries,Concorde, 402,593, spline
+1,Bastille,St-Paul, 719,640, 694,639, spline
+1,Gare de Lyon,Bastille, 764,710, 764,690, 760,678, 744,661, spline
+1,Reuilly Diderot,Gare de Lyon, 813,731, 800,743, 789,740, spline
+1,Nation,Reuilly Diderot, 887,669, 878,668, 860,685, spline
+1,Porte de Vincennes,Nation, 929,689, 907,688, spline
+1,Saint-Madre,Porte de Vincennes, 962,694, spline
+2,Charles De Gaulle - Etoile,Victor Hugo, 254,500, 239,515, 231,520, spline
+2,Place de Clichy,Rome, 423,337, spline
+2,Colonel Fabien,Jaures, 802,381, 801,373, spline
+2,Couronnes,Belleville, 804,449, spline
+2,Pere Lachaise,Menilmontant, 877,525, spline
+3,Rue Saint-Maur,Parmentier, 834,531, 838,534, 843,537, spline
+3,Parmentier,Republique, 800,496, 795,493, 789,493, spline
+3,Republique,Temple, 737,497, spline
+3,Arts et Metiers,Reaumur Sebastopol, 692,542, 688,544, 683,544, spline
+3,Bourse,Quatre Septembre, 529,543, 522,543, 517,540, spline
+3,Saint Lazare,Europe, 435,426, spline
+3,Havre Caumartin,Saint Lazare, 439,459, spline
+4,Pelleport,Saint Fargeau, 979,476, 983,472, 983,467, spline
+4,Gambetta,Pelleport, 928,525, 932,521, spline
+5,Mouton Duvernet,Alesia, 576,880, 575,888, 571,894, spline
+5,Raspail,Denfert Rochereau, 574,824, spline
+5,Vavin,Raspail, 538,796, 547,798, 553,801, spline
+5,Saint Germain des Pres,Saint Sulpice, 504,692, 500,695, 499,704, spline
+5,Saint Michel,Odeon, 566,686, spline
+5,Cite,Saint Michel, 574,639, 569,647, 567,658, spline
+5,Chatelet,Cite, 598,614, spline
+5,Reaumur Sebastopol,Etienne Marcel, 615,548, 602,550, spline
+5,Strasbourg Saint Denis,Reaumur Sebastopol, 664,519, 663,543, 655,548, spline
+5,Chateau d'eau,Strasbourg Saint Denis, 669,443, 665,451, 664,464, spline
+5,Gare du Nord,Gare de l'Est, 701,366, 703,376, spline
+5,Barbes Rochechouart,Gare du Nord, 675,342, 681,344, 686,348, spline
+5,Chateau Rouge,Barbes Rochechouart, 619,334, 620,341, 625,342, spline
+5,Simplon,Marcadet Poissonniers, 616,274, spline
+6,Eglise de Pantin,Hoche, 951,312, 945,317, 939,319, spline
+6,Eglise de Pantin,Ourcq, 846,320, spline
+6,Ourcq,Laumiere, 842,321, 838,323, 834,326, spline
+6,Jaures,Stalingrad, 788,365, spline
+6,Stalingrad,Gare du Nord, 760,341, 721,341, 712,342, 709,350, spline
+6,Gare de l'Est,Jacques Bonsergent, 711,430, 719,443, spline
+6,Jacques Bonsergent,Republique, 720,476, 721,480, 726,486, 723,483, spline
+6,Oberkampf,Richard Lenoir, 792,550, 801,561, 797,569, spline
+6,Breguet Sabin,Bastille, 736,633, spline
+6,Campo Formio,Place d'Italie, 698,848, 693,852, 691,856, spline
+6,Saint Marcel,Campo Formio, 732,813, spline
+7,Nation,Picpus, 920,712, spline
+7,Quai de la Gare,Chevaleret, 783,869, spline
+7,Glaciere,Saint-Jacques, 612,869, spline
+7,Raspail,Edgar Quinet, 546,804, 533,803, spline
+7,Pasteur,Sevres Lecourbe, 412,801, spline
+7,Cambronne,La Motte Picquet - Grenelle, 349,745, 336,744, spline
+7,La Motte Picquet - Grenelle,Dupleix, 299,739, spline
+7,Passy,Trocadero, 210,641, spline
+7,Trocadero,Boissiere, 211,564, spline
+8,Fort d'Aubervilliers,Aubervilliers - Pantin Quatre Chemins, 881,217, spline
+8,Stalingrad,Louis Blanc, 771,358, spline
+8,Poissonniere,Cadet, 602,406, 587,407, spline
+8,Palais Royal - Musee du Louvre,Pont Neuf, 490,602, 514,602, spline
+8,Chatelet,Pont Marie, 622,612, spline
+8,Sully Morland,Jussieu, 686,715, 686,730, 685,748, 679,751, spline
+8,Jussieu,Place Monge, 655,751, 646,753, 645,764, spline
+8,Censier Daubenton,Les Gobelins, 649,817, spline
+8,Les Gobelins,Place d'Italie, 681,852, spline
+8,Maison Blanche,Porte d'Italie, 700,932, spline
+8,Porte d'Ivry,Pierre Curie, 803,940, spline
+8,Riquet,Stalingrad, 771,330, spline
+8,Chateau Landon,Gare de l'Est, 731,399, 720,405, spline
+16,Louis Blanc,Jaures, 781,357, 788,352, 793,355, spline
+16,Bolivar,Buttes Chaumont, 832,390, spline
+16,Botzaris,Place des Fetes, 906,412, spline
+16,Place des Fetes,Pre St Gervais, 930,413, 948,395, spline
+16,Pre St Gervais,Danube, 930,371, spline
+16,Botzaris,Danube, 906,370, spline
+9,Porte de Charenton,Liberte, 894,839, 901,848, spline
+9,Michel Bizot,Porte Doree, 913,793, 918,800, spline
+9,Ledru-Rollin,Faidherbe Chaligny, 771,676, 793,679, spline
+9,Boucicaut,Felix Faure, 309,832, spline
+9,Ecole Militaire,Latour Maubourg, 312,682, 314,676, 322,667, spline
+9,Invalides,Concorde, 380,611, 382,596, spline
+9,Concorde,Madeleine, 382,565, 383,547, spline
+9,Madeleine,Opera, 428,542, 443,537, 460,522, spline
+9,Opera,Richelieu Drouot, 488,493, 497,488, 512,487, spline
+9,Strasbourg Saint Denis,Republique, 689,487, 712,488, 722,494, spline
+9,Strasbourg Saint Denis,Filles du Calvaire, 997,404, spline
+9,Republique,Filles du Calvaire, 735,514, 728,524, spline
+9,Chemin Vert,Bastille, 727,636, spline
+1,Palais Royal - Musee du Louvre,Palais Royal - Musee du Louvre, 473,613, spline
+10,Porte de St Cloud,Marcel Sembat, 150,871, spline
+10,Rue de la Pompe,La Muette, 158,597, 155,602, 154,616, spline
+10,Alma Marceau,Iena, 294,589, 286,594, 277,596, spline
+10,Havre Caumartin,Saint Augustin, 446,478, 430,461, spline
+10,Republique,Strasbourg Saint Denis, 724,490, 715,482, 703,481, spline
+10,Buzenval,Nation, 921,666, 914,672, 908,674, spline
+11,Boulogne - Jean Jaures,Michel Ange Molitor, 120,807, spline
+11,Chardon Lagache,Mirabeau, 191,803, spline
+11,Chardon Lagache,Javel, 214,776, 237,790, spline
+11,Mirabeau,Javel, 217,782, spline
+11,Porte d'Auteuil,Michel-Ange Auteuil, 131,782, 137,777, 145,776, spline
+11,Javel,Charles Michels, 258,775, spline
+11,Avenue Emile Zola,La Motte Picquet - Grenelle, 299,739, spline
+11,La Motte Picquet - Grenelle,Segur, 334,737, 351,738, 362,747, spline
+11,Segur,Duroc, 389,774, 396,778, 404,772, spline
+11,Sevres Babylone,Mabillon, 477,700, 484,697, 492,697, spline
+11,Cluny - La Sorbonne,Maubert Mutualite, 602,703, spline
+11,Cardinal Lemoine,Jussieu, 647,744, spline
+11,Jussieu,Gare d'Austerlitz, 686,745, 693,747, 700,753, spline
+12,Hotel de Ville,Chatelet, 637,606, 635,607, 631,607, spline
+12,Porte des Lilas,Telegraphe, 974,423, spline
+12,Pyrenees,Belleville, 820,424, 817,424, 814,426, spline
+13,Marcadet Poissonniers,Marx Dormoy, 693,284, 706,283, 709,278, spline
+13,Lamarck Caulaincourt,Jules Joffrin, 560,284, 572,284, spline
+13,Notre Dame de Lorette,Saint Georges, 554,414, 557,404, spline
+13,Saint Lazare,Trinite d'Estienne d'Orves, 450,426, 452,419, 467,418, spline
+13,Madeleine,Trinite d'Estienne d'Orves, 460,460, spline
+13,Madeleine,Saint Lazare, 389,519, 391,509, 404,494, 444,454, spline
+13,Assemblee Nationale,Concorde, 389,619, spline
+13,Notre-Dame des Champs,Rennes, 510,757, spline
+13,Montparnasse Bienvenue,Notre-Dame des Champs, 510,792, 513,790, 514,786, spline
+14,Saint Denis - Porte de Paris,Saint Denis - Basilique, 618,140, 637,139, 648,134, spline
+14,Carrefour Pleyel,Saint Denis - Porte de Paris, 533,147, 542,141, 555,139, spline
+14,Porte de St Ouen,Garibaldi, 449,233, spline
+14,La Fourche,Brochant, 436,296, spline
+14,Champs Elysees - Clemenceau,Miromesnil, 367,536, 368,525, 376,515, spline
+14,St Francois Xavier,Varenne, 373,711, 369,703, 367,692, spline
+14,Montparnasse Bienvenue,Duroc, 473,798, 460,797, 446,786, spline
+14,Malakoff - Plateau de Vanves,Porte de Vanves, 411,935, spline
+14,Pernety,Gaite, 489,852, spline
+15,Olympiades,Bibliotheque Francois Mitterrand, 806,902, 811,902, 814,899, spline
+15,Gare de Lyon,Chatelet, 667,646, 642,620, 618,599, spline
+15,Chatelet,Pyramides, 561,589, 548,587, 538,580, 514,555, 508,551, 501,549, spline
+15,Chatelet,Madeleine, 398,558, spline
+15,Madeleine,Saint Lazare, 394,523, 395,512, 403,502, 424,481, 432,468, spline
+15,Pyramides,Madeleine, 449,549, 412,549, 399,548, spline
+15,Cour St-Emilion,Bercy, 865,850, 864,844, 862,841, spline
+14,Miromesnil,Saint Lazare, 422,468, 439,452, spline
+5,Montparnasse Bienvenue,Vavin, 500,795, spline
+1,Nation,2,Nation, 2
+1,Nation,7,Nation, 2
+1,Nation,10,Nation, 2
+1,Reuilly Diderot,9,Reuilly Diderot, 2
+1,Gare de Lyon,15,Gare de Lyon, 2
+1,Bastille,6,Bastille, 2
+1,Bastille,9,Bastille, 2
+1,Hotel de Ville,12,Hotel de Ville, 2
+1,Chatelet,5,Chatelet, 2
+1,Chatelet,8,Chatelet, 2
+1,Chatelet,12,Chatelet, 2
+1,Chatelet,15,Chatelet, 2
+1,Palais Royal - Musee du Louvre,8,Palais Royal - Musee du Louvre, 2
+1,Concorde,9,Concorde, 2
+1,Concorde,13,Concorde, 2
+1,Champs Elysees - Clemenceau,14,Champs Elysees - Clemenceau, 2
+1,Charles De Gaulle - Etoile,2,Charles De Gaulle - Etoile, 2
+1,Charles De Gaulle - Etoile,7,Charles De Gaulle - Etoile, 2
+2,Nation,7,Nation, 2
+2,Nation,10,Nation, 2
+2,Pere Lachaise,3,Pere Lachaise, 2
+2,Jaures,6,Jaures, 2
+2,Jaures,16,Jaures, 2
+2,Stalingrad,6,Stalingrad, 2
+2,Stalingrad,8,Stalingrad, 2
+2,Barbes Rochechouart,5,Barbes Rochechouart, 2
+2,Pigalle,13,Pigalle, 2
+2,Place de Clichy,14,Place de Clichy, 2
+2,Villiers,3,Villiers, 2
+2,Charles De Gaulle - Etoile,7,Charles De Gaulle - Etoile, 2
+3,Gambetta,4,Gambetta, 2
+3,Republique,6,Republique, 2
+3,Republique,9,Republique, 2
+3,Republique,10,Republique, 2
+3,Republique,12,Republique, 2
+3,Arts et Metiers,12,Arts et Metiers, 2
+3,Reaumur Sebastopol,5,Reaumur Sebastopol, 2
+3,Opera,8,Opera, 2
+3,Opera,9,Opera, 2
+3,Havre Caumartin,10,Havre Caumartin, 2
+4,Porte des Lilas,12,Porte des Lilas, 2
+5,Marcadet Poissonniers,13,Marcadet Poissonniers, 2
+5,Gare du Nord,6,Gare du Nord, 2
+5,Gare de l'Est,6,Gare de l'Est, 2
+5,Gare de l'Est,8,Gare de l'Est, 2
+5,Strasbourg Saint Denis,9,Strasbourg Saint Denis, 2
+5,Strasbourg Saint Denis,10,Strasbourg Saint Denis, 2
+5,Chatelet,8,Chatelet, 2
+5,Chatelet,12,Chatelet, 2
+5,Chatelet,15,Chatelet, 2
+5,Odeon,11,Odeon, 2
+5,Montparnasse Bienvenue,7,Montparnasse Bienvenue, 2
+5,Montparnasse Bienvenue,13,Montparnasse Bienvenue, 2
+5,Montparnasse Bienvenue,14,Montparnasse Bienvenue, 2
+5,Raspail,7,Raspail, 2
+5,Denfert Rochereau,7,Denfert Rochereau, 2
+6,Jaures,16,Jaures, 2
+6,Stalingrad,8,Stalingrad, 2
+6,Gare de l'Est,8,Gare de l'Est, 2
+6,Republique,9,Republique, 2
+6,Republique,10,Republique, 2
+6,Republique,12,Republique, 2
+6,Oberkampf,10,Oberkampf, 2
+6,Bastille,9,Bastille, 2
+6,Gare d'Austerlitz,11,Gare d'Austerlitz, 2
+6,Place d'Italie,7,Place d'Italie, 2
+6,Place d'Italie,8,Place d'Italie, 2
+7,Nation,10,Nation, 2
+7,Daumesnil,9,Daumesnil, 2
+7,Bercy,15,Bercy, 2
+7,Place d'Italie,8,Place d'Italie, 2
+7,Montparnasse Bienvenue,13,Montparnasse Bienvenue, 2
+7,Montparnasse Bienvenue,14,Montparnasse Bienvenue, 2
+7,Pasteur,13,Pasteur, 2
+7,La Motte Picquet - Grenelle,9,La Motte Picquet - Grenelle, 2
+7,La Motte Picquet - Grenelle,11,La Motte Picquet - Grenelle, 2
+7,Trocadero,10,Trocadero, 2
+8,Louis Blanc,16,Louis Blanc, 2
+8,Chaussee d'Antin - La Fayette,10,Chaussee d'Antin - La Fayette, 2
+8,Opera,9,Opera, 2
+8,Pyramides,15,Pyramides, 2
+8,Chatelet,12,Chatelet, 2
+8,Chatelet,15,Chatelet, 2
+8,Jussieu,11,Jussieu, 2
+9,La Motte Picquet - Grenelle,11,La Motte Picquet - Grenelle, 2
+9,Invalides,14,Invalides, 2
+9,Concorde,13,Concorde, 2
+9,Madeleine,13,Madeleine, 2
+9,Madeleine,15,Madeleine, 2
+9,Richelieu Drouot,10,Richelieu Drouot, 2
+9,Grands Boulevards,10,Grands Boulevards, 2
+9,Bonne Nouvelle,10,Bonne Nouvelle, 2
+9,Strasbourg Saint Denis,10,Strasbourg Saint Denis, 2
+9,Republique,10,Republique, 2
+9,Republique,12,Republique, 2
+10,Republique,12,Republique, 2
+10,Miromesnil,14,Miromesnil, 2
+10,Michel-Ange Auteuil,11,Michel-Ange Auteuil, 2
+10,Michel-Ange Molitor,11,Michel-Ange Molitor, 2
+11,Duroc,14,Duroc, 2
+11,Sevres Babylone,13,Sevres Babylone, 2
+12,Place des Fetes,16,Place des Fetes, 2
+12,Chatelet,15,Chatelet, 2
+13,Montparnasse Bienvenue,14,Montparnasse Bienvenue, 2
+13,Madeleine,15,Madeleine, 2
+2,La Chapelle,5,Gare du Nord, 2
+2,La Chapelle,6,Gare du Nord, 2
+2,Belleville,12,Belleville, 2
+1,Franklin D. Roosevelt,10,Franklin D. Roosevelt, 2
+13,Saint Lazare,3,Saint Lazare, 2
+13,Saint Lazare,14,Saint Lazare, 2
+3,Saint Lazare,14,Saint Lazare, 2
+15,Saint Lazare,3,Saint Lazare, 2
+15,Saint Lazare,14,Saint Lazare, 2
+15,Saint Lazare,13,Saint Lazare, 2
