@@ -155,7 +155,7 @@ NSInteger const toolbarWidth=320;
 }
 
 -(void) selectToStation {
-	DLog(@"station 1");
+	DLog(@"station 2");
 }
 
 
