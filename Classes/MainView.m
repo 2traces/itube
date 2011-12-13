@@ -86,7 +86,7 @@ NSInteger const toolbarWidth=320;
 	[refreshButton setImage:imageOpenList forState:UIControlStateNormal];
 	[refreshButton setImage:imageOpenList forState:UIControlStateHighlighted];
 	refreshButton.imageEdgeInsets = UIEdgeInsetsMake(0, -imageOpenList.size.width/2, 0, 0);
-	[refreshButton addTarget:self action:@selector(selectStation1) forControlEvents:UIControlEventTouchUpInside];
+	[refreshButton addTarget:self action:@selector(selectFromStation) forControlEvents:UIControlEventTouchUpInside];
 	refreshButton.bounds = CGRectMake(0,0, imageOpenList.size.width, imageOpenList.size.height);
 
 
@@ -108,7 +108,7 @@ NSInteger const toolbarWidth=320;
 	[refreshButton2 setImage:imageOpenList forState:UIControlStateNormal];
 	[refreshButton2 setImage:imageOpenList forState:UIControlStateHighlighted];
 	refreshButton2.imageEdgeInsets = UIEdgeInsetsMake(0, -imageOpenList.size.width/2, 0, 0);
-	[refreshButton2 addTarget:self action:@selector(selectStation1) forControlEvents:UIControlEventTouchUpInside];
+	[refreshButton2 addTarget:self action:@selector(selectToStation) forControlEvents:UIControlEventTouchUpInside];
 	refreshButton2.bounds = CGRectMake(0,0, imageOpenList.size.width, imageOpenList.size.height);
 	
 	secondStation = [[UITextField alloc] initWithFrame:CGRectMake(160,5, 157, 36)];
@@ -150,9 +150,14 @@ NSInteger const toolbarWidth=320;
 	
 }
 
--(void) selectStation1 {
+-(void) selectFromStation {
 	DLog(@"station 1");
 }
+
+-(void) selectToStation {
+	DLog(@"station 1");
+}
+
 
 - (void)locationUpdate:(CLLocation *)location {
 	//locLabel.text = [location description];
