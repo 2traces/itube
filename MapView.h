@@ -13,7 +13,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
 
-extern CGFloat const kLineWidth;
 extern int const imagesCount;
 
 @interface MapView : UIView {
@@ -25,7 +24,6 @@ extern int const imagesCount;
 	Boolean drawPath;
 	
 	NSArray *stationPath;
-	NSInteger currentLineNum;
 	
 	NSString *stationNameTemp;
 	NSInteger stationLineTemp;
@@ -67,7 +65,6 @@ extern int const imagesCount;
 @property Boolean stationSelected;
 @property Boolean labelPlaced;
 @property Boolean drawPath;
-@property NSInteger currentLineNum;
 @property NSInteger stationLineTemp;
 @property (nonatomic, retain) NSMutableDictionary *drawedStations;
 @property (nonatomic, retain) CityMap *cityMap;
@@ -82,21 +79,11 @@ extern int const imagesCount;
 + (UIImage *)resizedImageWithContentMode:(UIViewContentMode)contentMode imageToScale:(UIImage*)imageToScale bounds:(CGSize)bounds interpolationQuality:(CGInterpolationQuality)quality ;
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 // 
--(void) drawStationName:(CGContextRef) context  :(NSDictionary*) text_coord  :(NSDictionary*) point_coord :(NSString*) stationName :(NSInteger) line;
--(void) drawStationName:(CGContextRef) context :(float) x :(float) y  :(float) ww :(float)hh :(NSString*) stationName :(UITextAlignment) mode :(NSInteger) line;
--(void) drawStationName2:(CGContextRef) context :(float) x :(float) y  :(float) ww :(float)hh :(NSString*) stationName :(UITextAlignment) mode;
 
 //
 - (void)refreshLayersScale:(float)scale;
 
 //
--(void) drawStationPoint: (CGContextRef) context coord: (NSDictionary*) coord lineColor: (NSArray *) lineColor ;
--(void) drawStationPoint: (CGContextRef) context y: (float) y x: (float) x lineColor: (NSArray *) lineColor ;
--(void) draw2Station:(CGContextRef)context :(NSArray*)lineColor :(NSDictionary*) coord1 :(NSDictionary*)coord2 :(NSArray*) splineCoords :(Boolean) reverse;
--(void) drawMetroLine:(CGContextRef) context :(NSArray*)lineCoords :(NSArray*)lineColor 
-					 :(NSDictionary*)lineStationsData :(NSArray*) lineStationsName :(CityMap*) map :(NSInteger)line;
--(void) drawMetroLineStationName:(CGContextRef) context :(NSArray*)lineColor 
-								:(NSDictionary*)lineStationsData :(NSArray*) lineStationsName :(CityMap*) map :(NSInteger)line;
 
 //
 -(void) processTransfers2:(CGContextRef) context;
@@ -106,8 +93,6 @@ extern int const imagesCount;
 
 
 -(void) drawPathMap:(CGContextRef) context :(NSArray*) pathMap;
--(void) drawMap:(CGContextRef) context :(CityMap*) map;
--(void) drawSpline :(CGContextRef)context :(CGFloat)x1 :(CGFloat)y1 :(CGFloat)x2 :(CGFloat)y2 :(NSArray*) coordSpline :(Boolean) reverse;
 
 //
 -(void) drawString: (NSString*) s withFont: (UIFont*) font inRect: (CGRect) contextRect ;

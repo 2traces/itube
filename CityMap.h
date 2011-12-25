@@ -38,6 +38,9 @@ extern NSInteger const kDataRowForLine;
 	NSMutableDictionary *linesIndex;
 	NSMutableArray *linesNames;
 	Utils *utils;
+
+    CGFloat kLineWidth;
+	NSInteger currentLineNum;
 	int koef;
 }
 
@@ -64,6 +67,8 @@ extern NSInteger const kDataRowForLine;
 @property (nonatomic, retain) NSMutableDictionary *addNodes;
 @property (nonatomic, retain) NSMutableDictionary *transfersTime;	
 @property (nonatomic, retain) Utils *utils;
+
+@property NSInteger currentLineNum;
 
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
@@ -93,5 +98,21 @@ extern NSInteger const kDataRowForLine;
 
 -(void) processLinesStations:(NSString*) stations :(NSUInteger) line;
 -(void) processLinesTime:(NSString*) lineTime :(NSUInteger) line;
+
+// drawing
+-(void) drawMap:(CGContextRef) context;
+-(void) drawMetroLine:(CGContextRef) context :(NSArray*)lineCoords :(NSArray*)lineColor 
+					 :(NSDictionary*)lineStationsData :(NSArray*) lineStationsName :(NSInteger)line;
+-(void) drawMetroLineStationName:(CGContextRef) context :(NSArray*)lineColor 
+								:(NSDictionary*)lineStationsData :(NSArray*) lineStationsName :(NSInteger)line;
+
+
+-(void) drawStationName:(CGContextRef) context  :(NSDictionary*) text_coord  :(NSDictionary*) point_coord :(NSString*) stationName :(NSInteger) line;
+-(void) drawStationName:(CGContextRef) context :(float) x :(float) y  :(float) ww :(float)hh :(NSString*) stationName :(UITextAlignment) mode :(NSInteger) line;
+-(void) drawStationPoint: (CGContextRef) context coord: (NSDictionary*) coord lineColor: (NSArray *) lineColor ;
+-(void) drawStationPoint: (CGContextRef) context y: (float) y x: (float) x lineColor: (NSArray *) lineColor ;
+-(void) draw2Station:(CGContextRef)context :(NSArray*)lineColor :(NSDictionary*) coord1 :(NSDictionary*)coord2 :(NSArray*) splineCoords :(Boolean) reverse;
+
+-(void) drawSpline :(CGContextRef)context :(CGFloat)x1 :(CGFloat)y1 :(CGFloat)x2 :(CGFloat)y2 :(NSArray*) coordSpline :(Boolean) reverse;
 
 @end
