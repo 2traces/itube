@@ -19,7 +19,6 @@ extern int const imagesCount;
 
 	UILabel *mainLabel;
 	CityMap *cityMap;
-	NSMutableDictionary *drawedStations;
 	Boolean stationSelected;
 	Boolean drawPath;
 	
@@ -33,40 +32,27 @@ extern int const imagesCount;
 	NSInteger firstStationNum;
 	NSInteger secondStationNum;	
 	
-	Boolean labelPlaced;
 	SelectedPathMap *selectedMap;
-	UIImage *drawedMap,*drawedMap2,*drawedMap3,*drawedMap4;
-	UIImage *drawedPath;
-	NSMutableArray *images;
+    CGLayerRef mapLayer;
+    CGLayerRef pathLayer;
 	
-	CATiledLayer *mapLayer;
-	CALayer *selectedPathLayer;
 	CALayer *selectedStationLayer;
 	NSString *nearestStationName;
 	//
 	UIImage *nearestStationImage;
 }
 
-@property (nonatomic, retain) NSMutableArray *images;
-
 @property (assign) NSString *nearestStationName;
 
 @property (nonatomic, retain) CALayer *selectedStationLayer;
-@property (nonatomic, retain) CALayer *selectedPathLayer;
-@property (nonatomic, retain) CATiledLayer *mapLayer;
-
-@property (nonatomic, retain) UIImage *drawedMap,*drawedMap2,*drawedMap3,*drawedMap4;
-@property (nonatomic, retain) UIImage* drawedPath;
 
 //
 @property (nonatomic, retain) UIImage *nearestStationImage;
 
 @property (nonatomic, retain) SelectedPathMap *selectedMap;
 @property Boolean stationSelected;
-@property Boolean labelPlaced;
 @property Boolean drawPath;
 @property NSInteger stationLineTemp;
-@property (nonatomic, retain) NSMutableDictionary *drawedStations;
 @property (nonatomic, retain) CityMap *cityMap;
 @property (nonatomic, retain) UILabel *mainLabel;
 @property (nonatomic, retain) NSString *stationNameTemp;
@@ -74,10 +60,7 @@ extern int const imagesCount;
 
 
 
-- (void) makeImages;
 - (void)viewDidLoad;
-+ (UIImage *)resizedImageWithContentMode:(UIViewContentMode)contentMode imageToScale:(UIImage*)imageToScale bounds:(CGSize)bounds interpolationQuality:(CGInterpolationQuality)quality ;
-+ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 // 
 
 //
@@ -86,13 +69,9 @@ extern int const imagesCount;
 //
 
 //
--(void) processTransfers2:(CGContextRef) context;
--(void) processTransfers:(CGContextRef) context;
 -(UIImage *) drawToImage :(CityMap*) map;
-- (UIImage *) drawPathToImage :(NSArray*) pathMap;
+- (void) drawPathTo :(NSArray*) pathMap;
 
-
--(void) drawPathMap:(CGContextRef) context :(NSArray*) pathMap;
 
 //
 -(void) drawString: (NSString*) s withFont: (UIFont*) font inRect: (CGRect) contextRect ;
@@ -103,14 +82,6 @@ extern int const imagesCount;
 //
 -(void) initData ;
 
-//debug
--(void) saveImage :(UIImage*)mm;
-	
-
-//CG Helpers	
--(void) drawCircle :(CGContextRef) context :(CGFloat)x :(CGFloat)y :(CGFloat)r;
--(void) drawFilledCircle :(CGContextRef) context :(CGFloat)x :(CGFloat)y :(CGFloat)r;
--(void) drawLine :(CGContextRef) context :(CGFloat)x1 :(CGFloat)y1 :(CGFloat)x2 :(CGFloat)y2 :(int)lineWidth;
 //gps stuff
 -(NSString*) calcNearStations:(CLLocation*) new_location;
 -(void) checkGPSCoord:(CLLocation*) new_location;

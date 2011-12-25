@@ -41,7 +41,10 @@ extern NSInteger const kDataRowForLine;
 
     CGFloat kLineWidth;
 	NSInteger currentLineNum;
+	NSMutableDictionary *drawedStations;
 	int koef;
+    Boolean labelPlaced;
+    UIView *view;
 }
 
 @property (nonatomic,retain) NSMutableDictionary *linesIndex;
@@ -69,6 +72,9 @@ extern NSInteger const kDataRowForLine;
 @property (nonatomic, retain) Utils *utils;
 
 @property NSInteger currentLineNum;
+@property (nonatomic, retain) NSMutableDictionary *drawedStations;
+@property (nonatomic, assign) UIView *view;
+@property Boolean labelPlaced;
 
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
@@ -114,5 +120,15 @@ extern NSInteger const kDataRowForLine;
 -(void) draw2Station:(CGContextRef)context :(NSArray*)lineColor :(NSDictionary*) coord1 :(NSDictionary*)coord2 :(NSArray*) splineCoords :(Boolean) reverse;
 
 -(void) drawSpline :(CGContextRef)context :(CGFloat)x1 :(CGFloat)y1 :(CGFloat)x2 :(CGFloat)y2 :(NSArray*) coordSpline :(Boolean) reverse;
+
+-(void) drawPathMap:(CGContextRef) context :(NSArray*) pathMap;
+
+//CG Helpers	
+-(void) drawCircle :(CGContextRef) context :(CGFloat)x :(CGFloat)y :(CGFloat)r;
+-(void) drawFilledCircle :(CGContextRef) context :(CGFloat)x :(CGFloat)y :(CGFloat)r;
+-(void) drawLine :(CGContextRef) context :(CGFloat)x1 :(CGFloat)y1 :(CGFloat)x2 :(CGFloat)y2 :(int)lineWidth;
+
+-(void) drawTransfers2:(CGContextRef) context;
+-(void) drawTransfers:(CGContextRef) context;
 
 @end
