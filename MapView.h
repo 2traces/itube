@@ -27,7 +27,6 @@ extern int const imagesCount;
 	NSString *selectedStationName;
 	NSInteger selectedStationLine;
 		
-	SelectedPathMap *selectedMap;
     CGLayerRef mapLayer;
     CGLayerRef pathLayer;
 	
@@ -35,6 +34,8 @@ extern int const imagesCount;
 	NSString *nearestStationName;
 	//
 	UIImage *nearestStationImage;
+    float Scale;
+    NSMutableArray *pathArray;
 }
 
 @property (assign) NSString *nearestStationName;
@@ -44,7 +45,6 @@ extern int const imagesCount;
 //
 @property (nonatomic, retain) UIImage *nearestStationImage;
 
-@property (nonatomic, retain) SelectedPathMap *selectedMap;
 @property Boolean stationSelected;
 @property Boolean drawPath;
 @property NSInteger selectedStationLine;
@@ -52,27 +52,19 @@ extern int const imagesCount;
 @property (nonatomic, retain) UILabel *mainLabel;
 @property (nonatomic, retain) NSString *selectedStationName;
 @property (nonatomic, retain) NSArray *stationPath;
-
+@property (nonatomic, readonly) CGSize size;
 
 
 - (void)viewDidLoad;
 // 
 
-//
-- (void)refreshLayersScale:(float)scale;
-
-//
-
-//
+-(void) updateLayers;
 -(void) drawMapLayer :(CityMap*) map;
 - (void) drawPathLayer :(NSArray*) pathMap;
-
 
 //
 -(void) drawString: (NSString*) s withFont: (UIFont*) font inRect: (CGRect) contextRect ;
 -(void) findPathFrom :(NSString*) fSt To:(NSString*) sSt FirstLine:(NSInteger) fStl LastLine:(NSInteger)sStl ;
--(void) drawSelectedMap;
--(void) removePath;
 
 //
 -(void) initData ;

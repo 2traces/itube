@@ -38,8 +38,6 @@ NSInteger const toolbarWidth=320;
 }
 
 -(void) initVar{
-//	selectedMap = [[SelectedPathMap alloc] initWithFrame:CGRectMake(0, toolbarHeight, 2000, 2000)];
-	
 	xw = [NSNumber numberWithDouble:48.865499];
 	yw = [NSNumber numberWithDouble:2.135647];
 }
@@ -50,10 +48,10 @@ NSInteger const toolbarWidth=320;
 	self.userInteractionEnabled = YES;
 	DLog(@"ViewDidLoad main View");	
 
-	mapView = [[[MapView alloc] initWithFrame:CGRectMake(0,0,2600,2600-44)] autorelease];
+	mapView = [[[MapView alloc] init] autorelease];
 
 	containerView = [[MyScrollView alloc] initWithFrame:CGRectMake(0,44,(320),(480-44))];
-	[containerView setContentSize:CGSizeMake(2600, 2600)];
+	[containerView setContentSize:mapView.size];
 	containerView.scrollEnabled = YES;
 	containerView.decelerationRate = UIScrollViewDecelerationRateFast ;
 	containerView.showsVerticalScrollIndicator = NO;

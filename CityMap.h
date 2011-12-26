@@ -17,8 +17,8 @@ extern NSInteger const kDataRowForLine;
 @interface CityMap : NSObject {
 
 	Graph *graph;
-	NSInteger w;
-	NSInteger h;
+	NSInteger _w;
+	NSInteger _h;
 	NSInteger linesCount;
 	NSInteger addNodesCount;
 	NSInteger transfersCount;
@@ -42,20 +42,21 @@ extern NSInteger const kDataRowForLine;
     CGFloat kLineWidth;
 	NSInteger currentLineNum;
 	NSMutableDictionary *drawedStations;
-	int koef;
+    // текущий коэффициент масштабирования
+	float koef;
     Boolean labelPlaced;
     UIView *view;
 }
 
 @property (nonatomic,retain) NSMutableDictionary *linesIndex;
 @property (nonatomic,retain) NSMutableArray *linesNames;
-@property int koef;
+@property float koef;  
 @property (nonatomic,retain) NSMutableDictionary *allStationsNames;
 @property (nonatomic,retain) NSMutableDictionary *contentAZForTableView;
 @property (nonatomic,retain) NSMutableDictionary *contentLinesForTableView;
 @property (nonatomic,retain) NSMutableDictionary *gpsCoords;
-@property NSInteger w;
-@property NSInteger h;
+@property (readonly) NSInteger w;
+@property (readonly) NSInteger h;
 @property NSInteger linesCount;
 @property NSInteger addNodesCount;
 @property NSInteger transfersCount;
@@ -81,7 +82,6 @@ extern NSInteger const kDataRowForLine;
 //
 -(void) prepareStationForTable:(NSString*) stationName :(NSInteger)line;
 	
--(void) initMap:(NSString*) mapName;
 -(void) loadMap:(NSString *)mapName;
 -(void) initVars ;
 
@@ -107,6 +107,8 @@ extern NSInteger const kDataRowForLine;
 
 // drawing
 -(void) drawMap:(CGContextRef) context;
+-(void) drawStations:(CGContextRef) context;
+
 -(void) drawMetroLine:(CGContextRef) context :(NSArray*)lineCoords :(NSArray*)lineColor 
 					 :(NSDictionary*)lineStationsData :(NSArray*) lineStationsName :(NSInteger)line;
 -(void) drawMetroLineStationName:(CGContextRef) context :(NSArray*)lineColor 
@@ -128,7 +130,6 @@ extern NSInteger const kDataRowForLine;
 -(void) drawFilledCircle :(CGContextRef) context :(CGFloat)x :(CGFloat)y :(CGFloat)r;
 -(void) drawLine :(CGContextRef) context :(CGFloat)x1 :(CGFloat)y1 :(CGFloat)x2 :(CGFloat)y2 :(int)lineWidth;
 
--(void) drawTransfers2:(CGContextRef) context;
 -(void) drawTransfers:(CGContextRef) context;
 
 @end

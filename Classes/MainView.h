@@ -49,7 +49,6 @@ extern NSInteger const toolbarWidth;
 
 - (void) processStationSelect;
 - (void) initVar;
-- (UIView *) viewForZoomingInScrollView:(UIScrollView *) scrollView;
 - (void) viewInit;
 -(void) findPathFrom :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl ;
 @end

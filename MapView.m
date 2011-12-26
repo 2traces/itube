@@ -21,13 +21,17 @@
 @synthesize stationSelected;
 @synthesize stationPath;
 @synthesize selectedStationLine;
-@synthesize selectedMap;
 @synthesize nearestStationName;
 @synthesize nearestStationImage;
 @synthesize selectedStationLayer;
 
-- (id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+
+- (CGSize) size {
+    return CGSizeMake(cityMap.w, cityMap.h);
+}
+
+- (id)init {
+    if (self = [super initWithFrame:CGRectMake(0, 0, 100, 100)]) {
         // Initialization code
 
 		DLog(@" InitMapView	initWithFrame; ");
@@ -43,15 +47,16 @@
 		{
 			scale = [[UIScreen mainScreen] scale];
 		}
-		
-
 		self.contentScaleFactor = scale;
 		self.layer.contentsScale = scale;
 
 		cityMap = [[[CityMap alloc] init] retain];
         cityMap.view = self;
-		[cityMap initMap:@"parisp"];
+        Scale = 2.f;
+        cityMap.koef = Scale;
+		[cityMap loadMap:@"parisp"];
 		drawPath = false;
+        self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
 		
 		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,100,25)];
 		mainLabel.font = [UIFont systemFontOfSize:12];
@@ -61,9 +66,6 @@
 		mainLabel.hidden=true;
 
 		[self initData];
-		
-		selectedMap = [[SelectedPathMap alloc] initWithFrame:CGRectMake(0, 0, cityMap.w, cityMap.h)];
-		selectedMap.userInteractionEnabled=YES;
 		
 		selectedStationLayer = [[CALayer layer] retain];
 		
@@ -83,10 +85,10 @@
     CGLayerRelease(pathLayer);
 	[cityMap dealloc];
 	[nearestStationImage release];
+    [pathArray release];
 }
 
-- (void)drawLayer:(CALayer *)layer 
-        inContext:(CGContextRef)context {
+- (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)context {
 
     if(mapLayer == nil) {
         CGSize size = CGSizeMake(cityMap.w, cityMap.h);
@@ -95,10 +97,9 @@
     }
 	CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
     //CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
-	CGContextFillRect(context, 
-					  CGContextGetClipBoundingBox(context));
+	CGContextFillRect(context, CGContextGetClipBoundingBox(context));
     CGContextDrawLayerAtPoint(context, CGPointZero, mapLayer);
-
+    
 	if(pathLayer != nil && drawPath) {
         CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 0.5);
         CGContextFillRect(context, CGContextGetClipBoundingBox(context));
@@ -115,14 +116,25 @@
 #pragma mark -
 #pragma mark Draw Map Stuff 
 
--(void) drawSelectedMap  {
-	[self addSubview:selectedMap];
-}
-
 - (void)viewDidLoad 
 {
     //[super viewDidLoad];
     DLog(@"viewDidLoad mapView\n");
+}
+
+-(void) updateLayers
+{
+    CGSize size = CGSizeMake(cityMap.w, cityMap.h);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    if(mapLayer != nil) CGLayerRelease(mapLayer);
+    mapLayer = CGLayerCreateWithContext(context, size, NULL);
+    [self drawMapLayer:cityMap];
+
+    if(drawPath) {
+        if(pathLayer != nil) CGLayerRelease(pathLayer);
+        pathLayer = CGLayerCreateWithContext(context, size, NULL);
+        [self drawPathLayer :pathArray];
+    }
 }
 
 - (void) drawMapLayer :(CityMap*) map 
@@ -134,8 +146,9 @@
     //CGContextSetShouldSmoothFonts(cgContext, true);
     //CGContextSetAllowsFontSmoothing(context, true);       
     
-    [cityMap drawMap:c2];
-    [cityMap drawTransfers:c2];
+    [map drawMap:c2];
+    [map drawStations:c2]; 
+    [map drawTransfers:c2];
 }
 
 - (void) drawPathLayer :(NSArray*) pathMap 
@@ -149,10 +162,6 @@
 
 }
 
-
-
-
-
 #pragma mark -
 #pragma mark CGDraw Functions
 
@@ -162,14 +171,6 @@
 #pragma mark -
 #pragma mark -
 // CG helpers end 
-
-- (void)refreshLayersScale:(float)scale{
-	
-	//[self setNeedsDisplay];
-	
-}
-
-
 
 - (void) touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event 
 {	
@@ -230,33 +231,17 @@
 
 -(void) findPathFrom :(NSString*) fSt To:(NSString*) sSt FirstLine:(NSInteger) fStl LastLine:(NSInteger)sStl {
 
-	NSMutableArray *pathArray = [NSMutableArray arrayWithArray:[cityMap calcPath:fSt :sSt :fStl :sStl]];
-	
-	/*
-	DLog(@"-------------")
-	for (int i = 0 ; i<[pathArray count]; i++) {
-		DLog(@" %@ ",[ [pathArray objectAtIndex:i] value]);
-	}
-	 */
-
+    [pathArray removeAllObjects];
+    [pathArray addObjectsFromArray:[cityMap calcPath:fSt :sSt :fStl :sStl]];
 	[pathArray insertObject:[GraphNode nodeWithValue:[NSString stringWithFormat:@"%@|%d",fSt,fStl ] ] atIndex:0];
 	
 	[self drawPathLayer :pathArray];
 		
 	drawPath=true;
 
-	
 	[self setNeedsDisplay];
-	//[self addSubview:selectedMap];
-	
-	//[self drawPathMap:cgContext :pathArray];
 }
 
-
--(void) removePath{
-	[selectedMap removeFromSuperview];
-	
-}
 
 #pragma mark -
 #pragma mark gps stuff 
@@ -328,20 +313,31 @@
 	
 }
  
-/********** UIScrollViewDelegate methods *************/
+#pragma mark UIScrollViewDelegate methods
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *) scrollView{
 	return self;
 }
 
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView
-                       withView:(UIView *)view
-                        atScale:(float)scale
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
 {
-	
-	
-	[self refreshLayersScale:scale];
-	DLog(@" scale %f ",scale);
+    const float MinScale = 0.15f;
+    const float MaxScale = 2.f;
+	if(scale == 1.f) return;
+    Scale *= scale;
+    cityMap.koef = Scale;
+    if(Scale < MinScale) Scale = MinScale;
+    if(Scale > MaxScale) Scale = MaxScale;
+    
+    [self updateLayers];
+
+    CGPoint offset = scrollView.contentOffset;
+    [scrollView setZoomScale:1.f animated:NO];
+    [scrollView setMaximumZoomScale:MaxScale / Scale];
+    [scrollView setMinimumZoomScale:MinScale / Scale];
+    [scrollView setContentSize:CGSizeMake(cityMap.w, cityMap.h)];
+    [scrollView setContentOffset:offset animated:NO];
+    [self setNeedsDisplay];
 }
 
 
