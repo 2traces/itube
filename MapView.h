@@ -69,8 +69,8 @@ extern int const imagesCount;
 //
 
 //
--(UIImage *) drawToImage :(CityMap*) map;
-- (void) drawPathTo :(NSArray*) pathMap;
+-(void) drawMapLayer :(CityMap*) map;
+- (void) drawPathLayer :(NSArray*) pathMap;
 
 
 //

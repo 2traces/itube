@@ -50,13 +50,9 @@ NSInteger const toolbarWidth=320;
 	self.userInteractionEnabled = YES;
 	DLog(@"ViewDidLoad main View");	
 
-	//[self addSubview:[[[MapView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease]];
-	//mapView = [[[MapView alloc] initWithFrame:CGRectMake(0,0,6*(320),4*(480-44))] autorelease];
-	
 	mapView = [[[MapView alloc] initWithFrame:CGRectMake(0,0,2600,2600-44)] autorelease];
 
 	containerView = [[MyScrollView alloc] initWithFrame:CGRectMake(0,44,(320),(480-44))];
-//	[containerView setContentSize:CGRectMake(10,10,1000,1000)];
 	[containerView setContentSize:CGSizeMake(2600, 2600)];
 	containerView.scrollEnabled = YES;
 	containerView.decelerationRate = UIScrollViewDecelerationRateFast ;
@@ -74,7 +70,6 @@ NSInteger const toolbarWidth=320;
 	containerView.delegate = self;
 	[containerView addSubview: mapView];
 	[self addSubview:containerView];
-//	[self containerView];
 	
 	toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,0, toolbarWidth,toolbarHeight)];
 	[self addSubview:toolbar];
@@ -122,8 +117,6 @@ NSInteger const toolbarWidth=320;
 	[secondStation setClearButtonMode:UITextFieldViewModeWhileEditing];
 	secondStation.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 
-	
-    
 	
 	[toolbar addSubview:secondStation];	
 	

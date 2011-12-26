@@ -91,15 +91,7 @@
     if(mapLayer == nil) {
         CGSize size = CGSizeMake(cityMap.w, cityMap.h);
         mapLayer = CGLayerCreateWithContext(context, size, NULL);
-        CGContextRef c2 = CGLayerGetContext(mapLayer);
-
-        //CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
-        //CGContextSetShouldAntialias(context, true);
-        //CGContextSetShouldSmoothFonts(cgContext, true);
-        //CGContextSetAllowsFontSmoothing(context, true);       
-
-        [cityMap drawMap:c2];
-        [cityMap drawTransfers:c2];
+        [self drawMapLayer:cityMap];
     }
 	CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
     //CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
@@ -133,63 +125,21 @@
     DLog(@"viewDidLoad mapView\n");
 }
 
-- (UIImage *) drawToImage :(CityMap*) map {
-	
-
-	if (UIGraphicsBeginImageContextWithOptions != NULL) {
-		DLog(@" retina");
-//		UIGraphicsBeginImageContextWithOptions(CGSizeMake(cityMap.w, cityMap.h), NO, 0.0);
-        UIGraphicsBeginImageContext(CGSizeMake(cityMap.w, cityMap.h));							
-	}
-    else {
-        UIGraphicsBeginImageContext(CGSizeMake(cityMap.w, cityMap.h));					
-    }
-
-	CGContextRef context = UIGraphicsGetCurrentContext();		
-	
-	// push context to make it current 
-	// (need to do this manually because we are not drawing in a UIView)
-	//
-	UIGraphicsPushContext(context);						
-
-	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
-	CGContextFillRect(context, CGRectMake(0,0,cityMap.w,cityMap.h));
-
-	CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
-	
-	//CGContextSetShouldAntialias(context, true);
-	//CGContextSetShouldSmoothFonts(cgContext, true);
-	//CGContextSetAllowsFontSmoothing(context, true);
-	
-	
-	// drawing code comes here- look at CGContext reference
-	// for available operations
-	//
-	// this example draws the inputImage into the context
-	//
-	[map drawMap:context];
-	[map drawTransfers:context];
-
-	//[inputImage drawInRect:CGRectMake(0, 0, width, height)];
-	
-	// pop context 
-	//
-	UIGraphicsPopContext();								
-	
-	// get a UIImage from the image context- enjoy!!!
-	//
-	UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
-	
-	// clean up drawing environment
-	//
-	UIGraphicsEndImageContext();
- 	return outputImage;
+- (void) drawMapLayer :(CityMap*) map 
+{
+    CGContextRef c2 = CGLayerGetContext(mapLayer);
+    
+    //CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
+    //CGContextSetShouldAntialias(context, true);
+    //CGContextSetShouldSmoothFonts(cgContext, true);
+    //CGContextSetAllowsFontSmoothing(context, true);       
+    
+    [cityMap drawMap:c2];
+    [cityMap drawTransfers:c2];
 }
 
-- (void) drawPathTo :(NSArray*) pathMap {
-	
-	// get context
-	//
+- (void) drawPathLayer :(NSArray*) pathMap 
+{
     if(pathLayer == nil) {
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGSize size = CGSizeMake(cityMap.w, cityMap.h);
@@ -309,7 +259,7 @@
 
 	[pathArray insertObject:[GraphNode nodeWithValue:[NSString stringWithFormat:@"%@|%d",firstStation,firstStationNum ] ] atIndex:0];
 	
-	[self drawPathTo :pathArray];
+	[self drawPathLayer :pathArray];
 		
 	drawPath=true;
 
