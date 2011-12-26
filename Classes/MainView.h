@@ -47,7 +47,6 @@ extern NSInteger const toolbarWidth;
 @property (nonatomic, retain) UITextField *firstStation;
 @property (nonatomic, retain) UITextField *secondStation;
 
-- (void) selectStation1;
 - (void) processStationSelect;
 - (void) initVar;
 - (UIView *) viewForZoomingInScrollView:(UIScrollView *) scrollView;

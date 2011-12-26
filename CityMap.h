@@ -82,7 +82,7 @@ extern NSInteger const kDataRowForLine;
 -(void) prepareStationForTable:(NSString*) stationName :(NSInteger)line;
 	
 -(void) initMap:(NSString*) mapName;
--(void) loadMap:(NSString*) mapName;
+-(void) loadMap:(NSString *)mapName;
 -(void) initVars ;
 
 //make graph stuff 

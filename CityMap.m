@@ -47,7 +47,7 @@ NSInteger const kDataRowForLine=5;
 
 -(void) initMap:(NSString*) mapName {
 	[self initVars];
-	[self loadMap2:mapName];
+	[self loadMap:mapName];
 	[self calcGraph];
 }
 
@@ -64,7 +64,7 @@ NSInteger const kDataRowForLine=5;
 	stationsName = [[NSMutableArray alloc] init];
 	addNodes = [[NSMutableDictionary alloc] init];
 	transfersTime = [[NSMutableDictionary alloc] init];
-	contentAZForTableView = [[NSMutableArray alloc] init];
+	contentAZForTableView = [[NSMutableDictionary alloc] init];
 	linesNames = [[NSMutableArray alloc] init];
 	gpsCoords = [[NSMutableDictionary alloc] init];
 	graph = [[Graph graph] retain];
@@ -103,7 +103,7 @@ NSInteger const kDataRowForLine=5;
 	*/
 	
 }
--(void) loadMap2:(NSString *)mapName{
+-(void) loadMap:(NSString *)mapName{
 	INIParser* parser;
 	
 	parser = [[INIParser alloc] init];
@@ -179,49 +179,6 @@ NSInteger const kDataRowForLine=5;
 	gpsCoordsCount = counter;
 	[parser release];
 }
--(void) loadMap:(NSString*) mapName{
-
-	NSArray *map = [utils readMap:mapName];
-	//
-
-	NSArray *size = [[map objectAtIndex:1] componentsSeparatedByString:@","];
-	w = ([[size objectAtIndex:0] integerValue]*koef);
-	h = ([[size objectAtIndex:1] integerValue]*koef);
-	
-	linesCount = [[map objectAtIndex:2] integerValue];
-	addNodesCount = [[map objectAtIndex:3] integerValue];
-	transfersCount = [[map objectAtIndex:4] integerValue]; 
-	DLog(@" lines count %d ",linesCount);
-	
-	for (int i=0; i<(linesCount*kDataRowForLine); i++) {
-		if ((i % kDataRowForLine)==0){
-			[self processLinesColors:[[map objectAtIndex:i+kDataShift] componentsSeparatedByString:@","]];
-		}else
-		if ((i % kDataRowForLine)==1){
-			[self processLinesCoord:[[map objectAtIndex:i+kDataShift] componentsSeparatedByString:@", "]];
-		}else
-		if ((i % kDataRowForLine)==2){
-			[self processLinesCoordForText:[[map objectAtIndex:i+kDataShift] componentsSeparatedByString:@", "]];
-		}else
-		if ((i % kDataRowForLine)==3){
-//		if (i == 54){
-			[self processLinesStations:[map objectAtIndex:i+kDataShift] :(int)(i / kDataRowForLine)];
-		}else
-		if ((i % kDataRowForLine)==4){
-			[self processLinesTime:[map objectAtIndex:i+kDataShift] :(int)(i / kDataRowForLine)];
-		}
-	}
-	for (int i =0 ; i<(addNodesCount); i++) {
-		[self processAddNodes:[map objectAtIndex:i+kDataShift+linesCount*kDataRowForLine]];
-	}
-	for (int i =0 ; i<(transfersCount); i++) {
-		[self processTransfers:[map objectAtIndex:i+kDataShift+linesCount*kDataRowForLine+addNodesCount]];
-	}
-	for (int i =0 ; i<(gpsCoordsCount); i++) {
-		[self processGPS:[map objectAtIndex:i+kDataShift+linesCount*kDataRowForLine+addNodesCount+transfersCount]];
-	}
-	
-}
 
 -(NSArray*) calcPath :(NSString*) firstStation :(NSString*) secondStation :(NSInteger) firstStationLineNum :(NSInteger)secondStationLineNum {
 
@@ -258,11 +215,6 @@ NSInteger const kDataRowForLine=5;
 	[transferData setObject:[elements objectAtIndex:3] forKey:@"stationName2"];
 	[transferData setObject:[elements objectAtIndex:4] forKey:@"transferTime"];	
 	
-	if ([[elements objectAtIndex:1] isEqualToString:@"Jaures"])
-	{
-		DLog(@"");
-		int k= 1;
-	}
 	NSMutableArray *transferTimeTemp ;
 	transferTimeTemp = [transfersTime objectForKey:[elements objectAtIndex:1]];
 	if (transferTimeTemp==nil)
@@ -314,10 +266,6 @@ NSInteger const kDataRowForLine=5;
 	
 	NSString *remained_stationTime = lineTime;
 	
-	if (line==13)
-	{
-		int yyy=0;
-	}
 	int i = 0;
 	while ([remained_stationTime length] != 0) {
 		if ([remained_stationTime rangeOfString:@","].location!=NSNotFound)
@@ -435,10 +383,6 @@ NSInteger const kDataRowForLine=5;
 
 	NSString *remained_station = stations;
 
-	if (line==13)
-	{
-		int yyy=0;
-	}
 	int i = 0;
 	while ([remained_station length] != 0) {
 		if ([remained_station rangeOfString:@","].location!=NSNotFound)
@@ -576,12 +520,12 @@ NSInteger const kDataRowForLine=5;
 	
 }
 
--(void) processLinesColors:(NSString*) colors{
+-(void) processLinesColors:(NSString*) colors {
 	
 	
 	UIColor *hh = [self colorForHex:colors];
 	
-	CGFloat *components = CGColorGetComponents(hh.CGColor);
+	const CGFloat *components = CGColorGetComponents(hh.CGColor);
     CGFloat r = components[0];
     CGFloat g = components[1];
     CGFloat b = components[2];
@@ -687,9 +631,9 @@ NSInteger const kDataRowForLine=5;
 	
 	for (int j =0 ; j < keys_count-1; j++) {
 		
-		NSDictionary *next_stationDict = [[NSDictionary alloc] init];
+		//NSDictionary *next_stationDict = [[NSDictionary alloc] init];
 		NSString *nextStationName;
-		NSString *nextStationsTime;
+		//NSString *nextStationsTime;
 		
 		//
 		NSString *stationName = [lineStationsName objectAtIndex:j];

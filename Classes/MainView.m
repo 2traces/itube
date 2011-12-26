@@ -222,7 +222,7 @@ NSInteger const toolbarWidth=320;
 }
 
 -(void) processStationSelect{
-	if ((firstStation.text==nil))
+	if (firstStation.text==nil)
 	{
 		firstStation.text = mapView.stationNameTemp; 
 		firstStationLineNum = mapView.stationLineTemp;
