@@ -15,7 +15,7 @@
 
 extern int const imagesCount;
 
-@interface MapView : UIView {
+@interface MapView : UIView <UIScrollViewDelegate> {
 
 	UILabel *mainLabel;
 	CityMap *cityMap;
@@ -24,14 +24,9 @@ extern int const imagesCount;
 	
 	NSArray *stationPath;
 	
-	NSString *stationNameTemp;
-	NSInteger stationLineTemp;
-	
-	NSString *firstStation;
-	NSString *secondStation;	
-	NSInteger firstStationNum;
-	NSInteger secondStationNum;	
-	
+	NSString *selectedStationName;
+	NSInteger selectedStationLine;
+		
 	SelectedPathMap *selectedMap;
     CGLayerRef mapLayer;
     CGLayerRef pathLayer;
@@ -52,10 +47,10 @@ extern int const imagesCount;
 @property (nonatomic, retain) SelectedPathMap *selectedMap;
 @property Boolean stationSelected;
 @property Boolean drawPath;
-@property NSInteger stationLineTemp;
+@property NSInteger selectedStationLine;
 @property (nonatomic, retain) CityMap *cityMap;
 @property (nonatomic, retain) UILabel *mainLabel;
-@property (nonatomic, retain) NSString *stationNameTemp;
+@property (nonatomic, retain) NSString *selectedStationName;
 @property (nonatomic, retain) NSArray *stationPath;
 
 
@@ -75,7 +70,7 @@ extern int const imagesCount;
 
 //
 -(void) drawString: (NSString*) s withFont: (UIFont*) font inRect: (CGRect) contextRect ;
--(void) finPath :(NSString*) fSt :(NSString*) sSt :(NSInteger) fStl :(NSInteger)sStl ;
+-(void) findPathFrom :(NSString*) fSt To:(NSString*) sSt FirstLine:(NSInteger) fStl LastLine:(NSInteger)sStl ;
 -(void) drawSelectedMap;
 -(void) removePath;
 

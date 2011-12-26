@@ -17,10 +17,10 @@
 @synthesize cityMap;
 @synthesize drawPath;
 @synthesize mainLabel;
-@synthesize stationNameTemp;
+@synthesize selectedStationName;
 @synthesize stationSelected;
 @synthesize stationPath;
-@synthesize stationLineTemp;
+@synthesize selectedStationLine;
 @synthesize selectedMap;
 @synthesize nearestStationName;
 @synthesize nearestStationImage;
@@ -99,7 +99,7 @@
 					  CGContextGetClipBoundingBox(context));
     CGContextDrawLayerAtPoint(context, CGPointZero, mapLayer);
 
-	if(pathLayer != nil) {
+	if(pathLayer != nil && drawPath) {
         CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 0.5);
         CGContextFillRect(context, CGContextGetClipBoundingBox(context));
         CGContextDrawLayerAtPoint(context, CGPointZero, pathLayer);
@@ -140,11 +140,10 @@
 
 - (void) drawPathLayer :(NSArray*) pathMap 
 {
-    if(pathLayer == nil) {
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGSize size = CGSizeMake(cityMap.w, cityMap.h);
-        pathLayer = CGLayerCreateWithContext(context, size, NULL);
-    }
+    if(pathLayer != nil) CGLayerRelease(pathLayer);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGSize size = CGSizeMake(cityMap.w, cityMap.h);
+    pathLayer = CGLayerCreateWithContext(context, size, NULL);
     
 	[cityMap drawPathMap:CGLayerGetContext(pathLayer) :pathMap];
 
@@ -179,23 +178,6 @@
 	//[self.nextResponder touchesEnded:touches withEvent:event];
 	DLog(@" touch 1 ");
 	DLog(@"  %@ ",[self superview] );
-
-	if (firstStation==nil)
-	{
-		firstStation=stationNameTemp;
-		firstStationNum = stationLineTemp;
-	}
-	else if (secondStation==nil) {
-		secondStation=stationNameTemp;
-		secondStationNum = stationLineTemp;
-	}
-
-	
-//	[self setZoomScale:2];
-	// If not dragging, send event to next responder
-//	if (!self.containerView.dragging) 
-//		[self.nextResponder touchesEnded: touches withEvent:event]; 
-//	else
 }
 
 - (void) drawString: (NSString*) s withFont: (UIFont*) font inRect: (CGRect) contextRect {
@@ -231,10 +213,10 @@
 		mainLabel.frame = frame;
 		
 		mainLabel.hidden=false;
-		stationNameTemp = ((UILabel*)hitView).text;
-		stationLineTemp = ((UILabel*)hitView).tag;
+		selectedStationName = ((UILabel*)hitView).text;
+		selectedStationLine = ((UILabel*)hitView).tag;
 		
-		mainLabel.text = stationNameTemp;
+		mainLabel.text = selectedStationName;
 		DLog(@" under label ");
 		DLog(@" %@",((UILabel*)hitView).text);
 	}
@@ -246,7 +228,7 @@
 	DLog(@" !!!!!! ");
 }
 
--(void) finPath :(NSString*) fSt :(NSString*) sSt :(NSInteger) fStl :(NSInteger)sStl {
+-(void) findPathFrom :(NSString*) fSt To:(NSString*) sSt FirstLine:(NSInteger) fStl LastLine:(NSInteger)sStl {
 
 	NSMutableArray *pathArray = [NSMutableArray arrayWithArray:[cityMap calcPath:fSt :sSt :fStl :sStl]];
 	
@@ -257,7 +239,7 @@
 	}
 	 */
 
-	[pathArray insertObject:[GraphNode nodeWithValue:[NSString stringWithFormat:@"%@|%d",firstStation,firstStationNum ] ] atIndex:0];
+	[pathArray insertObject:[GraphNode nodeWithValue:[NSString stringWithFormat:@"%@|%d",fSt,fStl ] ] atIndex:0];
 	
 	[self drawPathLayer :pathArray];
 		
@@ -292,7 +274,7 @@
 	NSString* station=nil;
 	
 	
-	for (NSString* key in cityMap.gpsCoords ){
+	for (NSString* key in cityMap.gpsCoords ) {
 		CLLocation  *location = (CLLocation*)[cityMap.gpsCoords objectForKey:key];
 		if (distance==-1)
 		{
@@ -332,7 +314,6 @@
 		NSNumber *x = [coords objectForKey:@"x"];
 		NSNumber *y = [coords objectForKey:@"y"];
 		
-		
 		[selectedStationLayer removeFromSuperlayer];
 		selectedStationLayer.frame = CGRectMake(0, 0, nearestStationImage.size.width, nearestStationImage.size.height);
 		selectedStationLayer.contents=(id)[nearestStationImage CGImage];
@@ -347,4 +328,21 @@
 	
 }
  
+/********** UIScrollViewDelegate methods *************/
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *) scrollView{
+	return self;
+}
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView
+                       withView:(UIView *)view
+                        atScale:(float)scale
+{
+	
+	
+	[self refreshLayersScale:scale];
+	DLog(@" scale %f ",scale);
+}
+
+
 @end

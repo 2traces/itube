@@ -67,7 +67,7 @@ NSInteger const toolbarWidth=320;
 //	containerView.userInteractionEnabled = YES;
 //	mapView.exclusiveTouch = NO;
 
-	containerView.delegate = self;
+	containerView.delegate = mapView;
 	[containerView addSubview: mapView];
 	[self addSubview:containerView];
 	
@@ -169,10 +169,6 @@ NSInteger const toolbarWidth=320;
 	[stationNameView release];
 }
 
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *) scrollView{
-	return mapView;
-}
-
 - (void) touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event 
 {	
 	DLog(@" touch 2");
@@ -197,40 +193,25 @@ NSInteger const toolbarWidth=320;
 	 */
 }
 
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView
-                       withView:(UIView *)view
-                        atScale:(float)scale
-{
-	
-	
-	[mapView refreshLayersScale:scale];
-	DLog(@" scale %f ",scale);
-	/*
-    [CATransaction begin];
-    [CATransaction setValue:[NSNumber numberWithBool:YES] 
-                     forKey:kCATransactionDisableActions];
-    uglyBlurryTextLayer.contentsScale = scale;
-    [CATransaction commit];
-	*/
-}
-
--(void) processStationSelect{
+-(void) processStationSelect {
 	if (firstStation.text==nil)
 	{
-		firstStation.text = mapView.stationNameTemp; 
-		firstStationLineNum = mapView.stationLineTemp;
+		firstStation.text = mapView.selectedStationName; 
+		firstStationLineNum = mapView.selectedStationLine;
+		mapView.drawPath = false;
+		[mapView setNeedsDisplay];
 	}
 	else if ((firstStation.text!=nil && secondStation.text!=nil)) {
-		firstStation.text = mapView.stationNameTemp; 
+		firstStation.text = mapView.selectedStationName; 
+		firstStationLineNum = mapView.selectedStationLine;
 		secondStation.text = nil; 
+		mapView.drawPath = false;
+		[mapView setNeedsDisplay];
 	}
 	else {
-		secondStation.text = mapView.stationNameTemp; 
-		secondStationLineNum = mapView.stationLineTemp;
-		mapView.drawPath = true;
-		//[mapView setNeedsDisplay];
-		//[mapView drawSelectedMap];
-		[self findPath:firstStation.text :secondStation.text :firstStationLineNum :secondStationLineNum];
+		secondStation.text = mapView.selectedStationName; 
+		secondStationLineNum = mapView.selectedStationLine;
+		[self findPathFrom:firstStation.text To:secondStation.text FirstLine:firstStationLineNum LastLine:secondStationLineNum];
 	}
 	mapView.stationSelected=false;
 }
@@ -239,8 +220,8 @@ NSInteger const toolbarWidth=320;
 	DLog(@"Here5");
 }
 
--(void) findPath :(NSString*) fs :(NSString*) ss :(NSInteger) fsl :(NSInteger) ssl  {
-	[mapView finPath:fs :ss :fsl :ssl];
+-(void) findPathFrom :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl  {
+	[mapView findPathFrom:fs To:ss FirstLine:fsl LastLine:ssl];
 }
 
 @end

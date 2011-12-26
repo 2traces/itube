@@ -19,7 +19,7 @@ extern NSInteger const toolbarWidth;
 
 //@interface MainView : UIView <UIScrollViewDelegate, UITextFieldDelegate , CoreLocationControllerDelegate>{
 
-@interface MainView : UIView <UIScrollViewDelegate, UITextFieldDelegate >{
+@interface MainView : UIView <UITextFieldDelegate> {
 //	CoreLocationController *CLController;
 	MapView *mapView;
 	MyScrollView *containerView;
@@ -51,5 +51,5 @@ extern NSInteger const toolbarWidth;
 - (void) initVar;
 - (UIView *) viewForZoomingInScrollView:(UIScrollView *) scrollView;
 - (void) viewInit;
--(void) findPath :(NSString*) fs :(NSString*) ss :(NSInteger) fsl :(NSInteger) ssl ;
+-(void) findPathFrom :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl ;
 @end
