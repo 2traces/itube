@@ -24,10 +24,15 @@
     mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
 	[window addSubview:[mainViewController view]];
     [window makeKeyAndVisible];
+    queue = [[NSOperationQueue alloc] init];
+    NSInvocationOperation *op = [[[NSInvocationOperation alloc] initWithTarget:[self.mainViewController.view mapView] selector:@selector(drawThread) object:nil] autorelease];
+    [queue addOperation:op];
 }
 
 
 - (void)dealloc {
+    [queue cancelAllOperations];
+    [queue release];
     [mainViewController release];
     [window release];
     [super dealloc];

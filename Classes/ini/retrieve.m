@@ -31,13 +31,12 @@
 
 - (BOOL)getBool: (NSString *)name section: (NSString *)section {
 	NSString * str;
-	char * s;
 	
 	str = [self get: name section: section];
 	if (str != nil) {
-		s = [str cString];
+		const char * s = [str UTF8String];
 		if ((*s == 'Y') || (*s == 'y') || (*s == 'T') || (*s == 't') ||
-		    isdigit (*s));
+		    isdigit (*s))
 			return YES;
 	}
 

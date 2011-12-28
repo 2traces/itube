@@ -17,8 +17,8 @@ extern NSInteger const kDataRowForLine;
 @interface CityMap : NSObject {
 
 	Graph *graph;
-	NSInteger w;
-	NSInteger h;
+	NSInteger _w;
+	NSInteger _h;
 	NSInteger linesCount;
 	NSInteger addNodesCount;
 	NSInteger transfersCount;
@@ -38,18 +38,32 @@ extern NSInteger const kDataRowForLine;
 	NSMutableDictionary *linesIndex;
 	NSMutableArray *linesNames;
 	Utils *utils;
-	int koef;
+
+    CGFloat kLineWidth;
+    CGFloat kFontSize;
+	NSInteger currentLineNum;
+    // массив из UILabel для каждой станции
+	NSMutableDictionary *drawedStations;
+    // текущий коэффициент масштабирования
+	float koef;
+    UIView *view;
+    // края графического контента
+    // от них будет считаться эффективный размер
+    float minX, maxX, minY, maxY;
 }
 
 @property (nonatomic,retain) NSMutableDictionary *linesIndex;
 @property (nonatomic,retain) NSMutableArray *linesNames;
-@property int koef;
+@property float koef;  
 @property (nonatomic,retain) NSMutableDictionary *allStationsNames;
 @property (nonatomic,retain) NSMutableDictionary *contentAZForTableView;
 @property (nonatomic,retain) NSMutableDictionary *contentLinesForTableView;
 @property (nonatomic,retain) NSMutableDictionary *gpsCoords;
-@property NSInteger w;
-@property NSInteger h;
+// размер карты в масштабе
+@property (readonly) NSInteger w;
+@property (readonly) NSInteger h;
+// размер карты настоящий
+@property (readonly) CGSize size;
 @property NSInteger linesCount;
 @property NSInteger addNodesCount;
 @property NSInteger transfersCount;
@@ -65,13 +79,17 @@ extern NSInteger const kDataRowForLine;
 @property (nonatomic, retain) NSMutableDictionary *transfersTime;	
 @property (nonatomic, retain) Utils *utils;
 
+@property NSInteger currentLineNum;
+@property (nonatomic, retain) NSMutableDictionary *drawedStations;
+@property (nonatomic, assign) UIView *view;
+@property (nonatomic, assign) CGFloat LineWidth;
+@property (nonatomic, assign) CGFloat FontSize;
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //
 -(void) prepareStationForTable:(NSString*) stationName :(NSInteger)line;
 	
--(void) initMap:(NSString*) mapName;
--(void) loadMap:(NSString*) mapName;
+-(void) loadMap:(NSString *)mapName;
 -(void) initVars ;
 
 //make graph stuff 
@@ -82,6 +100,7 @@ extern NSInteger const kDataRowForLine;
 //graph func
 -(NSArray*) calcPath :(NSString*) firstStation :(NSString*) secondStation :(NSInteger) firstStationLineNum :(NSInteger)secondStationLineNum ;
 
+-(NSInteger) checkPoint:(CGPoint)point Station:(NSMutableString*)stationName;
 	
 // load stuff 
 -(void) processGPS: (NSString*) station :(NSString*) lineCoord ;
@@ -93,5 +112,33 @@ extern NSInteger const kDataRowForLine;
 
 -(void) processLinesStations:(NSString*) stations :(NSUInteger) line;
 -(void) processLinesTime:(NSString*) lineTime :(NSUInteger) line;
+
+// drawing
+-(void) drawMap:(CGContextRef) context;
+-(void) drawStations:(CGContextRef) context;
+
+-(void) drawMetroLine:(CGContextRef) context :(NSArray*)lineCoords :(NSArray*)lineColor 
+					 :(NSDictionary*)lineStationsData :(NSArray*) lineStationsName :(NSInteger)line;
+-(void) drawMetroLineStationName:(CGContextRef) context :(NSArray*)lineColor 
+								:(NSDictionary*)lineStationsData :(NSArray*) lineStationsName :(NSInteger)line;
+
+
+-(void) drawStationName:(CGContextRef) context  :(NSDictionary*) text_coord  :(NSDictionary*) point_coord :(NSString*) stationName :(NSInteger) line;
+-(void) drawStationName:(CGContextRef) context :(float) x :(float) y  :(float) ww :(float)hh :(NSString*) stationName :(UITextAlignment) mode :(NSInteger) line;
+
+-(void) drawStationPoint: (CGContextRef) context coord: (NSDictionary*) coord lineColor: (NSArray *) lineColor ;
+-(void) drawStationPoint: (CGContextRef) context y: (float) y x: (float) x lineColor: (NSArray *) lineColor ;
+-(void) draw2Station:(CGContextRef)context :(NSArray*)lineColor :(NSDictionary*) coord1 :(NSDictionary*)coord2 :(NSArray*) splineCoords :(Boolean) reverse;
+
+-(void) drawSpline :(CGContextRef)context :(CGFloat)x1 :(CGFloat)y1 :(CGFloat)x2 :(CGFloat)y2 :(NSArray*) coordSpline :(Boolean) reverse;
+
+-(void) drawPathMap:(CGContextRef) context :(NSArray*) pathMap;
+
+//CG Helpers	
+-(void) drawCircle :(CGContextRef) context :(CGFloat)x :(CGFloat)y :(CGFloat)r;
+-(void) drawFilledCircle :(CGContextRef) context :(CGFloat)x :(CGFloat)y :(CGFloat)r;
+-(void) drawLine :(CGContextRef) context :(CGFloat)x1 :(CGFloat)y1 :(CGFloat)x2 :(CGFloat)y2 :(int)lineWidth;
+
+-(void) drawTransfers:(CGContextRef) context;
 
 @end
