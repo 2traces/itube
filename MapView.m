@@ -24,23 +24,36 @@
 @synthesize nearestStationName;
 @synthesize nearestStationImage;
 @synthesize selectedStationLayer;
-
+@synthesize Scale;
 
 - (CGSize) size {
     return CGSizeMake(cityMap.w, cityMap.h);
 }
 
-- (id)init {
-    if (self = [super initWithFrame:CGRectMake(0, 0, 100, 100)]) {
+- (CGFloat) MaxScale {
+    return MaxScale / Scale;
+}
+
+- (CGFloat) MinScale {
+    return MinScale / Scale;
+}
+
+- (id)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
         // Initialization code
 
 		DLog(@" InitMapView	initWithFrame; ");
 		
+        updateComplete = NO;
 		//близжайщней станции пока нет
 		nearestStationName = @"";
         mapLayer = nil;
         pathLayer = nil;
-
+        pathArray = [[NSMutableArray alloc] init];
+        MinScale = 0.15f;
+        MaxScale = 2.f;
+        selectedStationName = [[NSMutableString alloc] init];
+        drawLock = [[NSConditionLock alloc] init];
 		
 		int scale;
 		if ([self respondsToSelector:@selector(setContentScaleFactor:)])
@@ -52,15 +65,17 @@
 
 		cityMap = [[[CityMap alloc] init] retain];
         cityMap.view = self;
-        Scale = 2.f;
+        Scale = 2.0f;
         cityMap.koef = Scale;
 		[cityMap loadMap:@"parisp"];
 		drawPath = false;
         self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
+        MinScale = MIN( (float)frame.size.width / cityMap.size.width, (float)frame.size.height / cityMap.size.height);
 		
 		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,100,25)];
 		mainLabel.font = [UIFont systemFontOfSize:12];
-		//mainLabel.backgroundColor = [UIColor redColor];
+        mainLabel.textAlignment = UITextAlignmentCenter;
+		mainLabel.backgroundColor = [UIColor colorWithRed:0.9f green:0.9f blue:0.9f alpha:0.9f];
 		
 		//метка которая показывает названия станций
 		mainLabel.hidden=true;
@@ -70,6 +85,10 @@
 		selectedStationLayer = [[CALayer layer] retain];
 		
 		[self addSubview:mainLabel];
+
+        NSTimer *myTimer = [NSTimer timerWithTimeInterval:0.1f target:self selector:@selector(postUpdate:) userInfo:nil repeats:YES];                                                      
+        [[NSRunLoop currentRunLoop] addTimer:myTimer forMode:NSRunLoopCommonModes];
+        
     }
     return self;
 }
@@ -93,7 +112,7 @@
     if(mapLayer == nil) {
         CGSize size = CGSizeMake(cityMap.w, cityMap.h);
         mapLayer = CGLayerCreateWithContext(context, size, NULL);
-        [self drawMapLayer:cityMap];
+        [self drawMap:cityMap toLayer:mapLayer];
     }
 	CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
     //CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
@@ -101,7 +120,7 @@
     CGContextDrawLayerAtPoint(context, CGPointZero, mapLayer);
     
 	if(pathLayer != nil && drawPath) {
-        CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 0.5);
+        CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 0.7);
         CGContextFillRect(context, CGContextGetClipBoundingBox(context));
         CGContextDrawLayerAtPoint(context, CGPointZero, pathLayer);
     }
@@ -126,20 +145,23 @@
 {
     CGSize size = CGSizeMake(cityMap.w, cityMap.h);
     CGContextRef context = UIGraphicsGetCurrentContext();
+    CGLayerRef mapLayer2 = CGLayerCreateWithContext(context, size, NULL);
+    [self drawMap:cityMap toLayer:mapLayer2];
     if(mapLayer != nil) CGLayerRelease(mapLayer);
-    mapLayer = CGLayerCreateWithContext(context, size, NULL);
-    [self drawMapLayer:cityMap];
-
+    mapLayer = mapLayer2;
+    //CGSize ss = CGLayerGetSize(mapLayer);
+    //printf("%d:%d\n", (int)ss.width, (int)ss.height);
     if(drawPath) {
+        CGLayerRef pathLayer2 = CGLayerCreateWithContext(context, size, NULL);
+        [self drawPath:pathArray toLayer:pathLayer2];
         if(pathLayer != nil) CGLayerRelease(pathLayer);
-        pathLayer = CGLayerCreateWithContext(context, size, NULL);
-        [self drawPathLayer :pathArray];
+        pathLayer = pathLayer2;
     }
 }
 
-- (void) drawMapLayer :(CityMap*) map 
+- (void) drawMap :(CityMap*) map toLayer:(CGLayerRef)layer
 {
-    CGContextRef c2 = CGLayerGetContext(mapLayer);
+    CGContextRef c2 = CGLayerGetContext(layer);
     
     //CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
     //CGContextSetShouldAntialias(context, true);
@@ -151,15 +173,22 @@
     [map drawTransfers:c2];
 }
 
-- (void) drawPathLayer :(NSArray*) pathMap 
+- (void) drawPath :(NSArray*) pathMap toLayer:(CGLayerRef)layer
 {
-    if(pathLayer != nil) CGLayerRelease(pathLayer);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGSize size = CGSizeMake(cityMap.w, cityMap.h);
-    pathLayer = CGLayerCreateWithContext(context, size, NULL);
-    
-	[cityMap drawPathMap:CGLayerGetContext(pathLayer) :pathMap];
-
+    if(layer == nil) {
+        CGSize size;
+        if(pathLayer != nil) {
+            CGLayerRelease(pathLayer);
+        }
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        size = CGSizeMake(cityMap.w, cityMap.h);
+        pathLayer = CGLayerCreateWithContext(context, size, NULL);
+        [cityMap drawPathMap:CGLayerGetContext(pathLayer) :pathMap];
+    } else {
+        CGContextRef context = CGLayerGetContext(layer);
+        CGContextClearRect(context, CGContextGetClipBoundingBox(context));
+        [cityMap drawPathMap:context :pathMap];
+    }
 }
 
 #pragma mark -
@@ -202,7 +231,22 @@
 	UITouch *touch = [touches anyObject];
 	CGPoint currentPosition = [touch locationInView:self];
 	
-	UIView *hitView = [self hitTest:currentPosition withEvent:event];
+    selectedStationLine = [cityMap checkPoint:currentPosition Station:selectedStationName];
+    
+    if(selectedStationLine > 0) {
+		stationSelected=true;
+		CGRect frame = mainLabel.frame;
+		frame.origin = CGPointMake(currentPosition.x - frame.size.width/2, currentPosition.y - frame.size.height - 30);
+		mainLabel.frame = frame;
+		mainLabel.hidden=false;
+		mainLabel.text = selectedStationName;
+        [self bringSubviewToFront:mainLabel];
+    } else {
+        stationSelected=false;
+		mainLabel.hidden=true;
+    }
+    
+	/*UIView *hitView = [self hitTest:currentPosition withEvent:event];
 	
 	if([hitView isKindOfClass:[UILabel class]]) {
 		
@@ -210,10 +254,11 @@
 		[hitView becomeFirstResponder];
 		stationSelected=true;
 		CGRect frame = mainLabel.frame;
-		frame.origin = currentPosition;
+		frame.origin = CGPointMake(currentPosition.x - frame.size.width/2, currentPosition.y - frame.size.height - 30);
 		mainLabel.frame = frame;
 		
 		mainLabel.hidden=false;
+        [self bringSubviewToFront:mainLabel];
 		selectedStationName = ((UILabel*)hitView).text;
 		selectedStationLine = ((UILabel*)hitView).tag;
 		
@@ -227,6 +272,7 @@
 	}
 
 	DLog(@" !!!!!! ");
+     */
 }
 
 -(void) findPathFrom :(NSString*) fSt To:(NSString*) sSt FirstLine:(NSInteger) fStl LastLine:(NSInteger)sStl {
@@ -235,7 +281,7 @@
     [pathArray addObjectsFromArray:[cityMap calcPath:fSt :sSt :fStl :sStl]];
 	[pathArray insertObject:[GraphNode nodeWithValue:[NSString stringWithFormat:@"%@|%d",fSt,fStl ] ] atIndex:0];
 	
-	[self drawPathLayer :pathArray];
+	[self drawPath :pathArray toLayer:pathLayer];
 		
 	drawPath=true;
 
@@ -319,18 +365,17 @@
 	return self;
 }
 
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
+- (void)scrollViewDidEndZooming:(UIScrollView *)_scrollView withView:(UIView *)view atScale:(float)scale
 {
-    const float MinScale = 0.15f;
-    const float MaxScale = 2.f;
 	if(scale == 1.f) return;
     Scale *= scale;
-    cityMap.koef = Scale;
     if(Scale < MinScale) Scale = MinScale;
     if(Scale > MaxScale) Scale = MaxScale;
-    
+    cityMap.koef = Scale;
+    scrollView = _scrollView;
+    /*
     [self updateLayers];
-
+    
     CGPoint offset = scrollView.contentOffset;
     [scrollView setZoomScale:1.f animated:NO];
     [scrollView setMaximumZoomScale:MaxScale / Scale];
@@ -338,7 +383,42 @@
     [scrollView setContentSize:CGSizeMake(cityMap.w, cityMap.h)];
     [scrollView setContentOffset:offset animated:NO];
     [self setNeedsDisplay];
+    */
+    NSLog(@"zoom event");
+    [drawLock lockWhenCondition:0];
+    [drawLock unlockWithCondition:1];
 }
 
+- (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    //printf("offset is %d %d\n", (int)scrollView.contentOffset.x, (int)scrollView.contentOffset.y);
+}
+
+-(void)drawThread
+{
+    while(YES) {
+        [drawLock lockWhenCondition:1];
+        [drawLock unlockWithCondition:0];
+        
+        [self updateLayers];
+        updateComplete = YES;
+        NSLog(@"draw update");
+    }
+}
+
+-(void)postUpdate:(NSTimer*)timer
+{
+    if(updateComplete) {
+        CGPoint offset = scrollView.contentOffset;
+        [scrollView setZoomScale:1.f animated:NO];
+        [scrollView setMaximumZoomScale:MaxScale / Scale];
+        [scrollView setMinimumZoomScale:MinScale / Scale];
+        [scrollView setContentSize:CGSizeMake(cityMap.w, cityMap.h)];
+        [scrollView setContentOffset:offset animated:NO];
+        [self setNeedsDisplay];
+        updateComplete = NO;
+        NSLog(@"post update");
+    }
+}
 
 @end

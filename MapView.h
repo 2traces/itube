@@ -24,7 +24,7 @@ extern int const imagesCount;
 	
 	NSArray *stationPath;
 	
-	NSString *selectedStationName;
+	NSMutableString *selectedStationName;
 	NSInteger selectedStationLine;
 		
     CGLayerRef mapLayer;
@@ -34,8 +34,11 @@ extern int const imagesCount;
 	NSString *nearestStationName;
 	//
 	UIImage *nearestStationImage;
-    float Scale;
+    CGFloat Scale, MaxScale, MinScale;
     NSMutableArray *pathArray;
+    NSConditionLock *drawLock;
+    UIScrollView *scrollView;
+    BOOL updateComplete;
 }
 
 @property (assign) NSString *nearestStationName;
@@ -50,17 +53,21 @@ extern int const imagesCount;
 @property NSInteger selectedStationLine;
 @property (nonatomic, retain) CityMap *cityMap;
 @property (nonatomic, retain) UILabel *mainLabel;
-@property (nonatomic, retain) NSString *selectedStationName;
+@property (nonatomic, readonly) NSMutableString *selectedStationName;
 @property (nonatomic, retain) NSArray *stationPath;
 @property (nonatomic, readonly) CGSize size;
+@property (nonatomic, readonly) CGFloat Scale;
+@property (nonatomic, readonly) CGFloat MaxScale;
+@property (nonatomic, readonly) CGFloat MinScale;
 
+-(void) drawThread;
 
 - (void)viewDidLoad;
 // 
 
 -(void) updateLayers;
--(void) drawMapLayer :(CityMap*) map;
-- (void) drawPathLayer :(NSArray*) pathMap;
+-(void) drawMap :(CityMap*) map toLayer:(CGLayerRef)layer;
+- (void) drawPath:(NSArray*) pathMap toLayer:(CGLayerRef)layer;
 
 //
 -(void) drawString: (NSString*) s withFont: (UIFont*) font inRect: (CGRect) contextRect ;

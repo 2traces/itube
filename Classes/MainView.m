@@ -48,19 +48,20 @@ NSInteger const toolbarWidth=320;
 	self.userInteractionEnabled = YES;
 	DLog(@"ViewDidLoad main View");	
 
-	mapView = [[[MapView alloc] init] autorelease];
+    CGRect scrollSize = CGRectMake(0,44,(320),(480-44));
+	mapView = [[[MapView alloc] initWithFrame:scrollSize] autorelease];
 
-	containerView = [[MyScrollView alloc] initWithFrame:CGRectMake(0,44,(320),(480-44))];
+	containerView = [[MyScrollView alloc] initWithFrame:scrollSize];
 	[containerView setContentSize:mapView.size];
 	containerView.scrollEnabled = YES;
 	containerView.decelerationRate = UIScrollViewDecelerationRateFast ;
 	containerView.showsVerticalScrollIndicator = NO;
 	containerView.showsHorizontalScrollIndicator = NO;	
 //	containerView.pagingEnabled = YES;
-	containerView.clipsToBounds = YES;
+	containerView.clipsToBounds = NO;//YES;
 	containerView.bounces = YES;
-	containerView.maximumZoomScale = 1.8;
-	containerView.minimumZoomScale = 0.15;
+	containerView.maximumZoomScale = mapView.MaxScale;
+	containerView.minimumZoomScale = mapView.MinScale;
 	//containerView.directionalLockEnabled = YES;
 //	containerView.userInteractionEnabled = YES;
 //	mapView.exclusiveTouch = NO;

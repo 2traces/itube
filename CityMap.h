@@ -40,12 +40,16 @@ extern NSInteger const kDataRowForLine;
 	Utils *utils;
 
     CGFloat kLineWidth;
+    CGFloat kFontSize;
 	NSInteger currentLineNum;
+    // массив из UILabel для каждой станции
 	NSMutableDictionary *drawedStations;
     // текущий коэффициент масштабирования
 	float koef;
-    Boolean labelPlaced;
     UIView *view;
+    // края графического контента
+    // от них будет считаться эффективный размер
+    float minX, maxX, minY, maxY;
 }
 
 @property (nonatomic,retain) NSMutableDictionary *linesIndex;
@@ -55,8 +59,11 @@ extern NSInteger const kDataRowForLine;
 @property (nonatomic,retain) NSMutableDictionary *contentAZForTableView;
 @property (nonatomic,retain) NSMutableDictionary *contentLinesForTableView;
 @property (nonatomic,retain) NSMutableDictionary *gpsCoords;
+// размер карты в масштабе
 @property (readonly) NSInteger w;
 @property (readonly) NSInteger h;
+// размер карты настоящий
+@property (readonly) CGSize size;
 @property NSInteger linesCount;
 @property NSInteger addNodesCount;
 @property NSInteger transfersCount;
@@ -75,8 +82,8 @@ extern NSInteger const kDataRowForLine;
 @property NSInteger currentLineNum;
 @property (nonatomic, retain) NSMutableDictionary *drawedStations;
 @property (nonatomic, assign) UIView *view;
-@property Boolean labelPlaced;
-
+@property (nonatomic, assign) CGFloat LineWidth;
+@property (nonatomic, assign) CGFloat FontSize;
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //
@@ -93,6 +100,7 @@ extern NSInteger const kDataRowForLine;
 //graph func
 -(NSArray*) calcPath :(NSString*) firstStation :(NSString*) secondStation :(NSInteger) firstStationLineNum :(NSInteger)secondStationLineNum ;
 
+-(NSInteger) checkPoint:(CGPoint)point Station:(NSMutableString*)stationName;
 	
 // load stuff 
 -(void) processGPS: (NSString*) station :(NSString*) lineCoord ;
@@ -117,6 +125,7 @@ extern NSInteger const kDataRowForLine;
 
 -(void) drawStationName:(CGContextRef) context  :(NSDictionary*) text_coord  :(NSDictionary*) point_coord :(NSString*) stationName :(NSInteger) line;
 -(void) drawStationName:(CGContextRef) context :(float) x :(float) y  :(float) ww :(float)hh :(NSString*) stationName :(UITextAlignment) mode :(NSInteger) line;
+
 -(void) drawStationPoint: (CGContextRef) context coord: (NSDictionary*) coord lineColor: (NSArray *) lineColor ;
 -(void) drawStationPoint: (CGContextRef) context y: (float) y x: (float) x lineColor: (NSArray *) lineColor ;
 -(void) draw2Station:(CGContextRef)context :(NSArray*)lineColor :(NSDictionary*) coord1 :(NSDictionary*)coord2 :(NSArray*) splineCoords :(Boolean) reverse;
