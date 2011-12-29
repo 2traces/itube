@@ -49,7 +49,8 @@
 // Using Dijkstra's algorithm to find shortest path
 // See http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
 - (NSArray*)shortestPath:(GraphNode*)source to:(GraphNode*)target {
-    if (![nodes_ containsObject:source] || ![nodes_ containsObject:target]) {
+    if (![nodes_ containsObject:source] || ![nodes_ containsObject:target]) 
+    {
         return [NSArray array];
     }
     
