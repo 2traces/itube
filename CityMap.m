@@ -535,7 +535,7 @@ NSInteger const kDataRowForLine=5;
 -(void) processLinesColors:(NSString*) colors {
 	
 	
-	UIColor *hh = [self colorForHex:colors];
+	/*UIColor *hh = [self colorForHex:colors];
 	
 	const CGFloat *components = CGColorGetComponents(hh.CGColor);
     CGFloat r = components[0];
@@ -548,8 +548,8 @@ NSInteger const kDataRowForLine=5;
 	[lineColors  addObject:[NSNumber numberWithFloat:g]];
 	[lineColors  addObject:[NSNumber numberWithFloat:b]];
 	
-	[linesColors addObject:lineColors];
-
+	[linesColors addObject:lineColors];*/
+    [linesColors addObject:[self colorForHex:colors]];
 }
 -(void) processLinesCoord:(NSArray*) coord{
 	NSMutableArray *lineCoord = [[NSMutableArray alloc] init];
@@ -738,7 +738,7 @@ NSInteger const kDataRowForLine=5;
 	//for each line
 	for (int i=0; i< linesCount; i++) {
 		NSArray *lineCoord = [NSArray arrayWithArray:[linesCoord objectAtIndex:i]];
-		NSArray *lineColor = [NSArray arrayWithArray:[linesColors objectAtIndex:i]];
+		UIColor *lineColor = [linesColors objectAtIndex:i];
 		NSDictionary *lineStations = [stationsData objectAtIndex:i];
 		NSArray *lineStationNames = [NSArray arrayWithArray:[stationsName objectAtIndex:i]];
         //		if (i==9)
@@ -762,7 +762,7 @@ NSInteger const kDataRowForLine=5;
 	for (int i=0; i< linesCount; i++) {
 		currentLineNum = i+1;
         
-		NSArray *lineColor = [NSArray arrayWithArray:[linesColors objectAtIndex:i]];
+		UIColor *lineColor = [linesColors objectAtIndex:i];
 		NSDictionary *lineStations = [stationsData objectAtIndex:i];
 		NSArray *lineStationNames = [NSArray arrayWithArray:[stationsName objectAtIndex:i]];
 		[self drawMetroLineStationName:context :lineColor :lineStations :lineStationNames :i];
@@ -770,7 +770,7 @@ NSInteger const kDataRowForLine=5;
     CGContextRestoreGState(context);
 }
 
--(void) drawMetroLine:(CGContextRef) context :(NSArray*)lineCoords :(NSArray*)lineColor 
+-(void) drawMetroLine:(CGContextRef) context :(NSArray*)lineCoords :(UIColor*)lineColor 
 					 :(NSDictionary*)lineStationsData :(NSArray*) lineStationsName :(NSInteger)line{ 
 	
     //	NSArray *keyArray =  [lineStations allKeys];
@@ -871,7 +871,7 @@ NSInteger const kDataRowForLine=5;
 	}
 }
 
--(void) drawMetroLineStationName:(CGContextRef) context :(NSArray*)lineColor 
+-(void) drawMetroLineStationName:(CGContextRef) context :(UIColor*)lineColor 
 								:(NSDictionary*)lineStationsData :(NSArray*) lineStationsName :(NSInteger) line { 
 	
 	//	NSArray *keyArray =  [lineStations allKeys];
@@ -945,14 +945,14 @@ NSInteger const kDataRowForLine=5;
 	}
 }
 
--(void) draw2Station:(CGContextRef)context :(NSArray*)lineColor :(NSDictionary*) coord1 :(NSDictionary*)coord2 :(NSArray*) splineCoords :(Boolean) reverse{ 
+-(void) draw2Station:(CGContextRef)context :(UIColor*)lineColor :(NSDictionary*) coord1 :(NSDictionary*)coord2 :(NSArray*) splineCoords :(Boolean) reverse{ 
 	float x = [[coord1 objectForKey:@"x"] floatValue];
 	float y = [[coord1 objectForKey:@"y"] floatValue];
 	
 	float x2 = [[coord2 objectForKey:@"x"] floatValue];
 	float y2 = [[coord2 objectForKey:@"y"] floatValue];
 	
-	CGContextSetRGBStrokeColor(context, [[lineColor objectAtIndex:0] floatValue], [[lineColor objectAtIndex:1] floatValue], [[lineColor objectAtIndex:2] floatValue], 1);				
+	CGContextSetStrokeColorWithColor(context, [lineColor CGColor]);
 	if (splineCoords!=nil)
 	{
 		[self drawSpline:context :x :y :x2 :y2 :splineCoords :reverse];
@@ -961,12 +961,12 @@ NSInteger const kDataRowForLine=5;
 		[self drawLine:context :x :y :x2 :y2 :kLineWidth];
 }
 
-- (void) drawStationPoint: (CGContextRef) context y: (float) y x: (float) x lineColor: (NSArray *) lineColor  {
+- (void) drawStationPoint: (CGContextRef) context y: (float) y x: (float) x lineColor: (UIColor *) lineColor  {
 	
 	
 	CGContextSetRGBStrokeColor(context, 0.2, 0.2, 0.2, 0.8);
 	[self drawCircle:context :x	:y :2.75];
-	CGContextSetRGBFillColor(context, [[lineColor objectAtIndex:0] floatValue], [[lineColor objectAtIndex:1] floatValue], [[lineColor objectAtIndex:2] floatValue], 1);		
+	CGContextSetFillColorWithColor(context, [lineColor CGColor]);
 	[self drawFilledCircle:context :x :y :2.5];
 	
 }
@@ -1017,7 +1017,7 @@ NSInteger const kDataRowForLine=5;
      */
 } 
 
-- (void) drawStationPoint: (CGContextRef) context coord: (NSDictionary*) coord lineColor: (NSArray *) lineColor  {
+- (void) drawStationPoint: (CGContextRef) context coord: (NSDictionary*) coord lineColor: (UIColor *) lineColor  {
 	float x = [[coord objectForKey:@"x"] floatValue];
 	float y = [[coord objectForKey:@"y"] floatValue];
 	[self drawStationPoint: context y: y x: x lineColor: lineColor];
@@ -1106,7 +1106,7 @@ NSInteger const kDataRowForLine=5;
 			NSString *stationName2 = [el2 objectAtIndex:0];
 			NSInteger lineNum2 = [[el2 objectAtIndex:1] intValue]; 
 			
-			NSArray *lineColor = [NSArray arrayWithArray:[linesColors objectAtIndex:lineNum1-1]];
+			UIColor *lineColor = [linesColors objectAtIndex:lineNum1-1];
 			
 			if (lineNum1==lineNum2)
 			{
