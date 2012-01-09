@@ -36,6 +36,9 @@
 		4BC043E4142FC42F00A643B8 /* CityMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC043E3142FC42F00A643B8 /* CityMap.m */; };
 		4BC04402142FC6A600A643B8 /* paris in Resources */ = {isa = PBXBuildFile; fileRef = 4BC04401142FC6A600A643B8 /* paris */; };
 		4BC1C946142E36CA003651BB /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC1C945142E36CA003651BB /* MapView.m */; };
+		51D20F3514B849A3007AC4BD /* ManagedObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D20F3414B849A3007AC4BD /* ManagedObjects.m */; };
+		51D20F3914B85185007AC4BD /* tubee.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 51D20F3714B85185007AC4BD /* tubee.xcdatamodeld */; };
+		51D20F3B14B85468007AC4BD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D20F3A14B85468007AC4BD /* CoreData.framework */; };
 		9F5E307214A4590A00D549E4 /* TODO.engine in Resources */ = {isa = PBXBuildFile; fileRef = 9F5E307114A4590A00D549E4 /* TODO.engine */; };
 		CE1146C91466EAF200EF5A28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1146C81466EAF200EF5A28 /* QuartzCore.framework */; };
 		CE81FA70146BDC91008BF969 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CE81FA6D146BDC91008BF969 /* Icon-72.png */; };
@@ -111,6 +114,10 @@
 		4BC04401142FC6A600A643B8 /* paris */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = paris; sourceTree = "<group>"; };
 		4BC1C944142E36CA003651BB /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
 		4BC1C945142E36CA003651BB /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
+		51D20F3314B849A3007AC4BD /* ManagedObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManagedObjects.h; path = Classes/ManagedObjects.h; sourceTree = "<group>"; };
+		51D20F3414B849A3007AC4BD /* ManagedObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManagedObjects.m; path = Classes/ManagedObjects.m; sourceTree = "<group>"; };
+		51D20F3814B85185007AC4BD /* tubee.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tubee.xcdatamodel; sourceTree = "<group>"; };
+		51D20F3A14B85468007AC4BD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* tube-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "tube-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9F5E307114A4590A00D549E4 /* TODO.engine */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.engine; sourceTree = "<group>"; };
 		CE1146C81466EAF200EF5A28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -145,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51D20F3B14B85468007AC4BD /* CoreData.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -188,6 +196,9 @@
 		289233A00DB2D0730083E9F9 /* Main View */ = {
 			isa = PBXGroup;
 			children = (
+				51D20F3714B85185007AC4BD /* tubee.xcdatamodeld */,
+				51D20F3314B849A3007AC4BD /* ManagedObjects.h */,
+				51D20F3414B849A3007AC4BD /* ManagedObjects.m */,
 				289233A40DB2D0840083E9F9 /* MainView.h */,
 				289233A50DB2D0840083E9F9 /* MainView.m */,
 				289233A80DB2D0DB0083E9F9 /* MainViewController.h */,
@@ -263,6 +274,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				51D20F3A14B85468007AC4BD /* CoreData.framework */,
 				CE94E278146D0F7900D6BD43 /* CoreLocation.framework */,
 				CE1146C81466EAF200EF5A28 /* QuartzCore.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -439,6 +451,8 @@
 				CE93AE19148E5E9400DAD165 /* retrieve.m in Sources */,
 				CE93AE1A148E5E9400DAD165 /* section.m in Sources */,
 				CE93AE1D148E5E9400DAD165 /* utils.m in Sources */,
+				51D20F3514B849A3007AC4BD /* ManagedObjects.m in Sources */,
+				51D20F3914B85185007AC4BD /* tubee.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +541,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		51D20F3714B85185007AC4BD /* tubee.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				51D20F3814B85185007AC4BD /* tubee.xcdatamodel */,
+			);
+			currentVersion = 51D20F3814B85185007AC4BD /* tubee.xcdatamodel */;
+			path = tubee.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
 }
