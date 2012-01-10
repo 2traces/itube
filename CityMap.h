@@ -21,6 +21,7 @@ NSMutableArray * Split(NSString* s);
     CGPoint pos;
     CGRect textRect;
     int index;
+    int driving;
     NSString *name;
     // сегменты пути
     NSMutableArray *segment;
@@ -28,16 +29,21 @@ NSMutableArray * Split(NSString* s);
     NSMutableArray *sibling;
     // имена соседних станций
     NSMutableArray *relation;
+    NSMutableArray *relationDriving;
 }
 
 @property (nonatomic, readonly) NSMutableArray* relation;
+@property (nonatomic, readonly) NSMutableArray* relationDriving;
 @property (nonatomic, readonly) NSMutableArray* segment;
 @property (nonatomic, readonly) NSMutableArray* sibling;
 @property (nonatomic, readonly) CGPoint pos;
+@property (nonatomic, readonly) CGRect textRect;
 @property (nonatomic, readonly) int index;
 @property (nonatomic, readonly) NSString* name;
+@property (nonatomic, assign) int driving;
 
--(id) initWithName:(NSString*)sname pos:(CGPoint)p index:(int)i andRect:(CGRect)r;
+-(id) initWithName:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr;
+-(void) addSibling:(Station*)st;
 -(void) draw:(CGContextRef)context;
 -(void) drawName:(CGContextRef)context;
 -(void) drawLines:(CGContextRef)context width:(CGFloat)lineWidth;
@@ -62,18 +68,17 @@ NSMutableArray * Split(NSString* s);
 @private
     Station *start;
     Station *end;
+    int driving;
     NSMutableArray* splinePoints;
 }
 @property (nonatomic, readonly) Station* start;
 @property (nonatomic, readonly) Station* end;
+@property (nonatomic, readonly) int driving;
 
--(id)initFromStation:(Station*)from toStation:(Station*)to;
+-(id)initFromStation:(Station*)from toStation:(Station*)to withDriving:(int)dr;
 -(void)appendPoint:(CGPoint)p;
 -(void)calcSpline;
 -(void)draw:(CGContextRef)context width:(CGFloat)lineWidth;
--(void)draw:(CGContextRef)context fromPoint:(CGPoint)p toTangentPoint:(TangentPoint*)tp;
--(void)draw:(CGContextRef)context fromTangentPoint:(TangentPoint*)tp toPoint:(CGPoint)p;
--(void)draw:(CGContextRef)context fromTangentPoint:(TangentPoint*)tp1 toTangentPoint:(TangentPoint*)tp2;
 @end
 
 @interface Line : NSObject {
@@ -84,11 +89,14 @@ NSMutableArray * Split(NSString* s);
 }
 @property (nonatomic, retain) UIColor* color;
 @property (nonatomic, readonly) NSString* name;
+@property (nonatomic, readonly) NSMutableArray* stations;
 
 -(id)initWithName:(NSString*)n stations:(NSString*)stations driving:(NSString*)driving coordinates:(NSString*)coordinates rects:(NSString*)rects;
 -(void)draw:(CGContextRef)context width:(CGFloat)lineWidth;
 -(void)drawNames:(CGContextRef)context;
+-(void)drawSegment:(CGContextRef)context from:(NSString*)station1 to:(NSString*)station2 width:(float)lineWidth;
 -(void)additionalPointsBetween:(NSString*)station1 and:(NSString*)station2 points:(NSArray*)points;
+-(Station*)getStation:(NSString*)stName;
 @end
 
 @interface CityMap : NSObject {
@@ -97,15 +105,9 @@ NSMutableArray * Split(NSString* s);
 	NSInteger _w;
 	NSInteger _h;
 	NSInteger linesCount;
-	NSInteger addNodesCount;
 	NSInteger gpsCoordsCount;
-	NSMutableArray *linesCoord;
-	NSMutableArray *linesCoordForText;
-	NSMutableArray *stationsData;
     NSMutableArray *mapLines;
-	NSMutableDictionary *addNodes;
 	NSMutableDictionary *gpsCoords;
-	NSMutableDictionary *allStationsNames;
 	Utils *utils;
 
     CGFloat kLineWidth;
@@ -122,7 +124,6 @@ NSMutableArray * Split(NSString* s);
 }
 
 @property float koef;  
-@property (nonatomic,retain) NSMutableDictionary *allStationsNames;
 @property (nonatomic,retain) NSMutableDictionary *gpsCoords;
 // размер карты в масштабе
 @property (readonly) NSInteger w;
@@ -130,13 +131,8 @@ NSMutableArray * Split(NSString* s);
 // размер карты настоящий
 @property (readonly) CGSize size;
 @property NSInteger linesCount;
-@property NSInteger addNodesCount;
 @property NSInteger gpsCoordsCount;
 @property (nonatomic, retain) Graph *graph;
-@property (nonatomic, retain) NSMutableArray *linesCoord;
-@property (nonatomic, retain) NSMutableArray *linesCoordForText;
-@property (nonatomic, retain) NSMutableArray *stationsData;
-@property (nonatomic, retain) NSMutableDictionary *addNodes;
 @property (nonatomic, retain) Utils *utils;
 
 @property NSInteger currentLineNum;
@@ -152,7 +148,6 @@ NSMutableArray * Split(NSString* s);
 
 //make graph stuff 
 -(void) calcGraph;
--(void) calcOneLineGraph: (NSDictionary*)lineStationsData :(NSInteger)lineNum;
 -(void) processTransfersForGraph;
 
 //graph func
@@ -168,31 +163,14 @@ NSMutableArray * Split(NSString* s);
 -(void) processLinesCoordForText:(NSArray*) coord;
 
 -(void) processLinesStations:(NSString*) stations :(NSUInteger) line;
--(void) processLinesTime:(NSString*) lineTime :(NSUInteger) line;
 
 // drawing
 -(void) drawMap:(CGContextRef) context;
 -(void) drawStations:(CGContextRef) context;
 
-//-(void) drawMetroLine:(CGContextRef) context :(NSArray*)lineCoords :(UIColor*)lineColor 
-//					 :(NSDictionary*)lineStationsData :(NSInteger)line;
-//-(void) drawMetroLineStationName:(CGContextRef) context :(UIColor*)lineColor 
-//								:(NSDictionary*)lineStationsData :(NSInteger)line;
-
-
--(void) drawStationName:(CGContextRef) context  :(NSDictionary*) text_coord  :(NSDictionary*) point_coord :(NSString*) stationName :(NSInteger) line;
--(void) drawStationName:(CGContextRef) context :(float) x :(float) y  :(float) ww :(float)hh :(NSString*) stationName :(UITextAlignment) mode :(NSInteger) line;
-
--(void) drawStationPoint: (CGContextRef) context coord: (NSDictionary*) coord lineColor: (UIColor *) lineColor ;
--(void) drawStationPoint: (CGContextRef) context y: (float) y x: (float) x lineColor: (UIColor *) lineColor ;
--(void) draw2Station:(CGContextRef)context :(UIColor*)lineColor :(NSDictionary*) coord1 :(NSDictionary*)coord2 :(NSArray*) splineCoords :(Boolean) reverse;
-
--(void) drawSpline :(CGContextRef)context :(CGFloat)x1 :(CGFloat)y1 :(CGFloat)x2 :(CGFloat)y2 :(NSArray*) coordSpline :(Boolean) reverse;
-
 -(void) drawPathMap:(CGContextRef) context :(NSArray*) pathMap;
 
 //CG Helpers	
--(void) drawCircle :(CGContextRef) context :(CGFloat)x :(CGFloat)y :(CGFloat)r;
 -(void) drawFilledCircle :(CGContextRef) context :(CGFloat)x :(CGFloat)y :(CGFloat)r;
 -(void) drawLine :(CGContextRef) context :(CGFloat)x1 :(CGFloat)y1 :(CGFloat)x2 :(CGFloat)y2 :(int)lineWidth;
 

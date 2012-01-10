@@ -18,7 +18,6 @@
 
 @property (nonatomic, retain) NSNumber* index;
 @property (nonatomic, retain) NSNumber * isFavorite;
-@property (nonatomic, retain) NSNumber * driving;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) MLine *lines;
 @property (nonatomic, retain) MTransfer* transfer;

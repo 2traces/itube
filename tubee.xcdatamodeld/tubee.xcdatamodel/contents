@@ -12,7 +12,6 @@
         <relationship name="stations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Station" inverseName="lines" inverseEntity="Station" syncable="YES"/>
     </entity>
     <entity name="Station" representedClassName="MStation" syncable="YES">
-        <attribute name="driving" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>

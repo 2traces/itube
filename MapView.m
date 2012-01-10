@@ -332,7 +332,8 @@
 	
 	if (![new_station isEqualToString:nearestStationName])
 	{
-		nearestStationName=new_station;
+        // TODO remake
+		/*nearestStationName=new_station;
 
 		NSNumber *line = [cityMap.allStationsNames objectForKey:nearestStationName];
 		
@@ -355,6 +356,7 @@
 		
 		[self.layer addSublayer:selectedStationLayer];
 		[self setNeedsDisplay];
+         */
 	};
 	
 }

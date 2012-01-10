@@ -12,7 +12,6 @@
 
 @dynamic index;
 @dynamic isFavorite;
-@dynamic driving;
 @dynamic name;
 @dynamic lines;
 @dynamic transfer;
