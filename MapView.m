@@ -26,6 +26,11 @@
 @synthesize selectedStationLayer;
 @synthesize Scale;
 
++ (Class)layerClass
+{
+    return [CATiledLayer class];
+}
+
 - (CGSize) size {
     return CGSizeMake(cityMap.w, cityMap.h);
 }
@@ -41,6 +46,8 @@
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         // Initialization code
+        [self.layer setLevelsOfDetail:5];
+        [self.layer setLevelsOfDetailBias:2];
 
 		DLog(@" InitMapView	initWithFrame; ");
 		
@@ -51,7 +58,7 @@
         pathLayer = nil;
         pathArray = [[NSMutableArray alloc] init];
         MinScale = 0.15f;
-        MaxScale = 2.f;
+        MaxScale = 4.f;
         selectedStationName = [[NSMutableString alloc] init];
         drawLock = [[NSConditionLock alloc] init];
 		
@@ -72,7 +79,7 @@
         self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
         MinScale = MIN( (float)frame.size.width / cityMap.size.width, (float)frame.size.height / cityMap.size.height);
 		
-		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,100,25)];
+		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(100,100,100,25)];
 		mainLabel.font = [UIFont systemFontOfSize:12];
         mainLabel.textAlignment = UITextAlignmentCenter;
 		mainLabel.backgroundColor = [UIColor colorWithRed:0.9f green:0.9f blue:0.9f alpha:0.9f];
@@ -109,7 +116,15 @@
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)context {
 
-    if(mapLayer == nil) {
+    if(mainLabel.superview == self) [self.superview addSubview:mainLabel];
+	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
+	CGContextFillRect(context, CGContextGetClipBoundingBox(context));
+
+    [cityMap drawMap:context];
+    [cityMap drawTransfers:context];
+    [cityMap drawStations:context]; 
+
+    /*if(mapLayer == nil) {
         CGSize size = CGSizeMake(cityMap.w, cityMap.h);
         mapLayer = CGLayerCreateWithContext(context, size, NULL);
         [self drawMap:cityMap toLayer:mapLayer];
@@ -123,7 +138,7 @@
         CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 0.7);
         CGContextFillRect(context, CGContextGetClipBoundingBox(context));
         CGContextDrawLayerAtPoint(context, CGPointZero, pathLayer);
-    }
+    }*/
 }
 
 -(void) initData {
@@ -169,8 +184,8 @@
     //CGContextSetAllowsFontSmoothing(context, true);       
     
     [map drawMap:c2];
-    [map drawStations:c2]; 
     [map drawTransfers:c2];
+    [map drawStations:c2]; 
 }
 
 - (void) drawPath :(NSArray*) pathMap toLayer:(CGLayerRef)layer
@@ -230,13 +245,15 @@
 
 	UITouch *touch = [touches anyObject];
 	CGPoint currentPosition = [touch locationInView:self];
+    CGPoint superPosition = [touch locationInView:self.superview];
 	
     selectedStationLine = [cityMap checkPoint:currentPosition Station:selectedStationName];
     
     if(selectedStationLine > 0) {
 		stationSelected=true;
 		CGRect frame = mainLabel.frame;
-		frame.origin = CGPointMake(currentPosition.x - frame.size.width/2, currentPosition.y - frame.size.height - 30);
+		frame.origin = CGPointMake(superPosition.x - frame.size.width/2, superPosition.y - frame.size.height - 30);
+        printf("pos x=%d y=%d\n", (int) frame.origin.x, (int) frame.origin.y);
 		mainLabel.frame = frame;
 		mainLabel.hidden=false;
 		mainLabel.text = selectedStationName;
@@ -373,6 +390,13 @@
     Scale *= scale;
     if(Scale < MinScale) Scale = MinScale;
     if(Scale > MaxScale) Scale = MaxScale;
+
+    [scrollView setZoomScale:1.f animated:NO];
+    [scrollView setMaximumZoomScale:MaxScale / Scale];
+    [scrollView setMinimumZoomScale:MinScale / Scale];
+    self.layer.sublayerTransform = CATransform3DMakeScale(scale, scale, 1.0);
+    return;
+    
     cityMap.koef = Scale;
     scrollView = _scrollView;
     /*

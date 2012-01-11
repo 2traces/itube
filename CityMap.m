@@ -175,7 +175,10 @@ CGFloat Sql(CGPoint p1, CGPoint p2)
     int alignment = UITextAlignmentCenter;
     if(pos.x < textRect.origin.x) alignment = UITextAlignmentLeft;
     else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
-	[name drawInRect:textRect  withFont: [UIFont fontWithName:@"Arial-BoldMT" size:7] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
+    CGContextSelectFont(context, "Arial", 7, kCGEncodingMacRoman);
+    CGContextShowTextAtPoint(context, textRect.origin.x, textRect.origin.y+textRect.size.height, [name cStringUsingEncoding:[NSString defaultCStringEncoding]], [name length]);
+    
+	//[name drawInRect:textRect  withFont: [UIFont fontWithName:@"Arial-BoldMT" size:7] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
 	UIGraphicsPopContext();
 }
 
@@ -725,7 +728,6 @@ NSInteger const kDataRowForLine=5;
 		else
 		{
 			
-			
 			if ([new_s rangeOfString:@")"].location==NSNotFound)
 			{
 				location2 = [remained_station rangeOfString:@")"].location+1;
@@ -1022,13 +1024,12 @@ NSInteger const kDataRowForLine=5;
     point.y /= koef;
     point.x += minX;
     point.y += minY;
-    NSArray *stations = [[MHelper sharedHelper] getStationList];
-    for (MStation* st in stations) {
-        Line *l = [mapLines objectAtIndex:[st.lines.index intValue]-1];
-        Station *s = [l getStation:st.name];
-        if(CGRectContainsPoint(s.textRect, point)) {
-            [stationName setString:st.name];
-            return [st.lines.index intValue];
+    for (Line *l in mapLines) {
+        for (Station *s in l.stations) {
+            if(CGRectContainsPoint(s.textRect, point)) {
+                [stationName setString:s.name];
+                return l.index;
+            }
         }
     }
     return -1;
