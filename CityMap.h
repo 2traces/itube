@@ -16,6 +16,17 @@ extern NSInteger const kDataRowForLine;
 
 NSMutableArray * Split(NSString* s);
 
+@interface Transfer : NSObject {
+@private
+    NSMutableSet* stations;
+    CGFloat time;
+    BOOL draw;
+}
+@property (nonatomic, readonly) NSMutableSet* stations;
+@property (nonatomic, assign) CGFloat time;
+@property (nonatomic, assign) BOOL draw;
+@end
+
 @interface Station : NSObject {
 @private
     CGPoint pos;
@@ -30,6 +41,7 @@ NSMutableArray * Split(NSString* s);
     // имена соседних станций
     NSMutableArray *relation;
     NSMutableArray *relationDriving;
+    Transfer *transfer;
 }
 
 @property (nonatomic, readonly) NSMutableArray* relation;
@@ -41,6 +53,7 @@ NSMutableArray * Split(NSString* s);
 @property (nonatomic, readonly) int index;
 @property (nonatomic, readonly) NSString* name;
 @property (nonatomic, assign) int driving;
+@property (nonatomic, assign) Transfer* transfer;
 
 -(id) initWithName:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr;
 -(void) addSibling:(Station*)st;
@@ -108,6 +121,7 @@ NSMutableArray * Split(NSString* s);
 	NSInteger gpsCoordsCount;
     NSMutableArray *mapLines;
 	NSMutableDictionary *gpsCoords;
+    NSMutableArray* transfers;
 	Utils *utils;
 
     CGFloat kLineWidth;
