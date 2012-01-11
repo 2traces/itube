@@ -39,13 +39,6 @@
 @property (nonatomic, retain) NSSet *stations;
 @end
 
-@interface MTransfer : NSManagedObject 
-
-@property (nonatomic, retain) NSNumber* time;
-@property (nonatomic, retain) NSSet* stations;
-@end
-
-
 @interface MHelper : NSObject <NSFetchedResultsControllerDelegate> {
 }
 

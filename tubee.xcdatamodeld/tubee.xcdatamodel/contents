@@ -16,16 +16,10 @@
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="lines" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Line" inverseName="stations" inverseEntity="Line" syncable="YES"/>
-        <relationship name="transfer" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Transfer" inverseName="stations" inverseEntity="Transfer" syncable="YES"/>
-    </entity>
-    <entity name="Transfer" representedClassName="MTransfer" syncable="YES">
-        <attribute name="time" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="stations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Station" inverseName="transfer" inverseEntity="Station" syncable="YES"/>
     </entity>
     <elements>
         <element name="History" positionX="-630" positionY="-450" width="128" height="90"/>
         <element name="Line" positionX="-549" positionY="-171" width="128" height="90"/>
-        <element name="Station" positionX="-279" positionY="-324" width="128" height="120"/>
-        <element name="Transfer" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Station" positionX="-279" positionY="-324" width="128" height="105"/>
     </elements>
 </model>

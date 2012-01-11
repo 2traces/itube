@@ -32,12 +32,6 @@
 @dynamic stations;
 @end
 
-@implementation MTransfer
-
-@dynamic time;
-@dynamic stations;
-@end
-
 @implementation MHelper
 
 @synthesize managedObjectContext = __managedObjectContext;

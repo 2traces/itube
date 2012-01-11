@@ -16,6 +16,9 @@ extern NSInteger const kDataRowForLine;
 
 NSMutableArray * Split(NSString* s);
 
+@class Station;
+@class Line;
+
 @interface Transfer : NSObject {
 @private
     NSMutableSet* stations;
@@ -25,6 +28,8 @@ NSMutableArray * Split(NSString* s);
 @property (nonatomic, readonly) NSMutableSet* stations;
 @property (nonatomic, assign) CGFloat time;
 @property (nonatomic, assign) BOOL draw;
+
+-(void) addStation:(Station*)station;
 @end
 
 @interface Station : NSObject {
@@ -42,6 +47,7 @@ NSMutableArray * Split(NSString* s);
     NSMutableArray *relation;
     NSMutableArray *relationDriving;
     Transfer *transfer;
+    Line *line;
 }
 
 @property (nonatomic, readonly) NSMutableArray* relation;
@@ -54,6 +60,7 @@ NSMutableArray * Split(NSString* s);
 @property (nonatomic, readonly) NSString* name;
 @property (nonatomic, assign) int driving;
 @property (nonatomic, assign) Transfer* transfer;
+@property (nonatomic, assign) Line* line;
 
 -(id) initWithName:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr;
 -(void) addSibling:(Station*)st;
@@ -99,10 +106,12 @@ NSMutableArray * Split(NSString* s);
     NSString *name;
     NSMutableArray* stations;
     UIColor* _color;
+    int index;
 }
 @property (nonatomic, retain) UIColor* color;
 @property (nonatomic, readonly) NSString* name;
 @property (nonatomic, readonly) NSMutableArray* stations;
+@property (nonatomic, assign) int index;
 
 -(id)initWithName:(NSString*)n stations:(NSString*)stations driving:(NSString*)driving coordinates:(NSString*)coordinates rects:(NSString*)rects;
 -(void)draw:(CGContextRef)context width:(CGFloat)lineWidth;
@@ -127,8 +136,6 @@ NSMutableArray * Split(NSString* s);
     CGFloat kLineWidth;
     CGFloat kFontSize;
 	NSInteger currentLineNum;
-    // метка отрисовки для каждой станции
-	NSMutableDictionary *drawedStations;
     // текущий коэффициент масштабирования
 	float koef;
     UIView *view;
@@ -150,7 +157,6 @@ NSMutableArray * Split(NSString* s);
 @property (nonatomic, retain) Utils *utils;
 
 @property NSInteger currentLineNum;
-@property (nonatomic, retain) NSMutableDictionary *drawedStations;
 @property (nonatomic, assign) UIView *view;
 @property (nonatomic, assign) CGFloat LineWidth;
 @property (nonatomic, assign) CGFloat FontSize;
