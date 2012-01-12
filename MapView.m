@@ -57,8 +57,8 @@
         mapLayer = nil;
         pathLayer = nil;
         pathArray = [[NSMutableArray alloc] init];
-        MinScale = 0.15f;
-        MaxScale = 4.f;
+        MinScale = 0.25f;
+        MaxScale = 8.f;
         selectedStationName = [[NSMutableString alloc] init];
         drawLock = [[NSConditionLock alloc] init];
 		
@@ -72,7 +72,7 @@
 
 		cityMap = [[[CityMap alloc] init] retain];
         cityMap.view = self;
-        Scale = 2.0f;
+        Scale = 1.0f;
         cityMap.koef = Scale;
 		[cityMap loadMap:@"parisp"];
 		drawPath = false;
@@ -118,11 +118,17 @@
 
     if(mainLabel.superview == self) [self.superview addSubview:mainLabel];
 	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
-	CGContextFillRect(context, CGContextGetClipBoundingBox(context));
+    CGRect r = CGContextGetClipBoundingBox(context);
+	CGContextFillRect(context, r);
 
-    [cityMap drawMap:context];
-    [cityMap drawTransfers:context];
-    [cityMap drawStations:context]; 
+    CGContextSetInterpolationQuality(context, kCGInterpolationLow);
+    CGContextSetShouldAntialias(context, false);
+    CGContextSetShouldSmoothFonts(context, false);
+    CGContextSetAllowsFontSmoothing(context, false);
+
+    [cityMap drawMap:context inRect:r];
+    [cityMap drawTransfers:context inRect:r];
+    [cityMap drawStations:context inRect:r]; 
 
     /*if(mapLayer == nil) {
         CGSize size = CGSizeMake(cityMap.w, cityMap.h);

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Utils.h"
 #import "Graph.h"
 //#import <CoreLocation/CoreLocation.h>
 
@@ -24,10 +23,12 @@ NSMutableArray * Split(NSString* s);
     NSMutableSet* stations;
     CGFloat time;
     BOOL draw;
+    CGRect boundingBox;
 }
 @property (nonatomic, readonly) NSMutableSet* stations;
 @property (nonatomic, assign) CGFloat time;
 @property (nonatomic, assign) BOOL draw;
+@property (nonatomic, readonly) CGRect boundingBox;
 
 -(void) addStation:(Station*)station;
 @end
@@ -35,6 +36,7 @@ NSMutableArray * Split(NSString* s);
 @interface Station : NSObject {
 @private
     CGPoint pos;
+    CGRect boundingBox;
     CGRect textRect;
     int index;
     int driving;
@@ -55,6 +57,7 @@ NSMutableArray * Split(NSString* s);
 @property (nonatomic, readonly) NSMutableArray* segment;
 @property (nonatomic, readonly) NSMutableArray* sibling;
 @property (nonatomic, readonly) CGPoint pos;
+@property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic, readonly) CGRect textRect;
 @property (nonatomic, readonly) int index;
 @property (nonatomic, readonly) NSString* name;
@@ -90,10 +93,12 @@ NSMutableArray * Split(NSString* s);
     Station *end;
     int driving;
     NSMutableArray* splinePoints;
+    CGRect boundingBox;
 }
 @property (nonatomic, readonly) Station* start;
 @property (nonatomic, readonly) Station* end;
 @property (nonatomic, readonly) int driving;
+@property (nonatomic, readonly) CGRect boundingBox;
 
 -(id)initFromStation:(Station*)from toStation:(Station*)to withDriving:(int)dr;
 -(void)appendPoint:(CGPoint)p;
@@ -116,6 +121,8 @@ NSMutableArray * Split(NSString* s);
 -(id)initWithName:(NSString*)n stations:(NSString*)stations driving:(NSString*)driving coordinates:(NSString*)coordinates rects:(NSString*)rects;
 -(void)draw:(CGContextRef)context width:(CGFloat)lineWidth;
 -(void)drawNames:(CGContextRef)context;
+-(void)draw:(CGContextRef)context width:(CGFloat)lineWidth inRect:(CGRect)rect;
+-(void)drawNames:(CGContextRef)context inRect:(CGRect)rect;
 -(void)drawSegment:(CGContextRef)context from:(NSString*)station1 to:(NSString*)station2 width:(float)lineWidth;
 -(void)additionalPointsBetween:(NSString*)station1 and:(NSString*)station2 points:(NSArray*)points;
 -(Station*)getStation:(NSString*)stName;
@@ -131,7 +138,6 @@ NSMutableArray * Split(NSString* s);
     NSMutableArray *mapLines;
 	NSMutableDictionary *gpsCoords;
     NSMutableArray* transfers;
-	Utils *utils;
 
     CGFloat kLineWidth;
     CGFloat kFontSize;
@@ -142,6 +148,7 @@ NSMutableArray * Split(NSString* s);
     // края графического контента
     // от них будет считаться эффективный размер
     float minX, maxX, minY, maxY;
+    CGLayerRef transferPoint;
 }
 
 @property float koef;  
@@ -154,7 +161,6 @@ NSMutableArray * Split(NSString* s);
 @property NSInteger linesCount;
 @property NSInteger gpsCoordsCount;
 @property (nonatomic, retain) Graph *graph;
-@property (nonatomic, retain) Utils *utils;
 
 @property NSInteger currentLineNum;
 @property (nonatomic, assign) UIView *view;
@@ -186,14 +192,16 @@ NSMutableArray * Split(NSString* s);
 
 // drawing
 -(void) drawMap:(CGContextRef) context;
+-(void) drawMap:(CGContextRef) context inRect:(CGRect)rect;
 -(void) drawStations:(CGContextRef) context;
+-(void) drawStations:(CGContextRef) context inRect:(CGRect)rect;
+-(void) drawTransfers:(CGContextRef) context;
+-(void) drawTransfers:(CGContextRef) context inRect:(CGRect)rect;
 
 -(void) drawPathMap:(CGContextRef) context :(NSArray*) pathMap;
 
 //CG Helpers	
 -(void) drawFilledCircle :(CGContextRef) context :(CGFloat)x :(CGFloat)y :(CGFloat)r;
 -(void) drawLine :(CGContextRef) context :(CGFloat)x1 :(CGFloat)y1 :(CGFloat)x2 :(CGFloat)y2 :(int)lineWidth;
-
--(void) drawTransfers:(CGContextRef) context;
 
 @end
