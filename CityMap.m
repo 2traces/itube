@@ -164,6 +164,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize line;
 @synthesize drawName;
 @synthesize active;
+@synthesize acceptBackLink;
 
 -(id)initWithName:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr
 {
@@ -178,13 +179,16 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         sibling = [[NSMutableArray alloc] init];
         drawName = YES;
         active = YES;
+        acceptBackLink = YES;
         
         NSUInteger br = [sname rangeOfString:@"("].location;
         if(br == NSNotFound) {
             name = [sname retain];
         } else {
             name = [[sname substringToIndex:br] retain];
-            for (NSString* s in [[sname substringFromIndex:br+1] componentsSeparatedByString:@","]) {
+            NSArray *components = [[sname substringFromIndex:br+1] componentsSeparatedByString:@","];
+            if([components count] > 1) acceptBackLink = NO;
+            for (NSString* s in components) {
                 if([sname length] == 0) continue;
                 [relation addObject:s];
             }
@@ -443,7 +447,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 if(last.driving == 0) last.driving = [[st.relationDriving lastObject] intValue];
                 [st.relationDriving removeLastObject];
             }
-            if(![st.relation count] && [stations count]) {
+            if(st.acceptBackLink && [stations count]) {
                 // создаём простые связи
                 [last addSibling:st];
             }
@@ -454,7 +458,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             for(NSString *rel in st.relation) {
                 for(Station *st2 in stations) {
                     if([st2.name isEqualToString:rel]) {
-                        [st addSibling:st2];
+                        BOOL alreadyLinked = NO;
+                        for (Station *st3 in st2.sibling) {
+                            if(st3 == st) {
+                                alreadyLinked = YES;
+                                break;
+                            }
+                        }
+                        if(!alreadyLinked) [st addSibling:st2];
                         break;
                     }
                 }
@@ -511,26 +522,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     for (Station *s in stations) {
         if(s.drawName && CGRectIntersectsRect(s.textRect, rect))
             [s drawName:context];
-    }
-}
-
--(void)drawSegment:(CGContextRef)context from:(NSString *)station1 to:(NSString *)station2 width:(float)lineWidth
-{
-	CGContextSetStrokeColorWithColor(context, [_color CGColor]);
-    CGContextSetFillColorWithColor(context, [_color CGColor]);
-    for (Station *s in stations) {
-        if([s.name isEqualToString:station1] || [s.name isEqualToString:station2]) {
-            for (Segment *seg in s.segment) {
-                if([seg.end.name isEqualToString:station1] || [seg.end.name isEqualToString:station2]) {
-                    [seg draw:context width:lineWidth];
-                    [s draw:context];
-                    [seg.end draw:context];
-                    [s drawName:context];
-                    [seg.end drawName:context];
-                    return;
-                }
-            }
-        }
     }
 }
 
@@ -620,7 +611,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 @implementation CityMap
 
-@synthesize linesCount;
 @synthesize graph;
 @synthesize gpsCoords;
 @synthesize view;
@@ -655,7 +645,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	[str getCString:cstr maxLength:512 encoding:NSASCIIStringEncoding]; 
 	err = [parser parse:cstr];	
 
-	linesCount = [[parser get:@"LinesCount" section:@"main"] integerValue];
+	NSInteger linesCount = [[parser get:@"LinesCount" section:@"main"] integerValue];
 	
 	NSArray *size = [[parser get:@"Size" section:@"main"] componentsSeparatedByString:@","];
 	_w = ([[size objectAtIndex:0] integerValue]);
@@ -718,9 +708,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     UIGraphicsBeginImageContext(CGSizeMake(100, 100));
     CGContextRef context = UIGraphicsGetCurrentContext();
     // предварительная отрисовка трансферов глючит на релизе
-    /*for (Transfer *t in transfers) {
+    for (Transfer *t in transfers) {
         [t draw:context];
-    }*/
+    };
     // make predrawed staion point, scale x4
     stationLayer = CGLayerCreateWithContext(context, CGSizeMake(31, 31), NULL);
     CGContextRef ctx = CGLayerGetContext(stationLayer);

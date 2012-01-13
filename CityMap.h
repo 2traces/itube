@@ -54,6 +54,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
     Line *line;
     BOOL drawName;
     BOOL active;
+    BOOL acceptBackLink;
 }
 
 @property (nonatomic, readonly) NSMutableArray* relation;
@@ -70,6 +71,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 @property (nonatomic, assign) Line* line;
 @property (nonatomic, assign) BOOL drawName;
 @property (nonatomic, assign) BOOL active;
+@property (nonatomic, readonly) BOOL acceptBackLink;
 
 -(id) initWithName:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr;
 -(void) addSibling:(Station*)st;
@@ -132,7 +134,6 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 -(void)drawNames:(CGContextRef)context;
 -(void)draw:(CGContextRef)context inRect:(CGRect)rect;
 -(void)drawNames:(CGContextRef)context inRect:(CGRect)rect;
--(void)drawSegment:(CGContextRef)context from:(NSString*)station1 to:(NSString*)station2 width:(float)lineWidth;
 -(void)additionalPointsBetween:(NSString*)station1 and:(NSString*)station2 points:(NSArray*)points;
 -(Station*)getStation:(NSString*)stName;
 -(void)activateSegmentFrom:(NSString*)station1 to:(NSString*)station2;
@@ -144,7 +145,6 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 	Graph *graph;
 	NSInteger _w;
 	NSInteger _h;
-	NSInteger linesCount;
     NSMutableArray *mapLines;
 	NSMutableDictionary *gpsCoords;
     NSMutableArray* transfers;
@@ -153,12 +153,10 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 }
 
 @property (nonatomic,retain) NSMutableDictionary *gpsCoords;
-// размер карты в масштабе
+// размер карты 
 @property (readonly) NSInteger w;
 @property (readonly) NSInteger h;
-// размер карты настоящий
 @property (readonly) CGSize size;
-@property NSInteger linesCount;
 @property (nonatomic, retain) Graph *graph;
 @property (nonatomic, assign) UIView *view;
 

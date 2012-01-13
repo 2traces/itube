@@ -41,7 +41,6 @@ extern int const imagesCount;
 @property (nonatomic, retain) UIImage *nearestStationImage;
 
 @property Boolean stationSelected;
-@property Boolean drawPath;
 @property NSInteger selectedStationLine;
 @property (nonatomic, retain) CityMap *cityMap;
 @property (nonatomic, retain) UILabel *mainLabel;
