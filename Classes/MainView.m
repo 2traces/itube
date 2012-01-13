@@ -69,6 +69,7 @@ NSInteger const toolbarWidth=320;
 	containerView.delegate = mapView;
 	[containerView addSubview: mapView];
 	[self addSubview:containerView];
+    [containerView setZoomScale:mapView.Scale animated:NO];
 	
 	toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,0, toolbarWidth,toolbarHeight)];
 	[self addSubview:toolbar];

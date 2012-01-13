@@ -11,7 +11,7 @@
 #import "ManagedObjects.h"
 #import <CoreLocation/CoreLocation.h>
 
-CGLayerRef stationLayer = nil;
+const CGFloat PredrawScale = 2.f;
 
 NSMutableArray * Split(NSString* s)
 {
@@ -135,15 +135,18 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)draw:(CGContextRef)context
 {
-    if(transferLayer == nil) {
-        CGSize size = CGSizeMake(boundingBox.size.width*4, boundingBox.size.height*4);
-        transferLayer = CGLayerCreateWithContext(context, size, NULL);
-        CGContextRef ctx = CGLayerGetContext(transferLayer);
-        CGContextScaleCTM(ctx, 4, 4);
-        CGContextTranslateCTM(ctx, -boundingBox.origin.x*1, -boundingBox.origin.y*1);
-        [Transfer drawTransfer:ctx stations:[stations allObjects]];
-    }
-    CGContextDrawLayerInRect(context, boundingBox, transferLayer);
+    if(transferLayer != nil) CGContextDrawLayerInRect(context, boundingBox, transferLayer);
+    else [Transfer drawTransfer:context stations:[stations allObjects]];
+}
+
+-(void)predraw:(CGContextRef)context
+{
+    CGSize size = CGSizeMake(boundingBox.size.width*PredrawScale, boundingBox.size.height*PredrawScale);
+    transferLayer = CGLayerCreateWithContext(context, size, NULL);
+    CGContextRef ctx = CGLayerGetContext(transferLayer);
+    CGContextScaleCTM(ctx, PredrawScale, PredrawScale);
+    CGContextTranslateCTM(ctx, -boundingBox.origin.x, -boundingBox.origin.y);
+    [Transfer drawTransfer:ctx stations:[stations allObjects]];
 }
 
 @end
@@ -180,6 +183,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         drawName = YES;
         active = YES;
         acceptBackLink = YES;
+        predrawedName = nil;
         
         NSUInteger br = [sname rangeOfString:@"("].location;
         if(br == NSNotFound) {
@@ -218,6 +222,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [relation release];
     [relationDriving release];
     [sibling release];
+    CGLayerRelease(predrawedName);
 }
 
 -(void)addSibling:(Station *)st
@@ -228,24 +233,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [sibling addObject:st];
 }
 
--(void)draw:(CGContextRef)context
-{
-    CGContextDrawLayerInRect(context, boundingBox, stationLayer);
-    /*CGContextSetRGBStrokeColor(context, 0.9, 0.9, 0.1, 0.8);
-	CGContextSetLineWidth(context, 1.5);
-	CGContextStrokeEllipseInRect(context, boundingBox);
-     */
-    //CGContextFillEllipseInRect(context, CGRectMake(pos.x-2.5, pos.y-2.5, 5, 5));
-}
-
--(void) drawLines:(CGContextRef)context
+-(void) draw:(CGContextRef)context
 {
     for (Segment *s in segment) {
         [s draw:context];
     }
 }
 
--(void) drawLines:(CGContextRef)context inRect:(CGRect)rect
+-(void) draw:(CGContextRef)context inRect:(CGRect)rect
 {
     for (Segment *s in segment) {
         if(CGRectIntersectsRect(rect, s.boundingBox))
@@ -255,20 +250,39 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)drawName:(CGContextRef)context
 {
-    CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
-    if(active || (transfer && transfer.active && drawName)) {
-        CGContextSetFillColorWithColor(context, [[UIColor blackColor] CGColor] );
-    } else {
-        CGContextSetFillColorWithColor(context, [[UIColor lightGrayColor] CGColor] );
+    if(predrawedName != nil) CGContextDrawLayerInRect(context, textRect, predrawedName);
+    else {
+        CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
+        if(active || (transfer && transfer.active && drawName)) {
+            CGContextSetFillColorWithColor(context, [[UIColor blackColor] CGColor] );
+        } else {
+            CGContextSetFillColorWithColor(context, [[UIColor lightGrayColor] CGColor] );
+        }
+        CGContextSetTextDrawingMode (context, kCGTextFill);
+        int alignment = UITextAlignmentCenter;
+        if(pos.x < textRect.origin.x) alignment = UITextAlignmentLeft;
+        else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
+        CGContextSelectFont(context, "Arial-BoldMT", 7, kCGEncodingMacRoman);
+        CGContextShowTextAtPoint(context, textRect.origin.x, textRect.origin.y+textRect.size.height, [name cStringUsingEncoding:[NSString defaultCStringEncoding]], [name length]);
+    
+        //[name drawInRect:textRect  withFont: [UIFont fontWithName:@"Arial-BoldMT" size:7] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
     }
-    CGContextSetTextDrawingMode (context, kCGTextFill);
+}
+
+-(void)predraw:(CGContextRef) context
+{
+    CGSize size = textRect.size;
+    predrawedName = CGLayerCreateWithContext(context, CGSizeMake(size.width*PredrawScale, size.height*PredrawScale), NULL);
+    CGContextRef ctx = CGLayerGetContext(predrawedName);
+    UIGraphicsPushContext(ctx);
+    CGContextScaleCTM(ctx, PredrawScale, PredrawScale);
+    CGRect rect = textRect;
+    rect.origin = CGPointZero;
     int alignment = UITextAlignmentCenter;
     if(pos.x < textRect.origin.x) alignment = UITextAlignmentLeft;
     else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
-    CGContextSelectFont(context, "Arial", 7, kCGEncodingMacRoman);
-    CGContextShowTextAtPoint(context, textRect.origin.x, textRect.origin.y+textRect.size.height, [name cStringUsingEncoding:[NSString defaultCStringEncoding]], [name length]);
-    
-    //[name drawInRect:textRect  withFont: [UIFont fontWithName:@"Arial-BoldMT" size:7] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
+    [name drawInRect:rect  withFont: [UIFont fontWithName:@"Arial-BoldMT" size:7] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
+    UIGraphicsPopContext();
 }
 
 -(void) makeSegments
@@ -423,6 +437,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if((self = [super init])) {
         name = [n retain];
         stations = [[NSMutableArray alloc] init];
+        stationLayer = nil;
         NSArray *sts = Split(station);
         NSArray *drs = Split(driving);
         NSArray *crds = [coordinates componentsSeparatedByString:@", "];
@@ -482,6 +497,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(void)dealloc
 {
     [stations release];
+    CGLayerRelease(stationLayer);
 }
 
 -(void)draw:(CGContextRef)context 
@@ -489,10 +505,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	CGContextSetStrokeColorWithColor(context, [_color CGColor]);
     CGContextSetFillColorWithColor(context, [_color CGColor]);
     for (Station *s in stations) {
-        [s drawLines:context];
+        [s draw:context];
     }
     for (Station *s in stations) {
-        if(s.transfer == nil) [s draw:context];
+        if(s.transfer == nil) //[s draw:context];
+            CGContextDrawLayerInRect(context, s.boundingBox, stationLayer);
     }
 }
 
@@ -508,11 +525,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	CGContextSetStrokeColorWithColor(context, [_color CGColor]);
     CGContextSetFillColorWithColor(context, [_color CGColor]);
     for (Station *s in stations) {
-        [s drawLines:context inRect:rect];
+        [s draw:context inRect:rect];
     }
     for (Station *s in stations) {
         if(s.transfer == nil && CGRectIntersectsRect(rect, s.boundingBox)) {
-            [s draw:context];
+            //[s draw:context];
+            CGContextDrawLayerInRect(context, s.boundingBox, stationLayer);
         }
     }
 }
@@ -584,19 +602,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             }
         }
     }
-    // сюда попадают какие-то лишние сплайны, которых на карте быть не должно
-    /*if(ss1 && ss2) {
-        int drv = ss1.driving;
-        if(!drv) drv = ss2.driving;
-        Segment *seg = [[Segment alloc] initFromStation:ss1 toStation:ss2 withDriving:drv];
-        [ss1.segment addObject:seg];
-        [ss1.sibling addObject:ss2];
-        for (NSString *p in points) {
-            NSArray *coord = [p componentsSeparatedByString:@","];
-            [seg appendPoint:CGPointMake([[coord objectAtIndex:0] intValue], [[coord objectAtIndex:1] intValue])];
-        }
-        [seg calcSpline];
-    }*/
 }
 
 -(Station*)getStation:(NSString *)stName
@@ -607,13 +612,28 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     return nil;
 }
 
+-(void)predraw:(CGContextRef)context
+{
+    for (Station *s in stations) {
+        [s predraw:context];
+    }
+    // make predrawed staion point, scale x4
+    stationLayer = CGLayerCreateWithContext(context, CGSizeMake(31, 31), NULL);
+    CGContextRef ctx = CGLayerGetContext(stationLayer);
+    CGContextSetFillColorWithColor(ctx, [_color CGColor]);
+    drawFilledCircle(ctx, 14, 14, 10);
+    CGContextSetRGBStrokeColor(ctx, 0.9, 0.9, 0.1, 0.8);
+	CGContextSetLineWidth(ctx, 6);
+	CGContextStrokeEllipseInRect(ctx, CGRectMake(3, 3, 25, 25));
+}
+
 @end
 
 @implementation CityMap
 
 @synthesize graph;
 @synthesize gpsCoords;
-@synthesize view;
+@synthesize currentScale;
 
 -(id) init {
     [super init];
@@ -707,16 +727,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [self calcGraph];
     UIGraphicsBeginImageContext(CGSizeMake(100, 100));
     CGContextRef context = UIGraphicsGetCurrentContext();
-    // предварительная отрисовка трансферов глючит на релизе
+    // predraw transfers
     for (Transfer *t in transfers) {
-        [t draw:context];
+        [t predraw:context];
     };
-    // make predrawed staion point, scale x4
-    stationLayer = CGLayerCreateWithContext(context, CGSizeMake(31, 31), NULL);
-    CGContextRef ctx = CGLayerGetContext(stationLayer);
-    CGContextSetRGBStrokeColor(ctx, 0.9, 0.9, 0.1, 0.8);
-	CGContextSetLineWidth(ctx, 6);
-	CGContextStrokeEllipseInRect(ctx, CGRectMake(3, 3, 25, 25));
+    // predraw lines & stations
+    for (Line *l in mapLines) {
+        [l predraw:context];
+    }
     UIGraphicsEndImageContext();
     
 }
@@ -936,7 +954,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [mapLines release];
 	[graph release];
     [transfers release];
-    CGLayerRelease(stationLayer);
 }
 
 // drawing

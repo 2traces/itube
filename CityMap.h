@@ -33,6 +33,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 
 -(void) addStation:(Station*)station;
 -(void) draw:(CGContextRef)context;
+-(void) predraw:(CGContextRef)context;
 @end
 
 @interface Station : NSObject {
@@ -55,6 +56,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
     BOOL drawName;
     BOOL active;
     BOOL acceptBackLink;
+    CGLayerRef predrawedName;
 }
 
 @property (nonatomic, readonly) NSMutableArray* relation;
@@ -75,11 +77,11 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 
 -(id) initWithName:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr;
 -(void) addSibling:(Station*)st;
--(void) draw:(CGContextRef)context;
 -(void) drawName:(CGContextRef)context;
--(void) drawLines:(CGContextRef)context;
--(void) drawLines:(CGContextRef)context inRect:(CGRect)rect;
+-(void) draw:(CGContextRef)context;
+-(void) draw:(CGContextRef)context inRect:(CGRect)rect;
 -(void) makeSegments;
+-(void) predraw:(CGContextRef)context;
 @end
 
 @interface TangentPoint : NSObject {
@@ -123,6 +125,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
     NSMutableArray* stations;
     UIColor* _color;
     int index;
+    CGLayerRef stationLayer;
 }
 @property (nonatomic, retain) UIColor* color;
 @property (nonatomic, readonly) NSString* name;
@@ -138,6 +141,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 -(Station*)getStation:(NSString*)stName;
 -(void)activateSegmentFrom:(NSString*)station1 to:(NSString*)station2;
 -(void)setEnabled:(BOOL)en;
+-(void)predraw:(CGContextRef)context;
 @end
 
 @interface CityMap : NSObject {
@@ -148,8 +152,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
     NSMutableArray *mapLines;
 	NSMutableDictionary *gpsCoords;
     NSMutableArray* transfers;
-
-    UIView *view;
+    CGFloat currentScale;
 }
 
 @property (nonatomic,retain) NSMutableDictionary *gpsCoords;
@@ -158,7 +161,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 @property (readonly) NSInteger h;
 @property (readonly) CGSize size;
 @property (nonatomic, retain) Graph *graph;
-@property (nonatomic, assign) UIView *view;
+@property (nonatomic, assign) CGFloat currentScale;
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //

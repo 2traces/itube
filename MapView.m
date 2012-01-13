@@ -24,6 +24,8 @@
 @synthesize nearestStationImage;
 @synthesize selectedStationLayer;
 @synthesize Scale;
+@synthesize MaxScale;
+@synthesize MinScale;
 
 + (Class)layerClass
 {
@@ -32,14 +34,6 @@
 
 - (CGSize) size {
     return CGSizeMake(cityMap.w, cityMap.h);
-}
-
-- (CGFloat) MaxScale {
-    return MaxScale / Scale;
-}
-
-- (CGFloat) MinScale {
-    return MinScale / Scale;
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -53,7 +47,7 @@
 		//близжайщней станции пока нет
 		nearestStationName = @"";
         MinScale = 0.25f;
-        MaxScale = 8.f;
+        MaxScale = 4.f;
         selectedStationName = [[NSMutableString alloc] init];
 		
 		int scale;
@@ -64,9 +58,8 @@
             self.layer.contentsScale = scale;
 		}
 
-		cityMap = [[[CityMap alloc] init] retain];
-        cityMap.view = self;
-        Scale = 1.0f;
+		cityMap = [[CityMap alloc] init];
+        Scale = 2.0f;
 		[cityMap loadMap:@"parisp"];
         self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
         MinScale = MIN( (float)frame.size.width / cityMap.size.width, (float)frame.size.height / cityMap.size.height);
@@ -106,14 +99,17 @@
     CGRect r = CGContextGetClipBoundingBox(context);
 	CGContextFillRect(context, r);
 
-    CGContextSetInterpolationQuality(context, kCGInterpolationLow);
-    CGContextSetShouldAntialias(context, false);
+    CGContextSetInterpolationQuality(context, kCGInterpolationNone);
+    CGContextSetShouldAntialias(context, true);
     CGContextSetShouldSmoothFonts(context, false);
     CGContextSetAllowsFontSmoothing(context, false);
+    
+    CGFloat drawScale = 256.f / MAX(r.size.width, r.size.height);
 
     [cityMap drawMap:context inRect:r];
     [cityMap drawTransfers:context inRect:r];
-    [cityMap drawStations:context inRect:r]; 
+    // слишком мелко тексты не рисуем
+    if(drawScale > 0.5f) [cityMap drawStations:context inRect:r]; 
 }
 
 -(void) initData {
@@ -123,23 +119,12 @@
 }
 
 #pragma mark -
-#pragma mark Draw Map Stuff 
 
 - (void)viewDidLoad 
 {
     //[super viewDidLoad];
     DLog(@"viewDidLoad mapView\n");
 }
-
-#pragma mark -
-#pragma mark CGDraw Functions
-
-
-
-
-#pragma mark -
-#pragma mark -
-// CG helpers end 
 
 - (void) touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event 
 {	
@@ -288,15 +273,7 @@
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
 {
-//	if(scale == 1.f) return;
-//    Scale *= scale;
-//    if(Scale < MinScale) Scale = MinScale;
-//    if(Scale > MaxScale) Scale = MaxScale;
-
-//    [scrollView setZoomScale:1.f animated:NO];
-//    [scrollView setMaximumZoomScale:MaxScale / Scale];
-//    [scrollView setMinimumZoomScale:MinScale / Scale];
-//    self.layer.sublayerTransform = CATransform3DMakeScale(scale, scale, 1.0);
+    Scale = scale;
 }
 
 - (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
