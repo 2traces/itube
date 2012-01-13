@@ -7,41 +7,633 @@
 //
 
 #import "CityMap.h"
-#import "CatmullRomSpline.h"
 #include "ini.h"
+#import "ManagedObjects.h"
 #import <CoreLocation/CoreLocation.h>
+
+const CGFloat PredrawScale = 2.f;
+
+NSMutableArray * Split(NSString* s)
+{
+    NSMutableArray *res = [[[NSMutableArray alloc] init] autorelease];
+    NSRange range = NSMakeRange(0, [s length]);
+    while (YES) {
+        NSUInteger comma = [s rangeOfString:@"," options:0 range:range].location;
+        NSUInteger bracket = [s rangeOfString:@"(" options:0 range:range].location;
+        if(comma == NSNotFound) {
+            if(bracket != NSNotFound) range.length --;
+            [res addObject:[s substringWithRange:range]];
+            break;
+        } else {
+            if(bracket == NSNotFound || bracket > comma) {
+                comma -= range.location;
+                [res addObject:[s substringWithRange:NSMakeRange(range.location, comma)]];
+                range.location += comma+1;
+                range.length -= comma+1;
+            } else {
+                NSUInteger bracket2 = [s rangeOfString:@")" options:0 range:range].location;
+                bracket2 -= range.location;
+                [res addObject:[s substringWithRange:NSMakeRange(range.location, bracket2)]];
+                range.location += bracket2+2;
+                range.length -= bracket2+2;
+            }
+        }
+    }
+    return res;
+}
+
+CGFloat Sql(CGPoint p1, CGPoint p2)
+{
+    CGFloat dx = p1.x-p2.x;
+    CGFloat dy = p1.y-p2.y;
+    return dx*dx + dy*dy;
+}
+
+// CG Helpres
+void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat y2, int lineWidth) {
+	CGContextSetLineCap(context, kCGLineCapRound);
+	CGContextSetLineWidth(context, lineWidth);
+	CGContextMoveToPoint(context, x1, y1);
+	CGContextAddLineToPoint(context, x2, y2);
+	CGContextStrokePath(context);
+}
+
+void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
+	// Draw a circle (filled)
+	CGContextFillEllipseInRect(context, CGRectMake(x-r, y-r, 2*r, 2*r));
+}
+
+@implementation Transfer
+
+@synthesize stations;
+@synthesize time;
+@synthesize boundingBox;
+@synthesize active;
+
+-(id)init
+{
+    if((self = [super init])) {
+        stations = [[NSMutableSet alloc] init];
+        boundingBox = CGRectNull;
+        time = 0;
+        transferLayer = nil;
+        active = YES;
+    }
+    return self;
+}
+
+-(void)dealloc
+{
+    [stations release];
+    CGLayerRelease(transferLayer);
+}
+
+-(void)addStation:(Station *)station
+{
+    if(station.transfer == self) return;
+    NSAssert(station.transfer == nil, @"Station already in transfer");
+    if([stations count] > 0) station.drawName = NO;
+    station.transfer = self;
+    [stations addObject:station];
+    CGRect st = CGRectMake(station.pos.x - 4.5, station.pos.y - 4.5, 9, 9);
+    if(CGRectIsNull(boundingBox)) boundingBox = st;
+    else boundingBox = CGRectUnion(boundingBox, st);
+}
+
++(void) drawTransfer:(CGContextRef) context stations:(NSArray*)stations
+{
+    CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
+    CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 1.0);				
+    for(int i = 0; i<[stations count]; i++) {
+        Station *st = [stations objectAtIndex:i];
+        CGPoint p1 = st.pos;
+        drawFilledCircle(context, p1.x, p1.y, 4.5);
+        for(int j = i+1; j<[stations count]; j++) {
+            Station *st2 = [stations objectAtIndex:j];
+            CGPoint p2 = st2.pos;
+            drawLine(context, p1.x, p1.y, p2.x, p2.y, 2.5);
+        }
+    }
+    CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
+    CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
+    for(int i = 0; i<[stations count]; i++) {
+        Station *st = [stations objectAtIndex:i];
+        CGPoint p1 = st.pos;
+        drawFilledCircle(context, p1.x, p1.y, 3.5);
+        for(int j = i+1; j<[stations count]; j++) {
+            Station *st2 = [stations objectAtIndex:j];
+            CGPoint p2 = st2.pos;
+            drawLine(context, p1.x, p1.y, p2.x, p2.y, 1.5);
+        }
+    }
+    for (Station *st in stations) {
+        CGPoint p1 = st.pos;
+        CGContextSetFillColorWithColor(context, [st.line.color CGColor]);
+        drawFilledCircle(context, p1.x, p1.y, 1.5);
+    }
+}
+
+-(void)draw:(CGContextRef)context
+{
+    if(transferLayer != nil) CGContextDrawLayerInRect(context, boundingBox, transferLayer);
+    else [Transfer drawTransfer:context stations:[stations allObjects]];
+}
+
+-(void)predraw:(CGContextRef)context
+{
+    CGSize size = CGSizeMake(boundingBox.size.width*PredrawScale, boundingBox.size.height*PredrawScale);
+    transferLayer = CGLayerCreateWithContext(context, size, NULL);
+    CGContextRef ctx = CGLayerGetContext(transferLayer);
+    CGContextScaleCTM(ctx, PredrawScale, PredrawScale);
+    CGContextTranslateCTM(ctx, -boundingBox.origin.x, -boundingBox.origin.y);
+    [Transfer drawTransfer:ctx stations:[stations allObjects]];
+}
+
+@end
+
+@implementation Station
+
+@synthesize relation;
+@synthesize relationDriving;
+@synthesize segment;
+@synthesize sibling;
+@synthesize pos;
+@synthesize boundingBox;
+@synthesize textRect;
+@synthesize index;
+@synthesize name;
+@synthesize driving;
+@synthesize transfer;
+@synthesize line;
+@synthesize drawName;
+@synthesize active;
+@synthesize acceptBackLink;
+
+-(id)initWithName:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr
+{
+    if((self = [super init])) {
+        pos = p;
+        boundingBox = CGRectMake(pos.x-3, pos.y-3, 6, 6);
+        index = i;
+        textRect = r;
+        segment = [[NSMutableArray alloc] init];
+        relation = [[NSMutableArray alloc] init];
+        relationDriving = [[NSMutableArray alloc] init];
+        sibling = [[NSMutableArray alloc] init];
+        drawName = YES;
+        active = YES;
+        acceptBackLink = YES;
+        predrawedName = nil;
+        
+        NSUInteger br = [sname rangeOfString:@"("].location;
+        if(br == NSNotFound) {
+            name = [sname retain];
+        } else {
+            name = [[sname substringToIndex:br] retain];
+            NSArray *components = [[sname substringFromIndex:br+1] componentsSeparatedByString:@","];
+            if([components count] > 1) acceptBackLink = NO;
+            for (NSString* s in components) {
+                if([sname length] == 0) continue;
+                [relation addObject:s];
+            }
+        }
+        if(dr == nil) driving = 0;
+        else {
+            br = [dr rangeOfString:@"("].location;
+            if(br == NSNotFound) {
+                driving = [dr intValue];
+            } else {
+                driving = [[dr substringToIndex:br] intValue];
+                for (NSString *s in [[dr substringFromIndex:br+1] componentsSeparatedByString:@","]) {
+                    if([s length] == 0) continue;
+                    int drv = [s intValue];
+                    NSAssert(drv > 0, @"zero driving!");
+                    [relationDriving addObject:[NSNumber numberWithInt:drv]];
+                }
+            }
+        }
+    }
+    return self;
+}
+
+-(void)dealloc
+{
+    [segment release];
+    [relation release];
+    [relationDriving release];
+    [sibling release];
+    CGLayerRelease(predrawedName);
+}
+
+-(void)addSibling:(Station *)st
+{
+    for (Station *s in sibling) {
+        if(s == st) return;
+    }
+    [sibling addObject:st];
+}
+
+-(void) draw:(CGContextRef)context
+{
+    for (Segment *s in segment) {
+        [s draw:context];
+    }
+}
+
+-(void) draw:(CGContextRef)context inRect:(CGRect)rect
+{
+    for (Segment *s in segment) {
+        if(CGRectIntersectsRect(rect, s.boundingBox))
+            [s draw:context];
+    }
+}
+
+-(void)drawName:(CGContextRef)context
+{
+    if(predrawedName != nil) CGContextDrawLayerInRect(context, textRect, predrawedName);
+    else {
+        CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
+        if(active || (transfer && transfer.active && drawName)) {
+            CGContextSetFillColorWithColor(context, [[UIColor blackColor] CGColor] );
+        } else {
+            CGContextSetFillColorWithColor(context, [[UIColor lightGrayColor] CGColor] );
+        }
+        CGContextSetTextDrawingMode (context, kCGTextFill);
+        int alignment = UITextAlignmentCenter;
+        if(pos.x < textRect.origin.x) alignment = UITextAlignmentLeft;
+        else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
+        CGContextSelectFont(context, "Arial-BoldMT", 7, kCGEncodingMacRoman);
+        CGContextShowTextAtPoint(context, textRect.origin.x, textRect.origin.y+textRect.size.height, [name cStringUsingEncoding:[NSString defaultCStringEncoding]], [name length]);
+    
+        //[name drawInRect:textRect  withFont: [UIFont fontWithName:@"Arial-BoldMT" size:7] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
+    }
+}
+
+-(void)predraw:(CGContextRef) context
+{
+    CGSize size = textRect.size;
+    predrawedName = CGLayerCreateWithContext(context, CGSizeMake(size.width*PredrawScale, size.height*PredrawScale), NULL);
+    CGContextRef ctx = CGLayerGetContext(predrawedName);
+    UIGraphicsPushContext(ctx);
+    CGContextScaleCTM(ctx, PredrawScale, PredrawScale);
+    CGRect rect = textRect;
+    rect.origin = CGPointZero;
+    int alignment = UITextAlignmentCenter;
+    if(pos.x < textRect.origin.x) alignment = UITextAlignmentLeft;
+    else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
+    [name drawInRect:rect  withFont: [UIFont fontWithName:@"Arial-BoldMT" size:7] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
+    UIGraphicsPopContext();
+}
+
+-(void) makeSegments
+{
+    int drv = [relationDriving count] - [sibling count];
+    for(int i=0; i<[sibling count]; i++) {
+        Station *st = [sibling objectAtIndex:i];
+        int curDrv = driving;
+        if(drv >= 0) curDrv = [[relationDriving objectAtIndex:drv] intValue];
+        [segment addObject:[[Segment alloc] initFromStation:self toStation:st withDriving:curDrv]];
+        drv ++;
+    }
+    if(!driving && [relationDriving count]) driving = [[relationDriving objectAtIndex:0] intValue];
+    [relationDriving release];
+    [relation release];
+    relationDriving = nil;
+    relation = nil;
+}
+
+@end
+
+@implementation TangentPoint
+
+@synthesize base;
+@synthesize backTang;
+@synthesize frontTang;
+
+-(id)initWithPoint:(CGPoint)p
+{
+    if((self = [super init])) {
+        base = p;
+    }
+    return self;
+}
+
+-(void)calcTangentFrom:(CGPoint)p1 to:(CGPoint)p2
+{
+    CGFloat x = (1 + (Sql(base, p1) - Sql(base, p2)) / Sql(p1, p2)) / 2;
+    CGPoint d = CGPointMake(p1.x + (p2.x-p1.x) * x, p1.y + (p2.y-p1.y) * x);
+    
+    frontTang = CGPointMake(base.x + (p2.x-d.x)/3, base.y + (p2.y-d.y)/3);
+    backTang = CGPointMake(base.x + (p1.x-d.x)/3, base.y + (p1.y-d.y)/3);
+}
+@end
+
+@implementation Segment
+
+@synthesize start;
+@synthesize end;
+@synthesize driving;
+@synthesize boundingBox;
+@synthesize active;
+
+-(id)initFromStation:(Station *)from toStation:(Station *)to withDriving:(int)dr
+{
+    if((self = [super init])) {
+        active = YES;
+        start = from;
+        end = to;
+        driving = dr;
+        NSAssert(driving > 0, @"illegal driving");
+        CGRect s1 = CGRectMake(from.pos.x - 5, from.pos.y - 5, 10, 10);
+        CGRect s2 = CGRectMake(to.pos.x - 5, to.pos.y - 5, 10, 10);
+        boundingBox = CGRectUnion(s1, s2);
+    }
+    return self;
+}
+
+-(void)dealloc
+{
+    [splinePoints release];
+}
+
+-(void)appendPoint:(CGPoint)p
+{
+    if(splinePoints == nil) splinePoints = [[NSMutableArray alloc] initWithObjects:[NSValue valueWithCGPoint:p], nil];
+    else [splinePoints addObject:[NSValue valueWithCGPoint:p]];
+    CGRect r = CGRectMake(p.x - 5, p.y - 5, 10, 10);
+    boundingBox = CGRectUnion(boundingBox, r);
+}
+
+-(void)calcSpline
+{
+    [splinePoints addObject:[NSValue valueWithCGPoint:CGPointMake(end.pos.x, end.pos.y)]];
+    [splinePoints insertObject:[NSValue valueWithCGPoint:CGPointMake(start.pos.x, start.pos.y)] atIndex:0];
+    NSMutableArray *newSplinePoints = [[NSMutableArray alloc] init];
+    for(int i=1; i<[splinePoints count]-1; i++) {
+        TangentPoint *p = [[TangentPoint alloc] initWithPoint:[[splinePoints objectAtIndex:i] CGPointValue]];
+        [p calcTangentFrom:[[splinePoints objectAtIndex:i-1] CGPointValue] to:[[splinePoints objectAtIndex:i+1] CGPointValue]];
+        [newSplinePoints addObject:p];
+    }
+    [splinePoints release];
+    splinePoints = newSplinePoints;
+}
+
+-(void)draw:(CGContextRef)context fromPoint:(CGPoint)p toTangentPoint:(TangentPoint*)tp
+{
+    CGContextMoveToPoint(context, tp.base.x, tp.base.y);
+    CGContextAddQuadCurveToPoint(context, tp.backTang.x, tp.backTang.y, p.x, p.y);
+    CGContextStrokePath(context);
+}
+
+-(void)draw:(CGContextRef)context fromTangentPoint:(TangentPoint*)tp toPoint:(CGPoint)p
+{
+    CGContextMoveToPoint(context, tp.base.x, tp.base.y);
+    CGContextAddQuadCurveToPoint(context, tp.frontTang.x, tp.frontTang.y, p.x, p.y);
+    CGContextStrokePath(context);
+}
+
+-(void)draw:(CGContextRef)context fromTangentPoint:(TangentPoint*)tp1 toTangentPoint:(TangentPoint*)tp2
+{
+    CGContextMoveToPoint(context, tp1.base.x, tp1.base.y);
+    CGContextAddCurveToPoint(context, tp1.frontTang.x, tp1.frontTang.y, tp2.backTang.x, tp2.backTang.y, tp2.base.x, tp2.base.y);
+    CGContextStrokePath(context);
+}
+
+-(void)draw:(CGContextRef)context
+{
+    if(!active) {
+        CGContextSaveGState(context);
+        CGContextSetStrokeColorWithColor(context, [[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0] CGColor]);
+    }
+	CGContextSetLineCap(context, kCGLineCapRound);
+	CGContextSetLineWidth(context, 4);
+	CGContextMoveToPoint(context, start.pos.x, start.pos.y);
+    if(splinePoints) {
+        [self draw:context fromPoint:CGPointMake(start.pos.x, start.pos.y) toTangentPoint:[splinePoints objectAtIndex:0]];
+        for(int i=0; i<[splinePoints count]-1; i++) {
+            [self draw:context fromTangentPoint:[splinePoints objectAtIndex:i] toTangentPoint:[splinePoints objectAtIndex:i+1]];
+        }
+        [self draw:context fromTangentPoint:[splinePoints lastObject] toPoint:CGPointMake(end.pos.x, end.pos.y)];
+    } else {
+        CGContextAddLineToPoint(context, end.pos.x, end.pos.y);
+        CGContextStrokePath(context);
+    }
+    if(!active) {
+        CGContextRestoreGState(context);
+    }
+}
+
+@end
+
+@implementation Line
+
+@synthesize color  = _color;
+@synthesize name;
+@synthesize stations;
+@synthesize index;
+
+-(id)initWithName:(NSString*)n stations:(NSString *)station driving:(NSString *)driving coordinates:(NSString *)coordinates rects:(NSString *)rects
+{
+    if((self = [super init])) {
+        name = [n retain];
+        stations = [[NSMutableArray alloc] init];
+        stationLayer = nil;
+        NSArray *sts = Split(station);
+        NSArray *drs = Split(driving);
+        NSArray *crds = [coordinates componentsSeparatedByString:@", "];
+        NSArray *rcts = [rects componentsSeparatedByString:@", "];
+        int count = MIN( MIN([sts count], [crds count]), [rcts count]);
+        for(int i=0; i<count; i++) {
+            NSArray *coord_x_y = [[crds objectAtIndex:i] componentsSeparatedByString:@","];
+            int x = [[coord_x_y objectAtIndex:0] intValue];
+            int y = [[coord_x_y objectAtIndex:1] intValue];
+            NSArray *coord_text = [[rcts objectAtIndex:i] componentsSeparatedByString:@","];
+            int tx = [[coord_text objectAtIndex:0] intValue];
+            int ty = [[coord_text objectAtIndex:1] intValue];
+            int tw = [[coord_text objectAtIndex:2] intValue];
+            int th = [[coord_text objectAtIndex:3] intValue];
+            
+            NSString* drv = nil;
+            if(i < [drs count]) drv = [drs objectAtIndex:i];
+            Station *st = [[Station alloc] initWithName:[sts objectAtIndex:i] pos:CGPointMake(x, y) index:i rect:CGRectMake(tx, ty, tw, th) andDriving:drv];
+            st.line = self;
+            Station *last = [stations lastObject];
+            if([st.relation count] < [st.relationDriving count]) {
+                if(last.driving == 0) last.driving = [[st.relationDriving lastObject] intValue];
+                [st.relationDriving removeLastObject];
+            }
+            if(st.acceptBackLink && [stations count]) {
+                // создаём простые связи
+                [last addSibling:st];
+            }
+            [stations addObject:st];
+        }
+        // создаём отложенные связи
+        for (Station *st in stations) {
+            for(NSString *rel in st.relation) {
+                for(Station *st2 in stations) {
+                    if([st2.name isEqualToString:rel]) {
+                        BOOL alreadyLinked = NO;
+                        for (Station *st3 in st2.sibling) {
+                            if(st3 == st) {
+                                alreadyLinked = YES;
+                                break;
+                            }
+                        }
+                        if(!alreadyLinked) [st addSibling:st2];
+                        break;
+                    }
+                }
+            }
+            [st.relation removeAllObjects];
+        }
+        for(Station *st in stations) {
+            [st makeSegments];
+        }
+    }
+    return self;
+}
+
+-(void)dealloc
+{
+    [stations release];
+    CGLayerRelease(stationLayer);
+}
+
+-(void)draw:(CGContextRef)context 
+{
+	CGContextSetStrokeColorWithColor(context, [_color CGColor]);
+    CGContextSetFillColorWithColor(context, [_color CGColor]);
+    for (Station *s in stations) {
+        [s draw:context];
+    }
+    for (Station *s in stations) {
+        if(s.transfer == nil) //[s draw:context];
+            CGContextDrawLayerInRect(context, s.boundingBox, stationLayer);
+    }
+}
+
+-(void)drawNames:(CGContextRef)context
+{
+    for (Station *s in stations) {
+        if(s.drawName) [s drawName:context];
+    }
+}
+
+-(void)draw:(CGContextRef)context inRect:(CGRect)rect
+{
+	CGContextSetStrokeColorWithColor(context, [_color CGColor]);
+    CGContextSetFillColorWithColor(context, [_color CGColor]);
+    for (Station *s in stations) {
+        [s draw:context inRect:rect];
+    }
+    for (Station *s in stations) {
+        if(s.transfer == nil && CGRectIntersectsRect(rect, s.boundingBox)) {
+            //[s draw:context];
+            CGContextDrawLayerInRect(context, s.boundingBox, stationLayer);
+        }
+    }
+}
+
+-(void)drawNames:(CGContextRef)context inRect:(CGRect)rect
+{
+    for (Station *s in stations) {
+        if(s.drawName && CGRectIntersectsRect(s.textRect, rect))
+            [s drawName:context];
+    }
+}
+
+-(void)activateSegmentFrom:(NSString *)station1 to:(NSString *)station2
+{
+    for (Station *s in stations) {
+        if([s.name isEqualToString:station1] || [s.name isEqualToString:station2]) {
+            s.active = YES;
+            if(s.transfer) s.transfer.active = YES;
+            for (Segment *seg in s.segment) {
+                if([seg.end.name isEqualToString:station1] || [seg.end.name isEqualToString:station2]) {
+                    seg.end.active = YES;
+                    seg.active = YES;
+                    if(seg.end.transfer) seg.end.transfer.active = YES;
+                }
+            }
+        }
+    }
+}
+
+-(void)setEnabled:(BOOL)en
+{
+    for (Station *s in stations) {
+        s.active = en;
+        for(Segment *seg in s.segment) {
+            seg.active = en;
+        }
+    }
+}
+
+-(void)additionalPointsBetween:(NSString *)station1 and:(NSString *)station2 points:(NSArray *)points
+{
+    Station *ss1 = nil;
+    Station *ss2 = nil;
+    for (Station *s in stations) {
+        BOOL search = NO;
+        BOOL rev = NO;
+        if([s.name isEqualToString:station1]) {
+            search = YES;
+            ss1 = s;
+        }
+        else if([s.name isEqualToString:station2]) {
+            search = rev = YES;
+            ss2 = s;
+        }
+        if(search) {
+            for (Segment *seg in s.segment) {
+                if(([seg.end.name isEqualToString:station1] && rev)
+                   || ([seg.end.name isEqualToString:station2] && !rev)) {
+                    NSEnumerator *enumer;
+                    if(rev) enumer = [points reverseObjectEnumerator];
+                    else enumer = [points objectEnumerator];
+                    for (NSString *p in enumer) {
+                        NSArray *coord = [p componentsSeparatedByString:@","];
+                        [seg appendPoint:CGPointMake([[coord objectAtIndex:0] intValue], [[coord objectAtIndex:1] intValue])];
+                    }
+                    [seg calcSpline];
+                    return;
+                }
+            }
+        }
+    }
+}
+
+-(Station*)getStation:(NSString *)stName
+{
+    for (Station *s in stations) {
+        if([s.name isEqualToString:stName]) return s;
+    }
+    return nil;
+}
+
+-(void)predraw:(CGContextRef)context
+{
+    for (Station *s in stations) {
+        [s predraw:context];
+    }
+    // make predrawed staion point, scale x4
+    stationLayer = CGLayerCreateWithContext(context, CGSizeMake(31, 31), NULL);
+    CGContextRef ctx = CGLayerGetContext(stationLayer);
+    CGContextSetFillColorWithColor(ctx, [_color CGColor]);
+    drawFilledCircle(ctx, 14, 14, 10);
+    CGContextSetRGBStrokeColor(ctx, 0.9, 0.9, 0.1, 0.8);
+	CGContextSetLineWidth(ctx, 6);
+	CGContextStrokeEllipseInRect(ctx, CGRectMake(3, 3, 25, 25));
+}
+
+@end
 
 @implementation CityMap
 
-@synthesize linesCount;
-@synthesize addNodesCount;
-@synthesize linesCoord;
-@synthesize linesCoordForText;
-@synthesize linesColors;
-@synthesize stationsData;
-@synthesize stationsName;
-@synthesize stationsTime;
-@synthesize utils;
-@synthesize addNodes;
-@synthesize transfersCount;
 @synthesize graph;
-@synthesize transfersTime;
-@synthesize contentAZForTableView,contentLinesForTableView;
 @synthesize gpsCoords;
-@synthesize allStationsNames;
-@synthesize koef;
-@synthesize gpsCoordsCount;
-@synthesize linesIndex;
-@synthesize linesNames;
-
-@synthesize currentLineNum;
-@synthesize drawedStations;
-@synthesize view;
-@synthesize FontSize = kFontSize;
-@synthesize LineWidth = kLineWidth;
-
-NSInteger const kDataShift=5;
-NSInteger const kDataRowForLine=5;
+@synthesize currentScale;
 
 -(id) init {
     [super init];
@@ -50,114 +642,60 @@ NSInteger const kDataRowForLine=5;
 }
 
 -(void) initVars {
-    drawedStations =  [[NSMutableDictionary alloc] init];
-    kLineWidth = 4.5f;
-    kFontSize = 7.0f;
-	utils = [[[Utils alloc] init] autorelease];
-	linesCoord = [[NSMutableArray alloc] init];
-	linesIndex = [[NSMutableDictionary alloc] init];
-	linesCoordForText = [[NSMutableArray alloc] init];	
-	linesColors = [[NSMutableArray alloc] init];
-	stationsTime = [[NSMutableArray alloc] init];
-	stationsData = [[NSMutableArray alloc] init];
-	stationsName = [[NSMutableArray alloc] init];
-	addNodes = [[NSMutableDictionary alloc] init];
-	transfersTime = [[NSMutableDictionary alloc] init];
-	contentAZForTableView = [[NSMutableDictionary alloc] init];
-	linesNames = [[NSMutableArray alloc] init];
+    transfers = [[NSMutableArray alloc] init];
 	gpsCoords = [[NSMutableDictionary alloc] init];
 	graph = [[Graph graph] retain];
-	allStationsNames = [[NSMutableDictionary alloc] init];
-	
-	//NSMutableDictionary *coords = [[NSMutableDictionary alloc] init];
-	//[coords setObject:[NSNumber numberWithDouble:] forKey:@"x"];
-
-	koef = 1;
-	/*
-	Ch. De Gaulle - Etoile
-	48.873917, 2.294598
-	Argentine
-	48.875385,  2.290049
-	George V
-	48.871913, 2.300477
-	Franklin D. Roosevelt
-	48.868949, 2.310047
-	*/
-	
-	/*
-	[gpsCoords setObject:[[[CLLocation alloc] initWithLatitude:48.873917 longitude:2.294598] autorelease] 
-				  forKey:@"Ch. De Gaulle - Etoile"];
-
-	[gpsCoords setObject:[[[CLLocation alloc] initWithLatitude:48.875385 longitude:2.290049] autorelease] 
-				  forKey:@"Argentine"];
-
-	[gpsCoords setObject:[[[CLLocation alloc] initWithLatitude:48.871913 longitude:2.300477] autorelease] 
-				  forKey:@"George V"];
-
-	[gpsCoords setObject:[[[CLLocation alloc] initWithLatitude:48.868949 longitude:2.310047] autorelease] 
-				  forKey:@"Franklin D. Roosevelt"];
-
-	*/
-	
+    mapLines = [[NSMutableArray alloc] init];
 }
 
--(CGSize) size { return CGSizeMake(maxX-minX, maxY-minY); }
--(NSInteger) w { return (maxX - minX) * koef; }
--(NSInteger) h { return (maxY - minY) * koef; }
+-(CGSize) size { return CGSizeMake(_w, _h); }
+-(NSInteger) w { return _w; }
+-(NSInteger) h { return _h; }
 
--(void) loadMap:(NSString *)mapName{
+-(void) loadMap:(NSString *)mapName {
 	INIParser* parser;
 	
 	parser = [[INIParser alloc] init];
 	
 	int err;
-	
+
 	NSString* str = [[NSBundle mainBundle] pathForResource:@"paris2" ofType:@"trp"]; 
 	char cstr[512] = {0}; 
 	
 	[str getCString:cstr maxLength:512 encoding:NSASCIIStringEncoding]; 
 	err = [parser parse:cstr];	
 
-	linesCount = [[parser get:@"LinesCount" section:@"main"] integerValue];
+	NSInteger linesCount = [[parser get:@"LinesCount" section:@"main"] integerValue];
 	
 	NSArray *size = [[parser get:@"Size" section:@"main"] componentsSeparatedByString:@","];
 	_w = ([[size objectAtIndex:0] integerValue]);
 	_h = ([[size objectAtIndex:1] integerValue]);
 
-    minX = MAXFLOAT;
-    maxX = 0.f;
-    minY = MAXFLOAT;
-    maxY = 0.f;
 	for (int i =0 ;i<linesCount; i++) {
 		NSString *sectionName = [NSString stringWithFormat:@"Line%d", i+1 ];
 		NSString *lineName = [parser get:@"Name" section:sectionName];
-		[linesNames addObject:lineName];
-		[linesIndex setObject:[NSNumber numberWithInt:i+1	] forKey:lineName];
 
+        MLine *newLine = [NSEntityDescription insertNewObjectForEntityForName:@"Line" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+        newLine.name=lineName;
+        newLine.index = [[NSNumber alloc] initWithInt:i+1];
+ 
 		NSString *colors = [parser get:@"Color" section:lineName];
-		[self processLinesColors:colors];
+        newLine.color = [self colorForHex:colors];
 		
 		NSString *coords = [parser get:@"Coordinates" section:lineName];
-		[self processLinesCoord:[coords componentsSeparatedByString:@", "]];
-
 		NSString *coordsText = [parser get:@"Rects" section:lineName];
-		[self processLinesCoordForText:[coordsText componentsSeparatedByString:@", "]];
-		
 		NSString *stations = [parser get:@"Stations" section:sectionName];
 		[self processLinesStations:stations	:i];
 		
 		NSString *coordsTime = [parser get:@"Driving" section:sectionName];
-		[self processLinesTime:coordsTime :i];
+        
+        Line *l = [[Line alloc] initWithName:lineName stations:stations driving:coordsTime coordinates:coords rects:coordsText];
+        l.index = i+1;
+        l.color = newLine.color;
+        [mapLines addObject:l];
 	}
-    minX -= 40;
-    maxX += 40;
-    minY -= 40;
-    maxY += 40;
-	
-/*	for (int i =0 ; i<(addNodesCount); i++) {
-		[self processAddNodes:[map objectAtIndex:i+kDataShift+linesCount*kDataRowForLine]];
-	}*/
-	
+    [[MHelper sharedHelper] saveContext];
+		
 	int counter = 0;
 	INISection *section = [parser getSection:@"AdditionalNodes"];
 	NSMutableDictionary *as = [section assignments];
@@ -166,7 +704,6 @@ NSInteger const kDataRowForLine=5;
 		[self processAddNodes:value];
 		counter++;
 	}
-	addNodesCount = counter;
 
 	counter = 0;
 	INISection *section2 = [parser getSection:@"Transfers"];
@@ -176,7 +713,6 @@ NSInteger const kDataRowForLine=5;
 		[self processTransfers:value];
 		counter++;
 	}
-	transfersCount = counter;
 	
 	counter = 0;
 	INISection *section3 = [parser getSection:@"gps"];
@@ -186,10 +722,21 @@ NSInteger const kDataRowForLine=5;
 		[self processGPS :key :value];
 		counter++;
 	}
-	gpsCoordsCount = counter;
 	[parser release];
     
     [self calcGraph];
+    UIGraphicsBeginImageContext(CGSizeMake(100, 100));
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    // predraw transfers
+    for (Transfer *t in transfers) {
+        [t predraw:context];
+    };
+    // predraw lines & stations
+    for (Line *l in mapLines) {
+        [l predraw:context];
+    }
+    UIGraphicsEndImageContext();
+    
 }
 
 -(NSArray*) calcPath :(NSString*) firstStation :(NSString*) secondStation :(NSInteger) firstStationLineNum :(NSInteger)secondStationLineNum {
@@ -216,28 +763,27 @@ NSInteger const kDataRowForLine=5;
 -(void) processTransfers:(NSString*)transferInfo{
 	
 	NSArray *elements = [transferInfo componentsSeparatedByString:@","];
-	NSMutableDictionary *transferData = [[NSMutableDictionary alloc] init];
 
-	NSString *lineStation1 = [[linesIndex objectForKey:[elements objectAtIndex:0]] stringValue];
-	NSString *lineStation2 = [[linesIndex objectForKey:[elements objectAtIndex:2]] stringValue];
-	
-	[transferData setObject:lineStation1 forKey:@"lineStation1"];
-	[transferData setObject:[elements objectAtIndex:1] forKey:@"stationName1"];
-	[transferData setObject:lineStation2 forKey:@"lineStation2"];
-	[transferData setObject:[elements objectAtIndex:3] forKey:@"stationName2"];
-	[transferData setObject:[elements objectAtIndex:4] forKey:@"transferTime"];	
-	
-	NSMutableArray *transferTimeTemp ;
-	transferTimeTemp = [transfersTime objectForKey:[elements objectAtIndex:1]];
-	if (transferTimeTemp==nil)
-	{
-		transferTimeTemp = [[NSMutableArray alloc] init];
-	}
+    NSString *lineStation1 = [elements objectAtIndex:0];
+    NSString *station1 = [elements objectAtIndex:1];
+    NSString *lineStation2 = [elements objectAtIndex:2];
+    NSString *station2 = [elements objectAtIndex:3];
 
-	[transferTimeTemp addObject:transferData];
-	///[transferTimeTemp setObject:transferData forKey:[NSString stringWithFormat:@"%@%@%@%@" , [elements objectAtIndex:0], [elements objectAtIndex:1], [elements objectAtIndex:2],[elements objectAtIndex:3] ]];
-
-	[transfersTime setObject:transferTimeTemp forKey:[elements objectAtIndex:1]];
+    Station *ss1 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation1].index intValue]-1] getStation:station1];
+    Station *ss2 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation2].index intValue]-1] getStation:station2];
+    if(ss1.transfer != nil && ss2.transfer != nil) {
+        
+    } else if(ss1.transfer) {
+        [ss1.transfer addStation:ss2];
+    } else if(ss2.transfer) {
+        [ss2.transfer addStation:ss1];
+    } else {
+        Transfer *tr = [[Transfer alloc] init];
+        tr.time = [[elements objectAtIndex:4] floatValue];
+        [tr addStation:ss1];
+        [tr addStation:ss2];
+        [transfers addObject:tr];
+    }
 }
 
 
@@ -245,149 +791,22 @@ NSInteger const kDataRowForLine=5;
 	
 	NSArray *elements = [addNodeInfo componentsSeparatedByString:@", "];
 
-	
-	NSMutableArray *splinePoints = [[NSMutableArray alloc] init];
-	for (int i=1; i<([elements count]-1); i++) {
-		[splinePoints addObject:[elements objectAtIndex:i]];
-	}
 	//expected 3+ elements
 	//separate line sations info
 	NSArray *stations = [[elements objectAtIndex:0] componentsSeparatedByString:@","];
 	
-	//NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-
 	NSString *lineName = [stations objectAtIndex:0];
-	NSNumber *num = [linesIndex objectForKey:lineName];
 	
-	[addNodes setObject:splinePoints forKey:[NSString stringWithFormat:@"%d,%@,%@" , [num intValue] , [stations objectAtIndex:1], [stations objectAtIndex:2]]];
-	
-	//[dict setObject:splinePoints forKey:[[[stations objectAtIndex:1] stringByAppendingString:@","] stringByAppendingString:[stations objectAtIndex:2]]];
-//	[addNodes setObject:splinePoints forKey:[[[stations objectAtIndex:1] stringByAppendingString:@","] stringByAppendingString:[stations objectAtIndex:2]]];
-	
-}
--(void) processLinesTime:(NSString*) lineTime :(NSUInteger) line{
-
-//	NSMutableDictionary *lineTimes = [[NSMutableDictionary alloc] init];
-	NSMutableArray *lineStationsTime = [[NSMutableArray alloc] init];
-	
-	//NSUInteger location=0;
-	NSUInteger location2=0;
-	Boolean endline=false;
-	
-	NSString *new_s = nil;
-	
-	NSString *remained_stationTime = lineTime;
-	
-	int i = 0;
-	while ([remained_stationTime length] != 0) {
-		if ([remained_stationTime rangeOfString:@","].location!=NSNotFound)
-			location2 = [remained_stationTime rangeOfString:@","].location;
-		else
-		{
-			endline = true;
-			location2 = [remained_stationTime length];	
-		}
-		new_s = [remained_stationTime substringToIndex:location2];
-		
-		if ([new_s rangeOfString:@"("].location==NSNotFound)
-		{
-			
-			NSString *newstring = [remained_stationTime substringToIndex:location2];
-			[lineStationsTime addObject:newstring];
-			
-			i++;
-			if (!endline)
-				remained_stationTime = [remained_stationTime substringFromIndex:location2+1];			
-			else
-				remained_stationTime = [remained_stationTime substringFromIndex:location2];							
-			continue;
-		}
-		else
-		{
-			
-			
-			if ([new_s rangeOfString:@")"].location==NSNotFound)
-			{
-				location2 = [remained_stationTime rangeOfString:@")"].location+1;
-				
-			}
-			NSString *newstring = [remained_stationTime substringToIndex:location2]; // +1 
-			
-			NSUInteger location3 = [newstring rangeOfString:@"("].location;
-			NSString *stationTime = [newstring substringToIndex:location3];
-			
-			NSString *stringForSub = [newstring substringWithRange:NSMakeRange(location3+1, [newstring length]-2-(location3))];
-			
-			
-			// для случвкы с (,station_name)
-			NSArray *stationsTime_list;
-			if ([stringForSub rangeOfString:@","].location==0)
-				stationsTime_list = [[stringForSub substringFromIndex:1] componentsSeparatedByString:@","];
-			else {
-			stationsTime_list = [stringForSub componentsSeparatedByString:@","];			
-			}
-
-			NSMutableArray *list = [[NSMutableArray alloc] init];
-			
-			for (int i = 0; i<[stationsTime_list count]; i++) {
-				[list addObject:[stationsTime_list objectAtIndex:i]];
-			}
-			
-			NSString *currentStationName = [[stationsName objectAtIndex:line] objectAtIndex:i];
-			
-			NSMutableDictionary *stationDataDict = [[stationsData objectAtIndex:line] objectForKey:currentStationName];
-			[stationDataDict setObject:list forKey:@"linked_time"];
-			
-			NSMutableDictionary *newDict = [stationsData objectAtIndex:line];
-			[newDict setObject:stationDataDict forKey:currentStationName];
-			
-			[stationsData replaceObjectAtIndex:line withObject:newDict];
-			
-			//[lineTimes setObject:dict forKey:stationTime];
-			[lineStationsTime addObject:stationTime];
-			i++;
-			if(!endline)
-				remained_stationTime = [remained_stationTime substringFromIndex:location2+1]; // +2			
-			else
-				remained_stationTime = [remained_stationTime substringFromIndex:location2];							
-		}
-	}
-//	[stationsData addObject:lineTimes];
-	[stationsTime addObject:lineStationsTime];
-	
-}
--(void) sortSectionDataForTable {
-	// Sort each section array
-    for (NSString *key in [contentAZForTableView allKeys])
-    {
-	   //[[contentAZForTableView objectForKey:key] sortUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]]];
+    for (Line* l in mapLines) {
+        if([l.name isEqualToString:lineName]) {
+            [l additionalPointsBetween:[stations objectAtIndex:1] and:[stations objectAtIndex:2] points:[elements objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, [elements count]-2)]]];
+            break;
+        }
     }
-}
-
--(void) prepareStationForTable:(NSString*) stationName :(NSInteger)line{
-	//add for line
-	
-	
-	//add for A..Z
-	NSString *c = [stationName substringToIndex:1];
-
-	if ([contentAZForTableView objectForKey:c]!=nil)
-	{
-		[[contentAZForTableView objectForKey:c] addObject:stationName];
-	}
-	else {
-		[contentAZForTableView setObject:[[NSMutableArray alloc] init] forKey:c];
-		[[contentAZForTableView objectForKey:c] addObject:stationName];		
-	}
-	
 }
 
 -(void) processLinesStations:(NSString*) stations :(NSUInteger) line{
 
-	NSMutableDictionary *lineStations = [[NSMutableDictionary alloc] init];
-	NSMutableArray *lineStationsName = [[NSMutableArray alloc] init];
-	
-	//NSUInteger location=0;
 	NSUInteger location2=0;
 	Boolean endline=false;
 	
@@ -408,16 +827,15 @@ NSInteger const kDataRowForLine=5;
 
 		if ([new_s rangeOfString:@"("].location==NSNotFound)
 		{
-			NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 
 			NSString *newstring = [remained_station substringToIndex:location2];
-			[dict setObject:newstring forKey:newstring];
-			[dict setObject:[[linesCoord objectAtIndex:line] objectAtIndex:i] forKey:@"coord"];
-			[dict setObject:[[linesCoordForText objectAtIndex:line] objectAtIndex:i] forKey:@"text_coord"];			
-			[lineStations setObject:dict forKey:newstring];
-			[lineStationsName addObject:newstring];
-			[allStationsNames setObject:[NSNumber numberWithInt:line] forKey:newstring];
 			
+            MStation *station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+            station.name=newstring;
+            station.isFavorite=[NSNumber numberWithInt:0];
+            station.lines=[[MHelper sharedHelper] lineByIndex:line+1 ];
+            station.index = [NSNumber numberWithInt:i];
+
 			i++;
 			if (!endline)
 			remained_station = [remained_station substringFromIndex:location2+1];			
@@ -428,63 +846,29 @@ NSInteger const kDataRowForLine=5;
 		else
 		{
 			
-			
 			if ([new_s rangeOfString:@")"].location==NSNotFound)
 			{
 				location2 = [remained_station rangeOfString:@")"].location+1;
 
 			}
-			NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 			NSString *newstring = [remained_station substringToIndex:location2]; // +1 
 
 			NSUInteger location3 = [newstring rangeOfString:@"("].location;
 			NSString *stationname = [newstring substringToIndex:location3];
 			
-			NSString *stringForSub = [newstring substringWithRange:NSMakeRange(location3+1, [newstring length]-2-(location3))];
-			
-
-			// для случая с (,station_name)
-			Boolean reverse_linked=false;
-
-			NSArray *stations_list;
-			if ([stringForSub rangeOfString:@","].location==0){
-				reverse_linked=true;
-				stations_list = [[stringForSub substringFromIndex:1] componentsSeparatedByString:@","];
-			}
-			else {
-				stations_list = [stringForSub componentsSeparatedByString:@","];			
-			}
-
-			
-			NSMutableArray *list = [[NSMutableArray alloc] init];
-			
-			for (int i = 0; i<[stations_list count]; i++) {
-				[list addObject:[stations_list objectAtIndex:i]];
-			}
-			
-			[dict setObject:stationname forKey:stationname];
-			
-			[dict setObject:list forKey:@"linked"];
-			if (reverse_linked)
-			{
-				[dict setObject:[NSNumber numberWithInt:1] forKey:@"reverse"];				
-			}
-			[dict setObject:[[linesCoord objectAtIndex:line] objectAtIndex:i] forKey:@"coord"];
-			[dict setObject:[[linesCoordForText objectAtIndex:line] objectAtIndex:i] forKey:@"text_coord"];
-
-			[lineStations setObject:dict forKey:stationname];
-			[lineStationsName addObject:stationname];
-			[allStationsNames setObject:[NSNumber numberWithInt:line] forKey:stationname];			
-			
+            MStation *station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+                        station.name=stationname;
+            station.isFavorite=[NSNumber numberWithInt:0];
+            station.lines=[[MHelper sharedHelper] lineByIndex:line+1 ];
+            station.index = [NSNumber numberWithInt:i];
+            
 			i++;
 			if(!endline)
 			remained_station = [remained_station substringFromIndex:location2+1]; // +2			
 			else
-			remained_station = [remained_station substringFromIndex:location2];							
+			remained_station = [remained_station substringFromIndex:location2];
 		}
 	}
-	[stationsData addObject:lineStations];
-	[stationsName addObject:lineStationsName];
 }
 
 
@@ -532,200 +916,44 @@ NSInteger const kDataRowForLine=5;
 	
 }
 
--(void) processLinesColors:(NSString*) colors {
-	
-	
-	UIColor *hh = [self colorForHex:colors];
-	
-	const CGFloat *components = CGColorGetComponents(hh.CGColor);
-    CGFloat r = components[0];
-    CGFloat g = components[1];
-    CGFloat b = components[2];
-	
-	NSMutableArray *lineColors = [[NSMutableArray alloc] init];
-	
-	[lineColors  addObject:[NSNumber numberWithFloat:r]];
-	[lineColors  addObject:[NSNumber numberWithFloat:g]];
-	[lineColors  addObject:[NSNumber numberWithFloat:b]];
-	
-	[linesColors addObject:lineColors];
-
-}
--(void) processLinesCoord:(NSArray*) coord{
-	NSMutableArray *lineCoord = [[NSMutableArray alloc] init];
-	for (int j = 0 ; j < coord.count; j++) {
-		NSArray *coord_x_y = [[coord objectAtIndex:j] componentsSeparatedByString:@","];
-		NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-		
-		NSString *xxs = [coord_x_y objectAtIndex:0];
-		NSString *yys = [coord_x_y objectAtIndex:1];
-		
-		NSNumber *x = [NSNumber numberWithFloat:[xxs intValue]];
-		NSNumber *y = [NSNumber numberWithFloat:[yys intValue]];
-        minX = MIN(minX, [x floatValue]);
-        maxX = MAX(maxX, [x floatValue]);
-        minY = MIN(minY, [y floatValue]);
-        maxY = MAX(maxY, [y floatValue]);
-		[dict setValue:x forKey:@"x"];
-		[dict setValue:y forKey:@"y"];			
-		[lineCoord addObject:dict];
-	}
-	[linesCoord addObject:lineCoord];
-}
-
--(void) processLinesCoordForText:(NSArray*) coord{
-	NSMutableArray *lineCoordForText = [[NSMutableArray alloc] init];
-	for (int j = 0 ; j < coord.count; j++) {
-		NSArray *coord_x_y = [[coord objectAtIndex:j] componentsSeparatedByString:@","];
-		NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-		
-		NSString *xxs = [coord_x_y objectAtIndex:0];
-		NSString *yys = [coord_x_y objectAtIndex:1];
-		NSString *wws = [coord_x_y objectAtIndex:2];
-		NSString *hhs = [coord_x_y objectAtIndex:3];
-		
-		NSNumber *x = [NSNumber numberWithFloat:[xxs intValue]];
-		NSNumber *y = [NSNumber numberWithFloat:[yys intValue]];
-		NSNumber *ww = [NSNumber numberWithFloat:[wws intValue]];
-		NSNumber *hh = [NSNumber numberWithFloat:[hhs intValue]];
-
-		[dict setValue:x forKey:@"x"];
-		[dict setValue:y forKey:@"y"];
-		[dict setValue:ww forKey:@"w"];
-		[dict setValue:hh forKey:@"h"];
-		
-		[lineCoordForText addObject:dict];
-
-        minX = MIN(minX, [x floatValue]);
-        maxX = MAX(maxX, [x floatValue] + [ww floatValue]);
-        minY = MIN(minY, [y floatValue]);
-        maxY = MAX(maxY, [y floatValue] + [hh floatValue]);
-	}
-	[linesCoordForText addObject:lineCoordForText];
-}
-
-
 -(void) calcGraph {
-	
 	//for each line
-	for (int i=0; i< linesCount; i++) {
-		NSDictionary *lineStations = [stationsData objectAtIndex:i];
-		NSArray *lineStationNames = [NSArray arrayWithArray:[stationsName objectAtIndex:i]];
-		NSArray *lineStationsTime = [stationsTime objectAtIndex:i];
-		//if (i==0)
-		[self calcOneLineGraph:lineStations :lineStationNames :lineStationsTime :i];
-	}
+    for (int i=0; i<[mapLines count]; i++) {
+        Line *l = [mapLines objectAtIndex:i];
+        for (Station *s in l.stations) {
+            NSString *st1Name = [NSString stringWithFormat:@"%@|%d",s.name,i+1];
+            for (Segment *seg in s.segment) {
+                NSString *st2Name = [NSString stringWithFormat:@"%@|%d",seg.end.name,i+1];
+				[graph addEdgeFromNode:[GraphNode nodeWithValue:st1Name] toNode:[GraphNode nodeWithValue:st2Name] withWeight:seg.driving];
+				[graph addEdgeFromNode:[GraphNode nodeWithValue:st2Name] toNode:[GraphNode nodeWithValue:st1Name] withWeight:seg.driving];
+            }
+        }
+    }
 	[self processTransfersForGraph];
 }
 
 -(void) processTransfersForGraph{
-	for(id key in transfersTime) {
-		NSArray *transfers = [transfersTime objectForKey:key];
-			for (int i=0; i<[transfers count]; i++) {
-				NSDictionary *transferDict = [transfers objectAtIndex:i];
-				
-				NSString *station1 = [NSString stringWithFormat:@"%@|%@", 
-									  [transferDict objectForKey:@"stationName1"],
-									  [transferDict objectForKey:@"lineStation1"]];
-				
-				NSString *station2 = [NSString stringWithFormat:@"%@|%@", 
-									  [transferDict objectForKey:@"stationName2"],
-									  [transferDict objectForKey:@"lineStation2"]];
-				
-				[graph addEdgeFromNode:[GraphNode nodeWithValue:station1] 
-				 				toNode:[GraphNode nodeWithValue:station2]				 
-							withWeight:[[transferDict objectForKey:@"transferTime"] floatValue]];
-				
-				[graph addEdgeFromNode:[GraphNode nodeWithValue:station2] 
-				 				toNode:[GraphNode nodeWithValue:station1]				 
-							withWeight:[[transferDict objectForKey:@"transferTime"] floatValue]];
-				
-			}
-	}	
+    for (Transfer *t in transfers) {
+        for (Station *s1 in t.stations) {
+            NSString *station1 = [NSString stringWithFormat:@"%@|%@", s1.name, [NSNumber numberWithInt:s1.line.index]];
+            for (Station *s2 in t.stations) {
+                if(s1 != s2) {
+                    NSString *station2 = [NSString stringWithFormat:@"%@|%@", s2.name, [NSNumber numberWithInt:s2.line.index]];
+                    [graph addEdgeFromNode:[GraphNode nodeWithValue:station1]
+                                    toNode:[GraphNode nodeWithValue:station2]
+                                withWeight:t.time];
+                }
+            }
+        }
+    }
 }
--(void) calcOneLineGraph: (NSDictionary*)lineStationsData :(NSArray*) lineStationsName :(NSArray*) lineStationsTime :(NSInteger)lineNum { 
-	
-	//	NSArray *keyArray =  [lineStations allKeys];
-	int keys_count = [lineStationsName count];
-	NSArray *prev_linkedStations = nil;
-	
-	for (int j =0 ; j < keys_count-1; j++) {
-		
-		//NSDictionary *next_stationDict = [[NSDictionary alloc] init];
-		NSString *nextStationName;
-		//NSString *nextStationsTime;
-		
-		//
-		NSString *stationName = [lineStationsName objectAtIndex:j];
-		NSDictionary *stationDict = [lineStationsData objectForKey:stationName];
-		NSArray *linkedStations = [stationDict objectForKey:@"linked"];
-		NSArray *linkedStationsTime = [stationDict objectForKey:@"linked_time"];
-		NSString *stationTime = [lineStationsTime objectAtIndex:j];
-		stationName = [NSString stringWithFormat:@"%@|%d",[lineStationsName objectAtIndex:j],lineNum+1];
-		NSString *prev_stationTime;
-		//NSDictionary *coords = [stationDict objectForKey:@"coord"];
-		//NSDictionary *text_coords = [stationDict objectForKey:@"text_coord"];
-		
-		if (linkedStations==nil)
-		{
-			if ((j+1)!=keys_count)
-			{
-				//обычная станция
-
-				nextStationName = [NSString stringWithFormat:@"%@|%d",[lineStationsName objectAtIndex:j+1],lineNum+1] ;
-
-				//next_stationDict = [lineStationsData objectForKey:[lineStationsName objectAtIndex:j+1]];	
-				//nextStationsTime = [lineStationsTime objectAtIndex:j+1];
-				
-				[graph addEdgeFromNode:[GraphNode nodeWithValue:stationName] toNode:[GraphNode nodeWithValue:nextStationName] withWeight:[stationTime floatValue]];
-				[graph addEdgeFromNode:[GraphNode nodeWithValue:nextStationName] toNode:[GraphNode nodeWithValue:stationName] withWeight:[stationTime floatValue]];
-
-			}
-			else {
-				//последняя станция в ветке
-			}
-			//если пред станция имела линкованные , а  теперь идет обычная, рисуем линк. Возможно косталь.
-			if (prev_linkedStations!=nil)
-			{
-				//[self draw2Station:context :lineColor :coords :prev_coords :nil];
-			}
-		}
-		else {
-						
-			//линкованные
-			for (int ii = 0 ; ii<[linkedStations count];ii++)
-			{
-				nextStationName = [NSString stringWithFormat:@"%@|%d",[linkedStations objectAtIndex:ii],lineNum+1];
-				//next_stationDict = [lineStationsData objectForKey:[linkedStations objectAtIndex:ii]];
-				NSString *next_stationsTime = [linkedStationsTime objectAtIndex:ii];
-				[graph addEdgeFromNode:[GraphNode nodeWithValue:stationName] toNode:[GraphNode nodeWithValue:nextStationName] withWeight:[next_stationsTime floatValue]];
-				[graph addEdgeFromNode:[GraphNode nodeWithValue:nextStationName] toNode:[GraphNode nodeWithValue:stationName] withWeight:[stationTime floatValue]];
-			}
-		}
-		prev_stationTime = stationTime;
-		prev_linkedStations = linkedStations;
-		//		DLog(@" %f %f ",x,y);
-	}
-}
-
 
 - (void)dealloc {
     [super dealloc];
-    [drawedStations dealloc];
-
-	[linesNames dealloc];
-	[linesIndex dealloc];
-	[contentAZForTableView dealloc];
-	[linesCoord dealloc];
-	[linesCoordForText dealloc];
-	[linesColors dealloc];
-	[stationsData dealloc];
-	[stationsTime dealloc];
-	[addNodes dealloc];
-	[transfersTime dealloc];
-	[gpsCoords dealloc];
-
-	[graph dealloc];
+	[gpsCoords release];
+    [mapLines release];
+	[graph release];
+    [transfers release];
 }
 
 // drawing
@@ -733,557 +961,115 @@ NSInteger const kDataRowForLine=5;
 -(void) drawMap:(CGContextRef) context 
 {
     CGContextSaveGState(context);
-    CGContextScaleCTM(context, koef, koef);
-    CGContextTranslateCTM(context, -minX, -minY);
-	//for each line
-	for (int i=0; i< linesCount; i++) {
-		NSArray *lineCoord = [NSArray arrayWithArray:[linesCoord objectAtIndex:i]];
-		NSArray *lineColor = [NSArray arrayWithArray:[linesColors objectAtIndex:i]];
-		NSDictionary *lineStations = [stationsData objectAtIndex:i];
-		NSArray *lineStationNames = [NSArray arrayWithArray:[stationsName objectAtIndex:i]];
-        //		if (i==9)
-		[self drawMetroLine:context :lineCoord :lineColor :lineStations :lineStationNames :i];
-	}
+    for (Line* l in mapLines) {
+        [l draw:context];
+    }
+    CGContextRestoreGState(context);
+}
+
+-(void) drawMap:(CGContextRef) context inRect:(CGRect)rect
+{
+    //printf("rect x=%d y=%d w=%d h=%d\n", (int)rect.origin.x, (int)rect.origin.y, (int)rect.size.width, (int)rect.size.height);
+    CGContextSaveGState(context);
+    for (Line* l in mapLines) {
+        [l draw:context inRect:(CGRect)rect];
+    }
     CGContextRestoreGState(context);
 }
 
 -(void) drawStations:(CGContextRef) context
 {
     CGContextSaveGState(context);
-    CGContextScaleCTM(context, koef, koef);
-    CGContextTranslateCTM(context, -minX, -minY);
-    /*for (NSString *key in [drawedStations allKeys]) {
-        UILabel *l = [drawedStations objectForKey:key];
-        [l removeFromSuperview];
-    }*/
-    [drawedStations removeAllObjects];
 
-	currentLineNum = 0;
-	for (int i=0; i< linesCount; i++) {
-		currentLineNum = i+1;
-        
-		NSArray *lineColor = [NSArray arrayWithArray:[linesColors objectAtIndex:i]];
-		NSDictionary *lineStations = [stationsData objectAtIndex:i];
-		NSArray *lineStationNames = [NSArray arrayWithArray:[stationsName objectAtIndex:i]];
-		[self drawMetroLineStationName:context :lineColor :lineStations :lineStationNames :i];
-	}
+    for (Line* l in mapLines) {
+        [l drawNames:context];
+    }
     CGContextRestoreGState(context);
 }
 
--(void) drawMetroLine:(CGContextRef) context :(NSArray*)lineCoords :(NSArray*)lineColor 
-					 :(NSDictionary*)lineStationsData :(NSArray*) lineStationsName :(NSInteger)line{ 
-	
-    //	NSArray *keyArray =  [lineStations allKeys];
-	int keys_count = [lineStationsName count];
-	NSDictionary *prev_coords = nil;
-	NSArray *prev_linkedStations = nil;
-	
-	for (int j =0 ; j < keys_count; j++) {
-        
-		NSDictionary *next_coords = nil;
-		NSDictionary *next_text_coords = nil;
-		NSDictionary *next_stationDict = nil;
-		NSString *nextStationName ;
-		NSNumber *reverse_linked_prev;
-		
-		//
-		NSString *stationName = [lineStationsName objectAtIndex:j];
-		NSDictionary *stationDict = [lineStationsData objectForKey:[lineStationsName objectAtIndex:j]];
-		NSArray *linkedStations = [stationDict objectForKey:@"linked"];
-		NSNumber *reverse_linked = [stationDict objectForKey:@"reverse"];
-		NSDictionary *coords = [stationDict objectForKey:@"coord"];
-		//NSDictionary *text_coords = [stationDict objectForKey:@"text_coord"];
-		
-		if (linkedStations==nil)
-		{
-			if ((j+1)!=keys_count)
-                //if (1==1)
-			{
-				//обычная станция
-				nextStationName = [lineStationsName objectAtIndex:j+1];
-				next_stationDict = [lineStationsData objectForKey:[lineStationsName objectAtIndex:j+1]];	
-				next_coords = [next_stationDict objectForKey:@"coord"];
-				next_text_coords = [stationDict objectForKey:@"text_coord"];
-				
-				
-				Boolean reverse=false;
-				NSArray *splineCoords;
-				splineCoords = [addNodes objectForKey: 
-								[NSString stringWithFormat:@"%d,%@,%@" , (line+1),stationName,nextStationName]];
-			 	if (splineCoords == nil)
-				{
-					reverse=true;	
-					splineCoords = [addNodes objectForKey: 
-									[NSString stringWithFormat:@"%d,%@,%@" , (line+1),nextStationName,stationName]];
-				}
-				[self draw2Station:context :lineColor :coords :next_coords :splineCoords :reverse];
-			}
-			
-			//если пред станция имела линкованные(только с признаком reversed), а  теперь идет обычная, рисуем линк. Возможно косталь.
-            
-			if((prev_linkedStations!=nil) && ([reverse_linked_prev intValue]==1))
-			{
-				Boolean reverse=false;
-				NSArray *splineCoords;
-				splineCoords = [addNodes objectForKey: 
-								[NSString stringWithFormat:@"%d,%@,%@" , (line+1),stationName,nextStationName]];
-                //[[stationName stringByAppendingString:@","] stringByAppendingString:nextStationName]];
-			 	if (splineCoords == nil)
-				{
-					reverse=true;	
-					splineCoords = [addNodes objectForKey: 
-									[NSString stringWithFormat:@"%d,%@,%@" , (line+1),nextStationName,stationName]];
-                    //[[nextStationName stringByAppendingString:@","] stringByAppendingString:stationName]];
-				}
-				
-				[self draw2Station:context :lineColor :coords :prev_coords :splineCoords :reverse];
-			}
-			
-		}
-		else {
-			
-			//линкованные
-			for (int ii = 0 ; ii<[linkedStations count];ii++)
-			{
-				nextStationName = [linkedStations objectAtIndex:ii];
-				next_stationDict = [lineStationsData objectForKey:[linkedStations objectAtIndex:ii]];
-				next_coords = [next_stationDict objectForKey:@"coord"];
-				next_text_coords = [next_stationDict objectForKey:@"coord"];
-                
-				Boolean reverse=false;
-				NSArray *splineCoords;
-				splineCoords = [addNodes objectForKey: 
-								[NSString stringWithFormat:@"%d,%@,%@" , (line+1),stationName,nextStationName]];
-			 	if (splineCoords == nil)
-				{
-					reverse=true;	
-					splineCoords = [addNodes objectForKey: 
-									[NSString stringWithFormat:@"%d,%@,%@" , (line+1),nextStationName,stationName]];
-				}
-				[self draw2Station:context :lineColor :coords :next_coords :splineCoords :reverse];				
-			}
-			
-		}
-		prev_coords = coords;
-		prev_linkedStations = linkedStations;
-		reverse_linked_prev = reverse_linked;
-		
-	}
-}
-
--(void) drawMetroLineStationName:(CGContextRef) context :(NSArray*)lineColor 
-								:(NSDictionary*)lineStationsData :(NSArray*) lineStationsName :(NSInteger) line { 
-	
-	//	NSArray *keyArray =  [lineStations allKeys];
-	int keys_count = [lineStationsName count];
-	NSDictionary *prev_coords = nil;
-	NSArray *prev_linkedStations = nil;
-	
-	for (int j =0 ; j < keys_count; j++) {
-		
-		NSDictionary *next_coords = nil;
-		NSDictionary *next_text_coords = nil;
-		NSDictionary *next_stationDict = nil;
-		NSString *nextStationName ;
-		
-		//
-		NSString *stationName = [lineStationsName objectAtIndex:j];
-		NSDictionary *stationDict = [lineStationsData objectForKey:[lineStationsName objectAtIndex:j]];
-		NSArray *linkedStations = [stationDict objectForKey:@"linked"];
-		NSDictionary *coords = [stationDict objectForKey:@"coord"];
-		NSDictionary *text_coords = [stationDict objectForKey:@"text_coord"];
-		
-		if (linkedStations==nil)
-		{
-			if ((j+1)!=keys_count)
-			{
-				//обычная станция
-				nextStationName = [lineStationsName objectAtIndex:j+1];
-				next_stationDict = [lineStationsData objectForKey:[lineStationsName objectAtIndex:j+1]];	
-				next_coords = [next_stationDict objectForKey:@"coord"];
-				next_text_coords = [stationDict objectForKey:@"text_coord"];
-				
-				[self drawStationPoint: context coord:coords lineColor: lineColor];
-				[self drawStationName:context :text_coords :coords :stationName :line+1];
-			}
-			else {
-				//последняя станция в ветке
-				[self drawStationPoint: context coord:coords lineColor: lineColor];
-				[self drawStationName:context :text_coords :coords :stationName :line+1];
-			}
-			
-			//если пред станция имела линкованные , а  теперь идет обычная, рисуем линк. Возможно косталь.
-			if (prev_linkedStations!=nil)
-			{
-				//[self draw2Station:context :lineColor :coords :prev_coords :nil];
-			}
-		}
-		else {
-			
-			[self drawStationPoint: context coord:coords lineColor: lineColor];
-			[self drawStationName:context :text_coords :coords :stationName :line];
-			
-			//линкованные
-			for (int ii = 0 ; ii<[linkedStations count];ii++)
-			{
-				nextStationName = [linkedStations objectAtIndex:ii];
-				next_stationDict = [lineStationsData objectForKey:[linkedStations objectAtIndex:ii]];
-				next_coords = [next_stationDict objectForKey:@"coord"];
-				next_text_coords = [next_stationDict objectForKey:@"coord"];
-				
-				//[self draw2Station:context :lineColor :coords :next_coords :splineCoords];				
-				[self drawStationPoint: context coord:next_coords lineColor: lineColor];
-				[self drawStationName:context :next_text_coords :next_coords :stationName :line+1];
-			}
-			
-		}
-		prev_coords = coords;
-		prev_linkedStations = linkedStations;
-		
-		
-		//		DLog(@" %f %f ",x,y);
-	}
-}
-
--(void) draw2Station:(CGContextRef)context :(NSArray*)lineColor :(NSDictionary*) coord1 :(NSDictionary*)coord2 :(NSArray*) splineCoords :(Boolean) reverse{ 
-	float x = [[coord1 objectForKey:@"x"] floatValue];
-	float y = [[coord1 objectForKey:@"y"] floatValue];
-	
-	float x2 = [[coord2 objectForKey:@"x"] floatValue];
-	float y2 = [[coord2 objectForKey:@"y"] floatValue];
-	
-	CGContextSetRGBStrokeColor(context, [[lineColor objectAtIndex:0] floatValue], [[lineColor objectAtIndex:1] floatValue], [[lineColor objectAtIndex:2] floatValue], 1);				
-	if (splineCoords!=nil)
-	{
-		[self drawSpline:context :x :y :x2 :y2 :splineCoords :reverse];
-	}
-	else
-		[self drawLine:context :x :y :x2 :y2 :kLineWidth];
-}
-
-- (void) drawStationPoint: (CGContextRef) context y: (float) y x: (float) x lineColor: (NSArray *) lineColor  {
-	
-	
-	CGContextSetRGBStrokeColor(context, 0.2, 0.2, 0.2, 0.8);
-	[self drawCircle:context :x	:y :2.75];
-	CGContextSetRGBFillColor(context, [[lineColor objectAtIndex:0] floatValue], [[lineColor objectAtIndex:1] floatValue], [[lineColor objectAtIndex:2] floatValue], 1);		
-	[self drawFilledCircle:context :x :y :2.5];
-	
-}
-
--(void) drawStationName:(CGContextRef) context :(float) x :(float) y  :(float) ww :(float)hh :(NSString*) stationName 
-					   :(UITextAlignment) mode :(NSInteger) line{
-	
-	//draw filled rect
-	CGRect textRect = CGRectMake(x, y, ww, hh);
-	//CGContextSetRGBFillColor (context, 1, 1, 1, 0.3); // 6	
-	//CGContextFillRect(context, textRect);
-	
-
-	//draw text
-	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
-	//	CGContextSetCharacterSpacing (context, 2); 
-	CGContextSelectFont(context, "Helvetica", 9.0, kCGEncodingMacRoman);
-	
-	CGContextSetFillColorWithColor(context, [[UIColor blackColor] CGColor] );
-	CGContextSetTextDrawingMode (context, kCGTextFill); 
-	
-	
-	UIGraphicsPushContext(context);			
-	[stationName drawInRect:textRect  withFont: [UIFont fontWithName:@"Arial-BoldMT" size:7] 
-			  lineBreakMode: UILineBreakModeWordWrap alignment: mode];
-	UIGraphicsPopContext();
-     
-	
-    /*
-    CGFloat fsize = kFontSize * koef;
-    textRect.origin.x -= minX;
-    textRect.origin.y -= minY;
-    textRect.origin.x *= koef;
-    textRect.origin.y *= koef;
-    textRect.size.width *= koef;
-    textRect.size.height *= koef;
-    UILabel *l = [[UILabel alloc] initWithFrame:textRect];
-    [l setText:stationName];
-    l.tag = currentLineNum;
-    l.font = [UIFont systemFontOfSize:fsize];
-    l.textAlignment = mode;
-    l.lineBreakMode = UILineBreakModeWordWrap;
-    if(fsize < 3.f) l.textColor = [UIColor clearColor];
-    l.userInteractionEnabled = YES;
-    l.backgroundColor = [UIColor clearColor];
-    [view addSubview:l];
-    return l;
-     */
-} 
-
-- (void) drawStationPoint: (CGContextRef) context coord: (NSDictionary*) coord lineColor: (NSArray *) lineColor  {
-	float x = [[coord objectForKey:@"x"] floatValue];
-	float y = [[coord objectForKey:@"y"] floatValue];
-	[self drawStationPoint: context y: y x: x lineColor: lineColor];
-}
-
--(void) drawStationName:(CGContextRef) context  :(NSDictionary*) text_coord  :(NSDictionary*) point_coord :(NSString*) stationName :(NSInteger) line {
-	
-	if ([drawedStations objectForKey:stationName]!=nil)
-		return;
-	
-	//[drawedStations setObject:@"yes" forKey:stationName];
-	
-	float x = [[text_coord objectForKey:@"x"] floatValue];
-	float y = [[text_coord objectForKey:@"y"] floatValue];
-	float ww = [[text_coord objectForKey:@"w"] floatValue];
-	float hh = [[text_coord objectForKey:@"h"] floatValue];
-	
-	float point_x = [[point_coord objectForKey:@"x"] floatValue];
-    
-	UITextAlignment mode;
-	if (x<point_x)
-		mode = UITextAlignmentRight;
-	else mode = UITextAlignmentLeft;
-
-	[drawedStations setObject:@"yes" forKey:stationName];
-    [self drawStationName:context :x :y :ww :hh :stationName :mode :line];
-} 
-
--(void) drawSpline :(CGContextRef)context :(CGFloat)x1 :(CGFloat)y1 :(CGFloat)x2 :(CGFloat)y2 :(NSArray*) coordSpline :(Boolean) reverse {
-	
-	CatmullRomSpline *ctSpline = [CatmullRomSpline catmullRomSplineAtPoint:CGPointMake(x1,y1)];
-    
-	NSEnumerator *enumerator;
-	
-	if (!reverse)
-		enumerator = [coordSpline objectEnumerator];
-	else
-		enumerator = [coordSpline reverseObjectEnumerator];
-    
-	for (id element in enumerator) {
-		NSArray *coords = [element componentsSeparatedByString:@","];
-		[ctSpline addPoint:CGPointMake([[coords objectAtIndex:0] floatValue], 
-									   [[coords objectAtIndex:1] floatValue])];
-	}
-	//}
-	
-	[ctSpline addPoint:CGPointMake(x2,y2)];
-    
-    
-    
-	NSArray *splineArray = [ctSpline asPointArray];
-	CGContextBeginPath(context);
-	CGPoint begin = [[splineArray objectAtIndex:0] CGPointValue];
-	CGContextMoveToPoint(context,begin.x,begin.y);
-	for (int i=1; i<[splineArray count]-1; i++) {
-		CGPoint p = [[splineArray objectAtIndex:i] CGPointValue];
-		CGPoint p2 = [[splineArray objectAtIndex:i+1] CGPointValue];		
-		CGContextAddQuadCurveToPoint(context, p.x, p.y, p2.x ,p2.y);
-	}
-	CGContextMoveToPoint(context,x2,y2);
-	CGContextSetLineWidth(context, kLineWidth);
-	CGContextDrawPath(context, kCGPathStroke);
+-(void) drawStations:(CGContextRef) context inRect:(CGRect)rect
+{
+    CGContextSaveGState(context);
+    for (Line* l in mapLines) {
+        [l drawNames:context inRect:rect];
+    }
+    CGContextRestoreGState(context);
 }
 
 // рисует часть карты
--(void) drawPathMap:(CGContextRef) context :(NSArray*) pathMap {
-	
-    CGContextSaveGState(context);
-    CGContextScaleCTM(context, koef, koef);
-    CGContextTranslateCTM(context, -minX, -minY);
-	[drawedStations removeAllObjects];
-    
-	//for each line
+-(void) activatePath:(NSArray*)pathMap {
+    for (Line *l in mapLines) {
+        for (Station *s in l.stations) {
+            s.active = NO;
+            for (Segment *seg in s.segment) {
+                seg.active = NO;
+            }
+        }
+    }
+    for (Transfer *t in transfers) {
+        t.active = NO;
+    }
 	int count_ = [pathMap count];
 	for (int i=0; i< count_; i++) {
-		
-		NSString *rawSrting1 = (NSString*)[[pathMap objectAtIndex:i] value];
-		NSArray *el1  = [rawSrting1 componentsSeparatedByString:@"|"];
+		NSString *rawString1 = (NSString*)[[pathMap objectAtIndex:i] value];
+		NSArray *el1  = [rawString1 componentsSeparatedByString:@"|"];
 		NSString *stationName1 = [el1 objectAtIndex:0];
 		NSInteger lineNum1 = [[el1 objectAtIndex:1] intValue]; 
         
-		if ((i+1)!=count_)
-		{
-			NSString *rawSrting2 = (NSString*)[[pathMap objectAtIndex:i+1] value];
-			NSArray *el2  = [rawSrting2 componentsSeparatedByString:@"|"];
+		if ((i+1)!=count_) {
+			NSString *rawString2 = (NSString*)[[pathMap objectAtIndex:i+1] value];
+			NSArray *el2  = [rawString2 componentsSeparatedByString:@"|"];
 			NSString *stationName2 = [el2 objectAtIndex:0];
 			NSInteger lineNum2 = [[el2 objectAtIndex:1] intValue]; 
 			
-			NSArray *lineColor = [NSArray arrayWithArray:[linesColors objectAtIndex:lineNum1-1]];
-			
-			if (lineNum1==lineNum2)
-			{
-				NSDictionary *lineStations = [stationsData objectAtIndex:lineNum1-1];
-				
-				NSDictionary* stationDict1 = [lineStations objectForKey:stationName1];
-				NSDictionary* stationDict2 = [lineStations objectForKey:stationName2];				
-                
-				NSDictionary* coords = [stationDict1 objectForKey:@"coord"];
-				NSDictionary* next_coords = [stationDict2 objectForKey:@"coord"];
-				
-				NSDictionary *text_coords = [stationDict1 objectForKey:@"text_coord"];
-				NSDictionary *next_text_coords = [stationDict2 objectForKey:@"text_coord"];
-                
-				Boolean reverse=false;
-				NSArray *splineCoords;
-				splineCoords = [addNodes objectForKey: 
-								[NSString stringWithFormat:@"%d,%@,%@" , (lineNum1),stationName1,stationName2]];
-			 	if (splineCoords == nil)
-				{
-					reverse=true;	
-					splineCoords = [addNodes objectForKey: 
-									[NSString stringWithFormat:@"%d,%@,%@" , (lineNum1),stationName2,stationName1]];
-				}
-				
-				[self draw2Station:context :lineColor :coords :next_coords :splineCoords :reverse];
-				
-				[self drawStationPoint: context coord:coords lineColor: lineColor];
-				[self drawStationName:context :text_coords :coords :stationName1 :lineNum1-1];
-                
-				[self drawStationPoint: context coord:next_coords lineColor: lineColor];
-				[self drawStationName:context :next_text_coords :next_coords :stationName2 :lineNum1-1];
-                
-			}
+			if (lineNum1==lineNum2) {
+                Line* l = [mapLines objectAtIndex:lineNum1-1];
+                [l activateSegmentFrom:stationName1 to:stationName2];
+            }
 		}
 	}
-    
-    CGContextRestoreGState(context);
 }
 
-// CG Helpres
--(void) drawLine :(CGContextRef) context :(CGFloat)x1 :(CGFloat)y1 :(CGFloat)x2 :(CGFloat)y2 :(int)lineWidth{
-    
-	CGContextTranslateCTM(context, 0, 0);
-    
-    //	CGContextSetLineWidth(context, 4.5);
-	CGContextSetLineCap(context, kCGLineCapRound);
-	CGContextSetLineWidth(context, lineWidth);
-	CGContextMoveToPoint(context, x1, y1);
-	CGContextAddLineToPoint(context, x2, y2);
-	CGContextStrokePath(context);
-}
-
--(void) drawCircle :(CGContextRef) context :(CGFloat)x :(CGFloat)y :(CGFloat)r{
-	CGContextTranslateCTM(context, 0, 0);
-	
-	CGContextSetLineWidth(context, 2.5);
-	// Draw a circle (border only)
-	//	CGContextMoveToPoint(context, x, y);
-	CGContextStrokeEllipseInRect(context, CGRectMake(x-r, y-r, 2*r, 2*r));
-}
-
--(void) drawFilledCircle :(CGContextRef) context :(CGFloat)x :(CGFloat)y :(CGFloat)r{
-	
-    
-	CGContextTranslateCTM(context, 0, 0);
-	// Draw a circle (filled)
-	//	CGContextMoveToPoint(context, x, y);
-	CGContextFillEllipseInRect(context, CGRectMake(x-r, y-r, 2*r, 2*r));
+-(void) resetPath
+{
+    for (Line *l in mapLines) {
+        [l setEnabled:YES];
+    }
+    for (Transfer *t in transfers) {
+        t.active = YES;
+    }
 }
 
 -(void) drawTransfers:(CGContextRef) context 
 {
     CGContextSaveGState(context);
-    CGContextScaleCTM(context, koef, koef);
-    CGContextTranslateCTM(context, -minX, -minY);
-	for(id key in transfersTime) {
-		NSArray *transfers = [transfersTime objectForKey:key];
-		for (int i=0; i<[transfers count]; i++) {
-			NSDictionary *transferDict = [transfers objectAtIndex:i];
-            
-            
-			NSString *station1 = [transferDict objectForKey:@"stationName1"];
-			int line1 = [[transferDict objectForKey:@"lineStation1"] intValue];
-            
-			NSString *station2 = [transferDict objectForKey:@"stationName2"];
-			int line2 = [[transferDict objectForKey:@"lineStation2"] intValue];
-			
-			NSDictionary *lineStations1 = [stationsData objectAtIndex:line1-1];
-			NSDictionary *lineStations2 = [stationsData objectAtIndex:line2-1];			
-            
-			NSDictionary *stationDict1 = [lineStations1 objectForKey:station1];
-			NSDictionary *stationDict2 = [lineStations2 objectForKey:station2];
-			
-			NSDictionary *coords1 = [stationDict1 objectForKey:@"coord"];
-			NSDictionary *coords2 = [stationDict2 objectForKey:@"coord"];	
-            
-			float x1 = [[coords1 objectForKey:@"x"] floatValue];
-			float y1 = [[coords1 objectForKey:@"y"] floatValue];
-			float x2 = [[coords2 objectForKey:@"x"] floatValue];
-			float y2 = [[coords2 objectForKey:@"y"] floatValue];
-            
-			CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
-			CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 1.0);				
-			
-			[self drawFilledCircle:context :x1 :y1 :3.5];
-			[self drawFilledCircle:context :x2 :y2 :3.5];
-            
-			[self drawLine:context :x1 :y1 :x2 :y2 :2.5];
-		}
-	}	
-    
-	for(id key in transfersTime) {
-		NSArray *transfers = [transfersTime objectForKey:key];
-		for (int i=0; i<[transfers count]; i++) {
-			NSDictionary *transferDict = [transfers objectAtIndex:i];
-			
-			
-			NSString *station1 = [transferDict objectForKey:@"stationName1"];
-			int line1 = [[transferDict objectForKey:@"lineStation1"] intValue];
- 			NSString *station2 = [transferDict objectForKey:@"stationName2"];
-			int line2 = [[transferDict objectForKey:@"lineStation2"] intValue];
-			
-			NSDictionary *lineStations1 = [stationsData objectAtIndex:line1-1];
-			NSDictionary *lineStations2 = [stationsData objectAtIndex:line2-1];			
-			
-			NSDictionary *stationDict1 = [lineStations1 objectForKey:station1];
-			NSDictionary *stationDict2 = [lineStations2 objectForKey:station2];
-			
-			NSDictionary *coords1 = [stationDict1 objectForKey:@"coord"];
-			NSDictionary *coords2 = [stationDict2 objectForKey:@"coord"];	
-			
-			float x1 = [[coords1 objectForKey:@"x"] floatValue];
-			float y1 = [[coords1 objectForKey:@"y"] floatValue];
-			float x2 = [[coords2 objectForKey:@"x"] floatValue];
-			float y2 = [[coords2 objectForKey:@"y"] floatValue];
-			
-            
-			CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
-			CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);				
-			[self drawFilledCircle:context :x1 :y1 :2.5];
-			[self drawFilledCircle:context :x2 :y2 :2.5];
-            
-			[self drawLine:context :x1 :y1 :x2 :y2 :1.5];
-		}
-	}	
-	CGContextRestoreGState(context);
+    for (Transfer *tr in transfers) {
+        [tr draw:context];
+    }
+    CGContextRestoreGState(context);
+}
+
+-(void) drawTransfers:(CGContextRef) context inRect:(CGRect)rect
+{
+    CGContextSaveGState(context);
+    for (Transfer *tr in transfers) {
+        if(CGRectIntersectsRect(rect, tr.boundingBox)) {
+            [tr draw:context];
+        }
+    }
+    CGContextRestoreGState(context);
 }
 
 -(NSInteger) checkPoint:(CGPoint)point Station:(NSMutableString *)stationName
 {
-    point.x /= koef;
-    point.y /= koef;
-    point.x += minX;
-    point.y += minY;
-	for (int i=0; i< linesCount; i++) {
-		NSDictionary *lineStations = [stationsData objectAtIndex:i];
-		NSArray *lineStationNames = [NSArray arrayWithArray:[stationsName objectAtIndex:i]];
-
-        int keys_count = [lineStationNames count];
-        for (int j =0 ; j < keys_count; j++) {
-            
-            NSString *stName = [lineStationNames objectAtIndex:j];
-            NSDictionary *stationDict = [lineStations objectForKey:[lineStationNames objectAtIndex:j]];
-            NSDictionary *text_coords = [stationDict objectForKey:@"text_coord"];
-            
-            float x1 = [[text_coords objectForKey:@"x"] floatValue];
-            float y1 = [[text_coords objectForKey:@"y"] floatValue];
-            float x2 = [[text_coords objectForKey:@"w"] floatValue] + x1;
-            float y2 = [[text_coords objectForKey:@"h"] floatValue] + y1;
-
-            if(point.x >= x1 && point.y >= y1 && point.x <= x2 && point.y <= y2) {
-                [stationName setString:stName];
-                return i + 1;
+    for (Line *l in mapLines) {
+        for (Station *s in l.stations) {
+            if(CGRectContainsPoint(s.textRect, point)) {
+                [stationName setString:s.name];
+                return l.index;
             }
         }
-	}
+    }
     return -1;
 }
 
