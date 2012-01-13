@@ -69,6 +69,7 @@ NSInteger const toolbarWidth=320;
 	containerView.delegate = mapView;
 	[containerView addSubview: mapView];
 	[self addSubview:containerView];
+    [containerView setZoomScale:mapView.Scale animated:NO];
 	
 	toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,0, toolbarWidth,toolbarHeight)];
 	[self addSubview:toolbar];
@@ -197,15 +198,13 @@ NSInteger const toolbarWidth=320;
 	{
 		firstStation.text = mapView.selectedStationName; 
 		firstStationLineNum = mapView.selectedStationLine;
-		mapView.drawPath = false;
-		[mapView setNeedsDisplay];
+        [mapView clearPath];
 	}
 	else if ((firstStation.text!=nil && secondStation.text!=nil)) {
 		firstStation.text = mapView.selectedStationName; 
 		firstStationLineNum = mapView.selectedStationLine;
 		secondStation.text = nil; 
-		mapView.drawPath = false;
-		[mapView setNeedsDisplay];
+        [mapView clearPath];
 	}
 	else {
 		secondStation.text = mapView.selectedStationName; 

@@ -7,94 +7,169 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Utils.h"
 #import "Graph.h"
 //#import <CoreLocation/CoreLocation.h>
 
-extern NSInteger const kDataShift;
-extern NSInteger const kDataRowForLine;
+NSMutableArray * Split(NSString* s);
+//CG Helpers	
+void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r);
+void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat y2, int lineWidth);
+
+@class Station;
+@class Line;
+
+@interface Transfer : NSObject {
+@private
+    NSMutableSet* stations;
+    CGFloat time;
+    CGRect boundingBox;
+    CGLayerRef transferLayer;
+    BOOL active;
+}
+@property (nonatomic, readonly) NSMutableSet* stations;
+@property (nonatomic, assign) CGFloat time;
+@property (nonatomic, readonly) CGRect boundingBox;
+@property (nonatomic, assign) BOOL active;
+
+-(void) addStation:(Station*)station;
+-(void) draw:(CGContextRef)context;
+-(void) predraw:(CGContextRef)context;
+@end
+
+@interface Station : NSObject {
+@private
+    CGPoint pos;
+    CGRect boundingBox;
+    CGRect textRect;
+    int index;
+    int driving;
+    NSString *name;
+    // сегменты пути
+    NSMutableArray *segment;
+    // соседние станции
+    NSMutableArray *sibling;
+    // имена соседних станций
+    NSMutableArray *relation;
+    NSMutableArray *relationDriving;
+    Transfer *transfer;
+    Line *line;
+    BOOL drawName;
+    BOOL active;
+    BOOL acceptBackLink;
+    CGLayerRef predrawedName;
+}
+
+@property (nonatomic, readonly) NSMutableArray* relation;
+@property (nonatomic, readonly) NSMutableArray* relationDriving;
+@property (nonatomic, readonly) NSMutableArray* segment;
+@property (nonatomic, readonly) NSMutableArray* sibling;
+@property (nonatomic, readonly) CGPoint pos;
+@property (nonatomic, readonly) CGRect boundingBox;
+@property (nonatomic, readonly) CGRect textRect;
+@property (nonatomic, readonly) int index;
+@property (nonatomic, readonly) NSString* name;
+@property (nonatomic, assign) int driving;
+@property (nonatomic, assign) Transfer* transfer;
+@property (nonatomic, assign) Line* line;
+@property (nonatomic, assign) BOOL drawName;
+@property (nonatomic, assign) BOOL active;
+@property (nonatomic, readonly) BOOL acceptBackLink;
+
+-(id) initWithName:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr;
+-(void) addSibling:(Station*)st;
+-(void) drawName:(CGContextRef)context;
+-(void) draw:(CGContextRef)context;
+-(void) draw:(CGContextRef)context inRect:(CGRect)rect;
+-(void) makeSegments;
+-(void) predraw:(CGContextRef)context;
+@end
+
+@interface TangentPoint : NSObject {
+@private
+    CGPoint base;
+    CGPoint backTang;
+    CGPoint frontTang;
+}
+@property (nonatomic, readonly) CGPoint base;
+@property (nonatomic, readonly) CGPoint backTang;
+@property (nonatomic, readonly) CGPoint frontTang;
+
+-(id)initWithPoint:(CGPoint)p;
+-(void)calcTangentFrom:(CGPoint)p1 to:(CGPoint)p2;
+@end
+
+@interface Segment : NSObject {
+@private
+    Station *start;
+    Station *end;
+    int driving;
+    NSMutableArray* splinePoints;
+    CGRect boundingBox;
+    BOOL active;
+}
+@property (nonatomic, readonly) Station* start;
+@property (nonatomic, readonly) Station* end;
+@property (nonatomic, readonly) int driving;
+@property (nonatomic, readonly) CGRect boundingBox;
+@property (nonatomic, assign) BOOL active;
+
+-(id)initFromStation:(Station*)from toStation:(Station*)to withDriving:(int)dr;
+-(void)appendPoint:(CGPoint)p;
+-(void)calcSpline;
+-(void)draw:(CGContextRef)context;
+@end
+
+@interface Line : NSObject {
+@private
+    NSString *name;
+    NSMutableArray* stations;
+    UIColor* _color;
+    int index;
+    CGLayerRef stationLayer;
+}
+@property (nonatomic, retain) UIColor* color;
+@property (nonatomic, readonly) NSString* name;
+@property (nonatomic, readonly) NSMutableArray* stations;
+@property (nonatomic, assign) int index;
+
+-(id)initWithName:(NSString*)n stations:(NSString*)stations driving:(NSString*)driving coordinates:(NSString*)coordinates rects:(NSString*)rects;
+-(void)draw:(CGContextRef)context;
+-(void)drawNames:(CGContextRef)context;
+-(void)draw:(CGContextRef)context inRect:(CGRect)rect;
+-(void)drawNames:(CGContextRef)context inRect:(CGRect)rect;
+-(void)additionalPointsBetween:(NSString*)station1 and:(NSString*)station2 points:(NSArray*)points;
+-(Station*)getStation:(NSString*)stName;
+-(void)activateSegmentFrom:(NSString*)station1 to:(NSString*)station2;
+-(void)setEnabled:(BOOL)en;
+-(void)predraw:(CGContextRef)context;
+@end
 
 @interface CityMap : NSObject {
 
 	Graph *graph;
 	NSInteger _w;
 	NSInteger _h;
-	NSInteger linesCount;
-	NSInteger addNodesCount;
-	NSInteger transfersCount;
-	NSInteger gpsCoordsCount;
-	NSMutableArray *linesCoord;
-	NSMutableArray *linesCoordForText;
-	NSMutableArray *stationsData;
-	NSMutableArray *stationsName;	
-	NSMutableArray *linesColors;
-	NSMutableArray *stationsTime;
-	NSMutableDictionary *addNodes;
-	NSMutableDictionary *transfersTime;	
-	NSMutableDictionary *contentAZForTableView;
-	NSMutableDictionary *contentLinesForTableView;	
+    NSMutableArray *mapLines;
 	NSMutableDictionary *gpsCoords;
-	NSMutableDictionary *allStationsNames;
-	NSMutableDictionary *linesIndex;
-	NSMutableArray *linesNames;
-	Utils *utils;
-
-    CGFloat kLineWidth;
-    CGFloat kFontSize;
-	NSInteger currentLineNum;
-    // массив из UILabel для каждой станции
-	NSMutableDictionary *drawedStations;
-    // текущий коэффициент масштабирования
-	float koef;
-    UIView *view;
-    // края графического контента
-    // от них будет считаться эффективный размер
-    float minX, maxX, minY, maxY;
+    NSMutableArray* transfers;
+    CGFloat currentScale;
 }
 
-@property (nonatomic,retain) NSMutableDictionary *linesIndex;
-@property (nonatomic,retain) NSMutableArray *linesNames;
-@property float koef;  
-@property (nonatomic,retain) NSMutableDictionary *allStationsNames;
-@property (nonatomic,retain) NSMutableDictionary *contentAZForTableView;
-@property (nonatomic,retain) NSMutableDictionary *contentLinesForTableView;
 @property (nonatomic,retain) NSMutableDictionary *gpsCoords;
-// размер карты в масштабе
+// размер карты 
 @property (readonly) NSInteger w;
 @property (readonly) NSInteger h;
-// размер карты настоящий
 @property (readonly) CGSize size;
-@property NSInteger linesCount;
-@property NSInteger addNodesCount;
-@property NSInteger transfersCount;
-@property NSInteger gpsCoordsCount;
 @property (nonatomic, retain) Graph *graph;
-@property (nonatomic, retain) NSMutableArray *linesCoord;
-@property (nonatomic, retain) NSMutableArray *linesCoordForText;
-@property (nonatomic, retain) NSMutableArray *stationsData;
-@property (nonatomic, retain) NSMutableArray *stationsName;
-@property (nonatomic, retain) NSMutableArray *linesColors;
-@property (nonatomic, retain) NSMutableArray *stationsTime;
-@property (nonatomic, retain) NSMutableDictionary *addNodes;
-@property (nonatomic, retain) NSMutableDictionary *transfersTime;	
-@property (nonatomic, retain) Utils *utils;
-
-@property NSInteger currentLineNum;
-@property (nonatomic, retain) NSMutableDictionary *drawedStations;
-@property (nonatomic, assign) UIView *view;
-@property (nonatomic, assign) CGFloat LineWidth;
-@property (nonatomic, assign) CGFloat FontSize;
+@property (nonatomic, assign) CGFloat currentScale;
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //
--(void) prepareStationForTable:(NSString*) stationName :(NSInteger)line;
-	
 -(void) loadMap:(NSString *)mapName;
 -(void) initVars ;
 
 //make graph stuff 
 -(void) calcGraph;
--(void) calcOneLineGraph: (NSDictionary*)lineStationsData :(NSArray*) lineStationsName :(NSArray*) lineStationsTime :(NSInteger)lineNum;
 -(void) processTransfersForGraph;
 
 //graph func
@@ -106,39 +181,16 @@ extern NSInteger const kDataRowForLine;
 -(void) processGPS: (NSString*) station :(NSString*) lineCoord ;
 -(void) processTransfers:(NSString*)transferInfo;
 -(void) processAddNodes:(NSString*)addNodeInfo;
--(void) processLinesCoord:(NSArray*) coord;
--(void) processLinesCoordForText:(NSArray*) coord;
--(void) processLinesColors:(NSString*) colors;
-
 -(void) processLinesStations:(NSString*) stations :(NSUInteger) line;
--(void) processLinesTime:(NSString*) lineTime :(NSUInteger) line;
 
 // drawing
 -(void) drawMap:(CGContextRef) context;
+-(void) drawMap:(CGContextRef) context inRect:(CGRect)rect;
 -(void) drawStations:(CGContextRef) context;
-
--(void) drawMetroLine:(CGContextRef) context :(NSArray*)lineCoords :(NSArray*)lineColor 
-					 :(NSDictionary*)lineStationsData :(NSArray*) lineStationsName :(NSInteger)line;
--(void) drawMetroLineStationName:(CGContextRef) context :(NSArray*)lineColor 
-								:(NSDictionary*)lineStationsData :(NSArray*) lineStationsName :(NSInteger)line;
-
-
--(void) drawStationName:(CGContextRef) context  :(NSDictionary*) text_coord  :(NSDictionary*) point_coord :(NSString*) stationName :(NSInteger) line;
--(void) drawStationName:(CGContextRef) context :(float) x :(float) y  :(float) ww :(float)hh :(NSString*) stationName :(UITextAlignment) mode :(NSInteger) line;
-
--(void) drawStationPoint: (CGContextRef) context coord: (NSDictionary*) coord lineColor: (NSArray *) lineColor ;
--(void) drawStationPoint: (CGContextRef) context y: (float) y x: (float) x lineColor: (NSArray *) lineColor ;
--(void) draw2Station:(CGContextRef)context :(NSArray*)lineColor :(NSDictionary*) coord1 :(NSDictionary*)coord2 :(NSArray*) splineCoords :(Boolean) reverse;
-
--(void) drawSpline :(CGContextRef)context :(CGFloat)x1 :(CGFloat)y1 :(CGFloat)x2 :(CGFloat)y2 :(NSArray*) coordSpline :(Boolean) reverse;
-
--(void) drawPathMap:(CGContextRef) context :(NSArray*) pathMap;
-
-//CG Helpers	
--(void) drawCircle :(CGContextRef) context :(CGFloat)x :(CGFloat)y :(CGFloat)r;
--(void) drawFilledCircle :(CGContextRef) context :(CGFloat)x :(CGFloat)y :(CGFloat)r;
--(void) drawLine :(CGContextRef) context :(CGFloat)x1 :(CGFloat)y1 :(CGFloat)x2 :(CGFloat)y2 :(int)lineWidth;
-
+-(void) drawStations:(CGContextRef) context inRect:(CGRect)rect;
 -(void) drawTransfers:(CGContextRef) context;
+-(void) drawTransfers:(CGContextRef) context inRect:(CGRect)rect;
 
+-(void) activatePath:(NSArray*)pathMap;
+-(void) resetPath;
 @end

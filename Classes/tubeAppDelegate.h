@@ -11,7 +11,6 @@
 @interface tubeAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     MainViewController *mainViewController;
-    NSOperationQueue *queue;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
