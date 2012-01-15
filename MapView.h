@@ -15,6 +15,8 @@
 
 extern int const imagesCount;
 
+@class MainViewController;
+
 @interface MapView : UIView <UIScrollViewDelegate> {
 
 	UILabel *mainLabel;
@@ -50,6 +52,8 @@ extern int const imagesCount;
 @property (nonatomic, readonly) CGFloat Scale;
 @property (nonatomic, readonly) CGFloat MaxScale;
 @property (nonatomic, readonly) CGFloat MinScale;
+
+@property (nonatomic, assign) MainViewController *vcontroller;
 
 - (void)viewDidLoad;
 // 

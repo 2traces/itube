@@ -7,14 +7,28 @@
 //
 
 @class MainViewController;
+@class CityMap;
+
+#define kParseComplete @"kParseComplete"
 
 @interface tubeAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     MainViewController *mainViewController;
+    CityMap *cityMap;
+    
+    NSOperationQueue    *parseQueue;
+    
+    //soj
+    NSDictionary *mapsInfo;
+    NSMutableArray *purchasedMaps;
+
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) MainViewController *mainViewController;
+@property (nonatomic, retain) CityMap *cityMap;
+@property (nonatomic, retain) NSOperationQueue *parseQueue; 
+
 
 @end
 

@@ -387,5 +387,253 @@ static MHelper * _sharedHelper;
     return fetchedItems;       
 }
 
+-(void)readBookmarkFile
+{
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"bookmarks.plist"];
+    
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath])
+    {
+        NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
+        NSString *errorDesc = nil;
+        NSPropertyListFormat format;
+        
+        NSDictionary *temp = (NSDictionary *)[NSPropertyListSerialization propertyListFromData:plistXML mutabilityOption:NSPropertyListMutableContainersAndLeaves format:&format errorDescription:&errorDesc];
+        
+        if (!temp)
+        {
+            NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+        }
+        
+        NSEnumerator *enumerator = [temp keyEnumerator];
+        
+        for(NSString *aKey in enumerator){
+            
+            MStation *station = [self getStationWithName:[[temp objectForKey:aKey] objectAtIndex:0] forLine:[[temp objectForKey:aKey] objectAtIndex:1]];
+            
+            if (station) {
+                [station setIsFavorite:[NSNumber numberWithInt:1]];
+            }
+        }
+    }
+}
+
+-(void)saveBookmarkFile
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"bookmarks.plist"];
+    
+    NSArray *favStations = [self getFavoriteStationList];
+    NSMutableDictionary *temp = [[NSMutableDictionary alloc] initWithCapacity:[favStations count]];
+    
+    for (MStation *station in favStations) {
+        NSString *lineName = [station.lines name];
+        NSString *stationName = [station name];
+        NSString *aKey = [NSString stringWithFormat:@"%@_%@",lineName,stationName];
+        
+        NSArray *forkeyArray = [NSArray arrayWithObjects:stationName,lineName, nil];
+        [temp setObject:forkeyArray forKey:aKey];
+    }
+    
+    // create dictionary with values in UITextFields
+    NSDictionary *plistDict = [NSDictionary dictionaryWithDictionary:temp];
+    
+    [temp release];
+    
+    NSString *error = nil;
+    // create NSData from dictionary
+    NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:plistDict format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
+    
+    // check is plistData exists
+    if(plistData)
+    {
+        // write plistData to our Data.plist file
+        [plistData writeToFile:plistPath atomically:YES];
+    }
+    else
+    {
+        NSLog(@"Error in saveData: %@", error);
+        [error release];
+    }
+}
+
+-(void)readHistoryFile
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"history.plist"];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath])
+    {
+        NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
+        NSString *errorDesc = nil;
+        NSPropertyListFormat format;
+        
+        NSDictionary *temp = (NSDictionary *)[NSPropertyListSerialization propertyListFromData:plistXML mutabilityOption:NSPropertyListMutableContainersAndLeaves format:&format errorDescription:&errorDesc];
+        
+        if (!temp)
+        {
+            NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+        }
+        
+        NSEnumerator *enumerator = [temp keyEnumerator];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        
+        [formatter setTimeStyle:NSDateFormatterLongStyle];
+        [formatter setDateStyle:NSDateFormatterLongStyle];
+        
+        NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"ru_RU"];
+        [formatter setLocale:usLocale];
+        
+        for(NSString *dataKey in enumerator){
+            
+            NSDate *historyDate = [formatter dateFromString:dataKey];
+            
+            NSDictionary *histDict = [temp objectForKey:dataKey]; 
+            
+            NSArray *fromArray = [histDict objectForKey:@"From"]; 
+            NSArray *toArray = [histDict objectForKey:@"To"];
+            
+            MStation *fromStation = [self getStationWithName:[fromArray objectAtIndex:1] forLine:[fromArray objectAtIndex:0]];
+            MStation *toStation = [self getStationWithName:[toArray objectAtIndex:1] forLine:[toArray objectAtIndex:0]];
+            
+            if (fromStation && toStation) {
+                
+                NSError *error =nil;
+                
+                NSEntityDescription *entity = [NSEntityDescription entityForName:@"History" inManagedObjectContext:__managedObjectContext];
+                MHistory *newhistory = [[MHistory alloc] initWithEntity:entity insertIntoManagedObjectContext:__managedObjectContext];
+                
+                newhistory.adate=historyDate;
+                newhistory.fromStation=fromStation;
+                newhistory.toStation =toStation;
+                
+                NSLog(@"From: %@ --- To: %@",[fromStation name],[toStation name]);
+                
+                [newhistory release];
+                
+                if (![__managedObjectContext save:&error]) {
+                    // Replace this implementation with code to handle the error appropriately.
+                    // abort() causes the application to generate a crash log and terminate.
+                    // You should not use this function in a shipping application, although it may be useful
+                    // during development. If it is not possible to recover from the error, display an alert
+                    // panel that instructs the user to quit the application by pressing the Home button.
+                    //
+                    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                    abort();
+                }
+            }
+        }
+        
+        [usLocale release];
+        [formatter release];
+    }
+}
+
+
+-(void)fillHistory
+{
+    NSError *error =nil;
+    
+    NSArray *histList = [self getFavoriteStationList];
+    
+    if ([histList count]>1) {
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"History" inManagedObjectContext:__managedObjectContext];
+        MHistory *newhistory = [[MHistory alloc] initWithEntity:entity insertIntoManagedObjectContext:__managedObjectContext];
+        
+        newhistory.adate=[NSDate date];
+        newhistory.fromStation=[histList objectAtIndex:0];
+        newhistory.toStation =[histList objectAtIndex:1];
+        [newhistory release];
+    }
+    
+    if (![__managedObjectContext save:&error]) {
+        // Replace this implementation with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate.
+        // You should not use this function in a shipping application, although it may be useful
+        // during development. If it is not possible to recover from the error, display an alert
+        // panel that instructs the user to quit the application by pressing the Home button.
+        //
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+}
+
+-(void)saveHistoryFile
+{
+    ///-----
+    [self fillHistory];
+    /// -----
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"history.plist"];
+    
+    NSArray *histList = [self getHistoryList];
+    NSMutableDictionary *temp = [[NSMutableDictionary alloc] initWithCapacity:[histList count]];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setTimeStyle:NSDateFormatterLongStyle];
+    [formatter setDateStyle:NSDateFormatterLongStyle];
+    
+    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"ru_RU"];
+    [formatter setLocale:usLocale];
+    
+    for (MHistory *history in histList) {
+        
+        NSString *mainKey = [formatter stringFromDate:history.adate]; 
+        
+        NSString *fromlineName = [history.fromStation name];
+        NSString *fromstationName = [[history.fromStation lines] name];
+        
+        NSString *tolineName = [history.toStation name];
+        NSString *tostationName = [[history.toStation lines] name];
+        
+        NSString *fromKey = [NSString stringWithString:@"From"];
+        NSString *toKey = [NSString stringWithString:@"To"];
+        
+        NSArray *fromkeyArray = [NSArray arrayWithObjects:fromstationName,fromlineName, nil];
+        NSArray *tokeyArray = [NSArray arrayWithObjects:tostationName,tolineName, nil];
+        
+        NSDictionary *oneHistDict = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:fromkeyArray,tokeyArray,nil] forKeys:[NSArray arrayWithObjects:fromKey,toKey,nil]];
+        
+        [temp setObject:oneHistDict forKey:mainKey];
+        
+        [oneHistDict release];
+        
+    }
+    
+    [formatter release];
+    [usLocale release];
+    
+    // create dictionary with values in UITextFields
+    NSDictionary *plistDict = [NSDictionary dictionaryWithDictionary:temp];
+    
+    [temp release];
+    
+    NSString *error = nil;
+    // create NSData from dictionary
+    NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:plistDict format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
+    
+    // check is plistData exists
+    if(plistData)
+    {
+        // write plistData to our Data.plist file
+        [plistData writeToFile:plistPath atomically:YES];
+    }
+    else
+    {
+        NSLog(@"Error in saveData: %@", error);
+        [error release];
+    }
+    
+}
+
 
 @end

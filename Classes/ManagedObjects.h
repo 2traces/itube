@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "StationListViewController.h"
+#import "LineListViewController.h"
+#import "BookmarkViewController.h"
+#import "HistoryViewController.h"
+
 
 // все объекты для CoreData собраны в одном месте
 
@@ -39,7 +44,7 @@
 @property (nonatomic, retain) NSSet *stations;
 @end
 
-@interface MHelper : NSObject <NSFetchedResultsControllerDelegate> {
+@interface MHelper : NSObject <StationListViewProtocol, LineListViewProtocol, BookmarkViewProtocol, HistoryViewProtocol,NSFetchedResultsControllerDelegate> {
 }
 
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
@@ -61,5 +66,13 @@
 // возвращает станции для линии
 // сортировка по индексу
 -(NSArray*)getStationsForLineIndex:(int)lineIndex;
+
+-(void)saveBookmarkFile;
+-(void)readBookmarkFile;
+-(void)saveHistoryFile;
+-(void)readHistoryFile;
+
+
+
 
 @end

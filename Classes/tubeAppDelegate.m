@@ -8,17 +8,25 @@
 
 #import "tubeAppDelegate.h"
 #import "MainViewController.h"
+#import "CityMap.h"
 
 @implementation tubeAppDelegate
 
 @synthesize window;
 @synthesize mainViewController;
+@synthesize cityMap;
+@synthesize parseQueue;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     
 	MainViewController *aController = [[MainViewController alloc] init];
 	self.mainViewController = aController;
 	[aController release];
+    
+    CityMap *cm = [[CityMap alloc] init];
+    [cm loadMap:@"parisp"];
+    self.cityMap = cm;
+    [cm release];
 	
 	DLog(@"applicationDidFinishLaunching");
     mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;

@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "MainView.h"
+#import "SelectingTabBarViewController.h"
 
 
 @implementation MainViewController
@@ -27,7 +28,7 @@
  - (void)viewDidLoad {
  [super viewDidLoad];
  	DLog(@"viewDidLoad");
-	[(MainView*)self.view viewInit];
+     [(MainView*)self.view viewInit:self];
  }
 
 
@@ -59,7 +60,35 @@
 	[controller release];
 }
 
+-(void)showTabBarViewController
+{
+    SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
+    [self presentModalViewController:controller animated:YES];
+    [controller release];
+}
 
+
+-(void)pressedSelectFromStation
+{
+    DLog(@"From Station from controller pressed");
+    [self showTabBarViewController];
+}
+
+-(void)pressedSelectToStation
+{
+    DLog(@"To Station from controller pressed");
+    [self showTabBarViewController];
+}
+
+-(void)didSelectFromStation
+{
+    
+}
+
+-(void)didSelectToStation
+{
+    
+}
 
 /*
  // Override to allow orientations other than the default portrait orientation.

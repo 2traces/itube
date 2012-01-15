@@ -8,6 +8,7 @@
 
 #import "MainView.h"
 #import "MapView.h"
+#import "MainViewController.h"
 
 NSInteger const toolbarHeight=44;
 NSInteger const toolbarWidth=320;
@@ -24,6 +25,7 @@ NSInteger const toolbarWidth=320;
 @synthesize stationNameLabel;
 //@synthesize CLController;
 @synthesize xw,yw;
+@synthesize vcontroller;
 
 
 - (id)initWithFrame:(CGRect)frame {
@@ -42,14 +44,16 @@ NSInteger const toolbarWidth=320;
 	yw = [NSNumber numberWithDouble:2.135647];
 }
 
--(void)viewInit
+-(void)viewInit:(MainViewController*)vc
 {
 	[self initVar];
+    self.vcontroller = vc;
 	self.userInteractionEnabled = YES;
 	DLog(@"ViewDidLoad main View");	
 
     CGRect scrollSize = CGRectMake(0,44,(320),(480-44));
 	mapView = [[[MapView alloc] initWithFrame:scrollSize] autorelease];
+    mapView.vcontroller = self.vcontroller;
 
 	containerView = [[MyScrollView alloc] initWithFrame:scrollSize];
 	[containerView setContentSize:mapView.size];
@@ -144,10 +148,12 @@ NSInteger const toolbarWidth=320;
 }
 
 -(void) selectFromStation {
+    [self.vcontroller pressedSelectFromStation];
 	DLog(@"station 1");
 }
 
 -(void) selectToStation {
+    [self.vcontroller pressedSelectToStation];
 	DLog(@"station 2");
 }
 

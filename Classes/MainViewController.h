@@ -12,5 +12,9 @@
 }
 
 - (IBAction)showInfo;
+-(void)pressedSelectFromStation;
+-(void)pressedSelectToStation;
+-(void)didSelectFromStation;
+-(void)didSelectToStation;
 
 @end
