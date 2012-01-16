@@ -189,7 +189,16 @@
 	[pathArray insertObject:[GraphNode nodeWithValue:[NSString stringWithFormat:@"%@|%d",fSt,fStl ] ] atIndex:0];
 	
     [cityMap activatePath:pathArray];
-		
+    CGRect extent = cityMap.activeExtent;
+    CGRect frame = scrollView.frame;
+    CGFloat sc = frame.size.width / extent.size.width;
+    CGFloat sc2 = frame.size.height / extent.size.height;
+    sc = MIN(sc, sc2);
+    [scrollView setZoomScale:sc animated:YES];
+    CGPoint offset;
+    offset.x = (extent.origin.x + extent.size.width/2) * sc - frame.size.width/2;
+    offset.y = (extent.origin.y + extent.size.height/2) * sc - frame.size.height/2;
+    [scrollView setContentOffset:offset animated:YES];
 	[self setNeedsDisplay];
     [pathArray release];
 }
@@ -275,7 +284,8 @@
  
 #pragma mark UIScrollViewDelegate methods
 
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *) scrollView{
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *) _scrollView{
+    scrollView = _scrollView;
 	return self;
 }
 

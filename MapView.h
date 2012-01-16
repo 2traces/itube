@@ -33,6 +33,7 @@ extern int const imagesCount;
 	//
 	UIImage *nearestStationImage;
     CGFloat Scale, MaxScale, MinScale;
+    UIScrollView *scrollView;
 }
 
 @property (assign) NSString *nearestStationName;
