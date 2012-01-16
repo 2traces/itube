@@ -103,7 +103,9 @@
 
 -(IBAction)settingsPressed:(id)sender
 {
-    
+    SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
+    [self presentModalViewController:controller animated:YES];
+    [controller release];
 }
 
 -(IBAction)backPressed:(id)sender

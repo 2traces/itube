@@ -56,6 +56,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationItem.title = @"Test";
+    
+//    self.navigationItem.leftBarButtonItem=UIBarButtonSystemItemCancel;
 
     // Do any additional setup after loading the view from its nib.
     [self.mytableView.layer setCornerRadius:10.0];
@@ -197,6 +201,10 @@
     
 }
 
+-(IBAction)donePressed:(id)sender 
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
 
 - (void)dealloc {
     [cityButton release];

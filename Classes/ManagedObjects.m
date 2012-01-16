@@ -536,21 +536,16 @@ static MHelper * _sharedHelper;
 }
 
 
--(void)fillHistory
+-(void)addHistory:(NSDate*)date fromStation:(MStation*)fromStation toStation:(MStation*)toStation
 {
     NSError *error =nil;
     
-    NSArray *histList = [self getFavoriteStationList];
-    
-    if ([histList count]>1) {
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"History" inManagedObjectContext:__managedObjectContext];
-        MHistory *newhistory = [[MHistory alloc] initWithEntity:entity insertIntoManagedObjectContext:__managedObjectContext];
-        
-        newhistory.adate=[NSDate date];
-        newhistory.fromStation=[histList objectAtIndex:0];
-        newhistory.toStation =[histList objectAtIndex:1];
-        [newhistory release];
-    }
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"History" inManagedObjectContext:__managedObjectContext];
+    MHistory *newhistory = [[MHistory alloc] initWithEntity:entity insertIntoManagedObjectContext:__managedObjectContext];    
+    newhistory.adate=date;
+    newhistory.fromStation=fromStation;
+    newhistory.toStation =toStation;
+    [newhistory release];
     
     if (![__managedObjectContext save:&error]) {
         // Replace this implementation with code to handle the error appropriately.
@@ -566,10 +561,6 @@ static MHelper * _sharedHelper;
 
 -(void)saveHistoryFile
 {
-    ///-----
-    [self fillHistory];
-    /// -----
-    
     NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [paths objectAtIndex:0];
     NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"history.plist"];
