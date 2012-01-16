@@ -15,7 +15,7 @@
 extern NSInteger const toolbarHeight;
 extern NSInteger const toolbarWidth;
 
-
+@class MainViewController;
 
 //@interface MainView : UIView <UIScrollViewDelegate, UITextFieldDelegate , CoreLocationControllerDelegate>{
 
@@ -47,8 +47,10 @@ extern NSInteger const toolbarWidth;
 @property (nonatomic, retain) UITextField *firstStation;
 @property (nonatomic, retain) UITextField *secondStation;
 
+@property(nonatomic,assign) MainViewController *vcontroller;
+
 - (void) processStationSelect;
 - (void) initVar;
-- (void) viewInit;
+- (void) viewInit:(MainViewController*)vcontroller;
 -(void) findPathFrom :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl ;
 @end
