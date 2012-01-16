@@ -153,6 +153,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 	NSMutableDictionary *gpsCoords;
     NSMutableArray* transfers;
     CGFloat currentScale;
+    CGRect activeExtent;
 }
 
 @property (nonatomic,retain) NSMutableDictionary *gpsCoords;
@@ -162,6 +163,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 @property (readonly) CGSize size;
 @property (nonatomic, retain) Graph *graph;
 @property (nonatomic, assign) CGFloat currentScale;
+@property (nonatomic, readonly) CGRect activeExtent;
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //
