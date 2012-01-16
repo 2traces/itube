@@ -695,6 +695,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         [mapLines addObject:l];
 	}
     [[MHelper sharedHelper] saveContext];
+    [[MHelper sharedHelper] readHistoryFile];
+    [[MHelper sharedHelper] readBookmarkFile];
 		
 	int counter = 0;
 	INISection *section = [parser getSection:@"AdditionalNodes"];

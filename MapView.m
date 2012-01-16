@@ -10,6 +10,7 @@
 #import "CityMap.h"
 #import "CatmullRomSpline.h"
 #import <Foundation/Foundation.h>
+#import "tubeAppDelegate.h"
 //#import <CoreText/CoreText.h>
 
 
@@ -26,6 +27,7 @@
 @synthesize Scale;
 @synthesize MaxScale;
 @synthesize MinScale;
+@synthesize vcontroller;
 
 + (Class)layerClass
 {
@@ -58,9 +60,15 @@
             self.layer.contentsScale = scale;
 		}
 
-		cityMap = [[CityMap alloc] init];
+//		cityMap = [[CityMap alloc] init];
+        
+        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        self.cityMap = appDelegate.cityMap;
+        
         Scale = 2.0f;
-		[cityMap loadMap:@"parisp"];
+//		[cityMap loadMap:@"parisp"];
+
         self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
         MinScale = MIN( (float)frame.size.width / cityMap.size.width, (float)frame.size.height / cityMap.size.height);
 		
