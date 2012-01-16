@@ -100,7 +100,6 @@ NSInteger const toolbarWidth=320;
 	[firstStation setReturnKeyType:UIReturnKeyDone];
 	[firstStation setClearButtonMode:UITextFieldViewModeWhileEditing];
 	
-	
 	[toolbar addSubview:firstStation];	
 
 	UIButton *refreshButton2 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -217,8 +216,20 @@ NSInteger const toolbarWidth=320;
 		secondStationLineNum = mapView.selectedStationLine;
 		[self findPathFrom:firstStation.text To:secondStation.text FirstLine:firstStationLineNum LastLine:secondStationLineNum];
 	}
+
 	mapView.stationSelected=false;
 }
+
+-(void) processStationSelect2 {
+    if ((firstStation.text==nil || secondStation.text==nil)) {
+        [mapView clearPath];
+	} else {
+		[self findPathFrom:firstStation.text To:secondStation.text FirstLine:firstStationLineNum LastLine:secondStationLineNum];
+	}
+
+	mapView.stationSelected=false;
+}
+
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
 	DLog(@"Here5");

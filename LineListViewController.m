@@ -11,6 +11,8 @@
 #import "StationListCell.h"
 #import "SectionInfo.h"
 #import "SectionHeaderView.h"
+#import "tubeAppDelegate.h"
+#import "MainViewController.h"
 
 #define DEFAULT_ROW_HEIGHT 38
 #define HEADER_HEIGHT 40
@@ -289,6 +291,11 @@
     NSString *cellValue = [[stations objectAtIndex:indexPath.row] name];
     
     NSLog(@"%@",cellValue);
+    
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:[stations objectAtIndex:indexPath.row]]];
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -9,6 +9,8 @@
 #import "StationListViewController.h"
 #import "ManagedObjects.h"
 #import "StationListCell.h"
+#import "tubeAppDelegate.h"
+#import "MainViewController.h"
 
 @implementation StationListViewController
 
@@ -277,6 +279,10 @@
     if  (tableView == self.searchDisplayController.searchResultsTableView)
 	{
         NSLog(@"%@",[[self.filteredStation objectAtIndex:indexPath.row] name]); 
+        
+        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:[self.filteredStation objectAtIndex:indexPath.row]]];
     }
 	else
 	{	
@@ -286,6 +292,11 @@
         NSArray *stations = [self.stationList filteredArrayUsingPredicate:predicate];
         
         NSLog(@"%@",[[stations objectAtIndex:indexPath.row] name]); 
+        
+        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:[stations objectAtIndex:indexPath.row]]];
+
     }
 }
 

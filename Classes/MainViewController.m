@@ -9,7 +9,10 @@
 #import "MainViewController.h"
 #import "MainView.h"
 #import "SelectingTabBarViewController.h"
+#import "ManagedObjects.h"
 
+#define FromStation 0
+#define ToStation 1
 
 @implementation MainViewController
 
@@ -37,8 +40,7 @@
  // Override to allow orientations other than the default portrait orientation.
  - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
  // Return YES for supported orientations
- //return (interfaceOrientation == UIInterfaceOrientationPortrait);
-	 return NO;
+     return (interfaceOrientation == UIInterfaceOrientationPortrait);
  }
  
 
@@ -63,40 +65,55 @@
 -(void)showTabBarViewController
 {
     SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
+    controller.delegate = self;
     [self presentModalViewController:controller animated:YES];
     [controller release];
 }
 
+-(void)returnFromSelection:(NSArray*)stations
+{
+    MainView *ourView = (MainView*)self.view;
+    
+    if ([stations count]>1) {
+        // это история и надо ставить обе станции
+        ourView.firstStation.text = [[stations objectAtIndex:0] name];
+        ourView.firstStationLineNum =  [[[[stations objectAtIndex:0] lines] index] integerValue];
+        ourView.secondStation.text = [[stations objectAtIndex:1] name]; 
+        ourView.secondStationLineNum =  [[[[stations objectAtIndex:1] lines] index] integerValue];
+    } else {
+        // это конкретная станция
+        if (currentSelection==0) {
+            ourView.firstStation.text = [[stations objectAtIndex:0] name];
+            ourView.firstStationLineNum =  [[[[stations objectAtIndex:0] lines] index] integerValue];
+            [ourView.firstStation resignFirstResponder];
+        } else {
+            ourView.secondStation.text = [[stations objectAtIndex:0] name];
+            ourView.secondStationLineNum =  [[[[stations objectAtIndex:0] lines] index] integerValue];
+            [ourView.secondStation resignFirstResponder];
+        }
+    }
+    
+    [ourView processStationSelect2];
+    
+    MHelper *helper = [MHelper sharedHelper];
+    [helper saveBookmarkFile];
+    [helper saveHistoryFile];
+    [self dismissModalViewControllerAnimated:YES];
+}
 
 -(void)pressedSelectFromStation
 {
     DLog(@"From Station from controller pressed");
+    currentSelection=FromStation;
     [self showTabBarViewController];
 }
 
 -(void)pressedSelectToStation
 {
     DLog(@"To Station from controller pressed");
+    currentSelection=ToStation;
     [self showTabBarViewController];
 }
-
--(void)didSelectFromStation
-{
-    
-}
-
--(void)didSelectToStation
-{
-    
-}
-
-/*
- // Override to allow orientations other than the default portrait orientation.
- - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
- // Return YES for supported orientations
- return (interfaceOrientation == UIInterfaceOrientationPortrait);
- }
- */
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.

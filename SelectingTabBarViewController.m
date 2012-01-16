@@ -22,6 +22,7 @@
 @synthesize bookmarkButton;
 @synthesize backButton;
 @synthesize tabBarController;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

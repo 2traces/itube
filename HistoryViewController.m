@@ -9,6 +9,8 @@
 #import "HistoryViewController.h"
 #import "ManagedObjects.h"
 #import "HistoryListCell.h"
+#import "MainViewController.h"
+#import "tubeAppDelegate.h"
 
 @implementation HistoryViewController
 
@@ -179,6 +181,12 @@
     
 //    NSLog(@"%@",[station name]); 
     
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    MHistory *history = [self.historyList objectAtIndex:indexPath.row];
+
+    [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObjects:history.fromStation,history.toStation,nil]];
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

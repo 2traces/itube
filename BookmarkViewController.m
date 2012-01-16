@@ -9,6 +9,8 @@
 #import "BookmarkViewController.h"
 #import "ManagedObjects.h"
 #import "StationListCell.h"
+#import "tubeAppDelegate.h"
+#import "MainViewController.h"
 
 @implementation BookmarkViewController
 
@@ -165,6 +167,9 @@
     
     NSLog(@"%@",[station name]); 
     
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:station]];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -7,14 +7,15 @@
 //
 
 #import "FlipsideViewController.h"
+#import "SelectingTabBarViewController.h"
 
-@interface MainViewController : UIViewController <FlipsideViewControllerDelegate> {
+@interface MainViewController : UIViewController <FlipsideViewControllerDelegate,SelectingTabBarProtocol> {
+    int currentSelection;
 }
 
 - (IBAction)showInfo;
 -(void)pressedSelectFromStation;
 -(void)pressedSelectToStation;
--(void)didSelectFromStation;
--(void)didSelectToStation;
+
 
 @end
