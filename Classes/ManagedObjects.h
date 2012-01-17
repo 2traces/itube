@@ -67,6 +67,8 @@
 // сортировка по индексу
 -(NSArray*)getStationsForLineIndex:(int)lineIndex;
 
+-(void)addHistory:(NSDate*)date :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl; 
+
 -(void)saveBookmarkFile;
 -(void)readBookmarkFile;
 -(void)saveHistoryFile;

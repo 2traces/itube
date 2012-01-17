@@ -27,6 +27,8 @@
 @property (nonatomic, assign) NSInteger openSectionIndex;
 @property (nonatomic, assign) NSInteger uniformRowHeight;
 
+@property (nonatomic, retain) NSArray* stationsList;
+
 -(UIImage*)drawCircleView:(UIColor*)myColor;
 
 @end
