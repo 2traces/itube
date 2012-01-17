@@ -382,6 +382,11 @@ static MHelper * _sharedHelper;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"History" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
+    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"adate" ascending:NO] autorelease];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
     return fetchedItems;       
@@ -535,7 +540,6 @@ static MHelper * _sharedHelper;
     }
 }
 
-
 -(void)addHistory:(NSDate*)date fromStation:(MStation*)fromStation toStation:(MStation*)toStation
 {
     NSError *error =nil;
@@ -558,6 +562,24 @@ static MHelper * _sharedHelper;
         abort();
     }
 }
+
+-(void)addHistory:(NSDate*)date :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl 
+{
+    MLine *fromLine = [self lineByIndex:fsl];
+    MLine *toLine;
+  
+    if (fsl==ssl) {
+        toLine = fromLine;
+    } else {
+        toLine = [self lineByIndex:ssl];
+    }
+    
+    MStation *fromStation = [self getStationWithName:fs forLine:fromLine.name];
+    MStation *toStation = [self getStationWithName:ss forLine:toLine.name];
+    
+    [self addHistory:date fromStation:fromStation toStation:toStation];
+}
+
 
 -(void)saveHistoryFile
 {

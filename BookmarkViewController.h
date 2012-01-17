@@ -10,17 +10,21 @@
 
 @protocol BookmarkViewProtocol;
 
-@interface BookmarkViewController : UITableViewController 
+@interface BookmarkViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     NSMutableArray *stationList;
 
     id <BookmarkViewProtocol> dataSource;
-    
+ 
+    IBOutlet UITableView *mytableView;
+    IBOutlet UIImageView *imageView;
 }
 
 @property (nonatomic,retain) NSMutableArray *stationList;
 @property (nonatomic,retain) id <BookmarkViewProtocol> dataSource;
 @property (nonatomic,retain) NSMutableDictionary *colorDictionary;
+@property (nonatomic,retain) IBOutlet UITableView *mytableView;
+@property (nonatomic, retain) IBOutlet UIImageView *imageView;
 
 -(UIImage*)drawCircleView:(UIColor*)myColor;
 

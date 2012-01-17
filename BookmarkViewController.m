@@ -17,15 +17,8 @@
 @synthesize stationList;
 @synthesize dataSource;
 @synthesize colorDictionary;
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize mytableView;
+@synthesize imageView;
 
 - (void)didReceiveMemoryWarning
 {
@@ -43,6 +36,9 @@
     
     MHelper *helper = [MHelper sharedHelper];
     self.dataSource = helper;
+    
+    [self.mytableView setBackgroundColor:[UIColor clearColor]];
+    self.imageView.image = [UIImage imageNamed:@"tablebackground.png"];
     
 //    self.stationList = [NSMutableArray arrayWithArray:[dataSource getFavoriteStationList]];
     
@@ -82,7 +78,7 @@
 {
     [super viewWillAppear:animated];
     self.stationList = [NSMutableArray arrayWithArray:[dataSource getFavoriteStationList]];
-    [self.tableView reloadData];
+    [self.mytableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -188,7 +184,7 @@
     }
     
     [self.stationList removeObjectAtIndex:rowOfButton];
-    [self.tableView reloadData];
+    [self.mytableView reloadData];
 }
 
 
