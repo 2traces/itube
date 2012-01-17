@@ -9,6 +9,7 @@
 #import "MainView.h"
 #import "MapView.h"
 #import "MainViewController.h"
+#import "ManagedObjects.h"
 
 NSInteger const toolbarHeight=44;
 NSInteger const toolbarWidth=320;
@@ -237,6 +238,7 @@ NSInteger const toolbarWidth=320;
 
 -(void) findPathFrom :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl  {
 	[mapView findPathFrom:fs To:ss FirstLine:fsl LastLine:ssl];
+    [[MHelper sharedHelper] addHistory:[NSDate date] :fs To:ss FirstLine:fsl LastLine:ssl];
 }
 
 @end

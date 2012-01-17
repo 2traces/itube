@@ -22,6 +22,7 @@
 @synthesize lineList;
 @synthesize dataSource;
 @synthesize colorDictionary;
+@synthesize stationsList;
 
 @synthesize sectionInfoArray=sectionInfoArray_, uniformRowHeight=rowHeight_, openSectionIndex=openSectionIndex_;
 
@@ -176,26 +177,20 @@
         [[cell mybutton] addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
  
-    SectionInfo *secInfo = [self.sectionInfoArray objectAtIndex:[indexPath section]];
-    
-//    Line *line = [self.lineList objectAtIndex:[indexPath section]];
-    
-    NSArray *stations = [dataSource getStationsForLine:[secInfo line]];
-    
-    if ([[[stations objectAtIndex:indexPath.row] isFavorite] intValue]==1) {
+    if ([[[self.stationsList objectAtIndex:indexPath.row] isFavorite] intValue]==1) {
         [[cell mybutton] setImage:[UIImage imageNamed:@"starbutton_on.png"] forState:UIControlStateNormal];
     } else {
         [[cell mybutton] setImage:[UIImage imageNamed:@"starbutton_off.png"] forState:UIControlStateNormal];
     }
     
-    NSString *cellValue = [[stations objectAtIndex:indexPath.row] name];
+    NSString *cellValue = [[self.stationsList objectAtIndex:indexPath.row] name];
     cell.mylabel.text = cellValue;
     cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
     cell.mylabel.textColor = [UIColor blackColor];
     
     UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
     
-    myImageView.image = [self imageWithColor:[(MStation*)[stations objectAtIndex:indexPath.row] lines]];
+    myImageView.image = [self imageWithColor:[(MStation*)[self.stationsList objectAtIndex:indexPath.row] lines]];
     
     NSDate *date2 = [NSDate date];
     NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
@@ -213,6 +208,7 @@
      Create an array containing the index paths of the rows to insert: These correspond to the rows for each quotation in the current section.
      */
     NSInteger countOfRowsToInsert = [sectionInfo.line.stations count];
+    self.stationsList = [dataSource getStationsForLine:sectionInfo.line];
     NSMutableArray *indexPathsToInsert = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < countOfRowsToInsert; i++) {
         [indexPathsToInsert addObject:[NSIndexPath indexPathForRow:i inSection:sectionOpened]];
