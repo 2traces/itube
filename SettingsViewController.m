@@ -64,7 +64,7 @@
     // Do any additional setup after loading the view from its nib.
     [self.mytableView.layer setCornerRadius:10.0];
     
-	mytableView.backgroundColor = [UIColor clearColor];
+//	mytableView.backgroundColor = [UIColor clearColor];
  //   mytableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 

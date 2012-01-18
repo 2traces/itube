@@ -21,6 +21,7 @@
 @synthesize linesButton;
 @synthesize bookmarkButton;
 @synthesize backButton;
+@synthesize historyButton;
 @synthesize tabBarController;
 @synthesize delegate;
 
@@ -65,6 +66,8 @@
     [self.view addSubview:self.tabBarController.view];
     [self.tabBarController viewWillAppear:YES];
     [self.view bringSubviewToFront:[self.view viewWithTag:333]];
+    
+    stationButton.selected=YES;
 }
 
 
@@ -81,24 +84,40 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+-(void)setAllButtonsUnselected
+{
+    stationButton.selected=NO;
+    linesButton.selected=NO;
+    bookmarkButton.selected=NO;
+    historyButton.selected=NO;
+}
+
 -(IBAction)stationsPressed:(id)sender
 {
     [self.tabBarController setSelectedIndex:0];
+    [self setAllButtonsUnselected];
+    stationButton.selected=YES;
 }
 
 -(IBAction)linesPresses:(id)sender
 {
     [self.tabBarController setSelectedIndex:1];
+    [self setAllButtonsUnselected];
+    linesButton.selected=YES;
 }
 
 -(IBAction)bookmarkPressed:(id)sender
 {
     [self.tabBarController setSelectedIndex:2];
+    [self setAllButtonsUnselected];
+    bookmarkButton.selected=YES;
 }
 
 -(IBAction)historyPressed:(id)sender
 {
     [self.tabBarController setSelectedIndex:3];
+    [self setAllButtonsUnselected];
+    historyButton.selected=YES;
 }
 
 -(IBAction)settingsPressed:(id)sender
