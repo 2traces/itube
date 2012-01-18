@@ -518,7 +518,7 @@ static MHelper * _sharedHelper;
                 newhistory.fromStation=fromStation;
                 newhistory.toStation =toStation;
                 
-                NSLog(@"From: %@ --- To: %@",[fromStation name],[toStation name]);
+  //              NSLog(@"From: %@ --- To: %@",[fromStation name],[toStation name]);
                 
                 [newhistory release];
                 
