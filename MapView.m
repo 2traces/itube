@@ -52,7 +52,7 @@
         MaxScale = 4.f;
         selectedStationName = [[NSMutableString alloc] init];
 		
-		int scale;
+		int scale = 1;
 		if ([self respondsToSelector:@selector(setContentScaleFactor:)])
 		{
 			scale = [[UIScreen mainScreen] scale];
@@ -65,6 +65,8 @@
         tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
         
         self.cityMap = appDelegate.cityMap;
+        // для ретиновских устройств перегенерируем предварительно отрисованные данные в двойном размере
+        if(scale > 1) cityMap.predrawScale *= scale;
         
         Scale = 2.0f;
 //		[cityMap loadMap:@"parisp"];
