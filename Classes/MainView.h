@@ -53,4 +53,7 @@ extern NSInteger const toolbarWidth;
 - (void) initVar;
 - (void) viewInit:(MainViewController*)vcontroller;
 -(void) findPathFrom :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl ;
+-(void)didFirstStationSelected:(NSString*)stationName line:(int)lineNum;
+-(void)didSecondStationSelected:(NSString*)stationName line:(int)lineNum;
+
 @end
