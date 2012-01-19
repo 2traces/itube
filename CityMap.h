@@ -164,11 +164,14 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 @property (nonatomic, retain) Graph *graph;
 @property (nonatomic, assign) CGFloat currentScale;
 @property (nonatomic, readonly) CGRect activeExtent;
+@property (nonatomic, assign) CGFloat predrawScale;
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //
 -(void) loadMap:(NSString *)mapName;
 -(void) initVars ;
+// предварительная отрисовка трансферов и названий станций
+-(void) predraw;
 
 //make graph stuff 
 -(void) calcGraph;
