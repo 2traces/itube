@@ -11,7 +11,8 @@
 #import "ManagedObjects.h"
 #import <CoreLocation/CoreLocation.h>
 
-const CGFloat PredrawScale = 2.f;
+CGFloat PredrawScale = 2.f;
+const CGFloat LineWidth = 4.f;
 
 NSMutableArray * Split(NSString* s)
 {
@@ -141,6 +142,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)predraw:(CGContextRef)context
 {
+    if (transferLayer != nil) CGLayerRelease(transferLayer);
     CGSize size = CGSizeMake(boundingBox.size.width*PredrawScale, boundingBox.size.height*PredrawScale);
     transferLayer = CGLayerCreateWithContext(context, size, NULL);
     CGContextRef ctx = CGLayerGetContext(transferLayer);
@@ -173,7 +175,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 {
     if((self = [super init])) {
         pos = p;
-        boundingBox = CGRectMake(pos.x-3, pos.y-3, 6, 6);
+        boundingBox = CGRectMake(pos.x-LineWidth, pos.y-LineWidth, LineWidth*2, LineWidth*2);
         index = i;
         textRect = r;
         segment = [[NSMutableArray alloc] init];
@@ -264,13 +266,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
         CGContextSelectFont(context, "Arial-BoldMT", 7, kCGEncodingMacRoman);
         CGContextShowTextAtPoint(context, textRect.origin.x, textRect.origin.y+textRect.size.height, [name cStringUsingEncoding:[NSString defaultCStringEncoding]], [name length]);
-    
-        //[name drawInRect:textRect  withFont: [UIFont fontWithName:@"Arial-BoldMT" size:7] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
     }
 }
 
 -(void)predraw:(CGContextRef) context
 {
+    if(predrawedName != nil) CGLayerRelease(predrawedName);
     CGSize size = textRect.size;
     predrawedName = CGLayerCreateWithContext(context, CGSizeMake(size.width*PredrawScale, size.height*PredrawScale), NULL);
     CGContextRef ctx = CGLayerGetContext(predrawedName);
@@ -406,7 +407,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         CGContextSetStrokeColorWithColor(context, [[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0] CGColor]);
     }
 	CGContextSetLineCap(context, kCGLineCapRound);
-	CGContextSetLineWidth(context, 4);
+	CGContextSetLineWidth(context, LineWidth);
 	CGContextMoveToPoint(context, start.pos.x, start.pos.y);
     if(splinePoints) {
         [self draw:context fromPoint:CGPointMake(start.pos.x, start.pos.y) toTangentPoint:[splinePoints objectAtIndex:0]];
@@ -617,14 +618,16 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     for (Station *s in stations) {
         [s predraw:context];
     }
-    // make predrawed staion point, scale x4
-    stationLayer = CGLayerCreateWithContext(context, CGSizeMake(31, 31), NULL);
+    if(stationLayer != nil) CGLayerRelease(stationLayer);
+    // make predrawed staion point
+    CGFloat ssize = LineWidth*PredrawScale;
+    stationLayer = CGLayerCreateWithContext(context, CGSizeMake(ssize*2, ssize*2), NULL);
     CGContextRef ctx = CGLayerGetContext(stationLayer);
     CGContextSetFillColorWithColor(ctx, [_color CGColor]);
-    drawFilledCircle(ctx, 14, 14, 10);
-    CGContextSetRGBStrokeColor(ctx, 0.9, 0.9, 0.1, 0.8);
-	CGContextSetLineWidth(ctx, 6);
-	CGContextStrokeEllipseInRect(ctx, CGRectMake(3, 3, 25, 25));
+    drawFilledCircle(ctx, ssize, ssize, ssize);
+    //CGContextSetRGBStrokeColor(ctx, 0.9, 0.9, 0.1, 0.8);
+	//CGContextSetLineWidth(ctx, 6);
+	//CGContextStrokeEllipseInRect(ctx, CGRectMake(3, 3, 25, 25));
 }
 
 @end
@@ -653,6 +656,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(CGSize) size { return CGSizeMake(_w, _h); }
 -(NSInteger) w { return _w; }
 -(NSInteger) h { return _h; }
+
+-(CGFloat) predrawScale { return PredrawScale; }
+-(void) setPredrawScale:(CGFloat)predrawScale {
+    PredrawScale = predrawScale;
+    [self predraw];
+}
 
 -(void) loadMap:(NSString *)mapName {
 	INIParser* parser;
@@ -729,6 +738,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	[parser release];
     
     [self calcGraph];
+    [self predraw];
+}
+
+-(void)predraw
+{
     UIGraphicsBeginImageContext(CGSizeMake(100, 100));
     CGContextRef context = UIGraphicsGetCurrentContext();
     // predraw transfers
@@ -740,7 +754,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         [l predraw:context];
     }
     UIGraphicsEndImageContext();
-    
 }
 
 -(NSArray*) calcPath :(NSString*) firstStation :(NSString*) secondStation :(NSInteger) firstStationLineNum :(NSInteger)secondStationLineNum {
