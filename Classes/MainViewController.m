@@ -73,23 +73,17 @@
 -(void)returnFromSelection:(NSArray*)stations
 {
     MainView *ourView = (MainView*)self.view;
-    
+
     if ([stations count]>1) {
         // это история и надо ставить обе станции
-        ourView.firstStation.text = [[stations objectAtIndex:0] name];
-        ourView.firstStationLineNum =  [[[[stations objectAtIndex:0] lines] index] integerValue];
-        ourView.secondStation.text = [[stations objectAtIndex:1] name]; 
-        ourView.secondStationLineNum =  [[[[stations objectAtIndex:1] lines] index] integerValue];
+        [ourView didFirstStationSelected:[[stations objectAtIndex:0] name] line:[[[[stations objectAtIndex:0] lines] index] integerValue]];
+        [ourView didSecondStationSelected:[[stations objectAtIndex:1] name] line:[[[[stations objectAtIndex:1] lines] index] integerValue]];
     } else {
         // это конкретная станция
         if (currentSelection==0) {
-            ourView.firstStation.text = [[stations objectAtIndex:0] name];
-            ourView.firstStationLineNum =  [[[[stations objectAtIndex:0] lines] index] integerValue];
-            [ourView.firstStation resignFirstResponder];
+            [ourView didFirstStationSelected:[[stations objectAtIndex:0] name] line:[[[[stations objectAtIndex:0] lines] index] integerValue]];
         } else {
-            ourView.secondStation.text = [[stations objectAtIndex:0] name];
-            ourView.secondStationLineNum =  [[[[stations objectAtIndex:0] lines] index] integerValue];
-            [ourView.secondStation resignFirstResponder];
+            [ourView didSecondStationSelected:[[stations objectAtIndex:0] name] line:[[[[stations objectAtIndex:0] lines] index] integerValue]];
         }
     }
     

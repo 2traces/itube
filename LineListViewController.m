@@ -381,7 +381,7 @@
 
 -(UIImage*)drawCircleView:(UIColor*)myColor
 {
-    UIGraphicsBeginImageContext(CGSizeMake(27, 27));
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(27, 27), NO, 0.0);
     
     //    CGRect allRect = self.bounds;
     //    CGRect circleRect = CGRectMake(allRect.origin.x + 2, allRect.origin.y + 2, allRect.size.width - 4,
