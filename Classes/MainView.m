@@ -224,7 +224,6 @@ NSInteger const toolbarWidth=320;
 	if (firstStation.text==nil)
 	{
         [self didFirstStationSelected:mapView.selectedStationName line:mapView.selectedStationLine];
-        [mapView clearPath];
 	}
 	else if ((firstStation.text!=nil && secondStation.text!=nil)) {
         [self didFirstStationSelected:mapView.selectedStationName line:mapView.selectedStationLine];
@@ -232,8 +231,14 @@ NSInteger const toolbarWidth=320;
         [mapView clearPath];
 	}
 	else {
-        [self didSecondStationSelected:mapView.selectedStationName line:mapView.selectedStationLine];
-		[self findPathFrom:firstStation.text To:secondStation.text FirstLine:firstStationLineNum LastLine:secondStationLineNum];
+        if([firstStation.text isEqualToString:mapView.selectedStationName]) {
+            // одна и та же станция начало и конец пути
+            [self didFirstStationSelected:nil line:0];
+            [self didSecondStationSelected:nil line:0];
+        } else {
+            [self didSecondStationSelected:mapView.selectedStationName line:mapView.selectedStationLine];
+            [self findPathFrom:firstStation.text To:secondStation.text FirstLine:firstStationLineNum LastLine:secondStationLineNum];
+        }
 	}
 
 	mapView.stationSelected=false;
@@ -243,7 +248,13 @@ NSInteger const toolbarWidth=320;
     if ((firstStation.text==nil || secondStation.text==nil)) {
         [mapView clearPath];
 	} else {
-		[self findPathFrom:firstStation.text To:secondStation.text FirstLine:firstStationLineNum LastLine:secondStationLineNum];
+        if([firstStation.text isEqualToString:secondStation.text]) {
+            // одна и та же станция начало и конец пути
+            [self didFirstStationSelected:nil line:0];
+            [self didSecondStationSelected:nil line:0];
+        } else {
+            [self findPathFrom:firstStation.text To:secondStation.text FirstLine:firstStationLineNum LastLine:secondStationLineNum];
+        }
 	}
 
 	mapView.stationSelected=false;

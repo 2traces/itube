@@ -544,7 +544,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
 }
 
--(void)activateSegmentFrom:(NSString *)station1 to:(NSString *)station2
+-(Segment*)activateSegmentFrom:(NSString *)station1 to:(NSString *)station2
 {
     for (Station *s in stations) {
         if([s.name isEqualToString:station1] || [s.name isEqualToString:station2]) {
@@ -555,10 +555,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     seg.end.active = YES;
                     seg.active = YES;
                     if(seg.end.transfer) seg.end.transfer.active = YES;
+                    return seg;
                 }
             }
         }
     }
+    return nil;
 }
 
 -(void)setEnabled:(BOOL)en
@@ -638,6 +640,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize gpsCoords;
 @synthesize currentScale;
 @synthesize activeExtent;
+@synthesize activePath;
 
 -(id) init {
     [super init];
@@ -651,6 +654,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	graph = [[Graph graph] retain];
     mapLines = [[NSMutableArray alloc] init];
     activeExtent = CGRectNull;
+    activePath = [[NSMutableArray alloc] init];
 }
 
 -(CGSize) size { return CGSizeMake(_w, _h); }
@@ -971,6 +975,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [mapLines release];
 	[graph release];
     [transfers release];
+    [activePath release];
 }
 
 // drawing
@@ -1027,6 +1032,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         t.active = NO;
     }
     activeExtent = CGRectNull;
+    [activePath removeAllObjects];
 	int count_ = [pathMap count];
 	for (int i=0; i< count_-1; i++) {
 		NSString *rawString1 = (NSString*)[[pathMap objectAtIndex:i] value];
@@ -1041,11 +1047,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         
         Line* l = [mapLines objectAtIndex:lineNum1-1];
         if (lineNum1==lineNum2) {
-            [l activateSegmentFrom:stationName1 to:stationName2];
-        }
+            [activePath addObject:[l activateSegmentFrom:stationName1 to:stationName2]];
+        } 
         Station *s = [l getStation:stationName1];
         activeExtent = CGRectUnion(activeExtent, s.textRect);
         activeExtent = CGRectUnion(activeExtent, s.boundingBox);
+        if(lineNum1 != lineNum2 && [activePath count] > 0) {
+            [activePath addObject:s.transfer];
+        }
         if(i == count_ - 2) {
             s = [l getStation:stationName2];
             activeExtent = CGRectUnion(activeExtent, s.textRect);
@@ -1063,6 +1072,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         t.active = YES;
     }
     activeExtent = CGRectNull;
+    [activePath removeAllObjects];
 }
 
 -(void) drawTransfers:(CGContextRef) context 

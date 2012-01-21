@@ -139,7 +139,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 -(void)drawNames:(CGContextRef)context inRect:(CGRect)rect;
 -(void)additionalPointsBetween:(NSString*)station1 and:(NSString*)station2 points:(NSArray*)points;
 -(Station*)getStation:(NSString*)stName;
--(void)activateSegmentFrom:(NSString*)station1 to:(NSString*)station2;
+-(Segment*)activateSegmentFrom:(NSString*)station1 to:(NSString*)station2;
 -(void)setEnabled:(BOOL)en;
 -(void)predraw:(CGContextRef)context;
 @end
@@ -154,6 +154,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
     NSMutableArray* transfers;
     CGFloat currentScale;
     CGRect activeExtent;
+    NSMutableArray *activePath;
 }
 
 @property (nonatomic,retain) NSMutableDictionary *gpsCoords;
@@ -165,6 +166,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 @property (nonatomic, assign) CGFloat currentScale;
 @property (nonatomic, readonly) CGRect activeExtent;
 @property (nonatomic, assign) CGFloat predrawScale;
+@property (nonatomic, readonly) NSArray* activePath;
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //
@@ -183,7 +185,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 -(NSInteger) checkPoint:(CGPoint)point Station:(NSMutableString*)stationName;
 	
 // load stuff 
--(void) processGPS: (NSString*) station :(NSString*) lineCoord ;
+-(void) processGPS: (NSString*) station :(NSString*) lineCoord;
 -(void) processTransfers:(NSString*)transferInfo;
 -(void) processAddNodes:(NSString*)addNodeInfo;
 -(void) processLinesStations:(NSString*) stations :(NSUInteger) line;

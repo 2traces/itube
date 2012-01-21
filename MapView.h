@@ -34,6 +34,8 @@ extern int const imagesCount;
 	UIImage *nearestStationImage;
     CGFloat Scale, MaxScale, MinScale;
     UIScrollView *scrollView;
+    CGLayerRef cacheLayer[10];
+    int currentCacheLayer;
 }
 
 @property (assign) NSString *nearestStationName;

@@ -8,11 +8,9 @@
 
 #import "MapView.h"
 #import "CityMap.h"
-#import "CatmullRomSpline.h"
 #import <Foundation/Foundation.h>
 #import "tubeAppDelegate.h"
-//#import <CoreText/CoreText.h>
-
+#import "MyTiledLayer.h"
 
 @implementation MapView
 @synthesize cityMap;
@@ -31,7 +29,7 @@
 
 + (Class)layerClass
 {
-    return [CATiledLayer class];
+    return [MyTiledLayer class];
 }
 
 - (CGSize) size {
@@ -43,6 +41,8 @@
         // Initialization code
         [self.layer setLevelsOfDetail:5];
         [self.layer setLevelsOfDetailBias:2];
+        for(int i=0; i<10; i++) cacheLayer[i] = nil;
+        currentCacheLayer = 0;
 
 		DLog(@" InitMapView	initWithFrame; ");
 		
@@ -100,26 +100,35 @@
     [super dealloc];
 	[cityMap dealloc];
 	[nearestStationImage release];
+    for(int i=0; i<10; i++) CGLayerRelease(cacheLayer[i]);
 }
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)context {
 
     if(mainLabel.superview == self) [self.superview addSubview:mainLabel];
-	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
     CGRect r = CGContextGetClipBoundingBox(context);
+    CGFloat drawScale = 256.f / MAX(r.size.width, r.size.height);
+	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
 	CGContextFillRect(context, r);
+    
+//    if(cacheLayer[currentCacheLayer] == nil) cacheLayer[currentCacheLayer] = CGLayerCreateWithContext(context, CGSizeMake(256, 256), NULL);
+//    CGContextRef ctx = CGLayerGetContext(cacheLayer[currentCacheLayer]);
+//    CGContextScaleCTM(ctx, drawScale, drawScale);
+//    CGContextTranslateCTM(ctx, -r.origin.x, -r.origin.y);
 
     CGContextSetInterpolationQuality(context, kCGInterpolationNone);
     CGContextSetShouldAntialias(context, true);
     CGContextSetShouldSmoothFonts(context, false);
     CGContextSetAllowsFontSmoothing(context, false);
     
-    CGFloat drawScale = 256.f / MAX(r.size.width, r.size.height);
-
     [cityMap drawMap:context inRect:r];
     [cityMap drawTransfers:context inRect:r];
     // слишком мелко тексты не рисуем
     if(drawScale > 0.5f) [cityMap drawStations:context inRect:r]; 
+
+//    CGContextDrawLayerInRect(context, r, cacheLayer[currentCacheLayer]);
+//    currentCacheLayer ++;
+//    if(currentCacheLayer >= 10) currentCacheLayer = 0;
 }
 
 -(void) initData {
@@ -201,6 +210,8 @@
     offset.x = (extent.origin.x + extent.size.width/2) * sc - frame.size.width/2;
     offset.y = (extent.origin.y + extent.size.height/2) * sc - frame.size.height/2;
     [scrollView setContentOffset:offset animated:YES];
+    // это недокументированный метод, так что если он в будущем изменится, то ой
+    [self.layer invalidateContents];
 	[self setNeedsDisplay];
     [pathArray release];
 }
@@ -208,6 +219,8 @@
 -(void) clearPath
 {
     [cityMap resetPath];
+    // это недокументированный метод, так что если он в будущем изменится, то ой
+    [self.layer invalidateContents];
 	[self setNeedsDisplay];
 }
 
