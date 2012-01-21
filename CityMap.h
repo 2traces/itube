@@ -15,6 +15,9 @@ NSMutableArray * Split(NSString* s);
 void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r);
 void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat y2, int lineWidth);
 
+// visual type of stations & transfers
+typedef enum {LIKE_PARIS, LIKE_LONDON, LIKE_MOSCOW} StationKind;
+
 @class Station;
 @class Line;
 
@@ -57,6 +60,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
     BOOL active;
     BOOL acceptBackLink;
     CGLayerRef predrawedName;
+    int links;
 }
 
 @property (nonatomic, readonly) NSMutableArray* relation;
@@ -74,10 +78,15 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 @property (nonatomic, assign) BOOL drawName;
 @property (nonatomic, assign) BOOL active;
 @property (nonatomic, readonly) BOOL acceptBackLink;
+// number of links with other stations
+@property (nonatomic, assign) int links;
+// is a station the last one (or the first one) in the line
+@property (nonatomic, readonly) BOOL terminal;
 
 -(id) initWithName:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr;
 -(void) addSibling:(Station*)st;
 -(void) drawName:(CGContextRef)context;
+-(void) drawStation:(CGContextRef)context;
 -(void) draw:(CGContextRef)context;
 -(void) draw:(CGContextRef)context inRect:(CGRect)rect;
 -(void) makeSegments;
@@ -167,6 +176,8 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 @property (nonatomic, readonly) CGRect activeExtent;
 @property (nonatomic, assign) CGFloat predrawScale;
 @property (nonatomic, readonly) NSArray* activePath;
+@property (nonatomic, assign) StationKind stationKind;
+@property (nonatomic, assign) StationKind transferKind;
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //

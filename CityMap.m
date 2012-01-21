@@ -13,6 +13,8 @@
 
 CGFloat PredrawScale = 2.f;
 const CGFloat LineWidth = 4.f;
+StationKind StKind = LIKE_LONDON;
+StationKind TrKind = LIKE_LONDON;
 
 NSMutableArray * Split(NSString* s)
 {
@@ -101,7 +103,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     else boundingBox = CGRectUnion(boundingBox, st);
 }
 
-+(void) drawTransfer:(CGContextRef) context stations:(NSArray*)stations
++(void) drawTransferLikeLondon:(CGContextRef) context stations:(NSArray*)stations
 {
     CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
     CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 1.0);				
@@ -127,17 +129,88 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             drawLine(context, p1.x, p1.y, p2.x, p2.y, 1.5);
         }
     }
+}
+
++(void) drawTransferLikeParis:(CGContextRef)context stations:(NSArray*)stations
+{
+    CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
+    CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 1.0);				
+    for(int i = 0; i<[stations count]; i++) {
+        Station *st = [stations objectAtIndex:i];
+        CGPoint p1 = st.pos;
+        for(int j = i+1; j<[stations count]; j++) {
+            Station *st2 = [stations objectAtIndex:j];
+            CGPoint p2 = st2.pos;
+            drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2);
+        }
+    }
+    CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
+    CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
+    for(int i = 0; i<[stations count]; i++) {
+        Station *st = [stations objectAtIndex:i];
+        CGPoint p1 = st.pos;
+        for(int j = i+1; j<[stations count]; j++) {
+            Station *st2 = [stations objectAtIndex:j];
+            CGPoint p2 = st2.pos;
+            drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2-1);
+        }
+    }
+    for (Station *st in stations) {
+        if(st.terminal) {
+            CGPoint p1 = st.pos;
+            CGContextSetFillColorWithColor(context, [st.line.color CGColor]);
+            drawFilledCircle(context, p1.x, p1.y, LineWidth/2);
+        }
+    }
+}
+
++(void) drawTransferLikeMoscow:(CGContextRef)context stations:(NSArray*)stations
+{
+    CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 0.6);
+    CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 0.6);				
+    for(int i = 0; i<[stations count]; i++) {
+        Station *st = [stations objectAtIndex:i];
+        CGPoint p1 = st.pos;
+        for(int j = i+1; j<[stations count]; j++) {
+            Station *st2 = [stations objectAtIndex:j];
+            CGPoint p2 = st2.pos;
+            drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2);
+        }
+    }
+    CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
+    CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
+    for(int i = 0; i<[stations count]; i++) {
+        Station *st = [stations objectAtIndex:i];
+        CGPoint p1 = st.pos;
+        for(int j = i+1; j<[stations count]; j++) {
+            Station *st2 = [stations objectAtIndex:j];
+            CGPoint p2 = st2.pos;
+            drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2-2);
+        }
+    }
     for (Station *st in stations) {
         CGPoint p1 = st.pos;
         CGContextSetFillColorWithColor(context, [st.line.color CGColor]);
-        drawFilledCircle(context, p1.x, p1.y, 1.5);
+        drawFilledCircle(context, p1.x, p1.y, LineWidth/2);
     }
 }
 
 -(void)draw:(CGContextRef)context
 {
     if(transferLayer != nil) CGContextDrawLayerInRect(context, boundingBox, transferLayer);
-    else [Transfer drawTransfer:context stations:[stations allObjects]];
+    else {
+        switch (TrKind) {
+            case LIKE_LONDON:
+                [Transfer drawTransferLikeLondon:context stations:[stations allObjects]];
+                break;
+            case LIKE_PARIS:
+                [Transfer drawTransferLikeParis:context stations:[stations allObjects]];
+                break;
+            case LIKE_MOSCOW:
+                [Transfer drawTransferLikeMoscow:context stations:[stations allObjects]];
+                break;
+        }
+    }
 }
 
 -(void)predraw:(CGContextRef)context
@@ -148,7 +221,17 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     CGContextRef ctx = CGLayerGetContext(transferLayer);
     CGContextScaleCTM(ctx, PredrawScale, PredrawScale);
     CGContextTranslateCTM(ctx, -boundingBox.origin.x, -boundingBox.origin.y);
-    [Transfer drawTransfer:ctx stations:[stations allObjects]];
+    switch (TrKind) {
+        case LIKE_PARIS:
+            [Transfer drawTransferLikeParis:ctx stations:[stations allObjects]];
+            break;
+        case LIKE_LONDON:
+            [Transfer drawTransferLikeLondon:ctx stations:[stations allObjects]];
+            break;
+        case LIKE_MOSCOW:
+            [Transfer drawTransferLikeMoscow:ctx stations:[stations allObjects]];
+            break;
+    }
 }
 
 @end
@@ -170,12 +253,18 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize drawName;
 @synthesize active;
 @synthesize acceptBackLink;
+@synthesize links;
+
+-(BOOL) terminal { return links == 1; }
 
 -(id)initWithName:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr
 {
     if((self = [super init])) {
         pos = p;
-        boundingBox = CGRectMake(pos.x-LineWidth, pos.y-LineWidth, LineWidth*2, LineWidth*2);
+        if(StKind == LIKE_PARIS)
+            boundingBox = CGRectMake(pos.x-LineWidth, pos.y-LineWidth, LineWidth*2, LineWidth*2);
+        else
+            boundingBox = CGRectMake(pos.x-LineWidth/2-1, pos.y-LineWidth/2-1, LineWidth+2, LineWidth+2);
         index = i;
         textRect = r;
         segment = [[NSMutableArray alloc] init];
@@ -269,6 +358,17 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
 }
 
+-(void)drawStation:(CGContextRef)context
+{
+    /*if(StKind == LIKE_LONDON) {  TODO
+        CGContextSetLineCap(context, kCGLineCapSquare);
+        CGContextSetLineWidth(context, LineWidth/2);
+        CGContextMoveToPoint(context, pos.x, pos.y);
+        CGContextAddLineToPoint(context, textRect.origin.x, textRect.origin.y);
+        CGContextStrokePath(context);
+    }*/
+}
+
 -(void)predraw:(CGContextRef) context
 {
     if(predrawedName != nil) CGLayerRelease(predrawedName);
@@ -348,6 +448,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         CGRect s1 = CGRectMake(from.pos.x - 5, from.pos.y - 5, 10, 10);
         CGRect s2 = CGRectMake(to.pos.x - 5, to.pos.y - 5, 10, 10);
         boundingBox = CGRectUnion(s1, s2);
+        start.links ++;
+        end.links ++;
     }
     return self;
 }
@@ -530,8 +632,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
     for (Station *s in stations) {
         if(s.transfer == nil && CGRectIntersectsRect(rect, s.boundingBox)) {
-            //[s draw:context];
-            CGContextDrawLayerInRect(context, s.boundingBox, stationLayer);
+            if(StKind == LIKE_LONDON)
+                [s drawStation:context];
+            else
+                CGContextDrawLayerInRect(context, s.boundingBox, stationLayer);
         }
     }
 }
@@ -625,11 +729,20 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     CGFloat ssize = LineWidth*PredrawScale;
     stationLayer = CGLayerCreateWithContext(context, CGSizeMake(ssize*2, ssize*2), NULL);
     CGContextRef ctx = CGLayerGetContext(stationLayer);
-    CGContextSetFillColorWithColor(ctx, [_color CGColor]);
-    drawFilledCircle(ctx, ssize, ssize, ssize);
-    //CGContextSetRGBStrokeColor(ctx, 0.9, 0.9, 0.1, 0.8);
-	//CGContextSetLineWidth(ctx, 6);
-	//CGContextStrokeEllipseInRect(ctx, CGRectMake(3, 3, 25, 25));
+    switch(StKind) {
+        case LIKE_MOSCOW:
+            CGContextSetRGBFillColor(ctx, 0, 0, 0, 1.0);
+            CGContextFillEllipseInRect(ctx, CGRectMake(0, 0, ssize*2, ssize*2));
+            CGContextSetFillColorWithColor(ctx, [_color CGColor]);
+            drawFilledCircle(ctx, ssize, ssize, ssize-PredrawScale/2);
+            break;
+        case LIKE_PARIS:
+            CGContextSetFillColorWithColor(ctx, [_color CGColor]);
+            drawFilledCircle(ctx, ssize, ssize, ssize);
+            break;
+        case LIKE_LONDON:
+            break;
+    }
 }
 
 @end
@@ -641,6 +754,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize currentScale;
 @synthesize activeExtent;
 @synthesize activePath;
+
+-(StationKind) stationKind { return StKind; }
+-(void) setStationKind:(StationKind)stationKind { StKind = stationKind; }
+-(StationKind) transferKind { return TrKind; }
+-(void) setTransferKind:(StationKind)transferKind { TrKind = transferKind; }
 
 -(id) init {
     [super init];
