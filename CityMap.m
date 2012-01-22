@@ -12,9 +12,9 @@
 #import <CoreLocation/CoreLocation.h>
 
 CGFloat PredrawScale = 2.f;
-const CGFloat LineWidth = 4.f;
-StationKind StKind = LIKE_LONDON;
-StationKind TrKind = LIKE_LONDON;
+CGFloat LineWidth = 4.f;
+StationKind StKind = LIKE_PARIS;
+StationKind TrKind = LIKE_PARIS;
 
 NSMutableArray * Split(NSString* s)
 {
@@ -534,6 +534,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize name;
 @synthesize stations;
 @synthesize index;
+@synthesize boundingBox;
 
 -(id)initWithName:(NSString*)n stations:(NSString *)station driving:(NSString *)driving coordinates:(NSString *)coordinates rects:(NSString *)rects
 {
@@ -541,6 +542,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         name = [n retain];
         stations = [[NSMutableArray alloc] init];
         stationLayer = nil;
+        boundingBox = CGRectNull;
         NSArray *sts = Split(station);
         NSArray *drs = Split(driving);
         NSArray *crds = [coordinates componentsSeparatedByString:@", "];
@@ -592,6 +594,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
         for(Station *st in stations) {
             [st makeSegments];
+            boundingBox = CGRectUnion(boundingBox, st.boundingBox);
+            boundingBox = CGRectUnion(boundingBox, st.textRect);
+            for (Segment *seg in st.segment) {
+                boundingBox = CGRectUnion(boundingBox, seg.boundingBox);
+            }
         }
     }
     return self;
@@ -786,78 +793,81 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 }
 
 -(void) loadMap:(NSString *)mapName {
-	INIParser* parser;
+	INIParser* parserTrp, *parserMap;
 	
-	parser = [[INIParser alloc] init];
+	parserTrp = [[INIParser alloc] init];
+	parserMap = [[INIParser alloc] init];
 	
 	int err;
 
-	NSString* str = [[NSBundle mainBundle] pathForResource:@"paris2" ofType:@"trp"]; 
-	char cstr[512] = {0}; 
+	NSString* strTrp = [[NSBundle mainBundle] pathForResource:mapName ofType:@"trp"]; 
+	NSString* strMap = [[NSBundle mainBundle] pathForResource:mapName ofType:@"map"]; 
+	//char cstr[512] = {0}; 
 	
-	[str getCString:cstr maxLength:512 encoding:NSASCIIStringEncoding]; 
-	err = [parser parse:cstr];	
+	//[str getCString:cstr maxLength:512 encoding:NSASCIIStringEncoding]; 
+	err = [parserTrp parse:[strTrp UTF8String]];
+    err = [parserMap parse:[strMap UTF8String]];
 
-	NSInteger linesCount = [[parser get:@"LinesCount" section:@"main"] integerValue];
+	//NSInteger linesCount = [[parser get:@"LinesCount" section:@"main"] integerValue];
 	
-	NSArray *size = [[parser get:@"Size" section:@"main"] componentsSeparatedByString:@","];
-	_w = ([[size objectAtIndex:0] integerValue]);
-	_h = ([[size objectAtIndex:1] integerValue]);
+	//NSArray *size = [[parser get:@"Size" section:@"main"] componentsSeparatedByString:@","];
+	_w = 0;//([[size objectAtIndex:0] integerValue]);
+	_h = 0;//([[size objectAtIndex:1] integerValue]);
+    CGRect boundingBox = CGRectNull;
 
-	for (int i =0 ;i<linesCount; i++) {
-		NSString *sectionName = [NSString stringWithFormat:@"Line%d", i+1 ];
-		NSString *lineName = [parser get:@"Name" section:sectionName];
+	for (int i = 1; true; i++) {
+		NSString *sectionName = [NSString stringWithFormat:@"Line%d", i ];
+		NSString *lineName = [parserTrp get:@"Name" section:sectionName];
+        if(lineName == nil) break;
 
         MLine *newLine = [NSEntityDescription insertNewObjectForEntityForName:@"Line" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
         newLine.name=lineName;
-        newLine.index = [[NSNumber alloc] initWithInt:i+1];
+        newLine.index = [[NSNumber alloc] initWithInt:i];
  
-		NSString *colors = [parser get:@"Color" section:lineName];
+		NSString *colors = [parserMap get:@"Color" section:lineName];
         newLine.color = [self colorForHex:colors];
 		
-		NSString *coords = [parser get:@"Coordinates" section:lineName];
-		NSString *coordsText = [parser get:@"Rects" section:lineName];
-		NSString *stations = [parser get:@"Stations" section:sectionName];
+		NSString *coords = [parserMap get:@"Coordinates" section:lineName];
+		NSString *coordsText = [parserMap get:@"Rects" section:lineName];
+		NSString *stations = [parserTrp get:@"Stations" section:sectionName];
 		[self processLinesStations:stations	:i];
 		
-		NSString *coordsTime = [parser get:@"Driving" section:sectionName];
+		NSString *coordsTime = [parserTrp get:@"Driving" section:sectionName];
         
         Line *l = [[Line alloc] initWithName:lineName stations:stations driving:coordsTime coordinates:coords rects:coordsText];
-        l.index = i+1;
+        l.index = i;
         l.color = newLine.color;
         [mapLines addObject:l];
+        boundingBox = CGRectUnion(boundingBox, l.boundingBox);
 	}
     [[MHelper sharedHelper] saveContext];
     [[MHelper sharedHelper] readHistoryFile];
     [[MHelper sharedHelper] readBookmarkFile];
+    _w = boundingBox.origin.x + boundingBox.size.width;
+    _h = boundingBox.origin.y + boundingBox.size.height;
 		
-	int counter = 0;
-	INISection *section = [parser getSection:@"AdditionalNodes"];
+	INISection *section = [parserMap getSection:@"AdditionalNodes"];
 	NSMutableDictionary *as = [section assignments];
 	for (NSString* key in as) {
-		NSString *value = [parser get:key section:@"AdditionalNodes"];
+		NSString *value = [parserMap get:key section:@"AdditionalNodes"];
 		[self processAddNodes:value];
-		counter++;
 	}
 
-	counter = 0;
-	INISection *section2 = [parser getSection:@"Transfers"];
+	INISection *section2 = [parserTrp getSection:@"Transfers"];
 	NSMutableDictionary *as2 = [section2 assignments];
 	for (NSString* key in as2) {
-		NSString *value = [parser get:key section:@"Transfers"];
+		NSString *value = [parserTrp get:key section:@"Transfers"];
 		[self processTransfers:value];
-		counter++;
 	}
 	
-	counter = 0;
-	INISection *section3 = [parser getSection:@"gps"];
+	INISection *section3 = [parserTrp getSection:@"gps"];
 	NSMutableDictionary *as3 = [section3 assignments];
 	for (NSString* key in as3) {
-		NSString *value = [parser get:key section:@"gps"];
+		NSString *value = [parserTrp get:key section:@"gps"];
 		[self processGPS :key :value];
-		counter++;
 	}
-	[parser release];
+	[parserMap release];
+    [parserTrp release];
     
     [self calcGraph];
     [self predraw];
@@ -972,7 +982,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             MStation *station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
             station.name=newstring;
             station.isFavorite=[NSNumber numberWithInt:0];
-            station.lines=[[MHelper sharedHelper] lineByIndex:line+1 ];
+            station.lines=[[MHelper sharedHelper] lineByIndex:line ];
             station.index = [NSNumber numberWithInt:i];
 
 			i++;
@@ -998,7 +1008,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             MStation *station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
                         station.name=stationname;
             station.isFavorite=[NSNumber numberWithInt:0];
-            station.lines=[[MHelper sharedHelper] lineByIndex:line+1 ];
+            station.lines=[[MHelper sharedHelper] lineByIndex:line ];
             station.index = [NSNumber numberWithInt:i];
             
 			i++;

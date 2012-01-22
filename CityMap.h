@@ -135,11 +135,13 @@ typedef enum {LIKE_PARIS, LIKE_LONDON, LIKE_MOSCOW} StationKind;
     UIColor* _color;
     int index;
     CGLayerRef stationLayer;
+    CGRect boundingBox;
 }
 @property (nonatomic, retain) UIColor* color;
 @property (nonatomic, readonly) NSString* name;
 @property (nonatomic, readonly) NSMutableArray* stations;
 @property (nonatomic, assign) int index;
+@property (nonatomic, readonly) CGRect boundingBox;
 
 -(id)initWithName:(NSString*)n stations:(NSString*)stations driving:(NSString*)driving coordinates:(NSString*)coordinates rects:(NSString*)rects;
 -(void)draw:(CGContextRef)context;
