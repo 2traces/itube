@@ -152,6 +152,21 @@ NSInteger const toolbarWidth=320;
 	//UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
 	//[containerView addGestureRecognizer:singleTap];    
 	
+    buttonsView = [[UIView alloc] initWithFrame:CGRectMake(45, 180, 230, 80)];
+    UIButton *sourceButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [sourceButton setImage:[UIImage imageNamed:@"src_button_normal"] forState:UIControlStateNormal];
+    [sourceButton setImage:[UIImage imageNamed:@"src_button_pressed"] forState:UIControlStateHighlighted];
+    [sourceButton addTarget:self action:@selector(selectFromStationByButton) forControlEvents:UIControlEventTouchUpInside];
+    [sourceButton setFrame:CGRectMake(0,0, 76, 76)];
+    [buttonsView addSubview:sourceButton];
+    UIButton *destinationButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [destinationButton setImage:[UIImage imageNamed:@"dst_button_normal"] forState:UIControlStateNormal];
+    [destinationButton setImage:[UIImage imageNamed:@"dst_button_pressed"] forState:UIControlStateHighlighted];
+    [destinationButton addTarget:self action:@selector(selectToStationByButton) forControlEvents:UIControlEventTouchUpInside];
+    [destinationButton setFrame:CGRectMake(154, 0, 76, 76)];
+    [buttonsView addSubview:destinationButton];
+    [self addSubview:buttonsView];
+    buttonsView.hidden = YES;
 }
 
 -(void) selectFromStation {
@@ -164,6 +179,37 @@ NSInteger const toolbarWidth=320;
 	DLog(@"station 2");
 }
 
+-(void) selectFromStationByButton {
+    [self didFirstStationSelected:mapView.selectedStationName line:mapView.selectedStationLine];
+
+	if ((firstStation.text!=nil && secondStation.text!=nil)) {
+        if([firstStation.text isEqualToString:secondStation.text]) {
+            // одна и та же станция начало и конец пути
+            [self didFirstStationSelected:nil line:0];
+            [self didSecondStationSelected:nil line:0];
+        } else {
+            [self findPathFrom:firstStation.text To:secondStation.text FirstLine:firstStationLineNum LastLine:secondStationLineNum];
+        }
+	}
+	mapView.stationSelected=false;
+    [UIView animateWithDuration:0.25f animations:^{ buttonsView.alpha = 0.f; } completion:^(BOOL finished){ if(finished) {buttonsView.hidden = YES; } }];
+}
+
+-(void) selectToStationByButton {
+    [self didSecondStationSelected:mapView.selectedStationName line:mapView.selectedStationLine];
+    
+	if ((firstStation.text!=nil && secondStation.text!=nil)) {
+        if([firstStation.text isEqualToString:secondStation.text]) {
+            // одна и та же станция начало и конец пути
+            [self didFirstStationSelected:nil line:0];
+            [self didSecondStationSelected:nil line:0];
+        } else {
+            [self findPathFrom:firstStation.text To:secondStation.text FirstLine:firstStationLineNum LastLine:secondStationLineNum];
+        }
+	}
+	mapView.stationSelected=false;
+    [UIView animateWithDuration:0.25f animations:^{ buttonsView.alpha = 0.f; } completion:^(BOOL finished){ if(finished) {buttonsView.hidden = YES; } }];
+}
 
 - (void)locationUpdate:(CLLocation *)location {
 	//locLabel.text = [location description];
@@ -180,6 +226,7 @@ NSInteger const toolbarWidth=320;
 	//[CLController release];
     [super dealloc];
 	[stationNameView release];
+    [buttonsView release];
 }
 
 - (void) touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event 
@@ -194,7 +241,11 @@ NSInteger const toolbarWidth=320;
 	 */
 	if (mapView.stationSelected)
 	{
-		[self processStationSelect];
+		//[self processStationSelect];
+        buttonsView.hidden = NO;
+        buttonsView.alpha = 0.f;
+        [UIView animateWithDuration:0.25f animations:^{ buttonsView.alpha = 1.f; }];
+        [self bringSubviewToFront:buttonsView];
 	}
 	/*else if ((firstStation.text!=nil) &&(secondStation.text!=nil)){
 //		firstStation=nil;
@@ -210,8 +261,6 @@ NSInteger const toolbarWidth=320;
 {
     firstStation.text = stationName; 
     firstStationLineNum = lineNum;
-    
-    
 }
 
 -(void)didSecondStationSelected:(NSString*)stationName line:(int)lineNum

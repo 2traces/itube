@@ -74,21 +74,42 @@
         self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
         MinScale = MIN( (float)frame.size.width / cityMap.size.width, (float)frame.size.height / cityMap.size.height);
 		
-		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(100,100,100,25)];
+		//метка которая показывает названия станций
+		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,10,150,25)];
 		mainLabel.font = [UIFont systemFontOfSize:12];
         mainLabel.textAlignment = UITextAlignmentCenter;
 		mainLabel.backgroundColor = [UIColor colorWithRed:0.9f green:0.9f blue:0.9f alpha:0.9f];
-		
-		//метка которая показывает названия станций
-		mainLabel.hidden=true;
-
+        
+        labelBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"station_label"]];
+        [labelBg addSubview:mainLabel];
+		labelBg.hidden=true;
+        [labelBg.layer setShadowOffset:CGSizeMake(3, 5)];
+        [labelBg.layer setShadowOpacity:0.3];
+        [labelBg.layer setShadowRadius:5.0];
+		[self addSubview:labelBg];
+        
 		[self initData];
 		
 		selectedStationLayer = [[CALayer layer] retain];
-		
-		[self addSubview:mainLabel];
     }
     return self;
+}
+
+-(void)showLabel
+{
+    if(labelBg.hidden) {
+        labelBg.hidden=false;
+        labelBg.alpha = 0.f;
+        [UIView animateWithDuration:0.25f animations:^{ labelBg.alpha = 1.f; }];
+    }
+    [self bringSubviewToFront:labelBg];
+}
+
+-(void)hideLabel
+{
+    if(!labelBg.hidden) {
+        [UIView animateWithDuration:0.25f animations:^{ labelBg.alpha = 0.f; } completion:^(BOOL finished){ if(finished) {labelBg.hidden = YES; } }];
+    }
 }
 
 -(void)drawRect:(CGRect)rect
@@ -97,6 +118,8 @@
 }
 
 - (void)dealloc {
+    [mainLabel release];
+    [labelBg release];
     [super dealloc];
 	[cityMap dealloc];
 	[nearestStationImage release];
@@ -105,7 +128,7 @@
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)context {
 
-    if(mainLabel.superview == self) [self.superview addSubview:mainLabel];
+    if(labelBg.superview == self) [self.superview addSubview:labelBg];
     CGRect r = CGContextGetClipBoundingBox(context);
     CGFloat drawScale = 256.f / MAX(r.size.width, r.size.height);
 	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
@@ -147,7 +170,7 @@
 
 - (void) touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event 
 {	
-	mainLabel.hidden=true;
+    [self hideLabel];
 	[[self superview] touchesEnded:touches withEvent:event];
 	//[self.nextResponder touchesEnded:touches withEvent:event];
 	DLog(@" touch 1 ");
@@ -180,16 +203,15 @@
     
     if(selectedStationLine > 0) {
 		stationSelected=true;
-		CGRect frame = mainLabel.frame;
+		CGRect frame = labelBg.frame;
 		frame.origin = CGPointMake(superPosition.x - frame.size.width/2, superPosition.y - frame.size.height - 30);
         printf("pos x=%d y=%d\n", (int) frame.origin.x, (int) frame.origin.y);
-		mainLabel.frame = frame;
-		mainLabel.hidden=false;
+		labelBg.frame = frame;
 		mainLabel.text = selectedStationName;
-        [self bringSubviewToFront:mainLabel];
+        [self showLabel];
     } else {
         stationSelected=false;
-		mainLabel.hidden=true;
+        [self hideLabel];
     }
 }
 
@@ -200,16 +222,7 @@
 	[pathArray insertObject:[GraphNode nodeWithValue:[NSString stringWithFormat:@"%@|%d",fSt,fStl ] ] atIndex:0];
 	
     [cityMap activatePath:pathArray];
-    CGRect extent = cityMap.activeExtent;
-    CGRect frame = scrollView.frame;
-    CGFloat sc = frame.size.width / extent.size.width;
-    CGFloat sc2 = frame.size.height / extent.size.height;
-    sc = MIN(sc, sc2);
-    [scrollView setZoomScale:sc animated:YES];
-    CGPoint offset;
-    offset.x = (extent.origin.x + extent.size.width/2) * sc - frame.size.width/2;
-    offset.y = (extent.origin.y + extent.size.height/2) * sc - frame.size.height/2;
-    [scrollView setContentOffset:offset animated:YES];
+    [scrollView zoomToRect:cityMap.activeExtent animated:YES];
     // это недокументированный метод, так что если он в будущем изменится, то ой
     [self.layer invalidateContents];
 	[self setNeedsDisplay];
@@ -223,7 +236,6 @@
     [self.layer invalidateContents];
 	[self setNeedsDisplay];
 }
-
 
 #pragma mark -
 #pragma mark gps stuff 

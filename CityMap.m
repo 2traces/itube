@@ -13,6 +13,7 @@
 
 CGFloat PredrawScale = 2.f;
 CGFloat LineWidth = 4.f;
+CGFloat StationDiameter = 8.f;
 StationKind StKind = LIKE_PARIS;
 StationKind TrKind = LIKE_PARIS;
 
@@ -261,10 +262,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 {
     if((self = [super init])) {
         pos = p;
-        if(StKind == LIKE_PARIS)
-            boundingBox = CGRectMake(pos.x-LineWidth, pos.y-LineWidth, LineWidth*2, LineWidth*2);
-        else
-            boundingBox = CGRectMake(pos.x-LineWidth/2-1, pos.y-LineWidth/2-1, LineWidth+2, LineWidth+2);
+        boundingBox = CGRectMake(pos.x-StationDiameter/2, pos.y-StationDiameter/2, StationDiameter, StationDiameter);
         index = i;
         textRect = r;
         segment = [[NSMutableArray alloc] init];
@@ -733,19 +731,20 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
     if(stationLayer != nil) CGLayerRelease(stationLayer);
     // make predrawed staion point
-    CGFloat ssize = LineWidth*PredrawScale;
-    stationLayer = CGLayerCreateWithContext(context, CGSizeMake(ssize*2, ssize*2), NULL);
+    CGFloat ssize = StationDiameter*PredrawScale;
+    CGFloat hsize = ssize/2;
+    stationLayer = CGLayerCreateWithContext(context, CGSizeMake(ssize, ssize), NULL);
     CGContextRef ctx = CGLayerGetContext(stationLayer);
     switch(StKind) {
         case LIKE_MOSCOW:
             CGContextSetRGBFillColor(ctx, 0, 0, 0, 1.0);
-            CGContextFillEllipseInRect(ctx, CGRectMake(0, 0, ssize*2, ssize*2));
+            CGContextFillEllipseInRect(ctx, CGRectMake(0, 0, ssize, ssize));
             CGContextSetFillColorWithColor(ctx, [_color CGColor]);
-            drawFilledCircle(ctx, ssize, ssize, ssize-PredrawScale/2);
+            drawFilledCircle(ctx, hsize, hsize, hsize-PredrawScale/2);
             break;
         case LIKE_PARIS:
             CGContextSetFillColorWithColor(ctx, [_color CGColor]);
-            drawFilledCircle(ctx, ssize, ssize, ssize);
+            drawFilledCircle(ctx, hsize, hsize, hsize);
             break;
         case LIKE_LONDON:
             break;
@@ -802,17 +801,21 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 	NSString* strTrp = [[NSBundle mainBundle] pathForResource:mapName ofType:@"trp"]; 
 	NSString* strMap = [[NSBundle mainBundle] pathForResource:mapName ofType:@"map"]; 
-	//char cstr[512] = {0}; 
 	
-	//[str getCString:cstr maxLength:512 encoding:NSASCIIStringEncoding]; 
 	err = [parserTrp parse:[strTrp UTF8String]];
     err = [parserMap parse:[strMap UTF8String]];
 
-	//NSInteger linesCount = [[parser get:@"LinesCount" section:@"main"] integerValue];
+    int val = [[parserMap get:@"LinesWidth" section:@"Options"] intValue];
+    if(val != 0) LineWidth = val;
+    val = [[parserMap get:@"StationDiameter" section:@"Options"] intValue];
+    if(val != 0) StationDiameter = val;
+    val = [[parserMap get:@"DisplayTransfers" section:@"Options"] intValue];
+    if(val >= 0 && val < KINDS_NUM) TrKind = val;
+    val = [[parserMap get:@"DisplayStations" section:@"Options"] intValue];
+    if(val >= 0 && val < KINDS_NUM) StKind = val;
 	
-	//NSArray *size = [[parser get:@"Size" section:@"main"] componentsSeparatedByString:@","];
-	_w = 0;//([[size objectAtIndex:0] integerValue]);
-	_h = 0;//([[size objectAtIndex:1] integerValue]);
+	_w = 0;
+	_h = 0;
     CGRect boundingBox = CGRectNull;
 
 	for (int i = 1; true; i++) {

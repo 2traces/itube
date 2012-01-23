@@ -3,6 +3,8 @@ StationDiameter=5
 ImageFileName=
 LinesWidth=3
 WordWrap=true
+DisplayTransfers=1
+DisplayStations=3
 
 [Ligne 1]
 Color=F6D500

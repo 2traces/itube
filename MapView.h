@@ -20,6 +20,7 @@ extern int const imagesCount;
 @interface MapView : UIView <UIScrollViewDelegate> {
 
 	UILabel *mainLabel;
+    UIImageView *labelBg;
 	CityMap *cityMap;
 	Boolean stationSelected;
 	
