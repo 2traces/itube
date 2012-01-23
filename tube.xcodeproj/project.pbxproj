@@ -126,6 +126,8 @@
 		BC57D00314C6A3AB00A99FD1 /* bottomtabbarstation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC57D00114C6A3AB00A99FD1 /* bottomtabbarstation@2x.png */; };
 		BC57D00614C6A57200A99FD1 /* wcarat-open.png in Resources */ = {isa = PBXBuildFile; fileRef = BC57D00414C6A57100A99FD1 /* wcarat-open.png */; };
 		BC57D00714C6A57200A99FD1 /* wcarat.png in Resources */ = {isa = PBXBuildFile; fileRef = BC57D00514C6A57200A99FD1 /* wcarat.png */; };
+		BC98E47514C9592700F5260D /* TopTwoStationsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC98E47414C9592700F5260D /* TopTwoStationsView.m */; };
+		BCF52DCD14CAD69400D76E0F /* FastAccessTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */; };
 		CE1146C91466EAF200EF5A28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1146C81466EAF200EF5A28 /* QuartzCore.framework */; };
 		CE81FA70146BDC91008BF969 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CE81FA6D146BDC91008BF969 /* Icon-72.png */; };
 		CE81FA71146BDC91008BF969 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE81FA6E146BDC91008BF969 /* Icon.png */; };
@@ -310,6 +312,10 @@
 		BC57D00114C6A3AB00A99FD1 /* bottomtabbarstation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottomtabbarstation@2x.png"; sourceTree = "<group>"; };
 		BC57D00414C6A57100A99FD1 /* wcarat-open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wcarat-open.png"; sourceTree = "<group>"; };
 		BC57D00514C6A57200A99FD1 /* wcarat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wcarat.png; sourceTree = "<group>"; };
+		BC98E47314C9592700F5260D /* TopTwoStationsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopTwoStationsView.h; sourceTree = "<group>"; };
+		BC98E47414C9592700F5260D /* TopTwoStationsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopTwoStationsView.m; sourceTree = "<group>"; };
+		BCF52DCB14CAD69400D76E0F /* FastAccessTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastAccessTableViewController.h; sourceTree = "<group>"; };
+		BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastAccessTableViewController.m; sourceTree = "<group>"; };
 		CE1146C81466EAF200EF5A28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CE81FA6D146BDC91008BF969 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "images/Icon-72.png"; sourceTree = "<group>"; };
 		CE81FA6E146BDC91008BF969 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = images/Icon.png; sourceTree = "<group>"; };
@@ -425,6 +431,10 @@
 				BC3D14DE14C338350059A17E /* BookmarkViewController.m */,
 				BC3D14DF14C338350059A17E /* BookmarkViewController.xib */,
 				BC3D14E014C338350059A17E /* StationListViewController.xib */,
+				BCF52DCB14CAD69400D76E0F /* FastAccessTableViewController.h */,
+				BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */,
+				BC98E47314C9592700F5260D /* TopTwoStationsView.h */,
+				BC98E47414C9592700F5260D /* TopTwoStationsView.m */,
 				BC3D14E114C338360059A17E /* LineListViewController.h */,
 				BC3D14E214C338360059A17E /* LineListViewController.m */,
 				BC3D14E314C338360059A17E /* LineListViewController.xib */,
@@ -865,6 +875,8 @@
 				BC3D14FE14C338380059A17E /* InAppProductsViewController.m in Sources */,
 				BC3D150414C338600059A17E /* Server.m in Sources */,
 				BC3D150514C338600059A17E /* XMLParser.m in Sources */,
+				BC98E47514C9592700F5260D /* TopTwoStationsView.m in Sources */,
+				BCF52DCD14CAD69400D76E0F /* FastAccessTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

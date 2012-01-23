@@ -10,6 +10,7 @@
 #import "MapView.h"
 #import "MainViewController.h"
 #import "ManagedObjects.h"
+#import "TopTwoStationsView.h"
 
 NSInteger const toolbarHeight=44;
 NSInteger const toolbarWidth=320;
@@ -45,59 +46,6 @@ NSInteger const toolbarWidth=320;
 	yw = [NSNumber numberWithDouble:2.135647];
 }
 
--(void)drawInitialToolbar
-{
-    toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,0, toolbarWidth,toolbarHeight)];
-	[self addSubview:toolbar];
-    
-	UIImage *imageOpenList = [UIImage imageNamed:@"openlist.png"];
-	
-	UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	[refreshButton setImage:imageOpenList forState:UIControlStateNormal];
-	[refreshButton setImage:imageOpenList forState:UIControlStateHighlighted];
-	refreshButton.imageEdgeInsets = UIEdgeInsetsMake(0, -imageOpenList.size.width/2, 0, 0);
-	[refreshButton addTarget:self action:@selector(selectFromStation) forControlEvents:UIControlEventTouchUpInside];
-	refreshButton.bounds = CGRectMake(0,0, imageOpenList.size.width, imageOpenList.size.height);
-    
-	firstStation = [[UITextField alloc] initWithFrame:CGRectMake(0,5, 157, 36)];
-	firstStation.delegate = self;
-	firstStation.borderStyle = UITextBorderStyleNone;
-	firstStation.rightView = refreshButton;
-	firstStation.background = [UIImage imageNamed:@"textfield.png"];
-	firstStation.textAlignment = UITextAlignmentCenter;
-	firstStation.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-	firstStation.rightViewMode = UITextFieldViewModeAlways;
-	[firstStation setReturnKeyType:UIReturnKeyDone];
-	[firstStation setClearButtonMode:UITextFieldViewModeWhileEditing];
-    firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
-    
-	[toolbar addSubview:firstStation];	
-    
-
-	UIButton *refreshButton2 = [UIButton buttonWithType:UIButtonTypeCustom];
-	[refreshButton2 setImage:imageOpenList forState:UIControlStateNormal];
-	[refreshButton2 setImage:imageOpenList forState:UIControlStateHighlighted];
-	refreshButton2.imageEdgeInsets = UIEdgeInsetsMake(0, -imageOpenList.size.width/2, 0, 0);
-	[refreshButton2 addTarget:self action:@selector(selectToStation) forControlEvents:UIControlEventTouchUpInside];
-	refreshButton2.bounds = CGRectMake(0,0, imageOpenList.size.width, imageOpenList.size.height);
-	
-	secondStation = [[UITextField alloc] initWithFrame:CGRectMake(160,5, 157, 36)];
-	secondStation.delegate=self;
-	secondStation.borderStyle = UITextBorderStyleNone;
-	secondStation.rightView = refreshButton2;
-	secondStation.background = [UIImage imageNamed:@"textfield.png"];
-	secondStation.textAlignment = UITextAlignmentCenter;
-	secondStation.rightViewMode = UITextFieldViewModeAlways;
-	[secondStation setReturnKeyType:UIReturnKeyDone];
-	[secondStation setClearButtonMode:UITextFieldViewModeWhileEditing];
-	secondStation.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
-    
-	[toolbar addSubview:secondStation];
-    
-    [toolbar release];
-}
-
 -(void)viewInit:(MainViewController*)vc
 {
 	[self initVar];
@@ -128,9 +76,7 @@ NSInteger const toolbarWidth=320;
 	[containerView addSubview: mapView];
 	[self addSubview:containerView];
     [containerView setZoomScale:mapView.Scale animated:NO];
-    
-    [self drawInitialToolbar];
-	
+    	
 	//TODO
 	[containerView setContentOffset:CGPointMake(650, 650) animated:NO];
 	
@@ -153,17 +99,6 @@ NSInteger const toolbarWidth=320;
 	//[containerView addGestureRecognizer:singleTap];    
 	
 }
-
--(void) selectFromStation {
-    [self.vcontroller pressedSelectFromStation];
-	DLog(@"station 1");
-}
-
--(void) selectToStation {
-    [self.vcontroller pressedSelectToStation];
-	DLog(@"station 2");
-}
-
 
 - (void)locationUpdate:(CLLocation *)location {
 	//locLabel.text = [location description];
@@ -206,19 +141,6 @@ NSInteger const toolbarWidth=320;
 	 */
 }
 
--(void)didFirstStationSelected:(NSString*)stationName line:(int)lineNum
-{
-    firstStation.text = stationName; 
-    firstStationLineNum = lineNum;
-    
-    
-}
-
--(void)didSecondStationSelected:(NSString*)stationName line:(int)lineNum
-{
-    secondStation.text = stationName; 
-    secondStationLineNum = lineNum;
-}
 
 -(void) processStationSelect {
 	if (firstStation.text==nil)
@@ -240,13 +162,7 @@ NSInteger const toolbarWidth=320;
 }
 
 -(void) processStationSelect2 {
-    if ((firstStation.text==nil || secondStation.text==nil)) {
-        [mapView clearPath];
-	} else {
-		[self findPathFrom:firstStation.text To:secondStation.text FirstLine:firstStationLineNum LastLine:secondStationLineNum];
-	}
 
-	mapView.stationSelected=false;
 }
 
 -(void) findPathFrom :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl  {
@@ -254,10 +170,5 @@ NSInteger const toolbarWidth=320;
     [[MHelper sharedHelper] addHistory:[NSDate date] :fs To:ss FirstLine:fsl LastLine:ssl];
 }
 
-// UITextFieldDelegate
-
--(void)textFieldDidBeginEditing:(UITextField *)textField {
-	DLog(@"Here5");
-}
 
 @end
