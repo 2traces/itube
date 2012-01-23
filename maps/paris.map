@@ -1,0 +1,260 @@
+[Options]
+StationDiameter=5
+ImageFileName=
+LinesWidth=3
+WordWrap=true
+DisplayTransfers=1
+DisplayStations=3
+
+[Ligne 1]
+Color=F6D500
+LabelsColor=F6D500
+Coordinates=1010,740, 996,726, 979,709, 944,689, 896,678, 832,713, 774,724, 732,650, 683,635, 645,595, 598,595, 517,595, 480,595, 435,595, 386,581, 367,561, 343,538, 312,507, 279,475, 253,448, 219,414, 196,391, 174,369, 153,348, 133,328
+Rects=1027,742,61,18, 958,728,38,8, 980,698,54,9, 918,692,59,17, 867,688,30,9, 837,703,35,19, 773,706,37,19, 734,635,40,10, 684,624,35,10, 650,588,37,18, 556,604,43,10, 497,575,34,16, 365,576,111,18, 417,600,40,8, 387,569,48,9, 267,562,98,18, 282,527,58,17, 275,508,35,17, 285,461,81,18, 208,448,47,9, 181,411,36,19, 156,390,40,17, 126,368,47,19, 94,349,60,18, 136,313,37,18
+Rect=
+
+[Ligne 2]
+Color=1263AE
+LabelsColor=1263AE
+Coordinates=908,666, 883,640, 883,605, 883,569, 883,539, 855,503, 825,473, 802,437, 802,403, 794,364, 768,336, 706,336, 650,336, 599,336, 557,336, 501,336, 444,336, 410,344, 382,372, 358,396, 333,421, 307,447, 275,479, 225,518, 189,483
+Rects=867,688,30,9, 887,633,29,8, 887,601,49,19, 887,564,40,18, 884,518,42,18, 856,492,63,8, 827,462,52,9, 746,434,50,8, 805,399,39,18, 804,355,33,11, 772,330,53,9, 702,315,43,18, 614,314,68,19, 582,342,35,9, 520,339,35,9, 482,323,38,9, 448,339,43,17, 412,347,24,7, 388,368,38,9, 316,386,42,9, 276,410,56,10, 273,437,33,7, 284,461,82,18, 190,517,33,17, 193,464,42,19
+Rect=
+
+[Ligne 3]
+Color=909B28
+LabelsColor=909B28
+Coordinates=1008,538, 975,538, 928,538, 876,538, 850,538, 826,523, 748,493, 721,513, 702,533, 639,543, 585,543, 546,543, 507,530, 482,498, 459,481, 439,442, 410,399, 382,372, 367,356, 351,340, 338,327, 318,307, 304,293, 291,280, 277,266
+Rects=1013,534,37,7, 937,516,60,18, 906,545,48,10, 884,518,42,18, 814,541,54,17, 777,525,52,9, 748,498,54,9, 687,503,32,8, 649,514,51,18, 606,522,56,17, 567,531,36,9, 530,531,35,9, 509,510,51,18, 488,502,30,19, 407,484,49,19, 395,433,33,18, 377,401,32,8, 388,368,38,9, 304,356,62,10, 313,341,37,9, 337,315,36,10, 247,307,70,18, 271,290,31,17, 244,273,40,17, 179,249,95,18
+Rect=
+
+[Ligne 3bis]
+Color=9BD3E1
+LabelsColor=9BD3E1
+Coordinates=928,533, 956,497, 982,460, 982,422
+Rects=906,545,48,10, 907,486,49,9, 938,454,40,17, 988,414,42,17
+Rect=
+
+[Ligne 4]
+Color=BD3D8C
+LabelsColor=BD3D8C
+Coordinates=585,241, 604,260, 619,284, 619,307, 650,342, 698,361, 704,406, 677,434, 665,485, 639,549, 598,554, 598,576, 598,599, 583,630, 567,672, 558,692, 512,692, 499,721, 499,758, 499,788, 533,797, 561,809, 576,833, 576,866, 558,907, 541,923
+Rects=505,223,77,17, 604,248,38,8, 624,261,60,17, 623,294,40,16, 614,314,68,19, 649,354,37,17, 713,408,36,18, 678,436,39,17, 667,462,56,17, 606,522,56,17, 560,550,36,17, 563,566,33,19, 556,604,44,10, 561,622,19,10, 529,669,33,17, 544,703,30,9, 447,667,82,19, 503,712,36,17, 458,749,37,17, 425,770,68,18, 518,784,26,8, 524,819,36,10, 585,820,51,18, 528,857,45,16, 526,893,31,10, 489,920,48,18
+Rect=
+
+[Ligne 5]
+Color=EF9545
+LabelsColor=EF9545
+Coordinates=1009,254, 979,284, 959,304, 933,320, 890,320, 850,320, 820,339, 796,362, 772,350, 709,361, 709,406, 720,457, 741,500, 764,522, 779,586, 757,609, 732,647, 732,724, 732,777, 732,807, 715,831, 692,871
+Rects=1012,236,71,17, 893,266,83,18, 912,289,42,18, 918,324,31,10, 868,324,43,18, 835,326,31,11, 822,341,44,10, 804,355,33,11, 772,330,53,9, 649,354,37,17, 713,408,36,18, 725,445,58,17, 748,498,54,9, 766,511,50,10, 782,588,38,16, 759,612,40,16, 734,635,40,10, 674,717,54,18, 736,762,58,18, 736,803,35,18, 717,831,32,18, 694,851,34,17
+Rect=
+
+[Ligne 6]
+Color=7CC595
+LabelsColor=7CC595
+Coordinates=891,683, 929,726, 908,746, 886,767, 860,792, 835,817, 799,854, 763,871, 729,871, 689,871, 662,871, 626,871, 598,856, 579,836, 557,813, 512,803, 491,803, 433,803, 393,787, 364,757, 312,744, 272,713, 245,686, 213,654, 210,596, 213,549, 247,514, 279,483
+Rects=867,688,30,9, 930,728,29,9, 910,748,33,9, 832,763,47,8, 860,794,52,10, 801,811,28,8, 750,834,49,18, 733,857,55,10, 706,874,45,10, 694,851,34,17, 637,857,47,10, 607,875,41,9, 601,845,64,9, 585,820,51,18, 524,819,36,10, 498,807,32,17, 425,770,68,18, 433,807,38,10, 347,788,44,17, 312,759,52,9, 315,717,108,18, 275,703,35,9, 248,671,32,17, 214,642,28,10, 214,598,50,10, 216,550,44,10, 247,517,34,8, 285,461,81,18
+Rect=
+
+[Ligne 7]
+Color=F5A5B1
+LabelsColor=F5A5B1
+Coordinates=887,171, 887,202, 859,239, 830,268, 812,286, 795,303, 779,319, 769,342, 762,369, 742,389, 706,406, 628,406, 574,413, 554,433, 511,475, 480,507, 480,549, 480,595, 551,602, 598,602, 650,638, 686,674, 666,751, 645,775, 645,807, 666,834, 686,871, 686,893, 686,917, 717,935, 753,935, 790,935, 815,949, 833,967, 686,945, 686,969, 686,992, 686,1014
+Rects=791,163,92,19, 811,190,72,18, 750,220,106,18, 833,260,64,17, 816,280,42,17, 799,298,32,10, 782,315,31,11, 772,330,53,9, 769,371,28,17, 745,389,38,17, 713,408,36,18, 602,409,61,10, 575,414,28,9, 557,428,39,17, 422,456,88,19, 488,502,30,8, 429,552,47,10, 365,576,111,18, 527,604,24,18, 556,604,44,10, 622,634,26,18, 641,672,42,18, 649,755,35,8, 648,770,31,16, 648,792,51,17, 667,817,43,17, 694,851,34,17, 647,890,36,9, 644,907,39,17, 697,907,34,17, 732,907,44,17, 778,907,27,17, 781,947,31,17, 799,966,30,17, 690,940,78,17, 689,964,69,18, 689,987,87,18, 689,1009,66,17
+Rect=
+
+[Ligne 7bis]
+Color=7CC595
+LabelsColor=7CC595
+Coordinates=767,373, 798,360, 820,382, 862,391, 884,391, 918,420, 945,385, 918,364
+Rects=769,371,28,17, 804,355,33,11, 822,372,37,10, 828,394,47,18, 889,386,41,10, 891,428,45,18, 946,365,48,18, 901,351,35,10
+Rect=
+
+[Ligne 8]
+Color=D0A9CA
+LabelsColor=D0A9CA
+Coordinates=246,899, 276,869, 300,845, 312,813, 312,782, 312,741, 312,691, 338,652, 370,622, 382,577, 389,542, 478,504, 538,487, 581,487, 634,487, 664,487, 735,506, 727,551, 727,582, 727,612, 732,644, 758,668, 807,689, 832,713, 859,739, 887,767, 905,785, 917,808, 896,830, 915,862, 940,887, 966,913, 985,932, 985,955, 985,975, 985,995, 985,1014
+Rects=248,902,35,10, 277,871,42,10, 301,847,49,10, 315,804,28,18, 316,777,50,10, 315,717,108,18, 316,682,42,18, 286,634,50,18, 320,610,45,10, 387,569,48,9, 396,529,47,9, 488,502,30,8, 527,458,47,32, 546,491,56,17, 608,491,44,18, 667,462,56,17, 748,498,54,9, 730,543,54,17, 731,572,60,16, 692,604,32,17, 734,635,40,10, 760,658,61,9, 808,669,46,17, 837,703,35,19, 861,729,55,10, 832,763,47,8, 907,767,32,17, 919,809,29,17, 901,827,65,17, 917,852,34,8, 942,868,52,18, 967,894,140,19, 989,923,70,17, 989,946,71,17, 989,966,40,17, 989,987,48,17, 989,1008,55,17
+Rect=
+
+[Ligne 9]
+Color=C4CD00
+LabelsColor=C4CD00
+Coordinates=1011,576, 996,591, 979,608, 965,622, 948,639, 934,653, 904,670, 874,640, 854,620, 834,600, 814,580, 760,526, 738,503, 664,481, 634,481, 581,481, 538,481, 506,481, 464,481, 417,465, 399,482, 378,504, 343,538, 306,576, 257,596, 210,596, 164,596, 154,644, 154,690, 154,733, 154,776, 154,807, 154,835, 154,863, 136,886, 118,904, 99,923
+Rects=1014,571,60,18, 999,590,52,18, 983,609,57,10, 968,622,61,18, 950,641,54,10, 936,656,44,9, 867,688,30,9, 815,640,57,18, 806,621,46,10, 836,589,41,9, 816,561,44,17, 766,511,50,10, 748,498,54,9, 667,462,56,17, 608,491,44,18, 546,491,56,17, 527,458,44,18, 422,456,88,19, 407,484,49,19, 372,447,43,17, 345,472,51,9, 299,485,77,19, 282,527,58,17, 263,555,41,17, 247,584,20,8, 214,598,50,10, 137,574,55,17, 158,635,34,18, 105,686,45,8, 120,729,30,10, 94,753,57,18, 88,811,64,19, 158,830,44,10, 158,858,55,18, 138,888,34,19, 120,907,58,10, 101,926,46,18
+Rect=
+
+[Ligne 10]
+Color=D9B72E
+LabelsColor=D9B72E
+Coordinates=80,834, 101,813, 154,807, 173,807, 202,794, 121,793, 154,776, 187,776, 237,776, 271,764, 286,750, 312,737, 381,766, 419,757, 443,734, 466,711, 522,697, 558,697, 588,697, 615,717, 634,737, 666,745, 726,780
+Rects=81,837,83,17, 40,794,60,17, 88,811,64,19, 160,810,40,18, 156,785,43,10, 76,773,43,18, 94,753,57,18, 164,754,43,18, 222,763,27,9, 269,769,39,18, 236,731,49,17, 315,717,108,18, 382,754,30,10, 425,753,30,10, 406,724,34,9, 410,701,45,18, 500,699,43,12, 544,703,30,9, 590,678,62,16, 617,698,47,16, 636,717,41,18, 649,755,35,8, 736,762,58,18
+Rect=
+
+[Ligne 11]
+Color=83612E
+LabelsColor=83612E
+Coordinates=1011,388, 982,419, 955,424, 918,424, 881,424, 837,424, 800,439, 773,468, 744,497, 707,536, 674,568, 646,595, 598,607
+Rects=1015,379,40,17, 988,414,42,17, 925,428,54,9, 891,428,45,18, 860,428,41,8, 814,428,44,10, 746,434,50,8, 775,470,46,10, 748,498,54,9, 649,514,51,18, 677,570,51,9, 650,588,37,18, 556,604,44,10
+Rect=
+
+[Ligne 12]
+Color=00855D
+LabelsColor=00855D
+Coordinates=267,969, 295,941, 321,915, 349,887, 374,862, 402,834, 433,803, 444,792, 497,792, 515,770, 490,736, 466,711, 441,687, 417,663, 389,636, 389,584, 389,537, 450,442, 488,418, 547,418, 557,377, 557,336, 557,312, 557,288, 587,284, 636,284, 709,273, 709,245
+Rects=269,971,29,19, 297,943,43,20, 323,915,65,18, 351,889,55,10, 376,863,50,10, 404,836,58,9, 433,807,38,10, 396,781,48,9, 425,770,68,18, 519,760,54,17, 456,738,34,8, 410,701,45,18, 442,668,33,16, 418,651,46,9, 392,618,49,17, 387,569,48,9, 396,529,46,9, 395,433,33,18, 415,396,86,18, 473,396,77,17, 511,368,42,17, 520,339,35,9, 508,308,45,9, 489,279,64,17, 567,262,36,17, 637,261,62,17, 713,263,37,17, 713,234,68,18
+Rect=
+
+[Ligne 13]
+Color=9BD3E1
+LabelsColor=9BD3E1
+Coordinates=408,1015, 408,983, 408,951, 422,921, 453,890, 478,865, 494,839, 494,798, 419,757, 383,722, 367,669, 367,625, 367,561, 403,486, 444,442, 444,377, 444,336, 444,309, 421,280, 396,255, 356,215, 320,179, 310,169, 300,159, 444,273, 444,243, 470,210, 498,182, 524,156, 589,139, 659,125, 690,94
+Rects=413,1014,53,17, 413,979,87,18, 413,945,88,17, 427,919,46,18, 456,893,46,10, 481,868,38,10, 498,836,25,8, 425,770,68,18, 425,753,30,10, 385,700,72,19, 371,665,38,9, 320,610,45,10, 267,562,98,18, 345,472,51,9, 395,433,33,18, 448,374,25,9, 448,339,43,17, 449,299,40,17, 373,280,45,9, 348,247,43,17, 311,216,43,18, 261,150,35,18, 270,184,51,17, 175,169,133,18, 449,268,36,17, 449,238,48,17, 473,212,44,10, 501,183,49,17, 527,158,51,17, 590,146,96,17, 660,130,76,19, 694,84,79,17
+Rect=
+
+[Ligne 14]
+Color=66097B
+LabelsColor=66097B
+Coordinates=746,903, 835,880, 857,858, 837,817, 759,739, 598,589, 480,549, 394,542, 433,442
+Rects=741,889,53,9, 736,870,95,17, 810,839,47,17, 801,811,28,8, 773,706,37,19, 556,604,44,10, 429,552,47,10, 396,529,46,9, 395,433,33,18
+Rect=
+
+[AdditionalNodes]
+Ligne 1_Tuileries_Concorde=Ligne 1,Tuileries,Concorde, 402,593, spline
+Ligne 1_Bastille_St-Paul=Ligne 1,Bastille,St-Paul, 719,640, 694,639, spline
+Ligne 1_Gare de Lyon_Bastille=Ligne 1,Gare de Lyon,Bastille, 764,710, 764,690, 760,678, 744,661, spline
+Ligne 1_Gare de Lyon_Reuilly Diderot=Ligne 1,Reuilly Diderot,Gare de Lyon, 813,731, 800,743, 789,740, spline
+Ligne 1_Nation_Reuilly Diderot=Ligne 1,Nation,Reuilly Diderot, 887,669, 878,668, 860,685, spline
+Ligne 1_Porte de Vincennes_Nation=Ligne 1,Porte de Vincennes,Nation, 929,689, 907,688, spline
+Ligne 1_Porte de Vincennes_Saint-Madre=Ligne 1,Saint-Madre,Porte de Vincennes, 962,694, spline
+Ligne 2_Charles De Gaulle - Etoile_Victor Hugo=Ligne 2,Charles De Gaulle - Etoile,Victor Hugo, 254,500, 239,515, 231,520, spline
+Ligne 2_Place de Clichy_Rome=Ligne 2,Place de Clichy,Rome, 423,337, spline
+Ligne 2_Colonel Fabien_Jaures=Ligne 2,Colonel Fabien,Jaures, 802,381, 801,373, spline
+Ligne 2_Couronnes_Belleville=Ligne 2,Couronnes,Belleville, 804,449, spline
+Ligne 2_Pere Lachaise_Menilmontant=Ligne 2,Pere Lachaise,Menilmontant, 877,525, spline
+Ligne 3_Parmentier_Rue Saint-Maur=Ligne 3,Rue Saint-Maur,Parmentier, 834,531, 838,534, 843,537, spline
+Ligne 3_Parmentier_Republique=Ligne 3,Parmentier,Republique, 800,496, 795,493, 789,493, spline
+Ligne 3_Republique_Temple=Ligne 3,Republique,Temple, 737,497, spline
+Ligne 3_Arts et Metiers_Reaumur Sebastopol=Ligne 3,Arts et Metiers,Reaumur Sebastopol, 692,542, 688,544, 683,544, spline
+Ligne 3_Quatre Septembre_Bourse=Ligne 3,Bourse,Quatre Septembre, 529,543, 522,543, 517,540, spline
+Ligne 3_Saint Lazare_Europe=Ligne 3,Saint Lazare,Europe, 435,426, spline
+Ligne 3_Saint Lazare_Havre Caumartin=Ligne 3,Havre Caumartin,Saint Lazare, 439,459, spline
+Ligne 3bis_Pelleport_Saint Fargeau=Ligne 3bis,Pelleport,Saint Fargeau, 979,476, 983,472, 983,467, spline
+Ligne 3bis_Gambetta_Pelleport=Ligne 3bis,Gambetta,Pelleport, 928,525, 932,521, spline
+Ligne 4_Mouton Duvernet_Alesia=Ligne 4,Mouton Duvernet,Alesia, 576,880, 575,888, 571,894, spline
+Ligne 4_Raspail_Denfert Rochereau=Ligne 4,Raspail,Denfert Rochereau, 574,824, spline
+Ligne 4_Raspail_Vavin=Ligne 4,Vavin,Raspail, 542,797, 549,799, 555,803, spline
+Ligne 4_Saint Germain des Pres_Saint Sulpice=Ligne 4,Saint Germain des Pres,Saint Sulpice, 504,692, 500,695, 499,704, spline
+Ligne 4_Saint Michel_Odeon=Ligne 4,Saint Michel,Odeon, 566,686, spline
+Ligne 4_Saint Michel_Cite=Ligne 4,Cite,Saint Michel, 574,639, 569,647, 567,658, spline
+Ligne 4_Chatelet_Cite=Ligne 4,Chatelet,Cite, 598,614, spline
+Ligne 4_Reaumur Sebastopol_Etienne Marcel=Ligne 4,Reaumur Sebastopol,Etienne Marcel, 622,549, 605,549, spline
+Ligne 4_Strasbourg Saint Denis_Reaumur Sebastopol=Ligne 4,Strasbourg Saint Denis,Reaumur Sebastopol, 665,521, 664,540, 657,548, spline
+Ligne 4_Chateau d'eau_Strasbourg Saint Denis=Ligne 4,Chateau d'eau,Strasbourg Saint Denis, 671,441, 666,450, 665,462, spline
+Ligne 4_Gare du Nord_Gare de l'Est=Ligne 4,Gare du Nord,Gare de l'Est, 703,369, 704,386, spline
+Ligne 4_Barbes Rochechouart_Gare du Nord=Ligne 4,Barbes Rochechouart,Gare du Nord, 675,342, 681,344, 686,348, spline
+Ligne 4_Chateau Rouge_Barbes Rochechouart=Ligne 4,Chateau Rouge,Barbes Rochechouart, 619,334, 620,341, 625,342, spline
+Ligne 4_Simplon_Marcadet Poissonniers=Ligne 4,Simplon,Marcadet Poissonniers, 616,274, spline
+Ligne 5_Eglise de Pantin_Hoche=Ligne 5,Eglise de Pantin,Hoche, 951,312, 945,317, 939,319, spline
+Ligne 5_Ourcq_Eglise de Pantin=Ligne 5,Eglise de Pantin,Ourcq, 846,320, spline
+Ligne 5_Laumiere_Ourcq=Ligne 5,Ourcq,Laumiere, 842,321, 838,323, 834,326, spline
+Ligne 5_Stalingrad_Jaures=Ligne 5,Jaures,Stalingrad, 788,365, spline
+Ligne 5_Stalingrad_Gare du Nord=Ligne 5,Stalingrad,Gare du Nord, 760,341, 721,341, 712,342, 709,350, spline
+Ligne 5_Jacques Bonsergent_Gare de l'Est=Ligne 5,Gare de l'Est,Jacques Bonsergent, 711,430, 719,443, spline
+Ligne 5_Republique_Jacques Bonsergent=Ligne 5,Jacques Bonsergent,Republique, 720,476, 721,480, 726,486, 723,483, spline
+Ligne 5_Oberkampf_Richard Lenoir=Ligne 5,Oberkampf,Richard Lenoir, 792,550, 801,561, 797,569, spline
+Ligne 5_Bastille_Breguet Sabin=Ligne 5,Breguet Sabin,Bastille, 736,633, spline
+Ligne 5_Campo Formio_Place d'Italie=Ligne 5,Campo Formio,Place d'Italie, 698,848, 693,852, 691,856, spline
+Ligne 5_Campo Formio_Saint Marcel=Ligne 5,Saint Marcel,Campo Formio, 732,813, spline
+Ligne 6_Nation_Picpus=Ligne 6,Nation,Picpus, 920,712, spline
+Ligne 6_Quai de la Gare_Chevaleret=Ligne 6,Quai de la Gare,Chevaleret, 783,869, spline
+Ligne 6_Glaciere_Saint-Jacques=Ligne 6,Glaciere,Saint-Jacques, 612,869, spline
+Ligne 6_Edgar Quinet_Raspail=Ligne 6,Raspail,Edgar Quinet, 547,804, 533,803, spline
+Ligne 6_Sevres Lecourbe_Pasteur=Ligne 6,Pasteur,Sevres Lecourbe, 416,803, 405,798, spline
+Ligne 6_La Motte Picquet Grenelle_Cambronne=Ligne 6,Cambronne,La Motte Picquet Grenelle, 349,745, 336,744, spline
+Ligne 6_Dupleix_La Motte Picquet Grenelle=Ligne 6,La Motte Picquet Grenelle,Dupleix, 299,739, spline
+Ligne 6_Trocadero_Passy=Ligne 6,Passy,Trocadero, 210,641, spline
+Ligne 6_Boissiere_Trocadero=Ligne 6,Trocadero,Boissiere, 210,563, spline
+Ligne 7_Aubervilliers - Pantin Quatre Chemins_Fort d'Aubervilliers=Ligne 7,Fort d'Aubervilliers,Aubervilliers - Pantin Quatre Chemins, 881,217, spline
+Ligne 7_Stalingrad_Louis Blanc=Ligne 7,Stalingrad,Louis Blanc, 771,358, spline
+Ligne 7_Cadet_Poissonniere=Ligne 7,Poissonniere,Cadet, 602,406, 587,407, spline
+Ligne 7_Pont Neuf_Palais Royal - Musee du Louvre=Ligne 7,Palais Royal - Musee du Louvre,Pont Neuf, 490,602, 514,602, spline
+Ligne 7_Pont Marie_Chatelet=Ligne 7,Chatelet,Pont Marie, 610,604, 624,613, spline
+Ligne 7_Jussieu_Sully Morland=Ligne 7,Sully Morland,Jussieu, 686,715, 686,730, 685,748, 679,751, spline
+Ligne 7_Place Monge_Jussieu=Ligne 7,Jussieu,Place Monge, 655,751, 646,753, 645,764, spline
+Ligne 7_Les Gobelins_Censier Daubenton=Ligne 7,Censier Daubenton,Les Gobelins, 649,817, spline
+Ligne 7_Place d'Italie_Les Gobelins=Ligne 7,Les Gobelins,Place d'Italie, 677,845, 683,853, 686,861, spline
+Ligne 7_Porte d'Italie_Maison Blanche=Ligne 7,Maison Blanche,Porte d'Italie, 700,932, spline
+Ligne 7_Porte d'Ivry_Pierre Curie=Ligne 7,Porte d'Ivry,Pierre Curie, 803,938, spline
+Ligne 7_Riquet_Stalingrad=Ligne 7,Riquet,Stalingrad, 771,330, spline
+Ligne 7_Chateau Landon_Gare de l'Est=Ligne 7,Chateau Landon,Gare de l'Est, 731,399, 720,405, spline
+Ligne 7bis_Jaures_Louis Blanc=Ligne 7bis,Louis Blanc,Jaures, 781,357, 788,352, 793,355, spline
+Ligne 7bis_Buttes Chaumont_Bolivar=Ligne 7bis,Bolivar,Buttes Chaumont, 832,390, spline
+Ligne 7bis_Place des Fetes_Botzaris=Ligne 7bis,Botzaris,Place des Fetes, 906,412, spline
+Ligne 7bis_Pre St Gervais_Place des Fetes=Ligne 7bis,Place des Fetes,Pre St Gervais, 930,413, 948,395, spline
+Ligne 7bis_Danube_Pre St Gervais=Ligne 7bis,Pre St Gervais,Danube, 930,370, spline
+Ligne 7bis_Botzaris_Danube=Ligne 7bis,Botzaris,Danube, 906,370, spline
+Ligne 8_Porte de Charenton_Liberte=Ligne 8,Porte de Charenton,Liberte, 894,839, 901,848, spline
+Ligne 8_Michel Bizot_Porte Doree=Ligne 8,Michel Bizot,Porte Doree, 913,793, 918,800, spline
+Ligne 8_Ledru-Rollin_Faidherbe Chaligny=Ligne 8,Ledru-Rollin,Faidherbe Chaligny, 771,676, 793,679, spline
+Ligne 8_Felix Faure_Boucicaut=Ligne 8,Boucicaut,Felix Faure, 309,836, 312,826, spline
+Ligne 8_Latour Maubourg_Ecole Militaire=Ligne 8,Ecole Militaire,Latour Maubourg, 312,682, 314,676, 322,667, spline
+Ligne 8_Concorde_Invalides=Ligne 8,Invalides,Concorde, 380,611, 382,596, spline
+Ligne 8_Madeleine_Concorde=Ligne 8,Concorde,Madeleine, 382,565, 383,547, spline
+Ligne 8_Opera_Madeleine=Ligne 8,Madeleine,Opera, 428,542, 443,537, 460,522, spline
+Ligne 8_Richelieu Drouot_Opera=Ligne 8,Opera,Richelieu Drouot, 488,493, 497,488, 512,487, spline
+Ligne 8_Strasbourg Saint Denis_Republique=Ligne 8,Strasbourg Saint Denis,Republique, 689,487, 712,488, 722,494, spline
+Ligne 8_Filles du Calvaire_Strasbourg Saint Denis=Ligne 8,Strasbourg Saint Denis,Filles du Calvaire, 997,404, spline
+Ligne 8_Republique_Filles du Calvaire=Ligne 8,Republique,Filles du Calvaire, 735,514, 728,524, spline
+Ligne 8_Bastille_Chemin Vert=Ligne 8,Chemin Vert,Bastille, 727,636, spline
+Ligne 1_Palais Royal - Musee du Louvre_Palais Royal - Musee du Louvre=Ligne 1,Palais Royal - Musee du Louvre,Palais Royal - Musee du Louvre, 473,613, spline
+Ligne 9_Porte de St Cloud_Marcel Sembat=Ligne 9,Porte de St Cloud,Marcel Sembat, 150,871, spline
+Ligne 9_Rue de la Pompe_La Muette=Ligne 9,Rue de la Pompe,La Muette, 157,600, 154,609, 154,622, spline
+Ligne 9_Alma Marceau_Iena=Ligne 9,Alma Marceau,Iena, 294,589, 286,594, 277,596, spline
+Ligne 9_Saint Augustin_Havre Caumartin=Ligne 9,Havre Caumartin,Saint Augustin, 446,478, 430,461, spline
+Ligne 9_Republique_Strasbourg Saint Denis=Ligne 9,Republique,Strasbourg Saint Denis, 724,490, 715,482, 703,481, spline
+Ligne 9_Nation_Buzenval=Ligne 9,Buzenval,Nation, 921,666, 914,672, 908,674, spline
+Ligne 10_Michel Ange Molitor_Boulogne - Jean Jaures=Ligne 10,Boulogne - Jean Jaures,Michel Ange Molitor, 114,807, 135,807, spline
+Ligne 10_Chardon Lagache_Mirabeau=Ligne 10,Chardon Lagache,Mirabeau, 190,805, spline
+Ligne 10_Javel_Chardon Lagache=Ligne 10,Chardon Lagache,Javel, 214,776, 237,790, spline
+Ligne 10_Mirabeau_Javel=Ligne 10,Mirabeau,Javel, 217,781, spline
+Ligne 10_Michel-Ange Auteuil_Porte d'Auteuil=Ligne 10,Porte d'Auteuil,Michel-Ange Auteuil, 131,782, 137,777, 145,776, spline
+Ligne 10_Charles Michels_Javel=Ligne 10,Javel,Charles Michels, 258,775, spline
+Ligne 10_La Motte Picquet Grenelle_Avenue Emile Zola=Ligne 10,Avenue Emile Zola,La Motte Picquet Grenelle, 299,739, spline
+Ligne 10_Segur_La Motte Picquet Grenelle=Ligne 10,La Motte Picquet Grenelle,Segur, 334,737, 351,738, 362,747, spline
+Ligne 10_Duroc_Segur=Ligne 10,Segur,Duroc, 389,774, 396,778, 404,772, spline
+Ligne 10_Mabillon_Sevres Babylone=Ligne 10,Sevres Babylone,Mabillon, 477,700, 484,697, 492,697, spline
+Ligne 10_Maubert Mutualite_Cluny - La Sorbonne=Ligne 10,Cluny - La Sorbonne,Maubert Mutualite, 602,703, spline
+Ligne 10_Jussieu_Cardinal Lemoine=Ligne 10,Cardinal Lemoine,Jussieu, 647,744, spline
+Ligne 10_Gare d'Austerlitz_Jussieu=Ligne 10,Jussieu,Gare d'Austerlitz, 686,745, 693,747, 700,753, spline
+Ligne 11_Hotel de Ville_Chatelet=Ligne 11,Hotel de Ville,Chatelet, 638,604, 634,606, 631,607, spline
+Ligne 11_Porte des Lilas_Telegraphe=Ligne 11,Porte des Lilas,Telegraphe, 974,423, spline
+Ligne 11_Pyrenees_Belleville=Ligne 11,Pyrenees,Belleville, 820,424, 817,424, 814,426, spline
+Ligne 12_Marx Dormoy_Marcadet Poissonniers=Ligne 12,Marcadet Poissonniers,Marx Dormoy, 693,284, 706,283, 709,278, spline
+Ligne 12_Lamarck Caulaincourt_Jules Joffrin=Ligne 12,Lamarck Caulaincourt,Jules Joffrin, 560,284, 572,284, spline
+Ligne 12_Saint Georges_Notre Dame de Lorette=Ligne 12,Notre Dame de Lorette,Saint Georges, 554,414, 557,404, spline
+Ligne 12_Trinite d'Estienne d'Orves_Saint Lazare=Ligne 12,Saint Lazare,Trinite d'Estienne d'Orves, 450,426, 452,419, 467,418, spline
+Ligne 12_Madeleine_Trinite d'Estienne d'Orves=Ligne 12,Madeleine,Trinite d'Estienne d'Orves, 460,460, spline
+Ligne 12_Madeleine_Saint Lazare=Ligne 12,Madeleine,Saint Lazare, 389,519, 391,509, 404,494, 444,454, spline
+Ligne 12_Concorde_Assemblee Nationale=Ligne 12,Assemblee Nationale,Concorde, 389,619, spline
+Ligne 12_Rennes_Notre-Dame des Champs=Ligne 12,Notre-Dame des Champs,Rennes, 512,759, 503,749, spline
+Ligne 12_Montparnasse Bienvenue_Notre-Dame des Champs=Ligne 12,Montparnasse Bienvenue,Notre-Dame des Champs, 510,792, 514,789, 515,780, spline
+Ligne 13_Saint Denis - Porte de Paris_Saint Denis - Basilique=Ligne 13,Saint Denis - Porte de Paris,Saint Denis - Basilique, 618,140, 637,139, 648,134, spline
+Ligne 13_Carrefour Pleyel_Saint Denis - Porte de Paris=Ligne 13,Carrefour Pleyel,Saint Denis - Porte de Paris, 533,147, 542,141, 555,139, spline
+Ligne 13_Garibaldi_Porte de St Ouen=Ligne 13,Porte de St Ouen,Garibaldi, 449,233, spline
+Ligne 13_Brochant_La Fourche=Ligne 13,La Fourche,Brochant, 436,296, spline
+Ligne 13_Champs Elysees - Clemenceau_Miromesnil=Ligne 13,Champs Elysees - Clemenceau,Miromesnil, 367,536, 368,525, 376,515, spline
+Ligne 13_St Francois Xavier_Varenne=Ligne 13,St Francois Xavier,Varenne, 373,711, 369,703, 367,692, spline
+Ligne 13_Montparnasse Bienvenue_Duroc=Ligne 13,Montparnasse Bienvenue,Duroc, 473,798, 460,797, 446,786, spline
+Ligne 13_Porte de Vanves_Malakoff - Plateau de Vanves=Ligne 13,Malakoff - Plateau de Vanves,Porte de Vanves, 411,935, spline
+Ligne 13_Pernety_Gaite=Ligne 13,Pernety,Gaite, 489,852, spline
+Ligne 14_Olympiades_Bibliotheque Francois Mitterrand=Ligne 14,Olympiades,Bibliotheque Francois Mitterrand, 806,902, 811,902, 814,899, spline
+Ligne 14_Chatelet_Gare de Lyon=Ligne 14,Gare de Lyon,Chatelet, 667,646, 642,621, 618,597, 609,590, spline
+Ligne 14_Chatelet_Pyramides=Ligne 14,Chatelet,Pyramides, 561,589, 548,587, 538,580, 514,555, 508,551, 501,549, spline
+Ligne 14_Madeleine_Chatelet=Ligne 14,Chatelet,Madeleine, 398,558, spline
+Ligne 14_Saint Lazare_Madeleine=Ligne 14,Madeleine,Saint Lazare, 394,523, 395,512, 403,502, 424,481, 432,468, spline
+Ligne 14_Pyramides_Madeleine=Ligne 14,Pyramides,Madeleine, 449,549, 412,549, 399,548, spline
+Ligne 14_Cour St-Emilion_Bercy=Ligne 14,Cour St-Emilion,Bercy, 863,848, 858,838, 848,828, spline
+1=Ligne 13,Miromesnil,Saint Lazare, 422,468, 439,452, spline
+2=Ligne 4,Montparnasse Bienvenue,Vavin, 505,796, 518,797, spline
+
+[]
