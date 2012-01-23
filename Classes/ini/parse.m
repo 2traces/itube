@@ -5,7 +5,7 @@
 
 @implementation INIParser (Parsing)
 
-- (int)parse: (char *)filename
+- (int)parse: (const char *)filename
 {
 	int err;
 	char buf [1024];
@@ -42,8 +42,9 @@
 {
 	int err;
 
-	if (*line == '[') err = [self parseSection: line];
-	else		  err = [self parseAssignment: line];
+    if (*line == ';') err = INIP_ERROR_NONE;  // comment
+	else if (*line == '[') err = [self parseSection: line];
+	else err = [self parseAssignment: line];
 	
 	return err;
 }

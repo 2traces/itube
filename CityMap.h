@@ -15,6 +15,9 @@ NSMutableArray * Split(NSString* s);
 void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r);
 void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat y2, int lineWidth);
 
+// visual type of stations & transfers
+typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM} StationKind;
+
 @class Station;
 @class Line;
 
@@ -57,6 +60,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
     BOOL active;
     BOOL acceptBackLink;
     CGLayerRef predrawedName;
+    int links;
 }
 
 @property (nonatomic, readonly) NSMutableArray* relation;
@@ -74,10 +78,15 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 @property (nonatomic, assign) BOOL drawName;
 @property (nonatomic, assign) BOOL active;
 @property (nonatomic, readonly) BOOL acceptBackLink;
+// number of links with other stations
+@property (nonatomic, assign) int links;
+// is a station the last one (or the first one) in the line
+@property (nonatomic, readonly) BOOL terminal;
 
 -(id) initWithName:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr;
 -(void) addSibling:(Station*)st;
 -(void) drawName:(CGContextRef)context;
+-(void) drawStation:(CGContextRef)context;
 -(void) draw:(CGContextRef)context;
 -(void) draw:(CGContextRef)context inRect:(CGRect)rect;
 -(void) makeSegments;
@@ -126,11 +135,13 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
     UIColor* _color;
     int index;
     CGLayerRef stationLayer;
+    CGRect boundingBox;
 }
 @property (nonatomic, retain) UIColor* color;
 @property (nonatomic, readonly) NSString* name;
 @property (nonatomic, readonly) NSMutableArray* stations;
 @property (nonatomic, assign) int index;
+@property (nonatomic, readonly) CGRect boundingBox;
 
 -(id)initWithName:(NSString*)n stations:(NSString*)stations driving:(NSString*)driving coordinates:(NSString*)coordinates rects:(NSString*)rects;
 -(void)draw:(CGContextRef)context;
@@ -139,7 +150,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 -(void)drawNames:(CGContextRef)context inRect:(CGRect)rect;
 -(void)additionalPointsBetween:(NSString*)station1 and:(NSString*)station2 points:(NSArray*)points;
 -(Station*)getStation:(NSString*)stName;
--(void)activateSegmentFrom:(NSString*)station1 to:(NSString*)station2;
+-(Segment*)activateSegmentFrom:(NSString*)station1 to:(NSString*)station2;
 -(void)setEnabled:(BOOL)en;
 -(void)predraw:(CGContextRef)context;
 @end
@@ -154,6 +165,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
     NSMutableArray* transfers;
     CGFloat currentScale;
     CGRect activeExtent;
+    NSMutableArray *activePath;
 }
 
 @property (nonatomic,retain) NSMutableDictionary *gpsCoords;
@@ -165,6 +177,9 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 @property (nonatomic, assign) CGFloat currentScale;
 @property (nonatomic, readonly) CGRect activeExtent;
 @property (nonatomic, assign) CGFloat predrawScale;
+@property (nonatomic, readonly) NSArray* activePath;
+@property (nonatomic, assign) StationKind stationKind;
+@property (nonatomic, assign) StationKind transferKind;
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //
@@ -183,7 +198,7 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 -(NSInteger) checkPoint:(CGPoint)point Station:(NSMutableString*)stationName;
 	
 // load stuff 
--(void) processGPS: (NSString*) station :(NSString*) lineCoord ;
+-(void) processGPS: (NSString*) station :(NSString*) lineCoord;
 -(void) processTransfers:(NSString*)transferInfo;
 -(void) processAddNodes:(NSString*)addNodeInfo;
 -(void) processLinesStations:(NSString*) stations :(NSUInteger) line;
