@@ -138,6 +138,8 @@
 		BC57D00314C6A3AB00A99FD1 /* bottomtabbarstation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC57D00114C6A3AB00A99FD1 /* bottomtabbarstation@2x.png */; };
 		BC57D00614C6A57200A99FD1 /* wcarat-open.png in Resources */ = {isa = PBXBuildFile; fileRef = BC57D00414C6A57100A99FD1 /* wcarat-open.png */; };
 		BC57D00714C6A57200A99FD1 /* wcarat.png in Resources */ = {isa = PBXBuildFile; fileRef = BC57D00514C6A57200A99FD1 /* wcarat.png */; };
+		BC98E47514C9592700F5260D /* TopTwoStationsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC98E47414C9592700F5260D /* TopTwoStationsView.m */; };
+		BCF52DCD14CAD69400D76E0F /* FastAccessTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */; };
 		CE1146C91466EAF200EF5A28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1146C81466EAF200EF5A28 /* QuartzCore.framework */; };
 		CE81FA70146BDC91008BF969 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CE81FA6D146BDC91008BF969 /* Icon-72.png */; };
 		CE81FA71146BDC91008BF969 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE81FA6E146BDC91008BF969 /* Icon.png */; };
@@ -147,7 +149,6 @@
 		CE93AE19148E5E9400DAD165 /* retrieve.m in Sources */ = {isa = PBXBuildFile; fileRef = CE93AE0F148E5E9400DAD165 /* retrieve.m */; };
 		CE93AE1A148E5E9400DAD165 /* section.m in Sources */ = {isa = PBXBuildFile; fileRef = CE93AE11148E5E9400DAD165 /* section.m */; };
 		CE93AE1D148E5E9400DAD165 /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = CE93AE15148E5E9400DAD165 /* utils.m */; };
-		CE93AE35148E627700DAD165 /* paris2.trp in Resources */ = {isa = PBXBuildFile; fileRef = CE93AE34148E627700DAD165 /* paris2.trp */; };
 		CE94E279146D0F7900D6BD43 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE94E278146D0F7900D6BD43 /* CoreLocation.framework */; };
 		CE966329147BFB8800C31F90 /* textfield.png in Resources */ = {isa = PBXBuildFile; fileRef = CE966328147BFB8800C31F90 /* textfield.png */; };
 		CE966354147BFFC600C31F90 /* textfield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE966353147BFFC600C31F90 /* textfield@2x.png */; };
@@ -335,6 +336,10 @@
 		BC57D00114C6A3AB00A99FD1 /* bottomtabbarstation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottomtabbarstation@2x.png"; sourceTree = "<group>"; };
 		BC57D00414C6A57100A99FD1 /* wcarat-open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wcarat-open.png"; sourceTree = "<group>"; };
 		BC57D00514C6A57200A99FD1 /* wcarat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wcarat.png; sourceTree = "<group>"; };
+		BC98E47314C9592700F5260D /* TopTwoStationsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopTwoStationsView.h; sourceTree = "<group>"; };
+		BC98E47414C9592700F5260D /* TopTwoStationsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopTwoStationsView.m; sourceTree = "<group>"; };
+		BCF52DCB14CAD69400D76E0F /* FastAccessTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastAccessTableViewController.h; sourceTree = "<group>"; };
+		BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastAccessTableViewController.m; sourceTree = "<group>"; };
 		CE1146C81466EAF200EF5A28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CE81FA6D146BDC91008BF969 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "images/Icon-72.png"; sourceTree = "<group>"; };
 		CE81FA6E146BDC91008BF969 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = images/Icon.png; sourceTree = "<group>"; };
@@ -349,7 +354,6 @@
 		CE93AE11148E5E9400DAD165 /* section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = section.m; path = Classes/ini/section.m; sourceTree = "<group>"; };
 		CE93AE14148E5E9400DAD165 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utils.h; path = Classes/ini/utils.h; sourceTree = "<group>"; };
 		CE93AE15148E5E9400DAD165 /* utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = utils.m; path = Classes/ini/utils.m; sourceTree = "<group>"; };
-		CE93AE34148E627700DAD165 /* paris2.trp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = paris2.trp; sourceTree = "<group>"; };
 		CE94E278146D0F7900D6BD43 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CE966328147BFB8800C31F90 /* textfield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textfield.png; sourceTree = "<group>"; };
 		CE966353147BFFC600C31F90 /* textfield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textfield@2x.png"; sourceTree = "<group>"; };
@@ -450,6 +454,10 @@
 				BC3D14DE14C338350059A17E /* BookmarkViewController.m */,
 				BC3D14DF14C338350059A17E /* BookmarkViewController.xib */,
 				BC3D14E014C338350059A17E /* StationListViewController.xib */,
+				BCF52DCB14CAD69400D76E0F /* FastAccessTableViewController.h */,
+				BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */,
+				BC98E47314C9592700F5260D /* TopTwoStationsView.h */,
+				BC98E47414C9592700F5260D /* TopTwoStationsView.m */,
 				BC3D14E114C338360059A17E /* LineListViewController.h */,
 				BC3D14E214C338360059A17E /* LineListViewController.m */,
 				BC3D14E314C338360059A17E /* LineListViewController.xib */,
@@ -584,7 +592,6 @@
 		4BC04400142FC6A600A643B8 /* maps */ = {
 			isa = PBXGroup;
 			children = (
-				CE93AE34148E627700DAD165 /* paris2.trp */,
 				51DA7D1A14CC941000019947 /* paris.map */,
 				51DA7D1B14CC941000019947 /* paris.trp */,
 			);
@@ -776,7 +783,6 @@
 				CE966329147BFB8800C31F90 /* textfield.png in Resources */,
 				CE966354147BFFC600C31F90 /* textfield@2x.png in Resources */,
 				CE966392147C028800C31F90 /* openlist@2x.png in Resources */,
-				CE93AE35148E627700DAD165 /* paris2.trp in Resources */,
 				9F5E307214A4590A00D549E4 /* TODO.engine in Resources */,
 				BC3D14E914C338380059A17E /* HistoryListCell.xib in Resources */,
 				BC3D14EA14C338380059A17E /* StationListCell.xib in Resources */,
@@ -914,6 +920,8 @@
 				BC3D14FE14C338380059A17E /* InAppProductsViewController.m in Sources */,
 				BC3D150414C338600059A17E /* Server.m in Sources */,
 				BC3D150514C338600059A17E /* XMLParser.m in Sources */,
+				BC98E47514C9592700F5260D /* TopTwoStationsView.m in Sources */,
+				BCF52DCD14CAD69400D76E0F /* FastAccessTableViewController.m in Sources */,
 				5121FCBF14C9E23000A9192A /* MyTiledLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

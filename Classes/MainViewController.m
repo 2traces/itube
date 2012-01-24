@@ -10,12 +10,19 @@
 #import "MainView.h"
 #import "SelectingTabBarViewController.h"
 #import "ManagedObjects.h"
+#import "TopTwoStationsView.h"
+#import "FastAccessTableViewController.h"
 
 #define FromStation 0
 #define ToStation 1
 
 @implementation MainViewController
 
+@synthesize fromStation;
+@synthesize toStation;
+@synthesize route;
+@synthesize stationsView;
+@synthesize currentSelection;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	DLog(@"initWithNibName");
@@ -27,22 +34,43 @@
 
 
 
- // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
- - (void)viewDidLoad {
- [super viewDidLoad];
- 	DLog(@"viewDidLoad");
-     [(MainView*)self.view viewInit:self];
- }
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    
+    [(MainView*)self.view viewInit:self];
+    
+    TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] initWithFrame:CGRectMake(0,0,320,44)];
+    self.stationsView = twoStationsView;
+    [(MainView*)self.view addSubview:twoStationsView];
+    [twoStationsView release];
+}
 
+-(FastAccessTableViewController*)showTableView
+{
+    FastAccessTableViewController *tableViewC=[[[FastAccessTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
+    tableViewC.view.frame=CGRectMake(0,44,320,200);
+    
+    [[NSNotificationCenter defaultCenter] addObserver:tableViewC selector:@selector(textDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+    tableViewC.tableView.tag=555;
+    [(MainView*)self.view addSubview:tableViewC.tableView];
+    [(MainView*)self.view bringSubviewToFront:tableViewC.tableView];
+    
+    return tableViewC;
+}
 
+-(void)removeTableView
+{
+    [[(MainView*)self.view viewWithTag:555] removeFromSuperview];
+}
 
+// Override to allow orientations other than the default portrait orientation.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
 
- // Override to allow orientations other than the default portrait orientation.
- - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
- // Return YES for supported orientations
-     return (interfaceOrientation == UIInterfaceOrientationPortrait);
- }
- 
 
 
 - (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller {
@@ -70,24 +98,58 @@
     [controller release];
 }
 
+-(void)transitToRouteState
+{
+    
+}
+
 -(void)returnFromSelection:(NSArray*)stations
 {
-    MainView *ourView = (MainView*)self.view;
-
+    MainView *mainView = (MainView*)self.view;
+    
     if ([stations count]>1) {
         // это история и надо ставить обе станции
-        [ourView didFirstStationSelected:[[stations objectAtIndex:0] name] line:[[[[stations objectAtIndex:0] lines] index] integerValue]];
-        [ourView didSecondStationSelected:[[stations objectAtIndex:1] name] line:[[[[stations objectAtIndex:1] lines] index] integerValue]];
+        self.fromStation = [stations objectAtIndex:0];
+        self.toStation = [stations objectAtIndex:1];
+        
+        if (currentSelection==0) {
+        [stationsView setFromStation:self.fromStation];
+        [stationsView setToStation:self.toStation];
+        } else {
+            [stationsView setToStation:self.toStation];
+            [stationsView setFromStation:self.fromStation];
+        }
+        //       [self.stationsView transitToRouteState]; // with Station1 Station2
+        //     [self.routeScrollView appear];
+        
+        
     } else {
         // это конкретная станция
         if (currentSelection==0) {
-            [ourView didFirstStationSelected:[[stations objectAtIndex:0] name] line:[[[[stations objectAtIndex:0] lines] index] integerValue]];
+            if ([stations objectAtIndex:0]==self.toStation) {
+                self.fromStation=nil;
+            } else {
+                self.fromStation = [stations objectAtIndex:0];
+            }
+            
+            [stationsView setFromStation:self.fromStation];
         } else {
-            [ourView didSecondStationSelected:[[stations objectAtIndex:0] name] line:[[[[stations objectAtIndex:0] lines] index] integerValue]];
+            if ([stations objectAtIndex:0]==self.fromStation) {
+                self.toStation=nil;
+            } else {
+                self.toStation = [stations objectAtIndex:0];
+            }
+            
+            [stationsView setToStation:self.toStation];
         }
     }
     
-    [ourView processStationSelect2];
+    if ((self.fromStation==nil || self.toStation==nil)) {
+        [mainView.mapView clearPath];
+	} else {
+        [mainView findPathFrom:[fromStation name] To:[toStation name] FirstLine:[[[fromStation lines] index] integerValue] LastLine:[[[toStation lines] index] integerValue]];	}
+    
+	mainView.mapView.stationSelected=false;
     
     MHelper *helper = [MHelper sharedHelper];
     [helper saveBookmarkFile];
@@ -95,16 +157,20 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+-(void)returnFromSelectionFastAccess:(NSArray *)stations
+{
+    [self removeTableView];
+    [self returnFromSelection:stations];
+}
+
 -(void)pressedSelectFromStation
 {
-    DLog(@"From Station from controller pressed");
     currentSelection=FromStation;
     [self showTabBarViewController];
 }
 
 -(void)pressedSelectToStation
 {
-    DLog(@"To Station from controller pressed");
     currentSelection=ToStation;
     [self showTabBarViewController];
 }
