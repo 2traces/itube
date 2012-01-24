@@ -22,6 +22,7 @@
 @synthesize toStation;
 @synthesize route;
 @synthesize stationsView;
+@synthesize currentSelection;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	DLog(@"initWithNibName");
@@ -35,9 +36,9 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-
+    
     [super viewDidLoad];
-
+    
     [(MainView*)self.view viewInit:self];
     
     TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] initWithFrame:CGRectMake(0,0,320,44)];
@@ -48,24 +49,28 @@
 
 -(FastAccessTableViewController*)showTableView
 {
-        FastAccessTableViewController *tableViewC=[[[FastAccessTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
-        tableViewC.view.frame=CGRectMake(0,44,320,200);
-        
-        [[NSNotificationCenter defaultCenter] addObserver:tableViewC selector:@selector(textDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+    FastAccessTableViewController *tableViewC=[[[FastAccessTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
+    tableViewC.view.frame=CGRectMake(0,44,320,200);
     
+    [[NSNotificationCenter defaultCenter] addObserver:tableViewC selector:@selector(textDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+    tableViewC.tableView.tag=555;
     [(MainView*)self.view addSubview:tableViewC.tableView];
     [(MainView*)self.view bringSubviewToFront:tableViewC.tableView];
     
     return tableViewC;
 }
 
+-(void)removeTableView
+{
+    [[(MainView*)self.view viewWithTag:555] removeFromSuperview];
+}
 
- // Override to allow orientations other than the default portrait orientation.
- - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
- // Return YES for supported orientations
-     return (interfaceOrientation == UIInterfaceOrientationPortrait);
- }
- 
+// Override to allow orientations other than the default portrait orientation.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
 
 
 - (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller {
@@ -101,23 +106,40 @@
 -(void)returnFromSelection:(NSArray*)stations
 {
     MainView *mainView = (MainView*)self.view;
-
+    
     if ([stations count]>1) {
         // это история и надо ставить обе станции
         self.fromStation = [stations objectAtIndex:0];
         self.toStation = [stations objectAtIndex:1];
         
- //       [self.stationsView transitToRouteState]; // with Station1 Station2
-   //     [self.routeScrollView appear];
+        if (currentSelection==0) {
+        [stationsView setFromStation:self.fromStation];
+        [stationsView setToStation:self.toStation];
+        } else {
+            [stationsView setToStation:self.toStation];
+            [stationsView setFromStation:self.fromStation];
+        }
+        //       [self.stationsView transitToRouteState]; // with Station1 Station2
+        //     [self.routeScrollView appear];
         
-
+        
     } else {
         // это конкретная станция
         if (currentSelection==0) {
-            self.fromStation = [stations objectAtIndex:0];
+            if ([stations objectAtIndex:0]==self.toStation) {
+                self.fromStation=nil;
+            } else {
+                self.fromStation = [stations objectAtIndex:0];
+            }
+            
             [stationsView setFromStation:self.fromStation];
         } else {
-            self.toStation = [stations objectAtIndex:0];
+            if ([stations objectAtIndex:0]==self.fromStation) {
+                self.toStation=nil;
+            } else {
+                self.toStation = [stations objectAtIndex:0];
+            }
+            
             [stationsView setToStation:self.toStation];
         }
     }
@@ -133,6 +155,12 @@
     [helper saveBookmarkFile];
     [helper saveHistoryFile];
     [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)returnFromSelectionFastAccess:(NSArray *)stations
+{
+    [self removeTableView];
+    [self returnFromSelection:stations];
 }
 
 -(void)pressedSelectFromStation

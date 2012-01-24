@@ -9,7 +9,7 @@
 
 @interface INIParser (Parsing)
 
-- (int)parse: (char *)filename;
+- (int)parse: (const char *)filename;
 - (int)parseLine: (char *) line;
 - (int)parseSection: (char *) line;
 - (int)parseAssignment: (char *) line;

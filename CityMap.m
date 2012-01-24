@@ -12,7 +12,10 @@
 #import <CoreLocation/CoreLocation.h>
 
 CGFloat PredrawScale = 2.f;
-const CGFloat LineWidth = 4.f;
+CGFloat LineWidth = 4.f;
+CGFloat StationDiameter = 8.f;
+StationKind StKind = LIKE_PARIS;
+StationKind TrKind = LIKE_PARIS;
 
 NSMutableArray * Split(NSString* s)
 {
@@ -101,7 +104,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     else boundingBox = CGRectUnion(boundingBox, st);
 }
 
-+(void) drawTransfer:(CGContextRef) context stations:(NSArray*)stations
++(void) drawTransferLikeLondon:(CGContextRef) context stations:(NSArray*)stations
 {
     CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
     CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 1.0);				
@@ -127,17 +130,88 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             drawLine(context, p1.x, p1.y, p2.x, p2.y, 1.5);
         }
     }
+}
+
++(void) drawTransferLikeParis:(CGContextRef)context stations:(NSArray*)stations
+{
+    CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
+    CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 1.0);				
+    for(int i = 0; i<[stations count]; i++) {
+        Station *st = [stations objectAtIndex:i];
+        CGPoint p1 = st.pos;
+        for(int j = i+1; j<[stations count]; j++) {
+            Station *st2 = [stations objectAtIndex:j];
+            CGPoint p2 = st2.pos;
+            drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2);
+        }
+    }
+    CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
+    CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
+    for(int i = 0; i<[stations count]; i++) {
+        Station *st = [stations objectAtIndex:i];
+        CGPoint p1 = st.pos;
+        for(int j = i+1; j<[stations count]; j++) {
+            Station *st2 = [stations objectAtIndex:j];
+            CGPoint p2 = st2.pos;
+            drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2-1);
+        }
+    }
+    for (Station *st in stations) {
+        if(st.terminal) {
+            CGPoint p1 = st.pos;
+            CGContextSetFillColorWithColor(context, [st.line.color CGColor]);
+            drawFilledCircle(context, p1.x, p1.y, LineWidth/2);
+        }
+    }
+}
+
++(void) drawTransferLikeMoscow:(CGContextRef)context stations:(NSArray*)stations
+{
+    CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 0.6);
+    CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 0.6);				
+    for(int i = 0; i<[stations count]; i++) {
+        Station *st = [stations objectAtIndex:i];
+        CGPoint p1 = st.pos;
+        for(int j = i+1; j<[stations count]; j++) {
+            Station *st2 = [stations objectAtIndex:j];
+            CGPoint p2 = st2.pos;
+            drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2);
+        }
+    }
+    CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
+    CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
+    for(int i = 0; i<[stations count]; i++) {
+        Station *st = [stations objectAtIndex:i];
+        CGPoint p1 = st.pos;
+        for(int j = i+1; j<[stations count]; j++) {
+            Station *st2 = [stations objectAtIndex:j];
+            CGPoint p2 = st2.pos;
+            drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2-2);
+        }
+    }
     for (Station *st in stations) {
         CGPoint p1 = st.pos;
         CGContextSetFillColorWithColor(context, [st.line.color CGColor]);
-        drawFilledCircle(context, p1.x, p1.y, 1.5);
+        drawFilledCircle(context, p1.x, p1.y, LineWidth/2);
     }
 }
 
 -(void)draw:(CGContextRef)context
 {
     if(transferLayer != nil) CGContextDrawLayerInRect(context, boundingBox, transferLayer);
-    else [Transfer drawTransfer:context stations:[stations allObjects]];
+    else {
+        switch (TrKind) {
+            case LIKE_LONDON:
+                [Transfer drawTransferLikeLondon:context stations:[stations allObjects]];
+                break;
+            case LIKE_PARIS:
+                [Transfer drawTransferLikeParis:context stations:[stations allObjects]];
+                break;
+            case LIKE_MOSCOW:
+                [Transfer drawTransferLikeMoscow:context stations:[stations allObjects]];
+                break;
+        }
+    }
 }
 
 -(void)predraw:(CGContextRef)context
@@ -148,7 +222,17 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     CGContextRef ctx = CGLayerGetContext(transferLayer);
     CGContextScaleCTM(ctx, PredrawScale, PredrawScale);
     CGContextTranslateCTM(ctx, -boundingBox.origin.x, -boundingBox.origin.y);
-    [Transfer drawTransfer:ctx stations:[stations allObjects]];
+    switch (TrKind) {
+        case LIKE_PARIS:
+            [Transfer drawTransferLikeParis:ctx stations:[stations allObjects]];
+            break;
+        case LIKE_LONDON:
+            [Transfer drawTransferLikeLondon:ctx stations:[stations allObjects]];
+            break;
+        case LIKE_MOSCOW:
+            [Transfer drawTransferLikeMoscow:ctx stations:[stations allObjects]];
+            break;
+    }
 }
 
 @end
@@ -170,12 +254,15 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize drawName;
 @synthesize active;
 @synthesize acceptBackLink;
+@synthesize links;
+
+-(BOOL) terminal { return links == 1; }
 
 -(id)initWithName:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr
 {
     if((self = [super init])) {
         pos = p;
-        boundingBox = CGRectMake(pos.x-LineWidth, pos.y-LineWidth, LineWidth*2, LineWidth*2);
+        boundingBox = CGRectMake(pos.x-StationDiameter/2, pos.y-StationDiameter/2, StationDiameter, StationDiameter);
         index = i;
         textRect = r;
         segment = [[NSMutableArray alloc] init];
@@ -269,6 +356,17 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
 }
 
+-(void)drawStation:(CGContextRef)context
+{
+    /*if(StKind == LIKE_LONDON) {  TODO
+        CGContextSetLineCap(context, kCGLineCapSquare);
+        CGContextSetLineWidth(context, LineWidth/2);
+        CGContextMoveToPoint(context, pos.x, pos.y);
+        CGContextAddLineToPoint(context, textRect.origin.x, textRect.origin.y);
+        CGContextStrokePath(context);
+    }*/
+}
+
 -(void)predraw:(CGContextRef) context
 {
     if(predrawedName != nil) CGLayerRelease(predrawedName);
@@ -348,6 +446,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         CGRect s1 = CGRectMake(from.pos.x - 5, from.pos.y - 5, 10, 10);
         CGRect s2 = CGRectMake(to.pos.x - 5, to.pos.y - 5, 10, 10);
         boundingBox = CGRectUnion(s1, s2);
+        start.links ++;
+        end.links ++;
     }
     return self;
 }
@@ -432,6 +532,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize name;
 @synthesize stations;
 @synthesize index;
+@synthesize boundingBox;
 
 -(id)initWithName:(NSString*)n stations:(NSString *)station driving:(NSString *)driving coordinates:(NSString *)coordinates rects:(NSString *)rects
 {
@@ -439,6 +540,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         name = [n retain];
         stations = [[NSMutableArray alloc] init];
         stationLayer = nil;
+        boundingBox = CGRectNull;
         NSArray *sts = Split(station);
         NSArray *drs = Split(driving);
         NSArray *crds = [coordinates componentsSeparatedByString:@", "];
@@ -490,6 +592,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
         for(Station *st in stations) {
             [st makeSegments];
+            boundingBox = CGRectUnion(boundingBox, st.boundingBox);
+            boundingBox = CGRectUnion(boundingBox, st.textRect);
+            for (Segment *seg in st.segment) {
+                boundingBox = CGRectUnion(boundingBox, seg.boundingBox);
+            }
         }
     }
     return self;
@@ -530,8 +637,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
     for (Station *s in stations) {
         if(s.transfer == nil && CGRectIntersectsRect(rect, s.boundingBox)) {
-            //[s draw:context];
-            CGContextDrawLayerInRect(context, s.boundingBox, stationLayer);
+            if(StKind == LIKE_LONDON)
+                [s drawStation:context];
+            else
+                CGContextDrawLayerInRect(context, s.boundingBox, stationLayer);
         }
     }
 }
@@ -544,7 +653,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
 }
 
--(void)activateSegmentFrom:(NSString *)station1 to:(NSString *)station2
+-(Segment*)activateSegmentFrom:(NSString *)station1 to:(NSString *)station2
 {
     for (Station *s in stations) {
         if([s.name isEqualToString:station1] || [s.name isEqualToString:station2]) {
@@ -555,10 +664,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     seg.end.active = YES;
                     seg.active = YES;
                     if(seg.end.transfer) seg.end.transfer.active = YES;
+                    return seg;
                 }
             }
         }
     }
+    return nil;
 }
 
 -(void)setEnabled:(BOOL)en
@@ -620,14 +731,24 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
     if(stationLayer != nil) CGLayerRelease(stationLayer);
     // make predrawed staion point
-    CGFloat ssize = LineWidth*PredrawScale;
-    stationLayer = CGLayerCreateWithContext(context, CGSizeMake(ssize*2, ssize*2), NULL);
+    CGFloat ssize = StationDiameter*PredrawScale;
+    CGFloat hsize = ssize/2;
+    stationLayer = CGLayerCreateWithContext(context, CGSizeMake(ssize, ssize), NULL);
     CGContextRef ctx = CGLayerGetContext(stationLayer);
-    CGContextSetFillColorWithColor(ctx, [_color CGColor]);
-    drawFilledCircle(ctx, ssize, ssize, ssize);
-    //CGContextSetRGBStrokeColor(ctx, 0.9, 0.9, 0.1, 0.8);
-	//CGContextSetLineWidth(ctx, 6);
-	//CGContextStrokeEllipseInRect(ctx, CGRectMake(3, 3, 25, 25));
+    switch(StKind) {
+        case LIKE_MOSCOW:
+            CGContextSetRGBFillColor(ctx, 0, 0, 0, 1.0);
+            CGContextFillEllipseInRect(ctx, CGRectMake(0, 0, ssize, ssize));
+            CGContextSetFillColorWithColor(ctx, [_color CGColor]);
+            drawFilledCircle(ctx, hsize, hsize, hsize-PredrawScale/2);
+            break;
+        case LIKE_PARIS:
+            CGContextSetFillColorWithColor(ctx, [_color CGColor]);
+            drawFilledCircle(ctx, hsize, hsize, hsize);
+            break;
+        case LIKE_LONDON:
+            break;
+    }
 }
 
 @end
@@ -638,6 +759,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize gpsCoords;
 @synthesize currentScale;
 @synthesize activeExtent;
+@synthesize activePath;
+
+-(StationKind) stationKind { return StKind; }
+-(void) setStationKind:(StationKind)stationKind { StKind = stationKind; }
+-(StationKind) transferKind { return TrKind; }
+-(void) setTransferKind:(StationKind)transferKind { TrKind = transferKind; }
 
 -(id) init {
     [super init];
@@ -651,6 +778,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	graph = [[Graph graph] retain];
     mapLines = [[NSMutableArray alloc] init];
     activeExtent = CGRectNull;
+    activePath = [[NSMutableArray alloc] init];
 }
 
 -(CGSize) size { return CGSizeMake(_w, _h); }
@@ -664,78 +792,85 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 }
 
 -(void) loadMap:(NSString *)mapName {
-	INIParser* parser;
+	INIParser* parserTrp, *parserMap;
 	
-	parser = [[INIParser alloc] init];
+	parserTrp = [[INIParser alloc] init];
+	parserMap = [[INIParser alloc] init];
 	
 	int err;
 
-	NSString* str = [[NSBundle mainBundle] pathForResource:@"paris2" ofType:@"trp"]; 
-	char cstr[512] = {0}; 
+	NSString* strTrp = [[NSBundle mainBundle] pathForResource:mapName ofType:@"trp"]; 
+	NSString* strMap = [[NSBundle mainBundle] pathForResource:mapName ofType:@"map"]; 
 	
-	[str getCString:cstr maxLength:512 encoding:NSASCIIStringEncoding]; 
-	err = [parser parse:cstr];	
+	err = [parserTrp parse:[strTrp UTF8String]];
+    err = [parserMap parse:[strMap UTF8String]];
 
-	NSInteger linesCount = [[parser get:@"LinesCount" section:@"main"] integerValue];
+    int val = [[parserMap get:@"LinesWidth" section:@"Options"] intValue];
+    if(val != 0) LineWidth = val;
+    val = [[parserMap get:@"StationDiameter" section:@"Options"] intValue];
+    if(val != 0) StationDiameter = val;
+    val = [[parserMap get:@"DisplayTransfers" section:@"Options"] intValue];
+    if(val >= 0 && val < KINDS_NUM) TrKind = val;
+    val = [[parserMap get:@"DisplayStations" section:@"Options"] intValue];
+    if(val >= 0 && val < KINDS_NUM) StKind = val;
 	
-	NSArray *size = [[parser get:@"Size" section:@"main"] componentsSeparatedByString:@","];
-	_w = ([[size objectAtIndex:0] integerValue]);
-	_h = ([[size objectAtIndex:1] integerValue]);
+	_w = 0;
+	_h = 0;
+    CGRect boundingBox = CGRectNull;
 
-	for (int i =0 ;i<linesCount; i++) {
-		NSString *sectionName = [NSString stringWithFormat:@"Line%d", i+1 ];
-		NSString *lineName = [parser get:@"Name" section:sectionName];
+	for (int i = 1; true; i++) {
+		NSString *sectionName = [NSString stringWithFormat:@"Line%d", i ];
+		NSString *lineName = [parserTrp get:@"Name" section:sectionName];
+        if(lineName == nil) break;
 
         MLine *newLine = [NSEntityDescription insertNewObjectForEntityForName:@"Line" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
         newLine.name=lineName;
-        newLine.index = [[NSNumber alloc] initWithInt:i+1];
+        newLine.index = [[NSNumber alloc] initWithInt:i];
  
-		NSString *colors = [parser get:@"Color" section:lineName];
+		NSString *colors = [parserMap get:@"Color" section:lineName];
         newLine.color = [self colorForHex:colors];
 		
-		NSString *coords = [parser get:@"Coordinates" section:lineName];
-		NSString *coordsText = [parser get:@"Rects" section:lineName];
-		NSString *stations = [parser get:@"Stations" section:sectionName];
+		NSString *coords = [parserMap get:@"Coordinates" section:lineName];
+		NSString *coordsText = [parserMap get:@"Rects" section:lineName];
+		NSString *stations = [parserTrp get:@"Stations" section:sectionName];
 		[self processLinesStations:stations	:i];
 		
-		NSString *coordsTime = [parser get:@"Driving" section:sectionName];
+		NSString *coordsTime = [parserTrp get:@"Driving" section:sectionName];
         
         Line *l = [[Line alloc] initWithName:lineName stations:stations driving:coordsTime coordinates:coords rects:coordsText];
-        l.index = i+1;
+        l.index = i;
         l.color = newLine.color;
         [mapLines addObject:l];
+        boundingBox = CGRectUnion(boundingBox, l.boundingBox);
 	}
     [[MHelper sharedHelper] saveContext];
     [[MHelper sharedHelper] readHistoryFile];
     [[MHelper sharedHelper] readBookmarkFile];
+    _w = boundingBox.origin.x + boundingBox.size.width;
+    _h = boundingBox.origin.y + boundingBox.size.height;
 		
-	int counter = 0;
-	INISection *section = [parser getSection:@"AdditionalNodes"];
+	INISection *section = [parserMap getSection:@"AdditionalNodes"];
 	NSMutableDictionary *as = [section assignments];
 	for (NSString* key in as) {
-		NSString *value = [parser get:key section:@"AdditionalNodes"];
+		NSString *value = [parserMap get:key section:@"AdditionalNodes"];
 		[self processAddNodes:value];
-		counter++;
 	}
 
-	counter = 0;
-	INISection *section2 = [parser getSection:@"Transfers"];
+	INISection *section2 = [parserTrp getSection:@"Transfers"];
 	NSMutableDictionary *as2 = [section2 assignments];
 	for (NSString* key in as2) {
-		NSString *value = [parser get:key section:@"Transfers"];
+		NSString *value = [parserTrp get:key section:@"Transfers"];
 		[self processTransfers:value];
-		counter++;
 	}
 	
-	counter = 0;
-	INISection *section3 = [parser getSection:@"gps"];
+	INISection *section3 = [parserTrp getSection:@"gps"];
 	NSMutableDictionary *as3 = [section3 assignments];
 	for (NSString* key in as3) {
-		NSString *value = [parser get:key section:@"gps"];
+		NSString *value = [parserTrp get:key section:@"gps"];
 		[self processGPS :key :value];
-		counter++;
 	}
-	[parser release];
+	[parserMap release];
+    [parserTrp release];
     
     [self calcGraph];
     [self predraw];
@@ -850,7 +985,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             MStation *station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
             station.name=newstring;
             station.isFavorite=[NSNumber numberWithInt:0];
-            station.lines=[[MHelper sharedHelper] lineByIndex:line+1 ];
+            station.lines=[[MHelper sharedHelper] lineByIndex:line ];
             station.index = [NSNumber numberWithInt:i];
 
 			i++;
@@ -876,7 +1011,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             MStation *station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
                         station.name=stationname;
             station.isFavorite=[NSNumber numberWithInt:0];
-            station.lines=[[MHelper sharedHelper] lineByIndex:line+1 ];
+            station.lines=[[MHelper sharedHelper] lineByIndex:line ];
             station.index = [NSNumber numberWithInt:i];
             
 			i++;
@@ -971,6 +1106,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [mapLines release];
 	[graph release];
     [transfers release];
+    [activePath release];
 }
 
 // drawing
@@ -1027,6 +1163,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         t.active = NO;
     }
     activeExtent = CGRectNull;
+    [activePath removeAllObjects];
 	int count_ = [pathMap count];
 	for (int i=0; i< count_-1; i++) {
 		NSString *rawString1 = (NSString*)[[pathMap objectAtIndex:i] value];
@@ -1041,11 +1178,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         
         Line* l = [mapLines objectAtIndex:lineNum1-1];
         if (lineNum1==lineNum2) {
-            [l activateSegmentFrom:stationName1 to:stationName2];
-        }
+            [activePath addObject:[l activateSegmentFrom:stationName1 to:stationName2]];
+        } 
         Station *s = [l getStation:stationName1];
         activeExtent = CGRectUnion(activeExtent, s.textRect);
         activeExtent = CGRectUnion(activeExtent, s.boundingBox);
+        if(lineNum1 != lineNum2 && [activePath count] > 0) {
+            [activePath addObject:s.transfer];
+        }
         if(i == count_ - 2) {
             s = [l getStation:stationName2];
             activeExtent = CGRectUnion(activeExtent, s.textRect);
@@ -1063,6 +1203,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         t.active = YES;
     }
     activeExtent = CGRectNull;
+    [activePath removeAllObjects];
 }
 
 -(void) drawTransfers:(CGContextRef) context 

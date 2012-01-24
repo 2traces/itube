@@ -10,6 +10,7 @@
 #import "ManagedObjects.h"
 #import "StationListCell.h"
 #import "tubeAppDelegate.h"
+#import "MainViewController.h"
 
 @implementation FastAccessTableViewController
 
@@ -18,7 +19,6 @@
 @synthesize dataSource;
 @synthesize filteredStation;
 @synthesize colorDictionary;
-
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -42,7 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     MHelper *helper = [MHelper sharedHelper];
     self.dataSource = helper;
     
@@ -105,7 +105,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -116,13 +115,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-        return [filteredStation count];
+    return [filteredStation count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDate *date = [NSDate date];
-    
     static NSString *CellIdentifier = @"StationCell";
     
     StationListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -131,28 +128,25 @@
         [[cell mybutton] addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
     
-        NSString *cellValue = [[self.filteredStation objectAtIndex:indexPath.row] name];
-        cell.mylabel.text = cellValue;
-        cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
-        cell.mylabel.textColor = [UIColor blackColor];
-        
-        NSUInteger indexForTag = [self.stationList indexOfObject:[self.filteredStation objectAtIndex:indexPath.row]];  
-        
-        // звездочка
-        [[cell mybutton] setTag:indexForTag];
-        
-        
-        if ([[[self.stationList objectAtIndex:indexForTag] isFavorite] intValue]==1) {
-            [[cell mybutton] setImage:[UIImage imageNamed:@"starbutton_on.png"] forState:UIControlStateNormal];
-        } else {
-            [[cell mybutton] setImage:[UIImage imageNamed:@"starbutton_off.png"] forState:UIControlStateNormal];
-        }
-        
-        UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
-        myImageView.image = [self imageWithColor:[(MStation*)[self.filteredStation objectAtIndex:indexPath.row] lines]];    
-
-    NSDate *date2 = [NSDate date];
-    NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
+    NSString *cellValue = [[self.filteredStation objectAtIndex:indexPath.row] name];
+    cell.mylabel.text = cellValue;
+    cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
+    cell.mylabel.textColor = [UIColor blackColor];
+    
+    NSUInteger indexForTag = [self.stationList indexOfObject:[self.filteredStation objectAtIndex:indexPath.row]];  
+    
+    // звездочка
+    [[cell mybutton] setTag:indexForTag];
+    
+    
+    if ([[[self.stationList objectAtIndex:indexForTag] isFavorite] intValue]==1) {
+        [[cell mybutton] setImage:[UIImage imageNamed:@"starbutton_on.png"] forState:UIControlStateNormal];
+    } else {
+        [[cell mybutton] setImage:[UIImage imageNamed:@"starbutton_off.png"] forState:UIControlStateNormal];
+    }
+    
+    UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
+    myImageView.image = [self imageWithColor:[(MStation*)[self.filteredStation objectAtIndex:indexPath.row] lines]];    
     
     return cell;
 }
@@ -161,14 +155,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        NSLog(@"%@",[[self.filteredStation objectAtIndex:indexPath.row] name]); 
-        
-        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-        
-//        [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:[self.filteredStation objectAtIndex:indexPath.row]]];
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    [appDelegate.mainViewController returnFromSelection2:[NSArray arrayWithObject:[self.filteredStation objectAtIndex:indexPath.row]]];
-    
+    [appDelegate.mainViewController returnFromSelectionFastAccess:[NSArray arrayWithObject:[self.filteredStation objectAtIndex:indexPath.row]]];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -188,27 +177,14 @@
     
     UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
     
-    if (self.searchDisplayController.active) {
-        
-        NSIndexPath *path = [self.searchDisplayController.searchResultsTableView indexPathForCell:cell];
-        
-        [self.searchDisplayController.searchResultsTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationNone];
-    } else {
-        
-        NSIndexPath *path = [self.tableView indexPathForCell:cell];
-        
-        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationNone];
-    }
+    NSIndexPath *path = [self.tableView indexPathForCell:cell];
+    
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationNone];
 }
-
 
 -(UIImage*)drawCircleView:(UIColor*)myColor
 {
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(27, 27), NO, 0.0);
-    
-    //    CGRect allRect = self.bounds;
-    //    CGRect circleRect = CGRectMake(allRect.origin.x + 2, allRect.origin.y + 2, allRect.size.width - 4,
-    //                                   allRect.size.height - 4);
     
     CGRect circleRect = CGRectMake(1.0, 1.0, 25.0, 25.0);
 	
@@ -249,13 +225,13 @@
 	}
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-//    [self filterContentForSearchText:textField.text scope:nil];
-//    [self.tableView reloadData];
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
     return YES;
 }
 
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
     return YES;
 }
 

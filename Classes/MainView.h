@@ -32,6 +32,7 @@ extern NSInteger const toolbarWidth;
 	NSNumber *yh;
 	UIView *stationNameView;
 	UILabel *stationNameLabel;
+    UIView *buttonsView;
 }
 
 @property (nonatomic, retain) UIView *stationNameView;

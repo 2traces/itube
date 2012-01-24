@@ -55,7 +55,6 @@
 	[firstStation setReturnKeyType:UIReturnKeyDone];
 	[firstStation setClearButtonMode:UITextFieldViewModeWhileEditing];
     firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
-//    firstStation.enabled=NO;
     
 	[toolbar addSubview:firstStation];	
     
@@ -95,12 +94,11 @@
     [toolbar addSubview:button2];
     
     [toolbar release];
-
 }
 
 -(void)transitFirstToBigField
 {
-    NSTimeInterval duration = 0.3f;
+    NSTimeInterval duration = 0.2f;
     
     [UIView animateWithDuration:duration animations:^{ 
         isEditing=YES;
@@ -115,34 +113,31 @@
         secondButton.userInteractionEnabled=NO;
         
         firstStation.frame = CGRectMake(0,3, 317, 36);
+        
+        firstStation.text = @"";
+        firstStation.rightViewMode = UITextFieldViewModeAlways;
+        [firstStation setLeftView:nil];
+        [firstStation setRightViewMode: UITextFieldViewModeAlways];
     }];
     
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     FastAccessTableViewController *controller = [appDelegate.mainViewController showTableView];
-
     
-/*    if (!tableView) {
-        self.tableView=[[[FastAccessTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
-        tableView.view.frame=CGRectMake(0,44,320,200);
-
-        [[NSNotificationCenter defaultCenter] addObserver:self.tableView selector:@selector(textDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
-    }
     
-    [self addSubview:tableView.tableView];
-    [self bringSubviewToFront:tableView.tableView];*/
+    appDelegate.mainViewController.currentSelection=0;
     self.tableView=controller;
     firstStation.delegate = self.tableView;
     [firstStation becomeFirstResponder];
-
+    
 }
 
 -(void)transitFirstToSmallField
 {
-    NSTimeInterval duration = 0.3f;
+    NSTimeInterval duration = 0.2f;
     
     [UIView animateWithDuration:duration animations:^{ 
         isEditing=NO;
-
+        
         secondStation.hidden=NO;
         secondStation.userInteractionEnabled=YES;
         
@@ -153,17 +148,24 @@
         secondButton.userInteractionEnabled=YES;
         
         firstStation.frame = CGRectMake(0,3, 157, 36);
+        
+        
+        
     }];
+    
+    firstStation.delegate=self;
+    self.tableView=nil;
+    [firstStation resignFirstResponder];
     
 }
 
 -(void)transitSecondToBigField
 {
-    NSTimeInterval duration = 0.3f;
+    NSTimeInterval duration = 0.2f;
     
     [UIView animateWithDuration:duration animations:^{ 
         isEditing=YES;
-
+        
         firstStation.hidden=YES;
         firstStation.userInteractionEnabled=NO;
         
@@ -174,17 +176,31 @@
         secondButton.userInteractionEnabled=NO;
         
         secondStation.frame = CGRectMake(0,3, 317, 36);
+
+        secondStation.text = @"";
+        secondStation.rightViewMode = UITextFieldViewModeAlways;
+        [secondStation setLeftView:nil];
+        [secondStation setRightViewMode: UITextFieldViewModeAlways];
     }];
+    
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    FastAccessTableViewController *controller = [appDelegate.mainViewController showTableView];
+    appDelegate.mainViewController.currentSelection=1;
+    
+    self.tableView=controller;
+    secondStation.delegate = self.tableView;
+    [secondStation becomeFirstResponder];
+    
     
 }
 
 -(void)transitSecondToSmallField
 {
-    NSTimeInterval duration = 0.3f;
+    NSTimeInterval duration = 0.2f;
     
     [UIView animateWithDuration:duration animations:^{ 
         isEditing=NO;
-
+        
         firstStation.hidden=NO;
         firstStation.userInteractionEnabled=YES;
         
@@ -197,6 +213,10 @@
         secondStation.frame = CGRectMake(160, 7, 157, 36);
     }];
     
+    secondStation.delegate=self;
+    self.tableView=nil;
+    [secondStation resignFirstResponder];
+    
 }
 
 -(UIImage*)imageWithColor:(MLine*)line
@@ -206,13 +226,33 @@
 }
 
 -(void) selectFromStation {
+    [firstStation resignFirstResponder];
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate.mainViewController removeTableView];
     [appDelegate.mainViewController pressedSelectFromStation];
 }
 
 -(void) selectToStation {
+    [secondStation resignFirstResponder];
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate.mainViewController removeTableView];
     [appDelegate.mainViewController pressedSelectToStation];
+}
+
+-(void)clearFromStation
+{
+    firstStation.text = @"";
+    firstStation.rightViewMode = UITextFieldViewModeAlways;
+    [firstStation setLeftView:nil];
+    [firstStation setLeftViewMode: UITextFieldViewModeNever];
+}
+
+-(void)clearToStation
+{
+    secondStation.text = @"";
+    secondStation.rightViewMode = UITextFieldViewModeAlways;
+    [secondStation setLeftView:nil];
+    [secondStation setLeftViewMode: UITextFieldViewModeNever];
 }
 
 -(void)setFromStation:(MStation*)fromStation
@@ -220,24 +260,31 @@
     if ([firstButton isHidden]) {
         [self transitFirstToSmallField];
     }
-    
-    firstStation.text = fromStation.name;
-    firstStation.rightView = nil;
-    [firstStation setLeftView:[[UIImageView alloc] initWithImage:[self imageWithColor:[fromStation lines]]]];
-    [firstStation setLeftViewMode: UITextFieldViewModeAlways];
-
+    if (fromStation) {
+       
+        firstStation.text = fromStation.name;
+        firstStation.rightViewMode = UITextFieldViewModeNever;
+        [firstStation setLeftView:[[UIImageView alloc] initWithImage:[self imageWithColor:[fromStation lines]]]];
+        [firstStation setLeftViewMode: UITextFieldViewModeAlways];
+    } else {
+        [self clearFromStation];
+    }
 }
 
 -(void)setToStation:(MStation*)toStation
 {
+
     if ([secondButton isHidden]) {
         [self transitSecondToSmallField];
     }
-    
-    secondStation.text = toStation.name;
-    secondStation.rightView = nil;
-    [secondStation setLeftView:[[UIImageView alloc] initWithImage:[self imageWithColor:[toStation lines]]]];
-    [secondStation setLeftViewMode: UITextFieldViewModeAlways];
+    if (toStation) {
+        secondStation.text = toStation.name;
+        secondStation.rightViewMode = UITextFieldViewModeNever;
+        [secondStation setLeftView:[[UIImageView alloc] initWithImage:[self imageWithColor:[toStation lines]]]];
+        [secondStation setLeftViewMode: UITextFieldViewModeAlways];
+    } else {
+        [self clearToStation];
+    }
 }
 
 -(UIImage*)drawCircleView:(UIColor*)myColor
@@ -263,10 +310,6 @@
 
 // UITextFieldDelegate
 
--(void)textFieldDidBeginEditing:(UITextField *)textField {
-	DLog(@"Here5");
-}
-
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     if (isEditing) {
@@ -277,13 +320,13 @@
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 
 -(void)dealloc
 {

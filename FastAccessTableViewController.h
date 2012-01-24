@@ -25,6 +25,8 @@
 @property (nonatomic,retain) NSMutableArray *filteredStation;
 @property (nonatomic,retain) NSMutableDictionary *colorDictionary;
 
+- (void) filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope;
+- (UIImage*) drawCircleView:(UIColor*)myColor;
 
 @end
 

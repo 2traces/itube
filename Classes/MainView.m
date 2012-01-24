@@ -11,6 +11,8 @@
 #import "MainViewController.h"
 #import "ManagedObjects.h"
 #import "TopTwoStationsView.h"
+#import "tubeAppDelegate.h"
+#import "ManagedObjects.h"
 
 NSInteger const toolbarHeight=44;
 NSInteger const toolbarWidth=320;
@@ -98,6 +100,72 @@ NSInteger const toolbarWidth=320;
 	//UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
 	//[containerView addGestureRecognizer:singleTap];    
 	
+    buttonsView = [[UIView alloc] initWithFrame:CGRectMake(45, 180, 230, 80)];
+    UIButton *sourceButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [sourceButton setImage:[UIImage imageNamed:@"src_button_normal"] forState:UIControlStateNormal];
+    [sourceButton setImage:[UIImage imageNamed:@"src_button_pressed"] forState:UIControlStateHighlighted];
+    [sourceButton addTarget:self action:@selector(selectFromStationByButton) forControlEvents:UIControlEventTouchUpInside];
+    [sourceButton setFrame:CGRectMake(0,0, 76, 76)];
+    [buttonsView addSubview:sourceButton];
+    UIButton *destinationButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [destinationButton setImage:[UIImage imageNamed:@"dst_button_normal"] forState:UIControlStateNormal];
+    [destinationButton setImage:[UIImage imageNamed:@"dst_button_pressed"] forState:UIControlStateHighlighted];
+    [destinationButton addTarget:self action:@selector(selectToStationByButton) forControlEvents:UIControlEventTouchUpInside];
+    [destinationButton setFrame:CGRectMake(154, 0, 76, 76)];
+    [buttonsView addSubview:destinationButton];
+    [self addSubview:buttonsView];
+    buttonsView.hidden = YES;
+}
+
+-(void) selectFromStationByButton {
+/*
+    [self didFirstStationSelected:mapView.selectedStationName line:mapView.selectedStationLine];
+
+	if ((firstStation.text!=nil && secondStation.text!=nil)) {
+        if([firstStation.text isEqualToString:secondStation.text]) {
+            // одна и та же станция начало и конец пути
+            [self didFirstStationSelected:nil line:0];
+            [self didSecondStationSelected:nil line:0];
+        } else {
+            [self findPathFrom:firstStation.text To:secondStation.text FirstLine:firstStationLineNum LastLine:secondStationLineNum];
+        }
+	}
+ */
+    
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.mainViewController.currentSelection=0;
+    
+    MLine *line = [[MHelper sharedHelper] lineByIndex:mapView.selectedStationLine];
+    MStation *station = [[MHelper sharedHelper] getStationWithName:mapView.selectedStationName forLine:[line name]];
+    [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:station]];
+    
+	mapView.stationSelected=false;
+    [UIView animateWithDuration:0.25f animations:^{ buttonsView.alpha = 0.f; } completion:^(BOOL finished){ if(finished) {buttonsView.hidden = YES; } }];
+}
+
+-(void) selectToStationByButton {
+    /*
+    [self didSecondStationSelected:mapView.selectedStationName line:mapView.selectedStationLine];
+    
+	if ((firstStation.text!=nil && secondStation.text!=nil)) {
+        if([firstStation.text isEqualToString:secondStation.text]) {
+            // одна и та же станция начало и конец пути
+            [self didFirstStationSelected:nil line:0];
+            [self didSecondStationSelected:nil line:0];
+        } else {
+            [self findPathFrom:firstStation.text To:secondStation.text FirstLine:firstStationLineNum LastLine:secondStationLineNum];
+        }
+	}
+     */
+    
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.mainViewController.currentSelection=1;
+    
+    MLine *line = [[MHelper sharedHelper] lineByIndex:mapView.selectedStationLine];
+    MStation *station = [[MHelper sharedHelper] getStationWithName:mapView.selectedStationName forLine:[line name]];
+    [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:station]];
+	mapView.stationSelected=false;
+    [UIView animateWithDuration:0.25f animations:^{ buttonsView.alpha = 0.f; } completion:^(BOOL finished){ if(finished) {buttonsView.hidden = YES; } }];
 }
 
 - (void)locationUpdate:(CLLocation *)location {
@@ -115,6 +183,7 @@ NSInteger const toolbarWidth=320;
 	//[CLController release];
     [super dealloc];
 	[stationNameView release];
+    [buttonsView release];
 }
 
 - (void) touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event 
@@ -129,7 +198,11 @@ NSInteger const toolbarWidth=320;
 	 */
 	if (mapView.stationSelected)
 	{
-		[self processStationSelect];
+		//[self processStationSelect];
+        buttonsView.hidden = NO;
+        buttonsView.alpha = 0.f;
+        [UIView animateWithDuration:0.25f animations:^{ buttonsView.alpha = 1.f; }];
+        [self bringSubviewToFront:buttonsView];
 	}
 	/*else if ((firstStation.text!=nil) &&(secondStation.text!=nil)){
 //		firstStation=nil;
@@ -141,29 +214,6 @@ NSInteger const toolbarWidth=320;
 	 */
 }
 
-
--(void) processStationSelect {
-	if (firstStation.text==nil)
-	{
-        [self didFirstStationSelected:mapView.selectedStationName line:mapView.selectedStationLine];
-        [mapView clearPath];
-	}
-	else if ((firstStation.text!=nil && secondStation.text!=nil)) {
-        [self didFirstStationSelected:mapView.selectedStationName line:mapView.selectedStationLine];
-        [self didSecondStationSelected:nil line:0];
-        [mapView clearPath];
-	}
-	else {
-        [self didSecondStationSelected:mapView.selectedStationName line:mapView.selectedStationLine];
-		[self findPathFrom:firstStation.text To:secondStation.text FirstLine:firstStationLineNum LastLine:secondStationLineNum];
-	}
-
-	mapView.stationSelected=false;
-}
-
--(void) processStationSelect2 {
-
-}
 
 -(void) findPathFrom :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl  {
 	[mapView findPathFrom:fs To:ss FirstLine:fsl LastLine:ssl];
