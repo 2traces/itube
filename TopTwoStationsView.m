@@ -44,7 +44,7 @@
 	[refreshButton addTarget:self action:@selector(selectFromStation) forControlEvents:UIControlEventTouchUpInside];
 	refreshButton.bounds = CGRectMake(0,0, imageOpenList.size.width, imageOpenList.size.height);
     
-	firstStation = [[UITextField alloc] initWithFrame:CGRectMake(0,7, 157, 36)];
+	firstStation = [[UITextField alloc] initWithFrame:CGRectMake(0, 5, 157, 36)];
 	firstStation.delegate = self;
 	firstStation.borderStyle = UITextBorderStyleNone;
 	firstStation.rightView = refreshButton;
@@ -71,8 +71,8 @@
 	refreshButton2.imageEdgeInsets = UIEdgeInsetsMake(0, -imageOpenList.size.width/2, 0, 0);
 	[refreshButton2 addTarget:self action:@selector(selectToStation) forControlEvents:UIControlEventTouchUpInside];
 	refreshButton2.bounds = CGRectMake(0,0, imageOpenList.size.width, imageOpenList.size.height);
-	
-	secondStation = [[UITextField alloc] initWithFrame:CGRectMake(160,7, 157, 36)];
+	 
+	secondStation = [[UITextField alloc] initWithFrame:CGRectMake(160, 5, 157, 36)];
 	secondStation.delegate=self;
 	secondStation.borderStyle = UITextBorderStyleNone;
 	secondStation.rightView = refreshButton2;
@@ -112,7 +112,7 @@
         firstButton.userInteractionEnabled=NO;
         secondButton.userInteractionEnabled=NO;
         
-        firstStation.frame = CGRectMake(0,3, 317, 36);
+        firstStation.frame = CGRectMake(0, 5, 312, 36);
         
         firstStation.text = @"";
         firstStation.rightViewMode = UITextFieldViewModeAlways;
@@ -147,7 +147,7 @@
         firstButton.userInteractionEnabled=YES;
         secondButton.userInteractionEnabled=YES;
         
-        firstStation.frame = CGRectMake(0,3, 157, 36);
+        firstStation.frame = CGRectMake(0, 5, 157, 36);
         
         
         
@@ -175,7 +175,7 @@
         firstButton.userInteractionEnabled=NO;
         secondButton.userInteractionEnabled=NO;
         
-        secondStation.frame = CGRectMake(0,3, 317, 36);
+        secondStation.frame = CGRectMake(0, 5, 312, 36);
 
         secondStation.text = @"";
         secondStation.rightViewMode = UITextFieldViewModeAlways;
@@ -210,7 +210,7 @@
         firstButton.userInteractionEnabled=YES;
         secondButton.userInteractionEnabled=YES;
         
-        secondStation.frame = CGRectMake(160, 7, 157, 36);
+        secondStation.frame = CGRectMake(160, 5, 157, 36);
     }];
     
     secondStation.delegate=self;
@@ -291,7 +291,7 @@
 {
     UIGraphicsBeginImageContext(CGSizeMake(29,29));
     
-    CGRect circleRect = CGRectMake(10.0, 7.0, 13.0, 13.0);
+    CGRect circleRect = CGRectMake(10.0, 5.0, 13.0, 13.0);
 	
     CGContextRef context = UIGraphicsGetCurrentContext();
     

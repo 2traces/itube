@@ -50,7 +50,6 @@ extern NSInteger const toolbarWidth;
 
 @property(nonatomic,assign) MainViewController *vcontroller;
 
-- (void) processStationSelect;
 - (void) initVar;
 - (void) viewInit:(MainViewController*)vcontroller;
 -(void) findPathFrom :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl ;
