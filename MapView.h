@@ -20,6 +20,7 @@ extern int const imagesCount;
 @interface MapView : UIView <UIScrollViewDelegate> {
 
 	UILabel *mainLabel;
+    UIImageView *labelBg;
 	CityMap *cityMap;
 	Boolean stationSelected;
 	
@@ -34,6 +35,8 @@ extern int const imagesCount;
 	UIImage *nearestStationImage;
     CGFloat Scale, MaxScale, MinScale;
     UIScrollView *scrollView;
+    CGLayerRef cacheLayer[10];
+    int currentCacheLayer;
 }
 
 @property (assign) NSString *nearestStationName;
