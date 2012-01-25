@@ -11,6 +11,26 @@
 #import "MainViewController.h"
 #import "FastAccessTableViewController.h"
 
+
+@interface UITextField (myCustomTextField)
+
+@end
+
+@implementation UITextField (myCustomTextField)
+
+//- (CGRect)textRectForBounds:(CGRect)bounds {
+    
+//    return CGRectInset(bounds, 10, 0);
+//}
+
+- (CGRect)editingRectForBounds:(CGRect)bounds {
+    return CGRectInset(bounds, 20, 0);
+}
+ 
+
+@end
+
+
 @implementation TopTwoStationsView
 
 @synthesize toolbar;
@@ -32,9 +52,14 @@
 
 -(void)drawInitialState
 {
-    toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,0, self.frame.size.width,self.frame.size.height)];
+  //  toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,0, self.frame.size.width,self.frame.size.height)];
+//	[self addSubview:toolbar];
+
+    toolbar = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, self.frame.size.width,self.frame.size.height)];
+    [toolbar setImage:[UIImage imageNamed:@"toolbar_bg.png"]];
+    [toolbar setUserInteractionEnabled:YES];
 	[self addSubview:toolbar];
-    
+
 	UIImage *imageOpenList = [UIImage imageNamed:@"openlist.png"];
 	
 	UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -44,23 +69,26 @@
 	[refreshButton addTarget:self action:@selector(selectFromStation) forControlEvents:UIControlEventTouchUpInside];
 	refreshButton.bounds = CGRectMake(0,0, imageOpenList.size.width, imageOpenList.size.height);
     
-	firstStation = [[UITextField alloc] initWithFrame:CGRectMake(0, 5, 157, 36)];
+	firstStation = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
 	firstStation.delegate = self;
 	firstStation.borderStyle = UITextBorderStyleNone;
 	firstStation.rightView = refreshButton;
-	firstStation.background = [UIImage imageNamed:@"textfield.png"];
+	firstStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
+    firstStation.backgroundColor = [UIColor clearColor];
 	firstStation.textAlignment = UITextAlignmentLeft;
 	firstStation.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 	firstStation.rightViewMode = UITextFieldViewModeAlways;
+    firstStation.autocorrectionType=UITextAutocorrectionTypeNo;
+    firstStation.autocapitalizationType=UITextAutocapitalizationTypeNone; 
 	[firstStation setReturnKeyType:UIReturnKeyDone];
-	[firstStation setClearButtonMode:UITextFieldViewModeWhileEditing];
+	[firstStation setClearButtonMode:UITextFieldViewModeNever];
     firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
     
 	[toolbar addSubview:firstStation];	
     
 	UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
 	[button1 addTarget:self action:@selector(transitFirstToBigField) forControlEvents:UIControlEventTouchUpInside];
-	button1.frame = CGRectMake(0,6, 130, 38);
+	button1.frame = CGRectMake(0, 6, 130, 44);
     self.firstButton=button1;
     
     [toolbar addSubview:button1];
@@ -72,15 +100,18 @@
 	[refreshButton2 addTarget:self action:@selector(selectToStation) forControlEvents:UIControlEventTouchUpInside];
 	refreshButton2.bounds = CGRectMake(0,0, imageOpenList.size.width, imageOpenList.size.height);
 	 
-	secondStation = [[UITextField alloc] initWithFrame:CGRectMake(160, 5, 157, 36)];
+	secondStation = [[UITextField alloc] initWithFrame:CGRectMake(160, 0, 160, 44)];
 	secondStation.delegate=self;
 	secondStation.borderStyle = UITextBorderStyleNone;
 	secondStation.rightView = refreshButton2;
-	secondStation.background = [UIImage imageNamed:@"textfield.png"];
+	secondStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
+    secondStation.backgroundColor = [UIColor clearColor];
 	secondStation.textAlignment = UITextAlignmentLeft;
 	secondStation.rightViewMode = UITextFieldViewModeAlways;
+    secondStation.autocorrectionType=UITextAutocorrectionTypeNo;
+    secondStation.autocapitalizationType=UITextAutocapitalizationTypeNone; 
 	[secondStation setReturnKeyType:UIReturnKeyDone];
-	[secondStation setClearButtonMode:UITextFieldViewModeWhileEditing];
+	[secondStation setClearButtonMode:UITextFieldViewModeNever];
 	secondStation.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
     
@@ -88,7 +119,7 @@
     
     UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
 	[button2 addTarget:self action:@selector(transitSecondToBigField) forControlEvents:UIControlEventTouchUpInside];
-	button2.frame = CGRectMake(160 ,6, 130, 38);
+	button2.frame = CGRectMake(160 ,6, 130, 44);
     self.secondButton=button2;
     
     [toolbar addSubview:button2];
@@ -112,7 +143,8 @@
         firstButton.userInteractionEnabled=NO;
         secondButton.userInteractionEnabled=NO;
         
-        firstStation.frame = CGRectMake(0, 5, 312, 36);
+        firstStation.frame = CGRectMake(0, 0, 320, 44);
+        firstStation.background = [UIImage imageNamed:@"toolbar_big_bg_lighted.png"];
         
         firstStation.text = @"";
         firstStation.rightViewMode = UITextFieldViewModeAlways;
@@ -147,8 +179,9 @@
         firstButton.userInteractionEnabled=YES;
         secondButton.userInteractionEnabled=YES;
         
-        firstStation.frame = CGRectMake(0, 5, 157, 36);
-        
+        firstStation.frame = CGRectMake(0, 0, 160, 44);
+        firstStation.background = [UIImage imageNamed:@"toolbar_bg.png"];
+
         
         
     }];
@@ -175,7 +208,9 @@
         firstButton.userInteractionEnabled=NO;
         secondButton.userInteractionEnabled=NO;
         
-        secondStation.frame = CGRectMake(0, 5, 312, 36);
+        secondStation.frame = CGRectMake(0, 0, 320, 44);
+        secondStation.background = [UIImage imageNamed:@"toolbar_big_bg_lighted.png"];
+
 
         secondStation.text = @"";
         secondStation.rightViewMode = UITextFieldViewModeAlways;
@@ -210,7 +245,8 @@
         firstButton.userInteractionEnabled=YES;
         secondButton.userInteractionEnabled=YES;
         
-        secondStation.frame = CGRectMake(160, 5, 157, 36);
+        secondStation.background = [UIImage imageNamed:@"toolbar_bg.png"];
+        secondStation.frame = CGRectMake(160, 0, 160, 44);
     }];
     
     secondStation.delegate=self;
@@ -245,6 +281,8 @@
     firstStation.rightViewMode = UITextFieldViewModeAlways;
     [firstStation setLeftView:nil];
     [firstStation setLeftViewMode: UITextFieldViewModeNever];
+    firstStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
+
 }
 
 -(void)clearToStation
@@ -253,6 +291,8 @@
     secondStation.rightViewMode = UITextFieldViewModeAlways;
     [secondStation setLeftView:nil];
     [secondStation setLeftViewMode: UITextFieldViewModeNever];
+    secondStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
+
 }
 
 -(void)setFromStation:(MStation*)fromStation
@@ -266,6 +306,8 @@
         firstStation.rightViewMode = UITextFieldViewModeNever;
         [firstStation setLeftView:[[UIImageView alloc] initWithImage:[self imageWithColor:[fromStation lines]]]];
         [firstStation setLeftViewMode: UITextFieldViewModeAlways];
+        firstStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];
+
     } else {
         [self clearFromStation];
     }
@@ -282,6 +324,8 @@
         secondStation.rightViewMode = UITextFieldViewModeNever;
         [secondStation setLeftView:[[UIImageView alloc] initWithImage:[self imageWithColor:[toStation lines]]]];
         [secondStation setLeftViewMode: UITextFieldViewModeAlways];
+        secondStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];
+
     } else {
         [self clearToStation];
     }
