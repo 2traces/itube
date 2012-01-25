@@ -17,6 +17,11 @@ extern int const imagesCount;
 
 @class MainViewController;
 
+typedef struct CacheItem {
+    CGLayerRef layer;
+    CGRect rect;
+} CacheItem;
+
 @interface MapView : UIView <UIScrollViewDelegate> {
 
 	UILabel *mainLabel;
@@ -35,8 +40,7 @@ extern int const imagesCount;
 	UIImage *nearestStationImage;
     CGFloat Scale, MaxScale, MinScale;
     UIScrollView *scrollView;
-    CGLayerRef cacheLayer[10];
-    int currentCacheLayer;
+    CGLayerRef cacheLayer;
 }
 
 @property (assign) NSString *nearestStationName;

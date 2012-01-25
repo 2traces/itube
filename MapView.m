@@ -41,8 +41,7 @@
         // Initialization code
         [self.layer setLevelsOfDetail:5];
         [self.layer setLevelsOfDetailBias:2];
-        for(int i=0; i<10; i++) cacheLayer[i] = nil;
-        currentCacheLayer = 0;
+        cacheLayer = nil;
 
 		DLog(@" InitMapView	initWithFrame; ");
 		
@@ -123,7 +122,7 @@
     [super dealloc];
 	[cityMap dealloc];
 	[nearestStationImage release];
-    for(int i=0; i<10; i++) CGLayerRelease(cacheLayer[i]);
+    CGLayerRelease(cacheLayer);
 }
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)context {
@@ -133,25 +132,24 @@
     CGFloat drawScale = 256.f / MAX(r.size.width, r.size.height);
 	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
 	CGContextFillRect(context, r);
-    
-//    if(cacheLayer[currentCacheLayer] == nil) cacheLayer[currentCacheLayer] = CGLayerCreateWithContext(context, CGSizeMake(256, 256), NULL);
-//    CGContextRef ctx = CGLayerGetContext(cacheLayer[currentCacheLayer]);
-//    CGContextScaleCTM(ctx, drawScale, drawScale);
-//    CGContextTranslateCTM(ctx, -r.origin.x, -r.origin.y);
 
-    CGContextSetInterpolationQuality(context, kCGInterpolationNone);
-    CGContextSetShouldAntialias(context, true);
-    CGContextSetShouldSmoothFonts(context, false);
-    CGContextSetAllowsFontSmoothing(context, false);
+    if(cacheLayer != nil) CGLayerRelease(cacheLayer);
+    cacheLayer = CGLayerCreateWithContext(context, CGSizeMake(256, 256), NULL);
+    CGContextRef ctx = CGLayerGetContext(cacheLayer);
+    CGContextScaleCTM(ctx, drawScale, drawScale);
+    CGContextTranslateCTM(ctx, -r.origin.x, -r.origin.y);
+
+    CGContextSetInterpolationQuality(ctx, kCGInterpolationNone);
+    CGContextSetShouldAntialias(ctx, true);
+    CGContextSetShouldSmoothFonts(ctx, false);
+    CGContextSetAllowsFontSmoothing(ctx, false);
     
-    [cityMap drawMap:context inRect:r];
-    [cityMap drawTransfers:context inRect:r];
+    [cityMap drawMap:ctx inRect:r];
+    [cityMap drawTransfers:ctx inRect:r];
     // слишком мелко тексты не рисуем
-    if(drawScale > 0.5f) [cityMap drawStations:context inRect:r]; 
+    if(drawScale > 0.5f) [cityMap drawStations:ctx inRect:r]; 
 
-//    CGContextDrawLayerInRect(context, r, cacheLayer[currentCacheLayer]);
-//    currentCacheLayer ++;
-//    if(currentCacheLayer >= 10) currentCacheLayer = 0;
+    CGContextDrawLayerInRect(context, r, cacheLayer);
 }
 
 -(void) initData {
