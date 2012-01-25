@@ -13,7 +13,7 @@
 
 @interface TopTwoStationsView : UIView <UITextFieldDelegate>
 {
-    UIToolbar *toolbar; 
+    UIImageView  *toolbar; 
 	UITextField *firstStation;
 	UITextField *secondStation;	
     BOOL isEditing;
@@ -21,7 +21,7 @@
     FastAccessTableViewController *tableView;
 }
 
-@property (nonatomic, retain) UIToolbar *toolbar;
+@property (nonatomic, retain) UIImageView *toolbar;
 @property (nonatomic, retain) UITextField *firstStation;
 @property (nonatomic, retain) UITextField *secondStation;
 @property (nonatomic, retain) UIButton *firstButton;
