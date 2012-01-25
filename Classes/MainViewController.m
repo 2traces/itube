@@ -160,7 +160,15 @@
 -(void)returnFromSelectionFastAccess:(NSArray *)stations
 {
     [self removeTableView];
-    [self returnFromSelection:stations];
+    if (stations) {
+        [self returnFromSelection:stations];
+    } else {
+        if (currentSelection==0) {
+            [stationsView setFromStation:self.fromStation];
+        } else {
+            [stationsView setToStation:self.toStation];
+        }
+    }
 }
 
 -(void)pressedSelectFromStation
