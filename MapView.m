@@ -26,6 +26,7 @@
 @synthesize MaxScale;
 @synthesize MinScale;
 @synthesize vcontroller;
+@synthesize background;
 
 + (Class)layerClass
 {
@@ -41,7 +42,7 @@
         // Initialization code
         [self.layer setLevelsOfDetail:5];
         [self.layer setLevelsOfDetailBias:2];
-        cacheLayer = nil;
+        for(int i=0; i<MAXCACHE; i++) cacheLayer[i] = nil;
 
 		DLog(@" InitMapView	initWithFrame; ");
 		
@@ -67,11 +68,10 @@
         // для ретиновских устройств перегенерируем предварительно отрисованные данные в двойном размере
         if(scale > 1) cityMap.predrawScale *= scale;
         
-        Scale = 2.0f;
-//		[cityMap loadMap:@"parisp"];
-
         self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
         MinScale = MIN( (float)frame.size.width / cityMap.size.width, (float)frame.size.height / cityMap.size.height);
+        MaxScale = cityMap.maxScale;
+        Scale = MaxScale / 2;
 		
 		//метка которая показывает названия станций
 		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,10,150,25)];
@@ -90,6 +90,23 @@
 		[self initData];
 		
 		selectedStationLayer = [[CALayer layer] retain];
+        
+        CGSize minSize = CGSizeMake(cityMap.w * MinScale, cityMap.h * MinScale);
+        CGRect r = CGRectMake(0, 0, minSize.width, minSize.height);
+		UIGraphicsBeginImageContext(minSize);
+		CGContextRef context = UIGraphicsGetCurrentContext();
+		CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
+		CGContextFillRect(context,r);
+		CGContextSaveGState(context);
+		CGContextScaleCTM(context, MinScale, MinScale);
+        [cityMap drawMap:context inRect:r];
+        [cityMap drawTransfers:context inRect:r];
+        [cityMap drawStations:context inRect:r]; 
+		//CGContextDrawPDFPage(context, page);
+		CGContextRestoreGState(context);
+		background = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+
     }
     return self;
 }
@@ -122,7 +139,8 @@
     [super dealloc];
 	[cityMap dealloc];
 	[nearestStationImage release];
-    CGLayerRelease(cacheLayer);
+    for(int i=0; i<MAXCACHE; i++) CGLayerRelease(cacheLayer[i]);
+    [background release];
 }
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)context {
@@ -133,12 +151,16 @@
 	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
 	CGContextFillRect(context, r);
 
-    if(cacheLayer != nil) CGLayerRelease(cacheLayer);
-    cacheLayer = CGLayerCreateWithContext(context, CGSizeMake(256, 256), NULL);
-    CGContextRef ctx = CGLayerGetContext(cacheLayer);
+    int cc = currentCacheLayer;
+    currentCacheLayer++;
+    if(currentCacheLayer >= MAXCACHE) currentCacheLayer = 0;
+    if(cacheLayer[cc] != nil) CGLayerRelease(cacheLayer[cc]);
+    cacheLayer[cc] = CGLayerCreateWithContext(context, CGSizeMake(256, 256), NULL);
+    CGContextRef ctx = CGLayerGetContext(cacheLayer[cc]);
     CGContextScaleCTM(ctx, drawScale, drawScale);
     CGContextTranslateCTM(ctx, -r.origin.x, -r.origin.y);
 
+//    CGContextRef ctx = context;
     CGContextSetInterpolationQuality(ctx, kCGInterpolationNone);
     CGContextSetShouldAntialias(ctx, true);
     CGContextSetShouldSmoothFonts(ctx, false);
@@ -146,10 +168,9 @@
     
     [cityMap drawMap:ctx inRect:r];
     [cityMap drawTransfers:ctx inRect:r];
-    // слишком мелко тексты не рисуем
-    if(drawScale > 0.5f) [cityMap drawStations:ctx inRect:r]; 
+    [cityMap drawStations:ctx inRect:r]; 
 
-    CGContextDrawLayerInRect(context, r, cacheLayer);
+    CGContextDrawLayerInRect(context, r, cacheLayer[cc]);
 }
 
 -(void) initData {
@@ -229,10 +250,12 @@
 
 -(void) clearPath
 {
-    [cityMap resetPath];
-    // это недокументированный метод, так что если он в будущем изменится, то ой
-    [self.layer invalidateContents];
-	[self setNeedsDisplay];
+    if([cityMap.activePath count] > 0) {
+        [cityMap resetPath];
+        // это недокументированный метод, так что если он в будущем изменится, то ой
+        [self.layer invalidateContents];
+        [self setNeedsDisplay];
+    }
 }
 
 #pragma mark -

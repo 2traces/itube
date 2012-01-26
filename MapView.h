@@ -17,10 +17,7 @@ extern int const imagesCount;
 
 @class MainViewController;
 
-typedef struct CacheItem {
-    CGLayerRef layer;
-    CGRect rect;
-} CacheItem;
+#define MAXCACHE 20
 
 @interface MapView : UIView <UIScrollViewDelegate> {
 
@@ -40,7 +37,9 @@ typedef struct CacheItem {
 	UIImage *nearestStationImage;
     CGFloat Scale, MaxScale, MinScale;
     UIScrollView *scrollView;
-    CGLayerRef cacheLayer;
+    CGLayerRef cacheLayer[MAXCACHE];
+    int currentCacheLayer;
+    UIImage *background;
 }
 
 @property (assign) NSString *nearestStationName;
@@ -60,8 +59,8 @@ typedef struct CacheItem {
 @property (nonatomic, readonly) CGFloat Scale;
 @property (nonatomic, readonly) CGFloat MaxScale;
 @property (nonatomic, readonly) CGFloat MinScale;
-
 @property (nonatomic, assign) MainViewController *vcontroller;
+@property (nonatomic, readonly) UIImage* background;
 
 - (void)viewDidLoad;
 // 

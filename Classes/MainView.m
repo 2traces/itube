@@ -74,6 +74,13 @@ NSInteger const toolbarWidth=320;
 //	containerView.userInteractionEnabled = YES;
 //	mapView.exclusiveTouch = NO;
 
+//    UIImageView* backgroundImageView = [[UIImageView alloc] initWithImage:mapView.background];
+//    backgroundImageView.frame = CGRectMake(0, 0, mapView.background.size.width, mapView.background.size.height);
+//    backgroundImageView.contentMode = UIViewContentModeScaleAspectFit;
+//    [self addSubview:backgroundImageView];
+//    [self sendSubviewToBack:backgroundImageView];
+//    [backgroundImageView release];
+    
 	containerView.delegate = mapView;
 	[containerView addSubview: mapView];
 	[self addSubview:containerView];
