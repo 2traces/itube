@@ -69,7 +69,7 @@
         if(scale > 1) cityMap.predrawScale *= scale;
         
         self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
-        MinScale = MIN( (float)frame.size.width / cityMap.size.width, (float)frame.size.height / cityMap.size.height);
+        MinScale = MIN( (float)frame.size.width / cityMap.size.width, (float)frame.size.height / cityMap.size.height) * 0.5f;
         MaxScale = cityMap.maxScale;
         Scale = MaxScale / 2;
 		
@@ -147,7 +147,7 @@
 
     if(labelBg.superview == self) [self.superview addSubview:labelBg];
     CGRect r = CGContextGetClipBoundingBox(context);
-    CGFloat drawScale = 256.f / MAX(r.size.width, r.size.height);
+    CGFloat drawScale = 512.f / MAX(r.size.width, r.size.height);
 	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
 	CGContextFillRect(context, r);
 
@@ -155,7 +155,7 @@
     currentCacheLayer++;
     if(currentCacheLayer >= MAXCACHE) currentCacheLayer = 0;
     if(cacheLayer[cc] != nil) CGLayerRelease(cacheLayer[cc]);
-    cacheLayer[cc] = CGLayerCreateWithContext(context, CGSizeMake(256, 256), NULL);
+    cacheLayer[cc] = CGLayerCreateWithContext(context, CGSizeMake(512, 512), NULL);
     CGContextRef ctx = CGLayerGetContext(cacheLayer[cc]);
     CGContextScaleCTM(ctx, drawScale, drawScale);
     CGContextTranslateCTM(ctx, -r.origin.x, -r.origin.y);

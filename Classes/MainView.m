@@ -80,7 +80,7 @@ NSInteger const toolbarWidth=320;
 //    [self addSubview:backgroundImageView];
 //    [self sendSubviewToBack:backgroundImageView];
 //    [backgroundImageView release];
-    
+    containerView.scrolledView = mapView;
 	containerView.delegate = mapView;
 	[containerView addSubview: mapView];
 	[self addSubview:containerView];

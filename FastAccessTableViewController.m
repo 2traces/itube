@@ -237,9 +237,15 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    [appDelegate.mainViewController returnFromSelectionFastAccess:nil];
+    
+    [textField resignFirstResponder];
+
     return YES;
 }
-
+     
 -(void)dealloc
 {
     self.dataSource=nil;

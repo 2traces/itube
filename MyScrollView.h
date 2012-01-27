@@ -11,6 +11,9 @@
 
 @interface MyScrollView : UIScrollView  {
 
+    UIView *scrolledView;
 }
+
+@property (nonatomic, assign) UIView* scrolledView;
 
 @end
