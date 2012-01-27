@@ -216,6 +216,7 @@
         secondStation.rightViewMode = UITextFieldViewModeAlways;
         [secondStation setLeftView:nil];
         [secondStation setRightViewMode: UITextFieldViewModeAlways];
+        
     }];
     
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -253,6 +254,62 @@
     self.tableView=nil;
     [secondStation resignFirstResponder];
     
+}
+
+-(void)transitToPathView
+{
+    NSTimeInterval duration = 0.2f;
+    
+    [UIView animateWithDuration:duration animations:^{ 
+        isEditing=NO;
+        
+        firstStation.hidden=NO;
+        firstStation.userInteractionEnabled=YES;
+        
+        secondStation.hidden=NO;
+        secondStation.userInteractionEnabled=YES;
+
+        firstButton.hidden=YES;
+        secondButton.hidden=YES;
+        
+        firstStation.background = nil;
+        secondStation.background = nil;
+        
+        UIImage *crossImage = [UIImage imageNamed:@"cross_transp.png"];
+        UIImage *crossImageHighlighted = [UIImage imageNamed:@"cross_opaq.png"];
+
+        UIButton *cancelButton1 = [UIButton buttonWithType:UIButtonTypeCustom];
+        [cancelButton1 setImage:crossImage forState:UIControlStateNormal];
+        [cancelButton1 setImage:crossImageHighlighted forState:UIControlStateHighlighted];
+        cancelButton1.imageEdgeInsets = UIEdgeInsetsMake(0, -crossImage.size.width/2, 0, 0);
+        [cancelButton1 addTarget:self action:@selector(clearFromStation) forControlEvents:UIControlEventTouchUpInside];
+        cancelButton1.bounds = CGRectMake(0,0, crossImage.size.width, crossImage.size.height);
+
+        UIButton *cancelButton2= [UIButton buttonWithType:UIButtonTypeCustom];
+        [cancelButton2 setImage:crossImage forState:UIControlStateNormal];
+        [cancelButton2 setImage:crossImageHighlighted forState:UIControlStateHighlighted];
+        cancelButton2.imageEdgeInsets = UIEdgeInsetsMake(0, -crossImage.size.width/2, 0, 0);
+        [cancelButton2 addTarget:self action:@selector(clearToStation) forControlEvents:UIControlEventTouchUpInside];
+        cancelButton2.bounds = CGRectMake(0,0, crossImage.size.width, crossImage.size.height);
+
+        firstStation.rightView= cancelButton1;
+        firstStation.rightViewMode = UITextFieldViewModeAlways;
+        secondStation.rightView = cancelButton2;
+        secondStation.rightViewMode = UITextFieldViewModeAlways;
+        
+        firstStation.frame = CGRectMake(0, 0, 160, 22);
+        secondStation.frame = CGRectMake(160, 0, 160, 22);
+        
+        self.frame=CGRectMake(0,0, 320, 20); 
+        self.toolbar.frame=CGRectMake(0,0, 320, 22); 
+
+
+    }];
+    
+    secondStation.delegate=self;
+    self.tableView=nil;
+    [secondStation resignFirstResponder];
+
 }
 
 -(UIImage*)imageWithColor:(MLine*)line

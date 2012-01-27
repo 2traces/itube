@@ -147,7 +147,9 @@
     if ((self.fromStation==nil || self.toStation==nil)) {
         [mainView.mapView clearPath];
 	} else {
-        [mainView findPathFrom:[fromStation name] To:[toStation name] FirstLine:[[[fromStation lines] index] integerValue] LastLine:[[[toStation lines] index] integerValue]];	}
+        [mainView findPathFrom:[fromStation name] To:[toStation name] FirstLine:[[[fromStation lines] index] integerValue] LastLine:[[[toStation lines] index] integerValue]];
+        [stationsView transitToPathView];
+	}
     
 	mainView.mapView.stationSelected=false;
     
