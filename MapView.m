@@ -26,6 +26,8 @@
 @synthesize MaxScale;
 @synthesize MinScale;
 @synthesize vcontroller;
+@synthesize backgroundNormal = background1;
+@synthesize backgroundDisabled = background2;
 
 + (Class)layerClass
 {
@@ -36,13 +38,16 @@
     return CGSizeMake(cityMap.w, cityMap.h);
 }
 
+-(UIView*) labelView {
+    return labelBg;
+}
+
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         // Initialization code
         [self.layer setLevelsOfDetail:5];
         [self.layer setLevelsOfDetailBias:2];
-        for(int i=0; i<10; i++) cacheLayer[i] = nil;
-        currentCacheLayer = 0;
+        for(int i=0; i<MAXCACHE; i++) cacheLayer[i] = nil;
 
 		DLog(@" InitMapView	initWithFrame; ");
 		
@@ -60,19 +65,16 @@
             self.layer.contentsScale = scale;
 		}
 
-//		cityMap = [[CityMap alloc] init];
-        
         tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
         
         self.cityMap = appDelegate.cityMap;
         // для ретиновских устройств перегенерируем предварительно отрисованные данные в двойном размере
         if(scale > 1) cityMap.predrawScale *= scale;
         
-        Scale = 2.0f;
-//		[cityMap loadMap:@"parisp"];
-
         self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
         MinScale = MIN( (float)frame.size.width / cityMap.size.width, (float)frame.size.height / cityMap.size.height);
+        MaxScale = cityMap.maxScale;
+        Scale = MaxScale / 2;
 		
 		//метка которая показывает названия станций
 		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,10,150,25)];
@@ -86,11 +88,44 @@
         [labelBg.layer setShadowOffset:CGSizeMake(3, 5)];
         [labelBg.layer setShadowOpacity:0.3];
         [labelBg.layer setShadowRadius:5.0];
-		[self addSubview:labelBg];
         
 		[self initData];
 		
 		selectedStationLayer = [[CALayer layer] retain];
+        
+        // make normal background image
+        CGFloat backScale = MinScale * 2.f;
+        CGSize minSize = CGSizeMake(cityMap.w * backScale, cityMap.h * backScale);
+        CGRect r = CGRectMake(0, 0, minSize.width, minSize.height);
+		UIGraphicsBeginImageContext(minSize);
+		CGContextRef context = UIGraphicsGetCurrentContext();
+		CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
+		CGContextFillRect(context,r);
+		CGContextScaleCTM(context, backScale, backScale);
+        r.size.width /= backScale;
+        r.size.height /= backScale;
+        [cityMap drawMap:context inRect:r];
+        [cityMap drawTransfers:context inRect:r];
+        [cityMap drawStations:context inRect:r]; 
+        UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+        background1 = [[UIImageView alloc] initWithImage:img];
+        background1.frame = CGRectMake(0, 0, img.size.width, img.size.height);
+        background1.contentMode = UIViewContentModeScaleAspectFit;
+
+        // make disabled background image
+        [cityMap activatePath:[NSArray array]];
+		CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
+		CGContextFillRect(context,r);
+        [cityMap drawMap:context inRect:r];
+        [cityMap drawTransfers:context inRect:r];
+        [cityMap drawStations:context inRect:r]; 
+        img = UIGraphicsGetImageFromCurrentImageContext();
+        background2 = [[UIImageView alloc] initWithImage:img];
+        background2.frame = CGRectMake(0, 0, img.size.width, img.size.height);
+        background2.contentMode = UIViewContentModeScaleAspectFit;
+        background2.hidden = YES;
+        UIGraphicsEndImageContext();
+        [cityMap resetPath];
     }
     return self;
 }
@@ -102,7 +137,6 @@
         labelBg.alpha = 0.f;
         [UIView animateWithDuration:0.25f animations:^{ labelBg.alpha = 1.f; }];
     }
-    [self bringSubviewToFront:labelBg];
 }
 
 -(void)hideLabel
@@ -123,35 +157,47 @@
     [super dealloc];
 	[cityMap dealloc];
 	[nearestStationImage release];
-    for(int i=0; i<10; i++) CGLayerRelease(cacheLayer[i]);
+    for(int i=0; i<MAXCACHE; i++) CGLayerRelease(cacheLayer[i]);
+    [background1 release];
+    [background2 release];
 }
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)context {
 
-    if(labelBg.superview == self) [self.superview addSubview:labelBg];
+    CGContextSaveGState(context);
     CGRect r = CGContextGetClipBoundingBox(context);
-    CGFloat drawScale = 256.f / MAX(r.size.width, r.size.height);
+    CGFloat drawScale = 512.f / MAX(r.size.width, r.size.height);
 	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
 	CGContextFillRect(context, r);
-    
-//    if(cacheLayer[currentCacheLayer] == nil) cacheLayer[currentCacheLayer] = CGLayerCreateWithContext(context, CGSizeMake(256, 256), NULL);
-//    CGContextRef ctx = CGLayerGetContext(cacheLayer[currentCacheLayer]);
-//    CGContextScaleCTM(ctx, drawScale, drawScale);
-//    CGContextTranslateCTM(ctx, -r.origin.x, -r.origin.y);
 
-    CGContextSetInterpolationQuality(context, kCGInterpolationNone);
-    CGContextSetShouldAntialias(context, true);
-    CGContextSetShouldSmoothFonts(context, false);
-    CGContextSetAllowsFontSmoothing(context, false);
+#ifdef AGRESSIVE_CACHE
+    CGFloat presentScale = 1.f/drawScale;
+    int cc = currentCacheLayer;
+    currentCacheLayer++;
+    if(currentCacheLayer >= MAXCACHE) currentCacheLayer = 0;
+    if(cacheLayer[cc] != nil) CGLayerRelease(cacheLayer[cc]);
+    cacheLayer[cc] = CGLayerCreateWithContext(context, CGSizeMake(512, 512), NULL);
+    CGContextRef ctx = CGLayerGetContext(cacheLayer[cc]);
+    CGContextScaleCTM(ctx, drawScale, drawScale);
+    CGContextTranslateCTM(ctx, -r.origin.x, -r.origin.y);
+#else
+    CGContextRef ctx = context;
+#endif
+    CGContextSetInterpolationQuality(ctx, kCGInterpolationNone);
+    CGContextSetShouldAntialias(ctx, true);
+    CGContextSetShouldSmoothFonts(ctx, false);
+    CGContextSetAllowsFontSmoothing(ctx, false);
     
-    [cityMap drawMap:context inRect:r];
-    [cityMap drawTransfers:context inRect:r];
-    // слишком мелко тексты не рисуем
-    if(drawScale > 0.5f) [cityMap drawStations:context inRect:r]; 
+    [cityMap drawMap:ctx inRect:r];
+    [cityMap drawTransfers:ctx inRect:r];
+    [cityMap drawStations:ctx inRect:r]; 
 
-//    CGContextDrawLayerInRect(context, r, cacheLayer[currentCacheLayer]);
-//    currentCacheLayer ++;
-//    if(currentCacheLayer >= 10) currentCacheLayer = 0;
+#ifdef AGRESSIVE_CACHE
+    CGContextTranslateCTM(context, r.origin.x, r.origin.y);
+    CGContextScaleCTM(context, presentScale, presentScale);
+    CGContextDrawLayerAtPoint(context, CGPointZero, cacheLayer[cc]);
+#endif
+    CGContextRestoreGState(context);
 }
 
 -(void) initData {
@@ -197,7 +243,7 @@
 
 	UITouch *touch = [touches anyObject];
 	CGPoint currentPosition = [touch locationInView:self];
-    CGPoint superPosition = [touch locationInView:self.superview];
+    CGPoint superPosition = [touch locationInView:labelBg.superview];
 	
     selectedStationLine = [cityMap checkPoint:currentPosition Station:selectedStationName];
     
@@ -221,6 +267,8 @@
     [pathArray addObjectsFromArray:[cityMap calcPath:fSt :sSt :fStl :sStl]];
 	[pathArray insertObject:[GraphNode nodeWithValue:[NSString stringWithFormat:@"%@|%d",fSt,fStl ] ] atIndex:0];
 	
+    background1.hidden = YES;
+    background2.hidden = NO;
     [cityMap activatePath:pathArray];
     [scrollView zoomToRect:cityMap.activeExtent animated:YES];
     // это недокументированный метод, так что если он в будущем изменится, то ой
@@ -231,10 +279,14 @@
 
 -(void) clearPath
 {
-    [cityMap resetPath];
-    // это недокументированный метод, так что если он в будущем изменится, то ой
-    [self.layer invalidateContents];
-	[self setNeedsDisplay];
+    if([cityMap.activePath count] > 0) {
+        background1.hidden = NO;
+        background2.hidden = YES;
+        [cityMap resetPath];
+        // это недокументированный метод, так что если он в будущем изменится, то ой
+        [self.layer invalidateContents];
+        [self setNeedsDisplay];
+    }
 }
 
 #pragma mark -

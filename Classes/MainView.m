@@ -74,11 +74,15 @@ NSInteger const toolbarWidth=320;
 //	containerView.userInteractionEnabled = YES;
 //	mapView.exclusiveTouch = NO;
 
+    [containerView addSubview:mapView.backgroundNormal];
+    [containerView addSubview:mapView.backgroundDisabled];
+    containerView.scrolledView = mapView;
 	containerView.delegate = mapView;
 	[containerView addSubview: mapView];
 	[self addSubview:containerView];
     [containerView setZoomScale:mapView.Scale animated:NO];
-    	
+    [self addSubview:mapView.labelView];
+    
 	//TODO
 	[containerView setContentOffset:CGPointMake(650, 650) animated:NO];
 	
@@ -121,7 +125,7 @@ NSInteger const toolbarWidth=320;
 }
 
 -(void) selectFromStationByButton {
-    
+    if(!mapView.stationSelected || mapView.selectedStationLine < 1 || !mapView.selectedStationName) return;
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.mainViewController.currentSelection=0;
     
@@ -134,7 +138,7 @@ NSInteger const toolbarWidth=320;
 }
 
 -(void) selectToStationByButton {
-
+    if(!mapView.stationSelected || mapView.selectedStationLine < 1 || !mapView.selectedStationName) return;
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.mainViewController.currentSelection=1;
     

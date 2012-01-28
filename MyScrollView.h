@@ -10,7 +10,10 @@
 
 
 @interface MyScrollView : UIScrollView  {
-
+    UITapGestureRecognizer *tgr;
+    UIView *scrolledView;
 }
+
+@property (nonatomic, assign) UIView* scrolledView;
 
 @end

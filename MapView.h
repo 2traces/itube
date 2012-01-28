@@ -17,6 +17,11 @@ extern int const imagesCount;
 
 @class MainViewController;
 
+// включает дополнительное промежуточное кеширование
+#define AGRESSIVE_CACHE
+// количество слоёв кеширования
+#define MAXCACHE 8
+
 @interface MapView : UIView <UIScrollViewDelegate> {
 
 	UILabel *mainLabel;
@@ -35,8 +40,10 @@ extern int const imagesCount;
 	UIImage *nearestStationImage;
     CGFloat Scale, MaxScale, MinScale;
     UIScrollView *scrollView;
-    CGLayerRef cacheLayer[10];
+    CGLayerRef cacheLayer[MAXCACHE];
     int currentCacheLayer;
+    // background prerendered images (normal and gray)
+    UIImageView *background1, *background2;
 }
 
 @property (assign) NSString *nearestStationName;
@@ -56,8 +63,10 @@ extern int const imagesCount;
 @property (nonatomic, readonly) CGFloat Scale;
 @property (nonatomic, readonly) CGFloat MaxScale;
 @property (nonatomic, readonly) CGFloat MinScale;
-
 @property (nonatomic, assign) MainViewController *vcontroller;
+@property (nonatomic, readonly) UIImageView* backgroundNormal;
+@property (nonatomic, readonly) UIImageView* backgroundDisabled;
+@property (nonatomic, readonly) UIView* labelView;
 
 - (void)viewDidLoad;
 // 

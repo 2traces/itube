@@ -10,10 +10,18 @@
 
 @implementation MyTiledLayer
 
+-(id)init
+{
+    if((self = [super init])) {
+        self.tileSize = CGSizeMake(512, 512);
+    }
+    return self;
+}
+
 // выключаем фейд рисуемых участков, чем экономим 1/4 секунды на участок
 +(CFTimeInterval)fadeDuration
 {
-    return 0;
+    return 0.001;
 }
 
 @end

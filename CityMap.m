@@ -99,23 +99,24 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if([stations count] > 0) station.drawName = NO;
     station.transfer = self;
     [stations addObject:station];
-    CGRect st = CGRectMake(station.pos.x - 4.5, station.pos.y - 4.5, 9, 9);
+    CGRect st = CGRectMake(station.pos.x - StationDiameter, station.pos.y - StationDiameter, StationDiameter*2.f, StationDiameter*2.f);
     if(CGRectIsNull(boundingBox)) boundingBox = st;
     else boundingBox = CGRectUnion(boundingBox, st);
 }
 
 +(void) drawTransferLikeLondon:(CGContextRef) context stations:(NSArray*)stations
 {
+    CGFloat blackW = StationDiameter / 5.f;
     CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
     CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 1.0);				
     for(int i = 0; i<[stations count]; i++) {
         Station *st = [stations objectAtIndex:i];
         CGPoint p1 = st.pos;
-        drawFilledCircle(context, p1.x, p1.y, 4.5);
+        drawFilledCircle(context, p1.x, p1.y, StationDiameter);
         for(int j = i+1; j<[stations count]; j++) {
             Station *st2 = [stations objectAtIndex:j];
             CGPoint p2 = st2.pos;
-            drawLine(context, p1.x, p1.y, p2.x, p2.y, 2.5);
+            drawLine(context, p1.x, p1.y, p2.x, p2.y, StationDiameter*0.5f);
         }
     }
     CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
@@ -123,17 +124,18 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     for(int i = 0; i<[stations count]; i++) {
         Station *st = [stations objectAtIndex:i];
         CGPoint p1 = st.pos;
-        drawFilledCircle(context, p1.x, p1.y, 3.5);
+        drawFilledCircle(context, p1.x, p1.y, StationDiameter - blackW);
         for(int j = i+1; j<[stations count]; j++) {
             Station *st2 = [stations objectAtIndex:j];
             CGPoint p2 = st2.pos;
-            drawLine(context, p1.x, p1.y, p2.x, p2.y, 1.5);
+            drawLine(context, p1.x, p1.y, p2.x, p2.y, StationDiameter*0.5f - blackW);
         }
     }
 }
 
 +(void) drawTransferLikeParis:(CGContextRef)context stations:(NSArray*)stations
 {
+    CGFloat blackW = LineWidth / 3.f;
     CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
     CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 1.0);				
     for(int i = 0; i<[stations count]; i++) {
@@ -142,7 +144,15 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         for(int j = i+1; j<[stations count]; j++) {
             Station *st2 = [stations objectAtIndex:j];
             CGPoint p2 = st2.pos;
-            drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2);
+            CGFloat dx = (p1.x-p2.x);
+            CGFloat dy = (p1.y-p2.y);
+            CGFloat d2 = dx*dx + dy*dy;
+            if(d2 > StationDiameter*StationDiameter*6) {
+                drawFilledCircle(context, p1.x, p1.y, LineWidth);
+                drawFilledCircle(context, p2.x, p2.y, LineWidth);
+                drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth);
+            } else
+                drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2);
         }
     }
     CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
@@ -153,7 +163,15 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         for(int j = i+1; j<[stations count]; j++) {
             Station *st2 = [stations objectAtIndex:j];
             CGPoint p2 = st2.pos;
-            drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2-1);
+            CGFloat dx = (p1.x-p2.x);
+            CGFloat dy = (p1.y-p2.y);
+            CGFloat d2 = dx*dx + dy*dy;
+            if(d2 > StationDiameter*StationDiameter*6) {
+                drawFilledCircle(context, p1.x, p1.y, LineWidth-blackW/2);
+                drawFilledCircle(context, p2.x, p2.y, LineWidth-blackW/2);
+                drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth-blackW);
+            } else 
+                drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2-blackW);
         }
     }
     for (Station *st in stations) {
@@ -167,6 +185,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 +(void) drawTransferLikeMoscow:(CGContextRef)context stations:(NSArray*)stations
 {
+    CGFloat blackW = LineWidth * 0.5f;
     CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 0.6);
     CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 0.6);				
     for(int i = 0; i<[stations count]; i++) {
@@ -186,7 +205,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         for(int j = i+1; j<[stations count]; j++) {
             Station *st2 = [stations objectAtIndex:j];
             CGPoint p2 = st2.pos;
-            drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2-2);
+            drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2-blackW);
         }
     }
     for (Station *st in stations) {
@@ -351,7 +370,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         int alignment = UITextAlignmentCenter;
         if(pos.x < textRect.origin.x) alignment = UITextAlignmentLeft;
         else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
-        CGContextSelectFont(context, "Arial-BoldMT", 7, kCGEncodingMacRoman);
+        CGContextSelectFont(context, "Arial-BoldMT", StationDiameter, kCGEncodingMacRoman);
         CGContextShowTextAtPoint(context, textRect.origin.x, textRect.origin.y+textRect.size.height, [name cStringUsingEncoding:[NSString defaultCStringEncoding]], [name length]);
     }
 }
@@ -380,7 +399,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     int alignment = UITextAlignmentCenter;
     if(pos.x < textRect.origin.x) alignment = UITextAlignmentLeft;
     else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
-    [name drawInRect:rect  withFont: [UIFont fontWithName:@"Arial-BoldMT" size:7] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
+    [name drawInRect:rect  withFont: [UIFont fontWithName:@"Arial-BoldMT" size:StationDiameter] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
     UIGraphicsPopContext();
 }
 
@@ -455,6 +474,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(void)dealloc
 {
     [splinePoints release];
+    CGPathRelease(path);
 }
 
 -(void)appendPoint:(CGPoint)p
@@ -477,6 +497,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
     [splinePoints release];
     splinePoints = newSplinePoints;
+    [self predraw];
 }
 
 -(void)draw:(CGContextRef)context fromPoint:(CGPoint)p toTangentPoint:(TangentPoint*)tp
@@ -510,17 +531,39 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	CGContextSetLineWidth(context, LineWidth);
 	CGContextMoveToPoint(context, start.pos.x, start.pos.y);
     if(splinePoints) {
-        [self draw:context fromPoint:CGPointMake(start.pos.x, start.pos.y) toTangentPoint:[splinePoints objectAtIndex:0]];
+        /*[self draw:context fromPoint:CGPointMake(start.pos.x, start.pos.y) toTangentPoint:[splinePoints objectAtIndex:0]];
         for(int i=0; i<[splinePoints count]-1; i++) {
             [self draw:context fromTangentPoint:[splinePoints objectAtIndex:i] toTangentPoint:[splinePoints objectAtIndex:i+1]];
         }
-        [self draw:context fromTangentPoint:[splinePoints lastObject] toPoint:CGPointMake(end.pos.x, end.pos.y)];
+        [self draw:context fromTangentPoint:[splinePoints lastObject] toPoint:CGPointMake(end.pos.x, end.pos.y)];*/
+        CGContextMoveToPoint(context, 0, 0);
+        CGContextAddPath(context, path);
+        CGContextStrokePath(context);
     } else {
         CGContextAddLineToPoint(context, end.pos.x, end.pos.y);
         CGContextStrokePath(context);
     }
     if(!active) {
         CGContextRestoreGState(context);
+    }
+}
+
+-(void)predraw
+{
+    if(splinePoints) {
+        if(path != nil) CGPathRelease(path);
+        path = CGPathCreateMutable();
+        TangentPoint *tp1 = [splinePoints objectAtIndex:0], *tp2 = nil;
+        CGPathMoveToPoint(path, nil, tp1.base.x, tp1.base.y);
+        CGPathAddQuadCurveToPoint(path, nil, tp1.backTang.x, tp1.backTang.y, start.pos.x, start.pos.y);
+        CGPathMoveToPoint(path, nil, tp1.base.x, tp1.base.y);
+        for(int i=0; i<[splinePoints count]-1; i++) {
+            tp1 = [splinePoints objectAtIndex:i];
+            tp2 = [splinePoints objectAtIndex:i+1];
+            CGPathAddCurveToPoint(path, nil, tp1.frontTang.x, tp1.frontTang.y, tp2.backTang.x, tp2.backTang.y, tp2.base.x, tp2.base.y);
+        }
+        tp2 = [splinePoints lastObject];
+        CGPathAddQuadCurveToPoint(path, nil, tp2.frontTang.x, tp2.frontTang.y, end.pos.x, end.pos.y);
     }
 }
 
@@ -553,8 +596,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             NSArray *coord_text = [[rcts objectAtIndex:i] componentsSeparatedByString:@","];
             int tx = [[coord_text objectAtIndex:0] intValue];
             int ty = [[coord_text objectAtIndex:1] intValue];
-            int tw = [[coord_text objectAtIndex:2] intValue];
-            int th = [[coord_text objectAtIndex:3] intValue];
+            int tw = [[coord_text objectAtIndex:2] intValue] * 4.f;
+            int th = [[coord_text objectAtIndex:3] intValue] * 4.f;
             
             NSString* drv = nil;
             if(i < [drs count]) drv = [drs objectAtIndex:i];
@@ -757,9 +800,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 @synthesize graph;
 @synthesize gpsCoords;
-@synthesize currentScale;
 @synthesize activeExtent;
 @synthesize activePath;
+@synthesize maxScale;
 
 -(StationKind) stationKind { return StKind; }
 -(void) setStationKind:(StationKind)stationKind { StKind = stationKind; }
@@ -779,6 +822,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     mapLines = [[NSMutableArray alloc] init];
     activeExtent = CGRectNull;
     activePath = [[NSMutableArray alloc] init];
+    maxScale = 4;
 }
 
 -(CGSize) size { return CGSizeMake(_w, _h); }
@@ -813,6 +857,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(val >= 0 && val < KINDS_NUM) TrKind = val;
     val = [[parserMap get:@"DisplayStations" section:@"Options"] intValue];
     if(val >= 0 && val < KINDS_NUM) StKind = val;
+    float sc = [[parserMap get:@"MaxScale" section:@"Options"] floatValue];
+    if(sc != 0.f) {
+        maxScale = sc;
+        PredrawScale = maxScale * 0.5f;
+    }
 	
 	_w = 0;
 	_h = 0;
