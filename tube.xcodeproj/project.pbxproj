@@ -36,6 +36,8 @@
 		4BC043E4142FC42F00A643B8 /* CityMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC043E3142FC42F00A643B8 /* CityMap.m */; };
 		4BC1C946142E36CA003651BB /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC1C945142E36CA003651BB /* MapView.m */; };
 		5121FCBF14C9E23000A9192A /* MyTiledLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5121FCBE14C9E23000A9192A /* MyTiledLayer.m */; };
+		5183400914D1E9480039FDD8 /* Metro.map in Resources */ = {isa = PBXBuildFile; fileRef = 5183400714D1E9480039FDD8 /* Metro.map */; };
+		5183400A14D1E9480039FDD8 /* Metro.trp in Resources */ = {isa = PBXBuildFile; fileRef = 5183400814D1E9480039FDD8 /* Metro.trp */; };
 		51D20F3514B849A3007AC4BD /* ManagedObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D20F3414B849A3007AC4BD /* ManagedObjects.m */; };
 		51D20F3914B85185007AC4BD /* tubee.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 51D20F3714B85185007AC4BD /* tubee.xcdatamodeld */; };
 		51D20F3B14B85468007AC4BD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D20F3A14B85468007AC4BD /* CoreData.framework */; };
@@ -228,6 +230,8 @@
 		4BC1C945142E36CA003651BB /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
 		5121FCBD14C9E23000A9192A /* MyTiledLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyTiledLayer.h; path = Classes/MyTiledLayer.h; sourceTree = "<group>"; };
 		5121FCBE14C9E23000A9192A /* MyTiledLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTiledLayer.m; path = Classes/MyTiledLayer.m; sourceTree = "<group>"; };
+		5183400714D1E9480039FDD8 /* Metro.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Metro.map; sourceTree = "<group>"; };
+		5183400814D1E9480039FDD8 /* Metro.trp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Metro.trp; sourceTree = "<group>"; };
 		51D20F3314B849A3007AC4BD /* ManagedObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManagedObjects.h; path = Classes/ManagedObjects.h; sourceTree = "<group>"; };
 		51D20F3414B849A3007AC4BD /* ManagedObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManagedObjects.m; path = Classes/ManagedObjects.m; sourceTree = "<group>"; };
 		51D20F3814B85185007AC4BD /* tubee.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tubee.xcdatamodel; sourceTree = "<group>"; };
@@ -621,6 +625,8 @@
 		4BC04400142FC6A600A643B8 /* maps */ = {
 			isa = PBXGroup;
 			children = (
+				5183400714D1E9480039FDD8 /* Metro.map */,
+				5183400814D1E9480039FDD8 /* Metro.trp */,
 				51DA7D1A14CC941000019947 /* paris.map */,
 				51DA7D1B14CC941000019947 /* paris.trp */,
 			);
@@ -911,6 +917,8 @@
 				9F39FDB414CD345800A8043C /* src_button_pressed@2x.png in Resources */,
 				9F39FDB514CD345800A8043C /* station_label.png in Resources */,
 				9F39FDB614CD345800A8043C /* station_label@2x.png in Resources */,
+				5183400914D1E9480039FDD8 /* Metro.map in Resources */,
+				5183400A14D1E9480039FDD8 /* Metro.trp in Resources */,
 				BCF7CCA114CFFE2C0000522C /* toolbar_bg.png in Resources */,
 				BCF7CCA214CFFE2C0000522C /* toolbar_bg@2x.png in Resources */,
 				BCE54FCA14D05BF2005006C7 /* cross_transp.png in Resources */,
