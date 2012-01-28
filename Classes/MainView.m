@@ -74,18 +74,19 @@ NSInteger const toolbarWidth=320;
 //	containerView.userInteractionEnabled = YES;
 //	mapView.exclusiveTouch = NO;
 
-//    UIImageView* backgroundImageView = [[UIImageView alloc] initWithImage:mapView.background];
-//    backgroundImageView.frame = CGRectMake(0, 0, mapView.background.size.width, mapView.background.size.height);
-//    backgroundImageView.contentMode = UIViewContentModeScaleAspectFit;
-//    [self addSubview:backgroundImageView];
-//    [self sendSubviewToBack:backgroundImageView];
-//    [backgroundImageView release];
+    UIImageView* backgroundImageView = [[UIImageView alloc] initWithImage:mapView.background];
+    backgroundImageView.frame = CGRectMake(0, 0, 320, 480);//mapView.background.size.width, mapView.background.size.height);
+    backgroundImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [containerView addSubview:backgroundImageView];
+    [containerView bringSubviewToFront:backgroundImageView];
+    [backgroundImageView release];
     containerView.scrolledView = mapView;
 	containerView.delegate = mapView;
 	[containerView addSubview: mapView];
 	[self addSubview:containerView];
     [containerView setZoomScale:mapView.Scale animated:NO];
-    	
+    [self addSubview:mapView.labelView];
+    
 	//TODO
 	[containerView setContentOffset:CGPointMake(650, 650) animated:NO];
 	

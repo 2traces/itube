@@ -37,6 +37,10 @@
     return CGSizeMake(cityMap.w, cityMap.h);
 }
 
+-(UIView*) labelView {
+    return labelBg;
+}
+
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         // Initialization code
@@ -60,8 +64,6 @@
             self.layer.contentsScale = scale;
 		}
 
-//		cityMap = [[CityMap alloc] init];
-        
         tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
         
         self.cityMap = appDelegate.cityMap;
@@ -69,9 +71,9 @@
         if(scale > 1) cityMap.predrawScale *= scale;
         
         self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
-        MinScale = MIN( (float)frame.size.width / cityMap.size.width, (float)frame.size.height / cityMap.size.height) * 0.5f;
+        MinScale = MIN( (float)frame.size.width / cityMap.size.width, (float)frame.size.height / cityMap.size.height);
         MaxScale = cityMap.maxScale;
-        Scale = MaxScale / 2;
+        Scale = 1.f;//MaxScale / 2;
 		
 		//метка которая показывает названия станций
 		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,10,150,25)];
@@ -85,24 +87,26 @@
         [labelBg.layer setShadowOffset:CGSizeMake(3, 5)];
         [labelBg.layer setShadowOpacity:0.3];
         [labelBg.layer setShadowRadius:5.0];
-		[self addSubview:labelBg];
         
 		[self initData];
 		
 		selectedStationLayer = [[CALayer layer] retain];
         
-        CGSize minSize = CGSizeMake(cityMap.w * MinScale, cityMap.h * MinScale);
+        // make background image
+        CGFloat backScale = MinScale * 2.f;
+        CGSize minSize = CGSizeMake(cityMap.w * backScale, cityMap.h * backScale);
         CGRect r = CGRectMake(0, 0, minSize.width, minSize.height);
 		UIGraphicsBeginImageContext(minSize);
 		CGContextRef context = UIGraphicsGetCurrentContext();
 		CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
 		CGContextFillRect(context,r);
 		CGContextSaveGState(context);
-		CGContextScaleCTM(context, MinScale, MinScale);
+		CGContextScaleCTM(context, backScale, backScale);
+        r.size.width /= backScale;
+        r.size.height /= backScale;
         [cityMap drawMap:context inRect:r];
         [cityMap drawTransfers:context inRect:r];
         [cityMap drawStations:context inRect:r]; 
-		//CGContextDrawPDFPage(context, page);
 		CGContextRestoreGState(context);
 		background = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
@@ -118,7 +122,6 @@
         labelBg.alpha = 0.f;
         [UIView animateWithDuration:0.25f animations:^{ labelBg.alpha = 1.f; }];
     }
-    [self bringSubviewToFront:labelBg];
 }
 
 -(void)hideLabel
@@ -145,12 +148,14 @@
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)context {
 
-    if(labelBg.superview == self) [self.superview addSubview:labelBg];
+    CGContextSaveGState(context);
     CGRect r = CGContextGetClipBoundingBox(context);
     CGFloat drawScale = 512.f / MAX(r.size.width, r.size.height);
 	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
 	CGContextFillRect(context, r);
 
+#ifdef AGRESSIVE_CACHE
+    CGFloat presentScale = 1.f/drawScale;
     int cc = currentCacheLayer;
     currentCacheLayer++;
     if(currentCacheLayer >= MAXCACHE) currentCacheLayer = 0;
@@ -159,8 +164,9 @@
     CGContextRef ctx = CGLayerGetContext(cacheLayer[cc]);
     CGContextScaleCTM(ctx, drawScale, drawScale);
     CGContextTranslateCTM(ctx, -r.origin.x, -r.origin.y);
-
-//    CGContextRef ctx = context;
+#else
+    CGContextRef ctx = context;
+#endif
     CGContextSetInterpolationQuality(ctx, kCGInterpolationNone);
     CGContextSetShouldAntialias(ctx, true);
     CGContextSetShouldSmoothFonts(ctx, false);
@@ -170,7 +176,12 @@
     [cityMap drawTransfers:ctx inRect:r];
     [cityMap drawStations:ctx inRect:r]; 
 
-    CGContextDrawLayerInRect(context, r, cacheLayer[cc]);
+#ifdef AGRESSIVE_CACHE
+    CGContextTranslateCTM(context, r.origin.x, r.origin.y);
+    CGContextScaleCTM(context, presentScale, presentScale);
+    CGContextDrawLayerAtPoint(context, CGPointZero, cacheLayer[cc]);
+#endif
+    CGContextRestoreGState(context);
 }
 
 -(void) initData {
@@ -216,7 +227,7 @@
 
 	UITouch *touch = [touches anyObject];
 	CGPoint currentPosition = [touch locationInView:self];
-    CGPoint superPosition = [touch locationInView:self.superview];
+    CGPoint superPosition = [touch locationInView:labelBg.superview];
 	
     selectedStationLine = [cityMap checkPoint:currentPosition Station:selectedStationName];
     

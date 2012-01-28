@@ -58,7 +58,10 @@
         frame.origin.y = (bounds.height - frame.size.height) / 2;
     else 
         frame.origin.y = 0;
-    scrolledView.frame = frame;
+    //scrolledView.frame = frame;
+    for (UIView *v in self.subviews) {
+        v.frame = frame;
+    }
 }
 
 @end
