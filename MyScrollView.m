@@ -15,7 +15,18 @@
 
 - (id)initWithFrame:(CGRect)frame 
 {
-	return [super initWithFrame:frame];
+    if((self = [super initWithFrame:frame])) {
+        tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+        tgr.numberOfTouchesRequired = 1;
+        tgr.numberOfTapsRequired = 2;
+        [self addGestureRecognizer:tgr];
+    }
+	return self;
+}
+
+-(void)dealloc
+{
+    [tgr release];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -43,6 +54,21 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 	DLog(@"scroll !! ");
+}
+
+-(void)handleTap:(UITapGestureRecognizer*)sender
+{
+    if(sender.state == UIGestureRecognizerStateEnded) {
+        CGPoint p = [sender locationInView:[self.subviews objectAtIndex:0]];
+        CGFloat zoom = self.zoomScale;
+        p.x /= zoom;
+        p.y /= zoom;
+        zoom *= 1.5f;
+        CGRect rect = CGRectMake(0, 0, self.frame.size.width / zoom, self.frame.size.height / zoom);
+        rect.origin.x = p.x - rect.size.width / 2;
+        rect.origin.y = p.y - rect.size.height / 2;
+        [self zoomToRect:rect animated:YES];
+    }
 }
 
 -(void)layoutSubviews

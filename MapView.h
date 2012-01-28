@@ -42,7 +42,8 @@ extern int const imagesCount;
     UIScrollView *scrollView;
     CGLayerRef cacheLayer[MAXCACHE];
     int currentCacheLayer;
-    UIImage *background;
+    // background prerendered images (normal and gray)
+    UIImageView *background1, *background2;
 }
 
 @property (assign) NSString *nearestStationName;
@@ -63,7 +64,8 @@ extern int const imagesCount;
 @property (nonatomic, readonly) CGFloat MaxScale;
 @property (nonatomic, readonly) CGFloat MinScale;
 @property (nonatomic, assign) MainViewController *vcontroller;
-@property (nonatomic, readonly) UIImage* background;
+@property (nonatomic, readonly) UIImageView* backgroundNormal;
+@property (nonatomic, readonly) UIImageView* backgroundDisabled;
 @property (nonatomic, readonly) UIView* labelView;
 
 - (void)viewDidLoad;

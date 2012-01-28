@@ -26,7 +26,8 @@
 @synthesize MaxScale;
 @synthesize MinScale;
 @synthesize vcontroller;
-@synthesize background;
+@synthesize backgroundNormal = background1;
+@synthesize backgroundDisabled = background2;
 
 + (Class)layerClass
 {
@@ -92,7 +93,7 @@
 		
 		selectedStationLayer = [[CALayer layer] retain];
         
-        // make background image
+        // make normal background image
         CGFloat backScale = MinScale * 2.f;
         CGSize minSize = CGSizeMake(cityMap.w * backScale, cityMap.h * backScale);
         CGRect r = CGRectMake(0, 0, minSize.width, minSize.height);
@@ -100,17 +101,31 @@
 		CGContextRef context = UIGraphicsGetCurrentContext();
 		CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
 		CGContextFillRect(context,r);
-		CGContextSaveGState(context);
 		CGContextScaleCTM(context, backScale, backScale);
         r.size.width /= backScale;
         r.size.height /= backScale;
         [cityMap drawMap:context inRect:r];
         [cityMap drawTransfers:context inRect:r];
         [cityMap drawStations:context inRect:r]; 
-		CGContextRestoreGState(context);
-		background = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+        UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+        background1 = [[UIImageView alloc] initWithImage:img];
+        background1.frame = CGRectMake(0, 0, img.size.width, img.size.height);
+        background1.contentMode = UIViewContentModeScaleAspectFit;
 
+        // make disabled background image
+        [cityMap activatePath:[NSArray array]];
+		CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
+		CGContextFillRect(context,r);
+        [cityMap drawMap:context inRect:r];
+        [cityMap drawTransfers:context inRect:r];
+        [cityMap drawStations:context inRect:r]; 
+        img = UIGraphicsGetImageFromCurrentImageContext();
+        background2 = [[UIImageView alloc] initWithImage:img];
+        background2.frame = CGRectMake(0, 0, img.size.width, img.size.height);
+        background2.contentMode = UIViewContentModeScaleAspectFit;
+        background2.hidden = YES;
+        UIGraphicsEndImageContext();
+        [cityMap resetPath];
     }
     return self;
 }
@@ -143,7 +158,8 @@
 	[cityMap dealloc];
 	[nearestStationImage release];
     for(int i=0; i<MAXCACHE; i++) CGLayerRelease(cacheLayer[i]);
-    [background release];
+    [background1 release];
+    [background2 release];
 }
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)context {
@@ -251,6 +267,8 @@
     [pathArray addObjectsFromArray:[cityMap calcPath:fSt :sSt :fStl :sStl]];
 	[pathArray insertObject:[GraphNode nodeWithValue:[NSString stringWithFormat:@"%@|%d",fSt,fStl ] ] atIndex:0];
 	
+    background1.hidden = YES;
+    background2.hidden = NO;
     [cityMap activatePath:pathArray];
     [scrollView zoomToRect:cityMap.activeExtent animated:YES];
     // это недокументированный метод, так что если он в будущем изменится, то ой
@@ -262,6 +280,8 @@
 -(void) clearPath
 {
     if([cityMap.activePath count] > 0) {
+        background1.hidden = NO;
+        background2.hidden = YES;
         [cityMap resetPath];
         // это недокументированный метод, так что если он в будущем изменится, то ой
         [self.layer invalidateContents];
