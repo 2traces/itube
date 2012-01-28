@@ -99,23 +99,24 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if([stations count] > 0) station.drawName = NO;
     station.transfer = self;
     [stations addObject:station];
-    CGRect st = CGRectMake(station.pos.x - 4.5, station.pos.y - 4.5, 9, 9);
+    CGRect st = CGRectMake(station.pos.x - StationDiameter, station.pos.y - StationDiameter, StationDiameter*2.f, StationDiameter*2.f);
     if(CGRectIsNull(boundingBox)) boundingBox = st;
     else boundingBox = CGRectUnion(boundingBox, st);
 }
 
 +(void) drawTransferLikeLondon:(CGContextRef) context stations:(NSArray*)stations
 {
+    CGFloat blackW = StationDiameter / 5.f;
     CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
     CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 1.0);				
     for(int i = 0; i<[stations count]; i++) {
         Station *st = [stations objectAtIndex:i];
         CGPoint p1 = st.pos;
-        drawFilledCircle(context, p1.x, p1.y, 4.5);
+        drawFilledCircle(context, p1.x, p1.y, StationDiameter);
         for(int j = i+1; j<[stations count]; j++) {
             Station *st2 = [stations objectAtIndex:j];
             CGPoint p2 = st2.pos;
-            drawLine(context, p1.x, p1.y, p2.x, p2.y, 2.5);
+            drawLine(context, p1.x, p1.y, p2.x, p2.y, StationDiameter*0.5f);
         }
     }
     CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
@@ -123,17 +124,18 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     for(int i = 0; i<[stations count]; i++) {
         Station *st = [stations objectAtIndex:i];
         CGPoint p1 = st.pos;
-        drawFilledCircle(context, p1.x, p1.y, 3.5);
+        drawFilledCircle(context, p1.x, p1.y, StationDiameter - blackW);
         for(int j = i+1; j<[stations count]; j++) {
             Station *st2 = [stations objectAtIndex:j];
             CGPoint p2 = st2.pos;
-            drawLine(context, p1.x, p1.y, p2.x, p2.y, 1.5);
+            drawLine(context, p1.x, p1.y, p2.x, p2.y, StationDiameter*0.5f - blackW);
         }
     }
 }
 
 +(void) drawTransferLikeParis:(CGContextRef)context stations:(NSArray*)stations
 {
+    CGFloat blackW = LineWidth / 3.f;
     CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
     CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 1.0);				
     for(int i = 0; i<[stations count]; i++) {
@@ -142,7 +144,15 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         for(int j = i+1; j<[stations count]; j++) {
             Station *st2 = [stations objectAtIndex:j];
             CGPoint p2 = st2.pos;
-            drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2);
+            CGFloat dx = (p1.x-p2.x);
+            CGFloat dy = (p1.y-p2.y);
+            CGFloat d2 = dx*dx + dy*dy;
+            if(d2 > StationDiameter*StationDiameter*6) {
+                drawFilledCircle(context, p1.x, p1.y, LineWidth);
+                drawFilledCircle(context, p2.x, p2.y, LineWidth);
+                drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth);
+            } else
+                drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2);
         }
     }
     CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
@@ -153,7 +163,15 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         for(int j = i+1; j<[stations count]; j++) {
             Station *st2 = [stations objectAtIndex:j];
             CGPoint p2 = st2.pos;
-            drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2-1);
+            CGFloat dx = (p1.x-p2.x);
+            CGFloat dy = (p1.y-p2.y);
+            CGFloat d2 = dx*dx + dy*dy;
+            if(d2 > StationDiameter*StationDiameter*6) {
+                drawFilledCircle(context, p1.x, p1.y, LineWidth-blackW/2);
+                drawFilledCircle(context, p2.x, p2.y, LineWidth-blackW/2);
+                drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth-blackW);
+            } else 
+                drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2-blackW);
         }
     }
     for (Station *st in stations) {
@@ -167,6 +185,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 +(void) drawTransferLikeMoscow:(CGContextRef)context stations:(NSArray*)stations
 {
+    CGFloat blackW = LineWidth * 0.5f;
     CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 0.6);
     CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 0.6);				
     for(int i = 0; i<[stations count]; i++) {
@@ -186,7 +205,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         for(int j = i+1; j<[stations count]; j++) {
             Station *st2 = [stations objectAtIndex:j];
             CGPoint p2 = st2.pos;
-            drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2-2);
+            drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2-blackW);
         }
     }
     for (Station *st in stations) {
@@ -577,8 +596,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             NSArray *coord_text = [[rcts objectAtIndex:i] componentsSeparatedByString:@","];
             int tx = [[coord_text objectAtIndex:0] intValue];
             int ty = [[coord_text objectAtIndex:1] intValue];
-            int tw = [[coord_text objectAtIndex:2] intValue];
-            int th = [[coord_text objectAtIndex:3] intValue];
+            int tw = [[coord_text objectAtIndex:2] intValue] * 4.f;
+            int th = [[coord_text objectAtIndex:3] intValue] * 4.f;
             
             NSString* drv = nil;
             if(i < [drs count]) drv = [drs objectAtIndex:i];

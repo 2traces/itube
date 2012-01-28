@@ -125,7 +125,7 @@ NSInteger const toolbarWidth=320;
 }
 
 -(void) selectFromStationByButton {
-    
+    if(!mapView.stationSelected || mapView.selectedStationLine < 1 || !mapView.selectedStationName) return;
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.mainViewController.currentSelection=0;
     
@@ -138,7 +138,7 @@ NSInteger const toolbarWidth=320;
 }
 
 -(void) selectToStationByButton {
-
+    if(!mapView.stationSelected || mapView.selectedStationLine < 1 || !mapView.selectedStationName) return;
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.mainViewController.currentSelection=1;
     

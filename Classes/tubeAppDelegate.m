@@ -24,7 +24,7 @@
 	[aController release];
     
     CityMap *cm = [[CityMap alloc] init];
-    [cm loadMap:@"paris"];
+    [cm loadMap:@"Metro"];
     self.cityMap = cm;
     [cm release];
 	

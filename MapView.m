@@ -74,7 +74,7 @@
         self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
         MinScale = MIN( (float)frame.size.width / cityMap.size.width, (float)frame.size.height / cityMap.size.height);
         MaxScale = cityMap.maxScale;
-        Scale = 1.f;//MaxScale / 2;
+        Scale = MaxScale / 2;
 		
 		//метка которая показывает названия станций
 		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,10,150,25)];
