@@ -115,6 +115,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
     NSMutableArray* splinePoints;
     CGRect boundingBox;
     BOOL active;
+    CGMutablePathRef path;
 }
 @property (nonatomic, readonly) Station* start;
 @property (nonatomic, readonly) Station* end;
@@ -126,6 +127,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 -(void)appendPoint:(CGPoint)p;
 -(void)calcSpline;
 -(void)draw:(CGContextRef)context;
+-(void)predraw;
 @end
 
 @interface Line : NSObject {
@@ -163,7 +165,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
     NSMutableArray *mapLines;
 	NSMutableDictionary *gpsCoords;
     NSMutableArray* transfers;
-    CGFloat currentScale;
+    CGFloat maxScale;
     CGRect activeExtent;
     NSMutableArray *activePath;
 }
@@ -180,6 +182,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @property (nonatomic, readonly) NSArray* activePath;
 @property (nonatomic, assign) StationKind stationKind;
 @property (nonatomic, assign) StationKind transferKind;
+@property (nonatomic, readonly) CGFloat maxScale;
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //

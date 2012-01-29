@@ -74,11 +74,15 @@ NSInteger const toolbarWidth=320;
 //	containerView.userInteractionEnabled = YES;
 //	mapView.exclusiveTouch = NO;
 
+    [containerView addSubview:mapView.backgroundNormal];
+    [containerView addSubview:mapView.backgroundDisabled];
+    containerView.scrolledView = mapView;
 	containerView.delegate = mapView;
 	[containerView addSubview: mapView];
 	[self addSubview:containerView];
     [containerView setZoomScale:mapView.Scale animated:NO];
-    	
+    [self addSubview:mapView.labelView];
+    
 	//TODO
 	[containerView setContentOffset:CGPointMake(650, 650) animated:NO];
 	
@@ -114,11 +118,14 @@ NSInteger const toolbarWidth=320;
     [destinationButton setFrame:CGRectMake(154, 0, 76, 76)];
     [buttonsView addSubview:destinationButton];
     [self addSubview:buttonsView];
+    [buttonsView.layer setShadowOffset:CGSizeMake(3, 5)];
+    [buttonsView.layer setShadowOpacity:0.3];
+    [buttonsView.layer setShadowRadius:5.0];
     buttonsView.hidden = YES;
 }
 
 -(void) selectFromStationByButton {
-    
+    if(!mapView.stationSelected || mapView.selectedStationLine < 1 || !mapView.selectedStationName) return;
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.mainViewController.currentSelection=0;
     
@@ -131,7 +138,7 @@ NSInteger const toolbarWidth=320;
 }
 
 -(void) selectToStationByButton {
-
+    if(!mapView.stationSelected || mapView.selectedStationLine < 1 || !mapView.selectedStationName) return;
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.mainViewController.currentSelection=1;
     
@@ -187,8 +194,6 @@ NSInteger const toolbarWidth=320;
 	}
 	 */
 }
-
-
 
 -(void) findPathFrom :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl  {
 	[mapView findPathFrom:fs To:ss FirstLine:fsl LastLine:ssl];
