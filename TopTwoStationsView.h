@@ -17,6 +17,7 @@
 	UITextField *firstStation;
 	UITextField *secondStation;	
     BOOL isEditing;
+    BOOL shouldEnlarge;
     
     FastAccessTableViewController *tableView;
 }
@@ -32,5 +33,6 @@
 -(void)setFromStation:(MStation*)fromStation;
 -(void)setToStation:(MStation*)toStation;
 -(UIImage*)drawCircleView:(UIColor*)myColor;
+-(void)transitToPathView;
 
 @end

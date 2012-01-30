@@ -30,6 +30,7 @@
 @property (nonatomic, retain) NSArray* stationsList;
 
 -(UIImage*)drawCircleView:(UIColor*)myColor;
+-(UIColor*)saturateColor:(UIColor*)startColor;
 
 @end
 
@@ -37,6 +38,7 @@
 
 -(NSArray*)getLineList;
 -(NSArray*)getStationsForLine:(MLine*)line;
+
 
 @end
 

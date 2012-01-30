@@ -17,6 +17,34 @@
 #define DEFAULT_ROW_HEIGHT 38
 #define HEADER_HEIGHT 40
 
+static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v )
+{
+    float min, max, delta;
+    min = MIN( r, MIN( g, b ));
+    max = MAX( r, MAX( g, b ));
+    *v = max;               // v
+    delta = max - min;
+    if( max != 0 )
+        *s = delta / max;       // s
+    else {
+        // r = g = b = 0        // s = 0, v is undefined
+        *s = 0;
+        *h = -1;
+        return;
+    }
+    if( r == max )
+        *h = ( g - b ) / delta;     // between yellow & magenta
+    else if( g == max )
+        *h = 2 + ( b - r ) / delta; // between cyan & yellow
+    else
+        *h = 4 + ( r - g ) / delta; // between magenta & cyan
+    *h *= 60.0;               // degrees
+    if( *h < 0 )
+        *h += 360.0;
+    *h /= 360.0;
+    *v /= 256.0;
+}
+
 @implementation LineListViewController
 
 @synthesize lineList;
@@ -326,6 +354,22 @@
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationNone];
 }
 
+-(UIColor*)saturateColor:(UIColor*)startColor
+{
+    CGFloat r, g, b, a, h, s, v;
+    
+    const CGFloat *comp = CGColorGetComponents([startColor CGColor]);
+    
+    r = comp[0]*256.0;
+    g = comp[1]*256.0;
+    b = comp[2]*256.0;
+    a = comp[3];
+    
+    RGBtoHSV(r, g, b, &h, &s, &v);
+    
+    return [UIColor colorWithHue:h saturation:s*2.0 brightness:v alpha:a];
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     /*
@@ -334,11 +378,12 @@
 	SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:section];
     if (!sectionInfo.headerView) {
 		NSString *lineName = sectionInfo.line.name;
-        sectionInfo.headerView = [[[SectionHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, HEADER_HEIGHT) title:lineName color:sectionInfo.line.color section:section delegate:self] autorelease];
+        sectionInfo.headerView = [[[SectionHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, HEADER_HEIGHT) title:lineName color:[self saturateColor:(UIColor*)sectionInfo.line.color] section:section delegate:self] autorelease];
     }
     
     return sectionInfo.headerView;
 }
+
 
 /*
 
