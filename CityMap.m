@@ -358,6 +358,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)drawName:(CGContextRef)context
 {
+    if(!active) {
+        CGContextSaveGState(context);
+        CGContextSetAlpha(context, 0.3f);
+    }
     if(predrawedName != nil) CGContextDrawLayerInRect(context, textRect, predrawedName);
     else {
         CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
@@ -373,6 +377,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         CGContextSelectFont(context, "Arial-BoldMT", StationDiameter, kCGEncodingMacRoman);
         CGContextShowTextAtPoint(context, textRect.origin.x, textRect.origin.y+textRect.size.height, [name cStringUsingEncoding:[NSString defaultCStringEncoding]], [name length]);
     }
+    if(!active) CGContextRestoreGState(context);
 }
 
 -(void)drawStation:(CGContextRef)context
@@ -525,17 +530,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 {
     if(!active) {
         CGContextSaveGState(context);
-        CGContextSetStrokeColorWithColor(context, [[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0] CGColor]);
+        CGContextSetAlpha(context, 0.3f);
     }
 	CGContextSetLineCap(context, kCGLineCapRound);
 	CGContextSetLineWidth(context, LineWidth);
 	CGContextMoveToPoint(context, start.pos.x, start.pos.y);
     if(splinePoints) {
-        /*[self draw:context fromPoint:CGPointMake(start.pos.x, start.pos.y) toTangentPoint:[splinePoints objectAtIndex:0]];
-        for(int i=0; i<[splinePoints count]-1; i++) {
-            [self draw:context fromTangentPoint:[splinePoints objectAtIndex:i] toTangentPoint:[splinePoints objectAtIndex:i+1]];
-        }
-        [self draw:context fromTangentPoint:[splinePoints lastObject] toPoint:CGPointMake(end.pos.x, end.pos.y)];*/
         CGContextMoveToPoint(context, 0, 0);
         CGContextAddPath(context, path);
         CGContextStrokePath(context);
@@ -659,8 +659,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         [s draw:context];
     }
     for (Station *s in stations) {
-        if(s.transfer == nil) //[s draw:context];
+        if(s.transfer == nil) {
+            if(!s.active) {
+                CGContextSaveGState(context);
+                CGContextSetAlpha(context, 0.3f);
+            }
             CGContextDrawLayerInRect(context, s.boundingBox, stationLayer);
+            if(!s.active) CGContextRestoreGState(context);
+        }
     }
 }
 
@@ -1241,6 +1247,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             activeExtent = CGRectUnion(activeExtent, s.boundingBox);
         }
 	}
+    activeExtent.origin.x -= activeExtent.size.width * 0.1f;
+    activeExtent.origin.y -= activeExtent.size.height * 0.1f;
+    activeExtent.size.width *= 1.2f;
+    activeExtent.size.height *= 1.2f;
 }
 
 -(void) resetPath
