@@ -9,10 +9,11 @@
 #import "FlipsideViewController.h"
 #import "SelectingTabBarViewController.h"
 #import "ManagedObjects.h"
+#import "PathDrawView.h"
 
 @class TopTwoStationsView;
 
-@interface MainViewController : UIViewController <FlipsideViewControllerDelegate,SelectingTabBarProtocol,UIScrollViewDelegate> {
+@interface MainViewController : UIViewController <FlipsideViewControllerDelegate,SelectingTabBarProtocol,UIScrollViewDelegate,PathDrawProtocol> {
     int currentSelection;
     MStation *fromStation;
     MStation *toStation;

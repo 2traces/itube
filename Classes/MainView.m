@@ -105,22 +105,27 @@ NSInteger const toolbarWidth=320;
 	//[containerView addGestureRecognizer:singleTap];    
 	
     buttonsView = [[UIView alloc] initWithFrame:CGRectMake(45, 180, 230, 80)];
+
     UIButton *sourceButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [sourceButton setImage:[UIImage imageNamed:@"src_button_normal"] forState:UIControlStateNormal];
     [sourceButton setImage:[UIImage imageNamed:@"src_button_pressed"] forState:UIControlStateHighlighted];
     [sourceButton addTarget:self action:@selector(selectFromStationByButton) forControlEvents:UIControlEventTouchUpInside];
     [sourceButton setFrame:CGRectMake(0,0, 76, 76)];
     [buttonsView addSubview:sourceButton];
+    
     UIButton *destinationButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [destinationButton setImage:[UIImage imageNamed:@"dst_button_normal"] forState:UIControlStateNormal];
     [destinationButton setImage:[UIImage imageNamed:@"dst_button_pressed"] forState:UIControlStateHighlighted];
     [destinationButton addTarget:self action:@selector(selectToStationByButton) forControlEvents:UIControlEventTouchUpInside];
     [destinationButton setFrame:CGRectMake(154, 0, 76, 76)];
     [buttonsView addSubview:destinationButton];
+    
     [self addSubview:buttonsView];
+    
     [buttonsView.layer setShadowOffset:CGSizeMake(3, 5)];
     [buttonsView.layer setShadowOpacity:0.3];
     [buttonsView.layer setShadowRadius:5.0];
+    
     buttonsView.hidden = YES;
 }
 

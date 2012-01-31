@@ -13,6 +13,8 @@
 #import "TopTwoStationsView.h"
 #import "FastAccessTableViewController.h"
 #import "tubeAppDelegate.h"
+#import "PathBarView.h"
+#import "PathDrawView.h"
 
 #define FromStation 0
 #define ToStation 1
@@ -184,9 +186,11 @@
     return arrivalTime;
 }
 
--(NSInteger) getTravelTimeFromPath:(NSMutableDictionary*)pathInfo
+-(NSInteger) getOverallTravelAndTransferTimeFromPath:(NSMutableDictionary*)pathInfo
 {
     NSInteger travelTime;
+    
+    travelTime=0;
     
     for (NSNumber *key in [pathInfo allKeys]) {
         travelTime+=[[pathInfo objectForKey:key] integerValue];
@@ -195,28 +199,100 @@
     return travelTime;
 }
 
--(void)drawPathToBar:(NSMutableDictionary*)pathInfo
+-(NSInteger) getTravelTimeFromPath:(NSMutableDictionary*)pathInfo
 {
-    CGFloat overallLineWidth = 265.0f;
-    CGFloat lineStart = 40.0f;
-    CGFloat lineEnd = lineStart + overallLineWidth;
-    CGFloat y = 29.0f;
+    NSInteger travelTime;
     
-    CGFloat x, segmentLenght;
-    
-    x=lineStart;
-    
-    NSInteger travelTime = [self getTravelTimeFromPath:pathInfo];
+    travelTime=0;
     
     for (NSNumber *key in [pathInfo allKeys]) {
-        if ([[pathInfo objectForKey:key] integerValue]!=-1) {
-            segmentLenght = [[pathInfo objectForKey:key] floatValue]/(float)travelTime;
-            
-            //draw here 
-            
-            x+=segmentLenght;
+        if ([key intValue]!=-1) {
+            travelTime+=[[pathInfo objectForKey:key] integerValue];
         }
     }
+    
+    return travelTime;
+}
+
+-(NSInteger)dsGetTravelTime
+{
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSArray *path = appDelegate.cityMap.activePath;
+    int objectNum = [path count];
+    
+    NSInteger transferTime=0;
+    NSInteger lineTime=0;
+    
+    for (int i=0; i<objectNum; i++) {
+        if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
+            Segment *segment = (Segment*)[path objectAtIndex:i];
+            lineTime+=[segment driving];
+        } else if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]]) {
+            transferTime+=[[path objectAtIndex:i] time];
+        }
+    }
+    
+    return lineTime+transferTime;
+}
+
+-(NSArray*)dsGetLinesColorArray
+{
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSArray *path = appDelegate.cityMap.activePath;
+    int objectNum = [path count];
+    
+    NSMutableArray *colorArray = [[NSMutableArray alloc] initWithCapacity:1];
+    int currentIndexLine = -1;
+    
+    for (int i=0; i<objectNum; i++) {
+        if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
+            
+            Segment *segment = (Segment*)[path objectAtIndex:i];
+            
+            if (currentIndexLine!=[[[segment start] line] index]) {
+                [colorArray addObject:[[[segment start] line] color]];
+                currentIndexLine=[[[segment start] line] index];
+            }
+        } 
+    }
+    
+    return colorArray;
+}
+
+-(NSArray*)dsGetLinesTimeArray
+{
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSArray *path = appDelegate.cityMap.activePath;
+    int objectNum = [path count];
+    
+    NSInteger lineTime=0;
+    NSMutableArray *timeArray = [[NSMutableArray alloc] initWithCapacity:1];
+    int currentIndexLine = -1;
+    
+    for (int i=0; i<objectNum; i++) {
+        if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
+            
+            Segment *segment = (Segment*)[path objectAtIndex:i];
+            
+            if (currentIndexLine==[[[segment start] line] index]) {
+                
+                lineTime+=[segment driving];
+            
+            } else {
+
+                if (currentIndexLine!=-1) {
+                    [timeArray addObject:[NSNumber numberWithInteger:lineTime]];    
+                }
+                
+                lineTime=[segment driving];
+                currentIndexLine=[[[segment start] line] index];
+            }
+        }
+    }
+    
+    [timeArray addObject:[NSNumber numberWithInteger:lineTime]];    
+    
+    return timeArray;
 }
 
 -(void)showScrollView
@@ -237,45 +313,11 @@
         self.scrollView.delegate = self;
         
         for (int i=0; i<numberOfPages; i++) {
-            
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i*320.0, 0, 320.0, 40.0)];
-            imageView.tag=5000+i;
-            imageView.image = [UIImage imageNamed:@"toolbar_bg.png"];
-            [self.scrollView addSubview:imageView];
-            [imageView release];
-            
-            UIImageView *pathNumberView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pathnumber.png"]];
-            pathNumberView.frame = CGRectMake(i*320.0+8,4,24,32);
-            [self.scrollView addSubview:pathNumberView];
-            [pathNumberView release];
-
-            UIImageView *clockView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"clock.png"]];
-            clockView.frame = CGRectMake(i*320.0+37, 4, 14, 14);
-            [self.scrollView addSubview:clockView];
-            [clockView release];
-            
-            UIImageView *flagView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"flag.png"]];
-            flagView.frame = CGRectMake(i*320+246,5,14,14);
-            [self.scrollView addSubview:flagView];
-            [flagView release];
-            
-            UILabel *nameLabel = [[UILabel alloc] init];
-            nameLabel.backgroundColor = [UIColor clearColor];
-            nameLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:13.0];
-            nameLabel.frame=CGRectMake(i*320+52.0, 6, 65, 15); 
-            nameLabel.tag=6000+i;
-            [self.scrollView addSubview:nameLabel];
-            [nameLabel release];
-            
-            UILabel *nameLabel2 = [[UILabel alloc] init];
-            nameLabel2.backgroundColor = [UIColor clearColor];
-            nameLabel2.font = [UIFont fontWithName:@"MyriadPro-Regular" size:13.0];
-            nameLabel2.frame=CGRectMake(i*320+263.0, 7, 60, 15); 
-            nameLabel2.tag=7000+i;
-            [self.scrollView addSubview:nameLabel2];
-            [nameLabel2 release];
-        }
-        
+            PathBarView *pathView = [[PathBarView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 40)];
+            [self.scrollView addSubview:pathView];
+            pathView.tag=20000;
+            [pathView release];
+         }
         
         [(MainView*)self.view addSubview:scrollView];
         [(MainView*)self.view bringSubviewToFront:scrollView];
@@ -283,17 +325,14 @@
         
     for (int i=0; i<numberOfPages; i++) {
         
-        NSMutableDictionary *pathInfo = [self getLineSegments];
-        
-        NSInteger travelTime = [self getTravelTimeFromPath:pathInfo];
+        NSInteger travelTime = [self dsGetTravelTime];
  
         [(UILabel*)[self.scrollView viewWithTag:6000+i] setText:[NSString stringWithFormat:@"%d minutes",travelTime]];
         [(UILabel*)[self.scrollView viewWithTag:7000+i] setText:[NSString stringWithFormat:@"%@",[self getArrivalTimeFromNow:travelTime]]];
         
-        [self drawPathToBar:pathInfo];
+        [(PathDrawView*)[self.scrollView viewWithTag:10000+i] setDelegate:self];
+        [[self.scrollView viewWithTag:10000+i] setNeedsDisplay];
     }
-
-   
 }
 
 -(void)removeScrollView

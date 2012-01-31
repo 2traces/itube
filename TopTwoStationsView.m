@@ -46,7 +46,7 @@
 -(void)drawInitialState
 {
     toolbar = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, self.frame.size.width,self.frame.size.height)];
-    [toolbar setImage:[UIImage imageNamed:@"toolbar_bg.png"]];
+    [toolbar setImage:[UIImage imageNamed:@"toolbar_bg1.png"]];
     [toolbar setUserInteractionEnabled:YES];
 	[self addSubview:toolbar];
 
@@ -298,6 +298,7 @@
         
         self.frame=CGRectMake(0,0, 320, 26); 
         self.toolbar.frame=CGRectMake(0,0, 320, 26); 
+        [toolbar setImage:[UIImage imageNamed:@"upper_path_bg.png"]];
     }];
     
     firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
@@ -350,6 +351,8 @@
         
         self.frame=CGRectMake(0,0, 320, 44); 
         self.toolbar.frame=CGRectMake(0,0, 320,44); 
+       
+         [toolbar setImage:[UIImage imageNamed:@"toolbar_bg1.png"]];
         
         
     }];
@@ -480,7 +483,7 @@
 
 -(UIImage*)drawCircleView:(UIColor*)myColor
 {
-    UIGraphicsBeginImageContext(CGSizeMake(29,29));
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(29,29), NO, 0.0);
     
     CGRect circleRect = CGRectMake(11.0, 6.0, 13.0, 13.0);
 	
