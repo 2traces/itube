@@ -44,7 +44,7 @@
     
     [self.mytableView setBackgroundColor:[UIColor clearColor]];
     self.imageView.image = [UIImage imageNamed:@"tablebackground.png"];
-    
+
     formatter = [[NSDateFormatter alloc] init];
     
     [formatter setTimeStyle:NSDateFormatterNoStyle];
@@ -114,7 +114,6 @@
 {
     return 1;
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -197,9 +196,9 @@
 
 -(UIImage*)drawCircleView:(UIColor*)myColor
 {
-    UIGraphicsBeginImageContext(CGSizeMake(29,29));
+    UIGraphicsBeginImageContext(CGSizeMake(20,20));
     
-    CGRect circleRect = CGRectMake(9.0, 9.0, 15.0, 15.0);
+    CGRect circleRect = CGRectMake(4.0, 4.0, 12.0, 12.0);
 	
     CGContextRef context = UIGraphicsGetCurrentContext();
     
