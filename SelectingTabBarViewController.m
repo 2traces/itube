@@ -14,6 +14,9 @@
 #import "HistoryViewController.h"
 #import "CustomTabBar.h"
 #import "ManagedObjects.h"
+#import "MBProgressHUD.h"
+#import "tubeAppDelegate.h"
+#import "MainViewController.h"
 
 @implementation SelectingTabBarViewController
 
@@ -70,6 +73,31 @@
     stationButton.selected=YES;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Choose a station";
+    hud.labelFont = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
+
+    if (!appDelegate.mainViewController.currentSelection) {
+        hud.detailsLabelText = @"of arrival";
+    } else {
+        hud.detailsLabelText = @"of departure";
+    }
+    hud.detailsLabelFont = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
+    hud.opacity=0.7;
+    hud.customView = [[UIView alloc] initWithFrame:CGRectZero];
+	hud.mode = MBProgressHUDModeCustomView;
+
+    [self performSelector:@selector(dismissHUD) withObject:nil afterDelay:1.0];
+}
+
+-(void)dismissHUD
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
 
 - (void)viewDidUnload
 {
@@ -133,6 +161,8 @@
     [helper saveBookmarkFile];
     [helper saveHistoryFile];
     [self dismissModalViewControllerAnimated:YES];
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate.mainViewController returnFromSelection:[NSArray array]];
 }
 
 
