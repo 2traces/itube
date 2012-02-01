@@ -51,124 +51,6 @@
     [twoStationsView release];
 }
 
--(NSInteger)getTravelTime
-{
-    /*
-     @interface Segment : NSObject {
-     @private
-     Station *start;
-     Station *end;
-     int driving;
-     NSMutableArray* splinePoints;
-     CGRect boundingBox;
-     BOOL active;
-     CGMutablePathRef path;
-     }
-     @property (nonatomic, readonly) Station* start;
-     @property (nonatomic, readonly) Station* end;
-     @property (nonatomic, readonly) int driving;
-     @property (nonatomic, readonly) CGRect boundingBox;
-     @property (nonatomic, assign) BOOL active;
-     
-     -(id)initFromStation:(Station*)from toStation:(Station*)to withDriving:(int)dr;
-     -(void)appendPoint:(CGPoint)p;
-     -(void)calcSpline;
-     -(void)draw:(CGContextRef)context;
-     -(void)predraw;
-     @end
-
-     @interface Transfer : NSObject {
-     @private
-     NSMutableSet* stations;
-     CGFloat time;
-     CGRect boundingBox;
-     CGLayerRef transferLayer;
-     BOOL active;
-     }
-     @property (nonatomic, readonly) NSMutableSet* stations;
-     @property (nonatomic, assign) CGFloat time;
-     @property (nonatomic, readonly) CGRect boundingBox;
-     @property (nonatomic, assign) BOOL active;
-     
-     -(void) addStation:(Station*)station;
-     -(void) draw:(CGContextRef)context;
-     -(void) predraw:(CGContextRef)context;
-     @end
-
-     */
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSArray *path = appDelegate.cityMap.activePath;
-    int objectNum = [path count];
-    
-    NSInteger time=0;
-    NSInteger lineTime=0;
-    NSMutableDictionary *pathDict = [[NSMutableDictionary alloc] initWithCapacity:1];
-    int currentIndexLine = -1;
-    int numberOfTransfers = 0;
-    
-    for (int i=0; i<objectNum; i++) {
-        if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
-
-            Segment *segment = (Segment*)[path objectAtIndex:i];
-            
-            if (currentIndexLine==[[[segment start] line] index]) {
-                lineTime+=[segment driving];
-            } else {
-                lineTime=[segment driving];
-                currentIndexLine=[[[segment start] line] index];
-            }
-            
-            [pathDict setObject:[NSNumber numberWithInteger:lineTime] forKey:[NSNumber numberWithInt:[[[segment start] line] index]]];    
-            
-            time+=[segment driving];
-        } else if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]]) {
-            numberOfTransfers+=1;
-            time+=[[path objectAtIndex:i] time];
-        }
-    }
-    
-    NSLog(@"number of transfers - %d",numberOfTransfers);
-    NSLog(@"%@",pathDict);
-    
-    return time;
-}
-
--(NSMutableDictionary*)getLineSegments
-{
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSArray *path = appDelegate.cityMap.activePath;
-    int objectNum = [path count];
-    
-    NSInteger transferTime=0;
-    NSInteger lineTime=0;
-    NSMutableDictionary *pathDict = [[NSMutableDictionary alloc] initWithCapacity:1];
-    int currentIndexLine = -1;
-    
-    for (int i=0; i<objectNum; i++) {
-        if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
-            
-            Segment *segment = (Segment*)[path objectAtIndex:i];
-            
-            if (currentIndexLine==[[[segment start] line] index]) {
-                lineTime+=[segment driving];
-            } else {
-                lineTime=[segment driving];
-                currentIndexLine=[[[segment start] line] index];
-            }
-            
-            [pathDict setObject:[NSNumber numberWithInteger:lineTime] forKey:[NSNumber numberWithInt:[[[segment start] line] index]]];    
-            
-        } else if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]]) {
-
-            transferTime+=[[path objectAtIndex:i] time];
-            [pathDict setObject:[NSNumber numberWithInteger:transferTime] forKey:[NSNumber numberWithInt:-1]];    
-        }
-    }
-    
-    return pathDict;
-}
-
-
 -(NSString*)getArrivalTimeFromNow:(NSInteger)time
 {
     
@@ -184,34 +66,6 @@
     [formatter release];
     
     return arrivalTime;
-}
-
--(NSInteger) getOverallTravelAndTransferTimeFromPath:(NSMutableDictionary*)pathInfo
-{
-    NSInteger travelTime;
-    
-    travelTime=0;
-    
-    for (NSNumber *key in [pathInfo allKeys]) {
-        travelTime+=[[pathInfo objectForKey:key] integerValue];
-    }
-    
-    return travelTime;
-}
-
--(NSInteger) getTravelTimeFromPath:(NSMutableDictionary*)pathInfo
-{
-    NSInteger travelTime;
-    
-    travelTime=0;
-    
-    for (NSNumber *key in [pathInfo allKeys]) {
-        if ([key intValue]!=-1) {
-            travelTime+=[[pathInfo objectForKey:key] integerValue];
-        }
-    }
-    
-    return travelTime;
 }
 
 -(NSInteger)dsGetTravelTime
@@ -241,7 +95,7 @@
     NSArray *path = appDelegate.cityMap.activePath;
     int objectNum = [path count];
     
-    NSMutableArray *colorArray = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableArray *colorArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     int currentIndexLine = -1;
     
     for (int i=0; i<objectNum; i++) {
@@ -266,7 +120,7 @@
     int objectNum = [path count];
     
     NSInteger lineTime=0;
-    NSMutableArray *timeArray = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableArray *timeArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     int currentIndexLine = -1;
     
     for (int i=0; i<objectNum; i++) {

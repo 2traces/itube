@@ -88,7 +88,7 @@
     }
     hud.detailsLabelFont = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
     hud.opacity=0.7;
-    hud.customView = [[UIView alloc] initWithFrame:CGRectZero];
+    hud.customView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
 	hud.mode = MBProgressHUDModeCustomView;
 
     [self performSelector:@selector(dismissHUD) withObject:nil afterDelay:1.0];

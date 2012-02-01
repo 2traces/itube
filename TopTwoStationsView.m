@@ -445,7 +445,11 @@
         firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
 
         firstStation.rightViewMode = UITextFieldViewModeNever;
-        [firstStation setLeftView:[[UIImageView alloc] initWithImage:[self imageWithColor:[fromStation lines]]]];
+        
+        UIImageView *lineColor = [[UIImageView alloc] initWithImage:[self imageWithColor:[fromStation lines]]];
+        [firstStation setLeftView:lineColor];
+        [lineColor release];
+        
         [firstStation setLeftViewMode: UITextFieldViewModeAlways];
         firstStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];
 
@@ -472,7 +476,10 @@
         
         secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
 
-        [secondStation setLeftView:[[UIImageView alloc] initWithImage:[self imageWithColor:[toStation lines]]]];
+        UIImageView *lineColor = [[UIImageView alloc] initWithImage:[self imageWithColor:[toStation lines]]];
+        [secondStation setLeftView:lineColor];
+        [lineColor release];
+        
         [secondStation setLeftViewMode: UITextFieldViewModeAlways];
         secondStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];
 

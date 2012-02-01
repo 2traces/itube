@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "PathDrawView.m"
-         timestampString = "349717836.429612"
+         timestampString = "349775408.763532"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "100"
-         endingLineNumber = "100"
+         startingLineNumber = "85"
+         endingLineNumber = "85"
          landmarkName = "-drawRect:"
          landmarkType = "5">
       </FileBreakpoint>

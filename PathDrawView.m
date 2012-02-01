@@ -74,29 +74,14 @@
     CGRect firstRect = CGRectMake(lineStart,y,8,8);
     CGRect firstCircleRect = CGRectMake(firstRect.origin.x, firstRect.origin.y-4.0, 8, 8);
     
-    UIColor *firstColor = [colorArray objectAtIndex:0];
-    const CGFloat* components = CGColorGetComponents([firstColor CGColor]);
-    
-    CGContextSetRGBStrokeColor(c, components[0],components[1], components[2],  CGColorGetAlpha([firstColor CGColor])); 
-    CGContextSetRGBFillColor(c, components[0],components[1], components[2],  CGColorGetAlpha([firstColor CGColor]));  
-    CGContextSetLineWidth(c, 2.0);
-    CGContextFillEllipseInRect(c, firstCircleRect);
-    CGContextStrokeEllipseInRect(c, firstCircleRect);
-    
+    [self drawCircleInRect:firstCircleRect color:[colorArray objectAtIndex:0] context:c];
     
     // last point
     CGRect lastRect = CGRectMake(overallLineWidth+lineStart,y,6,6);
     CGRect lastCircleRect = CGRectMake(lastRect.origin.x , lastRect.origin.y -4.0, 8, 8);
     
-    UIColor *lastColor = [colorArray lastObject];
-    const CGFloat* components2 = CGColorGetComponents([lastColor CGColor]);
-    
-    CGContextSetRGBStrokeColor(c, components2[0],components2[1], components2[2],  CGColorGetAlpha([lastColor CGColor])); 
-    CGContextSetRGBFillColor(c, components2[0],components2[1], components2[2],  CGColorGetAlpha([lastColor CGColor]));  
-    CGContextSetLineWidth(c, 2.0);
-    CGContextFillEllipseInRect(c, lastCircleRect);
-    CGContextStrokeEllipseInRect(c, lastCircleRect);
-    
+    [self drawCircleInRect:lastCircleRect color:[colorArray lastObject] context:c];
+  
     int transfers = [timeArray count]-1;
     
     for (int i=0;i<transfers;i++)
@@ -109,34 +94,29 @@
         CGRect allRect = CGRectMake([[points objectAtIndex:i] floatValue]-img.size.width/2, y-img.size.height/2, img.size.width, img.size.height);
         CGRect circleRect = CGRectMake(allRect.origin.x + 4, allRect.origin.y + 4, 6,
                                        6);
+
+        [self drawCircleInRect:circleRect color:[colorArray objectAtIndex:i] context:c];
         
-        UIColor *firstColor = [colorArray objectAtIndex:i];
-        
-        const CGFloat* components = CGColorGetComponents([firstColor CGColor]);
-        
-        CGContextSetRGBStrokeColor(c, components[0],components[1], components[2],  CGColorGetAlpha([firstColor CGColor])); 
-        CGContextSetRGBFillColor(c, components[0],components[1], components[2],  CGColorGetAlpha([firstColor CGColor]));  
-        CGContextSetLineWidth(c, 2.0);
-        CGContextFillEllipseInRect(c, circleRect);
-        CGContextStrokeEllipseInRect(c, circleRect);
 
         CGRect allRect2 = CGRectMake([[points objectAtIndex:i] floatValue], y-img.size.height/2, img.size.width, img.size.height);
         CGRect circleRect2 = CGRectMake(allRect2.origin.x + 4, allRect2.origin.y + 4, 6,
                                        6);
-        
-        UIColor *secondColor = [colorArray objectAtIndex:i+1];
-        
-        const CGFloat* components2 = CGColorGetComponents([secondColor CGColor]);
-        
-        CGContextSetRGBStrokeColor(c, components2[0],components2[1], components2[2],  CGColorGetAlpha([secondColor CGColor])); 
-        CGContextSetRGBFillColor(c, components2[0],components2[1], components2[2],  CGColorGetAlpha([secondColor CGColor]));  
-        CGContextSetLineWidth(c, 2.0);
-        CGContextFillEllipseInRect(c, circleRect2);
-        CGContextStrokeEllipseInRect(c, circleRect2);
-
+        [self drawCircleInRect:circleRect2 color:[colorArray objectAtIndex:i+1] context:c];
+ 
     } 
     
 }
+
+-(void) drawCircleInRect:(CGRect)circleRect color:(UIColor*)color context:(CGContextRef)c
+{
+    const CGFloat* components = CGColorGetComponents([color CGColor]);
+    CGContextSetRGBStrokeColor(c, components[0],components[1], components[2],  CGColorGetAlpha([color CGColor])); 
+    CGContextSetRGBFillColor(c, components[0],components[1], components[2],  CGColorGetAlpha([color CGColor]));  
+    CGContextSetLineWidth(c, 2.0);
+    CGContextFillEllipseInRect(c, circleRect);
+    CGContextStrokeEllipseInRect(c, circleRect);
+}
+
 
 
 @end

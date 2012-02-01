@@ -22,6 +22,8 @@
 @property (nonatomic, assign) NSInteger travelTime;
 @property (nonatomic, assign) id <PathDrawProtocol> delegate;
 
+-(void) drawCircleInRect:(CGRect)circleRect color:(UIColor*)color context:(CGContextRef)c;
+
 @end
 
 @protocol PathDrawProtocol
