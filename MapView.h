@@ -12,6 +12,7 @@
 #import "SelectedPathMap.h"
 #import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
+#import "VectorLayer.h"
 
 extern int const imagesCount;
 
@@ -44,6 +45,8 @@ extern int const imagesCount;
     int currentCacheLayer;
     // background prerendered images (normal and gray)
     UIImageView *background1, *background2;
+    VectorLayer *vectorLayer;
+    BOOL showVectorLayer;
 }
 
 @property (assign) NSString *nearestStationName;
@@ -67,6 +70,7 @@ extern int const imagesCount;
 @property (nonatomic, readonly) UIImageView* backgroundNormal;
 @property (nonatomic, readonly) UIImageView* backgroundDisabled;
 @property (nonatomic, readonly) UIView* labelView;
+@property (nonatomic, assign) BOOL showVectorLayer;
 
 - (void)viewDidLoad;
 // 
@@ -76,6 +80,8 @@ extern int const imagesCount;
 -(void) clearPath;
 //
 -(void) initData ;
+-(void) loadVectorLayer:(NSString*)file;
+
 
 //gps stuff
 -(NSString*) calcNearStations:(CLLocation*) new_location;

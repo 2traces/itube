@@ -57,6 +57,7 @@ NSInteger const toolbarWidth=320;
 
     CGRect scrollSize = CGRectMake(0,44,(320),(480-44));
 	mapView = [[[MapView alloc] initWithFrame:scrollSize] autorelease];
+    [mapView loadVectorLayer:@"2012"];
     mapView.vcontroller = self.vcontroller;
 
 	containerView = [[MyScrollView alloc] initWithFrame:scrollSize];

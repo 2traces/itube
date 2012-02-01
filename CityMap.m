@@ -301,8 +301,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             NSArray *components = [[sname substringFromIndex:br+1] componentsSeparatedByString:@","];
             if([components count] > 1) acceptBackLink = NO;
             for (NSString* s in components) {
-                if([sname length] == 0) continue;
-                [relation addObject:s];
+                if([s length] == 0) continue;
+                if([s characterAtIndex:0] == '-')
+                    [relation addObject:[s substringFromIndex:1]];
+                else
+                    [relation addObject:s];
             }
         }
         if(dr == nil) driving = 0;
@@ -596,8 +599,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             NSArray *coord_text = [[rcts objectAtIndex:i] componentsSeparatedByString:@","];
             int tx = [[coord_text objectAtIndex:0] intValue];
             int ty = [[coord_text objectAtIndex:1] intValue];
-            int tw = [[coord_text objectAtIndex:2] intValue] * 4.f;
-            int th = [[coord_text objectAtIndex:3] intValue] * 4.f;
+            int tw = [[coord_text objectAtIndex:2] intValue];
+            int th = [[coord_text objectAtIndex:3] intValue];
             
             NSString* drv = nil;
             if(i < [drs count]) drv = [drs objectAtIndex:i];
@@ -860,9 +863,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     val = [[parserMap get:@"StationDiameter" section:@"Options"] intValue];
     if(val != 0) StationDiameter = val;
     val = [[parserMap get:@"DisplayTransfers" section:@"Options"] intValue];
-    if(val >= 0 && val < KINDS_NUM) TrKind = val;
+    if(val > 0 && val < KINDS_NUM) TrKind = val;
     val = [[parserMap get:@"DisplayStations" section:@"Options"] intValue];
-    if(val >= 0 && val < KINDS_NUM) StKind = val;
+    if(val > 0 && val < KINDS_NUM) StKind = val;
     float sc = [[parserMap get:@"MaxScale" section:@"Options"] floatValue];
     if(sc != 0.f) {
         maxScale = sc;
