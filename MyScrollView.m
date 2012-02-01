@@ -18,7 +18,11 @@
     if((self = [super initWithFrame:frame])) {
         tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
         tgr.numberOfTouchesRequired = 1;
-        tgr.numberOfTapsRequired = 2;
+        tgr.numberOfTapsRequired = 1;
+        [self addGestureRecognizer:tgr];
+        tgr2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+        tgr2.numberOfTouchesRequired = 1;
+        tgr2.numberOfTapsRequired = 2;
         [self addGestureRecognizer:tgr];
     }
 	return self;
@@ -27,6 +31,7 @@
 -(void)dealloc
 {
     [tgr release];
+    [tgr2 release];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -56,7 +61,16 @@
 	DLog(@"scroll !! ");
 }
 
--(void)handleTap:(UITapGestureRecognizer*)sender
+-(void)handleTap:(UITapGestureRecognizer*) sender
+{
+    if(sender.state == UIGestureRecognizerStateEnded) {
+        CGPoint p1 = [sender locationInView:self];
+        CGPoint p2 = [sender locationInView:scrolledView];
+        // TODO station selection
+    }
+}
+
+-(void)handleDoubeTap:(UITapGestureRecognizer*)sender
 {
     if(sender.state == UIGestureRecognizerStateEnded) {
         CGPoint p = [sender locationInView:[self.subviews objectAtIndex:0]];

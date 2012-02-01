@@ -10,7 +10,7 @@
 
 
 @interface MyScrollView : UIScrollView  {
-    UITapGestureRecognizer *tgr;
+    UITapGestureRecognizer *tgr, *tgr2;
     UIView *scrolledView;
 }
 
