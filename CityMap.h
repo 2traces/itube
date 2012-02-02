@@ -47,8 +47,10 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
     int index;
     int driving;
     NSString *name;
-    // сегменты пути
+    // сегменты пути (вперёд)
     NSMutableArray *segment;
+    // сегменты пути (назад)
+    NSMutableArray *backSegment;
     // соседние станции
     NSMutableArray *sibling;
     // имена соседних станций
@@ -61,11 +63,14 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
     BOOL acceptBackLink;
     CGLayerRef predrawedName;
     int links;
+    // векторы вдоль линии и поперёк
+    CGPoint tangent, normal;
 }
 
 @property (nonatomic, readonly) NSMutableArray* relation;
 @property (nonatomic, readonly) NSMutableArray* relationDriving;
 @property (nonatomic, readonly) NSMutableArray* segment;
+@property (nonatomic, readonly) NSMutableArray* backSegment;
 @property (nonatomic, readonly) NSMutableArray* sibling;
 @property (nonatomic, readonly) CGPoint pos;
 @property (nonatomic, readonly) CGRect boundingBox;
@@ -90,6 +95,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 -(void) draw:(CGContextRef)context;
 -(void) draw:(CGContextRef)context inRect:(CGRect)rect;
 -(void) makeSegments;
+-(void) makeTangent;
 -(void) predraw:(CGContextRef)context;
 @end
 
@@ -122,6 +128,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @property (nonatomic, readonly) int driving;
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic, assign) BOOL active;
+@property (nonatomic, readonly) NSArray *splinePoints;
 
 -(id)initFromStation:(Station*)from toStation:(Station*)to withDriving:(int)dr;
 -(void)appendPoint:(CGPoint)p;
