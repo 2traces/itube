@@ -38,39 +38,14 @@
     [tgr2 release];
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	self.scrollEnabled=NO;
-//	[self performSelector:@selector(longTap:) withObject:nil afterDelay:1.5];
-    [self.nextResponder touchesBegan:touches withEvent:event];
-}
-
-- (void) touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event 
-{	
-//	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(longTap:) object:nil];
-	self.scrollEnabled=YES;
-	// If not dragging, send event to next responder
-	if (!self.dragging) 
-	{
-		DLog(@" nod dragging ");
-		[self.nextResponder touchesEnded: touches withEvent:event]; 
-	}
-	else
-	{
-		DLog(@" dragging ");
-		[super touchesEnded: touches withEvent: event];
-	}
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-	DLog(@"scroll !! ");
-}
-
 -(void)handleTap:(UITapGestureRecognizer*) sender
 {
     if(sender.state == UIGestureRecognizerStateEnded) {
-        CGPoint p1 = [sender locationInView:self];
+        CGPoint p1 = [sender locationInView:self.superview];
         CGPoint p2 = [sender locationInView:scrolledView];
-        // TODO station selection
+
+        [scrolledView selectStationAt:p2];
+        [self.superview selectStationAt:p1];
     }
 }
 

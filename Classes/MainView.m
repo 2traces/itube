@@ -75,6 +75,7 @@ NSInteger const toolbarWidth=320;
 //	containerView.userInteractionEnabled = YES;
 //	mapView.exclusiveTouch = NO;
 
+    [containerView addSubview:mapView.backgroundVector];
     [containerView addSubview:mapView.backgroundNormal];
     [containerView addSubview:mapView.backgroundDisabled];
     containerView.scrolledView = mapView;
@@ -105,29 +106,57 @@ NSInteger const toolbarWidth=320;
 	//UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
 	//[containerView addGestureRecognizer:singleTap];    
 	
-    buttonsView = [[UIView alloc] initWithFrame:CGRectMake(45, 180, 230, 80)];
-
-    UIButton *sourceButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    sourceButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [sourceButton setImage:[UIImage imageNamed:@"src_button_normal"] forState:UIControlStateNormal];
     [sourceButton setImage:[UIImage imageNamed:@"src_button_pressed"] forState:UIControlStateHighlighted];
     [sourceButton addTarget:self action:@selector(selectFromStationByButton) forControlEvents:UIControlEventTouchUpInside];
-    [sourceButton setFrame:CGRectMake(0,0, 76, 76)];
-    [buttonsView addSubview:sourceButton];
+    [sourceButton setFrame:CGRectMake(-80, 200, 76, 76)];
+    [sourceButton.layer setShadowOffset:CGSizeMake(3, 5)];
+    [sourceButton.layer setShadowOpacity:0.3];
+    [sourceButton.layer setShadowRadius:5.0];
     
-    UIButton *destinationButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    destinationButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [destinationButton setImage:[UIImage imageNamed:@"dst_button_normal"] forState:UIControlStateNormal];
     [destinationButton setImage:[UIImage imageNamed:@"dst_button_pressed"] forState:UIControlStateHighlighted];
     [destinationButton addTarget:self action:@selector(selectToStationByButton) forControlEvents:UIControlEventTouchUpInside];
-    [destinationButton setFrame:CGRectMake(154, 0, 76, 76)];
-    [buttonsView addSubview:destinationButton];
+    [destinationButton setFrame:CGRectMake(325, 200, 76, 76)];
+    [destinationButton.layer setShadowOffset:CGSizeMake(3, 5)];
+    [destinationButton.layer setShadowOpacity:0.3];
+    [destinationButton.layer setShadowRadius:5.0];
     
-    [self addSubview:buttonsView];
-    
-    [buttonsView.layer setShadowOffset:CGSizeMake(3, 5)];
-    [buttonsView.layer setShadowOpacity:0.3];
-    [buttonsView.layer setShadowRadius:5.0];
-    
-    buttonsView.hidden = YES;
+    [self addSubview:sourceButton];
+    [self addSubview:destinationButton];
+}
+
+-(void)showButtons:(CGPoint)pos
+{
+    if(pos.x < 100) pos.x = 100;
+    if(pos.x > 220) pos.x = 220;
+    if(pos.y < 90) pos.y = 90;
+    if(pos.y > 380) pos.y = 380;
+
+    [UIView animateWithDuration:0.25f animations:^{ sourceButton.center = CGPointMake(pos.x-60, pos.y+20); }];
+    [UIView animateWithDuration:0.25f animations:^{ destinationButton.center = CGPointMake(pos.x+60, pos.y+20); }];
+
+    if(mapView.labelView.hidden) {
+        mapView.labelView.center = CGPointMake(pos.x, pos.y-40);
+        mapView.labelView.hidden=false;
+        mapView.labelView.alpha = 0.f;
+        [UIView animateWithDuration:0.25f animations:^{ mapView.labelView.alpha = 1.f; }];
+    } else {
+        [UIView animateWithDuration:0.25f animations:^{ mapView.labelView.center = CGPointMake(pos.x, pos.y-40); }];
+    }
+}
+
+-(void)hideButtons
+{
+    [UIView animateWithDuration:0.125f animations:^{ mapView.labelView.alpha = 0.f; } completion:^(BOOL finished){ if(finished) {mapView.labelView.hidden = YES; } }];
+    CGPoint p = sourceButton.center;
+    p.x = -40;
+    [UIView animateWithDuration:0.125f animations:^{ sourceButton.center = p; } ];
+    p = destinationButton.center;
+    p.x = 360;
+    [UIView animateWithDuration:0.125f animations:^{ destinationButton.center = p; }];
 }
 
 -(void) selectFromStationByButton {
@@ -140,7 +169,7 @@ NSInteger const toolbarWidth=320;
     [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:station]];
     
 	mapView.stationSelected=false;
-    [UIView animateWithDuration:0.25f animations:^{ buttonsView.alpha = 0.f; } completion:^(BOOL finished){ if(finished) {buttonsView.hidden = YES; } }];
+    [self hideButtons];
 }
 
 -(void) selectToStationByButton {
@@ -152,7 +181,7 @@ NSInteger const toolbarWidth=320;
     MStation *station = [[MHelper sharedHelper] getStationWithName:mapView.selectedStationName forLine:[line name]];
     [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:station]];
 	mapView.stationSelected=false;
-    [UIView animateWithDuration:0.25f animations:^{ buttonsView.alpha = 0.f; } completion:^(BOOL finished){ if(finished) {buttonsView.hidden = YES; } }];
+    [self hideButtons];
 }
 
 - (void)locationUpdate:(CLLocation *)location {
@@ -170,35 +199,17 @@ NSInteger const toolbarWidth=320;
 	//[CLController release];
     [super dealloc];
 	[stationNameView release];
-    [buttonsView release];
+    [sourceButton release];
+    [destinationButton release];
 }
 
-- (void) touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event 
-{	
-	DLog(@" touch 2");
-	// If not dragging, send event to next responder
-	/*
-	if (!self.containerView.dragging) 
-		[self.nextResponder touchesEnded: touches withEvent:event]; 
-	else
-		[super touchesEnded: touches withEvent: event];
-	 */
-	if (mapView.stationSelected)
-	{
-		//[self processStationSelect];
-        buttonsView.hidden = NO;
-        buttonsView.alpha = 0.f;
-        [UIView animateWithDuration:0.25f animations:^{ buttonsView.alpha = 1.f; }];
-        [self bringSubviewToFront:buttonsView];
-	}
-	/*else if ((firstStation.text!=nil) &&(secondStation.text!=nil)){
-//		firstStation=nil;
-//		secondStation=nil;
-		[mapView removePath];
-		firstStation.text=nil;
-		secondStation.text=nil;
-	}
-	 */
+-(void)selectStationAt:(CGPoint)currentPosition
+{
+	if (mapView.stationSelected) {
+        [self showButtons:currentPosition];
+	} else {
+        [self hideButtons];
+    }
 }
 
 -(void) findPathFrom :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl  {

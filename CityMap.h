@@ -176,7 +176,6 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @property (readonly) NSInteger h;
 @property (readonly) CGSize size;
 @property (nonatomic, retain) Graph *graph;
-@property (nonatomic, assign) CGFloat currentScale;
 @property (nonatomic, readonly) CGRect activeExtent;
 @property (nonatomic, assign) CGFloat predrawScale;
 @property (nonatomic, readonly) NSArray* activePath;

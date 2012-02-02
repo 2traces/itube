@@ -385,7 +385,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)drawStation:(CGContextRef)context
 {
-    /*if(StKind == LIKE_LONDON) {  TODO
+    /*if(StKind == LIKE_LONDON) {
         CGContextSetLineCap(context, kCGLineCapSquare);
         CGContextSetLineWidth(context, LineWidth/2);
         CGContextMoveToPoint(context, pos.x, pos.y);
@@ -402,11 +402,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     CGContextRef ctx = CGLayerGetContext(predrawedName);
     UIGraphicsPushContext(ctx);
     CGContextScaleCTM(ctx, PredrawScale, PredrawScale);
-    CGRect rect = textRect;
-    rect.origin = CGPointZero;
     int alignment = UITextAlignmentCenter;
     if(pos.x < textRect.origin.x) alignment = UITextAlignmentLeft;
     else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
+    CGRect rect = textRect;
+    rect.origin = CGPointZero;
     [name drawInRect:rect  withFont: [UIFont fontWithName:@"Arial-BoldMT" size:StationDiameter] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
     UIGraphicsPopContext();
 }
