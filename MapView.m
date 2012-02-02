@@ -43,6 +43,14 @@
     return labelBg;
 }
 
+-(void)setShowVectorLayer:(BOOL)_showVectorLayer
+{
+    if(showVectorLayer != _showVectorLayer) {
+        showVectorLayer = _showVectorLayer;
+        [self setNeedsDisplay];
+    }
+}
+
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         // Initialization code

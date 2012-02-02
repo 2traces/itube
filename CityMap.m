@@ -904,8 +904,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [[MHelper sharedHelper] saveContext];
     [[MHelper sharedHelper] readHistoryFile];
     [[MHelper sharedHelper] readBookmarkFile];
-    _w = boundingBox.origin.x + boundingBox.size.width;
-    _h = boundingBox.origin.y + boundingBox.size.height;
+    _w = boundingBox.origin.x * 2 + boundingBox.size.width;
+    _h = boundingBox.origin.y * 2 + boundingBox.size.height;
 		
 	INISection *section = [parserMap getSection:@"AdditionalNodes"];
 	NSMutableDictionary *as = [section assignments];

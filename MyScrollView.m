@@ -23,7 +23,11 @@
         tgr2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
         tgr2.numberOfTouchesRequired = 1;
         tgr2.numberOfTapsRequired = 2;
-        [self addGestureRecognizer:tgr];
+        [self addGestureRecognizer:tgr2];
+        tgr22 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDebugTap:)];
+        tgr22.numberOfTouchesRequired = 2;
+        tgr22.numberOfTapsRequired = 2;
+        [self addGestureRecognizer:tgr22];
     }
 	return self;
 }
@@ -70,7 +74,7 @@
     }
 }
 
--(void)handleDoubeTap:(UITapGestureRecognizer*)sender
+-(void)handleDoubleTap:(UITapGestureRecognizer*)sender
 {
     if(sender.state == UIGestureRecognizerStateEnded) {
         CGPoint p = [sender locationInView:[self.subviews objectAtIndex:0]];
@@ -83,6 +87,11 @@
         rect.origin.y = p.y - rect.size.height / 2;
         [self zoomToRect:rect animated:YES];
     }
+}
+
+-(void)handleDebugTap:(UITapGestureRecognizer*)sender
+{
+    [scrolledView setShowVectorLayer:![scrolledView showVectorLayer]];
 }
 
 -(void)layoutSubviews
