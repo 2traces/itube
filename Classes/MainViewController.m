@@ -15,6 +15,7 @@
 #import "tubeAppDelegate.h"
 #import "PathBarView.h"
 #import "PathDrawView.h"
+#import "PathDrawVertView.h"
 
 #define FromStation 0
 #define ToStation 1
@@ -27,6 +28,7 @@
 @synthesize stationsView;
 @synthesize currentSelection;
 @synthesize scrollView;
+@synthesize pathScrollView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	DLog(@"initWithNibName");
@@ -149,6 +151,59 @@
     return timeArray;
 }
 
+-(NSArray*)dsGetStationsArray
+{
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSArray *path = appDelegate.cityMap.activePath;
+    int objectNum = [path count];
+    
+    NSMutableArray *stationsArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
+
+    int currentIndexLine = -1;
+    
+    NSMutableArray *tempArray;
+    
+    for (int i=0; i<objectNum; i++) {
+
+        if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
+            
+            Segment *segment = (Segment*)[path objectAtIndex:i];
+            
+            if (currentIndexLine==[[[segment start] line] index]) {
+                
+                [tempArray addObject:[[segment start] name]];
+                
+                NSLog(@"%@ -- %@",[[segment start] name],[[segment end] name]);
+                
+            } else {
+                
+                if (currentIndexLine!=-1) {
+
+                    [stationsArray addObject:tempArray];    
+                
+                }
+                
+                tempArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
+                
+                [tempArray addObject:[[segment start] name]];
+
+                NSLog(@"%@ -- %@",[[segment start] name],[[segment end] name]);
+
+                currentIndexLine=[[[segment start] line] index];
+            }
+        }
+    }
+    
+    [stationsArray addObject:tempArray];    
+    
+    return stationsArray;
+}
+
+-(NSInteger)dsGetExitForStation:(Station *)station
+{
+    return arc4random()%4;
+}
+
 -(void)showScrollView
 {
     int numberOfPages=1;
@@ -187,12 +242,90 @@
         [(PathDrawView*)[self.scrollView viewWithTag:10000+i] setDelegate:self];
         [[self.scrollView viewWithTag:10000+i] setNeedsDisplay];
     }
+    
+    UIButton *changeViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [changeViewButton setImage:[UIImage imageNamed:@"switch_to_path.png"] forState:UIControlStateNormal];
+    [changeViewButton addTarget:self action:@selector(changeView:) forControlEvents:UIControlEventTouchUpInside];
+    [changeViewButton setFrame:CGRectMake(250 , 66 , 36, 37)];
+    [changeViewButton setTag:333];
+    [(MainView*)self.view addSubview:changeViewButton];
+}
+
+-(IBAction)changeView:(id)sender
+{
+    
+    CGFloat transferHeight = 60.0f;
+    CGFloat stationHeight = 40.0f;
+    
+    if (!self.pathScrollView) {
+        
+        UIScrollView *scview= [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 66.0, 320.0f, 414.0f)];
+        self.pathScrollView = scview;
+        [scview release];
+        
+        NSArray *stations = [self dsGetStationsArray];
+        
+        int transferNumb = [stations count]-1;
+        
+        int stationNumbers=0;
+        
+        for (NSMutableArray *tempStations in stations) {
+            stationNumbers+=[tempStations count];
+        }
+        
+        CGFloat viewHeight = (float)(transferNumb+1) * transferHeight + (float) stationNumbers * stationHeight;
+        
+        self.pathScrollView.contentSize=CGSizeMake(320.0f, viewHeight+50.0);
+        self.pathScrollView.bounces=YES;
+        self.pathScrollView.delegate = self;
+        
+        self.pathScrollView.backgroundColor = [UIColor lightGrayColor];
+        
+        CGFloat currentY = 15.0f;
+        
+        for (NSMutableArray *tempStations in stations) {
+            for (NSString *stationName in tempStations) {
+                
+                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY, 240.0, 35.0)];
+                label.text=stationName;
+                if (stationName==[tempStations objectAtIndex:0]) {
+                    label.font=[UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+                } else {
+                    label.font=[UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
+                }
+                
+                label.backgroundColor=[UIColor clearColor];
+                [self.pathScrollView addSubview:label];
+                [label release];
+                
+                currentY+=stationHeight;
+            }
+            
+            currentY+=transferHeight;
+        }
+        
+        PathDrawVertView *drawView = [[PathDrawVertView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320, viewHeight+100.0)];
+        drawView.tag =20000;
+        drawView.delegate=self;
+        [self.pathScrollView addSubview:drawView];
+        [drawView release];
+
+        
+        [(MainView*)self.view addSubview:self.pathScrollView];
+        [(MainView*)self.view bringSubviewToFront:pathScrollView];
+        [(MainView*)self.view bringSubviewToFront:[(MainView*)self.view viewWithTag:333]]; 
+    
+    } else {
+        [self.pathScrollView removeFromSuperview];
+        self.pathScrollView=nil;
+    }
 }
 
 -(void)removeScrollView
 {
     [self.scrollView removeFromSuperview];
     self.scrollView=nil;
+    [[(MainView*)self.view viewWithTag:333] removeFromSuperview];
 }
 
 -(FastAccessTableViewController*)showTableView
@@ -304,6 +437,9 @@
     if ((self.fromStation==nil || self.toStation==nil)) {
         [mainView.mapView clearPath];
         [self removeScrollView];
+        if (self.pathScrollView) {
+            [self changeView:nil];
+        }
 	} else {
         [mainView findPathFrom:[fromStation name] To:[toStation name] FirstLine:[[[fromStation lines] index] integerValue] LastLine:[[[toStation lines] index] integerValue]];
         [stationsView transitToPathView];

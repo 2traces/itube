@@ -168,6 +168,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
     CGFloat maxScale;
     CGRect activeExtent;
     NSMutableArray *activePath;
+    NSString *thisMapName;
 }
 
 @property (nonatomic,retain) NSMutableDictionary *gpsCoords;
@@ -183,6 +184,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @property (nonatomic, assign) StationKind stationKind;
 @property (nonatomic, assign) StationKind transferKind;
 @property (nonatomic, readonly) CGFloat maxScale;
+@property (nonatomic, retain) NSString *thisMapName;
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //

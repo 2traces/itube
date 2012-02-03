@@ -803,6 +803,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize activeExtent;
 @synthesize activePath;
 @synthesize maxScale;
+@synthesize thisMapName;
 
 -(StationKind) stationKind { return StKind; }
 -(void) setStationKind:(StationKind)stationKind { StKind = stationKind; }
@@ -843,6 +844,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	
 	int err;
 
+    self.thisMapName=mapName;
+    
 	NSString* strTrp = [[NSBundle mainBundle] pathForResource:mapName ofType:@"trp"]; 
 	NSString* strMap = [[NSBundle mainBundle] pathForResource:mapName ofType:@"map"]; 
 	

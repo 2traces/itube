@@ -21,6 +21,7 @@
     
     TopTwoStationsView *stationsView;
     UIScrollView *scrollView;
+    UIScrollView *pathScrollView;
 }
 
 @property (nonatomic, retain) MStation *fromStation;
@@ -29,6 +30,7 @@
 @property (nonatomic, retain) TopTwoStationsView *stationsView;
 @property (nonatomic, assign) int currentSelection;
 @property (nonatomic, retain) UIScrollView *scrollView;
+@property (nonatomic, retain) UIScrollView *pathScrollView;
 
 - (IBAction)showInfo;
 -(void)pressedSelectFromStation;
