@@ -3,8 +3,8 @@ StationDiameter=37
 ImageFileName=2012.vec
 LinesWidth=24
 WordWrap=true
-DisplayTransfers=2
-DisplayStations=2
+DisplayTransfers=1
+DisplayStations=1
 MaxScale=1
 
 [Ligne 1]
