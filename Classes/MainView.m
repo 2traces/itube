@@ -93,6 +93,8 @@ NSInteger const toolbarWidth=320;
 
 	stationNameLabel.text = @"some text";
 	[stationNameView addSubview:stationNameLabel];
+    
+    stationNameLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
 	
 	//œ[self addSubview:stationNameView];
 	stationNameView.userInteractionEnabled = YES;	

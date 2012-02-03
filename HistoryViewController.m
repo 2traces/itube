@@ -190,13 +190,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    return 44.0;
+    return 46.0;
 }
 
 
 -(UIImage*)drawCircleView:(UIColor*)myColor
 {
-    UIGraphicsBeginImageContext(CGSizeMake(20,20));
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(20,20),NO,0.0);
     
     CGRect circleRect = CGRectMake(4.0, 4.0, 12.0, 12.0);
 	

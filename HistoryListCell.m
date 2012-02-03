@@ -60,7 +60,7 @@
     
     toStation.frame = CGRectMake(33, toStation.frame.origin.y, toLabelSize.width, toStation.frame.size.height);
     
-    
+    [super layoutSubviews];
 }
 
 /*

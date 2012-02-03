@@ -31,54 +31,84 @@
     CGFloat lineStart = 20.0f;
     CGFloat x=20.0f;
     
-    CGFloat transferHeight = 60.0f;
-    CGFloat stationHeight = 40.0f;
+    CGFloat transferHeight = 85.0f;
+    CGFloat stationHeight = 20.0f;
+    CGFloat finalHeight = 60.0f;
     
     NSArray *stations = [delegate dsGetStationsArray];
     
     int transferNumb = [stations count]-1;
     
-    int stationNumbers=0;
-    
-    for (NSMutableArray *tempStations in stations) {
-        stationNumbers+=[tempStations count];
-    }
-    
-    CGFloat viewHeight =  (float)(transferNumb +1) * transferHeight + (float) stationNumbers * stationHeight;    
-    
-    NSArray *colorArray = [delegate dsGetLinesColorArray];
-    NSArray *timeArray = [delegate dsGetLinesTimeArray];
+    int trainType = 0;
+    int stationType = 0;
+    int finalType = 0;
     
     points = [[NSMutableArray alloc] initWithCapacity:1];
     
+    
+    CGFloat viewHeight=0;
+    CGFloat segmentHeight;
+    
+    for (NSMutableArray *tempStations in stations) {
+        
+        segmentHeight=0;
+        trainType=0;
+        finalType=0;
+        stationType=0;
+        
+        int lineStationCount=[tempStations count];
+        if (lineStationCount>=4) {
+            trainType++;
+            stationType=lineStationCount-3;
+            finalType++;
+        } else if (lineStationCount>=3) {
+            trainType++;
+            finalType++;
+        } else if (lineStationCount>=2) {
+            trainType++;
+        }
+        
+        segmentHeight =  (float)trainType * transferHeight +(float)finalType*finalHeight + (float)stationType * stationHeight;    
+        [points addObject:[NSNumber numberWithFloat:segmentHeight]];
+        
+        viewHeight += segmentHeight;
+    }
+    
+    
+    NSArray *colorArray = [delegate dsGetLinesColorArray];
+//    NSArray *timeArray = [delegate dsGetLinesTimeArray];
+    
+
+    /*
     travelTime=0;
     
     for (NSNumber *segTime in timeArray) {
         travelTime+=[segTime integerValue];
     }
+    */
     
     CGContextRef c = UIGraphicsGetCurrentContext();
     
     CGFloat currentY = lineStart;
     
-    int segmentsCount = [stations count];
+    int segmentsCount = [points count];
     
     for  (int i=0;i<segmentsCount;i++) {
 
-        segmentLenght = [[stations objectAtIndex:i] count]*stationHeight+transferHeight; 
+        segmentLenght = [[points objectAtIndex:i] floatValue]; 
             
         UIColor *lineColor = [colorArray objectAtIndex:i];
         
         CGContextSetStrokeColorWithColor(c, [lineColor CGColor]);
         CGContextBeginPath(c);
-        CGContextSetLineWidth(c, 8.0);
+        CGContextSetLineWidth(c, 6.0);
         CGContextMoveToPoint(c, x, currentY);
         CGContextAddLineToPoint(c, x, currentY+segmentLenght);
         CGContextStrokePath(c);
         
         currentY+=segmentLenght;
         
-        [points addObject:[NSNumber numberWithFloat:currentY]];
+//        [points addObject:[NSNumber numberWithFloat:currentY]];
         
     }
     
@@ -94,45 +124,65 @@
     
     [self drawCircleInRect:lastCircleRect color:[colorArray lastObject] context:c];
     
+
+    // точки станций
     for (int j=0;j<segmentsCount;j++) {
         
         if (j==0 ) {
             currentY=lineStart+transferHeight;
         } else {
-            currentY=[[points objectAtIndex:j-1] floatValue]+transferHeight;
+            currentY=0;
+            
+            NSArray *array = [points objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, j)]];
+            
+            
+            for (NSNumber *segmentH in array) {
+                currentY+=[segmentH floatValue];
+            }
+            
+            currentY+=transferHeight+lineStart;
         }
-        
-        NSArray *tempStations = [stations objectAtIndex:j];
-        
-        int segStationsCount = [tempStations count];
 
-        for (int k=1; k<segStationsCount;k++) {
-            
+        for (int jj=0;jj<[[stations objectAtIndex:j] count]-2;jj++) {
+ 
                 CGRect firstRect1 = CGRectMake(x,currentY,8,8);
-                CGRect firstCircleRect1 = CGRectMake(firstRect1.origin.x-7.0, firstRect1.origin.y, 14, 14);
-            
+                CGRect firstCircleRect1 = CGRectMake(firstRect1.origin.x-5.0, firstRect1.origin.y, 10, 10);
+                
                 [self drawCircleInRect:firstCircleRect1 color:[colorArray objectAtIndex:j] context:c];
-
+                
                 currentY+=stationHeight;
+            
         }
     }
+    
     
     for (int i=0;i<transferNumb;i++)
     {
         UIImage *img= [UIImage imageNamed:@"scepka_vertic.png"];
         
-        [img drawInRect:CGRectMake(x-img.size.width/2, [[points objectAtIndex:i] floatValue]-img.size.height/2, img.size.width, img.size.height)];
+        currentY=0;
+            
+        NSArray *array = [points objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, i+1)]];
+            
+        for (NSNumber *segmentH in array) {
+            currentY+=[segmentH floatValue];
+        }
+            
+        currentY+=lineStart;
+    
+        [img drawInRect:CGRectMake(x-img.size.width/2, currentY-img.size.height/2, img.size.width, img.size.height)];
         
-        CGRect allRect = CGRectMake(x-img.size.width/2, [[points objectAtIndex:i] floatValue]-img.size.height/2, img.size.width, img.size.height);
+        CGRect allRect = CGRectMake(x-img.size.width/2, currentY-img.size.height/2, img.size.width, img.size.height);
         CGRect circleRect = CGRectMake(allRect.origin.x + 6, allRect.origin.y + 6, 12, 12);
         
         [self drawCircleInRect:circleRect color:[colorArray objectAtIndex:i] context:c];
         
         
-        CGRect allRect2 = CGRectMake(x-img.size.width/2, [[points objectAtIndex:i] floatValue], img.size.width, img.size.height);
+        CGRect allRect2 = CGRectMake(x-img.size.width/2, currentY, img.size.width, img.size.height);
         CGRect circleRect2 = CGRectMake(allRect2.origin.x + 6, allRect2.origin.y + 4, 12, 12);
         [self drawCircleInRect:circleRect2 color:[colorArray objectAtIndex:i+1] context:c];
     } 
+     
 }
 
 
