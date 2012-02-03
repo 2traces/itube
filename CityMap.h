@@ -37,6 +37,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 -(void) addStation:(Station*)station;
 -(void) draw:(CGContextRef)context;
 -(void) predraw:(CGContextRef)context;
+-(void) tuneStations;
 @end
 
 @interface Station : NSObject {
@@ -72,7 +73,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @property (nonatomic, readonly) NSMutableArray* segment;
 @property (nonatomic, readonly) NSMutableArray* backSegment;
 @property (nonatomic, readonly) NSMutableArray* sibling;
-@property (nonatomic, readonly) CGPoint pos;
+@property (nonatomic, assign) CGPoint pos;
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic, readonly) CGRect textRect;
 @property (nonatomic, readonly) int index;
@@ -87,6 +88,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @property (nonatomic, assign) int links;
 // is a station the last one (or the first one) in the line
 @property (nonatomic, readonly) BOOL terminal;
+@property (nonatomic, readonly) CGPoint tangent;
 
 -(id) initWithName:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr;
 -(void) addSibling:(Station*)st;

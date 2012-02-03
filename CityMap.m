@@ -254,6 +254,50 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
 }
 
+-(void) tuneStations
+{
+    if([stations count] == 2) {
+        Station* s[2];
+        int i=0;
+        for (Station *st in stations) {
+            s[i] = st;
+            i++;
+        }
+        CGPoint A1 = s[0].pos, dA = s[0].tangent;
+        CGPoint B1 = s[1].pos, dB = s[1].tangent;
+        CGPoint dp = CGPointMake(A1.x - B1.x, A1.y - B1.y);
+        CGFloat SD2 = StationDiameter*StationDiameter*1;
+        if(SD2 >= (dp.x * dp.x + dp.y * dp.y)) {
+            CGFloat d = dA.x * dB.y - dA.y * dB.x;
+            if(d == 0.f) {
+                NSLog(@"lines are paraleled, %@", s[0].name);
+                return; // parallel
+            }
+            CGFloat d1 = (dp.x * dB.y - dp.y * dB.x) / d;
+            CGFloat d2 = (dA.x * dp.y - dA.y * dp.x) / d;
+            CGPoint C1 = CGPointMake(A1.x + dA.x * d1, A1.y + dA.y * d1);
+            //CGPoint C2 = CGPointMake(B1.x + dB.x * d2, B1.y + dB.y * d2);
+            dA = CGPointMake(C1.x - A1.x, C1.y - A1.y);
+            if(SD2 < (dA.x * dA.x + dA.y * dA.y)) {
+                NSLog(@"intersection point too far, %@", s[0].name);
+                return; // too far 
+            }
+            dB = CGPointMake(C1.x - B1.x, C1.y - B1.y);
+            if(SD2 < (dB.x * dB.x + dB.y * dB.y)) {
+                NSLog(@"intersection point too far, %@", s[0].name);
+                return; // too far
+            }
+            s[0].pos = C1;
+            s[1].pos = C1;
+            NSLog(@"station %@ tuned", s[0].name);
+            
+            boundingBox = CGRectMake(C1.x - StationDiameter, C1.y - StationDiameter, StationDiameter*2.f, StationDiameter*2.f);
+        }
+    } else {
+        //NSLog(@"more than two stations in transfer, %@", [[stations anyObject] name]);
+    }
+}
+
 @end
 
 @implementation Station
@@ -275,8 +319,15 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize active;
 @synthesize acceptBackLink;
 @synthesize links;
+@synthesize tangent;
 
 -(BOOL) terminal { return links == 1; }
+
+-(void) setPos:(CGPoint)_pos
+{
+    pos = _pos;
+    boundingBox = CGRectMake(pos.x-StationDiameter/2, pos.y-StationDiameter/2, StationDiameter, StationDiameter);
+}
 
 -(id)initWithName:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr
 {
@@ -988,6 +1039,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	[parserMap release];
     [parserTrp release];
     
+    for (Transfer* tr in transfers) {
+        [tr tuneStations];
+    }
     [self calcGraph];
     [self predraw];
 }

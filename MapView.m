@@ -396,7 +396,6 @@
 
 -(void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSLog(@"scroll view did scroll");
     if(stationSelected) {
         stationSelected = NO;
         [self.superview.superview hideButtons];
@@ -405,7 +404,6 @@
 
 -(void) scrollViewDidZoom:(UIScrollView *)scrollView
 {
-    NSLog(@"scroll view did zoom");
     if(stationSelected) {
         stationSelected = NO;
         [self.superview.superview hideButtons];
