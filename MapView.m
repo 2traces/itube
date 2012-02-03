@@ -90,7 +90,7 @@
 		
 		//метка которая показывает названия станций
 		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,10,150,25)];
-		mainLabel.font = [UIFont systemFontOfSize:12];
+		mainLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
         mainLabel.textAlignment = UITextAlignmentCenter;
 		mainLabel.backgroundColor = [UIColor colorWithRed:0.9f green:0.9f blue:0.9f alpha:0.9f];
         

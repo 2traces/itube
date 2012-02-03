@@ -924,6 +924,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize activeExtent;
 @synthesize activePath;
 @synthesize maxScale;
+@synthesize thisMapName;
+@synthesize pathStationsList;
 
 -(StationKind) stationKind { return StKind; }
 -(void) setStationKind:(StationKind)stationKind { StKind = stationKind; }
@@ -943,6 +945,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     mapLines = [[NSMutableArray alloc] init];
     activeExtent = CGRectNull;
     activePath = [[NSMutableArray alloc] init];
+    pathStationsList = [[NSMutableArray alloc] init];
     maxScale = 4;
 }
 
@@ -964,6 +967,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	
 	int err;
 
+    self.thisMapName=mapName;
+    
 	NSString* strTrp = [[NSBundle mainBundle] pathForResource:mapName ofType:@"trp"]; 
 	NSString* strMap = [[NSBundle mainBundle] pathForResource:mapName ofType:@"map"]; 
 	
@@ -1291,6 +1296,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	[graph release];
     [transfers release];
     [activePath release];
+    [pathStationsList release];
 }
 
 // drawing
@@ -1348,7 +1354,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
     activeExtent = CGRectNull;
     [activePath removeAllObjects];
+    [pathStationsList removeAllObjects];
 	int count_ = [pathMap count];
+    
 	for (int i=0; i< count_-1; i++) {
 		NSString *rawString1 = (NSString*)[[pathMap objectAtIndex:i] value];
 		NSArray *el1  = [rawString1 componentsSeparatedByString:@"|"];
@@ -1361,19 +1369,27 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         NSInteger lineNum2 = [[el2 objectAtIndex:1] intValue]; 
         
         Line* l = [mapLines objectAtIndex:lineNum1-1];
+        
         if (lineNum1==lineNum2) {
             [activePath addObject:[l activateSegmentFrom:stationName1 to:stationName2]];
+            [pathStationsList addObject:stationName1];
         } 
+
         Station *s = [l getStation:stationName1];
         activeExtent = CGRectUnion(activeExtent, s.textRect);
         activeExtent = CGRectUnion(activeExtent, s.boundingBox);
+
         if(lineNum1 != lineNum2 && [activePath count] > 0) {
             [activePath addObject:s.transfer];
+            [pathStationsList addObject:stationName1];
+            [pathStationsList addObject:@"---"]; //временно до обновления модели
         }
+        
         if(i == count_ - 2) {
             s = [l getStation:stationName2];
             activeExtent = CGRectUnion(activeExtent, s.textRect);
             activeExtent = CGRectUnion(activeExtent, s.boundingBox);
+            [pathStationsList addObject:stationName2];
         }
 	}
     activeExtent.origin.x -= activeExtent.size.width * 0.1f;

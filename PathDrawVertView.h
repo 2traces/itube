@@ -1,17 +1,18 @@
 //
-//  PathDrawView.h
+//  PathDrawVertView.h
 //  tube
 //
-//  Created by sergey on 31.01.12.
+//  Created by sergey on 02.02.12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@protocol PathDrawProtocol;
-@class Station;
+#import <UIKit/UIKit.h>
 
-@interface PathDrawView : UIView {
+@protocol PathDrawProtocol;
+
+@interface PathDrawVertView : UIView {
     NSMutableDictionary *pathInfo; 
     NSInteger travelTime;
     NSMutableArray *points;
@@ -27,13 +28,3 @@
 
 @end
 
-@protocol PathDrawProtocol
-
--(NSInteger)dsGetTravelTime;
--(NSArray*)dsGetLinesColorArray;
--(NSArray*)dsGetLinesTimeArray;
--(NSArray*)dsGetStationsArray;
--(NSInteger)dsGetExitForStation:(Station*)station;
-
-
-@end

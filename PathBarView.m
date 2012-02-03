@@ -16,11 +16,11 @@
     self = [super initWithFrame:frame];
     if (self) {
  
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 40.0)];
-        imageView.tag=5000;
-        imageView.image = [UIImage imageNamed:@"lower_path_bg.png"]; //lower_path_bg toolbar_bg
-        [self addSubview:imageView];
-        [imageView release];
+        UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 40.0)];
+        bgView.tag=5000;
+        bgView.image = [UIImage imageNamed:@"lower_path_bg.png"]; //lower_path_bg toolbar_bg
+        [self addSubview:bgView];
+        [bgView release];
         
         UIImageView *pathNumberView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pathnumber.png"]];
         pathNumberView.frame = CGRectMake(8,4,24,32);
@@ -37,26 +37,26 @@
         [self addSubview:flagView];
         [flagView release];
         
-        UILabel *nameLabel = [[UILabel alloc] init];
-        nameLabel.backgroundColor = [UIColor clearColor];
-        nameLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:13.0];
-        nameLabel.textColor = [UIColor darkGrayColor];
-        nameLabel.shadowColor = [UIColor whiteColor];
-        nameLabel.shadowOffset = CGSizeMake(0, 1);
-        nameLabel.frame=CGRectMake(52.0, 6, 65, 15); 
-        nameLabel.tag=6000;
-        [self addSubview:nameLabel];
-        [nameLabel release];
+        UILabel *travelTimeLabel = [[UILabel alloc] init];
+        travelTimeLabel.backgroundColor = [UIColor clearColor];
+        travelTimeLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:13.0];
+        travelTimeLabel.textColor = [UIColor darkGrayColor];
+        travelTimeLabel.shadowColor = [UIColor whiteColor];
+        travelTimeLabel.shadowOffset = CGSizeMake(0, 1);
+        travelTimeLabel.frame=CGRectMake(52.0, 6, 65, 15); 
+        travelTimeLabel.tag=6000;
+        [self addSubview:travelTimeLabel];
+        [travelTimeLabel release];
         
-        UILabel *nameLabel2 = [[UILabel alloc] init];
-        nameLabel2.backgroundColor = [UIColor clearColor];
-        nameLabel2.font = [UIFont fontWithName:@"MyriadPro-Regular" size:13.0];
-        nameLabel2.frame=CGRectMake(263.0, 7, 60, 15); 
-        nameLabel2.shadowOffset = CGSizeMake(0, 1);
-        nameLabel2.shadowColor = [UIColor whiteColor];
-        nameLabel2.tag=7000;
-        [self addSubview:nameLabel2];
-        [nameLabel2 release];
+        UILabel *arrivalTimeLabel = [[UILabel alloc] init];
+        arrivalTimeLabel.backgroundColor = [UIColor clearColor];
+        arrivalTimeLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:13.0];
+        arrivalTimeLabel.frame=CGRectMake(263.0, 7, 60, 15); 
+        arrivalTimeLabel.shadowOffset = CGSizeMake(0, 1);
+        arrivalTimeLabel.shadowColor = [UIColor whiteColor];
+        arrivalTimeLabel.tag=7000;
+        [self addSubview:arrivalTimeLabel];
+        [arrivalTimeLabel release];
         
         PathDrawView *drawView = [[PathDrawView alloc] initWithFrame:frame];
         drawView.tag =10000;

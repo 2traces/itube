@@ -65,7 +65,7 @@
     self.tabBarController = [[[CustomTabBar alloc] init] autorelease];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:  viewController1, viewController2, viewController3,viewController4, nil];
 
-    [self.tabBarController.view setFrame:CGRectMake(0,63,320,406)]; //460-63-39+49 64 было сделал 63 белая полоска, 406 чтобы пропал эффект наезжания внизу
+    [self.tabBarController.view setFrame:CGRectMake(0,63,320,407)]; //460-63-39+49 64 было сделал 63 белая полоска, 406 чтобы пропал эффект наезжания внизу
     [self.view addSubview:self.tabBarController.view];
     [self.tabBarController viewWillAppear:YES];
     [self.view bringSubviewToFront:[self.view viewWithTag:333]];
@@ -88,7 +88,7 @@
     }
     hud.detailsLabelFont = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
     hud.opacity=0.7;
-    hud.customView = [[UIView alloc] initWithFrame:CGRectZero];
+    hud.customView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
 	hud.mode = MBProgressHUDModeCustomView;
 
     [self performSelector:@selector(dismissHUD) withObject:nil afterDelay:1.0];

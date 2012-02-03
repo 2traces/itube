@@ -4,7 +4,6 @@ ImageFileName=2012.vec
 LinesWidth=24
 WordWrap=true
 DisplayTransfers=1
-DisplayStations=1
 MaxScale=1
 
 [Ligne 1]
