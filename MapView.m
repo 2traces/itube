@@ -28,6 +28,7 @@
 @synthesize vcontroller;
 @synthesize backgroundNormal = background1;
 @synthesize backgroundDisabled = background2;
+@synthesize showVectorLayer;
 
 + (Class)layerClass
 {
@@ -48,6 +49,7 @@
         [self.layer setLevelsOfDetail:5];
         [self.layer setLevelsOfDetailBias:2];
         for(int i=0; i<MAXCACHE; i++) cacheLayer[i] = nil;
+        showVectorLayer = NO;
 
 		DLog(@" InitMapView	initWithFrame; ");
 		
@@ -130,6 +132,13 @@
     return self;
 }
 
+-(void) loadVectorLayer:(NSString *)file
+{
+    if(vectorLayer != nil) [vectorLayer release];
+    vectorLayer = [[VectorLayer alloc] initWithFile:file];
+    showVectorLayer = YES;
+}
+
 -(void)showLabel
 {
     if(labelBg.hidden) {
@@ -152,6 +161,7 @@
 }
 
 - (void)dealloc {
+    [vectorLayer release];
     [mainLabel release];
     [labelBg release];
     [super dealloc];
@@ -188,6 +198,7 @@
     CGContextSetShouldSmoothFonts(ctx, false);
     CGContextSetAllowsFontSmoothing(ctx, false);
     
+    if(showVectorLayer && vectorLayer) [vectorLayer draw:context inRect:r];
     [cityMap drawMap:ctx inRect:r];
     [cityMap drawTransfers:ctx inRect:r];
     [cityMap drawStations:ctx inRect:r]; 
