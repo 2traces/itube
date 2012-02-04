@@ -63,7 +63,6 @@
 		BC3D14EA14C338380059A17E /* StationListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC3D14C514C338290059A17E /* StationListCell.xib */; };
 		BC3D14EB14C338380059A17E /* StationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3D14C614C3382A0059A17E /* StationListCell.m */; };
 		BC3D14EC14C338380059A17E /* SelectingTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3D14C814C3382A0059A17E /* SelectingTabBarViewController.m */; };
-		BC3D14ED14C338380059A17E /* SelectingTabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC3D14C914C3382B0059A17E /* SelectingTabBarViewController.xib */; };
 		BC3D14EE14C338380059A17E /* CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3D14CB14C3382C0059A17E /* CustomTabBar.m */; };
 		BC3D14EF14C338380059A17E /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3D14CD14C3382C0059A17E /* HistoryViewController.m */; };
 		BC3D14F014C338380059A17E /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC3D14CE14C3382C0059A17E /* HistoryViewController.xib */; };
@@ -169,6 +168,7 @@
 		BCB4EA9814DBC27000C39D7B /* vert_path_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB4EA9414DBC27000C39D7B /* vert_path_bg@2x.png */; };
 		BCB4EA9914DBC27000C39D7B /* switch_to_map.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB4EA9514DBC27000C39D7B /* switch_to_map.png */; };
 		BCB4EA9A14DBC27000C39D7B /* switch_to_map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB4EA9614DBC27000C39D7B /* switch_to_map@2x.png */; };
+		BCB5E1B414DD52E600E581C5 /* SelectingTabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCB5E1B314DD52E600E581C5 /* SelectingTabBarViewController.xib */; };
 		BCE54FCA14D05BF2005006C7 /* cross_transp.png in Resources */ = {isa = PBXBuildFile; fileRef = BCE54FBE14D05BF2005006C7 /* cross_transp.png */; };
 		BCE54FCB14D05BF2005006C7 /* cross_opaq.png in Resources */ = {isa = PBXBuildFile; fileRef = BCE54FBF14D05BF2005006C7 /* cross_opaq.png */; };
 		BCE54FCC14D05BF2005006C7 /* cross_opaq@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCE54FC014D05BF2005006C7 /* cross_opaq@2x.png */; };
@@ -299,7 +299,6 @@
 		BC3D14C614C3382A0059A17E /* StationListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationListCell.m; sourceTree = "<group>"; };
 		BC3D14C714C3382A0059A17E /* SelectingTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectingTabBarViewController.h; sourceTree = "<group>"; };
 		BC3D14C814C3382A0059A17E /* SelectingTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectingTabBarViewController.m; sourceTree = "<group>"; };
-		BC3D14C914C3382B0059A17E /* SelectingTabBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectingTabBarViewController.xib; sourceTree = "<group>"; };
 		BC3D14CA14C3382B0059A17E /* CustomTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBar.h; sourceTree = "<group>"; };
 		BC3D14CB14C3382C0059A17E /* CustomTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBar.m; sourceTree = "<group>"; };
 		BC3D14CC14C3382C0059A17E /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
@@ -423,6 +422,7 @@
 		BCB4EA9414DBC27000C39D7B /* vert_path_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vert_path_bg@2x.png"; sourceTree = "<group>"; };
 		BCB4EA9514DBC27000C39D7B /* switch_to_map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switch_to_map.png; sourceTree = "<group>"; };
 		BCB4EA9614DBC27000C39D7B /* switch_to_map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_to_map@2x.png"; sourceTree = "<group>"; };
+		BCB5E1B314DD52E600E581C5 /* SelectingTabBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectingTabBarViewController.xib; path = Resources/SelectingTabBarViewController.xib; sourceTree = "<group>"; };
 		BCE54FBE14D05BF2005006C7 /* cross_transp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross_transp.png; sourceTree = "<group>"; };
 		BCE54FBF14D05BF2005006C7 /* cross_opaq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross_opaq.png; sourceTree = "<group>"; };
 		BCE54FC014D05BF2005006C7 /* cross_opaq@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cross_opaq@2x.png"; sourceTree = "<group>"; };
@@ -531,7 +531,6 @@
 				BC3D14C614C3382A0059A17E /* StationListCell.m */,
 				BC3D14C714C3382A0059A17E /* SelectingTabBarViewController.h */,
 				BC3D14C814C3382A0059A17E /* SelectingTabBarViewController.m */,
-				BC3D14C914C3382B0059A17E /* SelectingTabBarViewController.xib */,
 				BC3D14CA14C3382B0059A17E /* CustomTabBar.h */,
 				BC3D14CB14C3382C0059A17E /* CustomTabBar.m */,
 				BC3D14CC14C3382C0059A17E /* HistoryViewController.h */,
@@ -659,6 +658,7 @@
 				CE96C6F41468307C005A56F3 /* images */,
 				4BC04400142FC6A600A643B8 /* maps */,
 				280E754A0DD40C5E005A515E /* FlipsideView.xib */,
+				BCB5E1B314DD52E600E581C5 /* SelectingTabBarViewController.xib */,
 				BC3D150614C338C50059A17E /* InAppProductsViewController.xib */,
 				BC3D150714C338C50059A17E /* SettingsViewController.xib */,
 				280E754B0DD40C5E005A515E /* MainView.xib */,
@@ -970,7 +970,6 @@
 				9F5E307214A4590A00D549E4 /* TODO.engine in Resources */,
 				BC3D14E914C338380059A17E /* HistoryListCell.xib in Resources */,
 				BC3D14EA14C338380059A17E /* StationListCell.xib in Resources */,
-				BC3D14ED14C338380059A17E /* SelectingTabBarViewController.xib in Resources */,
 				BC3D14F014C338380059A17E /* HistoryViewController.xib in Resources */,
 				BC3D14F914C338380059A17E /* BookmarkViewController.xib in Resources */,
 				BC3D14FA14C338380059A17E /* StationListViewController.xib in Resources */,
@@ -1090,6 +1089,7 @@
 				BCB4EA9914DBC27000C39D7B /* switch_to_map.png in Resources */,
 				BCB4EA9A14DBC27000C39D7B /* switch_to_map@2x.png in Resources */,
 				51F15F7A14D9CB2600D11B79 /* 2012.vec in Resources */,
+				BCB5E1B414DD52E600E581C5 /* SelectingTabBarViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
