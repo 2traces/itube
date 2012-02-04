@@ -18,8 +18,16 @@
     if((self = [super initWithFrame:frame])) {
         tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
         tgr.numberOfTouchesRequired = 1;
-        tgr.numberOfTapsRequired = 2;
+        tgr.numberOfTapsRequired = 1;
         [self addGestureRecognizer:tgr];
+        tgr2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+        tgr2.numberOfTouchesRequired = 1;
+        tgr2.numberOfTapsRequired = 2;
+        [self addGestureRecognizer:tgr2];
+        tgr22 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDebugTap:)];
+        tgr22.numberOfTouchesRequired = 2;
+        tgr22.numberOfTapsRequired = 2;
+        [self addGestureRecognizer:tgr22];
     }
 	return self;
 }
@@ -27,36 +35,21 @@
 -(void)dealloc
 {
     [tgr release];
+    [tgr2 release];
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	self.scrollEnabled=NO;
-//	[self performSelector:@selector(longTap:) withObject:nil afterDelay:1.5];
-    [self.nextResponder touchesBegan:touches withEvent:event];
+-(void)handleTap:(UITapGestureRecognizer*) sender
+{
+    if(sender.state == UIGestureRecognizerStateEnded) {
+        CGPoint p1 = [sender locationInView:self.superview];
+        CGPoint p2 = [sender locationInView:scrolledView];
+
+        [scrolledView selectStationAt:p2];
+        [self.superview selectStationAt:p1];
+    }
 }
 
-- (void) touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event 
-{	
-//	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(longTap:) object:nil];
-	self.scrollEnabled=YES;
-	// If not dragging, send event to next responder
-	if (!self.dragging) 
-	{
-		DLog(@" nod dragging ");
-		[self.nextResponder touchesEnded: touches withEvent:event]; 
-	}
-	else
-	{
-		DLog(@" dragging ");
-		[super touchesEnded: touches withEvent: event];
-	}
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-	DLog(@"scroll !! ");
-}
-
--(void)handleTap:(UITapGestureRecognizer*)sender
+-(void)handleDoubleTap:(UITapGestureRecognizer*)sender
 {
     if(sender.state == UIGestureRecognizerStateEnded) {
         CGPoint p = [sender locationInView:[self.subviews objectAtIndex:0]];
@@ -69,6 +62,11 @@
         rect.origin.y = p.y - rect.size.height / 2;
         [self zoomToRect:rect animated:YES];
     }
+}
+
+-(void)handleDebugTap:(UITapGestureRecognizer*)sender
+{
+    [scrolledView setShowVectorLayer:![scrolledView showVectorLayer]];
 }
 
 -(void)layoutSubviews

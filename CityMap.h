@@ -37,6 +37,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 -(void) addStation:(Station*)station;
 -(void) draw:(CGContextRef)context;
 -(void) predraw:(CGContextRef)context;
+-(void) tuneStations;
 @end
 
 @interface Station : NSObject {
@@ -47,8 +48,10 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
     int index;
     int driving;
     NSString *name;
-    // сегменты пути
+    // сегменты пути (вперёд)
     NSMutableArray *segment;
+    // сегменты пути (назад)
+    NSMutableArray *backSegment;
     // соседние станции
     NSMutableArray *sibling;
     // имена соседних станций
@@ -61,13 +64,16 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
     BOOL acceptBackLink;
     CGLayerRef predrawedName;
     int links;
+    // векторы вдоль линии и поперёк
+    CGPoint tangent, normal;
 }
 
 @property (nonatomic, readonly) NSMutableArray* relation;
 @property (nonatomic, readonly) NSMutableArray* relationDriving;
 @property (nonatomic, readonly) NSMutableArray* segment;
+@property (nonatomic, readonly) NSMutableArray* backSegment;
 @property (nonatomic, readonly) NSMutableArray* sibling;
-@property (nonatomic, readonly) CGPoint pos;
+@property (nonatomic, assign) CGPoint pos;
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic, readonly) CGRect textRect;
 @property (nonatomic, readonly) int index;
@@ -82,6 +88,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @property (nonatomic, assign) int links;
 // is a station the last one (or the first one) in the line
 @property (nonatomic, readonly) BOOL terminal;
+@property (nonatomic, readonly) CGPoint tangent;
 
 -(id) initWithName:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr;
 -(void) addSibling:(Station*)st;
@@ -90,6 +97,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 -(void) draw:(CGContextRef)context;
 -(void) draw:(CGContextRef)context inRect:(CGRect)rect;
 -(void) makeSegments;
+-(void) makeTangent;
 -(void) predraw:(CGContextRef)context;
 @end
 
@@ -122,6 +130,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @property (nonatomic, readonly) int driving;
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic, assign) BOOL active;
+@property (nonatomic, readonly) NSArray *splinePoints;
 
 -(id)initFromStation:(Station*)from toStation:(Station*)to withDriving:(int)dr;
 -(void)appendPoint:(CGPoint)p;
@@ -178,7 +187,6 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @property (readonly) NSInteger h;
 @property (readonly) CGSize size;
 @property (nonatomic, retain) Graph *graph;
-@property (nonatomic, assign) CGFloat currentScale;
 @property (nonatomic, readonly) CGRect activeExtent;
 @property (nonatomic, assign) CGFloat predrawScale;
 @property (nonatomic, readonly) NSArray* activePath;

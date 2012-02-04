@@ -28,6 +28,7 @@
 @synthesize vcontroller;
 @synthesize backgroundNormal = background1;
 @synthesize backgroundDisabled = background2;
+@synthesize backgroundVector;
 @synthesize showVectorLayer;
 
 + (Class)layerClass
@@ -41,6 +42,15 @@
 
 -(UIView*) labelView {
     return labelBg;
+}
+
+-(void)setShowVectorLayer:(BOOL)_showVectorLayer
+{
+    if(showVectorLayer != _showVectorLayer) {
+        showVectorLayer = _showVectorLayer;
+        backgroundVector.hidden = !_showVectorLayer;
+        [self setNeedsDisplay];
+    }
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -102,7 +112,7 @@
 		UIGraphicsBeginImageContext(minSize);
 		CGContextRef context = UIGraphicsGetCurrentContext();
 		CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
-		CGContextFillRect(context,r);
+		//CGContextFillRect(context,r);
 		CGContextScaleCTM(context, backScale, backScale);
         r.size.width /= backScale;
         r.size.height /= backScale;
@@ -117,7 +127,7 @@
         // make disabled background image
         [cityMap activatePath:[NSArray array]];
 		CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
-		CGContextFillRect(context,r);
+		//CGContextFillRect(context,r);
         [cityMap drawMap:context inRect:r];
         [cityMap drawTransfers:context inRect:r];
         [cityMap drawStations:context inRect:r]; 
@@ -137,6 +147,25 @@
     if(vectorLayer != nil) [vectorLayer release];
     vectorLayer = [[VectorLayer alloc] initWithFile:file];
     showVectorLayer = YES;
+    // make background image
+    CGFloat backScale = MinScale * 2.f;
+    CGSize minSize = CGSizeMake(cityMap.w * backScale, cityMap.h * backScale);
+    CGRect r = CGRectMake(0, 0, minSize.width, minSize.height);
+    UIGraphicsBeginImageContext(minSize);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
+    CGContextFillRect(context,r);
+    CGContextScaleCTM(context, backScale, backScale);
+    r.size.width /= backScale;
+    r.size.height /= backScale;
+    [vectorLayer draw:context inRect:r];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    [backgroundVector release];
+    backgroundVector = [[UIImageView alloc] initWithImage:img];
+    backgroundVector.frame = CGRectMake(0, 0, img.size.width, img.size.height);
+    backgroundVector.contentMode = UIViewContentModeScaleAspectFit;
+    backgroundVector.hidden = NO;
+    UIGraphicsEndImageContext();
 }
 
 -(void)showLabel
@@ -225,15 +254,6 @@
     DLog(@"viewDidLoad mapView\n");
 }
 
-- (void) touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event 
-{	
-    [self hideLabel];
-	[[self superview] touchesEnded:touches withEvent:event];
-	//[self.nextResponder touchesEnded:touches withEvent:event];
-	DLog(@" touch 1 ");
-	DLog(@"  %@ ",[self superview] );
-}
-
 - (void) drawString: (NSString*) s withFont: (UIFont*) font inRect: (CGRect) contextRect {
 	
     CGFloat fontHeight = font.pointSize;
@@ -245,30 +265,15 @@
 		alignment: UITextAlignmentCenter];
 }
 
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-	DLog(@" touchCancelled");
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-	[[self superview] touchesMoved:touches withEvent:event];
-
-	UITouch *touch = [touches anyObject];
-	CGPoint currentPosition = [touch locationInView:self];
-    CGPoint superPosition = [touch locationInView:labelBg.superview];
-	
+-(void)selectStationAt:(CGPoint)currentPosition
+{
+    NSLog(@"select station at");
     selectedStationLine = [cityMap checkPoint:currentPosition Station:selectedStationName];
-    
     if(selectedStationLine > 0) {
 		stationSelected=true;
-		CGRect frame = labelBg.frame;
-		frame.origin = CGPointMake(superPosition.x - frame.size.width/2, superPosition.y - frame.size.height - 30);
-        printf("pos x=%d y=%d\n", (int) frame.origin.x, (int) frame.origin.y);
-		labelBg.frame = frame;
 		mainLabel.text = selectedStationName;
-        [self showLabel];
     } else {
         stationSelected=false;
-        [self hideLabel];
     }
 }
 
@@ -388,5 +393,37 @@
 {
     //printf("offset is %d %d\n", (int)scrollView.contentOffset.x, (int)scrollView.contentOffset.y);
 }
+
+-(void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if(stationSelected) {
+        stationSelected = NO;
+        [self.superview.superview hideButtons];
+    }
+}
+
+-(void) scrollViewDidZoom:(UIScrollView *)scrollView
+{
+    if(stationSelected) {
+        stationSelected = NO;
+        [self.superview.superview hideButtons];
+    }
+}
+
+//-(void) scrollViewWillBeginDragging:(UIScrollView *)scrollView
+//{
+//    if(stationSelected) {
+//        stationSelected = NO;
+//        [self.superview.superview selectStationAt:CGPointMake(-1, -1)];
+//    }
+//}
+//
+//-(void) scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view
+//{
+//    if(stationSelected) {
+//        stationSelected = NO;
+//        [self.superview.superview selectStationAt:CGPointMake(-1, -1)];
+//    }
+//}
 
 @end

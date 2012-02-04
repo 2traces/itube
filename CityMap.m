@@ -254,6 +254,47 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
 }
 
+-(void) tuneStations
+{
+    if([stations count] == 2) {
+        Station* s[2];
+        int i=0;
+        for (Station *st in stations) {
+            s[i] = st;
+            i++;
+        }
+        CGPoint A1 = s[0].pos, dA = s[0].tangent;
+        CGPoint B1 = s[1].pos, dB = s[1].tangent;
+        CGPoint dp = CGPointMake(A1.x - B1.x, A1.y - B1.y);
+        CGFloat SD2 = StationDiameter*StationDiameter*4;
+        if(SD2 >= (dp.x * dp.x + dp.y * dp.y)) {
+            CGFloat d = dA.x * dB.y - dA.y * dB.x;
+            if(d == 0.f) {
+                NSLog(@"lines are paraleled, %@", s[0].name);
+                return; // parallel
+            }
+            //CGFloat d1 = (dp.x * dB.y - dp.y * dB.x) / d;
+            CGFloat d2 = (dA.x * dp.y - dA.y * dp.x) / d;
+            //CGPoint C1 = CGPointMake(A1.x + dA.x * d1, A1.y + dA.y * d1);
+            CGPoint C2 = CGPointMake(B1.x + dB.x * d2, B1.y + dB.y * d2);
+            dA = CGPointMake(C2.x - A1.x, C2.y - A1.y);
+            if(SD2 < (dA.x * dA.x + dA.y * dA.y)) {
+                return; // too far 
+            }
+            dB = CGPointMake(C2.x - B1.x, C2.y - B1.y);
+            if(SD2 < (dB.x * dB.x + dB.y * dB.y)) {
+                return; // too far
+            }
+            s[0].pos = C2;
+            s[1].pos = C2;
+            
+            boundingBox = CGRectMake(C2.x - StationDiameter, C2.y - StationDiameter, StationDiameter*2.f, StationDiameter*2.f);
+        }
+    } else {
+        //NSLog(@"more than two stations in transfer, %@", [[stations anyObject] name]);
+    }
+}
+
 @end
 
 @implementation Station
@@ -261,6 +302,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize relation;
 @synthesize relationDriving;
 @synthesize segment;
+@synthesize backSegment;
 @synthesize sibling;
 @synthesize pos;
 @synthesize boundingBox;
@@ -274,8 +316,15 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize active;
 @synthesize acceptBackLink;
 @synthesize links;
+@synthesize tangent;
 
 -(BOOL) terminal { return links == 1; }
+
+-(void) setPos:(CGPoint)_pos
+{
+    pos = _pos;
+    boundingBox = CGRectMake(pos.x-StationDiameter/2, pos.y-StationDiameter/2, StationDiameter, StationDiameter);
+}
 
 -(id)initWithName:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr
 {
@@ -285,6 +334,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         index = i;
         textRect = r;
         segment = [[NSMutableArray alloc] init];
+        backSegment = [[NSMutableArray alloc] init];
         relation = [[NSMutableArray alloc] init];
         relationDriving = [[NSMutableArray alloc] init];
         sibling = [[NSMutableArray alloc] init];
@@ -330,6 +380,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(void)dealloc
 {
     [segment release];
+    [backSegment release];
     [relation release];
     [relationDriving release];
     [sibling release];
@@ -385,13 +436,15 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)drawStation:(CGContextRef)context
 {
-    /*if(StKind == LIKE_LONDON) {  TODO
+    if(StKind == LIKE_LONDON) {
         CGContextSetLineCap(context, kCGLineCapSquare);
-        CGContextSetLineWidth(context, LineWidth/2);
-        CGContextMoveToPoint(context, pos.x, pos.y);
-        CGContextAddLineToPoint(context, textRect.origin.x, textRect.origin.y);
+        CGFloat lw = LineWidth * 0.5f;
+        CGContextSetLineWidth(context, LineWidth);
+        CGPoint p = CGPointMake(pos.x + lw*normal.x, pos.y + lw*normal.y);
+        CGContextMoveToPoint(context, p.x, p.y);
+        CGContextAddLineToPoint(context, p.x + normal.x, p.y + normal.y);
         CGContextStrokePath(context);
-    }*/
+    }
 }
 
 -(void)predraw:(CGContextRef) context
@@ -402,11 +455,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     CGContextRef ctx = CGLayerGetContext(predrawedName);
     UIGraphicsPushContext(ctx);
     CGContextScaleCTM(ctx, PredrawScale, PredrawScale);
-    CGRect rect = textRect;
-    rect.origin = CGPointZero;
     int alignment = UITextAlignmentCenter;
     if(pos.x < textRect.origin.x) alignment = UITextAlignmentLeft;
     else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
+    CGRect rect = textRect;
+    rect.origin = CGPointZero;
     [name drawInRect:rect  withFont: [UIFont fontWithName:@"Arial-BoldMT" size:StationDiameter] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
     UIGraphicsPopContext();
 }
@@ -426,6 +479,52 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [relation release];
     relationDriving = nil;
     relation = nil;
+}
+
+-(void) makeTangent
+{
+    CGPoint fp = CGPointZero, bp = CGPointZero;
+    BOOL preferFrontPoint = NO, preferBackPoint = NO;
+    if([segment count] > 0) {
+        for (Segment *seg in segment) {
+            if([seg.splinePoints count] == 0) {
+                fp = seg.end.pos;
+                preferFrontPoint = YES;
+                break;
+            }
+        }
+        if(!preferFrontPoint) {
+            Segment *s = [segment objectAtIndex:0];
+            fp = [[s.splinePoints objectAtIndex:0] CGPointValue];
+        }
+    } 
+    if([backSegment count] > 0) {
+        for (Segment *seg in backSegment) {
+            if([seg.splinePoints count] == 0) {
+                bp = seg.start.pos;
+                preferBackPoint = YES;
+                break;
+            }
+        }
+        if(!preferBackPoint) {
+            Segment *s = [backSegment objectAtIndex:0];
+            bp = [[s.splinePoints lastObject] CGPointValue];
+        }
+    } 
+    if(preferFrontPoint || CGPointEqualToPoint(bp, CGPointZero)) 
+        tangent = CGPointMake(fp.x - pos.x, fp.y - pos.y);
+    else
+        tangent = CGPointMake(pos.x - bp.x, pos.y - bp.y);
+    normal = CGPointMake(tangent.y, -tangent.x);
+    CGPoint td = CGPointMake(textRect.origin.x - pos.x, textRect.origin.y - pos.y);
+    CGFloat ntd = normal.x * td.x + normal.y * td.y;
+    if(ntd < 0.f) {
+        normal = CGPointMake(-normal.x, -normal.y);
+    }
+    ntd = normal.x * normal.x + normal.y * normal.y;
+    ntd = sqrtf(ntd);
+    normal.x /= ntd;
+    normal.y /= ntd;
 }
 
 @end
@@ -462,12 +561,17 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize boundingBox;
 @synthesize active;
 
+-(NSArray*)splinePoints {
+    return splinePoints;
+}
+
 -(id)initFromStation:(Station *)from toStation:(Station *)to withDriving:(int)dr
 {
     if((self = [super init])) {
         active = YES;
         start = from;
         end = to;
+        [end.backSegment addObject:self];
         driving = dr;
         NSAssert(driving > 0, @"illegal driving");
         CGRect s1 = CGRectMake(from.pos.x - 5, from.pos.y - 5, 10, 10);
@@ -495,6 +599,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)calcSpline
 {
+    if(splinePoints == nil || [splinePoints count] == 0) return;
     [splinePoints addObject:[NSValue valueWithCGPoint:CGPointMake(end.pos.x, end.pos.y)]];
     [splinePoints insertObject:[NSValue valueWithCGPoint:CGPointMake(start.pos.x, start.pos.y)] atIndex:0];
     NSMutableArray *newSplinePoints = [[NSMutableArray alloc] init];
@@ -760,7 +865,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                         NSArray *coord = [p componentsSeparatedByString:@","];
                         [seg appendPoint:CGPointMake([[coord objectAtIndex:0] intValue], [[coord objectAtIndex:1] intValue])];
                     }
-                    [seg calcSpline];
+                    //[seg calcSpline];
                     return;
                 }
             }
@@ -800,6 +905,13 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             break;
         case LIKE_LONDON:
             break;
+    }
+}
+
+-(void)calcStations
+{
+    for (Station *st in stations) {
+        [st makeTangent];
     }
 }
 
@@ -909,8 +1021,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [[MHelper sharedHelper] saveContext];
     [[MHelper sharedHelper] readHistoryFile];
     [[MHelper sharedHelper] readBookmarkFile];
-    _w = boundingBox.origin.x + boundingBox.size.width;
-    _h = boundingBox.origin.y + boundingBox.size.height;
+    _w = boundingBox.origin.x * 2 + boundingBox.size.width;
+    _h = boundingBox.origin.y * 2 + boundingBox.size.height;
 		
 	INISection *section = [parserMap getSection:@"AdditionalNodes"];
 	NSMutableDictionary *as = [section assignments];
@@ -918,7 +1030,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 		NSString *value = [parserMap get:key section:@"AdditionalNodes"];
 		[self processAddNodes:value];
 	}
-
 	INISection *section2 = [parserTrp getSection:@"Transfers"];
 	NSMutableDictionary *as2 = [section2 assignments];
 	for (NSString* key in as2) {
@@ -935,6 +1046,21 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	[parserMap release];
     [parserTrp release];
     
+    for (Line *l in mapLines) {
+        [l calcStations];
+    }
+    
+    for (Transfer* tr in transfers) {
+        [tr tuneStations];
+    }
+    
+    for (Line *l in mapLines) {
+        for (Station *st in l.stations) {
+            for (Segment *seg in st.segment) {
+                [seg calcSpline];
+            }
+        }
+    }
     [self calcGraph];
     [self predraw];
 }
