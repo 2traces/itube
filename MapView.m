@@ -49,6 +49,8 @@
     if(showVectorLayer != _showVectorLayer) {
         showVectorLayer = _showVectorLayer;
         backgroundVector.hidden = !_showVectorLayer;
+        // это недокументированный метод, так что если он в будущем изменится, то ой
+        [self.layer invalidateContents];
         [self setNeedsDisplay];
     }
 }
@@ -398,7 +400,6 @@
 {
     if(stationSelected) {
         stationSelected = NO;
-        [self.superview.superview hideButtons];
     }
 }
 
@@ -406,24 +407,7 @@
 {
     if(stationSelected) {
         stationSelected = NO;
-        [self.superview.superview hideButtons];
     }
 }
-
-//-(void) scrollViewWillBeginDragging:(UIScrollView *)scrollView
-//{
-//    if(stationSelected) {
-//        stationSelected = NO;
-//        [self.superview.superview selectStationAt:CGPointMake(-1, -1)];
-//    }
-//}
-//
-//-(void) scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view
-//{
-//    if(stationSelected) {
-//        stationSelected = NO;
-//        [self.superview.superview selectStationAt:CGPointMake(-1, -1)];
-//    }
-//}
 
 @end
