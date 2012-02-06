@@ -94,7 +94,6 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 -(void) addSibling:(Station*)st;
 -(void) drawName:(CGContextRef)context;
 -(void) drawStation:(CGContextRef)context;
--(void) draw:(CGContextRef)context;
 -(void) draw:(CGContextRef)context inRect:(CGRect)rect;
 -(void) makeSegments;
 -(void) makeTangent;
@@ -144,9 +143,11 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
     NSString *name;
     NSMutableArray* stations;
     UIColor* _color;
+    UIColor* _disabledColor;
     int index;
-    CGLayerRef stationLayer;
+    CGLayerRef stationLayer, disabledStationLayer;
     CGRect boundingBox;
+    BOOL twoStepsDraw;
 }
 @property (nonatomic, retain) UIColor* color;
 @property (nonatomic, readonly) NSString* name;
@@ -155,8 +156,6 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @property (nonatomic, readonly) CGRect boundingBox;
 
 -(id)initWithName:(NSString*)n stations:(NSString*)stations driving:(NSString*)driving coordinates:(NSString*)coordinates rects:(NSString*)rects;
--(void)draw:(CGContextRef)context;
--(void)drawNames:(CGContextRef)context;
 -(void)draw:(CGContextRef)context inRect:(CGRect)rect;
 -(void)drawNames:(CGContextRef)context inRect:(CGRect)rect;
 -(void)additionalPointsBetween:(NSString*)station1 and:(NSString*)station2 points:(NSArray*)points;
@@ -219,11 +218,8 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 -(void) processLinesStations:(NSString*) stations :(NSUInteger) line;
 
 // drawing
--(void) drawMap:(CGContextRef) context;
 -(void) drawMap:(CGContextRef) context inRect:(CGRect)rect;
--(void) drawStations:(CGContextRef) context;
 -(void) drawStations:(CGContextRef) context inRect:(CGRect)rect;
--(void) drawTransfers:(CGContextRef) context;
 -(void) drawTransfers:(CGContextRef) context inRect:(CGRect)rect;
 
 -(void) activatePath:(NSArray*)pathMap;
