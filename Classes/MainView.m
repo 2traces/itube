@@ -53,6 +53,7 @@ NSInteger const toolbarWidth=320;
 	[self initVar];
     self.vcontroller = vc;
 	self.userInteractionEnabled = YES;
+    buttonsVisible = NO;
 	DLog(@"ViewDidLoad main View");	
 
     CGRect scrollSize = CGRectMake(0,44,(320),(480-44));
@@ -128,10 +129,14 @@ NSInteger const toolbarWidth=320;
     
     [self addSubview:sourceButton];
     [self addSubview:destinationButton];
+    
+    NSTimer *timer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(supervisor) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
 -(void)showButtons:(CGPoint)pos
 {
+    buttonsVisible = YES;
     if(pos.x < 100) pos.x = 100;
     if(pos.x > 220) pos.x = 220;
     if(pos.y < 90) pos.y = 90;
@@ -152,6 +157,7 @@ NSInteger const toolbarWidth=320;
 
 -(void)hideButtons
 {
+    buttonsVisible = NO;
     [UIView animateWithDuration:0.125f animations:^{ mapView.labelView.alpha = 0.f; } completion:^(BOOL finished){ if(finished) {mapView.labelView.hidden = YES; } }];
     CGPoint p = sourceButton.center;
     p.x = -40;
@@ -219,5 +225,9 @@ NSInteger const toolbarWidth=320;
     [[MHelper sharedHelper] addHistory:[NSDate date] :fs To:ss FirstLine:fsl LastLine:ssl];
 }
 
+-(void) supervisor
+{
+    if(buttonsVisible && !mapView.stationSelected) [self hideButtons];
+}
 
 @end

@@ -33,6 +33,7 @@ extern NSInteger const toolbarWidth;
 	UIView *stationNameView;
 	UILabel *stationNameLabel;
     UIButton *sourceButton, *destinationButton;
+    BOOL buttonsVisible;
 }
 
 @property (nonatomic, retain) UIView *stationNameView;
