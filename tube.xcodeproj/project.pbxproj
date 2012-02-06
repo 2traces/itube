@@ -187,6 +187,9 @@
 		BC8C71EE14D98F810038EE0F /* PathScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8C71ED14D98F810038EE0F /* PathScrollView.m */; };
 		BC8DF97F14DAD8DE00294B61 /* PathDrawVertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8DF97E14DAD8DE00294B61 /* PathDrawVertView.m */; };
 		BC98E47514C9592700F5260D /* TopTwoStationsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC98E47414C9592700F5260D /* TopTwoStationsView.m */; };
+		BCA7375014E029D40065EC2D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCA7374F14E029D30065EC2D /* Default@2x.png */; };
+		BCA7375414E02A740065EC2D /* pipka.png in Resources */ = {isa = PBXBuildFile; fileRef = BCA7375214E02A740065EC2D /* pipka.png */; };
+		BCA7375514E02A740065EC2D /* pipka@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCA7375314E02A740065EC2D /* pipka@2x.png */; };
 		BCF52DCD14CAD69400D76E0F /* FastAccessTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */; };
 		CE1146C91466EAF200EF5A28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1146C81466EAF200EF5A28 /* QuartzCore.framework */; };
 		CE81FA70146BDC91008BF969 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CE81FA6D146BDC91008BF969 /* Icon-72.png */; };
@@ -439,6 +442,9 @@
 		BC8DF97E14DAD8DE00294B61 /* PathDrawVertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathDrawVertView.m; sourceTree = "<group>"; };
 		BC98E47314C9592700F5260D /* TopTwoStationsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopTwoStationsView.h; sourceTree = "<group>"; };
 		BC98E47414C9592700F5260D /* TopTwoStationsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopTwoStationsView.m; sourceTree = "<group>"; };
+		BCA7374F14E029D30065EC2D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		BCA7375214E02A740065EC2D /* pipka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pipka.png; path = images/pipka.png; sourceTree = "<group>"; };
+		BCA7375314E02A740065EC2D /* pipka@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pipka@2x.png"; path = "images/pipka@2x.png"; sourceTree = "<group>"; };
 		BCF52DCB14CAD69400D76E0F /* FastAccessTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastAccessTableViewController.h; sourceTree = "<group>"; };
 		BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastAccessTableViewController.m; sourceTree = "<group>"; };
 		CE1146C81466EAF200EF5A28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -599,6 +605,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				BCA7374F14E029D30065EC2D /* Default@2x.png */,
 				9F5E307114A4590A00D549E4 /* TODO.engine */,
 				289233A00DB2D0730083E9F9 /* Main View */,
 				281C6CD70DB2D82200F60ACC /* Flipside View */,
@@ -756,6 +763,8 @@
 		BC3D150F14C3391C0059A17E /* Stations */ = {
 			isa = PBXGroup;
 			children = (
+				BCA7375214E02A740065EC2D /* pipka.png */,
+				BCA7375314E02A740065EC2D /* pipka@2x.png */,
 				BC876AF814DFB062008AC06C /* carat-open.png */,
 				BC876AF914DFB062008AC06C /* carat.png */,
 				BC876AFA14DFB062008AC06C /* starbutton_off.png */,
@@ -1082,6 +1091,9 @@
 				BC876B8914DFB395008AC06C /* stationsstation@2x.png in Resources */,
 				BC876B8A14DFB395008AC06C /* toptabbarstation.png in Resources */,
 				BC876B8B14DFB395008AC06C /* toptabbarstation@2x.png in Resources */,
+				BCA7375014E029D40065EC2D /* Default@2x.png in Resources */,
+				BCA7375414E02A740065EC2D /* pipka.png in Resources */,
+				BCA7375514E02A740065EC2D /* pipka@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

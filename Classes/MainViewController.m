@@ -553,9 +553,12 @@
             NSString *stationName1 = [[stations objectAtIndex:i] lastObject];            
             NSString *stationName2 = [[stations objectAtIndex:i+1] objectAtIndex:0];
             
-            int time1 = [[[stationsTime objectAtIndex:i] lastObject] intValue];            
-            int time2 = [[[stationsTime objectAtIndex:i+1] objectAtIndex:0] intValue];
+   //         int time1 = [[[stationsTime objectAtIndex:i] lastObject] intValue];            
+   //         int time2 = [[[stationsTime objectAtIndex:i+1] objectAtIndex:0] intValue]; // tut crash
 
+            int time1=0;
+            int time2=0;
+            
             UILabel *label1 = [[UILabel alloc] initWithFrame:rect1];
             label1.font=[UIFont fontWithName:@"MyriadPro-Regular" size:20.0];
             label1.text=stationName1;

@@ -1389,7 +1389,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             s = [l getStation:stationName2];
             activeExtent = CGRectUnion(activeExtent, s.textRect);
             activeExtent = CGRectUnion(activeExtent, s.boundingBox);
-            [pathStationsList addObject:stationName2];
+           
+ //           if (lineNum1==lineNum2) {
+                [pathStationsList addObject:stationName2];
+ //           }
         }
 	}
     activeExtent.origin.x -= activeExtent.size.width * 0.1f;

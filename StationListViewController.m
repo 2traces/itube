@@ -377,17 +377,49 @@
 
 -(UIImage*)drawCircleView:(UIColor*)myColor
 {
+
+//    myColor = [UIColor whiteColor];
+    
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(27, 27), NO, 0.0);
     
-    //    CGRect allRect = self.bounds;
-    //    CGRect circleRect = CGRectMake(allRect.origin.x + 2, allRect.origin.y + 2, allRect.size.width - 4,
-    //                                   allRect.size.height - 4);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+
+    CGGradientRef myGradient;
+    
+    CGColorSpaceRef myColorspace;
+    
+    size_t num_locations=2;
+    
+    CGFloat locations[2] = { 0.0 , 1.0 };
+    
+    const CGFloat* components = CGColorGetComponents(myColor.CGColor);
+    
+    CGFloat componentsG[8] = { components[0], components[1], components[2], 1.0, components[0]+0.2, components[1], components[2], 1.0 };
+
+    myColorspace = CGColorSpaceCreateDeviceRGB();
+    
+    myGradient = CGGradientCreateWithColorComponents (myColorspace, componentsG, locations, num_locations);
+    
+    CGPoint myStartPoint, myEndPoint;
+    CGFloat myStartRadius, myEndRadius;
+    
+    myStartPoint.x = 13.5;
+    myStartPoint.y = 13.5;
+    
+    myEndPoint.x = 13.5;
+    myEndPoint.y = 13.5;
+    
+    myStartRadius =11;
+    myEndRadius = 12.5;
+    
+
+    
+
     
     CGRect circleRect = CGRectMake(1.0, 1.0, 25.0, 25.0);
 	
-    CGContextRef context = UIGraphicsGetCurrentContext();
     
-    const CGFloat* components = CGColorGetComponents(myColor.CGColor);
+    
     
     CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor)); 
     CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));  
@@ -395,9 +427,12 @@
 	CGContextFillEllipseInRect(context, circleRect);
 	CGContextStrokeEllipseInRect(context, circleRect);
     
+        CGContextDrawRadialGradient(context, myGradient, myStartPoint, myStartRadius, myEndPoint, myEndRadius, 0);
+    
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
     return image;
+     
 }
 
 

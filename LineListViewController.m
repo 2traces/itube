@@ -51,17 +51,10 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v )
 @synthesize dataSource;
 @synthesize colorDictionary;
 @synthesize stationsList;
+@synthesize mytableView;
+@synthesize imageView;
 
 @synthesize sectionInfoArray=sectionInfoArray_, uniformRowHeight=rowHeight_, openSectionIndex=openSectionIndex_;
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -84,8 +77,11 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v )
     
     self.colorDictionary = [[[NSMutableDictionary alloc] initWithCapacity:[self.lineList count]] autorelease];
     
+    [self.mytableView setBackgroundColor:[UIColor clearColor]];
+    self.imageView.image = [UIImage imageNamed:@"tablebackground.png"];
+    
     // Set up default values.
-    self.tableView.sectionHeaderHeight = HEADER_HEIGHT;
+    self.mytableView.sectionHeaderHeight = HEADER_HEIGHT;
 	/*
      The section info array is thrown away in viewWillUnload, so it's OK to set the default values here. If you keep the section information etc. then set the default values in the designated initializer.
      */
@@ -124,7 +120,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v )
 {
     [super viewWillAppear:animated];
     
-    if ((self.sectionInfoArray == nil) || ([self.sectionInfoArray count] != [self numberOfSectionsInTableView:self.tableView])) {
+    if ((self.sectionInfoArray == nil) || ([self.sectionInfoArray count] != [self numberOfSectionsInTableView:self.mytableView])) {
 		
         // For each play, set up a corresponding SectionInfo object to contain the default height for each row.
 		NSMutableArray *infoArray = [[NSMutableArray alloc] init];
@@ -150,7 +146,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v )
         [infoArray release];
 	}
     
-    [self.tableView reloadData];
+    [self.mytableView reloadData];
 
 }
 
@@ -241,7 +237,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v )
     for (NSInteger i = 0; i < countOfRowsToInsert; i++) {
         [indexPathsToInsert addObject:[NSIndexPath indexPathForRow:i inSection:sectionOpened]];
     }
-    
+        
     /*
      Create an array containing the index paths of the rows to delete: These correspond to the rows for each quotation in the previously-open section, if there was one.
      */
@@ -262,6 +258,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v )
     // Style the animation so that there's a smooth flow in either direction.
     UITableViewRowAnimation insertAnimation;
     UITableViewRowAnimation deleteAnimation;
+    
     if (previousOpenSectionIndex == NSNotFound || sectionOpened < previousOpenSectionIndex) {
         insertAnimation = UITableViewRowAnimationTop;
         deleteAnimation = UITableViewRowAnimationBottom;
@@ -272,15 +269,23 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v )
     }
     
     // Apply the updates.
-    [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths:indexPathsToInsert withRowAnimation:insertAnimation];
-    [self.tableView deleteRowsAtIndexPaths:indexPathsToDelete withRowAnimation:deleteAnimation];
-    [self.tableView endUpdates];
+    [self.mytableView beginUpdates];
+    [self.mytableView insertRowsAtIndexPaths:indexPathsToInsert withRowAnimation:insertAnimation];
+    [self.mytableView deleteRowsAtIndexPaths:indexPathsToDelete withRowAnimation:deleteAnimation];
+    [self.mytableView endUpdates];
     self.openSectionIndex = sectionOpened;
+        
+    if ([indexPathsToInsert count]>0){
+         [self performSelector:@selector(scrollToDesiredArea:) withObject:[indexPathsToInsert objectAtIndex:0] afterDelay:0.2f];
+    }
     
     [indexPathsToDelete release];
     [indexPathsToInsert release];
-    
+
+}
+
+-(void)scrollToDesiredArea:(NSIndexPath *)indexPath {
+        [self.mytableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 -(void)sectionHeaderView:(SectionHeaderView*)sectionHeaderView sectionClosed:(NSInteger)sectionClosed {
@@ -291,14 +296,14 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v )
 	SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:sectionClosed];
 	
     sectionInfo.open = NO;
-    NSInteger countOfRowsToDelete = [self.tableView numberOfRowsInSection:sectionClosed];
+    NSInteger countOfRowsToDelete = [self.mytableView numberOfRowsInSection:sectionClosed];
     
     if (countOfRowsToDelete > 0) {
         NSMutableArray *indexPathsToDelete = [[NSMutableArray alloc] init];
         for (NSInteger i = 0; i < countOfRowsToDelete; i++) {
             [indexPathsToDelete addObject:[NSIndexPath indexPathForRow:i inSection:sectionClosed]];
         }
-        [self.tableView deleteRowsAtIndexPaths:indexPathsToDelete withRowAnimation:UITableViewRowAnimationTop];
+        [self.mytableView deleteRowsAtIndexPaths:indexPathsToDelete withRowAnimation:UITableViewRowAnimationTop];
         [indexPathsToDelete release];
     }
     self.openSectionIndex = NSNotFound;
@@ -334,7 +339,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v )
     
     UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
     
-    NSIndexPath *path = [self.tableView indexPathForCell:cell];
+    NSIndexPath *path = [self.mytableView indexPathForCell:cell];
     
     MLine *line = [self.lineList objectAtIndex:[path section]];
     
@@ -351,7 +356,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v )
         [station setIsFavorite:[NSNumber numberWithInt:1]];
     }
     
-    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationNone];
+    [self.mytableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(UIColor*)saturateColor:(UIColor*)startColor
@@ -378,7 +383,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v )
 	SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:section];
     if (!sectionInfo.headerView) {
 		NSString *lineName = sectionInfo.line.name;
-        sectionInfo.headerView = [[[SectionHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, HEADER_HEIGHT) title:lineName color:[self saturateColor:(UIColor*)sectionInfo.line.color] section:section delegate:self] autorelease];
+        sectionInfo.headerView = [[[SectionHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.mytableView.bounds.size.width, HEADER_HEIGHT) title:lineName color:[self saturateColor:(UIColor*)sectionInfo.line.color] section:section delegate:self] autorelease];
     }
     
     return sectionInfo.headerView;
