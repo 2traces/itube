@@ -47,6 +47,7 @@
     CGContextSetStrokeColorWithColor(context, col);
     CGContextSetLineWidth(context, width);
     CGContextSetLineCap(context, kCGLineCapRound);
+    CGContextSetLineJoin(context, kCGLineJoinRound);
     CGContextAddPath(context, path);
     CGContextStrokePath(context);
 }
