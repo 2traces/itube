@@ -677,14 +677,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize stations;
 @synthesize index;
 @synthesize boundingBox;
+@synthesize shortName;
 
 -(UIColor*) color {
     return _color;
 }
-
-#define Pr 0.299
-#define Pg 0.587
-#define Pb 0.114
 
 -(void) setColor:(UIColor *)color
 {
@@ -696,14 +693,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     r = rgba[0];
     g = rgba[1];
     b = rgba[2];
-//    float P = sqrtf(r*r*Pr + g*g*Pg + b*b*Pb );
-//    r = P+(r-P) * 0.5f;
-//    g = P+(g-P) * 0.5f;
-//    b = P+(b-P) * 0.5f;
-    float mean = 1.0f;//(r + g + b) / 3.f;
-    r = (r + mean) * 0.5f;
-    g = (g + mean) * 0.5f;
-    b = (b + mean) * 0.5f;
+    float mean = 3.0f;
+    r = (r + mean) * 0.25f;
+    g = (g + mean) * 0.25f;
+    b = (b + mean) * 0.25f;
     _disabledColor = [[UIColor colorWithRed:r green:g blue:b alpha:1.0f] retain];
     
 }
@@ -712,6 +705,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 {
     if((self = [super init])) {
         name = [n retain];
+        shortName = [[[n componentsSeparatedByString:@" "] lastObject] retain];
         stations = [[NSMutableArray alloc] init];
         stationLayer = nil;
         boundingBox = CGRectNull;
@@ -783,6 +777,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [_color release];
     [_disabledColor release];
     [name release];
+    [shortName release];
     CGLayerRelease(stationLayer);
     CGLayerRelease(disabledStationLayer);
 }
@@ -986,6 +981,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize maxScale;
 @synthesize thisMapName;
 @synthesize pathStationsList;
+@synthesize mapLines;
 
 -(StationKind) stationKind { return StKind; }
 -(void) setStationKind:(StationKind)stationKind { StKind = stationKind; }
@@ -1465,7 +1461,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 {
     for (Line *l in mapLines) {
         for (Station *s in l.stations) {
-            if(CGRectContainsPoint(s.textRect, point)) {
+            if(CGRectContainsPoint(s.textRect, point) || CGRectContainsPoint(s.boundingBox, point)) {
                 [stationName setString:s.name];
                 return l.index;
             }

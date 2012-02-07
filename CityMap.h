@@ -141,6 +141,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @interface Line : NSObject {
 @private
     NSString *name;
+    NSString *shortName;
     NSMutableArray* stations;
     UIColor* _color;
     UIColor* _disabledColor;
@@ -151,6 +152,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 }
 @property (nonatomic, retain) UIColor* color;
 @property (nonatomic, readonly) NSString* name;
+@property (nonatomic, readonly) NSString* shortName;
 @property (nonatomic, readonly) NSMutableArray* stations;
 @property (nonatomic, assign) int index;
 @property (nonatomic, readonly) CGRect boundingBox;
@@ -194,6 +196,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @property (nonatomic, readonly) CGFloat maxScale;
 @property (nonatomic, retain) NSString *thisMapName;
 @property (nonatomic, retain) NSMutableArray *pathStationsList;
+@property (nonatomic, readonly) NSMutableArray *mapLines;
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //
