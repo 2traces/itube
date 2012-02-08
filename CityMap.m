@@ -14,6 +14,7 @@
 CGFloat PredrawScale = 2.f;
 CGFloat LineWidth = 4.f;
 CGFloat StationDiameter = 8.f;
+CGFloat FontSize = 7.f;
 StationKind StKind = LIKE_PARIS;
 StationKind TrKind = LIKE_PARIS;
 
@@ -422,7 +423,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         int alignment = UITextAlignmentCenter;
         if(pos.x < textRect.origin.x) alignment = UITextAlignmentLeft;
         else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
-        CGContextSelectFont(context, "Arial-BoldMT", StationDiameter, kCGEncodingMacRoman);
+        CGContextSelectFont(context, "Arial-BoldMT", FontSize, kCGEncodingMacRoman);
         CGContextShowTextAtPoint(context, textRect.origin.x, textRect.origin.y+textRect.size.height, [name cStringUsingEncoding:[NSString defaultCStringEncoding]], [name length]);
     }
     if(!act) CGContextRestoreGState(context);
@@ -454,7 +455,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
     CGRect rect = textRect;
     rect.origin = CGPointZero;
-    [name drawInRect:rect  withFont: [UIFont fontWithName:@"Arial-BoldMT" size:StationDiameter] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
+    [name drawInRect:rect  withFont: [UIFont fontWithName:@"Arial-BoldMT" size:FontSize] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
     UIGraphicsPopContext();
 }
 
@@ -1039,6 +1040,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(val > 0 && val < KINDS_NUM) TrKind = val;
     val = [[parserMap get:@"DisplayStations" section:@"Options"] intValue];
     if(val > 0 && val < KINDS_NUM) StKind = val;
+    val = [[parserMap get:@"FontSize" section:@"Options"] intValue];
+    if(val > 0) FontSize = val;
     float sc = [[parserMap get:@"MaxScale" section:@"Options"] floatValue];
     if(sc != 0.f) {
         maxScale = sc;
@@ -1457,12 +1460,13 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     CGContextRestoreGState(context);
 }
 
--(NSInteger) checkPoint:(CGPoint)point Station:(NSMutableString *)stationName
+-(NSInteger) checkPoint:(CGPoint*)point Station:(NSMutableString *)stationName
 {
     for (Line *l in mapLines) {
         for (Station *s in l.stations) {
-            if(CGRectContainsPoint(s.textRect, point) || CGRectContainsPoint(s.boundingBox, point)) {
+            if(CGRectContainsPoint(s.textRect, *point) || CGRectContainsPoint(s.boundingBox, *point)) {
                 [stationName setString:s.name];
+                *point = CGPointMake(s.pos.x, s.pos.y);
                 return l.index;
             }
         }

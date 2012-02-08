@@ -41,10 +41,12 @@
 -(void)handleTap:(UITapGestureRecognizer*) sender
 {
     if(sender.state == UIGestureRecognizerStateEnded) {
-        CGPoint p1 = [sender locationInView:self.superview];
+        CGPoint p1;// = [sender locationInView:self.superview];
         CGPoint p2 = [sender locationInView:scrolledView];
 
-        [scrolledView selectStationAt:p2];
+        [scrolledView selectStationAt:&p2];
+        p1 = [self convertPoint:p2 fromView:scrolledView];
+        p1 = [self convertPoint:p1 toView:self.superview];
         [self.superview selectStationAt:p1];
     }
 }
@@ -66,7 +68,7 @@
 
 -(void)handleDebugTap:(UITapGestureRecognizer*)sender
 {
-    [scrolledView setShowVectorLayer:![scrolledView showVectorLayer]];
+    //[scrolledView setShowVectorLayer:![scrolledView showVectorLayer]];
 }
 
 -(void)layoutSubviews

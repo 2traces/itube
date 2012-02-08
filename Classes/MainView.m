@@ -82,9 +82,8 @@ NSInteger const toolbarWidth=320;
     containerView.scrolledView = mapView;
 	containerView.delegate = mapView;
 	[containerView addSubview: mapView];
-	[self addSubview:containerView];
     [containerView setZoomScale:mapView.Scale animated:NO];
-    [self addSubview:mapView.labelView];
+	[self addSubview:containerView];
     
 	//TODO
 	[containerView setContentOffset:CGPointMake(650, 650) animated:NO];
@@ -108,6 +107,11 @@ NSInteger const toolbarWidth=320;
 	*/
 	//UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
 	//[containerView addGestureRecognizer:singleTap];    
+
+    stationMark = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"station_mark"]];
+    stationMark.hidden = YES;
+    [self addSubview:stationMark];
+    [self addSubview:mapView.labelView];
 	
     sourceButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [sourceButton setImage:[UIImage imageNamed:@"src_button_normal"] forState:UIControlStateNormal];
@@ -130,6 +134,24 @@ NSInteger const toolbarWidth=320;
     [self addSubview:sourceButton];
     [self addSubview:destinationButton];
     
+    UIButton *settings = [UIButton buttonWithType:UIButtonTypeCustom];
+    [settings setImage:[UIImage imageNamed:@"settings_btn"] forState:UIControlStateNormal];
+    settings.frame = CGRectMake(285, 420, 23, 23);
+    [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:settings];
+    
+    zones = [UIButton buttonWithType:UIButtonTypeCustom];
+    [zones setTitle:@"Zones" forState:UIControlStateNormal];
+    [zones setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [zones setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [zones setBackgroundImage:[UIImage imageNamed:@"zones_btn_normal"] forState:UIControlStateNormal];
+    [zones setBackgroundImage:[UIImage imageNamed:@"zones_btn_pressed"] forState:UIControlStateSelected];
+    zones.titleLabel.font = [UIFont systemFontOfSize:10];
+    zones.frame = CGRectMake(20, 420, 42, 23);
+    [zones addTarget:self action:@selector(switchZones) forControlEvents:UIControlEventTouchUpInside];
+    [zones setSelected:mapView.showVectorLayer];
+    [self addSubview:zones];
+    
     NSTimer *timer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(supervisor) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
@@ -137,6 +159,15 @@ NSInteger const toolbarWidth=320;
 -(void)showButtons:(CGPoint)pos
 {
     buttonsVisible = YES;
+    if(stationMark.hidden) {
+        stationMark.center = pos;
+        stationMark.hidden = NO;
+        stationMark.alpha = 0.f;
+        [UIView animateWithDuration:0.25f animations:^{ stationMark.alpha = 1.f; }];
+    } else {
+        [UIView animateWithDuration:0.25f animations:^{ stationMark.center = pos; }];
+    }
+    
     if(pos.x < 100) pos.x = 100;
     if(pos.x > 220) pos.x = 220;
     if(pos.y < 90) pos.y = 90;
@@ -158,6 +189,7 @@ NSInteger const toolbarWidth=320;
 -(void)hideButtons
 {
     buttonsVisible = NO;
+    [UIView animateWithDuration:0.25f animations:^{ stationMark.alpha = 0.f; } completion:^(BOOL finished) { stationMark.hidden = YES; }];
     [UIView animateWithDuration:0.125f animations:^{ mapView.labelView.alpha = 0.f; } completion:^(BOOL finished){ if(finished) {mapView.labelView.hidden = YES; } }];
     CGPoint p = sourceButton.center;
     p.x = -40;
@@ -228,6 +260,22 @@ NSInteger const toolbarWidth=320;
 -(void) supervisor
 {
     if(buttonsVisible && !mapView.stationSelected) [self hideButtons];
+}
+
+-(void) showSettings
+{
+    // TODO show application settings
+}
+
+-(void) switchZones
+{
+    if(mapView.showVectorLayer) {
+        mapView.showVectorLayer = NO;
+        [zones setSelected:NO];
+    } else {
+        mapView.showVectorLayer = YES;
+        [zones setSelected:YES];
+    }
 }
 
 @end

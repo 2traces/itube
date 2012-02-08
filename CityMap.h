@@ -212,7 +212,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 //graph func
 -(NSArray*) calcPath :(NSString*) firstStation :(NSString*) secondStation :(NSInteger) firstStationLineNum :(NSInteger)secondStationLineNum ;
 
--(NSInteger) checkPoint:(CGPoint)point Station:(NSMutableString*)stationName;
+-(NSInteger) checkPoint:(CGPoint*)point Station:(NSMutableString*)stationName;
 	
 // load stuff 
 -(void) processGPS: (NSString*) station :(NSString*) lineCoord;

@@ -280,7 +280,7 @@
 		alignment: UITextAlignmentCenter];
 }
 
--(void)selectStationAt:(CGPoint)currentPosition
+-(void)selectStationAt:(CGPoint*)currentPosition
 {
     NSLog(@"select station at");
     selectedStationLine = [cityMap checkPoint:currentPosition Station:selectedStationName];

@@ -19,7 +19,7 @@ extern int const imagesCount;
 @class MainViewController;
 
 // включает дополнительное промежуточное кеширование
-#define AGRESSIVE_CACHE
+//#define AGRESSIVE_CACHE
 // количество слоёв кеширования
 #define MAXCACHE 8
 
