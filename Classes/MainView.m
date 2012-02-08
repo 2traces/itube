@@ -13,6 +13,7 @@
 #import "TopTwoStationsView.h"
 #import "tubeAppDelegate.h"
 #import "ManagedObjects.h"
+#import "SettingsViewController.h"
 
 NSInteger const toolbarHeight=44;
 NSInteger const toolbarWidth=320;
@@ -264,7 +265,9 @@ NSInteger const toolbarWidth=320;
 
 -(void) showSettings
 {
-    // TODO show application settings
+    SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
+    [self.vcontroller presentModalViewController:controller animated:YES];
+    [controller release];
 }
 
 -(void) switchZones
