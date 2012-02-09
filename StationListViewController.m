@@ -11,6 +11,7 @@
 #import "StationListCell.h"
 #import "tubeAppDelegate.h"
 #import "MainViewController.h"
+#import "UIColor-enhanced.h"
 
 @implementation StationListViewController
 
@@ -51,6 +52,7 @@
     searchBar.showsCancelButton=NO;
     searchBar.autocorrectionType=UITextAutocorrectionTypeNo;
     searchBar.autocapitalizationType=UITextAutocapitalizationTypeNone;
+    searchBar.tintColor=[UIColor lightGrayColor];
     self.mytableView.tableHeaderView=searchBar;
     
     // create a filtered list that will contain products for the search results table.
@@ -378,9 +380,10 @@
 -(UIImage*)drawCircleView:(UIColor*)myColor
 {
 
+    /*
 //    myColor = [UIColor whiteColor];
     
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(27, 27), NO, 0.0);
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(26, 26), NO, 0.0);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
 
@@ -393,8 +396,9 @@
     CGFloat locations[2] = { 0.0 , 1.0 };
     
     const CGFloat* components = CGColorGetComponents(myColor.CGColor);
+    const CGFloat* componentsD = CGColorGetComponents([[myColor darkenedColor] CGColor]);
     
-    CGFloat componentsG[8] = { components[0], components[1], components[2], 1.0, components[0]+0.2, components[1], components[2], 1.0 };
+    CGFloat componentsG[8] = { components[0], components[1], components[2], 1.0, componentsD[0], componentsD[1], componentsD[2], 1.0 };
 
     myColorspace = CGColorSpaceCreateDeviceRGB();
     
@@ -403,36 +407,52 @@
     CGPoint myStartPoint, myEndPoint;
     CGFloat myStartRadius, myEndRadius;
     
-    myStartPoint.x = 13.5;
-    myStartPoint.y = 13.5;
+    myStartPoint.x = 13;
+    myStartPoint.y = 13;
     
-    myEndPoint.x = 13.5;
-    myEndPoint.y = 13.5;
+    myEndPoint.x = 13;
+    myEndPoint.y = 13;
     
-    myStartRadius =11;
-    myEndRadius = 12.5;
+    myStartRadius =9;
+    myEndRadius = 12;
     
-
-    
-
-    
-    CGRect circleRect = CGRectMake(1.0, 1.0, 25.0, 25.0);
-	
-    
-    
-    
+    CGRect circleRect = CGRectMake(1.0, 1.0, 24.0, 24.0);
+   
     CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor)); 
     CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));  
 	CGContextSetLineWidth(context, 1.0);
 	CGContextFillEllipseInRect(context, circleRect);
 	CGContextStrokeEllipseInRect(context, circleRect);
     
-        CGContextDrawRadialGradient(context, myGradient, myStartPoint, myStartRadius, myEndPoint, myEndRadius, 0);
+    CGContextDrawRadialGradient(context, myGradient, myStartPoint, myStartRadius, myEndPoint, myEndRadius, 0);
+    
+     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+     
+     return image;*/
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(27, 27), NO, 0.0);
+    
+    UIImage *radialImg = [UIImage imageNamed:@"radial.png"];
+    
+    CGRect circleRect = CGRectMake(1.0, 1.0, 25.0, 25.0);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    const CGFloat* components = CGColorGetComponents(myColor.CGColor);
+    
+    CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor)); 
+    CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));  
+    CGContextSetLineWidth(context, 0.0);
+    CGContextFillEllipseInRect(context, circleRect);
+    CGContextStrokeEllipseInRect(context, circleRect);
+    
+    [radialImg drawInRect:circleRect]; 
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
     return image;
-     
+    
+    
 }
 
 

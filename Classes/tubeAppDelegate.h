@@ -9,6 +9,8 @@
 @class MainViewController;
 @class CityMap;
 
+static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
+
 #define kParseComplete @"kParseComplete"
 
 @interface tubeAppDelegate : NSObject <UIApplicationDelegate> {
