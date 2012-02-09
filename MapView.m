@@ -49,6 +49,8 @@
     if(showVectorLayer != _showVectorLayer) {
         showVectorLayer = _showVectorLayer;
         backgroundVector.hidden = !_showVectorLayer;
+        // это недокументированный метод, так что если он в будущем изменится, то ой
+        [self.layer invalidateContents];
         [self setNeedsDisplay];
     }
 }
@@ -89,13 +91,26 @@
         Scale = MaxScale / 2;
 		
 		//метка которая показывает названия станций
-		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,10,150,25)];
-		mainLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(30,8,140,25)];
+		mainLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:16.0];
         mainLabel.textAlignment = UITextAlignmentCenter;
-		mainLabel.backgroundColor = [UIColor colorWithRed:0.9f green:0.9f blue:0.9f alpha:0.9f];
+		mainLabel.backgroundColor = [UIColor clearColor];
+        lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(170, 8, 30, 25)];
+        lineLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:12.f];
+        lineLabel.textAlignment = UITextAlignmentCenter;
+        lineLabel.textColor = [UIColor colorWithRed:0.5f green:0.5f blue:0.5f alpha:1.0f];
+        lineLabel.text = @"1";
+        lineLabel.backgroundColor = [UIColor clearColor];
+        circleLabel = [[UIView alloc] initWithFrame:CGRectMake(10, 11, 18, 18)];
+        circleLabel.layer.cornerRadius = 9.f;
+        circleLabel.backgroundColor = [UIColor redColor];
+        circleLabel.layer.shadowOffset = CGSizeMake(0.f, 0.5f);
+        circleLabel.layer.shadowOpacity = 1.0f;
         
         labelBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"station_label"]];
         [labelBg addSubview:mainLabel];
+        [labelBg addSubview:lineLabel];
+        [labelBg addSubview:circleLabel];
 		labelBg.hidden=true;
         [labelBg.layer setShadowOffset:CGSizeMake(3, 5)];
         [labelBg.layer setShadowOpacity:0.3];
@@ -265,13 +280,16 @@
 		alignment: UITextAlignmentCenter];
 }
 
--(void)selectStationAt:(CGPoint)currentPosition
+-(void)selectStationAt:(CGPoint*)currentPosition
 {
     NSLog(@"select station at");
     selectedStationLine = [cityMap checkPoint:currentPosition Station:selectedStationName];
     if(selectedStationLine > 0) {
 		stationSelected=true;
 		mainLabel.text = selectedStationName;
+        Line *l = [cityMap.mapLines objectAtIndex:selectedStationLine-1];
+        circleLabel.backgroundColor = l.color;
+        lineLabel.text = l.shortName;
     } else {
         stationSelected=false;
     }
@@ -398,7 +416,6 @@
 {
     if(stationSelected) {
         stationSelected = NO;
-        [self.superview.superview hideButtons];
     }
 }
 
@@ -406,24 +423,7 @@
 {
     if(stationSelected) {
         stationSelected = NO;
-        [self.superview.superview hideButtons];
     }
 }
-
-//-(void) scrollViewWillBeginDragging:(UIScrollView *)scrollView
-//{
-//    if(stationSelected) {
-//        stationSelected = NO;
-//        [self.superview.superview selectStationAt:CGPointMake(-1, -1)];
-//    }
-//}
-//
-//-(void) scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view
-//{
-//    if(stationSelected) {
-//        stationSelected = NO;
-//        [self.superview.superview selectStationAt:CGPointMake(-1, -1)];
-//    }
-//}
 
 @end

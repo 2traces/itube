@@ -94,7 +94,6 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 -(void) addSibling:(Station*)st;
 -(void) drawName:(CGContextRef)context;
 -(void) drawStation:(CGContextRef)context;
--(void) draw:(CGContextRef)context;
 -(void) draw:(CGContextRef)context inRect:(CGRect)rect;
 -(void) makeSegments;
 -(void) makeTangent;
@@ -142,21 +141,23 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @interface Line : NSObject {
 @private
     NSString *name;
+    NSString *shortName;
     NSMutableArray* stations;
     UIColor* _color;
+    UIColor* _disabledColor;
     int index;
-    CGLayerRef stationLayer;
+    CGLayerRef stationLayer, disabledStationLayer;
     CGRect boundingBox;
+    BOOL twoStepsDraw;
 }
 @property (nonatomic, retain) UIColor* color;
 @property (nonatomic, readonly) NSString* name;
+@property (nonatomic, readonly) NSString* shortName;
 @property (nonatomic, readonly) NSMutableArray* stations;
 @property (nonatomic, assign) int index;
 @property (nonatomic, readonly) CGRect boundingBox;
 
 -(id)initWithName:(NSString*)n stations:(NSString*)stations driving:(NSString*)driving coordinates:(NSString*)coordinates rects:(NSString*)rects;
--(void)draw:(CGContextRef)context;
--(void)drawNames:(CGContextRef)context;
 -(void)draw:(CGContextRef)context inRect:(CGRect)rect;
 -(void)drawNames:(CGContextRef)context inRect:(CGRect)rect;
 -(void)additionalPointsBetween:(NSString*)station1 and:(NSString*)station2 points:(NSArray*)points;
@@ -195,6 +196,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @property (nonatomic, readonly) CGFloat maxScale;
 @property (nonatomic, retain) NSString *thisMapName;
 @property (nonatomic, retain) NSMutableArray *pathStationsList;
+@property (nonatomic, readonly) NSMutableArray *mapLines;
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //
@@ -210,7 +212,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 //graph func
 -(NSArray*) calcPath :(NSString*) firstStation :(NSString*) secondStation :(NSInteger) firstStationLineNum :(NSInteger)secondStationLineNum ;
 
--(NSInteger) checkPoint:(CGPoint)point Station:(NSMutableString*)stationName;
+-(NSInteger) checkPoint:(CGPoint*)point Station:(NSMutableString*)stationName;
 	
 // load stuff 
 -(void) processGPS: (NSString*) station :(NSString*) lineCoord;
@@ -219,11 +221,8 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 -(void) processLinesStations:(NSString*) stations :(NSUInteger) line;
 
 // drawing
--(void) drawMap:(CGContextRef) context;
 -(void) drawMap:(CGContextRef) context inRect:(CGRect)rect;
--(void) drawStations:(CGContextRef) context;
 -(void) drawStations:(CGContextRef) context inRect:(CGRect)rect;
--(void) drawTransfers:(CGContextRef) context;
 -(void) drawTransfers:(CGContextRef) context inRect:(CGRect)rect;
 
 -(void) activatePath:(NSArray*)pathMap;

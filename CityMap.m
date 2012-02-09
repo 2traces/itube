@@ -14,6 +14,7 @@
 CGFloat PredrawScale = 2.f;
 CGFloat LineWidth = 4.f;
 CGFloat StationDiameter = 8.f;
+CGFloat FontSize = 7.f;
 StationKind StKind = LIKE_PARIS;
 StationKind TrKind = LIKE_PARIS;
 
@@ -395,13 +396,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [sibling addObject:st];
 }
 
--(void) draw:(CGContextRef)context
-{
-    for (Segment *s in segment) {
-        [s draw:context];
-    }
-}
-
 -(void) draw:(CGContextRef)context inRect:(CGRect)rect
 {
     for (Segment *s in segment) {
@@ -412,7 +406,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)drawName:(CGContextRef)context
 {
-    if(!active) {
+    BOOL act = active || (transfer != nil && transfer.active);
+    if(!act) {
         CGContextSaveGState(context);
         CGContextSetAlpha(context, 0.3f);
     }
@@ -428,10 +423,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         int alignment = UITextAlignmentCenter;
         if(pos.x < textRect.origin.x) alignment = UITextAlignmentLeft;
         else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
-        CGContextSelectFont(context, "Arial-BoldMT", StationDiameter, kCGEncodingMacRoman);
+        CGContextSelectFont(context, "Arial-BoldMT", FontSize, kCGEncodingMacRoman);
         CGContextShowTextAtPoint(context, textRect.origin.x, textRect.origin.y+textRect.size.height, [name cStringUsingEncoding:[NSString defaultCStringEncoding]], [name length]);
     }
-    if(!active) CGContextRestoreGState(context);
+    if(!act) CGContextRestoreGState(context);
 }
 
 -(void)drawStation:(CGContextRef)context
@@ -460,7 +455,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
     CGRect rect = textRect;
     rect.origin = CGPointZero;
-    [name drawInRect:rect  withFont: [UIFont fontWithName:@"Arial-BoldMT" size:StationDiameter] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
+    [name drawInRect:rect  withFont: [UIFont fontWithName:@"Arial-BoldMT" size:FontSize] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
     UIGraphicsPopContext();
 }
 
@@ -636,10 +631,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)draw:(CGContextRef)context
 {
-    if(!active) {
-        CGContextSaveGState(context);
-        CGContextSetAlpha(context, 0.3f);
-    }
+//    if(!active) {
+//        CGContextSaveGState(context);
+//        CGContextSetAlpha(context, 0.3f);
+//    }
 	CGContextSetLineCap(context, kCGLineCapRound);
 	CGContextSetLineWidth(context, LineWidth);
 	CGContextMoveToPoint(context, start.pos.x, start.pos.y);
@@ -651,9 +646,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         CGContextAddLineToPoint(context, end.pos.x, end.pos.y);
         CGContextStrokePath(context);
     }
-    if(!active) {
-        CGContextRestoreGState(context);
-    }
+//    if(!active) {
+//        CGContextRestoreGState(context);
+//    }
 }
 
 -(void)predraw
@@ -679,19 +674,43 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 @implementation Line
 
-@synthesize color  = _color;
 @synthesize name;
 @synthesize stations;
 @synthesize index;
 @synthesize boundingBox;
+@synthesize shortName;
+
+-(UIColor*) color {
+    return _color;
+}
+
+-(void) setColor:(UIColor *)color
+{
+    [_color release];
+    [_disabledColor release];
+    _color = [color retain];
+    CGFloat r, g, b;
+    const CGFloat* rgba = CGColorGetComponents([color CGColor]);
+    r = rgba[0];
+    g = rgba[1];
+    b = rgba[2];
+    float mean = 3.0f;
+    r = (r + mean) * 0.25f;
+    g = (g + mean) * 0.25f;
+    b = (b + mean) * 0.25f;
+    _disabledColor = [[UIColor colorWithRed:r green:g blue:b alpha:1.0f] retain];
+    
+}
 
 -(id)initWithName:(NSString*)n stations:(NSString *)station driving:(NSString *)driving coordinates:(NSString *)coordinates rects:(NSString *)rects
 {
     if((self = [super init])) {
         name = [n retain];
+        shortName = [[[n componentsSeparatedByString:@" "] lastObject] retain];
         stations = [[NSMutableArray alloc] init];
         stationLayer = nil;
         boundingBox = CGRectNull;
+        twoStepsDraw = NO;
         NSArray *sts = Split(station);
         NSArray *drs = Split(driving);
         NSArray *crds = [coordinates componentsSeparatedByString:@", "];
@@ -756,48 +775,64 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(void)dealloc
 {
     [stations release];
+    [_color release];
+    [_disabledColor release];
+    [name release];
+    [shortName release];
     CGLayerRelease(stationLayer);
-}
-
--(void)draw:(CGContextRef)context 
-{
-	CGContextSetStrokeColorWithColor(context, [_color CGColor]);
-    CGContextSetFillColorWithColor(context, [_color CGColor]);
-    for (Station *s in stations) {
-        [s draw:context];
-    }
-    for (Station *s in stations) {
-        if(s.transfer == nil) {
-            if(!s.active) {
-                CGContextSaveGState(context);
-                CGContextSetAlpha(context, 0.3f);
-            }
-            CGContextDrawLayerInRect(context, s.boundingBox, stationLayer);
-            if(!s.active) CGContextRestoreGState(context);
-        }
-    }
-}
-
--(void)drawNames:(CGContextRef)context
-{
-    for (Station *s in stations) {
-        if(s.drawName) [s drawName:context];
-    }
+    CGLayerRelease(disabledStationLayer);
 }
 
 -(void)draw:(CGContextRef)context inRect:(CGRect)rect
 {
-	CGContextSetStrokeColorWithColor(context, [_color CGColor]);
-    CGContextSetFillColorWithColor(context, [_color CGColor]);
-    for (Station *s in stations) {
-        [s draw:context inRect:rect];
-    }
-    for (Station *s in stations) {
-        if(s.transfer == nil && CGRectIntersectsRect(rect, s.boundingBox)) {
-            if(StKind == LIKE_LONDON)
-                [s drawStation:context];
-            else
-                CGContextDrawLayerInRect(context, s.boundingBox, stationLayer);
+    if(twoStepsDraw) {
+        // some segments are disabled
+        CGContextSetStrokeColorWithColor(context, [_disabledColor CGColor]);
+        for (Station *s in stations) {
+            for (Segment *seg in s.segment) {
+                if(!seg.active && CGRectIntersectsRect(rect, seg.boundingBox))
+                    [seg draw:context];
+            }
+        }
+        CGContextSetStrokeColorWithColor(context, [_color CGColor]);
+        for (Station *s in stations) {
+            for (Segment *seg in s.segment) {
+                if(seg.active && CGRectIntersectsRect(rect, seg.boundingBox))
+                    [seg draw:context];
+            }
+        }
+        if(StKind == LIKE_LONDON) CGContextSetStrokeColorWithColor(context, [_disabledColor CGColor]);
+        for (Station *s in stations) {
+            if(!s.active && s.transfer == nil && CGRectIntersectsRect(rect, s.boundingBox)) {
+                if(StKind == LIKE_LONDON)
+                    [s drawStation:context];
+                else
+                    CGContextDrawLayerInRect(context, s.boundingBox, disabledStationLayer);
+            }
+        }
+        if(StKind == LIKE_LONDON) CGContextSetStrokeColorWithColor(context, [_color CGColor]);
+        for (Station *s in stations) {
+            if(s.active && s.transfer == nil && CGRectIntersectsRect(rect, s.boundingBox)) {
+                if(StKind == LIKE_LONDON)
+                    [s drawStation:context];
+                else
+                    CGContextDrawLayerInRect(context, s.boundingBox, stationLayer);
+            }
+        }
+    } else {
+        // all line is active
+        CGContextSetStrokeColorWithColor(context, [_color CGColor]);
+        //CGContextSetFillColorWithColor(context, [_color CGColor]);
+        for (Station *s in stations) {
+            [s draw:context inRect:rect];
+        }
+        for (Station *s in stations) {
+            if(s.transfer == nil && CGRectIntersectsRect(rect, s.boundingBox)) {
+                if(StKind == LIKE_LONDON)
+                    [s drawStation:context];
+                else
+                    CGContextDrawLayerInRect(context, s.boundingBox, stationLayer);
+            }
         }
     }
 }
@@ -831,6 +866,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)setEnabled:(BOOL)en
 {
+    twoStepsDraw = !en;
     for (Station *s in stations) {
         s.active = en;
         for(Segment *seg in s.segment) {
@@ -886,6 +922,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     for (Station *s in stations) {
         [s predraw:context];
     }
+    if(StKind == LIKE_LONDON) return;
     if(stationLayer != nil) CGLayerRelease(stationLayer);
     // make predrawed staion point
     CGFloat ssize = StationDiameter*PredrawScale;
@@ -903,8 +940,27 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             CGContextSetFillColorWithColor(ctx, [_color CGColor]);
             drawFilledCircle(ctx, hsize, hsize, hsize);
             break;
-        case LIKE_LONDON:
+//        case LIKE_LONDON:
+//            break;
+    }
+
+    if(disabledStationLayer != nil) CGLayerRelease(disabledStationLayer);
+    // make predrawed staion point
+    disabledStationLayer = CGLayerCreateWithContext(context, CGSizeMake(ssize, ssize), NULL);
+    ctx = CGLayerGetContext(disabledStationLayer);
+    switch(StKind) {
+        case LIKE_MOSCOW:
+            CGContextSetRGBFillColor(ctx, 0, 0, 0, 1.0);
+            CGContextFillEllipseInRect(ctx, CGRectMake(0, 0, ssize, ssize));
+            CGContextSetFillColorWithColor(ctx, [_disabledColor CGColor]);
+            drawFilledCircle(ctx, hsize, hsize, hsize-PredrawScale/2);
             break;
+        case LIKE_PARIS:
+            CGContextSetFillColorWithColor(ctx, [_disabledColor CGColor]);
+            drawFilledCircle(ctx, hsize, hsize, hsize);
+            break;
+//        case LIKE_LONDON:
+//            break;
     }
 }
 
@@ -926,6 +982,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize maxScale;
 @synthesize thisMapName;
 @synthesize pathStationsList;
+@synthesize mapLines;
 
 -(StationKind) stationKind { return StKind; }
 -(void) setStationKind:(StationKind)stationKind { StKind = stationKind; }
@@ -983,6 +1040,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(val > 0 && val < KINDS_NUM) TrKind = val;
     val = [[parserMap get:@"DisplayStations" section:@"Options"] intValue];
     if(val > 0 && val < KINDS_NUM) StKind = val;
+    val = [[parserMap get:@"FontSize" section:@"Options"] intValue];
+    if(val > 0) FontSize = val;
     float sc = [[parserMap get:@"MaxScale" section:@"Options"] floatValue];
     if(sc != 0.f) {
         maxScale = sc;
@@ -1014,7 +1073,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         
         Line *l = [[Line alloc] initWithName:lineName stations:stations driving:coordsTime coordinates:coords rects:coordsText];
         l.index = i;
-        l.color = newLine.color;
+        l.color = [self colorForHex:colors];
         [mapLines addObject:l];
         boundingBox = CGRectUnion(boundingBox, l.boundingBox);
 	}
@@ -1301,31 +1360,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 // drawing
 
--(void) drawMap:(CGContextRef) context 
-{
-    CGContextSaveGState(context);
-    for (Line* l in mapLines) {
-        [l draw:context];
-    }
-    CGContextRestoreGState(context);
-}
-
 -(void) drawMap:(CGContextRef) context inRect:(CGRect)rect
 {
-    //printf("rect x=%d y=%d w=%d h=%d\n", (int)rect.origin.x, (int)rect.origin.y, (int)rect.size.width, (int)rect.size.height);
     CGContextSaveGState(context);
     for (Line* l in mapLines) {
         [l draw:context inRect:(CGRect)rect];
-    }
-    CGContextRestoreGState(context);
-}
-
--(void) drawStations:(CGContextRef) context
-{
-    CGContextSaveGState(context);
-
-    for (Line* l in mapLines) {
-        [l drawNames:context];
     }
     CGContextRestoreGState(context);
 }
@@ -1342,12 +1381,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 // рисует часть карты
 -(void) activatePath:(NSArray*)pathMap {
     for (Line *l in mapLines) {
-        for (Station *s in l.stations) {
-            s.active = NO;
-            for (Segment *seg in s.segment) {
-                seg.active = NO;
-            }
-        }
+        [l setEnabled:NO];
     }
     for (Transfer *t in transfers) {
         t.active = NO;
@@ -1413,32 +1447,29 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [activePath removeAllObjects];
 }
 
--(void) drawTransfers:(CGContextRef) context 
-{
-    CGContextSaveGState(context);
-    for (Transfer *tr in transfers) {
-        [tr draw:context];
-    }
-    CGContextRestoreGState(context);
-}
-
 -(void) drawTransfers:(CGContextRef) context inRect:(CGRect)rect
 {
     CGContextSaveGState(context);
     for (Transfer *tr in transfers) {
         if(CGRectIntersectsRect(rect, tr.boundingBox)) {
+            if(!tr.active) {
+                CGContextSaveGState(context);
+                CGContextSetAlpha(context, 0.7f);
+            }
             [tr draw:context];
+            if(!tr.active) CGContextRestoreGState(context);
         }
     }
     CGContextRestoreGState(context);
 }
 
--(NSInteger) checkPoint:(CGPoint)point Station:(NSMutableString *)stationName
+-(NSInteger) checkPoint:(CGPoint*)point Station:(NSMutableString *)stationName
 {
     for (Line *l in mapLines) {
         for (Station *s in l.stations) {
-            if(CGRectContainsPoint(s.textRect, point)) {
+            if(CGRectContainsPoint(s.textRect, *point) || CGRectContainsPoint(s.boundingBox, *point)) {
                 [stationName setString:s.name];
+                *point = CGPointMake(s.pos.x, s.pos.y);
                 return l.index;
             }
         }

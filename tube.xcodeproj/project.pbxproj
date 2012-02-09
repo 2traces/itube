@@ -21,13 +21,6 @@
 		4B1F19C81454308B008B0966 /* GraphNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F19C51454308B008B0966 /* GraphNode.m */; };
 		4B216D8914606B9D005B6F38 /* StationList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B216D8814606B9D005B6F38 /* StationList.m */; };
 		4B234759144C9099005BC336 /* MyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B234758144C9099005BC336 /* MyScrollView.m */; };
-		4B23FB461438DEAB0019F97E /* BezierCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B23FB381438DEAB0019F97E /* BezierCurve.m */; };
-		4B23FB471438DEAB0019F97E /* CatmullRomSpline.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B23FB3A1438DEAB0019F97E /* CatmullRomSpline.m */; };
-		4B23FB481438DEAB0019F97E /* CubicBezierCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B23FB3D1438DEAB0019F97E /* CubicBezierCurve.m */; };
-		4B23FB491438DEAB0019F97E /* LinearBezierCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B23FB3F1438DEAB0019F97E /* LinearBezierCurve.m */; };
-		4B23FB4A1438DEAB0019F97E /* NSArray_PointArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B23FB411438DEAB0019F97E /* NSArray_PointArray.m */; };
-		4B23FB4B1438DEAB0019F97E /* QuadraticBezierCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B23FB431438DEAB0019F97E /* QuadraticBezierCurve.m */; };
-		4B23FB4C1438DEAB0019F97E /* Spline.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B23FB451438DEAB0019F97E /* Spline.m */; };
 		4B985D22145B0F5A00F32066 /* SelectedPathMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B985D21145B0F5A00F32066 /* SelectedPathMap.m */; };
 		4BC043E1142FC30F00A643B8 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC043E0142FC30F00A643B8 /* Utils.m */; };
 		4BC043E4142FC42F00A643B8 /* CityMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC043E3142FC42F00A643B8 /* CityMap.m */; };
@@ -52,7 +45,15 @@
 		9F39FDB414CD345800A8043C /* src_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F39FDAA14CD345800A8043C /* src_button_pressed@2x.png */; };
 		9F39FDB514CD345800A8043C /* station_label.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F39FDAB14CD345800A8043C /* station_label.png */; };
 		9F39FDB614CD345800A8043C /* station_label@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F39FDAC14CD345800A8043C /* station_label@2x.png */; };
+		9F4997EC14E245EA0058AA96 /* settings_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F4997E814E245EA0058AA96 /* settings_btn.png */; };
+		9F4997ED14E245EA0058AA96 /* settings_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F4997E914E245EA0058AA96 /* settings_btn@2x.png */; };
+		9F4997EE14E245EA0058AA96 /* station_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F4997EA14E245EA0058AA96 /* station_mark.png */; };
+		9F4997EF14E245EA0058AA96 /* station_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F4997EB14E245EA0058AA96 /* station_mark@2x.png */; };
+		9F4997F414E248A40058AA96 /* zones_btn_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F4997F114E248A40058AA96 /* zones_btn_normal.png */; };
+		9F4997F514E248A40058AA96 /* zones_btn_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F4997F214E248A40058AA96 /* zones_btn_normal@2x.png */; };
+		9F4997F614E248A40058AA96 /* zones_btn_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F4997F314E248A40058AA96 /* zones_btn_pressed.png */; };
 		9F5E307214A4590A00D549E4 /* TODO.engine in Resources */ = {isa = PBXBuildFile; fileRef = 9F5E307114A4590A00D549E4 /* TODO.engine */; };
+		9FCE946914E2774600E2B354 /* zones_btn_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FCE946814E2774600E2B354 /* zones_btn_pressed@2x.png */; };
 		BC10618F14D7D29600B08E63 /* PathBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC10618E14D7D29600B08E63 /* PathBarView.m */; };
 		BC1061A214D7DCDB00B08E63 /* PathDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1061A114D7DCDB00B08E63 /* PathDrawView.m */; };
 		BC3D14E814C338380059A17E /* HistoryListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3D14C214C338280059A17E /* HistoryListCell.m */; };
@@ -245,21 +246,6 @@
 		4B216D8814606B9D005B6F38 /* StationList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationList.m; sourceTree = "<group>"; };
 		4B234757144C9099005BC336 /* MyScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyScrollView.h; sourceTree = "<group>"; };
 		4B234758144C9099005BC336 /* MyScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyScrollView.m; sourceTree = "<group>"; };
-		4B23FB371438DEAB0019F97E /* BezierCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezierCurve.h; sourceTree = "<group>"; };
-		4B23FB381438DEAB0019F97E /* BezierCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BezierCurve.m; sourceTree = "<group>"; };
-		4B23FB391438DEAB0019F97E /* CatmullRomSpline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatmullRomSpline.h; sourceTree = "<group>"; };
-		4B23FB3A1438DEAB0019F97E /* CatmullRomSpline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatmullRomSpline.m; sourceTree = "<group>"; };
-		4B23FB3B1438DEAB0019F97E /* CGPointArithmetic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPointArithmetic.h; sourceTree = "<group>"; };
-		4B23FB3C1438DEAB0019F97E /* CubicBezierCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CubicBezierCurve.h; sourceTree = "<group>"; };
-		4B23FB3D1438DEAB0019F97E /* CubicBezierCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CubicBezierCurve.m; sourceTree = "<group>"; };
-		4B23FB3E1438DEAB0019F97E /* LinearBezierCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearBezierCurve.h; sourceTree = "<group>"; };
-		4B23FB3F1438DEAB0019F97E /* LinearBezierCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinearBezierCurve.m; sourceTree = "<group>"; };
-		4B23FB401438DEAB0019F97E /* NSArray_PointArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArray_PointArray.h; sourceTree = "<group>"; };
-		4B23FB411438DEAB0019F97E /* NSArray_PointArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArray_PointArray.m; sourceTree = "<group>"; };
-		4B23FB421438DEAB0019F97E /* QuadraticBezierCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadraticBezierCurve.h; sourceTree = "<group>"; };
-		4B23FB431438DEAB0019F97E /* QuadraticBezierCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuadraticBezierCurve.m; sourceTree = "<group>"; };
-		4B23FB441438DEAB0019F97E /* Spline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spline.h; sourceTree = "<group>"; };
-		4B23FB451438DEAB0019F97E /* Spline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spline.m; sourceTree = "<group>"; };
 		4B985D20145B0F5A00F32066 /* SelectedPathMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedPathMap.h; sourceTree = "<group>"; };
 		4B985D21145B0F5A00F32066 /* SelectedPathMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedPathMap.m; sourceTree = "<group>"; };
 		4BC043DF142FC30F00A643B8 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
@@ -292,7 +278,15 @@
 		9F39FDAA14CD345800A8043C /* src_button_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "src_button_pressed@2x.png"; sourceTree = "<group>"; };
 		9F39FDAB14CD345800A8043C /* station_label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = station_label.png; sourceTree = "<group>"; };
 		9F39FDAC14CD345800A8043C /* station_label@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "station_label@2x.png"; sourceTree = "<group>"; };
+		9F4997E814E245EA0058AA96 /* settings_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_btn.png; sourceTree = "<group>"; };
+		9F4997E914E245EA0058AA96 /* settings_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_btn@2x.png"; sourceTree = "<group>"; };
+		9F4997EA14E245EA0058AA96 /* station_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = station_mark.png; sourceTree = "<group>"; };
+		9F4997EB14E245EA0058AA96 /* station_mark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "station_mark@2x.png"; sourceTree = "<group>"; };
+		9F4997F114E248A40058AA96 /* zones_btn_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zones_btn_normal.png; sourceTree = "<group>"; };
+		9F4997F214E248A40058AA96 /* zones_btn_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zones_btn_normal@2x.png"; sourceTree = "<group>"; };
+		9F4997F314E248A40058AA96 /* zones_btn_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zones_btn_pressed.png; sourceTree = "<group>"; };
 		9F5E307114A4590A00D549E4 /* TODO.engine */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.engine; sourceTree = "<group>"; };
+		9FCE946814E2774600E2B354 /* zones_btn_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zones_btn_pressed@2x.png"; sourceTree = "<group>"; };
 		BC10618D14D7D29500B08E63 /* PathBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathBarView.h; sourceTree = "<group>"; };
 		BC10618E14D7D29600B08E63 /* PathBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathBarView.m; sourceTree = "<group>"; };
 		BC1061A014D7DCDA00B08E63 /* PathDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathDrawView.h; sourceTree = "<group>"; };
@@ -650,7 +644,6 @@
 				4B1F19C31454308B008B0966 /* GraphEdge.m */,
 				4B1F19C41454308B008B0966 /* GraphNode.h */,
 				4B1F19C51454308B008B0966 /* GraphNode.m */,
-				4B23FB361438DEAB0019F97E /* curve */,
 				32CA4F630368D1EE00C91783 /* tube_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -705,29 +698,6 @@
 				288765580DF743DE002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		4B23FB361438DEAB0019F97E /* curve */ = {
-			isa = PBXGroup;
-			children = (
-				4B23FB371438DEAB0019F97E /* BezierCurve.h */,
-				4B23FB381438DEAB0019F97E /* BezierCurve.m */,
-				4B23FB391438DEAB0019F97E /* CatmullRomSpline.h */,
-				4B23FB3A1438DEAB0019F97E /* CatmullRomSpline.m */,
-				4B23FB3B1438DEAB0019F97E /* CGPointArithmetic.h */,
-				4B23FB3C1438DEAB0019F97E /* CubicBezierCurve.h */,
-				4B23FB3D1438DEAB0019F97E /* CubicBezierCurve.m */,
-				4B23FB3E1438DEAB0019F97E /* LinearBezierCurve.h */,
-				4B23FB3F1438DEAB0019F97E /* LinearBezierCurve.m */,
-				4B23FB401438DEAB0019F97E /* NSArray_PointArray.h */,
-				4B23FB411438DEAB0019F97E /* NSArray_PointArray.m */,
-				4B23FB421438DEAB0019F97E /* QuadraticBezierCurve.h */,
-				4B23FB431438DEAB0019F97E /* QuadraticBezierCurve.m */,
-				4B23FB441438DEAB0019F97E /* Spline.h */,
-				4B23FB451438DEAB0019F97E /* Spline.m */,
-			);
-			name = curve;
-			path = Classes/curve;
 			sourceTree = "<group>";
 		};
 		4BC04400142FC6A600A643B8 /* maps */ = {
@@ -913,9 +883,17 @@
 		CE96C6F41468307C005A56F3 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				CE966391147C028800C31F90 /* openlist@2x.png */,
+				9F4997E814E245EA0058AA96 /* settings_btn.png */,
+				9F4997E914E245EA0058AA96 /* settings_btn@2x.png */,
+				9F4997EA14E245EA0058AA96 /* station_mark.png */,
+				9F4997EB14E245EA0058AA96 /* station_mark@2x.png */,
+				9F4997F114E248A40058AA96 /* zones_btn_normal.png */,
+				9F4997F214E248A40058AA96 /* zones_btn_normal@2x.png */,
+				9F4997F314E248A40058AA96 /* zones_btn_pressed.png */,
+				9FCE946814E2774600E2B354 /* zones_btn_pressed@2x.png */,
 				CE966353147BFFC600C31F90 /* textfield@2x.png */,
 				CE966328147BFB8800C31F90 /* textfield.png */,
+				CE966391147C028800C31F90 /* openlist@2x.png */,
 				CE96C6F51468307C005A56F3 /* openlist.png */,
 				CE96C6F61468307C005A56F3 /* select_near_station.png */,
 				9F39FDA314CD345800A8043C /* dst_button_normal.png */,
@@ -1127,6 +1105,14 @@
 				BC6FEB7614E267320066D6E6 /* lines_edge@2x.png in Resources */,
 				BC9D4D3914E3A79600FF2A91 /* radial@2x.png in Resources */,
 				BC9D4D3B14E3A84100FF2A91 /* radial.png in Resources */,
+				9F4997EC14E245EA0058AA96 /* settings_btn.png in Resources */,
+				9F4997ED14E245EA0058AA96 /* settings_btn@2x.png in Resources */,
+				9F4997EE14E245EA0058AA96 /* station_mark.png in Resources */,
+				9F4997EF14E245EA0058AA96 /* station_mark@2x.png in Resources */,
+				9F4997F414E248A40058AA96 /* zones_btn_normal.png in Resources */,
+				9F4997F514E248A40058AA96 /* zones_btn_normal@2x.png in Resources */,
+				9F4997F614E248A40058AA96 /* zones_btn_pressed.png in Resources */,
+				9FCE946914E2774600E2B354 /* zones_btn_pressed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1146,13 +1132,6 @@
 				4BC1C946142E36CA003651BB /* MapView.m in Sources */,
 				4BC043E1142FC30F00A643B8 /* Utils.m in Sources */,
 				4BC043E4142FC42F00A643B8 /* CityMap.m in Sources */,
-				4B23FB461438DEAB0019F97E /* BezierCurve.m in Sources */,
-				4B23FB471438DEAB0019F97E /* CatmullRomSpline.m in Sources */,
-				4B23FB481438DEAB0019F97E /* CubicBezierCurve.m in Sources */,
-				4B23FB491438DEAB0019F97E /* LinearBezierCurve.m in Sources */,
-				4B23FB4A1438DEAB0019F97E /* NSArray_PointArray.m in Sources */,
-				4B23FB4B1438DEAB0019F97E /* QuadraticBezierCurve.m in Sources */,
-				4B23FB4C1438DEAB0019F97E /* Spline.m in Sources */,
 				4B234759144C9099005BC336 /* MyScrollView.m in Sources */,
 				4B1F19C61454308B008B0966 /* Graph.m in Sources */,
 				4B1F19C71454308B008B0966 /* GraphEdge.m in Sources */,

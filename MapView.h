@@ -19,13 +19,15 @@ extern int const imagesCount;
 @class MainViewController;
 
 // включает дополнительное промежуточное кеширование
-#define AGRESSIVE_CACHE
+//#define AGRESSIVE_CACHE
 // количество слоёв кеширования
 #define MAXCACHE 8
 
 @interface MapView : UIView <UIScrollViewDelegate> {
 
 	UILabel *mainLabel;
+    UILabel *lineLabel;
+    UIView *circleLabel;
     UIImageView *labelBg;
 	CityMap *cityMap;
 	Boolean stationSelected;
