@@ -631,16 +631,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)draw:(CGContextRef)context
 {
-//    if(!active) {
-//        CGContextSaveGState(context);
-//        CGContextSetAlpha(context, 0.3f);
-//    }
-	CGContextSetLineCap(context, kCGLineCapRound);
-    if(active)
-        CGContextSetLineWidth(context, LineWidth);
-    else 
-        CGContextSetLineWidth(context, LineWidth * 0.8f);
-	CGContextMoveToPoint(context, start.pos.x, start.pos.y);
+    CGContextMoveToPoint(context, start.pos.x, start.pos.y);
     if(splinePoints) {
         CGContextMoveToPoint(context, 0, 0);
         CGContextAddPath(context, path);
@@ -649,9 +640,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         CGContextAddLineToPoint(context, end.pos.x, end.pos.y);
         CGContextStrokePath(context);
     }
-//    if(!active) {
-//        CGContextRestoreGState(context);
-//    }
 }
 
 -(void)predraw
@@ -804,9 +792,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)draw:(CGContextRef)context inRect:(CGRect)rect
 {
+    CGContextSetLineCap(context, kCGLineCapRound);
     if(twoStepsDraw) {
         // some segments are disabled
         CGContextSetStrokeColorWithColor(context, [_disabledColor CGColor]);
+        CGContextSetLineWidth(context, LineWidth * 0.8f);
         for (Station *s in stations) {
             for (Segment *seg in s.segment) {
                 if(!seg.active && CGRectIntersectsRect(rect, seg.boundingBox))
@@ -814,6 +804,15 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             }
         }
         CGContextSetStrokeColorWithColor(context, [_color CGColor]);
+        CGContextSetLineWidth(context, LineWidth);
+        for (Station *s in stations) {
+            for (Segment *seg in s.segment) {
+                if(seg.active && CGRectIntersectsRect(rect, seg.boundingBox))
+                    [seg draw:context];
+            }
+        }
+        CGContextSetStrokeColorWithColor(context, [[UIColor blackColor] CGColor]);
+        CGContextSetLineWidth(context, LineWidth*0.25f);
         for (Station *s in stations) {
             for (Segment *seg in s.segment) {
                 if(seg.active && CGRectIntersectsRect(rect, seg.boundingBox))
@@ -842,6 +841,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         // all line is active
         CGContextSetStrokeColorWithColor(context, [_color CGColor]);
         //CGContextSetFillColorWithColor(context, [_color CGColor]);
+        CGContextSetLineWidth(context, LineWidth);
         for (Station *s in stations) {
             [s draw:context inRect:rect];
         }
