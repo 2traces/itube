@@ -12,7 +12,6 @@
 @interface GraphNode()
 @property (nonatomic, readwrite, retain) NSSet *edgesIn;
 @property (nonatomic, readwrite, retain) NSSet *edgesOut;
-@property (nonatomic, readwrite, retain) id    value;
 - (GraphEdge*)linkToNode:(GraphNode*)node;
 - (GraphEdge*)linkToNode:(GraphNode*)node weight:(float)weight;
 - (GraphEdge*)linkFromNode:(GraphNode*)node;
@@ -25,20 +24,29 @@
 
 @synthesize edgesIn = edgesIn_;
 @synthesize edgesOut = edgesOut_;
-@synthesize value = value_;
+@synthesize name = _name;
+@synthesize line = _line;
 
 - (id)init {
     if( (self=[super init]) ) {
-		self.value = nil;
+		_name = nil;
+        _line = 0;
+        _hash = 0;
+        dist = 0.0f;
+        customData = nil;
 		self.edgesIn  = [NSMutableSet set];
         self.edgesOut = [NSMutableSet set];
 	}
     return self; 
 }
 
-- (id)initWithValue:(id)value {
+- (id)initWithName:(NSString*)name andLine:(int)line {
     if( (self=[super init]) ) {
-		self.value = value;
+		_name = [name retain];
+        _line = line;
+        _hash = _line + [_name hash];
+        dist = 0.0f;
+        customData = nil;
         self.edgesIn  = [NSMutableSet set];
         self.edgesOut = [NSMutableSet set];
 	}
@@ -56,7 +64,7 @@
         [fromNode->edgesOut_ minusSet:edgesIn_];
     }
     
-	[value_ release];
+	[_name release];
     [edgesIn_ release];
     [edgesOut_ release];
 	[super dealloc];
@@ -73,16 +81,17 @@
 - (BOOL)isEqualToGraphNode:(GraphNode*)other {
     if (self == other)
         return YES;
-    return [[self value] isEqual: [other value]];
+    if(_line != other.line) return NO;
+    return [_name isEqualToString:other.name];
 }
 
 - (NSUInteger)hash
 {
-    return [ value_ hash];
+    return _hash;
 }
 
 -(GraphNode*) copyWithZone: (NSZone*) zone {
-    return [[GraphNode allocWithZone: zone] initWithValue:value_];
+    return [[GraphNode allocWithZone: zone] initWithName:_name andLine:_line];
 }
 
 - (GraphEdge*)linkToNode:(GraphNode*)node {
@@ -181,8 +190,8 @@
     return [[[GraphNode alloc] init] autorelease];
 }
 
-+ (id)nodeWithValue:(id)value {
-    return [[[GraphNode alloc] initWithValue:value] autorelease];
++ (id)nodeWithName:(NSString *)name andLine:(int)line {
+    return [[[GraphNode alloc] initWithName:name andLine:line] autorelease];
 }
 
 @end
