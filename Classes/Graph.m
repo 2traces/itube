@@ -58,7 +58,7 @@
     NSMutableSet* remaining = [[nodes_ mutableCopy] autorelease];
     
     GraphNode *minNode = nil;
-    for(GraphNode* node in [nodes_ objectEnumerator]) {
+    for(GraphNode* node in [remaining objectEnumerator]) {
         if([node isEqualToGraphNode:source]) {
             node->dist = 0.0f;
             minNode = node;
@@ -78,7 +78,7 @@
             if( [minNode isEqualToGraphNode:target] ) {
                 NSMutableArray* path = [NSMutableArray array];
                 GraphNode* temp = minNode;
-                while (temp->customData != nil) {
+                while (temp->customData != nil && temp->dist > 0.f) {
                     [path addObject:temp];
                     temp = temp->customData;
                 }

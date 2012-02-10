@@ -636,7 +636,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 //        CGContextSetAlpha(context, 0.3f);
 //    }
 	CGContextSetLineCap(context, kCGLineCapRound);
-	CGContextSetLineWidth(context, LineWidth);
+    if(active)
+        CGContextSetLineWidth(context, LineWidth);
+    else 
+        CGContextSetLineWidth(context, LineWidth * 0.8f);
 	CGContextMoveToPoint(context, start.pos.x, start.pos.y);
     if(splinePoints) {
         CGContextMoveToPoint(context, 0, 0);
@@ -689,15 +692,31 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [_color release];
     [_disabledColor release];
     _color = [color retain];
-    CGFloat r, g, b;
+    CGFloat r, g, b, M, m, sd;
     const CGFloat* rgba = CGColorGetComponents([color CGColor]);
     r = rgba[0];
     g = rgba[1];
     b = rgba[2];
-    float mean = 3.0f;
-    r = (r + mean) * 0.25f;
-    g = (g + mean) * 0.25f;
-    b = (b + mean) * 0.25f;
+
+    // set brightness to 90%
+    M = MAX(r, MAX(g, b));
+    sd = 0.9f / M;
+    r *= sd;
+    g *= sd;
+    b *= sd;
+    M = 0.9f;
+    
+    // set saturation to 10%
+    m = MIN(r, MIN(g, b));
+    sd = (0.1f * M) / (M-m);
+    r = M - (M-r)*sd;
+    g = M - (M-g)*sd;
+    b = M - (M-b)*sd;
+    
+//    float mean = 3.0f;
+//    r = (r + mean) * 0.25f;
+//    g = (g + mean) * 0.25f;
+//    b = (b + mean) * 0.25f;
     _disabledColor = [[UIColor colorWithRed:r green:g blue:b alpha:1.0f] retain];
     
 }
