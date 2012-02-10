@@ -299,7 +299,7 @@
 
     NSMutableArray *pathArray = [[NSMutableArray alloc] init];
     [pathArray addObjectsFromArray:[cityMap calcPath:fSt :sSt :fStl :sStl]];
-	[pathArray insertObject:[GraphNode nodeWithValue:[NSString stringWithFormat:@"%@|%d",fSt,fStl ] ] atIndex:0];
+	[pathArray insertObject:[GraphNode nodeWithName:fSt andLine:fStl ] atIndex:0];
 	
     background1.hidden = YES;
     background2.hidden = NO;

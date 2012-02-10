@@ -1142,11 +1142,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(NSArray*) calcPath :(NSString*) firstStation :(NSString*) secondStation :(NSInteger) firstStationLineNum :(NSInteger)secondStationLineNum {
 
 	
-	NSString *name1 = [firstStation stringByAppendingString:[NSString stringWithFormat:@"|%d", firstStationLineNum]];
-	NSString *name2 = [secondStation stringByAppendingString:[NSString stringWithFormat:@"|%d", secondStationLineNum]];
-	DLog(@" %@ %@ ",name1,name2);
+	//NSString *name1 = [firstStation stringByAppendingString:[NSString stringWithFormat:@"|%d", firstStationLineNum]];
+	//NSString *name2 = [secondStation stringByAppendingString:[NSString stringWithFormat:@"|%d", secondStationLineNum]];
+	//DLog(@" %@ %@ ",name1,name2);
 	
-	NSArray *pp = [graph shortestPath:[GraphNode nodeWithValue:name1] to:[GraphNode nodeWithValue:name2]];
+	NSArray *pp = [graph shortestPath:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum]];
 	 
 	return pp;
 }
@@ -1321,11 +1321,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     for (int i=0; i<[mapLines count]; i++) {
         Line *l = [mapLines objectAtIndex:i];
         for (Station *s in l.stations) {
-            NSString *st1Name = [NSString stringWithFormat:@"%@|%d",s.name,i+1];
+            //NSString *st1Name = [NSString stringWithFormat:@"%@|%d",s.name,i+1];
             for (Segment *seg in s.segment) {
-                NSString *st2Name = [NSString stringWithFormat:@"%@|%d",seg.end.name,i+1];
-				[graph addEdgeFromNode:[GraphNode nodeWithValue:st1Name] toNode:[GraphNode nodeWithValue:st2Name] withWeight:seg.driving];
-				[graph addEdgeFromNode:[GraphNode nodeWithValue:st2Name] toNode:[GraphNode nodeWithValue:st1Name] withWeight:seg.driving];
+                //NSString *st2Name = [NSString stringWithFormat:@"%@|%d",seg.end.name,i+1];
+				[graph addEdgeFromNode:[GraphNode nodeWithName:s.name andLine:i+1] toNode:[GraphNode nodeWithName:seg.end.name andLine:i+1] withWeight:seg.driving];
+				[graph addEdgeFromNode:[GraphNode nodeWithName:seg.end.name andLine:i+1] toNode:[GraphNode nodeWithName:s.name andLine:i+1] withWeight:seg.driving];
             }
         }
     }
@@ -1339,8 +1339,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             for (Station *s2 in t.stations) {
                 if(s1 != s2) {
                     NSString *station2 = [NSString stringWithFormat:@"%@|%@", s2.name, [NSNumber numberWithInt:s2.line.index]];
-                    [graph addEdgeFromNode:[GraphNode nodeWithValue:station1]
-                                    toNode:[GraphNode nodeWithValue:station2]
+                    [graph addEdgeFromNode:[GraphNode nodeWithName:s1.name andLine:s1.line.index]
+                                    toNode:[GraphNode nodeWithName:s2.name andLine:s2.line.index]
                                 withWeight:t.time];
                 }
             }
@@ -1392,38 +1392,40 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	int count_ = [pathMap count];
     
 	for (int i=0; i< count_-1; i++) {
-		NSString *rawString1 = (NSString*)[[pathMap objectAtIndex:i] value];
-		NSArray *el1  = [rawString1 componentsSeparatedByString:@"|"];
-		NSString *stationName1 = [el1 objectAtIndex:0];
-		NSInteger lineNum1 = [[el1 objectAtIndex:1] intValue];
+        GraphNode *n1 = [pathMap objectAtIndex:i];
+		//NSString *rawString1 = (NSString*)[[pathMap objectAtIndex:i] value];
+		//NSArray *el1  = [rawString1 componentsSeparatedByString:@"|"];
+		//NSString *stationName1 = [el1 objectAtIndex:0];
+		//NSInteger lineNum1 = [[el1 objectAtIndex:1] intValue];
         
-        NSString *rawString2 = (NSString*)[[pathMap objectAtIndex:i+1] value];
-        NSArray *el2  = [rawString2 componentsSeparatedByString:@"|"];
-        NSString *stationName2 = [el2 objectAtIndex:0];
-        NSInteger lineNum2 = [[el2 objectAtIndex:1] intValue]; 
+        GraphNode *n2 = [pathMap objectAtIndex:i+1];
+        //NSString *rawString2 = (NSString*)[[pathMap objectAtIndex:i+1] value];
+        //NSArray *el2  = [rawString2 componentsSeparatedByString:@"|"];
+        //NSString *stationName2 = [el2 objectAtIndex:0];
+        //NSInteger lineNum2 = [[el2 objectAtIndex:1] intValue]; 
         
-        Line* l = [mapLines objectAtIndex:lineNum1-1];
+        Line* l = [mapLines objectAtIndex:n1.line-1];
         
-        if (lineNum1==lineNum2) {
-            [activePath addObject:[l activateSegmentFrom:stationName1 to:stationName2]];
-            [pathStationsList addObject:stationName1];
+        if (n1.line==n2.line) {
+            [activePath addObject:[l activateSegmentFrom:n1.name to:n2.name]];
+            [pathStationsList addObject:n1.name];
         } 
 
-        Station *s = [l getStation:stationName1];
+        Station *s = [l getStation:n1.name];
         activeExtent = CGRectUnion(activeExtent, s.textRect);
         activeExtent = CGRectUnion(activeExtent, s.boundingBox);
 
-        if(lineNum1 != lineNum2 && [activePath count] > 0) {
+        if(n1.line != n2.line && [activePath count] > 0) {
             [activePath addObject:s.transfer];
-            [pathStationsList addObject:stationName1];
+            [pathStationsList addObject:n1.name];
             [pathStationsList addObject:@"---"]; //временно до обновления модели
         }
         
         if(i == count_ - 2) {
-            s = [l getStation:stationName2];
+            s = [l getStation:n2.name];
             activeExtent = CGRectUnion(activeExtent, s.textRect);
             activeExtent = CGRectUnion(activeExtent, s.boundingBox);
-            [pathStationsList addObject:stationName2];
+            [pathStationsList addObject:n2.name];
         }
 	}
     activeExtent.origin.x -= activeExtent.size.width * 0.1f;

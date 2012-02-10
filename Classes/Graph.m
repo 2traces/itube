@@ -23,7 +23,7 @@
 // private methods for Graph
 @interface Graph()
 @property (nonatomic, readwrite, retain) NSSet *nodes;
-- (GraphNode*)smallest_distance:(NSMutableDictionary*)dist nodes:(NSMutableSet*)nodes;
+- (GraphNode*)smallest_distance:(NSMutableSet*)nodes;
 @end
 
 
@@ -53,35 +53,38 @@
     {
         return [NSArray array];
     }
+    if([source isEqualToGraphNode:target]) return [NSArray array];
     
-    NSUInteger size = [nodes_ count];
-    NSMutableDictionary* dist = [NSMutableDictionary dictionaryWithCapacity:size];
-    NSMutableDictionary* prev = [NSMutableDictionary dictionaryWithCapacity:size];
     NSMutableSet* remaining = [[nodes_ mutableCopy] autorelease];
     
-    for(GraphNode* node in [nodes_ objectEnumerator])
-        [dist setObject:[NSNumber numberWithFloat:INFINITY] forKey:node];
-    
-    [dist setObject:[NSNumber numberWithFloat:0.0f] forKey:source];
+    GraphNode *minNode = nil;
+    for(GraphNode* node in [nodes_ objectEnumerator]) {
+        if([node isEqualToGraphNode:source]) {
+            node->dist = 0.0f;
+            minNode = node;
+        }
+        else node->dist = INFINITY;
+    }
     
     while ([remaining count] != 0) {
-        // find the node in remaining with the smallest distance
-        GraphNode* minNode = [self smallest_distance:dist nodes:remaining];
-        float min = [[dist objectForKey: minNode] floatValue];
+        if(minNode == nil) {
+            // find the node in remaining with the smallest distance
+            minNode = [self smallest_distance:remaining];
 
-        if (min == INFINITY)
-            break;
-        
-        // we found it!
-        if( [minNode isEqual: target] ) {
-            NSMutableArray* path = [NSMutableArray array];
-            GraphNode* temp = target;
-            while ([prev objectForKey:temp]) {
-                [path addObject:temp];
-                temp = [prev objectForKey:temp];
+            if (minNode->dist == INFINITY)
+                break;
+            
+            // we found it!
+            if( [minNode isEqualToGraphNode:target] ) {
+                NSMutableArray* path = [NSMutableArray array];
+                GraphNode* temp = minNode;
+                while (temp->customData != nil) {
+                    [path addObject:temp];
+                    temp = temp->customData;
+                }
+                return [ NSMutableArray arrayWithArray:
+                        [ [path reverseObjectEnumerator ] allObjects]];
             }
-            return [ NSMutableArray arrayWithArray:
-                    [ [path reverseObjectEnumerator ] allObjects]];
         }
         
         // didn't find it yet, keep going
@@ -95,29 +98,30 @@
         // loop through each neighbor to find min dist
         for (GraphNode* neighbor in [neighbors objectEnumerator]) {
             //NSLog(@"Looping neighbor %@", (NSString*)[neighbor value]);
-            float alt = [[dist objectForKey: minNode] floatValue];
+            float alt = minNode->dist;
             alt += [[minNode edgeConnectedTo: neighbor] weight];
             
-            if( alt < [[dist objectForKey: neighbor] floatValue] ) {
-                [dist setObject:[NSNumber numberWithFloat:alt] forKey:neighbor];
-                [prev setObject:minNode forKey:neighbor];
+            if( alt < neighbor->dist ) {
+                neighbor->dist = alt;
+                neighbor->customData = minNode;
             }
         }
+        minNode = nil;
     }
     
     return [NSArray array];
 }
 
-- (GraphNode*)smallest_distance:(NSMutableDictionary*)dist nodes:(NSMutableSet*)nodes {
+- (GraphNode*)smallest_distance:(NSMutableSet*)nodes {
     NSEnumerator *e = [nodes objectEnumerator];
     GraphNode* node;
     GraphNode* minNode = [e nextObject];
-    NSNumber *min = [dist objectForKey: minNode];
+    float min = minNode->dist;
     
     while ( (node = [e nextObject]) ) {
-        NSNumber *temp = [dist objectForKey:node];
+        float temp = node->dist;
         
-        if ( [temp floatValue] < [min floatValue] ) {
+        if ( temp < min ) {
             min = temp;
             minNode = node;
         }
