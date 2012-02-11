@@ -13,7 +13,7 @@
 -(id)init
 {
     if((self = [super init])) {
-        self.tileSize = CGSizeMake(512, 512);
+        self.tileSize = CGSizeMake(1024, 1024);
     }
     return self;
 }
