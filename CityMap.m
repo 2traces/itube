@@ -680,7 +680,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [_color release];
     [_disabledColor release];
     _color = [color retain];
-
     CGFloat r, g, b, M, m, sd;
     const CGFloat* rgba = CGColorGetComponents([color CGColor]);
     r = rgba[0];
