@@ -348,8 +348,12 @@
         // Create the view for the header
         CGRect sectionFrame = CGRectMake(0.0, 0.0, 320.0, 22.0);
         UIView *sectionView = [[[UIView alloc] initWithFrame:sectionFrame] autorelease];
-        sectionView.alpha = 0.9;
-        sectionView.backgroundColor = [UIColor colorWithPatternImage:stretchableButtonImageNormal];
+//        sectionView.alpha = 0.;
+        
+        UIView *bgView = [[[UIView alloc] initWithFrame:sectionFrame] autorelease];
+        bgView.backgroundColor = [UIColor colorWithPatternImage:stretchableButtonImageNormal];
+        bgView.alpha=0.5;
+        [sectionView addSubview:bgView];
         
         // Create the label
         CGRect labelFrame = CGRectMake(10.0, 3.0, 310.0, 22.0);

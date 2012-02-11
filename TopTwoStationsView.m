@@ -10,7 +10,7 @@
 #import "tubeAppDelegate.h"
 #import "MainViewController.h"
 #import "FastAccessTableViewController.h"
-
+#import "StationTextField.h"
 
 @interface UITextField (myCustomTextField)
 
@@ -58,7 +58,7 @@
 	[refreshButton addTarget:self action:@selector(selectFromStation) forControlEvents:UIControlEventTouchUpInside];
 	refreshButton.bounds = CGRectMake(0,0, imageOpenList.size.width, imageOpenList.size.height);
     
-	firstStation = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+	firstStation = [[StationTextField alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
 	firstStation.delegate = self;
 	firstStation.borderStyle = UITextBorderStyleNone;
 	firstStation.rightView = refreshButton;
@@ -88,7 +88,7 @@
 	[refreshButton2 addTarget:self action:@selector(selectToStation) forControlEvents:UIControlEventTouchUpInside];
 	refreshButton2.bounds = CGRectMake(0,0, imageOpenList.size.width, imageOpenList.size.height);
 	 
-	secondStation = [[UITextField alloc] initWithFrame:CGRectMake(160, 0, 160, 44)];
+	secondStation = [[StationTextField alloc] initWithFrame:CGRectMake(160, 0, 160, 44)];
 	secondStation.delegate=self;
 	secondStation.borderStyle = UITextBorderStyleNone;
 	secondStation.rightView = refreshButton2;
@@ -270,6 +270,8 @@
         
         firstStation.background = nil;
         secondStation.background = nil;
+        
+        firstStation.state=3;
         
         UIImage *crossImage = [UIImage imageNamed:@"cross_transp.png"];
         UIImage *crossImageHighlighted = [UIImage imageNamed:@"cross_opaq.png"];
@@ -492,7 +494,7 @@
 {
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(29,29), NO, 0.0);
     
-    CGRect circleRect = CGRectMake(11.0, 6.0, 13.0, 13.0);
+    CGRect circleRect = CGRectMake(13.0, 8.0, 11.0, 11.0);
 	
     CGContextRef context = UIGraphicsGetCurrentContext();
     
