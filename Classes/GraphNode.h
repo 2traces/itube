@@ -11,17 +11,24 @@
 @class GraphEdge;
 
 @interface GraphNode : NSObject<NSCopying> {
-    id value_;
+    NSString* _name;
+    int _line;
+    int _hash;
     NSMutableSet *edgesIn_;
     NSMutableSet *edgesOut_;
+    @public
+    // used for path calculating
+    float dist;
+    id customData;
 }
 
 @property (nonatomic, readonly, retain) NSSet *edgesIn;
 @property (nonatomic, readonly, retain) NSSet *edgesOut;
-@property (nonatomic, readonly, retain) id    value;
+@property (nonatomic, readonly) NSString* name;
+@property (nonatomic, readonly) int line;
 
 - (id)init;
-- (id)initWithValue:(id)value;
+- (id)initWithName:(NSString*)name andLine:(int)line;
 - (BOOL)isEqualToGraphNode:(GraphNode*)otherNode;
 
 - (NSUInteger)inDegree;
@@ -34,5 +41,5 @@
 - (GraphEdge*)edgeConnectedFrom:(GraphNode*)fromNode;
 
 + (id)node;
-+ (id)nodeWithValue:(id)value;
++ (id)nodeWithName:(NSString*)name andLine:(int)line;
 @end

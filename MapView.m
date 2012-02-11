@@ -220,11 +220,11 @@
 
     CGContextSaveGState(context);
     CGRect r = CGContextGetClipBoundingBox(context);
-    CGFloat drawScale = 512.f / MAX(r.size.width, r.size.height);
 	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
 	CGContextFillRect(context, r);
 
 #ifdef AGRESSIVE_CACHE
+    CGFloat drawScale = 1024.f / MAX(r.size.width, r.size.height);
     CGFloat presentScale = 1.f/drawScale;
     int cc = currentCacheLayer;
     currentCacheLayer++;
@@ -299,7 +299,7 @@
 
     NSMutableArray *pathArray = [[NSMutableArray alloc] init];
     [pathArray addObjectsFromArray:[cityMap calcPath:fSt :sSt :fStl :sStl]];
-	[pathArray insertObject:[GraphNode nodeWithValue:[NSString stringWithFormat:@"%@|%d",fSt,fStl ] ] atIndex:0];
+	[pathArray insertObject:[GraphNode nodeWithName:fSt andLine:fStl ] atIndex:0];
 	
     background1.hidden = YES;
     background2.hidden = NO;
