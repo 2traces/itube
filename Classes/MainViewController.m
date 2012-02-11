@@ -348,6 +348,13 @@
         
         [(MainView*)self.view addSubview:scrollView];
         [(MainView*)self.view bringSubviewToFront:scrollView];
+        
+        UIButton *changeViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [changeViewButton setImage:[UIImage imageNamed:@"switch_to_path.png"] forState:UIControlStateNormal];
+        //   [changeViewButton addTarget:self action:@selector(changeView:) forControlEvents:UIControlEventTouchUpInside];
+        [changeViewButton setFrame:CGRectMake(250 , 66 , 36, 37)];
+        [changeViewButton setTag:333];
+        [(MainView*)self.view addSubview:changeViewButton];
     } 
         
     for (int i=0; i<numberOfPages; i++) {
@@ -361,12 +368,7 @@
         [[self.scrollView viewWithTag:10000+i] setNeedsDisplay];
     }
     
-    UIButton *changeViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [changeViewButton setImage:[UIImage imageNamed:@"switch_to_path.png"] forState:UIControlStateNormal];
- //   [changeViewButton addTarget:self action:@selector(changeView:) forControlEvents:UIControlEventTouchUpInside];
-    [changeViewButton setFrame:CGRectMake(250 , 66 , 36, 37)];
-    [changeViewButton setTag:333];
-    [(MainView*)self.view addSubview:changeViewButton];
+
 }
 
 -(IBAction)changeView:(id)sender

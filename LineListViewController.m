@@ -379,7 +379,7 @@
     SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:section];
 
     if (sectionInfo.open) {
-        return HEADER_HEIGHT+10.0; 
+        return HEADER_HEIGHT; 
     } else {   
         return HEADER_HEIGHT;
     }

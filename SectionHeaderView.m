@@ -26,13 +26,13 @@
         // Create and configure the title label.
         _section = sectionNumber;
         CGRect titleLabelFrame = self.bounds;
-        titleLabelFrame.origin.x += 35.0;
+        titleLabelFrame.origin.x += 21.0;
         titleLabelFrame.size.width -= 35.0;
         titleLabelFrame.origin.y += 4.0;
         CGRectInset(titleLabelFrame, 0.0, 5.0);
         UILabel *label = [[UILabel alloc] initWithFrame:titleLabelFrame];
         label.text = title;
-        label.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
+        label.font = [UIFont fontWithName:@"MyriadPro-Regular" size:21.0f];
         label.textColor = [UIColor whiteColor];
         label.backgroundColor = [UIColor clearColor];
         [self addSubview:label];
@@ -50,8 +50,10 @@
         
        self.backgroundColor = color;
         
-        UIImageView *lineEdge= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lines_edge.png"]];
-        lineEdge.frame=CGRectMake(0,frame.size.height-2.0,320.0,2.0);
+        UIImage *img = [UIImage imageNamed:@"lines_edge.png"];
+        UIImageView *lineEdge= [[UIImageView alloc] initWithImage:img];
+        CGFloat imgH = img.size.height;
+        lineEdge.frame=CGRectMake(0,frame.size.height-imgH,320.0,imgH);
         [self addSubview:lineEdge];
         [lineEdge release];
 
@@ -77,6 +79,7 @@
         if (self.disclosureButton.selected) {
             if ([self.delegate respondsToSelector:@selector(sectionHeaderView:sectionOpened:)]) {
                 [self.delegate sectionHeaderView:self sectionOpened:self.section];
+                
             }
         }
         else {
