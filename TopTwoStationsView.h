@@ -10,12 +10,13 @@
 
 @class MStation;
 @class FastAccessTableViewController;
+@class StationTextField;
 
 @interface TopTwoStationsView : UIView <UITextFieldDelegate>
 {
     UIImageView  *toolbar; 
-	UITextField *firstStation;
-	UITextField *secondStation;	
+	StationTextField *firstStation;
+	StationTextField *secondStation;	
     BOOL isEditing;
     BOOL shouldEnlarge;
     

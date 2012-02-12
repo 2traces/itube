@@ -8,18 +8,25 @@
 
 #import "SettingsViewController.h"
 #import "InAppProductsViewController.h"
+#import "LanguageCell.h"
+#import "CityCell.h"
+#import "MyNavigationBar.h"
 
 @implementation SettingsViewController
 
 @synthesize cityButton;
 @synthesize buyButton;
-@synthesize mytableView;
+@synthesize langTableView;
+@synthesize cityTableView;
+@synthesize maps;
+@synthesize textLabel1,textLabel2;
+@synthesize navBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+          self.maps = [NSArray arrayWithObjects:@"London",@"Paris",@"Madrid",@"Berlin",@"Dublin",@"Oslo", nil];
     }
     return self;
 }
@@ -57,15 +64,54 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Test";
+ //  self.navigationItem.title = @"Settqqqings";
     
 //    self.navigationItem.leftBarButtonItem=UIBarButtonSystemItemCancel;
 
     // Do any additional setup after loading the view from its nib.
-    [self.mytableView.layer setCornerRadius:10.0];
+    [self.cityTableView.layer setCornerRadius:10.0];
     
-//	mytableView.backgroundColor = [UIColor clearColor];
- //   mytableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+	langTableView.backgroundColor = [UIColor clearColor];
+    langTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    textLabel1.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+    textLabel2.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+
+	cityTableView.backgroundColor = [UIColor clearColor];
+    cityTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    CGRect frame = CGRectMake(0, 0, 320, 44);
+	UILabel *label = [[[UILabel alloc] initWithFrame:frame] autorelease];
+	label.backgroundColor = [UIColor clearColor];
+	label.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0];
+	label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+	label.textAlignment = UITextAlignmentCenter;
+	label.textColor = [UIColor darkGrayColor];
+	self.navigationItem.titleView = label;
+	label.text = @"Settings";
+	
+	self.navigationItem.hidesBackButton=YES;
+    
+//    self.navBar.
+    
+	// добавляем кастомные кнопочки слева и справа
+	
+//	[self putBackButton];	
+
+  
+}
+
+-(void) putBackButton
+{
+	UIImage *back_image=[UIImage imageNamed:@"settings_back_button.png"];
+	UIButton *back_button = [UIButton buttonWithType:UIButtonTypeCustom];
+	back_button.bounds = CGRectMake( 0, 0, back_image.size.width, back_image.size.height );    
+	[back_button setBackgroundImage:back_image forState:UIControlStateNormal];
+	[back_button addTarget:self action:@selector(donePressed:) forControlEvents:UIControlEventTouchUpInside];    
+	UIBarButtonItem *barButtonItem_back = [[UIBarButtonItem alloc] initWithCustomView:back_button];
+	self.navigationItem.leftBarButtonItem = barButtonItem_back;
+    self.navigationItem.hidesBackButton=YES;
+	[barButtonItem_back release];
 }
 
 - (void)viewDidUnload
@@ -92,35 +138,59 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    if (tableView==cityTableView) {
+        return [maps count];
+    } else {
+        return 1;
+    }
 }
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    static NSString *cellIdentifier = @"CustomCell";
-    
-  UITableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if (cell == nil) { 
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier] autorelease];
-    }
- 
-    if (indexPath.row==0) {
-        cell.textLabel.text = @"City";
-        cell.detailTextLabel.text = @"Paris";
-    } else {
-        cell.textLabel.text = @"Language";
-        cell.detailTextLabel.text = @"English";
-    }
-    
-    cell.backgroundColor = [UIColor whiteColor];
+    if (tableView==cityTableView) {
+        static NSString *cellIdentifier = @"CityCell";
+        
+        UITableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
+        if (cell == nil) { 
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"CityCell" owner:self options:nil] lastObject];
+        }    
+        
+        [[(CityCell*)cell cityName] setText:[maps objectAtIndex:[indexPath row]]];
+        [[(CityCell*)cell cityName] setFont:[UIFont fontWithName:@"MyriadPro-Regular" size:18.0]];
+        
+        cell.backgroundColor = [UIColor clearColor];
+        cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"city_table_cell.png"]] autorelease];
+        cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"city_table_cell.png"]] autorelease];
+        
 
-//    cell.backgroundView = [[[UIImageView alloc] init] autorelease];
-//    cell.selectedBackgroundView = [[[UIImageView alloc] init] autorelease];
-    
-    return cell;
+        
+        return cell;
+
+    } else {
+        static NSString *cellIdentifier = @"LanguageCell";
+        
+        UITableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+ 
+        if (cell == nil) { 
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"LanguageCell" owner:self options:nil] lastObject];
+        }
+
+        [[(LanguageCell*)cell languageWordLabel] setText:@"Language"];
+        [[(LanguageCell*)cell languageWordLabel] setFont:[UIFont fontWithName:@"MyriadPro-Regular" size:18.0]];
+        
+        [[(LanguageCell*)cell languageLabel] setText:@"English"];
+        [[(LanguageCell*)cell languageLabel] setFont:[UIFont fontWithName:@"MyriadPro-Regular" size:18.0]];
+        [[(LanguageCell*)cell languageLabel] setTextColor:[UIColor darkGrayColor]];
+        
+        
+        cell.backgroundColor = [UIColor clearColor];
+        cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"language_table_cell.png"]] autorelease];
+        cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"language_table_cell.png"]] autorelease];
+        
+        return cell;
+    }
 }
 
 
@@ -131,57 +201,6 @@
     
 }
 
-
-
-// Displays an email composition interface inside the app // and populates all the Mail fields.
--(IBAction)showMailComposer:(id)sender
-{
-    Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
-    if (mailClass != nil) {
-        // Test to ensure that device is configured for sending emails.
-        if ([mailClass canSendMail]) {
-            MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
-            picker.mailComposeDelegate = self;
-            [picker setSubject:@"Paris Metro"];
-            [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"zuev.sergey@gmail.com"]]];
-            [self presentModalViewController:picker animated:YES]; [picker release];
-        } else {
-            // Device is not configured for sending emails, so notify user.
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Не могу послать письмо" message:@"Это устройство должно быть не сконфигурированно чтобы отсылать почту" delegate:self cancelButtonTitle:@"Ок, я попробую позже" otherButtonTitles:nil];
-            [alertView show];
-            [alertView release];
-        }
-    } 
-}
-
-// Dismisses the Mail composer when the user taps Cancel or Send.
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
-    NSString *resultTitle = nil; NSString *resultMsg = nil;
-    switch (result) {
-        case MFMailComposeResultCancelled:
-            resultTitle = @"Email прерван";
-            resultMsg = @"Вы прервали отсылку письма"; break;
-        case MFMailComposeResultSaved:
-            resultTitle = @"Email сохранен";
-            resultMsg = @"Ваше письмо сохранено в черновиках"; break;
-        case MFMailComposeResultSent: resultTitle = @"Email отослан";
-            resultMsg = @"Ваше письмо успешно отослано";
-            break;
-        case MFMailComposeResultFailed:
-            resultTitle = @"Email не отправлен";
-            resultMsg = @"Ваше письмо не было отправлено"; break;
-        default:
-            resultTitle = @"Email не отправлен";
-            resultMsg = @"Ваше письмо не было отправлено"; break;
-    }
-    // Notifies user of any Mail Composer errors received with an Alert View dialog.
-    UIAlertView *mailAlertView = [[UIAlertView alloc] initWithTitle:resultTitle message:resultMsg delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
-    [mailAlertView show];
-    [mailAlertView release];
-    [resultTitle release];
-    [resultMsg release];
-    [self dismissModalViewControllerAnimated:YES];
-}
 
 -(void)serverDone:(NSMutableDictionary *)schedule
 {

@@ -190,7 +190,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    return 46.0;
+    return 60.0;
 }
 
 
@@ -198,7 +198,7 @@
 {
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(20,20),NO,0.0);
     
-    CGRect circleRect = CGRectMake(4.0, 4.0, 12.0, 12.0);
+    CGRect circleRect = CGRectMake(5.0, 5.0, 10.0, 10.0);
 	
     CGContextRef context = UIGraphicsGetCurrentContext();
     

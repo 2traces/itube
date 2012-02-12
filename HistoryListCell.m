@@ -37,63 +37,45 @@
 {
     CGSize fromLabelSize;
     CGSize toLabelSize;
-    
-    static float iconsSize = 25.0;
-    static float arrowSize = 15.0;
-    
-    fromStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0f];
-    fromLabelSize = [[fromStation text] sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:15.0f]];
 
-    toStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0f];
-    toLabelSize = [[toStation text] sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:15.0f]];
+    CGRect fromLabelOriginal = CGRectMake(27, 11, 500, 21);
+    CGRect toLableOriginal = CGRectMake(29, 34, 500, 21);
+    CGRect arrowViewOriginal = CGRectMake(143, 11, 15, 15);
+    CGRect fromDotOriginal = CGRectMake(3, 8, 20, 20);
+    CGRect toDotOriginal = CGRectMake(5, 31, 20, 20);
     
-    dateLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12.0f];
+    float iconsSize = fromDotOriginal.size.width;
+    float arrowSize = arrowViewOriginal.size.width;
+    
+    float maxLabelWidth = 220.0f;
+
+    fromStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0f];
+    fromLabelSize = [[fromStation text] sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:16.0f]];
+    
+    if (fromLabelSize.width>maxLabelWidth) {
+        fromLabelSize.width=maxLabelWidth;
+    }
+    
+    toStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0f];
+    toLabelSize = [[toStation text] sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:16.0f]];
+    
+    if (toLabelSize.width>maxLabelWidth) {
+        toLabelSize.width=maxLabelWidth;
+    }
+    
+    dateLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.0f];
     dateLabel.textColor = [UIColor darkGrayColor];
+    
+    fromLineCircle.frame = fromDotOriginal;
+    toLineCircle.frame = toDotOriginal;
 
-//    fromLineCircle.frame = CGRectMake(0, fromLineCircle.frame.origin.y,iconsSize , fromLineCircle.frame.size.height);
-
-    fromStation.frame = CGRectMake(33, fromStation.frame.origin.y, fromLabelSize.width, fromStation.frame.size.height);
+    fromStation.frame = CGRectMake(fromLabelOriginal.origin.x, fromLabelOriginal.origin.y, fromLabelSize.width, fromLabelOriginal.size.height);
     
-    arrowImageView.frame = CGRectMake(fromLabelSize.width+iconsSize+15.0, arrowImageView.frame.origin.y, arrowSize, arrowImageView.frame.size.height);
+    arrowImageView.frame = CGRectMake(fromLabelSize.width+iconsSize+17.0, arrowViewOriginal.origin.y, arrowSize, arrowViewOriginal.size.height);
     
-//    toLineCircle.frame = CGRectMake(fromLabelSize.width+iconsSize+arrowSize+15.0, toLineCircle.frame.origin.y,iconsSize , toLineCircle.frame.size.height);
-    
-    toStation.frame = CGRectMake(33, toStation.frame.origin.y, toLabelSize.width, toStation.frame.size.height);
+    toStation.frame = CGRectMake(toLableOriginal.origin.x, toLableOriginal.origin.y, toLabelSize.width, toLableOriginal.size.height);
     
     [super layoutSubviews];
 }
 
-/*
- - (void)layoutSubviews
- {
- CGSize fromLabelSize;
- CGSize toLabelSize;
- 
- static float iconsSize = 29.0;
- static float arrowSize = 15.0;
- 
- 
- fromStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0f];
- fromLabelSize = [[fromStation text] sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:15.0f]];
- 
- toStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0f];
- toLabelSize = [[toStation text] sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:15.0f]];
- 
- dateLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12.0f];
- dateLabel.textColor = [UIColor darkGrayColor];
- 
- fromLineCircle.frame = CGRectMake(0, fromLineCircle.frame.origin.y,iconsSize , fromLineCircle.frame.size.height);
- 
- fromStation.frame = CGRectMake(iconsSize, fromStation.frame.origin.y, fromLabelSize.width, fromStation.frame.size.height);
- 
- arrowImageView.frame = CGRectMake(fromLabelSize.width+iconsSize+10.0, arrowImageView.frame.origin.y, arrowSize, arrowImageView.frame.size.height);
- 
- toLineCircle.frame = CGRectMake(fromLabelSize.width+iconsSize+arrowSize+15.0, toLineCircle.frame.origin.y,iconsSize , toLineCircle.frame.size.height);
- 
- toStation.frame = CGRectMake(fromLabelSize.width+iconsSize*2+arrowSize+15.0, toStation.frame.origin.y, toLabelSize.width, toStation.frame.size.height);
- 
- 
- }
-
- */
 @end

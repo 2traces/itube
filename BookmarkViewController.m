@@ -192,9 +192,7 @@
 {
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(27, 27), NO, 0.0);
     
-    //    CGRect allRect = self.bounds;
-    //    CGRect circleRect = CGRectMake(allRect.origin.x + 2, allRect.origin.y + 2, allRect.size.width - 4,
-    //                                   allRect.size.height - 4);
+    UIImage *radialImg = [UIImage imageNamed:@"radial.png"];
     
     CGRect circleRect = CGRectMake(1.0, 1.0, 25.0, 25.0);
 	
@@ -204,9 +202,11 @@
     
     CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor)); 
     CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));  
-	CGContextSetLineWidth(context, 1.0);
+	CGContextSetLineWidth(context, 0.0);
 	CGContextFillEllipseInRect(context, circleRect);
 	CGContextStrokeEllipseInRect(context, circleRect);
+    
+    [radialImg drawInRect:circleRect]; 
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     

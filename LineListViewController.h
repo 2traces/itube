@@ -13,10 +13,14 @@
 
 @protocol LineListViewProtocol;
 
-@interface LineListViewController : UITableViewController <SectionHeaderViewDelegate> {
+@interface LineListViewController : UIViewController <UISearchDisplayDelegate,UITableViewDataSource, UITableViewDelegate,SectionHeaderViewDelegate> {
     NSArray *lineList;
 
     id <LineListViewProtocol> dataSource;
+    
+    IBOutlet UITableView *mytableView;
+    IBOutlet UIImageView *imageView;
+
 }
 
 @property (nonatomic,retain) NSArray *lineList;
@@ -28,6 +32,9 @@
 @property (nonatomic, assign) NSInteger uniformRowHeight;
 
 @property (nonatomic, retain) NSArray* stationsList;
+
+@property (nonatomic,retain) IBOutlet UITableView *mytableView;
+@property (nonatomic, retain) IBOutlet UIImageView *imageView;
 
 -(UIImage*)drawCircleView:(UIColor*)myColor;
 -(UIColor*)saturateColor:(UIColor*)startColor;

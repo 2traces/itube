@@ -12,18 +12,34 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Server.h"
 
+@class MyNavigationBar;
+
 @interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate,ServerListener>
 {
-    IBOutlet UITableView *mytableView;
+    IBOutlet UITableView *langTableView;
+    IBOutlet UITableView *cityTableView;
+    
+    IBOutlet UILabel *textLabel1;
+    IBOutlet UILabel *textLabel2;   
+    
+    IBOutlet MyNavigationBar *navBar;
+    
+    NSArray *maps;
 }
 
 
-@property (retain, nonatomic) IBOutlet UITableView *mytableView;
+@property (retain, nonatomic) IBOutlet UITableView *langTableView;
+@property (nonatomic,retain) IBOutlet UITableView *cityTableView;
 @property (retain, nonatomic) IBOutlet UIButton *cityButton;
 @property (retain, nonatomic) IBOutlet UIButton *buyButton;
+@property (nonatomic, retain) NSArray *maps;
+@property (nonatomic, retain) IBOutlet UILabel *textLabel1;
+@property (nonatomic, retain) IBOutlet UILabel *textLabel2;
+@property (nonatomic, retain) IBOutlet MyNavigationBar *navBar;
+
 
 -(IBAction)cityPress:(id)sender;
 -(IBAction)buyPress:(id)sender;
--(IBAction)showMailComposer:(id)sender;
+
 
 @end

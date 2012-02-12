@@ -70,6 +70,8 @@
     return arrivalTime;
 }
 
+
+// используется только для верхнего бара
 -(NSInteger)dsGetTravelTime
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -101,6 +103,13 @@
     int currentIndexLine = -1;
     
     for (int i=0; i<objectNum; i++) {
+     /*   if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]] && i==0) {
+            
+            Transfer *transfer = (Transfer*)[path objectAtIndex:i];
+            Station *station = [[transfer stations] ob
+            
+        } else */
+                                
         if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
             
             Segment *segment = (Segment*)[path objectAtIndex:i];
@@ -109,7 +118,13 @@
                 [colorArray addObject:[[[segment start] line] color]];
                 currentIndexLine=[[[segment start] line] index];
             }
-        } 
+            
+        }
+        
+        /*else if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]] && i==objectNum-1) {
+            
+        }*/
+
     }
     
     return colorArray;
@@ -333,6 +348,13 @@
         
         [(MainView*)self.view addSubview:scrollView];
         [(MainView*)self.view bringSubviewToFront:scrollView];
+        
+        UIButton *changeViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [changeViewButton setImage:[UIImage imageNamed:@"switch_to_path.png"] forState:UIControlStateNormal];
+        //   [changeViewButton addTarget:self action:@selector(changeView:) forControlEvents:UIControlEventTouchUpInside];
+        [changeViewButton setFrame:CGRectMake(250 , 66 , 36, 37)];
+        [changeViewButton setTag:333];
+        [(MainView*)self.view addSubview:changeViewButton];
     } 
         
     for (int i=0; i<numberOfPages; i++) {
@@ -346,12 +368,7 @@
         [[self.scrollView viewWithTag:10000+i] setNeedsDisplay];
     }
     
-    UIButton *changeViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [changeViewButton setImage:[UIImage imageNamed:@"switch_to_path.png"] forState:UIControlStateNormal];
-    [changeViewButton addTarget:self action:@selector(changeView:) forControlEvents:UIControlEventTouchUpInside];
-    [changeViewButton setFrame:CGRectMake(250 , 66 , 36, 37)];
-    [changeViewButton setTag:333];
-    [(MainView*)self.view addSubview:changeViewButton];
+
 }
 
 -(IBAction)changeView:(id)sender
@@ -553,9 +570,12 @@
             NSString *stationName1 = [[stations objectAtIndex:i] lastObject];            
             NSString *stationName2 = [[stations objectAtIndex:i+1] objectAtIndex:0];
             
-            int time1 = [[[stationsTime objectAtIndex:i] lastObject] intValue];            
-            int time2 = [[[stationsTime objectAtIndex:i+1] objectAtIndex:0] intValue];
+   //         int time1 = [[[stationsTime objectAtIndex:i] lastObject] intValue];            
+   //         int time2 = [[[stationsTime objectAtIndex:i+1] objectAtIndex:0] intValue]; // tut crash
 
+            int time1=0;
+            int time2=0;
+            
             UILabel *label1 = [[UILabel alloc] initWithFrame:rect1];
             label1.font=[UIFont fontWithName:@"MyriadPro-Regular" size:20.0];
             label1.text=stationName1;

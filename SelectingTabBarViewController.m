@@ -75,6 +75,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    /*
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -82,9 +83,9 @@
     hud.labelFont = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
 
     if (!appDelegate.mainViewController.currentSelection) {
-        hud.detailsLabelText = @"of arrival";
-    } else {
         hud.detailsLabelText = @"of departure";
+    } else {
+        hud.detailsLabelText = @"of arrival";
     }
     hud.detailsLabelFont = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
     hud.opacity=0.7;
@@ -92,6 +93,7 @@
 	hud.mode = MBProgressHUDModeCustomView;
 
     [self performSelector:@selector(dismissHUD) withObject:nil afterDelay:1.0];
+     */
 }
 
 -(void)dismissHUD
@@ -150,9 +152,9 @@
 
 -(IBAction)settingsPressed:(id)sender
 {
-    SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
-    [self presentModalViewController:controller animated:YES];
-    [controller release];
+//    SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
+//    [self presentModalViewController:controller animated:YES];
+//    [controller release];
 }
 
 -(IBAction)backPressed:(id)sender
