@@ -180,6 +180,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
     NSMutableArray *activePath;
     NSString *thisMapName;
     NSMutableArray *pathStationsList;
+    CGFloat currentScale;
 }
 
 @property (nonatomic,retain) NSMutableDictionary *gpsCoords;
@@ -197,6 +198,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @property (nonatomic, retain) NSString *thisMapName;
 @property (nonatomic, retain) NSMutableArray *pathStationsList;
 @property (nonatomic, readonly) NSMutableArray *mapLines;
+@property (nonatomic, assign) CGFloat currentScale;
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //

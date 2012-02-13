@@ -119,18 +119,18 @@ NSInteger const toolbarWidth=320;
     [sourceButton setImage:[UIImage imageNamed:@"src_button_pressed"] forState:UIControlStateHighlighted];
     [sourceButton addTarget:self action:@selector(selectFromStationByButton) forControlEvents:UIControlEventTouchUpInside];
     [sourceButton setFrame:CGRectMake(-80, 200, 76, 76)];
-    [sourceButton.layer setShadowOffset:CGSizeMake(3, 5)];
-    [sourceButton.layer setShadowOpacity:0.3];
-    [sourceButton.layer setShadowRadius:5.0];
+    [sourceButton.layer setShadowOffset:CGSizeMake(0, 0)];
+    [sourceButton.layer setShadowOpacity:0.3f];
+    [sourceButton.layer setShadowRadius:10.0];
     
     destinationButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [destinationButton setImage:[UIImage imageNamed:@"dst_button_normal"] forState:UIControlStateNormal];
     [destinationButton setImage:[UIImage imageNamed:@"dst_button_pressed"] forState:UIControlStateHighlighted];
     [destinationButton addTarget:self action:@selector(selectToStationByButton) forControlEvents:UIControlEventTouchUpInside];
     [destinationButton setFrame:CGRectMake(325, 200, 76, 76)];
-    [destinationButton.layer setShadowOffset:CGSizeMake(3, 5)];
-    [destinationButton.layer setShadowOpacity:0.3];
-    [destinationButton.layer setShadowRadius:5.0];
+    [destinationButton.layer setShadowOffset:CGSizeMake(0, 0)];
+    [destinationButton.layer setShadowOpacity:0.3f];
+    [destinationButton.layer setShadowRadius:10.0];
     
     [self addSubview:sourceButton];
     [self addSubview:destinationButton];
@@ -140,6 +140,9 @@ NSInteger const toolbarWidth=320;
     [settings setImage:[UIImage imageNamed:@"settings_btn"] forState:UIControlStateHighlighted];
     settings.frame = CGRectMake(285, 420, 23, 23);
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
+    [settings.layer setShadowRadius:5.f];
+    [settings.layer setShadowOpacity:0.5f];
+    [settings.layer setShadowOffset:CGSizeMake(0, 0)];
     [self addSubview:settings];
     
     zones = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -148,10 +151,13 @@ NSInteger const toolbarWidth=320;
     [zones setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [zones setBackgroundImage:[UIImage imageNamed:@"zones_btn_normal"] forState:UIControlStateNormal];
     [zones setBackgroundImage:[UIImage imageNamed:@"zones_btn_pressed"] forState:UIControlStateSelected];
-    zones.titleLabel.font = [UIFont systemFontOfSize:10];
+    zones.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:11.f];
     zones.frame = CGRectMake(20, 420, 42, 23);
     [zones addTarget:self action:@selector(switchZones) forControlEvents:UIControlEventTouchUpInside];
     [zones setSelected:mapView.showVectorLayer];
+    [zones.layer setShadowRadius:5.f];
+    [zones.layer setShadowOpacity:0.5f];
+    [zones.layer setShadowOffset:CGSizeMake(0, 0)];
     [self addSubview:zones];
     
     NSTimer *timer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(supervisor) userInfo:nil repeats:YES];
@@ -170,21 +176,23 @@ NSInteger const toolbarWidth=320;
         [UIView animateWithDuration:0.25f animations:^{ stationMark.center = pos; }];
     }
     
-    if(pos.x < 100) pos.x = 100;
-    if(pos.x > 220) pos.x = 220;
-    if(pos.y < 90) pos.y = 90;
+    pos.y -= 80;
+    
+    if(pos.x < 120) pos.x = 120;
+    if(pos.x > 200) pos.x = 200;
+    if(pos.y < 90) pos.y += 200;
     if(pos.y > 380) pos.y = 380;
 
     [UIView animateWithDuration:0.25f animations:^{ sourceButton.center = CGPointMake(pos.x-60, pos.y+20); }];
     [UIView animateWithDuration:0.25f animations:^{ destinationButton.center = CGPointMake(pos.x+60, pos.y+20); }];
 
     if(mapView.labelView.hidden) {
-        mapView.labelView.center = CGPointMake(pos.x, pos.y-40);
+        mapView.labelView.center = CGPointMake(pos.x, pos.y-55);
         mapView.labelView.hidden=false;
         mapView.labelView.alpha = 0.f;
         [UIView animateWithDuration:0.25f animations:^{ mapView.labelView.alpha = 1.f; }];
     } else {
-        [UIView animateWithDuration:0.25f animations:^{ mapView.labelView.center = CGPointMake(pos.x, pos.y-40); }];
+        [UIView animateWithDuration:0.25f animations:^{ mapView.labelView.center = CGPointMake(pos.x, pos.y-55); }];
     }
 }
 

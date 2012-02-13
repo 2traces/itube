@@ -89,22 +89,27 @@
         MinScale = MIN( (float)frame.size.width / cityMap.size.width, (float)frame.size.height / cityMap.size.height);
         MaxScale = cityMap.maxScale;
         Scale = MaxScale / 2;
-		
+        
 		//метка которая показывает названия станций
-		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(30,8,140,25)];
-		mainLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:16.0];
+		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 12, 140, 25)];
+		mainLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:21.0];
         mainLabel.textAlignment = UITextAlignmentCenter;
 		mainLabel.backgroundColor = [UIColor clearColor];
-        lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(170, 8, 30, 25)];
-        lineLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:12.f];
+        mainLabel.shadowColor = [UIColor whiteColor];
+        mainLabel.shadowOffset = CGSizeMake(0.5f, 1.f);
+        lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(165, 12, 40, 25)];
+        lineLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:21.f];
         lineLabel.textAlignment = UITextAlignmentCenter;
         lineLabel.textColor = [UIColor colorWithRed:0.5f green:0.5f blue:0.5f alpha:1.0f];
         lineLabel.text = @"1";
         lineLabel.backgroundColor = [UIColor clearColor];
-        circleLabel = [[UIView alloc] initWithFrame:CGRectMake(10, 11, 18, 18)];
-        circleLabel.layer.cornerRadius = 9.f;
+        lineLabel.shadowColor = [UIColor whiteColor];
+        lineLabel.shadowOffset = CGSizeMake(0.5f, 1.f);
+        circleLabel = [[UIView alloc] initWithFrame:CGRectMake(10, 8, 22, 22)];
+        circleLabel.layer.cornerRadius = 11.f;
         circleLabel.backgroundColor = [UIColor redColor];
-        circleLabel.layer.shadowOffset = CGSizeMake(0.f, 0.5f);
+        circleLabel.layer.shadowOffset = CGSizeMake(0.5f, 1.f);
+        circleLabel.layer.shadowRadius = 1.f;
         circleLabel.layer.shadowOpacity = 1.0f;
         
         labelBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"station_label"]];
@@ -112,9 +117,9 @@
         [labelBg addSubview:lineLabel];
         [labelBg addSubview:circleLabel];
 		labelBg.hidden=true;
-        [labelBg.layer setShadowOffset:CGSizeMake(3, 5)];
-        [labelBg.layer setShadowOpacity:0.3];
-        [labelBg.layer setShadowRadius:5.0];
+        [labelBg.layer setShadowOffset:CGSizeMake(0, 0)];
+        [labelBg.layer setShadowOpacity:0.5f];
+        [labelBg.layer setShadowRadius:15.0];
         
 		[self initData];
 		
@@ -243,6 +248,7 @@
     CGContextSetAllowsFontSmoothing(ctx, false);
     
     if(showVectorLayer && vectorLayer) [vectorLayer draw:context inRect:r];
+    cityMap.currentScale = scrollView.zoomScale / MaxScale;
     [cityMap drawMap:ctx inRect:r];
     [cityMap drawTransfers:ctx inRect:r];
     [cityMap drawStations:ctx inRect:r]; 

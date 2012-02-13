@@ -12,11 +12,13 @@
 #import <CoreLocation/CoreLocation.h>
 
 CGFloat PredrawScale = 2.f;
+CGFloat BaseLineWidth = 4.f;
 CGFloat LineWidth = 4.f;
 CGFloat StationDiameter = 8.f;
 CGFloat FontSize = 7.f;
 StationKind StKind = LIKE_PARIS;
 StationKind TrKind = LIKE_PARIS;
+#define TEXT_FONT "Arial-BoldMT"
 
 NSMutableArray * Split(NSString* s)
 {
@@ -271,7 +273,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         if(SD2 >= (dp.x * dp.x + dp.y * dp.y)) {
             CGFloat d = dA.x * dB.y - dA.y * dB.x;
             if(d == 0.f) {
-                NSLog(@"lines are paraleled, %@", s[0].name);
+                //NSLog(@"lines are paraleled, %@", s[0].name);
                 return; // parallel
             }
             //CGFloat d1 = (dp.x * dB.y - dp.y * dB.x) / d;
@@ -374,6 +376,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 }
             }
         }
+        
+        CGSize s = [name sizeWithFont:[UIFont fontWithName:@TEXT_FONT size:FontSize] constrainedToSize:textRect.size lineBreakMode:UILineBreakModeWordWrap];
+        if(textRect.size.width < s.width) textRect.size.width = s.width;
+        if(textRect.size.height < s.height) textRect.size.height = s.height;
     }
     return self;
 }
@@ -423,7 +429,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         int alignment = UITextAlignmentCenter;
         if(pos.x < textRect.origin.x) alignment = UITextAlignmentLeft;
         else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
-        CGContextSelectFont(context, "Arial-BoldMT", FontSize, kCGEncodingMacRoman);
+        CGContextSelectFont(context, TEXT_FONT, FontSize, kCGEncodingMacRoman);
         CGContextShowTextAtPoint(context, textRect.origin.x, textRect.origin.y+textRect.size.height, [name cStringUsingEncoding:[NSString defaultCStringEncoding]], [name length]);
     }
     if(!act) CGContextRestoreGState(context);
@@ -455,7 +461,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
     CGRect rect = textRect;
     rect.origin = CGPointZero;
-    [name drawInRect:rect  withFont: [UIFont fontWithName:@"Arial-BoldMT" size:FontSize] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
+    [name drawInRect:rect  withFont: [UIFont fontWithName:@TEXT_FONT size:FontSize] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
     UIGraphicsPopContext();
 }
 
@@ -811,7 +817,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     [seg draw:context];
             }
         }
-        CGContextSetStrokeColorWithColor(context, [[UIColor blackColor] CGColor]);
+        CGContextSetStrokeColorWithColor(context, [[UIColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:1.f] CGColor]);
         CGContextSetLineWidth(context, LineWidth*0.25f);
         for (Station *s in stations) {
             for (Segment *seg in s.segment) {
@@ -1002,6 +1008,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize thisMapName;
 @synthesize pathStationsList;
 @synthesize mapLines;
+@synthesize currentScale;
 
 -(StationKind) stationKind { return StKind; }
 -(void) setStationKind:(StationKind)stationKind { StKind = stationKind; }
@@ -1053,6 +1060,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
     int val = [[parserMap get:@"LinesWidth" section:@"Options"] intValue];
     if(val != 0) LineWidth = val;
+    BaseLineWidth = LineWidth;
     val = [[parserMap get:@"StationDiameter" section:@"Options"] intValue];
     if(val != 0) StationDiameter = val;
     val = [[parserMap get:@"DisplayTransfers" section:@"Options"] intValue];
@@ -1381,6 +1389,13 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void) drawMap:(CGContextRef) context inRect:(CGRect)rect
 {
+    /*if(currentScale > 0.25f) LineWidth = BaseLineWidth;
+    else if(currentScale < 0.125f) LineWidth = BaseLineWidth * 1.25f;
+    else {
+        LineWidth = BaseLineWidth * ( 1.f + (0.25f - currentScale) * 2.f);
+    }
+    printf("line width = %d, scale = %f\n", (int)LineWidth, currentScale);
+     */
     CGContextSaveGState(context);
     for (Line* l in mapLines) {
         [l draw:context inRect:(CGRect)rect];
@@ -1447,10 +1462,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             [pathStationsList addObject:n2.name];
         }
 	}
-    activeExtent.origin.x -= activeExtent.size.width * 0.1f;
-    activeExtent.origin.y -= activeExtent.size.height * 0.1f;
-    activeExtent.size.width *= 1.2f;
-    activeExtent.size.height *= 1.2f;
+    float offset = (25 - (int)[pathStationsList count]) * 0.005f;
+    if(offset < 0.02f) offset = 0.02f;
+    activeExtent.origin.x -= activeExtent.size.width * offset;
+    activeExtent.origin.y -= activeExtent.size.height * offset;
+    activeExtent.size.width *= (1.f + offset * 2.f);
+    activeExtent.size.height *= (1.f + offset * 2.f);
 }
 
 -(void) resetPath
