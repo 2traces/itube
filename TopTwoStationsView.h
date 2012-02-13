@@ -19,6 +19,7 @@
 	StationTextField *secondStation;	
     BOOL isEditing;
     BOOL shouldEnlarge;
+    UIImageView *arrowView;
     
     FastAccessTableViewController *tableView;
 }
@@ -29,11 +30,15 @@
 @property (nonatomic, retain) UIButton *firstButton;
 @property (nonatomic, retain) UIButton *secondButton;
 @property (nonatomic, retain) FastAccessTableViewController *tableView;
+@property (nonatomic, retain) UIImageView *arrowView;
 
 -(void)drawInitialState;
 -(void)setFromStation:(MStation*)fromStation;
 -(void)setToStation:(MStation*)toStation;
 -(UIImage*)drawCircleView:(UIColor*)myColor;
 -(void)transitToPathView;
+
+-(void)resetFromStation;
+-(void)resetToStation;
 
 @end
