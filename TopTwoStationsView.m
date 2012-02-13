@@ -12,18 +12,6 @@
 #import "FastAccessTableViewController.h"
 #import "StationTextField.h"
 
-@interface UITextField (myCustomTextField)
-
-@end
-
-@implementation UITextField (myCustomTextField)
-
-- (CGRect)editingRectForBounds:(CGRect)bounds {
-    return CGRectInset(bounds, 20, 0);
-}
-
-@end
-
 @implementation TopTwoStationsView
 
 @synthesize toolbar;
@@ -32,6 +20,7 @@
 @synthesize firstButton;
 @synthesize secondButton;
 @synthesize tableView;
+@synthesize arrowView;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -53,10 +42,9 @@
 	UIImage *imageOpenList = [UIImage imageNamed:@"openlist.png"];
 	
 	UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [refreshButton setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
 	[refreshButton setImage:imageOpenList forState:UIControlStateNormal];
-	refreshButton.imageEdgeInsets = UIEdgeInsetsMake(-1.0, -13.0, 0, 0);
 	[refreshButton addTarget:self action:@selector(selectFromStation) forControlEvents:UIControlEventTouchUpInside];
-	refreshButton.bounds = CGRectMake(0,0, imageOpenList.size.width, imageOpenList.size.height);
     
 	firstStation = [[StationTextField alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
 	firstStation.delegate = self;
@@ -71,7 +59,8 @@
     firstStation.autocapitalizationType=UITextAutocapitalizationTypeNone; 
 	[firstStation setReturnKeyType:UIReturnKeyDone];
 	[firstStation setClearButtonMode:UITextFieldViewModeNever];
-    firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
+    firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
+    firstStation.tag = 111;
     
 	[toolbar addSubview:firstStation];	
     
@@ -84,9 +73,8 @@
     
 	UIButton *refreshButton2 = [UIButton buttonWithType:UIButtonTypeCustom];
 	[refreshButton2 setImage:imageOpenList forState:UIControlStateNormal];
-	refreshButton2.imageEdgeInsets = UIEdgeInsetsMake(-1, -13.0, 0, 0);
+    [refreshButton2 setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
 	[refreshButton2 addTarget:self action:@selector(selectToStation) forControlEvents:UIControlEventTouchUpInside];
-	refreshButton2.bounds = CGRectMake(0,0, imageOpenList.size.width, imageOpenList.size.height);
 	 
 	secondStation = [[StationTextField alloc] initWithFrame:CGRectMake(160, 0, 160, 44)];
 	secondStation.delegate=self;
@@ -101,7 +89,8 @@
 	[secondStation setReturnKeyType:UIReturnKeyDone];
 	[secondStation setClearButtonMode:UITextFieldViewModeNever];
 	secondStation.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
+    secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
+    secondStation.tag =222;
     
 	[toolbar addSubview:secondStation];
     
@@ -111,6 +100,12 @@
     self.secondButton=button2;
     
     [toolbar addSubview:button2];
+    
+    arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrowIcon.png"]];
+    [arrowView setFrame:CGRectMake(153, 6, 15, 15)];
+    [toolbar addSubview:arrowView];
+    arrowView.hidden=YES;
+    [arrowView release];
     
     [toolbar release];
 }
@@ -137,9 +132,6 @@
         firstStation.rightViewMode = UITextFieldViewModeAlways;
         firstStation.leftView=nil;
         firstStation.leftViewMode=UITextFieldViewModeAlways;
-        
-        UIButton *refreshButton2 = (UIButton*)firstStation.rightView;
-        refreshButton2.imageEdgeInsets = UIEdgeInsetsMake(-2.0, -21.0, 0, 0);
 
     }];
     
@@ -172,11 +164,9 @@
         firstStation.frame = CGRectMake(0, 0, 160, 44);
         firstStation.background = [UIImage imageNamed:@"toolbar_bg.png"];
 
-        UIButton *refreshButton2 = (UIButton*)firstStation.rightView;
-        refreshButton2.imageEdgeInsets = UIEdgeInsetsMake(-1.0, -13.0, 0, 0);
     }];
     
-    firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
+    firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
     
     firstStation.delegate=self;
     self.tableView=nil;
@@ -200,9 +190,6 @@
         
         secondStation.frame = CGRectMake(0, 0, 320, 44);
         secondStation.background = [UIImage imageNamed:@"toolbar_big_bg_lighted.png"];
-
-        UIButton *refreshButton2 = (UIButton*)secondStation.rightView;
-        refreshButton2.imageEdgeInsets = UIEdgeInsetsMake(-2.0, -21.0, 0, 0);
 
         secondStation.text = @"";
         secondStation.rightViewMode = UITextFieldViewModeAlways;
@@ -240,12 +227,9 @@
         secondStation.background = [UIImage imageNamed:@"toolbar_bg.png"];
         secondStation.frame = CGRectMake(160, 0, 160, 44);
         
-        UIButton *refreshButton2 = (UIButton*)secondStation.rightView;
-        refreshButton2.imageEdgeInsets = UIEdgeInsetsMake(-1.0, -13.0, 0, 0);
-
     }];
     
-    secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
+    secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
     
     secondStation.delegate=self;
     self.tableView=nil;
@@ -278,29 +262,71 @@
 
         UIButton *cancelButton1 = [UIButton buttonWithType:UIButtonTypeCustom];
         [cancelButton1 setImage:crossImage forState:UIControlStateNormal];
+        [cancelButton1 setFrame:CGRectMake(0.0, 0.0, crossImage.size.width, crossImage.size.height)];
         [cancelButton1 setImage:crossImageHighlighted forState:UIControlStateHighlighted];
-//        cancelButton1.imageEdgeInsets = UIEdgeInsetsMake(0.0, -2.0, 0, 0);
         [cancelButton1 addTarget:self action:@selector(resetFromStation) forControlEvents:UIControlEventTouchUpInside];
-        cancelButton1.bounds = CGRectMake(0,-1, crossImage.size.width, crossImage.size.height);
 
         UIButton *cancelButton2= [UIButton buttonWithType:UIButtonTypeCustom];
         [cancelButton2 setImage:crossImage forState:UIControlStateNormal];
+        [cancelButton2 setFrame:CGRectMake(0.0, 0.0, crossImage.size.width, crossImage.size.height)];
         [cancelButton2 setImage:crossImageHighlighted forState:UIControlStateHighlighted];
-  //      cancelButton2.imageEdgeInsets = UIEdgeInsetsMake(0.0, 2.0, 0, 0);
         [cancelButton2 addTarget:self action:@selector(resetToStation) forControlEvents:UIControlEventTouchUpInside];
-        cancelButton2.bounds = CGRectMake(0,0, crossImage.size.width, crossImage.size.height);
 
         firstStation.rightView= cancelButton1;
         firstStation.rightViewMode = UITextFieldViewModeAlways;
         secondStation.rightView = cancelButton2;
         secondStation.rightViewMode = UITextFieldViewModeAlways;
  
-        firstStation.frame = CGRectMake(0, 3, 160, 26);
-        secondStation.frame = CGRectMake(160, 3, 160, 26);
+        CGFloat addWidth = 60;
+        CGFloat maxWidth = 160;
         
-        self.frame=CGRectMake(0,0, 320, 26); 
-        self.toolbar.frame=CGRectMake(0,0, 320, 26); 
+        CGSize textBounds1 = [firstStation.text sizeWithFont:firstStation.font];
+        CGSize textBounds2 = [secondStation.text sizeWithFont:secondStation.font];
+        
+        CGFloat desireWidth1;
+        CGFloat desireWidth2;
+        CGFloat desireOrigin1;
+        CGFloat desireOrigin2;
+        CGFloat arrowOrigin;
+        
+        if (textBounds1.width+textBounds2.width+addWidth*2+arrowView.frame.size.width>maxWidth*2) {
+            if (textBounds1.width+addWidth>maxWidth && textBounds2.width+addWidth>maxWidth) {
+                desireWidth1=maxWidth;
+                desireWidth2=maxWidth;
+                desireOrigin1 = 0;
+                desireOrigin2 = 160;
+                arrowOrigin =arrowView.frame.origin.x;
+            } else if (textBounds1.width+addWidth>=maxWidth && textBounds2.width+addWidth<=maxWidth) {
+                desireWidth2=textBounds2.width+addWidth;
+                desireOrigin2=320-desireWidth2;
+                desireOrigin1=0;
+                desireWidth1 = desireOrigin2 - arrowView.frame.size.width;
+                arrowOrigin = desireWidth1+(desireOrigin2-desireWidth1)/2-8;
+            } else {
+                desireWidth1=textBounds1.width+addWidth;
+                desireOrigin1=0;
+                desireOrigin2=desireWidth1+arrowView.frame.size.width;
+                desireWidth2=320 -desireOrigin2;
+                arrowOrigin=desireWidth1;
+            }
+                
+        } else {
+            desireWidth1=textBounds1.width+addWidth;
+            desireWidth2=textBounds2.width+addWidth;
+            desireOrigin1=0;
+            desireOrigin2=320-desireWidth2;
+            arrowOrigin = desireWidth1+(desireOrigin2-desireWidth1)/2-8;
+        }
+        
+        firstStation.frame = CGRectMake(desireOrigin1, 0,desireWidth1, 26);
+        secondStation.frame = CGRectMake(desireOrigin2, 0, desireWidth2, 26);
+        
+        self.frame=CGRectMake(0, 0, 320, 26); 
+        self.toolbar.frame=CGRectMake(0, 0, 320, 26); 
         [toolbar setImage:[UIImage imageNamed:@"upper_path_bg.png"]];
+        
+        arrowView.hidden=NO;
+        arrowView.frame =CGRectMake(arrowOrigin, arrowView.frame.origin.y, arrowView.frame.size.width, arrowView.frame.size.height);
     }];
     
     firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
@@ -331,17 +357,17 @@
         
         UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [refreshButton setImage:imageOpenList forState:UIControlStateNormal];
-        refreshButton.imageEdgeInsets = UIEdgeInsetsMake(-1.0, -13.0, 0, 0);
         [refreshButton addTarget:self action:@selector(selectFromStation) forControlEvents:UIControlEventTouchUpInside];
-        refreshButton.bounds = CGRectMake(0,0, imageOpenList.size.width, imageOpenList.size.height);
+        [refreshButton setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
+
         
         firstStation.rightView = refreshButton;
 
         UIButton *refreshButton2 = [UIButton buttonWithType:UIButtonTypeCustom];
         [refreshButton2 setImage:imageOpenList forState:UIControlStateNormal];
-        refreshButton2.imageEdgeInsets = UIEdgeInsetsMake(-1.0, -13.0, 0, 0);
         [refreshButton2 addTarget:self action:@selector(selectToStation) forControlEvents:UIControlEventTouchUpInside];
-        refreshButton2.bounds = CGRectMake(0,0, imageOpenList.size.width, imageOpenList.size.height);
+        [refreshButton2 setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
+
         
         secondStation.rightView = refreshButton2;
        
@@ -354,14 +380,15 @@
         self.frame=CGRectMake(0,0, 320, 44); 
         self.toolbar.frame=CGRectMake(0,0, 320,44); 
        
-         [toolbar setImage:[UIImage imageNamed:@"toolbar_bg1.png"]];
+        [toolbar setImage:[UIImage imageNamed:@"toolbar_bg1.png"]];
         
+        arrowView.hidden=YES;
         
     }];
     
     
-    firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
-    secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
+    firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
+    secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
     
     shouldEnlarge =NO;
 
@@ -442,9 +469,8 @@
     if (fromStation) {
        
         firstStation.text = fromStation.name;
-        firstStation.contentVerticalAlignment=UIControlContentVerticalAlignmentCenter;
         
-        firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
+        firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
 
         firstStation.rightViewMode = UITextFieldViewModeNever;
         
@@ -474,9 +500,10 @@
     
     if (toStation) {
         secondStation.text = toStation.name;
+ 
         secondStation.rightViewMode = UITextFieldViewModeNever;
         
-        secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
+        secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
 
         UIImageView *lineColor = [[UIImageView alloc] initWithImage:[self imageWithColor:[toStation lines]]];
         [secondStation setLeftView:lineColor];
@@ -492,9 +519,30 @@
 
 -(UIImage*)drawCircleView:(UIColor*)myColor
 {
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(29,29), NO, 0.0);
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(10,10), NO, 0.0);
     
-    CGRect circleRect = CGRectMake(13.0, 8.0, 11.0, 11.0);
+    CGRect circleRect = CGRectMake(1.0, 1.0, 8.0, 8.0);
+	
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    const CGFloat* components = CGColorGetComponents(myColor.CGColor);
+    
+    CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor)); 
+    CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));  
+	CGContextSetLineWidth(context, 1.0);
+	CGContextFillEllipseInRect(context, circleRect);
+	CGContextStrokeEllipseInRect(context, circleRect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    return image;
+}
+
+-(UIImage*)drawBiggerCircleView:(UIColor*)myColor
+{
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(12,12), NO, 0.0);
+    
+    CGRect circleRect = CGRectMake(1.0, 1.0, 10.0, 10.0);
 	
     CGContextRef context = UIGraphicsGetCurrentContext();
     

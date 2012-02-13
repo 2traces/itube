@@ -33,7 +33,8 @@
         [clockView release];
         
         UIImageView *flagView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"flag.png"]];
-        flagView.frame = CGRectMake(246,5,14,14);
+        flagView.frame = CGRectMake(244,5,14,14);
+        flagView.tag=6500;
         [self addSubview:flagView];
         [flagView release];
         
@@ -51,10 +52,11 @@
         UILabel *arrivalTimeLabel = [[UILabel alloc] init];
         arrivalTimeLabel.backgroundColor = [UIColor clearColor];
         arrivalTimeLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:13.0];
-        arrivalTimeLabel.frame=CGRectMake(263.0, 7, 60, 15); 
+        arrivalTimeLabel.frame=CGRectMake(256.0, 7, 54, 15); 
         arrivalTimeLabel.shadowOffset = CGSizeMake(0, 1);
         arrivalTimeLabel.shadowColor = [UIColor whiteColor];
         arrivalTimeLabel.tag=7000;
+        arrivalTimeLabel.textAlignment=UITextAlignmentRight;
         [self addSubview:arrivalTimeLabel];
         [arrivalTimeLabel release];
         

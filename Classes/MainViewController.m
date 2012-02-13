@@ -361,9 +361,19 @@
         
         NSInteger travelTime = [self dsGetTravelTime];
  
-        [(UILabel*)[self.scrollView viewWithTag:6000+i] setText:[NSString stringWithFormat:@"%d minutes",travelTime]];
-        [(UILabel*)[self.scrollView viewWithTag:7000+i] setText:[NSString stringWithFormat:@"%@",[self getArrivalTimeFromNow:travelTime]]];
+        [(UILabel*)[self.scrollView viewWithTag:6000+i] setText:[NSString stringWithFormat:@"%d minutes",travelTime]];        
         
+        NSString *arrivalTime = [self getArrivalTimeFromNow:travelTime];
+        CGSize atSize = [arrivalTime sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:13.0]];
+        CGRect labelRect = [(UILabel*)[self.scrollView viewWithTag:7000+i] frame];
+        CGFloat labelStart = 310.0-atSize.width-2.0;
+        [(UILabel*)[self.scrollView viewWithTag:7000+i] setFrame:CGRectMake(labelStart, labelRect.origin.y, atSize.width+2.0, labelRect.size.height)];
+        [(UILabel*)[self.scrollView viewWithTag:7000+i] setText:[NSString stringWithFormat:@"%@",arrivalTime]];
+        
+        CGRect flagRect = [(UILabel*)[self.scrollView viewWithTag:6500+i] frame];
+        [(UIImageView*)[self.scrollView viewWithTag:6500+i] setFrame:CGRectMake(labelStart-flagRect.size.width-2.0, flagRect.origin.y, flagRect.size.width, flagRect.size.height)];
+         
+         
         [(PathDrawView*)[self.scrollView viewWithTag:10000+i] setDelegate:self];
         [[self.scrollView viewWithTag:10000+i] setNeedsDisplay];
     }
@@ -716,13 +726,39 @@
     [[(MainView*)self.view viewWithTag:333] removeFromSuperview];
 }
 
+-(void)toggleTap
+{
+    [self returnFromSelectionFastAccess:nil];
+    if (currentSelection==0) {
+        [stationsView.firstStation resignFirstResponder];
+    } else {
+        [stationsView.secondStation resignFirstResponder];
+    }
+}
+
 -(FastAccessTableViewController*)showTableView
 {
+    UIView *blackView = [[UIView alloc] initWithFrame:CGRectMake(0,44,320,440)];
+    blackView.backgroundColor  = [UIColor blackColor];
+    blackView.alpha=0.4;
+    blackView.tag=554;
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleTap)];
+    [blackView addGestureRecognizer:tapGesture];
+    [tapGesture release];
+
+    [(MainView*)self.view addSubview:blackView];
+    [blackView release];
+    
     FastAccessTableViewController *tableViewC=[[[FastAccessTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
     tableViewC.view.frame=CGRectMake(0,44,320,200);
     
+    tableViewC.tableView.hidden=YES;
+    
     [[NSNotificationCenter defaultCenter] addObserver:tableViewC selector:@selector(textDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+    
     tableViewC.tableView.tag=555;
+    
     [(MainView*)self.view addSubview:tableViewC.tableView];
     [(MainView*)self.view bringSubviewToFront:tableViewC.tableView];
     
@@ -731,6 +767,7 @@
 
 -(void)removeTableView
 {
+    [[(MainView*)self.view viewWithTag:554] removeFromSuperview];
     [[(MainView*)self.view viewWithTag:555] removeFromSuperview];
 }
 
@@ -796,20 +833,22 @@
         // это конкретная станция
         if (currentSelection==0) {
             if ([stations objectAtIndex:0]==self.toStation) {
-                self.fromStation=nil;
+                //self.fromStation=nil;
+                [stationsView resetFromStation];
             } else {
                 self.fromStation = [stations objectAtIndex:0];
+                [stationsView setFromStation:self.fromStation];
             }
-            
-            [stationsView setFromStation:self.fromStation];
         } else {
             if ([stations objectAtIndex:0]==self.fromStation) {
-                self.toStation=nil;
+                //self.toStation=nil;
+                [stationsView resetToStation];
             } else {
                 self.toStation = [stations objectAtIndex:0];
+                [stationsView setToStation:self.toStation];
             }
             
-            [stationsView setToStation:self.toStation];
+           
         }
         
     } else if ([stations count]==0) {
