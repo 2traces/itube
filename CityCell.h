@@ -13,6 +13,6 @@
     IBOutlet UILabel *cityName;
 }
 
-@property IBOutlet UILabel* cityName;
+@property (nonatomic, retain) IBOutlet UILabel* cityName;
 
 @end

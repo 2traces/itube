@@ -38,4 +38,7 @@
 -(UIImage*)drawCircleView:(UIColor*)myColor;
 -(void)transitToPathView;
 
+-(void)resetFromStation;
+-(void)resetToStation;
+
 @end

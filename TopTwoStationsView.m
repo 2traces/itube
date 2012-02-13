@@ -277,14 +277,56 @@
         secondStation.rightView = cancelButton2;
         secondStation.rightViewMode = UITextFieldViewModeAlways;
  
-        firstStation.frame = CGRectMake(0, 0, 160, 26);
-        secondStation.frame = CGRectMake(160, 0, 160, 26);
+        CGFloat addWidth = 60;
+        CGFloat maxWidth = 160;
+        
+        CGSize textBounds1 = [firstStation.text sizeWithFont:firstStation.font];
+        CGSize textBounds2 = [secondStation.text sizeWithFont:secondStation.font];
+        
+        CGFloat desireWidth1;
+        CGFloat desireWidth2;
+        CGFloat desireOrigin1;
+        CGFloat desireOrigin2;
+        CGFloat arrowOrigin;
+        
+        if (textBounds1.width+textBounds2.width+addWidth*2+arrowView.frame.size.width>maxWidth*2) {
+            if (textBounds1.width+addWidth>maxWidth && textBounds2.width+addWidth>maxWidth) {
+                desireWidth1=maxWidth;
+                desireWidth2=maxWidth;
+                desireOrigin1 = 0;
+                desireOrigin2 = 160;
+                arrowOrigin =arrowView.frame.origin.x;
+            } else if (textBounds1.width+addWidth>=maxWidth && textBounds2.width+addWidth<=maxWidth) {
+                desireWidth2=textBounds2.width+addWidth;
+                desireOrigin2=320-desireWidth2;
+                desireOrigin1=0;
+                desireWidth1 = desireOrigin2 - arrowView.frame.size.width;
+                arrowOrigin = desireWidth1+(desireOrigin2-desireWidth1)/2-8;
+            } else {
+                desireWidth1=textBounds1.width+addWidth;
+                desireOrigin1=0;
+                desireOrigin2=desireWidth1+arrowView.frame.size.width;
+                desireWidth2=320 -desireOrigin2;
+                arrowOrigin=desireWidth1;
+            }
+                
+        } else {
+            desireWidth1=textBounds1.width+addWidth;
+            desireWidth2=textBounds2.width+addWidth;
+            desireOrigin1=0;
+            desireOrigin2=320-desireWidth2;
+            arrowOrigin = desireWidth1+(desireOrigin2-desireWidth1)/2-8;
+        }
+        
+        firstStation.frame = CGRectMake(desireOrigin1, 0,desireWidth1, 26);
+        secondStation.frame = CGRectMake(desireOrigin2, 0, desireWidth2, 26);
         
         self.frame=CGRectMake(0, 0, 320, 26); 
         self.toolbar.frame=CGRectMake(0, 0, 320, 26); 
         [toolbar setImage:[UIImage imageNamed:@"upper_path_bg.png"]];
         
         arrowView.hidden=NO;
+        arrowView.frame =CGRectMake(arrowOrigin, arrowView.frame.origin.y, arrowView.frame.size.width, arrowView.frame.size.height);
     }];
     
     firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
@@ -480,6 +522,27 @@
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(10,10), NO, 0.0);
     
     CGRect circleRect = CGRectMake(1.0, 1.0, 8.0, 8.0);
+	
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    const CGFloat* components = CGColorGetComponents(myColor.CGColor);
+    
+    CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor)); 
+    CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));  
+	CGContextSetLineWidth(context, 1.0);
+	CGContextFillEllipseInRect(context, circleRect);
+	CGContextStrokeEllipseInRect(context, circleRect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    return image;
+}
+
+-(UIImage*)drawBiggerCircleView:(UIColor*)myColor
+{
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(12,12), NO, 0.0);
+    
+    CGRect circleRect = CGRectMake(1.0, 1.0, 10.0, 10.0);
 	
     CGContextRef context = UIGraphicsGetCurrentContext();
     

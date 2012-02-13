@@ -37,7 +37,6 @@
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
 
 -(UIImage*)drawCircleView:(UIColor*)myColor;
--(UIColor*)saturateColor:(UIColor*)startColor;
 
 @end
 
