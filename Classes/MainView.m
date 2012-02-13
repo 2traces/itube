@@ -136,7 +136,8 @@ NSInteger const toolbarWidth=320;
     [self addSubview:destinationButton];
     
     UIButton *settings = [UIButton buttonWithType:UIButtonTypeCustom];
-    [settings setImage:[UIImage imageNamed:@"settings_btn"] forState:UIControlStateNormal];
+    [settings setImage:[UIImage imageNamed:@"settings_btn_normal"] forState:UIControlStateNormal];
+    [settings setImage:[UIImage imageNamed:@"settings_btn"] forState:UIControlStateHighlighted];
     settings.frame = CGRectMake(285, 420, 23, 23);
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:settings];
