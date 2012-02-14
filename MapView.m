@@ -29,6 +29,7 @@
 @synthesize backgroundNormal = background1;
 @synthesize backgroundDisabled = background2;
 @synthesize backgroundVector;
+@synthesize backgroundVectorDisabled = backgroundVector2;
 @synthesize showVectorLayer;
 
 + (Class)layerClass
@@ -48,7 +49,13 @@
 {
     if(showVectorLayer != _showVectorLayer) {
         showVectorLayer = _showVectorLayer;
-        backgroundVector.hidden = !_showVectorLayer;
+        if(_showVectorLayer) {
+            backgroundVector.hidden = background1.hidden;
+            backgroundVector2.hidden = background2.hidden;
+        } else {
+            backgroundVector.hidden = YES;
+            backgroundVector2.hidden = YES;
+        }
         // это недокументированный метод, так что если он в будущем изменится, то ой
         [self.layer invalidateContents];
         [self setNeedsDisplay];
@@ -186,6 +193,23 @@
     backgroundVector.contentMode = UIViewContentModeScaleAspectFit;
     backgroundVector.hidden = NO;
     UIGraphicsEndImageContext();
+    
+    //disabled vector background
+    UIGraphicsBeginImageContext(minSize);
+    context = UIGraphicsGetCurrentContext();
+    CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
+    CGContextFillRect(context,CGRectMake(0, 0, minSize.width, minSize.height));
+    CGContextScaleCTM(context, backScale, backScale);
+    vectorLayer.enabled = NO;
+    [vectorLayer draw:context inRect:r];
+    img = UIGraphicsGetImageFromCurrentImageContext();
+    [backgroundVector2 release];
+    backgroundVector2 = [[UIImageView alloc] initWithImage:img];
+    backgroundVector2.frame = CGRectMake(0, 0, img.size.width, img.size.height);
+    backgroundVector2.contentMode = UIViewContentModeScaleAspectFit;
+    backgroundVector2.hidden = NO;
+    UIGraphicsEndImageContext();
+    vectorLayer.enabled = YES;
 }
 
 -(void)showLabel
@@ -219,6 +243,8 @@
     for(int i=0; i<MAXCACHE; i++) CGLayerRelease(cacheLayer[i]);
     [background1 release];
     [background2 release];
+    [backgroundVector release];
+    [backgroundVector2 release];
 }
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)context {
@@ -307,8 +333,11 @@
     [pathArray addObjectsFromArray:[cityMap calcPath:fSt :sSt :fStl :sStl]];
 	[pathArray insertObject:[GraphNode nodeWithName:fSt andLine:fStl ] atIndex:0];
 	
+    vectorLayer.enabled = false;
     background1.hidden = YES;
     background2.hidden = NO;
+    backgroundVector.hidden = YES;
+    backgroundVector2.hidden = NO;
     [cityMap activatePath:pathArray];
     [scrollView zoomToRect:cityMap.activeExtent animated:YES];
     // это недокументированный метод, так что если он в будущем изменится, то ой
@@ -320,8 +349,11 @@
 -(void) clearPath
 {
     if([cityMap.activePath count] > 0) {
+        vectorLayer.enabled = true;
         background1.hidden = NO;
         background2.hidden = YES;
+        backgroundVector.hidden = NO;
+        backgroundVector2.hidden = YES;
         [cityMap resetPath];
         // это недокументированный метод, так что если он в будущем изменится, то ой
         [self.layer invalidateContents];

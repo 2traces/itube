@@ -46,7 +46,7 @@ extern int const imagesCount;
     CGLayerRef cacheLayer[MAXCACHE];
     int currentCacheLayer;
     // background prerendered images (normal and gray)
-    UIImageView *background1, *background2, *backgroundVector;
+    UIImageView *background1, *background2, *backgroundVector, *backgroundVector2;
     VectorLayer *vectorLayer;
     BOOL showVectorLayer;
 }
@@ -72,6 +72,7 @@ extern int const imagesCount;
 @property (nonatomic, readonly) UIImageView* backgroundNormal;
 @property (nonatomic, readonly) UIImageView* backgroundDisabled;
 @property (nonatomic, readonly) UIImageView* backgroundVector;
+@property (nonatomic, readonly) UIImageView* backgroundVectorDisabled;
 @property (nonatomic, readonly) UIView* labelView;
 @property (nonatomic, assign) BOOL showVectorLayer;
 

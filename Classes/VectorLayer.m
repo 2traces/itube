@@ -11,13 +11,16 @@
 @implementation VectorLine
 
 @synthesize boundingBox;
+@synthesize enabled;
 
--(id) initWithPoints:(NSArray *)points andColor:(CGColorRef)color
+-(id) initWithPoints:(NSArray *)points color:(CGColorRef)color andDisabledColor:(CGColorRef)dcol
 {
     if((self = [super init])) {
         col = CGColorRetain(color);
+        disabledCol = CGColorRetain(dcol);
         width = [[points lastObject] intValue];
         path = CGPathCreateMutable();
+        enabled = YES;
         NSRange range;
         range.location = 0;
         range.length = [points count] - 1;
@@ -39,12 +42,14 @@
 -(void) dealloc
 {
     CGColorRelease(col);
+    CGColorRelease(disabledCol);
     CGPathRelease(path);
 }
 
 -(void) draw:(CGContextRef)context
 {
-    CGContextSetStrokeColorWithColor(context, col);
+    if(enabled) CGContextSetStrokeColorWithColor(context, col);
+    else CGContextSetStrokeColorWithColor(context, disabledCol);
     CGContextSetLineWidth(context, width);
     CGContextSetLineCap(context, kCGLineCapRound);
     CGContextSetLineJoin(context, kCGLineJoinRound);
@@ -57,12 +62,15 @@
 @implementation VectorPolygon
 
 @synthesize boundingBox;
+@synthesize enabled;
 
--(id) initWithPoints:(NSArray *)points andColor:(CGColorRef)color
+-(id) initWithPoints:(NSArray *)points color:(CGColorRef)color andDisabledColor:(CGColorRef)dcol
 {
     if((self = [super init])) {
         col = CGColorRetain(color);
+        disabledCol = CGColorRetain(dcol);
         path = CGPathCreateMutable();
+        enabled = YES;
         BOOL first = YES;
         for (NSString *s in points) {
             NSArray *c = [s componentsSeparatedByString:@","];
@@ -83,12 +91,14 @@
 -(void)dealloc
 {
     CGColorRelease(col);
+    CGColorRelease(disabledCol);
     CGPathRelease(path);
 }
 
 -(void)draw:(CGContextRef)context
 {
-    CGContextSetFillColorWithColor(context, col);
+    if(enabled) CGContextSetFillColorWithColor(context, col);
+    else CGContextSetStrokeColorWithColor(context, disabledCol);
     CGContextAddPath(context, path);
     CGContextFillPath(context);
 }
@@ -100,6 +110,7 @@
 -(id)initWithFile:(NSString *)fileName
 {
     if((self = [super init])) {
+        enabled = YES;
         colorSpace = CGColorSpaceCreateDeviceRGB();
         elements = [[NSMutableArray alloc] init];
         [self loadFrom:fileName];
@@ -113,6 +124,17 @@
     CGColorRelease(brushColor);
     CGColorRelease(penColor);
     CGColorSpaceRelease(colorSpace);
+}
+
+-(BOOL) enabled {
+    return enabled;
+}
+
+-(void) setEnabled:(BOOL)_enabled {
+    enabled = _enabled;
+    for (id element in elements) {
+        [element setEnabled:enabled];
+    }
 }
 
 - (CGColorRef) colorForHex:(NSString *)hexColor {
@@ -161,6 +183,36 @@
     return CGColorCreate(colorSpace, components);
 }
 
+-(CGColorRef) disabledColor:(CGColorRef)normalColor {
+    const CGFloat *rgba = CGColorGetComponents(normalColor);
+    CGFloat r, g, b, M, m, sd;
+    r = rgba[0];
+    g = rgba[1];
+    b = rgba[2];
+    
+    // set brightness to 90%
+    M = MAX(r, MAX(g, b));
+    sd = 0.9f / M;
+    r *= sd;
+    g *= sd;
+    b *= sd;
+    M = 0.9f;
+    
+    // set saturation to 10%
+    m = MIN(r, MIN(g, b));
+    sd = (0.1f * M) / (M-m);
+    r = M - (M-r)*sd;
+    g = M - (M-g)*sd;
+    b = M - (M-b)*sd;
+    
+    float components[4];
+    components[0] = r;
+    components[1] = g;
+    components[2] = b;
+    components[3] = 1.f;
+    return CGColorCreate(colorSpace, components);
+}
+
 
 -(void)loadFrom:(NSString *)fileName
 {
@@ -186,13 +238,13 @@
             NSRange range;
             range.location = 1;
             range.length = [words count] - 1;
-            [elements addObject:[[VectorLine alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] andColor:penColor]];
+            [elements addObject:[[VectorLine alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:penColor andDisabledColor:[self disabledColor:penColor]]];
             
         } else if([w isEqualToString:@"polygon"]) {
             NSRange range;
             range.location = 1;
             range.length = [words count] - 1;
-            [elements addObject:[[VectorPolygon alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] andColor:brushColor]];
+            [elements addObject:[[VectorPolygon alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:brushColor andDisabledColor:[self disabledColor:brushColor]]];
             
         }
     }];
