@@ -8,6 +8,7 @@
 
 #import "PathDrawView.h"
 #import "ManagedObjects.h"
+#import "UIColor-enhanced.h"
 
 @implementation PathDrawView
 
@@ -29,8 +30,8 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    CGFloat overallLineWidth = 265.0f;
-    CGFloat lineStart = 40.0f;
+    CGFloat overallLineWidth = 261.0f;
+    CGFloat lineStart = 44.0f;
     //   CGFloat lineEnd = lineStart + overallLineWidth;
     CGFloat y = 29.0f+rect.origin.y;
     
@@ -40,6 +41,11 @@
     
     NSArray *colorArray = [delegate dsGetLinesColorArray];
     NSArray *timeArray = [delegate dsGetLinesTimeArray];
+    
+    for (UIColor *color1 in colorArray) {
+        color1 = [color1 saturatedColor]; 
+    }
+    
     
     points = [[NSMutableArray alloc] initWithCapacity:1];
     
@@ -70,15 +76,24 @@
         
     }
     
+    UIColor *lineColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.6];
+    
+    CGContextSetStrokeColorWithColor(c, [lineColor CGColor]);
+    CGContextBeginPath(c);
+    CGContextSetLineWidth(c, 1.0);
+    CGContextMoveToPoint(c, lineStart+1.0, y+4.0);
+    CGContextAddLineToPoint(c, lineStart+overallLineWidth-1.0, y+4.0);
+    CGContextStrokePath(c);
+    
     //first point
     CGRect firstRect = CGRectMake(lineStart,y,8,8);
-    CGRect firstCircleRect = CGRectMake(firstRect.origin.x, firstRect.origin.y-4.0, 8, 8);
+    CGRect firstCircleRect = CGRectMake(firstRect.origin.x -4.0, firstRect.origin.y-4.0, 8, 8);
     
     [self drawCircleInRect:firstCircleRect color:[colorArray objectAtIndex:0] context:c];
     
     // last point
     CGRect lastRect = CGRectMake(overallLineWidth+lineStart,y,6,6);
-    CGRect lastCircleRect = CGRectMake(lastRect.origin.x , lastRect.origin.y -4.0, 8, 8);
+    CGRect lastCircleRect = CGRectMake(lastRect.origin.x - 4.0 , lastRect.origin.y -4.0, 8, 8);
     
     [self drawCircleInRect:lastCircleRect color:[colorArray lastObject] context:c];
   

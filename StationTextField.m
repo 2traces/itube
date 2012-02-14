@@ -30,14 +30,51 @@
 }
 */
 
--(void)layoutSubviews
+- (CGRect)rightViewRectForBounds:(CGRect)bounds
 {
-    if (state==3) {
-        CGRect rect = self.rightView.frame;
-        self.rightView.frame = CGRectMake(self.rightView.frame.origin.x-20,self.rightView.frame.origin.y-20.0, self.rightView.frame.size.width, self.rightView.frame.size.height);
-    }
+    CGRect rightViewFrame = self.rightView.frame;
     
-    [super layoutSubviews];
+    CGRect newFrame;
+    
+    newFrame.origin.x=bounds.size.width-rightViewFrame.size.width-bounds.size.width*0.0375;
+    newFrame.origin.y=bounds.size.height/2-rightViewFrame.size.height/2;
+    newFrame.size.width=rightViewFrame.size.width;
+    newFrame.size.height = rightViewFrame.size.height;
+    
+    return newFrame;
+}
+
+
+- (CGRect)leftViewRectForBounds:(CGRect)bounds
+{
+    CGRect leftViewFrame = self.leftView.frame;
+    
+    CGRect newFrame;
+    
+    newFrame.origin.x=13.0;
+    newFrame.origin.y=bounds.size.height/2-leftViewFrame.size.height/2;
+    newFrame.size.width=leftViewFrame.size.width;
+    newFrame.size.height = leftViewFrame.size.height;
+    
+    return newFrame;
+}
+
+- (CGRect)editingRectForBounds:(CGRect)bounds {
+    return CGRectInset(bounds, 20, 0);
+}
+
+-(void) drawTextInRect:(CGRect)rect
+{
+    
+    CGRect newFrame;
+    CGSize textBounds = [self.text sizeWithFont:self.font];
+    
+    newFrame.origin.x=3.0;
+    newFrame.origin.y=3.0;
+    newFrame.size.width=rect.size.width-10.0;
+    newFrame.size.height = textBounds.height;
+    
+    [super drawTextInRect:newFrame];
 }
 
 @end

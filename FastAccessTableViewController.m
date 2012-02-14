@@ -57,6 +57,11 @@
 {
     UITextField *tf = [note object];
     [self filterContentForSearchText:tf.text scope:nil];
+    
+    if (self.tableView.hidden) {
+        self.tableView.hidden=NO;
+    }
+    
     [self.tableView reloadData];
 }
 
