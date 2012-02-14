@@ -108,6 +108,7 @@
     [arrowView release];
     
     [toolbar release];
+
 }
 
 -(void)transitFirstToBigField

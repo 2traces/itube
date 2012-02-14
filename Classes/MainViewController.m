@@ -49,6 +49,9 @@
     
     TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] initWithFrame:CGRectMake(0,0,320,44)];
     self.stationsView = twoStationsView;
+    [self.stationsView.layer setShadowRadius:15.f];
+    [self.stationsView.layer setShadowOffset:CGSizeMake(0, 10)];
+    [self.stationsView.layer setShadowOpacity:0.5f];
     [(MainView*)self.view addSubview:twoStationsView];
     [twoStationsView release];
 }
@@ -377,8 +380,7 @@
         [(PathDrawView*)[self.scrollView viewWithTag:10000+i] setDelegate:self];
         [[self.scrollView viewWithTag:10000+i] setNeedsDisplay];
     }
-    
-
+    [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
 }
 
 -(IBAction)changeView:(id)sender
@@ -724,6 +726,7 @@
     [self.scrollView removeFromSuperview];
     self.scrollView=nil;
     [[(MainView*)self.view viewWithTag:333] removeFromSuperview];
+    [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 44, 320, 480-64)];
 }
 
 -(void)toggleTap
