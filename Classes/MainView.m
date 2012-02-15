@@ -146,12 +146,12 @@ NSInteger const toolbarWidth=320;
     [self addSubview:settings];
     
     zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    [zones setTitle:@"Zones" forState:UIControlStateNormal];
-    [zones setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [zones setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [zones setBackgroundImage:[UIImage imageNamed:@"zones_btn_normal"] forState:UIControlStateNormal];
-    [zones setBackgroundImage:[UIImage imageNamed:@"zones_btn_pressed"] forState:UIControlStateSelected];
-    zones.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:11.f];
+    //[zones setTitle:@"Zones" forState:UIControlStateNormal];
+    //[zones setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    //[zones setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [zones setImage:[UIImage imageNamed:@"zones_btn_normal"] forState:UIControlStateNormal];
+    [zones setImage:[UIImage imageNamed:@"zones_btn_pressed"] forState:UIControlStateSelected];
+    //zones.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:11.f];
     zones.frame = CGRectMake(20, 420, 42, 23);
     [zones addTarget:self action:@selector(switchZones) forControlEvents:UIControlEventTouchUpInside];
     [zones setSelected:mapView.showVectorLayer];

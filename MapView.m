@@ -105,12 +105,10 @@
         lineLabel.backgroundColor = [UIColor clearColor];
         lineLabel.shadowColor = [UIColor whiteColor];
         lineLabel.shadowOffset = CGSizeMake(0.5f, 1.f);
-        circleLabel = [[UIView alloc] initWithFrame:CGRectMake(10, 8, 22, 22)];
+        circleLabel = [[UIView alloc] initWithFrame:CGRectMake(10, 8, 21, 21)];
         circleLabel.layer.cornerRadius = 11.f;
         circleLabel.backgroundColor = [UIColor redColor];
-        circleLabel.layer.shadowOffset = CGSizeMake(0.5f, 1.f);
-        circleLabel.layer.shadowRadius = 1.f;
-        circleLabel.layer.shadowOpacity = 1.0f;
+        [circleLabel addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"embossed_circle"]]];
         
         labelBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"station_label"]];
         [labelBg addSubview:mainLabel];
