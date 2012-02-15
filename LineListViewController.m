@@ -52,7 +52,7 @@
     self.colorDictionary = [[[NSMutableDictionary alloc] initWithCapacity:[self.lineList count]] autorelease];
     
     [self.mytableView setBackgroundColor:[UIColor clearColor]];
-    self.imageView.image = [UIImage imageNamed:@"tablebackground.png"];
+    self.imageView.image = [UIImage imageNamed:@"lines_shadow.png"];
     
     // Set up default values.
     self.mytableView.sectionHeaderHeight = HEADER_HEIGHT;

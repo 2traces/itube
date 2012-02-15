@@ -77,4 +77,25 @@
     [super drawTextInRect:newFrame];
 }
 
+- (void)drawPlaceholderInRect:(CGRect)rect 
+{
+    CGRect newFrame;
+    CGSize textBounds = [self.placeholder sizeWithFont:self.font];
+    
+    newFrame.origin.x=18.0;
+    newFrame.origin.y=3.0;
+    newFrame.size.width=rect.size.width-10.0;
+    newFrame.size.height = textBounds.height;
+    
+    [super drawPlaceholderInRect:newFrame];
+}
+
+
+/*
+- (void) drawPlaceholderInRect:(CGRect)rect {
+    [[UIColor blueColor] setFill];
+    [[self placeholder] drawInRect:rect withFont:[UIFont systemFontOfSize:16]];
+}
+*/
+
 @end

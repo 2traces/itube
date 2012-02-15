@@ -31,6 +31,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>MyriadPro-Regular.otf</string>
+		<string>MyriadPro-Semibold.otf</string>
 	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>

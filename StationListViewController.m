@@ -45,7 +45,7 @@
     [self createStationIndex];
     
     [self.mytableView setBackgroundColor:[UIColor clearColor]];
-    self.imageView.image = [UIImage imageNamed:@"tablebackground.png"];
+    self.imageView.image = [UIImage imageNamed:@"lines_shadow.png"];
     
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 45)];
     searchBar.barStyle=UIBarStyleDefault;
