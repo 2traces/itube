@@ -38,7 +38,7 @@
     self.dataSource = helper;
     
     [self.mytableView setBackgroundColor:[UIColor clearColor]];
-    self.imageView.image = [UIImage imageNamed:@"tablebackground.png"];
+    self.imageView.image = [UIImage imageNamed:@"lines_shadow.png"];
     
 //    self.stationList = [NSMutableArray arrayWithArray:[dataSource getFavoriteStationList]];
     

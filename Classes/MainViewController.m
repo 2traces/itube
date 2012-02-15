@@ -103,14 +103,11 @@
     int currentIndexLine = -1;
     
     for (int i=0; i<objectNum; i++) {
-     /*   if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]] && i==0) {
+        if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]] && i==0) {
+                // начинаем с пересадки
+            [colorArray addObject:[[self.fromStation lines] color]];
             
-            Transfer *transfer = (Transfer*)[path objectAtIndex:i];
-            Station *station = [[transfer stations] ob
-            
-        } else */
-                                
-        if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
+        } else if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
             
             Segment *segment = (Segment*)[path objectAtIndex:i];
             
@@ -119,12 +116,10 @@
                 currentIndexLine=[[[segment start] line] index];
             }
             
+        } else if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]] && i==objectNum-1) {
+            // заканчиваем пересадкой
+            [colorArray addObject:[[self.toStation lines] color]];
         }
-        
-        /*else if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]] && i==objectNum-1) {
-            
-        }*/
-
     }
     
     return colorArray;
@@ -350,9 +345,22 @@
         [(MainView*)self.view bringSubviewToFront:scrollView];
         
         UIButton *changeViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [changeViewButton setImage:[UIImage imageNamed:@"switch_to_path.png"] forState:UIControlStateNormal];
-        //   [changeViewButton addTarget:self action:@selector(changeView:) forControlEvents:UIControlEventTouchUpInside];
-        [changeViewButton setFrame:CGRectMake(250 , 66 , 36, 37)];
+        UIImage *img = [UIImage imageNamed:@"switch_to_path.png"];
+        [changeViewButton setImage:img forState:UIControlStateNormal];
+        [changeViewButton addTarget:self action:@selector(changeView:) forControlEvents:UIControlEventTouchUpInside];
+                
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        
+        [formatter setTimeStyle:NSDateFormatterShortStyle];
+        [formatter setDateStyle:NSDateFormatterNoStyle];
+
+        NSString *dateString = [formatter stringFromDate:[NSDate date]];
+        
+        CGSize dateSize = [dateString sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
+        
+        [formatter release];
+        
+        [changeViewButton setFrame:CGRectMake(320.0-12.0-dateSize.width-img.size.width , 66 , img.size.width, img.size.height)];
         [changeViewButton setTag:333];
         [(MainView*)self.view addSubview:changeViewButton];
     } 
@@ -378,7 +386,15 @@
         [[self.scrollView viewWithTag:10000+i] setNeedsDisplay];
     }
     
+//    [[(MainView*)self.view containerView] setFrame:CGRectMake(0.0, 100.0, 320.0, 200.0)];
+}
 
+-(void)removeScrollView
+{
+  //  [[(MainView*)self.view containerView] setFrame:CGRectMake(0.0, 44.0, 320.0, 436.0)];
+    [self.scrollView removeFromSuperview];
+    self.scrollView=nil;
+    [[(MainView*)self.view viewWithTag:333] removeFromSuperview];
 }
 
 -(IBAction)changeView:(id)sender
@@ -386,7 +402,7 @@
     
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    CGFloat transferHeight = 85.0f;
+    CGFloat transferHeight = 90.0f;
     CGFloat stationHeight = 20.0f;
     CGFloat finalHeight = 60.0f;
     
@@ -539,12 +555,15 @@
                 
                 // -------
                 
-                UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(275.0, currentY, 240.0, 25.0)];
-
                 time = [[[stationsTime objectAtIndex:j] objectAtIndex:jj] intValue];
-                
+
                 NSString *dateString = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
                 
+                CGSize dateSize = [dateString sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
+                
+                UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize.width, currentY, dateSize.width, 25.0)];
+
+                dateLabel.textAlignment = UITextAlignmentRight;
                 dateLabel.text = dateString;
                 dateLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.0];
                 dateLabel.backgroundColor = [UIColor clearColor];
@@ -719,13 +738,6 @@
     }
 }
 
--(void)removeScrollView
-{
-    [self.scrollView removeFromSuperview];
-    self.scrollView=nil;
-    [[(MainView*)self.view viewWithTag:333] removeFromSuperview];
-}
-
 -(void)toggleTap
 {
     [self returnFromSelectionFastAccess:nil];
@@ -863,7 +875,11 @@
     
     if ((self.fromStation==nil || self.toStation==nil)) {
         [mainView.mapView clearPath];
-        [self removeScrollView];
+        
+        if (self.scrollView) {
+            [self removeScrollView];
+        }
+        
         if (self.pathScrollView) {
             [self changeView:nil];
         }

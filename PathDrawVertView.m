@@ -31,7 +31,7 @@
     CGFloat lineStart = 20.0f;
     CGFloat x=20.0f;
     
-    CGFloat transferHeight = 85.0f;
+    CGFloat transferHeight = 90.0f;
     CGFloat stationHeight = 20.0f;
     CGFloat finalHeight = 60.0f;
     
@@ -191,9 +191,12 @@
     const CGFloat* components = CGColorGetComponents([color CGColor]);
     CGContextSetRGBStrokeColor(c, components[0],components[1], components[2],  CGColorGetAlpha([color CGColor])); 
     CGContextSetRGBFillColor(c, components[0],components[1], components[2],  CGColorGetAlpha([color CGColor]));  
-    CGContextSetLineWidth(c, 2.0);
+    CGContextSetLineWidth(c, 0.0);
     CGContextFillEllipseInRect(c, circleRect);
     CGContextStrokeEllipseInRect(c, circleRect);
+    
+    UIImage *bevelImg = [UIImage imageNamed:@"bevel.png"];    
+    [bevelImg drawInRect:circleRect]; 
 }
 
 @end
