@@ -136,7 +136,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
 }
 
-+(void) drawTransferLikeParis:(CGContextRef)context stations:(NSArray*)stations
++(void) drawTransferLikeParis:(CGContextRef)context stations:(NSArray*)stations drawTerminals:(BOOL)terminals
 {
     CGFloat blackW = LineWidth / 3.f;
     CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
@@ -177,7 +177,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 drawLine(context, p1.x, p1.y, p2.x, p2.y, LineWidth*2-blackW);
         }
     }
-    for (Station *st in stations) {
+    if(terminals) for (Station *st in stations) {
         if(st.terminal) {
             CGPoint p1 = st.pos;
             CGContextSetFillColorWithColor(context, [st.line.color CGColor]);
@@ -220,14 +220,26 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)draw:(CGContextRef)context
 {
-    if(transferLayer != nil) CGContextDrawLayerInRect(context, boundingBox, transferLayer);
-    else {
+    if(transferLayer != nil) {
+        CGContextDrawLayerInRect(context, boundingBox, transferLayer);
+        if(TrKind == LIKE_PARIS) {
+            for (Station *st in stations) {
+                if(st.terminal) {
+                    if(st.active) {
+                        CGContextDrawLayerInRect(context, st.boundingBox, st.line.stationLayer);
+                    } else {
+                        CGContextDrawLayerInRect(context, st.boundingBox, st.line.disabledStationLayer);
+                    }
+                }
+            }
+        }
+    } else {
         switch (TrKind) {
             case LIKE_LONDON:
                 [Transfer drawTransferLikeLondon:context stations:[stations allObjects]];
                 break;
             case LIKE_PARIS:
-                [Transfer drawTransferLikeParis:context stations:[stations allObjects]];
+                [Transfer drawTransferLikeParis:context stations:[stations allObjects] drawTerminals:YES];
                 break;
             case LIKE_MOSCOW:
                 [Transfer drawTransferLikeMoscow:context stations:[stations allObjects]];
@@ -246,7 +258,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     CGContextTranslateCTM(ctx, -boundingBox.origin.x, -boundingBox.origin.y);
     switch (TrKind) {
         case LIKE_PARIS:
-            [Transfer drawTransferLikeParis:ctx stations:[stations allObjects]];
+            [Transfer drawTransferLikeParis:ctx stations:[stations allObjects] drawTerminals:NO];
             break;
         case LIKE_LONDON:
             [Transfer drawTransferLikeLondon:ctx stations:[stations allObjects]];
@@ -676,6 +688,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize index;
 @synthesize boundingBox;
 @synthesize shortName;
+@synthesize stationLayer;
+@synthesize disabledStationLayer;
 
 -(UIColor*) color {
     return _color;
@@ -707,10 +721,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     g = M - (M-g)*sd;
     b = M - (M-b)*sd;
     
-//    float mean = 3.0f;
-//    r = (r + mean) * 0.25f;
-//    g = (g + mean) * 0.25f;
-//    b = (b + mean) * 0.25f;
     _disabledColor = [[UIColor colorWithRed:r green:g blue:b alpha:1.0f] retain];
     
 }
@@ -1487,12 +1497,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     CGContextSaveGState(context);
     for (Transfer *tr in transfers) {
         if(CGRectIntersectsRect(rect, tr.boundingBox)) {
-            if(!tr.active) {
+            /*if(!tr.active) {
                 CGContextSaveGState(context);
                 CGContextSetAlpha(context, 0.7f);
-            }
+            }*/
             [tr draw:context];
-            if(!tr.active) CGContextRestoreGState(context);
+            //if(!tr.active) CGContextRestoreGState(context);
         }
     }
     CGContextRestoreGState(context);

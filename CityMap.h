@@ -156,6 +156,8 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @property (nonatomic, readonly) NSMutableArray* stations;
 @property (nonatomic, assign) int index;
 @property (nonatomic, readonly) CGRect boundingBox;
+@property (nonatomic, readonly) CGLayerRef stationLayer;
+@property (nonatomic, readonly) CGLayerRef disabledStationLayer;
 
 -(id)initWithName:(NSString*)n stations:(NSString*)stations driving:(NSString*)driving coordinates:(NSString*)coordinates rects:(NSString*)rects;
 -(void)draw:(CGContextRef)context inRect:(CGRect)rect;

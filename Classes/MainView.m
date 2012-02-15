@@ -181,7 +181,7 @@ NSInteger const toolbarWidth=320;
     
     if(pos.x < 120) pos.x = 120;
     if(pos.x > 200) pos.x = 200;
-    if(pos.y < 90) pos.y += 200;
+    if(pos.y < 130) pos.y += 200;
     if(pos.y > 380) pos.y = 380;
 
     [UIView animateWithDuration:0.25f animations:^{ sourceButton.center = CGPointMake(pos.x-60, pos.y+20); }];
