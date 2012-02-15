@@ -43,7 +43,7 @@
     self.colorDictionary = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
     
     [self.mytableView setBackgroundColor:[UIColor clearColor]];
-    self.imageView.image = [UIImage imageNamed:@"tablebackground.png"];
+    self.imageView.image = [UIImage imageNamed:@"lines_shadow.png"];
 
     formatter = [[NSDateFormatter alloc] init];
     
