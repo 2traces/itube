@@ -36,6 +36,7 @@
 -(void)setFromStation:(MStation*)fromStation;
 -(void)setToStation:(MStation*)toStation;
 -(UIImage*)drawCircleView:(UIColor*)myColor;
+-(UIImage*)drawBiggerCircleView:(UIColor*)myColor;
 -(void)transitToPathView;
 
 -(void)resetFromStation;

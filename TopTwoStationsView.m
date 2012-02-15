@@ -40,10 +40,12 @@
 	[self addSubview:toolbar];
 
 	UIImage *imageOpenList = [UIImage imageNamed:@"openlist.png"];
+    UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist_highlight.png"];
 	
 	UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [refreshButton setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
 	[refreshButton setImage:imageOpenList forState:UIControlStateNormal];
+    [refreshButton setImage:imageOpenListHL forState:UIControlStateHighlighted];
 	[refreshButton addTarget:self action:@selector(selectFromStation) forControlEvents:UIControlEventTouchUpInside];
     
 	firstStation = [[StationTextField alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
@@ -61,6 +63,7 @@
 	[firstStation setClearButtonMode:UITextFieldViewModeNever];
     firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
     firstStation.tag = 111;
+    firstStation.placeholder=@"From..";
     
 	[toolbar addSubview:firstStation];	
     
@@ -73,6 +76,7 @@
     
 	UIButton *refreshButton2 = [UIButton buttonWithType:UIButtonTypeCustom];
 	[refreshButton2 setImage:imageOpenList forState:UIControlStateNormal];
+    [refreshButton2 setImage:imageOpenListHL forState:UIControlStateHighlighted];
     [refreshButton2 setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
 	[refreshButton2 addTarget:self action:@selector(selectToStation) forControlEvents:UIControlEventTouchUpInside];
 	 
@@ -91,6 +95,7 @@
 	secondStation.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
     secondStation.tag =222;
+    secondStation.placeholder=@"To..";
     
 	[toolbar addSubview:secondStation];
     
@@ -296,7 +301,7 @@
                 desireWidth2=maxWidth;
                 desireOrigin1 = 0;
                 desireOrigin2 = 160;
-                arrowOrigin =arrowView.frame.origin.x;
+                arrowOrigin = 153;
             } else if (textBounds1.width+addWidth>=maxWidth && textBounds2.width+addWidth<=maxWidth) {
                 desireWidth2=textBounds2.width+addWidth;
                 desireOrigin2=320-desireWidth2;
@@ -328,6 +333,17 @@
         
         arrowView.hidden=NO;
         arrowView.frame =CGRectMake(arrowOrigin, arrowView.frame.origin.y, arrowView.frame.size.width, arrowView.frame.size.height);
+        
+        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        UIImageView *lineColor1 = [[UIImageView alloc] initWithImage:[self biggerImageWithColor:[appDelegate.mainViewController.fromStation lines]]];
+        [firstStation setLeftView:lineColor1];
+        [lineColor1 release];
+
+        UIImageView *lineColor2 = [[UIImageView alloc] initWithImage:[self biggerImageWithColor:[appDelegate.mainViewController.toStation lines]]];
+        [secondStation setLeftView:lineColor2];
+        [lineColor2 release];
+        
     }];
     
     firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
@@ -355,9 +371,11 @@
        
         
         UIImage *imageOpenList = [UIImage imageNamed:@"openlist.png"];
+        UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist_highlight.png"];
         
         UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [refreshButton setImage:imageOpenList forState:UIControlStateNormal];
+        [refreshButton setImage:imageOpenListHL forState:UIControlStateHighlighted];
         [refreshButton addTarget:self action:@selector(selectFromStation) forControlEvents:UIControlEventTouchUpInside];
         [refreshButton setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
 
@@ -366,6 +384,7 @@
 
         UIButton *refreshButton2 = [UIButton buttonWithType:UIButtonTypeCustom];
         [refreshButton2 setImage:imageOpenList forState:UIControlStateNormal];
+        [refreshButton2 setImage:imageOpenListHL forState:UIControlStateHighlighted];
         [refreshButton2 addTarget:self action:@selector(selectToStation) forControlEvents:UIControlEventTouchUpInside];
         [refreshButton2 setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
 
@@ -399,6 +418,12 @@
 -(UIImage*)imageWithColor:(MLine*)line
 {
     UIImage *image = [self drawCircleView:[line color]];
+    return image;
+}
+
+-(UIImage*)biggerImageWithColor:(MLine*)line
+{
+    UIImage *image = [self drawBiggerCircleView:[line color]];
     return image;
 }
 
@@ -522,7 +547,7 @@
 {
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(10,10), NO, 0.0);
     
-    CGRect circleRect = CGRectMake(1.0, 1.0, 8.0, 8.0);
+    CGRect circleRect = CGRectMake(0.0, 0.0, 9.0, 9.0);
 	
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -530,9 +555,13 @@
     
     CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor)); 
     CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));  
-	CGContextSetLineWidth(context, 1.0);
+	CGContextSetLineWidth(context, 0.0);
 	CGContextFillEllipseInRect(context, circleRect);
 	CGContextStrokeEllipseInRect(context, circleRect);
+    
+    UIImage *bevelImg = [UIImage imageNamed:@"bevel.png"];
+    
+    [bevelImg drawInRect:circleRect]; 
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
@@ -551,10 +580,14 @@
     
     CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor)); 
     CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));  
-	CGContextSetLineWidth(context, 1.0);
+	CGContextSetLineWidth(context, 0.0);
 	CGContextFillEllipseInRect(context, circleRect);
 	CGContextStrokeEllipseInRect(context, circleRect);
     
+    UIImage *bevelImg = [UIImage imageNamed:@"bevel.png"];
+    
+    [bevelImg drawInRect:circleRect]; 
+
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
     return image;

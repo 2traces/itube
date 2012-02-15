@@ -1422,7 +1422,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
     activeExtent = CGRectNull;
     [activePath removeAllObjects];
-//    [pathStationsList removeAllObjects];
+    [pathStationsList removeAllObjects];
 	int count_ = [pathMap count];
     
 	for (int i=0; i< count_-1; i++) {

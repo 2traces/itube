@@ -114,13 +114,13 @@
     
     // first point
     CGRect firstRect = CGRectMake(x,lineStart,8,8);
-    CGRect firstCircleRect = CGRectMake(firstRect.origin.x-7.0, firstRect.origin.y, 14, 14);
+    CGRect firstCircleRect = CGRectMake(firstRect.origin.x-7.0, firstRect.origin.y-7.0, 14, 14);
     
     [self drawCircleInRect:firstCircleRect color:[colorArray objectAtIndex:0] context:c];
     
     // last point
     CGRect lastRect = CGRectMake(x,lineStart+viewHeight,6,6);
-    CGRect lastCircleRect = CGRectMake(lastRect.origin.x-7.0 , lastRect.origin.y, 14, 14);
+    CGRect lastCircleRect = CGRectMake(lastRect.origin.x-7.0 , lastRect.origin.y-7.0, 14, 14);
     
     [self drawCircleInRect:lastCircleRect color:[colorArray lastObject] context:c];
     
@@ -191,9 +191,12 @@
     const CGFloat* components = CGColorGetComponents([color CGColor]);
     CGContextSetRGBStrokeColor(c, components[0],components[1], components[2],  CGColorGetAlpha([color CGColor])); 
     CGContextSetRGBFillColor(c, components[0],components[1], components[2],  CGColorGetAlpha([color CGColor]));  
-    CGContextSetLineWidth(c, 2.0);
+    CGContextSetLineWidth(c, 0.0);
     CGContextFillEllipseInRect(c, circleRect);
     CGContextStrokeEllipseInRect(c, circleRect);
+    
+    UIImage *bevelImg = [UIImage imageNamed:@"bevel.png"];    
+    [bevelImg drawInRect:circleRect]; 
 }
 
 @end
