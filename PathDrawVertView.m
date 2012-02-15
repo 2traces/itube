@@ -31,7 +31,7 @@
     CGFloat lineStart = 20.0f;
     CGFloat x=20.0f;
     
-    CGFloat transferHeight = 90.0f;
+    CGFloat transferHeight = 85.0f;
     CGFloat stationHeight = 20.0f;
     CGFloat finalHeight = 60.0f;
     
@@ -114,13 +114,13 @@
     
     // first point
     CGRect firstRect = CGRectMake(x,lineStart,8,8);
-    CGRect firstCircleRect = CGRectMake(firstRect.origin.x-7.0, firstRect.origin.y, 14, 14);
+    CGRect firstCircleRect = CGRectMake(firstRect.origin.x-7.0, firstRect.origin.y-7.0, 14, 14);
     
     [self drawCircleInRect:firstCircleRect color:[colorArray objectAtIndex:0] context:c];
     
     // last point
     CGRect lastRect = CGRectMake(x,lineStart+viewHeight,6,6);
-    CGRect lastCircleRect = CGRectMake(lastRect.origin.x-7.0 , lastRect.origin.y, 14, 14);
+    CGRect lastCircleRect = CGRectMake(lastRect.origin.x-7.0 , lastRect.origin.y-7.0, 14, 14);
     
     [self drawCircleInRect:lastCircleRect color:[colorArray lastObject] context:c];
     
