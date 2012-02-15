@@ -14,12 +14,15 @@
 @private
     CGRect boundingBox;
     CGColorRef col;
+    CGColorRef disabledCol;
     CGMutablePathRef path;
     int width;
+    BOOL enabled;
 }
 @property (nonatomic, readonly) CGRect boundingBox;
+@property (nonatomic, assign) BOOL enabled;
 
--(id) initWithPoints:(NSArray*)points andColor:(CGColorRef) color;
+-(id) initWithPoints:(NSArray*)points color:(CGColorRef) color andDisabledColor:(CGColorRef) dcol;
 -(void) draw:(CGContextRef) context;
 
 @end
@@ -30,11 +33,14 @@
 @private
     CGRect boundingBox;
     CGColorRef col;
+    CGColorRef disabledCol;
     CGMutablePathRef path;
+    BOOL enabled;
 }
 @property (nonatomic, readonly) CGRect boundingBox;
+@property (nonatomic, assign) BOOL enabled;
 
--(id) initWithPoints:(NSArray*) points andColor:(CGColorRef)color;
+-(id) initWithPoints:(NSArray*) points color:(CGColorRef)color andDisabledColor:(CGColorRef)dcol;
 -(void) draw:(CGContextRef) context;
 
 @end
@@ -47,7 +53,9 @@
     CGColorSpaceRef colorSpace;
     CGColorRef brushColor, penColor;
     NSMutableArray *elements;
+    BOOL enabled;
 }
+@property (nonatomic, assign) BOOL enabled;
 
 -(id) initWithFile:(NSString*)fileName;
 -(void) loadFrom:(NSString*)fileName;

@@ -78,6 +78,7 @@ NSInteger const toolbarWidth=320;
 //	mapView.exclusiveTouch = NO;
 
     [containerView addSubview:mapView.backgroundVector];
+    [containerView addSubview:mapView.backgroundVectorDisabled];
     [containerView addSubview:mapView.backgroundNormal];
     [containerView addSubview:mapView.backgroundDisabled];
     containerView.scrolledView = mapView;
