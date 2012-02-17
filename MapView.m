@@ -31,10 +31,17 @@
 @synthesize backgroundVector;
 @synthesize backgroundVectorDisabled = backgroundVector2;
 @synthesize showVectorLayer;
+@synthesize activeLayer;
 
 + (Class)layerClass
 {
     return [MyTiledLayer class];
+}
+
+-(void) setTransform:(CGAffineTransform)transform
+{
+    super.transform = transform;
+    activeLayer.transform = transform;
 }
 
 - (CGSize) size {
@@ -129,9 +136,11 @@
 		[self initData];
 		
 		selectedStationLayer = [[CALayer layer] retain];
+        activeLayer = [[ActiveView alloc] initWithFrame:frame];
+        activeLayer.hidden = YES;
         
         // make normal background image
-        CGFloat backScale = MinScale * 2.f;
+        /*CGFloat backScale = MinScale * 2.f;
         CGSize minSize = CGSizeMake(cityMap.w * backScale, cityMap.h * backScale);
         CGRect r = CGRectMake(0, 0, minSize.width, minSize.height);
 		UIGraphicsBeginImageContext(minSize);
@@ -163,6 +172,7 @@
         background2.hidden = YES;
         UIGraphicsEndImageContext();
         [cityMap resetPath];
+        */
     }
     return self;
 }
@@ -173,7 +183,7 @@
     vectorLayer = [[VectorLayer alloc] initWithFile:file];
     showVectorLayer = YES;
     // make background image
-    CGFloat backScale = MinScale * 2.f;
+    /*CGFloat backScale = MinScale * 2.f;
     CGSize minSize = CGSizeMake(cityMap.w * backScale, cityMap.h * backScale);
     CGRect r = CGRectMake(0, 0, minSize.width, minSize.height);
     UIGraphicsBeginImageContext(minSize);
@@ -207,7 +217,7 @@
     backgroundVector2.contentMode = UIViewContentModeScaleAspectFit;
     backgroundVector2.hidden = NO;
     UIGraphicsEndImageContext();
-    vectorLayer.enabled = YES;
+    vectorLayer.enabled = YES;*/
 }
 
 -(void)showLabel
@@ -249,6 +259,7 @@
 
     CGContextSaveGState(context);
     CGRect r = CGContextGetClipBoundingBox(context);
+    printf("normal layer x=%d y=%d w=%d h=%d\n", (int)r.origin.x, (int)r.origin.y, (int)r.size.width, (int)r.size.height);
 	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
 	CGContextFillRect(context, r);
 
@@ -331,7 +342,7 @@
     [pathArray addObjectsFromArray:[cityMap calcPath:fSt :sSt :fStl :sStl]];
 	[pathArray insertObject:[GraphNode nodeWithName:fSt andLine:fStl ] atIndex:0];
 	
-    vectorLayer.enabled = false;
+    //vectorLayer.enabled = false;
     background1.hidden = YES;
     background2.hidden = NO;
     backgroundVector.hidden = YES;
@@ -339,23 +350,25 @@
     [cityMap activatePath:pathArray];
     [scrollView zoomToRect:cityMap.activeExtent animated:YES];
     // это недокументированный метод, так что если он в будущем изменится, то ой
-    [self.layer invalidateContents];
-	[self setNeedsDisplay];
+    //[self.layer invalidateContents];
+	//[self setNeedsDisplay];
+    activeLayer.hidden = NO;
     [pathArray release];
 }
 
 -(void) clearPath
 {
     if([cityMap.activePath count] > 0) {
-        vectorLayer.enabled = true;
+        //vectorLayer.enabled = true;
         background1.hidden = NO;
         background2.hidden = YES;
         backgroundVector.hidden = NO;
         backgroundVector2.hidden = YES;
         [cityMap resetPath];
         // это недокументированный метод, так что если он в будущем изменится, то ой
-        [self.layer invalidateContents];
-        [self setNeedsDisplay];
+        //[self.layer invalidateContents];
+        //[self setNeedsDisplay];
+        activeLayer.hidden = YES;
     }
 }
 

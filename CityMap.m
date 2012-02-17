@@ -12,7 +12,6 @@
 #import <CoreLocation/CoreLocation.h>
 
 CGFloat PredrawScale = 2.f;
-CGFloat BaseLineWidth = 4.f;
 CGFloat LineWidth = 4.f;
 CGFloat StationDiameter = 8.f;
 CGFloat FontSize = 7.f;
@@ -222,7 +221,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 {
     if(transferLayer != nil) {
         CGContextDrawLayerInRect(context, boundingBox, transferLayer);
-        if(TrKind == LIKE_PARIS) {
+        /*if(TrKind == LIKE_PARIS) {
             for (Station *st in stations) {
                 if(st.terminal) {
                     if(st.active) {
@@ -232,7 +231,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     }
                 }
             }
-        }
+        }*/
     } else {
         switch (TrKind) {
             case LIKE_LONDON:
@@ -258,7 +257,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     CGContextTranslateCTM(ctx, -boundingBox.origin.x, -boundingBox.origin.y);
     switch (TrKind) {
         case LIKE_PARIS:
-            [Transfer drawTransferLikeParis:ctx stations:[stations allObjects] drawTerminals:NO];
+            [Transfer drawTransferLikeParis:ctx stations:[stations allObjects] drawTerminals:YES];
             break;
         case LIKE_LONDON:
             [Transfer drawTransferLikeLondon:ctx stations:[stations allObjects]];
@@ -424,11 +423,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)drawName:(CGContextRef)context
 {
-    BOOL act = active || (transfer != nil && transfer.active);
+    /*BOOL act = active || (transfer != nil && transfer.active);
     if(!act) {
         CGContextSaveGState(context);
         CGContextSetAlpha(context, 0.3f);
-    }
+    }*/
     if(predrawedName != nil) CGContextDrawLayerInRect(context, textRect, predrawedName);
     else {
         CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
@@ -444,7 +443,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         CGContextSelectFont(context, TEXT_FONT, FontSize, kCGEncodingMacRoman);
         CGContextShowTextAtPoint(context, textRect.origin.x, textRect.origin.y+textRect.size.height, [name cStringUsingEncoding:[NSString defaultCStringEncoding]], [name length]);
     }
-    if(!act) CGContextRestoreGState(context);
+    //if(!act) CGContextRestoreGState(context);
 }
 
 -(void)drawStation:(CGContextRef)context
@@ -809,7 +808,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(void)draw:(CGContextRef)context inRect:(CGRect)rect
 {
     CGContextSetLineCap(context, kCGLineCapRound);
-    if(twoStepsDraw) {
+    /*if(twoStepsDraw) {
         // some segments are disabled
         CGContextSetStrokeColorWithColor(context, [_disabledColor CGColor]);
         CGContextSetLineWidth(context, LineWidth * 0.8f);
@@ -853,7 +852,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     CGContextDrawLayerInRect(context, s.boundingBox, stationLayer);
             }
         }
-    } else {
+    } else {*/
         // all line is active
         CGContextSetStrokeColorWithColor(context, [_color CGColor]);
         //CGContextSetFillColorWithColor(context, [_color CGColor]);
@@ -868,6 +867,34 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 else
                     CGContextDrawLayerInRect(context, s.boundingBox, stationLayer);
             }
+        }
+    //}
+}
+
+-(void)drawActive:(CGContextRef)context inRect:(CGRect)rect
+{
+    CGContextSetStrokeColorWithColor(context, [_color CGColor]);
+    CGContextSetLineWidth(context, LineWidth);
+    for (Station *s in stations) {
+        for (Segment *seg in s.segment) {
+            if(seg.active && CGRectIntersectsRect(rect, seg.boundingBox))
+                [seg draw:context];
+        }
+    }
+    CGContextSetStrokeColorWithColor(context, [[UIColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:1.f] CGColor]);
+    CGContextSetLineWidth(context, LineWidth*0.25f);
+    for (Station *s in stations) {
+        for (Segment *seg in s.segment) {
+            if(seg.active && CGRectIntersectsRect(rect, seg.boundingBox))
+                [seg draw:context];
+        }
+    }
+    for (Station *s in stations) {
+        if(s.active && s.transfer == nil && CGRectIntersectsRect(rect, s.boundingBox)) {
+            if(StKind == LIKE_LONDON)
+                [s drawStation:context];
+            else
+                CGContextDrawLayerInRect(context, s.boundingBox, stationLayer);
         }
     }
 }
@@ -1070,7 +1097,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
     int val = [[parserMap get:@"LinesWidth" section:@"Options"] intValue];
     if(val != 0) LineWidth = val;
-    BaseLineWidth = LineWidth;
     val = [[parserMap get:@"StationDiameter" section:@"Options"] intValue];
     if(val != 0) StationDiameter = val;
     val = [[parserMap get:@"DisplayTransfers" section:@"Options"] intValue];
@@ -1372,10 +1398,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(void) processTransfersForGraph{
     for (Transfer *t in transfers) {
         for (Station *s1 in t.stations) {
-            NSString *station1 = [NSString stringWithFormat:@"%@|%@", s1.name, [NSNumber numberWithInt:s1.line.index]];
             for (Station *s2 in t.stations) {
                 if(s1 != s2) {
-                    NSString *station2 = [NSString stringWithFormat:@"%@|%@", s2.name, [NSNumber numberWithInt:s2.line.index]];
                     [graph addEdgeFromNode:[GraphNode nodeWithName:s1.name andLine:s1.line.index]
                                     toNode:[GraphNode nodeWithName:s2.name andLine:s2.line.index]
                                 withWeight:t.time];
@@ -1399,13 +1423,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void) drawMap:(CGContextRef) context inRect:(CGRect)rect
 {
-    /*if(currentScale > 0.25f) LineWidth = BaseLineWidth;
-    else if(currentScale < 0.125f) LineWidth = BaseLineWidth * 1.25f;
-    else {
-        LineWidth = BaseLineWidth * ( 1.f + (0.25f - currentScale) * 2.f);
-    }
-    printf("line width = %d, scale = %f\n", (int)LineWidth, currentScale);
-     */
     CGContextSaveGState(context);
     for (Line* l in mapLines) {
         [l draw:context inRect:(CGRect)rect];
@@ -1520,6 +1537,27 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
     }
     return -1;
+}
+
+-(void) drawActive:(CGContextRef)context inRect:(CGRect)rect
+{
+    CGContextSaveGState(context);
+    for (Line* l in mapLines) {
+        [l drawActive:context inRect:(CGRect)rect];
+    }
+    for (Line* l in mapLines) {
+        for (Station *s in l.stations) {
+            if((s.active || (s.transfer && s.transfer.active)) && s.drawName && CGRectIntersectsRect(s.textRect, rect))
+                [s drawName:context];
+        }
+    }
+    for (Transfer *tr in transfers) {
+        if(CGRectIntersectsRect(rect, tr.boundingBox)) {
+            if(tr.active) 
+                [tr draw:context];
+        }
+    }
+    CGContextRestoreGState(context);
 }
 
 @end

@@ -13,6 +13,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
 #import "VectorLayer.h"
+#import "ActiveView.h"
 
 extern int const imagesCount;
 
@@ -49,6 +50,7 @@ extern int const imagesCount;
     UIImageView *background1, *background2, *backgroundVector, *backgroundVector2;
     VectorLayer *vectorLayer;
     BOOL showVectorLayer;
+    ActiveView *activeLayer;
 }
 
 @property (assign) NSString *nearestStationName;
@@ -75,6 +77,7 @@ extern int const imagesCount;
 @property (nonatomic, readonly) UIImageView* backgroundVectorDisabled;
 @property (nonatomic, readonly) UIView* labelView;
 @property (nonatomic, assign) BOOL showVectorLayer;
+@property (nonatomic, readonly) ActiveView *activeLayer;
 
 - (void)viewDidLoad;
 // 

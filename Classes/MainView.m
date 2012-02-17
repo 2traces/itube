@@ -71,21 +71,23 @@ NSInteger const toolbarWidth=320;
 //	containerView.pagingEnabled = YES;
 	containerView.clipsToBounds = NO;//YES;
 	containerView.bounces = YES;
+    [containerView setBouncesZoom:NO];
 	containerView.maximumZoomScale = mapView.MaxScale;
-	containerView.minimumZoomScale = mapView.MinScale;
+	containerView.minimumZoomScale = mapView.MinScale * 0.5f;
 	//containerView.directionalLockEnabled = YES;
 //	containerView.userInteractionEnabled = YES;
 //	mapView.exclusiveTouch = NO;
 
-    [containerView addSubview:mapView.backgroundVector];
-    [containerView addSubview:mapView.backgroundVectorDisabled];
-    [containerView addSubview:mapView.backgroundNormal];
-    [containerView addSubview:mapView.backgroundDisabled];
+    //[containerView addSubview:mapView.backgroundVector];
+    //[containerView addSubview:mapView.backgroundVectorDisabled];
+    //[containerView addSubview:mapView.backgroundNormal];
+    //[containerView addSubview:mapView.backgroundDisabled];
     containerView.scrolledView = mapView;
 	containerView.delegate = mapView;
 	[containerView addSubview: mapView];
     [containerView setZoomScale:mapView.Scale animated:NO];
 	[self addSubview:containerView];
+    [containerView addSubview:mapView.activeLayer];
     
 	//TODO
 	[containerView setContentOffset:CGPointMake(650, 650) animated:NO];
