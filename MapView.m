@@ -183,7 +183,7 @@
     vectorLayer = [[VectorLayer alloc] initWithFile:file];
     showVectorLayer = YES;
     // make background image
-    /*CGFloat backScale = MinScale * 2.f;
+    CGFloat backScale = MinScale * 2.f;
     CGSize minSize = CGSizeMake(cityMap.w * backScale, cityMap.h * backScale);
     CGRect r = CGRectMake(0, 0, minSize.width, minSize.height);
     UIGraphicsBeginImageContext(minSize);
@@ -194,6 +194,9 @@
     r.size.width /= backScale;
     r.size.height /= backScale;
     [vectorLayer draw:context inRect:r];
+    [cityMap drawMap:context inRect:r];
+    [cityMap drawTransfers:context inRect:r];
+    [cityMap drawStations:context inRect:r]; 
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     [backgroundVector release];
     backgroundVector = [[UIImageView alloc] initWithImage:img];
@@ -201,7 +204,7 @@
     backgroundVector.contentMode = UIViewContentModeScaleAspectFit;
     backgroundVector.hidden = NO;
     UIGraphicsEndImageContext();
-    
+    /*
     //disabled vector background
     UIGraphicsBeginImageContext(minSize);
     context = UIGraphicsGetCurrentContext();
@@ -259,7 +262,6 @@
 
     CGContextSaveGState(context);
     CGRect r = CGContextGetClipBoundingBox(context);
-    printf("normal layer x=%d y=%d w=%d h=%d\n", (int)r.origin.x, (int)r.origin.y, (int)r.size.width, (int)r.size.height);
 	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
 	CGContextFillRect(context, r);
 

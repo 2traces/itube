@@ -37,17 +37,19 @@
         // это недокументированный метод, так что если он в будущем изменится, то ой
         [self.layer invalidateContents];
         [self setNeedsDisplay];
-    }
-    super.hidden = hidden;
+        super.hidden = NO;
+        self.alpha = 0;
+        [UIView animateWithDuration:0.75f animations:^(void) { self.alpha = 1.f; } ];
+    } else super.hidden = hidden;
 }
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)context {
     
-    CGContextSaveGState(context);
     CGRect r = CGContextGetClipBoundingBox(context);
-    printf("active layer x=%d y=%d w=%d h=%d\n", (int)r.origin.x, (int)r.origin.y, (int)r.size.width, (int)r.size.height);
-	CGContextSetFillColorWithColor(context, [[UIColor colorWithRed:1.f green:1.f blue:1.f alpha:0.5f] CGColor]);
-	CGContextFillRect(context, r);
+    CGContextSetFillColorWithColor(context, [[UIColor colorWithRed:1.f green:1.f blue:1.f alpha:0.75f] CGColor]);
+    CGContextFillRect(context, r);
+    if(!CGRectIntersectsRect(cityMap.activeExtent, r)) return;
+    CGContextSaveGState(context);
     
     CGContextRef ctx = context;
     CGContextSetInterpolationQuality(ctx, kCGInterpolationNone);

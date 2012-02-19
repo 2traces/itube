@@ -1108,7 +1108,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     float sc = [[parserMap get:@"MaxScale" section:@"Options"] floatValue];
     if(sc != 0.f) {
         maxScale = sc;
-        PredrawScale = maxScale * 0.5f;
+        PredrawScale = maxScale;
     }
 	
 	_w = 0;

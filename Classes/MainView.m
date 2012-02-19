@@ -78,7 +78,7 @@ NSInteger const toolbarWidth=320;
 //	containerView.userInteractionEnabled = YES;
 //	mapView.exclusiveTouch = NO;
 
-    //[containerView addSubview:mapView.backgroundVector];
+    [containerView addSubview:mapView.backgroundVector];
     //[containerView addSubview:mapView.backgroundVectorDisabled];
     //[containerView addSubview:mapView.backgroundNormal];
     //[containerView addSubview:mapView.backgroundDisabled];
@@ -162,6 +162,10 @@ NSInteger const toolbarWidth=320;
     [zones.layer setShadowOpacity:0.5f];
     [zones.layer setShadowOffset:CGSizeMake(0, 0)];
     [self addSubview:zones];
+    
+    UIImageView *shadow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]];
+    shadow.frame = CGRectMake(0, 44, 320, 61);
+    [self addSubview:shadow];
     
     NSTimer *timer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(supervisor) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
@@ -284,6 +288,7 @@ NSInteger const toolbarWidth=320;
 
 -(void) switchZones
 {
+    return;
     if(mapView.showVectorLayer) {
         mapView.showVectorLayer = NO;
         [zones setSelected:NO];
