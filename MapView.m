@@ -105,13 +105,13 @@
         Scale = MaxScale / 2;
         
 		//метка которая показывает названия станций
-		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 12, 140, 25)];
+		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 27, 140, 25)];
 		mainLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:21.0];
         mainLabel.textAlignment = UITextAlignmentCenter;
 		mainLabel.backgroundColor = [UIColor clearColor];
         mainLabel.shadowColor = [UIColor whiteColor];
         mainLabel.shadowOffset = CGSizeMake(0.5f, 1.f);
-        lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(165, 12, 40, 25)];
+        lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(180, 27, 40, 25)];
         lineLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:21.f];
         lineLabel.textAlignment = UITextAlignmentCenter;
         lineLabel.textColor = [UIColor colorWithRed:0.5f green:0.5f blue:0.5f alpha:1.0f];
@@ -119,7 +119,7 @@
         lineLabel.backgroundColor = [UIColor clearColor];
         lineLabel.shadowColor = [UIColor whiteColor];
         lineLabel.shadowOffset = CGSizeMake(0.5f, 1.f);
-        circleLabel = [[UIView alloc] initWithFrame:CGRectMake(10, 8, 21, 21)];
+        circleLabel = [[UIView alloc] initWithFrame:CGRectMake(25, 23, 21, 21)];
         circleLabel.layer.cornerRadius = 11.f;
         circleLabel.backgroundColor = [UIColor redColor];
         [circleLabel addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"embossed_circle"]]];
@@ -129,9 +129,6 @@
         [labelBg addSubview:lineLabel];
         [labelBg addSubview:circleLabel];
 		labelBg.hidden=true;
-        [labelBg.layer setShadowOffset:CGSizeMake(0, 0)];
-        [labelBg.layer setShadowOpacity:0.5f];
-        [labelBg.layer setShadowRadius:15.0];
         
 		[self initData];
 		
