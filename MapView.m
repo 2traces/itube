@@ -26,8 +26,8 @@
 @synthesize MaxScale;
 @synthesize MinScale;
 @synthesize vcontroller;
-@synthesize backgroundNormal = background1;
-@synthesize backgroundDisabled = background2;
+@synthesize midground1;
+@synthesize midground2;
 @synthesize backgroundVector;
 @synthesize backgroundVectorDisabled = backgroundVector2;
 @synthesize showVectorLayer;
@@ -54,7 +54,7 @@
 
 -(void)setShowVectorLayer:(BOOL)_showVectorLayer
 {
-    if(showVectorLayer != _showVectorLayer) {
+    /*if(showVectorLayer != _showVectorLayer) {
         showVectorLayer = _showVectorLayer;
         if(_showVectorLayer) {
             backgroundVector.hidden = background1.hidden;
@@ -66,7 +66,7 @@
         // это недокументированный метод, так что если он в будущем изменится, то ой
         [self.layer invalidateContents];
         [self setNeedsDisplay];
-    }
+    }*/
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -102,7 +102,7 @@
         self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
         MinScale = MIN( (float)frame.size.width / cityMap.size.width, (float)frame.size.height / cityMap.size.height);
         MaxScale = cityMap.maxScale;
-        Scale = MaxScale / 2;
+        Scale = MinScale * 2.f;
         
 		//метка которая показывает названия станций
 		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 27, 140, 25)];
@@ -170,6 +170,14 @@
         UIGraphicsEndImageContext();
         [cityMap resetPath];
         */
+        midground1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, cityMap.w, cityMap.h)];
+        midground1.backgroundColor = [UIColor colorWithRed:1.f green:1.f blue:1.f alpha:0.7f];
+        midground1.hidden = YES;
+        midground2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, cityMap.w, cityMap.h)];
+        midground2.backgroundColor = [UIColor whiteColor];
+        midground2.hidden = NO;
+        midground2.alpha = 1.f;
+        [UIView animateWithDuration:0.5f animations:^(void) { midground2.alpha = 0.f; } completion:^(BOOL finish) { midground2.hidden = YES; } ];
     }
     return self;
 }
@@ -249,8 +257,8 @@
 	[cityMap dealloc];
 	[nearestStationImage release];
     for(int i=0; i<MAXCACHE; i++) CGLayerRelease(cacheLayer[i]);
-    [background1 release];
-    [background2 release];
+    [midground1 release];
+    [midground2 release];
     [backgroundVector release];
     [backgroundVector2 release];
 }
@@ -341,33 +349,31 @@
     [pathArray addObjectsFromArray:[cityMap calcPath:fSt :sSt :fStl :sStl]];
 	[pathArray insertObject:[GraphNode nodeWithName:fSt andLine:fStl ] atIndex:0];
 	
-    //vectorLayer.enabled = false;
-    background1.hidden = YES;
-    background2.hidden = NO;
-    backgroundVector.hidden = YES;
-    backgroundVector2.hidden = NO;
     [cityMap activatePath:pathArray];
     [scrollView zoomToRect:cityMap.activeExtent animated:YES];
     // это недокументированный метод, так что если он в будущем изменится, то ой
     //[self.layer invalidateContents];
 	//[self setNeedsDisplay];
     activeLayer.hidden = NO;
+    activeLayer.alpha = 0;
+    midground1.hidden = NO;
+    midground1.alpha = 0;
+    midground2.hidden = NO;
+    midground2.alpha = 1.f;
+    [UIView animateWithDuration:0.5f animations:^(void) { activeLayer.alpha = 1.f; midground1.alpha = 1.f; midground2.alpha = 0.f; } completion:^(BOOL finish) { midground2.hidden = YES; }];
     [pathArray release];
 }
 
 -(void) clearPath
 {
     if([cityMap.activePath count] > 0) {
-        //vectorLayer.enabled = true;
-        background1.hidden = NO;
-        background2.hidden = YES;
-        backgroundVector.hidden = NO;
-        backgroundVector2.hidden = YES;
         [cityMap resetPath];
         // это недокументированный метод, так что если он в будущем изменится, то ой
         //[self.layer invalidateContents];
         //[self setNeedsDisplay];
         activeLayer.hidden = YES;
+        midground1.hidden = YES;
+        midground2.hidden = YES;
     }
 }
 

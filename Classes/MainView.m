@@ -73,7 +73,7 @@ NSInteger const toolbarWidth=320;
 	containerView.bounces = YES;
     [containerView setBouncesZoom:NO];
 	containerView.maximumZoomScale = mapView.MaxScale;
-	containerView.minimumZoomScale = mapView.MinScale * 0.5f;
+	containerView.minimumZoomScale = mapView.MinScale;
 	//containerView.directionalLockEnabled = YES;
 //	containerView.userInteractionEnabled = YES;
 //	mapView.exclusiveTouch = NO;
@@ -87,10 +87,12 @@ NSInteger const toolbarWidth=320;
 	[containerView addSubview: mapView];
     [containerView setZoomScale:mapView.Scale animated:NO];
 	[self addSubview:containerView];
+    [containerView addSubview:mapView.midground1];
     [containerView addSubview:mapView.activeLayer];
+    [containerView addSubview:mapView.midground2];
     
 	//TODO
-	[containerView setContentOffset:CGPointMake(650, 650) animated:NO];
+	[containerView setContentOffset:CGPointMake(mapView.size.width * 0.25f * mapView.Scale, mapView.size.height * 0.25f * mapView.Scale ) animated:NO];
 	
 	stationNameView = [[UIView alloc] initWithFrame:self.frame];
 	[stationNameView setOpaque:YES];

@@ -38,16 +38,16 @@
         [self.layer invalidateContents];
         [self setNeedsDisplay];
         super.hidden = NO;
-        self.alpha = 0;
-        [UIView animateWithDuration:0.75f animations:^(void) { self.alpha = 1.f; } ];
+        //self.alpha = 0;
+        //[UIView animateWithDuration:0.75f animations:^(void) { self.alpha = 1.f; } ];
     } else super.hidden = hidden;
 }
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)context {
     
     CGRect r = CGContextGetClipBoundingBox(context);
-    CGContextSetFillColorWithColor(context, [[UIColor colorWithRed:1.f green:1.f blue:1.f alpha:0.75f] CGColor]);
-    CGContextFillRect(context, r);
+    //CGContextSetFillColorWithColor(context, [[UIColor colorWithRed:1.f green:1.f blue:1.f alpha:0.75f] CGColor]);
+    //CGContextFillRect(context, r);
     if(!CGRectIntersectsRect(cityMap.activeExtent, r)) return;
     CGContextSaveGState(context);
     
