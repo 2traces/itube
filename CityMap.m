@@ -479,13 +479,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void) makeSegments
 {
-    int drv = [relationDriving count] - [sibling count];
+    int drv = -1;
+    if([relationDriving count] > 0) drv = 0;
     for(int i=0; i<[sibling count]; i++) {
         Station *st = [sibling objectAtIndex:i];
         int curDrv = driving;
         if(drv >= 0) curDrv = [[relationDriving objectAtIndex:drv] intValue];
         [segment addObject:[[Segment alloc] initFromStation:self toStation:st withDriving:curDrv]];
-        drv ++;
+        if(drv < [relationDriving count]-1) drv ++;
     }
     if(!driving && [relationDriving count]) driving = [[relationDriving objectAtIndex:0] intValue];
     [relationDriving release];
