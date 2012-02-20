@@ -187,7 +187,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDate *date = [NSDate date];
+ //   NSDate *date = [NSDate date];
     
     static NSString *CellIdentifier = @"StationCell";
     

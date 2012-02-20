@@ -23,6 +23,7 @@
     IBOutlet UILabel *textLabel2;   
     
     IBOutlet MyNavigationBar *navBar;
+    IBOutlet UINavigationItem *navItem;
     
     NSArray *maps;
 }
@@ -36,6 +37,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *textLabel1;
 @property (nonatomic, retain) IBOutlet UILabel *textLabel2;
 @property (nonatomic, retain) IBOutlet MyNavigationBar *navBar;
+@property (nonatomic, retain) IBOutlet UINavigationItem *navItem;
 
 
 -(IBAction)cityPress:(id)sender;

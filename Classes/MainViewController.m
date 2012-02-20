@@ -58,6 +58,12 @@
     [twoStationsView release];
 }
 
+-(void)changeMapTo:(NSString*)newMap
+{
+    [[(MainView*)self.view containerView] removeFromSuperview];
+    
+}
+
 -(NSString*)getArrivalTimeFromNow:(NSInteger)time
 {
     

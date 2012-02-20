@@ -11,6 +11,8 @@
 #import "LanguageCell.h"
 #import "CityCell.h"
 #import "MyNavigationBar.h"
+#import "CityMap.h"
+#import "tubeAppDelegate.h"
 
 @implementation SettingsViewController
 
@@ -21,12 +23,14 @@
 @synthesize maps;
 @synthesize textLabel1,textLabel2;
 @synthesize navBar;
+@synthesize navItem;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-          self.maps = [NSArray arrayWithObjects:@"London",@"Paris",@"Madrid",@"Berlin",@"Dublin",@"Oslo", nil];
+          //self.maps = [NSArray arrayWithObjects:@"London",@"Paris",@"Madrid",@"Berlin",@"Dublin",@"Oslo", nil];
+        self.maps = [self getMapsList];
     }
     return self;
 }
@@ -80,37 +84,24 @@
 	cityTableView.backgroundColor = [UIColor clearColor];
     cityTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    CGRect frame = CGRectMake(0, 0, 320, 44);
+    CGRect frame = CGRectMake(80, 0, 160, 44);
 	UILabel *label = [[[UILabel alloc] initWithFrame:frame] autorelease];
 	label.backgroundColor = [UIColor clearColor];
 	label.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0];
-	label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+//	label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
 	label.textAlignment = UITextAlignmentCenter;
 	label.textColor = [UIColor darkGrayColor];
-	self.navigationItem.titleView = label;
-	label.text = @"Settings";
+    label.text = @"Settings";
+	self.navItem.titleView = label;
 	
-	self.navigationItem.hidesBackButton=YES;
-    
-//    self.navBar.
-    
-	// добавляем кастомные кнопочки слева и справа
-	
-//	[self putBackButton];	
-
-  
-}
-
--(void) putBackButton
-{
-	UIImage *back_image=[UIImage imageNamed:@"settings_back_button.png"];
+    UIImage *back_image=[UIImage imageNamed:@"settings_back_button.png"];
 	UIButton *back_button = [UIButton buttonWithType:UIButtonTypeCustom];
 	back_button.bounds = CGRectMake( 0, 0, back_image.size.width, back_image.size.height );    
 	[back_button setBackgroundImage:back_image forState:UIControlStateNormal];
 	[back_button addTarget:self action:@selector(donePressed:) forControlEvents:UIControlEventTouchUpInside];    
 	UIBarButtonItem *barButtonItem_back = [[UIBarButtonItem alloc] initWithCustomView:back_button];
-	self.navigationItem.leftBarButtonItem = barButtonItem_back;
-    self.navigationItem.hidesBackButton=YES;
+	self.navItem.leftBarButtonItem = barButtonItem_back;
+	self.navItem.hidesBackButton=YES;
 	[barButtonItem_back release];
 }
 
@@ -193,14 +184,21 @@
     }
 }
 
-
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
     
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSString *mapName = [NSString stringWithString:[dict objectForKey:[self.maps objectAtIndex:indexPath.row]]];
+    [dict release];
+    
+    CityMap *cm = [[CityMap alloc] init];
+    [cm loadMap:mapName];
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+    appDelegate.cityMap = cm;
+    [cm release];
 }
-
 
 -(void)serverDone:(NSMutableDictionary *)schedule
 {
@@ -223,6 +221,18 @@
 -(IBAction)donePressed:(id)sender 
 {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+-(NSArray*)getMapsList
+{
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSArray *array = [dict allKeys];
+    [dict release];
+    
+    return array;
 }
 
 - (void)dealloc {
