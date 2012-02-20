@@ -177,6 +177,8 @@
         NSString *alphabet = [stationIndex objectAtIndex:section];
         
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name beginswith[c] %@", alphabet];
+
+        // tut dolgo
         NSArray *stations = [self.stationList filteredArrayUsingPredicate:predicate];
         
         return [stations count]; 
@@ -253,7 +255,7 @@
         }
     }
     NSDate *date2 = [NSDate date];
-    NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
+//    NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
 
     return cell;
 }

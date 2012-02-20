@@ -889,7 +889,7 @@
     
 }
 
--(void)returnFromSelection:(NSArray*)stations
+-(void)returnFromSelection2:(NSArray*)stations
 {
     MainView *mainView = (MainView*)self.view;
     
@@ -959,10 +959,16 @@
     
 	mainView.mapView.stationSelected=false;
     
-    MHelper *helper = [MHelper sharedHelper];
-    [helper saveBookmarkFile];
-    [helper saveHistoryFile];
+//    MHelper *helper = [MHelper sharedHelper];
+//    [helper saveBookmarkFile];
+//    [helper saveHistoryFile];
+//    [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)returnFromSelection:(NSArray*)stations
+{
     [self dismissModalViewControllerAnimated:YES];
+    [self performSelector:@selector(returnFromSelection2:) withObject:stations afterDelay:0.1];
 }
 
 -(void)returnFromSelectionFastAccess:(NSArray *)stations
