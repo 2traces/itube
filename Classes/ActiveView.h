@@ -13,4 +13,6 @@
     CityMap* cityMap;
 }
 
+@property (nonatomic, retain) CityMap* cityMap;
+
 @end

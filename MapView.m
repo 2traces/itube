@@ -157,7 +157,8 @@
     midground2.hidden = NO;
     midground2.alpha = 1.f;
     [UIView animateWithDuration:0.5f animations:^(void) { midground2.alpha = 0.f; } completion:^(BOOL finish) { midground2.hidden = YES; } ];
-    
+
+    activeLayer.cityMap = cityMap;
     if(vectorLayer != nil) [vectorLayer release];
     if(cityMap.backgroundImageFile != nil) vectorLayer = [[VectorLayer alloc] initWithFile:cityMap.backgroundImageFile];
     else vectorLayer = nil;
