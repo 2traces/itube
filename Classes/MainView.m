@@ -57,9 +57,10 @@ NSInteger const toolbarWidth=320;
     buttonsVisible = NO;
 	DLog(@"ViewDidLoad main View");	
 
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     CGRect scrollSize = CGRectMake(0,44,(320),(480-64));
 	mapView = [[[MapView alloc] initWithFrame:scrollSize] autorelease];
-    [mapView loadVectorLayer:@"2012"];
+    mapView.cityMap = appDelegate.cityMap;
     mapView.vcontroller = self.vcontroller;
 
 	containerView = [[MyScrollView alloc] initWithFrame:scrollSize];
@@ -78,10 +79,7 @@ NSInteger const toolbarWidth=320;
 //	containerView.userInteractionEnabled = YES;
 //	mapView.exclusiveTouch = NO;
 
-    [containerView addSubview:mapView.backgroundVector];
-    //[containerView addSubview:mapView.backgroundVectorDisabled];
-    //[containerView addSubview:mapView.backgroundNormal];
-    //[containerView addSubview:mapView.backgroundDisabled];
+    [containerView addSubview:mapView.previewImage];
     containerView.scrolledView = mapView;
 	containerView.delegate = mapView;
 	[containerView addSubview: mapView];
@@ -140,21 +138,6 @@ NSInteger const toolbarWidth=320;
     settings.frame = CGRectMake(285, 420, 27, 27);
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:settings];
-    
-    /*zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    //[zones setTitle:@"Zones" forState:UIControlStateNormal];
-    //[zones setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    //[zones setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [zones setImage:[UIImage imageNamed:@"zones_btn_normal"] forState:UIControlStateNormal];
-    [zones setImage:[UIImage imageNamed:@"zones_btn_pressed"] forState:UIControlStateSelected];
-    //zones.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:11.f];
-    zones.frame = CGRectMake(20, 420, 42, 23);
-    [zones addTarget:self action:@selector(switchZones) forControlEvents:UIControlEventTouchUpInside];
-    [zones setSelected:mapView.showVectorLayer];
-    [zones.layer setShadowRadius:5.f];
-    [zones.layer setShadowOpacity:0.5f];
-    [zones.layer setShadowOffset:CGSizeMake(0, 0)];
-    [self addSubview:zones];*/
     
     UIImageView *shadow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]];
     shadow.frame = CGRectMake(0, 44, 320, 61);
@@ -277,18 +260,6 @@ NSInteger const toolbarWidth=320;
 //    SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
 //    [self.vcontroller presentModalViewController:controller animated:YES];
 //    [controller release];
-}
-
--(void) switchZones
-{
-    return;
-    if(mapView.showVectorLayer) {
-        mapView.showVectorLayer = NO;
-        [zones setSelected:NO];
-    } else {
-        mapView.showVectorLayer = YES;
-        [zones setSelected:YES];
-    }
 }
 
 @end

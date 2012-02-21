@@ -26,6 +26,7 @@ extern int const imagesCount;
 
 @interface MapView : UIView <UIScrollViewDelegate> {
 
+    CGRect visualFrame;
 	UILabel *mainLabel;
     UILabel *lineLabel;
     UIView *circleLabel;
@@ -46,11 +47,10 @@ extern int const imagesCount;
     UIScrollView *scrollView;
     CGLayerRef cacheLayer[MAXCACHE];
     int currentCacheLayer;
-    // background prerendered images (normal and gray)
     UIView *midground1, *midground2;
-    UIImageView *backgroundVector, *backgroundVector2;
+    // prerendered image
+    UIImageView *previewImage;
     VectorLayer *vectorLayer;
-    BOOL showVectorLayer;
     ActiveView *activeLayer;
 }
 
@@ -74,10 +74,8 @@ extern int const imagesCount;
 @property (nonatomic, assign) MainViewController *vcontroller;
 @property (nonatomic, readonly) UIView* midground1;
 @property (nonatomic, readonly) UIView* midground2;
-@property (nonatomic, readonly) UIImageView* backgroundVector;
-@property (nonatomic, readonly) UIImageView* backgroundVectorDisabled;
+@property (nonatomic, readonly) UIImageView* previewImage;
 @property (nonatomic, readonly) UIView* labelView;
-@property (nonatomic, assign) BOOL showVectorLayer;
 @property (nonatomic, readonly) ActiveView *activeLayer;
 
 - (void)viewDidLoad;
@@ -88,7 +86,6 @@ extern int const imagesCount;
 -(void) clearPath;
 //
 -(void) initData ;
--(void) loadVectorLayer:(NSString*)file;
 
 
 //gps stuff

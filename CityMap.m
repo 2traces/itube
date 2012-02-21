@@ -1047,6 +1047,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize pathStationsList;
 @synthesize mapLines;
 @synthesize currentScale;
+@synthesize backgroundImageFile;
 
 -(StationKind) stationKind { return StKind; }
 -(void) setStationKind:(StationKind)stationKind { StKind = stationKind; }
@@ -1096,6 +1097,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	err = [parserTrp parse:[strTrp UTF8String]];
     err = [parserMap parse:[strMap UTF8String]];
 
+    backgroundImageFile = [[parserMap get:@"ImageFileName" section:@"Options"] retain];
     int val = [[parserMap get:@"LinesWidth" section:@"Options"] intValue];
     if(val != 0) LineWidth = val;
     val = [[parserMap get:@"StationDiameter" section:@"Options"] intValue];
@@ -1184,6 +1186,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             }
         }
     }
+    // для ретиновских устройств генерируем предварительно отрисованные данные в двойном размере
+    int scale = [[UIScreen mainScreen] scale];
+    if(scale > 1) PredrawScale *= scale;
+
     [self calcGraph];
     [self predraw];
 }

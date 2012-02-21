@@ -28,9 +28,7 @@
 @synthesize vcontroller;
 @synthesize midground1;
 @synthesize midground2;
-@synthesize backgroundVector;
-@synthesize backgroundVectorDisabled = backgroundVector2;
-@synthesize showVectorLayer;
+@synthesize previewImage;
 @synthesize activeLayer;
 
 + (Class)layerClass
@@ -52,30 +50,38 @@
     return labelBg;
 }
 
--(void)setShowVectorLayer:(BOOL)_showVectorLayer
-{
-    /*if(showVectorLayer != _showVectorLayer) {
-        showVectorLayer = _showVectorLayer;
-        if(_showVectorLayer) {
-            backgroundVector.hidden = background1.hidden;
-            backgroundVector2.hidden = background2.hidden;
-        } else {
-            backgroundVector.hidden = YES;
-            backgroundVector2.hidden = YES;
-        }
-        // это недокументированный метод, так что если он в будущем изменится, то ой
-        [self.layer invalidateContents];
-        [self setNeedsDisplay];
-    }*/
+-(void) makePreview {
+    // make background image
+    CGFloat backScale = MinScale * 2.f;
+    CGSize minSize = CGSizeMake(cityMap.w * backScale, cityMap.h * backScale);
+    CGRect r = CGRectMake(0, 0, minSize.width, minSize.height);
+    UIGraphicsBeginImageContext(minSize);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
+    CGContextFillRect(context,r);
+    CGContextScaleCTM(context, backScale, backScale);
+    r.size.width /= backScale;
+    r.size.height /= backScale;
+    [vectorLayer draw:context inRect:r];
+    [cityMap drawMap:context inRect:r];
+    [cityMap drawTransfers:context inRect:r];
+    [cityMap drawStations:context inRect:r]; 
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    [previewImage release];
+    previewImage = [[UIImageView alloc] initWithImage:img];
+    previewImage.frame = CGRectMake(0, 0, img.size.width, img.size.height);
+    previewImage.contentMode = UIViewContentModeScaleAspectFit;
+    previewImage.hidden = NO;
+    UIGraphicsEndImageContext();
 }
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         // Initialization code
+        visualFrame = frame;
         [self.layer setLevelsOfDetail:5];
         [self.layer setLevelsOfDetailBias:2];
         for(int i=0; i<MAXCACHE; i++) cacheLayer[i] = nil;
-        showVectorLayer = NO;
 
 		DLog(@" InitMapView	initWithFrame; ");
 		
@@ -83,6 +89,7 @@
 		nearestStationName = @"";
         MinScale = 0.25f;
         MaxScale = 4.f;
+        Scale = 2.f;
         selectedStationName = [[NSMutableString alloc] init];
 		
 		int scale = 1;
@@ -93,17 +100,6 @@
             self.layer.contentsScale = scale;
 		}
 
-        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-        
-        self.cityMap = appDelegate.cityMap;
-        // для ретиновских устройств перегенерируем предварительно отрисованные данные в двойном размере
-        if(scale > 1) cityMap.predrawScale *= scale;
-        
-        self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
-        MinScale = MIN( (float)frame.size.width / cityMap.size.width, (float)frame.size.height / cityMap.size.height);
-        MaxScale = cityMap.maxScale;
-        Scale = MinScale * 2.f;
-        
 		//метка которая показывает названия станций
 		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 27, 140, 25)];
 		mainLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:21.0];
@@ -130,102 +126,42 @@
         [labelBg addSubview:circleLabel];
 		labelBg.hidden=true;
         
+        midground1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        midground1.backgroundColor = [UIColor colorWithRed:1.f green:1.f blue:1.f alpha:0.7f];
+        midground1.hidden = YES;
+        midground2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        midground2.backgroundColor = [UIColor whiteColor];
+        midground2.hidden = YES;
+
 		[self initData];
 		
 		selectedStationLayer = [[CALayer layer] retain];
         activeLayer = [[ActiveView alloc] initWithFrame:frame];
         activeLayer.hidden = YES;
         
-        // make normal background image
-        /*CGFloat backScale = MinScale * 2.f;
-        CGSize minSize = CGSizeMake(cityMap.w * backScale, cityMap.h * backScale);
-        CGRect r = CGRectMake(0, 0, minSize.width, minSize.height);
-		UIGraphicsBeginImageContext(minSize);
-		CGContextRef context = UIGraphicsGetCurrentContext();
-		CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
-		//CGContextFillRect(context,r);
-		CGContextScaleCTM(context, backScale, backScale);
-        r.size.width /= backScale;
-        r.size.height /= backScale;
-        [cityMap drawMap:context inRect:r];
-        [cityMap drawTransfers:context inRect:r];
-        [cityMap drawStations:context inRect:r]; 
-        UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-        background1 = [[UIImageView alloc] initWithImage:img];
-        background1.frame = CGRectMake(0, 0, img.size.width, img.size.height);
-        background1.contentMode = UIViewContentModeScaleAspectFit;
-
-        // make disabled background image
-        [cityMap activatePath:[NSArray array]];
-		CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
-		//CGContextFillRect(context,r);
-        [cityMap drawMap:context inRect:r];
-        [cityMap drawTransfers:context inRect:r];
-        [cityMap drawStations:context inRect:r]; 
-        img = UIGraphicsGetImageFromCurrentImageContext();
-        background2 = [[UIImageView alloc] initWithImage:img];
-        background2.frame = CGRectMake(0, 0, img.size.width, img.size.height);
-        background2.contentMode = UIViewContentModeScaleAspectFit;
-        background2.hidden = YES;
-        UIGraphicsEndImageContext();
-        [cityMap resetPath];
-        */
-        midground1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, cityMap.w, cityMap.h)];
-        midground1.backgroundColor = [UIColor colorWithRed:1.f green:1.f blue:1.f alpha:0.7f];
-        midground1.hidden = YES;
-        midground2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, cityMap.w, cityMap.h)];
-        midground2.backgroundColor = [UIColor whiteColor];
-        midground2.hidden = NO;
-        midground2.alpha = 1.f;
-        [UIView animateWithDuration:0.5f animations:^(void) { midground2.alpha = 0.f; } completion:^(BOOL finish) { midground2.hidden = YES; } ];
     }
     return self;
 }
 
--(void) loadVectorLayer:(NSString *)file
+-(void)setCityMap:(CityMap *)_cityMap
 {
+    cityMap = _cityMap;
+    self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
+    MinScale = MIN( (float)visualFrame.size.width / cityMap.size.width, (float)visualFrame.size.height / cityMap.size.height);
+    MaxScale = cityMap.maxScale;
+    Scale = MinScale * 2.f;
+
+    midground1.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    midground1.hidden = YES;
+    midground2.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    midground2.hidden = NO;
+    midground2.alpha = 1.f;
+    [UIView animateWithDuration:0.5f animations:^(void) { midground2.alpha = 0.f; } completion:^(BOOL finish) { midground2.hidden = YES; } ];
+    
     if(vectorLayer != nil) [vectorLayer release];
-    vectorLayer = [[VectorLayer alloc] initWithFile:file];
-    showVectorLayer = YES;
-    // make background image
-    CGFloat backScale = MinScale * 2.f;
-    CGSize minSize = CGSizeMake(cityMap.w * backScale, cityMap.h * backScale);
-    CGRect r = CGRectMake(0, 0, minSize.width, minSize.height);
-    UIGraphicsBeginImageContext(minSize);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
-    CGContextFillRect(context,r);
-    CGContextScaleCTM(context, backScale, backScale);
-    r.size.width /= backScale;
-    r.size.height /= backScale;
-    [vectorLayer draw:context inRect:r];
-    [cityMap drawMap:context inRect:r];
-    [cityMap drawTransfers:context inRect:r];
-    [cityMap drawStations:context inRect:r]; 
-    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    [backgroundVector release];
-    backgroundVector = [[UIImageView alloc] initWithImage:img];
-    backgroundVector.frame = CGRectMake(0, 0, img.size.width, img.size.height);
-    backgroundVector.contentMode = UIViewContentModeScaleAspectFit;
-    backgroundVector.hidden = NO;
-    UIGraphicsEndImageContext();
-    /*
-    //disabled vector background
-    UIGraphicsBeginImageContext(minSize);
-    context = UIGraphicsGetCurrentContext();
-    CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
-    CGContextFillRect(context,CGRectMake(0, 0, minSize.width, minSize.height));
-    CGContextScaleCTM(context, backScale, backScale);
-    vectorLayer.enabled = NO;
-    [vectorLayer draw:context inRect:r];
-    img = UIGraphicsGetImageFromCurrentImageContext();
-    [backgroundVector2 release];
-    backgroundVector2 = [[UIImageView alloc] initWithImage:img];
-    backgroundVector2.frame = CGRectMake(0, 0, img.size.width, img.size.height);
-    backgroundVector2.contentMode = UIViewContentModeScaleAspectFit;
-    backgroundVector2.hidden = NO;
-    UIGraphicsEndImageContext();
-    vectorLayer.enabled = YES;*/
+    if(cityMap.backgroundImageFile != nil) vectorLayer = [[VectorLayer alloc] initWithFile:cityMap.backgroundImageFile];
+    else vectorLayer = nil;
+    [self makePreview];
 }
 
 -(void)showLabel
@@ -259,8 +195,7 @@
     for(int i=0; i<MAXCACHE; i++) CGLayerRelease(cacheLayer[i]);
     [midground1 release];
     [midground2 release];
-    [backgroundVector release];
-    [backgroundVector2 release];
+    [previewImage release];
 }
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)context {
@@ -289,7 +224,7 @@
     CGContextSetShouldSmoothFonts(ctx, false);
     CGContextSetAllowsFontSmoothing(ctx, false);
     
-    if(showVectorLayer && vectorLayer) [vectorLayer draw:context inRect:r];
+    if(vectorLayer) [vectorLayer draw:context inRect:r];
     cityMap.currentScale = scrollView.zoomScale / MaxScale;
     [cityMap drawMap:ctx inRect:r];
     [cityMap drawTransfers:ctx inRect:r];
