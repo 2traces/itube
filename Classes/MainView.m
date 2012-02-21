@@ -139,7 +139,7 @@ NSInteger const toolbarWidth=320;
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:settings];
     
-    UIImageView *shadow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]];
+    UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
     shadow.frame = CGRectMake(0, 44, 320, 61);
     [self addSubview:shadow];
     

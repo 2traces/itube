@@ -437,9 +437,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             CGContextSetFillColorWithColor(context, [[UIColor lightGrayColor] CGColor] );
         }
         CGContextSetTextDrawingMode (context, kCGTextFill);
-        int alignment = UITextAlignmentCenter;
-        if(pos.x < textRect.origin.x) alignment = UITextAlignmentLeft;
-        else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
+        //int alignment = UITextAlignmentCenter;
+        //if(pos.x < textRect.origin.x) alignment = UITextAlignmentLeft;
+        //else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
         CGContextSelectFont(context, TEXT_FONT, FontSize, kCGEncodingMacRoman);
         CGContextShowTextAtPoint(context, textRect.origin.x, textRect.origin.y+textRect.size.height, [name cStringUsingEncoding:[NSString defaultCStringEncoding]], [name length]);
     }
@@ -484,7 +484,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         Station *st = [sibling objectAtIndex:i];
         int curDrv = driving;
         if(drv >= 0) curDrv = [[relationDriving objectAtIndex:drv] intValue];
-        [segment addObject:[[Segment alloc] initFromStation:self toStation:st withDriving:curDrv]];
+        [segment addObject:[[[Segment alloc] initFromStation:self toStation:st withDriving:curDrv] autorelease]];
         if(drv < [relationDriving count]-1) drv ++;
     }
     if(!driving && [relationDriving count]) driving = [[relationDriving objectAtIndex:0] intValue];
@@ -617,7 +617,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [splinePoints insertObject:[NSValue valueWithCGPoint:CGPointMake(start.pos.x, start.pos.y)] atIndex:0];
     NSMutableArray *newSplinePoints = [[NSMutableArray alloc] init];
     for(int i=1; i<[splinePoints count]-1; i++) {
-        TangentPoint *p = [[TangentPoint alloc] initWithPoint:[[splinePoints objectAtIndex:i] CGPointValue]];
+        TangentPoint *p = [[[TangentPoint alloc] initWithPoint:[[splinePoints objectAtIndex:i] CGPointValue]] autorelease];
         [p calcTangentFrom:[[splinePoints objectAtIndex:i-1] CGPointValue] to:[[splinePoints objectAtIndex:i+1] CGPointValue]];
         [newSplinePoints addObject:p];
     }
@@ -751,7 +751,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             
             NSString* drv = nil;
             if(i < [drs count]) drv = [drs objectAtIndex:i];
-            Station *st = [[Station alloc] initWithName:[sts objectAtIndex:i] pos:CGPointMake(x, y) index:i rect:CGRectMake(tx, ty, tw, th) andDriving:drv];
+            Station *st = [[[Station alloc] initWithName:[sts objectAtIndex:i] pos:CGPointMake(x, y) index:i rect:CGRectMake(tx, ty, tw, th) andDriving:drv] autorelease];
             st.line = self;
             Station *last = [stations lastObject];
             if([st.relation count] < [st.relationDriving count]) {
@@ -940,18 +940,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)additionalPointsBetween:(NSString *)station1 and:(NSString *)station2 points:(NSArray *)points
 {
-    Station *ss1 = nil;
-    Station *ss2 = nil;
     for (Station *s in stations) {
         BOOL search = NO;
         BOOL rev = NO;
         if([s.name isEqualToString:station1]) {
             search = YES;
-            ss1 = s;
         }
         else if([s.name isEqualToString:station2]) {
             search = rev = YES;
-            ss2 = s;
         }
         if(search) {
             for (Segment *seg in s.segment) {
@@ -1055,7 +1051,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(void) setTransferKind:(StationKind)transferKind { TrKind = transferKind; }
 
 -(id) init {
-    [super init];
+    self = [super init];
 	[self initVars];
     return self;
 }
@@ -1125,7 +1121,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
         MLine *newLine = [NSEntityDescription insertNewObjectForEntityForName:@"Line" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
         newLine.name=lineName;
-        newLine.index = [[NSNumber alloc] initWithInt:i];
+        newLine.index = [[[NSNumber alloc] initWithInt:i] autorelease];
  
 		NSString *colors = [parserMap get:@"Color" section:lineName];
         newLine.color = [self colorForHex:colors];
@@ -1137,7 +1133,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 		
 		NSString *coordsTime = [parserTrp get:@"Driving" section:sectionName];
         
-        Line *l = [[Line alloc] initWithName:lineName stations:stations driving:coordsTime coordinates:coords rects:coordsText];
+        Line *l = [[[Line alloc] initWithName:lineName stations:stations driving:coordsTime coordinates:coords rects:coordsText] autorelease];
         l.index = i;
         l.color = [self colorForHex:colors];
         [mapLines addObject:l];
@@ -1248,7 +1244,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     } else if(ss2.transfer) {
         [ss2.transfer addStation:ss1];
     } else {
-        Transfer *tr = [[Transfer alloc] init];
+        Transfer *tr = [[[Transfer alloc] init] autorelease];
         tr.time = [[elements objectAtIndex:4] floatValue];
         [tr addStation:ss1];
         [tr addStation:ss2];
