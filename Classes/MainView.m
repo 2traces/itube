@@ -257,9 +257,9 @@ NSInteger const toolbarWidth=320;
 
 -(void) showSettings
 {
-//    SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
-//    [self.vcontroller presentModalViewController:controller animated:YES];
-//    [controller release];
+    SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
+    [self.vcontroller presentModalViewController:controller animated:YES];
+    [controller release];
 }
 
 @end

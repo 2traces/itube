@@ -1417,13 +1417,13 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 }
 
 - (void)dealloc {
-    [super dealloc];
 	[gpsCoords release];
     [mapLines release];
 	[graph release];
     [transfers release];
     [activePath release];
     [pathStationsList release];
+    [super dealloc];
 }
 
 // drawing

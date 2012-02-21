@@ -58,6 +58,21 @@
     [twoStationsView release];
 }
 
+-(void)changeMapTo:(NSString*)newMap
+{
+    CityMap *cm = [[CityMap alloc] init];
+    [cm loadMap:newMap];
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+    [[(MainView*)self.view mapView] setCityMap:cm];
+    appDelegate.cityMap=cm;
+}
+
+-(void)changeMap
+{
+    tubeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [[(MainView*)self.view mapView] setCityMap:appDelegate.cityMap];
+}
+
 -(NSString*)getArrivalTimeFromNow:(NSInteger)time
 {
     
@@ -889,7 +904,7 @@
     
 }
 
--(void)returnFromSelection:(NSArray*)stations
+-(void)returnFromSelection2:(NSArray*)stations
 {
     MainView *mainView = (MainView*)self.view;
     
@@ -959,10 +974,16 @@
     
 	mainView.mapView.stationSelected=false;
     
-    MHelper *helper = [MHelper sharedHelper];
-    [helper saveBookmarkFile];
-    [helper saveHistoryFile];
+//    MHelper *helper = [MHelper sharedHelper];
+//    [helper saveBookmarkFile];
+//    [helper saveHistoryFile];
+//    [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)returnFromSelection:(NSArray*)stations
+{
     [self dismissModalViewControllerAnimated:YES];
+    [self performSelector:@selector(returnFromSelection2:) withObject:stations afterDelay:0.1];
 }
 
 -(void)returnFromSelectionFastAccess:(NSArray *)stations

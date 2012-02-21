@@ -598,7 +598,15 @@ static MHelper * _sharedHelper;
     NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"ru_RU"];
     [formatter setLocale:usLocale];
     
-    for (MHistory *history in histList) {
+    int countH = [histList count];
+    
+    if (countH>30) {
+        countH=30;
+    }
+    
+    for (int i=0;i<countH;i++) {
+        
+        MHistory *history = [histList objectAtIndex:i];
         
         NSString *mainKey = [formatter stringFromDate:history.adate]; 
         

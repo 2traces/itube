@@ -1,0 +1,113 @@
+[Line1]
+Name=U1
+Stations=Norderstedt Mitte,Richtweg,Garstedt,Ochsenzoll,Kiwittsmoor,Langenhorn Nord,Langenhorn Markt,Fuhlsbuttel Nord,Fuhlsbuttel,Klein Borstel,Ohlsdorf,Sengelmannstrasse,Alsterdorf,Lattenkamp,Hudtwalckerstrasse,Kellinghusenstrasse,Klosterstern,Hallerstrasse,Stephansplatz,Jungfernstieg,Messberg,Steinstrasse,Hauptbahnhof,Lohmuhlenstrasse,Lubecker Strasse,Wartenau,Ritterstrasse,Wandsbeker Chaussee,Wandsbek Markt,Strassburger Strasse,Alter Teichweg,Wandsbek-Gartenstadt,Trabrennbahn,Farmsen,Berne,Meiendorfer Weg,Volksdorf(Buckhorn,Meiendorfer Weg,Buchenkamp),Buckhorn(Hoisbuttel),Hoisbuttel,Ohlstedt(Hoisbuttel),Buchenkamp(Ahrensburg West,Volksdorf),Ahrensburg West,Ahrensburg Ost,Schmalenbeck,Kiekut,Grosshansdorf
+Driving=2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,(2),(2),2,(2),(2),2,2,2,2
+
+[Line2]
+Name=U2
+Stations=Niendorf Nord,Schippelsweg,Joachim-Mahl-Strasse,Niendorf Markt,Hagendeel,Hagenbecks Tierpark,Lutterothstrasse,Osterstrasse,Emilienstrasse,Christuskirche,Schlump,Messehallen,Gansemarkt,Jungfernstieg,Hauptbahnhof,Berliner Tor,Burg Strasse,Hammer,Rauhes Haus,Horner Rennbahn,Legien Strasse,Billstedt,Merken Strasse,Steinfurther Allee,Mummelmannsberg
+Driving=2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+
+[Line3]
+Name=U3
+Stations=Wandsbek-Gartenstadt,Habichtstrasse,Barmbek,Saarlandstrasse(Borgweg),Borgweg(Sierichstrasse),Sierichstrasse(Kellinghusenstrasse),Kellinghusenstrasse(Eppendorfer Baum),Eppendorfer Baum(Hoheluftbrucke),Hoheluftbrucke(Schlump),Schlump(Sternschanze),Sternschanze(Feldstrasse),Feldstrasse(St. Pauli),St. Pauli(Landungsbrucken),Landungsbrucken(Baumwall),Baumwall(Rodingsmarkt),Rodingsmarkt(Rathaus),Rathaus(Monckebergstrasse),Monckebergstrasse(Hauptbahnhof),Hauptbahnhof(Berliner Tor),Berliner Tor(Lubecker Strasse),Lubecker Strasse(Uhlandstrasse),Uhlandstrasse(Mundsburg),Mundsburg(Hamburger Strasse),Hamburger Strasse(Dehnhaide),Dehnhaide(Barmbek)
+Driving=2,2,2,(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2)
+
+[Line4]
+Name=S2
+Stations=Elbgaustrasse,Eidelstedt,Stellingen,Langenfelde,Diebsteich,Holstenstrasse,Sternschanze,Dammtor,Hauptbahnhof,Berliner Tor,Rothenburgsort,Tiefstack,Billwerder-Moorfleet,Mittlerer Landweg,Allermohe,Nettelnburg,Bergedorf,Reinbek,Wohltorf,Aumuhle
+Driving=2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+
+[Line5]
+Name=S1
+Stations=Wedel,Rissen,Sulldorf,Iserbrook,Blankenese,Hochkamp,Klein Flottbek,Othmarschen,Bahrenfeld,Altona,Konigstrasse,Reeperbahn,Landungsbrucken,Stadthausbrucke,Jungfernstieg,Hauptbahnhof,Berliner Tor,Landwehr,Hasselbrook,Wandsbeker Chaussee,Freidrichsberg,Barmbek,Alte Wohr,Rubenkamp,Ohlsdorf(Hamburg Airport,Rubenkamp,Kornweg),Hamburg Airport(Ohlsdorf),Kornweg(Hoheneichen,Ohlsdorf),Hoheneichen,Wellingsbuttel,Poppenbuttel
+Driving=2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,(2),(2),(2),2,2
+
+[Line6]
+Name=S3
+Stations=Stade,Agathenburg,Dollern,Horneburg,Neukloster,Buxtehude,Neu Wulmstorf,Fischbek,Neugraben,Neuwiedenthal,Heimfeld,Harburg Rathaus,Harburg,Wilhelmsburg,Veddel,Hammerbrook,Hauptbahnhof(Jungfernstieg,Hammerbrook,Dammtor),Jungfernstieg,Stadthausbrucke,Landungsbrucken,Reeperbahn,Konigstrasse(Altona,Reeperbahn),Dammtor(Sternschanze,Hauptbahnhof),Sternschanze,Holstenstrasse,Altona(Diebsteich),Diebsteich,Langenfelde,Stellingen,Eidelstedt,Elbgaustrasse,Krupunder,Halstenbek,Thesdorf,Pinneberg
+Driving=2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,(2),2,2,2,2,(2),(2),2,2,(2),2,2,2,2,2,2,2,2
+
+[Transfers]
+
+01=U1,Wandsbek-Gartenstadt,U3,Wandsbek-Gartenstadt,2
+02=U1,Wandsbeker Chaussee,S1,Wandsbeker Chaussee,2
+03=U1,Lubecker Strasse,U3,Lubecker Strasse,2
+04=U1,Hauptbahnhof,U3,Hauptbahnhof,2
+05=U1,Kellinghusenstrasse,U3,Kellinghusenstrasse,2
+06=U1,Ohlsdorf,S1,Ohlsdorf,2
+07=U1,Hauptbahnhof,S3,Hauptbahnhof,2
+08=U1,Hauptbahnhof,S1,Hauptbahnhof,2
+09=U1,Hauptbahnhof,S2,Hauptbahnhof,2
+10=U1,Hauptbahnhof,U2,Hauptbahnhof,2
+11=U2,Schlump,U3,Schlump,2
+12=U2,Jungfernstieg,S1,Jungfernstieg,2
+13=U2,Hauptbahnhof,S2,Hauptbahnhof,2
+14=U2,Berliner Tor,S2,Berliner Tor,2
+15=U2,Jungfernstieg,S3,Jungfernstieg,2
+16=U2,Hauptbahnhof,S1,Hauptbahnhof,2
+17=U2,Hauptbahnhof,S3,Hauptbahnhof,2
+18=U2,Hauptbahnhof,U3,Hauptbahnhof,2
+19=U2,Hauptbahnhof,U1,Hauptbahnhof,2
+20=U2,Berliner Tor,U3,Berliner Tor,2
+21=U2,Berliner Tor,S1,Berliner Tor,2
+22=U3,Wandsbek-Gartenstadt,U1,Wandsbek-Gartenstadt,2
+23=U3,Barmbek,S1,Barmbek,2
+24=U3,Kellinghusenstrasse,U1,Kellinghusenstrasse,2
+25=U3,Schlump,U2,Schlump,2
+26=U3,Sternschanze,S2,Sternschanze,2
+27=U3,Sternschanze,S3,Sternschanze,2
+28=U3,Landungsbrucken,S1,Landungsbrucken,2
+29=U3,Landungsbrucken,S3,Landungsbrucken,2
+30=U3,Hauptbahnhof,U1,Hauptbahnhof,2
+31=U3,Hauptbahnhof,S3,Hauptbahnhof,2
+32=U3,Hauptbahnhof,S1,Hauptbahnhof,2
+33=U3,Hauptbahnhof,S2,Hauptbahnhof,2
+34=U3,Hauptbahnhof,U2,Hauptbahnhof,2
+35=U3,Berliner Tor,S1,Berliner Tor,2
+36=U3,Berliner Tor,S2,Berliner Tor,2
+37=U3,Berliner Tor,U2,Berliner Tor,2
+38=U3,Lubecker Strasse,U1,Lubecker Strasse,2
+39=S1,Ohlsdorf,U1,Ohlsdorf,2
+40=S1,Barmbek,U3,Barmbek,2
+41=S1,Wandsbeker Chaussee,U1,Wandsbeker Chaussee,2
+42=S1,Berliner Tor,U3,Berliner Tor,2
+43=S1,Berliner Tor,S2,Berliner Tor,2
+44=S1,Berliner Tor,U2,Berliner Tor,2
+45=S1,Hauptbahnhof,S2,Hauptbahnhof,2
+46=S1,Hauptbahnhof,U2,Hauptbahnhof,2
+47=S1,Hauptbahnhof,S3,Hauptbahnhof,2
+48=S1,Hauptbahnhof,U3,Hauptbahnhof,2
+49=S1,Hauptbahnhof,U1,Hauptbahnhof,2
+50=S1,Jungfernstieg,S3,Jungfernstieg,2
+51=S1,Jungfernstieg,U2,Jungfernstieg,2
+52=S1,Landungsbrucken,U3,Landungsbrucken,2
+53=S1,Landungsbrucken,S3,Landungsbrucken,2
+54=S1,Altona,S3,Altona,2
+55=S2,Elbgaustrasse,S3,Elbgaustrasse,2
+56=S2,Eidelstedt,S3,Eidelstedt,2
+57=S2,Sternschanze,U3,Sternschanze,2
+58=S2,Sternschanze,S3,Sternschanze,2
+59=S2,Dammtor,S3,Dammtor,2
+60=S2,Hauptbahnhof,U2,Hauptbahnhof,2
+61=S2,Hauptbahnhof,S1,Hauptbahnhof,2
+62=S2,Hauptbahnhof,S3,Hauptbahnhof,2
+63=S2,Hauptbahnhof,U3,Hauptbahnhof,2
+64=S2,Hauptbahnhof,U1,Hauptbahnhof,2
+65=S2,Berliner Tor,U2,Berliner Tor,2
+66=S2,Berliner Tor,U3,Berliner Tor,2
+67=S2,Berliner Tor,S1,Berliner Tor,2
+68=S3,Hauptbahnhof,U3,Hauptbahnhof,2
+69=S3,Hauptbahnhof,U1,Hauptbahnhof,2
+70=S3,Hauptbahnhof,S1,Hauptbahnhof,2
+71=S3,Hauptbahnhof,S2,Hauptbahnhof,2
+72=S3,Hauptbahnhof,U2,Hauptbahnhof,2
+73=S3,Jungfernstieg,S1,Jungfernstieg,2
+74=S3,Jungfernstieg,U2,Jungfernstieg,2
+75=S3,Landungsbrucken,U3,Landungsbrucken,2
+76=S3,Landungsbrucken,S1,Landungsbrucken,2
+77=S3,Altona,S1,Altona,2
+78=S3,Eidelstedt,S2,Eidelstedt,2
+79=S3,Elbgaustrasse,S2,Elbgaustrasse,2
+
+

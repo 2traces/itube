@@ -159,9 +159,9 @@
 
 -(IBAction)backPressed:(id)sender
 {
-    MHelper *helper = [MHelper sharedHelper];
-    [helper saveBookmarkFile];
-    [helper saveHistoryFile];
+//    MHelper *helper = [MHelper sharedHelper];
+//    [helper saveBookmarkFile];
+//    [helper saveHistoryFile];
     [self dismissModalViewControllerAnimated:YES];
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate.mainViewController returnFromSelection:[NSArray array]];

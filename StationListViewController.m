@@ -72,7 +72,6 @@
     [searchDC release];
     
     self.colorDictionary = [[[NSMutableDictionary alloc] initWithCapacity:[self.stationList count]] autorelease];
-    
 }
 
 -(void)createStationIndex
@@ -177,6 +176,8 @@
         NSString *alphabet = [stationIndex objectAtIndex:section];
         
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name beginswith[c] %@", alphabet];
+
+        // tut dolgo
         NSArray *stations = [self.stationList filteredArrayUsingPredicate:predicate];
         
         return [stations count]; 
@@ -185,7 +186,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDate *date = [NSDate date];
+ //   NSDate *date = [NSDate date];
     
     static NSString *CellIdentifier = @"StationCell";
     
@@ -253,7 +254,7 @@
         }
     }
     NSDate *date2 = [NSDate date];
-    NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
+//    NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
 
     return cell;
 }

@@ -11,6 +11,8 @@
 #import "LanguageCell.h"
 #import "CityCell.h"
 #import "MyNavigationBar.h"
+#import "CityMap.h"
+#import "tubeAppDelegate.h"
 
 @implementation SettingsViewController
 
@@ -21,12 +23,15 @@
 @synthesize maps;
 @synthesize textLabel1,textLabel2;
 @synthesize navBar;
+@synthesize navItem;
+@synthesize scrollView;
+@synthesize selectedPath;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-          self.maps = [NSArray arrayWithObjects:@"London",@"Paris",@"Madrid",@"Berlin",@"Dublin",@"Oslo", nil];
+        self.maps = [self getMapsList];
     }
     return self;
 }
@@ -64,13 +69,6 @@
 {
     [super viewDidLoad];
     
- //  self.navigationItem.title = @"Settqqqings";
-    
-//    self.navigationItem.leftBarButtonItem=UIBarButtonSystemItemCancel;
-
-    // Do any additional setup after loading the view from its nib.
-    [self.cityTableView.layer setCornerRadius:10.0];
-    
 	langTableView.backgroundColor = [UIColor clearColor];
     langTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -80,38 +78,34 @@
 	cityTableView.backgroundColor = [UIColor clearColor];
     cityTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    CGRect frame = CGRectMake(0, 0, 320, 44);
+    CGRect frame = CGRectMake(80, 0, 160, 44);
 	UILabel *label = [[[UILabel alloc] initWithFrame:frame] autorelease];
 	label.backgroundColor = [UIColor clearColor];
 	label.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0];
-	label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+//	label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
 	label.textAlignment = UITextAlignmentCenter;
 	label.textColor = [UIColor darkGrayColor];
-	self.navigationItem.titleView = label;
-	label.text = @"Settings";
+    label.text = @"Settings";
+	self.navItem.titleView = label;
 	
-	self.navigationItem.hidesBackButton=YES;
-    
-//    self.navBar.
-    
-	// добавляем кастомные кнопочки слева и справа
-	
-//	[self putBackButton];	
-
-  
-}
-
--(void) putBackButton
-{
-	UIImage *back_image=[UIImage imageNamed:@"settings_back_button.png"];
+    UIImage *back_image=[UIImage imageNamed:@"settings_back_button.png"];
 	UIButton *back_button = [UIButton buttonWithType:UIButtonTypeCustom];
 	back_button.bounds = CGRectMake( 0, 0, back_image.size.width, back_image.size.height );    
 	[back_button setBackgroundImage:back_image forState:UIControlStateNormal];
 	[back_button addTarget:self action:@selector(donePressed:) forControlEvents:UIControlEventTouchUpInside];    
 	UIBarButtonItem *barButtonItem_back = [[UIBarButtonItem alloc] initWithCustomView:back_button];
-	self.navigationItem.leftBarButtonItem = barButtonItem_back;
-    self.navigationItem.hidesBackButton=YES;
+	self.navItem.leftBarButtonItem = barButtonItem_back;
+	self.navItem.hidesBackButton=YES;
 	[barButtonItem_back release];
+    
+    CGFloat tableHeight = [maps count]*45.0f+2.0;
+    
+    cityTableView.frame = CGRectMake(8, 179, 304, tableHeight);
+    
+	scrollView.contentSize = CGSizeMake(320, 179+tableHeight+20.0);
+    scrollView.frame = CGRectMake(0.0, 44.0, 320.0, 460.0-44.0);
+    
+	[scrollView flashScrollIndicators];
 }
 
 - (void)viewDidUnload
@@ -119,8 +113,6 @@
     [self setCityButton:nil];
     [self setBuyButton:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -164,7 +156,11 @@
         cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"city_table_cell.png"]] autorelease];
         cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"city_table_cell.png"]] autorelease];
         
-
+        if ([indexPath isEqual:self.selectedPath]) {
+            cell.accessoryType=UITableViewCellAccessoryCheckmark;
+        } else {
+            cell.accessoryType=UITableViewCellAccessoryNone;
+        }
         
         return cell;
 
@@ -193,14 +189,27 @@
     }
 }
 
-
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.selectedPath=indexPath;
     
+    [tableView reloadData];    
+    
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSString *mapName = [NSString stringWithString:[dict objectForKey:[self.maps objectAtIndex:indexPath.row]]];
+    [dict release];
+    
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+    [appDelegate.mainViewController changeMapTo:mapName];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{    
+    return 45.0;
+}
 
 -(void)serverDone:(NSMutableDictionary *)schedule
 {
@@ -223,6 +232,18 @@
 -(IBAction)donePressed:(id)sender 
 {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+-(NSArray*)getMapsList
+{
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSArray *array = [dict allKeys];
+    [dict release];
+    
+    return array;
 }
 
 - (void)dealloc {
