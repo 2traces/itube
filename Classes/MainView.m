@@ -71,6 +71,7 @@ NSInteger const toolbarWidth=320;
 //	containerView.pagingEnabled = YES;
 	containerView.clipsToBounds = NO;//YES;
 	containerView.bounces = YES;
+    [containerView setBouncesZoom:NO];
 	containerView.maximumZoomScale = mapView.MaxScale;
 	containerView.minimumZoomScale = mapView.MinScale;
 	//containerView.directionalLockEnabled = YES;
@@ -78,17 +79,20 @@ NSInteger const toolbarWidth=320;
 //	mapView.exclusiveTouch = NO;
 
     [containerView addSubview:mapView.backgroundVector];
-    [containerView addSubview:mapView.backgroundVectorDisabled];
-    [containerView addSubview:mapView.backgroundNormal];
-    [containerView addSubview:mapView.backgroundDisabled];
+    //[containerView addSubview:mapView.backgroundVectorDisabled];
+    //[containerView addSubview:mapView.backgroundNormal];
+    //[containerView addSubview:mapView.backgroundDisabled];
     containerView.scrolledView = mapView;
 	containerView.delegate = mapView;
 	[containerView addSubview: mapView];
     [containerView setZoomScale:mapView.Scale animated:NO];
 	[self addSubview:containerView];
+    [containerView addSubview:mapView.midground1];
+    [containerView addSubview:mapView.activeLayer];
+    [containerView addSubview:mapView.midground2];
     
 	//TODO
-	[containerView setContentOffset:CGPointMake(650, 650) animated:NO];
+	[containerView setContentOffset:CGPointMake(mapView.size.width * 0.25f * mapView.Scale, mapView.size.height * 0.25f * mapView.Scale ) animated:NO];
 	
 	stationNameView = [[UIView alloc] initWithFrame:self.frame];
 	[stationNameView setOpaque:YES];
@@ -119,19 +123,13 @@ NSInteger const toolbarWidth=320;
     [sourceButton setImage:[UIImage imageNamed:@"src_button_normal"] forState:UIControlStateNormal];
     [sourceButton setImage:[UIImage imageNamed:@"src_button_pressed"] forState:UIControlStateHighlighted];
     [sourceButton addTarget:self action:@selector(selectFromStationByButton) forControlEvents:UIControlEventTouchUpInside];
-    [sourceButton setFrame:CGRectMake(-80, 200, 76, 76)];
-    [sourceButton.layer setShadowOffset:CGSizeMake(0, 0)];
-    [sourceButton.layer setShadowOpacity:0.3f];
-    [sourceButton.layer setShadowRadius:10.0];
+    [sourceButton setFrame:CGRectMake(-90, 190, 96, 96)];
     
     destinationButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [destinationButton setImage:[UIImage imageNamed:@"dst_button_normal"] forState:UIControlStateNormal];
     [destinationButton setImage:[UIImage imageNamed:@"dst_button_pressed"] forState:UIControlStateHighlighted];
     [destinationButton addTarget:self action:@selector(selectToStationByButton) forControlEvents:UIControlEventTouchUpInside];
-    [destinationButton setFrame:CGRectMake(325, 200, 76, 76)];
-    [destinationButton.layer setShadowOffset:CGSizeMake(0, 0)];
-    [destinationButton.layer setShadowOpacity:0.3f];
-    [destinationButton.layer setShadowRadius:10.0];
+    [destinationButton setFrame:CGRectMake(315, 190, 96, 96)];
     
     [self addSubview:sourceButton];
     [self addSubview:destinationButton];
@@ -139,14 +137,11 @@ NSInteger const toolbarWidth=320;
     UIButton *settings = [UIButton buttonWithType:UIButtonTypeCustom];
     [settings setImage:[UIImage imageNamed:@"settings_btn_normal"] forState:UIControlStateNormal];
     [settings setImage:[UIImage imageNamed:@"settings_btn"] forState:UIControlStateHighlighted];
-    settings.frame = CGRectMake(285, 420, 23, 23);
+    settings.frame = CGRectMake(285, 420, 27, 27);
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
-    [settings.layer setShadowRadius:5.f];
-    [settings.layer setShadowOpacity:0.5f];
-    [settings.layer setShadowOffset:CGSizeMake(0, 0)];
     [self addSubview:settings];
     
-    zones = [UIButton buttonWithType:UIButtonTypeCustom];
+    /*zones = [UIButton buttonWithType:UIButtonTypeCustom];
     //[zones setTitle:@"Zones" forState:UIControlStateNormal];
     //[zones setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     //[zones setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
@@ -159,7 +154,11 @@ NSInteger const toolbarWidth=320;
     [zones.layer setShadowRadius:5.f];
     [zones.layer setShadowOpacity:0.5f];
     [zones.layer setShadowOffset:CGSizeMake(0, 0)];
-    [self addSubview:zones];
+    [self addSubview:zones];*/
+    
+    UIImageView *shadow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]];
+    shadow.frame = CGRectMake(0, 44, 320, 61);
+    [self addSubview:shadow];
     
     NSTimer *timer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(supervisor) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
@@ -282,6 +281,7 @@ NSInteger const toolbarWidth=320;
 
 -(void) switchZones
 {
+    return;
     if(mapView.showVectorLayer) {
         mapView.showVectorLayer = NO;
         [zones setSelected:NO];

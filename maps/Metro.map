@@ -3,7 +3,7 @@ StationDiameter=37
 ImageFileName=2012.vec
 LinesWidth=24
 WordWrap=true
-MaxScale=1
+MaxScale=0.5
 FontSize=45
 
 [Ligne 1]

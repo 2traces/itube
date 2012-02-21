@@ -161,6 +161,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 
 -(id)initWithName:(NSString*)n stations:(NSString*)stations driving:(NSString*)driving coordinates:(NSString*)coordinates rects:(NSString*)rects;
 -(void)draw:(CGContextRef)context inRect:(CGRect)rect;
+-(void)drawActive:(CGContextRef)context inRect:(CGRect)rect;
 -(void)drawNames:(CGContextRef)context inRect:(CGRect)rect;
 -(void)additionalPointsBetween:(NSString*)station1 and:(NSString*)station2 points:(NSArray*)points;
 -(Station*)getStation:(NSString*)stName;
@@ -228,6 +229,8 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 -(void) drawMap:(CGContextRef) context inRect:(CGRect)rect;
 -(void) drawStations:(CGContextRef) context inRect:(CGRect)rect;
 -(void) drawTransfers:(CGContextRef) context inRect:(CGRect)rect;
+
+-(void) drawActive:(CGContextRef) context inRect:(CGRect)rect;
 
 -(void) activatePath:(NSArray*)pathMap;
 -(void) resetPath;

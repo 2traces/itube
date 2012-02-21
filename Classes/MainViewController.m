@@ -50,9 +50,9 @@
     TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] initWithFrame:CGRectMake(0,0,320,44)];
     self.stationsView = twoStationsView;
 
-    [self.stationsView.layer setShadowRadius:15.f];
+    /*[self.stationsView.layer setShadowRadius:15.f];
     [self.stationsView.layer setShadowOffset:CGSizeMake(0, 10)];
-    [self.stationsView.layer setShadowOpacity:0.5f];
+    [self.stationsView.layer setShadowOpacity:0.5f];*/
 
     [(MainView*)self.view addSubview:twoStationsView];
     [twoStationsView release];
@@ -392,18 +392,18 @@
     }
     [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
     
-    [self.stationsView.layer setShadowRadius:15.f];
+    /*[self.stationsView.layer setShadowRadius:15.f];
     [self.stationsView.layer setShadowOffset:CGSizeMake(0, 42)]; //41
-    [self.stationsView.layer setShadowOpacity:0.5f];
+    [self.stationsView.layer setShadowOpacity:0.5f];*/
 }
 
 -(void)removeScrollView
 {
     [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 44, 320, 480-64)];
 
-    [self.stationsView.layer setShadowRadius:15.f];
+    /*[self.stationsView.layer setShadowRadius:15.f];
     [self.stationsView.layer setShadowOffset:CGSizeMake(0, 10)];
-    [self.stationsView.layer setShadowOpacity:0.5f];
+    [self.stationsView.layer setShadowOpacity:0.5f];*/
     
     [self.scrollView removeFromSuperview];
     self.scrollView=nil;
