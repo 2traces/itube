@@ -10,9 +10,5 @@
 	<string>berlin</string>
 	<key>Hamburg</key>
 	<string>hamburg</string>
-	<key>Moscow</key>
-	<string>moscow</string>
-	<key>Madrid</key>
-	<string>madrid</string>
 </dict>
 </plist>

@@ -24,12 +24,12 @@
 @synthesize textLabel1,textLabel2;
 @synthesize navBar;
 @synthesize navItem;
+@synthesize scrollView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-          //self.maps = [NSArray arrayWithObjects:@"London",@"Paris",@"Madrid",@"Berlin",@"Dublin",@"Oslo", nil];
         self.maps = [self getMapsList];
     }
     return self;
@@ -68,13 +68,6 @@
 {
     [super viewDidLoad];
     
- //  self.navigationItem.title = @"Settqqqings";
-    
-//    self.navigationItem.leftBarButtonItem=UIBarButtonSystemItemCancel;
-
-    // Do any additional setup after loading the view from its nib.
-    [self.cityTableView.layer setCornerRadius:10.0];
-    
 	langTableView.backgroundColor = [UIColor clearColor];
     langTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -103,6 +96,15 @@
 	self.navItem.leftBarButtonItem = barButtonItem_back;
 	self.navItem.hidesBackButton=YES;
 	[barButtonItem_back release];
+    
+    CGFloat tableHeight = [maps count]*45.0f+2.0;
+    
+    cityTableView.frame = CGRectMake(8, 179, 304, tableHeight);
+    
+	scrollView.contentSize = CGSizeMake(320, 179+tableHeight+20.0);
+    scrollView.frame = CGRectMake(0.0, 44.0, 320.0, 460.0-44.0);
+    
+	[scrollView flashScrollIndicators];
 }
 
 - (void)viewDidUnload
@@ -110,8 +112,6 @@
     [self setCityButton:nil];
     [self setBuyButton:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -198,6 +198,11 @@
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     appDelegate.cityMap = cm;
     [cm release];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{    
+    return 45.0;
 }
 
 -(void)serverDone:(NSMutableDictionary *)schedule

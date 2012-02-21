@@ -72,7 +72,6 @@
     [searchDC release];
     
     self.colorDictionary = [[[NSMutableDictionary alloc] initWithCapacity:[self.stationList count]] autorelease];
-    
 }
 
 -(void)createStationIndex

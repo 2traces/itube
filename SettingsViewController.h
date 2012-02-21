@@ -25,6 +25,8 @@
     IBOutlet MyNavigationBar *navBar;
     IBOutlet UINavigationItem *navItem;
     
+    IBOutlet UIScrollView *scrollView;
+    
     NSArray *maps;
 }
 
@@ -38,6 +40,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *textLabel2;
 @property (nonatomic, retain) IBOutlet MyNavigationBar *navBar;
 @property (nonatomic, retain) IBOutlet UINavigationItem *navItem;
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 
 
 -(IBAction)cityPress:(id)sender;
