@@ -25,6 +25,7 @@
 @synthesize navBar;
 @synthesize navItem;
 @synthesize scrollView;
+@synthesize selectedPath;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -155,7 +156,11 @@
         cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"city_table_cell.png"]] autorelease];
         cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"city_table_cell.png"]] autorelease];
         
-
+        if ([indexPath isEqual:self.selectedPath]) {
+            cell.accessoryType=UITableViewCellAccessoryCheckmark;
+        } else {
+            cell.accessoryType=UITableViewCellAccessoryNone;
+        }
         
         return cell;
 
@@ -186,6 +191,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.selectedPath=indexPath;
+    
+    [tableView reloadData];    
+    
     NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
     
@@ -193,11 +202,8 @@
     NSString *mapName = [NSString stringWithString:[dict objectForKey:[self.maps objectAtIndex:indexPath.row]]];
     [dict release];
     
-    CityMap *cm = [[CityMap alloc] init];
-    [cm loadMap:mapName];
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-    appDelegate.cityMap = cm;
-    [cm release];
+    [appDelegate.mainViewController changeMapTo:mapName];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

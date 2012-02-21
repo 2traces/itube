@@ -28,6 +28,8 @@
     IBOutlet UIScrollView *scrollView;
     
     NSArray *maps;
+    
+    NSIndexPath *selectedPath;
 }
 
 
@@ -41,6 +43,7 @@
 @property (nonatomic, retain) IBOutlet MyNavigationBar *navBar;
 @property (nonatomic, retain) IBOutlet UINavigationItem *navItem;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) NSIndexPath *selectedPath;
 
 
 -(IBAction)cityPress:(id)sender;

@@ -13,6 +13,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
 #import "VectorLayer.h"
+#import "ActiveView.h"
 
 extern int const imagesCount;
 
@@ -25,6 +26,7 @@ extern int const imagesCount;
 
 @interface MapView : UIView <UIScrollViewDelegate> {
 
+    CGRect visualFrame;
 	UILabel *mainLabel;
     UILabel *lineLabel;
     UIView *circleLabel;
@@ -45,10 +47,11 @@ extern int const imagesCount;
     UIScrollView *scrollView;
     CGLayerRef cacheLayer[MAXCACHE];
     int currentCacheLayer;
-    // background prerendered images (normal and gray)
-    UIImageView *background1, *background2, *backgroundVector, *backgroundVector2;
+    UIView *midground1, *midground2;
+    // prerendered image
+    UIImageView *previewImage;
     VectorLayer *vectorLayer;
-    BOOL showVectorLayer;
+    ActiveView *activeLayer;
 }
 
 @property (assign) NSString *nearestStationName;
@@ -69,12 +72,11 @@ extern int const imagesCount;
 @property (nonatomic, readonly) CGFloat MaxScale;
 @property (nonatomic, readonly) CGFloat MinScale;
 @property (nonatomic, assign) MainViewController *vcontroller;
-@property (nonatomic, readonly) UIImageView* backgroundNormal;
-@property (nonatomic, readonly) UIImageView* backgroundDisabled;
-@property (nonatomic, readonly) UIImageView* backgroundVector;
-@property (nonatomic, readonly) UIImageView* backgroundVectorDisabled;
+@property (nonatomic, readonly) UIView* midground1;
+@property (nonatomic, readonly) UIView* midground2;
+@property (nonatomic, readonly) UIImageView* previewImage;
 @property (nonatomic, readonly) UIView* labelView;
-@property (nonatomic, assign) BOOL showVectorLayer;
+@property (nonatomic, readonly) ActiveView *activeLayer;
 
 - (void)viewDidLoad;
 // 
@@ -84,7 +86,6 @@ extern int const imagesCount;
 -(void) clearPath;
 //
 -(void) initData ;
--(void) loadVectorLayer:(NSString*)file;
 
 
 //gps stuff

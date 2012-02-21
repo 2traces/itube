@@ -33,7 +33,6 @@ extern NSInteger const toolbarWidth;
 	UIView *stationNameView;
 	UILabel *stationNameLabel;
     UIButton *sourceButton, *destinationButton;
-    UIButton *zones;
     UIImageView *stationMark;
     BOOL buttonsVisible;
 }
