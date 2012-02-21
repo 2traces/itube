@@ -1098,6 +1098,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(val != 0) LineWidth = val;
     val = [[parserMap get:@"StationDiameter" section:@"Options"] intValue];
     if(val != 0) StationDiameter = val;
+    FontSize = StationDiameter;
     val = [[parserMap get:@"DisplayTransfers" section:@"Options"] intValue];
     if(val > 0 && val < KINDS_NUM) TrKind = val;
     val = [[parserMap get:@"DisplayStations" section:@"Options"] intValue];

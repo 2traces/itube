@@ -216,6 +216,7 @@
 
 -(void)loadFrom:(NSString *)fileName
 {
+    [elements removeAllObjects];
     NSString *fn = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
     NSString *contents = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
     [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {

@@ -147,6 +147,15 @@ NSInteger const toolbarWidth=320;
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
+-(void)setCityMap:(CityMap*)cm
+{
+    [mapView.previewImage removeFromSuperview];
+    mapView.cityMap = cm;
+    [containerView insertSubview:mapView.previewImage atIndex:0];
+    [containerView setContentSize:mapView.size];
+	[containerView setContentOffset:CGPointMake(mapView.size.width * 0.25f * mapView.Scale, mapView.size.height * 0.25f * mapView.Scale ) animated:NO];
+}
+
 -(void)showButtons:(CGPoint)pos
 {
     buttonsVisible = YES;

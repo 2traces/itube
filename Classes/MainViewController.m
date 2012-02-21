@@ -63,7 +63,7 @@
     CityMap *cm = [[CityMap alloc] init];
     [cm loadMap:newMap];
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-    [[(MainView*)self.view mapView] setCityMap:cm];
+    [(MainView*)self.view setCityMap:cm];
     appDelegate.cityMap=cm;
 }
 
