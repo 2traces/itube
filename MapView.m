@@ -26,15 +26,20 @@
 @synthesize MaxScale;
 @synthesize MinScale;
 @synthesize vcontroller;
-@synthesize backgroundNormal = background1;
-@synthesize backgroundDisabled = background2;
-@synthesize backgroundVector;
-@synthesize backgroundVectorDisabled = backgroundVector2;
-@synthesize showVectorLayer;
+@synthesize midground1;
+@synthesize midground2;
+@synthesize previewImage;
+@synthesize activeLayer;
 
 + (Class)layerClass
 {
     return [MyTiledLayer class];
+}
+
+-(void) setTransform:(CGAffineTransform)transform
+{
+    super.transform = transform;
+    activeLayer.transform = transform;
 }
 
 - (CGSize) size {
@@ -45,133 +50,7 @@
     return labelBg;
 }
 
--(void)setShowVectorLayer:(BOOL)_showVectorLayer
-{
-    if(showVectorLayer != _showVectorLayer) {
-        showVectorLayer = _showVectorLayer;
-        if(_showVectorLayer) {
-            backgroundVector.hidden = background1.hidden;
-            backgroundVector2.hidden = background2.hidden;
-        } else {
-            backgroundVector.hidden = YES;
-            backgroundVector2.hidden = YES;
-        }
-        // это недокументированный метод, так что если он в будущем изменится, то ой
-        [self.layer invalidateContents];
-        [self setNeedsDisplay];
-    }
-}
-
-- (id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        // Initialization code
-        [self.layer setLevelsOfDetail:5];
-        [self.layer setLevelsOfDetailBias:2];
-        for(int i=0; i<MAXCACHE; i++) cacheLayer[i] = nil;
-        showVectorLayer = NO;
-
-		DLog(@" InitMapView	initWithFrame; ");
-		
-		//близжайщней станции пока нет
-		nearestStationName = @"";
-        MinScale = 0.25f;
-        MaxScale = 4.f;
-        selectedStationName = [[NSMutableString alloc] init];
-		
-		int scale = 1;
-		if ([self respondsToSelector:@selector(setContentScaleFactor:)])
-		{
-			scale = [[UIScreen mainScreen] scale];
-            self.contentScaleFactor = scale;
-            self.layer.contentsScale = scale;
-		}
-
-        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-        
-        self.cityMap = appDelegate.cityMap;
-        // для ретиновских устройств перегенерируем предварительно отрисованные данные в двойном размере
-        if(scale > 1) cityMap.predrawScale *= scale;
-        
-        self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
-        MinScale = MIN( (float)frame.size.width / cityMap.size.width, (float)frame.size.height / cityMap.size.height);
-        MaxScale = cityMap.maxScale;
-        Scale = MaxScale / 2;
-        
-		//метка которая показывает названия станций
-		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 12, 140, 25)];
-		mainLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:21.0];
-        mainLabel.textAlignment = UITextAlignmentCenter;
-		mainLabel.backgroundColor = [UIColor clearColor];
-        mainLabel.shadowColor = [UIColor whiteColor];
-        mainLabel.shadowOffset = CGSizeMake(0.5f, 1.f);
-        lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(165, 12, 40, 25)];
-        lineLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:21.f];
-        lineLabel.textAlignment = UITextAlignmentCenter;
-        lineLabel.textColor = [UIColor colorWithRed:0.5f green:0.5f blue:0.5f alpha:1.0f];
-        lineLabel.text = @"1";
-        lineLabel.backgroundColor = [UIColor clearColor];
-        lineLabel.shadowColor = [UIColor whiteColor];
-        lineLabel.shadowOffset = CGSizeMake(0.5f, 1.f);
-        circleLabel = [[UIView alloc] initWithFrame:CGRectMake(10, 8, 21, 21)];
-        circleLabel.layer.cornerRadius = 11.f;
-        circleLabel.backgroundColor = [UIColor redColor];
-        [circleLabel addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"embossed_circle"]]];
-        
-        labelBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"station_label"]];
-        [labelBg addSubview:mainLabel];
-        [labelBg addSubview:lineLabel];
-        [labelBg addSubview:circleLabel];
-		labelBg.hidden=true;
-        [labelBg.layer setShadowOffset:CGSizeMake(0, 0)];
-        [labelBg.layer setShadowOpacity:0.5f];
-        [labelBg.layer setShadowRadius:15.0];
-        
-		[self initData];
-		
-		selectedStationLayer = [[CALayer layer] retain];
-        
-        // make normal background image
-        CGFloat backScale = MinScale * 2.f;
-        CGSize minSize = CGSizeMake(cityMap.w * backScale, cityMap.h * backScale);
-        CGRect r = CGRectMake(0, 0, minSize.width, minSize.height);
-		UIGraphicsBeginImageContext(minSize);
-		CGContextRef context = UIGraphicsGetCurrentContext();
-		CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
-		//CGContextFillRect(context,r);
-		CGContextScaleCTM(context, backScale, backScale);
-        r.size.width /= backScale;
-        r.size.height /= backScale;
-        [cityMap drawMap:context inRect:r];
-        [cityMap drawTransfers:context inRect:r];
-        [cityMap drawStations:context inRect:r]; 
-        UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-        background1 = [[UIImageView alloc] initWithImage:img];
-        background1.frame = CGRectMake(0, 0, img.size.width, img.size.height);
-        background1.contentMode = UIViewContentModeScaleAspectFit;
-
-        // make disabled background image
-        [cityMap activatePath:[NSArray array]];
-		CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
-		//CGContextFillRect(context,r);
-        [cityMap drawMap:context inRect:r];
-        [cityMap drawTransfers:context inRect:r];
-        [cityMap drawStations:context inRect:r]; 
-        img = UIGraphicsGetImageFromCurrentImageContext();
-        background2 = [[UIImageView alloc] initWithImage:img];
-        background2.frame = CGRectMake(0, 0, img.size.width, img.size.height);
-        background2.contentMode = UIViewContentModeScaleAspectFit;
-        background2.hidden = YES;
-        UIGraphicsEndImageContext();
-        [cityMap resetPath];
-    }
-    return self;
-}
-
--(void) loadVectorLayer:(NSString *)file
-{
-    if(vectorLayer != nil) [vectorLayer release];
-    vectorLayer = [[VectorLayer alloc] initWithFile:file];
-    showVectorLayer = YES;
+-(void) makePreview {
     // make background image
     CGFloat backScale = MinScale * 2.f;
     CGSize minSize = CGSizeMake(cityMap.w * backScale, cityMap.h * backScale);
@@ -184,30 +63,105 @@
     r.size.width /= backScale;
     r.size.height /= backScale;
     [vectorLayer draw:context inRect:r];
+    [cityMap drawMap:context inRect:r];
+    [cityMap drawTransfers:context inRect:r];
+    [cityMap drawStations:context inRect:r]; 
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    [backgroundVector release];
-    backgroundVector = [[UIImageView alloc] initWithImage:img];
-    backgroundVector.frame = CGRectMake(0, 0, img.size.width, img.size.height);
-    backgroundVector.contentMode = UIViewContentModeScaleAspectFit;
-    backgroundVector.hidden = NO;
+    [previewImage release];
+    previewImage = [[UIImageView alloc] initWithImage:img];
+    previewImage.frame = CGRectMake(0, 0, img.size.width, img.size.height);
+    previewImage.contentMode = UIViewContentModeScaleAspectFit;
+    previewImage.hidden = NO;
     UIGraphicsEndImageContext();
+}
+
+- (id)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        // Initialization code
+        visualFrame = frame;
+        [self.layer setLevelsOfDetail:5];
+        [self.layer setLevelsOfDetailBias:2];
+        for(int i=0; i<MAXCACHE; i++) cacheLayer[i] = nil;
+
+		DLog(@" InitMapView	initWithFrame; ");
+		
+		//близжайщней станции пока нет
+		nearestStationName = @"";
+        MinScale = 0.25f;
+        MaxScale = 4.f;
+        Scale = 2.f;
+        selectedStationName = [[NSMutableString alloc] init];
+		
+		int scale = 1;
+		if ([self respondsToSelector:@selector(setContentScaleFactor:)])
+		{
+			scale = [[UIScreen mainScreen] scale];
+            self.contentScaleFactor = scale;
+            self.layer.contentsScale = scale;
+		}
+
+		//метка которая показывает названия станций
+		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 27, 140, 25)];
+		mainLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:21.0];
+        mainLabel.textAlignment = UITextAlignmentCenter;
+		mainLabel.backgroundColor = [UIColor clearColor];
+        mainLabel.shadowColor = [UIColor whiteColor];
+        mainLabel.shadowOffset = CGSizeMake(0.5f, 1.f);
+        lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(180, 27, 40, 25)];
+        lineLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:21.f];
+        lineLabel.textAlignment = UITextAlignmentCenter;
+        lineLabel.textColor = [UIColor colorWithRed:0.5f green:0.5f blue:0.5f alpha:1.0f];
+        lineLabel.text = @"1";
+        lineLabel.backgroundColor = [UIColor clearColor];
+        lineLabel.shadowColor = [UIColor whiteColor];
+        lineLabel.shadowOffset = CGSizeMake(0.5f, 1.f);
+        circleLabel = [[UIView alloc] initWithFrame:CGRectMake(25, 23, 21, 21)];
+        circleLabel.layer.cornerRadius = 11.f;
+        circleLabel.backgroundColor = [UIColor redColor];
+        [circleLabel addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"embossed_circle"]]];
+        
+        labelBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"station_label"]];
+        [labelBg addSubview:mainLabel];
+        [labelBg addSubview:lineLabel];
+        [labelBg addSubview:circleLabel];
+		labelBg.hidden=true;
+        
+        midground1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        midground1.backgroundColor = [UIColor colorWithRed:1.f green:1.f blue:1.f alpha:0.7f];
+        midground1.hidden = YES;
+        midground2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        midground2.backgroundColor = [UIColor whiteColor];
+        midground2.hidden = YES;
+
+		[self initData];
+		
+		selectedStationLayer = [[CALayer layer] retain];
+        activeLayer = [[ActiveView alloc] initWithFrame:frame];
+        activeLayer.hidden = YES;
+        
+    }
+    return self;
+}
+
+-(void)setCityMap:(CityMap *)_cityMap
+{
+    cityMap = _cityMap;
+    self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
+    MinScale = MIN( (float)visualFrame.size.width / cityMap.size.width, (float)visualFrame.size.height / cityMap.size.height);
+    MaxScale = cityMap.maxScale;
+    Scale = MinScale * 2.f;
+
+    midground1.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    midground1.hidden = YES;
+    midground2.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    midground2.hidden = NO;
+    midground2.alpha = 1.f;
+    [UIView animateWithDuration:0.5f animations:^(void) { midground2.alpha = 0.f; } completion:^(BOOL finish) { midground2.hidden = YES; } ];
     
-    //disabled vector background
-    UIGraphicsBeginImageContext(minSize);
-    context = UIGraphicsGetCurrentContext();
-    CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
-    CGContextFillRect(context,CGRectMake(0, 0, minSize.width, minSize.height));
-    CGContextScaleCTM(context, backScale, backScale);
-    vectorLayer.enabled = NO;
-    [vectorLayer draw:context inRect:r];
-    img = UIGraphicsGetImageFromCurrentImageContext();
-    [backgroundVector2 release];
-    backgroundVector2 = [[UIImageView alloc] initWithImage:img];
-    backgroundVector2.frame = CGRectMake(0, 0, img.size.width, img.size.height);
-    backgroundVector2.contentMode = UIViewContentModeScaleAspectFit;
-    backgroundVector2.hidden = NO;
-    UIGraphicsEndImageContext();
-    vectorLayer.enabled = YES;
+    if(vectorLayer != nil) [vectorLayer release];
+    if(cityMap.backgroundImageFile != nil) vectorLayer = [[VectorLayer alloc] initWithFile:cityMap.backgroundImageFile];
+    else vectorLayer = nil;
+    [self makePreview];
 }
 
 -(void)showLabel
@@ -239,10 +193,9 @@
 	[cityMap dealloc];
 	[nearestStationImage release];
     for(int i=0; i<MAXCACHE; i++) CGLayerRelease(cacheLayer[i]);
-    [background1 release];
-    [background2 release];
-    [backgroundVector release];
-    [backgroundVector2 release];
+    [midground1 release];
+    [midground2 release];
+    [previewImage release];
 }
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)context {
@@ -271,7 +224,7 @@
     CGContextSetShouldSmoothFonts(ctx, false);
     CGContextSetAllowsFontSmoothing(ctx, false);
     
-    if(showVectorLayer && vectorLayer) [vectorLayer draw:context inRect:r];
+    if(vectorLayer) [vectorLayer draw:context inRect:r];
     cityMap.currentScale = scrollView.zoomScale / MaxScale;
     [cityMap drawMap:ctx inRect:r];
     [cityMap drawTransfers:ctx inRect:r];
@@ -331,31 +284,31 @@
     [pathArray addObjectsFromArray:[cityMap calcPath:fSt :sSt :fStl :sStl]];
 	[pathArray insertObject:[GraphNode nodeWithName:fSt andLine:fStl ] atIndex:0];
 	
-    vectorLayer.enabled = false;
-    background1.hidden = YES;
-    background2.hidden = NO;
-    backgroundVector.hidden = YES;
-    backgroundVector2.hidden = NO;
     [cityMap activatePath:pathArray];
     [scrollView zoomToRect:cityMap.activeExtent animated:YES];
     // это недокументированный метод, так что если он в будущем изменится, то ой
-    [self.layer invalidateContents];
-	[self setNeedsDisplay];
+    //[self.layer invalidateContents];
+	//[self setNeedsDisplay];
+    activeLayer.hidden = NO;
+    activeLayer.alpha = 0;
+    midground1.hidden = NO;
+    midground1.alpha = 0;
+    midground2.hidden = NO;
+    midground2.alpha = 1.f;
+    [UIView animateWithDuration:0.5f animations:^(void) { activeLayer.alpha = 1.f; midground1.alpha = 1.f; midground2.alpha = 0.f; } completion:^(BOOL finish) { midground2.hidden = YES; }];
     [pathArray release];
 }
 
 -(void) clearPath
 {
     if([cityMap.activePath count] > 0) {
-        vectorLayer.enabled = true;
-        background1.hidden = NO;
-        background2.hidden = YES;
-        backgroundVector.hidden = NO;
-        backgroundVector2.hidden = YES;
         [cityMap resetPath];
         // это недокументированный метод, так что если он в будущем изменится, то ой
-        [self.layer invalidateContents];
-        [self setNeedsDisplay];
+        //[self.layer invalidateContents];
+        //[self setNeedsDisplay];
+        activeLayer.hidden = YES;
+        midground1.hidden = YES;
+        midground2.hidden = YES;
     }
 }
 
