@@ -152,6 +152,9 @@ NSInteger const toolbarWidth=320;
     [mapView.previewImage removeFromSuperview];
     mapView.cityMap = cm;
     [containerView insertSubview:mapView.previewImage atIndex:0];
+	containerView.maximumZoomScale = mapView.MaxScale;
+	containerView.minimumZoomScale = mapView.MinScale;
+    [containerView setZoomScale:mapView.Scale animated:NO];
     [containerView setContentSize:mapView.size];
 	[containerView setContentOffset:CGPointMake(mapView.size.width * 0.25f * mapView.Scale, mapView.size.height * 0.25f * mapView.Scale ) animated:NO];
 }
