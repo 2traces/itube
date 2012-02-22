@@ -145,7 +145,8 @@
 
 -(void)setCityMap:(CityMap *)_cityMap
 {
-    cityMap = _cityMap;
+    [cityMap release];
+    cityMap = [_cityMap retain];
     self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
     MinScale = MIN( (float)visualFrame.size.width / cityMap.size.width, (float)visualFrame.size.height / cityMap.size.height);
     MaxScale = cityMap.maxScale;
@@ -159,10 +160,18 @@
     [UIView animateWithDuration:0.5f animations:^(void) { midground2.alpha = 0.f; } completion:^(BOOL finish) { midground2.hidden = YES; } ];
 
     activeLayer.cityMap = cityMap;
-    if(vectorLayer != nil) [vectorLayer release];
-    if(cityMap.backgroundImageFile != nil) vectorLayer = [[VectorLayer alloc] initWithFile:cityMap.backgroundImageFile];
-    else vectorLayer = nil;
+    if(cityMap.backgroundImageFile != nil) {
+        if(vectorLayer != nil) [vectorLayer loadFrom:cityMap.backgroundImageFile];
+        else vectorLayer = [[VectorLayer alloc] initWithFile:cityMap.backgroundImageFile];
+    } else {
+        [vectorLayer release];
+        vectorLayer = nil;
+    }
     [self makePreview];
+    // это недокументированный метод, так что если он в будущем изменится, то ой
+    [self.layer invalidateContents];
+    [self setNeedsDisplay];
+    [self setNeedsLayout];
 }
 
 -(void)showLabel
@@ -190,13 +199,13 @@
     [vectorLayer release];
     [mainLabel release];
     [labelBg release];
-    [super dealloc];
-	[cityMap dealloc];
+	[cityMap release];
 	[nearestStationImage release];
     for(int i=0; i<MAXCACHE; i++) CGLayerRelease(cacheLayer[i]);
     [midground1 release];
     [midground2 release];
     [previewImage release];
+    [super dealloc];
 }
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)context {

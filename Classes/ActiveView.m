@@ -31,7 +31,8 @@
 
 -(void)setCityMap:(CityMap *)_cityMap
 {
-    cityMap = _cityMap;
+    [cityMap release];
+    cityMap = [_cityMap retain];
     self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
 }
 
@@ -60,6 +61,12 @@
     [cityMap drawActive:ctx inRect:r];
     
     CGContextRestoreGState(context);
+}
+
+-(void)dealloc
+{
+    [cityMap release];
+    [super dealloc];
 }
 
 @end

@@ -65,13 +65,13 @@
 //    [stationsView resetFromStation];
 //    [stationsView resetToStation];
 
-    [[(MainView*)self.view mapView] setCityMap:nil];
-    appDelegate.cityMap=nil;
-    [[MHelper sharedHelper] clearContent];
+//    [[(MainView*)self.view mapView] setCityMap:nil];
+//    appDelegate.cityMap=nil;
+//    [[MHelper sharedHelper] clearContent];
     
     CityMap *cm = [[CityMap alloc] init];
     [cm loadMap:newMap];
-    [[(MainView*)self.view mapView] setCityMap:cm];
+    [(MainView*)self.view setCityMap:cm];
     appDelegate.cityMap=cm;
 }
 

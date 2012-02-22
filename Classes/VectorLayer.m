@@ -216,6 +216,7 @@
 
 -(void)loadFrom:(NSString *)fileName
 {
+    [elements removeAllObjects];
     NSString *fn = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
     NSString *contents = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
     [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
@@ -238,13 +239,13 @@
             NSRange range;
             range.location = 1;
             range.length = [words count] - 1;
-            [elements addObject:[[VectorLine alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:penColor andDisabledColor:[self disabledColor:penColor]]];
+            [elements addObject:[[[VectorLine alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:penColor andDisabledColor:[self disabledColor:penColor]] autorelease]];
             
         } else if([w isEqualToString:@"polygon"]) {
             NSRange range;
             range.location = 1;
             range.length = [words count] - 1;
-            [elements addObject:[[VectorPolygon alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:brushColor andDisabledColor:[self disabledColor:brushColor]]];
+            [elements addObject:[[[VectorPolygon alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:brushColor andDisabledColor:[self disabledColor:brushColor]] autorelease]];
             
         }
     }];
