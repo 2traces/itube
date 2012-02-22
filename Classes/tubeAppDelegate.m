@@ -25,15 +25,14 @@
     
     CityMap *cm = [[CityMap alloc] init];
     NSString *mapName =[self nameCurrentMap];
-//    [cm loadMap:mapName];
+    //    [cm loadMap:mapName];
     [cm loadMap:@"Metro"];
     
     self.cityMap = cm;
     [cm release];
-	
-	DLog(@"applicationDidFinishLaunching");
+    
     mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
-	[window addSubview:[mainViewController view]];
+    [window addSubview:[mainViewController view]];
     [window makeKeyAndVisible];
 }
 
