@@ -39,15 +39,15 @@
 -(void)applicationDidEnterBackground:(UIApplication *)application
 {
     MHelper *helper = [MHelper sharedHelper];
-    [helper saveBookmarkFile];
-    [helper saveHistoryFile];
+//    [helper saveBookmarkFile];
+//    [helper saveHistoryFile];
 }
 
 -(void)applicationWillTerminate:(UIApplication *)application
 {
     MHelper *helper = [MHelper sharedHelper];
-    [helper saveBookmarkFile];
-    [helper saveHistoryFile];
+//    [helper saveBookmarkFile];
+//    [helper saveHistoryFile];
 }
 
 -(NSString*)nameCurrentMap

@@ -20,6 +20,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 
 @class Station;
 @class Line;
+@class CityMap;
 
 @interface Transfer : NSObject {
 @private
@@ -28,12 +29,14 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
     CGRect boundingBox;
     CGLayerRef transferLayer;
     BOOL active;
+    CityMap* map;
 }
 @property (nonatomic, readonly) NSMutableSet* stations;
 @property (nonatomic, assign) CGFloat time;
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic, assign) BOOL active;
 
+-(id) initWithMap:(CityMap*)cityMap;
 -(void) addStation:(Station*)station;
 -(void) draw:(CGContextRef)context;
 -(void) predraw:(CGContextRef)context;
@@ -66,6 +69,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
     int links;
     // векторы вдоль линии и поперёк
     CGPoint tangent, normal;
+    CityMap *map;
 }
 
 @property (nonatomic, readonly) NSMutableArray* relation;
@@ -90,7 +94,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @property (nonatomic, readonly) BOOL terminal;
 @property (nonatomic, readonly) CGPoint tangent;
 
--(id) initWithName:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr;
+-(id) initWithMap:(CityMap*)cityMap name:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr;
 -(void) addSibling:(Station*)st;
 -(void) drawName:(CGContextRef)context;
 -(void) drawStation:(CGContextRef)context;
@@ -149,6 +153,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
     CGLayerRef stationLayer, disabledStationLayer;
     CGRect boundingBox;
     BOOL twoStepsDraw;
+    CityMap *map;
 }
 @property (nonatomic, retain) UIColor* color;
 @property (nonatomic, readonly) NSString* name;
@@ -159,7 +164,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @property (nonatomic, readonly) CGLayerRef stationLayer;
 @property (nonatomic, readonly) CGLayerRef disabledStationLayer;
 
--(id)initWithName:(NSString*)n stations:(NSString*)stations driving:(NSString*)driving coordinates:(NSString*)coordinates rects:(NSString*)rects;
+-(id)initWithMap:(CityMap*)cityMap name:(NSString*)n stations:(NSString*)stations driving:(NSString*)driving coordinates:(NSString*)coordinates rects:(NSString*)rects;
 -(void)draw:(CGContextRef)context inRect:(CGRect)rect;
 -(void)drawActive:(CGContextRef)context inRect:(CGRect)rect;
 -(void)drawNames:(CGContextRef)context inRect:(CGRect)rect;
@@ -185,6 +190,14 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
     NSMutableArray *pathStationsList;
     CGFloat currentScale;
     NSString *backgroundImageFile;
+@public
+    CGFloat PredrawScale;
+    CGFloat LineWidth;
+    CGFloat StationDiameter;
+    CGFloat FontSize;
+    StationKind StKind;
+    StationKind TrKind;
+    NSString *TEXT_FONT;
 }
 
 @property (nonatomic,retain) NSMutableDictionary *gpsCoords;

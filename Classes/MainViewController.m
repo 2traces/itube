@@ -60,17 +60,16 @@
 
 -(void)changeMapTo:(NSString*)newMap
 {
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-
-//    [stationsView resetFromStation];
-//    [stationsView resetToStation];
+    [stationsView resetFromStation];
+    [stationsView resetToStation];
 
 //    [[(MainView*)self.view mapView] setCityMap:nil];
 //    appDelegate.cityMap=nil;
-//    [[MHelper sharedHelper] clearContent];
+    [[MHelper sharedHelper] clearContent];
     
     CityMap *cm = [[CityMap alloc] init];
     [cm loadMap:newMap];
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     [(MainView*)self.view setCityMap:cm];
     appDelegate.cityMap=cm;
 }
