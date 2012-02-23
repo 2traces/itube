@@ -149,12 +149,35 @@ NSInteger const toolbarWidth=320;
 
 -(void)setCityMap:(CityMap*)cm
 {
-    [mapView.previewImage removeFromSuperview];
+    [containerView removeFromSuperview];
+    [containerView release];
+    CGRect scrollSize = CGRectMake(0,44,(320),(480-64));
+    containerView = [[MyScrollView alloc] initWithFrame:scrollSize];
+    mapView = [[[MapView alloc] initWithFrame:scrollSize] autorelease];
     mapView.cityMap = cm;
-    [containerView insertSubview:mapView.previewImage atIndex:0];
-    [containerView setContentSize:mapView.size];
+	[containerView setContentSize:mapView.size];
+	containerView.scrollEnabled = YES;
+	containerView.decelerationRate = UIScrollViewDecelerationRateFast ;
+	containerView.showsVerticalScrollIndicator = NO;
+	containerView.showsHorizontalScrollIndicator = NO;	
+	containerView.clipsToBounds = NO;//YES;
+	containerView.bounces = YES;
     [containerView setBouncesZoom:NO];
+	containerView.maximumZoomScale = mapView.MaxScale;
+	containerView.minimumZoomScale = mapView.MinScale;
+    
+    [containerView addSubview:mapView.previewImage];
+    containerView.scrolledView = mapView;
+	containerView.delegate = mapView;
+	[containerView addSubview: mapView];
+    [containerView setZoomScale:mapView.Scale animated:NO];
+    [containerView addSubview:mapView.midground1];
+    [containerView addSubview:mapView.activeLayer];
+    [containerView addSubview:mapView.midground2];
+    [self insertSubview:containerView atIndex:0];
+    
 	[containerView setContentOffset:CGPointMake(mapView.size.width * 0.25f * mapView.Scale, mapView.size.height * 0.25f * mapView.Scale ) animated:NO];
+    [self insertSubview:mapView.labelView belowSubview:sourceButton];
 }
 
 -(void)showButtons:(CGPoint)pos
