@@ -60,10 +60,13 @@
 
 -(void)changeMapTo:(NSString*)newMap
 {
-    CityMap *cm = [[CityMap alloc] init];
+    CityMap *cm = [[[CityMap alloc] init] autorelease];
     [cm loadMap:newMap];
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     [(MainView*)self.view setCityMap:cm];
+    // FIXME !!! some classes don't release city map
+    [appDelegate.cityMap release];
+    [appDelegate.cityMap release];
     appDelegate.cityMap=cm;
 }
 

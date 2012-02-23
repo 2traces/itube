@@ -368,6 +368,17 @@ static MHelper * _sharedHelper;
     [fetchRequest setPredicate:predicate];
     
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if([fetchedItems count] == 0) {
+        NSFetchRequest *fetchRequest2 = [[[NSFetchRequest alloc] init] autorelease];
+        NSEntityDescription *entity2 = [NSEntityDescription entityForName:@"Station" inManagedObjectContext:self.managedObjectContext];
+        [fetchRequest2 setEntity:entity2];
+        NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"lines.name=%@",lineName];
+        [fetchRequest2 setPredicate:predicate2];
+        NSArray *fetchedItems2 = [self.managedObjectContext executeFetchRequest:fetchRequest2 error:&error];
+        for (MStation* s in fetchedItems2) {
+            NSLog(@"%@", s.name);
+        }
+    }
 
     // у меня стойкое ощущение, что всегда должен выбираться только один объект
     return [fetchedItems objectAtIndex:0]; 

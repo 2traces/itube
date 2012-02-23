@@ -589,7 +589,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         [end.backSegment addObject:self];
         driving = dr;
         //NSAssert(driving > 0, @"illegal driving");
-        NSLog(@"zero driving from %@ to %@", from.name, to.name);
+        if(driving <= 0) NSLog(@"zero driving from %@ to %@", from.name, to.name);
         CGRect s1 = CGRectMake(from.pos.x - 5, from.pos.y - 5, 10, 10);
         CGRect s2 = CGRectMake(to.pos.x - 5, to.pos.y - 5, 10, 10);
         boundingBox = CGRectUnion(s1, s2);
@@ -1429,6 +1429,13 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 }
 
 - (void)dealloc {
+    for (Line* l in mapLines) {
+        NSError *error = nil;
+        [[MHelper sharedHelper].managedObjectContext deleteObject:[[MHelper sharedHelper] lineByName:l.name]];
+        [[MHelper sharedHelper].managedObjectContext save:&error];
+        if(error != nil) 
+            NSLog(@"%@", error);
+    }
 	[gpsCoords release];
     [mapLines release];
 	[graph release];
@@ -1471,41 +1478,31 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [pathStationsList removeAllObjects];
 	int count_ = [pathMap count];
     
-	for (int i=0; i< count_-1; i++) {
+	for (int i=0; i< count_; i++) {
         GraphNode *n1 = [pathMap objectAtIndex:i];
-		//NSString *rawString1 = (NSString*)[[pathMap objectAtIndex:i] value];
-		//NSArray *el1  = [rawString1 componentsSeparatedByString:@"|"];
-		//NSString *stationName1 = [el1 objectAtIndex:0];
-		//NSInteger lineNum1 = [[el1 objectAtIndex:1] intValue];
-        
-        GraphNode *n2 = [pathMap objectAtIndex:i+1];
-        //NSString *rawString2 = (NSString*)[[pathMap objectAtIndex:i+1] value];
-        //NSArray *el2  = [rawString2 componentsSeparatedByString:@"|"];
-        //NSString *stationName2 = [el2 objectAtIndex:0];
-        //NSInteger lineNum2 = [[el2 objectAtIndex:1] intValue]; 
-        
         Line* l = [mapLines objectAtIndex:n1.line-1];
-        
-        if (n1.line==n2.line) {
-            [activePath addObject:[l activateSegmentFrom:n1.name to:n2.name]];
-            [pathStationsList addObject:n1.name];
-        } 
-
         Station *s = [l getStation:n1.name];
         activeExtent = CGRectUnion(activeExtent, s.textRect);
         activeExtent = CGRectUnion(activeExtent, s.boundingBox);
-
-        if(n1.line != n2.line && [activePath count] > 0) {
-            [activePath addObject:s.transfer];
-            [pathStationsList addObject:n1.name];
-            [pathStationsList addObject:@"---"]; //временно до обновления модели
-        }
         
-        if(i == count_ - 2) {
-            s = [l getStation:n2.name];
+        if(i == count_ - 1) {
+            // the last station
             activeExtent = CGRectUnion(activeExtent, s.textRect);
             activeExtent = CGRectUnion(activeExtent, s.boundingBox);
-            [pathStationsList addObject:n2.name];
+            [pathStationsList addObject:n1.name];
+        } else {
+            GraphNode *n2 = [pathMap objectAtIndex:i+1];
+            
+            if (n1.line==n2.line) {
+                [activePath addObject:[l activateSegmentFrom:n1.name to:n2.name]];
+                [pathStationsList addObject:n1.name];
+            } 
+            
+            if(n1.line != n2.line && [activePath count] > 0) {
+                [activePath addObject:s.transfer];
+                [pathStationsList addObject:n1.name];
+                [pathStationsList addObject:@"---"]; //временно до обновления модели
+            }
         }
 	}
     float offset = (25 - (int)[pathStationsList count]) * 0.005f;
