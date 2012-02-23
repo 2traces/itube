@@ -588,7 +588,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         end = to;
         [end.backSegment addObject:self];
         driving = dr;
-        NSAssert(driving > 0, @"illegal driving");
+        //NSAssert(driving > 0, @"illegal driving");
+        NSLog(@"zero driving from %@ to %@", from.name, to.name);
         CGRect s1 = CGRectMake(from.pos.x - 5, from.pos.y - 5, 10, 10);
         CGRect s2 = CGRectMake(to.pos.x - 5, to.pos.y - 5, 10, 10);
         boundingBox = CGRectUnion(s1, s2);
