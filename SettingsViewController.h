@@ -21,11 +21,15 @@
     
     IBOutlet UILabel *textLabel1;
     IBOutlet UILabel *textLabel2;   
+    IBOutlet UILabel *textLabel3;   
     
     IBOutlet MyNavigationBar *navBar;
     IBOutlet UINavigationItem *navItem;
     
     IBOutlet UIScrollView *scrollView;
+    
+    IBOutlet UIButton *buyAllButton;
+    IBOutlet UIButton *sendMailButton;   
     
     NSArray *maps;
     
@@ -44,6 +48,9 @@
 @property (nonatomic, retain) IBOutlet UINavigationItem *navItem;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) NSIndexPath *selectedPath;
+@property (nonatomic, retain) IBOutlet UIButton *buyAllButton;
+@property (nonatomic, retain) IBOutlet UIButton *sendMailButton;
+@property (nonatomic, retain) IBOutlet UILabel *textLabel3;
 
 
 -(IBAction)cityPress:(id)sender;

@@ -200,7 +200,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDate *date = [NSDate date];
+//    NSDate *date = [NSDate date];
     
     static NSString *CellIdentifier = @"StationCell";
     
@@ -260,8 +260,8 @@
             myImageView.image = [self imageWithColor:[(MStation*)[stations objectAtIndex:indexPath.row] lines]];
         }
     }
-    NSDate *date2 = [NSDate date];
-    NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
+//    NSDate *date2 = [NSDate date];
+//    NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
 
     return cell;
 }

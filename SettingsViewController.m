@@ -21,11 +21,12 @@
 @synthesize langTableView;
 @synthesize cityTableView;
 @synthesize maps;
-@synthesize textLabel1,textLabel2;
+@synthesize textLabel1,textLabel2,textLabel3;
 @synthesize navBar;
 @synthesize navItem;
 @synthesize scrollView;
 @synthesize selectedPath;
+@synthesize buyAllButton,sendMailButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -74,6 +75,7 @@
     
     textLabel1.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
     textLabel2.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+    textLabel3.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
 
 	cityTableView.backgroundColor = [UIColor clearColor];
     cityTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -102,7 +104,14 @@
     
     cityTableView.frame = CGRectMake(8, 179, 304, tableHeight);
     
-	scrollView.contentSize = CGSizeMake(320, 179+tableHeight+20.0);
+    CGRect buyAll = buyAllButton.frame;
+    buyAllButton.frame = CGRectMake(buyAll.origin.x, 179+tableHeight+8, buyAll.size.width, buyAll.size.height);
+    
+    textLabel3.frame = CGRectMake(textLabel3.frame.origin.x, buyAllButton.frame.origin.y+buyAllButton.frame.size.height+17.0, textLabel3.frame.size.width, textLabel3.frame.size.height);
+    
+    sendMailButton.frame = CGRectMake(sendMailButton.frame.origin.x, buyAllButton.frame.origin.y+buyAllButton.frame.size.height+8.0, sendMailButton.frame.size.width, sendMailButton.frame.size.height);
+
+	scrollView.contentSize = CGSizeMake(320, sendMailButton.frame.origin.y+sendMailButton.frame.size.height+15.0);
     scrollView.frame = CGRectMake(0.0, 44.0, 320.0, 460.0-44.0);
     
 	[scrollView flashScrollIndicators];
@@ -147,14 +156,14 @@
         
         if (cell == nil) { 
             cell = [[[NSBundle mainBundle] loadNibNamed:@"CityCell" owner:self options:nil] lastObject];
+            [[(CityCell*)cell cellButton] addTarget:self action:@selector(buyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         }    
         
         [[(CityCell*)cell cityName] setText:[maps objectAtIndex:[indexPath row]]];
-        [[(CityCell*)cell cityName] setFont:[UIFont fontWithName:@"MyriadPro-Regular" size:18.0]];
+        [[(CityCell*)cell cityName] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
+        [[(CityCell*)cell cityName] setHighlightedTextColor:[UIColor whiteColor]];
         
         cell.backgroundColor = [UIColor clearColor];
-        cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"city_table_cell.png"]] autorelease];
-        cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"city_table_cell.png"]] autorelease];
         
         if ([indexPath isEqual:self.selectedPath]) {
             cell.accessoryType=UITableViewCellAccessoryCheckmark;
@@ -162,8 +171,49 @@
             cell.accessoryType=UITableViewCellAccessoryNone;
         }
         
-        return cell;
+        //
+        // setting button background
+        //
+        [[(CityCell*)cell cellButton] setImage:[UIImage imageNamed:@"buy_button.png"] forState:UIControlStateNormal];
+        [[(CityCell*)cell cellButton] setImage:[UIImage imageNamed:@"high_buy_button.png"] forState:UIControlStateHighlighted];
+        [[(CityCell*)cell cellButton] setTitle:@"$0.99" forState:UIControlStateNormal];
+        [[(CityCell*)cell cellButton] setTitle:@"$0.99" forState:UIControlStateHighlighted];
+        
+        //
+        // setting background
+        //
+        UIImage *rowBackground;
+        UIImage *selectionBackground;
+        NSInteger sectionRows = [tableView numberOfRowsInSection:[indexPath section]];
+        NSInteger crow = [indexPath row];
 
+        if (crow == 0 && crow == sectionRows - 1)
+        {
+            // у нас таких быть не должно вообще но 
+            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
+            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+        }
+        else if (crow == 0)
+        {
+            rowBackground = [UIImage imageNamed:@"first_cell_bg.png"];
+            selectionBackground = [UIImage imageNamed:@"high_first_cell_bg.png"];
+        }
+        else if (crow == sectionRows - 1)
+        {
+            rowBackground = [UIImage imageNamed:@"last_cell_bg.png"];
+            selectionBackground = [UIImage imageNamed:@"high_last_cell_bg.png"];
+        }
+        else
+        {
+            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
+            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+        }
+        
+        cell.backgroundView  = [[UIImageView alloc] initWithImage:rowBackground];
+        cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:selectionBackground];
+                
+        return cell;
+        
     } else {
         static NSString *cellIdentifier = @"LanguageCell";
         
@@ -174,16 +224,18 @@
         }
 
         [[(LanguageCell*)cell languageWordLabel] setText:@"Language"];
-        [[(LanguageCell*)cell languageWordLabel] setFont:[UIFont fontWithName:@"MyriadPro-Regular" size:18.0]];
+        [[(LanguageCell*)cell languageWordLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
+        [[(LanguageCell*)cell languageWordLabel] setHighlightedTextColor:[UIColor whiteColor]];
         
         [[(LanguageCell*)cell languageLabel] setText:@"English"];
         [[(LanguageCell*)cell languageLabel] setFont:[UIFont fontWithName:@"MyriadPro-Regular" size:18.0]];
         [[(LanguageCell*)cell languageLabel] setTextColor:[UIColor darkGrayColor]];
+        [[(LanguageCell*)cell languageLabel] setHighlightedTextColor:[UIColor whiteColor]];
         
         
         cell.backgroundColor = [UIColor clearColor];
         cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"language_table_cell.png"]] autorelease];
-        cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"language_table_cell.png"]] autorelease];
+        cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"high_language_table_cell.png"]] autorelease];
         
         return cell;
     }
@@ -229,6 +281,11 @@
     
 }
 
+-(IBAction)buyButtonPressed:(id)sender 
+{
+    NSLog(@"Button pressed");
+}
+
 -(IBAction)donePressed:(id)sender 
 {
     [self dismissModalViewControllerAnimated:YES];
@@ -244,6 +301,56 @@
     [dict release];
     
     return array;
+}
+
+// Displays an email composition interface inside the app // and populates all the Mail fields.
+-(IBAction)showMailComposer:(id)sender
+{
+    Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
+    if (mailClass != nil) {
+        // Test to ensure that device is configured for sending emails.
+        if ([mailClass canSendMail]) {
+            MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+            picker.mailComposeDelegate = self;
+            [picker setSubject:@"Paris Metro"];
+            [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"zuev.sergey@gmail.com"]]];
+            [self presentModalViewController:picker animated:YES]; [picker release];
+        } else {
+            // Device is not configured for sending emails, so notify user.
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Can't send email" message:@"This device not configured to send emails" delegate:self cancelButtonTitle:@"Ok, I will try later" otherButtonTitles:nil];
+            [alertView show];
+            [alertView release];
+        }
+    } 
+}
+
+// Dismisses the Mail composer when the user taps Cancel or Send.
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    NSString *resultTitle = nil; NSString *resultMsg = nil;
+    switch (result) {
+        case MFMailComposeResultCancelled:
+            resultTitle = @"Email cancelled";
+            resultMsg = @"You cancelled you email"; break;
+        case MFMailComposeResultSaved:
+            resultTitle = @"Email saved";
+            resultMsg = @"Your draft email was saved"; break;
+        case MFMailComposeResultSent: resultTitle = @"Email sent";
+            resultMsg = @"Your email was sent successfully";
+            break;
+        case MFMailComposeResultFailed:
+            resultTitle = @"Email failed";
+            resultMsg = @"Your email was failed"; break;
+        default:
+            resultTitle = @"Email was not sent";
+            resultMsg = @"Your email was not sent"; break;
+    }
+    // Notifies user of any Mail Composer errors received with an Alert View dialog.
+    UIAlertView *mailAlertView = [[UIAlertView alloc] initWithTitle:resultTitle message:resultMsg delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+    [mailAlertView show];
+    [mailAlertView release];
+    [resultTitle release];
+    [resultMsg release];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)dealloc {
