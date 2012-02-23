@@ -14,7 +14,7 @@
 {
 	INISection * sect;
 
-	sect = (INISection *)[sections objectForKey: name];
+	sect = (INISection *)[sections objectForKey: [name uppercaseString]];
 	return sect;
 }
 
@@ -24,7 +24,7 @@
 
 	sect = [self getSection: section];
 	if (sect)
-		return [sect retrieve: name];
+		return [sect retrieve: [name uppercaseString]];
 
 	return nil;
 }

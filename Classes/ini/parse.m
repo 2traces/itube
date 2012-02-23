@@ -62,7 +62,7 @@
 	*l = 0;
 	name = [NSString stringWithUTF8String: line +1];
 	section = [[INISection alloc] initWithName: name];
-	[sections setObject: section forKey: name];
+	[sections setObject: section forKey: [name uppercaseString]];
 	csection = section;
 	return INIP_ERROR_NONE;
 }
@@ -83,7 +83,7 @@
 	*value++ = 0;
 	n = [NSString stringWithUTF8String: name];
 	v = [NSString stringWithUTF8String: value];
-	[csection insert: n value: v];
+	[csection insert: [n uppercaseString] value: v];
 	return INIP_ERROR_NONE;
 }
 
