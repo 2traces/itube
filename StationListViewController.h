@@ -16,6 +16,8 @@
     NSMutableArray *stationIndex;
     NSMutableArray *filteredStation;
     
+    NSMutableDictionary *indexDictionary;
+    
     id <StationListViewProtocol> dataSource;
     
     IBOutlet UITableView *mytableView;
@@ -29,7 +31,8 @@
 @property (nonatomic,retain) NSMutableArray *filteredStation;
 @property (nonatomic,retain) NSMutableDictionary *colorDictionary;
 @property (nonatomic,retain) IBOutlet UITableView *mytableView;
-@property (nonatomic, retain) IBOutlet UIImageView *imageView;
+@property (nonatomic,retain) IBOutlet UIImageView *imageView;
+@property (nonatomic,retain) NSMutableDictionary *indexDictionary;
 
 -(void)createStationIndex;
 -(UIImage*)drawCircleView:(UIColor*)myColor;

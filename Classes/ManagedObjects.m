@@ -135,8 +135,6 @@ static MHelper * _sharedHelper;
         return __persistentStoreCoordinator;
     }
     
-    // NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"tubee.sqlite"];
-    
     NSError *error = nil;
     __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![__persistentStoreCoordinator addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:nil options:nil error:&error])
@@ -156,6 +154,22 @@ static MHelper * _sharedHelper;
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+-(void)clearContent
+{
+    NSArray *stores = [__persistentStoreCoordinator persistentStores];
+    
+    for(NSPersistentStore *store in stores) {
+        [__persistentStoreCoordinator removePersistentStore:store error:nil];
+    }
+    
+    NSError *error = nil;
+    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:nil options:nil error:&error])
+    {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }    
 }
 
 -(MLine*)lineByIndex:(int)index

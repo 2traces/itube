@@ -11,8 +11,10 @@
 @interface CityCell : UITableViewCell
 {
     IBOutlet UILabel *cityName;
+    IBOutlet UIButton *cellButton;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel* cityName;
+@property (nonatomic, retain) IBOutlet UIButton* cellButton;
 
 @end

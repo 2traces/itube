@@ -60,6 +60,12 @@
 
 -(void)changeMapTo:(NSString*)newMap
 {
+    [stationsView resetBothStations];
+
+//    [[(MainView*)self.view mapView] setCityMap:nil];
+//    appDelegate.cityMap=nil;
+    [[MHelper sharedHelper] clearContent];
+    
     CityMap *cm = [[CityMap alloc] init];
     [cm loadMap:newMap];
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
@@ -1024,6 +1030,18 @@
     currentSelection=ToStation;
     [stationsView setFromStation:self.fromStation];
     [self returnFromSelection:[NSArray array]];
+}
+
+-(void)resetBothStations
+{
+    currentSelection=FromStation;
+    [stationsView setToStation:nil];
+    [stationsView setFromStation:nil];
+    
+    self.fromStation=nil;
+    self.toStation=nil;
+    
+    [self returnFromSelection2:[NSArray array]];
 }
 
 - (void)didReceiveMemoryWarning {
