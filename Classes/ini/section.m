@@ -8,6 +8,7 @@
 	self = [super init];
 	assignments = [[NSMutableDictionary alloc] init];
 	sname = name;
+    unnamed = 0;
 	return self;
 }
 
@@ -20,6 +21,9 @@
 
 - (void)insert: (NSString *)name value: (NSString *)value {
 
+    if([name length] == 0) {
+        name = [NSString stringWithFormat:@"UNNAMED_KEY%d", unnamed++];
+    }
 	[assignments setObject: value forKey: name];
 	return;
 }

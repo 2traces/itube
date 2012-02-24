@@ -1,6 +1,6 @@
 [Options]
 StationDiameter=37
-ImageFileName=2012.vec
+ImageFileName=paris.vec
 LinesWidth=24
 WordWrap=true
 MaxScale=0.5

@@ -8,7 +8,7 @@
 - (int)parse: (const char *)filename
 {
 	int err;
-	char buf [1024];
+	char buf [4096];
 	char * lb;
 	FILE * file;
 	
@@ -17,7 +17,7 @@
 		return INIP_ERROR_FOPEN_FAILED;
 
 	while (1) {
-		if (fgets (buf, 1023, file) == NULL)
+		if (fgets (buf, 4095, file) == NULL)
 			break;
 
 		lb = [self trim: buf];

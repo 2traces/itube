@@ -1,9 +1,10 @@
 [Options]
 StationDiameter=13
-ImageFileName=1.vec
+ImageFileName=hamburg.vec
 LinesWidth=7
 WordWrap=False
 UpperCase=False
+FontSize=12
 
 [U1]
 Color=0000cf
