@@ -1,8 +1,9 @@
 [Options]
-StationDiameter=15
-ImageFileName=1.png
-LinesWidth=20
+StationDiameter=20
+ImageFileName=london.vec
+LinesWidth=15
 WordWrap=false
+FontSize=26
 
 [bakerloo]
 Color=af610f

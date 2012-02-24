@@ -4,6 +4,7 @@
 
 	NSMutableDictionary * assignments;
 	NSString * sname;
+    int unnamed;
 }
 
 @property (nonatomic, retain)	NSMutableDictionary * assignments;
