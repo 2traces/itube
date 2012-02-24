@@ -22,6 +22,7 @@
 @synthesize colorDictionary;
 @synthesize mytableView;
 @synthesize imageView;
+@synthesize indexDictionary;
 
 - (void)didReceiveMemoryWarning
 {
@@ -71,8 +72,9 @@
     [searchBar release];
     [searchDC release];
     
-    self.colorDictionary = [[[NSMutableDictionary alloc] initWithCapacity:[self.stationList count]] autorelease];
+    self.colorDictionary = [[[NSMutableDictionary alloc] init] autorelease];
 }
+
 
 -(void)createStationIndex
 {
@@ -81,16 +83,31 @@
     
     [self.stationIndex addObject:UITableViewIndexSearch];
     
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    self.indexDictionary = dict;
+    [dict release];
+    
     for (int i=0; i<[self.stationList count]-1; i++){
-        //---get the first char of each state---
+
         char alphabet = [[[self.stationList objectAtIndex:i] name] characterAtIndex:0];
         NSString *uniChar = [NSString stringWithFormat:@"%C", alphabet];
         
         //---add each letter to the index array---
-        if (![stationIndex containsObject:uniChar])
-        {            
+        if (![stationIndex containsObject:uniChar]) {            
+        
             [stationIndex addObject:uniChar];
-        }        
+            
+            NSMutableArray *array = [[NSMutableArray alloc] init];
+            [array addObject:[self.stationList objectAtIndex:i]];
+            [self.indexDictionary setObject:array forKey:uniChar];
+            [array release];
+            
+        } else {
+            
+            NSMutableArray *array = [dict objectForKey:uniChar];
+            [array addObject:[self.stationList objectAtIndex:i]];
+        
+        }
     }
 }
 
@@ -175,18 +192,15 @@
 	{	
         NSString *alphabet = [stationIndex objectAtIndex:section];
         
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name beginswith[c] %@", alphabet];
-
-        // tut dolgo
-        NSArray *stations = [self.stationList filteredArrayUsingPredicate:predicate];
+        int count = [[self.indexDictionary objectForKey:alphabet] count];
         
-        return [stations count]; 
+        return count;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
- //   NSDate *date = [NSDate date];
+//    NSDate *date = [NSDate date];
     
     static NSString *CellIdentifier = @"StationCell";
     
@@ -223,9 +237,8 @@
         // название и прочее
         NSString *alphabet = [stationIndex objectAtIndex:[indexPath section]];
         
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name beginswith[c] %@", alphabet];
-        NSArray *stations = [self.stationList filteredArrayUsingPredicate:predicate];
-        
+        NSMutableArray *stations = [self.indexDictionary objectForKey:alphabet];
+
         if ([stations count]>0) {
             NSString *cellValue = [[stations objectAtIndex:indexPath.row] name];
             cell.mylabel.text = cellValue;
@@ -243,17 +256,11 @@
                 [[cell mybutton] setImage:[UIImage imageNamed:@"starbutton_off.png"] forState:UIControlStateNormal];
             }
             
-            // RoundView *procentView = [[[RoundView alloc] initWithDefaultSize] autorelease];
-            //[procentView setColor:(UIColor*)[[(Station*)[stations objectAtIndex:indexPath.row] lines] color]];
-            //[cell.contentView addSubview:procentView];
-            //cell.circleView=procentView;
-            //cell.circleView = 
-            //        [cell.contentView addSubview:[self drawCircleView:(UIColor*)[[(Station*)[stations objectAtIndex:indexPath.row] lines] color]]];
             UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
             myImageView.image = [self imageWithColor:[(MStation*)[stations objectAtIndex:indexPath.row] lines]];
         }
     }
-    NSDate *date2 = [NSDate date];
+//    NSDate *date2 = [NSDate date];
 //    NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
 
     return cell;
@@ -384,57 +391,6 @@
 
 -(UIImage*)drawCircleView:(UIColor*)myColor
 {
-
-    /*
-//    myColor = [UIColor whiteColor];
-    
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(26, 26), NO, 0.0);
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-
-    CGGradientRef myGradient;
-    
-    CGColorSpaceRef myColorspace;
-    
-    size_t num_locations=2;
-    
-    CGFloat locations[2] = { 0.0 , 1.0 };
-    
-    const CGFloat* components = CGColorGetComponents(myColor.CGColor);
-    const CGFloat* componentsD = CGColorGetComponents([[myColor darkenedColor] CGColor]);
-    
-    CGFloat componentsG[8] = { components[0], components[1], components[2], 1.0, componentsD[0], componentsD[1], componentsD[2], 1.0 };
-
-    myColorspace = CGColorSpaceCreateDeviceRGB();
-    
-    myGradient = CGGradientCreateWithColorComponents (myColorspace, componentsG, locations, num_locations);
-    
-    CGPoint myStartPoint, myEndPoint;
-    CGFloat myStartRadius, myEndRadius;
-    
-    myStartPoint.x = 13;
-    myStartPoint.y = 13;
-    
-    myEndPoint.x = 13;
-    myEndPoint.y = 13;
-    
-    myStartRadius =9;
-    myEndRadius = 12;
-    
-    CGRect circleRect = CGRectMake(1.0, 1.0, 24.0, 24.0);
-   
-    CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor)); 
-    CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));  
-	CGContextSetLineWidth(context, 1.0);
-	CGContextFillEllipseInRect(context, circleRect);
-	CGContextStrokeEllipseInRect(context, circleRect);
-    
-    CGContextDrawRadialGradient(context, myGradient, myStartPoint, myStartRadius, myEndPoint, myEndRadius, 0);
-    
-     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-     
-     return image;*/
-    
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(27, 27), NO, 0.0);
     
     UIImage *radialImg = [UIImage imageNamed:@"radial.png"];
@@ -456,8 +412,6 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
     return image;
-    
-    
 }
 
 

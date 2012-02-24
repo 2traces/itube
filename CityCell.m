@@ -11,6 +11,7 @@
 @implementation CityCell
 
 @synthesize cityName;
+@synthesize cellButton;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

@@ -17,6 +17,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
     UIWindow *window;
     MainViewController *mainViewController;
     CityMap *cityMap;
+    NSString *cityName;
     
     NSOperationQueue    *parseQueue;
     
@@ -29,6 +30,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) MainViewController *mainViewController;
 @property (nonatomic, retain) CityMap *cityMap;
+@property (nonatomic, retain) NSString *cityName;
 @property (nonatomic, retain) NSOperationQueue *parseQueue; 
 
 

@@ -15,6 +15,7 @@
 @synthesize window;
 @synthesize mainViewController;
 @synthesize cityMap;
+@synthesize cityName;
 @synthesize parseQueue;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
@@ -25,30 +26,32 @@
     
     CityMap *cm = [[CityMap alloc] init];
     NSString *mapName =[self nameCurrentMap];
-//    [cm loadMap:mapName];
-    [cm loadMap:@"Metro"];
+    [cm loadMap:mapName];
+
+    //    [cm loadMap:@"berlin"];
     
     self.cityMap = cm;
     [cm release];
-	
-	DLog(@"applicationDidFinishLaunching");
+    
+    self.cityName= [self nameCurrentCity];
+    
     mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
-	[window addSubview:[mainViewController view]];
+    [window addSubview:[mainViewController view]];
     [window makeKeyAndVisible];
 }
 
 -(void)applicationDidEnterBackground:(UIApplication *)application
 {
-    MHelper *helper = [MHelper sharedHelper];
-    [helper saveBookmarkFile];
-    [helper saveHistoryFile];
+//    MHelper *helper = [MHelper sharedHelper];
+//    [helper saveBookmarkFile];
+//    [helper saveHistoryFile];
 }
 
 -(void)applicationWillTerminate:(UIApplication *)application
 {
-    MHelper *helper = [MHelper sharedHelper];
-    [helper saveBookmarkFile];
-    [helper saveHistoryFile];
+//    MHelper *helper = [MHelper sharedHelper];
+//    [helper saveBookmarkFile];
+//    [helper saveHistoryFile];
 }
 
 -(NSString*)nameCurrentMap
@@ -59,11 +62,24 @@
     if (!currentMap) {
         currentMap = [self getDefaultMapName];    
         [defaults setObject:currentMap forKey:@"current_map"];
-        [defaults synchronize];
     }
     
     return currentMap;
 }
+
+-(NSString*)nameCurrentCity
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *currentCity =  [defaults stringForKey:@"current_city"];
+    
+    if (!currentCity) {
+        currentCity = [self getDefaultCityName];    
+        [defaults setObject:currentCity forKey:@"current_city"];
+    }
+    
+    return currentCity;
+}
+
 
 -(NSString*)getDefaultMapName
 {
@@ -81,10 +97,32 @@
     }
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *mapFileName =[NSString stringWithString:[dict objectForKey:@"default"]];
+    NSString *mapFileName =[NSString stringWithString:[[dict objectForKey:@"default"] objectForKey:@"filename"]];
     [dict release];
     
     return mapFileName;
+}
+
+-(NSString*)getDefaultCityName
+{
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+    
+    NSFileManager *manager = [NSFileManager defaultManager];
+    
+    if (![manager fileExistsAtPath:path]) {
+        NSBundle *bundle = [NSBundle mainBundle]; 
+        NSError *error = nil; 
+        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"]; 
+        
+        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
+    }
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSString *cityFileName =[NSString stringWithString:[[dict objectForKey:@"default"] objectForKey:@"name"]];
+    [dict release];
+    
+    return cityFileName;
 }
 
 - (void)dealloc {
