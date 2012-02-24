@@ -60,8 +60,7 @@
 
 -(void)changeMapTo:(NSString*)newMap
 {
-    [stationsView resetFromStation];
-    [stationsView resetToStation];
+    [stationsView resetBothStations];
 
 //    [[(MainView*)self.view mapView] setCityMap:nil];
 //    appDelegate.cityMap=nil;
@@ -1031,6 +1030,18 @@
     currentSelection=ToStation;
     [stationsView setFromStation:self.fromStation];
     [self returnFromSelection:[NSArray array]];
+}
+
+-(void)resetBothStations
+{
+    currentSelection=FromStation;
+    [stationsView setToStation:nil];
+    [stationsView setFromStation:nil];
+    
+    self.fromStation=nil;
+    self.toStation=nil;
+    
+    [self returnFromSelection2:[NSArray array]];
 }
 
 - (void)didReceiveMemoryWarning {

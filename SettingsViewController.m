@@ -159,7 +159,10 @@
             [[(CityCell*)cell cellButton] addTarget:self action:@selector(buyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         }    
         
-        [[(CityCell*)cell cityName] setText:[maps objectAtIndex:[indexPath row]]];
+        NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
+        NSString *mapName = [map objectForKey:@"name"];
+        
+        [[(CityCell*)cell cityName] setText:mapName];
         [[(CityCell*)cell cityName] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
         [[(CityCell*)cell cityName] setHighlightedTextColor:[UIColor whiteColor]];
         
@@ -246,14 +249,10 @@
     self.selectedPath=indexPath;
     
     [tableView reloadData];    
-    
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *mapName = [NSString stringWithString:[dict objectForKey:[self.maps objectAtIndex:indexPath.row]]];
-    [dict release];
-    
+
+    NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
+    NSString *mapName = [map objectForKey:@"filename"];
+
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate.mainViewController changeMapTo:mapName];
 }
@@ -298,9 +297,18 @@
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
     NSArray *array = [dict allKeys];
+    NSMutableArray *mapsInfoArray = [[[NSMutableArray alloc] initWithCapacity:[array count]] autorelease];
+    
+    for (NSString* key in array) {
+        NSMutableDictionary *product = [[NSMutableDictionary alloc] initWithDictionary:[dict objectForKey:key]];
+        [product setObject:key forKey:@"prodID"];
+        [mapsInfoArray addObject:product];
+        [product release];
+    }
+
     [dict release];
     
-    return array;
+    return mapsInfoArray;
 }
 
 // Displays an email composition interface inside the app // and populates all the Mail fields.

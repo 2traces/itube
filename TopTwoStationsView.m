@@ -447,6 +447,13 @@
     [appDelegate.mainViewController pressedSelectToStation];
 }
 
+-(void)resetBothStations
+{
+    shouldEnlarge = YES;
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate.mainViewController resetBothStations];
+}
+
 -(void)resetFromStation
 {
     shouldEnlarge = YES;
