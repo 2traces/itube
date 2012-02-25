@@ -22,6 +22,24 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @class Line;
 @class CityMap;
 
+@interface ComplexText : NSObject {
+@private
+    NSString *string;
+    float angle;
+    int align;
+    UIFont *font;
+    CGRect rect;
+    CGLayerRef predrawedText;
+    CGPoint base, offset;
+    NSArray *words;
+}
+@property (nonatomic, readonly) NSString* string;
+
+-(id) initWithString:(NSString*)string font:(UIFont*)font andRect:(CGRect)rect;
+-(void) predraw:(CGContextRef)context scale:(CGFloat)scale;
+-(void) draw:(CGContextRef)context;
+@end
+
 @interface Transfer : NSObject {
 @private
     NSMutableSet* stations;
@@ -65,11 +83,11 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
     BOOL drawName;
     BOOL active;
     BOOL acceptBackLink;
-    CGLayerRef predrawedName;
     int links;
     // векторы вдоль линии и поперёк
     CGPoint tangent, normal;
     CityMap *map;
+    ComplexText *text;
 }
 
 @property (nonatomic, readonly) NSMutableArray* relation;
