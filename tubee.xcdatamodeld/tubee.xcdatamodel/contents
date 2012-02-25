@@ -2,8 +2,8 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="10K549" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="History" representedClassName="MHistory" syncable="YES">
         <attribute name="adate" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="fromStation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Station" syncable="YES"/>
-        <relationship name="toStation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Station" syncable="YES"/>
+        <relationship name="fromStation" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Station" syncable="YES"/>
+        <relationship name="toStation" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Station" syncable="YES"/>
     </entity>
     <entity name="Line" representedClassName="MLine" syncable="YES">
         <attribute name="color" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -15,7 +15,7 @@
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="lines" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Line" inverseName="stations" inverseEntity="Line" syncable="YES"/>
+        <relationship name="lines" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Line" inverseName="stations" inverseEntity="Line" syncable="YES"/>
     </entity>
     <elements>
         <element name="History" positionX="-630" positionY="-450" width="128" height="90"/>

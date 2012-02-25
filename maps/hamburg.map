@@ -1,9 +1,10 @@
 [Options]
 StationDiameter=13
-ImageFileName=1.vec
+ImageFileName=hamburg.vec
 LinesWidth=7
 WordWrap=False
 UpperCase=False
+FontSize=12
 
 [U1]
 Color=0000cf
@@ -90,7 +91,7 @@ Rect=
 18=U3,Kellinghusenstrasse,Eppendorfer Baum, 1107,931
 19=U1,Ohlsdorf,Sengelmannstrasse, 1306,732
 20=S1,Bahrenfeld,Altona, 602,1100
-21=U2,/Burg Strasse,Berliner Tor, 1599,1180
+21=U2,/<Burg Strasse,Berliner Tor, 1599,1180
 22=S1,Konigstrasse,Reeperbahn, 826,1248
 23=U3,Rathaus,Monckebergstrasse, 1128,1296
 24=S3,Reeperbahn,Konigstrasse, 826,1267
