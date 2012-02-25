@@ -13,6 +13,7 @@
 #import "MyNavigationBar.h"
 #import "CityMap.h"
 #import "tubeAppDelegate.h"
+#import "MainViewController.h"
 
 @implementation SettingsViewController
 
@@ -252,9 +253,10 @@
 
     NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
     NSString *mapName = [map objectForKey:@"filename"];
+    NSString *cityName = [map objectForKey:@"name"];
 
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-    [appDelegate.mainViewController changeMapTo:mapName];
+    [appDelegate.mainViewController changeMapTo:mapName andCity:cityName];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

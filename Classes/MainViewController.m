@@ -58,22 +58,35 @@
     [twoStationsView release];
 }
 
--(void)changeMapTo:(NSString*)newMap
+-(void)changeMapTo:(NSString*)newMap andCity:(NSString*)cityName
 {
     [stationsView resetBothStations];
 
-//    [[(MainView*)self.view mapView] setCityMap:nil];
-//    appDelegate.cityMap=nil;
+    MHelper *helper = [MHelper sharedHelper];
+    [helper saveBookmarkFile];
+    [helper saveHistoryFile];
+    
     [[MHelper sharedHelper] clearContent];
     
     CityMap *cm = [[CityMap alloc] init];
     [cm loadMap:newMap];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMapChanged object:nil];
+    
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     [(MainView*)self.view setCityMap:cm];
     // FIXME !!! some classes don't release city map
     [appDelegate.cityMap release];
-    [appDelegate.cityMap release];
+//    [appDelegate.cityMap release];
     appDelegate.cityMap=cm;
+    [cm release];
+    
+    
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:newMap forKey:@"current_map"];
+    [defaults setObject:cityName forKey:@"current_city"];
+    [defaults synchronize];
 }
 
 -(void)changeMap
@@ -1036,7 +1049,9 @@
 }
 
 -(void)resetBothStations
-{
+{   
+    int tempSelection = currentSelection;
+    
     currentSelection=FromStation;
     [stationsView setToStation:nil];
     [stationsView setFromStation:nil];
@@ -1045,6 +1060,8 @@
     self.toStation=nil;
     
     [self returnFromSelection2:[NSArray array]];
+    
+    currentSelection=tempSelection;
 }
 
 - (void)didReceiveMemoryWarning {
