@@ -5,7 +5,7 @@ Driving=2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
 
 [Line2]
 Name=U2
-Stations=Niendorf Nord,Schippelsweg,Joachim-Mahl-Strasse,Niendorf Markt,Hagendeel,Hagenbecks Tierpark,Lutterothstrasse,Osterstrasse,Emilienstrasse,Christuskirche,Schlump,Messehallen,Gansemarkt,Jungfernstieg,Hauptbahnhof,Berliner Tor,/Burg Strasse,/Hammer,/Rauhes Haus,/Horner Rennbahn,/Legien Strasse,/Billstedt,/Merken Strasse,/Steinfurther Allee,/Mummelmannsberg
+Stations=Niendorf Nord,Schippelsweg,Joachim-Mahl-Strasse,Niendorf Markt,Hagendeel,Hagenbecks Tierpark,Lutterothstrasse,Osterstrasse,Emilienstrasse,Christuskirche,Schlump,Messehallen,Gansemarkt,Jungfernstieg,Hauptbahnhof,Berliner Tor,/<Burg Strasse,/<Hammer,/<Rauhes Haus,/<Horner Rennbahn,/<Legien Strasse,/<Billstedt,/<Merken Strasse,/<Steinfurther Allee,/<Mummelmannsberg
 Driving=2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
 
 [Line3]
@@ -15,7 +15,7 @@ Driving=2,2,2,(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2),(2
 
 [Line4]
 Name=s21
-Stations=Elbgaustrasse,Eidelstedt,Stellingen,Langenfelde,Diebsteich,Holstenstrasse,Sternschanze,Dammtor,Hauptbahnhof,Berliner Tor,Rothenburgsort,Tiefstack,Billwerder-Moorfleet,Mittlerer Landweg,Allermohe,Nettelnburg,Bergedorf,/Reinbek,/Wohltorf,/Aumuhle
+Stations=Elbgaustrasse,Eidelstedt,Stellingen,Langenfelde,Diebsteich,Holstenstrasse,Sternschanze,Dammtor,Hauptbahnhof,Berliner Tor,Rothenburgsort,Tiefstack,Billwerder-Moorfleet,Mittlerer Landweg,Allermohe,Nettelnburg,Bergedorf,/<Reinbek,/<Wohltorf,/<Aumuhle
 Driving=2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
 
 [Line5]
