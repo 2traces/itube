@@ -61,6 +61,141 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	CGContextFillEllipseInRect(context, CGRectMake(x-r, y-r, 2*r, 2*r));
 }
 
+@implementation ComplexText
+
+@synthesize string;
+
+-(id) initWithString:(NSString *)_string font:(UIFont *)_font andRect:(CGRect)_rect
+{
+    if((self = [super init])) {
+        angle = 0;
+        align = 0;
+        string = _string;
+        font = [_font retain];
+        rect = _rect;
+        while (true) {
+            unichar ch = [string characterAtIndex:0];
+            BOOL finish = NO;
+            switch (ch) {
+                case '/':
+                    angle = -M_PI_4;
+                    break;
+                case '\\':
+                    angle = M_PI_4;
+                    break;
+                case '^':
+                    align |= 0x1;
+                    break;
+                case '_':
+                    align |= 0x2;
+                    break;
+                case '-':
+                    align &= 0xc;
+                    break;
+                case '<':
+                    align |= 0x4;
+                    break;
+                case '>':
+                    align |= 0x8;
+                    break;
+                case '|':
+                    align &= 0x3;
+                    break;
+                default:
+                    finish = YES;
+                    break;
+            }
+            if(finish) break;
+            else string = [string substringFromIndex:1];
+        }
+        words = [[string componentsSeparatedByString:@";"] retain];
+        string = [[string stringByReplacingOccurrencesOfString:@";" withString:@" "] retain];
+    }
+    return self;
+}
+
+-(void)predraw:(CGContextRef)context scale:(CGFloat)scale
+{
+    if(predrawedText != nil) CGLayerRelease(predrawedText);
+    NSMutableDictionary *heights = [[NSMutableDictionary alloc] initWithCapacity:[words count]];
+    CGSize size = CGSizeZero;
+    for (NSString *w in words) {
+        CGSize s = [w sizeWithFont:font constrainedToSize:rect.size lineBreakMode:UILineBreakModeWordWrap];
+        size.height += s.height;
+        if(s.width > size.width) size.width = s.width;
+        [heights setValue:[NSNumber numberWithInt:s.height] forKey:w];
+    }
+    predrawedText = CGLayerCreateWithContext(context, CGSizeMake(size.width*scale, size.height*scale), NULL);
+    CGContextRef ctx = CGLayerGetContext(predrawedText);
+    UIGraphicsPushContext(ctx);
+    CGContextScaleCTM(ctx, scale, scale);
+    int alignment = UITextAlignmentCenter;
+    if(align & 0x4) alignment = UITextAlignmentLeft;
+    else if(align & 0x8) alignment = UITextAlignmentRight;
+    CGRect r = CGRectZero;
+    r.size = size;
+    for (NSString *w in words) {
+        [w drawInRect:r  withFont: font lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
+        int height = [[heights valueForKey:w] intValue];
+        r.origin.y += height;
+        r.size.height -= height;
+    }
+    UIGraphicsPopContext();
+    switch (align & 0x3) {
+        case 0x0:
+            base.y = rect.origin.y + rect.size.height/2;
+            offset.y = -size.height/2;
+            break;
+        case 0x1:
+            base.y = rect.origin.y;
+            offset.y = 0;
+            break;
+        case 0x2:
+            base.y = rect.origin.y + rect.size.height;
+            offset.y = -size.height;
+            break;
+    }
+    switch (align & 0xc) {
+        case 0x0:
+            base.x = rect.origin.x + rect.size.width/2;
+            offset.x = -size.width/2;
+            break;
+        case 0x4:
+            base.x = rect.origin.x;
+            offset.x = 0;
+            break;
+        case 0x8:
+            base.x = rect.origin.x + rect.size.width;
+            offset.x = -size.width;
+            break;
+    }
+    rect.size = size;
+    rect.origin = offset;
+    [heights release];
+}
+
+-(void)draw:(CGContextRef)context
+{
+    if(predrawedText) {
+        CGContextSaveGState(context);
+        CGContextTranslateCTM(context, base.x, base.y);
+        CGContextRotateCTM(context, angle);
+        //CGContextTranslateCTM(context, offset.x, offset.y);
+        CGContextDrawLayerInRect(context, rect, predrawedText);
+        CGContextRestoreGState(context);
+    } else {
+        // TODO
+    }
+}
+
+-(void)dealloc
+{
+    CGLayerRelease(predrawedText);
+    [font release];
+}
+
+@end
+
 @implementation Transfer
 
 @synthesize stations;
@@ -357,13 +492,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         drawName = YES;
         active = YES;
         acceptBackLink = YES;
-        predrawedName = nil;
         
         NSUInteger br = [sname rangeOfString:@"("].location;
         if(br == NSNotFound) {
-            name = [sname retain];
+            text = [[ComplexText alloc] initWithString:sname font:[UIFont fontWithName:map->TEXT_FONT size:map->FontSize] andRect:textRect];
+            name = [text.string retain];
         } else {
-            name = [[sname substringToIndex:br] retain];
+            text = [[ComplexText alloc] initWithString:[sname substringToIndex:br] font:[UIFont fontWithName:map->TEXT_FONT size:map->FontSize] andRect:textRect];
+            name = [text.string retain];
             NSArray *components = [[sname substringFromIndex:br+1] componentsSeparatedByString:@","];
             if([components count] > 1) acceptBackLink = NO;
             for (NSString* s in components) {
@@ -404,7 +540,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [relation release];
     [relationDriving release];
     [sibling release];
-    CGLayerRelease(predrawedName);
 }
 
 -(void)addSibling:(Station *)st
@@ -425,27 +560,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)drawName:(CGContextRef)context
 {
-    /*BOOL act = active || (transfer != nil && transfer.active);
-    if(!act) {
-        CGContextSaveGState(context);
-        CGContextSetAlpha(context, 0.3f);
-    }*/
-    if(predrawedName != nil) CGContextDrawLayerInRect(context, textRect, predrawedName);
-    else {
-        CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
-        if(active || (transfer && transfer.active && drawName)) {
-            CGContextSetFillColorWithColor(context, [[UIColor blackColor] CGColor] );
-        } else {
-            CGContextSetFillColorWithColor(context, [[UIColor lightGrayColor] CGColor] );
-        }
-        CGContextSetTextDrawingMode (context, kCGTextFill);
-        //int alignment = UITextAlignmentCenter;
-        //if(pos.x < textRect.origin.x) alignment = UITextAlignmentLeft;
-        //else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
-        CGContextSelectFont(context, [map->TEXT_FONT UTF8String], map->FontSize, kCGEncodingMacRoman);
-        CGContextShowTextAtPoint(context, textRect.origin.x, textRect.origin.y+textRect.size.height, [name cStringUsingEncoding:[NSString defaultCStringEncoding]], [name length]);
-    }
-    //if(!act) CGContextRestoreGState(context);
+    [text draw:context];
 }
 
 -(void)drawStation:(CGContextRef)context
@@ -463,19 +578,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)predraw:(CGContextRef) context
 {
-    if(predrawedName != nil) CGLayerRelease(predrawedName);
-    CGSize size = textRect.size;
-    predrawedName = CGLayerCreateWithContext(context, CGSizeMake(size.width*map->PredrawScale, size.height*map->PredrawScale), NULL);
-    CGContextRef ctx = CGLayerGetContext(predrawedName);
-    UIGraphicsPushContext(ctx);
-    CGContextScaleCTM(ctx, map->PredrawScale, map->PredrawScale);
-    int alignment = UITextAlignmentCenter;
-    if(pos.x < textRect.origin.x) alignment = UITextAlignmentLeft;
-    else if(pos.x > textRect.origin.x + textRect.size.width) alignment = UITextAlignmentRight;
-    CGRect rect = textRect;
-    rect.origin = CGPointZero;
-    [name drawInRect:rect  withFont: [UIFont fontWithName:map->TEXT_FONT size:map->FontSize] lineBreakMode: UILineBreakModeWordWrap alignment: alignment];
-    UIGraphicsPopContext();
+    [text predraw:context scale:map->PredrawScale];
 }
 
 -(void) makeSegments
@@ -767,6 +870,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 [last addSibling:st];
             }
             [stations addObject:st];
+
+            MStation *station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+            station.name=st.name;
+            station.isFavorite=[NSNumber numberWithInt:0];
+            station.lines=[[MHelper sharedHelper] lineByName:name ];
+            station.index = [NSNumber numberWithInt:i];
         }
         // создаём отложенные связи
         for (Station *st in stations) {
@@ -1147,7 +1256,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         newLine.index = [[[NSNumber alloc] initWithInt:i] autorelease];
         newLine.color = [self colorForHex:colors];
 
-        [self processLinesStations:stations	:i];
+        // [self processLinesStations:stations	:i];
         
         Line *l = [[[Line alloc] initWithMap:self name:lineName stations:stations driving:coordsTime coordinates:coords rects:coordsText] autorelease];
         l.index = i;
