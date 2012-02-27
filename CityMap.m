@@ -535,6 +535,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)dealloc
 {
+    [text release];
     [segment release];
     [backSegment release];
     [relation release];

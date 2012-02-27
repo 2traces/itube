@@ -128,6 +128,7 @@
 - (void)dealloc {
     [mainViewController release];
     [window release];
+    [cityMap release];
     [super dealloc];
 }
 
