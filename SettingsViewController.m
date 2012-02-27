@@ -212,7 +212,7 @@
             selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
         }
         
-        cell.backgroundView  = [[UIImageView alloc] initWithImage:rowBackground];
+        cell.backgroundView  = [[[UIImageView alloc] initWithImage:rowBackground] autorelease];
         cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:selectionBackground];
                 
         return cell;
