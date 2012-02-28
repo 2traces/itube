@@ -276,6 +276,7 @@
 		BCCC30A814E4FA4A00102064 /* CityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCCC30A714E4FA4A00102064 /* CityCell.xib */; };
 		BCCC30AB14E4FA6200102064 /* CityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCC30AA14E4FA6200102064 /* CityCell.m */; };
 		BCD3538A14E138BC00D4278A /* UIColor-enhanced.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD3538914E138BC00D4278A /* UIColor-enhanced.m */; };
+		BCE0B07A14FCD47600CCE704 /* DownloadServer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE0B07914FCD47500CCE704 /* DownloadServer.m */; };
 		BCF52DCD14CAD69400D76E0F /* FastAccessTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */; };
 		CE1146C91466EAF200EF5A28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1146C81466EAF200EF5A28 /* QuartzCore.framework */; };
 		CE81FA70146BDC91008BF969 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CE81FA6D146BDC91008BF969 /* Icon-72.png */; };
@@ -613,6 +614,8 @@
 		BCCC30AA14E4FA6200102064 /* CityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityCell.m; sourceTree = "<group>"; };
 		BCD3538814E138BC00D4278A /* UIColor-enhanced.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-enhanced.h"; sourceTree = "<group>"; };
 		BCD3538914E138BC00D4278A /* UIColor-enhanced.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-enhanced.m"; sourceTree = "<group>"; };
+		BCE0B07814FCD47500CCE704 /* DownloadServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadServer.h; sourceTree = "<group>"; };
+		BCE0B07914FCD47500CCE704 /* DownloadServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadServer.m; sourceTree = "<group>"; };
 		BCF52DCB14CAD69400D76E0F /* FastAccessTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastAccessTableViewController.h; sourceTree = "<group>"; };
 		BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastAccessTableViewController.m; sourceTree = "<group>"; };
 		CE1146C81466EAF200EF5A28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -712,6 +715,8 @@
 				BC3D14D814C338300059A17E /* IAPHelper.m */,
 				BC3D150014C338570059A17E /* Server.h */,
 				BC3D150114C338580059A17E /* Server.m */,
+				BCE0B07814FCD47500CCE704 /* DownloadServer.h */,
+				BCE0B07914FCD47500CCE704 /* DownloadServer.m */,
 				BC3D150214C338590059A17E /* XMLParser.h */,
 				BC3D150314C3385B0059A17E /* XMLParser.m */,
 				BC3D14D914C338310059A17E /* TubeAppIAPHelper.h */,
@@ -1491,6 +1496,7 @@
 				BCCC30AB14E4FA6200102064 /* CityCell.m in Sources */,
 				BCB362E014E6C31C0066FB3A /* StationTextField.m in Sources */,
 				9FFA6EBC14EE17920086199F /* ActiveView.m in Sources */,
+				BCE0B07A14FCD47600CCE704 /* DownloadServer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1531,13 +1537,14 @@
 					armv7,
 				);
 				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Mingalev (7JL6T6YKP5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sergey Mingalev (7JL6T6YKP5)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "58DCBE65-102B-401F-AF77-6C427EB14267";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "58DCBE65-102B-401F-AF77-6C427EB14267";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1550,13 +1557,14 @@
 					armv7,
 				);
 				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Mingalev (7JL6T6YKP5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sergey Mingalev (7JL6T6YKP5)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "58DCBE65-102B-401F-AF77-6C427EB14267";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "58DCBE65-102B-401F-AF77-6C427EB14267";
 				SDKROOT = iphoneos;
 			};
 			name = Release;

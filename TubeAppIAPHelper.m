@@ -24,16 +24,21 @@ static TubeAppIAPHelper * _sharedHelper;
 
 - (id)init {
     
-    NSSet *productIdentifiers = [NSSet setWithObjects:
-        @"com.smingalev.ttubee.london",
-        @"com.smingalev.ttubee.berlin", 
-        nil];
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSArray *array = [dict allKeys];
+    
+    NSSet *productIdentifiers = [[NSSet alloc] initWithArray:array];    
     
     if ((self = [super initWithProductIdentifiers:productIdentifiers])) {                
         
     }
+
     return self;
     
 }
+
 
 @end
