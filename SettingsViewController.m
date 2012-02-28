@@ -13,6 +13,12 @@
 #import "MyNavigationBar.h"
 #import "CityMap.h"
 #import "tubeAppDelegate.h"
+#import "MainViewController.h"
+#import "Reachability.h"
+#import "TubeAppIAPHelper.h"
+
+#define plist_ 1
+#define zip_  2
 
 @implementation SettingsViewController
 
@@ -55,6 +61,16 @@
     NSArray *stationList = [NSArray arrayWithObjects:@"Croix de Chavaux", @"Robespierre", nil];
     
     [server sendRequestStationList:stationList];
+}
+
+-(IBAction)updatePressed:(id)sender
+{
+    DownloadServer *server = [[[DownloadServer alloc] init] autorelease];
+    server.listener=self;
+    
+    NSString *bundleName = [NSString stringWithFormat:@"%@.plist",[[NSBundle mainBundle] bundleIdentifier]];
+    requested_file_type=plist_;
+    [server loadFileAtURL:bundleName];
 }
 
 -(IBAction)buyPress:(id)sender
@@ -100,21 +116,41 @@
 	self.navItem.hidesBackButton=YES;
 	[barButtonItem_back release];
     
-    CGFloat tableHeight = [maps count]*45.0f+2.0;
+    [TubeAppIAPHelper sharedHelper];
     
-    cityTableView.frame = CGRectMake(8, 179, 304, tableHeight);
-    
-    CGRect buyAll = buyAllButton.frame;
-    buyAllButton.frame = CGRectMake(buyAll.origin.x, 179+tableHeight+8, buyAll.size.width, buyAll.size.height);
-    
-    textLabel3.frame = CGRectMake(textLabel3.frame.origin.x, buyAllButton.frame.origin.y+buyAllButton.frame.size.height+17.0, textLabel3.frame.size.width, textLabel3.frame.size.height);
-    
-    sendMailButton.frame = CGRectMake(sendMailButton.frame.origin.x, buyAllButton.frame.origin.y+buyAllButton.frame.size.height+8.0, sendMailButton.frame.size.width, sendMailButton.frame.size.height);
+    [self adjustViewHeight];
+}
 
-	scrollView.contentSize = CGSizeMake(320, sendMailButton.frame.origin.y+sendMailButton.frame.size.height+15.0);
-    scrollView.frame = CGRectMake(0.0, 44.0, 320.0, 460.0-44.0);
+- (void)viewWillAppear:(BOOL)animated {
     
-	[scrollView flashScrollIndicators];
+    [self processPurchases];    
+    [super viewWillAppear:animated];
+}
+
+-(void) processPurchases
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
+    
+    Reachability *reach = [Reachability reachabilityForInternetConnection];	
+    NetworkStatus netStatus = [reach currentReachabilityStatus];  
+    
+    if (netStatus == NotReachable) {        
+        NSLog(@"No internet connection!");        
+    } else {        
+//        if ([TubeAppIAPHelper sharedHelper].products == nil) {
+            
+            [[TubeAppIAPHelper sharedHelper] requestProducts];
+ //           [self performSelector:@selector(timeout:) withObject:nil afterDelay:30.0];
+//        }
+    }
+}
+
+- (void)productsLoaded:(NSNotification *)notification {
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [cityTableView reloadData];
 }
 
 - (void)viewDidUnload
@@ -177,10 +213,21 @@
         //
         // setting button background
         //
-        [[(CityCell*)cell cellButton] setImage:[UIImage imageNamed:@"buy_button.png"] forState:UIControlStateNormal];
-        [[(CityCell*)cell cellButton] setImage:[UIImage imageNamed:@"high_buy_button.png"] forState:UIControlStateHighlighted];
-        [[(CityCell*)cell cellButton] setTitle:@"$0.99" forState:UIControlStateNormal];
-        [[(CityCell*)cell cellButton] setTitle:@"$0.99" forState:UIControlStateHighlighted];
+        
+        [[(CityCell*)cell cellButton] setTitle:@"----" forState:UIControlStateNormal];
+        [[(CityCell*)cell cellButton] setTitle:@"----" forState:UIControlStateHighlighted];
+/*
+        if ([[TubeAppIAPHelper sharedHelper] isPurchased:[map objectForKey:@"prodID"]]) {
+            [[(CityCell*)cell cellButton] setTitle:@"Installed" forState:UIControlStateNormal];
+            [[(CityCell*)cell cellButton] setTitle:@"Installed" forState:UIControlStateHighlighted];
+        } else if ([[TubeAppIAPHelper sharedHelper] isAvailable:[map objectForKey:@"prodID"]])  {
+            [[(CityCell*)cell cellButton] setTitle:@"----" forState:UIControlStateNormal];
+            [[(CityCell*)cell cellButton] setTitle:@"----" forState:UIControlStateHighlighted];
+        }
+  */      
+        [[(CityCell*)cell cellButton] setBackgroundImage:[UIImage imageNamed:@"buy_button.png"] forState:UIControlStateNormal];
+        [[(CityCell*)cell cellButton] setBackgroundImage:[UIImage imageNamed:@"high_buy_button.png"] forState:UIControlStateHighlighted];
+        [[(CityCell*)cell cellButton] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         
         //
         // setting background
@@ -213,7 +260,7 @@
         }
         
         cell.backgroundView  = [[[UIImageView alloc] initWithImage:rowBackground] autorelease];
-        cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:selectionBackground];
+        cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:selectionBackground] autorelease];
                 
         return cell;
         
@@ -252,14 +299,71 @@
 
     NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
     NSString *mapName = [map objectForKey:@"filename"];
+    NSString *cityName = [map objectForKey:@"name"];
 
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-    [appDelegate.mainViewController changeMapTo:mapName];
+    [appDelegate.mainViewController changeMapTo:mapName andCity:cityName];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
     return 45.0;
+}
+
+-(void)downloadDone:(NSMutableData *)data
+{
+    if (requested_file_type==plist_) {
+        [self processPlistFromServer:data];
+    } else if (requested_file_type==zip_) {
+        [self processZipFromServer:data];
+    }
+}
+
+-(void)processPlistFromServer:(NSMutableData*)data
+{
+    NSDictionary *dict = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:nil errorDescription:nil];
+    
+    
+    NSArray *array = [dict allKeys];
+    NSMutableArray *mapsInfoArray = [[[NSMutableArray alloc] initWithCapacity:[array count]] autorelease];
+    
+    for (NSString* key in array) {
+        NSMutableDictionary *product = [[NSMutableDictionary alloc] initWithDictionary:[dict objectForKey:key]];
+        [product setObject:key forKey:@"prodID"];
+        [mapsInfoArray addObject:product];
+        [product release];
+    }
+    
+    self.maps = mapsInfoArray;
+    
+    [self processPurchases];
+    
+    [self adjustViewHeight];
+    [cityTableView reloadData];
+}
+
+-(void)processZipFromServer:(NSMutableData*)data
+{
+    
+}
+
+-(void)adjustViewHeight
+{
+    CGFloat tableHeight = [maps count]*45.0f+2.0;
+    
+    cityTableView.frame = CGRectMake(8, 179, 304, tableHeight);
+    
+    CGRect buyAll = buyAllButton.frame;
+    buyAllButton.frame = CGRectMake(buyAll.origin.x, 179+tableHeight+8, buyAll.size.width, buyAll.size.height);
+    
+    textLabel3.frame = CGRectMake(textLabel3.frame.origin.x, buyAllButton.frame.origin.y+buyAllButton.frame.size.height+17.0, textLabel3.frame.size.width, textLabel3.frame.size.height);
+    
+    sendMailButton.frame = CGRectMake(sendMailButton.frame.origin.x, buyAllButton.frame.origin.y+buyAllButton.frame.size.height+8.0, sendMailButton.frame.size.width, sendMailButton.frame.size.height);
+    
+	scrollView.contentSize = CGSizeMake(320, sendMailButton.frame.origin.y+sendMailButton.frame.size.height+15.0);
+    scrollView.frame = CGRectMake(0.0, 44.0, 320.0, 460.0-44.0);
+    
+	[scrollView flashScrollIndicators];
 }
 
 -(void)serverDone:(NSMutableDictionary *)schedule

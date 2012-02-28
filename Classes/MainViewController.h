@@ -41,4 +41,7 @@
 -(FastAccessTableViewController*)showTableView;
 -(void)removeTableView;
 
+-(void)changeMapTo:(NSString*)newMap andCity:(NSString*)cityName;
+
+
 @end
