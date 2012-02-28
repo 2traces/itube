@@ -68,7 +68,7 @@
     
     [[MHelper sharedHelper] clearContent];
     
-    CityMap *cm = [[CityMap alloc] init];
+    CityMap *cm = [[[CityMap alloc] init] autorelease];
     [cm loadMap:newMap];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kMapChanged object:nil];

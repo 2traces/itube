@@ -4,6 +4,7 @@ ImageFileName=london.vec
 LinesWidth=15
 WordWrap=false
 FontSize=26
+MaxScale=0.5
 
 [bakerloo]
 Color=af610f

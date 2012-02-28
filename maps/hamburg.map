@@ -5,6 +5,7 @@ LinesWidth=7
 WordWrap=False
 UpperCase=False
 FontSize=12
+MaxScale=2
 
 [U1]
 Color=0000cf

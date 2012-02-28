@@ -4,6 +4,7 @@ ImageFileName=venice.vec
 LinesWidth=5
 WordWrap=false
 FontSize=10
+MaxScale=2
 
 [1]
 Color=1b181f
