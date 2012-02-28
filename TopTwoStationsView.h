@@ -41,5 +41,7 @@
 
 -(void)resetFromStation;
 -(void)resetToStation;
+-(void)resetBothStations;
+
 
 @end

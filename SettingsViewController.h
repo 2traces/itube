@@ -11,10 +11,11 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import <QuartzCore/QuartzCore.h>
 #import "Server.h"
+#import "DownloadServer.h"
 
 @class MyNavigationBar;
 
-@interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate,ServerListener>
+@interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate,ServerListener,DownloadServerListener>
 {
     IBOutlet UITableView *langTableView;
     IBOutlet UITableView *cityTableView;
@@ -34,6 +35,8 @@
     NSArray *maps;
     
     NSIndexPath *selectedPath;
+    
+    int requested_file_type;
 }
 
 

@@ -42,16 +42,16 @@
 
 -(void)applicationDidEnterBackground:(UIApplication *)application
 {
-//    MHelper *helper = [MHelper sharedHelper];
-//    [helper saveBookmarkFile];
-//    [helper saveHistoryFile];
+    MHelper *helper = [MHelper sharedHelper];
+    [helper saveBookmarkFile];
+    [helper saveHistoryFile];
 }
 
 -(void)applicationWillTerminate:(UIApplication *)application
 {
-//    MHelper *helper = [MHelper sharedHelper];
-//    [helper saveBookmarkFile];
-//    [helper saveHistoryFile];
+    MHelper *helper = [MHelper sharedHelper];
+    [helper saveBookmarkFile];
+    [helper saveHistoryFile];
 }
 
 -(NSString*)nameCurrentMap
@@ -62,6 +62,7 @@
     if (!currentMap) {
         currentMap = [self getDefaultMapName];    
         [defaults setObject:currentMap forKey:@"current_map"];
+        [defaults synchronize];
     }
     
     return currentMap;
@@ -75,6 +76,7 @@
     if (!currentCity) {
         currentCity = [self getDefaultCityName];    
         [defaults setObject:currentCity forKey:@"current_city"];
+        [defaults synchronize];
     }
     
     return currentCity;

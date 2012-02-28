@@ -7,6 +7,7 @@
 //
 
 #import "ManagedObjects.h"
+#import "tubeAppDelegate.h"
 
 @implementation MStation
 
@@ -417,12 +418,13 @@ static MHelper * _sharedHelper;
     return fetchedItems;       
 }
 
--(void)readBookmarkFile
+-(void)readBookmarkFile:(NSString*)mapName
 {
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [paths objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"bookmarks.plist"];
+    NSString *fileName = [NSString stringWithFormat:@"%@_bookmarks.plist",mapName];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:fileName];
     
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath])
@@ -455,7 +457,10 @@ static MHelper * _sharedHelper;
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [paths objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"bookmarks.plist"];
+    
+    tubeAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    NSString *fileName = [NSString stringWithFormat:@"%@_bookmarks.plist",[delegate nameCurrentMap]];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:fileName];
     
     NSArray *favStations = [self getFavoriteStationList];
     NSMutableDictionary *temp = [[NSMutableDictionary alloc] initWithCapacity:[favStations count]];
@@ -491,11 +496,12 @@ static MHelper * _sharedHelper;
     }
 }
 
--(void)readHistoryFile
+-(void)readHistoryFile:(NSString*)mapName
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [paths objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"history.plist"];
+    NSString *fileName = [NSString stringWithFormat:@"%@_history.plist",mapName];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:fileName];
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath])
     {
@@ -610,8 +616,11 @@ static MHelper * _sharedHelper;
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [paths objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"history.plist"];
     
+    tubeAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    NSString *fileName = [NSString stringWithFormat:@"%@_history.plist",[delegate nameCurrentMap]];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:fileName];
+
     NSArray *histList = [self getHistoryList];
     NSMutableDictionary *temp = [[NSMutableDictionary alloc] initWithCapacity:[histList count]];
     

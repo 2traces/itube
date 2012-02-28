@@ -58,28 +58,33 @@
     [twoStationsView release];
 }
 
--(void)changeMapTo:(NSString*)newMap
+-(void)changeMapTo:(NSString*)newMap andCity:(NSString*)cityName
 {
     [stationsView resetBothStations];
 
-//    [[(MainView*)self.view mapView] setCityMap:nil];
-//    appDelegate.cityMap=nil;
+    MHelper *helper = [MHelper sharedHelper];
+    [helper saveBookmarkFile];
+    [helper saveHistoryFile];
+    
     [[MHelper sharedHelper] clearContent];
     
     CityMap *cm = [[[CityMap alloc] init] autorelease];
     [cm loadMap:newMap];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMapChanged object:nil];
+    
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     [(MainView*)self.view setCityMap:cm];
+
     // FIXME !!! some classes don't release city map
     [appDelegate.cityMap release];
     [appDelegate.cityMap release];
     appDelegate.cityMap=cm;
-}
-
--(void)changeMap
-{
-    tubeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [[(MainView*)self.view mapView] setCityMap:appDelegate.cityMap];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:newMap forKey:@"current_map"];
+    [defaults setObject:cityName forKey:@"current_city"];
+    [defaults synchronize];
 }
 
 -(NSString*)getArrivalTimeFromNow:(NSInteger)time
@@ -375,7 +380,9 @@
         
         UIButton *changeViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *img = [UIImage imageNamed:@"switch_to_path.png"];
+        UIImage *imgh = [UIImage imageNamed:@"switch_to_path_high.png"];
         [changeViewButton setImage:img forState:UIControlStateNormal];
+        [changeViewButton setImage:imgh forState:UIControlStateHighlighted];
         [changeViewButton addTarget:self action:@selector(changeView:) forControlEvents:UIControlEventTouchUpInside];
                 
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -509,11 +516,7 @@
         self.pathScrollView.delegate = self;
         
         self.pathScrollView.backgroundColor = [UIColor whiteColor];
-//        UIImageView *bgview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"vert_path_bg.png"]];
-//        bgview.frame = CGRectMake(0.0, 0.0, 320.0, 40.0);
-//        [self.pathScrollView addSubview:bgview];
-//        [bgview release];
-        
+   
         CGFloat currentY;
         CGFloat lineStart=17.0;
         
@@ -815,18 +818,25 @@
         [(MainView*)self.view bringSubviewToFront:self.scrollView]; 
         [(MainView*)self.view bringSubviewToFront:[(MainView*)self.view viewWithTag:333]]; 
 
-        
-        
+        UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
+         shadow.frame = CGRectMake(0,66, 320, 61);
+        [shadow setIsAccessibilityElement:YES];
+        shadow.tag = 2321;
+        [(MainView*)self.view addSubview:shadow];
+ 
         [(UIButton*)[(MainView*)self.view viewWithTag:333] setImage:[UIImage imageNamed:@"switch_to_map.png"] forState:UIControlStateNormal];
+        [(UIButton*)[(MainView*)self.view viewWithTag:333] setImage:[UIImage imageNamed:@"switch_to_map_high.png"] forState:UIControlStateHighlighted];
         
         [formatter release];
     
     } else {
+        
+        [[(MainView*)self.view viewWithTag:2321] removeFromSuperview]; 
+ 
         [self.pathScrollView removeFromSuperview];
         self.pathScrollView=nil;
         [(UIButton*)[(MainView*)self.view viewWithTag:333] setImage:[UIImage imageNamed:@"switch_to_path.png"] forState:UIControlStateNormal];
-        
-
+        [(UIButton*)[(MainView*)self.view viewWithTag:333] setImage:[UIImage imageNamed:@"switch_to_path_high.png"] forState:UIControlStateHighlighted];
     }
 }
 
@@ -1036,7 +1046,9 @@
 }
 
 -(void)resetBothStations
-{
+{   
+    int tempSelection = currentSelection;
+    
     currentSelection=FromStation;
     [stationsView setToStation:nil];
     [stationsView setFromStation:nil];
@@ -1045,6 +1057,8 @@
     self.toStation=nil;
     
     [self returnFromSelection2:[NSArray array]];
+    
+    currentSelection=tempSelection;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -198,7 +198,7 @@
 {
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(20,20),NO,0.0);
     
-    CGRect circleRect = CGRectMake(5.0, 5.0, 10.0, 10.0);
+    CGRect circleRect = CGRectMake(5.0, 6.0, 10.0, 10.0);
 	
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -206,9 +206,13 @@
     
     CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor)); 
     CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));  
-	CGContextSetLineWidth(context, 1.0);
+	CGContextSetLineWidth(context, 0.0);
 	CGContextFillEllipseInRect(context, circleRect);
 	CGContextStrokeEllipseInRect(context, circleRect);
+    
+    
+    UIImage *bevelImg = [UIImage imageNamed:@"bevel.png"];
+    [bevelImg drawInRect:circleRect]; 
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
