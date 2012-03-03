@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define kMapChanged @"kMapChanged"
+
 @protocol SelectingTabBarProtocol;
 
 @interface SelectingTabBarViewController : UIViewController

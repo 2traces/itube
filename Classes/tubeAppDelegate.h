@@ -33,6 +33,8 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 @property (nonatomic, retain) NSString *cityName;
 @property (nonatomic, retain) NSOperationQueue *parseQueue; 
 
+-(NSString*)nameCurrentMap;
+-(NSString*)nameCurrentCity;
 
 @end
 
