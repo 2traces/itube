@@ -18,6 +18,8 @@ void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat 
 // visual type of stations & transfers
 typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM} StationKind;
 
+typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
+
 @class Station;
 @class Line;
 @class CityMap;
@@ -88,6 +90,11 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
     CGPoint tangent, normal;
     CityMap *map;
     ComplexText *text;
+    int way1, way2;
+    NSMutableDictionary *transferDriving;
+    CGFloat defaultTransferDriving;
+    NSMutableDictionary *transferWay;
+    int defaultTransferWay;
 }
 
 @property (nonatomic, readonly) NSMutableArray* relation;
@@ -111,15 +118,21 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 // is a station the last one (or the first one) in the line
 @property (nonatomic, readonly) BOOL terminal;
 @property (nonatomic, readonly) CGPoint tangent;
+@property (nonatomic, assign) int way1;
+@property (nonatomic, assign) int way2;
 
 -(id) initWithMap:(CityMap*)cityMap name:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr;
--(void) addSibling:(Station*)st;
+-(BOOL) addSibling:(Station*)st;
 -(void) drawName:(CGContextRef)context;
 -(void) drawStation:(CGContextRef)context;
 -(void) draw:(CGContextRef)context inRect:(CGRect)rect;
 -(void) makeSegments;
 -(void) makeTangent;
 -(void) predraw:(CGContextRef)context;
+-(void) setTransferDriving:(CGFloat)driving to:(Station*)target;
+-(CGFloat) transferDrivingTo:(Station*)target;
+-(void) setTransferWay:(int)way to:(Station*)target;
+-(int) transferWayTo:(Station*)target;
 @end
 
 @interface TangentPoint : NSObject {
@@ -182,6 +195,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 @property (nonatomic, readonly) CGLayerRef stationLayer;
 @property (nonatomic, readonly) CGLayerRef disabledStationLayer;
 
+-(id)initWithMap:(CityMap*)cityMap andName:(NSString*)n;
 -(id)initWithMap:(CityMap*)cityMap name:(NSString*)n stations:(NSString*)stations driving:(NSString*)driving coordinates:(NSString*)coordinates rects:(NSString*)rects;
 -(void)draw:(CGContextRef)context inRect:(CGRect)rect;
 -(void)drawActive:(CGContextRef)context inRect:(CGRect)rect;
@@ -239,6 +253,7 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //
 -(void) loadMap:(NSString *)mapName;
+-(void) loadMap2:(NSString *)mapName;
 -(void) initVars ;
 // предварительная отрисовка трансферов и названий станций
 -(void) predraw;
@@ -253,10 +268,10 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, KINDS_NUM
 -(NSInteger) checkPoint:(CGPoint*)point Station:(NSMutableString*)stationName;
 	
 // load stuff 
--(void) processGPS: (NSString*) station :(NSString*) lineCoord;
+//-(void) processGPS: (NSString*) station :(NSString*) lineCoord;
 -(void) processTransfers:(NSString*)transferInfo;
+-(void) processTransfers2:(NSString*)transferInfo;
 -(void) processAddNodes:(NSString*)addNodeInfo;
--(void) processLinesStations:(NSString*) stations :(NSUInteger) line;
 
 // drawing
 -(void) drawMap:(CGContextRef) context inRect:(CGRect)rect;

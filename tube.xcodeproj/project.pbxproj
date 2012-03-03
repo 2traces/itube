@@ -28,6 +28,7 @@
 		5121FCBF14C9E23000A9192A /* MyTiledLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5121FCBE14C9E23000A9192A /* MyTiledLayer.m */; };
 		515B9C2F14EEAE740034BB12 /* mainscreen_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 515B9C2D14EEAE740034BB12 /* mainscreen_shadow.png */; };
 		515B9C3014EEAE740034BB12 /* mainscreen_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 515B9C2E14EEAE740034BB12 /* mainscreen_shadow@2x.png */; };
+		51BBF85E150287C400551EF1 /* hamburg.trpnew in Resources */ = {isa = PBXBuildFile; fileRef = 51BBF85D150287C400551EF1 /* hamburg.trpnew */; };
 		51D20F3514B849A3007AC4BD /* ManagedObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D20F3414B849A3007AC4BD /* ManagedObjects.m */; };
 		51D20F3914B85185007AC4BD /* tubee.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 51D20F3714B85185007AC4BD /* tubee.xcdatamodeld */; };
 		51D20F3B14B85468007AC4BD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D20F3A14B85468007AC4BD /* CoreData.framework */; };
@@ -334,6 +335,7 @@
 		5121FCBE14C9E23000A9192A /* MyTiledLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTiledLayer.m; path = Classes/MyTiledLayer.m; sourceTree = "<group>"; };
 		515B9C2D14EEAE740034BB12 /* mainscreen_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainscreen_shadow.png; sourceTree = "<group>"; };
 		515B9C2E14EEAE740034BB12 /* mainscreen_shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainscreen_shadow@2x.png"; sourceTree = "<group>"; };
+		51BBF85D150287C400551EF1 /* hamburg.trpnew */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hamburg.trpnew; sourceTree = "<group>"; };
 		51D20F3314B849A3007AC4BD /* ManagedObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManagedObjects.h; path = Classes/ManagedObjects.h; sourceTree = "<group>"; };
 		51D20F3414B849A3007AC4BD /* ManagedObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManagedObjects.m; path = Classes/ManagedObjects.m; sourceTree = "<group>"; };
 		51D20F3814B85185007AC4BD /* tubee.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tubee.xcdatamodel; sourceTree = "<group>"; };
@@ -882,6 +884,7 @@
 				BC715E8C14F249D200E7E157 /* berlin.trp */,
 				BC715E8414F2471000E7E157 /* hamburg.map */,
 				BC715E8514F2471000E7E157 /* hamburg.trp */,
+				51BBF85D150287C400551EF1 /* hamburg.trpnew */,
 			);
 			path = maps;
 			sourceTree = "<group>";
@@ -1430,6 +1433,7 @@
 				9F768DF214F79DE300AF55A6 /* venice.map in Resources */,
 				9F768DF314F79DE300AF55A6 /* venice.trp in Resources */,
 				9F768DF414F79DE300AF55A6 /* venice.vec in Resources */,
+				51BBF85E150287C400551EF1 /* hamburg.trpnew in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
