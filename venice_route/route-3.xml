@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<directions>
+  <direction type="direct">
+    <timetables>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">6:20</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">6:24</time>
+          <time station="MURANO COLONNA" type="normal">6:41</time>
+          <time station="MURANO FARO" type="normal">6:44</time>
+          <time station="MURANO NAVAGERO" type="normal">6:46</time>
+          <time station="MURANO MUSEO" type="normal">6:48</time>
+          <time station="MURANO VENIER" type="normal">6:50</time>
+          <time station="MURANO SERENELLA" type="normal">6:52</time>
+          <time station="MURANO COLONNA" type="normal">6:55</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">7:13</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">7:17</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">6:50</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">6:54</time>
+          <time station="MURANO COLONNA" type="normal">7:11</time>
+          <time station="MURANO FARO" type="normal">7:14</time>
+          <time station="MURANO NAVAGERO" type="normal">7:16</time>
+          <time station="MURANO MUSEO" type="normal">7:18</time>
+          <time station="MURANO VENIER" type="normal">7:20</time>
+          <time station="MURANO SERENELLA" type="normal">7:22</time>
+          <time station="MURANO COLONNA" type="normal">7:25</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">7:43</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">7:47</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">7:20</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">7:24</time>
+          <time station="MURANO COLONNA" type="normal">7:41</time>
+          <time station="MURANO FARO" type="normal">7:44</time>
+          <time station="MURANO NAVAGERO" type="normal">7:46</time>
+          <time station="MURANO MUSEO" type="normal">7:48</time>
+          <time station="MURANO VENIER" type="normal">7:50</time>
+          <time station="MURANO SERENELLA" type="normal">7:52</time>
+          <time station="MURANO COLONNA" type="normal">7:55</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">8:13</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">8:17</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">7:50</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">7:54</time>
+          <time station="MURANO COLONNA" type="normal">8:11</time>
+          <time station="MURANO FARO" type="normal">8:14</time>
+          <time station="MURANO NAVAGERO" type="normal">8:16</time>
+          <time station="MURANO MUSEO" type="normal">8:18</time>
+          <time station="MURANO VENIER" type="normal">8:20</time>
+          <time station="MURANO SERENELLA" type="normal">8:22</time>
+          <time station="MURANO COLONNA" type="normal">8:25</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">8:43</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">8:47</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">8:20</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">8:24</time>
+          <time station="MURANO COLONNA" type="normal">8:41</time>
+          <time station="MURANO FARO" type="normal">8:44</time>
+          <time station="MURANO NAVAGERO" type="normal">8:46</time>
+          <time station="MURANO MUSEO" type="normal">8:48</time>
+          <time station="MURANO VENIER" type="normal">8:50</time>
+          <time station="MURANO SERENELLA" type="normal">8:52</time>
+          <time station="MURANO COLONNA" type="normal">8:55</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">9:13</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">9:17</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">8:50</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">8:54</time>
+          <time station="MURANO COLONNA" type="normal">9:11</time>
+          <time station="MURANO FARO" type="normal">9:14</time>
+          <time station="MURANO NAVAGERO" type="normal">9:16</time>
+          <time station="MURANO MUSEO" type="normal">9:18</time>
+          <time station="MURANO VENIER" type="normal">9:20</time>
+          <time station="MURANO SERENELLA" type="normal">9:22</time>
+          <time station="MURANO COLONNA" type="normal">9:25</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">9:43</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">9:47</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">9:20</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">9:24</time>
+          <time station="MURANO COLONNA" type="normal">9:41</time>
+          <time station="MURANO FARO" type="normal">9:44</time>
+          <time station="MURANO NAVAGERO" type="normal">9:46</time>
+          <time station="MURANO MUSEO" type="normal">9:48</time>
+          <time station="MURANO VENIER" type="normal">9:50</time>
+          <time station="MURANO SERENELLA" type="normal">9:52</time>
+          <time station="MURANO COLONNA" type="normal">9:55</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">10:13</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">10:17</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">9:50</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">9:54</time>
+          <time station="MURANO COLONNA" type="normal">10:11</time>
+          <time station="MURANO FARO" type="normal">10:14</time>
+          <time station="MURANO NAVAGERO" type="normal">10:16</time>
+          <time station="MURANO MUSEO" type="normal">10:18</time>
+          <time station="MURANO VENIER" type="normal">10:20</time>
+          <time station="MURANO SERENELLA" type="normal">10:22</time>
+          <time station="MURANO COLONNA" type="normal">10:25</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">10:43</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">10:47</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">10:20</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">10:24</time>
+          <time station="MURANO COLONNA" type="normal">10:41</time>
+          <time station="MURANO FARO" type="normal">10:44</time>
+          <time station="MURANO NAVAGERO" type="normal">10:46</time>
+          <time station="MURANO MUSEO" type="normal">10:48</time>
+          <time station="MURANO VENIER" type="normal">10:50</time>
+          <time station="MURANO SERENELLA" type="normal">10:52</time>
+          <time station="MURANO COLONNA" type="normal">10:55</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">11:13</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">11:17</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">10:50</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">10:54</time>
+          <time station="MURANO COLONNA" type="normal">11:11</time>
+          <time station="MURANO FARO" type="normal">11:14</time>
+          <time station="MURANO NAVAGERO" type="normal">11:16</time>
+          <time station="MURANO MUSEO" type="normal">11:18</time>
+          <time station="MURANO VENIER" type="normal">11:20</time>
+          <time station="MURANO SERENELLA" type="normal">11:22</time>
+          <time station="MURANO COLONNA" type="normal">11:25</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">11:43</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">11:47</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">11:20</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">11:24</time>
+          <time station="MURANO COLONNA" type="normal">11:41</time>
+          <time station="MURANO FARO" type="normal">11:44</time>
+          <time station="MURANO NAVAGERO" type="normal">11:46</time>
+          <time station="MURANO MUSEO" type="normal">11:48</time>
+          <time station="MURANO VENIER" type="normal">11:50</time>
+          <time station="MURANO SERENELLA" type="normal">11:52</time>
+          <time station="MURANO COLONNA" type="normal">11:55</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">12:13</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">12:17</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">11:50</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">11:54</time>
+          <time station="MURANO COLONNA" type="normal">12:11</time>
+          <time station="MURANO FARO" type="normal">12:14</time>
+          <time station="MURANO NAVAGERO" type="normal">12:16</time>
+          <time station="MURANO MUSEO" type="normal">12:18</time>
+          <time station="MURANO VENIER" type="normal">12:20</time>
+          <time station="MURANO SERENELLA" type="normal">12:22</time>
+          <time station="MURANO COLONNA" type="normal">12:25</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">12:43</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">12:47</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">12:20</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">12:24</time>
+          <time station="MURANO COLONNA" type="normal">12:41</time>
+          <time station="MURANO FARO" type="normal">12:44</time>
+          <time station="MURANO NAVAGERO" type="normal">12:46</time>
+          <time station="MURANO MUSEO" type="normal">12:48</time>
+          <time station="MURANO VENIER" type="normal">12:50</time>
+          <time station="MURANO SERENELLA" type="normal">12:52</time>
+          <time station="MURANO COLONNA" type="normal">12:55</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">13:13</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">13:17</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">12:50</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">12:54</time>
+          <time station="MURANO COLONNA" type="normal">13:11</time>
+          <time station="MURANO FARO" type="normal">13:14</time>
+          <time station="MURANO NAVAGERO" type="normal">13:16</time>
+          <time station="MURANO MUSEO" type="normal">13:18</time>
+          <time station="MURANO VENIER" type="normal">13:20</time>
+          <time station="MURANO SERENELLA" type="normal">13:22</time>
+          <time station="MURANO COLONNA" type="normal">13:25</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">13:43</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">13:47</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">13:20</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">13:24</time>
+          <time station="MURANO COLONNA" type="normal">13:41</time>
+          <time station="MURANO FARO" type="normal">13:44</time>
+          <time station="MURANO NAVAGERO" type="normal">13:46</time>
+          <time station="MURANO MUSEO" type="normal">13:48</time>
+          <time station="MURANO VENIER" type="normal">13:50</time>
+          <time station="MURANO SERENELLA" type="normal">13:52</time>
+          <time station="MURANO COLONNA" type="normal">13:55</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">14:13</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">14:17</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">13:50</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">13:54</time>
+          <time station="MURANO COLONNA" type="normal">14:11</time>
+          <time station="MURANO FARO" type="normal">14:14</time>
+          <time station="MURANO NAVAGERO" type="normal">14:16</time>
+          <time station="MURANO MUSEO" type="normal">14:18</time>
+          <time station="MURANO VENIER" type="normal">14:20</time>
+          <time station="MURANO SERENELLA" type="normal">14:22</time>
+          <time station="MURANO COLONNA" type="normal">14:25</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">14:43</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">14:47</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">14:20</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">14:24</time>
+          <time station="MURANO COLONNA" type="normal">14:41</time>
+          <time station="MURANO FARO" type="normal">14:44</time>
+          <time station="MURANO NAVAGERO" type="normal">14:46</time>
+          <time station="MURANO MUSEO" type="normal">14:48</time>
+          <time station="MURANO VENIER" type="normal">14:50</time>
+          <time station="MURANO SERENELLA" type="normal">14:52</time>
+          <time station="MURANO COLONNA" type="normal">14:55</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">15:13</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">15:17</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">14:50</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">14:54</time>
+          <time station="MURANO COLONNA" type="normal">15:11</time>
+          <time station="MURANO FARO" type="normal">15:14</time>
+          <time station="MURANO NAVAGERO" type="normal">15:16</time>
+          <time station="MURANO MUSEO" type="normal">15:18</time>
+          <time station="MURANO VENIER" type="normal">15:20</time>
+          <time station="MURANO SERENELLA" type="normal">15:22</time>
+          <time station="MURANO COLONNA" type="normal">15:25</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">15:43</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">15:47</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">15:40</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">15:44</time>
+          <time station="MURANO COLONNA" type="normal">16:02</time>
+          <time station="MURANO SERENELLA" type="normal">16:05</time>
+          <time station="MURANO VENIER" type="normal">16:08</time>
+          <time station="MURANO MUSEO" type="normal">16:10</time>
+          <time station="MURANO NAVAGERO" type="normal">16:12</time>
+          <time station="MURANO FARO" type="normal">16:14</time>
+          <time station="MURANO COLONNA" type="normal">16:17</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">16:34</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">16:38</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">16:10</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">16:14</time>
+          <time station="MURANO COLONNA" type="normal">16:32</time>
+          <time station="MURANO SERENELLA" type="normal">16:35</time>
+          <time station="MURANO VENIER" type="normal">16:38</time>
+          <time station="MURANO MUSEO" type="normal">16:40</time>
+          <time station="MURANO NAVAGERO" type="normal">16:42</time>
+          <time station="MURANO FARO" type="normal">16:44</time>
+          <time station="MURANO COLONNA" type="normal">16:47</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">17:04</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">17:08</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">16:40</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">16:44</time>
+          <time station="MURANO COLONNA" type="normal">17:02</time>
+          <time station="MURANO SERENELLA" type="normal">17:05</time>
+          <time station="MURANO VENIER" type="normal">17:08</time>
+          <time station="MURANO MUSEO" type="normal">17:10</time>
+          <time station="MURANO NAVAGERO" type="normal">17:12</time>
+          <time station="MURANO FARO" type="normal">17:14</time>
+          <time station="MURANO COLONNA" type="normal">17:17</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">17:34</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">17:38</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">17:10</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">17:14</time>
+          <time station="MURANO COLONNA" type="normal">17:32</time>
+          <time station="MURANO SERENELLA" type="normal">17:35</time>
+          <time station="MURANO VENIER" type="normal">17:38</time>
+          <time station="MURANO MUSEO" type="normal">17:40</time>
+          <time station="MURANO NAVAGERO" type="normal">17:42</time>
+          <time station="MURANO FARO" type="normal">17:44</time>
+          <time station="MURANO COLONNA" type="normal">17:47</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">18:04</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">18:08</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">17:40</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">17:44</time>
+          <time station="MURANO COLONNA" type="normal">18:02</time>
+          <time station="MURANO SERENELLA" type="normal">18:05</time>
+          <time station="MURANO VENIER" type="normal">18:08</time>
+          <time station="MURANO MUSEO" type="normal">18:10</time>
+          <time station="MURANO NAVAGERO" type="normal">18:12</time>
+          <time station="MURANO FARO" type="normal">18:14</time>
+          <time station="MURANO COLONNA" type="normal">18:17</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">18:34</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">18:38</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="P.ROMA (Scomenzera) &quot;A&quot;" type="normal">18:10</time>
+          <time station="FERROVIA (Bar Roma) &quot;A&quot;" type="normal">18:14</time>
+          <time station="MURANO COLONNA" type="normal">18:32</time>
+          <time station="MURANO SERENELLA" type="normal">18:35</time>
+          <time station="MURANO VENIER" type="normal">18:38</time>
+          <time station="MURANO MUSEO" type="normal">18:40</time>
+          <time station="MURANO NAVAGERO" type="normal">18:42</time>
+          <time station="MURANO FARO" type="normal">18:44</time>
+          <time station="MURANO COLONNA" type="normal">18:47</time>
+          <time station="FERROVIA (S.Lucia) &quot;D&quot;" type="normal">19:04</time>
+          <time station="P.ROMA (Parisi) &quot;C&quot;" type="normal">19:08</time>
+        </times>
+        <modifiers/>
+      </timetable>
+    </timetables>
+  </direction>
+</directions>

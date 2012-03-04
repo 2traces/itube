@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<directions>
+  <direction type="direct">
+    <timetables>
+      <timetable>
+        <times>
+          <time station="S.ANGELO" type="normal">6:59</time>
+          <time station="RIALTO" type="normal">7:03</time>
+          <time station="S.STAE" type="normal">7:09</time>
+          <time station="GUGLIE" type="normal">7:18</time>
+          <time station="MADONNA DELL'ORTO" type="normal">7:30</time>
+          <time station="AEROPORTO" type="normal">8:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.ANGELO" type="minutes">07:07</time>
+          <time station="RIALTO" type="normal">8:03</time>
+          <time station="S.STAE" type="normal">8:09</time>
+          <time station="GUGLIE" type="normal">8:18</time>
+          <time station="MADONNA DELL'ORTO" type="normal">8:30</time>
+          <time station="AEROPORTO" type="normal">9:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.ANGELO" type="minutes">08:07</time>
+          <time station="RIALTO" type="normal">8:03</time>
+          <time station="S.STAE" type="normal">8:09</time>
+          <time station="GUGLIE" type="normal">8:18</time>
+          <time station="MADONNA DELL'ORTO" type="normal">8:30</time>
+          <time station="AEROPORTO" type="normal">9:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.ANGELO" type="minutes">07:59</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times/>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="RIALTO" type="minutes">07:08</time>
+          <time station="MADONNA DELL'ORTO" type="minutes">07:09</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="RIALTO" type="minutes">08:08</time>
+          <time station="MADONNA DELL'ORTO" type="minutes">08:09</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.ANGELO" type="normal">08:29</time>
+          <time station="RIALTO" type="minutes">00:08</time>
+          <time station="S.STAE" type="normal">08:39</time>
+          <time station="GUGLIE" type="normal">08:48</time>
+          <time station="MADONNA DELL'ORTO" type="minutes">00:09</time>
+          <time station="AEROPORTO" type="normal">09:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.ANGELO" type="normal">8:59</time>
+          <time station="RIALTO" type="normal">9:03</time>
+          <time station="S.STAE" type="normal">9:09</time>
+          <time station="GUGLIE" type="normal">9:18</time>
+          <time station="MADONNA DELL'ORTO" type="normal">9:30</time>
+          <time station="AEROPORTO" type="normal">10:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.ANGELO" type="normal">9:29</time>
+          <time station="RIALTO" type="normal">9:33</time>
+          <time station="S.STAE" type="normal">9:39</time>
+          <time station="GUGLIE" type="normal">9:48</time>
+          <time station="MADONNA DELL'ORTO" type="normal">10:00</time>
+          <time station="AEROPORTO" type="normal">10:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.ANGELO" type="normal">9:59</time>
+          <time station="RIALTO" type="normal">10:03</time>
+          <time station="S.STAE" type="normal">10:09</time>
+          <time station="GUGLIE" type="normal">10:18</time>
+          <time station="MADONNA DELL'ORTO" type="normal">10:30</time>
+          <time station="AEROPORTO" type="normal">11:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">10:16</time>
+          <time station="S.ANGELO" type="normal">10:29</time>
+          <time station="RIALTO" type="normal">10:33</time>
+          <time station="S.STAE" type="normal">10:39</time>
+          <time station="GUGLIE" type="normal">10:48</time>
+          <time station="MADONNA DELL'ORTO" type="normal">11:00</time>
+          <time station="AEROPORTO" type="normal">11:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">10:46</time>
+          <time station="S.ANGELO" type="normal">10:59</time>
+          <time station="RIALTO" type="normal">11:03</time>
+          <time station="S.STAE" type="normal">11:09</time>
+          <time station="GUGLIE" type="normal">11:18</time>
+          <time station="MADONNA DELL'ORTO" type="normal">11:30</time>
+          <time station="AEROPORTO" type="normal">12:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">11:16</time>
+          <time station="S.ANGELO" type="normal">11:29</time>
+          <time station="RIALTO" type="normal">11:33</time>
+          <time station="S.STAE" type="normal">11:39</time>
+          <time station="GUGLIE" type="normal">11:48</time>
+          <time station="MADONNA DELL'ORTO" type="normal">12:00</time>
+          <time station="AEROPORTO" type="normal">12:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">11:46</time>
+          <time station="S.ANGELO" type="normal">11:59</time>
+          <time station="RIALTO" type="normal">12:03</time>
+          <time station="S.STAE" type="normal">12:09</time>
+          <time station="GUGLIE" type="normal">12:18</time>
+          <time station="MADONNA DELL'ORTO" type="normal">12:30</time>
+          <time station="AEROPORTO" type="normal">13:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.ANGELO" type="minutes">12:12</time>
+          <time station="S.STAE" type="minutes">12:12</time>
+          <time station="MADONNA DELL'ORTO" type="minutes">12:13</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">12:16</time>
+          <time station="S.ANGELO" type="minutes">00:12</time>
+          <time station="RIALTO" type="normal">12:33</time>
+          <time station="S.STAE" type="minutes">00:12</time>
+          <time station="GUGLIE" type="normal">12:48</time>
+          <time station="MADONNA DELL'ORTO" type="minutes">00:13</time>
+          <time station="AEROPORTO" type="normal">13:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="minutes">13:12</time>
+          <time station="S.ANGELO" type="normal">12:59</time>
+          <time station="RIALTO" type="normal">13:03</time>
+          <time station="S.STAE" type="normal">13:09</time>
+          <time station="GUGLIE" type="normal">13:18</time>
+          <time station="MADONNA DELL'ORTO" type="normal">13:30</time>
+          <time station="AEROPORTO" type="normal">14:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="minutes">12:46</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times/>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">13:16</time>
+          <time station="S.ANGELO" type="normal">13:29</time>
+          <time station="RIALTO" type="normal">13:33</time>
+          <time station="S.STAE" type="normal">13:39</time>
+          <time station="GUGLIE" type="normal">13:48</time>
+          <time station="MADONNA DELL'ORTO" type="normal">14:00</time>
+          <time station="AEROPORTO" type="normal">14:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">13:46</time>
+          <time station="S.ANGELO" type="normal">13:59</time>
+          <time station="RIALTO" type="normal">14:03</time>
+          <time station="S.STAE" type="normal">14:09</time>
+          <time station="GUGLIE" type="normal">14:18</time>
+          <time station="MADONNA DELL'ORTO" type="normal">14:30</time>
+          <time station="AEROPORTO" type="normal">15:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">14:16</time>
+          <time station="S.ANGELO" type="normal">14:29</time>
+          <time station="RIALTO" type="normal">14:33</time>
+          <time station="S.STAE" type="normal">14:39</time>
+          <time station="GUGLIE" type="normal">14:48</time>
+          <time station="MADONNA DELL'ORTO" type="normal">15:00</time>
+          <time station="AEROPORTO" type="normal">15:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">14:46</time>
+          <time station="S.ANGELO" type="normal">14:59</time>
+          <time station="RIALTO" type="normal">15:03</time>
+          <time station="S.STAE" type="normal">15:09</time>
+          <time station="GUGLIE" type="normal">15:18</time>
+          <time station="MADONNA DELL'ORTO" type="normal">15:30</time>
+          <time station="AEROPORTO" type="normal">16:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">15:16</time>
+          <time station="S.ANGELO" type="normal">15:29</time>
+          <time station="RIALTO" type="normal">15:33</time>
+          <time station="S.STAE" type="normal">15:39</time>
+          <time station="GUGLIE" type="normal">15:48</time>
+          <time station="MADONNA DELL'ORTO" type="normal">16:00</time>
+          <time station="AEROPORTO" type="normal">16:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">15:46</time>
+          <time station="S.ANGELO" type="normal">15:59</time>
+          <time station="RIALTO" type="normal">16:03</time>
+          <time station="S.STAE" type="normal">16:09</time>
+          <time station="GUGLIE" type="normal">16:18</time>
+          <time station="MADONNA DELL'ORTO" type="normal">16:30</time>
+          <time station="AEROPORTO" type="normal">17:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">16:16</time>
+          <time station="S.ANGELO" type="normal">16:29</time>
+          <time station="RIALTO" type="normal">16:33</time>
+          <time station="S.STAE" type="normal">16:39</time>
+          <time station="GUGLIE" type="normal">16:48</time>
+          <time station="MADONNA DELL'ORTO" type="normal">17:00</time>
+          <time station="AEROPORTO" type="normal">17:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">16:46</time>
+          <time station="S.ANGELO" type="normal">16:59</time>
+          <time station="RIALTO" type="normal">17:03</time>
+          <time station="S.STAE" type="normal">17:09</time>
+          <time station="GUGLIE" type="normal">17:18</time>
+          <time station="MADONNA DELL'ORTO" type="normal">17:30</time>
+          <time station="AEROPORTO" type="normal">18:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">17:16</time>
+          <time station="S.ANGELO" type="normal">17:29</time>
+          <time station="RIALTO" type="normal">17:33</time>
+          <time station="S.STAE" type="normal">17:39</time>
+          <time station="GUGLIE" type="normal">17:48</time>
+          <time station="MADONNA DELL'ORTO" type="normal">18:00</time>
+          <time station="AEROPORTO" type="normal">18:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">18:16</time>
+          <time station="S.ANGELO" type="normal">18:29</time>
+          <time station="RIALTO" type="normal">18:33</time>
+          <time station="S.STAE" type="normal">18:39</time>
+          <time station="GUGLIE" type="normal">18:48</time>
+          <time station="MADONNA DELL'ORTO" type="normal">19:00</time>
+          <time station="AEROPORTO" type="normal">19:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">19:16</time>
+          <time station="S.ANGELO" type="normal">19:29</time>
+          <time station="RIALTO" type="normal">19:33</time>
+          <time station="S.STAE" type="normal">19:39</time>
+          <time station="GUGLIE" type="normal">19:48</time>
+          <time station="MADONNA DELL'ORTO" type="normal">20:00</time>
+          <time station="AEROPORTO" type="normal">20:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">20:16</time>
+          <time station="S.ANGELO" type="normal">20:29</time>
+          <time station="RIALTO" type="normal">20:33</time>
+          <time station="S.STAE" type="normal">20:39</time>
+          <time station="GUGLIE" type="normal">20:48</time>
+          <time station="MADONNA DELL'ORTO" type="normal">21:00</time>
+          <time station="AEROPORTO" type="normal">21:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">21:16</time>
+          <time station="S.ANGELO" type="normal">21:29</time>
+          <time station="RIALTO" type="normal">21:33</time>
+          <time station="S.STAE" type="normal">21:39</time>
+          <time station="GUGLIE" type="normal">21:48</time>
+          <time station="MADONNA DELL'ORTO" type="normal">22:00</time>
+          <time station="AEROPORTO" type="normal">22:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+    </timetables>
+  </direction>
+  <direction type="return">
+    <timetables>
+      <timetable>
+        <times>
+          <time station="RIALTO" type="minutes">06:08</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="RIALTO" type="minutes">07:08</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times/>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">8:00</time>
+          <time station="MADONNA DELL'ORTO" type="normal">8:30</time>
+          <time station="GUGLIE" type="normal">8:42</time>
+          <time station="S.STAE" type="normal">8:51</time>
+          <time station="RIALTO" type="minutes">00:08</time>
+          <time station="S.ANGELO" type="normal">9:01</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">9:14</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">9:00</time>
+          <time station="MADONNA DELL'ORTO" type="normal">9:30</time>
+          <time station="GUGLIE" type="normal">9:42</time>
+          <time station="S.STAE" type="normal">9:51</time>
+          <time station="RIALTO" type="normal">9:57</time>
+          <time station="S.ANGELO" type="normal">10:01</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">10:14</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">09:30</time>
+          <time station="MADONNA DELL'ORTO" type="normal">10:00</time>
+          <time station="GUGLIE" type="normal">10:12</time>
+          <time station="S.STAE" type="normal">10:21</time>
+          <time station="RIALTO" type="normal">10:27</time>
+          <time station="S.ANGELO" type="normal">10:31</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">10:44</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">10:00</time>
+          <time station="MADONNA DELL'ORTO" type="normal">10:30</time>
+          <time station="GUGLIE" type="normal">10:42</time>
+          <time station="S.STAE" type="normal">10:51</time>
+          <time station="RIALTO" type="normal">10:57</time>
+          <time station="S.ANGELO" type="normal">11:01</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">11:14</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">10:30</time>
+          <time station="MADONNA DELL'ORTO" type="normal">11:00</time>
+          <time station="GUGLIE" type="normal">11:12</time>
+          <time station="S.STAE" type="normal">11:21</time>
+          <time station="RIALTO" type="normal">11:27</time>
+          <time station="S.ANGELO" type="normal">11:31</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">11:44</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">11:00</time>
+          <time station="MADONNA DELL'ORTO" type="normal">11:30</time>
+          <time station="GUGLIE" type="normal">11:42</time>
+          <time station="S.STAE" type="normal">11:51</time>
+          <time station="RIALTO" type="normal">11:57</time>
+          <time station="S.ANGELO" type="normal">12:01</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">12:14</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">11:30</time>
+          <time station="MADONNA DELL'ORTO" type="normal">12:00</time>
+          <time station="GUGLIE" type="normal">12:12</time>
+          <time station="S.STAE" type="normal">12:21</time>
+          <time station="RIALTO" type="normal">12:27</time>
+          <time station="S.ANGELO" type="normal">12:31</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">12:44</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">12:00</time>
+          <time station="MADONNA DELL'ORTO" type="normal">12:30</time>
+          <time station="GUGLIE" type="normal">12:42</time>
+          <time station="S.STAE" type="normal">12:51</time>
+          <time station="RIALTO" type="normal">12:57</time>
+          <time station="S.ANGELO" type="normal">13:01</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">13:14</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">12:30</time>
+          <time station="MADONNA DELL'ORTO" type="normal">13:00</time>
+          <time station="GUGLIE" type="normal">13:12</time>
+          <time station="S.STAE" type="normal">13:21</time>
+          <time station="RIALTO" type="normal">13:27</time>
+          <time station="S.ANGELO" type="normal">13:31</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">13:44</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">13:00</time>
+          <time station="MADONNA DELL'ORTO" type="normal">13:30</time>
+          <time station="GUGLIE" type="normal">13:42</time>
+          <time station="S.STAE" type="normal">13:51</time>
+          <time station="RIALTO" type="normal">13:57</time>
+          <time station="S.ANGELO" type="normal">14:01</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">14:14</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">13:30</time>
+          <time station="MADONNA DELL'ORTO" type="normal">14:00</time>
+          <time station="GUGLIE" type="minutes">00:14</time>
+          <time station="S.STAE" type="normal">14:21</time>
+          <time station="RIALTO" type="normal">14:27</time>
+          <time station="S.ANGELO" type="normal">14:31</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">14:44</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">14:00</time>
+          <time station="MADONNA DELL'ORTO" type="normal">14:30</time>
+          <time station="GUGLIE" type="normal">14:42</time>
+          <time station="S.STAE" type="normal">14:51</time>
+          <time station="RIALTO" type="normal">14:57</time>
+          <time station="S.ANGELO" type="normal">15:01</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">15:14</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">14:30</time>
+          <time station="MADONNA DELL'ORTO" type="normal">15:00</time>
+          <time station="GUGLIE" type="normal">15:12</time>
+          <time station="S.STAE" type="normal">15:21</time>
+          <time station="RIALTO" type="normal">15:27</time>
+          <time station="S.ANGELO" type="normal">15:31</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">15:44</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">15:00</time>
+          <time station="MADONNA DELL'ORTO" type="normal">15:30</time>
+          <time station="GUGLIE" type="normal">15:42</time>
+          <time station="S.STAE" type="normal">15:51</time>
+          <time station="RIALTO" type="normal">15:57</time>
+          <time station="S.ANGELO" type="normal">16:01</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">16:14</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">15:30</time>
+          <time station="MADONNA DELL'ORTO" type="normal">16:00</time>
+          <time station="GUGLIE" type="normal">16:12</time>
+          <time station="S.STAE" type="normal">16:21</time>
+          <time station="RIALTO" type="normal">16:27</time>
+          <time station="S.ANGELO" type="normal">16:31</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">16:44</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">16:00</time>
+          <time station="MADONNA DELL'ORTO" type="normal">16:30</time>
+          <time station="GUGLIE" type="normal">16:42</time>
+          <time station="S.STAE" type="normal">16:51</time>
+          <time station="RIALTO" type="normal">16:57</time>
+          <time station="S.ANGELO" type="normal">17:01</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">17:14</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">16:30</time>
+          <time station="MADONNA DELL'ORTO" type="normal">17:00</time>
+          <time station="GUGLIE" type="normal">17:12</time>
+          <time station="S.STAE" type="normal">17:21</time>
+          <time station="RIALTO" type="normal">17:27</time>
+          <time station="S.ANGELO" type="normal">17:31</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">17:44</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">17:00</time>
+          <time station="MADONNA DELL'ORTO" type="normal">17:30</time>
+          <time station="GUGLIE" type="normal">17:42</time>
+          <time station="S.STAE" type="normal">17:51</time>
+          <time station="RIALTO" type="normal">17:57</time>
+          <time station="S.ANGELO" type="normal">18:01</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">18:14</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">17:30</time>
+          <time station="MADONNA DELL'ORTO" type="normal">18:00</time>
+          <time station="GUGLIE" type="normal">18:12</time>
+          <time station="S.STAE" type="normal">18:21</time>
+          <time station="RIALTO" type="normal">18:27</time>
+          <time station="S.ANGELO" type="normal">18:31</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">18:44</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">18:00</time>
+          <time station="MADONNA DELL'ORTO" type="normal">18:30</time>
+          <time station="GUGLIE" type="normal">18:42</time>
+          <time station="S.STAE" type="normal">18:51</time>
+          <time station="RIALTO" type="normal">18:57</time>
+          <time station="S.ANGELO" type="normal">19:01</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">19:14</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">18:30</time>
+          <time station="MADONNA DELL'ORTO" type="normal">19:00</time>
+          <time station="GUGLIE" type="normal">19:12</time>
+          <time station="S.STAE" type="normal">19:21</time>
+          <time station="RIALTO" type="normal">19:27</time>
+          <time station="S.ANGELO" type="normal">19:31</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">19:44</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">19:30</time>
+          <time station="MADONNA DELL'ORTO" type="normal">20:00</time>
+          <time station="GUGLIE" type="normal">20:12</time>
+          <time station="S.STAE" type="normal">20:21</time>
+          <time station="RIALTO" type="normal">20:27</time>
+          <time station="S.ANGELO" type="normal">20:31</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">20:44</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">20:45</time>
+          <time station="FTE NOVE" type="normal">21:15</time>
+          <time station="MADONNA DELL'ORTO" type="normal">21:20</time>
+          <time station="GUGLIE" type="normal">21:32</time>
+          <time station="S.STAE" type="normal">21:41</time>
+          <time station="RIALTO" type="normal">21:47</time>
+          <time station="S.ANGELO" type="normal">21:51</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">22:04</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">21:45</time>
+          <time station="FTE NOVE" type="normal">22:15</time>
+          <time station="MADONNA DELL'ORTO" type="normal">22:20</time>
+          <time station="GUGLIE" type="normal">22:32</time>
+          <time station="S.STAE" type="normal">22:41</time>
+          <time station="RIALTO" type="normal">22:47</time>
+          <time station="S.ANGELO" type="normal">22:51</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">23:04</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="AEROPORTO" type="normal">22:45</time>
+          <time station="FTE NOVE" type="normal">23:15</time>
+          <time station="MADONNA DELL'ORTO" type="normal">23:20</time>
+          <time station="GUGLIE" type="normal">23:32</time>
+          <time station="S.STAE" type="normal">23:41</time>
+          <time station="RIALTO" type="normal">23:47</time>
+          <time station="S.ANGELO" type="normal">23:51</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">0:04</time>
+        </times>
+        <modifiers/>
+      </timetable>
+    </timetables>
+  </direction>
+</directions>

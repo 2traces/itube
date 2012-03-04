@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<directions>
+  <direction type="direct">
+    <timetables>
+      <timetable>
+        <times>
+          <time station="LIDO S.M.E. &quot;E&quot;" type="normal">7:13</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">7:28</time>
+          <time station="ZATTERE" type="normal">7:34</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO S.M.E. &quot;E&quot;" type="normal">7:33</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">7:48</time>
+          <time station="ZATTERE" type="normal">7:54</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO S.M.E. &quot;E&quot;" type="normal">7:53</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">8:08</time>
+          <time station="ZATTERE" type="normal">8:14</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO S.M.E. &quot;E&quot;" type="normal">8:13</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">8:28</time>
+          <time station="ZATTERE" type="normal">8:34</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO S.M.E. &quot;E&quot;" type="normal">8:33</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">8:48</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO S.M.E. &quot;E&quot;" type="normal">8:53</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">9:08</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO S.M.E. &quot;E&quot;" type="normal">17:31</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">17:46</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO S.M.E. &quot;E&quot;" type="normal">17:51</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">18:06</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO S.M.E. &quot;E&quot;" type="normal">18:11</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">18:26</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO S.M.E. &quot;E&quot;" type="normal">18:31</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">18:46</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO S.M.E. &quot;E&quot;" type="normal">18:51</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">19:06</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO S.M.E. &quot;E&quot;" type="normal">19:11</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">19:26</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO S.M.E. &quot;E&quot;" type="normal">19:31</time>
+          <time station="S.MARCO (Giardinetti)" type="normal">19:46</time>
+        </times>
+        <modifiers/>
+      </timetable>
+    </timetables>
+  </direction>
+  <direction type="return">
+    <timetables>
+      <timetable>
+        <times>
+          <time station="ZATTERE" type="normal">7:34</time>
+          <time station="LIDO (S.M.E.) &quot;E&quot;" type="normal">7:52</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="ZATTERE" type="normal">7:54</time>
+          <time station="LIDO (S.M.E.) &quot;E&quot;" type="normal">8:12</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="ZATTERE" type="normal">8:14</time>
+          <time station="LIDO (S.M.E.) &quot;E&quot;" type="normal">8:32</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="ZATTERE" type="normal">8:34</time>
+          <time station="LIDO (S.M.E.) &quot;E&quot;" type="normal">8:52</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">17:09</time>
+          <time station="S.MARCO-S.ZACCARIA (Danieli) &quot;F&quot;" type="normal">17:13</time>
+          <time station="LIDO (S.M.E.) &quot;E&quot;" type="normal">17:24</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">17:29</time>
+          <time station="S.MARCO-S.ZACCARIA (Danieli) &quot;F&quot;" type="normal">17:33</time>
+          <time station="LIDO (S.M.E.) &quot;E&quot;" type="normal">17:44</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">17:49</time>
+          <time station="S.MARCO-S.ZACCARIA (Danieli) &quot;F&quot;" type="normal">17:53</time>
+          <time station="LIDO (S.M.E.) &quot;E&quot;" type="normal">18:04</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">18:09</time>
+          <time station="S.MARCO-S.ZACCARIA (Danieli) &quot;F&quot;" type="normal">18:13</time>
+          <time station="LIDO (S.M.E.) &quot;E&quot;" type="normal">18:24</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">18:29</time>
+          <time station="S.MARCO-S.ZACCARIA (Danieli) &quot;F&quot;" type="normal">18:33</time>
+          <time station="LIDO (S.M.E.) &quot;E&quot;" type="normal">18:44</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">18:49</time>
+          <time station="S.MARCO-S.ZACCARIA (Danieli) &quot;F&quot;" type="normal">18:53</time>
+          <time station="LIDO (S.M.E.) &quot;E&quot;" type="normal">19:04</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">19:09</time>
+          <time station="S.MARCO-S.ZACCARIA (Danieli) &quot;F&quot;" type="normal">19:13</time>
+          <time station="LIDO (S.M.E.) &quot;E&quot;" type="normal">19:24</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">19:29</time>
+          <time station="S.MARCO-S.ZACCARIA (Danieli) &quot;F&quot;" type="normal">19:33</time>
+          <time station="LIDO (S.M.E.) &quot;E&quot;" type="normal">19:44</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO (Giardinetti)" type="normal">19:49</time>
+          <time station="S.MARCO-S.ZACCARIA (Danieli) &quot;F&quot;" type="normal">19:53</time>
+          <time station="LIDO (S.M.E.) &quot;E&quot;" type="normal">20:04</time>
+        </times>
+        <modifiers/>
+      </timetable>
+    </timetables>
+  </direction>
+</directions>

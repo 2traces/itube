@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<directions>
+  <direction type="direct">
+    <timetables>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">0:25</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">0:45</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">0:45</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">0:55</time>
+          <time station="S.MARIA DEL MARE par." type="normal">0:55</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">1:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">1:10</time>
+          <time station="CHIOGGIA" type="normal">1:35</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">1:35</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">1:50</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">1:50</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">2:00</time>
+          <time station="S.MARIA DEL MARE par." type="normal">2:00</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">2:15</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">2:15</time>
+          <time station="CHIOGGIA" type="normal">2:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">2:35</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">2:50</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">2:50</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">3:00</time>
+          <time station="S.MARIA DEL MARE par." type="normal">3:00</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">3:15</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">3:15</time>
+          <time station="CHIOGGIA" type="normal">3:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">3:35</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">3:50</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">3:50</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">4:00</time>
+          <time station="S.MARIA DEL MARE par." type="normal">4:00</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">4:15</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">4:20</time>
+          <time station="CHIOGGIA" type="normal">4:45</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">4:35</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">4:50</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">4:50</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">5:00</time>
+          <time station="S.MARIA DEL MARE par." type="normal">5:00</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">5:15</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">5:15</time>
+          <time station="CHIOGGIA" type="normal">5:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">5:15</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">5:30</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">5:30</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">5:40</time>
+          <time station="S.MARIA DEL MARE par." type="normal">5:40</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">5:55</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">6:15</time>
+          <time station="CHIOGGIA" type="normal">6:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">5:55</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">6:15</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">6:15</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">6:25</time>
+          <time station="S.MARIA DEL MARE par." type="normal">6:25</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">6:40</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">6:45</time>
+          <time station="CHIOGGIA" type="normal">7:10</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">6:25</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">6:45</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">6:45</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">6:55</time>
+          <time station="S.MARIA DEL MARE par." type="normal">6:55</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">7:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">7:15</time>
+          <time station="CAROMAN" type="normal">7:27</time>
+          <time station="CHIOGGIA" type="normal">7:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">6:55</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">7:15</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">7:15</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">7:25</time>
+          <time station="S.MARIA DEL MARE par." type="normal">7:25</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">7:40</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">7:45</time>
+          <time station="CAROMAN" type="normal">7:57</time>
+          <time station="CHIOGGIA" type="normal">8:10</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">7:25</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">7:45</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">7:45</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">7:55</time>
+          <time station="S.MARIA DEL MARE par." type="normal">7:55</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">8:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">8:15</time>
+          <time station="CAROMAN" type="normal">8:27</time>
+          <time station="CHIOGGIA" type="normal">8:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">7:55</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">8:15</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">8:15</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">8:25</time>
+          <time station="S.MARIA DEL MARE par." type="normal">8:25</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">8:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">8:25</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">8:45</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">8:45</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">8:55</time>
+          <time station="S.MARIA DEL MARE par." type="normal">8:55</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">9:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">9:15</time>
+          <time station="CAROMAN" type="normal">9:27</time>
+          <time station="CHIOGGIA" type="normal">9:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARIA DEL MARE par." type="normal">9:30</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">9:45</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">9:25</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">9:45</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">9:45</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">9:55</time>
+          <time station="S.MARIA DEL MARE par." type="normal">9:30  9:55</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">9:45 10:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">10:15</time>
+          <time station="CAROMAN" type="normal">10:27</time>
+          <time station="CHIOGGIA" type="normal">10:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">9:55</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">10:15</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">10:15</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">10:25</time>
+          <time station="S.MARIA DEL MARE par." type="normal">10:25</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">10:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">10:25</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">10:45</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">10:45</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">10:55</time>
+          <time station="S.MARIA DEL MARE par." type="normal">10:55</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">11:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">11:15</time>
+          <time station="CAROMAN" type="normal">11:27</time>
+          <time station="CHIOGGIA" type="normal">11:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">10:55</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">11:15</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">11:15</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">11:25</time>
+          <time station="S.MARIA DEL MARE par." type="normal">11:25</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">11:40</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">11:45</time>
+          <time station="CAROMAN" type="normal">11:57</time>
+          <time station="CHIOGGIA" type="normal">12:10</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">11:25</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">11:45</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">11:45</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">11:55</time>
+          <time station="S.MARIA DEL MARE par." type="normal">11:55</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">12:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">12:15</time>
+          <time station="CAROMAN" type="normal">12:27</time>
+          <time station="CHIOGGIA" type="normal">12:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARIA DEL MARE par." type="normal">12:35</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">12:50</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">12:25</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">12:45</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">12:45</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">12:55</time>
+          <time station="S.MARIA DEL MARE par." type="normal">12:55</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">13:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">13:15</time>
+          <time station="CAROMAN" type="normal">13:27</time>
+          <time station="CHIOGGIA" type="normal">13:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">13:05</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">13:25</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">13:25</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">13:35</time>
+          <time station="S.MARIA DEL MARE par." type="normal">13:35</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">13:50</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">13:55</time>
+          <time station="CAROMAN" type="normal">14:07</time>
+          <time station="CHIOGGIA" type="normal">14:20</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">13:35</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">13:55</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">13:55</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">14:05</time>
+          <time station="S.MARIA DEL MARE par." type="normal">14:05</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">14:20</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">14:25</time>
+          <time station="CAROMAN" type="normal">14:37</time>
+          <time station="CHIOGGIA" type="normal">14:50</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">14:05</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">14:25</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">14:25</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">14:35</time>
+          <time station="S.MARIA DEL MARE par." type="normal">14:35</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">14:50</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">14:55</time>
+          <time station="CAROMAN" type="normal">15:07</time>
+          <time station="CHIOGGIA" type="normal">15:20</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">14:35</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">14:55</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">14:55</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">15:05</time>
+          <time station="S.MARIA DEL MARE par." type="normal">15:05</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">15:20</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">15:25</time>
+          <time station="CAROMAN" type="normal">15:37</time>
+          <time station="CHIOGGIA" type="normal">15:50</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARIA DEL MARE par." type="normal">15:40</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">15:55</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">15:35</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">15:55</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">15:55</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">16:05</time>
+          <time station="S.MARIA DEL MARE par." type="normal">15:40 16:05</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">15:55 16:20</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">16:25</time>
+          <time station="CAROMAN" type="normal">16:37</time>
+          <time station="CHIOGGIA" type="normal">16:50</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">16:05</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">16:25</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">16:25</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">16:35</time>
+          <time station="S.MARIA DEL MARE par." type="normal">16:35</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">16:50</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">16:55</time>
+          <time station="CAROMAN" type="normal">17:07</time>
+          <time station="CHIOGGIA" type="normal">17:20</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">16:35</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">16:55</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">16:55</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">17:05</time>
+          <time station="S.MARIA DEL MARE par." type="normal">17:05</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">17:20</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">17:25</time>
+          <time station="CAROMAN" type="normal">17:37</time>
+          <time station="CHIOGGIA" type="normal">17:50</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">17:05</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">17:25</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">17:25</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">17:35</time>
+          <time station="S.MARIA DEL MARE par." type="normal">17:35</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">17:50</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">17:55</time>
+          <time station="CAROMAN" type="normal">18:07</time>
+          <time station="CHIOGGIA" type="normal">18:20</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">17:35</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">17:55</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">17:55</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">18:05</time>
+          <time station="S.MARIA DEL MARE par." type="normal">18:05</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">18:20</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">18:25</time>
+          <time station="CAROMAN" type="normal">18:37</time>
+          <time station="CHIOGGIA" type="normal">18:50</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">18:05</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">18:25</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">18:25</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">18:35</time>
+          <time station="S.MARIA DEL MARE par." type="normal">18:35</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">18:50</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">18:55</time>
+          <time station="CAROMAN" type="normal">19:07</time>
+          <time station="CHIOGGIA" type="normal">19:20</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">18:35</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">18:55</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">18:55</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">19:05</time>
+          <time station="S.MARIA DEL MARE par." type="normal">19:05</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">19:20</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">19:25</time>
+          <time station="CAROMAN" type="normal">19:37</time>
+          <time station="CHIOGGIA" type="normal">19:50</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">19:05</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">19:25</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">19:25</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">19:35</time>
+          <time station="S.MARIA DEL MARE par." type="normal">19:35</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">19:50</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">19:35</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">19:55</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">19:55</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">20:05</time>
+          <time station="S.MARIA DEL MARE par." type="normal">20:05</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">20:20</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">20:25</time>
+          <time station="CAROMAN" type="normal">20:37</time>
+          <time station="CHIOGGIA" type="normal">20:50</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">20:20</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">20:30</time>
+          <time station="S.MARIA DEL MARE par." type="normal">20:35</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">20:45</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">20:25</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">20:45</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">20:45</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">20:55</time>
+          <time station="S.MARIA DEL MARE par." type="normal">20:55</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">21:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">21:15</time>
+          <time station="CAROMAN" type="normal">21:27</time>
+          <time station="CHIOGGIA" type="normal">21:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">21:25</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">21:45</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">21:45</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">21:55</time>
+          <time station="S.MARIA DEL MARE par." type="normal">21:55</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">22:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">22:15</time>
+          <time station="CHIOGGIA" type="normal">22:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">22:25</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">22:45</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">22:45</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">22:55</time>
+          <time station="S.MARIA DEL MARE par." type="normal">22:55</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">23:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">23:15</time>
+          <time station="CHIOGGIA" type="normal">23:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="LIDO (S.M.E.)" type="normal">23:25</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">23:45</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">23:45</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">23:55</time>
+          <time station="S.MARIA DEL MARE par." type="normal">23:55</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">0:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">0:15</time>
+          <time station="CHIOGGIA" type="normal">0:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+    </timetables>
+  </direction>
+  <direction type="return">
+    <timetables>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">0:45</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">1:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">1:15</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">1:30</time>
+          <time station="S.MARIA DEL MARE par." type="normal">1:30</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">1:40</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">1:40</time>
+          <time station="LIDO (S.M.E.)" type="normal">2:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">1:45</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">2:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">2:15</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">2:30</time>
+          <time station="S.MARIA DEL MARE par." type="normal">2:30</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">2:40</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">2:40</time>
+          <time station="LIDO (S.M.E.)" type="normal">3:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">2:45</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">3:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">3:15</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">3:30</time>
+          <time station="S.MARIA DEL MARE par." type="normal">3:30</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">3:40</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">3:40</time>
+          <time station="LIDO (S.M.E.)" type="normal">4:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">3:55</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">4:20</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">4:20</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">4:35</time>
+          <time station="S.MARIA DEL MARE par." type="normal">4:35</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">4:45</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">4:45</time>
+          <time station="LIDO (S.M.E.)" type="normal">5:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARIA DEL MARE par." type="normal">5:05</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">5:15</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">4:50</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">5:15</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">5:25</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">5:40</time>
+          <time station="S.MARIA DEL MARE par." type="normal">5:05 5:40</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">5:15    5:50</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">5:50</time>
+          <time station="LIDO (S.M.E.)" type="normal">6:10</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">5:45</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">6:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">6:10</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">6:25</time>
+          <time station="S.MARIA DEL MARE par." type="normal">6:25</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">6:35</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">6:35</time>
+          <time station="LIDO (S.M.E.)" type="normal">6:55</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">6:15</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">6:40</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">6:45</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">7:00</time>
+          <time station="S.MARIA DEL MARE par." type="normal">7:00</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">7:10</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">7:10</time>
+          <time station="LIDO (S.M.E.)" type="normal">7:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">6:45</time>
+          <time station="CAROMAN" type="normal">6:58</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">7:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">7:12</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">7:27</time>
+          <time station="S.MARIA DEL MARE par." type="normal">7:30</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">7:40</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">7:40</time>
+          <time station="LIDO (S.M.E.)" type="normal">8:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">7:15</time>
+          <time station="CAROMAN" type="normal">7:28</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">7:40</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">7:45</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">8:00</time>
+          <time station="S.MARIA DEL MARE par." type="normal">8:00</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">8:10</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">8:10</time>
+          <time station="LIDO (S.M.E.)" type="normal">8:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">7:45</time>
+          <time station="CAROMAN" type="normal">7:58</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">8:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">8:15</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">8:30</time>
+          <time station="S.MARIA DEL MARE par." type="normal">8:30</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">8:40</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">8:40</time>
+          <time station="LIDO (S.M.E.)" type="normal">9:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">8:40</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">8:55</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">8:45</time>
+          <time station="CAROMAN" type="normal">8:58</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">9:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">9:15</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">9:30</time>
+          <time station="S.MARIA DEL MARE par." type="normal">9:30</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">9:40</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">9:40</time>
+          <time station="LIDO (S.M.E.)" type="normal">10:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">9:45</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">10:00</time>
+          <time station="S.MARIA DEL MARE par." type="normal">10:00</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">10:10</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">10:10</time>
+          <time station="LIDO (S.M.E.)" type="normal">10:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">9:45</time>
+          <time station="CAROMAN" type="normal">9:58</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">10:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">10:15</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">10:30</time>
+          <time station="S.MARIA DEL MARE par." type="normal">10:30</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">10:40</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">10:40</time>
+          <time station="LIDO (S.M.E.)" type="normal">11:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">10:45</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">11:00</time>
+          <time station="S.MARIA DEL MARE par." type="normal">11:00</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">11:10</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">11:10</time>
+          <time station="LIDO (S.M.E.)" type="normal">11:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">10:45</time>
+          <time station="CAROMAN" type="normal">10:58</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">11:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">11:15</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">11:30</time>
+          <time station="S.MARIA DEL MARE par." type="normal">11:30</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">11:40</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">11:40</time>
+          <time station="LIDO (S.M.E.)" type="normal">12:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">11:45</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">12:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">11:15</time>
+          <time station="CAROMAN" type="normal">11:28</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">11:40</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">11:45</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">12:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">11:45</time>
+          <time station="CAROMAN" type="normal">11:58</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">12:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">12:15</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">12:30</time>
+          <time station="S.MARIA DEL MARE par." type="normal">12:30</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">12:40</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">12:40</time>
+          <time station="LIDO (S.M.E.)" type="normal">13:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">12:25</time>
+          <time station="CAROMAN" type="normal">12:38</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">12:50</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">12:55</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">13:10</time>
+          <time station="S.MARIA DEL MARE par." type="normal">13:10</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">13:20</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">13:20</time>
+          <time station="LIDO (S.M.E.)" type="normal">13:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">13:25</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">13:40</time>
+          <time station="S.MARIA DEL MARE par." type="normal">13:40</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">13:50</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">13:50</time>
+          <time station="LIDO (S.M.E.)" type="normal">14:10</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">13:25</time>
+          <time station="CAROMAN" type="normal">13:38</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">13:50</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">13:55</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">14:10</time>
+          <time station="S.MARIA DEL MARE par." type="normal">14:10</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">14:20</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">14:20</time>
+          <time station="LIDO (S.M.E.)" type="normal">14:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">13:55</time>
+          <time station="CAROMAN" type="normal">14:08</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">14:20</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">14:25</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">14:40</time>
+          <time station="S.MARIA DEL MARE par." type="normal">14:40</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">14:50</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">14:50</time>
+          <time station="LIDO (S.M.E.)" type="normal">15:10</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">14:25</time>
+          <time station="CAROMAN" type="normal">14:38</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">14:50</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">14:50</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">15:05</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">14:55</time>
+          <time station="CAROMAN" type="normal">15:08</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">15:20</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">15:25</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">15:40</time>
+          <time station="S.MARIA DEL MARE par." type="normal">15:40</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">15:50</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">15:50</time>
+          <time station="LIDO (S.M.E.)" type="normal">16:10</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">15:55</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">16:10</time>
+          <time station="S.MARIA DEL MARE par." type="normal">16:10</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">16:20</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">16:20</time>
+          <time station="LIDO (S.M.E.)" type="normal">16:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">15:55</time>
+          <time station="CAROMAN" type="normal">16:08</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">16:20</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">16:25</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">16:40</time>
+          <time station="S.MARIA DEL MARE par." type="normal">16:40</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">16:50</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">16:50</time>
+          <time station="LIDO (S.M.E.)" type="normal">17:10</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">16:25</time>
+          <time station="CAROMAN" type="normal">16:38</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">16:50</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">16:55</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">17:10</time>
+          <time station="S.MARIA DEL MARE par." type="normal">17:10</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">17:20</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">17:20</time>
+          <time station="LIDO (S.M.E.)" type="normal">17:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">16:55</time>
+          <time station="CAROMAN" type="normal">17:08</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">17:20</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">17:25</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">17:40</time>
+          <time station="S.MARIA DEL MARE par." type="normal">17:40</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">17:50</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">17:50</time>
+          <time station="LIDO (S.M.E.)" type="normal">18:10</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">17:25</time>
+          <time station="CAROMAN" type="normal">17:38</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">17:50</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">17:55</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">18:10</time>
+          <time station="S.MARIA DEL MARE par." type="normal">18:10</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">18:20</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">18:20</time>
+          <time station="LIDO (S.M.E.)" type="normal">18:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">17:55</time>
+          <time station="CAROMAN" type="normal">18:08</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">18:20</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">18:25</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">18:40</time>
+          <time station="S.MARIA DEL MARE par." type="normal">18:40</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">18:50</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">18:50</time>
+          <time station="LIDO (S.M.E.)" type="normal">19:10</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">18:25</time>
+          <time station="CAROMAN" type="normal">18:38</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">18:50</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">18:55</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">19:10</time>
+          <time station="S.MARIA DEL MARE par." type="normal">19:10</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">19:20</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">19:20</time>
+          <time station="LIDO (S.M.E.)" type="normal">19:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">18:55</time>
+          <time station="CAROMAN" type="normal">19:08</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">19:20</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">19:25</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">19:40</time>
+          <time station="S.MARIA DEL MARE par." type="normal">19:40</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">19:50</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">19:50</time>
+          <time station="LIDO (S.M.E.)" type="normal">20:10</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">19:55</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">20:10</time>
+          <time station="S.MARIA DEL MARE par." type="normal">20:10</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">20:20</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">20:20</time>
+          <time station="LIDO (S.M.E.)" type="normal">20:40</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">19:55</time>
+          <time station="CAROMAN" type="normal">20:08</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">20:20</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">20:20</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">20:35</time>
+          <time station="S.MARIA DEL MARE par." type="normal">20:35</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">20:45</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">20:45</time>
+          <time station="LIDO (S.M.E.)" type="normal">21:05</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">20:50</time>
+          <time station="CAROMAN" type="normal">21:03</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">21:15</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">21:15</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">21:30</time>
+          <time station="S.MARIA DEL MARE par." type="normal">21:30</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">21:40</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">21:40</time>
+          <time station="LIDO (S.M.E.)" type="normal">22:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">21:45</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">22:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">22:15</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">22:30</time>
+          <time station="S.MARIA DEL MARE par." type="normal">22:30</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">22:40</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">22:40</time>
+          <time station="LIDO (S.M.E.)" type="normal">23:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">22:45</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">23:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">23:15</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">23:30</time>
+          <time station="S.MARIA DEL MARE par." type="normal">23:30</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">23:40</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">23:40</time>
+          <time station="LIDO (S.M.E.)" type="normal">0:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="CHIOGGIA" type="normal">23:45</time>
+          <time station="PELLESTRINA (Cimitero) arr." type="normal">0:10</time>
+          <time station="PELLESTRINA (Cimitero) par." type="normal">0:15</time>
+          <time station="S.MARIA DEL MARE arr." type="normal">0:30</time>
+          <time station="S.MARIA DEL MARE par." type="normal">0:30</time>
+          <time station="ALBERONI (Faro Rocchetta) arr." type="normal">0:40</time>
+          <time station="ALBERONI (Faro Rocchetta) par." type="normal">0:40</time>
+          <time station="LIDO (S.M.E.)" type="normal">1:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+    </timetables>
+  </direction>
+</directions>
