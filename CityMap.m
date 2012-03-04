@@ -1617,11 +1617,17 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     UIGraphicsEndImageContext();
 }
 
--(NSArray*) calcPath :(NSString*) firstStation :(NSString*) secondStation :(NSInteger) firstStationLineNum :(NSInteger)secondStationLineNum {
+-(NSDictionary*) calcPath :(NSString*) firstStation :(NSString*) secondStation :(NSInteger) firstStationLineNum :(NSInteger)secondStationLineNum {
 
-	NSArray *pp = [graph shortestPath:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum]];
+	//NSArray *pp = [graph shortestPath:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum]];
+    NSDictionary *paths = [graph getPaths:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum]];
+    NSArray *keys = [[paths allKeys] sortedArrayUsingSelector:@selector(compare:)];
+    for (NSNumber *weight in keys) {
+        NSLog(@"weight is %@", weight);
+        NSLog(@"path is %@", [paths objectForKey:weight]);
+    }
 	 
-	return pp;
+	return paths;
 }
 /*-(void) processGPS: (NSString*) station :(NSString*) lineCoord {
 	
