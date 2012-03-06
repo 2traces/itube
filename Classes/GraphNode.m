@@ -194,4 +194,9 @@
     return [[[GraphNode alloc] initWithName:name andLine:line] autorelease];
 }
 
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"%@ at %d", _name, _line];
+}
+
 @end

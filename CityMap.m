@@ -47,6 +47,29 @@ CGFloat Sql(CGPoint p1, CGPoint p2)
     return dx*dx + dy*dy;
 }
 
+int StringToWay(NSString* str)
+{
+    int way = NOWAY;
+    for(int i=0; i<[str length]; i++) {
+        char ch = [str characterAtIndex:i];
+        switch (ch) {
+            case 'S':
+            case 's':
+                way |= WAY_BEGIN;
+                break;
+            case 'M':
+            case 'm':
+                way |= WAY_MIDDLE;
+                break;
+            case 'E':
+            case 'e':
+                way |= WAY_END;
+                break;
+        }
+    }
+    return way;
+}
+
 // CG Helpres
 void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat y2, int lineWidth) {
 	CGContextSetLineCap(context, kCGLineCapRound);
@@ -467,7 +490,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize acceptBackLink;
 @synthesize links;
 @synthesize tangent;
+@synthesize way1;
+@synthesize way2;
 
+
+-(id)copyWithZone:(NSZone*)zone
+{
+    return [self retain];
+}
 -(BOOL) terminal { return links == 1; }
 
 -(void) setPos:(CGPoint)_pos
@@ -492,6 +522,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         drawName = YES;
         active = YES;
         acceptBackLink = YES;
+        transferDriving = [[NSMutableDictionary alloc] init];
+        defaultTransferDriving = 0;
+        transferWay = [[NSMutableDictionary alloc] init];
+        defaultTransferWay = NOWAY;
         
         NSUInteger br = [sname rangeOfString:@"("].location;
         if(br == NSNotFound) {
@@ -541,14 +575,17 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [relation release];
     [relationDriving release];
     [sibling release];
+    [transferDriving release];
+    [transferWay release];
 }
 
--(void)addSibling:(Station *)st
+-(BOOL)addSibling:(Station *)st
 {
     for (Station *s in sibling) {
-        if(s == st) return;
+        if(s == st) return NO;
     }
     [sibling addObject:st];
+    return YES;
 }
 
 -(void) draw:(CGContextRef)context inRect:(CGRect)rect
@@ -644,6 +681,32 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     ntd = sqrtf(ntd);
     normal.x /= ntd;
     normal.y /= ntd;
+}
+
+-(void)setTransferDriving:(CGFloat)_driving to:(Station *)target
+{
+    if(defaultTransferDriving == 0) defaultTransferDriving = _driving;
+    [transferDriving setObject:[NSNumber numberWithFloat:_driving] forKey:target];
+}
+
+-(void)setTransferWay:(int)way to:(Station *)target
+{
+    if(defaultTransferWay == NOWAY) defaultTransferWay = way;
+    [transferWay setObject:[NSNumber numberWithInt:way] forKey:target];
+}
+
+-(CGFloat)transferDrivingTo:(Station *)target
+{
+    NSNumber *dr = [transferDriving objectForKey:target];
+    if(dr != nil) return [dr floatValue];
+    return defaultTransferDriving;
+}
+
+-(int)transferWayTo:(Station *)target
+{
+    NSNumber *w = [transferWay objectForKey:target];
+    if(w != nil) return [w intValue];
+    return defaultTransferWay;
 }
 
 @end
@@ -832,6 +895,32 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     
 }
 
+-(void)postInit
+{
+    for(Station *st in stations) {
+        [st makeSegments];
+        boundingBox = CGRectUnion(boundingBox, st.boundingBox);
+        boundingBox = CGRectUnion(boundingBox, st.textRect);
+        for (Segment *seg in st.segment) {
+            boundingBox = CGRectUnion(boundingBox, seg.boundingBox);
+        }
+    }
+}
+
+-(id)initWithMap:(CityMap*)cityMap andName:(NSString*)n
+{
+    if((self = [super init])) {
+        map = cityMap;
+        name = [n retain];
+        shortName = [[[n componentsSeparatedByString:@" "] lastObject] retain];
+        stations = [[NSMutableArray alloc] init];
+        stationLayer = nil;
+        boundingBox = CGRectNull;
+        twoStepsDraw = NO;
+    }
+    return self;
+}
+
 -(id)initWithMap:(CityMap*)cityMap name:(NSString*)n stations:(NSString *)station driving:(NSString *)driving coordinates:(NSString *)coordinates rects:(NSString *)rects
 {
     if((self = [super init])) {
@@ -897,14 +986,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             }
             [st.relation removeAllObjects];
         }
-        for(Station *st in stations) {
-            [st makeSegments];
-            boundingBox = CGRectUnion(boundingBox, st.boundingBox);
-            boundingBox = CGRectUnion(boundingBox, st.textRect);
-            for (Segment *seg in st.segment) {
-                boundingBox = CGRectUnion(boundingBox, seg.boundingBox);
-            }
-        }
+        [self postInit];
     }
     return self;
 }
@@ -1284,12 +1366,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 		[self processTransfers:value];
 	}
 	
-	INISection *section3 = [parserTrp getSection:@"gps"];
+	/*INISection *section3 = [parserTrp getSection:@"gps"];
 	NSMutableDictionary *as3 = [section3 assignments];
 	for (NSString* key in as3) {
 		NSString *value = [parserTrp get:key section:@"gps"];
 		[self processGPS :key :value];
-	}
+	}*/
 	[parserMap release];
     [parserTrp release];
     
@@ -1316,6 +1398,210 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [self predraw];
 }
 
+-(void) loadMap2:(NSString *)mapName {
+	INIParser* parserTrp, *parserMap;
+	
+	parserTrp = [[INIParser alloc] init];
+	parserMap = [[INIParser alloc] init];
+	
+	int err;
+    
+    self.thisMapName=mapName;
+    
+	NSString* strTrp = [[NSBundle mainBundle] pathForResource:mapName ofType:@"trpnew"]; 
+	NSString* strMap = [[NSBundle mainBundle] pathForResource:mapName ofType:@"map"]; 
+	
+	err = [parserTrp parse:[strTrp UTF8String]];
+    err = [parserMap parse:[strMap UTF8String]];
+    
+    NSString *bgfile = [parserMap get:@"ImageFileName" section:@"Options"];
+    if([bgfile length] > 0) backgroundImageFile = [bgfile retain];
+    else backgroundImageFile = nil;
+    int val = [[parserMap get:@"LinesWidth" section:@"Options"] intValue];
+    if(val != 0) LineWidth = val;
+    val = [[parserMap get:@"StationDiameter" section:@"Options"] intValue];
+    if(val != 0) StationDiameter = val;
+    FontSize = StationDiameter;
+    val = [[parserMap get:@"DisplayTransfers" section:@"Options"] intValue];
+    if(val > 0 && val < KINDS_NUM) TrKind = val;
+    val = [[parserMap get:@"DisplayStations" section:@"Options"] intValue];
+    if(val > 0 && val < KINDS_NUM) StKind = val;
+    val = [[parserMap get:@"FontSize" section:@"Options"] intValue];
+    if(val > 0) FontSize = val;
+    float sc = [[parserMap get:@"MaxScale" section:@"Options"] floatValue];
+    if(sc != 0.f) {
+        maxScale = sc;
+        PredrawScale = maxScale;
+    }
+	
+	_w = 0;
+	_h = 0;
+    CGRect boundingBox = CGRectNull;
+    
+	for (int i = 1; true; i++) {
+		NSString *sectionName = [NSString stringWithFormat:@"Line%d", i ];
+		NSString *lineName = [parserTrp get:@"Name" section:sectionName];
+        if(lineName == nil) break;
+        
+		NSString *colors = [parserMap get:@"Color" section:lineName];
+        NSArray *coords = [[parserMap get:@"Coordinates" section:lineName] componentsSeparatedByString:@", "];
+        NSArray *coordsText = [[parserMap get:@"Rects" section:lineName] componentsSeparatedByString:@", "];
+        if([coords count] == 0 || [coordsText count] == 0) break;
+
+        INISection *sect = [parserTrp getSection:sectionName];
+        Line *l = [[[Line alloc] initWithMap:self andName:lineName] autorelease];
+        l.index = i;
+        l.color = [self colorForHex:colors];
+        [mapLines addObject:l];
+        int si = 0;
+        NSArray *keys = [[sect.assignments allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+        NSMutableArray *branches = [[[NSMutableArray alloc] init] autorelease];
+        NSMutableArray *drivings = [[[NSMutableArray alloc] init] autorelease];
+        NSMutableDictionary *stations = [[[NSMutableDictionary alloc] init] autorelease];
+        for (NSString* key in keys) {
+            NSString *value = [sect.assignments objectForKey:key];
+            if([value length] <= 0) continue;
+            if([key isEqualToString:@"NAME"]) {
+                // skip
+            } else if ([key rangeOfString:@"BRANCH"].location != NSNotFound) {
+                // branch
+                //NSLog(@"Branch %@", value);
+                [branches addObject:value];
+            } else if ([key rangeOfString:@"DRIVING"].location != NSNotFound) {
+                // driving
+                //NSLog(@"Driving %@", value);
+                [drivings addObject:value];
+            } else {
+                // station
+                if(si >= [coords count]) {
+                    NSLog(@"ERROR: Station %@ doesn't have coordinates!", value);
+                    continue;
+                }
+                NSArray *coord_x_y = [[coords objectAtIndex:si] componentsSeparatedByString:@","];
+                int x = [[coord_x_y objectAtIndex:0] intValue];
+                int y = [[coord_x_y objectAtIndex:1] intValue];
+                NSArray *coord_text = [[coordsText objectAtIndex:si] componentsSeparatedByString:@","];
+                int tx = [[coord_text objectAtIndex:0] intValue];
+                int ty = [[coord_text objectAtIndex:1] intValue];
+                int tw = [[coord_text objectAtIndex:2] intValue];
+                int th = [[coord_text objectAtIndex:3] intValue];
+                NSArray *stn = [value componentsSeparatedByString:@"\t"];
+                NSString *sncr = [stn objectAtIndex:0];
+                NSInteger sp = [sncr rangeOfString:@" " options:NSBackwardsSearch].location;
+                NSString *stationName = [sncr substringToIndex:sp];
+                Station *st = [[[Station alloc] initWithMap:self name:stationName pos:CGPointMake(x, y) index:si rect:CGRectMake(tx, ty, tw, th) andDriving:0] autorelease];
+                st.line = l;
+                [l.stations addObject:st];
+                [stations setValue:st forKey:key];
+                if([stn count] >= 3) st.way1 = StringToWay([stn objectAtIndex:[stn count]-2]);
+                if([stn count] >= 2) st.way2 = StringToWay([stn lastObject]);
+            }
+            si ++;
+        }
+        int brn = MIN([branches count], [drivings count]);
+        for(int bi=0; bi<brn; bi++) {
+            int direction = 0; // none
+            NSString *br = [branches objectAtIndex:bi];
+            NSArray *dr = [[drivings objectAtIndex:bi] componentsSeparatedByString:@","];
+            NSString *brdir = [br substringToIndex:2];
+            if([brdir isEqualToString:@"<>"] || [brdir isEqualToString:@"><"]) {
+                direction = 3;
+                br = [br substringFromIndex:2];
+            } else {
+                if([brdir characterAtIndex:0] == '<') {
+                    // backward
+                    direction = 1; 
+                    br = [br substringFromIndex:1];
+                } else if([brdir characterAtIndex:0] == '>') {
+                    // forward
+                    direction = 2; 
+                    br = [br substringFromIndex:1];
+                } else {
+                    direction = 3; // both
+                }
+            }
+            NSArray *br1 = [br componentsSeparatedByString:@","];
+            int dri = 0;
+            Station *st = nil;
+            for (NSString *br2 in br1) {
+                NSArray *br3 = [br2 componentsSeparatedByString:@"."];
+                int first = [[br3 objectAtIndex:0] intValue];
+                int last = [[br3 lastObject] intValue];
+                for(int sti = first; sti<=last; sti ++, dri++) {
+                    Station *st2 = [stations objectForKey:[NSString stringWithFormat:@"%d", sti]];
+                    if(st != nil && st2 != nil) {
+                        if([st addSibling:st2]) {
+                            NSString *driving = nil;
+                            if(dri <= [dr count]) driving = [dr objectAtIndex:dri-1];
+                            else {
+                                driving = @"0";
+                                NSLog(@"ERROR: No driving for station %@!", st.name);
+                            }
+                            [st.relationDriving addObject:driving];
+                            if(direction & 0x2) 
+                                [graph addEdgeFromNode:[GraphNode nodeWithName:st.name andLine:i+1] toNode:[GraphNode nodeWithName:st2.name andLine:i+1] withWeight:[driving floatValue]];
+                            if(direction & 0x1)
+                                [graph addEdgeFromNode:[GraphNode nodeWithName:st2.name andLine:i+1] toNode:[GraphNode nodeWithName:st.name andLine:i+1] withWeight:[driving floatValue]];
+                        }
+                    }
+                    st = st2;
+                }
+            }
+        }
+        [l postInit];
+		
+        MLine *newLine = [NSEntityDescription insertNewObjectForEntityForName:@"Line" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+        newLine.name=lineName;
+        newLine.index = [[[NSNumber alloc] initWithInt:i] autorelease];
+        newLine.color = [self colorForHex:colors];
+        
+        boundingBox = CGRectUnion(boundingBox, l.boundingBox);
+	}
+    [[MHelper sharedHelper] saveContext];
+    [[MHelper sharedHelper] readHistoryFile:mapName];
+    [[MHelper sharedHelper] readBookmarkFile:mapName];
+    _w = boundingBox.origin.x * 2 + boundingBox.size.width;
+    _h = boundingBox.origin.y * 2 + boundingBox.size.height;
+    
+	INISection *section = [parserMap getSection:@"AdditionalNodes"];
+	NSMutableDictionary *as = [section assignments];
+	for (NSString* key in as) {
+		NSString *value = [parserMap get:key section:@"AdditionalNodes"];
+		[self processAddNodes:value];
+	}
+	INISection *section2 = [parserTrp getSection:@"Transfers"];
+	NSMutableDictionary *as2 = [section2 assignments];
+	for (NSString* key in as2) {
+		NSString *value = [parserTrp get:key section:@"Transfers"];
+		[self processTransfers2:value];
+	}
+	
+	[parserMap release];
+    [parserTrp release];
+    
+    for (Line *l in mapLines) {
+        [l calcStations];
+    }
+    
+    for (Transfer* tr in transfers) {
+        [tr tuneStations];
+    }
+    
+    for (Line *l in mapLines) {
+        for (Station *st in l.stations) {
+            for (Segment *seg in st.segment) {
+                [seg calcSpline];
+            }
+        }
+    }
+    // для ретиновских устройств генерируем предварительно отрисованные данные в двойном размере
+    int scale = [[UIScreen mainScreen] scale];
+    if(scale > 1) PredrawScale *= scale;
+    
+    [self processTransfersForGraph2];
+    [self predraw];
+}
+
 -(void)predraw
 {
     UIGraphicsBeginImageContext(CGSizeMake(100, 100));
@@ -1331,18 +1617,19 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     UIGraphicsEndImageContext();
 }
 
--(NSArray*) calcPath :(NSString*) firstStation :(NSString*) secondStation :(NSInteger) firstStationLineNum :(NSInteger)secondStationLineNum {
+-(NSDictionary*) calcPath :(NSString*) firstStation :(NSString*) secondStation :(NSInteger) firstStationLineNum :(NSInteger)secondStationLineNum {
 
-	
-	//NSString *name1 = [firstStation stringByAppendingString:[NSString stringWithFormat:@"|%d", firstStationLineNum]];
-	//NSString *name2 = [secondStation stringByAppendingString:[NSString stringWithFormat:@"|%d", secondStationLineNum]];
-	//DLog(@" %@ %@ ",name1,name2);
-	
-	NSArray *pp = [graph shortestPath:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum]];
+	//NSArray *pp = [graph shortestPath:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum]];
+    NSDictionary *paths = [graph getPaths:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum]];
+    NSArray *keys = [[paths allKeys] sortedArrayUsingSelector:@selector(compare:)];
+    for (NSNumber *weight in keys) {
+        NSLog(@"weight is %@", weight);
+        NSLog(@"path is %@", [paths objectForKey:weight]);
+    }
 	 
-	return pp;
+	return paths;
 }
--(void) processGPS: (NSString*) station :(NSString*) lineCoord {
+/*-(void) processGPS: (NSString*) station :(NSString*) lineCoord {
 	
 	NSArray *elements = [lineCoord componentsSeparatedByString:@","];
 	
@@ -1351,7 +1638,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 															] autorelease];
 	
 	[gpsCoords setObject:et forKey:station];
-}
+}*/
 -(void) processTransfers:(NSString*)transferInfo{
 	
 	NSArray *elements = [transferInfo componentsSeparatedByString:@","];
@@ -1363,6 +1650,46 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
     Station *ss1 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation1].index intValue]-1] getStation:station1];
     Station *ss2 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation2].index intValue]-1] getStation:station2];
+    if(ss1.transfer != nil && ss2.transfer != nil) {
+        
+    } else if(ss1.transfer) {
+        [ss1.transfer addStation:ss2];
+    } else if(ss2.transfer) {
+        [ss2.transfer addStation:ss1];
+    } else {
+        Transfer *tr = [[[Transfer alloc] initWithMap:self] autorelease];
+        tr.time = [[elements objectAtIndex:4] floatValue];
+        [tr addStation:ss1];
+        [tr addStation:ss2];
+        [transfers addObject:tr];
+    }
+}
+
+-(void) processTransfers2:(NSString*)transferInfo{
+	
+	NSArray *elements = [transferInfo componentsSeparatedByString:@","];
+    
+    NSString *lineStation1 = [elements objectAtIndex:0];
+    NSString *station1 = [elements objectAtIndex:1];
+    NSString *lineStation2 = [elements objectAtIndex:2];
+    NSString *station2 = [elements objectAtIndex:3];
+    
+    Station *ss1 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation1].index intValue]-1] getStation:station1];
+    Station *ss2 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation2].index intValue]-1] getStation:station2];
+    if(ss1 == nil || ss2 == nil) return;
+    if([elements count] >= 5) {
+        int drv = [[elements objectAtIndex:4] floatValue];
+        [ss1 setTransferDriving:drv to:ss2];
+        [ss2 setTransferDriving:drv to:ss1];
+    }
+    if([elements count] >= 6) {
+        int w = StringToWay([elements objectAtIndex:5]);
+        [ss1 setTransferWay:w to:ss2];
+    }
+    if([elements count] >= 7) {
+        int w = StringToWay([elements objectAtIndex:6]);
+        [ss2 setTransferWay:w to:ss1];
+    }
     if(ss1.transfer != nil && ss2.transfer != nil) {
         
     } else if(ss1.transfer) {
@@ -1396,73 +1723,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
     }
 }
-
--(void) processLinesStations:(NSString*) stations :(NSUInteger) line{
-
-	NSUInteger location2=0;
-	Boolean endline=false;
-	
-	NSString *new_s = nil;
-
-	NSString *remained_station = stations;
-
-	int i = 0;
-	while ([remained_station length] != 0) {
-		if ([remained_station rangeOfString:@","].location!=NSNotFound)
-			location2 = [remained_station rangeOfString:@","].location;
-		else
-		{
-			endline = true;
-			location2 = [remained_station length];	
-		}
-		new_s = [remained_station substringToIndex:location2];
-
-		if ([new_s rangeOfString:@"("].location==NSNotFound)
-		{
-
-			NSString *newstring = [remained_station substringToIndex:location2];
-			
-            MStation *station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
-            station.name=newstring;
-            station.isFavorite=[NSNumber numberWithInt:0];
-            station.lines=[[MHelper sharedHelper] lineByIndex:line ];
-            station.index = [NSNumber numberWithInt:i];
-
-			i++;
-			if (!endline)
-			remained_station = [remained_station substringFromIndex:location2+1];			
-			else
-			remained_station = [remained_station substringFromIndex:location2];							
-			continue;
-		}
-		else
-		{
-			
-			if ([new_s rangeOfString:@")"].location==NSNotFound)
-			{
-				location2 = [remained_station rangeOfString:@")"].location+1;
-
-			}
-			NSString *newstring = [remained_station substringToIndex:location2]; // +1 
-
-			NSUInteger location3 = [newstring rangeOfString:@"("].location;
-			NSString *stationname = [newstring substringToIndex:location3];
-			
-            MStation *station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
-                        station.name=stationname;
-            station.isFavorite=[NSNumber numberWithInt:0];
-            station.lines=[[MHelper sharedHelper] lineByIndex:line ];
-            station.index = [NSNumber numberWithInt:i];
-            
-			i++;
-			if(!endline)
-			remained_station = [remained_station substringFromIndex:location2+1]; // +2			
-			else
-			remained_station = [remained_station substringFromIndex:location2];
-		}
-	}
-}
-
 
 - (UIColor *) colorForHex:(NSString *)hexColor {
 	hexColor = [[hexColor stringByTrimmingCharactersInSet:
@@ -1513,9 +1773,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     for (int i=0; i<[mapLines count]; i++) {
         Line *l = [mapLines objectAtIndex:i];
         for (Station *s in l.stations) {
-            //NSString *st1Name = [NSString stringWithFormat:@"%@|%d",s.name,i+1];
             for (Segment *seg in s.segment) {
-                //NSString *st2Name = [NSString stringWithFormat:@"%@|%d",seg.end.name,i+1];
 				[graph addEdgeFromNode:[GraphNode nodeWithName:s.name andLine:i+1] toNode:[GraphNode nodeWithName:seg.end.name andLine:i+1] withWeight:seg.driving];
 				[graph addEdgeFromNode:[GraphNode nodeWithName:seg.end.name andLine:i+1] toNode:[GraphNode nodeWithName:s.name andLine:i+1] withWeight:seg.driving];
             }
@@ -1537,6 +1795,22 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
     }
 }
+
+-(void) processTransfersForGraph2{
+    for (Transfer *t in transfers) {
+        for (Station *s1 in t.stations) {
+            for (Station *s2 in t.stations) {
+                if(s1 != s2) {
+                    CGFloat dr = [s1 transferDrivingTo:s2];
+                    [graph addEdgeFromNode:[GraphNode nodeWithName:s1.name andLine:s1.line.index]
+                                    toNode:[GraphNode nodeWithName:s2.name andLine:s2.line.index]
+                                withWeight:dr];
+                }
+            }
+        }
+    }
+}
+
 
 - (void)dealloc {
     /*for (Line* l in mapLines) {

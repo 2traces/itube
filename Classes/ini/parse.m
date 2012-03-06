@@ -77,10 +77,18 @@
 
 	name = line;
 	value = strchr (name, '=');
-	if (value == NULL)
-		return INIP_ERROR_INVALID_ASSIGNMENT;
+	if (value == NULL) {
+        value = strchr(name , '\t');  // use tab separated substrings as key value pair
+        if(value == NULL) {
+            value = strchr(name, ' '); // and space separated 
+            if(value == NULL) 
+                return INIP_ERROR_INVALID_ASSIGNMENT;
+        }
+    }
 	
 	*value++ = 0;
+    name = [self trim:name];
+    value = [self trim:value];
 	n = [NSString stringWithUTF8String: name];
 	v = [NSString stringWithUTF8String: value];
 	[csection insert: [n uppercaseString] value: v];

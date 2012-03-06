@@ -16,7 +16,9 @@
 
 @property (nonatomic, readonly, retain) NSSet *nodes;
 
+- (NSDictionary*)getPaths:(GraphNode*)source to:(GraphNode*)target;
 - (NSArray*)shortestPath:(GraphNode*)source to:(GraphNode*)target;
+- (NSArray*)shortestPath:(GraphNode*)source to:(GraphNode*)target weight:(CGFloat*)weight closedNodes:(NSSet*)clNodes;
 - (GraphNode*)addNode:(GraphNode*)node;
 - (GraphEdge*)addEdgeFromNode:(GraphNode*)fromNode toNode:(GraphNode*)toNode;
 - (GraphEdge*)addEdgeFromNode:(GraphNode*)fromNode toNode:(GraphNode*)toNode withWeight:(float)weight;

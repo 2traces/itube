@@ -17,7 +17,6 @@
 @synthesize mainLabel;
 @synthesize selectedStationName;
 @synthesize stationSelected;
-@synthesize stationPath;
 @synthesize selectedStationLine;
 @synthesize nearestStationName;
 @synthesize nearestStationImage;
@@ -292,10 +291,42 @@
 
 -(void) findPathFrom :(NSString*) fSt To:(NSString*) sSt FirstLine:(NSInteger) fStl LastLine:(NSInteger)sStl {
 
-    NSMutableArray *pathArray = [[NSMutableArray alloc] init];
-    [pathArray addObjectsFromArray:[cityMap calcPath:fSt :sSt :fStl :sStl]];
-	[pathArray insertObject:[GraphNode nodeWithName:fSt andLine:fStl ] atIndex:0];
-	
+    [foundPaths release];
+    foundPaths = [[cityMap calcPath:fSt :sSt :fStl :sStl] retain];
+    if([foundPaths count] > 0) {
+        [self selectPath:0];
+    } else {
+        [foundPaths release];
+        foundPaths = nil;
+    }
+}
+
+-(void) clearPath
+{
+    [foundPaths release];
+    foundPaths = nil;
+    if([cityMap.activePath count] > 0) {
+        [cityMap resetPath];
+        // это недокументированный метод, так что если он в будущем изменится, то ой
+        //[self.layer invalidateContents];
+        //[self setNeedsDisplay];
+        activeLayer.hidden = YES;
+        midground1.hidden = YES;
+        midground2.hidden = YES;
+    }
+}
+
+-(int) pathsCount
+{
+    if(foundPaths != nil) return [foundPaths count];
+    else return 0;
+}
+
+-(void) selectPath:(int)num
+{
+    NSArray *keys = [[foundPaths allKeys] sortedArrayUsingSelector:@selector(compare:)];
+    NSArray *pathArray = [foundPaths objectForKey:[keys objectAtIndex:num]];
+
     [cityMap activatePath:pathArray];
     [scrollView zoomToRect:cityMap.activeExtent animated:YES];
     // это недокументированный метод, так что если он в будущем изменится, то ой
@@ -308,20 +339,7 @@
     midground2.hidden = NO;
     midground2.alpha = 1.f;
     [UIView animateWithDuration:0.5f animations:^(void) { activeLayer.alpha = 1.f; midground1.alpha = 1.f; midground2.alpha = 0.f; } completion:^(BOOL finish) { midground2.hidden = YES; }];
-    [pathArray release];
-}
 
--(void) clearPath
-{
-    if([cityMap.activePath count] > 0) {
-        [cityMap resetPath];
-        // это недокументированный метод, так что если он в будущем изменится, то ой
-        //[self.layer invalidateContents];
-        //[self setNeedsDisplay];
-        activeLayer.hidden = YES;
-        midground1.hidden = YES;
-        midground2.hidden = YES;
-    }
 }
 
 #pragma mark -

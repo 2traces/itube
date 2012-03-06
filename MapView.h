@@ -34,8 +34,6 @@ extern int const imagesCount;
 	CityMap *cityMap;
 	Boolean stationSelected;
 	
-	NSArray *stationPath;
-	
 	NSMutableString *selectedStationName;
 	NSInteger selectedStationLine;
 		
@@ -52,6 +50,7 @@ extern int const imagesCount;
     UIImageView *previewImage;
     VectorLayer *vectorLayer;
     ActiveView *activeLayer;
+    NSDictionary *foundPaths;
 }
 
 @property (assign) NSString *nearestStationName;
@@ -66,7 +65,6 @@ extern int const imagesCount;
 @property (nonatomic, retain) CityMap *cityMap;
 @property (nonatomic, retain) UILabel *mainLabel;
 @property (nonatomic, readonly) NSMutableString *selectedStationName;
-@property (nonatomic, retain) NSArray *stationPath;
 @property (nonatomic, readonly) CGSize size;
 @property (nonatomic, readonly) CGFloat Scale;
 @property (nonatomic, readonly) CGFloat MaxScale;
@@ -82,8 +80,14 @@ extern int const imagesCount;
 // 
 
 -(void) drawString: (NSString*) s withFont: (UIFont*) font inRect: (CGRect) contextRect ;
+// find several paths and select first one
 -(void) findPathFrom :(NSString*) fSt To:(NSString*) sSt FirstLine:(NSInteger) fStl LastLine:(NSInteger)sStl ;
+// forget all paths
 -(void) clearPath;
+// number of paths which have been found
+-(int)  pathsCount;
+// select one of the paths (num must be less then pathsCount)
+-(void) selectPath:(int)num;
 //
 -(void) initData ;
 
