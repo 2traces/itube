@@ -87,18 +87,54 @@
     CGContextAddLineToPoint(c, lineStart+overallLineWidth-1.0, y+lineH/2.0);
     CGContextStrokePath(c);
     
-    y=y-0.5;
+    y=y-0.5; 
     
-    //first point
-    CGRect firstCircleRect = CGRectMake(lineStart-firstAndLastR/2.0, y-firstAndLastR/2.0, firstAndLastR, firstAndLastR);
+    if ([delegate dsIsStartingTransfer]) {
+
+        UIImage *img= [UIImage imageNamed:@"scepka_horiz.png"];
+        
+        CGRect scepkaRect = CGRectMake(lineStart-firstAndLastR/2.0, y-img.size.height/2.0 + 0.5, img.size.width, img.size.height);
+        [img drawInRect:scepkaRect];
+        
+        CGFloat origin1=(img.size.width-2*middleR)/4.0;
+        CGFloat origin2=origin1+img.size.width/2.0;
+        
+        CGRect circleRect1 = CGRectMake(scepkaRect.origin.x + origin1 + 1.0, y - middleR/2.0, middleR, middleR); //+1.0 for krasota )
+        CGRect circleRect2 = CGRectMake(scepkaRect.origin.x + origin2 - 1.0, y - middleR/2.0, middleR, middleR);
+        
+        [self drawCircleInRect:circleRect1 color:[colorArray objectAtIndex:0] context:c];
+        [self drawCircleInRect:circleRect2 color:[colorArray objectAtIndex:1] context:c];
+        
+    } else {
+        //first point
+        CGRect firstCircleRect = CGRectMake(lineStart-firstAndLastR/2.0, y-firstAndLastR/2.0, firstAndLastR, firstAndLastR);
+        
+        [self drawCircleInRect:firstCircleRect color:[colorArray objectAtIndex:0] context:c];        
+    }
     
-    [self drawCircleInRect:firstCircleRect color:[colorArray objectAtIndex:0] context:c];
+    if ([delegate dsIsEndingTransfer]) {
+        
+        UIImage *img= [UIImage imageNamed:@"scepka_horiz.png"];
+        
+        CGRect scepkaRect = CGRectMake(overallLineWidth+lineStart - img.size.width+firstAndLastR/2.0, y-img.size.height/2.0 + 0.5, img.size.width, img.size.height);
+        [img drawInRect:scepkaRect];
+        
+        CGFloat origin1=(img.size.width-2*middleR)/4.0;
+        CGFloat origin2=origin1+img.size.width/2.0;
+        
+        CGRect circleRect1 = CGRectMake(scepkaRect.origin.x + origin1 + 1.0, y - middleR/2.0, middleR, middleR); //+1.0 for krasota )
+        CGRect circleRect2 = CGRectMake(scepkaRect.origin.x + origin2 - 1.0, y - middleR/2.0, middleR, middleR);
+        
+        [self drawCircleInRect:circleRect1 color:[colorArray objectAtIndex:[colorArray count]-2] context:c];
+        [self drawCircleInRect:circleRect2 color:[colorArray lastObject] context:c];
+        
+    } else {
+        // last point
+        CGRect lastCircleRect = CGRectMake(overallLineWidth+lineStart - firstAndLastR/2.0 , y-firstAndLastR/2.0, firstAndLastR, firstAndLastR);
+        
+        [self drawCircleInRect:lastCircleRect color:[colorArray lastObject] context:c];
+    }
     
-    // last point
-    CGRect lastCircleRect = CGRectMake(overallLineWidth+lineStart - firstAndLastR/2.0 , y-firstAndLastR/2.0, firstAndLastR, firstAndLastR);
-    
-    [self drawCircleInRect:lastCircleRect color:[colorArray lastObject] context:c];
-  
     int transfers = [timeArray count]-1;
     
     for (int i=0;i<transfers;i++)

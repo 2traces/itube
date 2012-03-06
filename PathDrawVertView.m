@@ -112,17 +112,40 @@
         
     }
     
-    // first point
-    CGRect firstRect = CGRectMake(x,lineStart,8,8);
-    CGRect firstCircleRect = CGRectMake(firstRect.origin.x-7.0, firstRect.origin.y-7.0, 14, 14);
+    if ([delegate dsIsStartingTransfer]) {
+    } else {
+        // first point
+        CGRect firstRect = CGRectMake(x,lineStart,8,8);
+        CGRect firstCircleRect = CGRectMake(firstRect.origin.x-7.0, firstRect.origin.y-7.0, 14, 14);
+        
+        [self drawCircleInRect:firstCircleRect color:[colorArray objectAtIndex:0] context:c];
+
+    }
     
-    [self drawCircleInRect:firstCircleRect color:[colorArray objectAtIndex:0] context:c];
-    
-    // last point
-    CGRect lastRect = CGRectMake(x,lineStart+viewHeight,6,6);
-    CGRect lastCircleRect = CGRectMake(lastRect.origin.x-7.0 , lastRect.origin.y-7.0, 14, 14);
-    
-    [self drawCircleInRect:lastCircleRect color:[colorArray lastObject] context:c];
+     if ([delegate dsIsEndingTransfer]) {
+         UIImage *img= [UIImage imageNamed:@"scepka_vertic.png"];
+         
+         x=lineStart;
+         
+         [img drawInRect:CGRectMake(x-img.size.width/2, currentY-img.size.height/2, img.size.width, img.size.height)];
+         
+         CGRect allRect = CGRectMake(x-img.size.width/2, currentY-img.size.height/2, img.size.width, img.size.height);
+         CGRect circleRect = CGRectMake(allRect.origin.x + 6, allRect.origin.y + 6, 12, 12);
+         
+         [self drawCircleInRect:circleRect color:[colorArray objectAtIndex:[colorArray count]-1] context:c];
+         
+         CGRect allRect2 = CGRectMake(x-img.size.width/2, currentY, img.size.width, img.size.height);
+         CGRect circleRect2 = CGRectMake(allRect2.origin.x + 6, allRect2.origin.y + 4, 12, 12);
+         [self drawCircleInRect:circleRect2 color:[colorArray lastObject] context:c];
+ 
+     } else {
+         // last point
+         CGRect lastRect = CGRectMake(x,lineStart+viewHeight,6,6);
+         CGRect lastCircleRect = CGRectMake(lastRect.origin.x-7.0 , lastRect.origin.y-7.0, 14, 14);
+         
+         [self drawCircleInRect:lastCircleRect color:[colorArray lastObject] context:c];
+     }
+
     
 
     // точки станций
@@ -143,7 +166,8 @@
             currentY+=transferHeight+lineStart;
         }
 
-        for (int jj=0;jj<[[stations objectAtIndex:j] count]-2;jj++) {
+        int qqq = [[stations objectAtIndex:j] count]-2;
+        for (int jj=0;jj<qqq;jj++) {
  
                 CGRect firstRect1 = CGRectMake(x,currentY,8,8);
                 CGRect firstCircleRect1 = CGRectMake(firstRect1.origin.x-5.0, firstRect1.origin.y, 10, 10);

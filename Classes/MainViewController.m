@@ -351,6 +351,35 @@
     return stationsArray;
 }
 
+-(BOOL)dsIsStartingTransfer
+{
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSArray *path = appDelegate.cityMap.activePath;
+
+    if ([path count]>0) {
+        if ([[path objectAtIndex:0] isKindOfClass:[Transfer class]]) {
+            return YES;    
+        }
+    }
+    
+    return NO;
+}
+
+-(BOOL)dsIsEndingTransfer
+{
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSArray *path = appDelegate.cityMap.activePath;
+    
+    if ([path count]>0) {
+        if ([[path lastObject] isKindOfClass:[Transfer class]]) {
+            return YES;    
+        }
+    }
+    
+    return NO;
+}
+
+
 -(void)showScrollView
 {
     int numberOfPages=1;
@@ -422,20 +451,12 @@
         [[self.scrollView viewWithTag:10000+i] setNeedsDisplay];
     }
     [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
-    
-    /*[self.stationsView.layer setShadowRadius:15.f];
-    [self.stationsView.layer setShadowOffset:CGSizeMake(0, 42)]; //41
-    [self.stationsView.layer setShadowOpacity:0.5f];*/
 }
 
 -(void)removeScrollView
 {
     [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 44, 320, 480-64)];
 
-    /*[self.stationsView.layer setShadowRadius:15.f];
-    [self.stationsView.layer setShadowOffset:CGSizeMake(0, 10)];
-    [self.stationsView.layer setShadowOpacity:0.5f];*/
-    
     [self.scrollView removeFromSuperview];
     self.scrollView=nil;
     [[(MainView*)self.view viewWithTag:333] removeFromSuperview];
@@ -466,8 +487,8 @@
     [formatter setDateStyle:NSDateFormatterNoStyle];
 
     
-    if (!self.pathScrollView && [[path11 objectAtIndex:0] isKindOfClass:[Segment class]] && [[path11 lastObject] isKindOfClass:[Segment class]] ) {
-        
+    if (!self.pathScrollView ) {
+        // && [[path11 objectAtIndex:0] isKindOfClass:[Segment class]] && [[path11 lastObject] isKindOfClass:[Segment class]]
         UIScrollView *scview= [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 66.0, 320.0f, 414.0f)];
         self.pathScrollView = scview;
         [scview release];
@@ -511,7 +532,7 @@
             viewHeight += segmentHeight;
         }
 
-        self.pathScrollView.contentSize=CGSizeMake(320.0f, viewHeight+50.0);
+        self.pathScrollView.contentSize=CGSizeMake(320.0f, viewHeight+100.0);
         self.pathScrollView.bounces=YES;
         self.pathScrollView.delegate = self;
         
@@ -987,8 +1008,10 @@
         }
 	} else {
         [mainView findPathFrom:[fromStation name] To:[toStation name] FirstLine:[[[fromStation lines] index] integerValue] LastLine:[[[toStation lines] index] integerValue]];
-        [stationsView transitToPathView];
-        [self showScrollView];
+        if ([[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] activePath] count]>1) {
+            [stationsView transitToPathView];
+            [self showScrollView];
+        }
 	}
     
 	mainView.mapView.stationSelected=false;

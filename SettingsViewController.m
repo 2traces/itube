@@ -224,7 +224,7 @@
             [[(CityCell*)cell cellButton] setTitle:@"----" forState:UIControlStateNormal];
             [[(CityCell*)cell cellButton] setTitle:@"----" forState:UIControlStateHighlighted];
         }
-  */      
+*/      
         [[(CityCell*)cell cellButton] setBackgroundImage:[UIImage imageNamed:@"buy_button.png"] forState:UIControlStateNormal];
         [[(CityCell*)cell cellButton] setBackgroundImage:[UIImage imageNamed:@"high_buy_button.png"] forState:UIControlStateHighlighted];
         [[(CityCell*)cell cellButton] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -232,6 +232,7 @@
         //
         // setting background
         //
+        
         UIImage *rowBackground;
         UIImage *selectionBackground;
         NSInteger sectionRows = [tableView numberOfRowsInSection:[indexPath section]];

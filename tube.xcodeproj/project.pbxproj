@@ -278,6 +278,7 @@
 		BCD3538A14E138BC00D4278A /* UIColor-enhanced.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD3538914E138BC00D4278A /* UIColor-enhanced.m */; };
 		BCE0B07A14FCD47600CCE704 /* DownloadServer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE0B07914FCD47500CCE704 /* DownloadServer.m */; };
 		BCF52DCD14CAD69400D76E0F /* FastAccessTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */; };
+		BCFDB67B14FE6B7D003736E7 /* berlin.vec in Resources */ = {isa = PBXBuildFile; fileRef = BCFDB67A14FE6B7D003736E7 /* berlin.vec */; };
 		CE1146C91466EAF200EF5A28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1146C81466EAF200EF5A28 /* QuartzCore.framework */; };
 		CE81FA70146BDC91008BF969 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CE81FA6D146BDC91008BF969 /* Icon-72.png */; };
 		CE81FA71146BDC91008BF969 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE81FA6E146BDC91008BF969 /* Icon.png */; };
@@ -618,6 +619,7 @@
 		BCE0B07914FCD47500CCE704 /* DownloadServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadServer.m; sourceTree = "<group>"; };
 		BCF52DCB14CAD69400D76E0F /* FastAccessTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastAccessTableViewController.h; sourceTree = "<group>"; };
 		BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastAccessTableViewController.m; sourceTree = "<group>"; };
+		BCFDB67A14FE6B7D003736E7 /* berlin.vec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = berlin.vec; sourceTree = "<group>"; };
 		CE1146C81466EAF200EF5A28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CE81FA6D146BDC91008BF969 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "images/Icon-72.png"; sourceTree = "<group>"; };
 		CE81FA6E146BDC91008BF969 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = images/Icon.png; sourceTree = "<group>"; };
@@ -880,6 +882,7 @@
 				9F768DEE14F79DE300AF55A6 /* venice.vec */,
 				BC715E8B14F249D200E7E157 /* berlin.map */,
 				BC715E8C14F249D200E7E157 /* berlin.trp */,
+				BCFDB67A14FE6B7D003736E7 /* berlin.vec */,
 				BC715E8414F2471000E7E157 /* hamburg.map */,
 				BC715E8514F2471000E7E157 /* hamburg.trp */,
 			);
@@ -1430,6 +1433,7 @@
 				9F768DF214F79DE300AF55A6 /* venice.map in Resources */,
 				9F768DF314F79DE300AF55A6 /* venice.trp in Resources */,
 				9F768DF414F79DE300AF55A6 /* venice.vec in Resources */,
+				BCFDB67B14FE6B7D003736E7 /* berlin.vec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

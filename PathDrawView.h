@@ -34,6 +34,9 @@
 -(NSArray*)dsGetLinesTimeArray;
 -(NSArray*)dsGetStationsArray;
 -(NSInteger)dsGetExitForStation:(Station*)station;
+-(BOOL)dsIsStartingTransfer;
+-(BOOL)dsIsEndingTransfer;
+
 
 
 @end
