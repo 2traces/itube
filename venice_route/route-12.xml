@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<directions>
+  <direction type="direct">
+    <timetables>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">0:00</time>
+          <time station="MURANO (Faro)" type="normal">0:08</time>
+          <time station="MAZZORBO" type="normal">0:33</time>
+          <time station="BURANO" type="normal">0:41</time>
+          <time station="TREPORTI" type="normal">0:56</time>
+          <time station="PUNTA SABBIONI" type="normal">1:08</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">4:20</time>
+          <time station="MURANO (Faro)" type="normal">4:28</time>
+          <time station="MAZZORBO" type="normal">4:52</time>
+          <time station="BURANO" type="normal">5:00</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">4:40</time>
+          <time station="MURANO (Faro)" type="normal">4:49</time>
+          <time station="MAZZORBO" type="normal">5:14</time>
+          <time station="BURANO" type="normal">5:22</time>
+          <time station="TREPORTI" type="normal">5:37</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">5:10</time>
+          <time station="MURANO (Faro)" type="normal">5:19</time>
+          <time station="MAZZORBO" type="normal">5:44</time>
+          <time station="BURANO" type="normal">5:52</time>
+          <time station="TREPORTI" type="normal">6:07</time>
+          <time station="PUNTA SABBIONI" type="normal">6:22</time>
+        </times>
+        <modifiers>
+          <modifier>fer</modifier>
+        </modifiers>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">5:40</time>
+          <time station="MURANO (Faro)" type="normal">5:49</time>
+          <time station="MAZZORBO" type="normal">6:14</time>
+          <time station="BURANO" type="normal">6:22</time>
+          <time station="TREPORTI" type="normal">6:37</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">6:10</time>
+          <time station="MURANO (Faro)" type="normal">6:19</time>
+          <time station="MAZZORBO" type="normal">6:44</time>
+          <time station="BURANO" type="normal">6:52</time>
+          <time station="TREPORTI" type="normal">7:07</time>
+          <time station="PUNTA SABBIONI" type="normal">7:22</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">6:40</time>
+          <time station="MURANO (Faro)" type="normal">6:49</time>
+          <time station="MAZZORBO" type="normal">7:14</time>
+          <time station="BURANO" type="normal">7:22</time>
+          <time station="TREPORTI" type="normal">7:37</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">7:10</time>
+          <time station="MURANO (Faro)" type="normal">7:19</time>
+          <time station="MAZZORBO" type="normal">7:44</time>
+          <time station="BURANO" type="normal">7:52</time>
+          <time station="TREPORTI" type="normal">8:07</time>
+          <time station="PUNTA SABBIONI" type="normal">8:22</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">7:40</time>
+          <time station="MURANO (Faro)" type="normal">7:49</time>
+          <time station="MAZZORBO" type="normal">8:14</time>
+          <time station="BURANO" type="normal">8:22</time>
+          <time station="TREPORTI" type="normal">8:37</time>
+          <time station="PUNTA SABBIONI" type="normal">8:52</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">8:10</time>
+          <time station="MURANO (Faro)" type="normal">8:19</time>
+          <time station="MAZZORBO" type="normal">8:44</time>
+          <time station="BURANO" type="normal">8:52</time>
+          <time station="TREPORTI" type="normal">9:07</time>
+          <time station="PUNTA SABBIONI" type="normal">9:22</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">8:40</time>
+          <time station="MURANO (Faro)" type="normal">8:49</time>
+          <time station="MAZZORBO" type="normal">9:14</time>
+          <time station="BURANO" type="normal">9:22</time>
+          <time station="TREPORTI" type="normal">9:37</time>
+        </times>
+        <modifiers>
+          <modifier>fer</modifier>
+        </modifiers>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">9:10</time>
+          <time station="MURANO (Faro)" type="normal">9:19</time>
+          <time station="MAZZORBO" type="normal">9:44</time>
+          <time station="BURANO" type="normal">9:52</time>
+          <time station="TREPORTI" type="normal">10:07</time>
+          <time station="PUNTA SABBIONI" type="normal">10:22</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">9:40</time>
+          <time station="MURANO (Faro)" type="normal">9:49</time>
+          <time station="MAZZORBO" type="normal">10:14</time>
+          <time station="BURANO" type="normal">10:22</time>
+          <time station="TREPORTI" type="normal">10:37</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">10:10</time>
+          <time station="MURANO (Faro)" type="normal">10:19</time>
+          <time station="MAZZORBO" type="normal">10:44</time>
+          <time station="BURANO" type="normal">10:52</time>
+          <time station="TREPORTI" type="normal">11:07</time>
+          <time station="PUNTA SABBIONI" type="normal">11:22</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">10:40</time>
+          <time station="MURANO (Faro)" type="normal">10:49</time>
+          <time station="MAZZORBO" type="normal">11:14</time>
+          <time station="BURANO" type="normal">11:22</time>
+          <time station="TREPORTI" type="normal">11:37</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">11:10</time>
+          <time station="MURANO (Faro)" type="normal">11:19</time>
+          <time station="MAZZORBO" type="normal">11:44</time>
+          <time station="BURANO" type="normal">11:52</time>
+          <time station="TREPORTI" type="normal">12:07</time>
+          <time station="PUNTA SABBIONI" type="normal">12:22</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">11:40</time>
+          <time station="MURANO (Faro)" type="normal">11:49</time>
+          <time station="MAZZORBO" type="normal">12:14</time>
+          <time station="BURANO" type="normal">12:22</time>
+          <time station="TREPORTI" type="normal">12:37</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">12:10</time>
+          <time station="MURANO (Faro)" type="normal">12:19</time>
+          <time station="MAZZORBO" type="normal">12:44</time>
+          <time station="BURANO" type="normal">12:52</time>
+          <time station="TREPORTI" type="normal">13:07</time>
+          <time station="PUNTA SABBIONI" type="normal">13:22</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">12:40</time>
+          <time station="MURANO (Faro)" type="normal">12:49</time>
+          <time station="MAZZORBO" type="normal">13:14</time>
+          <time station="BURANO" type="normal">13:22</time>
+          <time station="TREPORTI" type="normal">13:37</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">13:10</time>
+          <time station="MURANO (Faro)" type="normal">13:19</time>
+          <time station="MAZZORBO" type="normal">13:44</time>
+          <time station="BURANO" type="normal">13:52</time>
+          <time station="TREPORTI" type="normal">14:07</time>
+          <time station="PUNTA SABBIONI" type="normal">14:22</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">13:40</time>
+          <time station="MURANO (Faro)" type="normal">13:49</time>
+          <time station="MAZZORBO" type="normal">14:14</time>
+          <time station="BURANO" type="normal">14:22</time>
+          <time station="TREPORTI" type="normal">14:37</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">14:10</time>
+          <time station="MURANO (Faro)" type="normal">14:19</time>
+          <time station="MAZZORBO" type="normal">14:44</time>
+          <time station="BURANO" type="normal">14:52</time>
+          <time station="TREPORTI" type="normal">15:07</time>
+          <time station="PUNTA SABBIONI" type="normal">15:22</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">14:40</time>
+          <time station="MURANO (Faro)" type="normal">14:49</time>
+          <time station="MAZZORBO" type="normal">15:14</time>
+          <time station="BURANO" type="normal">15:22</time>
+          <time station="TREPORTI" type="normal">15:37</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">15:10</time>
+          <time station="MURANO (Faro)" type="normal">15:19</time>
+          <time station="MAZZORBO" type="normal">15:44</time>
+          <time station="BURANO" type="normal">15:52</time>
+          <time station="TREPORTI" type="normal">16:07</time>
+          <time station="PUNTA SABBIONI" type="normal">16:22</time>
+        </times>
+        <modifiers/>
+      </timetable>
+    </timetables>
+  </direction>
+  <direction type="return">
+    <timetables>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI" type="normal">1:08</time>
+          <time station="TREPORTI" type="normal">1:18</time>
+          <time station="BURANO" type="normal">1:33</time>
+          <time station="MAZZORBO" type="normal">1:40</time>
+          <time station="MURANO (Faro)" type="normal">2:06</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">2:15</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="BURANO" type="normal">5:00</time>
+          <time station="MAZZORBO" type="normal">5:07</time>
+          <time station="MURANO (Faro)" type="normal">5:33</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">5:42</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="TREPORTI" type="normal">5:40</time>
+          <time station="BURANO" type="normal">5:56</time>
+          <time station="MAZZORBO" type="normal">6:03</time>
+          <time station="MURANO (Faro)" type="normal">6:29</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">6:38</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="TREPORTI" type="normal">6:00</time>
+          <time station="BURANO" type="normal">6:16</time>
+          <time station="MAZZORBO" type="normal">6:23</time>
+          <time station="MURANO (Faro)" type="normal">6:49</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">6:58</time>
+        </times>
+        <modifiers>
+          <modifier>fer</modifier>
+        </modifiers>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="BURANO" type="normal">6:55</time>
+          <time station="MAZZORBO" type="normal">7:02</time>
+          <time station="MURANO (Faro)" type="normal">7:28</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">7:37</time>
+        </times>
+        <modifiers>
+          <modifier>fer</modifier>
+        </modifiers>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="TREPORTI" type="normal">6:40</time>
+          <time station="BURANO" type="normal">6:56</time>
+          <time station="MAZZORBO" type="normal">7:03</time>
+          <time station="MURANO (Faro)" type="normal">7:29</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">7:38</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI" type="normal">6:56</time>
+          <time station="TREPORTI" type="normal">7:10</time>
+          <time station="BURANO" type="normal">7:26</time>
+          <time station="MAZZORBO" type="normal">7:33</time>
+          <time station="MURANO (Faro)" type="normal">7:59</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">8:08</time>
+        </times>
+        <modifiers>
+          <modifier>fer</modifier>
+        </modifiers>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="TREPORTI" type="normal">7:40</time>
+          <time station="BURANO" type="normal">7:56</time>
+          <time station="MAZZORBO" type="normal">8:03</time>
+          <time station="MURANO (Faro)" type="normal">8:29</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">8:38</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI" type="normal">7:56</time>
+          <time station="TREPORTI" type="normal">8:10</time>
+          <time station="BURANO" type="normal">8:26</time>
+          <time station="MAZZORBO" type="normal">8:33</time>
+          <time station="MURANO (Faro)" type="normal">8:59</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">9:08</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI" type="normal">8:26</time>
+          <time station="TREPORTI" type="normal">8:40</time>
+          <time station="BURANO" type="normal">8:56</time>
+          <time station="MAZZORBO" type="normal">9:03</time>
+          <time station="MURANO (Faro)" type="normal">9:29</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">9:38</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI" type="normal">8:56</time>
+          <time station="TREPORTI" type="normal">9:10</time>
+          <time station="BURANO" type="normal">9:26</time>
+          <time station="MAZZORBO" type="normal">9:33</time>
+          <time station="MURANO (Faro)" type="normal">9:59</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">10:08</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="TREPORTI" type="normal">9:40</time>
+          <time station="BURANO" type="normal">9:56</time>
+          <time station="MAZZORBO" type="normal">10:03</time>
+          <time station="MURANO (Faro)" type="normal">10:29</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">10:38</time>
+        </times>
+        <modifiers>
+          <modifier>fer</modifier>
+        </modifiers>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI" type="normal">9:56</time>
+          <time station="TREPORTI" type="normal">10:10</time>
+          <time station="BURANO" type="normal">10:26</time>
+          <time station="MAZZORBO" type="normal">10:33</time>
+          <time station="MURANO (Faro)" type="normal">10:59</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">11:08</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="TREPORTI" type="normal">10:40</time>
+          <time station="BURANO" type="normal">10:56</time>
+          <time station="MAZZORBO" type="normal">11:03</time>
+          <time station="MURANO (Faro)" type="normal">11:29</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">11:38</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI" type="normal">10:56</time>
+          <time station="TREPORTI" type="normal">11:10</time>
+          <time station="BURANO" type="normal">11:26</time>
+          <time station="MAZZORBO" type="normal">11:33</time>
+          <time station="MURANO (Faro)" type="normal">11:59</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">12:08</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="TREPORTI" type="normal">11:40</time>
+          <time station="BURANO" type="normal">11:56</time>
+          <time station="MAZZORBO" type="normal">12:03</time>
+          <time station="MURANO (Faro)" type="normal">12:29</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">12:38</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI" type="normal">11:56</time>
+          <time station="TREPORTI" type="normal">12:10</time>
+          <time station="BURANO" type="normal">12:26</time>
+          <time station="MAZZORBO" type="normal">12:33</time>
+          <time station="MURANO (Faro)" type="normal">12:59</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">13:08</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="TREPORTI" type="normal">12:40</time>
+          <time station="BURANO" type="normal">12:56</time>
+          <time station="MAZZORBO" type="normal">13:03</time>
+          <time station="MURANO (Faro)" type="normal">13:29</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">13:38</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI" type="normal">12:56</time>
+          <time station="TREPORTI" type="normal">13:10</time>
+          <time station="BURANO" type="normal">13:26</time>
+          <time station="MAZZORBO" type="normal">13:33</time>
+          <time station="MURANO (Faro)" type="normal">13:59</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">14:08</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="TREPORTI" type="normal">13:40</time>
+          <time station="BURANO" type="normal">13:56</time>
+          <time station="MAZZORBO" type="normal">14:03</time>
+          <time station="MURANO (Faro)" type="normal">14:29</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">14:38</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI" type="normal">13:56</time>
+          <time station="TREPORTI" type="normal">14:10</time>
+          <time station="BURANO" type="normal">14:26</time>
+          <time station="MAZZORBO" type="normal">14:33</time>
+          <time station="MURANO (Faro)" type="normal">14:59</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">15:08</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="TREPORTI" type="normal">14:40</time>
+          <time station="BURANO" type="normal">14:56</time>
+          <time station="MAZZORBO" type="normal">15:03</time>
+          <time station="MURANO (Faro)" type="normal">15:29</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">15:38</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI" type="normal">14:56</time>
+          <time station="TREPORTI" type="normal">15:10</time>
+          <time station="BURANO" type="normal">15:26</time>
+          <time station="MAZZORBO" type="normal">15:33</time>
+          <time station="MURANO (Faro)" type="normal">15:59</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">16:08</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="TREPORTI" type="normal">15:40</time>
+          <time station="BURANO" type="normal">15:56</time>
+          <time station="MAZZORBO" type="normal">16:03</time>
+          <time station="MURANO (Faro)" type="normal">16:29</time>
+          <time station="VENEZIA (F.te Nove) &quot;A&quot;" type="normal">16:38</time>
+        </times>
+        <modifiers/>
+      </timetable>
+    </timetables>
+  </direction>
+</directions>

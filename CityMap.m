@@ -1292,11 +1292,22 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
     self.thisMapName=mapName;
     
-	NSString* strTrp = [[NSBundle mainBundle] pathForResource:mapName ofType:@"trp"]; 
-	NSString* strMap = [[NSBundle mainBundle] pathForResource:mapName ofType:@"map"]; 
-	
-	err = [parserTrp parse:[strTrp UTF8String]];
-    err = [parserMap parse:[strMap UTF8String]];
+	//NSString* strTrp = [[NSBundle mainBundle] pathForResource:mapName ofType:@"trp" inDirectory:@"maps"];
+	//NSString* strMap = [[NSBundle mainBundle] pathForResource:mapName ofType:@"map" inDirectory:@"maps"];
+
+    NSArray *files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trp" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+    if([files count] <= 0) {
+        NSLog(@"trp file not found: %@", mapName);
+        return;
+    }
+	err = [parserTrp parse:[[files objectAtIndex:0] UTF8String]];
+    
+    files = [[NSBundle mainBundle] pathsForResourcesOfType:@"map" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+    if([files count] <= 0) {
+        NSLog(@"map file not found: %@", mapName);
+        return;
+    }
+    err = [parserMap parse:[[files objectAtIndex:0] UTF8String]];
 
     NSString *bgfile = [parserMap get:@"ImageFileName" section:@"Options"];
     if([bgfile length] > 0) backgroundImageFile = [bgfile retain];
@@ -1324,15 +1335,17 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 	for (int i = 1; true; i++) {
 		NSString *sectionName = [NSString stringWithFormat:@"Line%d", i ];
+        if([parserTrp getSection:sectionName] == nil) break;
 		NSString *lineName = [parserTrp get:@"Name" section:sectionName];
-        if(lineName == nil) break;
+        if(lineName == nil) continue;
+        NSLog(@"read line: %@", lineName);
 
 		NSString *colors = [parserMap get:@"Color" section:lineName];
 		NSString *coords = [parserMap get:@"Coordinates" section:lineName];
 		NSString *coordsText = [parserMap get:@"Rects" section:lineName];
 		NSString *stations = [parserTrp get:@"Stations" section:sectionName];
 		NSString *coordsTime = [parserTrp get:@"Driving" section:sectionName];
-        if([coords length] == 0 || [coordsText length] == 0 || [stations length] == 0 || [coordsTime length] == 0) break;
+        if([coords length] == 0 || [coordsText length] == 0 || [stations length] == 0 || [coordsTime length] == 0) continue;
 		
         MLine *newLine = [NSEntityDescription insertNewObjectForEntityForName:@"Line" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
         newLine.name=lineName;
@@ -1408,11 +1421,22 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     
     self.thisMapName=mapName;
     
-	NSString* strTrp = [[NSBundle mainBundle] pathForResource:mapName ofType:@"trpnew"]; 
-	NSString* strMap = [[NSBundle mainBundle] pathForResource:mapName ofType:@"map"]; 
+	//NSString* strTrp = [[NSBundle mainBundle] pathForResource:mapName ofType:@"trpnew" inDirectory:@"maps"];
+	//NSString* strMap = [[NSBundle mainBundle] pathForResource:mapName ofType:@"map" inDirectory:@"maps"];
 	
-	err = [parserTrp parse:[strTrp UTF8String]];
-    err = [parserMap parse:[strMap UTF8String]];
+    NSArray *files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trpnew" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+    if([files count] <= 0) {
+        NSLog(@"trp file not found: %@", mapName);
+        return;
+    }
+	err = [parserTrp parse:[[files objectAtIndex:0] UTF8String]];
+    
+    files = [[NSBundle mainBundle] pathsForResourcesOfType:@"map" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+    if([files count] <= 0) {
+        NSLog(@"map file not found: %@", mapName);
+        return;
+    }
+    err = [parserMap parse:[[files objectAtIndex:0] UTF8String]];
     
     NSString *bgfile = [parserMap get:@"ImageFileName" section:@"Options"];
     if([bgfile length] > 0) backgroundImageFile = [bgfile retain];
@@ -1477,26 +1501,35 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     NSLog(@"ERROR: Station %@ doesn't have coordinates!", value);
                     continue;
                 }
-                NSArray *coord_x_y = [[coords objectAtIndex:si] componentsSeparatedByString:@","];
-                int x = [[coord_x_y objectAtIndex:0] intValue];
-                int y = [[coord_x_y objectAtIndex:1] intValue];
-                NSArray *coord_text = [[coordsText objectAtIndex:si] componentsSeparatedByString:@","];
-                int tx = [[coord_text objectAtIndex:0] intValue];
-                int ty = [[coord_text objectAtIndex:1] intValue];
-                int tw = [[coord_text objectAtIndex:2] intValue];
-                int th = [[coord_text objectAtIndex:3] intValue];
                 NSArray *stn = [value componentsSeparatedByString:@"\t"];
                 NSString *sncr = [stn objectAtIndex:0];
                 NSInteger sp = [sncr rangeOfString:@" " options:NSBackwardsSearch].location;
                 NSString *stationName = [sncr substringToIndex:sp];
-                Station *st = [[[Station alloc] initWithMap:self name:stationName pos:CGPointMake(x, y) index:si rect:CGRectMake(tx, ty, tw, th) andDriving:0] autorelease];
-                st.line = l;
-                [l.stations addObject:st];
+                Station *st = nil;
+                for (Station *ss in l.stations) {
+                    if([ss.name isEqualToString:stationName]) {
+                        st = ss;
+                        break;
+                    }
+                }
+                if(st == nil) {
+                    NSArray *coord_x_y = [[coords objectAtIndex:si] componentsSeparatedByString:@","];
+                    int x = [[coord_x_y objectAtIndex:0] intValue];
+                    int y = [[coord_x_y objectAtIndex:1] intValue];
+                    NSArray *coord_text = [[coordsText objectAtIndex:si] componentsSeparatedByString:@","];
+                    int tx = [[coord_text objectAtIndex:0] intValue];
+                    int ty = [[coord_text objectAtIndex:1] intValue];
+                    int tw = [[coord_text objectAtIndex:2] intValue];
+                    int th = [[coord_text objectAtIndex:3] intValue];
+                    st = [[[Station alloc] initWithMap:self name:stationName pos:CGPointMake(x, y) index:si rect:CGRectMake(tx, ty, tw, th) andDriving:0] autorelease];
+                    st.line = l;
+                    [l.stations addObject:st];
+                    si ++;
+                }
                 [stations setValue:st forKey:key];
                 if([stn count] >= 3) st.way1 = StringToWay([stn objectAtIndex:[stn count]-2]);
                 if([stn count] >= 2) st.way2 = StringToWay([stn lastObject]);
             }
-            si ++;
         }
         int brn = MIN([branches count], [drivings count]);
         for(int bi=0; bi<brn; bi++) {
