@@ -45,6 +45,24 @@
 
 @end
 
+/***** Vector Text *****/
+
+@interface VectorText : NSObject {
+@private
+    NSString *fontName, *text;
+    int fontSize;
+    BOOL enabled;
+    CGPoint point;
+    CGRect boundingBox;
+    CGColorRef col;
+}
+@property (nonatomic, readonly) CGRect boundingBox;
+@property (nonatomic, assign) BOOL enabled;
+
+-(id) initWithFontName:(NSString*)fontName fontSize:(int)fontSize point:(CGPoint)point text:(NSString*)text andColor:(CGColorRef)color;
+-(void) draw:(CGContextRef) context;
+@end
+
 /***** Vector Layer *****/
 
 @interface VectorLayer : NSObject {

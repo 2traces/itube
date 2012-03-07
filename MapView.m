@@ -326,6 +326,7 @@
 {
     NSArray *keys = [[foundPaths allKeys] sortedArrayUsingSelector:@selector(compare:)];
     NSArray *pathArray = [foundPaths objectForKey:[keys objectAtIndex:num]];
+    if(pathArray == nil || [pathArray count] == 0) return;
 
     [cityMap activatePath:pathArray];
     [scrollView zoomToRect:cityMap.activeExtent animated:YES];
