@@ -107,13 +107,13 @@
 
 @implementation VectorLayer
 
--(id)initWithFile:(NSString *)fileName
+-(id)initWithFile:(NSString *)fileName andDir:(NSString *)dir
 {
     if((self = [super init])) {
         enabled = YES;
         colorSpace = CGColorSpaceCreateDeviceRGB();
         elements = [[NSMutableArray alloc] init];
-        [self loadFrom:fileName];
+        [self loadFrom:fileName directory:dir];
     }
     return self;
 }
@@ -214,10 +214,10 @@
 }
 
 
--(void)loadFrom:(NSString *)fileName
+-(void)loadFrom:(NSString *)fileName directory:(NSString*)dir
 {
     [elements removeAllObjects];
-    NSString *fn = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
+    NSString *fn = [[NSBundle mainBundle] pathForResource:fileName ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@",dir]];
     NSString *contents = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
     [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
         NSArray *words = [line componentsSeparatedByString:@" "];

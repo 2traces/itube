@@ -57,8 +57,8 @@
 }
 @property (nonatomic, assign) BOOL enabled;
 
--(id) initWithFile:(NSString*)fileName;
--(void) loadFrom:(NSString*)fileName;
+-(id) initWithFile:(NSString*)fileName andDir:(NSString*)dir;
+-(void) loadFrom:(NSString*)fileName directory:(NSString*)dir;
 -(void) draw:(CGContextRef) context inRect:(CGRect)rect;
 
 @end
