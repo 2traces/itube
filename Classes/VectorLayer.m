@@ -105,6 +105,48 @@
 
 @end
 
+@implementation VectorText
+
+@synthesize enabled;
+@synthesize boundingBox;
+
+-(id)initWithFontName:(NSString *)_fontName fontSize:(int)_fontSize point:(CGPoint)_point text:(NSString *)_text andColor:(CGColorRef)color
+{
+    if((self = [super init])) {
+        fontName = [_fontName retain];
+        fontSize = _fontSize;
+        point = _point;
+        text = [_text retain];
+        enabled = YES;
+        boundingBox.origin = point;
+        boundingBox.size = CGSizeMake(fontSize, fontSize);
+        col = CGColorRetain(color);
+    }
+    return self;
+}
+
+-(void)draw:(CGContextRef)context
+{
+    CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
+    //if(enabled) {
+        CGContextSetFillColorWithColor(context, col );
+    /*} else {
+        CGContextSetFillColorWithColor(context, [[UIColor lightGrayColor] CGColor] );
+    }*/
+    CGContextSetTextDrawingMode (context, kCGTextFill);
+    CGContextSelectFont(context, "Arial-BoldMT", fontSize, kCGEncodingMacRoman);
+    CGContextShowTextAtPoint(context, point.x, point.y+0.9f*fontSize, [text cStringUsingEncoding:[NSString defaultCStringEncoding]], [text length]);
+}
+
+-(void)dealloc
+{
+    [text release];
+    [fontName release];
+    CGColorRelease(col);
+}
+
+@end
+
 @implementation VectorLayer
 
 -(id)initWithFile:(NSString *)fileName andDir:(NSString *)dir
@@ -247,6 +289,9 @@
             range.length = [words count] - 1;
             [elements addObject:[[[VectorPolygon alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:brushColor andDisabledColor:[self disabledColor:brushColor]] autorelease]];
             
+        } else if([w isEqualToString:@"textout"]) {
+            NSArray *ww = [line componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
+            [elements addObject:[[VectorText alloc] initWithFontName:[ww objectAtIndex:1] fontSize:[[ww objectAtIndex:3] intValue] point:CGPointMake([[ww objectAtIndex:5] intValue], [[ww objectAtIndex:7] intValue]) text:[ww objectAtIndex:9] andColor:penColor ]];
         }
     }];
 }
