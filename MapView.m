@@ -161,8 +161,8 @@
 
     activeLayer.cityMap = cityMap;
     if(cityMap.backgroundImageFile != nil) {
-        if(vectorLayer != nil) [vectorLayer loadFrom:cityMap.backgroundImageFile];
-        else vectorLayer = [[VectorLayer alloc] initWithFile:cityMap.backgroundImageFile];
+        if(vectorLayer != nil) [vectorLayer loadFrom:cityMap.backgroundImageFile directory:cityMap.thisMapName];
+        else vectorLayer = [[VectorLayer alloc] initWithFile:cityMap.backgroundImageFile andDir:cityMap.thisMapName];
     } else {
         [vectorLayer release];
         vectorLayer = nil;
