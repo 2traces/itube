@@ -253,7 +253,8 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //
 -(void) loadMap:(NSString *)mapName;
--(void) loadMap2:(NSString *)mapName;
+-(void) loadOldMap:(NSString *)mapFile trp:(NSString*)trpFile;
+-(void) loadNewMap:(NSString *)mapFile trp:(NSString*)trpFile;
 -(void) initVars ;
 // предварительная отрисовка трансферов и названий станций
 -(void) predraw;
