@@ -1588,6 +1588,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         [l postInit];
 		
         boundingBox = CGRectUnion(boundingBox, l.boundingBox);
+        index ++;
 	}
     [[MHelper sharedHelper] saveContext];
     _w = boundingBox.origin.x * 2 + boundingBox.size.width;
