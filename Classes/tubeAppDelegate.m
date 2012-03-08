@@ -26,9 +26,8 @@
     
     CityMap *cm = [[CityMap alloc] init];
     NSString *mapName =[self nameCurrentMap];
-    //[cm loadMap:mapName];
+    [cm loadMap:mapName];
 
-    [cm loadMap2:@"hamburg"];
     
     self.cityMap = cm;
     [cm release];
