@@ -116,11 +116,10 @@ Name=U3
 321	Mundsburg 53.569154,10.027127	,	M	M
 322	Hamburger Strasse 53.574467,10.037105	,	E	S
 323	Dehnhaide 53.579283,10.040946	,	SE	SE
-324	Barmbek 53.587359,10.044765	,	SE	SE
-325	Habichtstrasse 53.593638,10.052104	,	S	E
-326	Wandsbek-Gartenstadt 53.592428,10.074645	,	E	S
+324	Habichtstrasse 53.593638,10.052104	,	S	E
+325	Wandsbek-Gartenstadt 53.592428,10.074645	,	E	S
 
-Branch3 = <>301...326
+Branch3 = <>301...323,301,324,325
 Driving3 = 2,2,1,3,1,2,2,1,2,1,2,1,2,2,1,3,1,1,1,2,2,1,3,2,3
 Stations=
 Driving=
@@ -150,9 +149,18 @@ Name=S2
 418	Reinbek 53.508513,10.253752	S	E
 419	Wohltorf 53.520627,10.278021	M	M
 420	Aumuhle 53.529824,10.314617	E	S
+421	Altona 53.553184,9.934859	M	M
+422	Konigstrasse 53.548187,9.945331	SE	SE
+423	Reeperbahn 53.549462,9.955888	SE	SE
+424	Landungsbrucken 53.546071,9.971251	SE	SE
+425	Stadthausbrucke 53.54964,9.986444	SE	SE
+426	Jungfernstieg 53.552649,9.993138	SME	SME
 
-Branch4 = <>401...420
-Driving4 = 2,2,2,2,2,3,2,3,3,3,2,3,3,2,5,1,3,3,4
+
+Branch41 = <>401...420
+Branch42 = <>421...426,409...420
+Driving41 = 2,2,2,2,2,3,2,3,3,3,2,3,3,2,5,1,3,3,4
+Driving42 = 2,2,2,2,2,3,2,3,3,3,2,3,3,2,5,1,3
 Stations=
 Driving=
 
@@ -189,13 +197,18 @@ Name=S1
 528	Sulldorf 53.581041,9.796758	S	E
 529	Rissen 53.583156,9.758563	SE	SE
 530	Wedel 53.581856,9.704962	S	E
+531	Dammtor 53.561113,9.989319	SE	SE
+532	Sternschanze 53.56384,9.967175	SE	SE
+533	Holstenstrasse 53.561661,9.94945	S	E
 
 Branch51 = <>501,506...530
 Branch52 = <>506...530
 Branch53 = <>502...530
+Branch54 = <>502...515,531,532,533,521...530
 Driving51 = 4,5,1,3,2,2,1,2,2,4,2,2,2,2,3,3,2,3,2,3,1,3,2,3,5
 Driving52 = 5,1,3,2,2,1,2,2,4,2,2,2,2,3,3,2,3,2,3,1,3,2,3,5
 Driving53 = 2,2,1,3,5,1,3,2,2,1,2,2,4,2,2,2,2,3,3,2,3,2,3,1,3,2,3,5
+Driving54 = 2,2,1,3,5,1,3,2,2,1,2,2,4,2,2,2,2,3,3,2,3,2,3,1,3,2,
 Stations=
 Driving=
 
@@ -225,9 +238,6 @@ Name=S3
 621	Reeperbahn 53.549462,9.955888	SE	SE
 622	Konigstrasse 53.548187,9.945331	SE	SE
 623	Altona 53.553184,9.934859	E	S
-624	Dammtor 53.561113,9.989319	SE	SE
-625	Sternschanze 53.56384,9.967175	SE	SE
-626	Holstenstrasse 53.561661,9.94945	S	E
 627	Diebsteich 53.568848,9.934258	E	S
 628	Langenfelde 53.568848,9.934258	M	M
 629	Stellingen 53.589486,9.918745	M	M
@@ -237,9 +247,12 @@ Name=S3
 633	Halstenbek 53.630898,9.837892	ES	ES
 634	Thesdorf 53.644345,9.813817	S	E
 635	Pinneberg 53.655436,9.797444	MS	ME
+624	Dammtor 53.561113,9.989319	SE	SE
+625	Sternschanze 53.56384,9.967175	SE	SE
+626	Holstenstrasse 53.561661,9.94945	S	E
 
 Branch61 = <>601...623,627...635
-Branch62 = <>617,624...635
+Branch62 = <>617,624...626,627...635
 Driving61 = 5,3,4,4,4,6,2,6,2,5,2,3,4,3,4,3,2,3,2,2,4,1,4,1,2,2,3,3,2,3,4
 Driving62 = 3,3,2,4,2,3,2,2,4,1,4,1,2,2,3,3,2,3,4
 Stations=
@@ -341,5 +354,6 @@ Driving=
 78=S3,Eidelstedt,S2,Eidelstedt,2, SME
 79=S3,Elbgaustrasse,S2,Elbgaustrasse,2, SME
 84=S3,Jungfernstieg,U1,Jungfernstieg,2, M
+
 
 
