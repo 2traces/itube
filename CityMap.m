@@ -1477,6 +1477,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         l.index = i;
         l.color = [self colorForHex:colors];
         [mapLines addObject:l];
+        MLine *newLine = [NSEntityDescription insertNewObjectForEntityForName:@"Line" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+        newLine.name=lineName;
+        newLine.index = [NSNumber numberWithInt:i];
+        newLine.color = [self colorForHex:colors];
+        
         int si = 0;
         NSArray *keys = [[sect.assignments allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
         NSMutableArray *branches = [[[NSMutableArray alloc] init] autorelease];
@@ -1525,6 +1530,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     st.line = l;
                     [l.stations addObject:st];
                     si ++;
+                    MStation *station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+                    station.name=st.name;
+                    station.isFavorite=[NSNumber numberWithInt:0];
+                    station.lines=newLine;
+                    station.index = [NSNumber numberWithInt:i];
                 }
                 [stations setValue:st forKey:key];
                 if([stn count] >= 3) st.way1 = StringToWay([stn objectAtIndex:[stn count]-2]);
@@ -1572,9 +1582,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                             }
                             [st.relationDriving addObject:driving];
                             if(direction & 0x2) 
-                                [graph addEdgeFromNode:[GraphNode nodeWithName:st.name andLine:i+1] toNode:[GraphNode nodeWithName:st2.name andLine:i+1] withWeight:[driving floatValue]];
+                                [graph addEdgeFromNode:[GraphNode nodeWithName:st.name andLine:i] toNode:[GraphNode nodeWithName:st2.name andLine:i] withWeight:[driving floatValue]];
                             if(direction & 0x1)
-                                [graph addEdgeFromNode:[GraphNode nodeWithName:st2.name andLine:i+1] toNode:[GraphNode nodeWithName:st.name andLine:i+1] withWeight:[driving floatValue]];
+                                [graph addEdgeFromNode:[GraphNode nodeWithName:st2.name andLine:i] toNode:[GraphNode nodeWithName:st.name andLine:i] withWeight:[driving floatValue]];
                         }
                     }
                     st = st2;
@@ -1583,11 +1593,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
         [l postInit];
 		
-        MLine *newLine = [NSEntityDescription insertNewObjectForEntityForName:@"Line" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
-        newLine.name=lineName;
-        newLine.index = [[[NSNumber alloc] initWithInt:i] autorelease];
-        newLine.color = [self colorForHex:colors];
-        
         boundingBox = CGRectUnion(boundingBox, l.boundingBox);
 	}
     [[MHelper sharedHelper] saveContext];
