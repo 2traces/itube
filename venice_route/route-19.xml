@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<directions>
+  <direction type="direct">
+    <timetables>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI" type="normal">7:00</time>
+          <time station="OSPEDALE" type="normal">7:37</time>
+          <time station="F.TE NOVE &quot;C&quot;" type="normal">7:39</time>
+          <time station="TRE ARCHI" type="normal">7:54</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI" type="normal">7:30</time>
+          <time station="OSPEDALE" type="normal">8:07</time>
+          <time station="F.TE NOVE &quot;C&quot;" type="normal">8:09</time>
+        </times>
+        <modifiers/>
+      </timetable>
+    </timetables>
+  </direction>
+  <direction type="return">
+    <timetables>
+      <timetable>
+        <times>
+          <time station="TRE ARCHI" type="normal">13:28</time>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">13:40</time>
+          <time station="OSPEDALE" type="normal">13:43</time>
+          <time station="PUNTA SABBIONI" type="normal">14:20</time>
+        </times>
+        <modifiers/>
+      </timetable>
+    </timetables>
+  </direction>
+</directions>

@@ -493,7 +493,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize way1;
 @synthesize way2;
 
-
 -(id)copyWithZone:(NSZone*)zone
 {
     return [self retain];
@@ -1283,20 +1282,43 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 }
 
 -(void) loadMap:(NSString *)mapName {
-	INIParser* parserTrp, *parserMap;
-	
-	parserTrp = [[INIParser alloc] init];
-	parserMap = [[INIParser alloc] init];
-	
-	int err;
 
     self.thisMapName=mapName;
     
-	NSString* strTrp = [[NSBundle mainBundle] pathForResource:mapName ofType:@"trp"]; 
-	NSString* strMap = [[NSBundle mainBundle] pathForResource:mapName ofType:@"map"]; 
-	
-	err = [parserTrp parse:[strTrp UTF8String]];
-    err = [parserMap parse:[strMap UTF8String]];
+    NSArray *files = [[NSBundle mainBundle] pathsForResourcesOfType:@"map" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+    if([files count] <= 0) {
+        NSLog(@"map file not found: %@", mapName);
+        return;
+    }
+    NSString *mapFile = [files objectAtIndex:0];
+
+    files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trpnew" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+    if([files count] <= 0) {
+        files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trp" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+        if([files count] <= 0) {
+            NSLog(@"trp file not found: %@", mapName);
+            return;
+        } else {
+            NSString *trpFile = [files objectAtIndex:0];
+            [self loadOldMap:mapFile trp:trpFile];
+        }
+    } else {
+        NSString *trpFile = [files objectAtIndex:0];
+        [self loadNewMap:mapFile trp:trpFile];
+    }
+    [[MHelper sharedHelper] readHistoryFile:mapName];
+    [[MHelper sharedHelper] readBookmarkFile:mapName];
+}
+
+-(void) loadOldMap:(NSString *)mapFile trp:(NSString *)trpFile {
+
+	int err;
+	INIParser* parserTrp, *parserMap;
+
+	parserTrp = [[INIParser alloc] init];
+	parserMap = [[INIParser alloc] init];
+	err = [parserTrp parse:[trpFile UTF8String]];
+    err = [parserMap parse:[mapFile UTF8String]];
 
     NSString *bgfile = [parserMap get:@"ImageFileName" section:@"Options"];
     if([bgfile length] > 0) backgroundImageFile = [bgfile retain];
@@ -1321,35 +1343,36 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	_w = 0;
 	_h = 0;
     CGRect boundingBox = CGRectNull;
-
+    int index = 1;
 	for (int i = 1; true; i++) {
 		NSString *sectionName = [NSString stringWithFormat:@"Line%d", i ];
+        if([parserTrp getSection:sectionName] == nil) break;
 		NSString *lineName = [parserTrp get:@"Name" section:sectionName];
-        if(lineName == nil) break;
+        if(lineName == nil) continue;
+        NSLog(@"read line: %@", lineName);
 
 		NSString *colors = [parserMap get:@"Color" section:lineName];
 		NSString *coords = [parserMap get:@"Coordinates" section:lineName];
 		NSString *coordsText = [parserMap get:@"Rects" section:lineName];
 		NSString *stations = [parserTrp get:@"Stations" section:sectionName];
 		NSString *coordsTime = [parserTrp get:@"Driving" section:sectionName];
-        if([coords length] == 0 || [coordsText length] == 0 || [stations length] == 0 || [coordsTime length] == 0) break;
+        if([coords length] == 0 || [coordsText length] == 0 || [stations length] == 0 || [coordsTime length] == 0) continue;
 		
         MLine *newLine = [NSEntityDescription insertNewObjectForEntityForName:@"Line" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
         newLine.name=lineName;
-        newLine.index = [[[NSNumber alloc] initWithInt:i] autorelease];
+        newLine.index = [[[NSNumber alloc] initWithInt:index] autorelease];
         newLine.color = [self colorForHex:colors];
 
         // [self processLinesStations:stations	:i];
         
         Line *l = [[[Line alloc] initWithMap:self name:lineName stations:stations driving:coordsTime coordinates:coords rects:coordsText] autorelease];
-        l.index = i;
+        l.index = index;
         l.color = [self colorForHex:colors];
         [mapLines addObject:l];
         boundingBox = CGRectUnion(boundingBox, l.boundingBox);
+        index ++;
 	}
     [[MHelper sharedHelper] saveContext];
-    [[MHelper sharedHelper] readHistoryFile:mapName];
-    [[MHelper sharedHelper] readBookmarkFile:mapName];
     _w = boundingBox.origin.x * 2 + boundingBox.size.width;
     _h = boundingBox.origin.y * 2 + boundingBox.size.height;
 		
@@ -1398,21 +1421,15 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [self predraw];
 }
 
--(void) loadMap2:(NSString *)mapName {
+-(void) loadNewMap:(NSString *)mapFile trp:(NSString *)trpFile {
+
 	INIParser* parserTrp, *parserMap;
 	
+	int err;
 	parserTrp = [[INIParser alloc] init];
 	parserMap = [[INIParser alloc] init];
-	
-	int err;
-    
-    self.thisMapName=mapName;
-    
-	NSString* strTrp = [[NSBundle mainBundle] pathForResource:mapName ofType:@"trpnew"]; 
-	NSString* strMap = [[NSBundle mainBundle] pathForResource:mapName ofType:@"map"]; 
-	
-	err = [parserTrp parse:[strTrp UTF8String]];
-    err = [parserMap parse:[strMap UTF8String]];
+	err = [parserTrp parse:[trpFile UTF8String]];
+    err = [parserMap parse:[mapFile UTF8String]];
     
     NSString *bgfile = [parserMap get:@"ImageFileName" section:@"Options"];
     if([bgfile length] > 0) backgroundImageFile = [bgfile retain];
@@ -1437,7 +1454,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	_w = 0;
 	_h = 0;
     CGRect boundingBox = CGRectNull;
-    
+    int index = 1;
 	for (int i = 1; true; i++) {
 		NSString *sectionName = [NSString stringWithFormat:@"Line%d", i ];
 		NSString *lineName = [parserTrp get:@"Name" section:sectionName];
@@ -1450,9 +1467,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
         INISection *sect = [parserTrp getSection:sectionName];
         Line *l = [[[Line alloc] initWithMap:self andName:lineName] autorelease];
-        l.index = i;
+        l.index = index;
         l.color = [self colorForHex:colors];
         [mapLines addObject:l];
+        MLine *newLine = [NSEntityDescription insertNewObjectForEntityForName:@"Line" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+        newLine.name=lineName;
+        newLine.index = [NSNumber numberWithInt:index];
+        newLine.color = [self colorForHex:colors];
+        
         int si = 0;
         NSArray *keys = [[sect.assignments allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
         NSMutableArray *branches = [[[NSMutableArray alloc] init] autorelease];
@@ -1477,26 +1499,40 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     NSLog(@"ERROR: Station %@ doesn't have coordinates!", value);
                     continue;
                 }
-                NSArray *coord_x_y = [[coords objectAtIndex:si] componentsSeparatedByString:@","];
-                int x = [[coord_x_y objectAtIndex:0] intValue];
-                int y = [[coord_x_y objectAtIndex:1] intValue];
-                NSArray *coord_text = [[coordsText objectAtIndex:si] componentsSeparatedByString:@","];
-                int tx = [[coord_text objectAtIndex:0] intValue];
-                int ty = [[coord_text objectAtIndex:1] intValue];
-                int tw = [[coord_text objectAtIndex:2] intValue];
-                int th = [[coord_text objectAtIndex:3] intValue];
                 NSArray *stn = [value componentsSeparatedByString:@"\t"];
                 NSString *sncr = [stn objectAtIndex:0];
                 NSInteger sp = [sncr rangeOfString:@" " options:NSBackwardsSearch].location;
                 NSString *stationName = [sncr substringToIndex:sp];
-                Station *st = [[[Station alloc] initWithMap:self name:stationName pos:CGPointMake(x, y) index:si rect:CGRectMake(tx, ty, tw, th) andDriving:0] autorelease];
-                st.line = l;
-                [l.stations addObject:st];
+                Station *st = nil;
+                for (Station *ss in l.stations) {
+                    if([ss.name isEqualToString:stationName]) {
+                        st = ss;
+                        break;
+                    }
+                }
+                if(st == nil) {
+                    NSArray *coord_x_y = [[coords objectAtIndex:si] componentsSeparatedByString:@","];
+                    int x = [[coord_x_y objectAtIndex:0] intValue];
+                    int y = [[coord_x_y objectAtIndex:1] intValue];
+                    NSArray *coord_text = [[coordsText objectAtIndex:si] componentsSeparatedByString:@","];
+                    int tx = [[coord_text objectAtIndex:0] intValue];
+                    int ty = [[coord_text objectAtIndex:1] intValue];
+                    int tw = [[coord_text objectAtIndex:2] intValue];
+                    int th = [[coord_text objectAtIndex:3] intValue];
+                    st = [[[Station alloc] initWithMap:self name:stationName pos:CGPointMake(x, y) index:si rect:CGRectMake(tx, ty, tw, th) andDriving:0] autorelease];
+                    st.line = l;
+                    [l.stations addObject:st];
+                    si ++;
+                    MStation *station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+                    station.name=st.name;
+                    station.isFavorite=[NSNumber numberWithInt:0];
+                    station.lines=newLine;
+                    station.index = [NSNumber numberWithInt:i];
+                }
                 [stations setValue:st forKey:key];
                 if([stn count] >= 3) st.way1 = StringToWay([stn objectAtIndex:[stn count]-2]);
                 if([stn count] >= 2) st.way2 = StringToWay([stn lastObject]);
             }
-            si ++;
         }
         int brn = MIN([branches count], [drivings count]);
         for(int bi=0; bi<brn; bi++) {
@@ -1539,9 +1575,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                             }
                             [st.relationDriving addObject:driving];
                             if(direction & 0x2) 
-                                [graph addEdgeFromNode:[GraphNode nodeWithName:st.name andLine:i+1] toNode:[GraphNode nodeWithName:st2.name andLine:i+1] withWeight:[driving floatValue]];
+                                [graph addEdgeFromNode:[GraphNode nodeWithName:st.name andLine:i] toNode:[GraphNode nodeWithName:st2.name andLine:i] withWeight:[driving floatValue]];
                             if(direction & 0x1)
-                                [graph addEdgeFromNode:[GraphNode nodeWithName:st2.name andLine:i+1] toNode:[GraphNode nodeWithName:st.name andLine:i+1] withWeight:[driving floatValue]];
+                                [graph addEdgeFromNode:[GraphNode nodeWithName:st2.name andLine:i] toNode:[GraphNode nodeWithName:st.name andLine:i] withWeight:[driving floatValue]];
                         }
                     }
                     st = st2;
@@ -1550,16 +1586,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
         [l postInit];
 		
-        MLine *newLine = [NSEntityDescription insertNewObjectForEntityForName:@"Line" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
-        newLine.name=lineName;
-        newLine.index = [[[NSNumber alloc] initWithInt:i] autorelease];
-        newLine.color = [self colorForHex:colors];
-        
         boundingBox = CGRectUnion(boundingBox, l.boundingBox);
+        index ++;
 	}
     [[MHelper sharedHelper] saveContext];
-    [[MHelper sharedHelper] readHistoryFile:mapName];
-    [[MHelper sharedHelper] readBookmarkFile:mapName];
+//    [[MHelper sharedHelper] readHistoryFile:mapName];
+//    [[MHelper sharedHelper] readBookmarkFile:mapName];
     _w = boundingBox.origin.x * 2 + boundingBox.size.width;
     _h = boundingBox.origin.y * 2 + boundingBox.size.height;
     

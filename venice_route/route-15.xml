@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<directions>
+  <direction type="direct">
+    <timetables>
+      <timetable>
+        <times>
+          <time station="VENEZIA (Pietà)" type="normal">6:12</time>
+          <time station="PUNTA SABBIONI" type="normal">6:42</time>
+        </times>
+        <modifiers>
+          <modifier>fer</modifier>
+        </modifiers>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (Pietà)" type="normal">7:12</time>
+          <time station="PUNTA SABBIONI" type="normal">7:42</time>
+        </times>
+        <modifiers>
+          <modifier>fer</modifier>
+        </modifiers>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="VENEZIA (Pietà)" type="normal">7:42</time>
+          <time station="PUNTA SABBIONI" type="normal">8:12</time>
+        </times>
+        <modifiers/>
+      </timetable>
+    </timetables>
+  </direction>
+  <direction type="return">
+    <timetables>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI   5.15" type="normal">5:15</time>
+          <time station="VENEZIA (Pietà)   5.45" type="normal">5:45</time>
+        </times>
+        <modifiers>
+          <modifier>fer</modifier>
+        </modifiers>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI   5.15" type="normal">6:29</time>
+          <time station="VENEZIA (Pietà)   5.45" type="normal">6:59</time>
+        </times>
+        <modifiers>
+          <modifier>fer</modifier>
+        </modifiers>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI   5.15" type="normal">6:59</time>
+          <time station="VENEZIA (Pietà)   5.45" type="normal">7:29</time>
+        </times>
+        <modifiers>
+          <modifier>fer</modifier>
+        </modifiers>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI   5.15" type="normal">7:59</time>
+          <time station="VENEZIA (Pietà)   5.45" type="normal">8:29</time>
+        </times>
+        <modifiers>
+          <modifier>fer</modifier>
+        </modifiers>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI   5.15" type="normal">8:29</time>
+          <time station="VENEZIA (Pietà)   5.45" type="normal">8:59</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI   5.15" type="normal">9:00</time>
+          <time station="VENEZIA (Pietà)   5.45" type="normal">9:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI   5.15" type="normal">9:30</time>
+          <time station="VENEZIA (Pietà)   5.45" type="normal">10:03</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="PUNTA SABBIONI   5.15" type="normal">10:00</time>
+          <time station="VENEZIA (Pietà)   5.45" type="normal">10:30</time>
+        </times>
+        <modifiers/>
+      </timetable>
+    </timetables>
+  </direction>
+</directions>

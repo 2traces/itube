@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<directions>
+  <direction type="direct">
+    <timetables>
+      <timetable>
+        <times>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">23:41</time>
+          <time station="MURANO COLONNA" type="normal">23:50</time>
+          <time station="MURANO FARO" type="normal">23:53</time>
+          <time station="MURANO NAVAGERO" type="normal">23:55</time>
+          <time station="MURANO MUSEO" type="normal">23:57</time>
+          <time station="MURANO VENIER" type="normal">23:59</time>
+          <time station="MURANO SERENELLA" type="normal">0:01</time>
+          <time station="MURANO COLONNA" type="normal">0:05</time>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">0:14</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">0:15</time>
+          <time station="MURANO COLONNA" type="normal">0:23</time>
+          <time station="MURANO FARO" type="normal">0:25</time>
+          <time station="MURANO NAVAGERO" type="normal">0:27</time>
+          <time station="MURANO MUSEO" type="normal">0:29</time>
+          <time station="MURANO VENIER" type="normal">0:31</time>
+          <time station="MURANO SERENELLA" type="normal">0:33</time>
+          <time station="MURANO COLONNA" type="normal">0:37</time>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">0:45</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">0:45</time>
+          <time station="MURANO COLONNA" type="normal">0:53</time>
+          <time station="MURANO FARO" type="normal">0:55</time>
+          <time station="MURANO NAVAGERO" type="normal">0:57</time>
+          <time station="MURANO MUSEO" type="normal">0:59</time>
+          <time station="MURANO VENIER" type="normal">1:01</time>
+          <time station="MURANO SERENELLA" type="normal">1:03</time>
+          <time station="MURANO COLONNA" type="normal">1:07</time>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">1:15</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">1:15</time>
+          <time station="MURANO COLONNA" type="normal">1:23</time>
+          <time station="MURANO FARO" type="normal">1:25</time>
+          <time station="MURANO NAVAGERO" type="normal">1:27</time>
+          <time station="MURANO MUSEO" type="normal">1:29</time>
+          <time station="MURANO VENIER" type="normal">1:31</time>
+          <time station="MURANO SERENELLA" type="normal">1:33</time>
+          <time station="MURANO COLONNA" type="normal">1:37</time>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">1:45</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">1:45</time>
+          <time station="MURANO COLONNA" type="normal">1:53</time>
+          <time station="MURANO FARO" type="normal">1:55</time>
+          <time station="MURANO NAVAGERO" type="normal">1:57</time>
+          <time station="MURANO MUSEO" type="normal">1:59</time>
+          <time station="MURANO VENIER" type="normal">2:01</time>
+          <time station="MURANO SERENELLA" type="normal">2:03</time>
+          <time station="MURANO COLONNA" type="normal">2:07</time>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">2:15</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">2:15</time>
+          <time station="MURANO COLONNA" type="normal">2:23</time>
+          <time station="MURANO FARO" type="normal">2:25</time>
+          <time station="MURANO NAVAGERO" type="normal">2:27</time>
+          <time station="MURANO MUSEO" type="normal">2:29</time>
+          <time station="MURANO VENIER" type="normal">2:31</time>
+          <time station="MURANO SERENELLA" type="normal">2:33</time>
+          <time station="MURANO COLONNA" type="normal">2:37</time>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">2:45</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">3:15</time>
+          <time station="MURANO COLONNA" type="normal">3:23</time>
+          <time station="MURANO FARO" type="normal">3:25</time>
+          <time station="MURANO NAVAGERO" type="normal">3:27</time>
+          <time station="MURANO MUSEO" type="normal">3:29</time>
+          <time station="MURANO VENIER" type="normal">3:31</time>
+          <time station="MURANO SERENELLA" type="normal">3:33</time>
+          <time station="MURANO COLONNA" type="normal">3:37</time>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">3:45</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">3:45</time>
+          <time station="MURANO COLONNA" type="normal">3:53</time>
+          <time station="MURANO FARO" type="normal">3:55</time>
+          <time station="MURANO NAVAGERO" type="normal">3:57</time>
+          <time station="MURANO MUSEO" type="normal">3:59</time>
+          <time station="MURANO VENIER" type="normal">4:01</time>
+          <time station="MURANO SERENELLA" type="normal">4:03</time>
+          <time station="MURANO COLONNA" type="normal">4:07</time>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">4:15</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">4:15</time>
+          <time station="MURANO COLONNA" type="normal">4:23</time>
+          <time station="MURANO FARO" type="normal">4:25</time>
+          <time station="MURANO NAVAGERO" type="normal">4:27</time>
+          <time station="MURANO MUSEO" type="normal">4:29</time>
+          <time station="MURANO VENIER" type="normal">4:31</time>
+          <time station="MURANO SERENELLA" type="normal">4:33</time>
+          <time station="MURANO COLONNA" type="normal">4:37</time>
+          <time station="F.TE NOVE &quot;B&quot;" type="normal">4:45</time>
+        </times>
+        <modifiers/>
+      </timetable>
+    </timetables>
+  </direction>
+</directions>

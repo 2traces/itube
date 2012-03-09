@@ -161,8 +161,8 @@
 
     activeLayer.cityMap = cityMap;
     if(cityMap.backgroundImageFile != nil) {
-        if(vectorLayer != nil) [vectorLayer loadFrom:cityMap.backgroundImageFile];
-        else vectorLayer = [[VectorLayer alloc] initWithFile:cityMap.backgroundImageFile];
+        if(vectorLayer != nil) [vectorLayer loadFrom:cityMap.backgroundImageFile directory:cityMap.thisMapName];
+        else vectorLayer = [[VectorLayer alloc] initWithFile:cityMap.backgroundImageFile andDir:cityMap.thisMapName];
     } else {
         [vectorLayer release];
         vectorLayer = nil;
@@ -326,6 +326,7 @@
 {
     NSArray *keys = [[foundPaths allKeys] sortedArrayUsingSelector:@selector(compare:)];
     NSArray *pathArray = [foundPaths objectForKey:[keys objectAtIndex:num]];
+    if(pathArray == nil || [pathArray count] == 0) return;
 
     [cityMap activatePath:pathArray];
     [scrollView zoomToRect:cityMap.activeExtent animated:YES];
