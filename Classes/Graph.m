@@ -103,12 +103,14 @@
         // loop through each neighbor to find min dist
         for (GraphNode* neighbor in [neighbors objectEnumerator]) {
             //NSLog(@"Looping neighbor %@", (NSString*)[neighbor value]);
+            BOOL setPrevPath = YES;
             float alt = minNode->dist;
             alt += [[minNode edgeConnectedTo: neighbor] weight];
             
             if( alt < neighbor->dist ) {
                 neighbor->dist = alt;
-                neighbor->customData = minNode;
+                if(setPrevPath) neighbor->customData = minNode;
+                else neighbor->customData = nil;
             }
         }
         minNode = nil;
@@ -134,7 +136,8 @@
     for (GraphNode *n in path) {
         if(prevLine > 0 && prevLine != n.line) {
             NSArray *altPath = [self shortestPath:source to:target weight:&weight closedNodes:[NSSet setWithObject:n]];
-            [result setObject:altPath forKey:[NSNumber numberWithFloat:weight]];
+            if([altPath count] > 0)
+                [result setObject:altPath forKey:[NSNumber numberWithFloat:weight]];
             if([result count] >= 3) break; // max 3 paths
         }
         prevLine = n.line;

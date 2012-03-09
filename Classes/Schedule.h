@@ -8,12 +8,60 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Schedule : NSObject {
+/***** SchPoint *****/
+
+@interface SchPoint : NSObject {
+@private
+    NSString *name;
+    int line;
+    double time;
+    SchPoint *next;
+    double weight;
+    SchPoint *backPath;
+}
+@property (nonatomic, readonly) NSString* name;
+@property (nonatomic, assign) int line;
+@property (nonatomic, readonly) double time;
+@property (nonatomic, assign) SchPoint *next;
+@property (nonatomic, readonly) double weight;
+@property (nonatomic, readonly) SchPoint *backPath;
+
+-(id) initWithStation:(NSString*)st andTime:(double)t;
+-(BOOL) setWeightFrom:(SchPoint*)p;
+-(void) setWeightBy:(double)time;
+-(void) clean;
+-(BOOL) greaterThan:(SchPoint*)p;
+@end
+
+/***** SchLine *****/
+
+@interface SchLine : NSObject <NSXMLParserDelegate> {
+@private
     NSString *lineName;
+    int index;
+    NSDateFormatter *dateForm;
+    NSString *currectStation;
+    SchPoint *lastPoint;
+
+    NSMutableArray *routes;
+    NSMutableDictionary *catalog;
 }
 @property (nonatomic, readonly) NSString* lineName;
+@property (nonatomic, assign) int index;
+@property (nonatomic, readonly) NSDictionary *catalog;
 
-+(NSDictionary*) loadSchedules:(NSString*)fileName;
 -(id)initWithName:(NSString*)name andFile:(NSString*)fileName;
+@end
 
+/***** Schedule *****/
+
+@interface Schedule : NSObject <NSXMLParserDelegate> {
+    NSCalendar *cal;
+    NSMutableDictionary *lines;
+}
+
+-(id) initSchedule:(NSString*)fileName;
+-(void) setIndex:(int)ind forLine:(NSString*)line;
+
+-(NSArray*)findPathFrom:(NSString *)fromStation to:(NSString*)toStation;
 @end

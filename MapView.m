@@ -11,6 +11,7 @@
 #import <Foundation/Foundation.h>
 #import "tubeAppDelegate.h"
 #import "MyTiledLayer.h"
+#import "Schedule.h"
 
 @implementation MapView
 @synthesize cityMap;

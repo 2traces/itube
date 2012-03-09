@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Graph.h"
+#import "Schedule.h"
 //#import <CoreLocation/CoreLocation.h>
 
 NSMutableArray * Split(NSString* s);
@@ -222,6 +223,7 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
     NSMutableArray *pathStationsList;
     CGFloat currentScale;
     NSString *backgroundImageFile;
+    Schedule *schedule;
 @public
     CGFloat PredrawScale;
     CGFloat LineWidth;
