@@ -1309,6 +1309,13 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
     [[MHelper sharedHelper] readHistoryFile:mapName];
     [[MHelper sharedHelper] readBookmarkFile:mapName];
+    
+    if([mapName isEqualToString:@"venice"]) {
+        schedule = [[Schedule alloc] initSchedule:@"routes"];
+        for (Line *l in mapLines) {
+            [schedule setIndex:l.index forLine:l.name];
+        }
+    }
 }
 
 -(void) loadOldMap:(NSString *)mapFile trp:(NSString *)trpFile {
@@ -1650,6 +1657,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(NSDictionary*) calcPath :(NSString*) firstStation :(NSString*) secondStation :(NSInteger) firstStationLineNum :(NSInteger)secondStationLineNum {
 
+    if(schedule != nil) {
+        NSArray *path = [schedule findPathFrom:firstStation to:secondStation];
+        NSLog(@"schedule path is %@", path);
+        return [NSDictionary dictionaryWithObject:path forKey:[NSNumber numberWithDouble:[[path lastObject] weight]]];
+    }
 	//NSArray *pp = [graph shortestPath:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum]];
     NSDictionary *paths = [graph getPaths:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum]];
     NSArray *keys = [[paths allKeys] sortedArrayUsingSelector:@selector(compare:)];
@@ -1857,6 +1869,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [transfers release];
     [activePath release];
     [pathStationsList release];
+    [schedule release];
     [super dealloc];
 }
 
