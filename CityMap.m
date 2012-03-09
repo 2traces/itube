@@ -493,6 +493,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize way1;
 @synthesize way2;
 
+
 -(id)copyWithZone:(NSZone*)zone
 {
     return [self retain];

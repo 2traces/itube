@@ -28,6 +28,7 @@
     NSString *mapName =[self nameCurrentMap];
     //[cm loadMap:mapName];
 
+    
     self.cityMap = cm;
     [cm release];
     
