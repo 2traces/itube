@@ -1403,9 +1403,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         [l calcStations];
     }
     
-    for (Transfer* tr in transfers) {
+    /*for (Transfer* tr in transfers) {
         [tr tuneStations];
-    }
+    }*/
     
     for (Line *l in mapLines) {
         for (Station *st in l.stations) {
@@ -1614,9 +1614,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         [l calcStations];
     }
     
-    for (Transfer* tr in transfers) {
+    /*for (Transfer* tr in transfers) {
         [tr tuneStations];
-    }
+    }*/
     
     for (Line *l in mapLines) {
         for (Station *st in l.stations) {
