@@ -88,6 +88,31 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 @synthesize string;
 
++(NSString*) makePlainString:(NSString*)_str
+{
+    NSString *str = _str;
+    BOOL finish = NO;
+    while (!finish) {
+        switch([str characterAtIndex:0]) {
+            case '/':
+            case '\\':
+            case '^':
+            case '_':
+            case '-':
+            case '<':
+            case '>':
+            case '|':
+                str = [str substringFromIndex:1];
+                break;
+            default:
+                finish = YES;
+                break;
+        }
+    }
+    str = [[str stringByReplacingOccurrencesOfString:@";" withString:@" "] retain];
+    return str;
+}
+
 -(id) initWithString:(NSString *)_string font:(UIFont *)_font andRect:(CGRect)_rect
 {
     if((self = [super init])) {
@@ -1136,23 +1161,26 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)additionalPointsBetween:(NSString *)station1 and:(NSString *)station2 points:(NSArray *)points
 {
+    NSString *st1 = [ComplexText makePlainString:station1];
+    NSString *st2 = [ComplexText makePlainString:station2];
     for (Station *s in stations) {
         BOOL search = NO;
         BOOL rev = NO;
-        if([s.name isEqualToString:station1]) {
+        if([s.name isEqualToString:st1]) {
             search = YES;
         }
-        else if([s.name isEqualToString:station2]) {
+        else if([s.name isEqualToString:st2]) {
             search = rev = YES;
         }
         if(search) {
             for (Segment *seg in s.segment) {
-                if(([seg.end.name isEqualToString:station1] && rev)
-                   || ([seg.end.name isEqualToString:station2] && !rev)) {
+                if(([seg.end.name isEqualToString:st1] && rev)
+                   || ([seg.end.name isEqualToString:st2] && !rev)) {
                     NSEnumerator *enumer;
                     if(rev) enumer = [points reverseObjectEnumerator];
                     else enumer = [points objectEnumerator];
                     for (NSString *p in enumer) {
+                        if([p isEqualToString:@"spline"]) continue;
                         NSArray *coord = [p componentsSeparatedByString:@","];
                         [seg appendPoint:CGPointMake([[coord objectAtIndex:0] intValue], [[coord objectAtIndex:1] intValue])];
                     }
@@ -1767,7 +1795,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	
     for (Line* l in mapLines) {
         if([l.name isEqualToString:lineName]) {
-            [l additionalPointsBetween:[stations objectAtIndex:1] and:[stations objectAtIndex:2] points:[elements objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, [elements count]-2)]]];
+            [l additionalPointsBetween:[stations objectAtIndex:1] and:[stations objectAtIndex:2] points:[elements objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, [elements count]-1)]]];
             break;
         }
     }
