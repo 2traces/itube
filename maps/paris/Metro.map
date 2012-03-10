@@ -5,6 +5,7 @@ LinesWidth=24
 WordWrap=true
 MaxScale=0.5
 FontSize=45
+TuneTransfers=true
 
 [Ligne 1]
 Color=F6D500
