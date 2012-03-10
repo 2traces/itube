@@ -1347,6 +1347,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         maxScale = sc;
         PredrawScale = maxScale;
     }
+    BOOL tuneEnabled = [[parserMap get:@"TuneTransfers" section:@"Options"] boolValue];
 	
 	_w = 0;
 	_h = 0;
@@ -1410,9 +1411,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         [l calcStations];
     }
     
-    /*for (Transfer* tr in transfers) {
-        [tr tuneStations];
-    }*/
+    if(tuneEnabled) {
+        for (Transfer* tr in transfers) {
+            [tr tuneStations];
+        }
+    }
     
     for (Line *l in mapLines) {
         for (Station *st in l.stations) {
@@ -1458,6 +1461,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         maxScale = sc;
         PredrawScale = maxScale;
     }
+    BOOL tuneEnabled = [[parserMap get:@"TuneTransfers" section:@"Options"] boolValue];
 	
 	_w = 0;
 	_h = 0;
@@ -1621,9 +1625,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         [l calcStations];
     }
     
-    /*for (Transfer* tr in transfers) {
-        [tr tuneStations];
-    }*/
+    if(tuneEnabled) {
+        for (Transfer* tr in transfers) {
+            [tr tuneStations];
+        }
+    }
     
     for (Line *l in mapLines) {
         for (Station *st in l.stations) {

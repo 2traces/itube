@@ -6,6 +6,7 @@ WordWrap=False
 UpperCase=False
 FontSize=45
 MaxScale=0.5
+TuneTransfers=true
 
 [S1]
 Color=dc79b0
