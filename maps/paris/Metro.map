@@ -6,6 +6,8 @@ WordWrap=true
 MaxScale=0.5
 FontSize=45
 TuneTransfers=true
+DisplayTransfers=1
+DisplayStations=1
 
 [Ligne 1]
 Color=F6D500
