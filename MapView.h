@@ -24,7 +24,7 @@ extern int const imagesCount;
 // количество слоёв кеширования
 #define MAXCACHE 8
 
-@interface MapView : UIView <UIScrollViewDelegate> {
+@interface MapView : UIView <UIScrollViewDelegate, CLLocationManagerDelegate> {
 
     CGRect visualFrame;
 	UILabel *mainLabel;
@@ -51,6 +51,7 @@ extern int const imagesCount;
     VectorLayer *vectorLayer;
     ActiveView *activeLayer;
     NSDictionary *foundPaths;
+    CLLocationManager *locationManager;
 }
 
 @property (assign) NSString *nearestStationName;
@@ -90,10 +91,5 @@ extern int const imagesCount;
 -(void) selectPath:(int)num;
 //
 -(void) initData ;
-
-
-//gps stuff
--(NSString*) calcNearStations:(CLLocation*) new_location;
--(void) checkGPSCoord:(CLLocation*) new_location;
 
 @end

@@ -50,6 +50,34 @@
     return labelBg;
 }
 
+#pragma mark gps stuff 
+-(BOOL) enableUserLocation
+{
+    [locationManager release];
+    locationManager = nil;
+    if([CLLocationManager locationServicesEnabled]) {
+        locationManager = [[CLLocationManager alloc] init];
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+        locationManager.distanceFilter = 500;
+        [locationManager startUpdatingLocation];
+        return YES;
+    } else return NO;
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+	Station *st = [cityMap findNearestStationTo:CGPointMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude)];
+	
+	if (![st.name isEqualToString:nearestStationName])
+	{
+		nearestStationName=st.name;
+        selectedStationLayer.position = st.pos;
+        
+        [self setNeedsDisplay];
+	};
+}
+
 -(void) makePreview {
     // make background image
     CGFloat backScale = MinScale * 2.f;
@@ -136,9 +164,14 @@
 		[self initData];
 		
 		selectedStationLayer = [[CALayer layer] retain];
+        selectedStationLayer.frame = CGRectMake(0, 0, nearestStationImage.size.width, nearestStationImage.size.height);
+        selectedStationLayer.contents=(id)[nearestStationImage CGImage];
+        [self.layer addSublayer:selectedStationLayer];
+
         activeLayer = [[ActiveView alloc] initWithFrame:frame];
         activeLayer.hidden = YES;
         
+        [self enableUserLocation];
     }
     return self;
 }
@@ -207,6 +240,7 @@
     [midground1 release];
     [midground2 release];
     [previewImage release];
+    [selectedStationName release];
     [super dealloc];
 }
 
@@ -344,78 +378,6 @@
 
 }
 
-#pragma mark -
-#pragma mark gps stuff 
-
-
--(NSString*) calcNearStations:(CLLocation*) new_location {
-	//
-	
-	CLLocation *et = new_location;
-	//расскоментировать для тестов
-	//CLLocation *et = [[[CLLocation alloc] initWithLatitude:41.873917 longitude:1.294598] autorelease];
-	//CLLocationManager *lm = [[[CLLocationManager alloc] init] autorelease];
-	
-	CLLocationDistance distance=-1;
-	NSString* station=nil;
-	
-	
-	for (NSString* key in cityMap.gpsCoords ) {
-		CLLocation  *location = (CLLocation*)[cityMap.gpsCoords objectForKey:key];
-		if (distance==-1)
-		{
-			distance = [location distanceFromLocation:et];
-			station = key;
-		}
-		else {
-			CLLocationDistance new_distance = [location distanceFromLocation:et];
-			if (new_distance<distance)
-			{
-				distance=new_distance;
-				station = key;
-			}
-		}
-	}
-	
-	DLog(@"");
-	//[lm ]
-	return station;
-} 
-
--(void) checkGPSCoord:(CLLocation*) new_location{
-	NSString *new_station = [self calcNearStations:new_location];
-	
-	if (![new_station isEqualToString:nearestStationName])
-	{
-        // TODO remake
-		/*nearestStationName=new_station;
-
-		NSNumber *line = [cityMap.allStationsNames objectForKey:nearestStationName];
-		
-		NSMutableDictionary *allStations = [cityMap.stationsData objectAtIndex:[line intValue]];
-		
-		NSDictionary *stationData = [allStations objectForKey:nearestStationName];
-		
-		NSDictionary *coords = [stationData objectForKey:@"coord"];
-		
-		NSNumber *x = [coords objectForKey:@"x"];
-		NSNumber *y = [coords objectForKey:@"y"];
-		
-		[selectedStationLayer removeFromSuperlayer];
-		selectedStationLayer.frame = CGRectMake(0, 0, nearestStationImage.size.width, nearestStationImage.size.height);
-		selectedStationLayer.contents=(id)[nearestStationImage CGImage];
- 
-	
-		selectedStationLayer.position=CGPointMake([x floatValue],
-													  [y floatValue]);
-		
-		[self.layer addSublayer:selectedStationLayer];
-		[self setNeedsDisplay];
-         */
-	};
-	
-}
- 
 #pragma mark UIScrollViewDelegate methods
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *) _scrollView{
