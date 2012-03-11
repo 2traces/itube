@@ -159,7 +159,7 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
     int driving;
     NSMutableArray* splinePoints;
     CGRect boundingBox;
-    BOOL active;
+    BOOL active, isSpline;
     CGMutablePathRef path;
 }
 @property (nonatomic, readonly) Station* start;
@@ -168,12 +168,15 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic, assign) BOOL active;
 @property (nonatomic, readonly) NSArray *splinePoints;
+@property (nonatomic, assign) BOOL isSpline;
 
 -(id)initFromStation:(Station*)from toStation:(Station*)to withDriving:(int)dr;
 -(void)appendPoint:(CGPoint)p;
 -(void)calcSpline;
 -(void)draw:(CGContextRef)context;
 -(void)predraw;
+-(void)predrawSpline;
+-(void)predrawMultiline;
 @end
 
 @interface Line : NSObject {

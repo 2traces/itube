@@ -767,6 +767,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize driving;
 @synthesize boundingBox;
 @synthesize active;
+@synthesize isSpline;
 
 -(NSArray*)splinePoints {
     return splinePoints;
@@ -776,6 +777,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 {
     if((self = [super init])) {
         active = YES;
+        isSpline = NO;
         start = from;
         end = to;
         [end.backSegment addObject:self];
@@ -808,6 +810,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(void)calcSpline
 {
     if(splinePoints == nil || [splinePoints count] == 0) return;
+    if(!isSpline) {
+        [self predrawMultiline];
+        return;
+    }
     [splinePoints addObject:[NSValue valueWithCGPoint:CGPointMake(end.pos.x, end.pos.y)]];
     [splinePoints insertObject:[NSValue valueWithCGPoint:CGPointMake(start.pos.x, start.pos.y)] atIndex:0];
     NSMutableArray *newSplinePoints = [[NSMutableArray alloc] init];
@@ -818,7 +824,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
     [splinePoints release];
     splinePoints = newSplinePoints;
-    [self predraw];
+    [self predrawSpline];
 }
 
 -(void)draw:(CGContextRef)context fromPoint:(CGPoint)p toTangentPoint:(TangentPoint*)tp
@@ -844,18 +850,38 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)draw:(CGContextRef)context
 {
-    CGContextMoveToPoint(context, start.pos.x, start.pos.y);
     if(splinePoints) {
         CGContextMoveToPoint(context, 0, 0);
         CGContextAddPath(context, path);
         CGContextStrokePath(context);
     } else {
+        CGContextMoveToPoint(context, start.pos.x, start.pos.y);
         CGContextAddLineToPoint(context, end.pos.x, end.pos.y);
         CGContextStrokePath(context);
     }
 }
 
 -(void)predraw
+{
+    if(isSpline) [self predrawSpline];
+    else [self predrawMultiline];
+}
+
+-(void)predrawMultiline
+{
+    if(splinePoints) {
+        if(path != nil) CGPathRelease(path);
+        path = CGPathCreateMutable();
+        CGPathMoveToPoint(path, nil, start.pos.x, start.pos.y);
+        for (int i=0; i < [splinePoints count]; i++) {
+            CGPoint p = [[splinePoints objectAtIndex:i] CGPointValue];
+            CGPathAddLineToPoint(path, nil, p.x, p.y);
+        }
+        CGPathAddLineToPoint(path, nil, end.pos.x, end.pos.y);
+    }
+}
+
+-(void)predrawSpline
 {
     if(splinePoints) {
         if(path != nil) CGPathRelease(path);
@@ -1180,7 +1206,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     if(rev) enumer = [points reverseObjectEnumerator];
                     else enumer = [points objectEnumerator];
                     for (NSString *p in enumer) {
-                        if([p isEqualToString:@"spline"]) continue;
+                        if([p isEqualToString:@"spline"]) {
+                            seg.isSpline = YES;
+                            continue;
+                        }
                         NSArray *coord = [p componentsSeparatedByString:@","];
                         [seg appendPoint:CGPointMake([[coord objectAtIndex:0] intValue], [[coord objectAtIndex:1] intValue])];
                     }
@@ -1781,9 +1810,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     for (Line* l in mapLines) {
         if([l.name isEqualToString:lineName]) {
             [l additionalPointsBetween:[stations objectAtIndex:1] and:[stations objectAtIndex:2] points:[elements objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, [elements count]-1)]]];
-            break;
+            return;
         }
     }
+    NSLog(@"Error (additional point): line %@ and stations %@,%@ not found", lineName, [stations objectAtIndex:1], [stations objectAtIndex:2]);
 }
 
 - (UIColor *) colorForHex:(NSString *)hexColor {
