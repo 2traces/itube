@@ -18,6 +18,7 @@
     SchPoint *next;
     double weight;
     SchPoint *backPath;
+    char dock;
 }
 @property (nonatomic, readonly) NSString* name;
 @property (nonatomic, assign) int line;
@@ -25,6 +26,7 @@
 @property (nonatomic, assign) SchPoint *next;
 @property (nonatomic, readonly) double weight;
 @property (nonatomic, readonly) SchPoint *backPath;
+@property (nonatomic, readonly) char dock;
 
 -(id) initWithStation:(NSString*)st andTime:(double)t;
 -(BOOL) setWeightFrom:(SchPoint*)p;
@@ -40,7 +42,7 @@
     NSString *lineName;
     int index;
     NSDateFormatter *dateForm;
-    NSString *currectStation;
+    NSString *currentStation;
     SchPoint *lastPoint;
 
     NSMutableArray *routes;
