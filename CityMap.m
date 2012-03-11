@@ -1556,12 +1556,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     st.line = l;
                     st.gpsCoords = CGPointMake([[gpsCoords objectAtIndex:0] floatValue], [[gpsCoords objectAtIndex:1] floatValue]);
                     [l.stations addObject:st];
-                    si ++;
                     MStation *station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
                     station.name=st.name;
                     station.isFavorite=[NSNumber numberWithInt:0];
                     station.lines=newLine;
-                    station.index = [NSNumber numberWithInt:i];
+                    station.index = [NSNumber numberWithInt:si];
+                    si ++;
                 }
                 [stations setValue:st forKey:key];
                 if([stn count] >= 3) st.way1 = StringToWay([stn objectAtIndex:[stn count]-2]);
