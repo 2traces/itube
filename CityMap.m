@@ -550,6 +550,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         transferDriving = [[NSMutableDictionary alloc] init];
         defaultTransferDriving = 0;
         transferWay = [[NSMutableDictionary alloc] init];
+        reverseTransferWay = [[NSMutableDictionary alloc] init];
         defaultTransferWay = NOWAY;
         
         NSUInteger br = [sname rangeOfString:@"("].location;
@@ -602,6 +603,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [sibling release];
     [transferDriving release];
     [transferWay release];
+    [reverseTransferWay release];
 }
 
 -(BOOL)addSibling:(Station *)st
@@ -720,6 +722,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [transferWay setObject:[NSNumber numberWithInt:way] forKey:target];
 }
 
+-(void)setTransferWay:(int)way from:(Station *)target
+{
+    [reverseTransferWay setObject:[NSNumber numberWithInt:way] forKey:target];
+}
+
 -(CGFloat)transferDrivingTo:(Station *)target
 {
     NSNumber *dr = [transferDriving objectForKey:target];
@@ -732,6 +739,13 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     NSNumber *w = [transferWay objectForKey:target];
     if(w != nil) return [w intValue];
     return defaultTransferWay;
+}
+
+-(int)transferWayFrom:(Station *)target
+{
+    NSNumber *w = [reverseTransferWay objectForKey:target];
+    if(w != nil) return [w intValue];
+    return NOWAY;
 }
 
 @end
@@ -1637,10 +1651,16 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                                 NSLog(@"ERROR: No driving for station %@!", st.name);
                             }
                             [st.relationDriving addObject:driving];
-                            if(direction & 0x2) 
+                            if(direction & 0x2) {
                                 [graph addEdgeFromNode:[GraphNode nodeWithName:st.name andLine:i] toNode:[GraphNode nodeWithName:st2.name andLine:i] withWeight:[driving floatValue]];
-                            if(direction & 0x1)
+                                [st setTransferWay:st.way1 to:st2];
+                                [st2 setTransferWay:st2.way1 from:st];
+                            }
+                            if(direction & 0x1) {
                                 [graph addEdgeFromNode:[GraphNode nodeWithName:st2.name andLine:i] toNode:[GraphNode nodeWithName:st.name andLine:i] withWeight:[driving floatValue]];
+                                [st setTransferWay:st.way2 from:st2];
+                                [st2 setTransferWay:st2.way2 to:st];
+                            }
                         }
                     }
                     st = st2;
@@ -1954,10 +1974,15 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [pathStationsList removeAllObjects];
 	int count_ = [pathMap count];
     
+    Station *prevStation = nil;
 	for (int i=0; i< count_; i++) {
         GraphNode *n1 = [pathMap objectAtIndex:i];
         Line* l = [mapLines objectAtIndex:n1.line-1];
         Station *s = [l getStation:n1.name];
+        if(prevStation != nil) {
+            NSLog(@"forward way is %d", [prevStation transferWayTo:s]);
+            NSLog(@"backward way is %d", [s transferWayFrom:prevStation]);
+        }
         activeExtent = CGRectUnion(activeExtent, s.textRect);
         activeExtent = CGRectUnion(activeExtent, s.boundingBox);
         
@@ -1980,6 +2005,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 [pathStationsList addObject:@"---"]; //временно до обновления модели
             }
         }
+        prevStation = s;
 	}
     float offset = (25 - (int)[pathStationsList count]) * 0.005f;
     if(offset < 0.02f) offset = 0.02f;
