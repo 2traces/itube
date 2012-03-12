@@ -231,7 +231,7 @@
     return stationsArray;
 }
 
--(NSInteger)dsGetExitForStation:(Station *)station1 toStation:(Station *)station2
+-(NSArray*)dsGetExitForStations
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSArray *path = appDelegate.cityMap.activePath;
@@ -239,51 +239,25 @@
     
     NSMutableArray *stationsArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     
-    int currentIndexLine = -1;
-    
-    int time = 0;
-    
-    NSMutableArray *tempArray;
+    Segment *tempSegment;
     
     for (int i=0; i<objectNum; i++) {
         
         if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
             
-            Segment *segment = (Segment*)[path objectAtIndex:i];
+            tempSegment = (Segment*)[path objectAtIndex:i];
             
-            if (currentIndexLine==[[[segment start] line] index]) {
-                
-                time += [segment driving];
-                
-                [tempArray addObject:[NSNumber numberWithInt:time]];
-                
-            } else {
-                
-                if (currentIndexLine!=-1) {
-                    
-                    [stationsArray addObject:tempArray];    
-                    
-                }
-                
-                tempArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
-                
-                [tempArray addObject:[NSNumber numberWithInt:time]];
-                
-                time += [segment driving];
-                
-                [tempArray addObject:[NSNumber numberWithInt:time]];
-                
-                currentIndexLine=[[[segment start] line] index];
-            }
-        }
-        
-        if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]]) {
-            time+=[[path objectAtIndex:i] time];  
+        } else {
+            
+            NSInteger aaa = [[tempSegment start] transferWayTo:[tempSegment end]];
+            
+    //        [stationsArray addObject:[[tempSegment start] transferWayTo:[tempSegment start]]];
         }
         
     }
     
-    [stationsArray addObject:tempArray];    
+    [stationsArray addObject:tempSegment];
+    
     
     return stationsArray;
 
@@ -622,6 +596,8 @@
  //           int exitNumb = [self dsGetExitForStation:station1 toStation:station2];
  
             //           NSString *fileName = [NSString stringWithFormat:@"train_%@_%d.png",appDelegate.cityMap.thisMapName,exitNumb];
+            
+            NSArray *aaa= [self dsGetExitForStations];
             
             int exitNumb = 1;
             
