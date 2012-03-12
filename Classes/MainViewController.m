@@ -78,7 +78,6 @@
 
     // FIXME !!! some classes don't release city map
     [appDelegate.cityMap release];
-    [appDelegate.cityMap release];
     appDelegate.cityMap=cm;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

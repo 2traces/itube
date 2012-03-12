@@ -149,10 +149,12 @@ NSInteger const toolbarWidth=320;
 
 -(void)setCityMap:(CityMap*)cm
 {
+    [mapView removeFromSuperview];
     [containerView removeFromSuperview];
     [containerView release];
     CGRect scrollSize = CGRectMake(0,44,(320),(480-64));
     containerView = [[MyScrollView alloc] initWithFrame:scrollSize];
+    
     mapView = [[[MapView alloc] initWithFrame:scrollSize] autorelease];
     mapView.cityMap = cm;
 	[containerView setContentSize:mapView.size];
