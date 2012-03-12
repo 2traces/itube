@@ -9,6 +9,7 @@
 #import "tubeAppDelegate.h"
 #import "MainViewController.h"
 #import "CityMap.h"
+#import "TubeAppIAPHelper.h"
 
 @implementation tubeAppDelegate
 
@@ -24,9 +25,13 @@
 	self.mainViewController = aController;
 	[aController release];
     
+    // Override point for customization after application launch.
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:[TubeAppIAPHelper sharedHelper]];
+
+    
     CityMap *cm = [[CityMap alloc] init];
     NSString *mapName =[self nameCurrentMap];
-    //[cm loadMap:mapName];
+    [cm loadMap:mapName];
 
     
     self.cityMap = cm;

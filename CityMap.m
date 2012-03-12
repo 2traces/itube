@@ -1591,8 +1591,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         index ++;
 	}
     [[MHelper sharedHelper] saveContext];
-//    [[MHelper sharedHelper] readHistoryFile:mapName];
-//    [[MHelper sharedHelper] readBookmarkFile:mapName];
     _w = boundingBox.origin.x * 2 + boundingBox.size.width;
     _h = boundingBox.origin.y * 2 + boundingBox.size.height;
     

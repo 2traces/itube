@@ -7,7 +7,6 @@
 //
 
 #import "SettingsViewController.h"
-#import "InAppProductsViewController.h"
 #import "LanguageCell.h"
 #import "CityCell.h"
 #import "MyNavigationBar.h"
@@ -76,9 +75,7 @@
 
 -(IBAction)buyPress:(id)sender
 {
-    InAppProductsViewController *controller = [[InAppProductsViewController alloc] initWithNibName:@"InAppProductsViewController" bundle:[NSBundle mainBundle]];
-    [self presentModalViewController:controller animated:YES];
-    [controller release];
+
 }
 
 #pragma mark - View lifecycle
@@ -140,18 +137,45 @@
     if (netStatus == NotReachable) {        
         NSLog(@"No internet connection!");        
     } else {        
-        //        if ([TubeAppIAPHelper sharedHelper].products == nil) {
-        
-        [[TubeAppIAPHelper sharedHelper] requestProducts];
+        if ([TubeAppIAPHelper sharedHelper].products == nil) {
+            [[TubeAppIAPHelper sharedHelper] requestProducts];
         //           [self performSelector:@selector(timeout:) withObject:nil afterDelay:30.0];
-        //        }
+        } else { 
+            [self enableProducts];
+            [cityTableView reloadData];
+        }
     }
 }
 
 - (void)productsLoaded:(NSNotification *)notification {
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self enableProducts];
     [cityTableView reloadData];
+}
+
+-(void)enableProducts
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"status"] isEqual:@"Z"]) {
+            for (SKProduct *product in [TubeAppIAPHelper sharedHelper].products) {
+                if ([product.productIdentifier isEqual:[map valueForKey:@"prodID"]]) {
+                    [map setObject:[NSString stringWithString:@"V"] forKey:@"status"];
+                 
+                    [numberFormatter setLocale:product.priceLocale];
+                    NSString *formattedString = [numberFormatter stringFromNumber:product.price];
+
+                    [map setObject:formattedString forKey:@"price"];
+                }
+            }
+        }
+    }
+    
+    [numberFormatter release];
 }
 
 - (void)viewDidUnload
@@ -216,6 +240,7 @@
         //
         
         UIButton *cellButton = [(CityCell*)cell cellButton];
+        cellButton.hidden=NO;
         
         if ([self isProductStatusDefault:[map objectForKey:@"prodID"]] || [self isProductStatusInstalled:[map objectForKey:@"prodID"]]) {
             [cellButton setTitle:@"Installed" forState:UIControlStateNormal];
@@ -236,8 +261,8 @@
             
         } else if ([self isProductStatusAvailable:[map objectForKey:@"prodID"]])  {
             
-            [cellButton setTitle:@"$0.99" forState:UIControlStateNormal];
-            [cellButton setTitle:@"$0.99" forState:UIControlStateHighlighted];
+            [cellButton setTitle:[map valueForKey:@"price"] forState:UIControlStateNormal];
+            [cellButton setTitle:[map valueForKey:@"price"] forState:UIControlStateHighlighted];
             [cellButton setBackgroundImage:[UIImage imageNamed:@"buy_button.png"] forState:UIControlStateNormal];
             [cellButton setBackgroundImage:[UIImage imageNamed:@"high_buy_button.png"] forState:UIControlStateHighlighted];
             [cellButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -245,13 +270,7 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             
         } else {
-            
-            [cellButton setTitle:@"Buy" forState:UIControlStateNormal];
-            [cellButton setTitle:@"Buy" forState:UIControlStateHighlighted];
-            [cellButton setBackgroundImage:[UIImage imageNamed:@"buy_button.png"] forState:UIControlStateNormal];
-            [cellButton setBackgroundImage:[UIImage imageNamed:@"high_buy_button.png"] forState:UIControlStateHighlighted];
-            [cellButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
+            cellButton.hidden=YES;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         
@@ -521,7 +540,7 @@
             
             self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             _hud.labelText = @"Buying map ...";
-            [self performSelector:@selector(timeout:) withObject:nil afterDelay:60*5];
+            [self performSelector:@selector(timeout:) withObject:nil afterDelay:30.0];
 
         }
     }    
@@ -628,7 +647,7 @@
                 [product setObject:[NSString stringWithString:@"P"] forKey:@"status"];
             }
         } else {
-            [product setObject:[NSString stringWithString:@"V"] forKey:@"status"];
+            [product setObject:[NSString stringWithString:@"Z"] forKey:@"status"];
         };
         
         [mapsInfoArray addObject:product];

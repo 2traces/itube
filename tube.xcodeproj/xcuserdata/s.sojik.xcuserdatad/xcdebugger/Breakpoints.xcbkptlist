@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/MainViewController.m"
-         timestampString = "352203036.176862"
+         timestampString = "353077291.443881"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "492"
-         endingLineNumber = "492"
+         startingLineNumber = "505"
+         endingLineNumber = "505"
          landmarkName = "-changeView:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,12 +34,64 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SettingsViewController.m"
-         timestampString = "352745448.626888"
+         timestampString = "353000522.636596"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "516"
-         endingLineNumber = "516"
+         startingLineNumber = "535"
+         endingLineNumber = "535"
          landmarkName = "-purchaseProduct:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "SettingsViewController.m"
+         timestampString = "353000522.636596"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "164"
+         endingLineNumber = "164"
+         landmarkName = "-enableProducts"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "SettingsViewController.m"
+         timestampString = "353000522.636596"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "551"
+         endingLineNumber = "551"
+         landmarkName = "-productPurchased:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "InAppProductsViewController.m"
+         timestampString = "353000026.476683"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "221"
+         endingLineNumber = "221"
+         landmarkName = "-buyButtonTapped:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "InAppProductsViewController.m"
+         timestampString = "353000254.146116"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "247"
+         endingLineNumber = "247"
+         landmarkName = "-productPurchaseFailed:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

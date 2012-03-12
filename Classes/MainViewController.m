@@ -16,6 +16,7 @@
 #import "PathBarView.h"
 #import "PathDrawView.h"
 #import "PathDrawVertView.h"
+#import "TubeAppIAPHelper.h"
 
 #define FromStation 0
 #define ToStation 1
@@ -50,12 +51,15 @@
     TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] initWithFrame:CGRectMake(0,0,320,44)];
     self.stationsView = twoStationsView;
 
-    /*[self.stationsView.layer setShadowRadius:15.f];
-    [self.stationsView.layer setShadowOffset:CGSizeMake(0, 10)];
-    [self.stationsView.layer setShadowOpacity:0.5f];*/
-
     [(MainView*)self.view addSubview:twoStationsView];
     [twoStationsView release];
+    
+    [self performSelector:@selector(refreshInApp) withObject:nil afterDelay:0.2];
+}
+
+-(void)refreshInApp
+{
+    [[TubeAppIAPHelper sharedHelper] requestProducts];
 }
 
 -(void)changeMapTo:(NSString*)newMap andCity:(NSString*)cityName
@@ -222,58 +226,67 @@
     
     [stationsArray addObject:tempArray]; 
 
-    /*
+
+    
+    return stationsArray;
+}
+
+-(NSInteger)dsGetExitForStation:(Station *)station1 toStation:(Station *)station2
+{
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSArray *path = appDelegate.cityMap.activePath;
     int objectNum = [path count];
     
     NSMutableArray *stationsArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
-
+    
     int currentIndexLine = -1;
+    
+    int time = 0;
     
     NSMutableArray *tempArray;
     
     for (int i=0; i<objectNum; i++) {
-
+        
         if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
             
             Segment *segment = (Segment*)[path objectAtIndex:i];
             
             if (currentIndexLine==[[[segment start] line] index]) {
                 
-                [tempArray addObject:[[segment start] name]];
+                time += [segment driving];
                 
-                NSLog(@"%@ -- %@",[[segment start] name],[[segment end] name]);
+                [tempArray addObject:[NSNumber numberWithInt:time]];
                 
             } else {
                 
                 if (currentIndexLine!=-1) {
-
+                    
                     [stationsArray addObject:tempArray];    
-                
+                    
                 }
                 
                 tempArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
                 
-                [tempArray addObject:[[segment start] name]];
-
-                NSLog(@"%@ -- %@",[[segment start] name],[[segment end] name]);
-
+                [tempArray addObject:[NSNumber numberWithInt:time]];
+                
+                time += [segment driving];
+                
+                [tempArray addObject:[NSNumber numberWithInt:time]];
+                
                 currentIndexLine=[[[segment start] line] index];
             }
         }
+        
+        if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]]) {
+            time+=[[path objectAtIndex:i] time];  
+        }
+        
     }
     
-    [stationsArray addObject:tempArray]; 
-     
-    */ 
+    [stationsArray addObject:tempArray];    
     
     return stationsArray;
-}
 
--(NSInteger)dsGetExitForStation:(Station *)station
-{
-    int ddd = arc4random()%2;
-    
-    return ddd+1;
 }
 
 -(NSMutableArray*)dsGetEveryStationTime
@@ -603,8 +616,14 @@
                 currentY+=lineStart;
             }
             
-            int exitNumb = [self dsGetExitForStation:nil];
+            Station *station1 = [[stations objectAtIndex:j] objectAtIndex:0];
+            Station *station2 = [[stations objectAtIndex:j] objectAtIndex:1];
+            
+ //           int exitNumb = [self dsGetExitForStation:station1 toStation:station2];
+ 
             //           NSString *fileName = [NSString stringWithFormat:@"train_%@_%d.png",appDelegate.cityMap.thisMapName,exitNumb];
+            
+            int exitNumb = 1;
             
             NSString *fileName = [NSString stringWithFormat:@"train_paris_%d.png",exitNumb];
             UIImage *trainImage = [UIImage imageNamed:fileName];

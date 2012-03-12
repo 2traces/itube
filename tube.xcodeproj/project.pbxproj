@@ -28,7 +28,6 @@
 		5121FCBF14C9E23000A9192A /* MyTiledLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5121FCBE14C9E23000A9192A /* MyTiledLayer.m */; };
 		515B9C2F14EEAE740034BB12 /* mainscreen_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 515B9C2D14EEAE740034BB12 /* mainscreen_shadow.png */; };
 		515B9C3014EEAE740034BB12 /* mainscreen_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 515B9C2E14EEAE740034BB12 /* mainscreen_shadow@2x.png */; };
-		51BBF85E150287C400551EF1 /* hamburg.trpnew in Resources */ = {isa = PBXBuildFile; fileRef = 51BBF85D150287C400551EF1 /* hamburg.trpnew */; };
 		51D20F3514B849A3007AC4BD /* ManagedObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D20F3414B849A3007AC4BD /* ManagedObjects.m */; };
 		51D20F3914B85185007AC4BD /* tubee.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 51D20F3714B85185007AC4BD /* tubee.xcdatamodeld */; };
 		51D20F3B14B85468007AC4BD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D20F3A14B85468007AC4BD /* CoreData.framework */; };
@@ -99,7 +98,6 @@
 		BC3D14F814C338380059A17E /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3D14DE14C338350059A17E /* BookmarkViewController.m */; };
 		BC3D14FB14C338380059A17E /* LineListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3D14E214C338360059A17E /* LineListViewController.m */; };
 		BC3D14FD14C338380059A17E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3D14E514C338370059A17E /* SettingsViewController.m */; };
-		BC3D14FE14C338380059A17E /* InAppProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3D14E714C338370059A17E /* InAppProductsViewController.m */; };
 		BC3D150414C338600059A17E /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3D150114C338580059A17E /* Server.m */; };
 		BC3D150514C338600059A17E /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3D150314C3385B0059A17E /* XMLParser.m */; };
 		BC3D150D14C338EE0059A17E /* maps.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC3D150B14C338EE0059A17E /* maps.plist */; };
@@ -274,7 +272,6 @@
 		BCD3538A14E138BC00D4278A /* UIColor-enhanced.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD3538914E138BC00D4278A /* UIColor-enhanced.m */; };
 		BCE0B07A14FCD47600CCE704 /* DownloadServer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE0B07914FCD47500CCE704 /* DownloadServer.m */; };
 		BCF52DCD14CAD69400D76E0F /* FastAccessTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */; };
-		BCFDB67B14FE6B7D003736E7 /* berlin.vec in Resources */ = {isa = PBXBuildFile; fileRef = BCFDB67A14FE6B7D003736E7 /* berlin.vec */; };
 		CE1146C91466EAF200EF5A28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1146C81466EAF200EF5A28 /* QuartzCore.framework */; };
 		CE81FA70146BDC91008BF969 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CE81FA6D146BDC91008BF969 /* Icon-72.png */; };
 		CE81FA71146BDC91008BF969 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE81FA6E146BDC91008BF969 /* Icon.png */; };
@@ -331,7 +328,6 @@
 		5121FCBE14C9E23000A9192A /* MyTiledLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTiledLayer.m; path = Classes/MyTiledLayer.m; sourceTree = "<group>"; };
 		515B9C2D14EEAE740034BB12 /* mainscreen_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainscreen_shadow.png; sourceTree = "<group>"; };
 		515B9C2E14EEAE740034BB12 /* mainscreen_shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainscreen_shadow@2x.png"; sourceTree = "<group>"; };
-		51BBF85D150287C400551EF1 /* hamburg.trpnew */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hamburg.trpnew; sourceTree = "<group>"; };
 		51D20F3314B849A3007AC4BD /* ManagedObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManagedObjects.h; path = Classes/ManagedObjects.h; sourceTree = "<group>"; };
 		51D20F3414B849A3007AC4BD /* ManagedObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManagedObjects.m; path = Classes/ManagedObjects.m; sourceTree = "<group>"; };
 		51D20F3814B85185007AC4BD /* tubee.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tubee.xcdatamodel; sourceTree = "<group>"; };
@@ -423,8 +419,6 @@
 		BC3D14E214C338360059A17E /* LineListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineListViewController.m; sourceTree = "<group>"; };
 		BC3D14E414C338370059A17E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		BC3D14E514C338370059A17E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		BC3D14E614C338370059A17E /* InAppProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppProductsViewController.h; sourceTree = "<group>"; };
-		BC3D14E714C338370059A17E /* InAppProductsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppProductsViewController.m; sourceTree = "<group>"; };
 		BC3D150014C338570059A17E /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
 		BC3D150114C338580059A17E /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
 		BC3D150214C338590059A17E /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
@@ -611,7 +605,6 @@
 		BCE0B07914FCD47500CCE704 /* DownloadServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadServer.m; sourceTree = "<group>"; };
 		BCF52DCB14CAD69400D76E0F /* FastAccessTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastAccessTableViewController.h; sourceTree = "<group>"; };
 		BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastAccessTableViewController.m; sourceTree = "<group>"; };
-		BCFDB67A14FE6B7D003736E7 /* berlin.vec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = berlin.vec; sourceTree = "<group>"; };
 		CE1146C81466EAF200EF5A28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CE81FA6D146BDC91008BF969 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "images/Icon-72.png"; sourceTree = "<group>"; };
 		CE81FA6E146BDC91008BF969 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = images/Icon.png; sourceTree = "<group>"; };
@@ -727,8 +720,6 @@
 				BC3D14E214C338360059A17E /* LineListViewController.m */,
 				BC3D14E414C338370059A17E /* SettingsViewController.h */,
 				BC3D14E514C338370059A17E /* SettingsViewController.m */,
-				BC3D14E614C338370059A17E /* InAppProductsViewController.h */,
-				BC3D14E714C338370059A17E /* InAppProductsViewController.m */,
 				51D20F3714B85185007AC4BD /* tubee.xcdatamodeld */,
 				51D20F3314B849A3007AC4BD /* ManagedObjects.h */,
 				51D20F3414B849A3007AC4BD /* ManagedObjects.m */,
@@ -1455,7 +1446,6 @@
 				BC3D14F814C338380059A17E /* BookmarkViewController.m in Sources */,
 				BC3D14FB14C338380059A17E /* LineListViewController.m in Sources */,
 				BC3D14FD14C338380059A17E /* SettingsViewController.m in Sources */,
-				BC3D14FE14C338380059A17E /* InAppProductsViewController.m in Sources */,
 				BC3D150414C338600059A17E /* Server.m in Sources */,
 				BC3D150514C338600059A17E /* XMLParser.m in Sources */,
 				BC98E47514C9592700F5260D /* TopTwoStationsView.m in Sources */,
