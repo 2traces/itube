@@ -231,6 +231,8 @@
 }
 
 - (void)dealloc {
+    locationManager.delegate = nil;
+    [locationManager release];
     [vectorLayer release];
     [mainLabel release];
     [labelBg release];
