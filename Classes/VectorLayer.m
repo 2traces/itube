@@ -291,7 +291,8 @@
             
         } else if([w isEqualToString:@"textout"]) {
             NSArray *ww = [line componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
-            [elements addObject:[[VectorText alloc] initWithFontName:[ww objectAtIndex:1] fontSize:[[ww objectAtIndex:3] intValue] point:CGPointMake([[ww objectAtIndex:5] intValue], [[ww objectAtIndex:7] intValue]) text:[ww objectAtIndex:9] andColor:penColor ]];
+            NSArray *www = [ww filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF <> \"\""]];
+            [elements addObject:[[VectorText alloc] initWithFontName:[www objectAtIndex:1] fontSize:[[www objectAtIndex:2] intValue] point:CGPointMake([[www objectAtIndex:3] intValue], [[www objectAtIndex:4] intValue]) text:[www objectAtIndex:5] andColor:penColor ]];
         }
     }];
 }

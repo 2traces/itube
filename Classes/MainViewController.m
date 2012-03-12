@@ -616,8 +616,8 @@
                 currentY+=lineStart;
             }
             
-            Station *station1 = [[stations objectAtIndex:j] objectAtIndex:0];
-            Station *station2 = [[stations objectAtIndex:j] objectAtIndex:1];
+ //           Station *station1 = [[stations objectAtIndex:j] objectAtIndex:0];
+ //           Station *station2 = [[stations objectAtIndex:j] objectAtIndex:1];
             
  //           int exitNumb = [self dsGetExitForStation:station1 toStation:station2];
  

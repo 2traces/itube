@@ -9,7 +9,6 @@
 #import "CityMap.h"
 #include "ini.h"
 #import "ManagedObjects.h"
-#import <CoreLocation/CoreLocation.h>
 
 NSMutableArray * Split(NSString* s)
 {
@@ -87,6 +86,31 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @implementation ComplexText
 
 @synthesize string;
+
++(NSString*) makePlainString:(NSString*)_str
+{
+    NSString *str = _str;
+    BOOL finish = NO;
+    while (!finish) {
+        switch([str characterAtIndex:0]) {
+            case '/':
+            case '\\':
+            case '^':
+            case '_':
+            case '-':
+            case '<':
+            case '>':
+            case '|':
+                str = [str substringFromIndex:1];
+                break;
+            default:
+                finish = YES;
+                break;
+        }
+    }
+    str = [[str stringByReplacingOccurrencesOfString:@";" withString:@" "] retain];
+    return str;
+}
 
 -(id) initWithString:(NSString *)_string font:(UIFont *)_font andRect:(CGRect)_rect
 {
@@ -492,7 +516,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize tangent;
 @synthesize way1;
 @synthesize way2;
-
+@synthesize gpsCoords;
 
 -(id)copyWithZone:(NSZone*)zone
 {
@@ -514,6 +538,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         boundingBox = CGRectMake(pos.x-map->StationDiameter/2, pos.y-map->StationDiameter/2, map->StationDiameter, map->StationDiameter);
         index = i;
         textRect = r;
+        gpsCoords = CGPointZero;
         segment = [[NSMutableArray alloc] init];
         backSegment = [[NSMutableArray alloc] init];
         relation = [[NSMutableArray alloc] init];
@@ -742,6 +767,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize driving;
 @synthesize boundingBox;
 @synthesize active;
+@synthesize isSpline;
 
 -(NSArray*)splinePoints {
     return splinePoints;
@@ -751,6 +777,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 {
     if((self = [super init])) {
         active = YES;
+        isSpline = NO;
         start = from;
         end = to;
         [end.backSegment addObject:self];
@@ -783,6 +810,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(void)calcSpline
 {
     if(splinePoints == nil || [splinePoints count] == 0) return;
+    if(!isSpline) {
+        [self predrawMultiline];
+        return;
+    }
     [splinePoints addObject:[NSValue valueWithCGPoint:CGPointMake(end.pos.x, end.pos.y)]];
     [splinePoints insertObject:[NSValue valueWithCGPoint:CGPointMake(start.pos.x, start.pos.y)] atIndex:0];
     NSMutableArray *newSplinePoints = [[NSMutableArray alloc] init];
@@ -793,7 +824,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
     [splinePoints release];
     splinePoints = newSplinePoints;
-    [self predraw];
+    [self predrawSpline];
 }
 
 -(void)draw:(CGContextRef)context fromPoint:(CGPoint)p toTangentPoint:(TangentPoint*)tp
@@ -819,18 +850,38 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)draw:(CGContextRef)context
 {
-    CGContextMoveToPoint(context, start.pos.x, start.pos.y);
     if(splinePoints) {
         CGContextMoveToPoint(context, 0, 0);
         CGContextAddPath(context, path);
         CGContextStrokePath(context);
     } else {
+        CGContextMoveToPoint(context, start.pos.x, start.pos.y);
         CGContextAddLineToPoint(context, end.pos.x, end.pos.y);
         CGContextStrokePath(context);
     }
 }
 
 -(void)predraw
+{
+    if(isSpline) [self predrawSpline];
+    else [self predrawMultiline];
+}
+
+-(void)predrawMultiline
+{
+    if(splinePoints) {
+        if(path != nil) CGPathRelease(path);
+        path = CGPathCreateMutable();
+        CGPathMoveToPoint(path, nil, start.pos.x, start.pos.y);
+        for (int i=0; i < [splinePoints count]; i++) {
+            CGPoint p = [[splinePoints objectAtIndex:i] CGPointValue];
+            CGPathAddLineToPoint(path, nil, p.x, p.y);
+        }
+        CGPathAddLineToPoint(path, nil, end.pos.x, end.pos.y);
+    }
+}
+
+-(void)predrawSpline
 {
     if(splinePoints) {
         if(path != nil) CGPathRelease(path);
@@ -1136,23 +1187,29 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)additionalPointsBetween:(NSString *)station1 and:(NSString *)station2 points:(NSArray *)points
 {
+    NSString *st1 = [ComplexText makePlainString:station1];
+    NSString *st2 = [ComplexText makePlainString:station2];
     for (Station *s in stations) {
         BOOL search = NO;
         BOOL rev = NO;
-        if([s.name isEqualToString:station1]) {
+        if([s.name isEqualToString:st1]) {
             search = YES;
         }
-        else if([s.name isEqualToString:station2]) {
+        else if([s.name isEqualToString:st2]) {
             search = rev = YES;
         }
         if(search) {
             for (Segment *seg in s.segment) {
-                if(([seg.end.name isEqualToString:station1] && rev)
-                   || ([seg.end.name isEqualToString:station2] && !rev)) {
+                if(([seg.end.name isEqualToString:st1] && rev)
+                   || ([seg.end.name isEqualToString:st2] && !rev)) {
                     NSEnumerator *enumer;
                     if(rev) enumer = [points reverseObjectEnumerator];
                     else enumer = [points objectEnumerator];
                     for (NSString *p in enumer) {
+                        if([p isEqualToString:@"spline"]) {
+                            seg.isSpline = YES;
+                            continue;
+                        }
                         NSArray *coord = [p componentsSeparatedByString:@","];
                         [seg appendPoint:CGPointMake([[coord objectAtIndex:0] intValue], [[coord objectAtIndex:1] intValue])];
                     }
@@ -1231,7 +1288,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @implementation CityMap
 
 @synthesize graph;
-@synthesize gpsCoords;
 @synthesize activeExtent;
 @synthesize activePath;
 @synthesize maxScale;
@@ -1263,7 +1319,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     TEXT_FONT = @"Arial-BoldMT";
    
     transfers = [[NSMutableArray alloc] init];
-	gpsCoords = [[NSMutableDictionary alloc] init];
 	graph = [[Graph graph] retain];
     mapLines = [[NSMutableArray alloc] init];
     activeExtent = CGRectNull;
@@ -1309,6 +1364,13 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
     [[MHelper sharedHelper] readHistoryFile:mapName];
     [[MHelper sharedHelper] readBookmarkFile:mapName];
+    
+    if([mapName isEqualToString:@"venice"]) {
+        schedule = [[Schedule alloc] initSchedule:@"routes"];
+        for (Line *l in mapLines) {
+            [schedule setIndex:l.index forLine:l.name];
+        }
+    }
 }
 
 -(void) loadOldMap:(NSString *)mapFile trp:(NSString *)trpFile {
@@ -1340,6 +1402,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         maxScale = sc;
         PredrawScale = maxScale;
     }
+    BOOL tuneEnabled = [[parserMap get:@"TuneTransfers" section:@"Options"] boolValue];
 	
 	_w = 0;
 	_h = 0;
@@ -1390,12 +1453,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 		[self processTransfers:value];
 	}
 	
-	/*INISection *section3 = [parserTrp getSection:@"gps"];
-	NSMutableDictionary *as3 = [section3 assignments];
-	for (NSString* key in as3) {
-		NSString *value = [parserTrp get:key section:@"gps"];
-		[self processGPS :key :value];
-	}*/
 	[parserMap release];
     [parserTrp release];
     
@@ -1403,8 +1460,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         [l calcStations];
     }
     
-    for (Transfer* tr in transfers) {
-        [tr tuneStations];
+    if(tuneEnabled) {
+        for (Transfer* tr in transfers) {
+            [tr tuneStations];
+        }
     }
     
     for (Line *l in mapLines) {
@@ -1451,6 +1510,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         maxScale = sc;
         PredrawScale = maxScale;
     }
+    BOOL tuneEnabled = [[parserMap get:@"TuneTransfers" section:@"Options"] boolValue];
 	
 	_w = 0;
 	_h = 0;
@@ -1504,6 +1564,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 NSString *sncr = [stn objectAtIndex:0];
                 NSInteger sp = [sncr rangeOfString:@" " options:NSBackwardsSearch].location;
                 NSString *stationName = [sncr substringToIndex:sp];
+                NSArray *gpsCoords = [[sncr substringFromIndex:sp] componentsSeparatedByString:@","];
                 Station *st = nil;
                 for (Station *ss in l.stations) {
                     if([ss.name isEqualToString:stationName]) {
@@ -1522,13 +1583,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     int th = [[coord_text objectAtIndex:3] intValue];
                     st = [[[Station alloc] initWithMap:self name:stationName pos:CGPointMake(x, y) index:si rect:CGRectMake(tx, ty, tw, th) andDriving:0] autorelease];
                     st.line = l;
+                    st.gpsCoords = CGPointMake([[gpsCoords objectAtIndex:0] floatValue], [[gpsCoords objectAtIndex:1] floatValue]);
                     [l.stations addObject:st];
-                    si ++;
                     MStation *station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
                     station.name=st.name;
                     station.isFavorite=[NSNumber numberWithInt:0];
                     station.lines=newLine;
-                    station.index = [NSNumber numberWithInt:i];
+                    station.index = [NSNumber numberWithInt:si];
+                    si ++;
                 }
                 [stations setValue:st forKey:key];
                 if([stn count] >= 3) st.way1 = StringToWay([stn objectAtIndex:[stn count]-2]);
@@ -1614,8 +1676,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         [l calcStations];
     }
     
-    for (Transfer* tr in transfers) {
-        [tr tuneStations];
+    if(tuneEnabled) {
+        for (Transfer* tr in transfers) {
+            [tr tuneStations];
+        }
     }
     
     for (Line *l in mapLines) {
@@ -1650,6 +1714,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(NSDictionary*) calcPath :(NSString*) firstStation :(NSString*) secondStation :(NSInteger) firstStationLineNum :(NSInteger)secondStationLineNum {
 
+    if(schedule != nil) {
+        NSArray *path = [schedule findPathFrom:firstStation to:secondStation];
+        NSLog(@"schedule path is %@", path);
+        return [NSDictionary dictionaryWithObject:path forKey:[NSNumber numberWithDouble:[[path lastObject] weight]]];
+    }
 	//NSArray *pp = [graph shortestPath:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum]];
     NSDictionary *paths = [graph getPaths:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum]];
     NSArray *keys = [[paths allKeys] sortedArrayUsingSelector:@selector(compare:)];
@@ -1660,16 +1729,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	 
 	return paths;
 }
-/*-(void) processGPS: (NSString*) station :(NSString*) lineCoord {
-	
-	NSArray *elements = [lineCoord componentsSeparatedByString:@","];
-	
-	CLLocation *et = [[[CLLocation alloc] initWithLatitude:[[elements objectAtIndex:0] floatValue] 
-												 longitude:[[elements objectAtIndex:1] floatValue]
-															] autorelease];
-	
-	[gpsCoords setObject:et forKey:station];
-}*/
+
 -(void) processTransfers:(NSString*)transferInfo{
 	
 	NSArray *elements = [transferInfo componentsSeparatedByString:@","];
@@ -1749,10 +1809,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	
     for (Line* l in mapLines) {
         if([l.name isEqualToString:lineName]) {
-            [l additionalPointsBetween:[stations objectAtIndex:1] and:[stations objectAtIndex:2] points:[elements objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, [elements count]-2)]]];
-            break;
+            [l additionalPointsBetween:[stations objectAtIndex:1] and:[stations objectAtIndex:2] points:[elements objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, [elements count]-1)]]];
+            return;
         }
     }
+    NSLog(@"Error (additional point): line %@ and stations %@,%@ not found", lineName, [stations objectAtIndex:1], [stations objectAtIndex:2]);
 }
 
 - (UIColor *) colorForHex:(NSString *)hexColor {
@@ -1851,12 +1912,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         if(error != nil) 
             NSLog(@"%@", error);
     }*/
-	[gpsCoords release];
     [mapLines release];
 	[graph release];
     [transfers release];
     [activePath release];
     [pathStationsList release];
+    [schedule release];
     [super dealloc];
 }
 
@@ -1989,6 +2050,23 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
     }
     CGContextRestoreGState(context);
+}
+
+-(Station*)findNearestStationTo:(CGPoint)gpsCoord
+{
+    CGFloat sqDist = INFINITY;
+    Station *nearest = nil;
+    for(Line *l in mapLines) {
+        for (Station *s in l.stations) {
+            CGPoint dp = CGPointMake(s.gpsCoords.x - gpsCoord.x, s.gpsCoords.y - gpsCoord.y);
+            CGFloat d = dp.x * dp.x + dp.y * dp.y;
+            if(d < sqDist) {
+                sqDist = d;
+                nearest = s;
+            }
+        }
+    }
+    return nearest;
 }
 
 @end

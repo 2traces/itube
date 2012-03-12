@@ -5,6 +5,9 @@ LinesWidth=15
 WordWrap=false
 FontSize=26
 MaxScale=0.5
+TuneTransfers=true
+DisplayTransfers=2
+DisplayStations=2
 
 [bakerloo]
 Color=af610f

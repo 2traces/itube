@@ -18,7 +18,7 @@
     NSMutableSet *edgesOut_;
     @public
     // used for path calculating
-    float dist;
+    double dist;
     id customData;
 }
 

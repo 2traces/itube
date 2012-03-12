@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Graph.h"
+#import "Schedule.h"
 //#import <CoreLocation/CoreLocation.h>
 
 NSMutableArray * Split(NSString* s);
@@ -95,6 +96,7 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
     CGFloat defaultTransferDriving;
     NSMutableDictionary *transferWay;
     int defaultTransferWay;
+    CGPoint gpsCoords;
 }
 
 @property (nonatomic, readonly) NSMutableArray* relation;
@@ -120,6 +122,7 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 @property (nonatomic, readonly) CGPoint tangent;
 @property (nonatomic, assign) int way1;
 @property (nonatomic, assign) int way2;
+@property (nonatomic, assign) CGPoint gpsCoords;
 
 -(id) initWithMap:(CityMap*)cityMap name:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr;
 -(BOOL) addSibling:(Station*)st;
@@ -156,7 +159,7 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
     int driving;
     NSMutableArray* splinePoints;
     CGRect boundingBox;
-    BOOL active;
+    BOOL active, isSpline;
     CGMutablePathRef path;
 }
 @property (nonatomic, readonly) Station* start;
@@ -165,12 +168,15 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic, assign) BOOL active;
 @property (nonatomic, readonly) NSArray *splinePoints;
+@property (nonatomic, assign) BOOL isSpline;
 
 -(id)initFromStation:(Station*)from toStation:(Station*)to withDriving:(int)dr;
 -(void)appendPoint:(CGPoint)p;
 -(void)calcSpline;
 -(void)draw:(CGContextRef)context;
 -(void)predraw;
+-(void)predrawSpline;
+-(void)predrawMultiline;
 @end
 
 @interface Line : NSObject {
@@ -213,7 +219,6 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 	NSInteger _w;
 	NSInteger _h;
     NSMutableArray *mapLines;
-	NSMutableDictionary *gpsCoords;
     NSMutableArray* transfers;
     CGFloat maxScale;
     CGRect activeExtent;
@@ -222,6 +227,7 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
     NSMutableArray *pathStationsList;
     CGFloat currentScale;
     NSString *backgroundImageFile;
+    Schedule *schedule;
 @public
     CGFloat PredrawScale;
     CGFloat LineWidth;
@@ -232,7 +238,6 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
     NSString *TEXT_FONT;
 }
 
-@property (nonatomic,retain) NSMutableDictionary *gpsCoords;
 // размер карты 
 @property (readonly) NSInteger w;
 @property (readonly) NSInteger h;
@@ -269,7 +274,6 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 -(NSInteger) checkPoint:(CGPoint*)point Station:(NSMutableString*)stationName;
 	
 // load stuff 
-//-(void) processGPS: (NSString*) station :(NSString*) lineCoord;
 -(void) processTransfers:(NSString*)transferInfo;
 -(void) processTransfers2:(NSString*)transferInfo;
 -(void) processAddNodes:(NSString*)addNodeInfo;
@@ -283,4 +287,5 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 
 -(void) activatePath:(NSArray*)pathMap;
 -(void) resetPath;
+-(Station*) findNearestStationTo:(CGPoint)gpsCoord;
 @end
