@@ -82,7 +82,6 @@
 
     // FIXME !!! some classes don't release city map
     [appDelegate.cityMap release];
-    [appDelegate.cityMap release];
     appDelegate.cityMap=cm;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -231,11 +230,61 @@
     return stationsArray;
 }
 
--(NSArray*)dsGetExitForStations
+-(NSMutableArray*)normalizePath:(NSArray*)path
+{
+    int count = [path count];
+    MStation *firstStation = [self fromStation];
+    
+    NSMutableArray *normalPath = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
+    
+    MStation *threadStart = firstStation;
+    
+    for (int i=0; i<count; i++) {
+        
+        if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
+            
+            Segment *tempSegment = (Segment*)[path objectAtIndex:i];
+            MStation *st1 = [[MHelper sharedHelper] getStationWithIndex:[tempSegment start].index andLineIndex:[tempSegment start].line.index];
+            
+            if (st1 != threadStart) {
+            
+                Segment *newSegment = [[[Segment alloc] initFromStation:[tempSegment end] toStation:[tempSegment start] withDriving:[tempSegment driving]] autorelease];
+                [normalPath addObject:newSegment];
+                
+                threadStart=[[MHelper sharedHelper] getStationWithIndex:[tempSegment end].index andLineIndex:[tempSegment end].line.index];
+            } else {
+                [normalPath addObject:tempSegment];
+                threadStart =[[MHelper sharedHelper] getStationWithIndex:[tempSegment end].index andLineIndex:[tempSegment end].line.index];
+            }
+            
+        } else {
+            
+            Transfer *transfer = (Transfer*)[path objectAtIndex:i];
+            
+            NSArray *array = [[transfer stations] allObjects];
+            
+            if ([array objectAtIndex:0]==threadStart) {
+                Station *st1 = [array objectAtIndex:1];
+                threadStart = [[MHelper sharedHelper] getStationWithIndex:st1.index andLineIndex:st1.line.index];
+            } else {
+                Station *st1 = [array objectAtIndex:0];
+                threadStart = [[MHelper sharedHelper] getStationWithIndex:st1.index andLineIndex:st1.line.index];
+            }
+            
+            [normalPath addObject:transfer];
+        }        
+    }
+    
+    return normalPath;
+}
+
+-(NSMutableArray*)dsGetExitForStations
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSArray *path = appDelegate.cityMap.activePath;
-    int objectNum = [path count];
+    NSArray *pathX = appDelegate.cityMap.activePath;
+    int objectNum = [pathX count];
+    
+    NSMutableArray *path = [self normalizePath:pathX];
     
     NSMutableArray *stationsArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     
@@ -249,15 +298,32 @@
             
         } else {
             
-            NSInteger aaa = [[tempSegment start] transferWayTo:[tempSegment end]];
+            Transfer *transfer = (Transfer*)[path objectAtIndex:i];
             
-    //        [stationsArray addObject:[[tempSegment start] transferWayTo:[tempSegment start]]];
+            Station *startStation = [tempSegment end];
+            
+            NSArray *array = [[transfer stations] allObjects];
+            
+            Station *endStation;
+            
+            if ([array objectAtIndex:0]==startStation) {
+                endStation = [array objectAtIndex:1];
+            } else {
+                endStation = [array objectAtIndex:0];
+            }
+            
+            NSInteger aaa = [startStation transferWayTo:endStation];
+            
+            [stationsArray addObject:[NSNumber numberWithInteger:aaa]];
         }
         
     }
     
-    [stationsArray addObject:tempSegment];
+    NSInteger aaa = [[tempSegment end] transferWayFrom:[tempSegment start]];
     
+    [stationsArray addObject:[NSNumber numberWithInteger:aaa]];
+    
+    NSLog(@"%@",stationsArray);
     
     return stationsArray;
 
@@ -472,7 +538,6 @@
     
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateStyle:NSDateFormatterNoStyle];
-
     
     if (!self.pathScrollView ) {
         // && [[path11 objectAtIndex:0] isKindOfClass:[Segment class]] && [[path11 lastObject] isKindOfClass:[Segment class]]
@@ -482,7 +547,9 @@
         
         NSArray *stations = [self dsGetStationsArray];
         NSArray *stationsTime = [self dsGetEveryStationTime];
-        
+        NSMutableArray *exits = [self dsGetExitForStations]; 
+        NSArray *transferTime = [self dsGetEveryTransferTime];
+
         int transferNumb = [stations count]-1;
 
         int trainType = 0;
@@ -574,7 +641,16 @@
         [dateLabel2 release];
         
         // точки станций
-        for (int j=0;j<segmentsCount;j++) {
+        
+        int endCount;
+        
+        if ([[path11 lastObject] isKindOfClass:[Transfer class]]) {
+            endCount=segmentsCount-1;
+        } else {
+            endCount=segmentsCount;
+        }
+        
+        for (int j=0;j<endCount;j++) {
             
             if (j==0 ) {
                 currentY=lineStart;
@@ -590,25 +666,49 @@
                 currentY+=lineStart;
             }
             
- //           Station *station1 = [[stations objectAtIndex:j] objectAtIndex:0];
- //           Station *station2 = [[stations objectAtIndex:j] objectAtIndex:1];
+            int exitNumb = [[exits objectAtIndex:j] intValue];
             
- //           int exitNumb = [self dsGetExitForStation:station1 toStation:station2];
- 
-            //           NSString *fileName = [NSString stringWithFormat:@"train_%@_%d.png",appDelegate.cityMap.thisMapName,exitNumb];
-            
-            NSArray *aaa= [self dsGetExitForStations];
-            
-            int exitNumb = 1;
-            
-            NSString *fileName = [NSString stringWithFormat:@"train_paris_%d.png",exitNumb];
-            UIImage *trainImage = [UIImage imageNamed:fileName];
+            NSString *trainName = [NSString stringWithFormat:@"train_%d.png",exitNumb];
+//            NSString *fileName = [[NSBundle mainBundle] pathForResource:trainName ofType:@"png" inDirectory:[NSString stringWithFormat:@"maps/%@",appDelegate.cityMap.thisMapName]];
+                                  
+            UIImage *trainImage = [UIImage imageNamed:trainName];
             
             UIImageView *trainSubview = [[UIImageView alloc] initWithImage:trainImage];
             
-            trainSubview.frame = CGRectMake(37, currentY+30.0, trainImage.size.width, trainImage.size.height);
+            trainSubview.frame = CGRectMake(27, currentY+30.0, trainImage.size.width, trainImage.size.height); // было 37
             [self.pathScrollView addSubview:trainSubview];
             [trainSubview release];
+            
+            /*
+            UIImage *arrow = [UIImage imageNamed:@"exit_arrow.png"];
+
+            
+            if ([self shouldPlaceArrowS:exitNumb]) {
+                UIImageView *arrowImage = [[UIImageView alloc] initWithImage:arrow];
+                arrowImage.frame = CGRectMake(87, currentY+60.0, arrow.size.width, arrow.size.height);
+                [self.pathScrollView addSubview:arrowImage];
+                [arrowImage release];                
+            }
+            
+            if ([self shouldPlaceArrowM:exitNumb]) {
+                UIImageView *arrowImage = [[UIImageView alloc] initWithImage:arrow];
+                arrowImage.frame = CGRectMake(140, currentY+60.0, arrow.size.width, arrow.size.height);
+                [self.pathScrollView addSubview:arrowImage];
+                [arrowImage release];                                
+
+                UIImageView *arrowImage2 = [[UIImageView alloc] initWithImage:arrow];
+                arrowImage2.frame = CGRectMake(220, currentY+60.0, arrow.size.width, arrow.size.height);
+                [self.pathScrollView addSubview:arrowImage2];
+                [arrowImage2 release];                                
+            }
+
+            if ([self shouldPlaceArrowE:exitNumb]) {
+                UIImageView *arrowImage = [[UIImageView alloc] initWithImage:arrow];
+                arrowImage.frame = CGRectMake(280, currentY+60.0, arrow.size.width, arrow.size.height);
+                [self.pathScrollView addSubview:arrowImage];
+                [arrowImage release];                                
+            }
+             */
             
             currentY+=transferHeight;
 
@@ -654,7 +754,16 @@
             
         }
         
-        for (int i=0;i<transferNumb;i++)
+        int endTransferCount;
+        
+        if ([[path11 lastObject] isKindOfClass:[Transfer class]]) {
+            endTransferCount=transferNumb-1;
+        } else {
+            endTransferCount=transferNumb;
+        }
+
+        
+        for (int i=0;i<endTransferCount;i++)
         {
             currentY=0;
             
@@ -672,12 +781,9 @@
             NSString *stationName1 = [[stations objectAtIndex:i] lastObject];            
             NSString *stationName2 = [[stations objectAtIndex:i+1] objectAtIndex:0];
             
-   //         int time1 = [[[stationsTime objectAtIndex:i] lastObject] intValue];            
-   //         int time2 = [[[stationsTime objectAtIndex:i+1] objectAtIndex:0] intValue]; // tut crash
+            int time1 = [[[stationsTime objectAtIndex:i] lastObject] intValue];            
+            int time2 = time1+[[transferTime objectAtIndex:i] intValue];
 
-            int time1=0;
-            int time2=0;
-            
             if ([stationName1 isEqualToString:stationName2]) {
                 
                 UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY-6.0, 235, 22.0)];
@@ -745,81 +851,7 @@
                 [dateLabel2 release];
                 
             }
-            
         } 
-        
-        
-        
-        
-/*        for (int j=0;j<segmentsCount;j++) {
-            
-            NSArray *tempStations = [stations objectAtIndex:j];
-            
-            int segStationsCount = [tempStations count];
-            
-            for (int k=0;k<segStationsCount;k++) {
-                
-                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY, 235.0, 25.0)];
-                
-                NSString *stationName = [tempStations objectAtIndex:k];
-
-                label.text=stationName;
-                if (k==0) {
-                    label.font=[UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
-                } else {
-                    label.font=[UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
-                }
-                
-                label.backgroundColor=[UIColor clearColor];
-                [self.pathScrollView addSubview:label];
-                [label release];
-                
-                // -------
-                
-                UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(275.0, currentY, 240.0, 25.0)];
-                
-                NSString *dateString = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
-                
-                dateLabel.text = dateString;
-                dateLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.0];
-                dateLabel.backgroundColor = [UIColor clearColor];
-                dateLabel.textColor = [UIColor darkGrayColor];
-                [self.pathScrollView addSubview:dateLabel];
-                [dateLabel release];
-                
-                // -------
-                
-                if (k==0) {
-                    
-                    int exitNumb = [self dsGetExitForStation:nil];
-         //           NSString *fileName = [NSString stringWithFormat:@"train_%@_%d.png",appDelegate.cityMap.thisMapName,exitNumb];
-                    
-                    NSString *fileName = [NSString stringWithFormat:@"train_paris_%d.png",exitNumb];
-                    
-                    UIImageView *trainSubview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:fileName]];
-                    trainSubview.frame = CGRectMake(20.0, currentY+20.0, 260, 47);
-                    [self.pathScrollView addSubview:trainSubview];
-                    [trainSubview release];
-                    
-                    currentY+=transferHeight;
-
-                    
-                } else {
-                    
-                    currentY+=stationHeight;
-                }
-                
-      //          time += [[[stationsTime objectAtIndex:j] objectAtIndex:k] intValue];
-            }
-            
-            currentY+=stationHeight;
-           
-            if (j<segmentsCount-1) {
-     //           time += [[transferTime objectAtIndex:j] intValue];
-            }
-            
-        }
- */
 
         PathDrawVertView *drawView = [[PathDrawVertView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320, viewHeight+100.0)];
         drawView.tag =20000;
@@ -853,6 +885,33 @@
         self.pathScrollView=nil;
         [(UIButton*)[(MainView*)self.view viewWithTag:333] setImage:[UIImage imageNamed:@"switch_to_path.png"] forState:UIControlStateNormal];
         [(UIButton*)[(MainView*)self.view viewWithTag:333] setImage:[UIImage imageNamed:@"switch_to_path_high.png"] forState:UIControlStateHighlighted];
+    }
+}
+
+-(BOOL)shouldPlaceArrowS:(int)num
+{
+    if (num==1 || num ==3 || num == 5 || num == 7) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+-(BOOL)shouldPlaceArrowM:(int)num
+{
+    if (num==2 || num ==3 || num == 6 || num == 7) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+-(BOOL)shouldPlaceArrowE:(int)num
+{
+    if (num==4 || num ==5 || num == 6 || num == 7) {
+        return YES;
+    } else {
+        return NO;
     }
 }
 
@@ -963,7 +1022,7 @@
         // это конкретная станция
         if (currentSelection==0) {
             if ([stations objectAtIndex:0]==self.toStation) {
-                //self.fromStation=nil;
+                self.fromStation=nil;
                 [stationsView resetFromStation];
             } else {
                 self.fromStation = [stations objectAtIndex:0];
@@ -971,7 +1030,7 @@
             }
         } else {
             if ([stations objectAtIndex:0]==self.fromStation) {
-                //self.toStation=nil;
+                self.toStation=nil;
                 [stationsView resetToStation];
             } else {
                 self.toStation = [stations objectAtIndex:0];
@@ -1027,7 +1086,23 @@
 {
     [self removeTableView];
     if (stations) {
-        [self returnFromSelection:stations];
+        if (currentSelection==0) {
+            if ([stations objectAtIndex:0]==self.toStation) {
+                self.fromStation=nil;
+                [stationsView resetFromStation];
+            } else {
+                [self returnFromSelection:stations];
+            }
+        } else {
+            if ([stations objectAtIndex:0]==self.fromStation) {
+                self.toStation=nil;
+                [stationsView resetToStation];
+            } else {
+                [self returnFromSelection:stations];
+            }
+        }     
+        
+  //      [self returnFromSelection:stations];
     } else {
         if (currentSelection==0) {
             [stationsView setFromStation:self.fromStation];

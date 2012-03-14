@@ -95,6 +95,7 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
     NSMutableDictionary *transferDriving;
     CGFloat defaultTransferDriving;
     NSMutableDictionary *transferWay;
+    NSMutableDictionary *reverseTransferWay;
     int defaultTransferWay;
     CGPoint gpsCoords;
 }
@@ -135,7 +136,9 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 -(void) setTransferDriving:(CGFloat)driving to:(Station*)target;
 -(CGFloat) transferDrivingTo:(Station*)target;
 -(void) setTransferWay:(int)way to:(Station*)target;
+-(void) setTransferWay:(int)way from:(Station*)target;
 -(int) transferWayTo:(Station*)target;
+-(int) transferWayFrom:(Station *)target;
 @end
 
 @interface TangentPoint : NSObject {

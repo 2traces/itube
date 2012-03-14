@@ -178,7 +178,6 @@
 
 -(void)setCityMap:(CityMap *)_cityMap
 {
-    //NSLog(@"cityMap retatin count = %d", [_cityMap retainCount]);
     [cityMap release];
     cityMap = [_cityMap retain];
     self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
@@ -206,7 +205,6 @@
     [self.layer invalidateContents];
     [self setNeedsDisplay];
     [self setNeedsLayout];
-    //NSLog(@"cityMap retatin count = %d", [_cityMap retainCount]);
 }
 
 -(void)showLabel
@@ -231,6 +229,11 @@
 }
 
 - (void)dealloc {
+    [labelBg removeFromSuperview];
+    [previewImage removeFromSuperview];
+    [midground1 removeFromSuperview];
+    [midground2 removeFromSuperview];
+    [activeLayer removeFromSuperview];
     locationManager.delegate = nil;
     [locationManager release];
     [vectorLayer release];

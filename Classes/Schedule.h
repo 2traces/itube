@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 /***** SchPoint *****/
 
 @interface SchPoint : NSObject {
