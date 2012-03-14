@@ -33,7 +33,7 @@
 -(NSArray*)dsGetLinesColorArray;
 -(NSArray*)dsGetLinesTimeArray;
 -(NSArray*)dsGetStationsArray;
--(NSInteger)dsGetExitForStation:(Station *)station1 toStation:(Station *)station2;
+-(NSMutableArray*)dsGetExitForStations;
 -(BOOL)dsIsStartingTransfer;
 -(BOOL)dsIsEndingTransfer;
 

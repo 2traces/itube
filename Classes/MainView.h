@@ -55,5 +55,7 @@ extern NSInteger const toolbarWidth;
 - (void) initVar;
 - (void) viewInit:(MainViewController*)vcontroller;
 -(void) findPathFrom :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl ;
+-(void)setCityMap:(CityMap*)cm;
+
 
 @end

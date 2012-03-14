@@ -173,7 +173,7 @@
             Segment *segment = (Segment*)[path objectAtIndex:i];
             lineTime+=[segment driving];
         } else if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]]) {
-            transferTime+=[[path objectAtIndex:i] time];
+            transferTime+=[(Transfer*)[path objectAtIndex:i] time];
         }
     }
     
@@ -379,7 +379,7 @@
         }
         
         if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]]) {
-            time+=[[path objectAtIndex:i] time];  
+            time+=[(Transfer*)[path objectAtIndex:i] time];  
         }
 
     }
@@ -400,7 +400,7 @@
     for (int i=0; i<objectNum; i++) {
         
         if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]]) {
-            [stationsArray addObject:[NSNumber numberWithInt:[[path objectAtIndex:i] time]]];  
+            [stationsArray addObject:[NSNumber numberWithInt:[(Transfer*)[path objectAtIndex:i] time]]];  
         }
     }
     
@@ -440,6 +440,9 @@
 -(void)showScrollView
 {
     int numberOfPages=1;
+    
+//    tubeAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+//    numberOfPages= delegate.cityMap...
 
     if (!self.scrollView) {
         
