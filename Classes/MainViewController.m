@@ -17,6 +17,7 @@
 #import "PathDrawView.h"
 #import "PathDrawVertView.h"
 #import "TubeAppIAPHelper.h"
+#import "UIColor-enhanced.h"
 
 #define FromStation 0
 #define ToStation 1
@@ -192,7 +193,7 @@
     for (int i=0; i<objectNum; i++) {
         if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]] && i==0) {
                 // начинаем с пересадки
-            [colorArray addObject:[[self.fromStation lines] color]];
+  //          [colorArray addObject:[[self.fromStation lines] color]];
             
         } else if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
             
@@ -205,12 +206,23 @@
             
         } else if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]] && i==objectNum-1) {
             // заканчиваем пересадкой
-            [colorArray addObject:[[self.toStation lines] color]];
+//            [colorArray addObject:[[self.toStation lines] color]];
         }
     }
     
     return colorArray;
 }
+
+-(UIColor*)dsFirstStationSaturatedColor
+{
+    return [(UIColor*)[[self.fromStation lines] color] saturatedColor];
+}
+
+-(UIColor*)dsLastStationSaturatedColor
+{
+    return [(UIColor*)[[self.toStation lines] color] saturatedColor];    
+}
+
 
 -(NSArray*)dsGetLinesTimeArray
 {
@@ -230,9 +242,9 @@
             if (currentIndexLine==[[[segment start] line] index]) {
                 
                 lineTime+=[segment driving];
-            
+                
             } else {
-
+                
                 if (currentIndexLine!=-1) {
                     [timeArray addObject:[NSNumber numberWithInteger:lineTime]];    
                 }
@@ -285,11 +297,16 @@
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSArray *pathX = appDelegate.cityMap.activePath;
-    int objectNum = [pathX count];
     
     NSMutableArray *path = [self normalizePath:pathX];
     
     NSMutableArray *stationsArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
+
+    if ([[path objectAtIndex:0] isKindOfClass:[Transfer class]]) {
+        [path removeObjectAtIndex:0];
+    }
+    
+    int objectNum = [path count];
     
     Segment *tempSegment;
     
@@ -546,6 +563,7 @@
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateStyle:NSDateFormatterNoStyle];
     
+    
     if (!self.pathScrollView ) {
         // && [[path11 objectAtIndex:0] isKindOfClass:[Segment class]] && [[path11 lastObject] isKindOfClass:[Segment class]]
         UIScrollView *scview= [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 66.0, 320.0f, 414.0f)];
@@ -649,13 +667,16 @@
         
         // точки станций
         
-        int endCount;
+        int endCount=segmentsCount;
+        
+        if ([[path11 objectAtIndex:0] isKindOfClass:[Transfer class]]) {
+            endCount-=1;
+        } 
         
         if ([[path11 lastObject] isKindOfClass:[Transfer class]]) {
-            endCount=segmentsCount-1;
-        } else {
-            endCount=segmentsCount;
-        }
+            endCount-=1;
+        } 
+        
         
         for (int j=0;j<endCount;j++) {
             
@@ -675,10 +696,11 @@
             
             int exitNumb = [[exits objectAtIndex:j] intValue];
             
-            NSString *trainName = [NSString stringWithFormat:@"train_%d.png",exitNumb];
-//            NSString *fileName = [[NSBundle mainBundle] pathForResource:trainName ofType:@"png" inDirectory:[NSString stringWithFormat:@"maps/%@",appDelegate.cityMap.thisMapName]];
+            NSString *trainName = [NSString stringWithFormat:@"train_%d",exitNumb];
+            
+            NSString *fileName = [[NSBundle mainBundle] pathForResource:trainName ofType:@"png" inDirectory:[NSString stringWithFormat:@"maps/%@",appDelegate.cityMap.thisMapName]];
                                   
-            UIImage *trainImage = [UIImage imageNamed:trainName];
+            UIImage *trainImage = [UIImage imageWithContentsOfFile:fileName];
             
             UIImageView *trainSubview = [[UIImageView alloc] initWithImage:trainImage];
             

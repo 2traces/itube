@@ -36,7 +36,7 @@
 -(NSMutableArray*)dsGetExitForStations;
 -(BOOL)dsIsStartingTransfer;
 -(BOOL)dsIsEndingTransfer;
-
-
+-(UIColor*)dsFirstStationSaturatedColor;
+-(UIColor*)dsLastStationSaturatedColor;
 
 @end

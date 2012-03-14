@@ -38,6 +38,7 @@
 -(void)returnFromSelectionFastAccess:(NSArray *)stations;
 -(void)resetFromStation;
 -(void)resetToStation;
+-(void)resetBothStations;
 -(FastAccessTableViewController*)showTableView;
 -(void)removeTableView;
 

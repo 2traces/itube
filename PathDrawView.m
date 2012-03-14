@@ -45,7 +45,7 @@
     NSArray *timeArray = [delegate dsGetLinesTimeArray];
     
     for (UIColor *color1 in colorArray) {
-        color1 = [color1 saturatedColor]; 
+        [color1 saturatedColor]; 
     }
     
     points = [[NSMutableArray alloc] initWithCapacity:1];
@@ -57,6 +57,8 @@
     }
     
     CGContextRef c = UIGraphicsGetCurrentContext();
+    
+    // рисуем линию
     
     for (int i=0;i<[timeArray count];i++) {
         
@@ -89,6 +91,8 @@
     
     y=y-0.5; 
     
+    // ставим начальные и конечные точки или пересадки
+    
     if ([delegate dsIsStartingTransfer]) {
 
         UIImage *img= [UIImage imageNamed:@"scepka_horiz.png"];
@@ -102,9 +106,10 @@
         CGRect circleRect1 = CGRectMake(scepkaRect.origin.x + origin1 + 1.0, y - middleR/2.0, middleR, middleR); //+1.0 for krasota )
         CGRect circleRect2 = CGRectMake(scepkaRect.origin.x + origin2 - 1.0, y - middleR/2.0, middleR, middleR);
         
-        [self drawCircleInRect:circleRect1 color:[colorArray objectAtIndex:0] context:c];
-        [self drawCircleInRect:circleRect2 color:[colorArray objectAtIndex:1] context:c];
+        [self drawCircleInRect:circleRect1 color:[delegate dsFirstStationSaturatedColor] context:c];
+        [self drawCircleInRect:circleRect2 color:[colorArray objectAtIndex:0] context:c];
         
+  
     } else {
         //first point
         CGRect firstCircleRect = CGRectMake(lineStart-firstAndLastR/2.0, y-firstAndLastR/2.0, firstAndLastR, firstAndLastR);
@@ -125,8 +130,8 @@
         CGRect circleRect1 = CGRectMake(scepkaRect.origin.x + origin1 + 1.0, y - middleR/2.0, middleR, middleR); //+1.0 for krasota )
         CGRect circleRect2 = CGRectMake(scepkaRect.origin.x + origin2 - 1.0, y - middleR/2.0, middleR, middleR);
         
-        [self drawCircleInRect:circleRect1 color:[colorArray objectAtIndex:[colorArray count]-2] context:c];
-        [self drawCircleInRect:circleRect2 color:[colorArray lastObject] context:c];
+        [self drawCircleInRect:circleRect1 color:[colorArray lastObject] context:c];
+        [self drawCircleInRect:circleRect2 color:[delegate dsLastStationSaturatedColor] context:c];
         
     } else {
         // last point
@@ -135,8 +140,10 @@
         [self drawCircleInRect:lastCircleRect color:[colorArray lastObject] context:c];
     }
     
-    int transfers = [timeArray count]-1;
+    // ставим промежуточные пересадки
     
+    int transfers = [timeArray count]-1;
+
     for (int i=0;i<transfers;i++)
     {        
         UIImage *img= [UIImage imageNamed:@"scepka_horiz.png"];
