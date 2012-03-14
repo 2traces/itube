@@ -18,12 +18,15 @@
     CGMutablePathRef path;
     int width;
     BOOL enabled;
+    CGFloat angle;
+    CGPoint center;
 }
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic, assign) BOOL enabled;
 
 -(id) initWithPoints:(NSArray*)points color:(CGColorRef) color andDisabledColor:(CGColorRef) dcol;
 -(void) draw:(CGContextRef) context;
+-(void) rotateAt:(CGFloat)ang center:(CGPoint)c;
 
 @end
 
@@ -36,12 +39,15 @@
     CGColorRef disabledCol;
     CGMutablePathRef path;
     BOOL enabled;
+    CGFloat angle;
+    CGPoint center;
 }
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic, assign) BOOL enabled;
 
 -(id) initWithPoints:(NSArray*) points color:(CGColorRef)color andDisabledColor:(CGColorRef)dcol;
 -(void) draw:(CGContextRef) context;
+-(void) rotateAt:(CGFloat)ang center:(CGPoint)c;
 
 @end
 
@@ -55,12 +61,37 @@
     CGPoint point;
     CGRect boundingBox;
     CGColorRef col;
+    CGFloat angle;
+    CGPoint center;
 }
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic, assign) BOOL enabled;
 
 -(id) initWithFontName:(NSString*)fontName fontSize:(int)fontSize point:(CGPoint)point text:(NSString*)text andColor:(CGColorRef)color;
 -(void) draw:(CGContextRef) context;
+-(void) rotateAt:(CGFloat)ang center:(CGPoint)c;
+
+@end
+
+/***** Vector Spline *****/
+
+@interface VectorSpline : NSObject {
+@private
+    CGRect boundingBox;
+    CGColorRef col;
+    CGColorRef disabledCol;
+    CGMutablePathRef path;
+    BOOL enabled;
+    CGFloat angle;
+    CGPoint center;
+}
+@property (nonatomic, readonly) CGRect boundingBox;
+@property (nonatomic, assign) BOOL enabled;
+
+-(id) initWithPoints:(NSArray*) points color:(CGColorRef)color andDisabledColor:(CGColorRef)dcol;
+-(void) draw:(CGContextRef) context;
+-(void) rotateAt:(CGFloat)ang center:(CGPoint)c;
+
 @end
 
 /***** Vector Layer *****/
@@ -72,6 +103,7 @@
     CGColorRef brushColor, penColor;
     NSMutableArray *elements;
     BOOL enabled;
+    CGFloat currentAngle;
 }
 @property (nonatomic, assign) BOOL enabled;
 

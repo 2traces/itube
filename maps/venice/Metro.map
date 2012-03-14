@@ -1,6 +1,7 @@
 [Options]
 StationDiameter=10
 ImageFileName=venice.vec
+UpperImageFileName=2.vec
 LinesWidth=5
 WordWrap=false
 FontSize=10

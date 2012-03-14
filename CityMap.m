@@ -811,6 +811,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 {
     [splinePoints release];
     CGPathRelease(path);
+    [super dealloc];
 }
 
 -(void)appendPoint:(CGPoint)p
@@ -1310,6 +1311,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize mapLines;
 @synthesize currentScale;
 @synthesize backgroundImageFile;
+@synthesize foregroundImageFile;
 
 -(StationKind) stationKind { return StKind; }
 -(void) setStationKind:(StationKind)stationKind { StKind = stationKind; }
@@ -1400,6 +1402,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     NSString *bgfile = [parserMap get:@"ImageFileName" section:@"Options"];
     if([bgfile length] > 0) backgroundImageFile = [bgfile retain];
     else backgroundImageFile = nil;
+    bgfile = [parserMap get:@"UpperImageFileName" section:@"Options"];
+    if([bgfile length] > 0) foregroundImageFile = [bgfile retain];
+    else foregroundImageFile = nil;
     int val = [[parserMap get:@"LinesWidth" section:@"Options"] intValue];
     if(val != 0) LineWidth = val;
     val = [[parserMap get:@"StationDiameter" section:@"Options"] intValue];
@@ -1508,6 +1513,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     NSString *bgfile = [parserMap get:@"ImageFileName" section:@"Options"];
     if([bgfile length] > 0) backgroundImageFile = [bgfile retain];
     else backgroundImageFile = nil;
+    bgfile = [parserMap get:@"UpperImageFileName" section:@"Options"];
+    if([bgfile length] > 0) foregroundImageFile = [bgfile retain];
+    else foregroundImageFile = nil;
     int val = [[parserMap get:@"LinesWidth" section:@"Options"] intValue];
     if(val != 0) LineWidth = val;
     val = [[parserMap get:@"StationDiameter" section:@"Options"] intValue];

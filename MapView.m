@@ -95,6 +95,7 @@
     [cityMap drawMap:context inRect:r];
     [cityMap drawTransfers:context inRect:r];
     [cityMap drawStations:context inRect:r]; 
+    [vectorLayer2 draw:context inRect:r];
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     [previewImage release];
     previewImage = [[UIImageView alloc] initWithImage:img];
@@ -201,6 +202,13 @@
         [vectorLayer release];
         vectorLayer = nil;
     }
+    if(cityMap.foregroundImageFile != nil) {
+        if(vectorLayer2 != nil) [vectorLayer2 loadFrom:cityMap.foregroundImageFile directory:cityMap.thisMapName];
+        else vectorLayer2 = [[VectorLayer alloc] initWithFile:cityMap.foregroundImageFile andDir:cityMap.thisMapName];
+    } else {
+        [vectorLayer2 release];
+        vectorLayer2 = nil;
+    }
     [self makePreview];
     // это недокументированный метод, так что если он в будущем изменится, то ой
     [self.layer invalidateContents];
@@ -238,6 +246,7 @@
     locationManager.delegate = nil;
     [locationManager release];
     [vectorLayer release];
+    [vectorLayer2 release];
     [mainLabel release];
     [labelBg release];
 	[cityMap release];
@@ -281,6 +290,7 @@
     [cityMap drawMap:ctx inRect:r];
     [cityMap drawTransfers:ctx inRect:r];
     [cityMap drawStations:ctx inRect:r]; 
+    if(vectorLayer2) [vectorLayer2 draw:context inRect:r];
 
 #ifdef AGRESSIVE_CACHE
     CGContextTranslateCTM(context, r.origin.x, r.origin.y);
