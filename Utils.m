@@ -20,7 +20,7 @@
 	NSFileHandle *nf=[NSFileHandle fileHandleForReadingAtPath:appFile];
 
 	//NSAssert(nf=nil,@"Level file not found");
-	if (nf==nil) DLog(@"WARNING FILE NOT FOUND"); 
+	if (nf==nil) {DLog(@"WARNING FILE NOT FOUND")}; 
 	
 	NSData *resp = [nf readDataOfLength: 50240];
 	NSString *response = [[NSString alloc] initWithData: resp encoding: NSUTF8StringEncoding]; 

@@ -226,7 +226,7 @@
     
     self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     _hud.labelText = @"Buying map ...";
-    [self performSelector:@selector(timeout:) withObject:nil afterDelay:60*5];
+    [self performSelector:@selector(timeout:) withObject:nil afterDelay:30.0];
     
 }
 

@@ -56,13 +56,10 @@
     searchBar.tintColor=[UIColor lightGrayColor];
     self.mytableView.tableHeaderView=searchBar;
     
-    // create a filtered list that will contain products for the search results table.
 	self.filteredStation = [[[NSMutableArray alloc] initWithCapacity:[self.stationList count]] autorelease];
     
     UISearchDisplayController *searchDC = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     
-    // The above assigns self.searchDisplayController, but without retaining.
-    // Force the read-only property to be set and retained. 
     [self performSelector:@selector(setSearchDisplayController:) withObject:searchDC];
     
     searchDC.delegate = self;

@@ -9,6 +9,7 @@
 #import "tubeAppDelegate.h"
 #import "MainViewController.h"
 #import "CityMap.h"
+#import "TubeAppIAPHelper.h"
 
 @implementation tubeAppDelegate
 
@@ -23,6 +24,10 @@
 	MainViewController *aController = [[MainViewController alloc] init];
 	self.mainViewController = aController;
 	[aController release];
+    
+    // Override point for customization after application launch.
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:[TubeAppIAPHelper sharedHelper]];
+
     
     CityMap *cm = [[CityMap alloc] init];
     NSString *mapName =[self nameCurrentMap];
@@ -84,7 +89,7 @@
 
 -(NSString*)getDefaultMapName
 {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
     
     NSFileManager *manager = [NSFileManager defaultManager];
@@ -106,7 +111,7 @@
 
 -(NSString*)getDefaultCityName
 {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
     
     NSFileManager *manager = [NSFileManager defaultManager];

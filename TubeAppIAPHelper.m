@@ -24,7 +24,7 @@ static TubeAppIAPHelper * _sharedHelper;
 
 - (id)init {
     
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];

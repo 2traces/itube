@@ -38,8 +38,6 @@
     MHelper *helper = [MHelper sharedHelper];
     self.dataSource = helper;
     
-    //    self.stationList = [NSMutableArray arrayWithArray:[dataSource getFavoriteStationList]];
-    
     self.colorDictionary = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
     
     [self.mytableView setBackgroundColor:[UIColor clearColor]];
@@ -122,8 +120,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDate *date = [NSDate date];
-    
     static NSString *CellIdentifier = @"HistoryCell";
     
     HistoryListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -142,32 +138,6 @@
     cell.fromLineCircle.image = [self imageWithColor:[history.fromStation lines]];
     cell.toLineCircle.image = [self imageWithColor:[history.toStation lines]];
     
-    /*
-    // название и прочее
-    Station *station = [self.stationList objectAtIndex:indexPath.row];
-    NSString *cellValue = [station name];
-    cell.mylabel.text = cellValue;
-    cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
-    cell.mylabel.textColor = [UIColor blackColor];
-    
-    NSUInteger indexForTag = [indexPath row]; 
-    
-    // звездочка
-    [[cell mybutton] setTag:indexForTag];
-    
-    if ([[station isFavorite] intValue]==1) {
-        [[cell mybutton] setImage:[UIImage imageNamed:@"starbutton_on.png"] forState:UIControlStateNormal];
-    } else {
-        [[cell mybutton] setImage:[UIImage imageNamed:@"starbutton_off.png"] forState:UIControlStateNormal];
-    }
-    
-    UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
-    myImageView.image = [self imageWithColor:[station lines]];
-    */
-    
-    NSDate *date2 = [NSDate date];
-    NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
-    
     return cell;
 }
 
@@ -176,10 +146,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    Station  *station = [self.stationList objectAtIndex:indexPath.row];
-    
-//    NSLog(@"%@",[station name]); 
-    
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     MHistory *history = [self.historyList objectAtIndex:indexPath.row];
@@ -220,5 +186,3 @@
 }
 
 @end
-
-

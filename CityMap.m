@@ -1999,7 +1999,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 [pathStationsList addObject:n1.name];
             } 
             
-            if(n1.line != n2.line && [activePath count] > 0) {
+            if(n1.line != n2.line) {
                 [activePath addObject:s.transfer];
                 [pathStationsList addObject:n1.name];
                 [pathStationsList addObject:@"---"]; //временно до обновления модели
