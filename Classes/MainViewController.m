@@ -545,15 +545,6 @@
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSArray *path11 = appDelegate.cityMap.activePath;
     
-//    NSArray *stations11 = [self dsGetStationsArray];
-//    NSArray *stationsTime11 = [self dsGetEveryStationTime];
-//    NSArray *colorArray11 = [self   dsGetLinesColorArray];
-//    NSArray *a11 = [self dsGetEveryTransferTime];
-//    NSArray *b11 = [self dsGetLinesTimeArray];
-//    NSInteger c11 = [self dsGetTravelTime];   
-    
-//    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
     CGFloat transferHeight = 85.0f;
     CGFloat stationHeight = 20.0f;
     CGFloat finalHeight = 60.0f;
@@ -563,9 +554,8 @@
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateStyle:NSDateFormatterNoStyle];
     
-    
     if (!self.pathScrollView ) {
-        // && [[path11 objectAtIndex:0] isKindOfClass:[Segment class]] && [[path11 lastObject] isKindOfClass:[Segment class]]
+
         UIScrollView *scview= [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 66.0, 320.0f, 414.0f)];
         self.pathScrollView = scview;
         [scview release];
@@ -620,6 +610,10 @@
         CGFloat currentY;
         CGFloat lineStart=17.0;
         
+        if ([self dsIsStartingTransfer]) {
+            lineStart+=20.0;
+        }
+        
         int segmentsCount = [stations count];
         
         int time=0;
@@ -668,9 +662,10 @@
         // точки станций
         
         int endCount=segmentsCount;
+        int start = 0;
         
         if ([[path11 objectAtIndex:0] isKindOfClass:[Transfer class]]) {
-            endCount-=1;
+            start+=1;
         } 
         
         if ([[path11 lastObject] isKindOfClass:[Transfer class]]) {
@@ -678,7 +673,7 @@
         } 
         
         
-        for (int j=0;j<endCount;j++) {
+        for (int j=start;j<endCount;j++) {
             
             if (j==0 ) {
                 currentY=lineStart;
@@ -694,7 +689,7 @@
                 currentY+=lineStart;
             }
             
-            int exitNumb = [[exits objectAtIndex:j] intValue];
+            int exitNumb = [[exits objectAtIndex:j-start] intValue];
             
             NSString *trainName = [NSString stringWithFormat:@"train_%d",exitNumb];
             
@@ -708,39 +703,7 @@
             [self.pathScrollView addSubview:trainSubview];
             [trainSubview release];
             
-            /*
-            UIImage *arrow = [UIImage imageNamed:@"exit_arrow.png"];
-
-            
-            if ([self shouldPlaceArrowS:exitNumb]) {
-                UIImageView *arrowImage = [[UIImageView alloc] initWithImage:arrow];
-                arrowImage.frame = CGRectMake(87, currentY+60.0, arrow.size.width, arrow.size.height);
-                [self.pathScrollView addSubview:arrowImage];
-                [arrowImage release];                
-            }
-            
-            if ([self shouldPlaceArrowM:exitNumb]) {
-                UIImageView *arrowImage = [[UIImageView alloc] initWithImage:arrow];
-                arrowImage.frame = CGRectMake(140, currentY+60.0, arrow.size.width, arrow.size.height);
-                [self.pathScrollView addSubview:arrowImage];
-                [arrowImage release];                                
-
-                UIImageView *arrowImage2 = [[UIImageView alloc] initWithImage:arrow];
-                arrowImage2.frame = CGRectMake(220, currentY+60.0, arrow.size.width, arrow.size.height);
-                [self.pathScrollView addSubview:arrowImage2];
-                [arrowImage2 release];                                
-            }
-
-            if ([self shouldPlaceArrowE:exitNumb]) {
-                UIImageView *arrowImage = [[UIImageView alloc] initWithImage:arrow];
-                arrowImage.frame = CGRectMake(280, currentY+60.0, arrow.size.width, arrow.size.height);
-                [self.pathScrollView addSubview:arrowImage];
-                [arrowImage release];                                
-            }
-             */
-            
             currentY+=transferHeight;
-
             
             for (int jj=1;jj<[[stations objectAtIndex:j] count]-1;jj++) {
                 
@@ -757,7 +720,7 @@
                 
                 // -------
                 
-                time = [[[stationsTime objectAtIndex:j] objectAtIndex:jj] intValue];
+                time = [[[stationsTime objectAtIndex:j-start] objectAtIndex:jj] intValue];
 
                 NSString *dateString = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
                 
@@ -777,9 +740,7 @@
 
                 currentY+=stationHeight;
                 
-                
             }
-            
             
         }
         
@@ -791,8 +752,9 @@
             endTransferCount=transferNumb;
         }
 
-        
-        for (int i=0;i<endTransferCount;i++)
+        NSArray *timeArray = [self dsGetLinesTimeArray];
+
+        for (int i=0;i<[timeArray count]-1;i++)
         {
             currentY=0;
             
@@ -882,6 +844,7 @@
             }
         } 
 
+         
         PathDrawVertView *drawView = [[PathDrawVertView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320, viewHeight+100.0)];
         drawView.tag =20000;
         drawView.delegate=self;
@@ -914,33 +877,6 @@
         self.pathScrollView=nil;
         [(UIButton*)[(MainView*)self.view viewWithTag:333] setImage:[UIImage imageNamed:@"switch_to_path.png"] forState:UIControlStateNormal];
         [(UIButton*)[(MainView*)self.view viewWithTag:333] setImage:[UIImage imageNamed:@"switch_to_path_high.png"] forState:UIControlStateHighlighted];
-    }
-}
-
--(BOOL)shouldPlaceArrowS:(int)num
-{
-    if (num==1 || num ==3 || num == 5 || num == 7) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
-
--(BOOL)shouldPlaceArrowM:(int)num
-{
-    if (num==2 || num ==3 || num == 6 || num == 7) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
-
--(BOOL)shouldPlaceArrowE:(int)num
-{
-    if (num==4 || num ==5 || num == 6 || num == 7) {
-        return YES;
-    } else {
-        return NO;
     }
 }
 
