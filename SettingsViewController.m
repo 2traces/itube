@@ -7,7 +7,6 @@
 //
 
 #import "SettingsViewController.h"
-#import "InAppProductsViewController.h"
 #import "LanguageCell.h"
 #import "CityCell.h"
 #import "MyNavigationBar.h"
@@ -33,6 +32,7 @@
 @synthesize scrollView;
 @synthesize selectedPath;
 @synthesize buyAllButton,sendMailButton;
+@synthesize hud = _hud;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -75,9 +75,7 @@
 
 -(IBAction)buyPress:(id)sender
 {
-    InAppProductsViewController *controller = [[InAppProductsViewController alloc] initWithNibName:@"InAppProductsViewController" bundle:[NSBundle mainBundle]];
-    [self presentModalViewController:controller animated:YES];
-    [controller release];
+
 }
 
 #pragma mark - View lifecycle
@@ -92,7 +90,7 @@
     textLabel1.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
     textLabel2.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
     textLabel3.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
-
+    
 	cityTableView.backgroundColor = [UIColor clearColor];
     cityTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -100,7 +98,7 @@
 	UILabel *label = [[[UILabel alloc] initWithFrame:frame] autorelease];
 	label.backgroundColor = [UIColor clearColor];
 	label.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0];
-//	label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    //	label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
 	label.textAlignment = UITextAlignmentCenter;
 	label.textColor = [UIColor darkGrayColor];
     label.text = @"Settings";
@@ -139,18 +137,45 @@
     if (netStatus == NotReachable) {        
         NSLog(@"No internet connection!");        
     } else {        
-//        if ([TubeAppIAPHelper sharedHelper].products == nil) {
-            
+        if ([TubeAppIAPHelper sharedHelper].products == nil) {
             [[TubeAppIAPHelper sharedHelper] requestProducts];
- //           [self performSelector:@selector(timeout:) withObject:nil afterDelay:30.0];
-//        }
+        //           [self performSelector:@selector(timeout:) withObject:nil afterDelay:30.0];
+        } else { 
+            [self enableProducts];
+            [cityTableView reloadData];
+        }
     }
 }
 
 - (void)productsLoaded:(NSNotification *)notification {
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self enableProducts];
     [cityTableView reloadData];
+}
+
+-(void)enableProducts
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"status"] isEqual:@"Z"]) {
+            for (SKProduct *product in [TubeAppIAPHelper sharedHelper].products) {
+                if ([product.productIdentifier isEqual:[map valueForKey:@"prodID"]]) {
+                    [map setObject:[NSString stringWithString:@"V"] forKey:@"status"];
+                 
+                    [numberFormatter setLocale:product.priceLocale];
+                    NSString *formattedString = [numberFormatter stringFromNumber:product.price];
+
+                    [map setObject:formattedString forKey:@"price"];
+                }
+            }
+        }
+    }
+    
+    [numberFormatter release];
 }
 
 - (void)viewDidUnload
@@ -214,29 +239,50 @@
         // setting button background
         //
         
-        [[(CityCell*)cell cellButton] setTitle:@"----" forState:UIControlStateNormal];
-        [[(CityCell*)cell cellButton] setTitle:@"----" forState:UIControlStateHighlighted];
-/*
-        if ([[TubeAppIAPHelper sharedHelper] isPurchased:[map objectForKey:@"prodID"]]) {
-            [[(CityCell*)cell cellButton] setTitle:@"Installed" forState:UIControlStateNormal];
-            [[(CityCell*)cell cellButton] setTitle:@"Installed" forState:UIControlStateHighlighted];
-        } else if ([[TubeAppIAPHelper sharedHelper] isAvailable:[map objectForKey:@"prodID"]])  {
-            [[(CityCell*)cell cellButton] setTitle:@"----" forState:UIControlStateNormal];
-            [[(CityCell*)cell cellButton] setTitle:@"----" forState:UIControlStateHighlighted];
+        UIButton *cellButton = [(CityCell*)cell cellButton];
+        cellButton.hidden=NO;
+        
+        if ([self isProductStatusDefault:[map objectForKey:@"prodID"]] || [self isProductStatusInstalled:[map objectForKey:@"prodID"]]) {
+            [cellButton setTitle:@"Installed" forState:UIControlStateNormal];
+            [cellButton setTitle:@"Installed" forState:UIControlStateHighlighted];
+            [cellButton setBackgroundImage:[UIImage imageNamed:@"blue_button.png"] forState:UIControlStateNormal];
+            [cellButton setBackgroundImage:[UIImage imageNamed:@"blue_button.png"] forState:UIControlStateHighlighted];
+            [cellButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
+            
+        } else if ([self isProductStatusPurchased:[map objectForKey:@"prodID"]])  {
+            
+            [cellButton setTitle:@"Install" forState:UIControlStateNormal];
+            [cellButton setTitle:@"Install" forState:UIControlStateHighlighted];
+            [cellButton setBackgroundImage:[UIImage imageNamed:@"green_button.png"] forState:UIControlStateNormal];
+            [cellButton setBackgroundImage:[UIImage imageNamed:@"high_green_button.png"] forState:UIControlStateHighlighted];
+            [cellButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
+            
+        } else if ([self isProductStatusAvailable:[map objectForKey:@"prodID"]])  {
+            
+            [cellButton setTitle:[map valueForKey:@"price"] forState:UIControlStateNormal];
+            [cellButton setTitle:[map valueForKey:@"price"] forState:UIControlStateHighlighted];
+            [cellButton setBackgroundImage:[UIImage imageNamed:@"buy_button.png"] forState:UIControlStateNormal];
+            [cellButton setBackgroundImage:[UIImage imageNamed:@"high_buy_button.png"] forState:UIControlStateHighlighted];
+            [cellButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            
+        } else {
+            cellButton.hidden=YES;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-  */      
-        [[(CityCell*)cell cellButton] setBackgroundImage:[UIImage imageNamed:@"buy_button.png"] forState:UIControlStateNormal];
-        [[(CityCell*)cell cellButton] setBackgroundImage:[UIImage imageNamed:@"high_buy_button.png"] forState:UIControlStateHighlighted];
-        [[(CityCell*)cell cellButton] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         
         //
         // setting background
         //
+        
         UIImage *rowBackground;
         UIImage *selectionBackground;
         NSInteger sectionRows = [tableView numberOfRowsInSection:[indexPath section]];
         NSInteger crow = [indexPath row];
-
+        
         if (crow == 0 && crow == sectionRows - 1)
         {
             // у нас таких быть не должно вообще но 
@@ -261,18 +307,18 @@
         
         cell.backgroundView  = [[[UIImageView alloc] initWithImage:rowBackground] autorelease];
         cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:selectionBackground] autorelease];
-                
+        
         return cell;
         
     } else {
         static NSString *cellIdentifier = @"LanguageCell";
         
         UITableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
- 
+        
         if (cell == nil) { 
             cell = [[[NSBundle mainBundle] loadNibNamed:@"LanguageCell" owner:self options:nil] lastObject];
         }
-
+        
         [[(LanguageCell*)cell languageWordLabel] setText:@"Language"];
         [[(LanguageCell*)cell languageWordLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
         [[(LanguageCell*)cell languageWordLabel] setHighlightedTextColor:[UIColor whiteColor]];
@@ -293,22 +339,102 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.selectedPath=indexPath;
     
-    [tableView reloadData];    
-
     NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
-    NSString *mapName = [map objectForKey:@"filename"];
-    NSString *cityName = [map objectForKey:@"name"];
-
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-    [appDelegate.mainViewController changeMapTo:mapName andCity:cityName];
+    
+    if ([self isProductInstalled:[map objectForKey:@"prodID"]]) {
+        
+        self.selectedPath=indexPath;
+        
+        [tableView reloadData];    
+        
+        NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
+        NSString *mapName = [map objectForKey:@"filename"];
+        NSString *cityName = [map objectForKey:@"name"];
+        
+        tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+        [appDelegate.mainViewController changeMapTo:mapName andCity:cityName];
+        
+    } else {
+        // показать рекламное окно
+    }   
+    
+    
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
     return 45.0;
 }
+
+-(BOOL)isProductInstalled:(NSString*)mapName
+{
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [documentsDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.map",mapName]];
+    
+    NSFileManager *manager = [NSFileManager defaultManager];
+    
+    if (![manager fileExistsAtPath:path]) {
+        return YES;
+    }
+
+    return NO;
+}
+
+-(BOOL)isProductPurchased:(NSString*)prodID
+{
+    NSMutableSet *purchasedProducts = [[TubeAppIAPHelper sharedHelper] purchasedProducts];
+    return [purchasedProducts intersectsSet:[NSMutableSet setWithArray:[NSArray arrayWithObject:prodID]]];
+}
+
+-(BOOL)isProductAvailable:(NSString*)prodID
+{
+    return YES;
+}
+
+-(BOOL)isProductStatusInstalled:(NSString*)prodID
+{
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:[NSString stringWithString:@"I"]]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+-(BOOL)isProductStatusPurchased:(NSString*)prodID
+{
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:[NSString stringWithString:@"P"]]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+-(BOOL)isProductStatusAvailable:(NSString*)prodID
+{
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:[NSString stringWithString:@"V"]]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+-(BOOL)isProductStatusDefault:(NSString*)prodID
+{
+    if ([prodID isEqual:@"default"]) {
+        return YES;
+    } 
+         
+    return NO;     
+}
+
 
 -(void)downloadDone:(NSMutableData *)data
 {
@@ -360,10 +486,10 @@
     
     sendMailButton.frame = CGRectMake(sendMailButton.frame.origin.x, buyAllButton.frame.origin.y+buyAllButton.frame.size.height+8.0, sendMailButton.frame.size.width, sendMailButton.frame.size.height);
     
-	scrollView.contentSize = CGSizeMake(320, sendMailButton.frame.origin.y+sendMailButton.frame.size.height+15.0);
+    scrollView.contentSize = CGSizeMake(320, sendMailButton.frame.origin.y+sendMailButton.frame.size.height+15.0);
     scrollView.frame = CGRectMake(0.0, 44.0, 320.0, 460.0-44.0);
     
-	[scrollView flashScrollIndicators];
+    [scrollView flashScrollIndicators];
 }
 
 -(void)serverDone:(NSMutableDictionary *)schedule
@@ -386,7 +512,112 @@
 
 -(IBAction)buyButtonPressed:(id)sender 
 {
-    NSLog(@"Button pressed");
+    CityCell *cell = (CityCell*)[[sender superview] superview];  
+    NSMutableDictionary *map = [maps objectAtIndex:[cityTableView indexPathForCell:cell].row];
+    NSString *prodID = [map valueForKey:@"prodID"];
+    
+    if ([self isProductStatusAvailable:prodID]) {
+        [self purchaseProduct:prodID];    
+    } else if ([self isProductStatusPurchased:prodID]) {
+        [self downloadProduct:prodID];
+    }
+}
+
+-(void)downloadProduct:(NSString*)prodID
+{
+    
+}
+
+-(void)purchaseProduct:(NSString*)prodID
+{
+    NSArray *products = [TubeAppIAPHelper sharedHelper].products;
+    
+    for (SKProduct *product in products) {
+        if ([product.productIdentifier isEqual:prodID]) {
+
+            NSLog(@"Buying %@...", product.productIdentifier);
+            [[TubeAppIAPHelper sharedHelper] buyProductIdentifier:product.productIdentifier];
+            
+            self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            _hud.labelText = @"Buying map ...";
+            [self performSelector:@selector(timeout:) withObject:nil afterDelay:30.0];
+
+        }
+    }    
+}
+
+- (void)productPurchased:(NSNotification *)notification {
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];    
+    
+    NSString *productIdentifier = (NSString *) notification.object;
+    NSLog(@"Purchased: %@", productIdentifier);
+    
+    [self markProductAsPurchased:productIdentifier];
+    
+    [self resortMapArray];
+    
+    [cityTableView reloadData];    
+    
+}
+
+-(void)markProductAsPurchased:(NSString*)prodID
+{
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID]) {
+            [map setObject:[NSString stringWithString:@"P"] forKey:@"status"];
+        }
+    }
+}
+
+-(void)resortMapArray
+{
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    
+    NSMutableArray *temp = [NSMutableArray arrayWithArray:self.maps];
+    
+    [temp sortUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil]];
+
+    self.maps = [NSArray arrayWithArray:temp];
+    
+    [sortDescriptor2 release];
+    [sortDescriptor1 release];
+}
+
+- (void)productPurchaseFailed:(NSNotification *)notification {
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    SKPaymentTransaction * transaction = (SKPaymentTransaction *) notification.object;    
+    if (transaction.error.code != SKErrorPaymentCancelled) {    
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error!" 
+                                                         message:transaction.error.localizedDescription 
+                                                        delegate:nil 
+                                               cancelButtonTitle:nil 
+                                               otherButtonTitles:@"OK", nil] autorelease];
+        
+        [alert show];
+    }
+}
+
+- (void)dismissHUD:(id)arg {
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    self.hud = nil;
+    
+}
+
+- (void)timeout:(id)arg {
+    
+    _hud.labelText = @"Timeout!";
+    _hud.detailsLabelText = @"Please try again later.";
+    _hud.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
+	_hud.mode = MBProgressHUDModeCustomView;
+    [self performSelector:@selector(dismissHUD:) withObject:nil afterDelay:3.0];
+    
 }
 
 -(IBAction)donePressed:(id)sender 
@@ -396,21 +627,42 @@
 
 -(NSArray*)getMapsList
 {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSArray *array = [dict allKeys];
-    NSMutableArray *mapsInfoArray = [[[NSMutableArray alloc] initWithCapacity:[array count]] autorelease];
+    NSArray *mapIDs = [dict allKeys];
+    NSMutableArray *mapsInfoArray = [[[NSMutableArray alloc] initWithCapacity:[mapIDs count]] autorelease];
     
-    for (NSString* key in array) {
-        NSMutableDictionary *product = [[NSMutableDictionary alloc] initWithDictionary:[dict objectForKey:key]];
-        [product setObject:key forKey:@"prodID"];
+    for (NSString* mapID in mapIDs) {
+        NSMutableDictionary *product = [[NSMutableDictionary alloc] initWithDictionary:[dict objectForKey:mapID]];
+        [product setObject:mapID forKey:@"prodID"];
+        
+        if ([mapID isEqual:@"default"]) {
+            [product setObject:[NSString stringWithString:@"D"] forKey:@"status"];
+        } else if ([self isProductPurchased:mapID]) {
+            if ([self isProductInstalled:[product valueForKey:@"name"]]) {
+                [product setObject:[NSString stringWithString:@"I"] forKey:@"status"];
+            } else {
+                [product setObject:[NSString stringWithString:@"P"] forKey:@"status"];
+            }
+        } else {
+            [product setObject:[NSString stringWithString:@"Z"] forKey:@"status"];
+        };
+        
         [mapsInfoArray addObject:product];
         [product release];
     }
-
+    
     [dict release];
+    
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    
+    [mapsInfoArray sortUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil]];
+    
+    [sortDescriptor2 release];
+    [sortDescriptor1 release];
     
     return mapsInfoArray;
 }
@@ -466,8 +718,11 @@
 }
 
 - (void)dealloc {
+    [_hud release];
+    _hud = nil;
     [cityButton release];
     [buyButton release];
     [super dealloc];
 }
+
 @end
