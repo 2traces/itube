@@ -49,6 +49,7 @@ extern int const imagesCount;
     // prerendered image
     UIImageView *previewImage;
     VectorLayer *vectorLayer;
+    VectorLayer *vectorLayer2;
     ActiveView *activeLayer;
     NSDictionary *foundPaths;
     CLLocationManager *locationManager;

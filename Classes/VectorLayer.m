@@ -7,6 +7,7 @@
 //
 
 #import "VectorLayer.h"
+#import "CityMap.h"
 
 @implementation VectorLine
 
@@ -21,6 +22,8 @@
         width = [[points lastObject] intValue];
         path = CGPathCreateMutable();
         enabled = YES;
+        angle = 0;
+        center = CGPointZero;
         NSRange range;
         range.location = 0;
         range.length = [points count] - 1;
@@ -44,10 +47,17 @@
     CGColorRelease(col);
     CGColorRelease(disabledCol);
     CGPathRelease(path);
+    [super dealloc];
 }
 
 -(void) draw:(CGContextRef)context
 {
+    if(angle != 0) {
+        CGContextSaveGState(context);
+        CGContextTranslateCTM(context, center.x, center.y);
+        CGContextRotateCTM(context, angle);
+        CGContextTranslateCTM(context, -center.x, -center.y);
+    }
     if(enabled) CGContextSetStrokeColorWithColor(context, col);
     else CGContextSetStrokeColorWithColor(context, disabledCol);
     CGContextSetLineWidth(context, width);
@@ -55,6 +65,13 @@
     CGContextSetLineJoin(context, kCGLineJoinRound);
     CGContextAddPath(context, path);
     CGContextStrokePath(context);
+    if(angle != 0) CGContextRestoreGState(context);
+}
+
+-(void) rotateAt:(CGFloat)ang center:(CGPoint)c
+{
+    angle = ang;
+    center = c;
 }
 
 @end
@@ -71,6 +88,8 @@
         disabledCol = CGColorRetain(dcol);
         path = CGPathCreateMutable();
         enabled = YES;
+        angle = 0;
+        center = CGPointZero;
         BOOL first = YES;
         for (NSString *s in points) {
             NSArray *c = [s componentsSeparatedByString:@","];
@@ -93,14 +112,28 @@
     CGColorRelease(col);
     CGColorRelease(disabledCol);
     CGPathRelease(path);
+    [super dealloc];
 }
 
 -(void)draw:(CGContextRef)context
 {
+    if(angle != 0) {
+        CGContextSaveGState(context);
+        CGContextTranslateCTM(context, center.x, center.y);
+        CGContextRotateCTM(context, angle);
+        CGContextTranslateCTM(context, -center.x, -center.y);
+    }
     if(enabled) CGContextSetFillColorWithColor(context, col);
     else CGContextSetStrokeColorWithColor(context, disabledCol);
     CGContextAddPath(context, path);
     CGContextFillPath(context);
+    if(angle != 0) CGContextRestoreGState(context);
+}
+
+-(void) rotateAt:(CGFloat)ang center:(CGPoint)c
+{
+    angle = ang;
+    center = c;
 }
 
 @end
@@ -118,6 +151,8 @@
         point = _point;
         text = [_text retain];
         enabled = YES;
+        angle = 0;
+        center = CGPointZero;
         boundingBox.origin = point;
         boundingBox.size = CGSizeMake(fontSize, fontSize);
         col = CGColorRetain(color);
@@ -127,6 +162,12 @@
 
 -(void)draw:(CGContextRef)context
 {
+    if(angle != 0) {
+        CGContextSaveGState(context);
+        CGContextTranslateCTM(context, center.x, center.y);
+        CGContextRotateCTM(context, angle);
+        CGContextTranslateCTM(context, -center.x, -center.y);
+    }
     CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
     //if(enabled) {
         CGContextSetFillColorWithColor(context, col );
@@ -136,6 +177,7 @@
     CGContextSetTextDrawingMode (context, kCGTextFill);
     CGContextSelectFont(context, "Arial-BoldMT", fontSize, kCGEncodingMacRoman);
     CGContextShowTextAtPoint(context, point.x, point.y+0.9f*fontSize, [text cStringUsingEncoding:[NSString defaultCStringEncoding]], [text length]);
+    if(angle != 0) CGContextRestoreGState(context);
 }
 
 -(void)dealloc
@@ -143,6 +185,90 @@
     [text release];
     [fontName release];
     CGColorRelease(col);
+    [super dealloc];
+}
+
+-(void) rotateAt:(CGFloat)ang center:(CGPoint)c
+{
+    angle = ang;
+    center = c;
+}
+
+@end
+
+@implementation VectorSpline
+
+@synthesize boundingBox;
+@synthesize enabled;
+
+-(id) initWithPoints:(NSArray *)points color:(CGColorRef)color andDisabledColor:(CGColorRef)dcol
+{
+    if((self = [super init])) {
+        col = CGColorRetain(color);
+        disabledCol = CGColorRetain(dcol);
+        enabled = YES;
+        angle = 0;
+        center = CGPointZero;
+        NSMutableArray *pts = [NSMutableArray array];
+        for (NSString *s in points) {
+            NSArray *c = [s componentsSeparatedByString:@","];
+            if([c count] < 2) continue;
+            [pts addObject:[NSValue valueWithCGPoint:CGPointMake([[c objectAtIndex:0] intValue], [[c objectAtIndex:1] intValue])]];
+        }
+        [pts addObject:[pts objectAtIndex:1]];
+        NSMutableArray *pts2 = [NSMutableArray array];
+        for(int i=1; i<[pts count]-1; i++) {
+            TangentPoint *p = [[[TangentPoint alloc] initWithPoint:[[pts objectAtIndex:i] CGPointValue]] autorelease];
+            [p calcTangentFrom:[[pts objectAtIndex:i-1] CGPointValue] to:[[pts objectAtIndex:i+1] CGPointValue]];
+            [pts2 addObject:p];
+        }
+        
+
+        path = CGPathCreateMutable();
+        TangentPoint *tp1 = [pts2 objectAtIndex:0], *tp2 = nil;
+        CGPathMoveToPoint(path, nil, tp1.base.x, tp1.base.y);
+        for(int i=0; i<[pts2 count]-1; i++) {
+            tp1 = [pts2 objectAtIndex:i];
+            tp2 = [pts2 objectAtIndex:i+1];
+            CGPathAddCurveToPoint(path, nil, tp1.frontTang.x, tp1.frontTang.y, tp2.backTang.x, tp2.backTang.y, tp2.base.x, tp2.base.y);
+        }
+        tp1 = [pts2 lastObject];
+        tp2 = [pts2 objectAtIndex:0];
+        CGPathAddCurveToPoint(path, nil, tp1.frontTang.x, tp1.frontTang.y, tp2.backTang.x, tp2.backTang.y, tp2.base.x, tp2.base.y);
+        
+        CGPathCloseSubpath(path);
+        boundingBox = CGPathGetPathBoundingBox(path);
+    }
+    return self;
+}
+
+-(void)dealloc
+{
+    CGColorRelease(col);
+    CGColorRelease(disabledCol);
+    CGPathRelease(path);
+    [super dealloc];
+}
+
+-(void)draw:(CGContextRef)context
+{
+    if(angle != 0) {
+        CGContextSaveGState(context);
+        CGContextTranslateCTM(context, center.x, center.y);
+        CGContextRotateCTM(context, angle);
+        CGContextTranslateCTM(context, -center.x, -center.y);
+    }
+    if(enabled) CGContextSetFillColorWithColor(context, col);
+    else CGContextSetStrokeColorWithColor(context, disabledCol);
+    CGContextAddPath(context, path);
+    CGContextFillPath(context);
+    if(angle != 0) CGContextRestoreGState(context);
+}
+
+-(void) rotateAt:(CGFloat)ang center:(CGPoint)c
+{
+    angle = ang;
+    center = c;
 }
 
 @end
@@ -166,6 +292,7 @@
     CGColorRelease(brushColor);
     CGColorRelease(penColor);
     CGColorSpaceRelease(colorSpace);
+    [super dealloc];
 }
 
 -(BOOL) enabled {
@@ -258,6 +385,7 @@
 
 -(void)loadFrom:(NSString *)fileName directory:(NSString*)dir
 {
+    currentAngle = 0;
     [elements removeAllObjects];
     NSString *fn = [[NSBundle mainBundle] pathForResource:fileName ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@",dir]];
     NSString *contents = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
@@ -282,17 +410,31 @@
             range.location = 1;
             range.length = [words count] - 1;
             [elements addObject:[[[VectorLine alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:penColor andDisabledColor:[self disabledColor:penColor]] autorelease]];
+            [[elements lastObject] rotateAt:currentAngle center:CGPointMake(size.width/2, size.height/2)];
             
         } else if([w isEqualToString:@"polygon"]) {
             NSRange range;
             range.location = 1;
             range.length = [words count] - 1;
             [elements addObject:[[[VectorPolygon alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:brushColor andDisabledColor:[self disabledColor:brushColor]] autorelease]];
+            [[elements lastObject] rotateAt:currentAngle center:CGPointMake(size.width/2, size.height/2)];
             
         } else if([w isEqualToString:@"textout"]) {
             NSArray *ww = [line componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
             NSArray *www = [ww filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF <> \"\""]];
             [elements addObject:[[VectorText alloc] initWithFontName:[www objectAtIndex:1] fontSize:[[www objectAtIndex:2] intValue] point:CGPointMake([[www objectAtIndex:3] intValue], [[www objectAtIndex:4] intValue]) text:[www objectAtIndex:5] andColor:penColor ]];
+            [[elements lastObject] rotateAt:currentAngle center:CGPointMake(size.width/2, size.height/2)];
+            
+        } else if([w isEqualToString:@"angle"]) {
+            CGFloat ang = [[words objectAtIndex:1] floatValue];
+            currentAngle += ang;
+        } else if([w isEqualToString:@"spline"]) {
+            NSRange range;
+            range.location = 1;
+            range.length = [words count] - 1;
+            [elements addObject:[[[VectorSpline alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:brushColor andDisabledColor:[self disabledColor:brushColor]] autorelease]];
+            [[elements lastObject] rotateAt:currentAngle center:CGPointMake(size.width/2, size.height/2)];
+            
         }
     }];
 }

@@ -231,6 +231,7 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
     NSMutableArray *pathStationsList;
     CGFloat currentScale;
     NSString *backgroundImageFile;
+    NSString *foregroundImageFile;
     Schedule *schedule;
 @public
     CGFloat PredrawScale;
@@ -258,6 +259,7 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 @property (nonatomic, readonly) NSMutableArray *mapLines;
 @property (nonatomic, assign) CGFloat currentScale;
 @property (nonatomic, readonly) NSString* backgroundImageFile;
+@property (nonatomic, readonly) NSString* foregroundImageFile;
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //
