@@ -18,6 +18,7 @@
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">5:41</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">5:02</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">5:06</time>
           <time station="TRONCHETTO (Mercato)" type="normal">5:14</time>
@@ -30,6 +31,8 @@
           <time station="ZITELLE" type="normal">5:38</time>
           <time station="S.GIORGIO" type="normal">5:41</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">5:44</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -53,6 +56,7 @@
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">6:01</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">5:22</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">5:26</time>
           <time station="TRONCHETTO (Mercato)" type="normal">5:34</time>
@@ -65,6 +69,8 @@
           <time station="ZITELLE" type="normal">5:58</time>
           <time station="S.GIORGIO" type="normal">6:01</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">6:04</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -89,6 +95,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">6:31</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">5:42</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">5:46</time>
           <time station="TRONCHETTO (Mercato)" type="normal">5:54</time>
@@ -101,6 +108,8 @@
           <time station="ZITELLE" type="normal">6:18</time>
           <time station="S.GIORGIO" type="normal">6:21</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">6:24</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -121,6 +130,7 @@
           <time station="TRONCHETTO" type="normal">6:17</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">6:02</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">6:06</time>
           <time station="TRONCHETTO (Mercato)" type="normal">6:14</time>
@@ -137,6 +147,8 @@
 >>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
+=======
+>>>>>>> upstream/master
         </times>
         <modifiers/>
       </timetable>
@@ -145,6 +157,7 @@
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="normal">6:27</time>
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">6:31</time>
           <time station="RIALTO &quot;C&quot;" type="normal">6:41</time>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           <time station="TRONCHETTO" type="normal">6:26</time>
@@ -156,6 +169,8 @@
           <time station="ZITELLE" type="normal">6:48</time>
           <time station="S.GIORGIO" type="normal">6:51</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">6:54</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -180,6 +195,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">6:51</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">6:22</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">6:26</time>
           <time station="TRONCHETTO" type="normal">6:36</time>
@@ -191,6 +207,8 @@
           <time station="ZITELLE" type="normal">6:58</time>
           <time station="S.GIORGIO" type="normal">7:01</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">7:04</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -215,6 +233,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">7:01</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="TRONCHETTO" type="normal">6:46</time>
           <time station="SACCA FISOLA" type="normal">6:54</time>
           <time station="S.BASILIO" type="normal">6:57</time>
@@ -224,6 +243,8 @@
           <time station="ZITELLE" type="normal">7:08</time>
           <time station="S.GIORGIO" type="normal">7:11</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">7:14</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -238,6 +259,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">7:01</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">6:32</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">6:42</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">6:46</time>
@@ -250,6 +272,8 @@
           <time station="ZITELLE" type="normal">7:18</time>
           <time station="S.GIORGIO" type="normal">7:21</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">7:24</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -274,6 +298,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">7:11</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">6:42</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">6:52</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">6:56</time>
@@ -287,6 +312,8 @@
           <time station="ZITELLE" type="normal">7:28</time>
           <time station="S.GIORGIO" type="normal">7:31</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">7:34</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -311,6 +338,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">7:21</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">6:52</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">7:02</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">7:06</time>
@@ -328,6 +356,8 @@
 >>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
+=======
+>>>>>>> upstream/master
         </times>
         <modifiers/>
       </timetable>
@@ -336,6 +366,7 @@
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="normal">7:07</time>
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">7:11</time>
           <time station="RIALTO &quot;C&quot;" type="normal">7:21</time>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">7:02</time>
@@ -351,6 +382,8 @@
           <time station="ZITELLE" type="normal">7:48</time>
           <time station="S.GIORGIO" type="normal">7:51</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">7:54</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -375,6 +408,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">7:31</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">7:12</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">7:22</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">7:26</time>
@@ -388,6 +422,8 @@
           <time station="ZITELLE" type="normal">7:58</time>
           <time station="S.GIORGIO" type="normal">8:01</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">8:04</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -412,6 +448,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">7:41</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">7:22</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">7:32</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">7:36</time>
@@ -428,6 +465,8 @@
 >>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
+=======
+>>>>>>> upstream/master
         </times>
         <modifiers/>
       </timetable>
@@ -436,6 +475,7 @@
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="normal">7:27</time>
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">7:31</time>
           <time station="RIALTO &quot;C&quot;" type="normal">7:41</time>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">7:32</time>
@@ -451,6 +491,8 @@
           <time station="ZITELLE" type="normal">8:18</time>
           <time station="S.GIORGIO" type="normal">8:21</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">8:24</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -475,6 +517,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">7:51</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">7:42</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">7:52</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">7:56</time>
@@ -488,6 +531,8 @@
           <time station="ZITELLE" type="normal">8:28</time>
           <time station="S.GIORGIO" type="normal">8:31</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">8:34</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -512,6 +557,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">8:01</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">7:52</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">8:02</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">8:06</time>
@@ -529,6 +575,8 @@
 >>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
+=======
+>>>>>>> upstream/master
         </times>
         <modifiers/>
       </timetable>
@@ -537,6 +585,7 @@
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="normal">7:47</time>
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">7:51</time>
           <time station="RIALTO &quot;C&quot;" type="normal">8:01</time>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           <time station="TRONCHETTO" type="normal">8:16</time>
@@ -554,6 +603,10 @@
           <modifier>e</modifier>
           <modifier>Sab</modifier>
         </modifiers>
+=======
+        </times>
+        <modifiers/>
+>>>>>>> upstream/master
 =======
         </times>
         <modifiers/>
@@ -580,6 +633,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">8:11</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">8:02</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">8:12</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">8:16</time>
@@ -593,6 +647,8 @@
           <time station="ZITELLE" type="normal">8:48</time>
           <time station="S.GIORGIO" type="normal">8:51</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">8:54</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -617,6 +673,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">8:21</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">8:12</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">8:22</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">8:26</time>
@@ -634,6 +691,8 @@
 >>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
+=======
+>>>>>>> upstream/master
         </times>
         <modifiers/>
       </timetable>
@@ -642,6 +701,7 @@
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="normal">8:07</time>
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">8:11</time>
           <time station="RIALTO &quot;C&quot;" type="normal">8:21</time>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           <time station="TRONCHETTO" type="normal">8:36</time>
@@ -659,6 +719,10 @@
           <modifier>e</modifier>
           <modifier>Sab</modifier>
         </modifiers>
+=======
+        </times>
+        <modifiers/>
+>>>>>>> upstream/master
 =======
         </times>
         <modifiers/>
@@ -685,6 +749,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">8:31</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">8:22</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">8:32</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">8:36</time>
@@ -698,6 +763,8 @@
           <time station="ZITELLE" type="normal">9:08</time>
           <time station="S.GIORGIO" type="normal">9:11</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">9:14</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -722,6 +789,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">8:41</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">8:32</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">8:42</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">8:46</time>
@@ -739,6 +807,8 @@
 >>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
+=======
+>>>>>>> upstream/master
         </times>
         <modifiers/>
       </timetable>
@@ -747,6 +817,7 @@
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="normal">8:27</time>
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">8:31</time>
           <time station="RIALTO &quot;C&quot;" type="normal">8:41</time>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">8:46</time>
@@ -764,6 +835,10 @@
         <modifiers>
           <modifier>Sab</modifier>
         </modifiers>
+=======
+        </times>
+        <modifiers/>
+>>>>>>> upstream/master
 =======
         </times>
         <modifiers/>
@@ -790,6 +865,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">8:51</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="TRONCHETTO" type="normal">8:56</time>
           <time station="SACCA FISOLA" type="normal">9:04</time>
           <time station="S.BASILIO" type="normal">9:07</time>
@@ -803,6 +879,10 @@
         <modifiers>
           <modifier>FES</modifier>
         </modifiers>
+=======
+        </times>
+        <modifiers/>
+>>>>>>> upstream/master
 =======
         </times>
         <modifiers/>
@@ -833,6 +913,7 @@
           <time station="S.MARCO (Giardinetti)" type="normal">9:16</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">8:42</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">8:52</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">8:56</time>
@@ -846,6 +927,8 @@
           <time station="ZITELLE" type="normal">9:28</time>
           <time station="S.GIORGIO" type="normal">9:31</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">9:34</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -874,6 +957,7 @@
           <time station="S.MARCO (Giardinetti)" type="normal">9:56</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">9:22</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">9:32</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">9:36</time>
@@ -887,6 +971,8 @@
           <time station="ZITELLE" type="normal">10:08</time>
           <time station="S.GIORGIO" type="normal">10:11</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">10:14</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -907,6 +993,7 @@
           <time station="S.MARCO (Giardinetti)" type="normal">9:56</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">9:18</time>
           <time station="ACCADEMIA" type="normal">9:22</time>
           <time station="S.SAMUELE" type="normal">9:24</time>
@@ -924,6 +1011,8 @@
           <time station="ZITELLE" type="normal">10:18</time>
           <time station="S.GIORGIO" type="normal">10:21</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">10:24</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -948,6 +1037,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">9:51</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">9:42</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">9:52</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">9:56</time>
@@ -961,6 +1051,8 @@
           <time station="ZITELLE" type="normal">10:28</time>
           <time station="S.GIORGIO" type="normal">10:31</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">10:34</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -981,6 +1073,7 @@
           <time station="TRONCHETTO" type="normal">9:37</time>
           <time station="TRONCHETTO (Mercato)" type="normal">9:39</time>
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="normal">9:47</time>
+<<<<<<< HEAD
 <<<<<<< HEAD
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">9:51</time>
           <time station="RIALTO &quot;C&quot;" type="normal">10:01</time>
@@ -1009,12 +1102,17 @@
 =======
 >>>>>>> upstream/master
 =======
+=======
+>>>>>>> upstream/master
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">9:51</time>
           <time station="RIALTO &quot;C&quot;" type="normal">10:01</time>
           <time station="S.TOMÀ" type="normal">10:06</time>
           <time station="S.SAMUELE" type="normal">10:09</time>
           <time station="ACCADEMIA" type="normal">10:11</time>
           <time station="S.MARCO (Giardinetti)" type="normal">10:16</time>
+<<<<<<< HEAD
+>>>>>>> upstream/master
+=======
 >>>>>>> upstream/master
         </times>
         <modifiers/>
@@ -1036,6 +1134,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">10:11</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">10:02</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">10:12</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">10:16</time>
@@ -1049,6 +1148,8 @@
           <time station="ZITELLE" type="normal">10:48</time>
           <time station="S.GIORGIO" type="normal">10:51</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">10:54</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1073,6 +1174,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">11:11</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">10:02</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">10:12</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">10:16</time>
@@ -1086,6 +1188,8 @@
           <time station="ZITELLE" type="normal">10:48</time>
           <time station="S.GIORGIO" type="normal">10:51</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">10:54</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1110,6 +1214,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">12:11</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">10:02</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">10:12</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">10:16</time>
@@ -1123,6 +1228,8 @@
           <time station="ZITELLE" type="normal">10:48</time>
           <time station="S.GIORGIO" type="normal">10:51</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">10:54</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1147,6 +1254,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">13:11</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">10:02</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">10:12</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">10:16</time>
@@ -1160,6 +1268,8 @@
           <time station="ZITELLE" type="normal">10:48</time>
           <time station="S.GIORGIO" type="normal">10:51</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">10:54</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1184,6 +1294,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">14:11</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">10:02</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">10:12</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">10:16</time>
@@ -1197,6 +1308,8 @@
           <time station="ZITELLE" type="normal">10:48</time>
           <time station="S.GIORGIO" type="normal">10:51</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">10:54</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1221,6 +1334,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">15:11</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">10:02</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">10:12</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">10:16</time>
@@ -1234,6 +1348,8 @@
           <time station="ZITELLE" type="normal">10:48</time>
           <time station="S.GIORGIO" type="normal">10:51</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">10:54</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1262,6 +1378,7 @@
           <time station="S.MARCO (Giardinetti)" type="minutes">10:36</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">9:58</time>
           <time station="ACCADEMIA" type="normal">10:02</time>
           <time station="S.SAMUELE" type="normal">10:04</time>
@@ -1279,6 +1396,8 @@
           <time station="ZITELLE" type="normal">10:58</time>
           <time station="S.GIORGIO" type="normal">11:01</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">11:04</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1307,6 +1426,7 @@
           <time station="S.MARCO (Giardinetti)" type="minutes">11:36</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">9:58</time>
           <time station="ACCADEMIA" type="normal">10:02</time>
           <time station="S.SAMUELE" type="normal">10:04</time>
@@ -1324,6 +1444,8 @@
           <time station="ZITELLE" type="normal">10:58</time>
           <time station="S.GIORGIO" type="normal">11:01</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">11:04</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1352,6 +1474,7 @@
           <time station="S.MARCO (Giardinetti)" type="minutes">12:36</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">9:58</time>
           <time station="ACCADEMIA" type="normal">10:02</time>
           <time station="S.SAMUELE" type="normal">10:04</time>
@@ -1369,6 +1492,8 @@
           <time station="ZITELLE" type="normal">10:58</time>
           <time station="S.GIORGIO" type="normal">11:01</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">11:04</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1397,6 +1522,7 @@
           <time station="S.MARCO (Giardinetti)" type="minutes">13:36</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">9:58</time>
           <time station="ACCADEMIA" type="normal">10:02</time>
           <time station="S.SAMUELE" type="normal">10:04</time>
@@ -1414,6 +1540,8 @@
           <time station="ZITELLE" type="normal">10:58</time>
           <time station="S.GIORGIO" type="normal">11:01</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">11:04</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1442,6 +1570,7 @@
           <time station="S.MARCO (Giardinetti)" type="minutes">14:36</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">9:58</time>
           <time station="ACCADEMIA" type="normal">10:02</time>
           <time station="S.SAMUELE" type="normal">10:04</time>
@@ -1459,6 +1588,8 @@
           <time station="ZITELLE" type="normal">10:58</time>
           <time station="S.GIORGIO" type="normal">11:01</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">11:04</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1487,6 +1618,7 @@
           <time station="S.MARCO (Giardinetti)" type="minutes">15:36</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">9:58</time>
           <time station="ACCADEMIA" type="normal">10:02</time>
           <time station="S.SAMUELE" type="normal">10:04</time>
@@ -1504,6 +1636,8 @@
           <time station="ZITELLE" type="normal">10:58</time>
           <time station="S.GIORGIO" type="normal">11:01</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">11:04</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1528,6 +1662,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">10:31</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">10:22</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">10:32</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">10:36</time>
@@ -1541,6 +1676,8 @@
           <time station="ZITELLE" type="normal">11:08</time>
           <time station="S.GIORGIO" type="normal">11:11</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">11:14</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1565,6 +1702,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">11:31</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">10:22</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">10:32</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">10:36</time>
@@ -1578,6 +1716,8 @@
           <time station="ZITELLE" type="normal">11:08</time>
           <time station="S.GIORGIO" type="normal">11:11</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">11:14</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1602,6 +1742,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">12:31</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">10:22</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">10:32</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">10:36</time>
@@ -1615,6 +1756,8 @@
           <time station="ZITELLE" type="normal">11:08</time>
           <time station="S.GIORGIO" type="normal">11:11</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">11:14</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1639,6 +1782,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">13:31</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">10:22</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">10:32</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">10:36</time>
@@ -1652,6 +1796,8 @@
           <time station="ZITELLE" type="normal">11:08</time>
           <time station="S.GIORGIO" type="normal">11:11</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">11:14</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1670,6 +1816,7 @@
           <time station="S.BASILIO" type="minutes">13:56</time>
           <time station="SACCA FISOLA" type="minutes">13:59</time>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="TRONCHETTO" type="minutes">14:07</time>
           <time station="TRONCHETTO (Mercato)" type="minutes">14:09</time>
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="minutes">14:17</time>
@@ -1692,11 +1839,16 @@
 =======
 >>>>>>> upstream/master
 =======
+=======
+>>>>>>> upstream/master
           <time station="TRONCHETTO" type="minutes">14:07</time>
           <time station="TRONCHETTO (Mercato)" type="minutes">14:09</time>
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="minutes">14:17</time>
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="minutes">14:21</time>
           <time station="RIALTO &quot;C&quot;" type="minutes">14:31</time>
+<<<<<<< HEAD
+>>>>>>> upstream/master
+=======
 >>>>>>> upstream/master
         </times>
         <modifiers/>
@@ -1718,6 +1870,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">15:31</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">10:22</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">10:32</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">10:36</time>
@@ -1731,6 +1884,8 @@
           <time station="ZITELLE" type="normal">11:08</time>
           <time station="S.GIORGIO" type="normal">11:11</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">11:14</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1758,6 +1913,7 @@
           <time station="S.MARCO (Giardinetti)" type="minutes">10:56</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">10:18</time>
           <time station="ACCADEMIA" type="normal">10:22</time>
           <time station="S.SAMUELE" type="normal">10:24</time>
@@ -1775,6 +1931,8 @@
           <time station="ZITELLE" type="normal">11:18</time>
           <time station="S.GIORGIO" type="normal">11:21</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">11:24</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1802,6 +1960,7 @@
           <time station="S.MARCO (Giardinetti)" type="minutes">11:56</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">10:18</time>
           <time station="ACCADEMIA" type="normal">10:22</time>
           <time station="S.SAMUELE" type="normal">10:24</time>
@@ -1819,6 +1978,8 @@
           <time station="ZITELLE" type="normal">11:18</time>
           <time station="S.GIORGIO" type="normal">11:21</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">11:24</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1846,6 +2007,7 @@
           <time station="S.MARCO (Giardinetti)" type="minutes">12:56</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">10:18</time>
           <time station="ACCADEMIA" type="normal">10:22</time>
           <time station="S.SAMUELE" type="normal">10:24</time>
@@ -1863,6 +2025,8 @@
           <time station="ZITELLE" type="normal">11:18</time>
           <time station="S.GIORGIO" type="normal">11:21</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">11:24</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1890,6 +2054,7 @@
           <time station="S.MARCO (Giardinetti)" type="minutes">13:56</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">10:18</time>
           <time station="ACCADEMIA" type="normal">10:22</time>
           <time station="S.SAMUELE" type="normal">10:24</time>
@@ -1907,6 +2072,8 @@
           <time station="ZITELLE" type="normal">11:18</time>
           <time station="S.GIORGIO" type="normal">11:21</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">11:24</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1934,6 +2101,7 @@
           <time station="S.MARCO (Giardinetti)" type="minutes">14:56</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">10:18</time>
           <time station="ACCADEMIA" type="normal">10:22</time>
           <time station="S.SAMUELE" type="normal">10:24</time>
@@ -1951,6 +2119,8 @@
           <time station="ZITELLE" type="normal">11:18</time>
           <time station="S.GIORGIO" type="normal">11:21</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">11:24</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -1979,6 +2149,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">10:51</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="minutes">11:42</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="minutes">11:52</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="minutes">11:56</time>
@@ -1992,6 +2163,8 @@
           <time station="ZITELLE" type="minutes">12:28</time>
           <time station="S.GIORGIO" type="minutes">12:31</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">12:34</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2016,6 +2189,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">11:51</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="minutes">12:42</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="minutes">12:52</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="minutes">12:56</time>
@@ -2029,6 +2203,8 @@
           <time station="ZITELLE" type="minutes">13:28</time>
           <time station="S.GIORGIO" type="minutes">13:31</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">13:34</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2053,6 +2229,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">12:51</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="minutes">13:42</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="minutes">13:52</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="minutes">13:56</time>
@@ -2066,6 +2243,8 @@
           <time station="ZITELLE" type="minutes">14:28</time>
           <time station="S.GIORGIO" type="minutes">14:31</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">14:34</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2090,6 +2269,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">13:51</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="minutes">14:42</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="minutes">14:52</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="minutes">14:56</time>
@@ -2103,6 +2283,8 @@
           <time station="ZITELLE" type="minutes">15:28</time>
           <time station="S.GIORGIO" type="minutes">15:31</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">15:34</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2127,6 +2309,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">14:51</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="minutes">15:42</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="minutes">15:52</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="minutes">15:56</time>
@@ -2140,6 +2323,8 @@
           <time station="ZITELLE" type="minutes">16:28</time>
           <time station="S.GIORGIO" type="minutes">16:31</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">16:34</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2172,6 +2357,7 @@
           <time station="S.MARCO (Giardinetti)" type="minutes">11:16</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="minutes">11:38</time>
           <time station="ACCADEMIA" type="minutes">11:42</time>
           <time station="S.SAMUELE" type="minutes">11:44</time>
@@ -2189,6 +2375,8 @@
           <time station="ZITELLE" type="minutes">12:38</time>
           <time station="S.GIORGIO" type="minutes">12:41</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">12:44</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2217,6 +2405,7 @@
           <time station="S.MARCO (Giardinetti)" type="minutes">12:16</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="minutes">12:38</time>
           <time station="ACCADEMIA" type="minutes">12:42</time>
           <time station="S.SAMUELE" type="minutes">12:44</time>
@@ -2234,6 +2423,8 @@
           <time station="ZITELLE" type="minutes">13:38</time>
           <time station="S.GIORGIO" type="minutes">13:41</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">13:44</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2262,6 +2453,7 @@
           <time station="S.MARCO (Giardinetti)" type="minutes">13:16</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="minutes">13:38</time>
           <time station="ACCADEMIA" type="minutes">13:42</time>
           <time station="S.SAMUELE" type="minutes">13:44</time>
@@ -2279,6 +2471,8 @@
           <time station="ZITELLE" type="minutes">14:38</time>
           <time station="S.GIORGIO" type="minutes">14:41</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">14:44</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2307,6 +2501,7 @@
           <time station="S.MARCO (Giardinetti)" type="minutes">14:16</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="minutes">14:38</time>
           <time station="ACCADEMIA" type="minutes">14:42</time>
           <time station="S.SAMUELE" type="minutes">14:44</time>
@@ -2324,6 +2519,8 @@
           <time station="ZITELLE" type="minutes">15:38</time>
           <time station="S.GIORGIO" type="minutes">15:41</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">15:44</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2352,6 +2549,7 @@
           <time station="S.MARCO (Giardinetti)" type="minutes">15:16</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="minutes">15:38</time>
           <time station="ACCADEMIA" type="minutes">15:42</time>
           <time station="S.SAMUELE" type="minutes">15:44</time>
@@ -2369,6 +2567,8 @@
           <time station="ZITELLE" type="minutes">16:38</time>
           <time station="S.GIORGIO" type="minutes">16:41</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">16:44</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2397,6 +2597,7 @@
           <time station="S.MARCO (Giardinetti)" type="normal">15:56</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="minutes">00:02</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="minutes">00:12</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="minutes">00:16</time>
@@ -2410,6 +2611,8 @@
           <time station="ZITELLE" type="minutes">00:48</time>
           <time station="S.GIORGIO" type="minutes">00:51</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">00:54</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2434,6 +2637,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">15:51</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="minutes">00:58</time>
           <time station="ACCADEMIA" type="minutes">01:02</time>
           <time station="S.SAMUELE" type="minutes">01:04</time>
@@ -2451,6 +2655,8 @@
           <time station="ZITELLE" type="minutes">01:58</time>
           <time station="S.GIORGIO" type="minutes">02:01</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">02:04</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2480,6 +2686,7 @@
           <time station="S.MARCO (Giardinetti)" type="normal">16:16</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="minutes">00:22</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="minutes">00:32</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="minutes">00:36</time>
@@ -2492,6 +2699,8 @@
           <time station="ZITELLE" type="minutes">01:08</time>
           <time station="S.GIORGIO" type="minutes">01:11</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">01:14</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2516,6 +2725,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">16:11</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="minutes">00:18</time>
           <time station="ACCADEMIA" type="minutes">00:22</time>
           <time station="S.SAMUELE" type="minutes">00:24</time>
@@ -2533,6 +2743,8 @@
           <time station="ZITELLE" type="minutes">01:18</time>
           <time station="S.GIORGIO" type="minutes">01:21</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">01:24</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2562,6 +2774,7 @@
           <time station="S.MARCO (Giardinetti)" type="normal">16:36</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">15:18</time>
           <time station="ACCADEMIA" type="normal">15:22</time>
           <time station="S.SAMUELE" type="normal">15:24</time>
@@ -2583,6 +2796,8 @@
 >>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
+=======
+>>>>>>> upstream/master
         </times>
         <modifiers/>
       </timetable>
@@ -2598,6 +2813,7 @@
           <time station="SACCA FISOLA" type="normal">15:59</time>
           <time station="TRONCHETTO" type="normal">16:07</time>
           <time station="TRONCHETTO (Mercato)" type="normal">16:09</time>
+<<<<<<< HEAD
 <<<<<<< HEAD
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="normal">16:17</time>
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">16:21</time>
@@ -2617,6 +2833,11 @@
           <time station="S.GIORGIO" type="normal">16:31</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">16:34</time>
 =======
+>>>>>>> upstream/master
+=======
+          <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="normal">16:17</time>
+          <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">16:21</time>
+          <time station="RIALTO &quot;C&quot;" type="normal">16:31</time>
 >>>>>>> upstream/master
 =======
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="normal">16:17</time>
@@ -2648,6 +2869,7 @@
           <time station="S.MARCO (Giardinetti)" type="normal">16:56</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">15:38</time>
           <time station="ACCADEMIA" type="normal">15:42</time>
           <time station="S.SAMUELE" type="normal">15:44</time>
@@ -2666,6 +2888,8 @@
           <time station="ZITELLE" type="normal">16:38</time>
           <time station="S.GIORGIO" type="normal">16:41</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">16:44</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2690,6 +2914,7 @@
           <time station="RIALTO &quot;C&quot;" type="normal">16:51</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">16:02</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">16:12</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">16:16</time>
@@ -2702,6 +2927,8 @@
           <time station="ZITELLE" type="normal">16:48</time>
           <time station="S.GIORGIO" type="normal">16:51</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">16:54</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2726,6 +2953,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">17:11</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">15:58</time>
           <time station="ACCADEMIA" type="normal">16:02</time>
           <time station="S.SAMUELE" type="normal">16:04</time>
@@ -2743,6 +2971,8 @@
           <time station="ZITELLE" type="normal">16:58</time>
           <time station="S.GIORGIO" type="normal">17:01</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">17:04</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2767,6 +2997,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">18:11</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">15:58</time>
           <time station="ACCADEMIA" type="normal">16:02</time>
           <time station="S.SAMUELE" type="normal">16:04</time>
@@ -2784,6 +3015,8 @@
           <time station="ZITELLE" type="normal">16:58</time>
           <time station="S.GIORGIO" type="normal">17:01</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">17:04</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2808,6 +3041,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">19:11</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">15:58</time>
           <time station="ACCADEMIA" type="normal">16:02</time>
           <time station="S.SAMUELE" type="normal">16:04</time>
@@ -2825,6 +3059,8 @@
           <time station="ZITELLE" type="normal">16:58</time>
           <time station="S.GIORGIO" type="normal">17:01</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">17:04</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2854,6 +3090,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">17:21</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">16:22</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">16:32</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">16:36</time>
@@ -2866,6 +3103,8 @@
           <time station="ZITELLE" type="normal">17:08</time>
           <time station="S.GIORGIO" type="normal">17:11</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">17:14</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2891,6 +3130,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">18:21</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">16:22</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">16:32</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">16:36</time>
@@ -2903,6 +3143,8 @@
           <time station="ZITELLE" type="normal">17:08</time>
           <time station="S.GIORGIO" type="normal">17:11</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">17:14</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2928,6 +3170,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">19:21</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">16:22</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">16:32</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">16:36</time>
@@ -2940,6 +3183,8 @@
           <time station="ZITELLE" type="normal">17:08</time>
           <time station="S.GIORGIO" type="normal">17:11</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">17:14</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -2968,6 +3213,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">17:31</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">16:18</time>
           <time station="ACCADEMIA" type="normal">16:22</time>
           <time station="S.SAMUELE" type="normal">16:24</time>
@@ -2985,6 +3231,8 @@
           <time station="ZITELLE" type="normal">17:18</time>
           <time station="S.GIORGIO" type="normal">17:21</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">17:24</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -3009,6 +3257,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">18:31</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">16:18</time>
           <time station="ACCADEMIA" type="normal">16:22</time>
           <time station="S.SAMUELE" type="normal">16:24</time>
@@ -3026,6 +3275,8 @@
           <time station="ZITELLE" type="normal">17:18</time>
           <time station="S.GIORGIO" type="normal">17:21</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">17:24</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -3050,6 +3301,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">19:31</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">16:18</time>
           <time station="ACCADEMIA" type="normal">16:22</time>
           <time station="S.SAMUELE" type="normal">16:24</time>
@@ -3067,6 +3319,8 @@
           <time station="ZITELLE" type="normal">17:18</time>
           <time station="S.GIORGIO" type="normal">17:21</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">17:24</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -3095,6 +3349,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">17:41</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">16:42</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">16:52</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">16:56</time>
@@ -3108,6 +3363,8 @@
           <time station="ZITELLE" type="normal">17:28</time>
           <time station="S.GIORGIO" type="normal">17:31</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">17:34</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -3132,6 +3389,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">18:41</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">16:42</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">16:52</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">16:56</time>
@@ -3145,6 +3403,8 @@
           <time station="ZITELLE" type="normal">17:28</time>
           <time station="S.GIORGIO" type="normal">17:31</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">17:34</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -3169,6 +3429,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">19:41</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">16:42</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">16:52</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">16:56</time>
@@ -3182,6 +3443,8 @@
           <time station="ZITELLE" type="normal">17:28</time>
           <time station="S.GIORGIO" type="normal">17:31</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">17:34</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -3207,6 +3470,7 @@
           <time station="TRONCHETTO (Mercato)" type="minutes">17:29</time>
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="minutes">17:37</time>
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="minutes">17:41</time>
+<<<<<<< HEAD
           <time station="RIALTO &quot;C&quot;" type="minutes">17:51</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -3273,6 +3537,17 @@
 =======
 >>>>>>> upstream/master
 =======
+=======
+          <time station="RIALTO &quot;C&quot;" type="minutes">17:51</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="S.MARCO-S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">17:59</time>
+          <time station="S.GIORGIO" type="minutes">18:02</time>
+          <time station="ZITELLE" type="minutes">18:05</time>
+>>>>>>> upstream/master
           <time station="REDENTORE" type="minutes">18:08</time>
           <time station="PALANCA" type="minutes">18:10</time>
           <time station="ZATTERE" type="minutes">18:14</time>
@@ -3283,6 +3558,9 @@
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="minutes">18:37</time>
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="minutes">18:41</time>
           <time station="RIALTO &quot;C&quot;" type="minutes">18:51</time>
+<<<<<<< HEAD
+>>>>>>> upstream/master
+=======
 >>>>>>> upstream/master
         </times>
         <modifiers/>
@@ -3304,6 +3582,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">19:51</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO (Giardinetti)" type="normal">16:38</time>
           <time station="ACCADEMIA" type="normal">16:42</time>
           <time station="S.SAMUELE" type="normal">16:44</time>
@@ -3322,6 +3601,8 @@
           <time station="ZITELLE" type="normal">17:38</time>
           <time station="S.GIORGIO" type="normal">17:41</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">17:44</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -3351,6 +3632,7 @@
           <time station="RIALTO &quot;C&quot;" type="minutes">17:01</time>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="RIALTO &quot;B&quot;" type="normal">17:02</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="normal">17:12</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="normal">17:16</time>
@@ -3368,11 +3650,14 @@
 >>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
+=======
+>>>>>>> upstream/master
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           <time station="S.MARCO-S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">17:09</time>
@@ -3403,6 +3688,8 @@
           <time station="S.GIORGIO" type="normal">17:51</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">17:54</time>
 =======
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
           <time station="S.MARCO-S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">17:09</time>
@@ -5083,6 +5370,9 @@
           <time station="S.GIORGIO" type="normal">17:41</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">17:44</time>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> upstream/master
+=======
 >>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
@@ -5091,6 +5381,7 @@
       </timetable>
       <timetable>
         <times>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           <time station="S.MARCO-S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">18:09</time>
@@ -5107,6 +5398,8 @@
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="minutes">18:51</time>
           <time station="S.MARCUOLA Casinò" type="minutes">18:56</time>
           <time station="RIALTO &quot;C&quot;" type="minutes">19:01</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -5130,6 +5423,7 @@
       <timetable>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <times/>
         <modifiers/>
       </timetable>
@@ -5149,6 +5443,9 @@
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">19:51</time>
           <time station="S.MARCUOLA Casinò" type="normal">19:56</time>
           <time station="RIALTO &quot;C&quot;" type="normal">20:01</time>
+=======
+        <times>
+>>>>>>> upstream/master
 =======
         <times>
 >>>>>>> upstream/master
@@ -5180,6 +5477,7 @@
         <times>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO-S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">20:09</time>
           <time station="S.GIORGIO" type="normal">20:12</time>
           <time station="ZITELLE" type="normal">20:15</time>
@@ -5193,6 +5491,8 @@
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="normal">20:47</time>
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">20:51</time>
           <time station="RIALTO &quot;C&quot;" type="normal">21:01</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -5216,6 +5516,7 @@
       </timetable>
       <timetable>
         <times>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           <time station="S.MARCO-S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">20:19</time>
@@ -5244,6 +5545,8 @@
 =======
 =======
 >>>>>>> upstream/master
+=======
+>>>>>>> upstream/master
           <time station="RIALTO &quot;B&quot;" type="minutes">19:12</time>
           <time station="S.MARCUOLA Casinò" type="minutes">19:18</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="minutes">19:22</time>
@@ -5259,6 +5562,9 @@
           <time station="S.GIORGIO" type="minutes">20:01</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">20:04</time>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> upstream/master
+=======
 >>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
@@ -5267,6 +5573,7 @@
       </timetable>
       <timetable>
         <times>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           <time station="S.MARCO-S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">20:29</time>
@@ -5297,6 +5604,8 @@
 =======
 =======
 >>>>>>> upstream/master
+=======
+>>>>>>> upstream/master
           <time station="RIALTO &quot;B&quot;" type="minutes">18:22</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="minutes">18:32</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="minutes">18:36</time>
@@ -5310,6 +5619,9 @@
           <time station="S.GIORGIO" type="minutes">19:11</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">19:14</time>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> upstream/master
+=======
 >>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
@@ -5318,6 +5630,7 @@
       </timetable>
       <timetable>
         <times>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           <time station="S.MARCO-S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">20:49</time>
@@ -5350,6 +5663,8 @@
 =======
 =======
 >>>>>>> upstream/master
+=======
+>>>>>>> upstream/master
           <time station="RIALTO &quot;B&quot;" type="minutes">19:22</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="minutes">19:32</time>
           <time station="P.ROMA (S.Chiara) &quot;E&quot;" type="minutes">19:36</time>
@@ -5363,6 +5678,9 @@
           <time station="S.GIORGIO" type="minutes">20:11</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">20:14</time>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> upstream/master
+=======
 >>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
@@ -5371,6 +5689,7 @@
       </timetable>
       <timetable>
         <times>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           <time station="PALANCA" type="normal">21:00</time>
@@ -5391,6 +5710,8 @@
 =======
 =======
 >>>>>>> upstream/master
+=======
+>>>>>>> upstream/master
           <time station="RIALTO &quot;B&quot;" type="minutes">18:32</time>
           <time station="S.MARCUOLA Casinò" type="minutes">18:38</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="minutes">18:42</time>
@@ -5406,6 +5727,9 @@
           <time station="S.GIORGIO" type="minutes">19:21</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">19:24</time>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> upstream/master
+=======
 >>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
@@ -5414,6 +5738,7 @@
       </timetable>
       <timetable>
         <times>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           <time station="S.MARCO-S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">21:09</time>
@@ -5446,6 +5771,8 @@
 =======
 =======
 >>>>>>> upstream/master
+=======
+>>>>>>> upstream/master
           <time station="RIALTO &quot;B&quot;" type="minutes">19:32</time>
           <time station="S.MARCUOLA Casinò" type="minutes">19:38</time>
           <time station="FERROVIA (Scalzi) &quot;B&quot;" type="minutes">19:42</time>
@@ -5461,6 +5788,9 @@
           <time station="S.GIORGIO" type="minutes">20:21</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">20:24</time>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> upstream/master
+=======
 >>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
@@ -5469,6 +5799,7 @@
       </timetable>
       <timetable>
         <times>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
           <time station="PALANCA" type="normal">21:20</time>
@@ -5487,6 +5818,8 @@
           <time station="S.GIORGIO" type="minutes">00:51</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">00:54</time>
 =======
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
           <time station="RIALTO &quot;B&quot;" type="minutes">18:42</time>
@@ -5562,6 +5895,9 @@
           <time station="S.GIORGIO" type="minutes">19:51</time>
           <time station="S.MARCO- S.ZACCARIA (M.V.E.) &quot;B&quot;" type="minutes">19:54</time>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> upstream/master
+=======
 >>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
@@ -5572,8 +5908,11 @@
         <times>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="PALANCA" type="normal">21:32</time>
           <time station="ZATTERE" type="normal">21:36</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -5599,6 +5938,7 @@
         <times>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO-S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">21:29</time>
           <time station="S.GIORGIO" type="normal">21:32</time>
           <time station="ZITELLE" type="normal">21:35</time>
@@ -5612,6 +5952,8 @@
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="normal">22:07</time>
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">22:11</time>
           <time station="RIALTO &quot;C&quot;" type="normal">22:21</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -5632,6 +5974,7 @@
         <times>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO-S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">21:49</time>
           <time station="S.GIORGIO" type="normal">21:52</time>
           <time station="ZITELLE" type="normal">21:55</time>
@@ -5645,6 +5988,8 @@
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="normal">22:27</time>
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">22:31</time>
           <time station="RIALTO &quot;C&quot;" type="normal">22:41</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -5676,8 +6021,11 @@
         <times>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="PALANCA" type="normal">22:00</time>
           <time station="ZATTERE" type="normal">22:04</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -5709,8 +6057,11 @@
         <times>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="PALANCA" type="normal">22:12</time>
           <time station="ZATTERE" type="normal">22:16</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -5742,6 +6093,7 @@
         <times>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO-S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">22:09</time>
           <time station="S.GIORGIO" type="normal">22:12</time>
           <time station="ZITELLE" type="normal">22:15</time>
@@ -5755,6 +6107,8 @@
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="normal">22:47</time>
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">22:51</time>
           <time station="RIALTO &quot;C&quot;" type="normal">23:01</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -5786,6 +6140,7 @@
         <times>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO-S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">22:29</time>
           <time station="S.GIORGIO" type="normal">22:32</time>
           <time station="ZITELLE" type="normal">22:35</time>
@@ -5799,6 +6154,8 @@
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="normal">23:07</time>
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">23:11</time>
           <time station="RIALTO &quot;C&quot;" type="normal">23:21</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -5830,8 +6187,11 @@
         <times>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="PALANCA" type="normal">22:40</time>
           <time station="ZATTERE" type="normal">22:44</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -5863,8 +6223,11 @@
         <times>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="PALANCA" type="normal">22:52</time>
           <time station="ZATTERE" type="normal">22:56</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -5896,6 +6259,7 @@
         <times>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO-S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">22:49</time>
           <time station="S.GIORGIO" type="normal">22:52</time>
           <time station="ZITELLE" type="normal">22:55</time>
@@ -5909,6 +6273,8 @@
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="normal">23:27</time>
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">23:31</time>
           <time station="RIALTO &quot;C&quot;" type="normal">23:41</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -5940,6 +6306,7 @@
         <times>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="S.MARCO-S.ZACCARIA (M.V.E.) &quot;B&quot;" type="normal">23:09</time>
           <time station="S.GIORGIO" type="normal">23:12</time>
           <time station="ZITELLE" type="normal">23:15</time>
@@ -5953,6 +6320,8 @@
           <time station="P.ROMA (S.Chiara) &quot;D&quot;" type="normal">23:47</time>
           <time station="FERROVIA (Scalzi) &quot;C&quot;" type="normal">23:51</time>
           <time station="RIALTO &quot;C&quot;" type="normal">0:01</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======
@@ -5977,8 +6346,11 @@
         <times>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           <time station="PALANCA" type="normal">23:21</time>
           <time station="ZATTERE" type="normal">23:25</time>
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
 =======

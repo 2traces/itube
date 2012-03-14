@@ -64,7 +64,7 @@
 
 -(void)changeMapTo:(NSString*)newMap andCity:(NSString*)cityName
 {
-    [stationsView resetBothStations];
+      [stationsView resetBothStations];
 
     MHelper *helper = [MHelper sharedHelper];
     [helper saveBookmarkFile];
@@ -105,6 +105,56 @@
     [formatter release];
     
     return arrivalTime;
+}
+
+#pragma mark - datasource methods
+
+-(NSMutableArray*)normalizePath:(NSArray*)path
+{
+    int count = [path count];
+    MStation *firstStation = [self fromStation];
+    
+    NSMutableArray *normalPath = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
+    
+    MStation *threadStart = firstStation;
+    
+    for (int i=0; i<count; i++) {
+        
+        if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
+            
+            Segment *tempSegment = (Segment*)[path objectAtIndex:i];
+            MStation *st1 = [[MHelper sharedHelper] getStationWithIndex:[tempSegment start].index andLineIndex:[tempSegment start].line.index];
+            
+            if (st1 != threadStart) {
+                
+                Segment *newSegment = [[[Segment alloc] initFromStation:[tempSegment end] toStation:[tempSegment start] withDriving:[tempSegment driving]] autorelease];
+                [normalPath addObject:newSegment];
+                
+                threadStart=[[MHelper sharedHelper] getStationWithIndex:[tempSegment end].index andLineIndex:[tempSegment end].line.index];
+            } else {
+                [normalPath addObject:tempSegment];
+                threadStart =[[MHelper sharedHelper] getStationWithIndex:[tempSegment end].index andLineIndex:[tempSegment end].line.index];
+            }
+            
+        } else {
+            
+            Transfer *transfer = (Transfer*)[path objectAtIndex:i];
+            
+            NSArray *array = [[transfer stations] allObjects];
+            
+            if ([array objectAtIndex:0]==threadStart) {
+                Station *st1 = [array objectAtIndex:1];
+                threadStart = [[MHelper sharedHelper] getStationWithIndex:st1.index andLineIndex:st1.line.index];
+            } else {
+                Station *st1 = [array objectAtIndex:0];
+                threadStart = [[MHelper sharedHelper] getStationWithIndex:st1.index andLineIndex:st1.line.index];
+            }
+            
+            [normalPath addObject:transfer];
+        }        
+    }
+    
+    return normalPath;
 }
 
 
@@ -230,53 +280,6 @@
     return stationsArray;
 }
 
--(NSMutableArray*)normalizePath:(NSArray*)path
-{
-    int count = [path count];
-    MStation *firstStation = [self fromStation];
-    
-    NSMutableArray *normalPath = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
-    
-    MStation *threadStart = firstStation;
-    
-    for (int i=0; i<count; i++) {
-        
-        if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
-            
-            Segment *tempSegment = (Segment*)[path objectAtIndex:i];
-            MStation *st1 = [[MHelper sharedHelper] getStationWithIndex:[tempSegment start].index andLineIndex:[tempSegment start].line.index];
-            
-            if (st1 != threadStart) {
-            
-                Segment *newSegment = [[[Segment alloc] initFromStation:[tempSegment end] toStation:[tempSegment start] withDriving:[tempSegment driving]] autorelease];
-                [normalPath addObject:newSegment];
-                
-                threadStart=[[MHelper sharedHelper] getStationWithIndex:[tempSegment end].index andLineIndex:[tempSegment end].line.index];
-            } else {
-                [normalPath addObject:tempSegment];
-                threadStart =[[MHelper sharedHelper] getStationWithIndex:[tempSegment end].index andLineIndex:[tempSegment end].line.index];
-            }
-            
-        } else {
-            
-            Transfer *transfer = (Transfer*)[path objectAtIndex:i];
-            
-            NSArray *array = [[transfer stations] allObjects];
-            
-            if ([array objectAtIndex:0]==threadStart) {
-                Station *st1 = [array objectAtIndex:1];
-                threadStart = [[MHelper sharedHelper] getStationWithIndex:st1.index andLineIndex:st1.line.index];
-            } else {
-                Station *st1 = [array objectAtIndex:0];
-                threadStart = [[MHelper sharedHelper] getStationWithIndex:st1.index andLineIndex:st1.line.index];
-            }
-            
-            [normalPath addObject:transfer];
-        }        
-    }
-    
-    return normalPath;
-}
 
 -(NSMutableArray*)dsGetExitForStations
 {
@@ -432,6 +435,7 @@
     return NO;
 }
 
+#pragma mark - horiz and vert path views
 
 -(void)showScrollView
 {
@@ -997,6 +1001,8 @@
 {
     
 }
+
+#pragma mark - choosing stations etc
 
 -(void)returnFromSelection2:(NSArray*)stations
 {
