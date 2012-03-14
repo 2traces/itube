@@ -27,7 +27,7 @@ Name=U1
 125	Lübecker Straße 53.559889,10.028672	,	SE	SE
 126	Wartenau 53.565012,10.036225	,	SE	SE
 127	Ritterstraße 53.567587,10.046182	,	SE	SE
-128	<Wandsbeker Chaussee 53.570122,10.059743	,	SE	SE
+128	<Wandsbeker; Chaussee 53.570122,10.059743	,	SE	SE
 129	<Wandsbek Markt 53.571881,10.068852	,	SE	SE
 130	<Straßburger Straße 53.581825,10.067596	,	SE	SE
 131	<Alter Teichweg 53.586824,10.064442	,	S	E
@@ -40,12 +40,12 @@ Name=U1
 138	>Buckhorn 53.664851,10.155509	,	S	E
 139	>Hoisbüttel 53.678027,10.147494	,	S	E
 140	>Ohlstedt 53.694833,10.137033	,	S	E
-141	Buchenkamp 53.652969,10.185356	,	S	E
-142	Ahrensburg West 53.66468,10.219131	,	S	E
-143	Ahrensburg Ost 53.661418,10.241768	,	S	E
-144	Schmalenbeck 53.653128,10.260715	,	S	E
-145	Kiekut 53.65314,10.280381	,	S	E
-146	Großhansdorf 53.662849,10.286937	,	E	S
+141	/^Buchenkamp 53.652969,10.185356	,	S	E
+142	/^Ahrensburg West 53.66468,10.219131	,	S	E
+143	/^Ahrensburg Ost 53.661418,10.241768	,	S	E
+144	/^Schmalenbeck 53.653128,10.260715	,	S	E
+145	/^Kiekut 53.65314,10.280381	,	S	E
+146	/^Großhansdorf 53.662849,10.286937	,	E	S
 
 
 Branch10 = <>101...140
@@ -263,7 +263,7 @@ Driving=
 [Transfers]
 
 01=U1,Wandsbek-Gartenstadt,U3,Wandsbek-Gartenstadt,2, S, E
-02=U1,Wandsbeker Chaussee,S1,Wandsbeker Chaussee,2, S, E
+02=U1,Wandsbeker; Chaussee,S1,Wandsbeker; Chaussee,2, S, E
 03=U1,Lübecker Straße,U3,Lübecker Straße,2, S, E
 05=U1,Kellinghusenstraße,U3,Kellinghusenstraße,2, E, S
 04=U1,Hauptbahnhof,U3,Hauptbahnhof,2
@@ -311,7 +311,7 @@ Driving=
 
 39=S1,Ohlsdorf,U1,Ohlsdorf,2, SME
 40=S1,Barmbek,U3,Barmbek,2, M
-41=S1,Wandsbeker Chaussee,U1,Wandsbeker Chaussee,2, E, S
+41=S1,Wandsbeker; Chaussee,U1,Wandsbeker; Chaussee,2, E, S
 42=S1,Berliner Tor,U3,Berliner Tor,2, M
 43=S1,Berliner Tor,S2,Berliner Tor,2, M
 44=S1,Berliner Tor,U2,Berliner Tor,2, M
@@ -340,7 +340,6 @@ Driving=
 65=S2,Berliner Tor,U2,Berliner Tor,2, E
 66=S2,Berliner Tor,U3,Berliner Tor,2, E
 67=S2,Berliner Tor,S1,Berliner Tor,2, E
-
 68=S3,Hauptbahnhof,U3,Hauptbahnhof,2, E, M
 69=S3,Hauptbahnhof,U1,Hauptbahnhof,2, E,M
 70=S3,Hauptbahnhof,S1,Hauptbahnhof,2, SME
@@ -353,17 +352,12 @@ Driving=
 77=S3,Altona,S1,Altona,2, MS
 78=S3,Eidelstedt,S2,Eidelstedt,2, SME
 79=S3,Elbgaustraße,S2,Elbgaustraße,2, SME
-=S3,Jungfernstieg,U1,Jungfernstieg,2, M
-=S2,Stellingen,S3,Stellingen,2, SME
-=S3,Stellingen,S2,Stellingen,2, SME
-=S2,Langenfelde,S3,Langenfelde,2, SME
-=S3,Langenfelde,S2,Langenfelde,2, SME
-=S2,Diebsteich,S3,Diebsteich,2, SME
-=S3,Diebsteich,S2,Diebsteich,2, SME
-
-
-
-
+80=S3,Konigstraße,S1,Konigstraße,2
+81=S2,Konigstraße,S1,Konigstraße,2
+82=S2,Konigstraße,S3,Konigstraße,2
+83=S3,Konigstraße,S2,Konigstraße,2
+84=S1,Konigstraße,S2,Konigstraße,2
+85=S1,Konigstraße,S3,Konigstraße,2
 
 
 

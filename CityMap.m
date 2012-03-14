@@ -1755,9 +1755,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	NSArray *elements = [transferInfo componentsSeparatedByString:@","];
 
     NSString *lineStation1 = [elements objectAtIndex:0];
-    NSString *station1 = [elements objectAtIndex:1];
+    NSString *station1 = [ComplexText makePlainString:[elements objectAtIndex:1]];
     NSString *lineStation2 = [elements objectAtIndex:2];
-    NSString *station2 = [elements objectAtIndex:3];
+    NSString *station2 = [ComplexText makePlainString:[elements objectAtIndex:3]];
 
     Station *ss1 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation1].index intValue]-1] getStation:station1];
     Station *ss2 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation2].index intValue]-1] getStation:station2];
@@ -1781,9 +1781,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	NSArray *elements = [transferInfo componentsSeparatedByString:@","];
     
     NSString *lineStation1 = [elements objectAtIndex:0];
-    NSString *station1 = [elements objectAtIndex:1];
+    NSString *station1 = [ComplexText makePlainString:[elements objectAtIndex:1]];
     NSString *lineStation2 = [elements objectAtIndex:2];
-    NSString *station2 = [elements objectAtIndex:3];
+    NSString *station2 = [ComplexText makePlainString:[elements objectAtIndex:3]];
     
     Station *ss1 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation1].index intValue]-1] getStation:station1];
     Station *ss2 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation2].index intValue]-1] getStation:station2];
