@@ -30,6 +30,7 @@
 @synthesize midground2;
 @synthesize previewImage;
 @synthesize activeLayer;
+@synthesize foundPaths;
 
 + (Class)layerClass
 {
