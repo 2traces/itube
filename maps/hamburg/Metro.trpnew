@@ -72,7 +72,7 @@ Name=U2
 213	Gansemarkt 53.555842,9.986079	,	SE	SE
 214	Jungfernstieg 53.552515,9.994211	,	SM	EM
 215	Hauptbahnhof 53.554319,10.007955	,	SE	SE
-216	Berliner Tor 53.553376,10.0226	,	MS	ME
+216	<Berliner; Tor 53.553376,10.0226	,	MS	ME
 217	/^<BurgStraße 53.555702,10.041718	,	M	M
 218	/^<Hammer 53.555887,10.055838	,	E	S
 219	/^<Rauhes Haus 53.55423,10.066009	,	SE	SE
@@ -110,7 +110,7 @@ Name=U3
 315	/Rathaus 53.550176,9.993482	,	SE	SE
 316	Mönckebergstraße 53.551196,10.001271	,	S	E
 317	Hauptbahnhof 53.552343,10.009789	,	EM	SM
-318	Berliner Tor 53.553376,10.0226	,	EM	SM
+318	<Berliner; Tor 53.553376,10.0226	,	EM	SM
 319	>Lübecker Straße 53.559889,10.028672	,	E	S
 320	>Uhlandstraße 53.564706,10.026677	,	E	S
 321	>Mundsburg 53.569154,10.027127	,	M	M
@@ -138,7 +138,7 @@ Name=S2
 407	Sternschanze 53.56384,9.967175	SE	SE
 408	Dammtor 53.561113,9.989319	EM	SM
 409	Hauptbahnhof 53.554319,10.007955	MS	ME
-410	Berliner Tor 53.553376,10.0226	S	E
+410	<Berliner; Tor 53.553376,10.0226	S	E
 411	<Rothenburgsort 53.538439,10.04366	S	E
 412	<Tiefstack 53.531368,10.065225	E	S
 413	<Billwerder-Moorfleet 53.515996,10.096275	S	E
@@ -153,7 +153,7 @@ Name=S2
 422	/>Konigstraße 53.548187,9.945331	SE	SE
 423	/>Reeperbahn 53.549462,9.955888	SE	SE
 424	/>Landungsbrücken 53.546071,9.971251	SE	SE
-425	Stadthausbrucke 53.54964,9.986444	SE	SE
+425	Stadthaus;brücke 53.54964,9.986444	SE	SE
 426	Jungfernstieg 53.552649,9.993138	SME	SME
 
 
@@ -233,7 +233,7 @@ Name=S3
 616	<Hammerbrook 53.547371,10.022857	SE	SE
 617	Hauptbahnhof 53.552853,10.006313		
 618	Jungfernstieg 53.552649,9.993138	SME	SME
-619	Stadthausbrucke 53.54964,9.986444	SE	SE
+619	Stadthaus;brücke 53.54964,9.986444	SE	SE
 620	/>Landungsbrücken 53.546071,9.971251	ME	MS
 621	/>Reeperbahn 53.549462,9.955888	SE	SE
 622	/>Konigstraße 53.548187,9.945331	SE	SE
@@ -358,8 +358,64 @@ Driving=
 83=S3,Konigstraße,S2,Konigstraße,2
 84=S1,Konigstraße,S2,Konigstraße,2
 85=S1,Konigstraße,S3,Konigstraße,2
-
-
+86=S3,Reeperbahn,S1,Reeperbahn,2
+87=S2,Reeperbahn,S1,Reeperbahn,2
+88=S2,Reeperbahn,S3,Reeperbahn,2
+89=S3,Reeperbahn,S2,Reeperbahn,2
+90=S1,Reeperbahn,S2,Reeperbahn,2
+91=S1,Reeperbahn,S3,Reeperbahn,2
+92=S3,Holstenstraße,S1,Holstenstraße,2
+93=S2,Holstenstraße,S1,Holstenstraße,2
+94=S2,Holstenstraße,S3,Holstenstraße,2
+95=S3,Holstenstraße,S2,Holstenstraße,2
+96=S1,Holstenstraße,S2,Holstenstraße,2
+97=S1,Holstenstraße,S3,Holstenstraße,2
+98=S3,Stadthausbrücke,S1,Stadthausbrücke,2
+99=S2,Stadthausbrücke,S1,Stadthausbrücke,2
+100=S2,Stadthausbrücke,S3,Stadthausbrücke,2
+101=S3,Stadthausbrücke,S2,Stadthausbrücke,2
+102=S1,Stadthausbrücke,S2,Stadthausbrücke,2
+103=S1,Stadthausbrücke,S3,Stadthausbrücke,2
+104=S1,Dammtor,S2,Dammtor,2
+105=S1,Dammtor,S3,Dammtor,2
+106=S3,Dammtor,S1,Dammtor,2
+107=S2,Dammtor,S1,Dammtor,2
+108=S2,Altona,S1,Altona,2
+109=S2,Altona,S3,Altona,2
+110=S1,Altona,S2,Altona,2
+111=S3,Altona,S2,Altona,2
+112=S1,Sternschanze,S2,Sternschanze,2
+113=S1,Sternschanze,S3,Sternschanze,2
+114=S1,Sternschanze,U3,Sternschanze,2
+115=S2,Sternschanze,S1,Sternschanze,2
+116=S3,Sternschanze,S1,Sternschanze,2
+117=U3,Sternschanze,S1,Sternschanze,2
+118=S2,Landungsbrücken,S1,Landungsbrücken,2
+119=S2,Landungsbrücken,S3,Landungsbrücken,2
+120=S2,Landungsbrücken,U3,Landungsbrücken,2
+121=S1,Landungsbrücken,S2,Landungsbrücken,2
+122=S3,Landungsbrücken,S2,Landungsbrücken,2
+123=U3,Landungsbrücken,S2,Landungsbrücken,2
+124=S2,Stadthausbrücke,S1,Stadthausbrücke,2
+125=S2,Stadthausbrücke,S3,Stadthausbrücke,2
+126=S3,Stadthausbrücke,S2,Stadthausbrücke,2
+127=S1,Stadthausbrücke,S2,Stadthausbrücke,2
+128=S1,Stadthausbrücke,S3,Stadthausbrücke,2
+129=S3,Stadthausbrücke,S1,Stadthausbrücke,2
+130=S2,Stellingen,S3,Stellingen,2
+131=S3,Stellingen,S2,Stellingen,2
+132=S2,Langenfelde,S3,Langenfelde,2
+133=S3,Langenfelde,S2,Langenfelde,2
+134=S2,Diebsteich,S3,Diebsteich,2
+135=S3,Diebsteich,S2,Diebsteich,2
+136=S2,Jungfernstieg,S1,Jungfernstieg,2
+137=S2,Jungfernstieg,S3,Jungfernstieg,2
+138=S2,Jungfernstieg,U1,Jungfernstieg,2
+139=S2,Jungfernstieg,U2,Jungfernstieg,2
+140=U2,Jungfernstieg,S2,Jungfernstieg,2
+141=U1,Jungfernstieg,S2,Jungfernstieg,2
+142=S1,Jungfernstieg,S2,Jungfernstieg,2
+143=S3,Jungfernstieg,S2,Jungfernstieg,2
 
 
 

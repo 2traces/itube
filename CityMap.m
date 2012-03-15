@@ -108,7 +108,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 break;
         }
     }
-    str = [[str stringByReplacingOccurrencesOfString:@";" withString:@" "] retain];
+    str = [[str stringByReplacingOccurrencesOfString:@";" withString:@""] retain];
     return str;
 }
 
@@ -156,7 +156,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             else string = [string substringFromIndex:1];
         }
         words = [[string componentsSeparatedByString:@";"] retain];
-        string = [[string stringByReplacingOccurrencesOfString:@";" withString:@" "] retain];
+        string = [[string stringByReplacingOccurrencesOfString:@";" withString:@""] retain];
     }
     return self;
 }
@@ -1795,7 +1795,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     
     Station *ss1 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation1].index intValue]-1] getStation:station1];
     Station *ss2 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation2].index intValue]-1] getStation:station2];
-    if(ss1 == nil || ss2 == nil) return;
+    if(ss1 == nil || ss2 == nil) {
+        NSLog(@"Error: stations for transfer not found! %@ at %@ and %@ at %@", station1, lineStation1, station2, lineStation2);
+        return;
+    }
     if([elements count] >= 5) {
         int drv = [[elements objectAtIndex:4] floatValue];
         [ss1 setTransferDriving:drv to:ss2];
