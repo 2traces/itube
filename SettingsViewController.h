@@ -12,6 +12,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Server.h"
 #import "DownloadServer.h"
+#import "MBProgressHUD.h"
 
 @class MyNavigationBar;
 
@@ -35,6 +36,7 @@
     NSArray *maps;
     
     NSIndexPath *selectedPath;
+    MBProgressHUD *_hud;
     
     int requested_file_type;
 }
@@ -54,10 +56,13 @@
 @property (nonatomic, retain) IBOutlet UIButton *buyAllButton;
 @property (nonatomic, retain) IBOutlet UIButton *sendMailButton;
 @property (nonatomic, retain) IBOutlet UILabel *textLabel3;
-
+@property (retain) MBProgressHUD *hud;
 
 -(IBAction)cityPress:(id)sender;
 -(IBAction)buyPress:(id)sender;
 
+-(BOOL)isProductInstalled:(NSString*)prodID;
+-(BOOL)isProductPurchased:(NSString*)prodID;
+-(BOOL)isProductAvailable:(NSString*)prodID;
 
 @end

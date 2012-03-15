@@ -28,16 +28,14 @@
 - (void)drawRect:(CGRect)rect
 {
     CGFloat segmentLenght;
-    CGFloat lineStart = 20.0f;
+    CGFloat ylineStart = 20.0f;
     CGFloat x=20.0f;
     
     CGFloat transferHeight = 85.0f;
     CGFloat stationHeight = 20.0f;
     CGFloat finalHeight = 60.0f;
     
-    NSArray *stations = [delegate dsGetStationsArray];
-    
-    int transferNumb = [stations count]-1;
+    NSMutableArray *stations = [[[NSMutableArray alloc] initWithArray:[delegate dsGetStationsArray]] autorelease];
     
     int trainType = 0;
     int stationType = 0;
@@ -45,13 +43,20 @@
     
     points = [[NSMutableArray alloc] initWithCapacity:1];
     
-    
     CGFloat viewHeight=0;
     CGFloat segmentHeight;
     
+    if ([delegate dsIsStartingTransfer]) {
+        [stations removeObjectAtIndex:0];
+        ylineStart+=20.0;
+    }
+    
+    if ([delegate dsIsEndingTransfer]) {
+        [stations removeLastObject];
+    }
+    
     for (NSMutableArray *tempStations in stations) {
         
-        segmentHeight=0;
         trainType=0;
         finalType=0;
         stationType=0;
@@ -76,22 +81,13 @@
     
     
     NSArray *colorArray = [delegate dsGetLinesColorArray];
-//    NSArray *timeArray = [delegate dsGetLinesTimeArray];
-    
-
-    /*
-    travelTime=0;
-    
-    for (NSNumber *segTime in timeArray) {
-        travelTime+=[segTime integerValue];
-    }
-    */
+    NSArray *timeArray = [delegate dsGetLinesTimeArray];
     
     CGContextRef c = UIGraphicsGetCurrentContext();
     
-    CGFloat currentY = lineStart;
+    CGFloat currentY = ylineStart;
     
-    int segmentsCount = [points count];
+    int segmentsCount = [timeArray count]; //[points count];
     
     for  (int i=0;i<segmentsCount;i++) {
 
@@ -108,28 +104,62 @@
         
         currentY+=segmentLenght;
         
-//        [points addObject:[NSNumber numberWithFloat:currentY]];
-        
     }
     
-    // first point
-    CGRect firstRect = CGRectMake(x,lineStart,8,8);
-    CGRect firstCircleRect = CGRectMake(firstRect.origin.x-7.0, firstRect.origin.y-7.0, 14, 14);
+    if ([delegate dsIsStartingTransfer]) {
+        UIImage *img= [UIImage imageNamed:@"scepka_vertic.png"];
+        
+        [img drawInRect:CGRectMake(x-img.size.width/2, ylineStart-img.size.height/2, img.size.width, img.size.height)];
+        
+        CGRect allRect = CGRectMake(x-img.size.width/2, ylineStart-img.size.height/2, img.size.width, img.size.height);
+        CGRect circleRect = CGRectMake(allRect.origin.x + 6, allRect.origin.y + 6, 12, 12);
+        
+        [self drawCircleInRect:circleRect color:[delegate dsFirstStationSaturatedColor] context:c];
+        
+        CGRect allRect2 = CGRectMake(x-img.size.width/2, ylineStart, img.size.width, img.size.height);
+        CGRect circleRect2 = CGRectMake(allRect2.origin.x + 6, allRect2.origin.y + 4, 12, 12);
+      
+        [self drawCircleInRect:circleRect2 color:[colorArray objectAtIndex:0] context:c];
+
+    } else {
+
+        CGRect firstRect = CGRectMake(x,ylineStart,8,8);
+        CGRect firstCircleRect = CGRectMake(firstRect.origin.x-7.0, firstRect.origin.y-7.0, 14, 14);
+        
+        [self drawCircleInRect:firstCircleRect color:[colorArray objectAtIndex:0] context:c];
+
+    }
     
-    [self drawCircleInRect:firstCircleRect color:[colorArray objectAtIndex:0] context:c];
-    
-    // last point
-    CGRect lastRect = CGRectMake(x,lineStart+viewHeight,6,6);
-    CGRect lastCircleRect = CGRectMake(lastRect.origin.x-7.0 , lastRect.origin.y-7.0, 14, 14);
-    
-    [self drawCircleInRect:lastCircleRect color:[colorArray lastObject] context:c];
+     if ([delegate dsIsEndingTransfer]) {
+         UIImage *img= [UIImage imageNamed:@"scepka_vertic.png"];
+         
+         [img drawInRect:CGRectMake(x-img.size.width/2, currentY-img.size.height/2, img.size.width, img.size.height)];
+         
+         CGRect allRect = CGRectMake(x-img.size.width/2, currentY-img.size.height/2, img.size.width, img.size.height);
+         CGRect circleRect = CGRectMake(allRect.origin.x + 6, allRect.origin.y + 6, 12, 12);
+         
+         [self drawCircleInRect:circleRect color:[colorArray lastObject] context:c];
+         
+         CGRect allRect2 = CGRectMake(x-img.size.width/2, currentY, img.size.width, img.size.height);
+         CGRect circleRect2 = CGRectMake(allRect2.origin.x + 6, allRect2.origin.y + 4, 12, 12);
+        
+         [self drawCircleInRect:circleRect2 color:[delegate dsLastStationSaturatedColor] context:c];
+ 
+     } else {
+
+         CGRect lastRect = CGRectMake(x,ylineStart+viewHeight,6,6);
+         CGRect lastCircleRect = CGRectMake(lastRect.origin.x-7.0 , lastRect.origin.y-7.0, 14, 14);
+         
+         [self drawCircleInRect:lastCircleRect color:[colorArray lastObject] context:c];
+     }
+
     
 
     // точки станций
     for (int j=0;j<segmentsCount;j++) {
         
         if (j==0 ) {
-            currentY=lineStart+transferHeight;
+            currentY=ylineStart+transferHeight;
         } else {
             currentY=0;
             
@@ -140,10 +170,11 @@
                 currentY+=[segmentH floatValue];
             }
             
-            currentY+=transferHeight+lineStart;
+            currentY+=transferHeight+ylineStart;
         }
 
-        for (int jj=0;jj<[[stations objectAtIndex:j] count]-2;jj++) {
+        int qqq = [[stations objectAtIndex:j] count]-2;
+        for (int jj=0;jj<qqq;jj++) {
  
                 CGRect firstRect1 = CGRectMake(x,currentY,8,8);
                 CGRect firstCircleRect1 = CGRectMake(firstRect1.origin.x-5.0, firstRect1.origin.y, 10, 10);
@@ -156,7 +187,7 @@
     }
     
     
-    for (int i=0;i<transferNumb;i++)
+    for (int i=0;i<[timeArray count]-1;i++)
     {
         UIImage *img= [UIImage imageNamed:@"scepka_vertic.png"];
         
@@ -168,7 +199,7 @@
             currentY+=[segmentH floatValue];
         }
             
-        currentY+=lineStart;
+        currentY+=ylineStart;
     
         [img drawInRect:CGRectMake(x-img.size.width/2, currentY-img.size.height/2, img.size.width, img.size.height)];
         

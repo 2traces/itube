@@ -55,7 +55,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapChanged:) name:kMapChanged object:nil];
     
@@ -75,29 +74,6 @@
     stationButton.selected=YES;
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    /*
-    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"Choose a station";
-    hud.labelFont = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
-
-    if (!appDelegate.mainViewController.currentSelection) {
-        hud.detailsLabelText = @"of departure";
-    } else {
-        hud.detailsLabelText = @"of arrival";
-    }
-    hud.detailsLabelFont = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
-    hud.opacity=0.7;
-    hud.customView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
-	hud.mode = MBProgressHUDModeCustomView;
-
-    [self performSelector:@selector(dismissHUD) withObject:nil afterDelay:1.0];
-     */
-}
-
 -(void)mapChanged:(NSNotification*)note
 {
     StationListViewController *viewController1 = [[[StationListViewController alloc] initWithNibName:@"StationListViewController" bundle:nil] autorelease];
@@ -106,11 +82,6 @@
     HistoryViewController *viewController4 = [[[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil] autorelease];
     
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:  viewController1, viewController2, viewController3,viewController4, nil];
-}
-
--(void)dismissHUD
-{
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (void)viewDidUnload
@@ -171,9 +142,6 @@
 
 -(IBAction)backPressed:(id)sender
 {
-//    MHelper *helper = [MHelper sharedHelper];
-//    [helper saveBookmarkFile];
-//    [helper saveHistoryFile];
     [self dismissModalViewControllerAnimated:YES];
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate.mainViewController returnFromSelection:[NSArray array]];
