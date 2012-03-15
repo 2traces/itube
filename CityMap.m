@@ -108,7 +108,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 break;
         }
     }
-    str = [[str stringByReplacingOccurrencesOfString:@";" withString:@" "] retain];
+    str = [[str stringByReplacingOccurrencesOfString:@";" withString:@""] retain];
     return str;
 }
 
@@ -156,7 +156,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             else string = [string substringFromIndex:1];
         }
         words = [[string componentsSeparatedByString:@";"] retain];
-        string = [[string stringByReplacingOccurrencesOfString:@";" withString:@" "] retain];
+        string = [[string stringByReplacingOccurrencesOfString:@";" withString:@""] retain];
     }
     return self;
 }
@@ -811,6 +811,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 {
     [splinePoints release];
     CGPathRelease(path);
+    [super dealloc];
 }
 
 -(void)appendPoint:(CGPoint)p
@@ -1310,6 +1311,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize mapLines;
 @synthesize currentScale;
 @synthesize backgroundImageFile;
+@synthesize foregroundImageFile;
 
 -(StationKind) stationKind { return StKind; }
 -(void) setStationKind:(StationKind)stationKind { StKind = stationKind; }
@@ -1400,6 +1402,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     NSString *bgfile = [parserMap get:@"ImageFileName" section:@"Options"];
     if([bgfile length] > 0) backgroundImageFile = [bgfile retain];
     else backgroundImageFile = nil;
+    bgfile = [parserMap get:@"UpperImageFileName" section:@"Options"];
+    if([bgfile length] > 0) foregroundImageFile = [bgfile retain];
+    else foregroundImageFile = nil;
     int val = [[parserMap get:@"LinesWidth" section:@"Options"] intValue];
     if(val != 0) LineWidth = val;
     val = [[parserMap get:@"StationDiameter" section:@"Options"] intValue];
@@ -1508,6 +1513,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     NSString *bgfile = [parserMap get:@"ImageFileName" section:@"Options"];
     if([bgfile length] > 0) backgroundImageFile = [bgfile retain];
     else backgroundImageFile = nil;
+    bgfile = [parserMap get:@"UpperImageFileName" section:@"Options"];
+    if([bgfile length] > 0) foregroundImageFile = [bgfile retain];
+    else foregroundImageFile = nil;
     int val = [[parserMap get:@"LinesWidth" section:@"Options"] intValue];
     if(val != 0) LineWidth = val;
     val = [[parserMap get:@"StationDiameter" section:@"Options"] intValue];
@@ -1787,7 +1795,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     
     Station *ss1 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation1].index intValue]-1] getStation:station1];
     Station *ss2 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation2].index intValue]-1] getStation:station2];
-    if(ss1 == nil || ss2 == nil) return;
+    if(ss1 == nil || ss2 == nil) {
+        NSLog(@"Error: stations for transfer not found! %@ at %@ and %@ at %@", station1, lineStation1, station2, lineStation2);
+        return;
+    }
     if([elements count] >= 5) {
         int drv = [[elements objectAtIndex:4] floatValue];
         [ss1 setTransferDriving:drv to:ss2];
