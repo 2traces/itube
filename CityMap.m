@@ -86,6 +86,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @implementation ComplexText
 
 @synthesize string;
+@synthesize boundingBox;
 
 +(NSString*) makePlainString:(NSString*)_str
 {
@@ -157,6 +158,42 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
         words = [[string componentsSeparatedByString:@";"] retain];
         string = [[string stringByReplacingOccurrencesOfString:@";" withString:@""] retain];
+        if(angle == 0) {
+            CGFloat d = rect.size.height * 0.5f;
+            boundingBox = rect;
+            boundingBox.origin.x -= d;
+            boundingBox.origin.y -= d;
+            boundingBox.size.width += 2*d;
+            boundingBox.size.height += 2*d;
+        } else {
+            CGPoint rbase = rect.origin;
+            switch (align & 0x3) {
+                case 0x0:
+                    rbase.y = rect.origin.y + rect.size.height/2; break;
+                case 0x1:
+                    rbase.y = rect.origin.y; break;
+                case 0x2:
+                    rbase.y = rect.origin.y + rect.size.height; break;
+            }
+            switch (align & 0xc) {
+                case 0x0:
+                    rbase.x = rect.origin.x + rect.size.width/2; break;
+                case 0x4:
+                    rbase.x = rect.origin.x; break;
+                case 0x8:
+                    rbase.x = rect.origin.x + rect.size.width; break;
+            }
+            CGAffineTransform tr = CGAffineTransformMakeTranslation(rbase.x, rbase.y);
+            tr = CGAffineTransformRotate(tr, angle);
+            tr = CGAffineTransformTranslate(tr, -rbase.x, -rbase.y);
+            CGRect r1, r2, r3, r4;
+            r1.origin = CGPointApplyAffineTransform(rect.origin, tr);
+            r2.origin = CGPointApplyAffineTransform(CGPointMake(rect.origin.x + rect.size.width, rect.origin.y), tr);
+            r3.origin = CGPointApplyAffineTransform(CGPointMake(rect.origin.x + rect.size.width, rect.origin.y + rect.size.height), tr);
+            r4.origin = CGPointApplyAffineTransform(CGPointMake(rect.origin.x, rect.origin.y + rect.size.height), tr);
+            r1.size = r2.size = r3.size = r4.size = CGSizeMake(0.01f, 0.01f);
+            boundingBox = CGRectUnion(CGRectUnion(r1, r2), CGRectUnion(r3, r4));
+        }
     }
     return self;
 }
@@ -504,6 +541,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize pos;
 @synthesize boundingBox;
 @synthesize textRect;
+@synthesize tapArea;
+@synthesize tapTextArea;
 @synthesize index;
 @synthesize name;
 @synthesize driving;
@@ -535,7 +574,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if((self = [super init])) {
         pos = p;
         map = cityMap;
-        boundingBox = CGRectMake(pos.x-map->StationDiameter/2, pos.y-map->StationDiameter/2, map->StationDiameter, map->StationDiameter);
+        int SD = map->StationDiameter;
+        boundingBox = CGRectMake(pos.x-SD/2, pos.y-SD/2, SD, SD);
+        tapArea = CGRectMake(pos.x-SD, pos.y-SD, SD*2, SD*2);
         index = i;
         textRect = r;
         gpsCoords = CGPointZero;
@@ -557,9 +598,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         if(br == NSNotFound) {
             text = [[ComplexText alloc] initWithString:sname font:[UIFont fontWithName:map->TEXT_FONT size:map->FontSize] andRect:textRect];
             name = [text.string retain];
+            tapTextArea = text.boundingBox;
         } else {
             text = [[ComplexText alloc] initWithString:[sname substringToIndex:br] font:[UIFont fontWithName:map->TEXT_FONT size:map->FontSize] andRect:textRect];
             name = [text.string retain];
+            tapTextArea = text.boundingBox;
             NSArray *components = [[sname substringFromIndex:br+1] componentsSeparatedByString:@","];
             if([components count] > 1) acceptBackLink = NO;
             for (NSString* s in components) {
@@ -2058,7 +2101,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 {
     for (Line *l in mapLines) {
         for (Station *s in l.stations) {
-            if(CGRectContainsPoint(s.textRect, *point) || CGRectContainsPoint(s.boundingBox, *point)) {
+            if(CGRectContainsPoint(s.tapArea, *point) || CGRectContainsPoint(s.tapTextArea, *point)) {
                 [stationName setString:s.name];
                 *point = CGPointMake(s.pos.x, s.pos.y);
                 return l.index;
