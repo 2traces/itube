@@ -35,8 +35,10 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
     CGLayerRef predrawedText;
     CGPoint base, offset;
     NSArray *words;
+    CGRect boundingBox;
 }
 @property (nonatomic, readonly) NSString* string;
+@property (nonatomic, readonly) CGRect boundingBox;
 
 +(NSString*) makePlainString:(NSString*)_str;
 -(id) initWithString:(NSString*)string font:(UIFont*)font andRect:(CGRect)rect;
@@ -70,6 +72,8 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
     CGPoint pos;
     CGRect boundingBox;
     CGRect textRect;
+    CGRect tapArea;
+    CGRect tapTextArea;
     int index;
     int driving;
     NSString *name;
@@ -109,6 +113,8 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 @property (nonatomic, assign) CGPoint pos;
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic, readonly) CGRect textRect;
+@property (nonatomic, readonly) CGRect tapArea;
+@property (nonatomic, readonly) CGRect tapTextArea;
 @property (nonatomic, readonly) int index;
 @property (nonatomic, readonly) NSString* name;
 @property (nonatomic, assign) int driving;
