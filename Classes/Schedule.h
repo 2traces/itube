@@ -64,7 +64,8 @@
 }
 
 -(id) initSchedule:(NSString*)fileName path:(NSString*)path;
--(void) setIndex:(int)ind forLine:(NSString*)line;
+-(BOOL) setIndex:(int)ind forLine:(NSString*)line;
+-(BOOL) checkStation:(NSString*)station line:(NSString*)line;
 
 -(NSArray*)findPathFrom:(NSString *)fromStation to:(NSString*)toStation;
 @end
