@@ -427,6 +427,7 @@
             
         } else if([w isEqualToString:@"angle"]) {
             CGFloat ang = [[words objectAtIndex:1] floatValue];
+            ang /= 180.f / M_PI;
             currentAngle += ang;
         } else if([w isEqualToString:@"spline"]) {
             NSRange range;
