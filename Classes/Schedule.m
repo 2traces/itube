@@ -207,7 +207,9 @@
 
 -(void)setIndex:(int)ind forLine:(NSString *)line
 {
-    [[lines valueForKey:line] setIndex:ind];
+    SchLine *l = [lines valueForKey:line];
+    if(l != nil) [l setIndex:ind];
+    else NSLog(@"Error: line %@ not found in %@", line, _path);
 }
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
@@ -240,7 +242,7 @@
     
     NSTimeInterval now = [self getNowTime];
     NSMutableArray *propagate = [[NSMutableArray alloc] init];
-    //NSMutableDictionary *flag = [NSMutableDictionary dictionary];
+    NSMutableDictionary *flag = [NSMutableDictionary dictionary];
     for (NSString *ln in lines) {
         SchLine *l = [lines valueForKey:ln];
         NSArray *sts = [l.catalog valueForKey:fromStation];
@@ -249,7 +251,7 @@
             [propagate addObject:p];
         }
     }
-    //[flag setValue:@"YES" forKey:fromStation];
+    [flag setValue:@"YES" forKey:fromStation];
     SchPoint *target = nil;
     while ([propagate count] > 0) {
         [propagate sortUsingSelector:@selector(greaterThan:)];
@@ -266,15 +268,18 @@
                 [np setWeightFrom:p];
                 [propagate addObject:np];
             }
-            for (NSString *ln in lines) {
-                SchLine *l = [lines valueForKey:ln];
-                NSArray *sts = [l.catalog valueForKey:fromStation];
-                for (SchPoint *tp in sts) {
-                    if(tp == np) continue;
-                    if(tp.backPath != nil) [tp setWeightFrom:np];
-                    else {
-                        [tp setWeightFrom:np];
-                        [propagate addObject:tp];
+            if([flag valueForKey:np.name] == nil) {
+                [flag setValue:@"YES" forKey:np.name];
+                for (NSString *ln in lines) {
+                    SchLine *l = [lines valueForKey:ln];
+                    NSArray *sts = [l.catalog valueForKey:np.name];
+                    for (SchPoint *tp in sts) {
+                        if(tp == np) continue;
+                        if(tp.backPath != nil) [tp setWeightFrom:np];
+                        else {
+                            [tp setWeightFrom:np];
+                            [propagate addObject:tp];
+                        }
                     }
                 }
             }
