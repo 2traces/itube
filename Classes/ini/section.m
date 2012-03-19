@@ -2,6 +2,7 @@
 
 @implementation INISection
 @synthesize assignments;
+@synthesize allKeys = orderedKeys;
 
 - initWithName: (NSString *)name {
 
@@ -9,6 +10,7 @@
 	assignments = [[NSMutableDictionary alloc] init];
 	sname = name;
     unnamed = 0;
+    orderedKeys = [[NSMutableArray alloc] init];
 	return self;
 }
 
@@ -16,6 +18,7 @@
 
 	[assignments release];
 	[sname release];
+    [orderedKeys release];
 	return [super dealloc];
 }
 
@@ -25,6 +28,7 @@
         name = [NSString stringWithFormat:@"UNNAMED_KEY%d", unnamed++];
     }
 	[assignments setObject: value forKey: name];
+    [orderedKeys addObject:name];
 	return;
 }
 
