@@ -1400,16 +1400,19 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
     self.thisMapName=mapName;
     
-    NSArray *files = [[NSBundle mainBundle] pathsForResourcesOfType:@"map" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+    NSString *path = [NSString stringWithFormat:@"maps/%@", mapName];
+    NSString *routePath = [NSString stringWithFormat:@"maps/%@/route", mapName];
+    
+    NSArray *files = [[NSBundle mainBundle] pathsForResourcesOfType:@"map" inDirectory:path];
     if([files count] <= 0) {
         NSLog(@"map file not found: %@", mapName);
         return;
     }
     NSString *mapFile = [files objectAtIndex:0];
 
-    files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trpnew" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+    files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trpnew" inDirectory:path];
     if([files count] <= 0) {
-        files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trp" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+        files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trp" inDirectory:path];
         if([files count] <= 0) {
             NSLog(@"trp file not found: %@", mapName);
             return;
@@ -1425,7 +1428,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [[MHelper sharedHelper] readBookmarkFile:mapName];
     
     if([mapName isEqualToString:@"venice"]) {
-        schedule = [[Schedule alloc] initSchedule:@"routes"];
+        schedule = [[Schedule alloc] initSchedule:@"routes" path:routePath];
+        for (Line *l in mapLines) {
+            [schedule setIndex:l.index forLine:l.name];
+        }
+    } else if([mapName isEqualToString:@"hamburg"]) {
+        schedule = [[Schedule alloc] initSchedule:@"routes" path:routePath];
         for (Line *l in mapLines) {
             [schedule setIndex:l.index forLine:l.name];
         }

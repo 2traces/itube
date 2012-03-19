@@ -79,7 +79,7 @@
 @synthesize index;
 @synthesize catalog;
 
--(id)initWithName:(NSString*)name andFile:(NSString *)fileName
+-(id)initWithName:(NSString*)name file:(NSString *)fileName path:(NSString *)path
 {
     if((self = [super init])) {
         lineName = [name retain];
@@ -89,7 +89,11 @@
         [dateForm setDateFormat:@"HH:mm"];
         routes = [[NSMutableArray alloc] init];
         catalog = [[NSMutableDictionary alloc] init];
-        NSString *fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
+        NSString *fn = nil;
+        if(path == nil)
+            fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
+        else 
+            fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml" inDirectory:path];
         NSData *xmlData = [NSData dataWithContentsOfFile:fn];
         NSXMLParser *parser = [[NSXMLParser alloc] initWithData:xmlData];
         parser.delegate = self;
@@ -170,12 +174,18 @@
 
 @implementation Schedule
 
--(id)initSchedule:(NSString *)fileName
+-(id)initSchedule:(NSString *)fileName path:(NSString *)path
 {
     if((self = [super init])) {
         cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         lines = [[NSMutableDictionary alloc] init];
-        NSString *fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
+        _path = [path retain];
+        NSString *fn = nil;
+        if(path == nil) 
+            fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
+        else {
+            fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml" inDirectory:path];
+        }
         NSData *xmlData = [[NSData alloc] initWithContentsOfFile:fn];
         NSXMLParser *parser = [[NSXMLParser alloc] initWithData:xmlData];
         [xmlData release];
@@ -192,6 +202,7 @@
 {
     [cal release];
     [lines release];
+    [_path release];
 }
 
 -(void)setIndex:(int)ind forLine:(NSString *)line
@@ -205,7 +216,7 @@
 {
     if([elementName isEqualToString:@"route"]) {
         NSString *lineName = [attributeDict valueForKey:@"route"];
-        SchLine *l = [[SchLine alloc] initWithName:lineName andFile:[attributeDict valueForKey:@"file"]];
+        SchLine *l = [[SchLine alloc] initWithName:lineName file:[attributeDict valueForKey:@"file"] path:_path];
         [lines setValue:l forKey:lineName];
     }
 }

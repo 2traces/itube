@@ -1,17 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<routes updated="2012-02-23T09:35:29">
-=======
 <routes updated="2012-03-11T14:43:01">
->>>>>>> upstream/master
-=======
-<routes updated="2012-03-11T14:43:01">
->>>>>>> upstream/master
-=======
-<routes updated="2012-03-11T14:43:01">
->>>>>>> upstream/master
   <route route="LINEA 1" file="route-1">P.ROMA - FERROVIA - RIALTO - S.TOMA' - S.MARCO - LIDO</route>
   <route route="LINEA 2" file="route-2">S.ZACCARIA - GIUDECCA - TRONCHETTO - P.ROMA - FERROVIA - RIALTO - S.MARCO GIARDINETTI</route>
   <route route="LINEA 3" file="route-3">P.LE ROMA - FERROVIA - MURANO - FERROVIA - P.LE ROMA</route>

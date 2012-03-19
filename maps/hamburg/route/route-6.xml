@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<directions>
+  <direction type="return-hs">
+    <timetables/>
+  </direction>
+  <direction type="direct-s">
+    <timetables/>
+  </direction>
+  <direction type="direct-wd">
+    <timetables>
+      <timetable>
+        <times>
+          <time station="Altona" type="minutes" marked="1">6:57</time>
+          <time station="Königstraße" type="minutes" marked="0">6:59</time>
+          <time station="Reeperbahn" type="minutes" marked="0">7:01</time>
+          <time station="Landungsbrücken" type="minutes" marked="1">7:03</time>
+          <time station="Stadthausbrücke" type="minutes" marked="0">7:05</time>
+          <time station="Jungfernstieg" type="minutes" marked="1">7:07</time>
+          <time station="Hauptbahnhof" type="minutes" marked="1">7:10</time>
+          <time station="Berliner Tor" type="minutes" marked="1">7:13</time>
+          <time station="Rothenburgsort" type="minutes" marked="0">7:16</time>
+          <time station="Tiefstack" type="minutes" marked="0">7:18</time>
+          <time station="Billwerder-Moorfleet" type="minutes" marked="0">7:21</time>
+          <time station="Mittlerer Landweg" type="minutes" marked="0">7:24</time>
+          <time station="Allermöhe" type="minutes" marked="0">7:26</time>
+          <time station="Nettelnburg" type="minutes" marked="0">7:28</time>
+          <time station="Bergedorf" type="minutes" marked="1">7:31</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Altona" type="minutes" marked="1">7:07</time>
+          <time station="Königstraße" type="minutes" marked="0">7:09</time>
+          <time station="Reeperbahn" type="minutes" marked="0">7:11</time>
+          <time station="Landungsbrücken" type="minutes" marked="1">7:13</time>
+          <time station="Stadthausbrücke" type="minutes" marked="0">7:15</time>
+          <time station="Jungfernstieg" type="minutes" marked="1">7:17</time>
+          <time station="Hauptbahnhof" type="minutes" marked="1">7:20</time>
+          <time station="Berliner Tor" type="minutes" marked="1">7:23</time>
+          <time station="Rothenburgsort" type="minutes" marked="0">7:26</time>
+          <time station="Tiefstack" type="minutes" marked="0">7:28</time>
+          <time station="Billwerder-Moorfleet" type="minutes" marked="0">7:31</time>
+          <time station="Mittlerer Landweg" type="minutes" marked="0">7:34</time>
+          <time station="Allermöhe" type="minutes" marked="0">7:36</time>
+          <time station="Nettelnburg" type="minutes" marked="0">7:38</time>
+          <time station="Bergedorf" type="minutes" marked="1">7:41</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Altona" type="minutes" marked="1">7:17</time>
+          <time station="Königstraße" type="minutes" marked="0">7:19</time>
+          <time station="Reeperbahn" type="minutes" marked="0">7:21</time>
+          <time station="Landungsbrücken" type="minutes" marked="1">7:23</time>
+          <time station="Stadthausbrücke" type="minutes" marked="0">7:25</time>
+          <time station="Jungfernstieg" type="minutes" marked="1">7:27</time>
+          <time station="Hauptbahnhof" type="minutes" marked="1">7:30</time>
+          <time station="Berliner Tor" type="minutes" marked="1">7:33</time>
+          <time station="Rothenburgsort" type="minutes" marked="0">7:36</time>
+          <time station="Tiefstack" type="minutes" marked="0">7:38</time>
+          <time station="Billwerder-Moorfleet" type="minutes" marked="0">7:41</time>
+          <time station="Mittlerer Landweg" type="minutes" marked="0">7:44</time>
+          <time station="Allermöhe" type="minutes" marked="0">7:46</time>
+          <time station="Nettelnburg" type="minutes" marked="0">7:48</time>
+          <time station="Bergedorf" type="minutes" marked="1">7:51</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Altona" type="minutes" marked="1">15:17</time>
+          <time station="Königstraße" type="minutes" marked="0">15:19</time>
+          <time station="Reeperbahn" type="minutes" marked="0">15:21</time>
+          <time station="Landungsbrücken" type="minutes" marked="1">15:23</time>
+          <time station="Stadthausbrücke" type="minutes" marked="0">15:25</time>
+          <time station="Jungfernstieg" type="minutes" marked="1">15:27</time>
+          <time station="Hauptbahnhof" type="minutes" marked="1">15:30</time>
+          <time station="Berliner Tor" type="minutes" marked="1">15:33</time>
+          <time station="Rothenburgsort" type="minutes" marked="0">15:36</time>
+          <time station="Tiefstack" type="minutes" marked="0">15:38</time>
+          <time station="Billwerder-Moorfleet" type="minutes" marked="0">15:41</time>
+          <time station="Mittlerer Landweg" type="minutes" marked="0">15:44</time>
+          <time station="Allermöhe" type="minutes" marked="0">15:46</time>
+          <time station="Nettelnburg" type="minutes" marked="0">15:48</time>
+          <time station="Bergedorf" type="minutes" marked="1">15:51</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Altona" type="normal" marked="1">15:27</time>
+          <time station="Königstraße" type="normal" marked="0">15:29</time>
+          <time station="Reeperbahn" type="normal" marked="0">15:31</time>
+          <time station="Landungsbrücken" type="normal" marked="1">15:33</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">15:35</time>
+          <time station="Jungfernstieg" type="normal" marked="1">15:37</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">15:40</time>
+          <time station="Berliner Tor" type="normal" marked="1">15:43</time>
+          <time station="Rothenburgsort" type="normal" marked="0">15:46</time>
+          <time station="Tiefstack" type="normal" marked="0">15:48</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">15:51</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">15:54</time>
+          <time station="Allermöhe" type="normal" marked="0">15:56</time>
+          <time station="Nettelnburg" type="normal" marked="0">15:58</time>
+          <time station="Bergedorf" type="normal" marked="1">16:01</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Altona" type="normal" marked="1">15:37</time>
+          <time station="Königstraße" type="normal" marked="0">15:39</time>
+          <time station="Reeperbahn" type="normal" marked="0">15:41</time>
+          <time station="Landungsbrücken" type="normal" marked="1">15:43</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">15:45</time>
+          <time station="Jungfernstieg" type="normal" marked="1">15:47</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">15:50</time>
+          <time station="Berliner Tor" type="normal" marked="1">15:53</time>
+          <time station="Rothenburgsort" type="normal" marked="0">15:56</time>
+          <time station="Tiefstack" type="normal" marked="0">15:58</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">16:01</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">16:04</time>
+          <time station="Allermöhe" type="normal" marked="0">16:06</time>
+          <time station="Nettelnburg" type="normal" marked="0">16:08</time>
+          <time station="Bergedorf" type="normal" marked="1">16:11</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Altona" type="normal" marked="1">15:47</time>
+          <time station="Königstraße" type="normal" marked="0">15:49</time>
+          <time station="Reeperbahn" type="normal" marked="0">15:51</time>
+          <time station="Landungsbrücken" type="normal" marked="1">15:53</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">15:55</time>
+          <time station="Jungfernstieg" type="normal" marked="1">15:57</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">16:00</time>
+          <time station="Berliner Tor" type="normal" marked="1">16:03</time>
+          <time station="Rothenburgsort" type="normal" marked="0">16:06</time>
+          <time station="Tiefstack" type="normal" marked="0">16:08</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">16:11</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">16:14</time>
+          <time station="Allermöhe" type="normal" marked="0">16:16</time>
+          <time station="Nettelnburg" type="normal" marked="0">16:18</time>
+          <time station="Bergedorf" type="normal" marked="1">16:21</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Altona" type="normal" marked="1">15:57</time>
+          <time station="Königstraße" type="normal" marked="0">15:59</time>
+          <time station="Reeperbahn" type="normal" marked="0">16:01</time>
+          <time station="Landungsbrücken" type="normal" marked="1">16:03</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">16:05</time>
+          <time station="Jungfernstieg" type="normal" marked="1">16:07</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">16:10</time>
+          <time station="Berliner Tor" type="normal" marked="1">16:13</time>
+          <time station="Rothenburgsort" type="normal" marked="0">16:16</time>
+          <time station="Tiefstack" type="normal" marked="0">16:18</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">16:21</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">16:24</time>
+          <time station="Allermöhe" type="normal" marked="0">16:26</time>
+          <time station="Nettelnburg" type="normal" marked="0">16:28</time>
+          <time station="Bergedorf" type="normal" marked="1">16:31</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Altona" type="normal" marked="1">16:07</time>
+          <time station="Königstraße" type="normal" marked="0">16:09</time>
+          <time station="Reeperbahn" type="normal" marked="0">16:11</time>
+          <time station="Landungsbrücken" type="normal" marked="1">16:13</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">16:15</time>
+          <time station="Jungfernstieg" type="normal" marked="1">16:17</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">16:20</time>
+          <time station="Berliner Tor" type="normal" marked="1">16:23</time>
+          <time station="Rothenburgsort" type="normal" marked="0">16:26</time>
+          <time station="Tiefstack" type="normal" marked="0">16:28</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">16:31</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">16:34</time>
+          <time station="Allermöhe" type="normal" marked="0">16:36</time>
+          <time station="Nettelnburg" type="normal" marked="0">16:38</time>
+          <time station="Bergedorf" type="normal" marked="1">16:41</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Altona" type="normal" marked="1">16:17</time>
+          <time station="Königstraße" type="normal" marked="0">16:19</time>
+          <time station="Reeperbahn" type="normal" marked="0">16:21</time>
+          <time station="Landungsbrücken" type="normal" marked="1">16:23</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">16:25</time>
+          <time station="Jungfernstieg" type="normal" marked="1">16:27</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">16:30</time>
+          <time station="Berliner Tor" type="normal" marked="1">16:33</time>
+          <time station="Rothenburgsort" type="normal" marked="0">16:36</time>
+          <time station="Tiefstack" type="normal" marked="0">16:38</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">16:41</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">16:44</time>
+          <time station="Allermöhe" type="normal" marked="0">16:46</time>
+          <time station="Nettelnburg" type="normal" marked="0">16:48</time>
+          <time station="Bergedorf" type="normal" marked="1">16:51</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Altona" type="normal" marked="1">16:27</time>
+          <time station="Königstraße" type="normal" marked="0">16:29</time>
+          <time station="Reeperbahn" type="normal" marked="0">16:31</time>
+          <time station="Landungsbrücken" type="normal" marked="1">16:33</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">16:35</time>
+          <time station="Jungfernstieg" type="normal" marked="1">16:37</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">16:40</time>
+          <time station="Berliner Tor" type="normal" marked="1">16:43</time>
+          <time station="Rothenburgsort" type="normal" marked="0">16:46</time>
+          <time station="Tiefstack" type="normal" marked="0">16:48</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">16:51</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">16:54</time>
+          <time station="Allermöhe" type="normal" marked="0">16:56</time>
+          <time station="Nettelnburg" type="normal" marked="0">16:58</time>
+          <time station="Bergedorf" type="normal" marked="1">17:01</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Altona" type="normal" marked="1">16:37</time>
+          <time station="Königstraße" type="normal" marked="0">16:39</time>
+          <time station="Reeperbahn" type="normal" marked="0">16:41</time>
+          <time station="Landungsbrücken" type="normal" marked="1">16:43</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">16:45</time>
+          <time station="Jungfernstieg" type="normal" marked="1">16:47</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">16:50</time>
+          <time station="Berliner Tor" type="normal" marked="1">16:53</time>
+          <time station="Rothenburgsort" type="normal" marked="0">16:56</time>
+          <time station="Tiefstack" type="normal" marked="0">16:58</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">17:01</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">17:04</time>
+          <time station="Allermöhe" type="normal" marked="0">17:06</time>
+          <time station="Nettelnburg" type="normal" marked="0">17:08</time>
+          <time station="Bergedorf" type="normal" marked="1">17:11</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Altona" type="normal" marked="1">16:47</time>
+          <time station="Königstraße" type="normal" marked="0">16:49</time>
+          <time station="Reeperbahn" type="normal" marked="0">16:51</time>
+          <time station="Landungsbrücken" type="normal" marked="1">16:53</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">16:55</time>
+          <time station="Jungfernstieg" type="normal" marked="1">16:57</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">17:00</time>
+          <time station="Berliner Tor" type="normal" marked="1">17:03</time>
+          <time station="Rothenburgsort" type="normal" marked="0">17:06</time>
+          <time station="Tiefstack" type="normal" marked="0">17:08</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">17:11</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">17:14</time>
+          <time station="Allermöhe" type="normal" marked="0">17:16</time>
+          <time station="Nettelnburg" type="normal" marked="0">17:18</time>
+          <time station="Bergedorf" type="normal" marked="1">17:21</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Altona" type="normal" marked="1">16:57</time>
+          <time station="Königstraße" type="normal" marked="0">16:59</time>
+          <time station="Reeperbahn" type="normal" marked="0">17:01</time>
+          <time station="Landungsbrücken" type="normal" marked="1">17:03</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">17:05</time>
+          <time station="Jungfernstieg" type="normal" marked="1">17:07</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">17:10</time>
+          <time station="Berliner Tor" type="normal" marked="1">17:13</time>
+          <time station="Rothenburgsort" type="normal" marked="0">17:16</time>
+          <time station="Tiefstack" type="normal" marked="0">17:18</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">17:21</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">17:24</time>
+          <time station="Allermöhe" type="normal" marked="0">17:26</time>
+          <time station="Nettelnburg" type="normal" marked="0">17:28</time>
+          <time station="Bergedorf" type="normal" marked="1">17:31</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Altona" type="normal" marked="1">17:07</time>
+          <time station="Königstraße" type="normal" marked="0">17:09</time>
+          <time station="Reeperbahn" type="normal" marked="0">17:11</time>
+          <time station="Landungsbrücken" type="normal" marked="1">17:13</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">17:15</time>
+          <time station="Jungfernstieg" type="normal" marked="1">17:17</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">17:20</time>
+          <time station="Berliner Tor" type="normal" marked="1">17:23</time>
+          <time station="Rothenburgsort" type="normal" marked="0">17:26</time>
+          <time station="Tiefstack" type="normal" marked="0">17:28</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">17:31</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">17:34</time>
+          <time station="Allermöhe" type="normal" marked="0">17:36</time>
+          <time station="Nettelnburg" type="normal" marked="0">17:38</time>
+          <time station="Bergedorf" type="normal" marked="1">17:41</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Altona" type="minutes" marked="1">17:17</time>
+          <time station="Königstraße" type="minutes" marked="0">17:19</time>
+          <time station="Reeperbahn" type="minutes" marked="0">17:21</time>
+          <time station="Landungsbrücken" type="minutes" marked="1">17:23</time>
+          <time station="Stadthausbrücke" type="minutes" marked="0">17:25</time>
+          <time station="Jungfernstieg" type="minutes" marked="1">17:27</time>
+          <time station="Hauptbahnhof" type="minutes" marked="1">17:30</time>
+          <time station="Berliner Tor" type="minutes" marked="1">17:33</time>
+          <time station="Rothenburgsort" type="minutes" marked="0">17:36</time>
+          <time station="Tiefstack" type="minutes" marked="0">17:38</time>
+          <time station="Billwerder-Moorfleet" type="minutes" marked="0">17:41</time>
+          <time station="Mittlerer Landweg" type="minutes" marked="0">17:44</time>
+          <time station="Allermöhe" type="minutes" marked="0">17:46</time>
+          <time station="Nettelnburg" type="minutes" marked="0">17:48</time>
+          <time station="Bergedorf" type="minutes" marked="1">17:51</time>
+        </times>
+        <modifiers/>
+      </timetable>
+    </timetables>
+  </direction>
+  <direction type="direct-hs">
+    <timetables/>
+  </direction>
+  <direction type="return-s">
+    <timetables/>
+  </direction>
+  <direction type="return-wd">
+    <timetables>
+      <timetable>
+        <times>
+          <time station="Bergedorf" type="minutes" marked="1">6:40</time>
+          <time station="Nettelnburg" type="minutes" marked="0">6:43</time>
+          <time station="Allermöhe" type="minutes" marked="0">6:45</time>
+          <time station="Mittlerer Landweg" type="minutes" marked="0">6:47</time>
+          <time station="Billwerder-Moorfleet" type="minutes" marked="0">6:50</time>
+          <time station="Tiefstack" type="minutes" marked="0">6:53</time>
+          <time station="Rothenburgsort" type="minutes" marked="0">6:55</time>
+          <time station="Berliner Tor" type="minutes" marked="1">6:58</time>
+          <time station="Hauptbahnhof" type="minutes" marked="1">7:01</time>
+          <time station="Jungfernstieg" type="minutes" marked="1">7:04</time>
+          <time station="Stadthausbrücke" type="minutes" marked="0">7:06</time>
+          <time station="Landungsbrücken" type="minutes" marked="1">7:08</time>
+          <time station="Reeperbahn" type="minutes" marked="0">7:10</time>
+          <time station="Königstraße" type="minutes" marked="0">7:12</time>
+          <time station="Altona" type="minutes" marked="1">7:14</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Bergedorf" type="normal" marked="1">6:50</time>
+          <time station="Nettelnburg" type="normal" marked="0">6:53</time>
+          <time station="Allermöhe" type="normal" marked="0">6:55</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">6:57</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">7:00</time>
+          <time station="Tiefstack" type="normal" marked="0">7:03</time>
+          <time station="Rothenburgsort" type="normal" marked="0">7:05</time>
+          <time station="Berliner Tor" type="normal" marked="1">7:08</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">7:11</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Bergedorf" type="normal" marked="1">7:00</time>
+          <time station="Nettelnburg" type="normal" marked="0">7:03</time>
+          <time station="Allermöhe" type="normal" marked="0">7:05</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">7:07</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">7:10</time>
+          <time station="Tiefstack" type="normal" marked="0">7:13</time>
+          <time station="Rothenburgsort" type="normal" marked="0">7:15</time>
+          <time station="Berliner Tor" type="normal" marked="1">7:18</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">7:21</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Bergedorf" type="normal" marked="1">7:10</time>
+          <time station="Nettelnburg" type="normal" marked="0">7:13</time>
+          <time station="Allermöhe" type="normal" marked="0">7:15</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">7:17</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">7:20</time>
+          <time station="Tiefstack" type="normal" marked="0">7:23</time>
+          <time station="Rothenburgsort" type="normal" marked="0">7:25</time>
+          <time station="Berliner Tor" type="normal" marked="1">7:28</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">7:31</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Bergedorf" type="normal" marked="1">7:20</time>
+          <time station="Nettelnburg" type="normal" marked="0">7:23</time>
+          <time station="Allermöhe" type="normal" marked="0">7:25</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">7:27</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">7:30</time>
+          <time station="Tiefstack" type="normal" marked="0">7:33</time>
+          <time station="Rothenburgsort" type="normal" marked="0">7:35</time>
+          <time station="Berliner Tor" type="normal" marked="1">7:38</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">7:41</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Bergedorf" type="normal" marked="1">7:30</time>
+          <time station="Nettelnburg" type="normal" marked="0">7:33</time>
+          <time station="Allermöhe" type="normal" marked="0">7:35</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">7:37</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">7:40</time>
+          <time station="Tiefstack" type="normal" marked="0">7:43</time>
+          <time station="Rothenburgsort" type="normal" marked="0">7:45</time>
+          <time station="Berliner Tor" type="normal" marked="1">7:48</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">7:51</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Bergedorf" type="normal" marked="1">7:40</time>
+          <time station="Nettelnburg" type="normal" marked="0">7:43</time>
+          <time station="Allermöhe" type="normal" marked="0">7:45</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">7:47</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">7:50</time>
+          <time station="Tiefstack" type="normal" marked="0">7:53</time>
+          <time station="Rothenburgsort" type="normal" marked="0">7:55</time>
+          <time station="Berliner Tor" type="normal" marked="1">7:58</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">8:01</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Bergedorf" type="normal" marked="1">7:50</time>
+          <time station="Nettelnburg" type="normal" marked="0">7:53</time>
+          <time station="Allermöhe" type="normal" marked="0">7:55</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">7:57</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">8:00</time>
+          <time station="Tiefstack" type="normal" marked="0">8:03</time>
+          <time station="Rothenburgsort" type="normal" marked="0">8:05</time>
+          <time station="Berliner Tor" type="normal" marked="1">8:08</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">8:11</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Hauptbahnhof" type="normal" marked="1">7:12</time>
+          <time station="Jungfernstieg" type="normal" marked="1">7:14</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">7:16</time>
+          <time station="Landungsbrücken" type="normal" marked="1">7:18</time>
+          <time station="Reeperbahn" type="normal" marked="0">7:20</time>
+          <time station="Königstraße" type="normal" marked="0">7:22</time>
+          <time station="Altona" type="normal" marked="1">7:24</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Hauptbahnhof" type="normal" marked="1">7:22</time>
+          <time station="Jungfernstieg" type="normal" marked="1">7:24</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">7:26</time>
+          <time station="Landungsbrücken" type="normal" marked="1">7:28</time>
+          <time station="Reeperbahn" type="normal" marked="0">7:30</time>
+          <time station="Königstraße" type="normal" marked="0">7:32</time>
+          <time station="Altona" type="normal" marked="1">7:34</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Hauptbahnhof" type="normal" marked="1">7:32</time>
+          <time station="Jungfernstieg" type="normal" marked="1">7:34</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">7:36</time>
+          <time station="Landungsbrücken" type="normal" marked="1">7:38</time>
+          <time station="Reeperbahn" type="normal" marked="0">7:40</time>
+          <time station="Königstraße" type="normal" marked="0">7:42</time>
+          <time station="Altona" type="normal" marked="1">7:44</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Hauptbahnhof" type="normal" marked="1">7:42</time>
+          <time station="Jungfernstieg" type="normal" marked="1">7:44</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">7:46</time>
+          <time station="Landungsbrücken" type="normal" marked="1">7:48</time>
+          <time station="Reeperbahn" type="normal" marked="0">7:50</time>
+          <time station="Königstraße" type="normal" marked="0">7:52</time>
+          <time station="Altona" type="normal" marked="1">7:54</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Hauptbahnhof" type="normal" marked="1">7:52</time>
+          <time station="Jungfernstieg" type="normal" marked="1">7:54</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">7:56</time>
+          <time station="Landungsbrücken" type="normal" marked="1">7:58</time>
+          <time station="Reeperbahn" type="normal" marked="0">8:00</time>
+          <time station="Königstraße" type="normal" marked="0">8:02</time>
+          <time station="Altona" type="normal" marked="1">8:04</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Hauptbahnhof" type="normal" marked="1">8:02</time>
+          <time station="Jungfernstieg" type="normal" marked="1">8:04</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">8:06</time>
+          <time station="Landungsbrücken" type="normal" marked="1">8:08</time>
+          <time station="Reeperbahn" type="normal" marked="0">8:10</time>
+          <time station="Königstraße" type="normal" marked="0">8:12</time>
+          <time station="Altona" type="normal" marked="1">8:14</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Hauptbahnhof" type="normal" marked="1">8:12</time>
+          <time station="Jungfernstieg" type="normal" marked="1">8:14</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">8:16</time>
+          <time station="Landungsbrücken" type="normal" marked="1">8:18</time>
+          <time station="Reeperbahn" type="normal" marked="0">8:20</time>
+          <time station="Königstraße" type="normal" marked="0">8:22</time>
+          <time station="Altona" type="normal" marked="1">8:24</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Bergedorf" type="minutes" marked="1">8:00</time>
+          <time station="Nettelnburg" type="minutes" marked="0">8:03</time>
+          <time station="Allermöhe" type="minutes" marked="0">8:05</time>
+          <time station="Mittlerer Landweg" type="minutes" marked="0">8:07</time>
+          <time station="Billwerder-Moorfleet" type="minutes" marked="0">8:10</time>
+          <time station="Tiefstack" type="minutes" marked="0">8:13</time>
+          <time station="Rothenburgsort" type="minutes" marked="0">8:15</time>
+          <time station="Berliner Tor" type="minutes" marked="1">8:18</time>
+          <time station="Hauptbahnhof" type="minutes" marked="1">8:21</time>
+          <time station="Jungfernstieg" type="minutes" marked="1">8:24</time>
+          <time station="Stadthausbrücke" type="minutes" marked="0">8:26</time>
+          <time station="Landungsbrücken" type="minutes" marked="1">8:28</time>
+          <time station="Reeperbahn" type="minutes" marked="0">8:30</time>
+          <time station="Königstraße" type="minutes" marked="0">8:32</time>
+          <time station="Altona" type="minutes" marked="1">8:34</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Bergedorf" type="minutes" marked="1">16:00</time>
+          <time station="Nettelnburg" type="minutes" marked="0">16:03</time>
+          <time station="Allermöhe" type="minutes" marked="0">16:05</time>
+          <time station="Mittlerer Landweg" type="minutes" marked="0">16:07</time>
+          <time station="Billwerder-Moorfleet" type="minutes" marked="0">16:10</time>
+          <time station="Tiefstack" type="minutes" marked="0">16:13</time>
+          <time station="Rothenburgsort" type="minutes" marked="0">16:15</time>
+          <time station="Berliner Tor" type="minutes" marked="1">16:18</time>
+          <time station="Hauptbahnhof" type="minutes" marked="1">16:21</time>
+          <time station="Jungfernstieg" type="minutes" marked="1">16:24</time>
+          <time station="Stadthausbrücke" type="minutes" marked="0">16:26</time>
+          <time station="Landungsbrücken" type="minutes" marked="1">16:28</time>
+          <time station="Reeperbahn" type="minutes" marked="0">16:30</time>
+          <time station="Königstraße" type="minutes" marked="0">16:32</time>
+          <time station="Altona" type="minutes" marked="1">16:34</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Bergedorf" type="normal" marked="1">16:10</time>
+          <time station="Nettelnburg" type="normal" marked="0">16:13</time>
+          <time station="Allermöhe" type="normal" marked="0">16:15</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">16:17</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">16:20</time>
+          <time station="Tiefstack" type="normal" marked="0">16:23</time>
+          <time station="Rothenburgsort" type="normal" marked="0">16:25</time>
+          <time station="Berliner Tor" type="normal" marked="1">16:28</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">16:31</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Bergedorf" type="normal" marked="1">16:20</time>
+          <time station="Nettelnburg" type="normal" marked="0">16:23</time>
+          <time station="Allermöhe" type="normal" marked="0">16:25</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">16:27</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">16:30</time>
+          <time station="Tiefstack" type="normal" marked="0">16:33</time>
+          <time station="Rothenburgsort" type="normal" marked="0">16:35</time>
+          <time station="Berliner Tor" type="normal" marked="1">16:38</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">16:41</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Bergedorf" type="normal" marked="1">16:30</time>
+          <time station="Nettelnburg" type="normal" marked="0">16:33</time>
+          <time station="Allermöhe" type="normal" marked="0">16:35</time>
+          <time station="Mittlerer Landweg" type="normal" marked="0">16:37</time>
+          <time station="Billwerder-Moorfleet" type="normal" marked="0">16:40</time>
+          <time station="Tiefstack" type="normal" marked="0">16:43</time>
+          <time station="Rothenburgsort" type="normal" marked="0">16:45</time>
+          <time station="Berliner Tor" type="normal" marked="1">16:48</time>
+          <time station="Hauptbahnhof" type="normal" marked="1">16:51</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Hauptbahnhof" type="normal" marked="1">16:32</time>
+          <time station="Jungfernstieg" type="normal" marked="1">16:34</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">16:36</time>
+          <time station="Landungsbrücken" type="normal" marked="1">16:38</time>
+          <time station="Reeperbahn" type="normal" marked="0">16:40</time>
+          <time station="Königstraße" type="normal" marked="0">16:42</time>
+          <time station="Altona" type="normal" marked="1">16:44</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Hauptbahnhof" type="normal" marked="1">16:42</time>
+          <time station="Jungfernstieg" type="normal" marked="1">16:44</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">16:46</time>
+          <time station="Landungsbrücken" type="normal" marked="1">16:48</time>
+          <time station="Reeperbahn" type="normal" marked="0">16:50</time>
+          <time station="Königstraße" type="normal" marked="0">16:52</time>
+          <time station="Altona" type="normal" marked="1">16:54</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Hauptbahnhof" type="normal" marked="1">16:52</time>
+          <time station="Jungfernstieg" type="normal" marked="1">16:54</time>
+          <time station="Stadthausbrücke" type="normal" marked="0">16:56</time>
+          <time station="Landungsbrücken" type="normal" marked="1">16:58</time>
+          <time station="Reeperbahn" type="normal" marked="0">17:00</time>
+          <time station="Königstraße" type="normal" marked="0">17:02</time>
+          <time station="Altona" type="normal" marked="1">17:04</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Bergedorf" type="minutes" marked="1">16:40</time>
+          <time station="Nettelnburg" type="minutes" marked="0">16:43</time>
+          <time station="Allermöhe" type="minutes" marked="0">16:45</time>
+          <time station="Mittlerer Landweg" type="minutes" marked="0">16:47</time>
+          <time station="Billwerder-Moorfleet" type="minutes" marked="0">16:50</time>
+          <time station="Tiefstack" type="minutes" marked="0">16:53</time>
+          <time station="Rothenburgsort" type="minutes" marked="0">16:55</time>
+          <time station="Berliner Tor" type="minutes" marked="1">16:58</time>
+          <time station="Hauptbahnhof" type="minutes" marked="1">17:01</time>
+          <time station="Jungfernstieg" type="minutes" marked="1">17:04</time>
+          <time station="Stadthausbrücke" type="minutes" marked="0">17:06</time>
+          <time station="Landungsbrücken" type="minutes" marked="1">17:08</time>
+          <time station="Reeperbahn" type="minutes" marked="0">17:10</time>
+          <time station="Königstraße" type="minutes" marked="0">17:12</time>
+          <time station="Altona" type="minutes" marked="1">17:14</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Bergedorf" type="minutes" marked="1">17:00</time>
+          <time station="Nettelnburg" type="minutes" marked="0">17:03</time>
+          <time station="Allermöhe" type="minutes" marked="0">17:05</time>
+          <time station="Mittlerer Landweg" type="minutes" marked="0">17:07</time>
+          <time station="Billwerder-Moorfleet" type="minutes" marked="0">17:10</time>
+          <time station="Tiefstack" type="minutes" marked="0">17:13</time>
+          <time station="Rothenburgsort" type="minutes" marked="0">17:15</time>
+          <time station="Berliner Tor" type="minutes" marked="1">17:18</time>
+          <time station="Hauptbahnhof" type="minutes" marked="1">17:21</time>
+          <time station="Jungfernstieg" type="minutes" marked="1">17:24</time>
+          <time station="Stadthausbrücke" type="minutes" marked="0">17:26</time>
+          <time station="Landungsbrücken" type="minutes" marked="1">17:28</time>
+          <time station="Reeperbahn" type="minutes" marked="0">17:30</time>
+          <time station="Königstraße" type="minutes" marked="0">17:32</time>
+          <time station="Altona" type="minutes" marked="1">17:34</time>
+        </times>
+        <modifiers/>
+      </timetable>
+      <timetable>
+        <times>
+          <time station="Bergedorf" type="minutes" marked="1">17:10</time>
+          <time station="Nettelnburg" type="minutes" marked="0">17:13</time>
+          <time station="Allermöhe" type="minutes" marked="0">17:15</time>
+          <time station="Mittlerer Landweg" type="minutes" marked="0">17:17</time>
+          <time station="Billwerder-Moorfleet" type="minutes" marked="0">17:20</time>
+          <time station="Tiefstack" type="minutes" marked="0">17:23</time>
+          <time station="Rothenburgsort" type="minutes" marked="0">17:25</time>
+          <time station="Berliner Tor" type="minutes" marked="1">17:28</time>
+          <time station="Hauptbahnhof" type="minutes" marked="1">17:31</time>
+          <time station="Jungfernstieg" type="minutes" marked="1">17:34</time>
+          <time station="Stadthausbrücke" type="minutes" marked="0">17:36</time>
+          <time station="Landungsbrücken" type="minutes" marked="1">17:38</time>
+          <time station="Reeperbahn" type="minutes" marked="0">17:40</time>
+          <time station="Königstraße" type="minutes" marked="0">17:42</time>
+          <time station="Altona" type="minutes" marked="1">17:44</time>
+        </times>
+        <modifiers/>
+      </timetable>
+    </timetables>
+  </direction>
+</directions>
