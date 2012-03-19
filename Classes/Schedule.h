@@ -52,7 +52,7 @@
 @property (nonatomic, assign) int index;
 @property (nonatomic, readonly) NSDictionary *catalog;
 
--(id)initWithName:(NSString*)name andFile:(NSString*)fileName;
+-(id)initWithName:(NSString*)name file:(NSString*)fileName path:(NSString*)path;
 @end
 
 /***** Schedule *****/
@@ -60,9 +60,10 @@
 @interface Schedule : NSObject <NSXMLParserDelegate> {
     NSCalendar *cal;
     NSMutableDictionary *lines;
+    NSString* _path;
 }
 
--(id) initSchedule:(NSString*)fileName;
+-(id) initSchedule:(NSString*)fileName path:(NSString*)path;
 -(void) setIndex:(int)ind forLine:(NSString*)line;
 
 -(NSArray*)findPathFrom:(NSString *)fromStation to:(NSString*)toStation;
