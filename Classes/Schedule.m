@@ -203,13 +203,34 @@
     [cal release];
     [lines release];
     [_path release];
+    [super dealloc];
 }
 
--(void)setIndex:(int)ind forLine:(NSString *)line
+-(BOOL)setIndex:(int)ind forLine:(NSString *)line
 {
     SchLine *l = [lines valueForKey:line];
-    if(l != nil) [l setIndex:ind];
-    else NSLog(@"Error: line %@ not found in %@", line, _path);
+    if(l != nil) {
+        [l setIndex:ind];
+        return YES;
+    } else {
+        NSLog(@"Error: line %@ not found in %@", line, _path);
+        return NO;
+    }
+}
+
+-(BOOL)checkStation:(NSString *)station line:(NSString *)line
+{
+    SchLine *l = [lines valueForKey:line];
+    if(l != nil) {
+        if([l.catalog valueForKey:station] != nil)
+            return YES;
+        else {
+            NSLog(@"Error: Station %@ not found", station);
+            return NO;
+        }
+    } else {
+        return NO;
+    }
 }
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
