@@ -104,6 +104,7 @@
     NSMutableArray *elements;
     BOOL enabled;
     CGFloat currentAngle;
+    CGFloat scale;
 }
 @property (nonatomic, assign) BOOL enabled;
 
