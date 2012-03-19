@@ -1610,7 +1610,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         newLine.color = [self colorForHex:colors];
         
         int si = 0;
-        NSArray *keys = [[sect.assignments allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+        //NSArray *keys = [[sect.assignments allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+        NSArray *keys = [sect allKeys];
         NSMutableArray *branches = [[[NSMutableArray alloc] init] autorelease];
         NSMutableArray *drivings = [[[NSMutableArray alloc] init] autorelease];
         NSMutableDictionary *stations = [[[NSMutableDictionary alloc] init] autorelease];
