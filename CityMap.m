@@ -1511,15 +1511,13 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     _h = boundingBox.origin.y * 2 + boundingBox.size.height;
 		
 	INISection *section = [parserMap getSection:@"AdditionalNodes"];
-	NSMutableDictionary *as = [section assignments];
-	for (NSString* key in as) {
-		NSString *value = [parserMap get:key section:@"AdditionalNodes"];
+	for (NSString* key in section.allKeys) {
+		NSString *value = [section retrieve:key];
 		[self processAddNodes:value];
 	}
 	INISection *section2 = [parserTrp getSection:@"Transfers"];
-	NSMutableDictionary *as2 = [section2 assignments];
-	for (NSString* key in as2) {
-		NSString *value = [parserTrp get:key section:@"Transfers"];
+	for (NSString* key in section2.allKeys) {
+		NSString *value = [section2 retrieve:key];
 		[self processTransfers:value];
 	}
 	
@@ -1737,15 +1735,13 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     _h = boundingBox.origin.y * 2 + boundingBox.size.height;
     
 	INISection *section = [parserMap getSection:@"AdditionalNodes"];
-	NSMutableDictionary *as = [section assignments];
-	for (NSString* key in as) {
-		NSString *value = [parserMap get:key section:@"AdditionalNodes"];
+	for (NSString* key in section.allKeys) {
+		NSString *value = [section retrieve:key];
 		[self processAddNodes:value];
 	}
 	INISection *section2 = [parserTrp getSection:@"Transfers"];
-	NSMutableDictionary *as2 = [section2 assignments];
-	for (NSString* key in as2) {
-		NSString *value = [parserTrp get:key section:@"Transfers"];
+	for (NSString* key in section2.allKeys) {
+		NSString *value = [section2 retrieve:key];
 		[self processTransfers2:value];
 	}
 	
