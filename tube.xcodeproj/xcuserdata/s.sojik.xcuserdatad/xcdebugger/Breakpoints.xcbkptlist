@@ -69,16 +69,42 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/MainViewController.m"
-         timestampString = "353433287.685783"
+         timestampString = "353777310.436724"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "775"
-         endingLineNumber = "775"
-         landmarkName = "-changeView:"
+         startingLineNumber = "644"
+         endingLineNumber = "644"
+         landmarkName = "-drawPathScrollView"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Classes/MainViewController.m"
+         timestampString = "353777767.751481"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "769"
+         endingLineNumber = "769"
+         landmarkName = "-drawPathScrollView"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Classes/MainViewController.m"
+         timestampString = "353777970.969771"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "850"
+         endingLineNumber = "850"
+         landmarkName = "-drawPathScrollView"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

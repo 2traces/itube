@@ -1189,6 +1189,21 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     return nil;
 }
 
+-(Segment*)getSegmentFrom:(NSString *)station1 to:(NSString *)station2
+{
+    for (Station *s in stations) {
+        if([s.name isEqualToString:station1] || [s.name isEqualToString:station2]) {
+            for (Segment *seg in s.segment) {
+                if([seg.end.name isEqualToString:station1] || [seg.end.name isEqualToString:station2]) {
+                    return seg;
+                }
+            }
+        }
+    }
+    return nil;
+}
+
+
 -(void)setEnabled:(BOOL)en
 {
     twoStepsDraw = !en;
@@ -2105,5 +2120,42 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
     return nearest;
 }
+
+
+
+-(NSMutableArray*) describePath:(NSArray*)pathMap {
+ 
+    NSMutableArray *path = [[NSMutableArray alloc] init];
+    
+    [path removeAllObjects];
+	int count_ = [pathMap count];
+    
+    Station *prevStation = nil;
+	for (int i=0; i< count_; i++) {
+        GraphNode *n1 = [pathMap objectAtIndex:i];
+        Line* l = [mapLines objectAtIndex:n1.line-1];
+        Station *s = [l getStation:n1.name];
+        
+        if(i == count_ - 1) {
+            
+        } else {
+            GraphNode *n2 = [pathMap objectAtIndex:i+1];
+            
+            if (n1.line==n2.line) {
+                [path addObject:[l getSegmentFrom:n1.name to:n2.name]];
+            } 
+            
+            if(n1.line != n2.line) {
+                [path addObject:s.transfer];
+            }
+        }
+        
+        prevStation = s;
+        
+    }
+    
+    return path;
+}
+
 
 @end

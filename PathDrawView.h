@@ -17,8 +17,12 @@
     NSMutableArray *points;
     
     id <PathDrawProtocol> delegate;
+    NSArray *zpath;
+    NSMutableArray *apath;
 }
 
+@property (nonatomic, retain) NSMutableArray *apath;
+@property (nonatomic, retain) NSArray *zpath;
 @property (nonatomic, retain) NSMutableDictionary *pathInfo;
 @property (nonatomic, assign) NSInteger travelTime;
 @property (nonatomic, assign) id <PathDrawProtocol> delegate;
