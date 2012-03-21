@@ -4,7 +4,7 @@ LinesWidth=10
 WordWrap=false
 FontSize=15
 TuneTransfers=true
-DisplayTransfers=1
+DisplayTransfers=2
 DisplayStations=2
 MaxScale=2
 
