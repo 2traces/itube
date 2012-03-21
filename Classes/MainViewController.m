@@ -51,7 +51,7 @@
     
     TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] initWithFrame:CGRectMake(0,0,320,44)];
     self.stationsView = twoStationsView;
-
+    
     [(MainView*)self.view addSubview:twoStationsView];
     [twoStationsView release];
     
@@ -65,8 +65,8 @@
 
 -(void)changeMapTo:(NSString*)newMap andCity:(NSString*)cityName
 {
-      [stationsView resetBothStations];
-
+    [stationsView resetBothStations];
+    
     MHelper *helper = [MHelper sharedHelper];
     [helper saveBookmarkFile];
     [helper saveHistoryFile];
@@ -80,7 +80,7 @@
     
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     [(MainView*)self.view setCityMap:cm];
-
+    
     // FIXME !!! some classes don't release city map
     [appDelegate.cityMap release];
     appDelegate.cityMap=cm;
@@ -115,7 +115,7 @@
     int count = [path count];
     
     // determing first Station
-
+    
     Station *firstStation;
     
     if (count>0) {
@@ -148,9 +148,9 @@
         if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
             
             Segment *tempSegment = (Segment*)[path objectAtIndex:i];
- 
+            
             if ([tempSegment start] != threadStart) {
-
+                
                 Segment *newSegment = [[[Segment alloc] initFromStation:[tempSegment end] toStation:[tempSegment start] withDriving:[tempSegment driving]] autorelease];
                 [normalPath addObject:newSegment];
                 threadStart=[tempSegment start];
@@ -159,7 +159,7 @@
                 
                 [normalPath addObject:tempSegment];
                 threadStart =[tempSegment end];
-            
+                
             }
             
         } else {
@@ -182,54 +182,54 @@
 }
 
 /*
--(NSMutableArray*)normalizePath:(NSArray*)path
-{
-    int count = [path count];
-    MStation *firstStation = [self fromStation];
-    
-    NSMutableArray *normalPath = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
-    
-    MStation *threadStart = firstStation;
-    
-    for (int i=0; i<count; i++) {
-        
-        if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
-            
-            Segment *tempSegment = (Segment*)[path objectAtIndex:i];
-            MStation *st1 = [[MHelper sharedHelper] getStationWithIndex:[tempSegment start].index andLineIndex:[tempSegment start].line.index];
-            
-            if (st1 != threadStart) {
-                
-                Segment *newSegment = [[[Segment alloc] initFromStation:[tempSegment end] toStation:[tempSegment start] withDriving:[tempSegment driving]] autorelease];
-                [normalPath addObject:newSegment];
-                
-                threadStart=[[MHelper sharedHelper] getStationWithIndex:[tempSegment end].index andLineIndex:[tempSegment end].line.index];
-            } else {
-                [normalPath addObject:tempSegment];
-                threadStart =[[MHelper sharedHelper] getStationWithIndex:[tempSegment end].index andLineIndex:[tempSegment end].line.index];
-            }
-            
-        } else {
-            
-            Transfer *transfer = (Transfer*)[path objectAtIndex:i];
-            
-            NSArray *array = [[transfer stations] allObjects];
-            
-            if ([array objectAtIndex:0]==threadStart) {
-                Station *st1 = [array objectAtIndex:1];
-                threadStart = [[MHelper sharedHelper] getStationWithIndex:st1.index andLineIndex:st1.line.index];
-            } else {
-                Station *st1 = [array objectAtIndex:0];
-                threadStart = [[MHelper sharedHelper] getStationWithIndex:st1.index andLineIndex:st1.line.index];
-            }
-            
-            [normalPath addObject:transfer];
-        }        
-    }
-    
-    return normalPath;
-}
-*/
+ -(NSMutableArray*)normalizePath:(NSArray*)path
+ {
+ int count = [path count];
+ MStation *firstStation = [self fromStation];
+ 
+ NSMutableArray *normalPath = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
+ 
+ MStation *threadStart = firstStation;
+ 
+ for (int i=0; i<count; i++) {
+ 
+ if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
+ 
+ Segment *tempSegment = (Segment*)[path objectAtIndex:i];
+ MStation *st1 = [[MHelper sharedHelper] getStationWithIndex:[tempSegment start].index andLineIndex:[tempSegment start].line.index];
+ 
+ if (st1 != threadStart) {
+ 
+ Segment *newSegment = [[[Segment alloc] initFromStation:[tempSegment end] toStation:[tempSegment start] withDriving:[tempSegment driving]] autorelease];
+ [normalPath addObject:newSegment];
+ 
+ threadStart=[[MHelper sharedHelper] getStationWithIndex:[tempSegment end].index andLineIndex:[tempSegment end].line.index];
+ } else {
+ [normalPath addObject:tempSegment];
+ threadStart =[[MHelper sharedHelper] getStationWithIndex:[tempSegment end].index andLineIndex:[tempSegment end].line.index];
+ }
+ 
+ } else {
+ 
+ Transfer *transfer = (Transfer*)[path objectAtIndex:i];
+ 
+ NSArray *array = [[transfer stations] allObjects];
+ 
+ if ([array objectAtIndex:0]==threadStart) {
+ Station *st1 = [array objectAtIndex:1];
+ threadStart = [[MHelper sharedHelper] getStationWithIndex:st1.index andLineIndex:st1.line.index];
+ } else {
+ Station *st1 = [array objectAtIndex:0];
+ threadStart = [[MHelper sharedHelper] getStationWithIndex:st1.index andLineIndex:st1.line.index];
+ }
+ 
+ [normalPath addObject:transfer];
+ }        
+ }
+ 
+ return normalPath;
+ }
+ */
 
 // используется только для верхнего бара
 -(NSInteger)dsGetTravelTime
@@ -264,8 +264,8 @@
     
     for (int i=0; i<objectNum; i++) {
         if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]] && i==0) {
-                // начинаем с пересадки
-  //          [colorArray addObject:[[self.fromStation lines] color]];
+            // начинаем с пересадки
+            //          [colorArray addObject:[[self.fromStation lines] color]];
             
         } else if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
             
@@ -278,7 +278,7 @@
             
         } else if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]] && i==objectNum-1) {
             // заканчиваем пересадкой
-//            [colorArray addObject:[[self.toStation lines] color]];
+            //            [colorArray addObject:[[self.toStation lines] color]];
         }
     }
     
@@ -358,8 +358,8 @@
     }
     
     [stationsArray addObject:tempArray]; 
-
-
+    
+    
     
     return stationsArray;
 }
@@ -373,7 +373,7 @@
     NSMutableArray *path = [self normalizePath:pathX];
     
     NSMutableArray *stationsArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
-
+    
     if ([[path objectAtIndex:0] isKindOfClass:[Transfer class]]) {
         [path removeObjectAtIndex:0];
     }
@@ -415,10 +415,10 @@
     
     [stationsArray addObject:[NSNumber numberWithInteger:aaa]];
     
-//    NSLog(@"%@",stationsArray);
+    //    NSLog(@"%@",stationsArray);
     
     return stationsArray;
-
+    
 }
 
 -(NSMutableArray*)dsGetEveryStationTime
@@ -470,7 +470,7 @@
         if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]]) {
             time+=[(Transfer*)[path objectAtIndex:i] time];  
         }
-
+        
     }
     
     [stationsArray addObject:tempArray];    
@@ -500,7 +500,7 @@
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSArray *path = appDelegate.cityMap.activePath;
-
+    
     if ([path count]>0) {
         if ([[path objectAtIndex:0] isKindOfClass:[Transfer class]]) {
             return YES;    
@@ -529,15 +529,14 @@
 -(void)showScrollView
 {
     int numberOfPages=1;
-
+    
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-//    NSArray *currentPath = appDelegate.cityMap.activePath;
     
     MainView *mainView = (MainView*)[self view];
     NSMutableArray *pathes2 = [[NSMutableArray alloc] init];
     
     NSArray *keys = [[mainView.mapView.foundPaths allKeys] sortedArrayUsingSelector:@selector(compare:)];
-
+    
     for (NSNumber *pathIndex in keys) {
         [pathes2 addObject:[mainView.mapView.foundPaths objectForKey:pathIndex]];
     }
@@ -563,7 +562,7 @@
             [self.scrollView addSubview:pathView];
             pathView.tag=20000+i;
             [pathView release];
-         }
+        }
         
         [(MainView*)self.view addSubview:scrollView];
         [(MainView*)self.view bringSubviewToFront:scrollView];
@@ -574,12 +573,12 @@
         [changeViewButton setImage:img forState:UIControlStateNormal];
         [changeViewButton setImage:imgh forState:UIControlStateHighlighted];
         [changeViewButton addTarget:self action:@selector(changeView:) forControlEvents:UIControlEventTouchUpInside];
-                
+        
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         
         [formatter setTimeStyle:NSDateFormatterShortStyle];
         [formatter setDateStyle:NSDateFormatterNoStyle];
-
+        
         NSString *dateString = [formatter stringFromDate:[NSDate date]];
         
         CGSize dateSize = [dateString sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
@@ -590,21 +589,22 @@
         [changeViewButton setTag:333];
         [(MainView*)self.view addSubview:changeViewButton];
     } 
-        
+    
     for (int i=0; i<numberOfPages; i++) {
         
         
-         
-//        [(PathDrawView*)[self.scrollView viewWithTag:10000+i] setDelegate:self];
-//        [[self.scrollView viewWithTag:10000+i] setNeedsDisplay];
+        
+        //        [(PathDrawView*)[self.scrollView viewWithTag:10000+i] setDelegate:self];
+        //        [[self.scrollView viewWithTag:10000+i] setNeedsDisplay];
     }
+
     [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)ascrollView{ 
     
     if (ascrollView==self.scrollView) {
-
+        
         int pathNumb = floor(ascrollView.contentOffset.x/320.0);
         [self performSelector:@selector(changeActivePath:) withObject:[NSNumber numberWithInt:pathNumb] afterDelay:0.1];
     }
@@ -614,7 +614,7 @@
 {
     MainView *mainView = (MainView*)[self view];
     [mainView.mapView selectPath:[pathNumb intValue]];    
-
+    
     if (self.pathScrollView) {
         [self performSelector:@selector(redrawPathScrollView) withObject:nil afterDelay:0.1];
     }
@@ -623,7 +623,7 @@
 -(void)removeScrollView
 {
     [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 44, 320, 480-64)];
-
+    
     [self.scrollView removeFromSuperview];
     self.scrollView=nil;
     [[(MainView*)self.view viewWithTag:333] removeFromSuperview];
@@ -652,13 +652,13 @@
     
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateStyle:NSDateFormatterNoStyle];
-
-    NSArray *stations = [self dsGetStationsArray];
+    
+    NSMutableArray *stations = [[[NSMutableArray alloc] initWithArray:[self dsGetStationsArray]] autorelease];
     NSArray *stationsTime = [self dsGetEveryStationTime];
     NSMutableArray *exits = [self dsGetExitForStations]; 
     NSArray *transferTime = [self dsGetEveryTransferTime];
     
-    int transferNumb = [stations count]-1;
+    //    int transferNumb = [stations count]-1;
     
     int trainType = 0;
     int stationType = 0;
@@ -668,6 +668,17 @@
     
     CGFloat viewHeight=0;
     CGFloat segmentHeight;
+    CGFloat currentY;
+    CGFloat lineStart=17.0;
+    
+    if ([self dsIsStartingTransfer]) {
+        [stations removeObjectAtIndex:0];
+        lineStart+=20.0;
+    }
+    
+    if ([self dsIsEndingTransfer]) {
+        [stations removeLastObject];
+    }
     
     for (NSMutableArray *tempStations in stations) {
         
@@ -699,13 +710,6 @@
     self.pathScrollView.delegate = self;
     
     self.pathScrollView.backgroundColor = [UIColor whiteColor];
-    
-    CGFloat currentY;
-    CGFloat lineStart=17.0;
-    
-    if ([self dsIsStartingTransfer]) {
-        lineStart+=20.0;
-    }
     
     int segmentsCount = [stations count];
     
@@ -742,6 +746,11 @@
     
     
     time= [[[stationsTime lastObject] lastObject] intValue];
+    
+    if ([self dsIsEndingTransfer]) {
+        time+=[[transferTime lastObject] intValue];
+    }
+    
     NSString *dateString2 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
     CGSize dateSize2 = [dateString2 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
     UILabel *dateLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize2.width, lineStart+viewHeight-7.0, dateSize2.width, 25.0)];
@@ -757,14 +766,14 @@
     int endCount=segmentsCount;
     int start = 0;
     
-    if ([[path11 objectAtIndex:0] isKindOfClass:[Transfer class]]) {
-        start+=1;
-    } 
-    
-    if ([[path11 lastObject] isKindOfClass:[Transfer class]]) {
-        endCount-=1;
-    } 
-    
+    /*    if ([[path11 objectAtIndex:0] isKindOfClass:[Transfer class]]) {
+     start+=1;
+     } 
+     
+     if ([[path11 lastObject] isKindOfClass:[Transfer class]]) {
+     endCount-=1;
+     } 
+     */    
     
     for (int j=start;j<endCount;j++) {
         
@@ -835,14 +844,6 @@
             
         }
         
-    }
-    
-    int endTransferCount;
-    
-    if ([[path11 lastObject] isKindOfClass:[Transfer class]]) {
-        endTransferCount=transferNumb-1;
-    } else {
-        endTransferCount=transferNumb;
     }
     
     NSArray *timeArray = [self dsGetLinesTimeArray];
@@ -954,28 +955,28 @@
         UIScrollView *scview= [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 66.0, 320.0f, 414.0f)];
         self.pathScrollView = scview;
         [scview release];
-
+        
         [self drawPathScrollView];
-
+        
         [(MainView*)self.view addSubview:self.pathScrollView];
         [(MainView*)self.view bringSubviewToFront:pathScrollView];
         [(MainView*)self.view bringSubviewToFront:self.stationsView]; 
         [(MainView*)self.view bringSubviewToFront:self.scrollView]; 
         [(MainView*)self.view bringSubviewToFront:[(MainView*)self.view viewWithTag:333]]; 
-
+        
         UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
-         shadow.frame = CGRectMake(0,66, 320, 61);
+        shadow.frame = CGRectMake(0,66, 320, 61);
         [shadow setIsAccessibilityElement:YES];
         shadow.tag = 2321;
         [(MainView*)self.view addSubview:shadow];
- 
+        
         [(UIButton*)[(MainView*)self.view viewWithTag:333] setImage:[UIImage imageNamed:@"switch_to_map.png"] forState:UIControlStateNormal];
         [(UIButton*)[(MainView*)self.view viewWithTag:333] setImage:[UIImage imageNamed:@"switch_to_map_high.png"] forState:UIControlStateHighlighted];
         
     } else {
         
         [[(MainView*)self.view viewWithTag:2321] removeFromSuperview]; 
- 
+        
         [self.pathScrollView removeFromSuperview];
         self.pathScrollView=nil;
         [(UIButton*)[(MainView*)self.view viewWithTag:333] setImage:[UIImage imageNamed:@"switch_to_path.png"] forState:UIControlStateNormal];
@@ -1003,7 +1004,7 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleTap)];
     [blackView addGestureRecognizer:tapGesture];
     [tapGesture release];
-
+    
     [(MainView*)self.view addSubview:blackView];
     [blackView release];
     
@@ -1078,8 +1079,8 @@
         self.toStation = [stations objectAtIndex:1];
         
         if (currentSelection==0) {
-        [stationsView setFromStation:self.fromStation];
-        [stationsView setToStation:self.toStation];
+            [stationsView setFromStation:self.fromStation];
+            [stationsView setToStation:self.toStation];
         } else {
             [stationsView setToStation:self.toStation];
             [stationsView setFromStation:self.fromStation];
@@ -1107,13 +1108,13 @@
                 [stationsView setToStation:self.toStation];
             }
             
-           
+            
         }
         
     } else if ([stations count]==0) {
         if (currentSelection==0) {
-                self.fromStation=nil;
-                [stationsView setFromStation:self.fromStation];
+            self.fromStation=nil;
+            [stationsView setFromStation:self.fromStation];
         } else {
             self.toStation=nil;
             [stationsView setToStation:self.toStation];
@@ -1140,10 +1141,10 @@
     
 	mainView.mapView.stationSelected=false;
     
-//    MHelper *helper = [MHelper sharedHelper];
-//    [helper saveBookmarkFile];
-//    [helper saveHistoryFile];
-//    [self dismissModalViewControllerAnimated:YES];
+    //    MHelper *helper = [MHelper sharedHelper];
+    //    [helper saveBookmarkFile];
+    //    [helper saveHistoryFile];
+    //    [self dismissModalViewControllerAnimated:YES];
 }
 
 -(void)returnFromSelection:(NSArray*)stations
@@ -1172,7 +1173,7 @@
             }
         }     
         
-  //      [self returnFromSelection:stations];
+        //      [self returnFromSelection:stations];
     } else {
         if (currentSelection==0) {
             [stationsView setFromStation:self.fromStation];
