@@ -1,12 +1,12 @@
 [Options]
-StationDiameter=10
+StationDiameter=40
 ImageFileName=hamburg.vec
 LinesWidth=10
 WordWrap=false
 FontSize=15
 TuneTransfers=true
-DisplayTransfers=1
-DisplayStations=2
+DisplayTransfers=4
+DisplayStations=4
 MaxScale=2
 
 [U1]
