@@ -1235,21 +1235,21 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)additionalPointsBetween:(NSString *)station1 and:(NSString *)station2 points:(NSArray *)points
 {
-    NSString *st1 = [ComplexText makePlainString:station1];
-    NSString *st2 = [ComplexText makePlainString:station2];
+    NSString *st1 = [[ComplexText makePlainString:station1] uppercaseString];
+    NSString *st2 = [[ComplexText makePlainString:station2] uppercaseString];
     for (Station *s in stations) {
         BOOL search = NO;
         BOOL rev = NO;
-        if([s.name isEqualToString:st1]) {
+        if([[s.name uppercaseString] isEqualToString:st1]) {
             search = YES;
         }
-        else if([s.name isEqualToString:st2]) {
+        else if([[s.name uppercaseString] isEqualToString:st2]) {
             search = rev = YES;
         }
         if(search) {
             for (Segment *seg in s.segment) {
-                if(([seg.end.name isEqualToString:st1] && rev)
-                   || ([seg.end.name isEqualToString:st2] && !rev)) {
+                if(([[seg.end.name uppercaseString] isEqualToString:st1] && rev)
+                   || ([[seg.end.name uppercaseString] isEqualToString:st2] && !rev)) {
                     NSEnumerator *enumer;
                     if(rev) enumer = [points reverseObjectEnumerator];
                     else enumer = [points objectEnumerator];
