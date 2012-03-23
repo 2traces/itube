@@ -1854,6 +1854,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         int w = StringToWay([elements objectAtIndex:6]);
         [ss2 setTransferWay:w to:ss1];
     }
+    if([elements count] >= 8) {
+        int w = StringToWay([elements objectAtIndex:7]);
+    }
+    if([elements count] >= 9) {
+        int w = StringToWay([elements objectAtIndex:8]);
+    }
     if(ss1.transfer != nil && ss2.transfer != nil) {
         
     } else if(ss1.transfer) {
