@@ -1,32 +1,951 @@
 [Line1]
 Name=bakerloo
-136	HARROW & WEALDSTONE 51.5925000,-0.3355000	, 	M	M
-171	KENTON 51.5821360,-0.3172300	, 	S	E
-274	SOUTH KENTON 51.5708280,-0.3087320	, 	S	E
-216	NORTH WEMBLEY 51.5627179,-0.3040120	, 	S	E
-327	WEMBLEY CENTRAL 51.5526330,-0.2966300	, 	M	M
-290	STONEBRIDGE PARK 51.5441990,-0.2754300	, 	E	S
-134	HARLESDEN 51.5363890,-0.2577780	, 	E	S
-346	WILLESDEN JUNCTION 51.5326680,-0.2454750	, 	ME	MS
-166	KENSAL GREEN 51.5307460,-0.2247900	, 	S	E
-244	QUEEN'S PARK 51.5338960,-0.2063360	, 	ME	MS
-175	KILBURN PARK 51.5351240,-0.1940630	, 	M	M
-196	MAIDA VALE 51.5297849,-0.1855650	, 	M	M
-322	WARWICK AVENUE 51.5232699,-0.1836770	, 	M	M
-229	PADDINGTON 51.5173000,-0.1774000	, 	M	M
-97	edgware ROAD 51.5200000,-0.1700000	, 	M	M
-200	MARYLEBONE 51.5223000,-0.1634000	, 	M	M
-13	BAKER STREET 51.5220000,-0.1570000	, 	ME	SM
-250	REGENT'S PARK 51.5235000,-0.1464300	, 	M	M
-228	OXFORD CIRCUS 51.5151899,-0.1416000	, 	M	M
-234	PICCADILLY CIRCUS 51.5101000,-0.1340000	, 	M	M
-59	CHARING CROSS 51.5080000,-0.1247550	, 	M	S
-101	EMBANKMENT 51.5070000,-0.1220000	, 	M	M
-323	WATERLOO 51.5025000,-0.1130000	, 	SM	M
-181	LAMBETH NORTH 51.4990000,-0.1118000	, 	S	E
-98	ELEPHANT & CASTLE 51.4944000,-0.997000	, 	SM	SM
+136	Harrow & Wealdstone 51.5925000,-0.3355000	, 	M	M
+171	Kenton 51.5821360,-0.3172300	, 	S	E
+274	South Kenton 51.5708280,-0.3087320	, 	S	E
+216	North Wembley 51.5627179,-0.3040120	, 	S	E
+327	Wembley Central 51.5526330,-0.2966300	, 	M	M
+290	Stonebridge Park 51.5441990,-0.2754300	, 	E	S
+134	Harlesden 51.5363890,-0.2577780	, 	E	S
+346	Willesden Junction 51.5326680,-0.2454750	, 	ME	MS
+166	Kensal Green 51.5307460,-0.2247900	, 	S	E
+244	Queen's Park 51.5338960,-0.2063360	, 	ME	MS
+175	Kilburn Park 51.5351240,-0.1940630	, 	M	M
+196	Maida Vale 51.5297849,-0.1855650	, 	M	M
+322	Warwick Avenue 51.5232699,-0.1836770	, 	M	M
+229	Paddington 51.5173000,-0.1774000	, 	M	M
+97	Edgware Road 51.5200000,-0.1700000	, 	M	M
+200	Marylebone 51.5223000,-0.1634000	, 	M	M
+13	Baker Street 51.5220000,-0.1570000	, 	ME	SM
+250	Regent's Park 51.5235000,-0.1464300	, 	M	M
+228	Oxford Circus 51.5151899,-0.1416000	, 	M	M
+234	Piccadilly Circus 51.5101000,-0.1340000	, 	M	M
+59	Charing Cross 51.5080000,-0.1247550	, 	M	S
+101	Embankment 51.5070000,-0.1220000	, 	M	M
+323	Waterloo 51.5025000,-0.1130000	, 	SM	M
+181	Lambeth North 51.4990000,-0.1118000	, 	S	E
+98	Elephant & Castle 51.4944000,-0.997000	, 	SM	SM
 
-Branch02 = <>136,171,274,216,327,290,134,346,166,244,175,196,322,229,97,200,13,250,228,234,59,101,323,181,98
+branch02 = <>98, 181, 323, 101, 59, 234, 228, 250, 13, 200, 97, 229, 322, 196, 175, 244, 166, 346, 134, 290, 327, 216, 274, 171, 136
 Driving02 = 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1
 
+[Line2]
+Name=central
+338	West Ruislip 51.5696110,-0.4373240	, 	S	S
+259	Ruislip Gardens 51.5560254,-0.4102340	, 	M	M
+276	South Ruislip 51.5565030,-0.3988250	, 	M	M
+218	Northolt 51.5479960,-0.3688350	, 	S	E
+123	Greenford 51.5426000,-0.3463000	, 	E	S
+233	Perivale 51.5366700,-0.3233300	, 	E	S
+133	Hanger Lane 51.5302800,-0.2930600	, 	S	E
+212	North Acton 51.5236100,-0.2597200	, 	M	M
+329	West Acton 51.5180600,-0.2808300	, 	E	S
+87	Ealing Broadway 51.5147000,-0.3017000	, 	S	S
+90	East Acton 51.5169400,-0.2475000	, 	S	E
+343	White City 51.5120829,-0.2245830	, 	M	M
+264	Shepherd's Bush 51.5044720,-0.2188060	, 	M	S
+152	Holland Park 51.5072000,-0.2056000	, 	M	M
+223	Notting Hill Gate 51.5090000,-0.1970000	, 	S	E
+246	Queensway 51.5104440,-0.1872200	, 	M	M
+182	Lancaster Gate 51.5117500,-0.1754720	, 	M	M
+199	Marble Arch 51.5136100,-0.1583300	, 	M	M
+30	Bond Street 51.5140000,-0.1500000	, 	M	M
+228	Oxford Circus 51.5151899,-0.1416000	, 	M	M
+301	Tottenham Court Road 51.5162000,-0.1309000	, 	S	ME
+151	Holborn 51.5174306,-0.1201110	, 	M	M
+58	Chancery Lane 51.5180000,-0.1110000	, 	S	M
+285	St. Paul's 51.5148300,-0.974500	, 	M	E
+15	Bank/Monument 51.5130000,-0.880000	, 	M	ME
+192	Liverpool Street 51.5186000,-0.813000	, 	M	ME
+26	Bethnal Green 51.5272200,-0.555600	, 	M	M
+201	Mile End 51.5250000,-0.330000	, 	M	M
+291	Stratford 51.5422000,-0.33000	, 	S	S
+187	Leyton 51.5566000,-0.52000	, 	E	S
+189	Leytonstone 51.5683000,0.083000	, 	E	S
+268	Snaresbrook 51.5808300,0.0216699	, 	S	E
+279	South Woodford 51.5916700,0.0275000	, 	S	E
+351	Woodford 51.5916700,0.0275000	, 	S	E
+42	Buckhurst Hill 51.6266700,0.0469400	, 	S	ME
+253	Roding Valley 51.6169400,0.0438900	, 	M	M
+61	Chigwell 51.6174899,0.0742100	, 	SE	SE
+120	Grange Hill 51.6133300,0.0922200	, 	SE	SE
+129	Hainault 51.6033300,0.0933300	, 	S	E
+105	Fairlop 51.5956199,0.0905400	, 	E	S
+18	Barkingside 51.5848600,0.0886000	, 	M	M
+211	Newbury Park 51.5749500,0.0895900	, 	M	M
+114	Gants Hill 51.5766700,0.0661100	, 	M	M
+249	Redbridge 51.5757400,0.0448900	, 	E	S
+318	Wanstead 51.5750000,0.0280000	, 	M	M
+195	Loughton 51.6413900,0.0552800	, 	M	M
+83	Debden 51.6452800,0.0838900	, 	M	M
+298	Theydon Bois 51.6716700,0.01033300	, 	M	M
+102	Epping 51.6930000,0.01138000	, 	M	M
+
+branch5 = <>338, 259, 276, 218, 123, 233, 133, 212, 90, 343, 264, 152, 223, 246, 182, 199, 30, 228, 301, 151, 58, 285, 15, 192, 26, 201, 291, 187, 189, 268, 279, 351, 42, 195, 83, 298, 102
+branch6 = <>338, 259, 276, 218, 123, 233, 133, 212, 90, 343, 264, 152, 223, 246, 182, 199, 30, 228, 301, 151, 58, 285, 15, 192, 26, 201, 291, 187, 189, 318, 249, 114, 211, 18, 105, 129
+branch7 = <>338, 259, 276, 218, 123, 233, 133, 212, 90, 343, 264, 152, 223, 246, 182, 199, 30, 228, 301, 151, 58, 285, 15, 192, 26, 201, 291, 187, 189, 318, 249, 114, 211, 18, 105, 129, 120, 61, 253, 351
+branch8 = <>87, 329, 212, 90, 343, 264, 152, 223, 246, 182, 199, 30, 228, 301, 151, 58, 285, 15, 192, 26, 201, 291, 187, 189, 268, 279, 351, 42, 195, 83, 298, 102
+branch9 = <>87, 329, 212, 90, 343, 264, 152, 223, 246, 182, 199, 30, 228, 301, 151, 58, 285, 15, 192, 26, 201, 291, 187, 189, 318, 249, 114, 211, 18, 105, 129
+branch10 = <>87, 329, 212, 90, 343, 264, 152, 223, 246, 182, 199, 30, 228, 301, 151, 58, 285, 15, 192, 26, 201, 291, 187, 189, 318, 249, 114, 211, 18, 105, 129, 120, 61, 253
+driving5 = 1, 1, 1, 1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 2, 1, 2, 1, 1, 1, 2, 1, 2, 2, 1
+driving6 = 1, 1, 1, 1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 2, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 1
+driving7 = 1, 1, 1, 1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 2, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2
+driving8 = 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 1, 2, 1, 2, 1, 2
+driving9 = 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1
+driving10 = 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1
+
+[Line3]
+Name=circle
+130	Hammersmith 51.4942769,-0.2250370	, 	S	S
+117	Goldhawk Road 51.5020000,-0.2270000	, 	S	E
+265	Shepherd's Bush Market 51.5058300,-0.2263900	, 	E	S
+350	Wood Lane 51.5097972,-0.2241700	, 	M	M
+184	Latimer Road 51.5138900,-0.2172200	, 	S	E
+180	Ladbroke Grove 51.5172000,-0.2106000	, 	M	M
+340	Westbourne Park 51.5211100,-0.2011100	, 	S	M
+256	Royal Oak 51.5191700,-0.1880600	, 	E	S
+229	Paddington 51.5173000,-0.1774000	, 	M	M
+97	Edgware Road 51.5200000,-0.1700000	, 	M	M
+13	Baker Street 51.5220000,-0.1570000	, 	ME	SM
+121	Great Portland Street 51.5238000,-0.1438000	, 	E	M
+104	Euston Square 51.5257999,-0.1358000	, 	E	S
+177	King's Cross St. Pancras 51.5302000,-0.1241000	, 	SME	SME
+106	Farringdon 51.5200000,-0.1053000	, 	MS	ME
+16	Barbican 51.5202000,-0.977000	, 	S	E
+204	Moorgate 51.5186000,-0.886000	, 	MS	ME
+192	Liverpool Street 51.5186000,-0.813000	, 	M	ME
+3 	Aldgate 51.5160000,-0.820000	, 	M	M
+304	Tower Hill/Gateway 51.5106110,-0.747722	, 	M	M
+15	Bank/Monument 51.5130000,-0.880000	, 	M	ME
+52	Cannon Street 51.5104000,-0.907000	, 	M	M
+198	Mansion House 51.5122000,-0.941000	, 	S	M
+27	Blackfriars 51.5116000,-0.1030000	, 	M	M
+297	Temple 51.5111000,-0.1144000	, 	M	ME
+101	Embankment 51.5070000,-0.1220000	, 	M	M
+342	Westminster 51.5010000,-0.1250000	, 	ME	SM
+283	St. James's Park 51.4994000,-0.1344000	, 	M	ME
+315	Victoria 51.4966000,0.0144811	, 	S	M
+267	Sloane Square 51.4925000,-0.1566000	, 	M	M
+273	South Kensington 51.4941000,-0.1738000	, 	ME	M
+115	Gloucester Road 51.4947000,-0.1830000	, 	S	E
+147	High Street Kensington 51.5008000,-0.1925000	, 	M	M
+223	Notting Hill Gate 51.5090000,-0.1970000	, 	S	E
+20	Bayswater 51.5120000,-0.1880000	, 	M	M
+229	Paddington 51.5173000,-0.1774000	, 	M	M
+97	Edgware Road 51.5200000,-0.1700000	, 	M	M
+
+branch2 = <>130, 117, 265, 350, 184, 180, 340, 256, 229, 97, 13, 121, 104, 177, 106, 16, 204, 192, 3, 304, 15, 52, 198, 27, 297, 101, 342, 283, 315, 267, 273, 115, 147, 223, 20, 229, 97
+driving2 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+
+[Line4]
+Name=district
+308	Upminster 51.5590000,0.02511000	, 	ME	ME
+309	Upminster Bridge 51.5580000,0.02341000	, 	S	E
+156	Hornchurch 51.5530000,0.02188000	, 	S	E
+99	Elm Park 51.5497200,0.01977800	, 	S	E
+79	Dagenham East 51.5444400,0.01655600	, 	S	E
+80	Dagenham Heathway 51.5416700,0.01469399	, 	S	E
+23	Becontree 51.5402800,0.01269400	, 	S	E
+310	Upney 51.5386100,0.01013899	, 	S	E
+17	Barking 51.5393000,0.0817000	, 	ME	ME
+92	East Ham 51.5390000,0.0516000	, 	E	S
+312	Upton Park 51.5349999,0.0344000	, 	S	E
+237	Plaistow 51.5313900,0.0172200	, 	S	E
+333	West Ham 51.5280000,0.040000	, 	M	M
+39	Bromley-by-Bow 51.5240000,-0.113000	, 	M	E
+35	Bow Road 51.5272200,-0.247200	, 	MS	ME
+201	Mile End 51.5250000,-0.330000	, 	M	M
+288	Stepney Green 51.5219400,-0.463900	, 	M	E
+344	Whitechapel 51.5194400,-0.611100	, 	MS	ME
+4 	Aldgate East 51.5152000,-0.722000	, 	MSE	MS
+304	Tower Hill/Gateway 51.5106110,-0.747722	, 	M	ME
+15	Bank/Monument 51.5130000,-0.880000	, 	M	ME
+52	Cannon Street 51.5104000,-0.907000	, 	M	M
+198	Mansion House 51.5122000,-0.941000	, 	S	M
+27	Blackfriars 51.5116000,-0.1030000	, 	M	M
+297	Temple 51.5111000,-0.1144000	, 	M	ME
+101	Embankment 51.5070000,-0.1220000	, 	M	M
+342	Westminster 51.5010000,-0.1250000	, 	ME	SM
+283	St. James's Park 51.4994000,-0.1344000	, 	M	ME
+315	Victoria 51.5091778,0.0180111	, 	S	M
+267	Sloane Square 51.4925000,-0.1566000	, 	M	M
+273	South Kensington 51.4941000,-0.1738000	, 	ME	M
+115	Gloucester Road 51.4947000,-0.1830000	, 	S	E
+89	Earl's Court 51.4913900,-0.1947200	, 	M	M
+147	High Street Kensington 51.5008000,-0.1925000	, 	M	M
+223	Notting Hill Gate 51.5090000,-0.1970000	, 	S	E
+20	Bayswater 51.5120000,-0.1880000	, 	M	M
+229	Paddington 51.5173000,-0.1774000	, 	M	M
+97	Edgware Road 51.5200000,-0.1700000	, 	M	M
+330	West Brompton 51.4866000,-0.1957000	, 	M	E
+112	Fulham Broadway 51.4806194,-0.1946556	, 	SM	ME
+231	Parsons Green 51.4752800,-0.2011100	, 	S	ME
+243	Putney Bridge 51.4682917,-0.2087500	, 	E	M
+94	East Putney 51.4587000,-0.2113000	, 	M	M
+280	Southfields 51.4449700,-0.2070400	, 	E	S
+348	Wimbledon Park 51.4340800,-0.2002700	, 	S	E
+347	Wimbledon 51.4155600,-0.1919400	, 	M	M
+337	West Kensington 51.4908300,-0.2063900	, 	E	S
+19	Barons Court 51.4905600,-0.2136100	, 	MS	ME
+130	Hammersmith 51.4942769,-0.2250370	, 	S	S
+247	Ravenscourt Park 51.4941699,-0.2358300	, 	M	M
+286	Stamford Brook 51.4950000,-0.2458300	, 	S	M
+306	Turnham Green 51.4952800,-0.2550000	, 	M	M
+125	Gunnersbury 51.4918000,-0.2750000	, 	S	E
+172	Kew Gardens 51.4771000,-0.2853000	, 	M	M
+251	Richmond 51.4630000,-0.3000000	, 	S	S
+62	Chiswick Park 51.4947200,-0.2677800	, 	M	M
+2 	Acton Town 51.5027800,-0.2800000	, 	ME	MS
+88	Ealing Common 51.5102800,-0.2880600	, 	ME	MS
+87	Ealing Broadway 51.5147000,-0.3017000	, 	S	S
+
+branch25 = <>87, 88, 2, 62, 306, 286, 247, 130, 19, 337, 89, 115, 273, 267, 315, 283, 342, 101, 297, 27, 198, 52, 15, 304, 4, 344, 288, 201, 35, 39, 333, 237, 312, 92, 17, 310, 23, 80, 79, 99, 156, 309, 308
+branch26 = <>251, 172, 125, 306, 286, 247, 130, 19, 337, 89, 115, 273, 267, 315, 283, 342, 101, 297, 27, 198, 52, 15, 304, 4, 344, 288, 201, 35, 39, 333, 237, 312, 92, 17, 310, 23, 80, 79, 99, 156, 309, 308
+branch27 = <>347, 348, 280, 94, 243, 231, 112, 330, 89, 147, 223, 20, 229, 97
+branch28 = <>347, 348, 280, 94, 243, 231, 112, 330, 89, 115, 273, 267, 315, 283, 342, 101, 297, 27, 198, 52, 15, 304, 4, 344, 288, 201, 35, 39, 333, 237, 312, 92, 17, 310, 23, 80, 79, 99, 156, 309, 308
+branch29 = <>168, 89, 147
+driving25 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1
+driving26 = 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1
+driving27 = 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1
+driving28 = 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1
+
+[Line5]
+Name=district_holiday
+89	Earl's Court 51.4913900,-0.1947200	, 	M	M
+168	Kensington Olympia 51.4977400,-0.2102000	, 	S	S
+branch29 = <>168, 89
+driving29 = 2, 2
+
+[Line6]
+Name=hammersmith & city
+130	Hammersmith 51.4942769,-0.2250370	, 	S	S
+117	Goldhawk Road 51.5020000,-0.2270000	, 	S	E
+265	Shepherd's Bush Market 51.5058300,-0.2263900	, 	E	S
+350	Wood Lane 51.5097972,-0.2241700	, 	M	M
+184	Latimer Road 51.5138900,-0.2172200	, 	S	E
+180	Ladbroke Grove 51.5172000,-0.2106000	, 	M	M
+340	Westbourne Park 51.5211100,-0.2011100	, 	S	M
+256	Royal Oak 51.5191700,-0.1880600	, 	E	S
+229	Paddington 51.5173000,-0.1774000	, 	M	M
+97	Edgware Road 51.5200000,-0.1700000	, 	M	M
+13	Baker Street 51.5220000,-0.1570000	, 	ME	SM
+121	Great Portland Street 51.5238000,-0.1438000	, 	E	M
+104	Euston Square 51.5257999,-0.1358000	, 	E	S
+177	King's Cross St. Pancras 51.5302000,-0.1241000	, 	SME	SME
+106	Farringdon 51.5200000,-0.1053000	, 	MS	ME
+16	Barbican 51.5202000,-0.977000	, 	S	E
+204	Moorgate 51.5186000,-0.886000	, 	MS	ME
+192	Liverpool Street 51.5186000,-0.813000	, 	M	ME
+4 	Aldgate East 51.5152000,-0.722000	, 	MSE	MS
+344	Whitechapel 51.5194400,-0.611100	, 	MS	ME
+288	Stepney Green 51.5219400,-0.463900	, 	M	E
+201	Mile End 51.5250000,-0.330000	, 	M	M
+35	Bow Road 51.5272200,-0.247200	, 	MS	ME
+39	Bromley-by-Bow 51.5240000,-0.113000	, 	M	E
+333	West Ham 51.5280000,0.040000	, 	M	M
+237	Plaistow 51.5313900,0.0172200	, 	S	E
+312	Upton Park 51.5349999,0.0344000	, 	S	E
+92	East Ham 51.5390000,0.0516000	, 	E	S
+17	Barking 51.5393000,0.0817000	, 	ME	ME
+
+branch4 = <>130, 117, 265, 350, 184, 180, 340, 256, 229, 97, 13, 121, 104, 177, 106, 16, 204, 192, 4, 344, 288, 201, 35, 39, 333, 237, 312, 92, 17
+driving4 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2
+
+[Line7]
+Name=jubilee
+291	Stratford 51.5422000,-0.33000	, 	S	S
+333	West Ham 51.5280000,0.040000	, 	M	M
+51	Canning Town 51.5140028,0.083111	, 	ME	SM
+214	North Greenwich 51.5005600,0.036100	, 	SE	E
+50	Canary Wharf 51.5051639,-0.209889	, 	SM	SM
+49	Canada Water 51.4983300,-0.500000	, 	M	M
+25	Bermondsey 51.4980600,-0.638900	, 	M	M
+193	London Bridge 51.5050000,-0.859999	, 	M	M
+282	Southwark 51.5030000,-0.1050000	, 	M	M
+323	Waterloo 51.5025000,-0.1130000	, 	SM	M
+342	Westminster 51.5010000,-0.1250000	, 	ME	SM
+122	Green Park 51.5067930,-0.1428650	, 	SM	SM
+30	Bond Street 51.5140000,-0.1500000	, 	M	M
+13	Baker Street 51.5220000,-0.1570000	, 	ME	SM
+284	St. John's Wood 51.5347200,-0.1741700	, 	M	M
+295	Swiss Cottage 51.5430599,-0.1747199	, 	M	M
+108	Finchley Road 51.5472200,-0.1802800	, 	ME	MS
+334	West Hampstead 51.5469400,-0.1905600	, 	S	E
+173	Kilburn 51.5472200,-0.2047200	, 	E	S
+345	Willesden Green 51.5491699,-0.2216700	, 	M	S
+86	Dollis Hill 51.5519400,-0.2386100	, 	M	M
+208	Neasden 51.5541700,-0.2502800	, 	E	S
+328	Wembley Park 51.5636000,-0.2794000	, 	M	M
+178	Kingsbury 51.5847000,-0.2786000	, 	S	E
+245	Queensbury 51.5941700,-0.2862100	, 	M	M
+54	Canons Park 51.6077800,-0.2947200	, 	M	S
+287	Stanmore 51.6194400,-0.3027800	, 	S	S
+
+branch3 = <>291, 333, 51, 214, 50, 49, 25, 193, 282, 323, 342, 122, 30, 13, 284, 295, 108, 334, 173, 345, 86, 208, 328, 178, 245, 54, 287
+driving3 = 1, 1, 2, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 2, 1, 1, 2, 2, 1, 1, 2
+
+[Line8]
+Name=metropolitan
+3 	Aldgate 51.5160000,-0.820000	, 	M	M
+192	Liverpool Street 51.5186000,-0.813000	, 	M	ME
+204	Moorgate 51.5186000,-0.886000	, 	MS	ME
+16	Barbican 51.5202000,-0.977000	, 	S	E
+106	Farringdon 51.5200000,-0.1053000	, 	MS	ME
+177	King's Cross St. Pancras 51.5302000,-0.1241000	, 	SME	SME
+104	Euston Square 51.5257999,-0.1358000	, 	E	S
+121	Great Portland Street 51.5238000,-0.1438000	, 	E	M
+13	Baker Street 51.5220000,-0.1570000	, 	ME	SM
+108	Finchley Road 51.5472200,-0.1802800	, 	ME	MS
+328	Wembley Park 51.5636000,-0.2794000	, 	M	M
+240	Preston Road 51.5722200,-0.2952800	, 	M	M
+219	Northwick Park 51.5786100,-0.3186100	, 	M	M
+137	Harrow-on-the-Hill 51.5794000,-0.3370000	, 	M	M
+335	West Harrow 51.5797200,-0.3533300	, 	M	E
+248	Rayners Lane 51.5752800,-0.3713900	, 	M	M
+95	Eastcote 51.5766700,-0.3969400	, 	M	S
+260	Ruislip Manor 51.5733300,-0.4125000	, 	E	S
+258	Ruislip 51.5713900,-0.4211100	, 	M	M
+162	Ickenham 51.5619400,-0.4419400	, 	M	M
+150	Hillingdon 51.5538900,-0.4500000	, 	M	M
+313	Uxbridge 51.5459000,-0.4783000	, 	MS	MS
+215	North Harrow 51.5850000,-0.3625000	, 	SM	M
+236	Pinner 51.5927800,-0.3805600	, 	M	M
+221	Northwood Hills 51.6005600,-0.4091700	, 	E	S
+220	Northwood 51.6108500,-0.4243700	, 	M	M
+203	Moor Park 51.6300000,-0.4310000	, 	M	M
+74	Croxley 51.6475000,-0.4413900	, 	M	ME
+324	Watford 51.6575000,-0.4175000	, 	S	S
+252	Rickmansworth 51.6402800,-0.4733300	, 	M	M
+63	Chorleywood 51.6541700,-0.5183300	, 	M	M
+56	Chalfont & Latimer 51.6679000,-0.5610000	, 	M	M
+60	Chesham 51.7052000,-0.6113000	, 	M	M
+7 	Amersham 51.6741083,-0.6074000	, 	M	M
+
+branch17 = <>313, 150, 162, 258, 260, 95, 248, 335, 137, 219, 240, 328, 108, 13, 121, 104, 177, 106, 16, 204, 192, 3
+branch18 = <>324, 74, 203, 220, 221, 236, 215, 137, 219, 240, 328, 108, 13, 121, 104, 177, 106, 16, 204, 192, 3
+branch19 = <>7, 56, 63, 252, 203, 220, 221, 236, 215, 137, 219, 240, 328, 108, 13, 121, 104, 177, 106, 16, 204, 192, 3
+branch20 = <>7, 56, 63, 252, 203, 220, 221, 236, 215, 137, 219, 240, 328, 108, 13, 121, 104, 177, 106, 16, 204, 192, 3
+branch21 = <>60, 56, 63, 252, 203, 220, 221, 236, 215, 137, 219, 240, 328, 108, 13, 121, 104, 177, 106, 16, 204, 192, 3
+driving17 = 1, 1, 1, 2, 1, 2, 1, 1, 2, 1, 1, 2, 4, 4, 1, 1, 2, 1, 1, 1, 1, 1
+driving18 = 1, 1, 3, 1, 2, 1, 1, 3, 1, 1, 1, 4, 4, 1, 1, 1, 2, 1, 1, 1, 2
+driving19 = 1, 2, 2, 2, 3, 1, 2, 1, 2, 2, 1, 1, 1, 5, 3, 1, 1, 1, 2, 1, 1, 1, 1
+driving20 = 1, 4, 1, 2, 2, 3, 1, 2, 1, 1, 3, 1, 1, 1, 4, 4, 1, 1, 1, 2, 1, 1, 1, 2
+driving21 = 1, 5, 2, 2, 3, 1, 2, 1, 1, 3, 1, 1, 1, 4, 4, 1, 1, 1, 2, 1, 1, 1, 2
+
+[Line9]
+Name=northern
+205	Morden 51.4022200,-0.1950000	, 	M	M
+278	South Wimbledon 51.4155600,-0.1919400	, 	M	M
+70	Colliers Wood 51.4183300,-0.1783300	, 	M	M
+300	Tooting Broadway 51.4277800,-0.1683300	, 	M	M
+299	Tooting Bec 51.4358300,-0.1597200	, 	M	M
+14	Balham 51.4426000,-0.1520000	, 	M	M
+67	Clapham South 51.4527800,-0.1475000	, 	E	S
+64	Clapham Common 51.4616700,-0.1386100	, 	E	S
+66	Clapham North 51.4650000,-0.1300000	, 	E	S
+289	Stockwell 51.4724999,-0.1222200	, 	SM	M
+227	Oval 51.4819000,-0.1125000	, 	S	M
+165	Kennington 51.4886100,-0.1055600	, 	M	ME
+98	Elephant & Castle 51.4944000,-0.997000	, 	SM	SM
+31	Borough 51.5010000,-0.930000	, 	SM	M
+193	London Bridge 51.5050000,-0.859999	, 	M	M
+15	Bank/Monument 51.5130000,-0.880000	, 	M	ME
+204	Moorgate 51.5186000,-0.886000	, 	MS	ME
+225	Old Street 51.5258100,-0.870900	, 	SM	ME
+9 	Angel 51.5319999,-0.1060000	, 	M	M
+177	King's Cross St. Pancras 51.5302000,-0.1241000	, 	SME	SME
+603	Euston2 51.5284000,-0.1331000	, 	ME	SM
+323	Waterloo 51.5025000,-0.1130000	, 	SM	M
+101	Embankment 51.5070000,-0.1220000	, 	M	M
+59	Charing Cross 51.5080000,-0.1247550	, 	M	S
+185	Leicester Square 51.5113900,-0.1280600	, 	ME	SM
+301	Tottenham Court Road 51.5162000,-0.1309000	, 	S	ME
+118	Goodge Street 51.5208299,-0.1344400	, 	M	M
+321	Warren Street 51.5247200,-0.1383300	, 	M	M
+103	Euston 51.5284000,-0.1331000	, 	ME	SM
+206	Mornington Crescent 51.5344000,-0.1386000	, 	M	M
+48	Camden Town 51.5391700,-0.1424999	, 	ME	SM
+57	Chalk Farm 51.5441700,-0.1533300	, 	S	E
+24	Belsize Park 51.5502800,-0.1644400	, 	M	M
+131	Hampstead 51.5569400,-0.1783300	, 	M	M
+116	Golders Green 51.5720000,-0.1940000	, 	SM	ME
+36	Brent Cross 51.5766700,-0.2136100	, 	ME	SM
+144	Hendon Central 51.5830600,-0.2261100	, 	M	M
+69	Colindale 51.5955600,-0.2500000	, 	SM	ME
+43	Burnt Oak 51.6027800,-0.2638900	, 	M	M
+96	Edgware 51.6140000,-0.2750000	, 	S	S
+169	Kentish Town 51.5508300,-0.1408300	, 	M	M
+305	Tufnell Park 51.5569400,-0.1383300	, 	M	M
+10	Archway 51.5655600,-0.1350000	, 	M	E
+149	Highgate 51.5777800,-0.1458299	, 	M	M
+91	East Finchley 51.5872200,-0.1650000	, 	M	M
+107	Finchley Central 51.6011100,-0.1933300	, 	M	M
+202	Mill Hill East 51.6083300,-0.2102800	, 	M	M
+332	West Finchley 51.6094400,-0.1883300	, 	SM	M
+353	Woodside Park 51.6180600,-0.1855600	, 	M	M
+303	Totteridge & Whetstone 51.6305600,-0.1791700	, 	E	S
+146	High Barnet 51.6505600,-0.1941700	, 	ME	ME
+
+branch11 = <>205, 278, 70, 300, 299, 14, 67, 64, 66, 289, 227, 165, 98, 31, 193, 15, 204, 225, 9, 177, 603, 48, 57, 24, 131, 116, 36, 144, 69, 43, 96
+branch12 = <>205, 278, 70, 300, 299, 14, 67, 64, 66, 289, 227, 165, 98, 31, 193, 15, 204, 225, 9, 177, 603, 48, 169, 305, 10, 149, 91, 107, 202
+branch13 = <>205, 278, 70, 300, 299, 14, 67, 64, 66, 289, 227, 165, 98, 31, 193, 15, 204, 225, 9, 177, 603, 48, 169, 305, 10, 149, 91, 107, 332, 353, 303, 146
+branch14 = <>165, 323, 101, 59, 185, 118, 321, 103, 206, 48, 57, 24, 131, 116, 36, 144, 69, 43, 96
+branch15 = <>165, 323, 101, 59, 185, 118, 321, 103, 206, 48, 169, 305, 10, 149, 91, 107, 202
+branch16 = <>165, 323, 101, 59, 185, 118, 321, 103, 206, 48, 169, 305, 10, 149, 91, 107, 332, 353, 303, 146
+driving11 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 2
+driving12 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2
+driving13 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 2, 2
+driving14 = 10, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 2
+driving15 = 10, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 2
+driving16 = 10, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 2, 4
+
+[Line10]
+Name=piccadilly
+68	Cockfosters 51.6516700,-0.1488900	, 	S	S
+224	Oakwood 51.6475000,-0.1316700	, 	SM	E
+281	Southgate 51.6325000,-0.1280600	, 	M	M
+11	Arnos Grove 51.6163222,-0.1335361	, 	M	M
+33	Bounds Green 51.6069400,-0.1241700	, 	M	S
+349	Wood Green 51.5972200,-0.1100000	, 	M	M
+307	Turnpike Lane 51.5905600,-0.1033300	, 	M	M
+197	Manor House 51.5708300,-0.961100	, 	M	M
+110	Finsbury Park 51.5646530,-0.1063660	, 	ME	SM
+12	Arsenal 51.5586100,-0.1058300	, 	M	M
+153	Holloway Road 51.5530600,-0.1119400	, 	M	M
+45	Caledonian Road 51.5483300,-0.1186100	, 	M	M
+177	King's Cross St. Pancras 51.5302000,-0.1241000	, 	SME	SME
+261	Russell Square 51.5230600,-0.1244400	, 	E	S
+151	Holborn 51.5174306,-0.1201110	, 	M	M
+71	Covent Garden 51.5130280,-0.1242500	, 	M	M
+185	Leicester Square 51.5113900,-0.1280600	, 	ME	SM
+234	Piccadilly Circus 51.5101000,-0.1340000	, 	M	M
+122	Green Park 51.5067930,-0.1428650	, 	SM	SM
+161	Hyde Park Corner 51.5027800,-0.1527800	, 	S	E
+179	Knightsbridge 51.5016700,-0.1608300	, 	ME	SM
+273	South Kensington 51.4941000,-0.1738000	, 	ME	M
+115	Gloucester Road 51.4947000,-0.1830000	, 	S	E
+89	Earl's Court 51.4913900,-0.1947200	, 	M	M
+19	Barons Court 51.4905600,-0.2136100	, 	MS	ME
+130	Hammersmith 51.4942769,-0.2250370	, 	S	S
+306	Turnham Green 51.4952800,-0.2550000	, 	M	M
+2 	Acton Town 51.5027800,-0.2800000	, 	ME	MS
+270	South Ealing 51.5011100,-0.3072200	, 	M	E
+217	Northfields 51.4994400,-0.3141700	, 	E	S
+32	Boston Manor 51.4958300,-0.3250000	, 	S	E
+226	Osterley 51.4813900,-0.3522200	, 	E	M
+158	Hounslow East 51.4730599,-0.3563900	, 	E	S
+157	Hounslow Central 51.4713900,-0.3663900	, 	E	S
+159	Hounslow West 51.4736100,-0.3855600	, 	M	M
+139	Hatton Cross 51.4669400,-0.4233300	, 	M	M
+141	Heathrow Terminal 4 51.4590000,-0.4460000	, 	M	M
+143	Heathrow Terminals 1 2 3 51.4709999,-0.4520000	, 	M	M
+142	Heathrow Terminal 5 51.4723000,-0.4880000	, 	S	S
+88	Ealing Common 51.5102800,-0.2880600	, 	ME	MS
+213	North Ealing 51.5175000,-0.2886100	, 	M	E
+230	Park Royal 51.5269400,-0.2841700	, 	E	S
+6 	Alperton 51.5408300,-0.2997200	, 	M	E
+293	Sudbury Town 51.5508300,-0.3155600	, 	M	M
+292	Sudbury Hill 51.5569400,-0.3363900	, 	M	M
+272	South Harrow 51.5647200,-0.3522200	, 	E	S
+248	Rayners Lane 51.5752800,-0.3713900	, 	M	M
+95	Eastcote 51.5766700,-0.3969400	, 	M	S
+260	Ruislip Manor 51.5733300,-0.4125000	, 	E	S
+258	Ruislip 51.5713900,-0.4211100	, 	M	M
+162	Ickenham 51.5619400,-0.4419400	, 	M	M
+150	Hillingdon 51.5538900,-0.4500000	, 	M	M
+313	Uxbridge 51.5459000,-0.4783000	, 	MS	MS
+
+branch17 = <>313, 150, 162, 258, 260, 95, 248, 272, 292, 293, 6, 230, 213, 88, 2, 306, 130, 19, 89, 115, 273, 179, 161, 122, 234, 185, 71, 151, 261, 177, 45, 153, 12, 110, 197, 307, 349, 33, 11, 281, 224, 68
+driving17 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+branch18 = <> 142, 143, 139, 159, 157, 158, 226, 32, 217, 270, 2
+driving18 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+branch19 = > 139, 141, 143, 139
+driving19 = 1,1,1 
+
+[Line11]
+Name=victoria
+37	Brixton 51.4624200,-0.1156600	, 	M	M
+289	Stockwell 51.4724999,-0.1222200	, 	SM	M
+314	Vauxhall 51.4854040,-0.1229030	, 	M	M
+235	Pimlico 51.4894400,-0.1333332	, 	M	M
+257	Royal Victoria 51.5091778,0.0180111	, 	S	M
+122	Green Park 51.5067930,-0.1428650	, 	SM	SM
+228	Oxford Circus 51.5151899,-0.1416000	, 	M	M
+321	Warren Street 51.5247200,-0.1383300	, 	M	M
+103	Euston2 51.5284000,-0.1331000	, 	ME	SM
+177	King's Cross St. Pancras 51.5302000,-0.1241000	, 	SME	SME
+148	Highbury & Islington 51.5458000,-0.1050000	, 	E	S
+110	Finsbury Park 51.5646530,-0.1063660	, 	ME	SM
+262	Seven Sisters 51.5822200,-0.752800	, 	M	M
+302	Tottenham Hale 51.5883300,-0.597200	, 	M	M
+28	Blackhorse Road 51.5869400,-0.413900	, 	M	M
+316	Walthamstow Central 51.5830600,-0.197200	, 	S	S
+
+branch29 = <>37, 289, 314, 235, 257, 122, 228, 321, 103, 177, 148, 110, 262, 302, 28, 316
+driving29 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+
+[Line12]
+Name=waterloo & city
+323	Waterloo 51.5025000,-0.1130000	, 	SM	M
+15	Bank/Monument 51.5130000,-0.880000	, 	M	ME
+branch30 = <>323, 15
+driving30 = 2
+
+[Line13]
+Name=DLR
+15	Bank/Monument 51.5130000,-0.880000	, 	M	ME
+263	Shadwell 51.5117111,-0.562139	, 	ME	MS
+304	Tower Hill/Gateway 51.5106110,-0.747722	, 	M	ME
+191	Limehouse 51.5124000,-0.397000	, 	SME	M
+341	Westferry 51.5093722,-0.266972	, 	M	M
+239	Poplar 51.5077139,-0.172194	, 	ME	ME
+336	West India Quay 51.5069170,-0.204944	, 	M	ME
+50	Canary Wharf 51.5051639,-0.209889	, 	SM	SM
+145	Heron Quays 51.5029222,-0.215694	, 	S	ME
+275	South Quay 51.5006167,-0.190611	, 	M	M
+72	Crossharbour 51.4957972,-0.144917	, 	M	ME
+207	Mudchute 51.4908972,-0.147083	, 	SME	ME
+164	Island Gardens 51.4817028,-0.109111	, 	M	M
+77	Cutty Sark 51.4880280,-0.105000	, 	M	M
+124	Greenwich 51.4781000,-0.140000	, 	ME	S
+84	Deptford Bridge 51.4744083,-0.225417	, 	ME	SME
+100	Elverson Road 51.4686639,-0.163694	, 	ME	SME
+186	Lewisham 51.4653000,-0.133000	, 	SM	SM
+5 	All Saints 51.5108300,-0.130600	, 	S	S
+183	Langdon Park 51.5150000,-0.140000	, 	M	M
+85	Devons Road 51.5222200,-0.173610	, 	M	M
+34	Bow Church 51.5275000,-0.208000	, 	M	M
+242	Pudding Mill Lane 51.5341000,-0.138000	, 	M	S
+29	Blackwall 51.5079170,-0.72200	, 	S	M
+93	East India 51.5093972,-0.21778	, 	S	M
+51	Canning Town 51.5140028,0.083111	, 	ME	SM
+339	West Silvertown 51.5027800,0.0225000	, 	SM	SM
+238	Pontoon Dock 51.5022200,0.0319400	, 	M	M
+194	London City Airport 51.5036100,0.0488900	, 	S	M
+176	King George V 51.5019720,0.0627800	, 	SM	SM
+354	Woolwich Arsenal 51.4900000,0.0690000	, 	M	M
+257	Royal Victoria 51.5091778,0.0180111	, 	S	M
+410	Canning Town2 51.5140028,0.083111	, 	ME	SM
+400	Star Lane 51.5140128,0.083211	, 	M	M
+333	West Ham 51.5280000,0.040000	, 	M	M
+401	Abbey Road 51.5290000,0.041000	, 	M	M
+402	Stratford High Street 51.6525935,-0.3918198	, 	M	M
+291	Stratford 51.5422000,-0.33000	, 	S	S
+403	Stratford International 51.5422000,-0.33000	, 	S	S
+76	Custom House for ExCel 51.5096390,0.0258944	, 	M	SM
+241	Prince Regent 51.5094471,0.0334333	, 	S	M
+255	Royal Albert 51.5086100,0.0463900	, 	S	M
+22	Beckton Park 51.5088900,0.0550000	, 	M	M
+78	Cyprus 51.5086100,0.0638900	, 	M	M
+113	Gallions Reach 51.5088900,0.0716700	, 	SM	SM
+21	Beckton 51.5147199,0.0613900	, 	S	S
+
+branch32 = <>15, 263, 191, 341, 336, 50, 145, 275, 72, 207, 164, 77, 124, 84, 100, 186
+branch33 = <>15, 263, 191, 341, 239, 29, 93, 51, 339, 238, 194, 176, 354
+branch34 = <>291, 242, 34, 85, 183, 5, 239, 336, 50, 145, 275, 72, 207, 164, 77, 124, 84, 100, 186
+branch35 = <>304, 263, 191, 341, 239, 29, 93, 51, 257, 76, 241, 255, 22, 78, 113, 21
+branch36 = <>403, 291, 402, 401, 333, 400, 410, 257
+driving32 = 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+driving33 = 1, 2, 2, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1
+driving34 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+driving35 = 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1
+driving36 = 1, 1, 1, 1, 1, 1, 1
+
+[Line14]
+Name=london overground_1
+65	Clapham Junction 51.4649566,-0.1705241	, 	E	E
+163	Imperial Wharf 51.4750660,-0.1829490	, 	M	M
+330	West Brompton 51.4866000,-0.1957000	, 	M	E
+168	Kensington Olympia 51.4977400,-0.2102000	, 	S	S
+264	Shepherd's Bush 51.5044720,-0.2188060	, 	M	S
+346	Willesden Junction 51.5326680,-0.2454750	, 	ME	MS
+1 	Acton Central 51.5087199,-0.2629700	, 	S	E
+269	South Acton 51.4997000,-0.2701600	, 	E	S
+125	Gunnersbury 51.4918000,-0.2750000	, 	S	E
+172	Kew Gardens 51.4771000,-0.2853000	, 	M	M
+251	Richmond 51.4630000,-0.3000000	, 	S	S
+166	Kensal Green 51.5307460,-0.2247900	, 	S	E
+244	Queen's Park 51.5338960,-0.2063360	, 	ME	MS
+174	Kilburn High Road 51.5376338,-0.1918690	, 	S	E
+271	South Hampstead 51.5566885,-0.1782198	, 	M	S
+103	Euston 51.5284000,-0.1331000	, 	ME	SM
+134	Harlesden 51.5363890,-0.2577780	, 	E	S
+290	Stonebridge Park 51.5441990,-0.2754300	, 	E	S
+327	Wembley Central 51.5526330,-0.2966300	, 	M	M
+216	North Wembley 51.5627179,-0.3040120	, 	S	E
+274	South Kenton 51.5708280,-0.3087320	, 	S	E
+171	Kenton 51.5821360,-0.3172300	, 	S	E
+136	Harrow & Wealdstone 51.5925000,-0.3355000	, 	M	M
+140	Headstone Lane 51.6026500,-0.3572200	, 	M	E
+138	Hatch End 51.6094200,-0.3686000	, 	M	M
+55	Carpenders Park 51.6278779,-0.3855836	, 	S	E
+44	Bushey 51.6455800,-0.3847500	, 	M	M
+325	Watford High Street 51.6525935,-0.3918198	, 	S	E
+326	Watford Junction 51.6635000,-0.3958000	, 	S	S
+167	Kensal Rise 51.5345600,-0.2199600	, 	S	E
+41	Brondesbury Park 51.5407552,-0.2102101	, 	S	E
+40	Brondesbury 51.5451700,-0.2023100	, 	S	E
+334	West Hampstead 51.5469400,-0.1905600	, 	S	E
+109	Finchley Road & Frognal 51.5502700,-0.1831400	, 	S	E
+132	Hampstead Heath 51.5552200,-0.1656999	, 	M	M
+119	Gospel Oak 51.5553898,-0.1512685	, 	SM	M
+170	Kentish Town West 51.5468038,-0.1468778	, 	S	E
+47	Camden Road 51.5418829,-0.1392201	, 	S	M
+46	Caledonian Road & Barnsbury 51.5433559,-0.1150239	, 	M	M
+148	Highbury & Islington 51.5458000,-0.1050000	, 	E	S
+53	Canonbury 51.5487285,-0.919595	, 	MS	ME
+82	Dalston Kingsland 51.5482299,-0.758596	, 	S	M
+126	Hackney Central 51.5471172,-0.568803	, 	M	E
+154	Homerton 51.5471306,-0.428805	, 	S	E
+127	Hackney Wick 51.5434200,-0.249100	, 	M	M
+291	Stratford 51.5422000,-0.33000	, 	S	S
+
+branch41 = <>251, 172, 125, 269, 1, 346, 167, 41, 40, 334, 109, 132, 119, 170, 47, 46, 148, 53, 82, 126, 154, 127, 291
+branch42 = <>65, 163, 330, 168, 264, 346, 167, 41, 40, 334, 109, 132, 119, 170, 47, 46, 148, 53, 82, 126, 154, 127, 291
+branch43 = <>103, 271, 174, 244, 166, 346, 134, 290, 327, 216, 274, 171, 136, 140, 138, 55, 44, 325, 326
+driving41 = 1, 2, 2, 2, 1, 4, 2, 2, 1, 1, 1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2
+driving42 = 1, 1, 2, 3, 1, 5, 2, 1, 1, 1, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2
+driving43 = 1, 5, 3, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 3, 1, 3, 3, 1, 2
+
+[Line15]
+Name=london overground_2
+119	Gospel Oak 51.5553898,-0.1512685	, 	SM	M
+311	Upper Holloway 51.5636400,-0.1295099	, 	S	M
+73	Crouch Hill 51.5713668,-0.1171964	, 	M	S
+135	Harringay Green Lanes 51.5772112,-0.982560	, 	M	S
+277	South Tottenham 51.5803800,-0.721000	, 	M	S
+28	Blackhorse Road 51.5869400,-0.413900	, 	M	M
+317	Walthamstow Queen's Road 51.5813757,-0.237389	, 	M	S
+188	Leyton Midland Road 51.5697300,-0.80400	, 	M	S
+190	Leytonstone High Road 51.5637491,0.081512	, 	S	M
+319	Wanstead Park 51.5516999,0.0262200	, 	M	S
+352	Woodgrange Park 51.5492940,0.0445193	, 	M	S
+17	Barking 51.5393000,0.0817000	, 	ME	ME
+
+branch44 = <>119, 311, 73, 135, 277, 28, 317, 188, 190, 319, 352, 17
+driving44 = 1, 2, 1, 2, 3, 3, 2, 2, 2, 2, 2, 3
+
+[Line16]
+Name=london overground_3
+148	Highbury & Islington 51.5458000,-0.1050000	, 	E	S
+53	Canonbury 51.5487285,-0.919595	, 	MS	ME
+81	Dalston Junction 51.5461200,-0.751300	, 	S	S
+128	Haggerston 51.5387100,-0.756600	, 	M	M
+160	Hoxton 51.5315200,-0.756800	, 	S	E
+266	Shoreditch High Street 51.5234474,-0.771070	, 	E	S
+344	Whitechapel 51.5194400,-0.611100	, 	MS	ME
+263	Shadwell 51.5117111,-0.562139	, 	ME	MS
+320	Wapping 51.5043900,-0.559200	, 	S	E
+254	Rotherhithe 51.5007745,-0.519479	, 	E	S
+49	Canada Water 51.4983300,-0.500000	, 	M	M
+294	Surrey Quays 51.4932000,-0.475099	, 	MS	M
+209	New Cross 51.4766742,-0.325946	, 	S	S
+210	New Cross Gate 51.4766742,-0.325946	, 	S	E
+38	Brockley 51.4646150,-0.375756	, 	M	M
+155	Honor Oak Park 51.4498236,-0.457194	, 	S	E
+111	Forest Hill 51.4392799,-0.531500	, 	E	SM
+296	Sydenham 51.4272500,-0.542400	, 	M	ME
+75	Crystal Palace 51.4181100,-0.726000	, 	S	S
+232	Penge West 51.4174336,-0.607950	, 	M	M
+8 	Anerley 51.4121499,-0.658799	, 	M	E
+222	Norwood Junction 51.3972337,-0.748139	, 	ME	SM
+331	West Croydon 51.3790802,-0.1019883	, 	SM	SM
+
+branch38 = <>148, 53, 81, 128, 160, 266, 344, 263, 320, 254, 49, 294, 210, 38, 155, 111, 296, 232, 8, 222, 331
+branch39 = <>148, 53, 81, 128, 160, 266, 344, 263, 320, 254, 49, 294, 209
+branch40 = <>148, 53, 81, 128, 160, 266, 344, 263, 320, 254, 49, 294, 210, 38, 155, 111, 296, 75
+driving38 = 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 3, 2, 2, 2, 2, 1, 1, 3, 3
+driving39 = 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 3
+driving40 = 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 3, 2, 2, 2, 2, 2
+
 [Transfers]
+001=Victoria,Oxford Circus,Bakerloo,Oxford Circus,5, M, S, E, ME
+002=Victoria,Green Park,Jubilee,Green Park,5, E, E, S, S
+003=Victoria,King's Cross St. Pancras,Hammersmith & City,King's Cross St. Pancras,5, E, E, S, S
+004=Victoria,Oxford Circus,Central,Oxford Circus,5, E, E, S, S
+005=Victoria,Euston,Northern,Euston,5, SME, E, S, S
+006=Victoria,King's Cross St. Pancras,Northern,King's Cross St. Pancras,5, SM, SM, ME, ME
+007=Victoria,Stockwell,Northern,Stockwell,5, M, S, E, SM
+008=Victoria,Warren Street,Northern,Warren Street,5, M, M, M, M
+009=Victoria,King's Cross St. Pancras,Metropolitan,King's Cross St. Pancras,5, E, E, S, S
+010=Victoria,Finsbury Park,Piccadilly,Finsbury Park,5, ME, ME, S, SE
+011=Victoria,Green Park,Piccadilly,Green Park,5, S, S, E, E
+012=Victoria,King's Cross St. Pancras,Piccadilly,King's Cross St. Pancras,5, E, E, ME, ME
+013=Victoria,Victoria,District,Victoria,5, M, M, M, M
+014=Victoria,King's Cross St. Pancras,Circle,King's Cross St. Pancras,5, E, E, S, S
+015=Victoria,Victoria,Circle,Victoria,5, M, M, M, M
+016=Victoria,Blackhorse Road,Overground,Blackhorse Road,5, M, M, M, M
+017=Victoria,Euston,Overground,Euston,5, E, E, E, E
+018=Victoria,Highbury & Islington,Overground,Highbury & Islington,5, E, E, S, S
+019=Bakerloo,Oxford Circus,Victoria,Oxford Circus,5, SM, S, E, M
+020=Bakerloo,Baker Street,Jubilee,Baker Street,5, SE, SE, E, S
+021=Bakerloo,Waterloo,Jubilee,Waterloo,5, S, S, E, E
+022=Bakerloo,Baker Street,Hammersmith & City,Baker Street,5, M, M, SE, SE
+023=Bakerloo,Edgware Road,Hammersmith & City,Edgware Road,5, E, E, M, M
+024=Bakerloo,Paddington,Hammersmith & City,Paddington,5, E, E, SM, SM
+025=Bakerloo,Oxford Circus,Central,Oxford Circus,5, E, E, S, S
+026=Bakerloo,Charing Cross,Northern,Charing Cross,5, E, E, S, S
+027=Bakerloo,Embankment,Northern,Embankment,5, E, E, M, M
+028=Bakerloo,Waterloo,Northern,Waterloo,5, S, S, ME, ME
+029=Bakerloo,Baker Street,Metropolitan,Baker Street,5, M, M, SE, SE
+030=Bakerloo,Piccadilly Circus,Piccadilly,Piccadilly Circus,5, E, E, M, M
+031=Bakerloo,Edgware Road,District,Edgware Road,5, S, E, , M
+032=Bakerloo,Embankment,District,Embankment,5, E, E, M, M
+033=Bakerloo,Paddington,District,Paddington,5, E, E, SM, SM
+034=Bakerloo,Baker Street,Circle,Baker Street,5, M, M, SE, SE
+035=Bakerloo,Edgware Road,Circle,Edgware Road,5, E, E, M, M
+036=Bakerloo,Embankment,Circle,Embankment,5, E, E, M, M
+037=Bakerloo,Paddington,Circle,Paddington,5, E, E, SM, SM
+038=Bakerloo,Waterloo,Waterloo & City,Waterloo,5, S, S, M, M
+039=Bakerloo,Queen's Park,Overground,Queen's Park,5, S, E, S, S
+040=Bakerloo,Wembley Central,Overground,Wembley Central,5, S, S, E, S
+041=Bakerloo,Willesden Junction,Overground,Willesden Junction,5, SM, SM, SM, SM
+042=Jubilee,Green Park,Victoria,Green Park,5, M, M, E, E
+043=Jubilee,Baker Street,Bakerloo,Baker Street,5, SE, S, E, E
+044=Jubilee,Waterloo,Bakerloo,Waterloo,5, SE, SE, SE, SE
+045=Jubilee,Baker Street,Hammersmith & City,Baker Street,5, SM, SM, S, S
+046=Jubilee,West Ham,Hammersmith & City,West Ham,5, ME, ME, ME, ME
+047=Jubilee,Bond Street,Central,Bond Street,5, M, M, M, M
+048=Jubilee,London Bridge,Northern,London Bridge,5, M, M, E, E
+049=Jubilee,Waterloo,Northern,Waterloo,5, SE, SE, SE, SE
+050=Jubilee,Baker Street,Metropolitan,Baker Street,5, SM, SM, M, M
+051=Jubilee,Finchley Road,Metropolitan,Finchley Road,5, E, S, S, S
+052=Jubilee,Wembley Park,Metropolitan,Wembley Park,5, E, E, S, S
+053=Jubilee,Green Park,Piccadilly,Green Park,5, E, E, S, S
+054=Jubilee,West Ham,District,West Ham,5, ME, ME, ME, ME
+055=Jubilee,Westminster,District,Westminster,5, M, M, S, S
+056=Jubilee,Baker Street,Circle,Baker Street,5, SM, SM, S, S
+057=Jubilee,Westminster,Circle,Westminster,5, M, M, S, S
+058=Jubilee,Waterloo,Waterloo & City,Waterloo,5, SE, SE, SE, SE
+059=Jubilee,Canary Wharf,DLR,Canary Wharf,5, S, S, S, E
+060=Jubilee,Canning Town,DLR,Canning Town,5, E, E, SM, SM
+061=Jubilee,Canada Water,Overground,Canada Water,5, M, S, M, E
+062=Jubilee,West Hampstead,Overground,West Hampstead,5, S, S, E, E
+063=Hammersmith & City,King's Cross St. Pancras,Victoria,King's Cross St. Pancras,5, S, S, E, E
+064=Hammersmith & City,Baker Street,Bakerloo,Baker Street,5, SE, SE, SE, SE
+065=Hammersmith & City,Edgware Road,Bakerloo,Edgware Road,5, E, E, S, S
+066=Hammersmith & City,Paddington,Bakerloo,Paddington,5, M, M, E, E
+067=Hammersmith & City,Baker Street,Jubilee,Baker Street,5, SE, SE, SE, SE
+068=Hammersmith & City,West Ham,Jubilee,West Ham,5, E, E, S, S
+069=Hammersmith & City,Liverpool Street,Central,Liverpool Street,5, E, E, ME, ME
+070=Hammersmith & City,Mile End,Central,Mile End,5, M, M, SM, S
+071=Hammersmith & City,King's Cross St. Pancras,Northern,King's Cross St. Pancras,5, S, S, E, E
+072=Hammersmith & City,Moorgate,Northern,Moorgate,5, S, S, E, E
+073=Hammersmith & City,Baker Street,Metropolitan,Baker Street,5, SE, SE, SE, SE
+074=Hammersmith & City,Farringdon,Metropolitan,Farringdon,5, S, S, E, S
+075=Hammersmith & City,King's Cross St. Pancras,Metropolitan,King's Cross St. Pancras,5, S, S, E, S
+076=Hammersmith & City,Liverpool Street,Metropolitan,Liverpool Street,5, S, E, ME, S
+077=Hammersmith & City,Moorgate,Metropolitan,Moorgate,5, S, S, E, S
+078=Hammersmith & City,King's Cross St. Pancras,Piccadilly,King's Cross St. Pancras,5, S, S, E, E
+079=Hammersmith & City,Aldgate East,District,Aldgate East,5, S, SE, S, S
+080=Hammersmith & City,Bow Road,District,Bow Road,5, S, S, E, S
+081=Hammersmith & City,Edgware Road,District,Edgware Road,5, SM, SM, SEM, SEM
+082=Hammersmith & City,Mile End,District,Mile End,5, S, E, E, S
+083=Hammersmith & City,Paddington,District,Paddington,5, M, M, E, E
+084=Hammersmith & City,West Ham,District,West Ham,5, S, E, S, S
+085=Hammersmith & City,Whitechapel,District,Whitechapel,5, S, S, E, S
+086=Hammersmith & City,Baker Street,Circle,Baker Street,5, S, SE, S, E
+087=Hammersmith & City,Edgware Road,Circle,Edgware Road,5, S, SM, M, S
+088=Hammersmith & City,Farringdon,Circle,Farringdon,5, S, SE, E, S
+089=Hammersmith & City,King's Cross St. Pancras,Circle,King's Cross St. Pancras,5, S, S, EM, S
+090=Hammersmith & City,Liverpool Street,Circle,Liverpool Street,5, S, E, ME, S
+091=Hammersmith & City,Moorgate,Circle,Moorgate,5, S, S, E, S
+092=Hammersmith & City,Paddington,Circle,Paddington,5, M, M, E, E
+093=Hammersmith & City,Whitechapel,Overground,Whitechapel,5, S, S, E, E
+094=Central,Oxford Circus,Victoria,Oxford Circus,5, E, E, S, S
+095=Central,Oxford Circus,Bakerloo,Oxford Circus,5, E, E, S, S
+096=Central,Bond Street,Jubilee,Bond Street,5, M, M, S, S
+097=Central,Stratford,Jubilee,Stratford,5, , E, , S
+098=Central,Liverpool Street,Hammersmith & City,Liverpool Street,5, E, E, S, S
+099=Central,Mile End,Hammersmith & City,Mile End,5, S, M, M, S
+100=Central,Bank/Monument,Northern,Bank/Monument,5, M, M, E, E
+101=Central,Liverpool Street,Metropolitan,Liverpool Street,5, E, E, S, S
+102=Central,Holborn,Piccadilly,Holborn,5, E, E, M, M
+103=Central,Bank/Monument,District,Bank/Monument,5, M, M, E, E
+104=Central,Mile End,District,Mile End,5, S, M, M, S
+105=Central,Notting Hill Gate,District,Notting Hill Gate,5, S, S, E, E
+106=Central,Bank/Monument,Circle,Bank/Monument,5, M, M, S, S
+107=Central,Liverpool Street,Circle,Liverpool Street,5, E, E, S, S
+108=Central,Notting Hill Gate,Circle,Notting Hill Gate,5, S, S, E, E
+109=Central,Bank/Monument,Waterloo & City,Bank/Monument,5, S, S, E, E
+110=Central,Shepherd's Bush,Overground,Shepherd's Bush,5, E, E, S, S
+111=Central,Stratford,Overground,Stratford,5, E, E, M, M
+112=Northern,Euston,Victoria,Euston,5, S, S, E, E
+113=Northern,King's Cross St. Pancras,Victoria,King's Cross St. Pancras,5, E, E, S, S
+114=Northern,Stockwell,Victoria,Stockwell,5, ME, S, E, ME
+115=Northern,Elephant & Castle,Bakerloo,Elephant & Castle,5, S, S, E, E
+116=Northern,London Bridge,Jubilee,London Bridge,5, E, E, S, S
+117=Northern,King's Cross St. Pancras,Hammersmith & City,King's Cross St. Pancras,5, E, E, S, S
+118=Northern,Moorgate,Hammersmith & City,Moorgate,5, E, E, M, M
+119=Northern,Bank/Monument,Central,Bank/Monument,5, S, S, E, E
+120=Northern,King's Cross St. Pancras,Metropolitan,King's Cross St. Pancras,5, E, E, S, S
+121=Northern,Moorgate,Metropolitan,Moorgate,5, E, E, M, M
+122=Northern,King's Cross St. Pancras,Piccadilly,King's Cross St. Pancras,5, E, E, S, S
+123=Northern,Bank/Monument,District,Bank/Monument,5, E, E, S, S
+124=Northern,Bank/Monument,Circle,Bank/Monument,5, E, E, S, S
+125=Northern,King's Cross St. Pancras,Circle,King's Cross St. Pancras,5, E, E, S, S
+126=Northern,Moorgate,Circle,Moorgate,5, E, E, M, M
+127=Northern,Bank/Monument,Waterloo & City,Bank/Monument,5, S, S, E, E
+128=Northern,Bank/Monument,DLR,Bank/Monument,5, E, E, SM, SM
+129=Northern,Euston,Overground,Euston,5, M, M, M, M
+130=Northern,Warren Street,Victoria,Warren Street,5, S, S, E, E
+131=Northern,Charing Cross,Bakerloo,Charing Cross,5, E, E, M, M
+132=Northern,Embankment,Bakerloo,Embankment,5, M, M, M, M
+133=Northern,Waterloo,Bakerloo,Waterloo,5, M, M, M, M
+134=Northern,Waterloo,Jubilee,Waterloo,5, SM, M, M, E
+135=Northern,Leicester Square,Piccadilly,Leicester Square,5, SE, SE, SE, SE
+136=Northern,Embankment,District,Embankment,5, M, M, M, M
+137=Northern,Embankment,Circle,Embankment,5, M, M, M, M
+138=Northern,Waterloo,Waterloo & City,Waterloo,5, M, M, M, M
+139=Metropolitan,King's Cross St. Pancras,Victoria,King's Cross St. Pancras,5, S, S, E, E
+140=Metropolitan,Baker Street,Bakerloo,Baker Street,5, M, M, E, E
+141=Metropolitan,Baker Street,Jubilee,Baker Street,5, M, M, E, E
+142=Metropolitan,Finchley Road,Jubilee,Finchley Road,5, S, S, S, E
+143=Metropolitan,Wembley Park,Jubilee,Wembley Park,5, S, S, E, E
+144=Metropolitan,Baker Street,Hammersmith & City,Baker Street,5, S, S, E, E
+145=Metropolitan,Farringdon,Hammersmith & City,Farringdon,5, S, ES, E, S
+146=Metropolitan,King's Cross St. Pancras,Hammersmith & City,King's Cross St. Pancras,5, S, S, SE, S
+147=Metropolitan,Liverpool Street,Hammersmith & City,Liverpool Street,5, MS, SM, SM, MS
+148=Metropolitan,Moorgate,Hammersmith & City,Moorgate,5, S, S, E, S
+149=Metropolitan,Liverpool Street,Central,Liverpool Street,5, EM, EM, ME, ME
+150=Metropolitan,King's Cross St. Pancras,Northern,King's Cross St. Pancras,5, S, S, E, E
+151=Metropolitan,Moorgate,Northern,Moorgate,5, S, S, E, E
+152=Metropolitan,King's Cross St. Pancras,Piccadilly,King's Cross St. Pancras,5, S, S, E, E
+153=Metropolitan,Rayners Lane,Piccadilly,Rayners Lane,5, S, S, E, S
+154=Metropolitan,Baker Street,Circle,Baker Street,5, S, S, E, E
+155=Metropolitan,Farringdon,Circle,Farringdon,5, S, SE, E, S
+156=Metropolitan,King's Cross St. Pancras,Circle,King's Cross St. Pancras,5, S, S, EM, S
+157=Metropolitan,Liverpool Street,Circle,Liverpool Street,5, S, M, M, S
+158=Metropolitan,Moorgate,Circle,Moorgate,5, S, S, E, S
+159=Piccadilly,Finsbury Park,Victoria,Finsbury Park,5, SE, E, SE, E
+160=Piccadilly,Green Park,Victoria,Green Park,5, E, E, S, S
+161=Piccadilly,King's Cross St. Pancras,Victoria,King's Cross St. Pancras,5, S, S, S, S
+162=Piccadilly,Piccadilly Circus,Bakerloo,Piccadilly Circus,5, S, S, M, M
+163=Piccadilly,Green Park,Jubilee,Green Park,5, E, E, M, M
+164=Piccadilly,Hammersmith,Hammersmith & City,Hammersmith,5, E, E, M, M
+165=Piccadilly,King's Cross St. Pancras,Hammersmith & City,King's Cross St. Pancras,5, E, E, S, S
+166=Piccadilly,Holborn,Central,Holborn,5, E, E, M, M
+167=Piccadilly,King's Cross St. Pancras,Northern,King's Cross St. Pancras,5, E, E, SE, SE
+168=Piccadilly,Leicester Square,Northern,Leicester Square,5, ME, ME, SE, SE
+169=Piccadilly,King's Cross St. Pancras,Metropolitan,King's Cross St. Pancras,5, E, E, S, S
+170=Piccadilly,Acton Town,District,Acton Town,5, S, E, S, S
+171=Piccadilly,Barons Court,District,Barons Court,5, S, S, E, S
+172=Piccadilly,Earl's Court,District,Earl's Court,5, E, E, S, S
+173=Piccadilly,Hammersmith,District,Hammersmith,5, S, ME, SE, S
+174=Piccadilly,South Kensington,District,South Kensington,5, M, M, S, S
+175=Piccadilly,King's Cross St. Pancras,Circle,King's Cross St. Pancras,5, E, E, S, S
+176=Piccadilly,South Kensington,Circle,South Kensington,5, M, M, S, S
+177=Piccadilly,Rayners Lane,Metropolitan,Rayners Lane,5, S, S, E, S
+178=Piccadilly,Ealing Common,District,Ealing Common,5, S, E, S, S
+179=District,Victoria,Victoria,Victoria,5, SM, SM, E, E
+180=District,Embankment,Bakerloo,Embankment,5, E, E, E, E
+181=District,West Ham,Jubilee,West Ham,5, E, E, S, S
+182=District,Westminster,Jubilee,Westminster,5, E, E, M, M
+183=District,Aldgate East,Hammersmith & City,Aldgate East,5, S, SE, S, S
+184=District,Barking,Hammersmith & City,Barking,5, S, M, S, S
+185=District,Bow Road,Hammersmith & City,Bow Road,5, S, S, E, S
+186=District,East Ham,Hammersmith & City,East Ham,5, S, E, S, S
+187=District,Hammersmith,Hammersmith & City,Hammersmith,5, E, E, S, S
+188=District,Mile End,Hammersmith & City,Mile End,5, S, E, E, S
+189=District,West Ham,Hammersmith & City,West Ham,5, S, E, S, S
+190=District,Whitechapel,Hammersmith & City,Whitechapel,5, S, S, E, S
+191=District,Bank/Monument,Central,Bank/Monument,5, E, E, S, S
+192=District,Mile End,Central,Mile End,5, M, M, SM, S
+193=District,Bank/Monument,Northern,Bank/Monument,5, E, E, S, S
+194=District,Embankment,Northern,Embankment,5, E, E, E, E
+195=District,Acton Town,Piccadilly,Acton Town,5, S, E, S, S
+196=District,Barons Court,Piccadilly,Barons Court,5, S, S, E, S
+197=District,Ealing Common,Piccadilly,Ealing Common,5, S, E, S, S
+198=District,Earl's Court,Piccadilly,Earl's Court,5, M, M, M, M
+199=District,Hammersmith,Piccadilly,Hammersmith,5, S, SE, S, S
+200=District,South Kensington,Piccadilly,South Kensington,5, SME, SME, ESM, ESM
+201=District,Bank/Monument,Circle,Bank/Monument,5, E, S, S, S
+202=District,Cannon Street,Circle,Cannon Street,5, M, S, S, E
+203=District,Embankment,Circle,Embankment,5, S, E, E, S
+204=District,South Kensington,Circle,South Kensington,5, S, S, S, S
+205=District,Tower Hill/Gateway,Circle,Tower Hill/Gateway,5, S, E, E, S
+206=District,Victoria,Circle,Victoria,5, E, S, S, S
+207=District,Westminster,Circle,Westminster,5, S, E, M, S
+208=District,Bank/Monument,Waterloo & City,Bank/Monument,5, SE, SE, S, S
+209=District,Barking,Overground,Barking,5, S, S, , 
+210=District,Whitechapel,Overground,Whitechapel,5, S, S, E, E
+211=District,Paddington,Bakerloo,Paddington,5, E, E, M, M
+212=District,Paddington,Hammersmith & City,Paddington,5, E, E, ME, ME
+213=District,Notting Hill Gate,Central,Notting Hill Gate,5, S, S, E, E
+214=District,High Street Kensington,Circle,High Street Kensington,5, S, E, ME, S
+215=District,Notting Hill Gate,Circle,Notting Hill Gate,5, S, S, E, S
+216=District,Paddington,Circle,Paddington,5, E, E, M, S
+217=District,Paddington,Bakerloo,Paddington,5, E, E, , 
+218=District,Paddington,Hammersmith & City,Paddington,5, E, E, , 
+219=District,Notting Hill Gate,Central,Notting Hill Gate,5, S, S, , 
+220=District,High Street Kensington,Circle,High Street Kensington,5, S, E, , 
+221=District,Notting Hill Gate,Circle,Notting Hill Gate,5, S, S, , 
+222=District,Paddington,Circle,Paddington,5, E, E, , 
+223=DLR,Canary Wharf,Jubilee,Canary Wharf,5, SE, SE, SE, SE
+224=DLR,Canning Town,Jubilee,Canning Town,5, SE, SE, E, E
+225=DLR,Shadwell,Overground,Shadwell,5, E, E, S, S
+226=Circle,King's Cross St. Pancras,Victoria,King's Cross St. Pancras,5, S, S, E, E
+227=Circle,Victoria,Victoria,Victoria,5, E, E, SM, SM
+228=Circle,Baker Street,Bakerloo,Baker Street,5, SE, SE, SE, SE
+229=Circle,Edgware Road,Bakerloo,Edgware Road,5, E, E, S, S
+230=Circle,Embankment,Bakerloo,Embankment,5, E, E, E, E
+231=Circle,Paddington,Bakerloo,Paddington,5, E, E, M, M
+232=Circle,Baker Street,Jubilee,Baker Street,5, SE, SE, SE, SE
+233=Circle,Westminster,Jubilee,Westminster,5, M, M, E, E
+234=Circle,Baker Street,Hammersmith & City,Baker Street,5, S, SE, S, E
+235=Circle,Edgware Road,Hammersmith & City,Edgware Road,5, S, SM, SE, S
+236=Circle,Farringdon,Hammersmith & City,Farringdon,5, S, ES, E, S
+237=Circle,King's Cross St. Pancras,Hammersmith & City,King's Cross St. Pancras,5, S, S, SE, S
+238=Circle,Liverpool Street,Hammersmith & City,Liverpool Street,5, MES, SE, SME, MES
+239=Circle,Moorgate,Hammersmith & City,Moorgate,5, S, S, E, S
+240=Circle,Paddington,Hammersmith & City,Paddington,5, E, E, ME, ME
+241=Circle,Bank/Monument,Central,Bank/Monument,5, S, S, E, E
+242=Circle,Liverpool Street,Central,Liverpool Street,5, E, E, ME, ME
+243=Circle,Notting Hill Gate,Central,Notting Hill Gate,5, S, S, E, E
+244=Circle,Bank/Monument,Northern,Bank/Monument,5, S, S, E, E
+245=Circle,Embankment,Northern,Embankment,5, E, E, E, E
+246=Circle,King's Cross St. Pancras,Northern,King's Cross St. Pancras,5, S, S, E, E
+247=Circle,Moorgate,Northern,Moorgate,5, S, S, E, E
+248=Circle,Aldgate,Metropolitan,Aldgate,5, S, S, S, S
+249=Circle,Baker Street,Metropolitan,Baker Street,5, SE, SE, SE, SE
+250=Circle,Farringdon,Metropolitan,Farringdon,5, S, S, E, S
+251=Circle,King's Cross St. Pancras,Metropolitan,King's Cross St. Pancras,5, S, S, E, S
+252=Circle,Liverpool Street,Metropolitan,Liverpool Street,5, S, E, ME, S
+253=Circle,Moorgate,Metropolitan,Moorgate,5, S, S, E, S
+254=Circle,King's Cross St. Pancras,Piccadilly,King's Cross St. Pancras,5, S, S, E, E
+255=Circle,South Kensington,Piccadilly,South Kensington,5, ESM, ESM, SME, SME
+256=Circle,Bank/Monument,District,Bank/Monument,5, S, S, E, S
+257=Circle,Bayswater,District,Bayswater,5, S, S, E, S
+258=Circle,Blackfriars,District,Blackfriars,5, M, S, S, E
+259=Circle,Cannon Street,District,Cannon Street,5, M, S, S, E
+260=Circle,Edgware Road,District,Edgware Road,5, SM, SM, SEM, SEM
+261=Circle,Embankment,District,Embankment,5, E, S, S, E
+262=Circle,High Street Kensington,District,High Street Kensington,5, S, E, E, S
+263=Circle,Mansion House,District,Mansion House,5, E, S, S, S
+264=Circle,Notting Hill Gate,District,Notting Hill Gate,5, S, S, E, S
+265=Circle,Paddington,District,Paddington,5, S, E, M, S
+266=Circle,South Kensington,District,South Kensington,5, S, S, S, S
+267=Circle,Tower Hill/Gateway,District,Tower Hill/Gateway,5, ES, S, S, E
+268=Circle,Victoria,District,Victoria,5, S, S, S, E
+269=Circle,Westminster,District,Westminster,5, M, S, S, E
+270=Circle,Bank/Monument,Waterloo & City,Bank/Monument,5, S, S, SE, SE
+271=Circle,Edgware Road,Bakerloo,Edgware Road,5, E, E, , 
+272=Circle,Edgware Road,Hammersmith & City,Edgware Road,5, S, SM, , 
+273=Circle,Edgware Road,District,Edgware Road,5, SM, SM, , 
+274=Overground,Canada Water,Jubilee,Canada Water,5, M, M, E, E
+275=Overground,Stratford,Jubilee,Stratford,5, E, E, , 
+276=Overground,Whitechapel,Hammersmith & City,Whitechapel,5, S, S, E, E
+277=Overground,Stratford,Central,Stratford,5, E, E, , 
+278=Overground,Richmond,District,Richmond,5, S, S, , 
+279=Overground,Whitechapel,District,Whitechapel,5, S, S, E, E
+280=Overground,Highbury & Islington,Victoria,Highbury & Islington,5, S, S, E, E
+281=Overground,Willesden Junction,Bakerloo,Willesden Junction,5, E, E, S, S
+282=Overground,West Hampstead,Jubilee,West Hampstead,5, S, S, E, E
+283=Overground,Shepherd's Bush,Central,Shepherd's Bush,5, E, E, M, S
+284=Overground,Kensington (Olympia),District,Kensington (Olympia),5, S, S, E, E
+285=Overground,West Brompton,District,West Brompton,5, S, S, E, E
+286=Overground,Queen's Park,Bakerloo,Queen's Park,5, S, S, S, S
+287=Overground,Wembley Central,Bakerloo,Wembley Central,5, S, S, E, S
+288=Overground,Willesden Junction,Bakerloo,Willesden Junction,5, S, S, S, S
+289=Overground,Blackhorse Road,Victoria,Blackhorse Road,5, S, S, S, S
+290=Overground,Highbury & Islington,Victoria,Highbury & Islington,5, S, S, , 
