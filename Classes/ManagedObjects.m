@@ -203,10 +203,11 @@ static MHelper * _sharedHelper;
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name=%@",name];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name like[c] %@",name];
     [fetchRequest setPredicate:predicate];
     
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if(![fetchedItems count]) NSLog(@"line not found %@", name);
     
     return [fetchedItems objectAtIndex:0];
 }
@@ -379,7 +380,7 @@ static MHelper * _sharedHelper;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Station" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"lines.name=%@ and name=%@",lineName,station];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"lines.name like[c] %@ and name like[c] %@",lineName,station];
     [fetchRequest setPredicate:predicate];
     
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
@@ -387,7 +388,7 @@ static MHelper * _sharedHelper;
         NSFetchRequest *fetchRequest2 = [[[NSFetchRequest alloc] init] autorelease];
         NSEntityDescription *entity2 = [NSEntityDescription entityForName:@"Station" inManagedObjectContext:self.managedObjectContext];
         [fetchRequest2 setEntity:entity2];
-        NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"lines.name=%@",lineName];
+        NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"lines.name like[c] %@",lineName];
         [fetchRequest2 setPredicate:predicate2];
         NSArray *fetchedItems2 = [self.managedObjectContext executeFetchRequest:fetchRequest2 error:&error];
         for (MStation* s in fetchedItems2) {
