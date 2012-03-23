@@ -1454,9 +1454,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(val != 0) StationDiameter = val;
     FontSize = StationDiameter;
     val = [[parserMap get:@"DisplayTransfers" section:@"Options"] intValue];
-    if(val > 0 && val < KINDS_NUM) TrKind = val;
+    if(val >= 0 && val < KINDS_NUM) TrKind = val;
     val = [[parserMap get:@"DisplayStations" section:@"Options"] intValue];
-    if(val > 0 && val < KINDS_NUM) StKind = val;
+    if(val >= 0 && val < KINDS_NUM) StKind = val;
     val = [[parserMap get:@"FontSize" section:@"Options"] intValue];
     if(val > 0) FontSize = val;
     float sc = [[parserMap get:@"MaxScale" section:@"Options"] floatValue];
@@ -1563,9 +1563,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(val != 0) StationDiameter = val;
     FontSize = StationDiameter;
     val = [[parserMap get:@"DisplayTransfers" section:@"Options"] intValue];
-    if(val > 0 && val < KINDS_NUM) TrKind = val;
+    if(val >= 0 && val < KINDS_NUM) TrKind = val;
     val = [[parserMap get:@"DisplayStations" section:@"Options"] intValue];
-    if(val > 0 && val < KINDS_NUM) StKind = val;
+    if(val >= 0 && val < KINDS_NUM) StKind = val;
     val = [[parserMap get:@"FontSize" section:@"Options"] intValue];
     if(val > 0) FontSize = val;
     float sc = [[parserMap get:@"MaxScale" section:@"Options"] floatValue];
@@ -1583,6 +1583,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 		NSString *sectionName = [NSString stringWithFormat:@"Line%d", i ];
 		NSString *lineName = [parserTrp get:@"Name" section:sectionName];
         if(lineName == nil) break;
+        NSLog(@"read line: %@", lineName);
         
 		NSString *colors = [parserMap get:@"Color" section:lineName];
         NSArray *coords = [[parserMap get:@"Coordinates" section:lineName] componentsSeparatedByString:@", "];
@@ -1655,6 +1656,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     station.lines=newLine;
                     station.index = [NSNumber numberWithInt:si];
                     si ++;
+                    NSLog(@"read station %@", st.name);
                 }
                 [stations setValue:st forKey:key];
                 if([stn count] >= 3) st.way1 = StringToWay([stn objectAtIndex:[stn count]-2]);

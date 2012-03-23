@@ -1,5 +1,5 @@
 [Options]
-StationDiameter=13
+StationDiameter=30
 ImageFileName=islands.vec
 UpperImageFileName=stations.vec
 LinesWidth=7
@@ -7,6 +7,8 @@ WordWrap=False
 UpperCase=False
 FontSize=10
 MaxScale=2
+DisplayStations=0
+DisplayTransfers=0
 
 [1]
 Color=000000
