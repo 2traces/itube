@@ -327,7 +327,6 @@
 
 -(void)selectStationAt:(CGPoint*)currentPosition
 {
-    NSLog(@"select station at");
     selectedStationLine = [cityMap checkPoint:currentPosition Station:selectedStationName];
     if(selectedStationLine > 0) {
 		stationSelected=true;
