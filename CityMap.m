@@ -458,6 +458,22 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     CGContextFillRect(context, r);
 }
 
+-(void) drawTransferLikeVenice:(CGContextRef)context stations:(NSArray*)sts
+{
+    CGContextSetLineCap(context, kCGLineCapRound);
+    CGContextSetLineWidth(context, map->LineWidth);
+    for (Station *s in sts) {
+        CGContextSetStrokeColorWithColor(context, [s.line.color CGColor]);
+        //CGContextSetFillColorWithColor(context, [s.line.color CGColor]);
+        for (Segment *seg in s.segment) {
+            [seg draw:context];
+        }
+        for (Segment *seg in s.backSegment) {
+            [seg draw:context];
+        }
+    }
+}
+
 -(void)draw:(CGContextRef)context
 {
     if(transferLayer != nil) {
@@ -476,6 +492,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             case LIKE_HAMBURG:
                 [self drawTransferLikeHamburg:context stations:[stations allObjects]];
                 break;
+            case LIKE_VENICE:
+                [self drawTransferLikeVenice:context stations:[stations allObjects]];
+                break;
             case DONT_DRAW:
                 break;
             case KINDS_NUM:
@@ -486,7 +505,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)predraw:(CGContextRef)context
 {
-    return;
     if (transferLayer != nil) CGLayerRelease(transferLayer);
     CGSize size = CGSizeMake(boundingBox.size.width*map->PredrawScale, boundingBox.size.height*map->PredrawScale);
     transferLayer = CGLayerCreateWithContext(context, size, NULL);
@@ -505,6 +523,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             break;
         case LIKE_HAMBURG:
             [self drawTransferLikeHamburg:ctx stations:[stations allObjects]];
+            break;
+        case LIKE_VENICE:
+            [self drawTransferLikeVenice:ctx stations:[stations allObjects]];
+            break;
         case DONT_DRAW:
             break;
         case KINDS_NUM:
@@ -1104,6 +1126,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 [last addSibling:st];
             }
             [stations addObject:st];
+            NSLog(@"read station: %@", st.name);
 
             MStation *station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
             station.name=st.name;
@@ -1282,7 +1305,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     for (Station *s in stations) {
         [s predraw:context];
     }
-    if(map->StKind == LIKE_LONDON || map->StKind == LIKE_HAMBURG) return;
+    if(map->StKind == LIKE_LONDON || map->StKind == LIKE_HAMBURG || map->StKind == LIKE_VENICE) return;
     if(stationLayer != nil) CGLayerRelease(stationLayer);
     // make predrawed staion point
     CGFloat ssize = map->StationDiameter*map->PredrawScale;
@@ -1302,6 +1325,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             break;
         case LIKE_LONDON:
         case LIKE_HAMBURG:
+        case LIKE_VENICE:
             break;
     }
 
@@ -1322,6 +1346,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             break;
         case LIKE_LONDON:
         case LIKE_HAMBURG:
+        case LIKE_VENICE:
             break;
     }
 }
@@ -1811,6 +1836,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
     Station *ss1 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation1].index intValue]-1] getStation:station1];
     Station *ss2 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation2].index intValue]-1] getStation:station2];
+    if(ss1 == nil) NSLog(@"Error: station %@ from line %@ not found", station1, lineStation1);
+    if(ss2 == nil) NSLog(@"Error: station %@ from line %@ not found", station2, lineStation2);
     if(ss1.transfer != nil && ss2.transfer != nil) {
         
     } else if(ss1.transfer) {

@@ -17,7 +17,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r);
 void drawLine(CGContextRef context, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat y2, int lineWidth);
 
 // visual type of stations & transfers
-typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, LIKE_HAMBURG=4, KINDS_NUM} StationKind;
+typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, LIKE_HAMBURG=4, LIKE_VENICE=5, KINDS_NUM} StationKind;
 
 typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 
