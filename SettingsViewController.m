@@ -15,6 +15,8 @@
 #import "MainViewController.h"
 #import "Reachability.h"
 #import "TubeAppIAPHelper.h"
+#import "DemoMapViewController.h"
+#import "SSZipArchive.h"
 
 #define plist_ 1
 #define zip_  2
@@ -27,12 +29,11 @@
 @synthesize cityTableView;
 @synthesize maps;
 @synthesize textLabel1,textLabel2,textLabel3;
-@synthesize navBar;
-@synthesize navItem;
 @synthesize scrollView;
 @synthesize selectedPath;
 @synthesize buyAllButton,sendMailButton;
 @synthesize hud = _hud;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -51,6 +52,7 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+/*
 -(IBAction)cityPress:(id)sender
 {
     // soj
@@ -62,6 +64,7 @@
     
     [server sendRequestStationList:stationList];
 }
+*/
 
 -(IBAction)updatePressed:(id)sender
 {
@@ -71,11 +74,6 @@
     NSString *bundleName = [NSString stringWithFormat:@"%@.plist",[[NSBundle mainBundle] bundleIdentifier]];
     requested_file_type=plist_;
     [server loadFileAtURL:bundleName];
-}
-
--(IBAction)buyPress:(id)sender
-{
-
 }
 
 #pragma mark - View lifecycle
@@ -102,7 +100,7 @@
 	label.textAlignment = UITextAlignmentCenter;
 	label.textColor = [UIColor darkGrayColor];
     label.text = @"Settings";
-	self.navItem.titleView = label;
+    self.navigationItem.titleView=label;
 	
     UIImage *back_image=[UIImage imageNamed:@"settings_back_button.png"];
 	UIButton *back_button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -110,8 +108,8 @@
 	[back_button setBackgroundImage:back_image forState:UIControlStateNormal];
 	[back_button addTarget:self action:@selector(donePressed:) forControlEvents:UIControlEventTouchUpInside];    
 	UIBarButtonItem *barButtonItem_back = [[UIBarButtonItem alloc] initWithCustomView:back_button];
-	self.navItem.leftBarButtonItem = barButtonItem_back;
-	self.navItem.hidesBackButton=YES;
+    self.navigationItem.leftBarButtonItem = barButtonItem_back;
+    self.navigationItem.hidesBackButton=YES;
 	[barButtonItem_back release];
     
     [TubeAppIAPHelper sharedHelper];
@@ -139,7 +137,6 @@
     } else {        
         if ([TubeAppIAPHelper sharedHelper].products == nil) {
             [[TubeAppIAPHelper sharedHelper] requestProducts];
-        //           [self performSelector:@selector(timeout:) withObject:nil afterDelay:30.0];
         } else { 
             [self enableProducts];
             [cityTableView reloadData];
@@ -151,6 +148,7 @@
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [self enableProducts];
+    [self resortMapArray];
     [cityTableView reloadData];
 }
 
@@ -165,10 +163,10 @@
             for (SKProduct *product in [TubeAppIAPHelper sharedHelper].products) {
                 if ([product.productIdentifier isEqual:[map valueForKey:@"prodID"]]) {
                     [map setObject:[NSString stringWithString:@"V"] forKey:@"status"];
-                 
+                    
                     [numberFormatter setLocale:product.priceLocale];
                     NSString *formattedString = [numberFormatter stringFromNumber:product.price];
-
+                    
                     [map setObject:formattedString forKey:@"price"];
                 }
             }
@@ -339,10 +337,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
     
-    if ([self isProductInstalled:[map objectForKey:@"prodID"]]) {
+    if ([self isProductInstalled:[map objectForKey:@"filename"]]) {
         
         self.selectedPath=indexPath;
         
@@ -357,10 +354,10 @@
         
     } else {
         // показать рекламное окно
+        DemoMapViewController *controller = [[DemoMapViewController alloc] initWithNibName:@"DemoMapViewController" bundle:[NSBundle mainBundle]];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
     }   
-    
-    
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -370,15 +367,16 @@
 
 -(BOOL)isProductInstalled:(NSString*)mapName
 {
+    
     NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.map",mapName]];
+    NSString *path = [documentsDir stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@/Metro.map",[mapName lowercaseString]]];
     
     NSFileManager *manager = [NSFileManager defaultManager];
     
-    if (![manager fileExistsAtPath:path]) {
+    if ([manager fileExistsAtPath:path]) {
         return YES;
     }
-
+    
     return NO;
 }
 
@@ -431,17 +429,17 @@
     if ([prodID isEqual:@"default"]) {
         return YES;
     } 
-         
+    
     return NO;     
 }
 
 
--(void)downloadDone:(NSMutableData *)data
+-(void)downloadDone:(NSMutableData *)data mapName:(NSString*)mapName
 {
     if (requested_file_type==plist_) {
         [self processPlistFromServer:data];
     } else if (requested_file_type==zip_) {
-        [self processZipFromServer:data];
+        [self processZipFromServer:data mapName:(NSString*)mapName];
     }
 }
 
@@ -466,11 +464,38 @@
     
     [self adjustViewHeight];
     [cityTableView reloadData];
+    
+    BOOL onceRestored = [[NSUserDefaults standardUserDefaults] boolForKey:@"restored"];
+
+    if (!onceRestored) {
+        [[TubeAppIAPHelper sharedHelper] restoreCompletedTransactions];
+    }
 }
 
--(void)processZipFromServer:(NSMutableData*)data
+-(void)processZipFromServer:(NSMutableData*)data mapName:(NSString*)mapName
 {
+    // save data to file in tmp 
+    NSString *tempDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [tempDir stringByAppendingPathComponent:[NSString stringWithFormat:@"1.zip"]];
+
+    NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     
+    [data writeToFile:path atomically:YES];
+
+    BOOL success = [SSZipArchive unzipFileAtPath:path toDestination:cacheDir];
+
+     // delete file from temp
+    NSFileManager *manager = [NSFileManager defaultManager];
+    [manager removeItemAtPath:path error:nil];
+    
+    if (success) {
+        [self markProductAsInstalled:mapName];
+    }
+    
+    [self resortMapArray];
+    
+    [self.cityTableView reloadData];
+
 }
 
 -(void)adjustViewHeight
@@ -487,7 +512,7 @@
     sendMailButton.frame = CGRectMake(sendMailButton.frame.origin.x, buyAllButton.frame.origin.y+buyAllButton.frame.size.height+8.0, sendMailButton.frame.size.width, sendMailButton.frame.size.height);
     
     scrollView.contentSize = CGSizeMake(320, sendMailButton.frame.origin.y+sendMailButton.frame.size.height+15.0);
-    scrollView.frame = CGRectMake(0.0, 44.0, 320.0, 460.0-44.0);
+    scrollView.frame = CGRectMake(0.0, 0.0, 320.0, 460.0-44.0);
     
     [scrollView flashScrollIndicators];
 }
@@ -523,9 +548,28 @@
     }
 }
 
+-(NSString*)getMapNameForProduct:(NSString*)prodID
+{
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID]) {
+            return [map valueForKey:@"filename"];
+        }
+    }
+    
+    return nil;
+}
+
 -(void)downloadProduct:(NSString*)prodID
 {
+    DownloadServer *server = [[[DownloadServer alloc] init] autorelease];
+    server.listener=self;
+    server.mapName = prodID;
     
+    NSString *mapName = [self getMapNameForProduct:prodID];   
+    
+    NSString *mapFilePath = [NSString stringWithFormat:@"maps/%@/%@.zip",mapName,mapName];
+    requested_file_type=zip_;
+    [server loadFileAtURL:mapFilePath];
 }
 
 -(void)purchaseProduct:(NSString*)prodID
@@ -534,14 +578,14 @@
     
     for (SKProduct *product in products) {
         if ([product.productIdentifier isEqual:prodID]) {
-
+            
             NSLog(@"Buying %@...", product.productIdentifier);
             [[TubeAppIAPHelper sharedHelper] buyProductIdentifier:product.productIdentifier];
             
             self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             _hud.labelText = @"Buying map ...";
-            [self performSelector:@selector(timeout:) withObject:nil afterDelay:30.0];
-
+            [self performSelector:@selector(timeout:) withObject:nil afterDelay:130.0];
+            
         }
     }    
 }
@@ -571,6 +615,15 @@
     }
 }
 
+-(void)markProductAsInstalled:(NSString*)prodID
+{
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID]) {
+            [map setObject:[NSString stringWithString:@"I"] forKey:@"status"];
+        }
+    }
+}
+
 -(void)resortMapArray
 {
     NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
@@ -579,7 +632,7 @@
     NSMutableArray *temp = [NSMutableArray arrayWithArray:self.maps];
     
     [temp sortUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil]];
-
+    
     self.maps = [NSArray arrayWithArray:temp];
     
     [sortDescriptor2 release];
@@ -622,7 +675,7 @@
 
 -(IBAction)donePressed:(id)sender 
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [delegate donePressed];
 }
 
 -(NSArray*)getMapsList
@@ -641,7 +694,7 @@
         if ([mapID isEqual:@"default"]) {
             [product setObject:[NSString stringWithString:@"D"] forKey:@"status"];
         } else if ([self isProductPurchased:mapID]) {
-            if ([self isProductInstalled:[product valueForKey:@"name"]]) {
+            if ([self isProductInstalled:[product valueForKey:@"filename"]]) {
                 [product setObject:[NSString stringWithString:@"I"] forKey:@"status"];
             } else {
                 [product setObject:[NSString stringWithString:@"P"] forKey:@"status"];

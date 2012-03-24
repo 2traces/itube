@@ -10,6 +10,7 @@
 #import "StationListViewController.h"
 #import "LineListViewController.h"
 #import "SettingsViewController.h"
+#import "SettingsNavController.h"
 #import "BookmarkViewController.h"
 #import "HistoryViewController.h"
 #import "CustomTabBar.h"
@@ -135,7 +136,7 @@
 
 -(IBAction)settingsPressed:(id)sender
 {
-    SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
+    SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];
     [self presentModalViewController:controller animated:YES];
     [controller release];
 }

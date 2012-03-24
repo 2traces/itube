@@ -13,8 +13,9 @@
 @synthesize connection;
 @synthesize responseData;
 @synthesize listener;
+@synthesize mapName;
 
-NSString *mainurl = @"http://astro-friends.net/itube";
+NSString *mainurl = @"http://astro-friends.net/it";
 
 - (id)init
 {
@@ -61,7 +62,7 @@ NSString *mainurl = @"http://astro-friends.net/itube";
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)fconnection {
     if (fconnection==self.connection) {
-        [listener downloadDone:self.responseData]; 
+        [listener downloadDone:self.responseData mapName:(NSString*)self.mapName]; 
         self.responseData=nil;
         self.connection=nil;
     }    
@@ -71,6 +72,7 @@ NSString *mainurl = @"http://astro-friends.net/itube";
     
     NSLog(@"server dealloc");
     self.listener=nil;
+    [mapName release];
 	[connection release];
 	[responseData release];
 	[super dealloc];

@@ -40,8 +40,6 @@
     return self;
 }
 
-
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     
@@ -60,7 +58,7 @@
 
 -(void)refreshInApp
 {
-    [[TubeAppIAPHelper sharedHelper] requestProducts];
+ //   [[TubeAppIAPHelper sharedHelper] requestProducts];
 }
 
 -(void)changeMapTo:(NSString*)newMap andCity:(NSString*)cityName
@@ -588,14 +586,24 @@
         [changeViewButton setFrame:CGRectMake(320.0-12.0-dateSize.width-img.size.width , 66 , img.size.width, img.size.height)];
         [changeViewButton setTag:333];
         [(MainView*)self.view addSubview:changeViewButton];
-    } 
-    
-    for (int i=0; i<numberOfPages; i++) {
+    } else {
         
+        NSArray *viewArray = [self.scrollView subviews];
+        for (PathBarView *view in viewArray) {
+            [view removeFromSuperview];
+        }
         
+        [self.scrollView scrollRectToVisible:CGRectMake(0.0, 26.0, 320.0f, 40.0f) animated:NO];
         
-        //        [(PathDrawView*)[self.scrollView viewWithTag:10000+i] setDelegate:self];
-        //        [[self.scrollView viewWithTag:10000+i] setNeedsDisplay];
+        self.scrollView.contentSize=CGSizeMake(numberOfPages * 320.0f, 40.0);
+        
+        for (int i=0; i<numberOfPages; i++) {
+            NSMutableArray *pathWithNumber = [appDelegate.cityMap describePath:[pathes2 objectAtIndex:i]];
+            PathBarView *pathView = [[PathBarView alloc] initWithFrame:CGRectMake(i*320.0, 0.0, 320.0, 40) path:pathWithNumber];
+            [self.scrollView addSubview:pathView];
+            pathView.tag=20000+i;
+            [pathView release];
+        }
     }
 
     [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
@@ -1133,9 +1141,11 @@
         }
 	} else {
         [mainView findPathFrom:[fromStation name] To:[toStation name] FirstLine:[[[fromStation lines] index] integerValue] LastLine:[[[toStation lines] index] integerValue]];
-        if ([[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] activePath] count]>1) {
-            [stationsView transitToPathView];
-            [self showScrollView];
+        if ([[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] activePath] count]>0) {
+            if (!([[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] activePath] count]==1 && [[[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] activePath] objectAtIndex:0] isKindOfClass:[Transfer class]])) {
+                [stationsView transitToPathView];
+                [self showScrollView];
+            }
         }
 	}
     

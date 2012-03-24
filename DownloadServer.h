@@ -14,11 +14,13 @@
     NSURLConnection *connection;
     NSMutableData *responseData;
     id <DownloadServerListener> listener;
+    NSString *mapName;
 }
 
 @property(nonatomic, retain) NSURLConnection *connection;
 @property(nonatomic, retain) NSMutableData *responseData;
 @property(nonatomic, assign) id <DownloadServerListener> listener;
+@property(nonatomic, retain) NSString *mapName;
 
 -(void)loadFileAtURL:(NSString*)url;
 
@@ -26,6 +28,6 @@
 
 @protocol DownloadServerListener
 
--(void)downloadDone:(NSMutableData*)data;
+-(void)downloadDone:(NSMutableData*)data mapName:(NSString*)mapName;
 
 @end
