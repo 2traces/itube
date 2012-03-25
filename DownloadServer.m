@@ -15,7 +15,7 @@
 @synthesize listener;
 @synthesize mapName;
 
-NSString *mainurl = @"http://astro-friends.net/it";
+NSString *mainurl = @"http://findmystation.info";
 
 - (id)init
 {

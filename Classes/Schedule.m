@@ -31,6 +31,7 @@
             NSString *d = [ss lastObject];
             dock = [d characterAtIndex:0];
         } 
+        ss = [[ss objectAtIndex:0] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"()"]];
         name = [[[ss objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
         time = t;
     }
@@ -81,7 +82,7 @@
 @synthesize index;
 @synthesize catalog;
 
--(id)initWithName:(NSString*)name andFile:(NSString *)fileName
+-(id)initWithName:(NSString*)name file:(NSString *)fileName path:(NSString *)path
 {
     if((self = [super init])) {
         lineName = [name retain];
@@ -91,8 +92,12 @@
         [dateForm setDateFormat:@"HH:mm"];
         routes = [[NSMutableArray alloc] init];
         catalog = [[NSMutableDictionary alloc] init];
-//        NSString *fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
-        NSString *fn = [NSString stringWithFormat:@"%@/%@.xml",[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] pathToMap],fileName];
+        NSString *fn = nil;
+        if(path == nil)
+            fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
+        else 
+            fn = [NSString stringWithFormat:@"%@/%@.xml",path,fileName];
+           // fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml" inDirectory:path];
         NSData *xmlData = [NSData dataWithContentsOfFile:fn];
         NSXMLParser *parser = [[NSXMLParser alloc] initWithData:xmlData];
         parser.delegate = self;
@@ -177,14 +182,27 @@
 {
     if((self = [super init])) {
         cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        lines = [[NSMutableDictionary alloc] init];        
-        NSString *fn = [NSString stringWithFormat:@"%@/%@.xml",path,fileName];
+        lines = [[NSMutableDictionary alloc] init];
+        _path = [path retain];
+        NSString *fn = nil;
+        if(path == nil) 
+            fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
+        else {
+            fn = [NSString stringWithFormat:@"%@/%@.xml",path,fileName];
+            //fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml" inDirectory:path];
+        }
+        if(fn == nil) {
+            [self release];
+            return nil;
+        }
         NSData *xmlData = [[NSData alloc] initWithContentsOfFile:fn];
         NSXMLParser *parser = [[NSXMLParser alloc] initWithData:xmlData];
         [xmlData release];
         parser.delegate = self;
         if(![parser parse]) {
             NSLog(@"Can't load xml file %@", fileName);
+            [self release];
+            return nil;
         }
         [parser release];
     }
@@ -195,18 +213,42 @@
 {
     [cal release];
     [lines release];
+    [_path release];
+    [super dealloc];
 }
 
--(void)setIndex:(int)ind forLine:(NSString *)line
+-(BOOL)setIndex:(int)ind forLine:(NSString *)line
 {
-    [[lines valueForKey:line] setIndex:ind];
+    SchLine *l = [lines valueForKey:line];
+    if(l != nil) {
+        [l setIndex:ind];
+        return YES;
+    } else {
+        NSLog(@"Error: line %@ not found in %@", line, _path);
+        return NO;
+    }
+}
+
+-(BOOL)checkStation:(NSString *)station line:(NSString *)line
+{
+    SchLine *l = [lines valueForKey:line];
+    if(l != nil) {
+        if([l.catalog valueForKey:station] != nil)
+            return YES;
+        else {
+            NSLog(@"Error: Station %@ not found", station);
+            return NO;
+        }
+    } else {
+        return NO;
+    }
 }
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     if([elementName isEqualToString:@"route"]) {
         NSString *lineName = [attributeDict valueForKey:@"route"];
-        SchLine *l = [[SchLine alloc] initWithName:lineName andFile:[attributeDict valueForKey:@"file"]];
+        SchLine *l = [[SchLine alloc] initWithName:lineName file:[attributeDict valueForKey:@"file"] path:_path];
         [lines setValue:l forKey:lineName];
     }
 }
@@ -232,7 +274,7 @@
     
     NSTimeInterval now = [self getNowTime];
     NSMutableArray *propagate = [[NSMutableArray alloc] init];
-    //NSMutableDictionary *flag = [NSMutableDictionary dictionary];
+    NSMutableDictionary *flag = [NSMutableDictionary dictionary];
     for (NSString *ln in lines) {
         SchLine *l = [lines valueForKey:ln];
         NSArray *sts = [l.catalog valueForKey:fromStation];
@@ -241,7 +283,7 @@
             [propagate addObject:p];
         }
     }
-    //[flag setValue:@"YES" forKey:fromStation];
+    [flag setValue:@"YES" forKey:fromStation];
     SchPoint *target = nil;
     while ([propagate count] > 0) {
         [propagate sortUsingSelector:@selector(greaterThan:)];
@@ -258,15 +300,18 @@
                 [np setWeightFrom:p];
                 [propagate addObject:np];
             }
-            for (NSString *ln in lines) {
-                SchLine *l = [lines valueForKey:ln];
-                NSArray *sts = [l.catalog valueForKey:fromStation];
-                for (SchPoint *tp in sts) {
-                    if(tp == np) continue;
-                    if(tp.backPath != nil) [tp setWeightFrom:np];
-                    else {
-                        [tp setWeightFrom:np];
-                        [propagate addObject:tp];
+            if([flag valueForKey:np.name] == nil) {
+                [flag setValue:@"YES" forKey:np.name];
+                for (NSString *ln in lines) {
+                    SchLine *l = [lines valueForKey:ln];
+                    NSArray *sts = [l.catalog valueForKey:np.name];
+                    for (SchPoint *tp in sts) {
+                        if(tp == np) continue;
+                        if(tp.backPath != nil) [tp setWeightFrom:np];
+                        else {
+                            [tp setWeightFrom:np];
+                            [propagate addObject:tp];
+                        }
                     }
                 }
             }

@@ -288,9 +288,9 @@
     if(vectorLayer) [vectorLayer draw:context inRect:r];
     cityMap.currentScale = scrollView.zoomScale / MaxScale;
     [cityMap drawMap:ctx inRect:r];
+    if(vectorLayer2) [vectorLayer2 draw:context inRect:r];
     [cityMap drawTransfers:ctx inRect:r];
     [cityMap drawStations:ctx inRect:r]; 
-    if(vectorLayer2) [vectorLayer2 draw:context inRect:r];
 
 #ifdef AGRESSIVE_CACHE
     CGContextTranslateCTM(context, r.origin.x, r.origin.y);
@@ -327,7 +327,6 @@
 
 -(void)selectStationAt:(CGPoint*)currentPosition
 {
-    NSLog(@"select station at");
     selectedStationLine = [cityMap checkPoint:currentPosition Station:selectedStationName];
     if(selectedStationLine > 0) {
 		stationSelected=true;

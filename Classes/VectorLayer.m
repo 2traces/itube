@@ -124,7 +124,7 @@
         CGContextTranslateCTM(context, -center.x, -center.y);
     }
     if(enabled) CGContextSetFillColorWithColor(context, col);
-    else CGContextSetStrokeColorWithColor(context, disabledCol);
+    else CGContextSetFillColorWithColor(context, disabledCol);
     CGContextAddPath(context, path);
     CGContextFillPath(context);
     if(angle != 0) CGContextRestoreGState(context);
@@ -259,7 +259,7 @@
         CGContextTranslateCTM(context, -center.x, -center.y);
     }
     if(enabled) CGContextSetFillColorWithColor(context, col);
-    else CGContextSetStrokeColorWithColor(context, disabledCol);
+    else CGContextSetFillColorWithColor(context, disabledCol);
     CGContextAddPath(context, path);
     CGContextFillPath(context);
     if(angle != 0) CGContextRestoreGState(context);
@@ -279,6 +279,7 @@
 {
     if((self = [super init])) {
         enabled = YES;
+        scale = 1.0f;
         colorSpace = CGColorSpaceCreateDeviceRGB();
         elements = [[NSMutableArray alloc] init];
         [self loadFrom:fileName directory:dir];
@@ -427,6 +428,7 @@
             
         } else if([w isEqualToString:@"angle"]) {
             CGFloat ang = [[words objectAtIndex:1] floatValue];
+            ang /= 180.f / M_PI;
             currentAngle += ang;
         } else if([w isEqualToString:@"spline"]) {
             NSRange range;
@@ -435,17 +437,27 @@
             [elements addObject:[[[VectorSpline alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:brushColor andDisabledColor:[self disabledColor:brushColor]] autorelease]];
             [[elements lastObject] rotateAt:currentAngle center:CGPointMake(size.width/2, size.height/2)];
             
+        } else if([w isEqualToString:@"scale"]) {
+            scale = [[words objectAtIndex:1] floatValue];
+            
         }
     }];
 }
 
 -(void)draw:(CGContextRef)context inRect:(CGRect)rect
 {
+    CGContextSaveGState(context);
+    CGContextScaleCTM(context, scale, scale);
+    rect.origin.x /= scale;
+    rect.origin.y /= scale;
+    rect.size.width /= scale;
+    rect.size.height /= scale;
     for (id element in elements) {
         if(CGRectIntersectsRect(rect, [element boundingBox])) {
             [element draw:context];
         }
     }
+    CGContextRestoreGState(context);
 }
 
 @end
