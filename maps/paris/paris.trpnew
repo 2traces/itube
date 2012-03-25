@@ -5,14 +5,14 @@ Name=Ligne 1
 259	<_Saint-Lazare 48.8759602,0.023238015	, 	SME	SME
 223	<_Porte de; Vincennes 48.8470423,0.024110001	, 	SE	SE
 173	Nation 48.8487439,0.023959264	, 	SME	SE
-238	Reuilly ó Diderot 48.8473177,0.023865813	, 	SE	SE
+238	Reuilly Diderot 48.8473177,0.023865813	, 	SE	SE
 99	Gare de; Lyon 48.8447174,0.023739303	, 	SME	SM
 17	Bastille 48.8530821,0.023690021	, 	SM	ME
 263	Saint-Paul 48.8551681,0.023613793	, 	S	ME
 111	Hotel de Ville 48.8574852,0.023515168	, 	SME	SE
 59	Chatelet 48.8585635,0.023472038	, 	SE	SME
 143	_Louvre; ó Rivoli 48.8609069,0.023407853	, 	E	S
-182	>_Palais ;Royal ó Musee du Louvre 48.8629255,0.023360297	, 	SE	SE
+182	>_Palais Royal ;Musee du ;Louvre 48.8629255,0.023360297	, 	SE	SE
 282	Tuileries 48.8649583,0.023283666	, 	E	S
 66	Concorde 48.8654470,0.023211113	, 	SE	SM
 46	>_Champs;-Elysees; Clemenceau 48.8675313,0.023135418	, 	S	ME
@@ -71,7 +71,7 @@ Name=Ligne 3
 249	Republique 48.8675033,0.023638109	, 	SME	ME
 277	Temple 48.8664885,0.023605953	, 	E	S
 8 	Arts et; Metiers 48.8654488,0.023561168	, 	SE	SM
-248	Reaumur; — Sebastopol 48.8662562,0.023523944	, 	SE	SE
+248	Reaumur; Sebastopol 48.8662562,0.023523944	, 	SE	SE
 268	Sentier 48.8675690,0.023463870	, 	SE	SE
 34	Bourse 48.8686478,0.023413738	, 	SE	SE
 233	Quatre-Septembre 48.8696444,0.023364455	, 	S	E
@@ -111,12 +111,12 @@ Name=Ligne 4
 100	Gare de l'Est 48.8761414,0.023582835	, 	ME	SM
 56	Chateau ;d'Eau 48.8724778,0.023559156	, 	ME	S
 272	Strasbourg ;Saint-Denis 48.8694239,0.023542553	, 	ME	S
-248	Reaumur; — Sebastopol 48.8662562,0.023523944	, 	SE	SE
+248	Reaumur; Sebastopol 48.8662562,0.023523944	, 	SE	SE
 300	>Etienne Marcel 48.8638202,0.023490170	, 	E	S
 136	>Les Halles 48.8625585,0.023460639	, 	SM	M
 59	Chatelet 48.8585635,0.023472038	, 	SE	SME
 62	Cite 48.8557611,0.023461899	, 	M	S
-262	Saint-Michel 48.8536609,0.023439288	, 	SM	SE
+262	>Saint-Michel 48.8536609,0.023439288	, 	SM	SE
 178	Odeon 48.8523373,0.023388138	, 	SE	SE
 257	Saint-Germain;-des-Pres 48.8537121,0.023332644	, 	E	S
 266	<Saint-Sulpice 48.8515060,0.023311856	, 	S	SE
@@ -127,7 +127,7 @@ Name=Ligne 4
 81	<_Denfert;-Rochereau 48.8339202,0.023327258	, 	SM	SE
 171	Mouton;-Duvernet 48.8321128,0.023303917	, 	E	SM
 4 	Alesia 48.8282265,0.023268056	, 	E	SM
-210	Porte; d'Orleans 48.8231346,0.023256624	, 	SM	SM
+210	>^Porte; d'Orleans 48.8231346,0.023256624	, 	SM	SM
 
 branch5 = <>210, 4, 171, 81, 236, 287, 170, 265, 266, 257, 178, 262, 62, 59, 136, 300, 248, 272, 56, 100, 101, 15, 55, 159, 269, 216
 driving5 = 1, 1, 1, 1, 1, 3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
@@ -216,7 +216,7 @@ Name=Ligne 7
 182	>Palais Royal ;Musee du ;Louvre 48.8629255,0.023360297	, 	SE	SE
 200	Pont Neuf 48.8585494,0.023420861	, 	E	S
 59	Chatelet 48.8585635,0.023472038	, 	SE	SME
-199	Pont Marie 48.8536292,0.023572218	, 	E	S
+199	>^Pont Marie 48.8536292,0.023572218	, 	E	S
 273	>Sully ;Morland 48.8512342,0.023623958	, 	SE	SE
 120	Jussieu 48.8459815,0.023545772	, 	ME	SM
 193	<Place ;Monge 48.8435897,0.023522788	, 	SE	SE
@@ -249,9 +249,9 @@ Name=Ligne 7bis
 28	Bolivar 48.8805050,0.023749232	, 	S	E
 37	Buttes Chaumont 48.8785073,0.023817756	, 	S	ME
 30	Botzaris 48.8795323,0.023890596	, 	E	S
-196	Place des Fetes 48.8767452,0.023926941  ,	M	M
+196	Place des Fetes 48.8767452,0.023926941	,	M	M
 227	<Pre ;St-Gervais 48.8802255,0.023987371	,	M	M
-79	Danube 48.8820106,0.023930240  ,	M	M
+79	Danube 48.8820106,0.023930240	,	M	M
 
 branch11 = >140, 32, 28, 37, 30, 196, 227, 79, 30, 37, 28, 32, 40
 
@@ -328,13 +328,13 @@ Name=Ligne 9
 3 	>_Alma Marceau 48.8645912,0.023015445	, 	SME	M
 113	Iena 48.8647201,0.022938895	, 	E	S
 281	Trocadero 48.8628797,0.022872054	, 	E	S
-245	Rue de la Pompe 48.8640707,0.022783220	, 	SE	S
-127	<La ;Muette 48.8580958,0.022741189	, 	E	S
+245	_>Rue de la Pompe 48.8640707,0.022783220	, 	SE	S
+127	>La ;Muette 48.8580958,0.022741189	, 	E	S
 235	>Ranelagh 48.8550252,0.022696236	, 	E	S
 115	>Jasmin 48.8524502,0.022680438	, 	E	S
 164	>_Michel-;Ange ;Auteuil 48.8479249,0.022642082	, 	E	S
 165	>^Michel-;Ange ;Molitor 48.8451448,0.022616628	, 	E	S
-88	Exelmans 48.8424155,0.022595637	, 	SE	SE
+88	<Exelmans 48.8424155,0.022595637	, 	SE	SE
 219	<Porte de Saint-Cloud 48.8380818,0.022569560	, 	SE	SE
 160	<^Marcel Sembat 48.8336681,0.022435801	, 	SE	SE
 22	<^Billancourt 48.8322205,0.022385287	, 	SE	SE
@@ -347,7 +347,7 @@ driving15 = 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 Name=Ligne 10
 33	<^Boulogne ;Pont de Saint-Cloud 48.8406835,0.022283311	, 	E	E
 32	Boulogne ;Jean Jaures 48.8419727,0.022387862	, 	SE	SE
-165	>^Michel-;Ange ;Molitor 48.8451448,0.022616628,		M	M
+165	>^Michel-;Ange ;Molitor 48.8451448,0.022616628	,	M	M
 47	Chardon Lagache 48.8451429,0.022662185	, 	S	S
 166	Mirabeau  48.8470600,0.022725713,	M	M
 164	Porte d'Auteuil 48.8483273,0.022576850	, 	SE	SE
@@ -367,7 +367,7 @@ Name=Ligne 10
 162	<_Maubert ;Mutualite 48.8501962,0.023479364	, 	E	SM
 43	<_Cardinal ;Lemoine 48.8466328,0.023515758	, 	E	S
 120	Jussieu 48.8459815,0.023545772	, 	ME	SM
-98	Gare d'Austerlitz 48.8426348,0.023649691	, 	SE	SE
+98	<_Gare d'Austerlitz 48.8426348,0.023649691	, 	SE	SE
 
 branch16 = <>98, 120, 43, 162, 63, 178, 144, 274, 284, 84, 276, 126, 12, 49, 117
 branch17 = <117, 298, 207, 164, 32, 33
@@ -440,7 +440,7 @@ Name=Ligne 13
 103	Gaite 48.8388411,0.023225355	, 	S	E
 170	Montparnasse Bienvenue 48.8434661,0.023230719	, 	SM	E
 84	Duroc 48.8468337,0.023164789	, 	E	S
-255	Saint-Francois-Xavier 48.8516296,0.023142448	, 	E	S
+255	<Saint-;Francois-;Xavier 48.8516296,0.023142448	, 	E	S
 285	Varenne 48.8562344,0.023149225	, 	S	E
 112	Invalides 48.8629784,0.023134053	, 	E	S
 46	>_Champs;-Elysees; Clemenceau 48.8675313,0.023135418	, 	S	ME
@@ -460,7 +460,7 @@ Name=Ligne 13
 102	Garibaldi 48.9063852,0.023319291	, 	S	E
 150	>_Mairie ;de Saint-Ouen 48.9120329,0.023338437	, 	E	S
 44	Carrefour Pleyel 48.9196264,0.023430276	, 	S	E
-252	<_Saint-Denis ;Porte de Paris 48.9343835,0.023453987	, 	SM	SM
+252	<Saint-Denis ;Porte de Paris 48.9343835,0.023453987	, 	SM	SM
 16	<_Basilique de ;Saint-Denis 48.8566667,0.023509871	, 	SM	SM
 253	<_Saint-Denis ;Universite 48.9343835,0.023453987	, 	S	E
 
@@ -522,7 +522,7 @@ driving3 = 1, 1, 1, 1, 1, 1, 1, 1
 032=Ligne 3,Pere Lachaise,Ligne 2,Pere Lachaise,5, E, E, M, M
 033=Ligne 3,Villiers,Ligne 2,Villiers,5, E, E, E, E
 034=Ligne 3,Gambetta,Ligne 3bis,Gambetta,5, E, E, S, S
-035=Ligne 3,Reaumur — Sebastopol,Ligne 4,Reaumur — Sebastopol,5, E, E, E, E
+035=Ligne 3,Reaumur Sebastopol,Ligne 4,Reaumur Sebastopol,5, E, E, E, E
 036=Ligne 3,Republique,Ligne 5,Republique,5, ME, ME, E, E
 037=Ligne 3,Opera,Ligne 7,Opera,5, E, E, M, M
 038=Ligne 3,Opera,Ligne 8,Opera,5, ES, ES, ME, ME
@@ -536,7 +536,7 @@ driving3 = 1, 1, 1, 1, 1, 1, 1, 1
 046=Ligne 3,Saint-Lazare,Ligne 14,Saint-Lazare,5, E, E, MSE, MSE
 047=Ligne 4,Chatelet,Ligne 1,Chatelet,5, SE, SE, SE, SE
 048=Ligne 4,Barbes Rochechouart,Ligne 2,Barbes Rochechouart,5, SME, SME, ME, ME
-049=Ligne 4,Reaumur — Sebastopol,Ligne 3,Reaumur — Sebastopol,5, M, M, E, E
+049=Ligne 4,Reaumur Sebastopol,Ligne 3,Reaumur Sebastopol,5, M, M, E, E
 050=Ligne 4,Gare de l'Est,Ligne 5,Gare de l'Est,5, E, E, SM, SM
 051=Ligne 4,Gare du Nord,Ligne 5,Gare du Nord,5, E, E, S, S
 052=Ligne 4,Denfert-Rochereau,Ligne 6,Denfert-Rochereau,5, S, S, E, E
@@ -602,7 +602,7 @@ driving3 = 1, 1, 1, 1, 1, 1, 1, 1
 112=Ligne 7bis,Place des Fetes,Ligne 11,Place des Fetes,5, M, M, M, M
 113=Ligne 8,Bastille,Ligne 1,Bastille,5, ES, ES, SE, SE
 114=Ligne 8,Concorde,Ligne 1,Concorde,5, EM, EM, SE, SE
-115=Ligne 8,Reuilly,Ligne 1,Reuilly Diderot,5, S, S, E, E
+115=Ligne 8,Reuilly Diderot,Ligne 1,Reuilly Diderot,5, S, S, E, E
 116=Ligne 8,Opera,Ligne 3,Opera,5, SE, SE, E, E
 117=Ligne 8,Republique,Ligne 3,Republique,5, SME, SME, ME, ME
 118=Ligne 8,Strasbourg Saint-Denis,Ligne 4,Strasbourg Saint-Denis,5, E, E, S, S
