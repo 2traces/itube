@@ -28,5 +28,6 @@
 - (void)requestProducts;
 - (id)initWithProductIdentifiers:(NSSet *)productIdentifiers;
 - (void)buyProductIdentifier:(NSString *)productIdentifier;
+- (void) restoreCompletedTransactions;
 
 @end

@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>com.zuev.itube.france.london</key>
+	<key>com.zuev.itube.paris.london</key>
 	<dict>
 		<key>ver</key>
 		<string>1</string>
@@ -32,7 +32,7 @@
 		<key>zip_download</key>
 		<string>/maps/paris/paris1.zip</string>
 	</dict>
-	<key>com.zuev.itube.france.berlin</key>
+	<key>com.zuev.itube.paris.berlin</key>
 	<dict>
 		<key>ver</key>
 		<string>1</string>
@@ -47,7 +47,7 @@
 		<key>zip_download</key>
 		<string>/maps/berlin/berlin1.zip</string>
 	</dict>
-	<key>com.zuev.itube.france.hamburg</key>
+	<key>com.zuev.itube.paris.hamburg</key>
 	<dict>
 		<key>ver</key>
 		<string>1</string>
@@ -62,7 +62,7 @@
 		<key>zip_download</key>
 		<string>/maps/hamburg/hamburg1.zip</string>
 	</dict>
-	<key>com.zuev.itube.france.venice</key>
+	<key>com.zuev.itube.paris.venice</key>
 	<dict>
 		<key>ver</key>
 		<string>1</string>

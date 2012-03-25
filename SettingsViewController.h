@@ -16,6 +16,8 @@
 
 @class MyNavigationBar;
 
+@protocol SettingsViewControllerDelegate;
+
 @interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate,ServerListener,DownloadServerListener>
 {
     IBOutlet UITableView *langTableView;
@@ -24,9 +26,6 @@
     IBOutlet UILabel *textLabel1;
     IBOutlet UILabel *textLabel2;   
     IBOutlet UILabel *textLabel3;   
-    
-    IBOutlet MyNavigationBar *navBar;
-    IBOutlet UINavigationItem *navItem;
     
     IBOutlet UIScrollView *scrollView;
     
@@ -39,9 +38,11 @@
     MBProgressHUD *_hud;
     
     int requested_file_type;
+    
+    id <SettingsViewControllerDelegate> delegate;
 }
 
-
+@property (nonatomic,assign) id <SettingsViewControllerDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UITableView *langTableView;
 @property (nonatomic,retain) IBOutlet UITableView *cityTableView;
 @property (retain, nonatomic) IBOutlet UIButton *cityButton;
@@ -49,8 +50,6 @@
 @property (nonatomic, retain) NSArray *maps;
 @property (nonatomic, retain) IBOutlet UILabel *textLabel1;
 @property (nonatomic, retain) IBOutlet UILabel *textLabel2;
-@property (nonatomic, retain) IBOutlet MyNavigationBar *navBar;
-@property (nonatomic, retain) IBOutlet UINavigationItem *navItem;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) NSIndexPath *selectedPath;
 @property (nonatomic, retain) IBOutlet UIButton *buyAllButton;
@@ -64,5 +63,11 @@
 -(BOOL)isProductInstalled:(NSString*)prodID;
 -(BOOL)isProductPurchased:(NSString*)prodID;
 -(BOOL)isProductAvailable:(NSString*)prodID;
+
+@end
+
+@protocol SettingsViewControllerDelegate
+
+-(void)donePressed;
 
 @end

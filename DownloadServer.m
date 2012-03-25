@@ -13,8 +13,9 @@
 @synthesize connection;
 @synthesize responseData;
 @synthesize listener;
+@synthesize mapName;
 
-NSString *mainurl = @"http://astro-friends.net/itube";
+NSString *mainurl = @"http://findmystation.info";
 
 - (id)init
 {
@@ -37,8 +38,7 @@ NSString *mainurl = @"http://astro-friends.net/itube";
 
 -(void)loadFileAtURL:(NSString *)suburl
 {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[self makeFullURL:suburl]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[self makeFullURL:suburl] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60.0];
     
     self.connection = [[[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES] autorelease];
     [request release];
@@ -61,7 +61,7 @@ NSString *mainurl = @"http://astro-friends.net/itube";
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)fconnection {
     if (fconnection==self.connection) {
-        [listener downloadDone:self.responseData]; 
+        [listener downloadDone:self.responseData mapName:(NSString*)self.mapName]; 
         self.responseData=nil;
         self.connection=nil;
     }    
@@ -71,6 +71,7 @@ NSString *mainurl = @"http://astro-friends.net/itube";
     
     NSLog(@"server dealloc");
     self.listener=nil;
+    [mapName release];
 	[connection release];
 	[responseData release];
 	[super dealloc];
