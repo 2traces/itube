@@ -23,7 +23,7 @@ Name=U1
 121	Meßberg 53.547856,10.000005	,	SE	SE
 122	Steinstraße 53.549028,10.006056	,	SE	SE
 123	Hauptbahnhof 53.552343,10.009789	,	EM	ES
-124	Lohmuhlenstraße 53.557416,10.019832	,	SE	SE
+124	Lohmühlenstraße 53.557416,10.019832	,	SE	SE
 125	Lübecker Straße 53.559889,10.028672	,	SE	SE
 126	Wartenau 53.565012,10.036225	,	SE	SE
 127	Ritterstraße 53.567587,10.046182	,	SE	SE
@@ -59,7 +59,7 @@ Driving=
 Name=U2
 201	>Niendorf Nord 53.641063,9.949858	,	SE	SE
 202	>Schippelsweg 53.634079,9.952615	,	S	E
-203	>Joachim-Mähl-Strasse 53.628875,9.949794	,	E	S
+203	>Joachim-Mähl-Straße 53.628875,9.949794	,	E	S
 204	>Niendorf Markt 53.620488,9.951704	,	SE	SE
 205	>Hagendeel 53.603813,9.945331	,	S	E
 206	>Hagenbecks Tierpark 53.59297,9.943968	,	E	S
@@ -69,17 +69,17 @@ Name=U2
 210	>Christuskirche 53.569536,9.963237	,	M	M
 211	>Schlump 53.567956,9.969932	,	M	M
 212	>Messehallen 53.55727,9.977281	,	SE	SE
-213	>Gansemarkt 53.555842,9.986079	,	SE	SE
+213	>Gänsemarkt 53.555842,9.986079	,	SE	SE
 214	Jungfernstieg 53.552515,9.994211	,	SM	EM
 215	Hauptbahnhof 53.554319,10.007955	,	SE	SE
 216	<Berliner; Tor 53.553376,10.0226	,	MS	ME
 217	/^<BurgStraße 53.555702,10.041718	,	M	M
-218	/^<Hammer 53.555887,10.055838	,	E	S
+218	/^<Hammer Kirche 53.555887,10.055838	,	E	S
 219	/^<Rauhes Haus 53.55423,10.066009	,	SE	SE
 220	/^<Horner Rennbahn 53.554,10.08502	,	SE	SE
-221	/^<Legien Straße 53.546963,10.095963	,	E	S
+221	/^<Legienstraße 53.546963,10.095963	,	E	S
 222	/^<Billstedt 53.542552,10.106864	,	M	M
-223	/^<Merken Straße 53.538548,10.123944	,	SE	SE
+223	/^<Merkenstraße 53.538548,10.123944	,	SE	SE
 224	/^<Steinfurther Allee 53.541174,10.138965	,	M	M
 225	/^<Mümmelmannsberg 53.528039,10.149951	,	SE	SE
 
@@ -99,11 +99,11 @@ Name=U3
 304	/<_Sierichstraße 53.590391,10.001142	,	E	S
 305	>Kellinghusenstraße 53.588697,9.990842	,	SE	SE
 306	>Eppendorfer Baum 53.583805,9.985156	,	E	S
-307	>Hoheluft;brucke 53.577525,9.975886	,	S	E
+307	>Hoheluft;brücke 53.577525,9.975886	,	S	E
 308	Schlump 53.567956,9.969932	,	M	M
 309	>Sternschanze 53.564299,9.969106	,	E	S
 310	>Feldstraße 53.556779,9.968269	,	M	M
-311	>St. Pauli 53.55038,9.970136	,	SE	SE
+311	>St.Pauli 53.55038,9.970136	,	SE	SE
 312	/Landungsbrücken 53.545828,9.97093	,	SE	SE
 313	/Baumwall 53.544184,9.981573	,	SE	SE
 314	/Rödingsmarkt 53.548302,9.986272	,	SE	SE
@@ -150,7 +150,7 @@ Name=S2
 419	/<^Wohltorf 53.520627,10.278021	M	M
 420	/<^Aumühle 53.529824,10.314617	E	S
 421	Altona 53.553184,9.934859	M	M
-422	/>Konigstraße 53.548187,9.945331	SE	SE
+422	/>Königstraße 53.548187,9.945331	SE	SE
 423	/>Reeperbahn 53.549462,9.955888	SE	SE
 424	/>Landungsbrücken 53.546071,9.971251	SE	SE
 425	^Stadthausbrücke 53.54964,9.986444	SE	SE
@@ -167,16 +167,16 @@ Driving=
 
 [Line5]
 Name=S1
-501	Hamburg Airport 53.632069,10.007043	SE	SE
+501	Hamburg Airport; (Flughafen) 53.632069,10.007043	SE	SE
 502	<Poppenbüttel 53.651888,10.093732	E	S
 503	<Wellingsbüttel 53.641,10.082359	E	S
 504	<Hoheneichen 53.63558,10.068111	S	E
 505	<Kornweg 53.632501,10.054593	S	E
 506	<Ohlsdorf 53.620667,10.031891	MS	M
-507	<Rubenkamp 53.606257,10.033092	SE	SE
+507	<Rübenkamp 53.606257,10.033092	SE	SE
 508	<Alte Wöhr 53.597624,10.035496	E	S
 509	<Barmbek 53.587028,10.045881	ME	MS
-510	<Freidrichs;berg 53.576047,10.057383	E	S
+510	<Friedrichsberg 53.576047,10.057383	E	S
 511	<Wandsbeker; Chaussee 53.570161,10.059443	S	E
 512	<Hasselbrook 53.564656,10.055966	SE	SE
 513	>Landwehr 53.561138,10.038028	ME	MS
@@ -186,7 +186,7 @@ Name=S1
 517	^Stadthausbrücke 53.54964,9.986444	SE	SE
 518	/>Landungsbrücken 53.546071,9.971251	SE	SE
 519	/>Reeperbahn 53.549462,9.955888	SE	SE
-520	/>Konigstraße 53.548187,9.945331	SE	SE
+520	/>Königstraße 53.548187,9.945331	SE	SE
 521	/>Altona 53.553184,9.934859	M	M
 522	>Bahrenfeld 53.559991,9.909625	ME	MS
 523	>Othmarschen 53.559328,9.887052	SE	SE
@@ -194,7 +194,7 @@ Name=S1
 525	>Hochkamp 53.561367,9.842119	S	E
 526	>Blankenese 53.56412,9.813967	SE	SE
 527	>Iserbrook 53.576175,9.815083	SE	SE
-528	>Sulldorf 53.581041,9.796758	S	E
+528	>Sülldorf 53.581041,9.796758	S	E
 529	>Rissen 53.583156,9.758563	SE	SE
 530	>Wedel 53.581856,9.704962	S	E
 531	Dammtor 53.561113,9.989319	SE	SE
@@ -222,7 +222,7 @@ Name=S3
 605	Neukloster 53.482377,9.636769		
 606	Buxtehüde 53.4705,9.688053	SM	EM
 607	^Neu Wulmstorf 53.472901,9.787831	SME	SME
-608	^Fischbek 53.474791,9.81961	E	S
+608	^Fischbeck 53.474791,9.81961	E	S
 609	^Neugraben 53.473948,9.852161	SE	SE
 610	^Neuwiedenthal 53.473042,9.876988	SE	SE
 611	^Heimfeld 53.465506,9.96254	M	M
@@ -236,7 +236,7 @@ Name=S3
 619	^Stadthausbrücke 53.54964,9.986444	SE	SE
 620	/>Landungsbrücken 53.546071,9.971251	ME	MS
 621	/>Reeperbahn 53.549462,9.955888	SE	SE
-622	/>Konigstraße 53.548187,9.945331	SE	SE
+622	/>Königstraße 53.548187,9.945331	SE	SE
 623	Altona 53.553184,9.934859	E	S
 624	Diebsteich 53.568848,9.934258	E	S
 625	Langenfelde 53.568848,9.934258	M	M
@@ -352,12 +352,12 @@ Driving=
 77=S3,Altona,S1,Altona,2, MS
 78=S3,Eidelstedt,S2,Eidelstedt,2, SME
 79=S3,Elbgaustraße,S2,Elbgaustraße,2, SME
-80=S3,Konigstraße,S1,Konigstraße,2
-81=S2,Konigstraße,S1,Konigstraße,2
-82=S2,Konigstraße,S3,Konigstraße,2
-83=S3,Konigstraße,S2,Konigstraße,2
-84=S1,Konigstraße,S2,Konigstraße,2
-85=S1,Konigstraße,S3,Konigstraße,2
+80=S3,Königstraße,S1,Königstraße,2
+81=S2,Königstraße,S1,Königstraße,2
+82=S2,Königstraße,S3,Königstraße,2
+83=S3,Königstraße,S2,Königstraße,2
+84=S1,Königstraße,S2,Königstraße,2
+85=S1,Königstraße,S3,Königstraße,2
 86=S3,Reeperbahn,S1,Reeperbahn,2
 87=S2,Reeperbahn,S1,Reeperbahn,2
 88=S2,Reeperbahn,S3,Reeperbahn,2

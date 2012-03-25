@@ -12,24 +12,24 @@
         <times>
           <time station="Blankenese" type="minutes" marked="1">7:03</time>
           <time station="Hochkamp" type="minutes" marked="0">7:05</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">7:08</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">7:08</time>
           <time station="Othmarschen" type="minutes" marked="1">7:10</time>
           <time station="Bahrenfeld" type="minutes" marked="0">7:12</time>
           <time station="Altona" type="minutes" marked="1">7:16</time>
           <time station="Holstenstraße" type="minutes" marked="0">7:20</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">7:23</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">7:25</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">7:27</time>
+          <time station="Sternschanze" type="minutes" marked="1">7:23</time>
+          <time station="Dammtor" type="minutes" marked="0">7:25</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">7:27</time>
           <time station="Berliner Tor" type="minutes" marked="1">7:32</time>
           <time station="Landwehr" type="minutes" marked="0">7:34</time>
           <time station="Hasselbrook" type="minutes" marked="1">7:36</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">7:38</time>
           <time station="Friedrichsberg" type="minutes" marked="0">7:39</time>
           <time station="Barmbek" type="minutes" marked="1">7:42</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">7:44</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">7:46</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">7:44</time>
+          <time station="Rübenkamp" type="minutes" marked="0">7:46</time>
           <time station="Ohlsdorf" type="minutes" marked="1">7:48</time>
-          <time station="Kornweg (Klein Borstel)" type="minutes" marked="0">7:51</time>
+          <time station="Kornweg" type="minutes" marked="0">7:51</time>
           <time station="Hoheneichen" type="minutes" marked="0">7:53</time>
           <time station="Wellingsbüttel" type="minutes" marked="0">7:55</time>
           <time station="Poppenbüttel" type="minutes" marked="1">7:58</time>
@@ -40,24 +40,24 @@
         <times>
           <time station="Blankenese" type="minutes" marked="1">7:13</time>
           <time station="Hochkamp" type="minutes" marked="0">7:15</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">7:18</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">7:18</time>
           <time station="Othmarschen" type="minutes" marked="1">7:20</time>
           <time station="Bahrenfeld" type="minutes" marked="0">7:22</time>
           <time station="Altona" type="minutes" marked="1">7:26</time>
           <time station="Holstenstraße" type="minutes" marked="0">7:30</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">7:33</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">7:35</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">7:37</time>
+          <time station="Sternschanze" type="minutes" marked="1">7:33</time>
+          <time station="Dammtor" type="minutes" marked="0">7:35</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">7:37</time>
           <time station="Berliner Tor" type="minutes" marked="1">7:42</time>
           <time station="Landwehr" type="minutes" marked="0">7:44</time>
           <time station="Hasselbrook" type="minutes" marked="1">7:46</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">7:48</time>
           <time station="Friedrichsberg" type="minutes" marked="0">7:49</time>
           <time station="Barmbek" type="minutes" marked="1">7:52</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">7:54</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">7:56</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">7:54</time>
+          <time station="Rübenkamp" type="minutes" marked="0">7:56</time>
           <time station="Ohlsdorf" type="minutes" marked="1">7:58</time>
-          <time station="Kornweg (Klein Borstel)" type="minutes" marked="0">8:01</time>
+          <time station="Kornweg" type="minutes" marked="0">8:01</time>
           <time station="Hoheneichen" type="minutes" marked="0">8:03</time>
           <time station="Wellingsbüttel" type="minutes" marked="0">8:05</time>
           <time station="Poppenbüttel" type="minutes" marked="1">8:08</time>
@@ -68,24 +68,24 @@
         <times>
           <time station="Blankenese" type="minutes" marked="1">7:23</time>
           <time station="Hochkamp" type="minutes" marked="0">7:25</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">7:28</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">7:28</time>
           <time station="Othmarschen" type="minutes" marked="1">7:30</time>
           <time station="Bahrenfeld" type="minutes" marked="0">7:32</time>
           <time station="Altona" type="minutes" marked="1">7:36</time>
           <time station="Holstenstraße" type="minutes" marked="0">7:40</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">7:43</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">7:45</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">7:47</time>
+          <time station="Sternschanze" type="minutes" marked="1">7:43</time>
+          <time station="Dammtor" type="minutes" marked="0">7:45</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">7:47</time>
           <time station="Berliner Tor" type="minutes" marked="1">7:52</time>
           <time station="Landwehr" type="minutes" marked="0">7:54</time>
           <time station="Hasselbrook" type="minutes" marked="1">7:56</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">7:58</time>
           <time station="Friedrichsberg" type="minutes" marked="0">7:59</time>
           <time station="Barmbek" type="minutes" marked="1">8:02</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">8:04</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">8:06</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">8:04</time>
+          <time station="Rübenkamp" type="minutes" marked="0">8:06</time>
           <time station="Ohlsdorf" type="minutes" marked="1">8:08</time>
-          <time station="Kornweg (Klein Borstel)" type="minutes" marked="0">8:11</time>
+          <time station="Kornweg" type="minutes" marked="0">8:11</time>
           <time station="Hoheneichen" type="minutes" marked="0">8:13</time>
           <time station="Wellingsbüttel" type="minutes" marked="0">8:15</time>
           <time station="Poppenbüttel" type="minutes" marked="1">8:18</time>
@@ -96,7 +96,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">7:33</time>
           <time station="Hochkamp" type="normal" marked="0">7:35</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">7:38</time>
+          <time station="Klein Flottbek" type="normal" marked="0">7:38</time>
           <time station="Othmarschen" type="normal" marked="1">7:40</time>
           <time station="Bahrenfeld" type="normal" marked="0">7:42</time>
           <time station="Altona" type="normal" marked="1">7:46</time>
@@ -107,7 +107,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">7:43</time>
           <time station="Hochkamp" type="normal" marked="0">7:45</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">7:48</time>
+          <time station="Klein Flottbek" type="normal" marked="0">7:48</time>
           <time station="Othmarschen" type="normal" marked="1">7:50</time>
           <time station="Bahrenfeld" type="normal" marked="0">7:52</time>
           <time station="Altona" type="normal" marked="1">7:56</time>
@@ -118,7 +118,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">7:53</time>
           <time station="Hochkamp" type="normal" marked="0">7:55</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">7:58</time>
+          <time station="Klein Flottbek" type="normal" marked="0">7:58</time>
           <time station="Othmarschen" type="normal" marked="1">8:00</time>
           <time station="Bahrenfeld" type="normal" marked="0">8:02</time>
           <time station="Altona" type="normal" marked="1">8:06</time>
@@ -129,9 +129,9 @@
         <times>
           <time station="Altona" type="normal" marked="1">7:47</time>
           <time station="Holstenstraße" type="normal" marked="0">7:50</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">7:53</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">7:55</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">7:57</time>
+          <time station="Sternschanze" type="normal" marked="1">7:53</time>
+          <time station="Dammtor" type="normal" marked="0">7:55</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">7:57</time>
         </times>
         <modifiers/>
       </timetable>
@@ -139,9 +139,9 @@
         <times>
           <time station="Altona" type="normal" marked="1">7:57</time>
           <time station="Holstenstraße" type="normal" marked="0">8:00</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">8:03</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">8:05</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">8:07</time>
+          <time station="Sternschanze" type="normal" marked="1">8:03</time>
+          <time station="Dammtor" type="normal" marked="0">8:05</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">8:07</time>
         </times>
         <modifiers/>
       </timetable>
@@ -149,53 +149,53 @@
         <times>
           <time station="Altona" type="normal" marked="1">8:07</time>
           <time station="Holstenstraße" type="normal" marked="0">8:10</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">8:13</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">8:15</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">8:17</time>
+          <time station="Sternschanze" type="normal" marked="1">8:13</time>
+          <time station="Dammtor" type="normal" marked="0">8:15</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">8:17</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">7:59</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">7:59</time>
           <time station="Berliner Tor" type="normal" marked="1">8:02</time>
           <time station="Landwehr" type="normal" marked="0">8:04</time>
           <time station="Hasselbrook" type="normal" marked="1">8:06</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">8:08</time>
           <time station="Friedrichsberg" type="normal" marked="0">8:09</time>
           <time station="Barmbek" type="normal" marked="1">8:12</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">8:14</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">8:16</time>
+          <time station="Alte Wöhr" type="normal" marked="0">8:14</time>
+          <time station="Rübenkamp" type="normal" marked="0">8:16</time>
           <time station="Ohlsdorf" type="normal" marked="1">8:18</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">8:09</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">8:09</time>
           <time station="Berliner Tor" type="normal" marked="1">8:12</time>
           <time station="Landwehr" type="normal" marked="0">8:14</time>
           <time station="Hasselbrook" type="normal" marked="1">8:16</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">8:18</time>
           <time station="Friedrichsberg" type="normal" marked="0">8:19</time>
           <time station="Barmbek" type="normal" marked="1">8:22</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">8:24</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">8:26</time>
+          <time station="Alte Wöhr" type="normal" marked="0">8:24</time>
+          <time station="Rübenkamp" type="normal" marked="0">8:26</time>
           <time station="Ohlsdorf" type="normal" marked="1">8:28</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">8:19</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">8:19</time>
           <time station="Berliner Tor" type="normal" marked="1">8:22</time>
           <time station="Landwehr" type="normal" marked="0">8:24</time>
           <time station="Hasselbrook" type="normal" marked="1">8:26</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">8:28</time>
           <time station="Friedrichsberg" type="normal" marked="0">8:29</time>
           <time station="Barmbek" type="normal" marked="1">8:32</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">8:34</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">8:36</time>
+          <time station="Alte Wöhr" type="normal" marked="0">8:34</time>
+          <time station="Rübenkamp" type="normal" marked="0">8:36</time>
           <time station="Ohlsdorf" type="normal" marked="1">8:38</time>
         </times>
         <modifiers/>
@@ -204,22 +204,22 @@
         <times>
           <time station="Blankenese" type="minutes" marked="1">8:03</time>
           <time station="Hochkamp" type="minutes" marked="0">8:05</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">8:08</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">8:08</time>
           <time station="Othmarschen" type="minutes" marked="1">8:10</time>
           <time station="Bahrenfeld" type="minutes" marked="0">8:12</time>
           <time station="Altona" type="minutes" marked="1">8:16</time>
           <time station="Holstenstraße" type="minutes" marked="0">8:20</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">8:23</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">8:25</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">8:27</time>
+          <time station="Sternschanze" type="minutes" marked="1">8:23</time>
+          <time station="Dammtor" type="minutes" marked="0">8:25</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">8:27</time>
           <time station="Berliner Tor" type="minutes" marked="1">8:32</time>
           <time station="Landwehr" type="minutes" marked="0">8:34</time>
           <time station="Hasselbrook" type="minutes" marked="1">8:36</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">8:38</time>
           <time station="Friedrichsberg" type="minutes" marked="0">8:39</time>
           <time station="Barmbek" type="minutes" marked="1">8:42</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">8:44</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">8:46</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">8:44</time>
+          <time station="Rübenkamp" type="minutes" marked="0">8:46</time>
           <time station="Ohlsdorf" type="minutes" marked="1">8:48</time>
         </times>
         <modifiers/>
@@ -228,14 +228,14 @@
         <times>
           <time station="Blankenese" type="minutes" marked="1">8:13</time>
           <time station="Hochkamp" type="minutes" marked="0">8:15</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">8:18</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">8:18</time>
           <time station="Othmarschen" type="minutes" marked="1">8:20</time>
           <time station="Bahrenfeld" type="minutes" marked="0">8:22</time>
           <time station="Altona" type="minutes" marked="1">8:26</time>
           <time station="Holstenstraße" type="minutes" marked="0">8:30</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">8:33</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">8:35</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">8:37</time>
+          <time station="Sternschanze" type="minutes" marked="1">8:33</time>
+          <time station="Dammtor" type="minutes" marked="0">8:35</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">8:37</time>
           <time station="Berliner Tor" type="minutes" marked="1">8:42</time>
           <time station="Landwehr" type="minutes" marked="0">8:44</time>
           <time station="Hasselbrook" type="minutes" marked="1">8:46</time>
@@ -249,14 +249,14 @@
         <times>
           <time station="Blankenese" type="minutes" marked="1">8:23</time>
           <time station="Hochkamp" type="minutes" marked="0">8:25</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">8:28</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">8:28</time>
           <time station="Othmarschen" type="minutes" marked="1">8:30</time>
           <time station="Bahrenfeld" type="minutes" marked="0">8:32</time>
           <time station="Altona" type="minutes" marked="1">8:36</time>
           <time station="Holstenstraße" type="minutes" marked="0">8:40</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">8:43</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">8:45</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">8:47</time>
+          <time station="Sternschanze" type="minutes" marked="1">8:43</time>
+          <time station="Dammtor" type="minutes" marked="0">8:45</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">8:47</time>
           <time station="Berliner Tor" type="minutes" marked="1">8:52</time>
           <time station="Landwehr" type="minutes" marked="0">8:54</time>
           <time station="Hasselbrook" type="minutes" marked="1">8:56</time>
@@ -270,17 +270,17 @@
         <times>
           <time station="Altona" type="minutes" marked="1">14:47</time>
           <time station="Holstenstraße" type="minutes" marked="0">14:50</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">14:53</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">14:55</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">14:57</time>
+          <time station="Sternschanze" type="minutes" marked="1">14:53</time>
+          <time station="Dammtor" type="minutes" marked="0">14:55</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">14:57</time>
           <time station="Berliner Tor" type="minutes" marked="1">15:02</time>
           <time station="Landwehr" type="minutes" marked="0">15:04</time>
           <time station="Hasselbrook" type="minutes" marked="1">15:06</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">15:08</time>
           <time station="Friedrichsberg" type="minutes" marked="0">15:09</time>
           <time station="Barmbek" type="minutes" marked="1">15:12</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">15:14</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">15:16</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">15:14</time>
+          <time station="Rübenkamp" type="minutes" marked="0">15:16</time>
           <time station="Ohlsdorf" type="minutes" marked="1">15:18</time>
         </times>
         <modifiers/>
@@ -289,17 +289,17 @@
         <times>
           <time station="Altona" type="minutes" marked="1">14:57</time>
           <time station="Holstenstraße" type="minutes" marked="0">15:00</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">15:03</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">15:05</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">15:07</time>
+          <time station="Sternschanze" type="minutes" marked="1">15:03</time>
+          <time station="Dammtor" type="minutes" marked="0">15:05</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">15:07</time>
           <time station="Berliner Tor" type="minutes" marked="1">15:12</time>
           <time station="Landwehr" type="minutes" marked="0">15:14</time>
           <time station="Hasselbrook" type="minutes" marked="1">15:16</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">15:18</time>
           <time station="Friedrichsberg" type="minutes" marked="0">15:19</time>
           <time station="Barmbek" type="minutes" marked="1">15:22</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">15:24</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">15:26</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">15:24</time>
+          <time station="Rübenkamp" type="minutes" marked="0">15:26</time>
           <time station="Ohlsdorf" type="minutes" marked="1">15:28</time>
         </times>
         <modifiers/>
@@ -308,19 +308,19 @@
         <times>
           <time station="Altona" type="minutes" marked="1">15:07</time>
           <time station="Holstenstraße" type="minutes" marked="0">15:10</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">15:13</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">15:15</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">15:17</time>
+          <time station="Sternschanze" type="minutes" marked="1">15:13</time>
+          <time station="Dammtor" type="minutes" marked="0">15:15</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">15:17</time>
           <time station="Berliner Tor" type="minutes" marked="1">15:22</time>
           <time station="Landwehr" type="minutes" marked="0">15:24</time>
           <time station="Hasselbrook" type="minutes" marked="1">15:26</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">15:28</time>
           <time station="Friedrichsberg" type="minutes" marked="0">15:29</time>
           <time station="Barmbek" type="minutes" marked="1">15:32</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">15:34</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">15:36</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">15:34</time>
+          <time station="Rübenkamp" type="minutes" marked="0">15:36</time>
           <time station="Ohlsdorf" type="minutes" marked="1">15:38</time>
-          <time station="Kornweg (Klein Borstel)" type="minutes" marked="0">15:41</time>
+          <time station="Kornweg" type="minutes" marked="0">15:41</time>
           <time station="Hoheneichen" type="minutes" marked="0">15:43</time>
           <time station="Wellingsbüttel" type="minutes" marked="0">15:45</time>
           <time station="Poppenbüttel" type="minutes" marked="1">15:48</time>
@@ -331,19 +331,19 @@
         <times>
           <time station="Altona" type="minutes" marked="1">15:17</time>
           <time station="Holstenstraße" type="minutes" marked="0">15:20</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">15:23</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">15:25</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">15:27</time>
+          <time station="Sternschanze" type="minutes" marked="1">15:23</time>
+          <time station="Dammtor" type="minutes" marked="0">15:25</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">15:27</time>
           <time station="Berliner Tor" type="minutes" marked="1">15:32</time>
           <time station="Landwehr" type="minutes" marked="0">15:34</time>
           <time station="Hasselbrook" type="minutes" marked="1">15:36</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">15:38</time>
           <time station="Friedrichsberg" type="minutes" marked="0">15:39</time>
           <time station="Barmbek" type="minutes" marked="1">15:42</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">15:44</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">15:46</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">15:44</time>
+          <time station="Rübenkamp" type="minutes" marked="0">15:46</time>
           <time station="Ohlsdorf" type="minutes" marked="1">15:48</time>
-          <time station="Kornweg (Klein Borstel)" type="minutes" marked="0">15:51</time>
+          <time station="Kornweg" type="minutes" marked="0">15:51</time>
           <time station="Hoheneichen" type="minutes" marked="0">15:53</time>
           <time station="Wellingsbüttel" type="minutes" marked="0">15:55</time>
           <time station="Poppenbüttel" type="minutes" marked="1">15:58</time>
@@ -354,19 +354,19 @@
         <times>
           <time station="Altona" type="minutes" marked="1">15:27</time>
           <time station="Holstenstraße" type="minutes" marked="0">15:30</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">15:33</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">15:35</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">15:37</time>
+          <time station="Sternschanze" type="minutes" marked="1">15:33</time>
+          <time station="Dammtor" type="minutes" marked="0">15:35</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">15:37</time>
           <time station="Berliner Tor" type="minutes" marked="1">15:42</time>
           <time station="Landwehr" type="minutes" marked="0">15:44</time>
           <time station="Hasselbrook" type="minutes" marked="1">15:46</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">15:48</time>
           <time station="Friedrichsberg" type="minutes" marked="0">15:49</time>
           <time station="Barmbek" type="minutes" marked="1">15:52</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">15:54</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">15:56</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">15:54</time>
+          <time station="Rübenkamp" type="minutes" marked="0">15:56</time>
           <time station="Ohlsdorf" type="minutes" marked="1">15:58</time>
-          <time station="Kornweg (Klein Borstel)" type="minutes" marked="0">16:01</time>
+          <time station="Kornweg" type="minutes" marked="0">16:01</time>
           <time station="Hoheneichen" type="minutes" marked="0">16:03</time>
           <time station="Wellingsbüttel" type="minutes" marked="0">16:05</time>
           <time station="Poppenbüttel" type="minutes" marked="1">16:08</time>
@@ -377,24 +377,24 @@
         <times>
           <time station="Blankenese" type="minutes" marked="1">15:23</time>
           <time station="Hochkamp" type="minutes" marked="0">15:25</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">15:28</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">15:28</time>
           <time station="Othmarschen" type="minutes" marked="1">15:30</time>
           <time station="Bahrenfeld" type="minutes" marked="0">15:32</time>
           <time station="Altona" type="minutes" marked="1">15:36</time>
           <time station="Holstenstraße" type="minutes" marked="0">15:40</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">15:43</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">15:45</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">15:47</time>
+          <time station="Sternschanze" type="minutes" marked="1">15:43</time>
+          <time station="Dammtor" type="minutes" marked="0">15:45</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">15:47</time>
           <time station="Berliner Tor" type="minutes" marked="1">15:52</time>
           <time station="Landwehr" type="minutes" marked="0">15:54</time>
           <time station="Hasselbrook" type="minutes" marked="1">15:56</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">15:58</time>
           <time station="Friedrichsberg" type="minutes" marked="0">15:59</time>
           <time station="Barmbek" type="minutes" marked="1">16:02</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">16:04</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">16:06</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">16:04</time>
+          <time station="Rübenkamp" type="minutes" marked="0">16:06</time>
           <time station="Ohlsdorf" type="minutes" marked="1">16:08</time>
-          <time station="Kornweg (Klein Borstel)" type="minutes" marked="0">16:11</time>
+          <time station="Kornweg" type="minutes" marked="0">16:11</time>
           <time station="Hoheneichen" type="minutes" marked="0">16:13</time>
           <time station="Wellingsbüttel" type="minutes" marked="0">16:15</time>
           <time station="Poppenbüttel" type="minutes" marked="1">16:18</time>
@@ -405,7 +405,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">15:33</time>
           <time station="Hochkamp" type="normal" marked="0">15:35</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">15:38</time>
+          <time station="Klein Flottbek" type="normal" marked="0">15:38</time>
           <time station="Othmarschen" type="normal" marked="1">15:40</time>
           <time station="Bahrenfeld" type="normal" marked="0">15:42</time>
           <time station="Altona" type="normal" marked="1">15:46</time>
@@ -416,7 +416,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">15:43</time>
           <time station="Hochkamp" type="normal" marked="0">15:45</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">15:48</time>
+          <time station="Klein Flottbek" type="normal" marked="0">15:48</time>
           <time station="Othmarschen" type="normal" marked="1">15:50</time>
           <time station="Bahrenfeld" type="normal" marked="0">15:52</time>
           <time station="Altona" type="normal" marked="1">15:56</time>
@@ -427,7 +427,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">15:53</time>
           <time station="Hochkamp" type="normal" marked="0">15:55</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">15:58</time>
+          <time station="Klein Flottbek" type="normal" marked="0">15:58</time>
           <time station="Othmarschen" type="normal" marked="1">16:00</time>
           <time station="Bahrenfeld" type="normal" marked="0">16:02</time>
           <time station="Altona" type="normal" marked="1">16:06</time>
@@ -438,7 +438,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">16:03</time>
           <time station="Hochkamp" type="normal" marked="0">16:05</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">16:08</time>
+          <time station="Klein Flottbek" type="normal" marked="0">16:08</time>
           <time station="Othmarschen" type="normal" marked="1">16:10</time>
           <time station="Bahrenfeld" type="normal" marked="0">16:12</time>
           <time station="Altona" type="normal" marked="1">16:16</time>
@@ -449,7 +449,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">16:13</time>
           <time station="Hochkamp" type="normal" marked="0">16:15</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">16:18</time>
+          <time station="Klein Flottbek" type="normal" marked="0">16:18</time>
           <time station="Othmarschen" type="normal" marked="1">16:20</time>
           <time station="Bahrenfeld" type="normal" marked="0">16:22</time>
           <time station="Altona" type="normal" marked="1">16:26</time>
@@ -460,7 +460,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">16:23</time>
           <time station="Hochkamp" type="normal" marked="0">16:25</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">16:28</time>
+          <time station="Klein Flottbek" type="normal" marked="0">16:28</time>
           <time station="Othmarschen" type="normal" marked="1">16:30</time>
           <time station="Bahrenfeld" type="normal" marked="0">16:32</time>
           <time station="Altona" type="normal" marked="1">16:36</time>
@@ -471,7 +471,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">16:33</time>
           <time station="Hochkamp" type="normal" marked="0">16:35</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">16:38</time>
+          <time station="Klein Flottbek" type="normal" marked="0">16:38</time>
           <time station="Othmarschen" type="normal" marked="1">16:40</time>
           <time station="Bahrenfeld" type="normal" marked="0">16:42</time>
           <time station="Altona" type="normal" marked="1">16:46</time>
@@ -482,7 +482,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">16:43</time>
           <time station="Hochkamp" type="normal" marked="0">16:45</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">16:48</time>
+          <time station="Klein Flottbek" type="normal" marked="0">16:48</time>
           <time station="Othmarschen" type="normal" marked="1">16:50</time>
           <time station="Bahrenfeld" type="normal" marked="0">16:52</time>
           <time station="Altona" type="normal" marked="1">16:56</time>
@@ -493,7 +493,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">16:53</time>
           <time station="Hochkamp" type="normal" marked="0">16:55</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">16:58</time>
+          <time station="Klein Flottbek" type="normal" marked="0">16:58</time>
           <time station="Othmarschen" type="normal" marked="1">17:00</time>
           <time station="Bahrenfeld" type="normal" marked="0">17:02</time>
           <time station="Altona" type="normal" marked="1">17:06</time>
@@ -504,7 +504,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">17:03</time>
           <time station="Hochkamp" type="normal" marked="0">17:05</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">17:08</time>
+          <time station="Klein Flottbek" type="normal" marked="0">17:08</time>
           <time station="Othmarschen" type="normal" marked="1">17:10</time>
           <time station="Bahrenfeld" type="normal" marked="0">17:12</time>
           <time station="Altona" type="normal" marked="1">17:16</time>
@@ -515,7 +515,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">17:13</time>
           <time station="Hochkamp" type="normal" marked="0">17:15</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">17:18</time>
+          <time station="Klein Flottbek" type="normal" marked="0">17:18</time>
           <time station="Othmarschen" type="normal" marked="1">17:20</time>
           <time station="Bahrenfeld" type="normal" marked="0">17:22</time>
           <time station="Altona" type="normal" marked="1">17:26</time>
@@ -526,7 +526,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">17:23</time>
           <time station="Hochkamp" type="normal" marked="0">17:25</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">17:28</time>
+          <time station="Klein Flottbek" type="normal" marked="0">17:28</time>
           <time station="Othmarschen" type="normal" marked="1">17:30</time>
           <time station="Bahrenfeld" type="normal" marked="0">17:32</time>
           <time station="Altona" type="normal" marked="1">17:36</time>
@@ -537,7 +537,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">17:33</time>
           <time station="Hochkamp" type="normal" marked="0">17:35</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">17:38</time>
+          <time station="Klein Flottbek" type="normal" marked="0">17:38</time>
           <time station="Othmarschen" type="normal" marked="1">17:40</time>
           <time station="Bahrenfeld" type="normal" marked="0">17:42</time>
           <time station="Altona" type="normal" marked="1">17:46</time>
@@ -548,7 +548,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">17:43</time>
           <time station="Hochkamp" type="normal" marked="0">17:45</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">17:48</time>
+          <time station="Klein Flottbek" type="normal" marked="0">17:48</time>
           <time station="Othmarschen" type="normal" marked="1">17:50</time>
           <time station="Bahrenfeld" type="normal" marked="0">17:52</time>
           <time station="Altona" type="normal" marked="1">17:56</time>
@@ -559,9 +559,9 @@
         <times>
           <time station="Altona" type="normal" marked="1">15:47</time>
           <time station="Holstenstraße" type="normal" marked="0">15:50</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">15:53</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">15:55</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">15:57</time>
+          <time station="Sternschanze" type="normal" marked="1">15:53</time>
+          <time station="Dammtor" type="normal" marked="0">15:55</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">15:57</time>
         </times>
         <modifiers/>
       </timetable>
@@ -569,9 +569,9 @@
         <times>
           <time station="Altona" type="normal" marked="1">15:57</time>
           <time station="Holstenstraße" type="normal" marked="0">16:00</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">16:03</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">16:05</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">16:07</time>
+          <time station="Sternschanze" type="normal" marked="1">16:03</time>
+          <time station="Dammtor" type="normal" marked="0">16:05</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">16:07</time>
         </times>
         <modifiers/>
       </timetable>
@@ -579,9 +579,9 @@
         <times>
           <time station="Altona" type="normal" marked="1">16:07</time>
           <time station="Holstenstraße" type="normal" marked="0">16:10</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">16:13</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">16:15</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">16:17</time>
+          <time station="Sternschanze" type="normal" marked="1">16:13</time>
+          <time station="Dammtor" type="normal" marked="0">16:15</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">16:17</time>
         </times>
         <modifiers/>
       </timetable>
@@ -589,9 +589,9 @@
         <times>
           <time station="Altona" type="normal" marked="1">16:17</time>
           <time station="Holstenstraße" type="normal" marked="0">16:20</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">16:23</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">16:25</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">16:27</time>
+          <time station="Sternschanze" type="normal" marked="1">16:23</time>
+          <time station="Dammtor" type="normal" marked="0">16:25</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">16:27</time>
         </times>
         <modifiers/>
       </timetable>
@@ -599,9 +599,9 @@
         <times>
           <time station="Altona" type="normal" marked="1">16:27</time>
           <time station="Holstenstraße" type="normal" marked="0">16:30</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">16:33</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">16:35</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">16:37</time>
+          <time station="Sternschanze" type="normal" marked="1">16:33</time>
+          <time station="Dammtor" type="normal" marked="0">16:35</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">16:37</time>
         </times>
         <modifiers/>
       </timetable>
@@ -609,9 +609,9 @@
         <times>
           <time station="Altona" type="normal" marked="1">16:37</time>
           <time station="Holstenstraße" type="normal" marked="0">16:40</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">16:43</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">16:45</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">16:47</time>
+          <time station="Sternschanze" type="normal" marked="1">16:43</time>
+          <time station="Dammtor" type="normal" marked="0">16:45</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">16:47</time>
         </times>
         <modifiers/>
       </timetable>
@@ -619,9 +619,9 @@
         <times>
           <time station="Altona" type="normal" marked="1">16:47</time>
           <time station="Holstenstraße" type="normal" marked="0">16:50</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">16:53</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">16:55</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">16:57</time>
+          <time station="Sternschanze" type="normal" marked="1">16:53</time>
+          <time station="Dammtor" type="normal" marked="0">16:55</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">16:57</time>
         </times>
         <modifiers/>
       </timetable>
@@ -629,9 +629,9 @@
         <times>
           <time station="Altona" type="normal" marked="1">16:57</time>
           <time station="Holstenstraße" type="normal" marked="0">17:00</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">17:03</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">17:05</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">17:07</time>
+          <time station="Sternschanze" type="normal" marked="1">17:03</time>
+          <time station="Dammtor" type="normal" marked="0">17:05</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">17:07</time>
         </times>
         <modifiers/>
       </timetable>
@@ -639,9 +639,9 @@
         <times>
           <time station="Altona" type="normal" marked="1">17:07</time>
           <time station="Holstenstraße" type="normal" marked="0">17:10</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">17:13</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">17:15</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">17:17</time>
+          <time station="Sternschanze" type="normal" marked="1">17:13</time>
+          <time station="Dammtor" type="normal" marked="0">17:15</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">17:17</time>
         </times>
         <modifiers/>
       </timetable>
@@ -649,9 +649,9 @@
         <times>
           <time station="Altona" type="normal" marked="1">17:17</time>
           <time station="Holstenstraße" type="normal" marked="0">17:20</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">17:23</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">17:25</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">17:27</time>
+          <time station="Sternschanze" type="normal" marked="1">17:23</time>
+          <time station="Dammtor" type="normal" marked="0">17:25</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">17:27</time>
         </times>
         <modifiers/>
       </timetable>
@@ -659,9 +659,9 @@
         <times>
           <time station="Altona" type="normal" marked="1">17:27</time>
           <time station="Holstenstraße" type="normal" marked="0">17:30</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">17:33</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">17:35</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">17:37</time>
+          <time station="Sternschanze" type="normal" marked="1">17:33</time>
+          <time station="Dammtor" type="normal" marked="0">17:35</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">17:37</time>
         </times>
         <modifiers/>
       </timetable>
@@ -669,9 +669,9 @@
         <times>
           <time station="Altona" type="normal" marked="1">17:37</time>
           <time station="Holstenstraße" type="normal" marked="0">17:40</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">17:43</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">17:45</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">17:47</time>
+          <time station="Sternschanze" type="normal" marked="1">17:43</time>
+          <time station="Dammtor" type="normal" marked="0">17:45</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">17:47</time>
         </times>
         <modifiers/>
       </timetable>
@@ -679,9 +679,9 @@
         <times>
           <time station="Altona" type="normal" marked="1">17:47</time>
           <time station="Holstenstraße" type="normal" marked="0">17:50</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">17:53</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">17:55</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">17:57</time>
+          <time station="Sternschanze" type="normal" marked="1">17:53</time>
+          <time station="Dammtor" type="normal" marked="0">17:55</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">17:57</time>
         </times>
         <modifiers/>
       </timetable>
@@ -689,218 +689,218 @@
         <times>
           <time station="Altona" type="normal" marked="1">17:57</time>
           <time station="Holstenstraße" type="normal" marked="0">18:00</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">18:03</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">18:05</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">18:07</time>
+          <time station="Sternschanze" type="normal" marked="1">18:03</time>
+          <time station="Dammtor" type="normal" marked="0">18:05</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">18:07</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">15:59</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">15:59</time>
           <time station="Berliner Tor" type="normal" marked="1">16:02</time>
           <time station="Landwehr" type="normal" marked="0">16:04</time>
           <time station="Hasselbrook" type="normal" marked="1">16:06</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">16:08</time>
           <time station="Friedrichsberg" type="normal" marked="0">16:09</time>
           <time station="Barmbek" type="normal" marked="1">16:12</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">16:14</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">16:16</time>
+          <time station="Alte Wöhr" type="normal" marked="0">16:14</time>
+          <time station="Rübenkamp" type="normal" marked="0">16:16</time>
           <time station="Ohlsdorf" type="normal" marked="1">16:18</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">16:09</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">16:09</time>
           <time station="Berliner Tor" type="normal" marked="1">16:12</time>
           <time station="Landwehr" type="normal" marked="0">16:14</time>
           <time station="Hasselbrook" type="normal" marked="1">16:16</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">16:18</time>
           <time station="Friedrichsberg" type="normal" marked="0">16:19</time>
           <time station="Barmbek" type="normal" marked="1">16:22</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">16:24</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">16:26</time>
+          <time station="Alte Wöhr" type="normal" marked="0">16:24</time>
+          <time station="Rübenkamp" type="normal" marked="0">16:26</time>
           <time station="Ohlsdorf" type="normal" marked="1">16:28</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">16:19</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">16:19</time>
           <time station="Berliner Tor" type="normal" marked="1">16:22</time>
           <time station="Landwehr" type="normal" marked="0">16:24</time>
           <time station="Hasselbrook" type="normal" marked="1">16:26</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">16:28</time>
           <time station="Friedrichsberg" type="normal" marked="0">16:29</time>
           <time station="Barmbek" type="normal" marked="1">16:32</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">16:34</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">16:36</time>
+          <time station="Alte Wöhr" type="normal" marked="0">16:34</time>
+          <time station="Rübenkamp" type="normal" marked="0">16:36</time>
           <time station="Ohlsdorf" type="normal" marked="1">16:38</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">16:29</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">16:29</time>
           <time station="Berliner Tor" type="normal" marked="1">16:32</time>
           <time station="Landwehr" type="normal" marked="0">16:34</time>
           <time station="Hasselbrook" type="normal" marked="1">16:36</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">16:38</time>
           <time station="Friedrichsberg" type="normal" marked="0">16:39</time>
           <time station="Barmbek" type="normal" marked="1">16:42</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">16:44</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">16:46</time>
+          <time station="Alte Wöhr" type="normal" marked="0">16:44</time>
+          <time station="Rübenkamp" type="normal" marked="0">16:46</time>
           <time station="Ohlsdorf" type="normal" marked="1">16:48</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">16:39</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">16:39</time>
           <time station="Berliner Tor" type="normal" marked="1">16:42</time>
           <time station="Landwehr" type="normal" marked="0">16:44</time>
           <time station="Hasselbrook" type="normal" marked="1">16:46</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">16:48</time>
           <time station="Friedrichsberg" type="normal" marked="0">16:49</time>
           <time station="Barmbek" type="normal" marked="1">16:52</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">16:54</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">16:56</time>
+          <time station="Alte Wöhr" type="normal" marked="0">16:54</time>
+          <time station="Rübenkamp" type="normal" marked="0">16:56</time>
           <time station="Ohlsdorf" type="normal" marked="1">16:58</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">16:49</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">16:49</time>
           <time station="Berliner Tor" type="normal" marked="1">16:52</time>
           <time station="Landwehr" type="normal" marked="0">16:54</time>
           <time station="Hasselbrook" type="normal" marked="1">16:56</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">16:58</time>
           <time station="Friedrichsberg" type="normal" marked="0">16:59</time>
           <time station="Barmbek" type="normal" marked="1">17:02</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">17:04</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">17:06</time>
+          <time station="Alte Wöhr" type="normal" marked="0">17:04</time>
+          <time station="Rübenkamp" type="normal" marked="0">17:06</time>
           <time station="Ohlsdorf" type="normal" marked="1">17:08</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">16:59</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">16:59</time>
           <time station="Berliner Tor" type="normal" marked="1">17:02</time>
           <time station="Landwehr" type="normal" marked="0">17:04</time>
           <time station="Hasselbrook" type="normal" marked="1">17:06</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">17:08</time>
           <time station="Friedrichsberg" type="normal" marked="0">17:09</time>
           <time station="Barmbek" type="normal" marked="1">17:12</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">17:14</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">17:16</time>
+          <time station="Alte Wöhr" type="normal" marked="0">17:14</time>
+          <time station="Rübenkamp" type="normal" marked="0">17:16</time>
           <time station="Ohlsdorf" type="normal" marked="1">17:18</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">17:09</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">17:09</time>
           <time station="Berliner Tor" type="normal" marked="1">17:12</time>
           <time station="Landwehr" type="normal" marked="0">17:14</time>
           <time station="Hasselbrook" type="normal" marked="1">17:16</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">17:18</time>
           <time station="Friedrichsberg" type="normal" marked="0">17:19</time>
           <time station="Barmbek" type="normal" marked="1">17:22</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">17:24</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">17:26</time>
+          <time station="Alte Wöhr" type="normal" marked="0">17:24</time>
+          <time station="Rübenkamp" type="normal" marked="0">17:26</time>
           <time station="Ohlsdorf" type="normal" marked="1">17:28</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">17:19</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">17:19</time>
           <time station="Berliner Tor" type="normal" marked="1">17:22</time>
           <time station="Landwehr" type="normal" marked="0">17:24</time>
           <time station="Hasselbrook" type="normal" marked="1">17:26</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">17:28</time>
           <time station="Friedrichsberg" type="normal" marked="0">17:29</time>
           <time station="Barmbek" type="normal" marked="1">17:32</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">17:34</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">17:36</time>
+          <time station="Alte Wöhr" type="normal" marked="0">17:34</time>
+          <time station="Rübenkamp" type="normal" marked="0">17:36</time>
           <time station="Ohlsdorf" type="normal" marked="1">17:38</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">17:29</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">17:29</time>
           <time station="Berliner Tor" type="normal" marked="1">17:32</time>
           <time station="Landwehr" type="normal" marked="0">17:34</time>
           <time station="Hasselbrook" type="normal" marked="1">17:36</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">17:38</time>
           <time station="Friedrichsberg" type="normal" marked="0">17:39</time>
           <time station="Barmbek" type="normal" marked="1">17:42</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">17:44</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">17:46</time>
+          <time station="Alte Wöhr" type="normal" marked="0">17:44</time>
+          <time station="Rübenkamp" type="normal" marked="0">17:46</time>
           <time station="Ohlsdorf" type="normal" marked="1">17:48</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">17:39</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">17:39</time>
           <time station="Berliner Tor" type="normal" marked="1">17:42</time>
           <time station="Landwehr" type="normal" marked="0">17:44</time>
           <time station="Hasselbrook" type="normal" marked="1">17:46</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">17:48</time>
           <time station="Friedrichsberg" type="normal" marked="0">17:49</time>
           <time station="Barmbek" type="normal" marked="1">17:52</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">17:54</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">17:56</time>
+          <time station="Alte Wöhr" type="normal" marked="0">17:54</time>
+          <time station="Rübenkamp" type="normal" marked="0">17:56</time>
           <time station="Ohlsdorf" type="normal" marked="1">17:58</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">17:49</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">17:49</time>
           <time station="Berliner Tor" type="normal" marked="1">17:52</time>
           <time station="Landwehr" type="normal" marked="0">17:54</time>
           <time station="Hasselbrook" type="normal" marked="1">17:56</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">17:58</time>
           <time station="Friedrichsberg" type="normal" marked="0">17:59</time>
           <time station="Barmbek" type="normal" marked="1">18:02</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">18:04</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">18:06</time>
+          <time station="Alte Wöhr" type="normal" marked="0">18:04</time>
+          <time station="Rübenkamp" type="normal" marked="0">18:06</time>
           <time station="Ohlsdorf" type="normal" marked="1">18:08</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">17:59</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">17:59</time>
           <time station="Berliner Tor" type="normal" marked="1">18:02</time>
           <time station="Landwehr" type="normal" marked="0">18:04</time>
           <time station="Hasselbrook" type="normal" marked="1">18:06</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">18:08</time>
           <time station="Friedrichsberg" type="normal" marked="0">18:09</time>
           <time station="Barmbek" type="normal" marked="1">18:12</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">18:14</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">18:16</time>
+          <time station="Alte Wöhr" type="normal" marked="0">18:14</time>
+          <time station="Rübenkamp" type="normal" marked="0">18:16</time>
           <time station="Ohlsdorf" type="normal" marked="1">18:18</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">18:09</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">18:09</time>
           <time station="Berliner Tor" type="normal" marked="1">18:12</time>
           <time station="Landwehr" type="normal" marked="0">18:14</time>
           <time station="Hasselbrook" type="normal" marked="1">18:16</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">18:18</time>
           <time station="Friedrichsberg" type="normal" marked="0">18:19</time>
           <time station="Barmbek" type="normal" marked="1">18:22</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">18:24</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">18:26</time>
+          <time station="Alte Wöhr" type="normal" marked="0">18:24</time>
+          <time station="Rübenkamp" type="normal" marked="0">18:26</time>
           <time station="Ohlsdorf" type="normal" marked="1">18:28</time>
         </times>
         <modifiers/>
@@ -908,7 +908,7 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">16:19</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">16:21</time>
+          <time station="Kornweg" type="normal" marked="0">16:21</time>
           <time station="Hoheneichen" type="normal" marked="0">16:23</time>
           <time station="Wellingsbüttel" type="normal" marked="0">16:25</time>
           <time station="Poppenbüttel" type="normal" marked="1">16:28</time>
@@ -918,7 +918,7 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">16:29</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">16:31</time>
+          <time station="Kornweg" type="normal" marked="0">16:31</time>
           <time station="Hoheneichen" type="normal" marked="0">16:33</time>
           <time station="Wellingsbüttel" type="normal" marked="0">16:35</time>
           <time station="Poppenbüttel" type="normal" marked="1">16:38</time>
@@ -928,7 +928,7 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">16:39</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">16:41</time>
+          <time station="Kornweg" type="normal" marked="0">16:41</time>
           <time station="Hoheneichen" type="normal" marked="0">16:43</time>
           <time station="Wellingsbüttel" type="normal" marked="0">16:45</time>
           <time station="Poppenbüttel" type="normal" marked="1">16:48</time>
@@ -938,7 +938,7 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">16:49</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">16:51</time>
+          <time station="Kornweg" type="normal" marked="0">16:51</time>
           <time station="Hoheneichen" type="normal" marked="0">16:53</time>
           <time station="Wellingsbüttel" type="normal" marked="0">16:55</time>
           <time station="Poppenbüttel" type="normal" marked="1">16:58</time>
@@ -948,7 +948,7 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">16:59</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">17:01</time>
+          <time station="Kornweg" type="normal" marked="0">17:01</time>
           <time station="Hoheneichen" type="normal" marked="0">17:03</time>
           <time station="Wellingsbüttel" type="normal" marked="0">17:05</time>
           <time station="Poppenbüttel" type="normal" marked="1">17:08</time>
@@ -958,7 +958,7 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">17:09</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">17:11</time>
+          <time station="Kornweg" type="normal" marked="0">17:11</time>
           <time station="Hoheneichen" type="normal" marked="0">17:13</time>
           <time station="Wellingsbüttel" type="normal" marked="0">17:15</time>
           <time station="Poppenbüttel" type="normal" marked="1">17:18</time>
@@ -968,7 +968,7 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">17:19</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">17:21</time>
+          <time station="Kornweg" type="normal" marked="0">17:21</time>
           <time station="Hoheneichen" type="normal" marked="0">17:23</time>
           <time station="Wellingsbüttel" type="normal" marked="0">17:25</time>
           <time station="Poppenbüttel" type="normal" marked="1">17:28</time>
@@ -978,7 +978,7 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">17:29</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">17:31</time>
+          <time station="Kornweg" type="normal" marked="0">17:31</time>
           <time station="Hoheneichen" type="normal" marked="0">17:33</time>
           <time station="Wellingsbüttel" type="normal" marked="0">17:35</time>
           <time station="Poppenbüttel" type="normal" marked="1">17:38</time>
@@ -988,7 +988,7 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">17:39</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">17:41</time>
+          <time station="Kornweg" type="normal" marked="0">17:41</time>
           <time station="Hoheneichen" type="normal" marked="0">17:43</time>
           <time station="Wellingsbüttel" type="normal" marked="0">17:45</time>
           <time station="Poppenbüttel" type="normal" marked="1">17:48</time>
@@ -998,7 +998,7 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">17:49</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">17:51</time>
+          <time station="Kornweg" type="normal" marked="0">17:51</time>
           <time station="Hoheneichen" type="normal" marked="0">17:53</time>
           <time station="Wellingsbüttel" type="normal" marked="0">17:55</time>
           <time station="Poppenbüttel" type="normal" marked="1">17:58</time>
@@ -1008,7 +1008,7 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">17:59</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">18:01</time>
+          <time station="Kornweg" type="normal" marked="0">18:01</time>
           <time station="Hoheneichen" type="normal" marked="0">18:03</time>
           <time station="Wellingsbüttel" type="normal" marked="0">18:05</time>
           <time station="Poppenbüttel" type="normal" marked="1">18:08</time>
@@ -1018,7 +1018,7 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">18:09</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">18:11</time>
+          <time station="Kornweg" type="normal" marked="0">18:11</time>
           <time station="Hoheneichen" type="normal" marked="0">18:13</time>
           <time station="Wellingsbüttel" type="normal" marked="0">18:15</time>
           <time station="Poppenbüttel" type="normal" marked="1">18:18</time>
@@ -1028,7 +1028,7 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">18:19</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">18:21</time>
+          <time station="Kornweg" type="normal" marked="0">18:21</time>
           <time station="Hoheneichen" type="normal" marked="0">18:23</time>
           <time station="Wellingsbüttel" type="normal" marked="0">18:25</time>
           <time station="Poppenbüttel" type="normal" marked="1">18:28</time>
@@ -1038,7 +1038,7 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">18:29</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">18:31</time>
+          <time station="Kornweg" type="normal" marked="0">18:31</time>
           <time station="Hoheneichen" type="normal" marked="0">18:33</time>
           <time station="Wellingsbüttel" type="normal" marked="0">18:35</time>
           <time station="Poppenbüttel" type="normal" marked="1">18:38</time>
@@ -1049,24 +1049,24 @@
         <times>
           <time station="Blankenese" type="minutes" marked="1">17:53</time>
           <time station="Hochkamp" type="minutes" marked="0">17:55</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">17:58</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">17:58</time>
           <time station="Othmarschen" type="minutes" marked="1">18:00</time>
           <time station="Bahrenfeld" type="minutes" marked="0">18:02</time>
           <time station="Altona" type="minutes" marked="1">18:06</time>
           <time station="Holstenstraße" type="minutes" marked="0">18:10</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">18:13</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">18:15</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">18:17</time>
+          <time station="Sternschanze" type="minutes" marked="1">18:13</time>
+          <time station="Dammtor" type="minutes" marked="0">18:15</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">18:17</time>
           <time station="Berliner Tor" type="minutes" marked="1">18:22</time>
           <time station="Landwehr" type="minutes" marked="0">18:24</time>
           <time station="Hasselbrook" type="minutes" marked="1">18:26</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">18:28</time>
           <time station="Friedrichsberg" type="minutes" marked="0">18:29</time>
           <time station="Barmbek" type="minutes" marked="1">18:32</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">18:34</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">18:36</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">18:34</time>
+          <time station="Rübenkamp" type="minutes" marked="0">18:36</time>
           <time station="Ohlsdorf" type="minutes" marked="1">18:38</time>
-          <time station="Kornweg (Klein Borstel)" type="minutes" marked="0">18:41</time>
+          <time station="Kornweg" type="minutes" marked="0">18:41</time>
           <time station="Hoheneichen" type="minutes" marked="0">18:43</time>
           <time station="Wellingsbüttel" type="minutes" marked="0">18:45</time>
           <time station="Poppenbüttel" type="minutes" marked="1">18:48</time>
@@ -1077,7 +1077,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">18:03</time>
           <time station="Hochkamp" type="normal" marked="0">18:05</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">18:08</time>
+          <time station="Klein Flottbek" type="normal" marked="0">18:08</time>
           <time station="Othmarschen" type="normal" marked="1">18:10</time>
           <time station="Bahrenfeld" type="normal" marked="0">18:12</time>
           <time station="Altona" type="normal" marked="1">18:16</time>
@@ -1088,7 +1088,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">18:13</time>
           <time station="Hochkamp" type="normal" marked="0">18:15</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">18:18</time>
+          <time station="Klein Flottbek" type="normal" marked="0">18:18</time>
           <time station="Othmarschen" type="normal" marked="1">18:20</time>
           <time station="Bahrenfeld" type="normal" marked="0">18:22</time>
           <time station="Altona" type="normal" marked="1">18:26</time>
@@ -1099,7 +1099,7 @@
         <times>
           <time station="Blankenese" type="normal" marked="1">18:23</time>
           <time station="Hochkamp" type="normal" marked="0">18:25</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">18:28</time>
+          <time station="Klein Flottbek" type="normal" marked="0">18:28</time>
           <time station="Othmarschen" type="normal" marked="1">18:30</time>
           <time station="Bahrenfeld" type="normal" marked="0">18:32</time>
           <time station="Altona" type="normal" marked="1">18:36</time>
@@ -1110,9 +1110,9 @@
         <times>
           <time station="Altona" type="normal" marked="1">18:17</time>
           <time station="Holstenstraße" type="normal" marked="0">18:20</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">18:23</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">18:25</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">18:27</time>
+          <time station="Sternschanze" type="normal" marked="1">18:23</time>
+          <time station="Dammtor" type="normal" marked="0">18:25</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">18:27</time>
         </times>
         <modifiers/>
       </timetable>
@@ -1120,9 +1120,9 @@
         <times>
           <time station="Altona" type="normal" marked="1">18:27</time>
           <time station="Holstenstraße" type="normal" marked="0">18:30</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">18:33</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">18:35</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">18:37</time>
+          <time station="Sternschanze" type="normal" marked="1">18:33</time>
+          <time station="Dammtor" type="normal" marked="0">18:35</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">18:37</time>
         </times>
         <modifiers/>
       </timetable>
@@ -1130,53 +1130,53 @@
         <times>
           <time station="Altona" type="normal" marked="1">18:37</time>
           <time station="Holstenstraße" type="normal" marked="0">18:40</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">18:43</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">18:45</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">18:47</time>
+          <time station="Sternschanze" type="normal" marked="1">18:43</time>
+          <time station="Dammtor" type="normal" marked="0">18:45</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">18:47</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">18:29</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">18:29</time>
           <time station="Berliner Tor" type="normal" marked="1">18:32</time>
           <time station="Landwehr" type="normal" marked="0">18:34</time>
           <time station="Hasselbrook" type="normal" marked="1">18:36</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">18:38</time>
           <time station="Friedrichsberg" type="normal" marked="0">18:39</time>
           <time station="Barmbek" type="normal" marked="1">18:42</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">18:44</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">18:46</time>
+          <time station="Alte Wöhr" type="normal" marked="0">18:44</time>
+          <time station="Rübenkamp" type="normal" marked="0">18:46</time>
           <time station="Ohlsdorf" type="normal" marked="1">18:48</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">18:39</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">18:39</time>
           <time station="Berliner Tor" type="normal" marked="1">18:42</time>
           <time station="Landwehr" type="normal" marked="0">18:44</time>
           <time station="Hasselbrook" type="normal" marked="1">18:46</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">18:48</time>
           <time station="Friedrichsberg" type="normal" marked="0">18:49</time>
           <time station="Barmbek" type="normal" marked="1">18:52</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">18:54</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">18:56</time>
+          <time station="Alte Wöhr" type="normal" marked="0">18:54</time>
+          <time station="Rübenkamp" type="normal" marked="0">18:56</time>
           <time station="Ohlsdorf" type="normal" marked="1">18:58</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
-          <time station="Hauptbahnhof." type="normal" marked="0">18:49</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">18:49</time>
           <time station="Berliner Tor" type="normal" marked="1">18:52</time>
           <time station="Landwehr" type="normal" marked="0">18:54</time>
           <time station="Hasselbrook" type="normal" marked="1">18:56</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">18:58</time>
           <time station="Friedrichsberg" type="normal" marked="0">18:59</time>
           <time station="Barmbek" type="normal" marked="1">19:02</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">19:04</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">19:06</time>
+          <time station="Alte Wöhr" type="normal" marked="0">19:04</time>
+          <time station="Rübenkamp" type="normal" marked="0">19:06</time>
           <time station="Ohlsdorf" type="normal" marked="1">19:08</time>
         </times>
         <modifiers/>
@@ -1185,22 +1185,22 @@
         <times>
           <time station="Blankenese" type="minutes" marked="1">18:33</time>
           <time station="Hochkamp" type="minutes" marked="0">18:35</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">18:38</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">18:38</time>
           <time station="Othmarschen" type="minutes" marked="1">18:40</time>
           <time station="Bahrenfeld" type="minutes" marked="0">18:42</time>
           <time station="Altona" type="minutes" marked="1">18:46</time>
           <time station="Holstenstraße" type="minutes" marked="0">18:50</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">18:53</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">18:55</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">18:57</time>
+          <time station="Sternschanze" type="minutes" marked="1">18:53</time>
+          <time station="Dammtor" type="minutes" marked="0">18:55</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">18:57</time>
           <time station="Berliner Tor" type="minutes" marked="1">19:02</time>
           <time station="Landwehr" type="minutes" marked="0">19:04</time>
           <time station="Hasselbrook" type="minutes" marked="1">19:06</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">19:08</time>
           <time station="Friedrichsberg" type="minutes" marked="0">19:09</time>
           <time station="Barmbek" type="minutes" marked="1">19:12</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">19:14</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">19:16</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">19:14</time>
+          <time station="Rübenkamp" type="minutes" marked="0">19:16</time>
           <time station="Ohlsdorf" type="minutes" marked="1">19:18</time>
         </times>
         <modifiers/>
@@ -1218,23 +1218,23 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="minutes" marked="1">6:35</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">6:37</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">6:38</time>
+          <time station="Rübenkamp" type="minutes" marked="0">6:37</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">6:38</time>
           <time station="Barmbek" type="minutes" marked="1">6:41</time>
           <time station="Friedrichsberg" type="minutes" marked="0">6:43</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">6:45</time>
           <time station="Hasselbrook" type="minutes" marked="1">6:46</time>
           <time station="Landwehr" type="minutes" marked="0">6:48</time>
           <time station="Berliner Tor" type="minutes" marked="1">6:50</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">6:53</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">6:53</time>
           <time station="Hauptbahnhof" type="minutes" marked="1">6:54</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">6:57</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">7:00</time>
+          <time station="Dammtor" type="minutes" marked="0">6:57</time>
+          <time station="Sternschanze" type="minutes" marked="1">7:00</time>
           <time station="Holstenstraße" type="minutes" marked="0">7:02</time>
           <time station="Altona" type="minutes" marked="1">7:06</time>
           <time station="Bahrenfeld" type="minutes" marked="0">7:10</time>
           <time station="Othmarschen" type="minutes" marked="1">7:12</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">7:15</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">7:15</time>
           <time station="Hochkamp" type="minutes" marked="0">7:17</time>
           <time station="Blankenese" type="minutes" marked="1">7:20</time>
         </times>
@@ -1243,23 +1243,23 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="minutes" marked="1">6:45</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">6:47</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">6:48</time>
+          <time station="Rübenkamp" type="minutes" marked="0">6:47</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">6:48</time>
           <time station="Barmbek" type="minutes" marked="1">6:51</time>
           <time station="Friedrichsberg" type="minutes" marked="0">6:53</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">6:55</time>
           <time station="Hasselbrook" type="minutes" marked="1">6:56</time>
           <time station="Landwehr" type="minutes" marked="0">6:58</time>
           <time station="Berliner Tor" type="minutes" marked="1">7:00</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">7:03</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">7:03</time>
           <time station="Hauptbahnhof" type="minutes" marked="1">7:04</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">7:07</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">7:10</time>
+          <time station="Dammtor" type="minutes" marked="0">7:07</time>
+          <time station="Sternschanze" type="minutes" marked="1">7:10</time>
           <time station="Holstenstraße" type="minutes" marked="0">7:12</time>
           <time station="Altona" type="minutes" marked="1">7:16</time>
           <time station="Bahrenfeld" type="minutes" marked="0">7:20</time>
           <time station="Othmarschen" type="minutes" marked="1">7:22</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">7:25</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">7:25</time>
           <time station="Hochkamp" type="minutes" marked="0">7:27</time>
           <time station="Blankenese" type="minutes" marked="1">7:30</time>
         </times>
@@ -1268,23 +1268,23 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="minutes" marked="1">6:55</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">6:57</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">6:58</time>
+          <time station="Rübenkamp" type="minutes" marked="0">6:57</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">6:58</time>
           <time station="Barmbek" type="minutes" marked="1">7:01</time>
           <time station="Friedrichsberg" type="minutes" marked="0">7:03</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">7:05</time>
           <time station="Hasselbrook" type="minutes" marked="1">7:06</time>
           <time station="Landwehr" type="minutes" marked="0">7:08</time>
           <time station="Berliner Tor" type="minutes" marked="1">7:10</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">7:13</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">7:13</time>
           <time station="Hauptbahnhof" type="minutes" marked="1">7:14</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">7:17</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">7:20</time>
+          <time station="Dammtor" type="minutes" marked="0">7:17</time>
+          <time station="Sternschanze" type="minutes" marked="1">7:20</time>
           <time station="Holstenstraße" type="minutes" marked="0">7:22</time>
           <time station="Altona" type="minutes" marked="1">7:26</time>
           <time station="Bahrenfeld" type="minutes" marked="0">7:30</time>
           <time station="Othmarschen" type="minutes" marked="1">7:32</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">7:35</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">7:35</time>
           <time station="Hochkamp" type="minutes" marked="0">7:37</time>
           <time station="Blankenese" type="minutes" marked="1">7:40</time>
         </times>
@@ -1295,25 +1295,25 @@
           <time station="Poppenbüttel" type="minutes" marked="1">6:54</time>
           <time station="Wellingsbüttel" type="minutes" marked="0">6:56</time>
           <time station="Hoheneichen" type="minutes" marked="0">6:58</time>
-          <time station="Kornweg (Klein Borstel)" type="minutes" marked="0">6:59</time>
+          <time station="Kornweg" type="minutes" marked="0">6:59</time>
           <time station="Ohlsdorf" type="minutes" marked="1">7:02</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">7:07</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">7:08</time>
+          <time station="Rübenkamp" type="minutes" marked="0">7:07</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">7:08</time>
           <time station="Barmbek" type="minutes" marked="1">7:11</time>
           <time station="Friedrichsberg" type="minutes" marked="0">7:13</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">7:15</time>
           <time station="Hasselbrook" type="minutes" marked="1">7:16</time>
           <time station="Landwehr" type="minutes" marked="0">7:18</time>
           <time station="Berliner Tor" type="minutes" marked="1">7:20</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">7:23</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">7:23</time>
           <time station="Hauptbahnhof" type="minutes" marked="1">7:24</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">7:27</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">7:30</time>
+          <time station="Dammtor" type="minutes" marked="0">7:27</time>
+          <time station="Sternschanze" type="minutes" marked="1">7:30</time>
           <time station="Holstenstraße" type="minutes" marked="0">7:32</time>
           <time station="Altona" type="minutes" marked="1">7:36</time>
           <time station="Bahrenfeld" type="minutes" marked="0">7:40</time>
           <time station="Othmarschen" type="minutes" marked="1">7:42</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">7:45</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">7:45</time>
           <time station="Hochkamp" type="minutes" marked="0">7:47</time>
           <time station="Blankenese" type="minutes" marked="1">7:50</time>
         </times>
@@ -1324,7 +1324,7 @@
           <time station="Poppenbüttel" type="normal" marked="1">7:04</time>
           <time station="Wellingsbüttel" type="normal" marked="0">7:06</time>
           <time station="Hoheneichen" type="normal" marked="0">7:08</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">7:09</time>
+          <time station="Kornweg" type="normal" marked="0">7:09</time>
           <time station="Ohlsdorf" type="normal" marked="1">7:12</time>
         </times>
         <modifiers/>
@@ -1334,7 +1334,7 @@
           <time station="Poppenbüttel" type="normal" marked="1">7:14</time>
           <time station="Wellingsbüttel" type="normal" marked="0">7:16</time>
           <time station="Hoheneichen" type="normal" marked="0">7:18</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">7:19</time>
+          <time station="Kornweg" type="normal" marked="0">7:19</time>
           <time station="Ohlsdorf" type="normal" marked="1">7:22</time>
         </times>
         <modifiers/>
@@ -1344,7 +1344,7 @@
           <time station="Poppenbüttel" type="normal" marked="1">7:24</time>
           <time station="Wellingsbüttel" type="normal" marked="0">7:26</time>
           <time station="Hoheneichen" type="normal" marked="0">7:28</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">7:29</time>
+          <time station="Kornweg" type="normal" marked="0">7:29</time>
           <time station="Ohlsdorf" type="normal" marked="1">7:32</time>
         </times>
         <modifiers/>
@@ -1354,7 +1354,7 @@
           <time station="Poppenbüttel" type="normal" marked="1">7:34</time>
           <time station="Wellingsbüttel" type="normal" marked="0">7:36</time>
           <time station="Hoheneichen" type="normal" marked="0">7:38</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">7:39</time>
+          <time station="Kornweg" type="normal" marked="0">7:39</time>
           <time station="Ohlsdorf" type="normal" marked="1">7:42</time>
         </times>
         <modifiers/>
@@ -1362,68 +1362,68 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">7:15</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">7:17</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">7:18</time>
+          <time station="Rübenkamp" type="normal" marked="0">7:17</time>
+          <time station="Alte Wöhr" type="normal" marked="0">7:18</time>
           <time station="Barmbek" type="normal" marked="1">7:21</time>
           <time station="Friedrichsberg" type="normal" marked="0">7:23</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">7:25</time>
           <time station="Hasselbrook" type="normal" marked="1">7:26</time>
           <time station="Landwehr" type="normal" marked="0">7:28</time>
           <time station="Berliner Tor" type="normal" marked="1">7:30</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">7:33</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">7:33</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">7:25</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">7:27</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">7:28</time>
+          <time station="Rübenkamp" type="normal" marked="0">7:27</time>
+          <time station="Alte Wöhr" type="normal" marked="0">7:28</time>
           <time station="Barmbek" type="normal" marked="1">7:31</time>
           <time station="Friedrichsberg" type="normal" marked="0">7:33</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">7:35</time>
           <time station="Hasselbrook" type="normal" marked="1">7:36</time>
           <time station="Landwehr" type="normal" marked="0">7:38</time>
           <time station="Berliner Tor" type="normal" marked="1">7:40</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">7:43</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">7:43</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">7:35</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">7:37</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">7:38</time>
+          <time station="Rübenkamp" type="normal" marked="0">7:37</time>
+          <time station="Alte Wöhr" type="normal" marked="0">7:38</time>
           <time station="Barmbek" type="normal" marked="1">7:41</time>
           <time station="Friedrichsberg" type="normal" marked="0">7:43</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">7:45</time>
           <time station="Hasselbrook" type="normal" marked="1">7:46</time>
           <time station="Landwehr" type="normal" marked="0">7:48</time>
           <time station="Berliner Tor" type="normal" marked="1">7:50</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">7:53</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">7:53</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">7:45</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">7:47</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">7:48</time>
+          <time station="Rübenkamp" type="normal" marked="0">7:47</time>
+          <time station="Alte Wöhr" type="normal" marked="0">7:48</time>
           <time station="Barmbek" type="normal" marked="1">7:51</time>
           <time station="Friedrichsberg" type="normal" marked="0">7:53</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">7:55</time>
           <time station="Hasselbrook" type="normal" marked="1">7:56</time>
           <time station="Landwehr" type="normal" marked="0">7:58</time>
           <time station="Berliner Tor" type="normal" marked="1">8:00</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">8:03</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">8:03</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">7:34</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">7:37</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">7:40</time>
+          <time station="Dammtor" type="normal" marked="0">7:37</time>
+          <time station="Sternschanze" type="normal" marked="1">7:40</time>
           <time station="Holstenstraße" type="normal" marked="0">7:42</time>
           <time station="Altona" type="normal" marked="1">7:46</time>
         </times>
@@ -1432,8 +1432,8 @@
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">7:44</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">7:47</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">7:50</time>
+          <time station="Dammtor" type="normal" marked="0">7:47</time>
+          <time station="Sternschanze" type="normal" marked="1">7:50</time>
           <time station="Holstenstraße" type="normal" marked="0">7:52</time>
           <time station="Altona" type="normal" marked="1">7:56</time>
         </times>
@@ -1442,8 +1442,8 @@
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">7:54</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">7:57</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">8:00</time>
+          <time station="Dammtor" type="normal" marked="0">7:57</time>
+          <time station="Sternschanze" type="normal" marked="1">8:00</time>
           <time station="Holstenstraße" type="normal" marked="0">8:02</time>
           <time station="Altona" type="normal" marked="1">8:06</time>
         </times>
@@ -1452,8 +1452,8 @@
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">8:04</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">8:07</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">8:10</time>
+          <time station="Dammtor" type="normal" marked="0">8:07</time>
+          <time station="Sternschanze" type="normal" marked="1">8:10</time>
           <time station="Holstenstraße" type="normal" marked="0">8:12</time>
           <time station="Altona" type="normal" marked="1">8:16</time>
         </times>
@@ -1464,7 +1464,7 @@
           <time station="Altona" type="normal" marked="1">7:47</time>
           <time station="Bahrenfeld" type="normal" marked="0">7:50</time>
           <time station="Othmarschen" type="normal" marked="1">7:52</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">7:55</time>
+          <time station="Klein Flottbek" type="normal" marked="0">7:55</time>
           <time station="Hochkamp" type="normal" marked="0">7:57</time>
           <time station="Blankenese" type="normal" marked="1">8:00</time>
         </times>
@@ -1475,7 +1475,7 @@
           <time station="Altona" type="normal" marked="1">7:57</time>
           <time station="Bahrenfeld" type="normal" marked="0">8:00</time>
           <time station="Othmarschen" type="normal" marked="1">8:02</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">8:05</time>
+          <time station="Klein Flottbek" type="normal" marked="0">8:05</time>
           <time station="Hochkamp" type="normal" marked="0">8:07</time>
           <time station="Blankenese" type="normal" marked="1">8:10</time>
         </times>
@@ -1486,7 +1486,7 @@
           <time station="Altona" type="normal" marked="1">8:07</time>
           <time station="Bahrenfeld" type="normal" marked="0">8:10</time>
           <time station="Othmarschen" type="normal" marked="1">8:12</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">8:15</time>
+          <time station="Klein Flottbek" type="normal" marked="0">8:15</time>
           <time station="Hochkamp" type="normal" marked="0">8:17</time>
           <time station="Blankenese" type="normal" marked="1">8:20</time>
         </times>
@@ -1497,7 +1497,7 @@
           <time station="Altona" type="normal" marked="1">8:17</time>
           <time station="Bahrenfeld" type="normal" marked="0">8:20</time>
           <time station="Othmarschen" type="normal" marked="1">8:22</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">8:25</time>
+          <time station="Klein Flottbek" type="normal" marked="0">8:25</time>
           <time station="Hochkamp" type="normal" marked="0">8:27</time>
           <time station="Blankenese" type="normal" marked="1">8:30</time>
         </times>
@@ -1508,25 +1508,25 @@
           <time station="Poppenbüttel" type="minutes" marked="1">7:44</time>
           <time station="Wellingsbüttel" type="minutes" marked="0">7:46</time>
           <time station="Hoheneichen" type="minutes" marked="0">7:48</time>
-          <time station="Kornweg (Klein Borstel)" type="minutes" marked="0">7:49</time>
+          <time station="Kornweg" type="minutes" marked="0">7:49</time>
           <time station="Ohlsdorf" type="minutes" marked="1">7:52</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">7:57</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">7:58</time>
+          <time station="Rübenkamp" type="minutes" marked="0">7:57</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">7:58</time>
           <time station="Barmbek" type="minutes" marked="1">8:01</time>
           <time station="Friedrichsberg" type="minutes" marked="0">8:03</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">8:05</time>
           <time station="Hasselbrook" type="minutes" marked="1">8:06</time>
           <time station="Landwehr" type="minutes" marked="0">8:08</time>
           <time station="Berliner Tor" type="minutes" marked="1">8:10</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">8:13</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">8:13</time>
           <time station="Hauptbahnhof" type="minutes" marked="1">8:14</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">8:17</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">8:20</time>
+          <time station="Dammtor" type="minutes" marked="0">8:17</time>
+          <time station="Sternschanze" type="minutes" marked="1">8:20</time>
           <time station="Holstenstraße" type="minutes" marked="0">8:22</time>
           <time station="Altona" type="minutes" marked="1">8:26</time>
           <time station="Bahrenfeld" type="minutes" marked="0">8:30</time>
           <time station="Othmarschen" type="minutes" marked="1">8:32</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">8:35</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">8:35</time>
           <time station="Hochkamp" type="minutes" marked="0">8:37</time>
           <time station="Blankenese" type="minutes" marked="1">8:40</time>
         </times>
@@ -1537,7 +1537,7 @@
           <time station="Poppenbüttel" type="normal" marked="1">7:54</time>
           <time station="Wellingsbüttel" type="normal" marked="0">7:56</time>
           <time station="Hoheneichen" type="normal" marked="0">7:58</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">7:59</time>
+          <time station="Kornweg" type="normal" marked="0">7:59</time>
           <time station="Ohlsdorf" type="normal" marked="1">8:02</time>
         </times>
         <modifiers/>
@@ -1547,7 +1547,7 @@
           <time station="Poppenbüttel" type="normal" marked="1">8:04</time>
           <time station="Wellingsbüttel" type="normal" marked="0">8:06</time>
           <time station="Hoheneichen" type="normal" marked="0">8:08</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">8:09</time>
+          <time station="Kornweg" type="normal" marked="0">8:09</time>
           <time station="Ohlsdorf" type="normal" marked="1">8:12</time>
         </times>
         <modifiers/>
@@ -1557,7 +1557,7 @@
           <time station="Poppenbüttel" type="normal" marked="1">8:14</time>
           <time station="Wellingsbüttel" type="normal" marked="0">8:16</time>
           <time station="Hoheneichen" type="normal" marked="0">8:18</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">8:19</time>
+          <time station="Kornweg" type="normal" marked="0">8:19</time>
           <time station="Ohlsdorf" type="normal" marked="1">8:22</time>
         </times>
         <modifiers/>
@@ -1565,53 +1565,53 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">8:05</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">8:07</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">8:08</time>
+          <time station="Rübenkamp" type="normal" marked="0">8:07</time>
+          <time station="Alte Wöhr" type="normal" marked="0">8:08</time>
           <time station="Barmbek" type="normal" marked="1">8:11</time>
           <time station="Friedrichsberg" type="normal" marked="0">8:13</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">8:15</time>
           <time station="Hasselbrook" type="normal" marked="1">8:16</time>
           <time station="Landwehr" type="normal" marked="0">8:18</time>
           <time station="Berliner Tor" type="normal" marked="1">8:20</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">8:23</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">8:23</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">8:15</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">8:17</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">8:18</time>
+          <time station="Rübenkamp" type="normal" marked="0">8:17</time>
+          <time station="Alte Wöhr" type="normal" marked="0">8:18</time>
           <time station="Barmbek" type="normal" marked="1">8:21</time>
           <time station="Friedrichsberg" type="normal" marked="0">8:23</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">8:25</time>
           <time station="Hasselbrook" type="normal" marked="1">8:26</time>
           <time station="Landwehr" type="normal" marked="0">8:28</time>
           <time station="Berliner Tor" type="normal" marked="1">8:30</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">8:33</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">8:33</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">8:25</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">8:27</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">8:28</time>
+          <time station="Rübenkamp" type="normal" marked="0">8:27</time>
+          <time station="Alte Wöhr" type="normal" marked="0">8:28</time>
           <time station="Barmbek" type="normal" marked="1">8:31</time>
           <time station="Friedrichsberg" type="normal" marked="0">8:33</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">8:35</time>
           <time station="Hasselbrook" type="normal" marked="1">8:36</time>
           <time station="Landwehr" type="normal" marked="0">8:38</time>
           <time station="Berliner Tor" type="normal" marked="1">8:40</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">8:43</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">8:43</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">8:24</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">8:27</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">8:30</time>
+          <time station="Dammtor" type="normal" marked="0">8:27</time>
+          <time station="Sternschanze" type="normal" marked="1">8:30</time>
           <time station="Holstenstraße" type="normal" marked="0">8:32</time>
           <time station="Altona" type="normal" marked="1">8:36</time>
         </times>
@@ -1620,8 +1620,8 @@
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">8:34</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">8:37</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">8:40</time>
+          <time station="Dammtor" type="normal" marked="0">8:37</time>
+          <time station="Sternschanze" type="normal" marked="1">8:40</time>
           <time station="Holstenstraße" type="normal" marked="0">8:42</time>
           <time station="Altona" type="normal" marked="1">8:46</time>
         </times>
@@ -1630,8 +1630,8 @@
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">8:44</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">8:47</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">8:50</time>
+          <time station="Dammtor" type="normal" marked="0">8:47</time>
+          <time station="Sternschanze" type="normal" marked="1">8:50</time>
           <time station="Holstenstraße" type="normal" marked="0">8:52</time>
           <time station="Altona" type="normal" marked="1">8:56</time>
         </times>
@@ -1642,20 +1642,20 @@
           <time station="Poppenbüttel" type="minutes" marked="1">8:24</time>
           <time station="Wellingsbüttel" type="minutes" marked="0">8:26</time>
           <time station="Hoheneichen" type="minutes" marked="0">8:28</time>
-          <time station="Kornweg (Klein Borstel)" type="minutes" marked="0">8:29</time>
+          <time station="Kornweg" type="minutes" marked="0">8:29</time>
           <time station="Ohlsdorf" type="minutes" marked="1">8:32</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">8:37</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">8:38</time>
+          <time station="Rübenkamp" type="minutes" marked="0">8:37</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">8:38</time>
           <time station="Barmbek" type="minutes" marked="1">8:41</time>
           <time station="Friedrichsberg" type="minutes" marked="0">8:43</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">8:45</time>
           <time station="Hasselbrook" type="minutes" marked="1">8:46</time>
           <time station="Landwehr" type="minutes" marked="0">8:48</time>
           <time station="Berliner Tor" type="minutes" marked="1">8:50</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">8:53</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">8:53</time>
           <time station="Hauptbahnhof" type="minutes" marked="1">8:54</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">8:57</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">9:00</time>
+          <time station="Dammtor" type="minutes" marked="0">8:57</time>
+          <time station="Sternschanze" type="minutes" marked="1">9:00</time>
           <time station="Holstenstraße" type="minutes" marked="0">9:02</time>
           <time station="Altona" type="minutes" marked="1">9:06</time>
         </times>
@@ -1669,15 +1669,15 @@
           <time station="Hasselbrook" type="minutes" marked="1">15:06</time>
           <time station="Landwehr" type="minutes" marked="0">15:08</time>
           <time station="Berliner Tor" type="minutes" marked="1">15:10</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">15:13</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">15:13</time>
           <time station="Hauptbahnhof" type="minutes" marked="1">15:14</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">15:17</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">15:20</time>
+          <time station="Dammtor" type="minutes" marked="0">15:17</time>
+          <time station="Sternschanze" type="minutes" marked="1">15:20</time>
           <time station="Holstenstraße" type="minutes" marked="0">15:22</time>
           <time station="Altona" type="minutes" marked="1">15:26</time>
           <time station="Bahrenfeld" type="minutes" marked="0">15:30</time>
           <time station="Othmarschen" type="minutes" marked="1">15:32</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">15:35</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">15:35</time>
           <time station="Hochkamp" type="minutes" marked="0">15:37</time>
           <time station="Blankenese" type="minutes" marked="1">15:40</time>
         </times>
@@ -1691,15 +1691,15 @@
           <time station="Hasselbrook" type="minutes" marked="1">15:16</time>
           <time station="Landwehr" type="minutes" marked="0">15:18</time>
           <time station="Berliner Tor" type="minutes" marked="1">15:20</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">15:23</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">15:23</time>
           <time station="Hauptbahnhof" type="minutes" marked="1">15:24</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">15:27</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">15:30</time>
+          <time station="Dammtor" type="minutes" marked="0">15:27</time>
+          <time station="Sternschanze" type="minutes" marked="1">15:30</time>
           <time station="Holstenstraße" type="minutes" marked="0">15:32</time>
           <time station="Altona" type="minutes" marked="1">15:36</time>
           <time station="Bahrenfeld" type="minutes" marked="0">15:40</time>
           <time station="Othmarschen" type="minutes" marked="1">15:42</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">15:45</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">15:45</time>
           <time station="Hochkamp" type="minutes" marked="0">15:47</time>
           <time station="Blankenese" type="minutes" marked="1">15:50</time>
         </times>
@@ -1713,15 +1713,15 @@
           <time station="Hasselbrook" type="minutes" marked="1">15:26</time>
           <time station="Landwehr" type="minutes" marked="0">15:28</time>
           <time station="Berliner Tor" type="minutes" marked="1">15:30</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">15:33</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">15:33</time>
           <time station="Hauptbahnhof" type="minutes" marked="1">15:34</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">15:37</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">15:40</time>
+          <time station="Dammtor" type="minutes" marked="0">15:37</time>
+          <time station="Sternschanze" type="minutes" marked="1">15:40</time>
           <time station="Holstenstraße" type="minutes" marked="0">15:42</time>
           <time station="Altona" type="minutes" marked="1">15:46</time>
           <time station="Bahrenfeld" type="minutes" marked="0">15:50</time>
           <time station="Othmarschen" type="minutes" marked="1">15:52</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">15:55</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">15:55</time>
           <time station="Hochkamp" type="minutes" marked="0">15:57</time>
           <time station="Blankenese" type="minutes" marked="1">16:00</time>
         </times>
@@ -1730,23 +1730,23 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="minutes" marked="1">15:25</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">15:27</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">15:28</time>
+          <time station="Rübenkamp" type="minutes" marked="0">15:27</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">15:28</time>
           <time station="Barmbek" type="minutes" marked="1">15:31</time>
           <time station="Friedrichsberg" type="minutes" marked="0">15:33</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">15:35</time>
           <time station="Hasselbrook" type="minutes" marked="1">15:36</time>
           <time station="Landwehr" type="minutes" marked="0">15:38</time>
           <time station="Berliner Tor" type="minutes" marked="1">15:40</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">15:43</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">15:43</time>
           <time station="Hauptbahnhof" type="minutes" marked="1">15:44</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">15:47</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">15:50</time>
+          <time station="Dammtor" type="minutes" marked="0">15:47</time>
+          <time station="Sternschanze" type="minutes" marked="1">15:50</time>
           <time station="Holstenstraße" type="minutes" marked="0">15:52</time>
           <time station="Altona" type="minutes" marked="1">15:56</time>
           <time station="Bahrenfeld" type="minutes" marked="0">16:00</time>
           <time station="Othmarschen" type="minutes" marked="1">16:02</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">16:05</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">16:05</time>
           <time station="Hochkamp" type="minutes" marked="0">16:07</time>
           <time station="Blankenese" type="minutes" marked="1">16:10</time>
         </times>
@@ -1755,38 +1755,38 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">15:35</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">15:37</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">15:38</time>
+          <time station="Rübenkamp" type="normal" marked="0">15:37</time>
+          <time station="Alte Wöhr" type="normal" marked="0">15:38</time>
           <time station="Barmbek" type="normal" marked="1">15:41</time>
           <time station="Friedrichsberg" type="normal" marked="0">15:43</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">15:45</time>
           <time station="Hasselbrook" type="normal" marked="1">15:46</time>
           <time station="Landwehr" type="normal" marked="0">15:48</time>
           <time station="Berliner Tor" type="normal" marked="1">15:50</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">15:53</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">15:53</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">15:45</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">15:47</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">15:48</time>
+          <time station="Rübenkamp" type="normal" marked="0">15:47</time>
+          <time station="Alte Wöhr" type="normal" marked="0">15:48</time>
           <time station="Barmbek" type="normal" marked="1">15:51</time>
           <time station="Friedrichsberg" type="normal" marked="0">15:53</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">15:55</time>
           <time station="Hasselbrook" type="normal" marked="1">15:56</time>
           <time station="Landwehr" type="normal" marked="0">15:58</time>
           <time station="Berliner Tor" type="normal" marked="1">16:00</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">16:03</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">16:03</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">15:54</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">15:57</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">16:00</time>
+          <time station="Dammtor" type="normal" marked="0">15:57</time>
+          <time station="Sternschanze" type="normal" marked="1">16:00</time>
           <time station="Holstenstraße" type="normal" marked="0">16:02</time>
           <time station="Altona" type="normal" marked="1">16:06</time>
         </times>
@@ -1795,8 +1795,8 @@
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">16:04</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">16:07</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">16:10</time>
+          <time station="Dammtor" type="normal" marked="0">16:07</time>
+          <time station="Sternschanze" type="normal" marked="1">16:10</time>
           <time station="Holstenstraße" type="normal" marked="0">16:12</time>
           <time station="Altona" type="normal" marked="1">16:16</time>
         </times>
@@ -1807,7 +1807,7 @@
           <time station="Altona" type="normal" marked="1">16:07</time>
           <time station="Bahrenfeld" type="normal" marked="0">16:10</time>
           <time station="Othmarschen" type="normal" marked="1">16:12</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">16:15</time>
+          <time station="Klein Flottbek" type="normal" marked="0">16:15</time>
           <time station="Hochkamp" type="normal" marked="0">16:17</time>
           <time station="Blankenese" type="normal" marked="1">16:20</time>
         </times>
@@ -1818,7 +1818,7 @@
           <time station="Altona" type="normal" marked="1">16:17</time>
           <time station="Bahrenfeld" type="normal" marked="0">16:20</time>
           <time station="Othmarschen" type="normal" marked="1">16:22</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">16:25</time>
+          <time station="Klein Flottbek" type="normal" marked="0">16:25</time>
           <time station="Hochkamp" type="normal" marked="0">16:27</time>
           <time station="Blankenese" type="normal" marked="1">16:30</time>
         </times>
@@ -1827,23 +1827,23 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="minutes" marked="1">15:55</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">15:57</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">15:58</time>
+          <time station="Rübenkamp" type="minutes" marked="0">15:57</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">15:58</time>
           <time station="Barmbek" type="minutes" marked="1">16:01</time>
           <time station="Friedrichsberg" type="minutes" marked="0">16:03</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">16:05</time>
           <time station="Hasselbrook" type="minutes" marked="1">16:06</time>
           <time station="Landwehr" type="minutes" marked="0">16:08</time>
           <time station="Berliner Tor" type="minutes" marked="1">16:10</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">16:13</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">16:13</time>
           <time station="Hauptbahnhof" type="minutes" marked="1">16:14</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">16:17</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">16:20</time>
+          <time station="Dammtor" type="minutes" marked="0">16:17</time>
+          <time station="Sternschanze" type="minutes" marked="1">16:20</time>
           <time station="Holstenstraße" type="minutes" marked="0">16:22</time>
           <time station="Altona" type="minutes" marked="1">16:26</time>
           <time station="Bahrenfeld" type="minutes" marked="0">16:30</time>
           <time station="Othmarschen" type="minutes" marked="1">16:32</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">16:35</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">16:35</time>
           <time station="Hochkamp" type="minutes" marked="0">16:37</time>
           <time station="Blankenese" type="minutes" marked="1">16:40</time>
         </times>
@@ -1854,25 +1854,25 @@
           <time station="Poppenbüttel" type="minutes" marked="1">15:54</time>
           <time station="Wellingsbüttel" type="minutes" marked="0">15:56</time>
           <time station="Hoheneichen" type="minutes" marked="0">15:58</time>
-          <time station="Kornweg (Klein Borstel)" type="minutes" marked="0">15:59</time>
+          <time station="Kornweg" type="minutes" marked="0">15:59</time>
           <time station="Ohlsdorf" type="minutes" marked="1">16:02</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">16:07</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">16:08</time>
+          <time station="Rübenkamp" type="minutes" marked="0">16:07</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">16:08</time>
           <time station="Barmbek" type="minutes" marked="1">16:11</time>
           <time station="Friedrichsberg" type="minutes" marked="0">16:13</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">16:15</time>
           <time station="Hasselbrook" type="minutes" marked="1">16:16</time>
           <time station="Landwehr" type="minutes" marked="0">16:18</time>
           <time station="Berliner Tor" type="minutes" marked="1">16:20</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">16:23</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">16:23</time>
           <time station="Hauptbahnhof" type="minutes" marked="1">16:24</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">16:27</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">16:30</time>
+          <time station="Dammtor" type="minutes" marked="0">16:27</time>
+          <time station="Sternschanze" type="minutes" marked="1">16:30</time>
           <time station="Holstenstraße" type="minutes" marked="0">16:32</time>
           <time station="Altona" type="minutes" marked="1">16:36</time>
           <time station="Bahrenfeld" type="minutes" marked="0">16:40</time>
           <time station="Othmarschen" type="minutes" marked="1">16:42</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">16:45</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">16:45</time>
           <time station="Hochkamp" type="minutes" marked="0">16:47</time>
           <time station="Blankenese" type="minutes" marked="1">16:50</time>
         </times>
@@ -1883,7 +1883,7 @@
           <time station="Poppenbüttel" type="normal" marked="1">16:04</time>
           <time station="Wellingsbüttel" type="normal" marked="0">16:06</time>
           <time station="Hoheneichen" type="normal" marked="0">16:08</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">16:09</time>
+          <time station="Kornweg" type="normal" marked="0">16:09</time>
           <time station="Ohlsdorf" type="normal" marked="1">16:12</time>
         </times>
         <modifiers/>
@@ -1893,7 +1893,7 @@
           <time station="Poppenbüttel" type="normal" marked="1">16:14</time>
           <time station="Wellingsbüttel" type="normal" marked="0">16:16</time>
           <time station="Hoheneichen" type="normal" marked="0">16:18</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">16:19</time>
+          <time station="Kornweg" type="normal" marked="0">16:19</time>
           <time station="Ohlsdorf" type="normal" marked="1">16:22</time>
         </times>
         <modifiers/>
@@ -1903,7 +1903,7 @@
           <time station="Poppenbüttel" type="normal" marked="1">16:24</time>
           <time station="Wellingsbüttel" type="normal" marked="0">16:26</time>
           <time station="Hoheneichen" type="normal" marked="0">16:28</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">16:29</time>
+          <time station="Kornweg" type="normal" marked="0">16:29</time>
           <time station="Ohlsdorf" type="normal" marked="1">16:32</time>
         </times>
         <modifiers/>
@@ -1913,7 +1913,7 @@
           <time station="Poppenbüttel" type="normal" marked="1">16:34</time>
           <time station="Wellingsbüttel" type="normal" marked="0">16:36</time>
           <time station="Hoheneichen" type="normal" marked="0">16:38</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">16:39</time>
+          <time station="Kornweg" type="normal" marked="0">16:39</time>
           <time station="Ohlsdorf" type="normal" marked="1">16:42</time>
         </times>
         <modifiers/>
@@ -1923,7 +1923,7 @@
           <time station="Poppenbüttel" type="normal" marked="1">16:44</time>
           <time station="Wellingsbüttel" type="normal" marked="0">16:46</time>
           <time station="Hoheneichen" type="normal" marked="0">16:48</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">16:49</time>
+          <time station="Kornweg" type="normal" marked="0">16:49</time>
           <time station="Ohlsdorf" type="normal" marked="1">16:52</time>
         </times>
         <modifiers/>
@@ -1933,7 +1933,7 @@
           <time station="Poppenbüttel" type="normal" marked="1">16:54</time>
           <time station="Wellingsbüttel" type="normal" marked="0">16:56</time>
           <time station="Hoheneichen" type="normal" marked="0">16:58</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">16:59</time>
+          <time station="Kornweg" type="normal" marked="0">16:59</time>
           <time station="Ohlsdorf" type="normal" marked="1">17:02</time>
         </times>
         <modifiers/>
@@ -1943,7 +1943,7 @@
           <time station="Poppenbüttel" type="normal" marked="1">17:04</time>
           <time station="Wellingsbüttel" type="normal" marked="0">17:06</time>
           <time station="Hoheneichen" type="normal" marked="0">17:08</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">17:09</time>
+          <time station="Kornweg" type="normal" marked="0">17:09</time>
           <time station="Ohlsdorf" type="normal" marked="1">17:12</time>
         </times>
         <modifiers/>
@@ -1953,7 +1953,7 @@
           <time station="Poppenbüttel" type="normal" marked="1">17:14</time>
           <time station="Wellingsbüttel" type="normal" marked="0">17:16</time>
           <time station="Hoheneichen" type="normal" marked="0">17:18</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">17:19</time>
+          <time station="Kornweg" type="normal" marked="0">17:19</time>
           <time station="Ohlsdorf" type="normal" marked="1">17:22</time>
         </times>
         <modifiers/>
@@ -1963,7 +1963,7 @@
           <time station="Poppenbüttel" type="normal" marked="1">17:24</time>
           <time station="Wellingsbüttel" type="normal" marked="0">17:26</time>
           <time station="Hoheneichen" type="normal" marked="0">17:28</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">17:29</time>
+          <time station="Kornweg" type="normal" marked="0">17:29</time>
           <time station="Ohlsdorf" type="normal" marked="1">17:32</time>
         </times>
         <modifiers/>
@@ -1973,7 +1973,7 @@
           <time station="Poppenbüttel" type="normal" marked="1">17:34</time>
           <time station="Wellingsbüttel" type="normal" marked="0">17:36</time>
           <time station="Hoheneichen" type="normal" marked="0">17:38</time>
-          <time station="Kornweg (Klein Borstel)" type="normal" marked="0">17:39</time>
+          <time station="Kornweg" type="normal" marked="0">17:39</time>
           <time station="Ohlsdorf" type="normal" marked="1">17:42</time>
         </times>
         <modifiers/>
@@ -1981,158 +1981,158 @@
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">16:15</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">16:17</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">16:18</time>
+          <time station="Rübenkamp" type="normal" marked="0">16:17</time>
+          <time station="Alte Wöhr" type="normal" marked="0">16:18</time>
           <time station="Barmbek" type="normal" marked="1">16:21</time>
           <time station="Friedrichsberg" type="normal" marked="0">16:23</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">16:25</time>
           <time station="Hasselbrook" type="normal" marked="1">16:26</time>
           <time station="Landwehr" type="normal" marked="0">16:28</time>
           <time station="Berliner Tor" type="normal" marked="1">16:30</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">16:33</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">16:33</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">16:25</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">16:27</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">16:28</time>
+          <time station="Rübenkamp" type="normal" marked="0">16:27</time>
+          <time station="Alte Wöhr" type="normal" marked="0">16:28</time>
           <time station="Barmbek" type="normal" marked="1">16:31</time>
           <time station="Friedrichsberg" type="normal" marked="0">16:33</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">16:35</time>
           <time station="Hasselbrook" type="normal" marked="1">16:36</time>
           <time station="Landwehr" type="normal" marked="0">16:38</time>
           <time station="Berliner Tor" type="normal" marked="1">16:40</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">16:43</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">16:43</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">16:35</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">16:37</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">16:38</time>
+          <time station="Rübenkamp" type="normal" marked="0">16:37</time>
+          <time station="Alte Wöhr" type="normal" marked="0">16:38</time>
           <time station="Barmbek" type="normal" marked="1">16:41</time>
           <time station="Friedrichsberg" type="normal" marked="0">16:43</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">16:45</time>
           <time station="Hasselbrook" type="normal" marked="1">16:46</time>
           <time station="Landwehr" type="normal" marked="0">16:48</time>
           <time station="Berliner Tor" type="normal" marked="1">16:50</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">16:53</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">16:53</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">16:45</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">16:47</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">16:48</time>
+          <time station="Rübenkamp" type="normal" marked="0">16:47</time>
+          <time station="Alte Wöhr" type="normal" marked="0">16:48</time>
           <time station="Barmbek" type="normal" marked="1">16:51</time>
           <time station="Friedrichsberg" type="normal" marked="0">16:53</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">16:55</time>
           <time station="Hasselbrook" type="normal" marked="1">16:56</time>
           <time station="Landwehr" type="normal" marked="0">16:58</time>
           <time station="Berliner Tor" type="normal" marked="1">17:00</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">17:03</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">17:03</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">16:55</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">16:57</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">16:58</time>
+          <time station="Rübenkamp" type="normal" marked="0">16:57</time>
+          <time station="Alte Wöhr" type="normal" marked="0">16:58</time>
           <time station="Barmbek" type="normal" marked="1">17:01</time>
           <time station="Friedrichsberg" type="normal" marked="0">17:03</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">17:05</time>
           <time station="Hasselbrook" type="normal" marked="1">17:06</time>
           <time station="Landwehr" type="normal" marked="0">17:08</time>
           <time station="Berliner Tor" type="normal" marked="1">17:10</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">17:13</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">17:13</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">17:05</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">17:07</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">17:08</time>
+          <time station="Rübenkamp" type="normal" marked="0">17:07</time>
+          <time station="Alte Wöhr" type="normal" marked="0">17:08</time>
           <time station="Barmbek" type="normal" marked="1">17:11</time>
           <time station="Friedrichsberg" type="normal" marked="0">17:13</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">17:15</time>
           <time station="Hasselbrook" type="normal" marked="1">17:16</time>
           <time station="Landwehr" type="normal" marked="0">17:18</time>
           <time station="Berliner Tor" type="normal" marked="1">17:20</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">17:23</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">17:23</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">17:15</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">17:17</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">17:18</time>
+          <time station="Rübenkamp" type="normal" marked="0">17:17</time>
+          <time station="Alte Wöhr" type="normal" marked="0">17:18</time>
           <time station="Barmbek" type="normal" marked="1">17:21</time>
           <time station="Friedrichsberg" type="normal" marked="0">17:23</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">17:25</time>
           <time station="Hasselbrook" type="normal" marked="1">17:26</time>
           <time station="Landwehr" type="normal" marked="0">17:28</time>
           <time station="Berliner Tor" type="normal" marked="1">17:30</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">17:33</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">17:33</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">17:25</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">17:27</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">17:28</time>
+          <time station="Rübenkamp" type="normal" marked="0">17:27</time>
+          <time station="Alte Wöhr" type="normal" marked="0">17:28</time>
           <time station="Barmbek" type="normal" marked="1">17:31</time>
           <time station="Friedrichsberg" type="normal" marked="0">17:33</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">17:35</time>
           <time station="Hasselbrook" type="normal" marked="1">17:36</time>
           <time station="Landwehr" type="normal" marked="0">17:38</time>
           <time station="Berliner Tor" type="normal" marked="1">17:40</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">17:43</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">17:43</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">17:35</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">17:37</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">17:38</time>
+          <time station="Rübenkamp" type="normal" marked="0">17:37</time>
+          <time station="Alte Wöhr" type="normal" marked="0">17:38</time>
           <time station="Barmbek" type="normal" marked="1">17:41</time>
           <time station="Friedrichsberg" type="normal" marked="0">17:43</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">17:45</time>
           <time station="Hasselbrook" type="normal" marked="1">17:46</time>
           <time station="Landwehr" type="normal" marked="0">17:48</time>
           <time station="Berliner Tor" type="normal" marked="1">17:50</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">17:53</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">17:53</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Ohlsdorf" type="normal" marked="1">17:45</time>
-          <time station="Rübenkamp (City Nord)" type="normal" marked="0">17:47</time>
-          <time station="Alte Wöhr (Stadtpark)" type="normal" marked="0">17:48</time>
+          <time station="Rübenkamp" type="normal" marked="0">17:47</time>
+          <time station="Alte Wöhr" type="normal" marked="0">17:48</time>
           <time station="Barmbek" type="normal" marked="1">17:51</time>
           <time station="Friedrichsberg" type="normal" marked="0">17:53</time>
           <time station="Wandsbeker Chaussee" type="normal" marked="0">17:55</time>
           <time station="Hasselbrook" type="normal" marked="1">17:56</time>
           <time station="Landwehr" type="normal" marked="0">17:58</time>
           <time station="Berliner Tor" type="normal" marked="1">18:00</time>
-          <time station="Hauptbahnhof." type="normal" marked="0">18:03</time>
+          <time station="Hauptbahnhof" type="normal" marked="0">18:03</time>
         </times>
         <modifiers/>
       </timetable>
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">16:34</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">16:37</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">16:40</time>
+          <time station="Dammtor" type="normal" marked="0">16:37</time>
+          <time station="Sternschanze" type="normal" marked="1">16:40</time>
           <time station="Holstenstraße" type="normal" marked="0">16:42</time>
           <time station="Altona" type="normal" marked="1">16:46</time>
         </times>
@@ -2141,8 +2141,8 @@
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">16:44</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">16:47</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">16:50</time>
+          <time station="Dammtor" type="normal" marked="0">16:47</time>
+          <time station="Sternschanze" type="normal" marked="1">16:50</time>
           <time station="Holstenstraße" type="normal" marked="0">16:52</time>
           <time station="Altona" type="normal" marked="1">16:56</time>
         </times>
@@ -2151,8 +2151,8 @@
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">16:54</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">16:57</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">17:00</time>
+          <time station="Dammtor" type="normal" marked="0">16:57</time>
+          <time station="Sternschanze" type="normal" marked="1">17:00</time>
           <time station="Holstenstraße" type="normal" marked="0">17:02</time>
           <time station="Altona" type="normal" marked="1">17:06</time>
         </times>
@@ -2161,8 +2161,8 @@
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">17:04</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">17:07</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">17:10</time>
+          <time station="Dammtor" type="normal" marked="0">17:07</time>
+          <time station="Sternschanze" type="normal" marked="1">17:10</time>
           <time station="Holstenstraße" type="normal" marked="0">17:12</time>
           <time station="Altona" type="normal" marked="1">17:16</time>
         </times>
@@ -2171,8 +2171,8 @@
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">17:14</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">17:17</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">17:20</time>
+          <time station="Dammtor" type="normal" marked="0">17:17</time>
+          <time station="Sternschanze" type="normal" marked="1">17:20</time>
           <time station="Holstenstraße" type="normal" marked="0">17:22</time>
           <time station="Altona" type="normal" marked="1">17:26</time>
         </times>
@@ -2181,8 +2181,8 @@
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">17:24</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">17:27</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">17:30</time>
+          <time station="Dammtor" type="normal" marked="0">17:27</time>
+          <time station="Sternschanze" type="normal" marked="1">17:30</time>
           <time station="Holstenstraße" type="normal" marked="0">17:32</time>
           <time station="Altona" type="normal" marked="1">17:36</time>
         </times>
@@ -2191,8 +2191,8 @@
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">17:34</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">17:37</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">17:40</time>
+          <time station="Dammtor" type="normal" marked="0">17:37</time>
+          <time station="Sternschanze" type="normal" marked="1">17:40</time>
           <time station="Holstenstraße" type="normal" marked="0">17:42</time>
           <time station="Altona" type="normal" marked="1">17:46</time>
         </times>
@@ -2201,8 +2201,8 @@
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">17:44</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">17:47</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">17:50</time>
+          <time station="Dammtor" type="normal" marked="0">17:47</time>
+          <time station="Sternschanze" type="normal" marked="1">17:50</time>
           <time station="Holstenstraße" type="normal" marked="0">17:52</time>
           <time station="Altona" type="normal" marked="1">17:56</time>
         </times>
@@ -2211,8 +2211,8 @@
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">17:54</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">17:57</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">18:00</time>
+          <time station="Dammtor" type="normal" marked="0">17:57</time>
+          <time station="Sternschanze" type="normal" marked="1">18:00</time>
           <time station="Holstenstraße" type="normal" marked="0">18:02</time>
           <time station="Altona" type="normal" marked="1">18:06</time>
         </times>
@@ -2221,8 +2221,8 @@
       <timetable>
         <times>
           <time station="Hauptbahnhof" type="normal" marked="1">18:04</time>
-          <time station="Dammtor (Messe/CCH)" type="normal" marked="0">18:07</time>
-          <time station="Sternschanze (Messe)" type="normal" marked="1">18:10</time>
+          <time station="Dammtor" type="normal" marked="0">18:07</time>
+          <time station="Sternschanze" type="normal" marked="1">18:10</time>
           <time station="Holstenstraße" type="normal" marked="0">18:12</time>
           <time station="Altona" type="normal" marked="1">18:16</time>
         </times>
@@ -2233,7 +2233,7 @@
           <time station="Altona" type="normal" marked="1">16:47</time>
           <time station="Bahrenfeld" type="normal" marked="0">16:50</time>
           <time station="Othmarschen" type="normal" marked="1">16:52</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">16:55</time>
+          <time station="Klein Flottbek" type="normal" marked="0">16:55</time>
           <time station="Hochkamp" type="normal" marked="0">16:57</time>
           <time station="Blankenese" type="normal" marked="1">17:00</time>
         </times>
@@ -2244,7 +2244,7 @@
           <time station="Altona" type="normal" marked="1">16:57</time>
           <time station="Bahrenfeld" type="normal" marked="0">17:00</time>
           <time station="Othmarschen" type="normal" marked="1">17:02</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">17:05</time>
+          <time station="Klein Flottbek" type="normal" marked="0">17:05</time>
           <time station="Hochkamp" type="normal" marked="0">17:07</time>
           <time station="Blankenese" type="normal" marked="1">17:10</time>
         </times>
@@ -2255,7 +2255,7 @@
           <time station="Altona" type="normal" marked="1">17:07</time>
           <time station="Bahrenfeld" type="normal" marked="0">17:10</time>
           <time station="Othmarschen" type="normal" marked="1">17:12</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">17:15</time>
+          <time station="Klein Flottbek" type="normal" marked="0">17:15</time>
           <time station="Hochkamp" type="normal" marked="0">17:17</time>
           <time station="Blankenese" type="normal" marked="1">17:20</time>
         </times>
@@ -2266,7 +2266,7 @@
           <time station="Altona" type="normal" marked="1">17:17</time>
           <time station="Bahrenfeld" type="normal" marked="0">17:20</time>
           <time station="Othmarschen" type="normal" marked="1">17:22</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">17:25</time>
+          <time station="Klein Flottbek" type="normal" marked="0">17:25</time>
           <time station="Hochkamp" type="normal" marked="0">17:27</time>
           <time station="Blankenese" type="normal" marked="1">17:30</time>
         </times>
@@ -2277,7 +2277,7 @@
           <time station="Altona" type="normal" marked="1">17:27</time>
           <time station="Bahrenfeld" type="normal" marked="0">17:30</time>
           <time station="Othmarschen" type="normal" marked="1">17:32</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">17:35</time>
+          <time station="Klein Flottbek" type="normal" marked="0">17:35</time>
           <time station="Hochkamp" type="normal" marked="0">17:37</time>
           <time station="Blankenese" type="normal" marked="1">17:40</time>
         </times>
@@ -2288,7 +2288,7 @@
           <time station="Altona" type="normal" marked="1">17:37</time>
           <time station="Bahrenfeld" type="normal" marked="0">17:40</time>
           <time station="Othmarschen" type="normal" marked="1">17:42</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">17:45</time>
+          <time station="Klein Flottbek" type="normal" marked="0">17:45</time>
           <time station="Hochkamp" type="normal" marked="0">17:47</time>
           <time station="Blankenese" type="normal" marked="1">17:50</time>
         </times>
@@ -2299,7 +2299,7 @@
           <time station="Altona" type="normal" marked="1">17:47</time>
           <time station="Bahrenfeld" type="normal" marked="0">17:50</time>
           <time station="Othmarschen" type="normal" marked="1">17:52</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">17:55</time>
+          <time station="Klein Flottbek" type="normal" marked="0">17:55</time>
           <time station="Hochkamp" type="normal" marked="0">17:57</time>
           <time station="Blankenese" type="normal" marked="1">18:00</time>
         </times>
@@ -2310,7 +2310,7 @@
           <time station="Altona" type="normal" marked="1">17:57</time>
           <time station="Bahrenfeld" type="normal" marked="0">18:00</time>
           <time station="Othmarschen" type="normal" marked="1">18:02</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">18:05</time>
+          <time station="Klein Flottbek" type="normal" marked="0">18:05</time>
           <time station="Hochkamp" type="normal" marked="0">18:07</time>
           <time station="Blankenese" type="normal" marked="1">18:10</time>
         </times>
@@ -2321,7 +2321,7 @@
           <time station="Altona" type="normal" marked="1">18:07</time>
           <time station="Bahrenfeld" type="normal" marked="0">18:10</time>
           <time station="Othmarschen" type="normal" marked="1">18:12</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">18:15</time>
+          <time station="Klein Flottbek" type="normal" marked="0">18:15</time>
           <time station="Hochkamp" type="normal" marked="0">18:17</time>
           <time station="Blankenese" type="normal" marked="1">18:20</time>
         </times>
@@ -2332,7 +2332,7 @@
           <time station="Altona" type="normal" marked="1">18:17</time>
           <time station="Bahrenfeld" type="normal" marked="0">18:20</time>
           <time station="Othmarschen" type="normal" marked="1">18:22</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="normal" marked="0">18:25</time>
+          <time station="Klein Flottbek" type="normal" marked="0">18:25</time>
           <time station="Hochkamp" type="normal" marked="0">18:27</time>
           <time station="Blankenese" type="normal" marked="1">18:30</time>
         </times>
@@ -2343,25 +2343,25 @@
           <time station="Poppenbüttel" type="minutes" marked="1">17:44</time>
           <time station="Wellingsbüttel" type="minutes" marked="0">17:46</time>
           <time station="Hoheneichen" type="minutes" marked="0">17:48</time>
-          <time station="Kornweg (Klein Borstel)" type="minutes" marked="0">17:49</time>
+          <time station="Kornweg" type="minutes" marked="0">17:49</time>
           <time station="Ohlsdorf" type="minutes" marked="1">17:52</time>
-          <time station="Rübenkamp (City Nord)" type="minutes" marked="0">17:57</time>
-          <time station="Alte Wöhr (Stadtpark)" type="minutes" marked="0">17:58</time>
+          <time station="Rübenkamp" type="minutes" marked="0">17:57</time>
+          <time station="Alte Wöhr" type="minutes" marked="0">17:58</time>
           <time station="Barmbek" type="minutes" marked="1">18:01</time>
           <time station="Friedrichsberg" type="minutes" marked="0">18:03</time>
           <time station="Wandsbeker Chaussee" type="minutes" marked="0">18:05</time>
           <time station="Hasselbrook" type="minutes" marked="1">18:06</time>
           <time station="Landwehr" type="minutes" marked="0">18:08</time>
           <time station="Berliner Tor" type="minutes" marked="1">18:10</time>
-          <time station="Hauptbahnhof." type="minutes" marked="0">18:13</time>
+          <time station="Hauptbahnhof" type="minutes" marked="0">18:13</time>
           <time station="Hauptbahnhof" type="minutes" marked="1">18:14</time>
-          <time station="Dammtor (Messe/CCH)" type="minutes" marked="0">18:17</time>
-          <time station="Sternschanze (Messe)" type="minutes" marked="1">18:20</time>
+          <time station="Dammtor" type="minutes" marked="0">18:17</time>
+          <time station="Sternschanze" type="minutes" marked="1">18:20</time>
           <time station="Holstenstraße" type="minutes" marked="0">18:22</time>
           <time station="Altona" type="minutes" marked="1">18:26</time>
           <time station="Bahrenfeld" type="minutes" marked="0">18:30</time>
           <time station="Othmarschen" type="minutes" marked="1">18:32</time>
-          <time station="Klein Flottbek (Botanischer Garten)" type="minutes" marked="0">18:35</time>
+          <time station="Klein Flottbek" type="minutes" marked="0">18:35</time>
           <time station="Hochkamp" type="minutes" marked="0">18:37</time>
           <time station="Blankenese" type="minutes" marked="1">18:40</time>
         </times>

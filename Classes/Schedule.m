@@ -90,22 +90,27 @@
         [dateForm setDateFormat:@"HH:mm"];
         routes = [[NSMutableArray alloc] init];
         catalog = [[NSMutableDictionary alloc] init];
-        NSString *fn = nil;
-        if(path == nil)
-            fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
-        else 
-            fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml" inDirectory:path];
-        NSData *xmlData = [NSData dataWithContentsOfFile:fn];
-        NSXMLParser *parser = [[NSXMLParser alloc] initWithData:xmlData];
-        parser.delegate = self;
-        if(![parser parse]) {
-            NSLog(@"Can't load xml file: %@", fn);
-        }
-        [parser release];
-        [currentStation release];
-        currentStation = nil;
+        [self appendFile:fileName path:path];
     }
     return self;
+}
+
+-(void) appendFile:(NSString *)fileName path:(NSString *)path
+{
+    NSString *fn = nil;
+    if(path == nil)
+        fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
+    else 
+        fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml" inDirectory:path];
+    NSData *xmlData = [NSData dataWithContentsOfFile:fn];
+    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:xmlData];
+    parser.delegate = self;
+    if(![parser parse]) {
+        NSLog(@"Can't load xml file: %@", fn);
+    }
+    [parser release];
+    [currentStation release];
+    currentStation = nil;
 }
 
 -(void) dealloc
@@ -244,7 +249,12 @@
 {
     if([elementName isEqualToString:@"route"]) {
         NSString *lineName = [attributeDict valueForKey:@"route"];
-        SchLine *l = [[SchLine alloc] initWithName:lineName file:[attributeDict valueForKey:@"file"] path:_path];
+        SchLine *l = [lines valueForKey:lineName];
+        if(l == nil) {
+            l = [[SchLine alloc] initWithName:lineName file:[attributeDict valueForKey:@"file"] path:_path];
+        } else {
+            [l appendFile:[attributeDict valueForKey:@"file"] path:_path];
+        }
         [lines setValue:l forKey:lineName];
     }
 }
