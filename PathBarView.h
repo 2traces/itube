@@ -10,5 +10,6 @@
 
 @interface PathBarView : UIView 
 
+- (id)initWithFrame:(CGRect)frame path:(NSMutableArray*)thisPath number:(int)number overall:(int)overall;
 
 @end

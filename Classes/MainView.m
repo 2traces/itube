@@ -14,6 +14,7 @@
 #import "tubeAppDelegate.h"
 #import "ManagedObjects.h"
 #import "SettingsViewController.h"
+#import "SettingsNavController.h"
 
 NSInteger const toolbarHeight=44;
 NSInteger const toolbarWidth=320;
@@ -292,7 +293,7 @@ NSInteger const toolbarWidth=320;
 
 -(void) showSettings
 {
-    SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
+    SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];
     [self.vcontroller presentModalViewController:controller animated:YES];
     [controller release];
 }

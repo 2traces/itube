@@ -7,6 +7,8 @@
 //
 
 #import "Schedule.h"
+#import "tubeAppDelegate.h"
+#import "CityMap.h"
 
 /***** SchPoint *****/
 
@@ -101,7 +103,8 @@
     if(path == nil)
         fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
     else 
-        fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml" inDirectory:path];
+        fn = [NSString stringWithFormat:@"%@/%@.xml",path,fileName];
+    // fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml" inDirectory:path];
     NSData *xmlData = [NSData dataWithContentsOfFile:fn];
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:xmlData];
     parser.delegate = self;
@@ -190,7 +193,12 @@
         if(path == nil) 
             fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
         else {
-            fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml" inDirectory:path];
+            fn = [NSString stringWithFormat:@"%@/%@.xml",path,fileName];
+            //fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml" inDirectory:path];
+        }
+        if(fn == nil) {
+            [self release];
+            return nil;
         }
         if(fn == nil) {
             [self release];

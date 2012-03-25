@@ -40,8 +40,6 @@
     return self;
 }
 
-
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     
@@ -51,7 +49,7 @@
     
     TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] initWithFrame:CGRectMake(0,0,320,44)];
     self.stationsView = twoStationsView;
-
+    
     [(MainView*)self.view addSubview:twoStationsView];
     [twoStationsView release];
     
@@ -65,8 +63,8 @@
 
 -(void)changeMapTo:(NSString*)newMap andCity:(NSString*)cityName
 {
-      [stationsView resetBothStations];
-
+    [stationsView resetBothStations];
+    
     MHelper *helper = [MHelper sharedHelper];
     [helper saveBookmarkFile];
     [helper saveHistoryFile];
@@ -80,7 +78,7 @@
     
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     [(MainView*)self.view setCityMap:cm];
-
+    
     // FIXME !!! some classes don't release city map
     [appDelegate.cityMap release];
     appDelegate.cityMap=cm;
@@ -113,28 +111,53 @@
 -(NSMutableArray*)normalizePath:(NSArray*)path
 {
     int count = [path count];
-    MStation *firstStation = [self fromStation];
+    
+    // determing first Station
+    
+    Station *firstStation;
+    
+    if (count>0) {
+        if ([[path objectAtIndex:0] isKindOfClass:[Segment class]]) {
+            Segment *firstSegment = (Segment*)[path objectAtIndex:0];
+            Station *someStation = [firstSegment start];
+            if ([someStation.name isEqual:[self.fromStation name]] && someStation.line.index == [self.fromStation.lines.index intValue]) {
+                firstStation = someStation;
+            } else {
+                firstStation = [firstSegment end];
+            }
+        } else {
+            Transfer *transfer = (Transfer*)[path objectAtIndex:0];
+            NSArray *array = [[transfer stations] allObjects];
+            Station *someStation = [array objectAtIndex:0];
+            if ([someStation.name isEqual:[self.fromStation name]] && someStation.line.index == [self.fromStation.lines.index intValue]) {
+                firstStation = someStation;
+            } else {
+                firstStation = [array objectAtIndex:1];
+            }
+        }
+    }
     
     NSMutableArray *normalPath = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     
-    MStation *threadStart = firstStation;
+    Station *threadStart = firstStation;
     
     for (int i=0; i<count; i++) {
         
         if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
             
             Segment *tempSegment = (Segment*)[path objectAtIndex:i];
-            MStation *st1 = [[MHelper sharedHelper] getStationWithIndex:[tempSegment start].index andLineIndex:[tempSegment start].line.index];
             
-            if (st1 != threadStart) {
+            if ([tempSegment start] != threadStart) {
                 
                 Segment *newSegment = [[[Segment alloc] initFromStation:[tempSegment end] toStation:[tempSegment start] withDriving:[tempSegment driving]] autorelease];
                 [normalPath addObject:newSegment];
+                threadStart=[tempSegment start];
                 
-                threadStart=[[MHelper sharedHelper] getStationWithIndex:[tempSegment end].index andLineIndex:[tempSegment end].line.index];
             } else {
+                
                 [normalPath addObject:tempSegment];
-                threadStart =[[MHelper sharedHelper] getStationWithIndex:[tempSegment end].index andLineIndex:[tempSegment end].line.index];
+                threadStart =[tempSegment end];
+                
             }
             
         } else {
@@ -144,11 +167,9 @@
             NSArray *array = [[transfer stations] allObjects];
             
             if ([array objectAtIndex:0]==threadStart) {
-                Station *st1 = [array objectAtIndex:1];
-                threadStart = [[MHelper sharedHelper] getStationWithIndex:st1.index andLineIndex:st1.line.index];
+                threadStart = [array objectAtIndex:1];
             } else {
-                Station *st1 = [array objectAtIndex:0];
-                threadStart = [[MHelper sharedHelper] getStationWithIndex:st1.index andLineIndex:st1.line.index];
+                threadStart = [array objectAtIndex:0];
             }
             
             [normalPath addObject:transfer];
@@ -158,6 +179,55 @@
     return normalPath;
 }
 
+/*
+ -(NSMutableArray*)normalizePath:(NSArray*)path
+ {
+ int count = [path count];
+ MStation *firstStation = [self fromStation];
+ 
+ NSMutableArray *normalPath = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
+ 
+ MStation *threadStart = firstStation;
+ 
+ for (int i=0; i<count; i++) {
+ 
+ if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
+ 
+ Segment *tempSegment = (Segment*)[path objectAtIndex:i];
+ MStation *st1 = [[MHelper sharedHelper] getStationWithIndex:[tempSegment start].index andLineIndex:[tempSegment start].line.index];
+ 
+ if (st1 != threadStart) {
+ 
+ Segment *newSegment = [[[Segment alloc] initFromStation:[tempSegment end] toStation:[tempSegment start] withDriving:[tempSegment driving]] autorelease];
+ [normalPath addObject:newSegment];
+ 
+ threadStart=[[MHelper sharedHelper] getStationWithIndex:[tempSegment end].index andLineIndex:[tempSegment end].line.index];
+ } else {
+ [normalPath addObject:tempSegment];
+ threadStart =[[MHelper sharedHelper] getStationWithIndex:[tempSegment end].index andLineIndex:[tempSegment end].line.index];
+ }
+ 
+ } else {
+ 
+ Transfer *transfer = (Transfer*)[path objectAtIndex:i];
+ 
+ NSArray *array = [[transfer stations] allObjects];
+ 
+ if ([array objectAtIndex:0]==threadStart) {
+ Station *st1 = [array objectAtIndex:1];
+ threadStart = [[MHelper sharedHelper] getStationWithIndex:st1.index andLineIndex:st1.line.index];
+ } else {
+ Station *st1 = [array objectAtIndex:0];
+ threadStart = [[MHelper sharedHelper] getStationWithIndex:st1.index andLineIndex:st1.line.index];
+ }
+ 
+ [normalPath addObject:transfer];
+ }        
+ }
+ 
+ return normalPath;
+ }
+ */
 
 // используется только для верхнего бара
 -(NSInteger)dsGetTravelTime
@@ -192,8 +262,8 @@
     
     for (int i=0; i<objectNum; i++) {
         if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]] && i==0) {
-                // начинаем с пересадки
-  //          [colorArray addObject:[[self.fromStation lines] color]];
+            // начинаем с пересадки
+            //          [colorArray addObject:[[self.fromStation lines] color]];
             
         } else if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
             
@@ -206,7 +276,7 @@
             
         } else if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]] && i==objectNum-1) {
             // заканчиваем пересадкой
-//            [colorArray addObject:[[self.toStation lines] color]];
+            //            [colorArray addObject:[[self.toStation lines] color]];
         }
     }
     
@@ -286,8 +356,8 @@
     }
     
     [stationsArray addObject:tempArray]; 
-
-
+    
+    
     
     return stationsArray;
 }
@@ -301,7 +371,7 @@
     NSMutableArray *path = [self normalizePath:pathX];
     
     NSMutableArray *stationsArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
-
+    
     if ([[path objectAtIndex:0] isKindOfClass:[Transfer class]]) {
         [path removeObjectAtIndex:0];
     }
@@ -343,10 +413,10 @@
     
     [stationsArray addObject:[NSNumber numberWithInteger:aaa]];
     
-    NSLog(@"%@",stationsArray);
+    //    NSLog(@"%@",stationsArray);
     
     return stationsArray;
-
+    
 }
 
 -(NSMutableArray*)dsGetEveryStationTime
@@ -398,7 +468,7 @@
         if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]]) {
             time+=[(Transfer*)[path objectAtIndex:i] time];  
         }
-
+        
     }
     
     [stationsArray addObject:tempArray];    
@@ -428,7 +498,7 @@
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSArray *path = appDelegate.cityMap.activePath;
-
+    
     if ([path count]>0) {
         if ([[path objectAtIndex:0] isKindOfClass:[Transfer class]]) {
             return YES;    
@@ -458,9 +528,19 @@
 {
     int numberOfPages=1;
     
-//    tubeAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-//    numberOfPages= delegate.cityMap...
-
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    MainView *mainView = (MainView*)[self view];
+    NSMutableArray *pathes2 = [[NSMutableArray alloc] init];
+    
+    NSArray *keys = [[mainView.mapView.foundPaths allKeys] sortedArrayUsingSelector:@selector(compare:)];
+    
+    for (NSNumber *pathIndex in keys) {
+        [pathes2 addObject:[mainView.mapView.foundPaths objectForKey:pathIndex]];
+    }
+    
+    numberOfPages = [pathes2 count];
+    
     if (!self.scrollView) {
         
         UIScrollView *scview= [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 26.0, 320.0f, 40.0f)];
@@ -475,11 +555,12 @@
         self.scrollView.delegate = self;
         
         for (int i=0; i<numberOfPages; i++) {
-            PathBarView *pathView = [[PathBarView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 40)];
+            NSMutableArray *pathWithNumber = [appDelegate.cityMap describePath:[pathes2 objectAtIndex:i]];
+            PathBarView *pathView = [[PathBarView alloc] initWithFrame:CGRectMake(i*320.0, 0.0, 320.0, 40) path:pathWithNumber number:i overall:numberOfPages];
             [self.scrollView addSubview:pathView];
-            pathView.tag=20000;
+            pathView.tag=20000+i;
             [pathView release];
-         }
+        }
         
         [(MainView*)self.view addSubview:scrollView];
         [(MainView*)self.view bringSubviewToFront:scrollView];
@@ -490,12 +571,12 @@
         [changeViewButton setImage:img forState:UIControlStateNormal];
         [changeViewButton setImage:imgh forState:UIControlStateHighlighted];
         [changeViewButton addTarget:self action:@selector(changeView:) forControlEvents:UIControlEventTouchUpInside];
-                
+        
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         
         [formatter setTimeStyle:NSDateFormatterShortStyle];
         [formatter setDateStyle:NSDateFormatterNoStyle];
-
+        
         NSString *dateString = [formatter stringFromDate:[NSDate date]];
         
         CGSize dateSize = [dateString sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
@@ -505,43 +586,69 @@
         [changeViewButton setFrame:CGRectMake(320.0-12.0-dateSize.width-img.size.width , 66 , img.size.width, img.size.height)];
         [changeViewButton setTag:333];
         [(MainView*)self.view addSubview:changeViewButton];
-    } 
+    } else {
         
-    for (int i=0; i<numberOfPages; i++) {
+        NSArray *viewArray = [self.scrollView subviews];
+        for (PathBarView *view in viewArray) {
+            [view removeFromSuperview];
+        }
         
-        NSInteger travelTime = [self dsGetTravelTime];
- 
-        [(UILabel*)[self.scrollView viewWithTag:6000+i] setText:[NSString stringWithFormat:@"%d minutes",travelTime]];        
+        [self.scrollView scrollRectToVisible:CGRectMake(0.0, 26.0, 320.0f, 40.0f) animated:NO];
         
-        NSString *arrivalTime = [self getArrivalTimeFromNow:travelTime];
-        CGSize atSize = [arrivalTime sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:13.0]];
-        CGRect labelRect = [(UILabel*)[self.scrollView viewWithTag:7000+i] frame];
-        CGFloat labelStart = 310.0-atSize.width-2.0;
-        [(UILabel*)[self.scrollView viewWithTag:7000+i] setFrame:CGRectMake(labelStart, labelRect.origin.y, atSize.width+2.0, labelRect.size.height)];
-        [(UILabel*)[self.scrollView viewWithTag:7000+i] setText:[NSString stringWithFormat:@"%@",arrivalTime]];
+        self.scrollView.contentSize=CGSizeMake(numberOfPages * 320.0f, 40.0);
         
-        CGRect flagRect = [(UILabel*)[self.scrollView viewWithTag:6500+i] frame];
-        [(UIImageView*)[self.scrollView viewWithTag:6500+i] setFrame:CGRectMake(labelStart-flagRect.size.width-2.0, flagRect.origin.y, flagRect.size.width, flagRect.size.height)];
-         
-         
-        [(PathDrawView*)[self.scrollView viewWithTag:10000+i] setDelegate:self];
-        [[self.scrollView viewWithTag:10000+i] setNeedsDisplay];
+        for (int i=0; i<numberOfPages; i++) {
+            NSMutableArray *pathWithNumber = [appDelegate.cityMap describePath:[pathes2 objectAtIndex:i]];
+            PathBarView *pathView = [[PathBarView alloc] initWithFrame:CGRectMake(i*320.0, 0.0, 320.0, 40) path:pathWithNumber number:i overall:numberOfPages];
+            [self.scrollView addSubview:pathView];
+            pathView.tag=20000+i;
+            [pathView release];
+        }
     }
+
     [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)ascrollView{ 
+    
+    if (ascrollView==self.scrollView) {
+        
+        int pathNumb = floor(ascrollView.contentOffset.x/320.0);
+        [self performSelector:@selector(changeActivePath:) withObject:[NSNumber numberWithInt:pathNumb] afterDelay:0.1];
+    }
+}
+
+-(void)changeActivePath:(NSNumber*)pathNumb
+{
+    MainView *mainView = (MainView*)[self view];
+    [mainView.mapView selectPath:[pathNumb intValue]];    
+    
+    if (self.pathScrollView) {
+        [self performSelector:@selector(redrawPathScrollView) withObject:nil afterDelay:0.1];
+    }
 }
 
 -(void)removeScrollView
 {
     [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 44, 320, 480-64)];
-
+    
     [self.scrollView removeFromSuperview];
     self.scrollView=nil;
     [[(MainView*)self.view viewWithTag:333] removeFromSuperview];
 }
 
--(IBAction)changeView:(id)sender
+-(void)redrawPathScrollView
 {
+    NSArray *subviews = [self.pathScrollView subviews];
+    for (UIView *v in subviews) {
+        [v removeFromSuperview];
+    }
     
+    [self drawPathScrollView];
+}
+
+-(void)drawPathScrollView
+{
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSArray *path11 = appDelegate.cityMap.activePath;
     
@@ -554,325 +661,327 @@
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateStyle:NSDateFormatterNoStyle];
     
-    if (!self.pathScrollView ) {
-
-        UIScrollView *scview= [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 66.0, 320.0f, 414.0f)];
-        self.pathScrollView = scview;
-        [scview release];
+    NSMutableArray *stations = [[[NSMutableArray alloc] initWithArray:[self dsGetStationsArray]] autorelease];
+    NSArray *stationsTime = [self dsGetEveryStationTime];
+    NSMutableArray *exits = [self dsGetExitForStations]; 
+    NSArray *transferTime = [self dsGetEveryTransferTime];
+    
+    //    int transferNumb = [stations count]-1;
+    
+    int trainType = 0;
+    int stationType = 0;
+    int finalType = 0;
+    
+    NSMutableArray *points = [[NSMutableArray alloc] initWithCapacity:1];
+    
+    CGFloat viewHeight=0;
+    CGFloat segmentHeight;
+    CGFloat currentY;
+    CGFloat lineStart=17.0;
+    
+    if ([self dsIsStartingTransfer]) {
+        [stations removeObjectAtIndex:0];
+        lineStart+=20.0;
+    }
+    
+    if ([self dsIsEndingTransfer]) {
+        [stations removeLastObject];
+    }
+    
+    for (NSMutableArray *tempStations in stations) {
         
-        NSArray *stations = [self dsGetStationsArray];
-        NSArray *stationsTime = [self dsGetEveryStationTime];
-        NSMutableArray *exits = [self dsGetExitForStations]; 
-        NSArray *transferTime = [self dsGetEveryTransferTime];
-
-        int transferNumb = [stations count]-1;
-
-        int trainType = 0;
-        int stationType = 0;
-        int finalType = 0;
+        segmentHeight=0;
+        trainType=0;
+        finalType=0;
+        stationType=0;
         
-        NSMutableArray *points = [[NSMutableArray alloc] initWithCapacity:1];
-        
-        CGFloat viewHeight=0;
-        CGFloat segmentHeight;
-        
-        for (NSMutableArray *tempStations in stations) {
-            
-            segmentHeight=0;
-            trainType=0;
-            finalType=0;
-            stationType=0;
-            
-            int lineStationCount=[tempStations count];
-            if (lineStationCount>=4) {
-                trainType++;
-                stationType=lineStationCount-3;
-                finalType++;
-            } else if (lineStationCount>=3) {
-                trainType++;
-                finalType++;
-            } else if (lineStationCount>=2) {
-                trainType++;
-            }
-            
-            segmentHeight =  (float)trainType * transferHeight +(float)finalType*finalHeight + (float)stationType * stationHeight;    
-            [points addObject:[NSNumber numberWithFloat:segmentHeight]];
-            
-            viewHeight += segmentHeight;
-        }
-
-        self.pathScrollView.contentSize=CGSizeMake(320.0f, viewHeight+100.0);
-        self.pathScrollView.bounces=YES;
-        self.pathScrollView.delegate = self;
-        
-        self.pathScrollView.backgroundColor = [UIColor whiteColor];
-   
-        CGFloat currentY;
-        CGFloat lineStart=17.0;
-        
-        if ([self dsIsStartingTransfer]) {
-            lineStart+=20.0;
+        int lineStationCount=[tempStations count];
+        if (lineStationCount>=4) {
+            trainType++;
+            stationType=lineStationCount-3;
+            finalType++;
+        } else if (lineStationCount>=3) {
+            trainType++;
+            finalType++;
+        } else if (lineStationCount>=2) {
+            trainType++;
         }
         
-        int segmentsCount = [stations count];
+        segmentHeight =  (float)trainType * transferHeight +(float)finalType*finalHeight + (float)stationType * stationHeight;    
+        [points addObject:[NSNumber numberWithFloat:segmentHeight]];
         
-        int time=0;
+        viewHeight += segmentHeight;
+    }
+    
+    self.pathScrollView.contentSize=CGSizeMake(320.0f, viewHeight+100.0);
+    self.pathScrollView.bounces=YES;
+    self.pathScrollView.delegate = self;
+    
+    self.pathScrollView.backgroundColor = [UIColor whiteColor];
+    
+    int segmentsCount = [stations count];
+    
+    int time=0;
+    
+    // первый и последний лейбл станции
+    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(40.0, lineStart-5.0, 235.0, 22.0)];
+    label1.font=[UIFont fontWithName:@"MyriadPro-Semibold" size:17.0];
+    label1.text= [[stations objectAtIndex:0] objectAtIndex:0];
+    label1.backgroundColor=[UIColor clearColor];
+    [self.pathScrollView addSubview:label1];
+    [label1 release];
+    
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(40.0, lineStart+viewHeight-5.0, 235.0, 22.0)];
+    label2.font=[UIFont fontWithName:@"MyriadPro-Semibold" size:17.0];
+    label2.text= [[stations lastObject] lastObject];
+    label2.backgroundColor=[UIColor clearColor];
+    [self.pathScrollView addSubview:label2];
+    [label2 release];
+    
+    // -------
+    
+    // первый и последний лебл даты прибытия станций
+    time= [[[stationsTime objectAtIndex:0] objectAtIndex:0] intValue];
+    NSString *dateString1 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
+    CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
+    UILabel *dateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize1.width, lineStart-7.0, dateSize1.width, 25.0)];
+    dateLabel1.text = dateString1;
+    dateLabel1.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.0];
+    dateLabel1.backgroundColor = [UIColor clearColor];
+    dateLabel1.textColor = [UIColor darkGrayColor];
+    [self.pathScrollView addSubview:dateLabel1];
+    [dateLabel1 release];
+    
+    
+    time= [[[stationsTime lastObject] lastObject] intValue];
+    
+    if ([self dsIsEndingTransfer]) {
+        time+=[[transferTime lastObject] intValue];
+    }
+    
+    NSString *dateString2 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
+    CGSize dateSize2 = [dateString2 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
+    UILabel *dateLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize2.width, lineStart+viewHeight-7.0, dateSize2.width, 25.0)];
+    dateLabel2.text = dateString2;
+    dateLabel2.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.0];
+    dateLabel2.backgroundColor = [UIColor clearColor];
+    dateLabel2.textColor = [UIColor darkGrayColor];
+    [self.pathScrollView addSubview:dateLabel2];
+    [dateLabel2 release];
+    
+    // точки станций
+    
+    int endCount=segmentsCount;
+    int start = 0;
+    
+    /*    if ([[path11 objectAtIndex:0] isKindOfClass:[Transfer class]]) {
+     start+=1;
+     } 
+     
+     if ([[path11 lastObject] isKindOfClass:[Transfer class]]) {
+     endCount-=1;
+     } 
+     */    
+    
+    for (int j=start;j<endCount;j++) {
         
-        // первый и последний лейбл станции
-        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(40.0, lineStart-5.0, 235.0, 22.0)];
-        label1.font=[UIFont fontWithName:@"MyriadPro-Semibold" size:17.0];
-        label1.text= [[stations objectAtIndex:0] objectAtIndex:0];
-        label1.backgroundColor=[UIColor clearColor];
-        [self.pathScrollView addSubview:label1];
-        [label1 release];
-        
-        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(40.0, lineStart+viewHeight-5.0, 235.0, 22.0)];
-        label2.font=[UIFont fontWithName:@"MyriadPro-Semibold" size:17.0];
-        label2.text= [[stations lastObject] lastObject];
-        label2.backgroundColor=[UIColor clearColor];
-        [self.pathScrollView addSubview:label2];
-        [label2 release];
-
-        // -------
-        
-        // первый и последний лебл даты прибытия станций
-        time= [[[stationsTime objectAtIndex:0] objectAtIndex:0] intValue];
-        NSString *dateString1 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
-        CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
-        UILabel *dateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize1.width, lineStart-7.0, dateSize1.width, 25.0)];
-        dateLabel1.text = dateString1;
-        dateLabel1.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.0];
-        dateLabel1.backgroundColor = [UIColor clearColor];
-        dateLabel1.textColor = [UIColor darkGrayColor];
-        [self.pathScrollView addSubview:dateLabel1];
-        [dateLabel1 release];
-        
-        
-        time= [[[stationsTime lastObject] lastObject] intValue];
-        NSString *dateString2 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
-        CGSize dateSize2 = [dateString2 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
-        UILabel *dateLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize2.width, lineStart+viewHeight-7.0, dateSize2.width, 25.0)];
-        dateLabel2.text = dateString2;
-        dateLabel2.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.0];
-        dateLabel2.backgroundColor = [UIColor clearColor];
-        dateLabel2.textColor = [UIColor darkGrayColor];
-        [self.pathScrollView addSubview:dateLabel2];
-        [dateLabel2 release];
-        
-        // точки станций
-        
-        int endCount=segmentsCount;
-        int start = 0;
-        
-        if ([[path11 objectAtIndex:0] isKindOfClass:[Transfer class]]) {
-            start+=1;
-        } 
-        
-        if ([[path11 lastObject] isKindOfClass:[Transfer class]]) {
-            endCount-=1;
-        } 
-        
-        
-        for (int j=start;j<endCount;j++) {
-            
-            if (j==0 ) {
-                currentY=lineStart;
-            } else {
-                currentY=0;
-                
-                NSArray *array = [points objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, j)]];
-                
-                for (NSNumber *segmentH in array) {
-                    currentY+=[segmentH floatValue];
-                }
-                
-                currentY+=lineStart;
-            }
-            
-            int exitNumb = [[exits objectAtIndex:j-start] intValue];
-            
-            NSString *trainName = [NSString stringWithFormat:@"train_%d",exitNumb];
-            
-            NSString *fileName = [[NSBundle mainBundle] pathForResource:trainName ofType:@"png" inDirectory:[NSString stringWithFormat:@"maps/%@",appDelegate.cityMap.thisMapName]];
-                                  
-            UIImage *trainImage = [UIImage imageWithContentsOfFile:fileName];
-            
-            UIImageView *trainSubview = [[UIImageView alloc] initWithImage:trainImage];
-            
-            trainSubview.frame = CGRectMake(27, currentY+30.0, trainImage.size.width, trainImage.size.height); // было 37
-            [self.pathScrollView addSubview:trainSubview];
-            [trainSubview release];
-            
-            currentY+=transferHeight;
-            
-            for (int jj=1;jj<[[stations objectAtIndex:j] count]-1;jj++) {
-                
-                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY, 235.0, 22.0)];
-
-                label.font=[UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
-                
-                NSString *stationName = [[stations objectAtIndex:j] objectAtIndex:jj];
-
-                label.text=stationName;
-                label.backgroundColor=[UIColor clearColor];
-                [self.pathScrollView addSubview:label];
-                [label release];
-                
-                // -------
-                
-                time = [[[stationsTime objectAtIndex:j-start] objectAtIndex:jj] intValue];
-
-                NSString *dateString = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
-                
-                CGSize dateSize = [dateString sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
-                
-                UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize.width, currentY, dateSize.width, 25.0)];
-
-                dateLabel.textAlignment = UITextAlignmentRight;
-                dateLabel.text = dateString;
-                dateLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.0];
-                dateLabel.backgroundColor = [UIColor clearColor];
-                dateLabel.textColor = [UIColor darkGrayColor];
-                [self.pathScrollView addSubview:dateLabel];
-                [dateLabel release];
-                
-                // -------
-
-                currentY+=stationHeight;
-                
-            }
-            
-        }
-        
-        int endTransferCount;
-        
-        if ([[path11 lastObject] isKindOfClass:[Transfer class]]) {
-            endTransferCount=transferNumb-1;
+        if (j==0 ) {
+            currentY=lineStart;
         } else {
-            endTransferCount=transferNumb;
-        }
-
-        NSArray *timeArray = [self dsGetLinesTimeArray];
-
-        for (int i=0;i<[timeArray count]-1;i++)
-        {
             currentY=0;
             
-            NSArray *array = [points objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, i+1)]];
+            NSArray *array = [points objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, j)]];
             
             for (NSNumber *segmentH in array) {
                 currentY+=[segmentH floatValue];
             }
             
             currentY+=lineStart;
+        }
+        
+        int exitNumb = [[exits objectAtIndex:j-start] intValue];
+        
+        NSString *trainName = [NSString stringWithFormat:@"%@/train_%d.png",appDelegate.cityMap.pathToMap,exitNumb];
+        UIImage *trainImage = [UIImage imageWithContentsOfFile:trainName];
+        
+        UIImageView *trainSubview = [[UIImageView alloc] initWithImage:trainImage];
+        
+        trainSubview.frame = CGRectMake(27, currentY+30.0, trainImage.size.width, trainImage.size.height); // было 37
+        [self.pathScrollView addSubview:trainSubview];
+        [trainSubview release];
+        
+        currentY+=transferHeight;
+        
+        for (int jj=1;jj<[[stations objectAtIndex:j] count]-1;jj++) {
             
-            CGRect rect1 = CGRectMake(40.0, currentY-16.0, 235, 22.0);
-            CGRect rect2 = CGRectMake(40.0, currentY+8.0, 235, 22.0);
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY, 235.0, 22.0)];
             
-            NSString *stationName1 = [[stations objectAtIndex:i] lastObject];            
-            NSString *stationName2 = [[stations objectAtIndex:i+1] objectAtIndex:0];
+            label.font=[UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
             
-            int time1 = [[[stationsTime objectAtIndex:i] lastObject] intValue];            
-            int time2 = time1+[[transferTime objectAtIndex:i] intValue];
-
-            if ([stationName1 isEqualToString:stationName2]) {
-                
-                UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY-6.0, 235, 22.0)];
-                label1.font=[UIFont fontWithName:@"MyriadPro-Semibold" size:17.0];
-                label1.text=stationName1;
-                label1.backgroundColor=[UIColor clearColor];
-                [self.pathScrollView addSubview:label1];
-                [label1 release];
-                
-                
-            } else {
-                
-                UILabel *label1 = [[UILabel alloc] initWithFrame:rect1];
-                label1.font=[UIFont fontWithName:@"MyriadPro-Semibold" size:17.0];
-                label1.text=stationName1;
-                label1.backgroundColor=[UIColor clearColor];
-                [self.pathScrollView addSubview:label1];
-                [label1 release];
-                
-                UILabel *label2 = [[UILabel alloc] initWithFrame:rect2];
-                label2.font=[UIFont fontWithName:@"MyriadPro-Semibold" size:17.0];
-                label2.text=stationName2;
-                label2.backgroundColor=[UIColor clearColor];
-                [self.pathScrollView addSubview:label2];
-                [label2 release];
-                
-            }
+            NSString *stationName = [[stations objectAtIndex:j] objectAtIndex:jj];
+            
+            label.text=stationName;
+            label.backgroundColor=[UIColor clearColor];
+            [self.pathScrollView addSubview:label];
+            [label release];
             
             // -------
             
+            time = [[[stationsTime objectAtIndex:j-start] objectAtIndex:jj] intValue];
             
-            if ([stationName1 isEqualToString:stationName2]) {
-                
-                NSString *dateString1 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time1*60.0]];
-                CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
-                UILabel *dateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize1.width, currentY-8.0, dateSize1.width, 25.0)];
-                dateLabel1.text = dateString1;
-                dateLabel1.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.0];
-                dateLabel1.backgroundColor = [UIColor clearColor];
-                dateLabel1.textColor = [UIColor darkGrayColor];
-                [self.pathScrollView addSubview:dateLabel1];
-                [dateLabel1 release];
-                
-            } else {
-                
-                NSString *dateString1 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time1*60.0]];
-                CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
-                UILabel *dateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize1.width, currentY-16.0, dateSize1.width, 25.0)];
-                dateLabel1.text = dateString1;
-                dateLabel1.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.0];
-                dateLabel1.backgroundColor = [UIColor clearColor];
-                dateLabel1.textColor = [UIColor darkGrayColor];
-                [self.pathScrollView addSubview:dateLabel1];
-                [dateLabel1 release];
-                
-                
-                NSString *dateString2 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time2*60.0]];
-                CGSize dateSize2 = [dateString2 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
-                UILabel *dateLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize2.width, currentY+8.0, dateSize2.width, 25.0)];
-                dateLabel2.text = dateString2;
-                dateLabel2.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.0];
-                dateLabel2.backgroundColor = [UIColor clearColor];
-                dateLabel2.textColor = [UIColor darkGrayColor];
-                [self.pathScrollView addSubview:dateLabel2];
-                [dateLabel2 release];
-                
-            }
-        } 
+            NSString *dateString = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
+            
+            CGSize dateSize = [dateString sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
+            
+            UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize.width, currentY, dateSize.width, 25.0)];
+            
+            dateLabel.textAlignment = UITextAlignmentRight;
+            dateLabel.text = dateString;
+            dateLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.0];
+            dateLabel.backgroundColor = [UIColor clearColor];
+            dateLabel.textColor = [UIColor darkGrayColor];
+            [self.pathScrollView addSubview:dateLabel];
+            [dateLabel release];
+            
+            // -------
+            
+            currentY+=stationHeight;
+            
+        }
+        
+    }
+    
+    NSArray *timeArray = [self dsGetLinesTimeArray];
+    
+    for (int i=0;i<[timeArray count]-1;i++)
+    {
+        currentY=0;
+        
+        NSArray *array = [points objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, i+1)]];
+        
+        for (NSNumber *segmentH in array) {
+            currentY+=[segmentH floatValue];
+        }
+        
+        currentY+=lineStart;
+        
+        CGRect rect1 = CGRectMake(40.0, currentY-16.0, 235, 22.0);
+        CGRect rect2 = CGRectMake(40.0, currentY+8.0, 235, 22.0);
+        
+        NSString *stationName1 = [[stations objectAtIndex:i] lastObject];            
+        NSString *stationName2 = [[stations objectAtIndex:i+1] objectAtIndex:0];
+        
+        int time1 = [[[stationsTime objectAtIndex:i] lastObject] intValue];            
+        int time2 = time1+[[transferTime objectAtIndex:i] intValue];
+        
+        if ([stationName1 isEqualToString:stationName2]) {
+            
+            UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY-6.0, 235, 22.0)];
+            label1.font=[UIFont fontWithName:@"MyriadPro-Semibold" size:17.0];
+            label1.text=stationName1;
+            label1.backgroundColor=[UIColor clearColor];
+            [self.pathScrollView addSubview:label1];
+            [label1 release];
+            
+            
+        } else {
+            
+            UILabel *label1 = [[UILabel alloc] initWithFrame:rect1];
+            label1.font=[UIFont fontWithName:@"MyriadPro-Semibold" size:17.0];
+            label1.text=stationName1;
+            label1.backgroundColor=[UIColor clearColor];
+            [self.pathScrollView addSubview:label1];
+            [label1 release];
+            
+            UILabel *label2 = [[UILabel alloc] initWithFrame:rect2];
+            label2.font=[UIFont fontWithName:@"MyriadPro-Semibold" size:17.0];
+            label2.text=stationName2;
+            label2.backgroundColor=[UIColor clearColor];
+            [self.pathScrollView addSubview:label2];
+            [label2 release];
+            
+        }
+        
+        // -------
+        
+        
+        if ([stationName1 isEqualToString:stationName2]) {
+            
+            NSString *dateString1 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time1*60.0]];
+            CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
+            UILabel *dateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize1.width, currentY-8.0, dateSize1.width, 25.0)];
+            dateLabel1.text = dateString1;
+            dateLabel1.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.0];
+            dateLabel1.backgroundColor = [UIColor clearColor];
+            dateLabel1.textColor = [UIColor darkGrayColor];
+            [self.pathScrollView addSubview:dateLabel1];
+            [dateLabel1 release];
+            
+        } else {
+            
+            NSString *dateString1 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time1*60.0]];
+            CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
+            UILabel *dateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize1.width, currentY-16.0, dateSize1.width, 25.0)];
+            dateLabel1.text = dateString1;
+            dateLabel1.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.0];
+            dateLabel1.backgroundColor = [UIColor clearColor];
+            dateLabel1.textColor = [UIColor darkGrayColor];
+            [self.pathScrollView addSubview:dateLabel1];
+            [dateLabel1 release];
+            
+            
+            NSString *dateString2 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time2*60.0]];
+            CGSize dateSize2 = [dateString2 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
+            UILabel *dateLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize2.width, currentY+8.0, dateSize2.width, 25.0)];
+            dateLabel2.text = dateString2;
+            dateLabel2.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.0];
+            dateLabel2.backgroundColor = [UIColor clearColor];
+            dateLabel2.textColor = [UIColor darkGrayColor];
+            [self.pathScrollView addSubview:dateLabel2];
+            [dateLabel2 release];
+            
+        }
+    } 
+    
+    
+    PathDrawVertView *drawView = [[PathDrawVertView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320, viewHeight+100.0)];
+    drawView.tag =20000;
+    drawView.delegate=self;
+    [self.pathScrollView addSubview:drawView];
+    [drawView release];
+    
+    [formatter release];
+}
 
-         
-        PathDrawVertView *drawView = [[PathDrawVertView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320, viewHeight+100.0)];
-        drawView.tag =20000;
-        drawView.delegate=self;
-        [self.pathScrollView addSubview:drawView];
-        [drawView release];
-
+-(IBAction)changeView:(id)sender
+{
+    if (!self.pathScrollView ) {
+        
+        UIScrollView *scview= [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 66.0, 320.0f, 414.0f)];
+        self.pathScrollView = scview;
+        [scview release];
+        
+        [self drawPathScrollView];
         
         [(MainView*)self.view addSubview:self.pathScrollView];
         [(MainView*)self.view bringSubviewToFront:pathScrollView];
         [(MainView*)self.view bringSubviewToFront:self.stationsView]; 
         [(MainView*)self.view bringSubviewToFront:self.scrollView]; 
         [(MainView*)self.view bringSubviewToFront:[(MainView*)self.view viewWithTag:333]]; 
-
+        
         UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
-         shadow.frame = CGRectMake(0,66, 320, 61);
+        shadow.frame = CGRectMake(0,66, 320, 61);
         [shadow setIsAccessibilityElement:YES];
         shadow.tag = 2321;
         [(MainView*)self.view addSubview:shadow];
- 
+        
         [(UIButton*)[(MainView*)self.view viewWithTag:333] setImage:[UIImage imageNamed:@"switch_to_map.png"] forState:UIControlStateNormal];
         [(UIButton*)[(MainView*)self.view viewWithTag:333] setImage:[UIImage imageNamed:@"switch_to_map_high.png"] forState:UIControlStateHighlighted];
         
-        [formatter release];
-    
     } else {
         
         [[(MainView*)self.view viewWithTag:2321] removeFromSuperview]; 
- 
+        
         [self.pathScrollView removeFromSuperview];
         self.pathScrollView=nil;
         [(UIButton*)[(MainView*)self.view viewWithTag:333] setImage:[UIImage imageNamed:@"switch_to_path.png"] forState:UIControlStateNormal];
@@ -900,7 +1009,7 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleTap)];
     [blackView addGestureRecognizer:tapGesture];
     [tapGesture release];
-
+    
     [(MainView*)self.view addSubview:blackView];
     [blackView release];
     
@@ -975,8 +1084,8 @@
         self.toStation = [stations objectAtIndex:1];
         
         if (currentSelection==0) {
-        [stationsView setFromStation:self.fromStation];
-        [stationsView setToStation:self.toStation];
+            [stationsView setFromStation:self.fromStation];
+            [stationsView setToStation:self.toStation];
         } else {
             [stationsView setToStation:self.toStation];
             [stationsView setFromStation:self.fromStation];
@@ -1004,13 +1113,13 @@
                 [stationsView setToStation:self.toStation];
             }
             
-           
+            
         }
         
     } else if ([stations count]==0) {
         if (currentSelection==0) {
-                self.fromStation=nil;
-                [stationsView setFromStation:self.fromStation];
+            self.fromStation=nil;
+            [stationsView setFromStation:self.fromStation];
         } else {
             self.toStation=nil;
             [stationsView setToStation:self.toStation];
@@ -1029,18 +1138,20 @@
         }
 	} else {
         [mainView findPathFrom:[fromStation name] To:[toStation name] FirstLine:[[[fromStation lines] index] integerValue] LastLine:[[[toStation lines] index] integerValue]];
-        if ([[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] activePath] count]>1) {
-            [stationsView transitToPathView];
-            [self showScrollView];
+        if ([[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] activePath] count]>0) {
+            if (!([[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] activePath] count]==1 && [[[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] activePath] objectAtIndex:0] isKindOfClass:[Transfer class]])) {
+                [stationsView transitToPathView];
+                [self showScrollView];
+            }
         }
 	}
     
 	mainView.mapView.stationSelected=false;
     
-//    MHelper *helper = [MHelper sharedHelper];
-//    [helper saveBookmarkFile];
-//    [helper saveHistoryFile];
-//    [self dismissModalViewControllerAnimated:YES];
+    //    MHelper *helper = [MHelper sharedHelper];
+    //    [helper saveBookmarkFile];
+    //    [helper saveHistoryFile];
+    //    [self dismissModalViewControllerAnimated:YES];
 }
 
 -(void)returnFromSelection:(NSArray*)stations
@@ -1069,7 +1180,7 @@
             }
         }     
         
-  //      [self returnFromSelection:stations];
+        //      [self returnFromSelection:stations];
     } else {
         if (currentSelection==0) {
             [stationsView setFromStation:self.fromStation];
