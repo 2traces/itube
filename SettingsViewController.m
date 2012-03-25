@@ -52,20 +52,6 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-/*
--(IBAction)cityPress:(id)sender
-{
-    // soj
-    
-    Server *server = [[Server alloc] init];
-    server.listener=self;
-    
-    NSArray *stationList = [NSArray arrayWithObjects:@"Croix de Chavaux", @"Robespierre", nil];
-    
-    [server sendRequestStationList:stationList];
-}
-*/
-
 -(IBAction)updatePressed:(id)sender
 {
     DownloadServer *server = [[[DownloadServer alloc] init] autorelease];
@@ -119,16 +105,16 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
+
     [self processPurchases];    
     [super viewWillAppear:animated];
 }
 
 -(void) processPurchases
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
-    
     Reachability *reach = [Reachability reachabilityForInternetConnection];	
     NetworkStatus netStatus = [reach currentReachabilityStatus];  
     
@@ -139,6 +125,7 @@
             [[TubeAppIAPHelper sharedHelper] requestProducts];
         } else { 
             [self enableProducts];
+            [self resortMapArray];
             [cityTableView reloadData];
         }
     }
@@ -338,18 +325,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     
-    if ([self isProductInstalled:[map objectForKey:@"filename"]]) {
+    if ([[map objectForKey:@"prodID"] isEqual:@"default"]) {
+        self.selectedPath=indexPath;
+        [tableView reloadData];    
+
+        NSString *mapName = [appDelegate getDefaultMapName];
+        NSString *cityName = [appDelegate getDefaultCityName];
+        
+        [appDelegate.mainViewController changeMapTo:mapName andCity:cityName];
+    } else if ([self isProductInstalled:[map objectForKey:@"filename"]]) {
         
         self.selectedPath=indexPath;
-        
         [tableView reloadData];    
         
-        NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
         NSString *mapName = [map objectForKey:@"filename"];
         NSString *cityName = [map objectForKey:@"name"];
         
-        tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
         [appDelegate.mainViewController changeMapTo:mapName andCity:cityName];
         
     } else {
@@ -382,8 +375,9 @@
 
 -(BOOL)isProductPurchased:(NSString*)prodID
 {
-    NSMutableSet *purchasedProducts = [[TubeAppIAPHelper sharedHelper] purchasedProducts];
-    return [purchasedProducts intersectsSet:[NSMutableSet setWithArray:[NSArray arrayWithObject:prodID]]];
+ //   NSMutableSet *purchasedProducts = [[TubeAppIAPHelper sharedHelper] purchasedProducts];
+ //   return [purchasedProducts intersectsSet:[NSMutableSet setWithArray:[NSArray arrayWithObject:prodID]]];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:prodID];
 }
 
 -(BOOL)isProductAvailable:(NSString*)prodID
@@ -447,29 +441,48 @@
 {
     NSDictionary *dict = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:nil errorDescription:nil];
     
-    
     NSArray *array = [dict allKeys];
-    NSMutableArray *mapsInfoArray = [[[NSMutableArray alloc] initWithCapacity:[array count]] autorelease];
     
-    for (NSString* key in array) {
-        NSMutableDictionary *product = [[NSMutableDictionary alloc] initWithDictionary:[dict objectForKey:key]];
-        [product setObject:key forKey:@"prodID"];
-        [mapsInfoArray addObject:product];
-        [product release];
+    NSMutableArray *productToDonwload = [NSMutableArray array];
+
+    if ([array count]>0) {
+        NSString *tempDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString *path = [tempDir stringByAppendingPathComponent:[NSString stringWithFormat:@"maps.plist"]];
+        [data writeToFile:path atomically:YES];
+        
+        
+        for (NSDictionary *mmap in self.maps) {
+            if ([self isProductPurchased:[mmap objectForKey:@"prodID"]]) {
+                for (NSString *prodId in array) {
+                    if ([prodId isEqual:[mmap objectForKey:@"prodID"]]) {
+                        if ([[mmap objectForKey:@"ver"] integerValue]<[[[dict objectForKey:prodId] objectForKey:@"ver"] integerValue]) {
+                            [productToDonwload addObject:[mmap objectForKey:@"prodID"]];
+                        }
+                    }
+                }
+            }
+        }    
+        
+        self.maps = [self getMapsList];
+        [self adjustViewHeight];
+        
+        [self enableProducts];
+        [self resortMapArray];
+        [cityTableView reloadData];
+        
+        [[TubeAppIAPHelper sharedHelper] requestProducts];
     }
-    
-    self.maps = mapsInfoArray;
-    
-    [self processPurchases];
-    
-    [self adjustViewHeight];
-    [cityTableView reloadData];
-    
+        
     BOOL onceRestored = [[NSUserDefaults standardUserDefaults] boolForKey:@"restored"];
 
     if (!onceRestored) {
         [[TubeAppIAPHelper sharedHelper] restoreCompletedTransactions];
+    } else {
+        for (NSString *prodId in productToDonwload ) {
+            [self downloadProduct:prodId];
+        }
     }
+ 
 }
 
 -(void)processZipFromServer:(NSMutableData*)data mapName:(NSString*)mapName

@@ -58,7 +58,7 @@
 
 -(void)refreshInApp
 {
- //   [[TubeAppIAPHelper sharedHelper] requestProducts];
+    [[TubeAppIAPHelper sharedHelper] requestProducts];
 }
 
 -(void)changeMapTo:(NSString*)newMap andCity:(NSString*)cityName
@@ -556,7 +556,7 @@
         
         for (int i=0; i<numberOfPages; i++) {
             NSMutableArray *pathWithNumber = [appDelegate.cityMap describePath:[pathes2 objectAtIndex:i]];
-            PathBarView *pathView = [[PathBarView alloc] initWithFrame:CGRectMake(i*320.0, 0.0, 320.0, 40) path:pathWithNumber];
+            PathBarView *pathView = [[PathBarView alloc] initWithFrame:CGRectMake(i*320.0, 0.0, 320.0, 40) path:pathWithNumber number:i overall:numberOfPages];
             [self.scrollView addSubview:pathView];
             pathView.tag=20000+i;
             [pathView release];
@@ -599,7 +599,7 @@
         
         for (int i=0; i<numberOfPages; i++) {
             NSMutableArray *pathWithNumber = [appDelegate.cityMap describePath:[pathes2 objectAtIndex:i]];
-            PathBarView *pathView = [[PathBarView alloc] initWithFrame:CGRectMake(i*320.0, 0.0, 320.0, 40) path:pathWithNumber];
+            PathBarView *pathView = [[PathBarView alloc] initWithFrame:CGRectMake(i*320.0, 0.0, 320.0, 40) path:pathWithNumber number:i overall:numberOfPages];
             [self.scrollView addSubview:pathView];
             pathView.tag=20000+i;
             [pathView release];
@@ -801,11 +801,8 @@
         
         int exitNumb = [[exits objectAtIndex:j-start] intValue];
         
-        NSString *trainName = [NSString stringWithFormat:@"train_%d",exitNumb];
-        
-        NSString *fileName = [[NSBundle mainBundle] pathForResource:trainName ofType:@"png" inDirectory:[NSString stringWithFormat:@"maps/%@",appDelegate.cityMap.thisMapName]];
-        
-        UIImage *trainImage = [UIImage imageWithContentsOfFile:fileName];
+        NSString *trainName = [NSString stringWithFormat:@"%@/train_%d.png",appDelegate.cityMap.pathToMap,exitNumb];
+        UIImage *trainImage = [UIImage imageWithContentsOfFile:trainName];
         
         UIImageView *trainSubview = [[UIImageView alloc] initWithImage:trainImage];
         

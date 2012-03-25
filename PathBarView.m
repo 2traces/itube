@@ -12,7 +12,7 @@
 
 @implementation PathBarView
 
-- (id)initWithFrame:(CGRect)frame path:(NSMutableArray*)thisPath
+- (id)initWithFrame:(CGRect)frame path:(NSMutableArray*)thisPath number:(int)number overall:(int)overall
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -25,10 +25,21 @@
         [self addSubview:bgView];
         [bgView release];
         
-        UIImageView *pathNumberView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pathnumber.png"]];
+        NSString *fileName = [NSString stringWithFormat:@"n%d.png",number+1];
+        UIImageView *pathNumberView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:fileName]];
         pathNumberView.frame = CGRectMake(8,4,24,32);
         [self addSubview:pathNumberView];
         [pathNumberView release];
+        
+        UILabel *over = [[UILabel alloc] init];
+        over.text=[NSString stringWithFormat:@"%d",overall];        
+        over.backgroundColor = [UIColor clearColor];
+        over.font = [UIFont fontWithName:@"MyriadPro-Regular" size:9.0];
+        over.textColor = [UIColor whiteColor];
+        over.frame=CGRectMake(23, 9, 10, 10); 
+        [self addSubview:over];
+        [over release];
+
         
         UIImageView *clockView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"clock.png"]];
         clockView.frame = CGRectMake(37, 4, 14, 14);
@@ -81,8 +92,6 @@
         [(UIImageView*)[self viewWithTag:6500+page] setFrame:CGRectMake(labelStart-flagRect.size.width-2.0, flagRect.origin.y, flagRect.size.width, flagRect.size.height)];
 
     }
-    
-
 
     return self;
 }

@@ -255,6 +255,7 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 @property (nonatomic, assign) StationKind transferKind;
 @property (nonatomic, readonly) CGFloat maxScale;
 @property (nonatomic, retain) NSString *thisMapName;
+@property (nonatomic, retain) NSString *pathToMap;
 @property (nonatomic, retain) NSMutableArray *pathStationsList;
 @property (nonatomic, readonly) NSMutableArray *mapLines;
 @property (nonatomic, assign) CGFloat currentScale;

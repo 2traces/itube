@@ -35,6 +35,8 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 
 -(NSString*)nameCurrentMap;
 -(NSString*)nameCurrentCity;
+-(NSString*)getDefaultMapName;
+-(NSString*)getDefaultCityName;
 
 @end
 

@@ -62,7 +62,7 @@
     NSMutableDictionary *lines;
 }
 
--(id) initSchedule:(NSString*)fileName;
+-(id) initSchedule:(NSString*)fileName path:(NSString*)path;
 -(void) setIndex:(int)ind forLine:(NSString*)line;
 
 -(NSArray*)findPathFrom:(NSString *)fromStation to:(NSString*)toStation;

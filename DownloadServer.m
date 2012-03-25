@@ -38,8 +38,7 @@ NSString *mainurl = @"http://astro-friends.net/it";
 
 -(void)loadFileAtURL:(NSString *)suburl
 {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[self makeFullURL:suburl]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[self makeFullURL:suburl] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60.0];
     
     self.connection = [[[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES] autorelease];
     [request release];

@@ -7,6 +7,8 @@
 //
 
 #import "Schedule.h"
+#import "tubeAppDelegate.h"
+#import "CityMap.h"
 
 /***** SchPoint *****/
 
@@ -89,7 +91,8 @@
         [dateForm setDateFormat:@"HH:mm"];
         routes = [[NSMutableArray alloc] init];
         catalog = [[NSMutableDictionary alloc] init];
-        NSString *fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
+//        NSString *fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
+        NSString *fn = [NSString stringWithFormat:@"%@/%@.xml",[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] pathToMap],fileName];
         NSData *xmlData = [NSData dataWithContentsOfFile:fn];
         NSXMLParser *parser = [[NSXMLParser alloc] initWithData:xmlData];
         parser.delegate = self;
@@ -170,12 +173,12 @@
 
 @implementation Schedule
 
--(id)initSchedule:(NSString *)fileName
+-(id)initSchedule:(NSString *)fileName path:(NSString *)path
 {
     if((self = [super init])) {
         cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        lines = [[NSMutableDictionary alloc] init];
-        NSString *fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
+        lines = [[NSMutableDictionary alloc] init];        
+        NSString *fn = [NSString stringWithFormat:@"%@/%@.xml",path,fileName];
         NSData *xmlData = [[NSData alloc] initWithContentsOfFile:fn];
         NSXMLParser *parser = [[NSXMLParser alloc] initWithData:xmlData];
         [xmlData release];

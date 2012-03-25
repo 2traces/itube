@@ -9,6 +9,7 @@
 #import "CityMap.h"
 #include "ini.h"
 #import "ManagedObjects.h"
+#import "tubeAppDelegate.h"
 
 NSMutableArray * Split(NSString* s)
 {
@@ -1322,6 +1323,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize activePath;
 @synthesize maxScale;
 @synthesize thisMapName;
+@synthesize pathToMap;
 @synthesize pathStationsList;
 @synthesize mapLines;
 @synthesize currentScale;
@@ -1372,32 +1374,77 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
     self.thisMapName=mapName;
     
-    NSArray *files = [[NSBundle mainBundle] pathsForResourcesOfType:@"map" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
-    if([files count] <= 0) {
-        NSLog(@"map file not found: %@", mapName);
-        return;
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *mapDirPath = [cacheDir stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@",[mapName lowercaseString]]];
+    
+    NSString *mapFile = [NSString stringWithString:@""];
+    NSString *trpFile = [NSString stringWithString:@""];
+    NSString *trpNewFile =  [NSString stringWithString:@""];
+    BOOL useTrpNew=NO;
+    
+    if ([[manager contentsOfDirectoryAtPath:mapDirPath error:nil] count]>0) {
+        NSDirectoryEnumerator *dirEnum = [manager enumeratorAtPath:mapDirPath];
+        NSString *file;
+        
+        while (file = [dirEnum nextObject]) {
+            if ([[file pathExtension] isEqualToString: @"map"]) {
+                mapFile=[mapDirPath stringByAppendingPathComponent:file];
+            } else if ([[file pathExtension] isEqualToString: @"trp"]) {
+                trpFile=[mapDirPath stringByAppendingPathComponent:file];
+            } else if ([[file pathExtension] isEqualToString: @"trpnew"]) {
+                trpNewFile=[mapDirPath stringByAppendingPathComponent:file];
+                useTrpNew=YES;
+            }
+        }
+    } 
+    
+    if (useTrpNew) {
+        trpFile=trpNewFile;
     }
-    NSString *mapFile = [files objectAtIndex:0];
-
-    files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trpnew" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
-    if([files count] <= 0) {
-        files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trp" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+    
+    NSArray *files;
+    
+    // если не получается взять файлы из директории cache - то пытаемся найти их в бандле
+    if ([mapFile isEqual:@""] || [trpFile isEqual:@""]) {
+        
+        files = [[NSBundle mainBundle] pathsForResourcesOfType:@"map" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         if([files count] <= 0) {
-            NSLog(@"trp file not found: %@", mapName);
+            NSLog(@"map file not found: %@", mapName);
             return;
+        }
+        mapFile = [files objectAtIndex:0];
+        
+        files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trpnew" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+        if([files count] <= 0) {
+            files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trp" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+            if([files count] <= 0) {
+                NSLog(@"trp file not found: %@", mapName);
+                return;
+            } else {
+                NSString *trpFile = [files objectAtIndex:0];
+                [self loadOldMap:mapFile trp:trpFile];
+            }
         } else {
             NSString *trpFile = [files objectAtIndex:0];
+            [self loadNewMap:mapFile trp:trpFile];
+        }
+
+    } else {
+        if (useTrpNew) {
+            [self loadNewMap:mapFile trp:trpFile];
+        } else {
             [self loadOldMap:mapFile trp:trpFile];
         }
-    } else {
-        NSString *trpFile = [files objectAtIndex:0];
-        [self loadNewMap:mapFile trp:trpFile];
-    }
+    }   
+    
+    self.pathToMap = [mapFile stringByDeletingLastPathComponent];
+    
     [[MHelper sharedHelper] readHistoryFile:mapName];
     [[MHelper sharedHelper] readBookmarkFile:mapName];
     
     if([mapName isEqualToString:@"venice"]) {
-        schedule = [[Schedule alloc] initSchedule:@"routes"];
+        schedule = [[Schedule alloc] initSchedule:@"routes" path:self.pathToMap];
         for (Line *l in mapLines) {
             [schedule setIndex:l.index forLine:l.name];
         }

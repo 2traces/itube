@@ -139,7 +139,6 @@
     }
 }
 
-
 - (void)buyProductIdentifier:(NSString *)productIdentifier {
     
     NSLog(@"Buying %@...", productIdentifier);
