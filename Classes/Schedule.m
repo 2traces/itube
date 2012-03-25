@@ -29,6 +29,7 @@
             NSString *d = [ss lastObject];
             dock = [d characterAtIndex:0];
         } 
+        ss = [[ss objectAtIndex:0] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"()"]];
         name = [[[ss objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
         time = t;
     }
@@ -186,12 +187,18 @@
         else {
             fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml" inDirectory:path];
         }
+        if(fn == nil) {
+            [self release];
+            return nil;
+        }
         NSData *xmlData = [[NSData alloc] initWithContentsOfFile:fn];
         NSXMLParser *parser = [[NSXMLParser alloc] initWithData:xmlData];
         [xmlData release];
         parser.delegate = self;
         if(![parser parse]) {
             NSLog(@"Can't load xml file %@", fileName);
+            [self release];
+            return nil;
         }
         [parser release];
     }
