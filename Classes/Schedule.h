@@ -53,6 +53,7 @@
 @property (nonatomic, readonly) NSDictionary *catalog;
 
 -(id)initWithName:(NSString*)name file:(NSString*)fileName path:(NSString*)path;
+-(void)appendFile:(NSString*)fileName path:(NSString*)path;
 @end
 
 /***** Schedule *****/
