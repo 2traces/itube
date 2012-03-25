@@ -1290,6 +1290,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             }
         }
     }
+    NSLog(@"can't add point between '%@' and '%@' in line '%@'", station1, station2, name);
 }
 
 -(Station*)getStation:(NSString *)stName
