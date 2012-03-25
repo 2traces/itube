@@ -27,8 +27,9 @@
             if (productPurchased) {
                 [purchasedProducts addObject:productIdentifier];
                 NSLog(@"Previously purchased: %@", productIdentifier);
+            } else {
+                NSLog(@"Not purchased: %@", productIdentifier);
             }
-            NSLog(@"Not purchased: %@", productIdentifier);
         }
         self.purchasedProducts = purchasedProducts;
                         
@@ -55,6 +56,10 @@
 
 - (void)recordTransaction:(SKPaymentTransaction *)transaction {    
     // TODO: Record the transaction on the server side...    
+}
+
+-(void)restoreCompletedTransactions {
+    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
 - (void)provideContent:(NSString *)productIdentifier {
@@ -101,12 +106,25 @@
     
 }
 
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+{
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"restored"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
+{
+    NSLog(@"---");
+}
+
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
     for (SKPaymentTransaction *transaction in transactions)
     {
         switch (transaction.transactionState)
         {
+            case SKPaymentTransactionStatePurchasing:
+                break;
             case SKPaymentTransactionStatePurchased:
                 [self completeTransaction:transaction];
                 break;
@@ -120,7 +138,6 @@
         }
     }
 }
-
 
 - (void)buyProductIdentifier:(NSString *)productIdentifier {
     
