@@ -650,7 +650,7 @@
 -(void)drawPathScrollView
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSArray *path11 = appDelegate.cityMap.activePath;
+//    NSArray *path11 = appDelegate.cityMap.activePath;
     
     CGFloat transferHeight = 85.0f;
     CGFloat stationHeight = 20.0f;
@@ -672,7 +672,7 @@
     int stationType = 0;
     int finalType = 0;
     
-    NSMutableArray *points = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableArray *points = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     
     CGFloat viewHeight=0;
     CGFloat segmentHeight;
@@ -690,7 +690,7 @@
     
     for (NSMutableArray *tempStations in stations) {
         
-        segmentHeight=0;
+//        segmentHeight=0;
         trainType=0;
         finalType=0;
         stationType=0;

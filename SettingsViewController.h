@@ -18,7 +18,7 @@
 
 @protocol SettingsViewControllerDelegate;
 
-@interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate,ServerListener,DownloadServerListener>
+@interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate,DownloadServerListener>
 {
     IBOutlet UITableView *langTableView;
     IBOutlet UITableView *cityTableView;
@@ -56,9 +56,6 @@
 @property (nonatomic, retain) IBOutlet UIButton *sendMailButton;
 @property (nonatomic, retain) IBOutlet UILabel *textLabel3;
 @property (retain) MBProgressHUD *hud;
-
--(IBAction)cityPress:(id)sender;
--(IBAction)buyPress:(id)sender;
 
 -(BOOL)isProductInstalled:(NSString*)prodID;
 -(BOOL)isProductPurchased:(NSString*)prodID;
