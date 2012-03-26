@@ -230,6 +230,9 @@
 		BC88781314EB90D600E7BEF7 /* switch_to_path@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC88780B14EB90D600E7BEF7 /* switch_to_path@2x.png */; };
 		BC88A2AB151A328E0060F860 /* SettingsNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC88A2A9151A328E0060F860 /* SettingsNavController.m */; };
 		BC88A2C0151A3C5D0060F860 /* DemoMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC88A2BE151A3C5D0060F860 /* DemoMapViewController.m */; };
+		BC88F914152052C800BC7FAA /* LanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC88F912152052C800BC7FAA /* LanguageViewController.m */; };
+		BC88F919152058D600BC7FAA /* LanguageCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = BC88F918152058D600BC7FAA /* LanguageCell2.m */; };
+		BC88F91B15205B6B00BC7FAA /* LanguageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC88F91A15205B6A00BC7FAA /* LanguageViewController.xib */; };
 		BC8C57E814EA23C30005561D /* bevel.png in Resources */ = {isa = PBXBuildFile; fileRef = BC8C57E614EA23C30005561D /* bevel.png */; };
 		BC8C57E914EA23C30005561D /* bevel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC8C57E714EA23C30005561D /* bevel@2x.png */; };
 		BC8C57EF14EA29600005561D /* bevel08.png in Resources */ = {isa = PBXBuildFile; fileRef = BC8C57EB14EA29600005561D /* bevel08.png */; };
@@ -570,6 +573,11 @@
 		BC88A2A9151A328E0060F860 /* SettingsNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsNavController.m; sourceTree = "<group>"; };
 		BC88A2BD151A3C5C0060F860 /* DemoMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoMapViewController.h; sourceTree = "<group>"; };
 		BC88A2BE151A3C5D0060F860 /* DemoMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoMapViewController.m; sourceTree = "<group>"; };
+		BC88F911152052C800BC7FAA /* LanguageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageViewController.h; sourceTree = "<group>"; };
+		BC88F912152052C800BC7FAA /* LanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageViewController.m; sourceTree = "<group>"; };
+		BC88F917152058D600BC7FAA /* LanguageCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageCell2.h; sourceTree = "<group>"; };
+		BC88F918152058D600BC7FAA /* LanguageCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageCell2.m; sourceTree = "<group>"; };
+		BC88F91A15205B6A00BC7FAA /* LanguageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LanguageViewController.xib; path = Resources/LanguageViewController.xib; sourceTree = "<group>"; };
 		BC8C57E614EA23C30005561D /* bevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bevel.png; path = images/bevel.png; sourceTree = "<group>"; };
 		BC8C57E714EA23C30005561D /* bevel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bevel@2x.png"; path = "images/bevel@2x.png"; sourceTree = "<group>"; };
 		BC8C57EB14EA29600005561D /* bevel08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bevel08.png; path = images/bevel08.png; sourceTree = "<group>"; };
@@ -752,6 +760,8 @@
 				BC3D14E214C338360059A17E /* LineListViewController.m */,
 				BC3D14E414C338370059A17E /* SettingsViewController.h */,
 				BC3D14E514C338370059A17E /* SettingsViewController.m */,
+				BC88F911152052C800BC7FAA /* LanguageViewController.h */,
+				BC88F912152052C800BC7FAA /* LanguageViewController.m */,
 				51D20F3714B85185007AC4BD /* tubee.xcdatamodeld */,
 				51D20F3314B849A3007AC4BD /* ManagedObjects.h */,
 				51D20F3414B849A3007AC4BD /* ManagedObjects.m */,
@@ -840,6 +850,7 @@
 			children = (
 				BCD7E24B151AF85C007C658A /* CityCell.xib */,
 				BCD7E24C151AF85C007C658A /* DemoMapViewController.xib */,
+				BC88F91A15205B6A00BC7FAA /* LanguageViewController.xib */,
 				BCD7E24D151AF85C007C658A /* SettingsNavController.xib */,
 				BCCC30A114E4F19900102064 /* LanguageCell.xib */,
 				BC876AB614DFAF23008AC06C /* BookmarkViewController.xib */,
@@ -1100,6 +1111,8 @@
 				BCCC309F14E4F12800102064 /* LanguageCell.m */,
 				BCCC30A914E4FA6200102064 /* CityCell.h */,
 				BCCC30AA14E4FA6200102064 /* CityCell.m */,
+				BC88F917152058D600BC7FAA /* LanguageCell2.h */,
+				BC88F918152058D600BC7FAA /* LanguageCell2.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1434,31 +1447,6 @@
 				BC95F652150623D500E1BF75 /* high_buy_button.png in Resources */,
 				BC95F653150623D500E1BF75 /* high_buy_button@2x.png in Resources */,
 				9F9CF246150729AC0055B63B /* maps in Resources */,
-				51D13E071509DF7400B3FA8A /* route-1.xml in Resources */,
-				51D13E081509DF7400B3FA8A /* route-10.xml in Resources */,
-				51D13E091509DF7400B3FA8A /* route-11.xml in Resources */,
-				51D13E0A1509DF7400B3FA8A /* route-12.xml in Resources */,
-				51D13E0B1509DF7400B3FA8A /* route-13.xml in Resources */,
-				51D13E0C1509DF7400B3FA8A /* route-14.xml in Resources */,
-				51D13E0D1509DF7400B3FA8A /* route-15.xml in Resources */,
-				51D13E0E1509DF7400B3FA8A /* route-16.xml in Resources */,
-				51D13E0F1509DF7400B3FA8A /* route-17.xml in Resources */,
-				51D13E101509DF7400B3FA8A /* route-18.xml in Resources */,
-				51D13E111509DF7400B3FA8A /* route-19.xml in Resources */,
-				51D13E121509DF7400B3FA8A /* route-2.xml in Resources */,
-				51D13E131509DF7400B3FA8A /* route-20.xml in Resources */,
-				51D13E141509DF7400B3FA8A /* route-21.xml in Resources */,
-				51D13E151509DF7400B3FA8A /* route-22.xml in Resources */,
-				51D13E161509DF7400B3FA8A /* route-23.xml in Resources */,
-				51D13E171509DF7400B3FA8A /* route-24.xml in Resources */,
-				51D13E181509DF7400B3FA8A /* route-3.xml in Resources */,
-				51D13E191509DF7400B3FA8A /* route-4.xml in Resources */,
-				51D13E1A1509DF7400B3FA8A /* route-5.xml in Resources */,
-				51D13E1B1509DF7400B3FA8A /* route-6.xml in Resources */,
-				51D13E1C1509DF7400B3FA8A /* route-7.xml in Resources */,
-				51D13E1D1509DF7400B3FA8A /* route-8.xml in Resources */,
-				51D13E1E1509DF7400B3FA8A /* route-9.xml in Resources */,
-				51D13E1F1509DF7400B3FA8A /* routes.xml in Resources */,
 				BCD7E24E151AF85C007C658A /* CityCell.xib in Resources */,
 				BCD7E24F151AF85C007C658A /* DemoMapViewController.xib in Resources */,
 				BCD7E250151AF85C007C658A /* SettingsNavController.xib in Resources */,
@@ -1468,6 +1456,7 @@
 				BCE1C9E8151F63630029CCB2 /* n2@2x.png in Resources */,
 				BCE1C9E9151F63630029CCB2 /* n3.png in Resources */,
 				BCE1C9EA151F63630029CCB2 /* n3@2x.png in Resources */,
+				BC88F91B15205B6B00BC7FAA /* LanguageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1542,6 +1531,8 @@
 				BC76ACFC151B1A85009BDABC /* mztools.c in Sources */,
 				BC76ACFD151B1A85009BDABC /* unzip.c in Sources */,
 				BC76ACFE151B1A85009BDABC /* zip.c in Sources */,
+				BC88F914152052C800BC7FAA /* LanguageViewController.m in Sources */,
+				BC88F919152058D600BC7FAA /* LanguageCell2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

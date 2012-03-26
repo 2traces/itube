@@ -17,6 +17,7 @@
 #import "TubeAppIAPHelper.h"
 #import "DemoMapViewController.h"
 #import "SSZipArchive.h"
+#import "LanguageViewController.h"
 
 #define plist_ 1
 #define zip_  2
@@ -324,33 +325,40 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-    
-    if ([[map objectForKey:@"prodID"] isEqual:@"default"]) {
-        self.selectedPath=indexPath;
-        [tableView reloadData];    
-
-        NSString *mapName = [appDelegate getDefaultMapName];
-        NSString *cityName = [appDelegate getDefaultCityName];
+    if (tableView==self.cityTableView) {
+        NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
+        tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
         
-        [appDelegate.mainViewController changeMapTo:mapName andCity:cityName];
-    } else if ([self isProductInstalled:[map objectForKey:@"filename"]]) {
-        
-        self.selectedPath=indexPath;
-        [tableView reloadData];    
-        
-        NSString *mapName = [map objectForKey:@"filename"];
-        NSString *cityName = [map objectForKey:@"name"];
-        
-        [appDelegate.mainViewController changeMapTo:mapName andCity:cityName];
-        
+        if ([[map objectForKey:@"prodID"] isEqual:@"default"]) {
+            self.selectedPath=indexPath;
+            [tableView reloadData];    
+            
+            NSString *mapName = [appDelegate getDefaultMapName];
+            NSString *cityName = [appDelegate getDefaultCityName];
+            
+            [appDelegate.mainViewController changeMapTo:mapName andCity:cityName];
+        } else if ([self isProductInstalled:[map objectForKey:@"filename"]]) {
+            
+            self.selectedPath=indexPath;
+            [tableView reloadData];    
+            
+            NSString *mapName = [map objectForKey:@"filename"];
+            NSString *cityName = [map objectForKey:@"name"];
+            
+            [appDelegate.mainViewController changeMapTo:mapName andCity:cityName];
+            
+        } else {
+            // показать рекламное окно
+            DemoMapViewController *controller = [[DemoMapViewController alloc] initWithNibName:@"DemoMapViewController" bundle:[NSBundle mainBundle]];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+        }    
     } else {
-        // показать рекламное окно
-        DemoMapViewController *controller = [[DemoMapViewController alloc] initWithNibName:@"DemoMapViewController" bundle:[NSBundle mainBundle]];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        LanguageViewController *controller = [[LanguageViewController alloc] initWithNibName:@"LanguageViewController" bundle:[NSBundle mainBundle]];
         [self.navigationController pushViewController:controller animated:YES];
         [controller release];
-    }   
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
