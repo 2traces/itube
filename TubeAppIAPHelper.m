@@ -27,18 +27,16 @@ static TubeAppIAPHelper * _sharedHelper;
     NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
     
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithContentsOfFile:path] autorelease];
     NSArray *array = [dict allKeys];
     
-    NSSet *productIdentifiers = [[NSSet alloc] initWithArray:array];    
+    NSSet *productIdentifiers = [[[NSSet alloc] initWithArray:array] autorelease];    
     
     if ((self = [super initWithProductIdentifiers:productIdentifiers])) {                
         
     }
 
     return self;
-    
 }
-
 
 @end

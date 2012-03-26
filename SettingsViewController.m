@@ -53,14 +53,63 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
--(IBAction)updatePressed:(id)sender
+-(NSArray*)getMapsList
 {
-    DownloadServer *server = [[[DownloadServer alloc] init] autorelease];
-    server.listener=self;
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
     
-    NSString *bundleName = [NSString stringWithFormat:@"%@.plist",[[NSBundle mainBundle] bundleIdentifier]];
-    requested_file_type=plist_;
-    [server loadFileAtURL:bundleName];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSArray *mapIDs = [dict allKeys];
+    NSMutableArray *mapsInfoArray = [[[NSMutableArray alloc] initWithCapacity:[mapIDs count]] autorelease];
+    
+    for (NSString* mapID in mapIDs) {
+        NSMutableDictionary *product = [[NSMutableDictionary alloc] initWithDictionary:[dict objectForKey:mapID]];
+        [product setObject:mapID forKey:@"prodID"];
+        
+        if ([mapID isEqual:@"default"]) {
+            [product setObject:[NSString stringWithString:@"D"] forKey:@"status"];
+        } else if ([self isProductPurchased:mapID]) {
+            if ([self isProductInstalled:[product valueForKey:@"filename"]]) {
+                [product setObject:[NSString stringWithString:@"I"] forKey:@"status"];
+            } else {
+                [product setObject:[NSString stringWithString:@"P"] forKey:@"status"];
+            }
+        } else {
+            [product setObject:[NSString stringWithString:@"Z"] forKey:@"status"];
+        };
+        
+        [mapsInfoArray addObject:product];
+        [product release];
+    }
+    
+    [dict release];
+    
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    
+    [mapsInfoArray sortUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil]];
+    
+    [sortDescriptor2 release];
+    [sortDescriptor1 release];
+    
+    return mapsInfoArray;
+}
+
+-(void)resortMapArray
+{
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    
+    NSMutableArray *temp = [NSMutableArray arrayWithArray:self.maps];
+    
+    [temp sortUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil]];
+    
+    self.maps = [NSArray arrayWithArray:temp];
+    
+    [sortDescriptor2 release];
+    [sortDescriptor1 release];
+    
+    [self setCurrentMapSelectedPath];
 }
 
 #pragma mark - View lifecycle
@@ -104,6 +153,19 @@
     [self adjustViewHeight];
 }
 
+-(void)setCurrentMapSelectedPath
+{
+    int mapsC = [self.maps count];
+    
+    NSString *currentMap = [[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] thisMapName];
+
+    for (int i=0;i<mapsC;i++) {
+        if ([[[self.maps objectAtIndex:i] objectForKey:@"filename"] isEqual:currentMap]) {
+            self.selectedPath=[NSIndexPath indexPathForRow:i inSection:0];
+        }
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
@@ -114,61 +176,23 @@
     [super viewWillAppear:animated];
 }
 
--(void) processPurchases
+-(void)adjustViewHeight
 {
-    Reachability *reach = [Reachability reachabilityForInternetConnection];	
-    NetworkStatus netStatus = [reach currentReachabilityStatus];  
+    CGFloat tableHeight = [maps count]*45.0f+2.0;
     
-    if (netStatus == NotReachable) {        
-        NSLog(@"No internet connection!");        
-    } else {        
-        if ([TubeAppIAPHelper sharedHelper].products == nil) {
-            [[TubeAppIAPHelper sharedHelper] requestProducts];
-        } else { 
-            [self enableProducts];
-            [self resortMapArray];
-            [cityTableView reloadData];
-        }
-    }
-}
-
-- (void)productsLoaded:(NSNotification *)notification {
+    cityTableView.frame = CGRectMake(8, 179, 304, tableHeight);
     
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self enableProducts];
-    [self resortMapArray];
-    [cityTableView reloadData];
-}
-
--(void)enableProducts
-{
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
-    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    CGRect buyAll = buyAllButton.frame;
+    buyAllButton.frame = CGRectMake(buyAll.origin.x, 179+tableHeight+8, buyAll.size.width, buyAll.size.height);
     
-    for (NSMutableDictionary *map in self.maps) {
-        if ([[map valueForKey:@"status"] isEqual:@"Z"]) {
-            for (SKProduct *product in [TubeAppIAPHelper sharedHelper].products) {
-                if ([product.productIdentifier isEqual:[map valueForKey:@"prodID"]]) {
-                    [map setObject:[NSString stringWithString:@"V"] forKey:@"status"];
-                    
-                    [numberFormatter setLocale:product.priceLocale];
-                    NSString *formattedString = [numberFormatter stringFromNumber:product.price];
-                    
-                    [map setObject:formattedString forKey:@"price"];
-                }
-            }
-        }
-    }
+    textLabel3.frame = CGRectMake(textLabel3.frame.origin.x, buyAllButton.frame.origin.y+buyAllButton.frame.size.height+17.0, textLabel3.frame.size.width, textLabel3.frame.size.height);
     
-    [numberFormatter release];
-}
-
-- (void)viewDidUnload
-{
-    [self setCityButton:nil];
-    [self setBuyButton:nil];
-    [super viewDidUnload];
+    sendMailButton.frame = CGRectMake(sendMailButton.frame.origin.x, buyAllButton.frame.origin.y+buyAllButton.frame.size.height+8.0, sendMailButton.frame.size.width, sendMailButton.frame.size.height);
+    
+    scrollView.contentSize = CGSizeMake(320, sendMailButton.frame.origin.y+sendMailButton.frame.size.height+15.0);
+    scrollView.frame = CGRectMake(0.0, 0.0, 320.0, 460.0-44.0);
+    
+    [scrollView flashScrollIndicators];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -177,7 +201,17 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma - TableView
+
+- (void)viewDidUnload
+{
+    [self setCityButton:nil];
+    [self setBuyButton:nil];
+    [super viewDidUnload];
+}
+
+
+#pragma mark - TableView
+
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -366,6 +400,8 @@
     return 45.0;
 }
 
+#pragma mark - some helpers
+
 -(BOOL)isProductInstalled:(NSString*)mapName
 {
     
@@ -460,7 +496,7 @@
         
         
         for (NSDictionary *mmap in self.maps) {
-            if ([self isProductPurchased:[mmap objectForKey:@"prodID"]]) {
+            if ([self isProductPurchased:[mmap objectForKey:@"prodID"]] || [[mmap objectForKey:@"prodID"] isEqual:@"default"]) {
                 for (NSString *prodId in array) {
                     if ([prodId isEqual:[mmap objectForKey:@"prodID"]]) {
                         if ([[mmap objectForKey:@"ver"] integerValue]<[[[dict objectForKey:prodId] objectForKey:@"ver"] integerValue]) {
@@ -478,13 +514,25 @@
         [self resortMapArray];
         [cityTableView reloadData];
         
+        NSSet *newProductIdentifiers = [[[NSSet alloc] initWithArray:array] autorelease];    
+
+        [[TubeAppIAPHelper sharedHelper] setProductIdentifiers:newProductIdentifiers];
+        
         [[TubeAppIAPHelper sharedHelper] requestProducts];
     }
         
     BOOL onceRestored = [[NSUserDefaults standardUserDefaults] boolForKey:@"restored"];
 
     if (!onceRestored) {
+        // запрашиваем старые покупки
         [[TubeAppIAPHelper sharedHelper] restoreCompletedTransactions];
+        
+        // если вышла новая версия дефолтной карты то ее сразу закачиваем
+        for (NSString *prodId in productToDonwload) {
+            if ([prodId isEqual:@"default"]) {
+                [self downloadProduct:prodId];
+            }
+        }
     } else {
         for (NSString *prodId in productToDonwload ) {
             [self downloadProduct:prodId];
@@ -493,7 +541,7 @@
  
 }
 
--(void)processZipFromServer:(NSMutableData*)data mapName:(NSString*)mapName
+-(void)processZipFromServer:(NSMutableData*)data mapName:(NSString*)prodID
 {
     // save data to file in tmp 
     NSString *tempDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -510,50 +558,45 @@
     [manager removeItemAtPath:path error:nil];
     
     if (success) {
-        [self markProductAsInstalled:mapName];
+        [self markProductAsInstalled:prodID];
     }
     
     [self resortMapArray];
     
     [self.cityTableView reloadData];
-
-}
-
--(void)adjustViewHeight
-{
-    CGFloat tableHeight = [maps count]*45.0f+2.0;
     
-    cityTableView.frame = CGRectMake(8, 179, 304, tableHeight);
+    // если мы скачали новую версию нашей текущей карты - то обновить ее
     
-    CGRect buyAll = buyAllButton.frame;
-    buyAllButton.frame = CGRectMake(buyAll.origin.x, 179+tableHeight+8, buyAll.size.width, buyAll.size.height);
+    tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
     
-    textLabel3.frame = CGRectMake(textLabel3.frame.origin.x, buyAllButton.frame.origin.y+buyAllButton.frame.size.height+17.0, textLabel3.frame.size.width, textLabel3.frame.size.height);
+    NSString *mapName = [self getMapNameForProduct:prodID];
     
-    sendMailButton.frame = CGRectMake(sendMailButton.frame.origin.x, buyAllButton.frame.origin.y+buyAllButton.frame.size.height+8.0, sendMailButton.frame.size.width, sendMailButton.frame.size.height);
-    
-    scrollView.contentSize = CGSizeMake(320, sendMailButton.frame.origin.y+sendMailButton.frame.size.height+15.0);
-    scrollView.frame = CGRectMake(0.0, 0.0, 320.0, 460.0-44.0);
-    
-    [scrollView flashScrollIndicators];
-}
-
--(void)serverDone:(NSMutableDictionary *)schedule
-{
-    NSString *stationName;
-    NSString *stationTimes;
-    
-    NSArray *array = [schedule allKeys];
-    
-    if ([array count]>0) {
-        stationName=[array objectAtIndex:1];
-        stationTimes=[[schedule objectForKey:stationName] componentsJoinedByString:@", "];
+    if ([[[appdelegate cityMap] thisMapName] isEqual:mapName])
+    {
+        // перегрузить карту
+      //  NSLog(@"перегружаю активную карту");
+        
+        NSString *cityName;
+        
+        for (NSDictionary *dict in self.maps) {
+            if ([[dict objectForKey:@"filename"] isEqual:mapName]) {
+                cityName = [dict objectForKey:@"name"];
+            }
+        }
+        
+        [appdelegate.mainViewController changeMapTo:mapName andCity:cityName];
     }
+
+}
+
+-(IBAction)updatePressed:(id)sender
+{
+    DownloadServer *server = [[[DownloadServer alloc] init] autorelease];
+    server.listener=self;
     
-    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:stationName message:stationTimes delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
-    [myAlertView show];
-    [myAlertView release];
-    
+    NSString *bundleName = [NSString stringWithFormat:@"%@.plist",[[NSBundle mainBundle] bundleIdentifier]];
+    requested_file_type=plist_;
+    [server loadFileAtURL:bundleName];
 }
 
 -(IBAction)buyButtonPressed:(id)sender 
@@ -591,6 +634,58 @@
     NSString *mapFilePath = [NSString stringWithFormat:@"maps/%@/%@.zip",mapName,mapName];
     requested_file_type=zip_;
     [server loadFileAtURL:mapFilePath];
+}
+
+#pragma mark - in-app purchase 
+
+-(void) processPurchases
+{
+    Reachability *reach = [Reachability reachabilityForInternetConnection];	
+    NetworkStatus netStatus = [reach currentReachabilityStatus];  
+    
+    if (netStatus == NotReachable) {        
+        NSLog(@"No internet connection!");        
+    } else {        
+        if ([TubeAppIAPHelper sharedHelper].products == nil) {
+            [[TubeAppIAPHelper sharedHelper] requestProducts];
+        } else { 
+            [self enableProducts];
+            [self resortMapArray];
+            [cityTableView reloadData];
+        }
+    }
+}
+
+- (void)productsLoaded:(NSNotification *)notification {
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self enableProducts];
+    [self resortMapArray];
+    [cityTableView reloadData];
+}
+
+-(void)enableProducts
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"status"] isEqual:@"Z"]) {
+            for (SKProduct *product in [TubeAppIAPHelper sharedHelper].products) {
+                if ([product.productIdentifier isEqual:[map valueForKey:@"prodID"]]) {
+                    [map setObject:[NSString stringWithString:@"V"] forKey:@"status"];
+                    
+                    [numberFormatter setLocale:product.priceLocale];
+                    NSString *formattedString = [numberFormatter stringFromNumber:product.price];
+                    
+                    [map setObject:formattedString forKey:@"price"];
+                }
+            }
+        }
+    }
+    
+    [numberFormatter release];
 }
 
 -(void)purchaseProduct:(NSString*)prodID
@@ -645,20 +740,6 @@
     }
 }
 
--(void)resortMapArray
-{
-    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
-    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    
-    NSMutableArray *temp = [NSMutableArray arrayWithArray:self.maps];
-    
-    [temp sortUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil]];
-    
-    self.maps = [NSArray arrayWithArray:temp];
-    
-    [sortDescriptor2 release];
-    [sortDescriptor1 release];
-}
 
 - (void)productPurchaseFailed:(NSNotification *)notification {
     
@@ -699,47 +780,8 @@
     [delegate donePressed];
 }
 
--(NSArray*)getMapsList
-{
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSArray *mapIDs = [dict allKeys];
-    NSMutableArray *mapsInfoArray = [[[NSMutableArray alloc] initWithCapacity:[mapIDs count]] autorelease];
-    
-    for (NSString* mapID in mapIDs) {
-        NSMutableDictionary *product = [[NSMutableDictionary alloc] initWithDictionary:[dict objectForKey:mapID]];
-        [product setObject:mapID forKey:@"prodID"];
-        
-        if ([mapID isEqual:@"default"]) {
-            [product setObject:[NSString stringWithString:@"D"] forKey:@"status"];
-        } else if ([self isProductPurchased:mapID]) {
-            if ([self isProductInstalled:[product valueForKey:@"filename"]]) {
-                [product setObject:[NSString stringWithString:@"I"] forKey:@"status"];
-            } else {
-                [product setObject:[NSString stringWithString:@"P"] forKey:@"status"];
-            }
-        } else {
-            [product setObject:[NSString stringWithString:@"Z"] forKey:@"status"];
-        };
-        
-        [mapsInfoArray addObject:product];
-        [product release];
-    }
-    
-    [dict release];
-    
-    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
-    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    
-    [mapsInfoArray sortUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil]];
-    
-    [sortDescriptor2 release];
-    [sortDescriptor1 release];
-    
-    return mapsInfoArray;
-}
+
+#pragma mark - Mail methods
 
 // Displays an email composition interface inside the app // and populates all the Mail fields.
 -(IBAction)showMailComposer:(id)sender
