@@ -128,7 +128,8 @@
 	cityTableView.backgroundColor = [UIColor clearColor];
     cityTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    CGRect frame = CGRectMake(80, 0, 160, 44);
+    UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,160,44)];
+    CGRect frame = CGRectMake(0, 3, 160, 44);
 	UILabel *label = [[[UILabel alloc] initWithFrame:frame] autorelease];
 	label.backgroundColor = [UIColor clearColor];
 	label.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0];
@@ -136,7 +137,8 @@
 	label.textAlignment = UITextAlignmentCenter;
 	label.textColor = [UIColor darkGrayColor];
     label.text = @"Settings";
-    self.navigationItem.titleView=label;
+    [iv addSubview:label];
+    self.navigationItem.titleView=iv;
 	
     UIImage *back_image=[UIImage imageNamed:@"settings_back_button.png"];
 	UIButton *back_button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -384,6 +386,11 @@
         } else {
             // показать рекламное окно
             DemoMapViewController *controller = [[DemoMapViewController alloc] initWithNibName:@"DemoMapViewController" bundle:[NSBundle mainBundle]];
+            NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
+            controller.filename = [map objectForKey:@"filename"];
+            controller.cityName = [map objectForKey:@"name"];
+            controller.prodID = [map objectForKey:@"prodID"];
+            controller.delegate=self;
             [self.navigationController pushViewController:controller animated:YES];
             [controller release];
         }    
@@ -634,6 +641,12 @@
     NSString *mapFilePath = [NSString stringWithFormat:@"maps/%@/%@.zip",mapName,mapName];
     requested_file_type=zip_;
     [server loadFileAtURL:mapFilePath];
+}
+
+-(void)returnWithPurchase:(NSString *)prodID
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    [self purchaseProduct:prodID];
 }
 
 #pragma mark - in-app purchase 
