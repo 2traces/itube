@@ -13,12 +13,13 @@
 #import "Server.h"
 #import "DownloadServer.h"
 #import "MBProgressHUD.h"
+#import "DemoMapViewController.h"
 
 @class MyNavigationBar;
 
 @protocol SettingsViewControllerDelegate;
 
-@interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate,DownloadServerListener>
+@interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate,DownloadServerListener,DemoMapProtocol>
 {
     IBOutlet UITableView *langTableView;
     IBOutlet UITableView *cityTableView;
