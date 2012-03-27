@@ -36,7 +36,8 @@
     [self.mytableView setBackgroundColor:[UIColor clearColor]];
     self.imageView.image = [UIImage imageNamed:@"lines_shadow.png"];
     
-    CGRect frame = CGRectMake(80, 0, 160, 44);
+    UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,160,44)];
+    CGRect frame = CGRectMake(0, 3, 160, 44);
 	UILabel *label = [[[UILabel alloc] initWithFrame:frame] autorelease];
 	label.backgroundColor = [UIColor clearColor];
 	label.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0];
@@ -44,7 +45,8 @@
 	label.textAlignment = UITextAlignmentCenter;
 	label.textColor = [UIColor darkGrayColor];
     label.text = @"Languages";
-    self.navigationItem.titleView=label;
+    [iv addSubview:label];
+    self.navigationItem.titleView=iv;
 	
     UIImage *back_image=[UIImage imageNamed:@"settings_back_button.png"];
 	UIButton *back_button = [UIButton buttonWithType:UIButtonTypeCustom];
