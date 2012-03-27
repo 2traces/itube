@@ -602,7 +602,13 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize tangent;
 @synthesize way1;
 @synthesize way2;
+@synthesize transferWay1;
+@synthesize transferWay2;
+@synthesize transferWay3;
+@synthesize transferWay4;
 @synthesize gpsCoords;
+@synthesize forwardWay;
+@synthesize backwardWay;
 
 -(id)copyWithZone:(NSZone*)zone
 {
@@ -847,6 +853,38 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     NSNumber *w = [reverseTransferWay objectForKey:target];
     if(w != nil) return [w intValue];
     return NOWAY;
+}
+
+-(BOOL)checkForwardWay:(Station *)st
+{
+    if([forwardWay containsObject:st]) return true;
+    if([backwardWay containsObject:st]) return false;
+    // unknown way!
+    NSLog(@"Warning: unknown way from %@ to %@", name, st.name);
+    return false;
+}
+
+-(int)megaTransferWayFrom:(Station *)prevStation to:(Station *)transferStation
+{
+    BOOL prevForwardWay = [prevStation checkForwardWay:self];
+    if(prevForwardWay) {
+        // we should choose one from first and second transfer ways
+        return transferWay1;  // or transferWay2
+    } else {
+        // choose from third and fourth ways
+        return transferWay3; // or transferWay4
+    }
+}
+
+-(int) megaTransferWayFrom:(Station *)prevStation to:(Station *)transferStation andNextStation:(Station *)nextStation
+{
+    BOOL prevForwardWay = [prevStation checkForwardWay:self];
+    BOOL nextForwardWay = [transferStation checkForwardWay:nextStation];
+    if(prevForwardWay && nextForwardWay) return transferWay1;
+    else if(prevForwardWay && !nextForwardWay) return transferWay2;
+    else if(!prevForwardWay && nextForwardWay) return transferWay3;
+    else if(!prevForwardWay && !nextForwardWay) return transferWay4;
+    return transferWay4;
 }
 
 @end
@@ -1789,16 +1827,18 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                                 NSLog(@"ERROR: No driving for station %@!", st.name);
                             }
                             [st.relationDriving addObject:driving];
-                            if(direction & 0x2) {
+                            if(direction & 0x2) {  // forward
                                 [graph addEdgeFromNode:[GraphNode nodeWithName:st.name andLine:i] toNode:[GraphNode nodeWithName:st2.name andLine:i] withWeight:[driving floatValue]];
                                 [st setTransferWay:st.way1 to:st2];
                                 [st2 setTransferWay:st2.way1 from:st];
                             }
-                            if(direction & 0x1) {
+                            if(direction & 0x1) {  // backward
                                 [graph addEdgeFromNode:[GraphNode nodeWithName:st2.name andLine:i] toNode:[GraphNode nodeWithName:st.name andLine:i] withWeight:[driving floatValue]];
                                 [st setTransferWay:st.way2 from:st2];
                                 [st2 setTransferWay:st2.way2 to:st];
                             }
+                            [st.forwardWay addObject:st2];
+                            [st2.backwardWay addObject:st];
                         }
                     }
                     st = st2;
@@ -1935,18 +1975,16 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         [ss2 setTransferDriving:drv to:ss1];
     }
     if([elements count] >= 6) {
-        int w = StringToWay([elements objectAtIndex:5]);
-        [ss1 setTransferWay:w to:ss2];
+        ss1.transferWay1 = StringToWay([elements objectAtIndex:5]);
     }
     if([elements count] >= 7) {
-        int w = StringToWay([elements objectAtIndex:6]);
-        [ss2 setTransferWay:w to:ss1];
+        ss1.transferWay2 = StringToWay([elements objectAtIndex:6]);
     }
     if([elements count] >= 8) {
-        int w = StringToWay([elements objectAtIndex:7]);
+        ss1.transferWay3 = StringToWay([elements objectAtIndex:7]);
     }
     if([elements count] >= 9) {
-        int w = StringToWay([elements objectAtIndex:8]);
+        ss1.transferWay4 = StringToWay([elements objectAtIndex:8]);
     }
     if(ss1.transfer != nil && ss2.transfer != nil) {
         
