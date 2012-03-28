@@ -378,7 +378,7 @@
     
     int objectNum = [path count];
     
-    Segment *tempSegment;
+    Segment *tempSegment = nil;
     
     for (int i=0; i<objectNum; i++) {
         
@@ -393,16 +393,27 @@
             Station *startStation = [tempSegment end];
             
             NSArray *array = [[transfer stations] allObjects];
-            
+            Segment *nextSegment = nil;
             Station *endStation;
-            
-            if ([array objectAtIndex:0]==startStation) {
-                endStation = [array objectAtIndex:1];
+            // transfer can contain more than two stations
+            if(i < objectNum-1 && [[path objectAtIndex:(i+1)] isKindOfClass:[Segment class]]) {
+                nextSegment = (Segment*)[path objectAtIndex:(i+1)];
+                endStation = [nextSegment start];
             } else {
-                endStation = [array objectAtIndex:0];
+                if ([array objectAtIndex:0]==startStation) {
+                    endStation = [array objectAtIndex:1];
+                } else {
+                    endStation = [array objectAtIndex:0];
+                }
             }
             
-            NSInteger aaa = [startStation transferWayTo:endStation];
+            NSInteger aaa = NOWAY;
+            if(tempSegment != nil && nextSegment != nil) {
+                aaa = [startStation megaTransferWayFrom:[tempSegment start] to:endStation andNextStation:[nextSegment end]];
+            } else if(tempSegment != nil) {
+                aaa = [startStation megaTransferWayFrom:[tempSegment start] to:endStation];
+            } else
+                aaa = [startStation transferWayTo:endStation];
             
             [stationsArray addObject:[NSNumber numberWithInteger:aaa]];
         }
