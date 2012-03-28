@@ -281,6 +281,19 @@
     }
 }
 
+-(SchPoint*) nearestPoint:(NSArray*) points
+{
+    double weight = INFINITY;
+    SchPoint *nearest = nil;
+    for (SchPoint *s in points) {
+        if(s.weight < weight) {
+            weight = s.weight;
+            nearest = s;
+        }
+    }
+    return nearest;
+}
+
 -(NSArray*)findPathFrom:(NSString *)fromStation to:(NSString*)toStation
 {
     if([fromStation isEqualToString:toStation]) return [NSArray array];
@@ -300,8 +313,8 @@
     [flag setValue:@"YES" forKey:fromStation];
     SchPoint *target = nil;
     while ([propagate count] > 0) {
-        [propagate sortUsingSelector:@selector(greaterThan:)];
-        SchPoint *p = [propagate objectAtIndex:0];
+        //[propagate sortUsingSelector:@selector(greaterThan:)];
+        SchPoint *p = [self nearestPoint:propagate];// [propagate objectAtIndex:0];
         if([p.name isEqualToString:toStation]) {
             // found a path
             target = p;

@@ -19,8 +19,15 @@
 @synthesize cityName;
 @synthesize parseQueue;
 
+void uncaughtExceptionHandler(NSException *exception) {
+    NSLog(@"CRASH: %@", exception);
+    NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
+    // Internal error reporting
+}
+
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 	MainViewController *aController = [[MainViewController alloc] init];
 	self.mainViewController = aController;
 	[aController release];
