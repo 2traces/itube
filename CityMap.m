@@ -277,6 +277,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 {
     CGLayerRelease(predrawedText);
     [font release];
+    [super dealloc];
 }
 
 @end
@@ -305,6 +306,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 {
     [stations release];
     CGLayerRelease(transferLayer);
+    [super dealloc];
 }
 
 -(void)addStation:(Station *)station
@@ -602,10 +604,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize tangent;
 @synthesize way1;
 @synthesize way2;
-@synthesize transferWay1;
-@synthesize transferWay2;
-@synthesize transferWay3;
-@synthesize transferWay4;
 @synthesize gpsCoords;
 @synthesize forwardWay;
 @synthesize backwardWay;
@@ -646,6 +644,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         transferWay = [[NSMutableDictionary alloc] init];
         reverseTransferWay = [[NSMutableDictionary alloc] init];
         defaultTransferWay = NOWAY;
+        forwardWay = [[NSMutableArray alloc] init];
+        backwardWay = [[NSMutableArray alloc] init];
         
         NSUInteger br = [sname rangeOfString:@"("].location;
         if(br == NSNotFound) {
@@ -700,6 +700,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [transferDriving release];
     [transferWay release];
     [reverseTransferWay release];
+    [forwardWay release];
+    [backwardWay release];
+    [super dealloc];
 }
 
 -(BOOL)addSibling:(Station *)st
@@ -834,6 +837,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [reverseTransferWay setObject:[NSNumber numberWithInt:way] forKey:target];
 }
 
+-(void)setTransferWays:(NSArray *)ways to:(Station *)target
+{
+    [transferWay setObject:ways forKey:target];
+}
+
 -(CGFloat)transferDrivingTo:(Station *)target
 {
     NSNumber *dr = [transferDriving objectForKey:target];
@@ -843,8 +851,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(int)transferWayTo:(Station *)target
 {
-    NSNumber *w = [transferWay objectForKey:target];
-    if(w != nil) return [w intValue];
+    id w = [transferWay objectForKey:target];
+    if(w == nil) return defaultTransferWay;
+    if([w isKindOfClass:[NSArray class]]) return [[w objectAtIndex:0] intValue];
+    else if ([w isKindOfClass:[NSNumber class]]) return [w intValue];
     return defaultTransferWay;
 }
 
@@ -866,25 +876,35 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(int)megaTransferWayFrom:(Station *)prevStation to:(Station *)transferStation
 {
+    NSArray *ways = [transferWay objectForKey:transferStation];
+    if(ways == nil) {
+        NSLog(@"no way from %@ to %@", name, transferStation.name);
+        return NOWAY;
+    }
     BOOL prevForwardWay = [prevStation checkForwardWay:self];
     if(prevForwardWay) {
         // we should choose one from first and second transfer ways
-        return transferWay1;  // or transferWay2
+        return [[ways objectAtIndex:0] intValue];  // or 1
     } else {
         // choose from third and fourth ways
-        return transferWay3; // or transferWay4
+        return [[ways objectAtIndex:2] intValue]; // or 3
     }
 }
 
 -(int) megaTransferWayFrom:(Station *)prevStation to:(Station *)transferStation andNextStation:(Station *)nextStation
 {
+    NSArray *ways = [transferWay objectForKey:transferStation];
+    if(ways == nil) {
+        NSLog(@"no way from %@ to %@", name, transferStation.name);
+        return NOWAY;
+    }
     BOOL prevForwardWay = [prevStation checkForwardWay:self];
     BOOL nextForwardWay = [transferStation checkForwardWay:nextStation];
-    if(prevForwardWay && nextForwardWay) return transferWay1;
-    else if(prevForwardWay && !nextForwardWay) return transferWay2;
-    else if(!prevForwardWay && nextForwardWay) return transferWay3;
-    else if(!prevForwardWay && !nextForwardWay) return transferWay4;
-    return transferWay4;
+    if(prevForwardWay && nextForwardWay) return [[ways objectAtIndex:0] intValue];
+    else if(prevForwardWay && !nextForwardWay) return [[ways objectAtIndex:1] intValue];
+    else if(!prevForwardWay && nextForwardWay) return [[ways objectAtIndex:2] intValue];
+    else if(!prevForwardWay && !nextForwardWay) return [[ways objectAtIndex:3] intValue];
+    return [[ways lastObject] intValue];
 }
 
 @end
@@ -1206,6 +1226,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [shortName release];
     CGLayerRelease(stationLayer);
     CGLayerRelease(disabledStationLayer);
+    [super dealloc];
 }
 
 -(void)draw:(CGContextRef)context inRect:(CGRect)rect
@@ -1974,18 +1995,20 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         [ss1 setTransferDriving:drv to:ss2];
         [ss2 setTransferDriving:drv to:ss1];
     }
+    NSMutableArray *ways = [NSMutableArray array];
     if([elements count] >= 6) {
-        ss1.transferWay1 = StringToWay([elements objectAtIndex:5]);
-    }
+        [ways addObject:[NSNumber numberWithInt:StringToWay([elements objectAtIndex:5])]];
+    } else [ways addObject:[NSNumber numberWithInt:NOWAY]];
     if([elements count] >= 7) {
-        ss1.transferWay2 = StringToWay([elements objectAtIndex:6]);
-    }
+        [ways addObject:[NSNumber numberWithInt:StringToWay([elements objectAtIndex:6])]];
+    } else [ways addObject:[NSNumber numberWithInt:NOWAY]];
     if([elements count] >= 8) {
-        ss1.transferWay3 = StringToWay([elements objectAtIndex:7]);
-    }
+        [ways addObject:[NSNumber numberWithInt:StringToWay([elements objectAtIndex:7])]];
+    } else [ways addObject:[NSNumber numberWithInt:NOWAY]];
     if([elements count] >= 9) {
-        ss1.transferWay4 = StringToWay([elements objectAtIndex:8]);
-    }
+        [ways addObject:[NSNumber numberWithInt:StringToWay([elements objectAtIndex:8])]];
+    } else [ways addObject:[NSNumber numberWithInt:NOWAY]];
+    [ss1 setTransferWays:ways to:ss2];
     if(ss1.transfer != nil && ss2.transfer != nil) {
         
     } else if(ss1.transfer) {
