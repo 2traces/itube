@@ -1302,6 +1302,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             }
         }
     }
+    NSLog(@"Error: no segment between %@ and %@ on line %@", station1, station2, name);
     return nil;
 }
 
@@ -2202,11 +2203,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         } else {
             GraphNode *n2 = [pathMap objectAtIndex:i+1];
             
+            if(n1.line == n2.line && [n1.name isEqualToString:n2.name]) {
+                // the same station on the same line
+                // strange, but sometimes it's possible
+            } else
             if (n1.line==n2.line) {
                 [activePath addObject:[l activateSegmentFrom:n1.name to:n2.name]];
                 [pathStationsList addObject:n1.name];
-            } 
-            
+            } else
             if(n1.line != n2.line) {
                 [activePath addObject:s.transfer];
                 [pathStationsList addObject:n1.name];
