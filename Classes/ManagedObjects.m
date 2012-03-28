@@ -189,7 +189,11 @@ static MHelper * _sharedHelper;
     
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
-    return [fetchedItems objectAtIndex:0];
+    if ([fetchedItems count]>0) {
+        return [fetchedItems objectAtIndex:0];
+    } else {
+        return nil;
+    }
 }
 
 -(MLine*)lineByName:(NSString *)name
@@ -209,7 +213,11 @@ static MHelper * _sharedHelper;
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if(![fetchedItems count]) NSLog(@"line not found %@", name);
     
-    return [fetchedItems objectAtIndex:0];
+    if ([fetchedItems count]>0) {
+        return [fetchedItems objectAtIndex:0];
+    } else {
+        return nil;
+    }
 }
 
 -(NSArray*)getStationList
@@ -368,7 +376,11 @@ static MHelper * _sharedHelper;
     
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
-    return [fetchedItems objectAtIndex:0];
+    if ([fetchedItems count]>0) {
+        return [fetchedItems objectAtIndex:0];
+    } else {
+        return nil;
+    }
 }
 
 -(MStation*)getStationWithName:(NSString*)station forLine:(NSString*)lineName
@@ -397,7 +409,12 @@ static MHelper * _sharedHelper;
     }
 
     // у меня стойкое ощущение, что всегда должен выбираться только один объект
-    return [fetchedItems objectAtIndex:0]; 
+    if ([fetchedItems count]>0) {
+        return [fetchedItems objectAtIndex:0];
+    } else {
+        return nil;
+    }
+     
 }
 
 -(NSArray*)getHistoryList
