@@ -103,6 +103,8 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
     NSMutableDictionary *reverseTransferWay;
     int defaultTransferWay;
     CGPoint gpsCoords;
+    NSMutableArray *forwardWay;
+    NSMutableArray *backwardWay;
 }
 
 @property (nonatomic, readonly) NSMutableArray* relation;
@@ -131,6 +133,8 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 @property (nonatomic, assign) int way1;
 @property (nonatomic, assign) int way2;
 @property (nonatomic, assign) CGPoint gpsCoords;
+@property (nonatomic, readonly) NSMutableArray* forwardWay;
+@property (nonatomic, readonly) NSMutableArray* backwardWay;
 
 -(id) initWithMap:(CityMap*)cityMap name:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr;
 -(BOOL) addSibling:(Station*)st;
@@ -144,8 +148,13 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 -(CGFloat) transferDrivingTo:(Station*)target;
 -(void) setTransferWay:(int)way to:(Station*)target;
 -(void) setTransferWay:(int)way from:(Station*)target;
+// set array with four elements
+-(void) setTransferWays:(NSArray*)ways to:(Station*)target;
 -(int) transferWayTo:(Station*)target;
 -(int) transferWayFrom:(Station *)target;
+-(BOOL) checkForwardWay:(Station *)st;
+-(int) megaTransferWayFrom:(Station *)prevStation to:(Station*) transferStation;
+-(int) megaTransferWayFrom:(Station *)prevStation to:(Station*) transferStation andNextStation:(Station *) nextStation;
 @end
 
 @interface TangentPoint : NSObject {
