@@ -382,7 +382,7 @@
             NSString *cityName = [appDelegate getDefaultCityName];
             
             [appDelegate.mainViewController changeMapTo:mapName andCity:cityName];
-        } else if ([self isProductInstalled:[map objectForKey:@"filename"]]) {
+        } else if ([self isProductInstalled:[map objectForKey:@"filename"]] || [self isProductPurchased:[map objectForKey:@"filename"]]) {
             
             self.selectedPath=indexPath;
             [tableView reloadData];    
