@@ -32,19 +32,17 @@ void uncaughtExceptionHandler(NSException *exception) {
 	self.mainViewController = aController;
 	[aController release];
     
-    // Override point for customization after application launch.
-    [[SKPaymentQueue defaultQueue] addTransactionObserver:[TubeAppIAPHelper sharedHelper]];
-
-    
     CityMap *cm = [[CityMap alloc] init];
     NSString *mapName =[self nameCurrentMap];
     [cm loadMap:mapName];
-
-    
+   
     self.cityMap = cm;
     [cm release];
     
     self.cityName= [self nameCurrentCity];
+    
+    // Override point for customization after application launch.
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:[TubeAppIAPHelper sharedHelper]];
     
     mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
     [window addSubview:[mainViewController view]];

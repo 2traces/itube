@@ -12,6 +12,7 @@
 
 @synthesize cityName;
 @synthesize cellButton;
+@synthesize progress;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
