@@ -310,4 +310,6 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 -(void) activatePath:(NSArray*)pathMap;
 -(void) resetPath;
 -(Station*) findNearestStationTo:(CGPoint)gpsCoord;
+
+-(NSMutableArray*) describePath:(NSArray*)pathMap;
 @end

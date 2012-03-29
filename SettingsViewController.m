@@ -160,7 +160,7 @@
     int mapsC = [self.maps count];
     
     NSString *currentMap = [[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] thisMapName];
-
+    
     for (int i=0;i<mapsC;i++) {
         if ([[[self.maps objectAtIndex:i] objectForKey:@"filename"] isEqual:currentMap]) {
             self.selectedPath=[NSIndexPath indexPathForRow:i inSection:0];
@@ -173,7 +173,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
-
+    
     [self processPurchases];    
     [super viewWillAppear:animated];
 }
@@ -264,6 +264,10 @@
         UIButton *cellButton = [(CityCell*)cell cellButton];
         cellButton.hidden=NO;
         
+        UIProgressView *progress = [(CityCell*)cell progress];
+        progress.hidden=YES;
+        progress.tag=123;
+        
         if ([self isProductStatusDefault:[map objectForKey:@"prodID"]] || [self isProductStatusInstalled:[map objectForKey:@"prodID"]]) {
             [cellButton setTitle:@"Installed" forState:UIControlStateNormal];
             [cellButton setTitle:@"Installed" forState:UIControlStateHighlighted];
@@ -291,6 +295,11 @@
             [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             
+        } else if ([self isProductStatusDownloading:[map objectForKey:@"prodID"]]){
+            
+            cellButton.hidden=YES;
+            progress.hidden=NO;
+
         } else {
             cellButton.hidden=YES;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -373,7 +382,7 @@
             NSString *cityName = [appDelegate getDefaultCityName];
             
             [appDelegate.mainViewController changeMapTo:mapName andCity:cityName];
-        } else if ([self isProductInstalled:[map objectForKey:@"filename"]]) {
+        } else if ([self isProductInstalled:[map objectForKey:@"filename"]] || [self isProductPurchased:[map objectForKey:@"filename"]]) {
             
             self.selectedPath=indexPath;
             [tableView reloadData];    
@@ -407,6 +416,68 @@
     return 45.0;
 }
 
+#pragma mark - Download delegate methods
+
+-(void)downloadDone:(NSMutableData *)data prodID:(NSString*)prodID
+{
+    if (requested_file_type==plist_) {
+        [self processPlistFromServer:data];
+    } else if (requested_file_type==zip_) {
+        [self processZipFromServer:data prodID:(NSString*)prodID];
+    }
+}
+
+-(void)downloadedBytes:(float)part prodID:(NSString*)prodID
+{
+    if (requested_file_type==zip_) {
+        NSIndexPath *mapIndexPath = [self getIndexPathProdID:prodID];
+        
+        if (mapIndexPath) {
+            for (NSDictionary *map in self.maps) {
+                if ([[map objectForKey:@"prodID"] isEqual:prodID]) {
+                    [map setValue:@"N" forKey:@"status"];
+                    [map setValue:[NSNumber numberWithFloat:part] forKey:@"progress"];
+                }
+            }
+
+            [self performSelectorOnMainThread:@selector(refreshButton:) withObject:mapIndexPath waitUntilDone:NO];
+        }
+    }
+}
+
+-(void)refreshButton:(NSIndexPath*)path
+{
+    CityCell *cell = (CityCell*)[self.cityTableView cellForRowAtIndexPath:path];
+    UIProgressView *progress = (UIProgressView*)[cell viewWithTag:123];
+    NSDictionary *map = [self.maps objectAtIndex:path.row];
+//    NSString *percent = [NSString stringWithFormat:@"%f %%",[[map objectForKey:@"progress"] floatValue]*100.0];
+//    [button setTitle:percent forState:UIControlStateNormal];
+    progress.progress=[[map objectForKey:@"progress"] floatValue];
+}
+
+-(void)startDownloading:(NSString*)prodID
+{    
+    if (requested_file_type==zip_) {
+        NSIndexPath *mapIndexPath = [self getIndexPathProdID:prodID];
+        
+        if (mapIndexPath) {
+            for (NSDictionary *map in self.maps) {
+                if ([[map objectForKey:@"prodID"] isEqual:prodID]) {
+                    [map setValue:@"N" forKey:@"status"];
+                }
+            }
+        
+            [self.cityTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:mapIndexPath] withRowAnimation:NO];  
+        //    [self.updatButton disabled];
+        }
+    }
+}
+
+-(void)downloadFailed
+{
+    //    [self.updatButton enabled];
+}
+
 #pragma mark - some helpers
 
 -(BOOL)isProductInstalled:(NSString*)mapName
@@ -426,14 +497,25 @@
 
 -(BOOL)isProductPurchased:(NSString*)prodID
 {
- //   NSMutableSet *purchasedProducts = [[TubeAppIAPHelper sharedHelper] purchasedProducts];
- //   return [purchasedProducts intersectsSet:[NSMutableSet setWithArray:[NSArray arrayWithObject:prodID]]];
+    //   NSMutableSet *purchasedProducts = [[TubeAppIAPHelper sharedHelper] purchasedProducts];
+    //   return [purchasedProducts intersectsSet:[NSMutableSet setWithArray:[NSArray arrayWithObject:prodID]]];
     return [[NSUserDefaults standardUserDefaults] boolForKey:prodID];
 }
 
 -(BOOL)isProductAvailable:(NSString*)prodID
 {
     return YES;
+}
+
+-(BOOL)isProductStatusDownloading:(NSString*)prodID
+{
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:[NSString stringWithString:@"N"]]) {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 -(BOOL)isProductStatusInstalled:(NSString*)prodID
@@ -478,14 +560,16 @@
     return NO;     
 }
 
-
--(void)downloadDone:(NSMutableData *)data mapName:(NSString*)mapName
+-(NSIndexPath*)getIndexPathProdID:(NSString*)prodID
 {
-    if (requested_file_type==plist_) {
-        [self processPlistFromServer:data];
-    } else if (requested_file_type==zip_) {
-        [self processZipFromServer:data mapName:(NSString*)mapName];
+    int mapsC = [self.maps count];
+    
+    for (int i=0;i<mapsC;i++) {
+        if ([[[self.maps objectAtIndex:i] objectForKey:@"prodID"] isEqual:prodID]) {
+            return [NSIndexPath indexPathForRow:i inSection:0];
+        }
     }
+    return nil;
 }
 
 -(void)processPlistFromServer:(NSMutableData*)data
@@ -495,7 +579,7 @@
     NSArray *array = [dict allKeys];
     
     NSMutableArray *productToDonwload = [NSMutableArray array];
-
+    
     if ([array count]>0) {
         NSString *tempDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *path = [tempDir stringByAppendingPathComponent:[NSString stringWithFormat:@"maps.plist"]];
@@ -522,14 +606,14 @@
         [cityTableView reloadData];
         
         NSSet *newProductIdentifiers = [[[NSSet alloc] initWithArray:array] autorelease];    
-
+        
         [[TubeAppIAPHelper sharedHelper] setProductIdentifiers:newProductIdentifiers];
         
         [[TubeAppIAPHelper sharedHelper] requestProducts];
     }
-        
+    
     BOOL onceRestored = [[NSUserDefaults standardUserDefaults] boolForKey:@"restored"];
-
+    
     if (!onceRestored) {
         // запрашиваем старые покупки
         [[TubeAppIAPHelper sharedHelper] restoreCompletedTransactions];
@@ -544,23 +628,22 @@
         for (NSString *prodId in productToDonwload ) {
             [self downloadProduct:prodId];
         }
-    }
- 
+    } 
 }
 
--(void)processZipFromServer:(NSMutableData*)data mapName:(NSString*)prodID
+-(void)processZipFromServer:(NSMutableData*)data prodID:(NSString*)prodID
 {
     // save data to file in tmp 
     NSString *tempDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [tempDir stringByAppendingPathComponent:[NSString stringWithFormat:@"1.zip"]];
-
+    
     NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     
     [data writeToFile:path atomically:YES];
-
+    
     BOOL success = [SSZipArchive unzipFileAtPath:path toDestination:cacheDir];
-
-     // delete file from temp
+    
+    // delete file from temp
     NSFileManager *manager = [NSFileManager defaultManager];
     [manager removeItemAtPath:path error:nil];
     
@@ -581,7 +664,7 @@
     if ([[[appdelegate cityMap] thisMapName] isEqual:mapName])
     {
         // перегрузить карту
-      //  NSLog(@"перегружаю активную карту");
+        //  NSLog(@"перегружаю активную карту");
         
         NSString *cityName;
         
@@ -593,7 +676,9 @@
         
         [appdelegate.mainViewController changeMapTo:mapName andCity:cityName];
     }
-
+    
+    //    [self.updatButton enabled];
+    
 }
 
 -(IBAction)updatePressed:(id)sender
@@ -634,7 +719,7 @@
 {
     DownloadServer *server = [[[DownloadServer alloc] init] autorelease];
     server.listener=self;
-    server.mapName = prodID;
+    server.prodID = prodID;
     
     NSString *mapName = [self getMapNameForProduct:prodID];   
     
@@ -738,7 +823,7 @@
 -(void)markProductAsPurchased:(NSString*)prodID
 {
     for (NSMutableDictionary *map in self.maps) {
-        if ([[map valueForKey:@"prodID"] isEqual:prodID]) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID] && ([[map valueForKey:@"status"] isEqual:[NSString stringWithString:@"V"]] || [[map valueForKey:@"status"] isEqual:[NSString stringWithString:@"Z"]]) ) {
             [map setObject:[NSString stringWithString:@"P"] forKey:@"status"];
         }
     }

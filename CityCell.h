@@ -12,9 +12,11 @@
 {
     IBOutlet UILabel *cityName;
     IBOutlet UIButton *cellButton;
+    IBOutlet UIProgressView *progress;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel* cityName;
 @property (nonatomic, retain) IBOutlet UIButton* cellButton;
+@property (nonatomic, retain) IBOutlet UIProgressView* progress;
 
 @end
