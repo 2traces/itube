@@ -13,7 +13,7 @@
 @synthesize connection;
 @synthesize responseData;
 @synthesize listener;
-@synthesize mapName;
+@synthesize prodID;
 
 NSString *mainurl = @"http://findmystation.info";
 
@@ -45,9 +45,17 @@ NSString *mainurl = @"http://findmystation.info";
     request=nil;    
 }
 
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    expectedBytes = [response expectedContentLength];
+    [listener startDownloading:prodID];
+}
+
 -(void)connection:(NSURLConnection *)fconnection didReceiveData:(NSData *)data {
     if (fconnection==self.connection) {
         [responseData appendData:data];
+        float part = (float)[responseData length]/(float)expectedBytes;
+        [listener downloadedBytes:part prodID:prodID];
     }
 }
 
@@ -56,12 +64,11 @@ NSString *mainurl = @"http://findmystation.info";
         self.responseData=nil;
         self.connection=nil;
     }
-    
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)fconnection {
     if (fconnection==self.connection) {
-        [listener downloadDone:self.responseData mapName:(NSString*)self.mapName]; 
+        [listener downloadDone:self.responseData prodID:(NSString*)self.prodID]; 
         self.responseData=nil;
         self.connection=nil;
     }    
@@ -71,7 +78,7 @@ NSString *mainurl = @"http://findmystation.info";
     
     NSLog(@"server dealloc");
     self.listener=nil;
-    [mapName release];
+    [prodID release];
 	[connection release];
 	[responseData release];
 	[super dealloc];
