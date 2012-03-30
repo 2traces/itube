@@ -28,6 +28,7 @@
 @property (nonatomic, assign) id <PathDrawProtocol> delegate;
 
 -(void) drawCircleInRect:(CGRect)circleRect color:(UIColor*)color context:(CGContextRef)c;
+- (id)initWithFrame:(CGRect)frame path:(NSMutableArray*)thisPath;
 
 @end
 

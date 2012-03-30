@@ -14,13 +14,15 @@
     NSURLConnection *connection;
     NSMutableData *responseData;
     id <DownloadServerListener> listener;
-    NSString *mapName;
+    NSString *prodID;
+    
+    long expectedBytes;
 }
 
 @property(nonatomic, retain) NSURLConnection *connection;
 @property(nonatomic, retain) NSMutableData *responseData;
 @property(nonatomic, assign) id <DownloadServerListener> listener;
-@property(nonatomic, retain) NSString *mapName;
+@property(nonatomic, retain) NSString *prodID;
 
 -(void)loadFileAtURL:(NSString*)url;
 
@@ -28,6 +30,9 @@
 
 @protocol DownloadServerListener
 
--(void)downloadDone:(NSMutableData*)data mapName:(NSString*)mapName;
+-(void)downloadDone:(NSMutableData*)data prodID:(NSString*)prodID;
+-(void)startDownloading:(NSString*)prodID;
+-(void)downloadedBytes:(float)part prodID:(NSString*)prodID;
+-(void)downloadFailed;
 
 @end
