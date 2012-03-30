@@ -1346,7 +1346,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             search = rev = YES;
         }
         if(search) {
-            for (Segment *seg in s.segment) {
+            NSMutableArray *allseg = [NSMutableArray arrayWithArray:s.segment];
+            [allseg addObjectsFromArray:s.backSegment];
+            for (Segment *seg in allseg) {
                 if(([[seg.end.name uppercaseString] isEqualToString:st1] && rev)
                    || ([[seg.end.name uppercaseString] isEqualToString:st2] && !rev)) {
                     NSEnumerator *enumer;
@@ -1774,7 +1776,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 NSArray *stn = [value componentsSeparatedByString:@"\t"];
                 NSString *sncr = [stn objectAtIndex:0];
                 NSInteger sp = [sncr rangeOfString:@" " options:NSBackwardsSearch].location;
-                NSString *stationName = [sncr substringToIndex:sp];
+                NSString *stationName = [[sncr substringToIndex:sp] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet] ];
                 NSArray *gpsCoords = [[sncr substringFromIndex:sp] componentsSeparatedByString:@","];
                 Station *st = nil;
                 for (Station *ss in l.stations) {
