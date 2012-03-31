@@ -464,9 +464,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(void) drawTransferLikeVenice:(CGContextRef)context stations:(NSArray*)sts
 {
     CGContextSetLineCap(context, kCGLineCapRound);
-    CGContextSetLineWidth(context, map->LineWidth);
+    CGContextSetLineWidth(context, 1.1f * map->LineWidth);
     for (Station *s in sts) {
-        CGContextSetStrokeColorWithColor(context, [s.line.color CGColor]);
+        CGContextSaveGState(context);
+        CGContextAddArc(context, s.pos.x, s.pos.y, map->StationDiameter, 0, M_2_PI, 1);
+        CGContextClip(context);
+        CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
         //CGContextSetFillColorWithColor(context, [s.line.color CGColor]);
         for (Segment *seg in s.segment) {
             [seg draw:context];
@@ -474,6 +477,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         for (Segment *seg in s.backSegment) {
             [seg draw:context];
         }
+        CGContextRestoreGState(context);
     }
 }
 
