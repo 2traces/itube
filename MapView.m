@@ -288,8 +288,8 @@
     if(vectorLayer) [vectorLayer draw:context inRect:r];
     cityMap.currentScale = scrollView.zoomScale / MaxScale;
     [cityMap drawMap:ctx inRect:r];
-    if(vectorLayer2) [vectorLayer2 draw:context inRect:r];
     [cityMap drawTransfers:ctx inRect:r];
+    if(vectorLayer2) [vectorLayer2 draw:context inRect:r];
     [cityMap drawStations:ctx inRect:r]; 
 
 #ifdef AGRESSIVE_CACHE

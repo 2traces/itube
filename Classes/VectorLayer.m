@@ -201,19 +201,24 @@
 @synthesize boundingBox;
 @synthesize enabled;
 
--(id) initWithPoints:(NSArray *)points color:(CGColorRef)color andDisabledColor:(CGColorRef)dcol
+-(id) initWithPoints:(NSArray *)points color:(CGColorRef)color strokeColor:(CGColorRef)strokeColor andDisabledColor:(CGColorRef)dcol
 {
     if((self = [super init])) {
         col = CGColorRetain(color);
         disabledCol = CGColorRetain(dcol);
+        strokeCol = CGColorRetain(strokeColor);
         enabled = YES;
         angle = 0;
         center = CGPointZero;
+        lineWidth = 0.f;
         NSMutableArray *pts = [NSMutableArray array];
         for (NSString *s in points) {
             NSArray *c = [s componentsSeparatedByString:@","];
-            if([c count] < 2) continue;
-            [pts addObject:[NSValue valueWithCGPoint:CGPointMake([[c objectAtIndex:0] intValue], [[c objectAtIndex:1] intValue])]];
+            if([c count] < 2) {
+                lineWidth = [[c objectAtIndex:0] intValue];
+            } else {
+                [pts addObject:[NSValue valueWithCGPoint:CGPointMake([[c objectAtIndex:0] intValue], [[c objectAtIndex:1] intValue])]];
+            }
         }
         [pts addObject:[pts objectAtIndex:1]];
         NSMutableArray *pts2 = [NSMutableArray array];
@@ -246,6 +251,7 @@
 {
     CGColorRelease(col);
     CGColorRelease(disabledCol);
+    CGColorRelease(strokeCol);
     CGPathRelease(path);
     [super dealloc];
 }
@@ -260,8 +266,14 @@
     }
     if(enabled) CGContextSetFillColorWithColor(context, col);
     else CGContextSetFillColorWithColor(context, disabledCol);
+    CGContextSetStrokeColorWithColor(context, strokeCol);
     CGContextAddPath(context, path);
-    CGContextFillPath(context);
+    if(lineWidth > 0.f) {
+        CGContextSetLineWidth(context, lineWidth);
+        CGContextStrokePath(context);
+    } else {
+        CGContextFillPath(context);
+    }
     if(angle != 0) CGContextRestoreGState(context);
 }
 
@@ -434,7 +446,7 @@
             NSRange range;
             range.location = 1;
             range.length = [words count] - 1;
-            [elements addObject:[[[VectorSpline alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:brushColor andDisabledColor:[self disabledColor:brushColor]] autorelease]];
+            [elements addObject:[[[VectorSpline alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:brushColor strokeColor:penColor andDisabledColor:[self disabledColor:brushColor]] autorelease]];
             [[elements lastObject] rotateAt:currentAngle center:CGPointMake(size.width/2, size.height/2)];
             
         } else if([w isEqualToString:@"scale"]) {

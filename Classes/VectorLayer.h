@@ -80,15 +80,16 @@
     CGRect boundingBox;
     CGColorRef col;
     CGColorRef disabledCol;
+    CGColorRef strokeCol;
     CGMutablePathRef path;
     BOOL enabled;
-    CGFloat angle;
+    CGFloat angle, lineWidth;
     CGPoint center;
 }
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic, assign) BOOL enabled;
 
--(id) initWithPoints:(NSArray*) points color:(CGColorRef)color andDisabledColor:(CGColorRef)dcol;
+-(id) initWithPoints:(NSArray*) points color:(CGColorRef)color strokeColor:(CGColorRef)strokeColor andDisabledColor:(CGColorRef)dcol;
 -(void) draw:(CGContextRef) context;
 -(void) rotateAt:(CGFloat)ang center:(CGPoint)c;
 
