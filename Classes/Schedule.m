@@ -274,6 +274,13 @@
     return [[NSDate date] timeIntervalSinceDate:midnight];
 }
 
+-(NSDate*) getPointDate:(SchPoint*)p
+{
+    NSDateComponents *comp = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate date]];
+    NSDate *midnight = [cal dateFromComponents:comp];
+    return [midnight dateByAddingTimeInterval:p.time];
+}
+
 -(void)clean
 {
     for (NSString* l in lines) {
