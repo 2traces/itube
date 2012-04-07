@@ -12,6 +12,9 @@
 
 /***** SchPoint *****/
 
+NSPredicate *pPredicate = nil;
+NSCharacterSet *pCharacterSet = nil;
+
 @implementation SchPoint
 @synthesize name;
 @synthesize line;
@@ -21,17 +24,27 @@
 @synthesize backPath;
 @synthesize dock;
 
++(void)cleanup
+{
+    [pPredicate release];
+    [pCharacterSet release];
+    pPredicate = nil;
+    pCharacterSet = nil;
+}
+
 -(id)initWithStation:(NSString *)st andTime:(double)t
 {
     if((self = [super init])) {
+        if(pPredicate == nil) pPredicate = [[NSPredicate predicateWithFormat:@"SELF <> \"\""] retain];
+        if(pCharacterSet == nil) pCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:@"()"] retain];
         dock = 0;
         NSArray *s = [st componentsSeparatedByString:@"\""];
-        NSArray *ss = [s filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF <> \"\""]];
+        NSArray *ss = [s filteredArrayUsingPredicate:pPredicate];
         if([ss count] > 1) {
             NSString *d = [ss lastObject];
             dock = [d characterAtIndex:0];
         } 
-        ss = [[ss objectAtIndex:0] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"()"]];
+        ss = [[ss objectAtIndex:0] componentsSeparatedByCharactersInSet:pCharacterSet];
         name = [[[ss objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
         time = t;
     }
@@ -155,16 +168,18 @@
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
     if(currentStation == nil) return;
-    NSDate *date = [dateForm dateFromString:string];
-    if(date != nil) {
-        NSTimeInterval t1 = [date timeIntervalSince1970];
-        SchPoint *p = [[SchPoint alloc] initWithStation:currentStation andTime:t1];
-        if(lastPoint != nil) lastPoint.next = p;
-        [[routes lastObject] addObject:p];
-        if([catalog valueForKey:p.name] == nil)
-            [catalog setValue:[NSMutableArray array] forKey:p.name];
-        [[catalog valueForKey:p.name] addObject:p];
-        lastPoint = p;
+    @autoreleasepool {
+        NSDate *date = [dateForm dateFromString:string];
+        if(date != nil) {
+            NSTimeInterval t1 = [date timeIntervalSince1970];
+            SchPoint *p = [[SchPoint alloc] initWithStation:currentStation andTime:t1];
+            if(lastPoint != nil) lastPoint.next = p;
+            [[routes lastObject] addObject:p];
+            if([catalog valueForKey:p.name] == nil)
+                [catalog setValue:[NSMutableArray array] forKey:p.name];
+            [[catalog valueForKey:p.name] addObject:p];
+            lastPoint = p;
+        }
     }
 }
 
@@ -215,6 +230,7 @@
         }
         [parser release];
     }
+    [SchPoint cleanup];
     return self;
 }
 
