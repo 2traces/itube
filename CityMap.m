@@ -1452,6 +1452,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize thisMapName;
 @synthesize pathToMap;
 @synthesize pathStationsList;
+@synthesize pathTimesList;
 @synthesize mapLines;
 @synthesize currentScale;
 @synthesize backgroundImageFile;
@@ -1484,6 +1485,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     activeExtent = CGRectNull;
     activePath = [[NSMutableArray alloc] init];
     pathStationsList = [[NSMutableArray alloc] init];
+    pathTimesList = [[NSMutableArray alloc] init];
     maxScale = 4;
 }
 
@@ -2152,6 +2154,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [transfers release];
     [activePath release];
     [pathStationsList release];
+    [pathTimesList release];
     [schedule release];
     [super dealloc];
 }
@@ -2187,11 +2190,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     activeExtent = CGRectNull;
     [activePath removeAllObjects];
     [pathStationsList removeAllObjects];
+    [pathTimesList removeAllObjects];
 	int count_ = [pathMap count];
     
     Station *prevStation = nil;
 	for (int i=0; i< count_; i++) {
         GraphNode *n1 = [pathMap objectAtIndex:i];
+        SchPoint *sp1 = nil;
+        if([n1 isKindOfClass:[SchPoint class]]) sp1 = (SchPoint*)n1;
         Line* l = [mapLines objectAtIndex:n1.line-1];
         Station *s = [l getStation:n1.name];
         if(prevStation != nil) {
@@ -2206,6 +2212,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             activeExtent = CGRectUnion(activeExtent, s.textRect);
             activeExtent = CGRectUnion(activeExtent, s.boundingBox);
             [pathStationsList addObject:n1.name];
+            if(sp1 && schedule) [pathTimesList addObject:[schedule getPointDate:sp1]];
         } else {
             GraphNode *n2 = [pathMap objectAtIndex:i+1];
             
@@ -2216,11 +2223,16 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             if (n1.line==n2.line) {
                 [activePath addObject:[l activateSegmentFrom:n1.name to:n2.name]];
                 [pathStationsList addObject:n1.name];
+                if(sp1 && schedule) [pathTimesList addObject:[schedule getPointDate:sp1]];
             } else
             if(n1.line != n2.line) {
                 [activePath addObject:s.transfer];
                 [pathStationsList addObject:n1.name];
                 [pathStationsList addObject:@"---"]; //временно до обновления модели
+                if(sp1 && schedule) {
+                    [pathTimesList addObject:[schedule getPointDate:sp1]];
+                    [pathTimesList addObject:[schedule getPointDate:(SchPoint*)n2]];
+                }
             }
         }
         prevStation = s;
@@ -2231,6 +2243,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     activeExtent.origin.y -= activeExtent.size.height * offset;
     activeExtent.size.width *= (1.f + offset * 2.f);
     activeExtent.size.height *= (1.f + offset * 2.f);
+    NSLog(@"%@", pathTimesList);
 }
 
 -(void) resetPath
