@@ -33,6 +33,7 @@
 -(void) setWeightBy:(double)time;
 -(void) clean;
 -(BOOL) greaterThan:(SchPoint*)p;
++(void) cleanup;
 @end
 
 /***** SchLine *****/
