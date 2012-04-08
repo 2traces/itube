@@ -12,7 +12,6 @@
 
 /***** SchPoint *****/
 
-NSPredicate *pPredicate = nil;
 NSCharacterSet *pCharacterSet = nil;
 
 @implementation SchPoint
@@ -26,25 +25,24 @@ NSCharacterSet *pCharacterSet = nil;
 
 +(void)cleanup
 {
-    [pPredicate release];
     [pCharacterSet release];
-    pPredicate = nil;
     pCharacterSet = nil;
 }
 
 -(id)initWithStation:(NSString *)st andTime:(double)t
 {
     if((self = [super init])) {
-        if(pPredicate == nil) pPredicate = [[NSPredicate predicateWithFormat:@"SELF <> \"\""] retain];
         if(pCharacterSet == nil) pCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:@"()"] retain];
         dock = 0;
         NSArray *s = [st componentsSeparatedByString:@"\""];
-        NSArray *ss = [s filteredArrayUsingPredicate:pPredicate];
-        if([ss count] > 1) {
-            NSString *d = [ss lastObject];
-            dock = [d characterAtIndex:0];
+        int sc = [s count];
+        for(int i=1; i<sc; i++) {
+            if([[s objectAtIndex:i] length] > 0) {
+                dock = [[s objectAtIndex:i] characterAtIndex:0];
+                break;
+            }
         } 
-        ss = [[ss objectAtIndex:0] componentsSeparatedByCharactersInSet:pCharacterSet];
+        NSArray *ss = [[s objectAtIndex:0] componentsSeparatedByCharactersInSet:pCharacterSet];
         name = [[[ss objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
         time = t;
     }
@@ -84,6 +82,12 @@ NSCharacterSet *pCharacterSet = nil;
 -(BOOL) greaterThan:(SchPoint *)p
 {
     return weight > p.weight;
+}
+
+-(void)dealloc
+{
+    [name release];
+    [super dealloc];
 }
 
 @end
@@ -135,6 +139,7 @@ NSCharacterSet *pCharacterSet = nil;
     [dateForm release];
     [routes release];
     [catalog release];
+    [super dealloc];
 }
 
 -(void)setIndex:(int)_index
@@ -169,10 +174,10 @@ NSCharacterSet *pCharacterSet = nil;
 {
     if(currentStation == nil) return;
     @autoreleasepool {
-        NSDate *date = [dateForm dateFromString:string];
-        if(date != nil) {
-            NSTimeInterval t1 = [date timeIntervalSince1970];
-            SchPoint *p = [[SchPoint alloc] initWithStation:currentStation andTime:t1];
+        NSArray * tcom = [string componentsSeparatedByString:@":"];
+        if([tcom count] >= 2) {
+            NSTimeInterval t0 = [[tcom objectAtIndex:0] doubleValue] * 3600 + [[tcom objectAtIndex:1] doubleValue] * 60;
+            SchPoint *p = [[[SchPoint alloc] initWithStation:currentStation andTime:t0] autorelease];
             if(lastPoint != nil) lastPoint.next = p;
             [[routes lastObject] addObject:p];
             if([catalog valueForKey:p.name] == nil)
@@ -272,14 +277,16 @@ NSCharacterSet *pCharacterSet = nil;
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     if([elementName isEqualToString:@"route"]) {
-        NSString *lineName = [attributeDict valueForKey:@"route"];
-        SchLine *l = [lines valueForKey:lineName];
-        if(l == nil) {
-            l = [[SchLine alloc] initWithName:lineName file:[attributeDict valueForKey:@"file"] path:_path];
-        } else {
-            [l appendFile:[attributeDict valueForKey:@"file"] path:_path];
+        @autoreleasepool {
+            NSString *lineName = [attributeDict valueForKey:@"route"];
+            SchLine *l = [lines valueForKey:lineName];
+            if(l == nil) {
+                l = [[[SchLine alloc] initWithName:lineName file:[attributeDict valueForKey:@"file"] path:_path] autorelease];
+            } else {
+                [l appendFile:[attributeDict valueForKey:@"file"] path:_path];
+            }
+            [lines setValue:l forKey:lineName];
         }
-        [lines setValue:l forKey:lineName];
     }
 }
 

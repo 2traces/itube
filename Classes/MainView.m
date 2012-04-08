@@ -179,7 +179,10 @@ NSInteger const toolbarWidth=320;
     [containerView addSubview:mapView.midground2];
     [self insertSubview:containerView atIndex:0];
     
-	[containerView setContentOffset:CGPointMake(mapView.size.width * 0.25f * mapView.Scale, mapView.size.height * 0.25f * mapView.Scale ) animated:NO];
+    if(cm != nil)
+        [containerView setContentOffset:CGPointMake(mapView.size.width * 0.25f * mapView.Scale, mapView.size.height * 0.25f * mapView.Scale ) animated:NO];
+    else 
+        [containerView setContentOffset:CGPointZero];
     [self insertSubview:mapView.labelView belowSubview:sourceButton];
 }
 
