@@ -12,6 +12,8 @@
 
 /***** SchPoint *****/
 
+NSCharacterSet *pCharacterSet = nil;
+
 @implementation SchPoint
 @synthesize name;
 @synthesize line;
@@ -21,17 +23,26 @@
 @synthesize backPath;
 @synthesize dock;
 
++(void)cleanup
+{
+    [pCharacterSet release];
+    pCharacterSet = nil;
+}
+
 -(id)initWithStation:(NSString *)st andTime:(double)t
 {
     if((self = [super init])) {
+        if(pCharacterSet == nil) pCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:@"()"] retain];
         dock = 0;
         NSArray *s = [st componentsSeparatedByString:@"\""];
-        NSArray *ss = [s filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF <> \"\""]];
-        if([ss count] > 1) {
-            NSString *d = [ss lastObject];
-            dock = [d characterAtIndex:0];
+        int sc = [s count];
+        for(int i=1; i<sc; i++) {
+            if([[s objectAtIndex:i] length] > 0) {
+                dock = [[s objectAtIndex:i] characterAtIndex:0];
+                break;
+            }
         } 
-        ss = [[ss objectAtIndex:0] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"()"]];
+        NSArray *ss = [[s objectAtIndex:0] componentsSeparatedByCharactersInSet:pCharacterSet];
         name = [[[ss objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
         time = t;
     }
@@ -71,6 +82,12 @@
 -(BOOL) greaterThan:(SchPoint *)p
 {
     return weight > p.weight;
+}
+
+-(void)dealloc
+{
+    [name release];
+    [super dealloc];
 }
 
 @end
@@ -122,6 +139,7 @@
     [dateForm release];
     [routes release];
     [catalog release];
+    [super dealloc];
 }
 
 -(void)setIndex:(int)_index
@@ -155,16 +173,18 @@
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
     if(currentStation == nil) return;
-    NSDate *date = [dateForm dateFromString:string];
-    if(date != nil) {
-        NSTimeInterval t1 = [date timeIntervalSince1970];
-        SchPoint *p = [[SchPoint alloc] initWithStation:currentStation andTime:t1];
-        if(lastPoint != nil) lastPoint.next = p;
-        [[routes lastObject] addObject:p];
-        if([catalog valueForKey:p.name] == nil)
-            [catalog setValue:[NSMutableArray array] forKey:p.name];
-        [[catalog valueForKey:p.name] addObject:p];
-        lastPoint = p;
+    @autoreleasepool {
+        NSArray * tcom = [string componentsSeparatedByString:@":"];
+        if([tcom count] >= 2) {
+            NSTimeInterval t0 = [[tcom objectAtIndex:0] doubleValue] * 3600 + [[tcom objectAtIndex:1] doubleValue] * 60;
+            SchPoint *p = [[[SchPoint alloc] initWithStation:currentStation andTime:t0] autorelease];
+            if(lastPoint != nil) lastPoint.next = p;
+            [[routes lastObject] addObject:p];
+            if([catalog valueForKey:p.name] == nil)
+                [catalog setValue:[NSMutableArray array] forKey:p.name];
+            [[catalog valueForKey:p.name] addObject:p];
+            lastPoint = p;
+        }
     }
 }
 
@@ -215,6 +235,7 @@
         }
         [parser release];
     }
+    [SchPoint cleanup];
     return self;
 }
 
@@ -256,14 +277,16 @@
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     if([elementName isEqualToString:@"route"]) {
-        NSString *lineName = [attributeDict valueForKey:@"route"];
-        SchLine *l = [lines valueForKey:lineName];
-        if(l == nil) {
-            l = [[SchLine alloc] initWithName:lineName file:[attributeDict valueForKey:@"file"] path:_path];
-        } else {
-            [l appendFile:[attributeDict valueForKey:@"file"] path:_path];
+        @autoreleasepool {
+            NSString *lineName = [attributeDict valueForKey:@"route"];
+            SchLine *l = [lines valueForKey:lineName];
+            if(l == nil) {
+                l = [[[SchLine alloc] initWithName:lineName file:[attributeDict valueForKey:@"file"] path:_path] autorelease];
+            } else {
+                [l appendFile:[attributeDict valueForKey:@"file"] path:_path];
+            }
+            [lines setValue:l forKey:lineName];
         }
-        [lines setValue:l forKey:lineName];
     }
 }
 

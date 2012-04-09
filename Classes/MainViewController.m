@@ -70,17 +70,18 @@
     [helper saveHistoryFile];
     
     [[MHelper sharedHelper] clearContent];
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+    // FIXME !!! some classes don't release city map
+    [(MainView*)self.view setCityMap:nil];
+    [appDelegate.cityMap release];
+    appDelegate.cityMap = nil;
     
     CityMap *cm = [[[CityMap alloc] init] autorelease];
     [cm loadMap:newMap];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kMapChanged object:nil];
     
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     [(MainView*)self.view setCityMap:cm];
-    
-    // FIXME !!! some classes don't release city map
-    [appDelegate.cityMap release];
     appDelegate.cityMap=cm;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
