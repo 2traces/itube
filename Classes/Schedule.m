@@ -182,6 +182,8 @@ NSCharacterSet *pCharacterSet = nil;
             [[routes lastObject] addObject:p];
             if([catalog valueForKey:p.name] == nil)
                 [catalog setValue:[NSMutableArray array] forKey:p.name];
+            else 
+                p.name = [[[catalog valueForKey:p.name] objectAtIndex:0] name];
             [[catalog valueForKey:p.name] addObject:p];
             lastPoint = p;
         }
