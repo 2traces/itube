@@ -20,7 +20,7 @@
     SchPoint *backPath;
     char dock;
 }
-@property (nonatomic, readonly) NSString* name;
+@property (nonatomic, retain) NSString* name;
 @property (nonatomic, assign) int line;
 @property (nonatomic, readonly) double time;
 @property (nonatomic, assign) SchPoint *next;
