@@ -59,4 +59,10 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+-(void) dealloc
+{
+    [navController release];
+    [super dealloc];
+}
+
 @end

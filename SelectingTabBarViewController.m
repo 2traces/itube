@@ -155,6 +155,8 @@
     [bookmarkButton release];
     [backButton release];
     [tabBarController release];
+    [historyButton release];
+    delegate=nil;
     [super dealloc];
 }
 

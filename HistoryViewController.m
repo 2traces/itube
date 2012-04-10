@@ -67,6 +67,7 @@
     [formatter release];
     [historyList release];
     [colorDictionary release];
+    [mytableView release];
     [super dealloc];
 }
 
