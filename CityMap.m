@@ -774,8 +774,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(!driving && [relationDriving count]) driving = [[relationDriving objectAtIndex:0] intValue];
     [relationDriving release];
     [relation release];
+    [sibling release];
     relationDriving = nil;
     relation = nil;
+    sibling = nil;
 }
 
 -(void) makeTangent
@@ -909,6 +911,15 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     else if(!prevForwardWay && nextForwardWay) return [[ways objectAtIndex:2] intValue];
     else if(!prevForwardWay && !nextForwardWay) return [[ways objectAtIndex:3] intValue];
     return [[ways lastObject] intValue];
+}
+
+-(void) cleanup
+{
+    [forwardWay removeAllObjects];
+    [backwardWay removeAllObjects];
+    [transferWay removeAllObjects];
+    [reverseTransferWay removeAllObjects];
+    [transferDriving removeAllObjects];
 }
 
 @end
@@ -1223,6 +1234,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)dealloc
 {
+    for (Station* s in stations) {
+        [s cleanup];
+    }
+    for (Station* s in stations) {
+        NSLog(@"station retacount %d", [s retainCount]);
+    }
     [stations release];
     [_color release];
     [_disabledColor release];
@@ -2149,9 +2166,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         if(error != nil) 
             NSLog(@"%@", error);
     }*/
+    [transfers release];
     [mapLines release];
 	[graph release];
-    [transfers release];
     [activePath release];
     [pathStationsList release];
     [pathTimesList release];
