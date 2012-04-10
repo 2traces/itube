@@ -94,7 +94,11 @@
     }
 }
 
-
+-(void)dealloc
+{
+    [_titleLabel release];
+    [super dealloc];
+}
 
 
 @end

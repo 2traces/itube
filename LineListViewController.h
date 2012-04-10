@@ -23,9 +23,9 @@
 
 }
 
-@property (nonatomic,retain) NSArray *lineList;
-@property (nonatomic,assign) id <LineListViewProtocol> dataSource;
-@property (nonatomic,retain) NSMutableDictionary *colorDictionary;
+@property (nonatomic, retain) NSArray *lineList;
+@property (nonatomic, assign) id <LineListViewProtocol> dataSource;
+@property (nonatomic, retain) NSMutableDictionary *colorDictionary;
 
 @property (nonatomic, retain) NSMutableArray* sectionInfoArray;
 @property (nonatomic, assign) NSInteger openSectionIndex;
@@ -33,7 +33,7 @@
 
 @property (nonatomic, retain) NSArray* stationsList;
 
-@property (nonatomic,retain) IBOutlet UITableView *mytableView;
+@property (nonatomic, retain) IBOutlet UITableView *mytableView;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
 
 -(UIImage*)drawCircleView:(UIColor*)myColor;

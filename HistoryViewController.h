@@ -23,7 +23,7 @@
 }
 
 @property (nonatomic, retain) NSMutableArray *historyList;
-@property (nonatomic, retain) id <HistoryViewProtocol> dataSource;
+@property (nonatomic, assign) id <HistoryViewProtocol> dataSource;
 @property (nonatomic, retain) NSMutableDictionary *colorDictionary;
 @property (nonatomic, retain) IBOutlet UITableView *mytableView;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;

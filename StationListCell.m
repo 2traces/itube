@@ -32,7 +32,7 @@
 
 -(void)dealloc
 {
-//    [mybutton release];
+    [mybutton release];
     [mylabel release];
     [circleView release];
     [super dealloc];

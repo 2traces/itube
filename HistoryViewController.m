@@ -183,6 +183,8 @@
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
+    CGContextRelease(context);
+    
     return image;
 }
 
