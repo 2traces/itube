@@ -23,20 +23,23 @@
     IBOutlet UIImageView *image2;
     IBOutlet UIImageView *image3;
     
+    IBOutlet UIButton *buyButton;
+    
     NSString *filename;
     NSString *prodID;
     NSString *cityName;
 }
 
-@property (nonatomic,assign) id <DemoMapProtocol> delegate;
+@property (nonatomic, assign) id <DemoMapProtocol> delegate;
 
-@property (nonatomic,retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UITextView *text1;
 @property (nonatomic, retain) IBOutlet UITextView *text2;
 @property (nonatomic, retain) IBOutlet UITextView *text3;
 @property (nonatomic, retain) IBOutlet UIImageView *image1;
 @property (nonatomic, retain) IBOutlet UIImageView *image2;
 @property (nonatomic, retain) IBOutlet UIImageView *image3;
+@property (nonatomic, retain) IBOutlet UIButton *buyButton;
 
 @property (nonatomic, retain) NSString *prodID;
 @property (nonatomic, retain) NSString *filename;
@@ -47,5 +50,6 @@
 @protocol DemoMapProtocol
 
 -(void)returnWithPurchase:(NSString*)prodID;
+-(BOOL)isProductStatusAvailable:(NSString*)prodID;
 
 @end

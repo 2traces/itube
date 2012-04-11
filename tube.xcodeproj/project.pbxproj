@@ -62,7 +62,6 @@
 		9F4997F614E248A40058AA96 /* zones_btn_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F4997F314E248A40058AA96 /* zones_btn_pressed.png */; };
 		9F65B7CC14E8D4C5002EDEC1 /* settings_btn_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F65B7CA14E8D4C5002EDEC1 /* settings_btn_normal.png */; };
 		9F65B7CD14E8D4C5002EDEC1 /* settings_btn_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F65B7CB14E8D4C5002EDEC1 /* settings_btn_normal@2x.png */; };
-		9F65B7D014E91CFE002EDEC1 /* MyriadPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F65B7CF14E91CFE002EDEC1 /* MyriadPro-Semibold.otf */; };
 		9F65B7DB14EB7659002EDEC1 /* embossed_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F65B7D914EB7659002EDEC1 /* embossed_circle.png */; };
 		9F65B7DC14EB7659002EDEC1 /* embossed_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F65B7DA14EB7659002EDEC1 /* embossed_circle@2x.png */; };
 		9F9CF246150729AC0055B63B /* maps in Resources */ = {isa = PBXBuildFile; fileRef = 9F9CF245150729AC0055B63B /* maps */; };
@@ -129,6 +128,7 @@
 		BC76ACFC151B1A85009BDABC /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = BC76ACF5151B1A85009BDABC /* mztools.c */; };
 		BC76ACFD151B1A85009BDABC /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = BC76ACF7151B1A85009BDABC /* unzip.c */; };
 		BC76ACFE151B1A85009BDABC /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = BC76ACF9151B1A85009BDABC /* zip.c */; };
+		BC787C3E1535750E0020915A /* MyriadPr-It.otf in Resources */ = {isa = PBXBuildFile; fileRef = BC787C3D153574F20020915A /* MyriadPr-It.otf */; };
 		BC876AC314DFAF23008AC06C /* BookmarkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC876AB614DFAF23008AC06C /* BookmarkViewController.xib */; };
 		BC876AC414DFAF23008AC06C /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC876AB714DFAF23008AC06C /* FlipsideView.xib */; };
 		BC876AC514DFAF23008AC06C /* HistoryListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC876AB814DFAF23008AC06C /* HistoryListCell.xib */; };
@@ -432,7 +432,6 @@
 		9F4997F314E248A40058AA96 /* zones_btn_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zones_btn_pressed.png; sourceTree = "<group>"; };
 		9F65B7CA14E8D4C5002EDEC1 /* settings_btn_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_btn_normal.png; sourceTree = "<group>"; };
 		9F65B7CB14E8D4C5002EDEC1 /* settings_btn_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_btn_normal@2x.png"; sourceTree = "<group>"; };
-		9F65B7CF14E91CFE002EDEC1 /* MyriadPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MyriadPro-Semibold.otf"; path = "Resources/MyriadPro-Semibold.otf"; sourceTree = "<group>"; };
 		9F65B7D914EB7659002EDEC1 /* embossed_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = embossed_circle.png; sourceTree = "<group>"; };
 		9F65B7DA14EB7659002EDEC1 /* embossed_circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "embossed_circle@2x.png"; sourceTree = "<group>"; };
 		9F9CF245150729AC0055B63B /* maps */ = {isa = PBXFileReference; lastKnownFileType = folder; path = maps; sourceTree = "<group>"; };
@@ -524,6 +523,7 @@
 		BC76ACF8151B1A85009BDABC /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = unzip.h; path = minizip/unzip.h; sourceTree = "<group>"; };
 		BC76ACF9151B1A85009BDABC /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zip.c; path = minizip/zip.c; sourceTree = "<group>"; };
 		BC76ACFA151B1A85009BDABC /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zip.h; path = minizip/zip.h; sourceTree = "<group>"; };
+		BC787C3D153574F20020915A /* MyriadPr-It.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MyriadPr-It.otf"; path = "Resources/MyriadPr-It.otf"; sourceTree = "<group>"; };
 		BC876AB614DFAF23008AC06C /* BookmarkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookmarkViewController.xib; path = Resources/BookmarkViewController.xib; sourceTree = "<group>"; };
 		BC876AB714DFAF23008AC06C /* FlipsideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FlipsideView.xib; path = Resources/FlipsideView.xib; sourceTree = "<group>"; };
 		BC876AB814DFAF23008AC06C /* HistoryListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HistoryListCell.xib; path = Resources/HistoryListCell.xib; sourceTree = "<group>"; };
@@ -969,6 +969,7 @@
 				BC876ABD14DFAF23008AC06C /* MainWindow.xib */,
 				BC876ABE14DFAF23008AC06C /* MyriadPro-Regular.otf */,
 				BC8F052C14EBB18F007D0C7B /* MyriadPro-Semibold.otf */,
+				BC787C3D153574F20020915A /* MyriadPr-It.otf */,
 				BC876ABF14DFAF23008AC06C /* SelectingTabBarViewController.xib */,
 				BC876AC014DFAF23008AC06C /* SettingsViewController.xib */,
 				BC876AC114DFAF23008AC06C /* StationListCell.xib */,
@@ -1409,6 +1410,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC787C3E1535750E0020915A /* MyriadPr-It.otf in Resources */,
 				CE96C6F81468307C005A56F3 /* select_near_station.png in Resources */,
 				CE81FA70146BDC91008BF969 /* Icon-72.png in Resources */,
 				CE81FA71146BDC91008BF969 /* Icon.png in Resources */,
@@ -1552,7 +1554,6 @@
 				BCCC30A214E4F19900102064 /* LanguageCell.xib in Resources */,
 				9F65B7CC14E8D4C5002EDEC1 /* settings_btn_normal.png in Resources */,
 				9F65B7CD14E8D4C5002EDEC1 /* settings_btn_normal@2x.png in Resources */,
-				9F65B7D014E91CFE002EDEC1 /* MyriadPro-Semibold.otf in Resources */,
 				9F65B7DB14EB7659002EDEC1 /* embossed_circle.png in Resources */,
 				9F65B7DC14EB7659002EDEC1 /* embossed_circle@2x.png in Resources */,
 				BC8C57E814EA23C30005561D /* bevel.png in Resources */,
@@ -1802,7 +1803,6 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
@@ -1822,7 +1822,6 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;

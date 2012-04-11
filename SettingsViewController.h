@@ -43,9 +43,9 @@
     id <SettingsViewControllerDelegate> delegate;
 }
 
-@property (nonatomic,assign) id <SettingsViewControllerDelegate> delegate;
+@property (nonatomic, assign) id <SettingsViewControllerDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UITableView *langTableView;
-@property (nonatomic,retain) IBOutlet UITableView *cityTableView;
+@property (nonatomic, retain) IBOutlet UITableView *cityTableView;
 @property (retain, nonatomic) IBOutlet UIButton *cityButton;
 @property (retain, nonatomic) IBOutlet UIButton *buyButton;
 @property (nonatomic, retain) NSArray *maps;

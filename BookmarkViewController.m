@@ -63,6 +63,8 @@
 {
     [stationList release];
     [colorDictionary release];
+    [imageView release];
+    [mytableView release];
     [super dealloc];
 }
 
@@ -209,6 +211,8 @@
     [radialImg drawInRect:circleRect]; 
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    CGContextRelease(context);
     
     return image;
 }
