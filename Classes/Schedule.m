@@ -10,6 +10,17 @@
 #import "tubeAppDelegate.h"
 #import "CityMap.h"
 
+double TimeParser(const char* ts)
+{
+    char * ss = 0;
+    long t = strtol(ts, &ss, 10);
+    if(*ss != ':') return -1;
+    else ss++;
+    t *= 3600;
+    t += strtol(ss, 0, 10) * 60;
+    return (double)t;
+}
+
 /***** SchPoint *****/
 
 NSCharacterSet *pCharacterSet = nil;
@@ -32,18 +43,31 @@ NSCharacterSet *pCharacterSet = nil;
 -(id)initWithStation:(NSString *)st andTime:(double)t
 {
     if((self = [super init])) {
-        if(pCharacterSet == nil) pCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:@"()"] retain];
+        const char *string = [st UTF8String];
+        //if(pCharacterSet == nil) pCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:@"()"] retain];
         dock = 0;
-        NSArray *s = [st componentsSeparatedByString:@"\""];
+        /*NSArray *s = [st componentsSeparatedByString:@"\""];
         int sc = [s count];
         for(int i=1; i<sc; i++) {
             if([[s objectAtIndex:i] length] > 0) {
                 dock = [[s objectAtIndex:i] characterAtIndex:0];
                 break;
             }
-        } 
-        NSArray *ss = [[s objectAtIndex:0] componentsSeparatedByCharactersInSet:pCharacterSet];
-        name = [[[ss objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
+        }*/
+        char *ch = index(string, '\"');
+        if(ch) {
+            ch ++;
+            dock = *ch; 
+        }
+        char *ch2 = index(string, '(');
+        if(ch == 0 && ch2 == 0) {
+            name = [[st stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
+        } else {
+            int len = (ch == 0 || (ch2 != 0 && ch2 < ch)) ? ch2-string : ch-string;
+            name = [[[[[NSString alloc] initWithBytes:string length:len encoding:NSUTF8StringEncoding] autorelease]stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
+            //name = [[[ss objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
+        }
+        //NSArray *ss = [[s objectAtIndex:0] componentsSeparatedByCharactersInSet:pCharacterSet];
         time = t;
     }
     return self;
@@ -123,7 +147,7 @@ NSCharacterSet *pCharacterSet = nil;
         fn = [NSString stringWithFormat:@"%@/%@.xml",path,fileName];
     // fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml" inDirectory:path];
     NSData *xmlData = [NSData dataWithContentsOfFile:fn];
-    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:xmlData];
+    AQXMLParser *parser = [[AQXMLParser alloc] initWithData:xmlData];
     parser.delegate = self;
     if(![parser parse]) {
         NSLog(@"Can't load xml file: %@", fn);
@@ -152,7 +176,7 @@ NSCharacterSet *pCharacterSet = nil;
     }
 }
 
--(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
+-(void)parser:(AQXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     if([elementName isEqualToString:@"timetable"]) {
         lastPoint = nil;
@@ -162,7 +186,7 @@ NSCharacterSet *pCharacterSet = nil;
     }
 }
 
--(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+-(void)parser:(AQXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     if([elementName isEqualToString:@"time"]) {
         [currentStation release];
@@ -170,13 +194,14 @@ NSCharacterSet *pCharacterSet = nil;
     }
 }
 
--(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+-(void)parser:(AQXMLParser *)parser foundCharacters:(NSString *)string
 {
     if(currentStation == nil) return;
     @autoreleasepool {
-        NSArray * tcom = [string componentsSeparatedByString:@":"];
-        if([tcom count] >= 2) {
-            NSTimeInterval t0 = [[tcom objectAtIndex:0] doubleValue] * 3600 + [[tcom objectAtIndex:1] doubleValue] * 60;
+        NSTimeInterval t0 = TimeParser([string UTF8String]);
+        //NSArray * tcom = [string componentsSeparatedByString:@":"];
+        if(t0 >= 0) {
+            //NSTimeInterval t0 = [[tcom objectAtIndex:0] doubleValue] * 3600 + [[tcom objectAtIndex:1] doubleValue] * 60;
             SchPoint *p = [[[SchPoint alloc] initWithStation:currentStation andTime:t0] autorelease];
             if(lastPoint != nil) lastPoint.next = p;
             [[routes lastObject] addObject:p];
@@ -211,6 +236,7 @@ NSCharacterSet *pCharacterSet = nil;
         cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         lines = [[NSMutableDictionary alloc] init];
         _path = [path retain];
+        lineNames = [[NSMutableDictionary alloc] init];
         NSString *fn = nil;
         if(path == nil) 
             fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
@@ -227,7 +253,7 @@ NSCharacterSet *pCharacterSet = nil;
             return nil;
         }
         NSData *xmlData = [[NSData alloc] initWithContentsOfFile:fn];
-        NSXMLParser *parser = [[NSXMLParser alloc] initWithData:xmlData];
+        AQXMLParser *parser = [[AQXMLParser alloc] initWithData:xmlData];
         [xmlData release];
         parser.delegate = self;
         if(![parser parse]) {
@@ -236,6 +262,17 @@ NSCharacterSet *pCharacterSet = nil;
             return nil;
         }
         [parser release];
+        for (NSString *lineName in [lineNames allKeys]) {
+            @autoreleasepool {
+                NSMutableArray *files = [lineNames valueForKey:lineName];
+                SchLine* l = [[[SchLine alloc] initWithName:lineName file:[files objectAtIndex:0] path:_path] autorelease];
+                for(int i=1; i<[files count]; i++) {
+                    [l appendFile:[files objectAtIndex:i] path:_path];
+                }
+                [lines setValue:l forKey:lineName];
+            }
+        }
+        [lineNames release];
     }
     [SchPoint cleanup];
     return self;
@@ -276,18 +313,17 @@ NSCharacterSet *pCharacterSet = nil;
     }
 }
 
--(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
+-(void)parser:(AQXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     if([elementName isEqualToString:@"route"]) {
-        @autoreleasepool {
-            NSString *lineName = [attributeDict valueForKey:@"route"];
-            SchLine *l = [lines valueForKey:lineName];
-            if(l == nil) {
-                l = [[[SchLine alloc] initWithName:lineName file:[attributeDict valueForKey:@"file"] path:_path] autorelease];
-            } else {
-                [l appendFile:[attributeDict valueForKey:@"file"] path:_path];
-            }
-            [lines setValue:l forKey:lineName];
+        NSString *lineName = [attributeDict valueForKey:@"route"];
+        NSMutableArray *lfiles = [lineNames valueForKey:lineName];
+        if(lfiles == nil) {
+            lfiles = [NSMutableArray array];
+            [lfiles addObject:[attributeDict valueForKey:@"file"]];
+            [lineNames setValue:lfiles forKey:lineName];
+        } else {
+            [[lineNames valueForKey:lineName] addObject:[attributeDict valueForKey:@"file"]];
         }
     }
 }
