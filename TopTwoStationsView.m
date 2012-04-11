@@ -572,6 +572,8 @@
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
+    CGContextRelease(context);
+    
     return image;
 }
 
@@ -596,6 +598,8 @@
     [bevelImg drawInRect:circleRect]; 
 
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    CGContextRelease(context);
     
     return image;
 }

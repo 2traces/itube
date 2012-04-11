@@ -78,4 +78,15 @@
     [super layoutSubviews];
 }
 
+-(void)dealloc
+{
+    [fromStation release];
+    [fromLineCircle release];
+    [toStation release];
+    [toLineCircle release];
+    [arrowImageView release];
+    [dateLabel release];
+    [super dealloc];
+}
+
 @end

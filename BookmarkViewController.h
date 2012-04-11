@@ -20,10 +20,10 @@
     IBOutlet UIImageView *imageView;
 }
 
-@property (nonatomic,retain) NSMutableArray *stationList;
-@property (nonatomic,retain) id <BookmarkViewProtocol> dataSource;
-@property (nonatomic,retain) NSMutableDictionary *colorDictionary;
-@property (nonatomic,retain) IBOutlet UITableView *mytableView;
+@property (nonatomic, retain) NSMutableArray *stationList;
+@property (nonatomic, assign) id <BookmarkViewProtocol> dataSource;
+@property (nonatomic, retain) NSMutableDictionary *colorDictionary;
+@property (nonatomic, retain) IBOutlet UITableView *mytableView;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
 
 -(UIImage*)drawCircleView:(UIColor*)myColor;

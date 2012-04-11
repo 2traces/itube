@@ -85,8 +85,11 @@
 -(void) dealloc
 {
     [lineList release];
+    [stationsList release];
     [colorDictionary release];
     [sectionInfoArray_ release];
+    [mytableView release];
+    [imageView release];
     [super dealloc];
 }
 
@@ -406,6 +409,8 @@
     [radialImg drawInRect:circleRect]; 
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    CGContextRelease(context);
     
     return image;
 }
