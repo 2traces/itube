@@ -664,7 +664,8 @@
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
 //    NSArray *path11 = appDelegate.cityMap.activePath;
     
-    CGFloat transferHeight = 85.0f;
+    CGFloat transferHeight = 95.0f;
+    CGFloat emptyTransferHeight = 40.0f; //without train picture, without exit information
     CGFloat stationHeight = 20.0f;
     CGFloat finalHeight = 60.0f;
     
@@ -718,8 +719,16 @@
         } else if (lineStationCount>=2) {
             trainType++;
         }
+
+        CGFloat tempTH = 0.0f;
         
-        segmentHeight =  (float)trainType * transferHeight +(float)finalType*finalHeight + (float)stationType * stationHeight;    
+        if ([[exits objectAtIndex:[stations indexOfObject:tempStations]] intValue]!=0) {
+            tempTH = transferHeight;
+        } else {
+            tempTH = emptyTransferHeight;
+        }
+        
+        segmentHeight =  (float)trainType * tempTH +(float)finalType*finalHeight + (float)stationType * stationHeight;    
         [points addObject:[NSNumber numberWithFloat:segmentHeight]];
         
         viewHeight += segmentHeight;
@@ -821,16 +830,21 @@
         
         int exitNumb = [[exits objectAtIndex:j-start] intValue];
         
-        NSString *trainName = [NSString stringWithFormat:@"%@/train_%d.png",appDelegate.cityMap.pathToMap,exitNumb];
-        UIImage *trainImage = [UIImage imageWithContentsOfFile:trainName];
+        if (exitNumb!=0) {
+            NSString *trainName = [NSString stringWithFormat:@"%@/train_%d.png",appDelegate.cityMap.pathToMap,exitNumb];
+            UIImage *trainImage = [UIImage imageWithContentsOfFile:trainName];
+            
+            UIImageView *trainSubview = [[UIImageView alloc] initWithImage:trainImage];
+            
+            trainSubview.frame = CGRectMake(27, currentY+30.0, trainImage.size.width, trainImage.size.height); // было 37
+            [self.pathScrollView addSubview:trainSubview];
+            [trainSubview release];
+            
+            currentY+=transferHeight;
+        } else {
+            currentY+=emptyTransferHeight;
+        }
         
-        UIImageView *trainSubview = [[UIImageView alloc] initWithImage:trainImage];
-        
-        trainSubview.frame = CGRectMake(27, currentY+30.0, trainImage.size.width, trainImage.size.height); // было 37
-        [self.pathScrollView addSubview:trainSubview];
-        [trainSubview release];
-        
-        currentY+=transferHeight;
         
         for (int jj=1;jj<[[stations objectAtIndex:j] count]-1;jj++) {
             

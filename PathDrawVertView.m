@@ -31,7 +31,8 @@
     CGFloat ylineStart = 20.0f;
     CGFloat x=20.0f;
     
-    CGFloat transferHeight = 85.0f;
+    CGFloat transferHeight = 95.0f;
+    CGFloat emptyTransferHeight = 40.0f; //without train picture, without exit information
     CGFloat stationHeight = 20.0f;
     CGFloat finalHeight = 60.0f;
     
@@ -55,6 +56,8 @@
         [stations removeLastObject];
     }
     
+    NSMutableArray *exits = [delegate dsGetExitForStations]; 
+    
     for (NSMutableArray *tempStations in stations) {
         
         trainType=0;
@@ -73,7 +76,15 @@
             trainType++;
         }
         
-        segmentHeight =  (float)trainType * transferHeight +(float)finalType*finalHeight + (float)stationType * stationHeight;    
+        CGFloat tempTH = 0.0f;
+        
+        if ([[exits objectAtIndex:[stations indexOfObject:tempStations]] intValue]!=0) {
+            tempTH = transferHeight;
+        } else {
+            tempTH = emptyTransferHeight;
+        }
+        
+        segmentHeight =  (float)trainType * tempTH +(float)finalType*finalHeight + (float)stationType * stationHeight;    
         [points addObject:[NSNumber numberWithFloat:segmentHeight]];
         
         viewHeight += segmentHeight;
@@ -159,7 +170,12 @@
     for (int j=0;j<segmentsCount;j++) {
         
         if (j==0 ) {
-            currentY=ylineStart+transferHeight;
+            if ([[exits objectAtIndex:j] intValue]!=0) {
+                currentY=ylineStart+transferHeight;
+            } else {
+                currentY=ylineStart+emptyTransferHeight;
+            }
+            
         } else {
             currentY=0;
             
@@ -170,7 +186,12 @@
                 currentY+=[segmentH floatValue];
             }
             
-            currentY+=transferHeight+ylineStart;
+            if ([[exits objectAtIndex:j] intValue]!=0) {
+                currentY+=transferHeight+ylineStart;
+            } else {
+                currentY+=emptyTransferHeight+ylineStart;
+            }
+            
         }
 
         int qqq = [[stations objectAtIndex:j] count]-2;
