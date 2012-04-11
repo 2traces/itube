@@ -30,8 +30,9 @@
 	<string>MainWindow</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>MyriadPro-Regular.otf</string>
+		<string>MyriadPr-It.otf</string>
 		<string>MyriadPro-Semibold.otf</string>
+		<string>MyriadPro-Regular.otf</string>
 	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>
