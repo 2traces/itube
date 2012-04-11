@@ -29,4 +29,11 @@
     // Configure the view for the selected state
 }
 
+-(void)dealloc
+{
+    [languageLabel release];
+    [languageWordLabel release];
+    [super dealloc];
+}
+
 @end

@@ -408,6 +408,8 @@
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
+    CGContextRelease(context);
+    
     return image;
 }
 
@@ -470,6 +472,9 @@
     [stationIndex release];
     [filteredStation release];
     [colorDictionary release];
+    [indexDictionary release];
+    [mytableView release];
+    [imageView release];
     [super dealloc];
 }
 

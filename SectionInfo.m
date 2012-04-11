@@ -55,7 +55,13 @@
 	[rowHeights replaceObjectsAtIndexes:indexes withObjects:rowHeightArray];
 }
 
-
+-(void)dealloc
+{
+    [line release];
+    [rowHeights release];
+    [headerView release];
+    [super dealloc];
+}
 
 
 @end

@@ -180,56 +180,6 @@
     return normalPath;
 }
 
-/*
- -(NSMutableArray*)normalizePath:(NSArray*)path
- {
- int count = [path count];
- MStation *firstStation = [self fromStation];
- 
- NSMutableArray *normalPath = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
- 
- MStation *threadStart = firstStation;
- 
- for (int i=0; i<count; i++) {
- 
- if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
- 
- Segment *tempSegment = (Segment*)[path objectAtIndex:i];
- MStation *st1 = [[MHelper sharedHelper] getStationWithIndex:[tempSegment start].index andLineIndex:[tempSegment start].line.index];
- 
- if (st1 != threadStart) {
- 
- Segment *newSegment = [[[Segment alloc] initFromStation:[tempSegment end] toStation:[tempSegment start] withDriving:[tempSegment driving]] autorelease];
- [normalPath addObject:newSegment];
- 
- threadStart=[[MHelper sharedHelper] getStationWithIndex:[tempSegment end].index andLineIndex:[tempSegment end].line.index];
- } else {
- [normalPath addObject:tempSegment];
- threadStart =[[MHelper sharedHelper] getStationWithIndex:[tempSegment end].index andLineIndex:[tempSegment end].line.index];
- }
- 
- } else {
- 
- Transfer *transfer = (Transfer*)[path objectAtIndex:i];
- 
- NSArray *array = [[transfer stations] allObjects];
- 
- if ([array objectAtIndex:0]==threadStart) {
- Station *st1 = [array objectAtIndex:1];
- threadStart = [[MHelper sharedHelper] getStationWithIndex:st1.index andLineIndex:st1.line.index];
- } else {
- Station *st1 = [array objectAtIndex:0];
- threadStart = [[MHelper sharedHelper] getStationWithIndex:st1.index andLineIndex:st1.line.index];
- }
- 
- [normalPath addObject:transfer];
- }        
- }
- 
- return normalPath;
- }
- */
-
 // используется только для верхнего бара
 -(NSInteger)dsGetTravelTime
 {
@@ -357,8 +307,6 @@
     }
     
     [stationsArray addObject:tempArray]; 
-    
-    
     
     return stationsArray;
 }
@@ -504,6 +452,43 @@
     }
     
     return stationsArray;
+}
+
+-(NSMutableArray*)dsGetDirectionNames
+{
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSArray *pathX = appDelegate.cityMap.activePath;    
+    NSMutableArray *path = [self normalizePath:pathX];
+    int objectNum = [path count];
+    
+    NSMutableArray *directionsArray = [[[NSMutableArray alloc] initWithCapacity:objectNum] autorelease];
+    int currentIndexLine = -1;
+    
+    NSString *directionName;
+    
+    for (int i=0; i<objectNum; i++) {
+        if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
+            
+            Segment *segment = (Segment*)[path objectAtIndex:i];
+            
+            if (currentIndexLine!=[[[segment start] line] index]) {
+                
+                NSString *finalStation;
+                
+                if ([[segment start] index]<[[segment end] index]) {
+                    finalStation = [[[[[segment start] line] stations] lastObject] name];
+                } else {
+                    finalStation = [[[[[segment start] line] stations] objectAtIndex:0] name];
+                }
+                
+                directionName=[NSString stringWithFormat:@"%@, direction %@",[[[segment start] line] name],finalStation];
+                [directionsArray addObject:directionName];  
+                currentIndexLine=[[[segment start] line] index];
+            }
+        }
+    }
+    
+    return directionsArray;
 }
 
 -(BOOL)dsIsStartingTransfer
@@ -664,7 +649,8 @@
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
 //    NSArray *path11 = appDelegate.cityMap.activePath;
     
-    CGFloat transferHeight = 85.0f;
+    CGFloat transferHeight = 100.0f;
+    CGFloat emptyTransferHeight = 50.0f; //without train picture, without exit information
     CGFloat stationHeight = 20.0f;
     CGFloat finalHeight = 60.0f;
     
@@ -677,6 +663,7 @@
     NSArray *stationsTime = [self dsGetEveryStationTime];
     NSMutableArray *exits = [self dsGetExitForStations]; 
     NSArray *transferTime = [self dsGetEveryTransferTime];
+    NSMutableArray *directions = [self dsGetDirectionNames];
     
     //    int transferNumb = [stations count]-1;
     
@@ -718,8 +705,16 @@
         } else if (lineStationCount>=2) {
             trainType++;
         }
+
+        CGFloat tempTH = 0.0f;
         
-        segmentHeight =  (float)trainType * transferHeight +(float)finalType*finalHeight + (float)stationType * stationHeight;    
+        if ([[exits objectAtIndex:[stations indexOfObject:tempStations]] intValue]!=0) {
+            tempTH = transferHeight;
+        } else {
+            tempTH = emptyTransferHeight;
+        }
+        
+        segmentHeight =  (float)trainType * tempTH +(float)finalType*finalHeight + (float)stationType * stationHeight;    
         [points addObject:[NSNumber numberWithFloat:segmentHeight]];
         
         viewHeight += segmentHeight;
@@ -821,17 +816,38 @@
         
         int exitNumb = [[exits objectAtIndex:j-start] intValue];
         
-        NSString *trainName = [NSString stringWithFormat:@"%@/train_%d.png",appDelegate.cityMap.pathToMap,exitNumb];
-        UIImage *trainImage = [UIImage imageWithContentsOfFile:trainName];
+        UILabel *directionLabel;
         
-        UIImageView *trainSubview = [[UIImageView alloc] initWithImage:trainImage];
+        if (exitNumb!=0) {
+            NSString *trainName = [NSString stringWithFormat:@"%@/train_%d.png",appDelegate.cityMap.pathToMap,exitNumb];
+            UIImage *trainImage = [UIImage imageWithContentsOfFile:trainName];
+            
+            UIImageView *trainSubview = [[UIImageView alloc] initWithImage:trainImage];
+            
+            trainSubview.frame = CGRectMake(27, currentY+20.0, trainImage.size.width, trainImage.size.height); // было 37
+            [self.pathScrollView addSubview:trainSubview];
+            [trainSubview release];
+            
+            currentY+=transferHeight;
+            directionLabel = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY-25.0, 235.0, 22.0)];
+        } else {
+            currentY+=emptyTransferHeight;
+            directionLabel = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY-27.0, 235.0, 22.0)];
+        }
         
-        trainSubview.frame = CGRectMake(27, currentY+30.0, trainImage.size.width, trainImage.size.height); // было 37
-        [self.pathScrollView addSubview:trainSubview];
-        [trainSubview release];
+        // ----
         
-        currentY+=transferHeight;
+        directionLabel.font=[UIFont fontWithName:@"MyriadPr-Italic" size:14.0];
         
+        NSString *directionName = [directions objectAtIndex:j];
+        
+        directionLabel.text=directionName;
+        directionLabel.backgroundColor=[UIColor clearColor];
+        [self.pathScrollView addSubview:directionLabel];
+        [directionLabel release];
+        
+        // ----
+
         for (int jj=1;jj<[[stations objectAtIndex:j] count]-1;jj++) {
             
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY, 235.0, 22.0)];

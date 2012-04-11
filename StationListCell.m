@@ -30,4 +30,13 @@
     // Configure the view for the selected state
 }
 
+-(void)dealloc
+{
+    [mybutton release];
+    [mylabel release];
+    [circleView release];
+    [super dealloc];
+}
+
+
 @end

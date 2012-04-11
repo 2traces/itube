@@ -118,6 +118,10 @@
 {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
+    
 	langTableView.backgroundColor = [UIColor clearColor];
     langTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -139,6 +143,7 @@
     label.text = @"Settings";
     [iv addSubview:label];
     self.navigationItem.titleView=iv;
+    [iv release];
 	
     UIImage *back_image=[UIImage imageNamed:@"settings_back_button.png"];
 	UIButton *back_button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -169,11 +174,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
-    
     [self processPurchases];    
     [super viewWillAppear:animated];
 }
@@ -936,7 +936,22 @@
     _hud = nil;
     [cityButton release];
     [buyButton release];
-    [super dealloc];
+    
+    [langTableView release];
+    [cityTableView release];
+
+    [textLabel1 release];
+    [textLabel2 release];
+    [textLabel3 release];
+    
+    [scrollView release];
+    
+    [buyAllButton release];
+    [sendMailButton release];
+    [maps release];
+    [selectedPath release];
+    delegate = nil;
+    [super dealloc];    
 }
 
 @end

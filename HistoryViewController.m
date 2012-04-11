@@ -67,6 +67,7 @@
     [formatter release];
     [historyList release];
     [colorDictionary release];
+    [mytableView release];
     [super dealloc];
 }
 
@@ -181,6 +182,8 @@
     [bevelImg drawInRect:circleRect]; 
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    CGContextRelease(context);
     
     return image;
 }
