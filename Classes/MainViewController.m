@@ -457,7 +457,8 @@
 -(NSMutableArray*)dsGetDirectionNames
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSArray *path = appDelegate.cityMap.activePath;
+    NSArray *pathX = appDelegate.cityMap.activePath;    
+    NSMutableArray *path = [self normalizePath:pathX];
     int objectNum = [path count];
     
     NSMutableArray *directionsArray = [[[NSMutableArray alloc] initWithCapacity:objectNum] autorelease];
@@ -472,7 +473,15 @@
             
             if (currentIndexLine!=[[[segment start] line] index]) {
                 
-                directionName=[NSString stringWithFormat:@"%@, direction Uxbridge",[[[segment start] line] name]];
+                NSString *finalStation;
+                
+                if ([[segment start] index]<[[segment end] index]) {
+                    finalStation = [[[[[segment start] line] stations] lastObject] name];
+                } else {
+                    finalStation = [[[[[segment start] line] stations] objectAtIndex:0] name];
+                }
+                
+                directionName=[NSString stringWithFormat:@"%@, direction %@",[[[segment start] line] name],finalStation];
                 [directionsArray addObject:directionName];  
                 currentIndexLine=[[[segment start] line] index];
             }
