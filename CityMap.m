@@ -1237,9 +1237,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     for (Station* s in stations) {
         [s cleanup];
     }
-    for (Station* s in stations) {
-        NSLog(@"station retacount %d", [s retainCount]);
-    }
     [stations release];
     [_color release];
     [_disabledColor release];

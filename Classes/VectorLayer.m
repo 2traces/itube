@@ -435,7 +435,7 @@
         } else if([w isEqualToString:@"textout"]) {
             NSArray *ww = [line componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
             NSArray *www = [ww filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF <> \"\""]];
-            [elements addObject:[[VectorText alloc] initWithFontName:[www objectAtIndex:1] fontSize:[[www objectAtIndex:2] intValue] point:CGPointMake([[www objectAtIndex:3] intValue], [[www objectAtIndex:4] intValue]) text:[www objectAtIndex:5] andColor:penColor ]];
+            [elements addObject:[[[VectorText alloc] initWithFontName:[www objectAtIndex:1] fontSize:[[www objectAtIndex:2] intValue] point:CGPointMake([[www objectAtIndex:3] intValue], [[www objectAtIndex:4] intValue]) text:[www objectAtIndex:5] andColor:penColor ] autorelease]];
             [[elements lastObject] rotateAt:currentAngle center:CGPointMake(size.width/2, size.height/2)];
             
         } else if([w isEqualToString:@"angle"]) {
