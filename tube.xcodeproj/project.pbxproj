@@ -379,7 +379,6 @@
 		515B9C2D14EEAE740034BB12 /* mainscreen_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainscreen_shadow.png; sourceTree = "<group>"; };
 		515B9C2E14EEAE740034BB12 /* mainscreen_shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainscreen_shadow@2x.png"; sourceTree = "<group>"; };
 		515D75141534BB9700C25074 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		515D75231534BE0C00C25074 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		51839DDF15360BE5003A8E23 /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBXML.h; path = Classes/TBXML/TBXML.h; sourceTree = "<group>"; };
 		51839DE015360BE5003A8E23 /* TBXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBXML.m; path = Classes/TBXML/TBXML.m; sourceTree = "<group>"; };
 		51D20F3314B849A3007AC4BD /* ManagedObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManagedObjects.h; path = Classes/ManagedObjects.h; sourceTree = "<group>"; };
@@ -890,8 +889,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				515D75231534BE0C00C25074 /* CFNetwork.framework */,
-				515D75141534BB9700C25074 /* libxml2.dylib */,
 				BC76ACF1151B1A74009BDABC /* minizip */,
 				BC506EA714E12BCE00587BD6 /* Default.png */,
 				BCA7374F14E029D30065EC2D /* Default@2x.png */,
@@ -968,6 +965,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				515D75141534BB9700C25074 /* libxml2.dylib */,
 				BC76ACE4151B168A009BDABC /* libz.dylib */,
 				BC3D156614C33E160059A17E /* StoreKit.framework */,
 				BC3D156414C33E0C0059A17E /* SystemConfiguration.framework */,
