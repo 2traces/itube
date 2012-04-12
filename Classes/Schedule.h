@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AQXMLParser.h"
+#import "TBXML.h"
 
 /***** SchPoint *****/
 
@@ -39,7 +39,7 @@
 
 /***** SchLine *****/
 
-@interface SchLine : NSObject <AQXMLParserDelegate> {
+@interface SchLine : NSObject {
 @private
     NSString *lineName;
     int index;
@@ -60,11 +60,10 @@
 
 /***** Schedule *****/
 
-@interface Schedule : NSObject <AQXMLParserDelegate> {
+@interface Schedule : NSObject {
     NSCalendar *cal;
     NSMutableDictionary *lines;
     NSString* _path;
-    NSMutableDictionary *lineNames;
 }
 
 -(id) initSchedule:(NSString*)fileName path:(NSString*)path;
