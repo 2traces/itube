@@ -36,24 +36,13 @@ NSCharacterSet *pCharacterSet = nil;
 
 +(void)cleanup
 {
-    [pCharacterSet release];
-    pCharacterSet = nil;
 }
 
 -(id)initWithStation:(NSString *)st andTime:(double)t
 {
     if((self = [super init])) {
         const char *string = [st UTF8String];
-        //if(pCharacterSet == nil) pCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:@"()"] retain];
         dock = 0;
-        /*NSArray *s = [st componentsSeparatedByString:@"\""];
-        int sc = [s count];
-        for(int i=1; i<sc; i++) {
-            if([[s objectAtIndex:i] length] > 0) {
-                dock = [[s objectAtIndex:i] characterAtIndex:0];
-                break;
-            }
-        }*/
         char *ch = index(string, '\"');
         if(ch) {
             ch ++;
@@ -65,9 +54,7 @@ NSCharacterSet *pCharacterSet = nil;
         } else {
             int len = (ch == 0 || (ch2 != 0 && ch2 < ch)) ? ch2-string : ch-string;
             name = [[[[[NSString alloc] initWithBytes:string length:len encoding:NSUTF8StringEncoding] autorelease]stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
-            //name = [[[ss objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
         }
-        //NSArray *ss = [[s objectAtIndex:0] componentsSeparatedByCharactersInSet:pCharacterSet];
         time = t;
     }
     return self;
@@ -131,7 +118,7 @@ NSCharacterSet *pCharacterSet = nil;
         dateForm = [[NSDateFormatter alloc] init];
         [dateForm setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
         [dateForm setDateFormat:@"HH:mm"];
-        routes = [[NSMutableArray alloc] init];
+        //routes = [[NSMutableArray alloc] init];
         catalog = [[NSMutableDictionary alloc] init];
         [self appendFile:fileName path:path];
     }
@@ -145,23 +132,53 @@ NSCharacterSet *pCharacterSet = nil;
         fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
     else 
         fn = [NSString stringWithFormat:@"%@/%@.xml",path,fileName];
-    // fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml" inDirectory:path];
-    NSData *xmlData = [NSData dataWithContentsOfFile:fn];
-    AQXMLParser *parser = [[AQXMLParser alloc] initWithData:xmlData];
-    parser.delegate = self;
-    if(![parser parse]) {
-        NSLog(@"Can't load xml file: %@", fn);
+    NSError *error = nil;
+    NSData *xmlData = [[NSData alloc] initWithContentsOfFile:fn];
+    TBXML *tbxml = [[TBXML alloc] initWithXMLData:xmlData error:&error];
+    if(error) NSLog(@"%@", error);
+    TBXMLElement *dir = [TBXML childElementNamed:@"direction" parentElement:tbxml.rootXMLElement];
+    while (dir) {
+        TBXMLElement *tts = [TBXML childElementNamed:@"timetables" parentElement:dir];
+        while (tts) {
+            TBXMLElement *tt = [TBXML childElementNamed:@"timetable" parentElement:tts];
+            while (tt) {
+                lastPoint = nil;
+                //[routes addObject:[NSMutableArray array]];
+
+                TBXMLElement *t = [TBXML childElementNamed:@"time" parentElement:[TBXML childElementNamed:@"times" parentElement:tt]];
+                while (t) {
+                    @autoreleasepool {
+                        currentStation = [TBXML valueOfAttributeNamed:@"station" forElement:t];
+                        NSTimeInterval t0 = TimeParser(t->text);
+                        if(t0 >= 0) {
+                            SchPoint *p = [[[SchPoint alloc] initWithStation:currentStation andTime:t0] autorelease];
+                            if(lastPoint != nil) lastPoint.next = p;
+                            //[[routes lastObject] addObject:p];
+                            if([catalog valueForKey:p.name] == nil)
+                                [catalog setValue:[NSMutableArray array] forKey:p.name];
+                            else 
+                                p.name = [[[catalog valueForKey:p.name] objectAtIndex:0] name];
+                            [[catalog valueForKey:p.name] addObject:p];
+                            lastPoint = p;
+                        }
+                    }
+                    t = [TBXML nextSiblingNamed:@"time" searchFromElement:t];
+                }
+                tt = [TBXML nextSiblingNamed:@"timetable" searchFromElement:tt];
+            }
+            tts = [TBXML nextSiblingNamed:@"timetables" searchFromElement:tts];
+        }
+        dir = [TBXML nextSiblingNamed:@"direction" searchFromElement:dir];
     }
-    [parser release];
-    [currentStation release];
-    currentStation = nil;
+    [tbxml release];
+    [xmlData release];
 }
 
 -(void) dealloc
 {
     [lineName release];
     [dateForm release];
-    [routes release];
+    //[routes release];
     [catalog release];
     [super dealloc];
 }
@@ -169,56 +186,27 @@ NSCharacterSet *pCharacterSet = nil;
 -(void)setIndex:(int)_index
 {
     index = _index;
-    for (NSArray* r in routes) {
+    /*for (NSArray* r in routes) {
         for (SchPoint *p in r) {
             p.line = index;
         }
-    }
-}
-
--(void)parser:(AQXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
-{
-    if([elementName isEqualToString:@"timetable"]) {
-        lastPoint = nil;
-        [routes addObject:[NSMutableArray array]];
-    } else if([elementName isEqualToString:@"time"]) {
-        currentStation = [[attributeDict objectForKey:@"station"] retain];
-    }
-}
-
--(void)parser:(AQXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
-    if([elementName isEqualToString:@"time"]) {
-        [currentStation release];
-        currentStation = nil;
-    }
-}
-
--(void)parser:(AQXMLParser *)parser foundCharacters:(NSString *)string
-{
-    if(currentStation == nil) return;
-    @autoreleasepool {
-        NSTimeInterval t0 = TimeParser([string UTF8String]);
-        //NSArray * tcom = [string componentsSeparatedByString:@":"];
-        if(t0 >= 0) {
-            //NSTimeInterval t0 = [[tcom objectAtIndex:0] doubleValue] * 3600 + [[tcom objectAtIndex:1] doubleValue] * 60;
-            SchPoint *p = [[[SchPoint alloc] initWithStation:currentStation andTime:t0] autorelease];
-            if(lastPoint != nil) lastPoint.next = p;
-            [[routes lastObject] addObject:p];
-            if([catalog valueForKey:p.name] == nil)
-                [catalog setValue:[NSMutableArray array] forKey:p.name];
-            else 
-                p.name = [[[catalog valueForKey:p.name] objectAtIndex:0] name];
-            [[catalog valueForKey:p.name] addObject:p];
-            lastPoint = p;
+    }*/
+    for (NSString* key in [catalog allKeys]) {
+        for (SchPoint* p in [catalog valueForKey:key]) {
+            p.line = index;
         }
     }
 }
 
 -(void)clean
 {
-    for (NSArray* r in routes) {
+    /*for (NSArray* r in routes) {
         for (SchPoint *p in r) {
+            [p clean];
+        }
+    }*/
+    for (NSString* key in [catalog allKeys]) {
+        for (SchPoint* p in [catalog valueForKey:key]) {
             [p clean];
         }
     }
@@ -236,7 +224,6 @@ NSCharacterSet *pCharacterSet = nil;
         cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         lines = [[NSMutableDictionary alloc] init];
         _path = [path retain];
-        lineNames = [[NSMutableDictionary alloc] init];
         NSString *fn = nil;
         if(path == nil) 
             fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
@@ -252,27 +239,29 @@ NSCharacterSet *pCharacterSet = nil;
             [self release];
             return nil;
         }
+        NSError *error = nil;
         NSData *xmlData = [[NSData alloc] initWithContentsOfFile:fn];
-        AQXMLParser *parser = [[AQXMLParser alloc] initWithData:xmlData];
-        [xmlData release];
-        parser.delegate = self;
-        if(![parser parse]) {
-            NSLog(@"Can't load xml file %@", fileName);
-            [self release];
+        TBXML *tbxml = [TBXML tbxmlWithXMLData:xmlData error:&error];
+        if(error) {
+            NSLog(@"%@ %@", [error localizedDescription], [error userInfo]);
             return nil;
         }
-        [parser release];
-        for (NSString *lineName in [lineNames allKeys]) {
+        TBXMLElement * el = [TBXML childElementNamed:@"route" parentElement:tbxml.rootXMLElement];
+        while (el != nil) {
             @autoreleasepool {
-                NSMutableArray *files = [lineNames valueForKey:lineName];
-                SchLine* l = [[[SchLine alloc] initWithName:lineName file:[files objectAtIndex:0] path:_path] autorelease];
-                for(int i=1; i<[files count]; i++) {
-                    [l appendFile:[files objectAtIndex:i] path:_path];
+                NSString * route = [TBXML valueOfAttributeNamed:@"route" forElement:el];
+                NSString * file = [TBXML valueOfAttributeNamed:@"file" forElement:el];
+                SchLine *l = [lines valueForKey:route];
+                if(l == nil) {
+                    l = [[[SchLine alloc] initWithName:route file:file path:_path] autorelease];
+                    [lines setValue:l forKey:route];
+                } else {
+                    [l appendFile:file path:_path];
                 }
-                [lines setValue:l forKey:lineName];
+                el = [TBXML nextSiblingNamed:@"route" searchFromElement:el];
             }
         }
-        [lineNames release];
+        [xmlData release];
     }
     [SchPoint cleanup];
     return self;
@@ -310,21 +299,6 @@ NSCharacterSet *pCharacterSet = nil;
         }
     } else {
         return NO;
-    }
-}
-
--(void)parser:(AQXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
-{
-    if([elementName isEqualToString:@"route"]) {
-        NSString *lineName = [attributeDict valueForKey:@"route"];
-        NSMutableArray *lfiles = [lineNames valueForKey:lineName];
-        if(lfiles == nil) {
-            lfiles = [NSMutableArray array];
-            [lfiles addObject:[attributeDict valueForKey:@"file"]];
-            [lineNames setValue:lfiles forKey:lineName];
-        } else {
-            [[lineNames valueForKey:lineName] addObject:[attributeDict valueForKey:@"file"]];
-        }
     }
 }
 
@@ -427,3 +401,4 @@ NSCharacterSet *pCharacterSet = nil;
 }
 
 @end
+
