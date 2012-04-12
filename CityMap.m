@@ -611,6 +611,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize gpsCoords;
 @synthesize forwardWay;
 @synthesize backwardWay;
+@synthesize firstStations;
+@synthesize lastStations;
 
 -(id)copyWithZone:(NSZone*)zone
 {
@@ -650,6 +652,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         defaultTransferWay = NOWAY;
         forwardWay = [[NSMutableArray alloc] init];
         backwardWay = [[NSMutableArray alloc] init];
+        firstStations = [[NSMutableArray alloc] init];
+        lastStations = [[NSMutableArray alloc] init];
         
         NSUInteger br = [sname rangeOfString:@"("].location;
         if(br == NSNotFound) {
@@ -706,6 +710,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [reverseTransferWay release];
     [forwardWay release];
     [backwardWay release];
+    [firstStations release];
+    [lastStations release];
     [super dealloc];
 }
 
@@ -920,6 +926,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [transferWay removeAllObjects];
     [reverseTransferWay removeAllObjects];
     [transferDriving removeAllObjects];
+    [firstStations removeAllObjects];
+    [lastStations removeAllObjects];
 }
 
 @end
@@ -1855,13 +1863,17 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             }
             NSArray *br1 = [br componentsSeparatedByString:@","];
             int dri = 0;
-            Station *st = nil;
+            Station *st = nil, *firstStation = nil, *lastStation = nil;
+            NSMutableArray *branch = [NSMutableArray array];
             for (NSString *br2 in br1) {
                 NSArray *br3 = [br2 componentsSeparatedByString:@"."];
                 int first = [[br3 objectAtIndex:0] intValue];
                 int last = [[br3 lastObject] intValue];
                 for(int sti = first; sti<=last; sti ++, dri++) {
                     Station *st2 = [stations objectForKey:[NSString stringWithFormat:@"%d", sti]];
+                    if(firstStation == nil) firstStation = st2;
+                    [st2.firstStations addObject:firstStation];
+                    [branch addObject:st2];
                     if(st != nil && st2 != nil) {
                         if([st addSibling:st2]) {
                             NSString *driving = nil;
@@ -1886,7 +1898,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                         }
                     }
                     st = st2;
+                    lastStation = st2;
                 }
+            }
+            for (Station* s in branch) {
+                [s.lastStations addObject:lastStation];
             }
         }
         [l postInit];
