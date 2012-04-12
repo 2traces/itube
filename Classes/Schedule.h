@@ -47,7 +47,7 @@
     NSString *currentStation;
     SchPoint *lastPoint;
 
-    NSMutableArray *routes;
+    //NSMutableArray *routes;
     NSMutableDictionary *catalog;
 }
 @property (nonatomic, readonly) NSString* lineName;

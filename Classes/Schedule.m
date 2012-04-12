@@ -118,7 +118,7 @@ NSCharacterSet *pCharacterSet = nil;
         dateForm = [[NSDateFormatter alloc] init];
         [dateForm setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
         [dateForm setDateFormat:@"HH:mm"];
-        routes = [[NSMutableArray alloc] init];
+        //routes = [[NSMutableArray alloc] init];
         catalog = [[NSMutableDictionary alloc] init];
         [self appendFile:fileName path:path];
     }
@@ -143,7 +143,7 @@ NSCharacterSet *pCharacterSet = nil;
             TBXMLElement *tt = [TBXML childElementNamed:@"timetable" parentElement:tts];
             while (tt) {
                 lastPoint = nil;
-                [routes addObject:[NSMutableArray array]];
+                //[routes addObject:[NSMutableArray array]];
 
                 TBXMLElement *t = [TBXML childElementNamed:@"time" parentElement:[TBXML childElementNamed:@"times" parentElement:tt]];
                 while (t) {
@@ -153,7 +153,7 @@ NSCharacterSet *pCharacterSet = nil;
                         if(t0 >= 0) {
                             SchPoint *p = [[[SchPoint alloc] initWithStation:currentStation andTime:t0] autorelease];
                             if(lastPoint != nil) lastPoint.next = p;
-                            [[routes lastObject] addObject:p];
+                            //[[routes lastObject] addObject:p];
                             if([catalog valueForKey:p.name] == nil)
                                 [catalog setValue:[NSMutableArray array] forKey:p.name];
                             else 
@@ -170,7 +170,6 @@ NSCharacterSet *pCharacterSet = nil;
         }
         dir = [TBXML nextSiblingNamed:@"direction" searchFromElement:dir];
     }
-    NSLog(@"%d", [tbxml retainCount]);
     [tbxml release];
     [xmlData release];
 }
@@ -179,7 +178,7 @@ NSCharacterSet *pCharacterSet = nil;
 {
     [lineName release];
     [dateForm release];
-    [routes release];
+    //[routes release];
     [catalog release];
     [super dealloc];
 }
@@ -187,8 +186,13 @@ NSCharacterSet *pCharacterSet = nil;
 -(void)setIndex:(int)_index
 {
     index = _index;
-    for (NSArray* r in routes) {
+    /*for (NSArray* r in routes) {
         for (SchPoint *p in r) {
+            p.line = index;
+        }
+    }*/
+    for (NSString* key in [catalog allKeys]) {
+        for (SchPoint* p in [catalog valueForKey:key]) {
             p.line = index;
         }
     }
@@ -196,8 +200,13 @@ NSCharacterSet *pCharacterSet = nil;
 
 -(void)clean
 {
-    for (NSArray* r in routes) {
+    /*for (NSArray* r in routes) {
         for (SchPoint *p in r) {
+            [p clean];
+        }
+    }*/
+    for (NSString* key in [catalog allKeys]) {
+        for (SchPoint* p in [catalog valueForKey:key]) {
             [p clean];
         }
     }
@@ -239,16 +248,18 @@ NSCharacterSet *pCharacterSet = nil;
         }
         TBXMLElement * el = [TBXML childElementNamed:@"route" parentElement:tbxml.rootXMLElement];
         while (el != nil) {
-            NSString * route = [TBXML valueOfAttributeNamed:@"route" forElement:el];
-            NSString * file = [TBXML valueOfAttributeNamed:@"file" forElement:el];
-            SchLine *l = [lines valueForKey:route];
-            if(l == nil) {
-                l = [[[SchLine alloc] initWithName:route file:file path:_path] autorelease];
-                [lines setValue:l forKey:route];
-            } else {
-                [l appendFile:file path:_path];
+            @autoreleasepool {
+                NSString * route = [TBXML valueOfAttributeNamed:@"route" forElement:el];
+                NSString * file = [TBXML valueOfAttributeNamed:@"file" forElement:el];
+                SchLine *l = [lines valueForKey:route];
+                if(l == nil) {
+                    l = [[[SchLine alloc] initWithName:route file:file path:_path] autorelease];
+                    [lines setValue:l forKey:route];
+                } else {
+                    [l appendFile:file path:_path];
+                }
+                el = [TBXML nextSiblingNamed:@"route" searchFromElement:el];
             }
-            el = [TBXML nextSiblingNamed:@"route" searchFromElement:el];
         }
         [xmlData release];
     }
