@@ -1754,6 +1754,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	_w = 0;
 	_h = 0;
     CGRect boundingBox = CGRectNull;
+    NSMutableDictionary *stations = [[[NSMutableDictionary alloc] init] autorelease];
     int index = 1;
 	for (int i = 1; true; i++) {
 		NSString *sectionName = [NSString stringWithFormat:@"Line%d", i ];
@@ -1781,7 +1782,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         NSArray *keys = [sect allKeys];
         NSMutableArray *branches = [[[NSMutableArray alloc] init] autorelease];
         NSMutableArray *drivings = [[[NSMutableArray alloc] init] autorelease];
-        NSMutableDictionary *stations = [[[NSMutableDictionary alloc] init] autorelease];
         for (NSString* key in keys) {
             NSString *value = [sect.assignments objectForKey:key];
             if([value length] <= 0) continue;
