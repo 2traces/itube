@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ImageDownloader.h"
 
 @protocol DemoMapProtocol;
 
-@interface DemoMapViewController : UIViewController
+@interface DemoMapViewController : UIViewController <ImageDownloaderDelegate>
 {
     id <DemoMapProtocol> delegate; 
     
@@ -28,6 +29,8 @@
     NSString *filename;
     NSString *prodID;
     NSString *cityName;
+    
+    NSMutableDictionary *imageDownloadsInProgress;  
 }
 
 @property (nonatomic, assign) id <DemoMapProtocol> delegate;
@@ -44,6 +47,8 @@
 @property (nonatomic, retain) NSString *prodID;
 @property (nonatomic, retain) NSString *filename;
 @property (nonatomic, retain) NSString *cityName;
+
+@property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 
 @end
 

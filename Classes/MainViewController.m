@@ -829,10 +829,10 @@
             [trainSubview release];
             
             currentY+=transferHeight;
-            directionLabel = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY-25.0, 235.0, 22.0)];
+            directionLabel = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY-32.0, 235.0, 22.0)];
         } else {
             currentY+=emptyTransferHeight;
-            directionLabel = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY-27.0, 235.0, 22.0)];
+            directionLabel = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY-29.0, 235.0, 22.0)];
         }
         
         // ----

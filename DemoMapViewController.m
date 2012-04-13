@@ -7,6 +7,9 @@
 //
 
 #import "DemoMapViewController.h"
+#import "Reachability.h"
+#import "tubeAppDelegate.h"
+#import "ImageDownloader.h"
 
 @interface DemoMapViewController ()
 
@@ -25,6 +28,7 @@
 @synthesize cityName;
 @synthesize delegate;
 @synthesize filename,prodID;
+@synthesize imageDownloadsInProgress;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,6 +43,8 @@
 {
     [super viewDidLoad];
     
+    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
+        
     scrollView.frame = CGRectMake(0.0, 0.0, 320, 416);
     scrollView.contentSize = CGSizeMake(320, 939);
     
@@ -46,27 +52,8 @@
     text2.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:13.0];
     text3.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:13.0];
     
-    NSString *fn1 = [NSString stringWithFormat:@"%@1.png",filename];
-    UIImage *img1 = [UIImage imageNamed:fn1];
-    if (!img1) {
-        img1 = [UIImage imageNamed:@"paris1.png"];
-    }
-    [image1 setImage:img1];
-
-    NSString *fn2 = [NSString stringWithFormat:@"%@2.png",filename];
-    UIImage *img2 = [UIImage imageNamed:fn2];
-    if (!img2) {
-        img2 = [UIImage imageNamed:@"paris2.png"];
-    }
-    [image2 setImage:img2];
-
-    NSString *fn3 = [NSString stringWithFormat:@"%@3.png",filename];
-    UIImage *img3 = [UIImage imageNamed:fn3];
-    if (!img3) {
-        img3 = [UIImage imageNamed:@"paris3.png"];
-    }
-    [image3 setImage:img3];
-
+    [self loadImagesForScreen];
+        
     [self.view addSubview:scrollView];
     
     [scrollView scrollsToTop];
@@ -112,6 +99,9 @@
 
 -(IBAction)donePressed:(id)sender
 {
+    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -124,6 +114,147 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+-(BOOL)fileExistsInCache:(NSString*)myfilename
+{
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *fullPath = [NSString stringWithFormat:@"%@/%@",cacheDir,myfilename];
+
+    return [manager fileExistsAtPath:fullPath];
+}
+
+-(UIImage*)fileFromCache:(NSString*)myfilename
+{
+    UIImage *img;
+    
+    NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *fullPath = [NSString stringWithFormat:@"%@/%@",cacheDir,myfilename];
+    img = [UIImage imageWithContentsOfFile:fullPath];
+
+    return img;
+}
+
+-(void)lazyDownloadImage:(NSString*)myfilename product:(NSString*)product 
+{
+    ImageDownloader *imageDownloader = [imageDownloadsInProgress objectForKey:myfilename];
+    if (imageDownloader == nil) 
+    {
+        NSString *mainurl = @"http://findmystation.info/maps";
+        NSString *path = [mainurl stringByAppendingPathComponent:[self getDemoMapFileName:product]];
+        imageDownloader = [[ImageDownloader alloc] init];
+        imageDownloader.delegate = self;
+        imageDownloader.imageName=myfilename;
+        imageDownloader.imageURLString=path;
+        [imageDownloadsInProgress setObject:imageDownloader forKey:myfilename];
+        [imageDownloader startDownload];
+        [imageDownloader release];   
+    }
+}
+
+-(void)loadImagesForScreen
+{
+    Reachability *reach = [Reachability reachabilityForInternetConnection];	
+    NetworkStatus netStatus = [reach currentReachabilityStatus];  
+    
+    NSString *retina=@"";
+    
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2){
+        retina=@"@2x";
+    }
+    
+ /*   for (int i=1; i<4; i++) {
+        NSString *imageViewName = [NSString stringWithFormat:@"image%d",i];
+
+        NSString *fn = [NSString stringWithFormat:@"%@%d%@.png",filename,i,retina];
+        UIImage *img = [UIImage imageNamed:fn];
+        if (!img) {
+            if ([self fileExistsInCache:fn]) {
+                img =[self fileFromCache:fn];
+            } else { 
+                img = [UIImage imageNamed:@"placeholder1.png"];
+                if (netStatus != NotReachable) { 
+                    [self lazyDownloadImage:fn product:prodID];
+                }
+            }
+        }
+        
+        [self setValue:img forKey:imageViewName];
+        [image1 setNeedsDisplay];
+        [image2 setNeedsDisplay];
+        [image3 setNeedsDisplay];
+    }
+*/
+    
+    NSString *fn1 = [NSString stringWithFormat:@"%@1%@.png",filename,retina];
+    UIImage *img1 = [UIImage imageNamed:fn1];
+    if (!img1) {
+        if ([self fileExistsInCache:fn1]) {
+            img1 =[self fileFromCache:fn1];
+        } else { 
+            img1 = [UIImage imageNamed:@"placeholder1.png"];
+            if (netStatus != NotReachable) { 
+                [self lazyDownloadImage:fn1 product:prodID];
+            }
+        }
+    }
+    [image1 setImage:img1];
+    
+    NSString *fn2 = [NSString stringWithFormat:@"%@2%@.png",filename,retina];
+    UIImage *img2 = [UIImage imageNamed:fn2];
+    if (!img2) {
+        if ([self fileExistsInCache:fn2]) {
+            img2 =[self fileFromCache:fn2];
+        } else { 
+            img2 = [UIImage imageNamed:@"placeholder2.png"];
+            if (netStatus != NotReachable) { 
+                [self lazyDownloadImage:fn2 product:prodID];
+            }
+        }
+    }
+    [image2 setImage:img2];
+    
+    NSString *fn3 = [NSString stringWithFormat:@"%@3%@.png",filename,retina];
+    UIImage *img3 = [UIImage imageNamed:fn3];
+    if (!img3) {
+        if ([self fileExistsInCache:fn3]) {
+            img3 =[self fileFromCache:fn3];
+        } else { 
+            img3 = [UIImage imageNamed:@"placeholder3.png"];
+            if (netStatus != NotReachable) { 
+                [self lazyDownloadImage:fn3 product:prodID];
+            }
+        }
+    }
+    [image3 setImage:img3];
+
+}
+
+// called by our ImageDownloader when an icon is ready to be displayed
+- (void)appImageDidLoad
+{
+    [self loadImagesForScreen];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    
+    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+}
+
+-(NSString*)getDemoMapFileName:(NSString*)aproduct
+{
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSString *mapFileName =[NSString stringWithString:[[dict objectForKey:aproduct] objectForKey:@"filename"]];
+    [dict release];
+    
+    return mapFileName;
+}
+
 
 -(void)dealloc
 {
@@ -139,6 +270,7 @@
     [filename release];
     [prodID release];
     [cityName release];
+    [imageDownloadsInProgress release];
     [super dealloc];
 }
 
