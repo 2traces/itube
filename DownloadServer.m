@@ -15,8 +15,8 @@
 @synthesize listener;
 @synthesize prodID;
 
-//NSString *mainurl = @"http://findmystation.info";
-NSString *mainurl = @"http://astro-friends.net/it";
+NSString *mainurl = @"http://findmystation.info";
+//NSString *mainurl = @"http://astro-friends.net/it";
 
 - (id)init
 {
@@ -62,6 +62,7 @@ NSString *mainurl = @"http://astro-friends.net/it";
 
 -(void)connection:(NSURLConnection *)fconnection didFailWithError:(NSError *)error {
     if (fconnection==self.connection) {
+        [listener downloadFailed:self];
         self.responseData=nil;
         self.connection=nil;
     }
@@ -69,10 +70,16 @@ NSString *mainurl = @"http://astro-friends.net/it";
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)fconnection {
     if (fconnection==self.connection) {
-        [listener downloadDone:self.responseData prodID:(NSString*)self.prodID]; 
+        [listener downloadDone:self.responseData prodID:(NSString*)self.prodID server:self]; 
         self.responseData=nil;
         self.connection=nil;
     }    
+}
+
+-(void)cancel
+{
+    [self.connection cancel];
+    self.connection=nil;
 }
 
 -(void)dealloc {

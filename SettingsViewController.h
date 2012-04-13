@@ -38,7 +38,13 @@
     NSIndexPath *selectedPath;
     MBProgressHUD *_hud;
     
+    IBOutlet UIImageView *progressArrows;
+    
     int requested_file_type;
+    
+    NSMutableArray *servers;
+    
+    NSTimer *timer;
     
     id <SettingsViewControllerDelegate> delegate;
 }
@@ -57,6 +63,9 @@
 @property (nonatomic, retain) IBOutlet UIButton *sendMailButton;
 @property (nonatomic, retain) IBOutlet UILabel *textLabel3;
 @property (retain) MBProgressHUD *hud;
+@property (nonatomic, retain) NSMutableArray *servers;
+@property (nonatomic, retain) NSTimer *timer;
+@property (nonatomic, retain) UIImageView *progressArrows;
 
 -(BOOL)isProductInstalled:(NSString*)prodID;
 -(BOOL)isProductPurchased:(NSString*)prodID;

@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">568.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1179</string>
+			<string key="NS.object.0">1181</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBUIView</string>
@@ -45,7 +45,7 @@
 						<string key="NSFrameSize">{320, 416}</string>
 						<reference key="NSSuperview" ref="621751158"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="341616846"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -64,7 +64,7 @@
 								<string key="NSFrame">{{69, 98}, {182, 43}}</string>
 								<reference key="NSSuperview" ref="341616846"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="1064534766"/>
+								<reference key="NSNextKeyView" ref="345648024"/>
 								<string key="NSReuseIdentifierKey">_NS:225</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -253,7 +253,7 @@
 								<string key="NSFrame">{{205, 319}, {40, 34}}</string>
 								<reference key="NSSuperview" ref="341616846"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="867988420"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -276,6 +276,21 @@
 								<reference key="IBUIFontDescription" ref="699988371"/>
 								<reference key="IBUIFont" ref="424868943"/>
 							</object>
+							<object class="IBUIImageView" id="345648024">
+								<reference key="NSNextResponder" ref="341616846"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{114, 110}, {17, 17}}</string>
+								<reference key="NSSuperview" ref="341616846"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="1064534766"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">progressArrows.png</string>
+								</object>
+							</object>
 						</array>
 						<string key="NSFrameSize">{320, 416}</string>
 						<reference key="NSSuperview" ref="621751158"/>
@@ -291,7 +306,7 @@
 				<string key="NSFrameSize">{320, 416}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="341616846"/>
+				<reference key="NSNextKeyView" ref="867988420"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -386,6 +401,14 @@
 					<int key="connectionID">68</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">progressArrows</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="345648024"/>
+					</object>
+					<int key="connectionID">70</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">updatePressed:</string>
 						<reference key="source" ref="917161082"/>
@@ -476,6 +499,7 @@
 							<reference ref="284533207"/>
 							<reference ref="430002944"/>
 							<reference ref="996294894"/>
+							<reference ref="345648024"/>
 						</array>
 						<reference key="parent" ref="621751158"/>
 					</object>
@@ -526,6 +550,11 @@
 						<reference key="object" ref="430002944"/>
 						<reference key="parent" ref="341616846"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">69</int>
+						<reference key="object" ref="345648024"/>
+						<reference key="parent" ref="341616846"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -539,7 +568,7 @@
 				<string key="33.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="34.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="4.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="4.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="45.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="46.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="49.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -547,38 +576,26 @@
 				<string key="50.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="51.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="1" key="51.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<string key="69.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">68</int>
+			<int key="maxID">70</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">SettingsViewController</string>
 					<string key="superclassName">UIViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="buyPress:">id</string>
-						<string key="cityPress:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="buyPress:">
-							<string key="name">buyPress:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="cityPress:">
-							<string key="name">cityPress:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="buyAllButton">UIButton</string>
 						<string key="buyButton">UIButton</string>
 						<string key="cityButton">UIButton</string>
 						<string key="cityTableView">UITableView</string>
 						<string key="langTableView">UITableView</string>
+						<string key="progressArrows">UIImageView</string>
 						<string key="scrollView">UIScrollView</string>
 						<string key="sendMailButton">UIButton</string>
 						<string key="textLabel1">UILabel</string>
@@ -605,6 +622,10 @@
 						<object class="IBToOneOutletInfo" key="langTableView">
 							<string key="name">langTableView</string>
 							<string key="candidateClassName">UITableView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="progressArrows">
+							<string key="name">progressArrows</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="scrollView">
 							<string key="name">scrollView</string>
@@ -648,9 +669,10 @@
 			<string key="high_buy_all_button.png">{190, 50}</string>
 			<string key="high_send_mail.png">{40, 34}</string>
 			<string key="high_setting_upd_button.png">{182, 43}</string>
+			<string key="progressArrows.png">{17, 17}</string>
 			<string key="send_mail.png">{40, 34}</string>
 			<string key="settings_upd_button.png">{182, 43}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1179</string>
+		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>
 </archive>

@@ -25,14 +25,15 @@
 @property(nonatomic, retain) NSString *prodID;
 
 -(void)loadFileAtURL:(NSString*)url;
+-(void)cancel;
 
 @end
 
 @protocol DownloadServerListener
 
--(void)downloadDone:(NSMutableData*)data prodID:(NSString*)prodID;
+-(void)downloadDone:(NSMutableData*)data prodID:(NSString*)prodID server:(DownloadServer*)myid;
 -(void)startDownloading:(NSString*)prodID;
 -(void)downloadedBytes:(float)part prodID:(NSString*)prodID;
--(void)downloadFailed;
+-(void)downloadFailed:(DownloadServer*)myid;
 
 @end
