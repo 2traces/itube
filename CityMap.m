@@ -611,6 +611,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize gpsCoords;
 @synthesize forwardWay;
 @synthesize backwardWay;
+@synthesize firstStations;
+@synthesize lastStations;
 
 -(id)copyWithZone:(NSZone*)zone
 {
@@ -650,6 +652,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         defaultTransferWay = NOWAY;
         forwardWay = [[NSMutableArray alloc] init];
         backwardWay = [[NSMutableArray alloc] init];
+        firstStations = [[NSMutableArray alloc] init];
+        lastStations = [[NSMutableArray alloc] init];
         
         NSUInteger br = [sname rangeOfString:@"("].location;
         if(br == NSNotFound) {
@@ -706,6 +710,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [reverseTransferWay release];
     [forwardWay release];
     [backwardWay release];
+    [firstStations release];
+    [lastStations release];
     [super dealloc];
 }
 
@@ -920,6 +926,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [transferWay removeAllObjects];
     [reverseTransferWay removeAllObjects];
     [transferDriving removeAllObjects];
+    [firstStations removeAllObjects];
+    [lastStations removeAllObjects];
 }
 
 @end
@@ -1236,9 +1244,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 {
     for (Station* s in stations) {
         [s cleanup];
-    }
-    for (Station* s in stations) {
-        NSLog(@"station retacount %d", [s retainCount]);
     }
     [stations release];
     [_color release];
@@ -1749,6 +1754,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	_w = 0;
 	_h = 0;
     CGRect boundingBox = CGRectNull;
+    NSMutableDictionary *stations = [[[NSMutableDictionary alloc] init] autorelease];
     int index = 1;
 	for (int i = 1; true; i++) {
 		NSString *sectionName = [NSString stringWithFormat:@"Line%d", i ];
@@ -1776,7 +1782,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         NSArray *keys = [sect allKeys];
         NSMutableArray *branches = [[[NSMutableArray alloc] init] autorelease];
         NSMutableArray *drivings = [[[NSMutableArray alloc] init] autorelease];
-        NSMutableDictionary *stations = [[[NSMutableDictionary alloc] init] autorelease];
         for (NSString* key in keys) {
             NSString *value = [sect.assignments objectForKey:key];
             if([value length] <= 0) continue;
@@ -1858,13 +1863,17 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             }
             NSArray *br1 = [br componentsSeparatedByString:@","];
             int dri = 0;
-            Station *st = nil;
+            Station *st = nil, *firstStation = nil, *lastStation = nil;
+            NSMutableArray *branch = [NSMutableArray array];
             for (NSString *br2 in br1) {
                 NSArray *br3 = [br2 componentsSeparatedByString:@"."];
                 int first = [[br3 objectAtIndex:0] intValue];
                 int last = [[br3 lastObject] intValue];
                 for(int sti = first; sti<=last; sti ++, dri++) {
                     Station *st2 = [stations objectForKey:[NSString stringWithFormat:@"%d", sti]];
+                    if(firstStation == nil) firstStation = st2;
+                    [st2.firstStations addObject:firstStation];
+                    [branch addObject:st2];
                     if(st != nil && st2 != nil) {
                         if([st addSibling:st2]) {
                             NSString *driving = nil;
@@ -1889,7 +1898,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                         }
                     }
                     st = st2;
+                    lastStation = st2;
                 }
+            }
+            for (Station* s in branch) {
+                [s.lastStations addObject:lastStation];
             }
         }
         [l postInit];

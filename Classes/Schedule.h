@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TBXML.h"
 
 /***** SchPoint *****/
 
@@ -14,17 +15,17 @@
 @private
     NSString *name;
     int line;
-    double time;
+    float time;
     SchPoint *next;
-    double weight;
+    float weight;
     SchPoint *backPath;
     char dock;
 }
 @property (nonatomic, retain) NSString* name;
 @property (nonatomic, assign) int line;
-@property (nonatomic, readonly) double time;
+@property (nonatomic, readonly) float time;
 @property (nonatomic, assign) SchPoint *next;
-@property (nonatomic, readonly) double weight;
+@property (nonatomic, readonly) float weight;
 @property (nonatomic, readonly) SchPoint *backPath;
 @property (nonatomic, readonly) char dock;
 
@@ -38,7 +39,7 @@
 
 /***** SchLine *****/
 
-@interface SchLine : NSObject <NSXMLParserDelegate> {
+@interface SchLine : NSObject {
 @private
     NSString *lineName;
     int index;
@@ -46,7 +47,7 @@
     NSString *currentStation;
     SchPoint *lastPoint;
 
-    NSMutableArray *routes;
+    //NSMutableArray *routes;
     NSMutableDictionary *catalog;
 }
 @property (nonatomic, readonly) NSString* lineName;
@@ -59,7 +60,7 @@
 
 /***** Schedule *****/
 
-@interface Schedule : NSObject <NSXMLParserDelegate> {
+@interface Schedule : NSObject {
     NSCalendar *cal;
     NSMutableDictionary *lines;
     NSString* _path;

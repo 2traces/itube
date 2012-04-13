@@ -105,6 +105,8 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
     CGPoint gpsCoords;
     NSMutableArray *forwardWay;
     NSMutableArray *backwardWay;
+    NSMutableArray *firstStations;
+    NSMutableArray *lastStations;
 }
 
 @property (nonatomic, readonly) NSMutableArray* relation;
@@ -135,6 +137,8 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 @property (nonatomic, assign) CGPoint gpsCoords;
 @property (nonatomic, readonly) NSMutableArray* forwardWay;
 @property (nonatomic, readonly) NSMutableArray* backwardWay;
+@property (nonatomic, readonly) NSMutableArray* firstStations;
+@property (nonatomic, readonly) NSMutableArray* lastStations;
 
 -(id) initWithMap:(CityMap*)cityMap name:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr;
 -(BOOL) addSibling:(Station*)st;
