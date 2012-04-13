@@ -35,12 +35,16 @@
 @synthesize buyAllButton,sendMailButton;
 @synthesize hud = _hud;
 @synthesize delegate;
+@synthesize servers;
+@synthesize timer;
+@synthesize progressArrows;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.maps = [self getMapsList];
+        self.servers = [[[NSMutableArray alloc] init] autorelease];
     }
     return self;
 }
@@ -211,6 +215,32 @@
     [super viewDidUnload];
 }
 
+- (void)dealloc {
+    [_hud release];
+    _hud = nil;
+    [cityButton release];
+    [buyButton release];
+    
+    [langTableView release];
+    [cityTableView release];
+    
+    [textLabel1 release];
+    [textLabel2 release];
+    [textLabel3 release];
+    
+    [servers release];
+    [timer release];
+    [progressArrows release];
+    
+    [scrollView release];
+    
+    [buyAllButton release];
+    [sendMailButton release];
+    [maps release];
+    [selectedPath release];
+    delegate = nil;
+    [super dealloc];    
+}
 
 #pragma mark - TableView
 
@@ -418,13 +448,15 @@
 
 #pragma mark - Download delegate methods
 
--(void)downloadDone:(NSMutableData *)data prodID:(NSString*)prodID
+-(void)downloadDone:(NSMutableData *)data prodID:(NSString*)prodID server:(DownloadServer *)myid
 {
     if (requested_file_type==plist_) {
         [self processPlistFromServer:data];
     } else if (requested_file_type==zip_) {
         [self processZipFromServer:data prodID:(NSString*)prodID];
     }
+    
+    [servers removeObject:myid];
 }
 
 -(void)downloadedBytes:(float)part prodID:(NSString*)prodID
@@ -450,8 +482,6 @@
     CityCell *cell = (CityCell*)[self.cityTableView cellForRowAtIndexPath:path];
     UIProgressView *progress = (UIProgressView*)[cell viewWithTag:123];
     NSDictionary *map = [self.maps objectAtIndex:path.row];
-//    NSString *percent = [NSString stringWithFormat:@"%f %%",[[map objectForKey:@"progress"] floatValue]*100.0];
-//    [button setTitle:percent forState:UIControlStateNormal];
     progress.progress=[[map objectForKey:@"progress"] floatValue];
 }
 
@@ -473,8 +503,14 @@
     }
 }
 
--(void)downloadFailed
+-(void)downloadFailed:(DownloadServer*)myid
 {
+    if (requested_file_type==plist_) {
+        [self stopTimer];
+    }
+    
+    [servers removeObject:myid];
+    
     //    [self.updatButton enabled];
 }
 
@@ -629,6 +665,8 @@
             [self downloadProduct:prodId];
         }
     } 
+    
+    [self stopTimer];
 }
 
 -(void)processZipFromServer:(NSMutableData*)data prodID:(NSString*)prodID
@@ -686,9 +724,13 @@
     DownloadServer *server = [[[DownloadServer alloc] init] autorelease];
     server.listener=self;
     
+    [servers addObject:server];
+    
     NSString *bundleName = [NSString stringWithFormat:@"%@.plist",[[NSBundle mainBundle] bundleIdentifier]];
     requested_file_type=plist_;
     [server loadFileAtURL:bundleName];
+    [self spinLayer:progressArrows.layer duration:2.0 direction:1];
+    [self startTimer];
 }
 
 -(IBAction)buyButtonPressed:(id)sender 
@@ -715,11 +757,49 @@
     return nil;
 }
 
+- (void)startTimer {
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
+}
+
+- (void)stopTimer {
+    [timer invalidate];
+}
+
+-(void)timerFired:(NSTimer *)timer
+{
+    [self spinLayer:progressArrows.layer duration:2.0 direction:1];
+}
+
+- (void)spinLayer:(CALayer *)inLayer duration:(CFTimeInterval)inDuration
+        direction:(int)direction
+{
+    CABasicAnimation* rotationAnimation;
+    
+    // Rotate about the z axis
+    rotationAnimation = 
+    [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    
+    // Rotate 360 degress, in direction specified
+    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 * direction];
+    
+    // Perform the rotation over this many seconds
+    rotationAnimation.duration = inDuration;
+    
+    // Set the pacing of the animation
+    rotationAnimation.timingFunction = 
+    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    
+    // Add animation to the layer and make it so
+    [inLayer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+}
+
 -(void)downloadProduct:(NSString*)prodID
 {
     DownloadServer *server = [[[DownloadServer alloc] init] autorelease];
     server.listener=self;
     server.prodID = prodID;
+    
+    [servers addObject:server];
     
     NSString *mapName = [self getMapNameForProduct:prodID];   
     
@@ -875,6 +955,12 @@
 
 -(IBAction)donePressed:(id)sender 
 {
+    for (DownloadServer *server in servers) {
+        [server cancel];
+    }
+    
+    [servers removeAllObjects];
+    
     [delegate donePressed];
 }
 
@@ -929,29 +1015,6 @@
     [resultTitle release];
     [resultMsg release];
     [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)dealloc {
-    [_hud release];
-    _hud = nil;
-    [cityButton release];
-    [buyButton release];
-    
-    [langTableView release];
-    [cityTableView release];
-
-    [textLabel1 release];
-    [textLabel2 release];
-    [textLabel3 release];
-    
-    [scrollView release];
-    
-    [buyAllButton release];
-    [sendMailButton release];
-    [maps release];
-    [selectedPath release];
-    delegate = nil;
-    [super dealloc];    
 }
 
 @end
