@@ -1595,9 +1595,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [[MHelper sharedHelper] readHistoryFile:mapName];
     [[MHelper sharedHelper] readBookmarkFile:mapName];
     
-    if([mapName isEqualToString:@"venice"] ||
-       [mapName isEqualToString:@"hamburg"]) {
-        schedule = [[Schedule alloc] initSchedule:@"routes" path:routePath];
+    if((schedule = [[Schedule alloc] initSchedule:@"routes" path:routePath])) {
         for (Line *l in mapLines) {
             if([schedule setIndex:l.index forLine:l.name]) {
                 for (Station *s in l.stations) {
