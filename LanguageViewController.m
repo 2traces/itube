@@ -47,6 +47,7 @@
     label.text = @"Languages";
     [iv addSubview:label];
     self.navigationItem.titleView=iv;
+    [iv release];
 	
     UIImage *back_image=[UIImage imageNamed:@"settings_back_button.png"];
 	UIButton *back_button = [UIButton buttonWithType:UIButtonTypeCustom];

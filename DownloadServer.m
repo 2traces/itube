@@ -15,8 +15,8 @@
 @synthesize listener;
 @synthesize prodID;
 
-//NSString *mainurl = @"http://findmystation.info";
-NSString *mainurl = @"http://astro-friends.net/it";
+NSString *mainurl = @"http://findmystation.info";
+//NSString *mainurl = @"http://astro-friends.net/it";
 
 - (id)init
 {
