@@ -1690,6 +1690,19 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	[parserMap release];
     [parserTrp release];
     
+    if(TrKind == LIKE_VENICE) {
+        for (Line *l in mapLines) {
+            for (Station* st in l.stations) {
+                if(st.transfer == nil) {
+                    Transfer *tr = [[[Transfer alloc] initWithMap:self] autorelease];
+                    tr.time = 0.f;
+                    [tr addStation:st];
+                    [transfers addObject:tr];
+                }
+            }
+        }
+    }
+    
     for (Line *l in mapLines) {
         [l calcStations];
     }
