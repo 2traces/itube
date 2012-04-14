@@ -11,6 +11,10 @@
 #import "ManagedObjects.h"
 #import "tubeAppDelegate.h"
 
+CGFloat sqr(CGFloat v) {
+    return v*v;
+}
+
 NSMutableArray * Split(NSString* s)
 {
     NSMutableArray *res = [[[NSMutableArray alloc] init] autorelease];
@@ -323,30 +327,78 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void) drawTransferLikeLondon:(CGContextRef) context stations:(NSArray*)sts
 {
+    NSMutableArray *coords = [NSMutableArray array];
+    for (Station *st in sts) {
+        [coords addObject:[NSValue valueWithCGPoint:st.pos]];
+    }
+    NSMutableArray *claster = nil;
+    CGPoint clasterCenter = CGPointZero;
+    const CGFloat D2 = map->StationDiameter*map->StationDiameter*1.5f;
+    for (NSValue *v in coords) {
+        NSMutableArray *cl = [NSMutableArray array];
+        [cl addObject:v];
+        CGPoint center = [v CGPointValue];
+        CGPoint sum = center;
+        for (NSValue *v2 in coords) {
+            if(v != v2) {
+                CGPoint p2 = [v2 CGPointValue];
+                CGFloat d = sqr(p2.x-center.x) + sqr(p2.y-center.y);
+                if(d < D2) {
+                    [cl addObject:v2];
+                    sum.x += p2.x;
+                    sum.y += p2.y;
+                    int count = [cl count];
+                    center.x = sum.x / count;
+                    center.y = sum.y / count;
+                }
+            }
+        }
+        if(claster == nil || [claster count] < [cl count]) {
+            [claster release];
+            claster = [cl retain];
+            clasterCenter = center;
+            cl = nil;
+        }
+    }
+    [coords removeObjectsInArray:claster];
+    [coords addObject:[NSValue valueWithCGPoint:clasterCenter]];
+    
     CGFloat blackW = map->StationDiameter / 5.f;
     CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
     CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 1.0);				
-    for(int i = 0; i<[sts count]; i++) {
-        Station *st = [sts objectAtIndex:i];
-        CGPoint p1 = st.pos;
+    for(int i = 0; i<[coords count]; i++) {
+        CGPoint p1 = [[coords objectAtIndex:i] CGPointValue];
         drawFilledCircle(context, p1.x, p1.y, map->StationDiameter);
-        for(int j = i+1; j<[sts count]; j++) {
-            Station *st2 = [sts objectAtIndex:j];
-            CGPoint p2 = st2.pos;
-            drawLine(context, p1.x, p1.y, p2.x, p2.y, map->StationDiameter*0.5f);
+        CGPoint nearest = CGPointZero;
+        CGFloat dist = 0;
+        for(int j = i+1; j<[coords count]; j++) {
+            CGPoint p2 = [[coords objectAtIndex:j] CGPointValue];
+            CGFloat d = sqr(p2.x-p1.x) + sqr(p2.y-p1.y);
+            if(dist == 0 || dist > d) {
+                nearest = p2;
+                dist = d;
+            }
         }
+        if(dist != 0) 
+            drawLine(context, p1.x, p1.y, nearest.x, nearest.y, map->StationDiameter*0.5f);
     }
     CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
     CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
-    for(int i = 0; i<[sts count]; i++) {
-        Station *st = [sts objectAtIndex:i];
-        CGPoint p1 = st.pos;
+    for(int i = 0; i<[coords count]; i++) {
+        CGPoint p1 = [[coords objectAtIndex:i] CGPointValue];
         drawFilledCircle(context, p1.x, p1.y, map->StationDiameter - blackW);
-        for(int j = i+1; j<[sts count]; j++) {
-            Station *st2 = [sts objectAtIndex:j];
-            CGPoint p2 = st2.pos;
-            drawLine(context, p1.x, p1.y, p2.x, p2.y, map->StationDiameter*0.5f - blackW);
+        CGPoint nearest = CGPointZero;
+        CGFloat dist = 0;
+        for(int j = i+1; j<[coords count]; j++) {
+            CGPoint p2 = [[coords objectAtIndex:j] CGPointValue];
+            CGFloat d = sqr(p2.x-p1.x) + sqr(p2.y-p1.y);
+            if(dist == 0 || dist > d) {
+                nearest = p2;
+                dist = d;
+            }
         }
+        if(dist != 0) 
+            drawLine(context, p1.x, p1.y, nearest.x, nearest.y, map->StationDiameter*0.5f - blackW);
     }
 }
 
@@ -1595,9 +1647,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [[MHelper sharedHelper] readHistoryFile:mapName];
     [[MHelper sharedHelper] readBookmarkFile:mapName];
     
-    if([mapName isEqualToString:@"venice"] ||
-       [mapName isEqualToString:@"hamburg"]) {
-        schedule = [[Schedule alloc] initSchedule:@"routes" path:routePath];
+    if((schedule = [[Schedule alloc] initSchedule:@"routes" path:routePath])) {
         for (Line *l in mapLines) {
             if([schedule setIndex:l.index forLine:l.name]) {
                 for (Station *s in l.stations) {
@@ -1691,6 +1741,19 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	
 	[parserMap release];
     [parserTrp release];
+    
+    if(TrKind == LIKE_VENICE) {
+        for (Line *l in mapLines) {
+            for (Station* st in l.stations) {
+                if(st.transfer == nil) {
+                    Transfer *tr = [[[Transfer alloc] initWithMap:self] autorelease];
+                    tr.time = 0.f;
+                    [tr addStation:st];
+                    [transfers addObject:tr];
+                }
+            }
+        }
+    }
     
     for (Line *l in mapLines) {
         [l calcStations];

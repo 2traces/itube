@@ -80,6 +80,9 @@
 }
 
 -(void) makePreview {
+    [previewImage release];
+    previewImage = nil;
+    if(cityMap == nil) return;
     // make background image
     CGFloat backScale = MinScale * 2.f;
     CGSize minSize = CGSizeMake(cityMap.w * backScale, cityMap.h * backScale);
@@ -97,7 +100,6 @@
     [cityMap drawStations:context inRect:r]; 
     [vectorLayer2 draw:context inRect:r];
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    [previewImage release];
     previewImage = [[UIImageView alloc] initWithImage:img];
     previewImage.frame = CGRectMake(0, 0, img.size.width, img.size.height);
     previewImage.contentMode = UIViewContentModeScaleAspectFit;
