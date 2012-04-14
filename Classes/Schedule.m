@@ -235,15 +235,13 @@ NSCharacterSet *pCharacterSet = nil;
             [self release];
             return nil;
         }
-        if(fn == nil) {
-            [self release];
-            return nil;
-        }
         NSError *error = nil;
         NSData *xmlData = [[NSData alloc] initWithContentsOfFile:fn];
         TBXML *tbxml = [TBXML tbxmlWithXMLData:xmlData error:&error];
         if(error) {
             NSLog(@"%@ %@", [error localizedDescription], [error userInfo]);
+            [xmlData release];
+            [self release];
             return nil;
         }
         TBXMLElement * el = [TBXML childElementNamed:@"route" parentElement:tbxml.rootXMLElement];
