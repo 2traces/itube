@@ -1656,6 +1656,20 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             }
         }
     }
+    
+    // check different stations with equal names
+    for (Line *l in mapLines) {
+        for (Station* st in l.stations) {
+            if(st.transfer == nil && st.drawName) {
+                for (Line* l2 in mapLines) {
+                    for (Station *st2 in l2.stations) {
+                        if(st2 != st && st2.transfer == nil && [st2.name isEqualToString:st.name])
+                            st2.drawName = false;
+                    }
+                }
+            }
+        }
+    }
 }
 
 -(void) loadOldMap:(NSString *)mapFile trp:(NSString *)trpFile {
@@ -1870,12 +1884,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 NSString *stationName = [[sncr substringToIndex:sp] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet] ];
                 NSArray *gpsCoords = [[sncr substringFromIndex:sp] componentsSeparatedByString:@","];
                 Station *st = nil;
-                for (Station *ss in l.stations) {
+                /*for (Station *ss in l.stations) {
                     if([ss.name isEqualToString:stationName]) {
                         st = ss;
                         break;
                     }
-                }
+                }*/
                 if(st == nil) {
                     NSArray *coord_x_y = [[coords objectAtIndex:si] componentsSeparatedByString:@","];
                     int x = [[coord_x_y objectAtIndex:0] intValue];
