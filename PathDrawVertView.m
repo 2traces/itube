@@ -31,8 +31,8 @@
     CGFloat ylineStart = 20.0f;
     CGFloat x=20.0f;
     
-    CGFloat transferHeight = 100.0f;
-    CGFloat emptyTransferHeight = 50.0f; //without train picture, without exit information
+    CGFloat transferHeight = 70.0f;
+    CGFloat emptyTransferHeight = 30.0f; //without train picture, without exit information
     CGFloat stationHeight = 20.0f;
     CGFloat finalHeight = 60.0f;
     
@@ -56,7 +56,8 @@
         [stations removeLastObject];
     }
     
-    NSMutableArray *exits = [delegate dsGetExitForStations]; 
+    NSMutableArray *exits = [delegate dsGetExitForStations];
+    NSMutableArray *directions = [delegate dsGetDirectionNames];
     
     for (NSMutableArray *tempStations in stations) {
         
@@ -83,6 +84,13 @@
         } else {
             tempTH = emptyTransferHeight;
         }
+        
+        NSString *directionName = [directions objectAtIndex:[stations indexOfObject:tempStations]];
+        
+        CGSize max = CGSizeMake(235, 500);
+        CGSize expected = [directionName sizeWithFont:[UIFont fontWithName:@"MyriadPr-Italic" size:14.0] constrainedToSize:max lineBreakMode:UILineBreakModeWordWrap]; 
+        
+        tempTH+=expected.height+10;
         
         segmentHeight =  (float)trainType * tempTH +(float)finalType*finalHeight + (float)stationType * stationHeight;    
         [points addObject:[NSNumber numberWithFloat:segmentHeight]];
@@ -169,11 +177,16 @@
     // точки станций
     for (int j=0;j<segmentsCount;j++) {
         
+        NSString *directionName = [directions objectAtIndex:j];
+        
+        CGSize max = CGSizeMake(235, 500);
+        CGSize expected = [directionName sizeWithFont:[UIFont fontWithName:@"MyriadPr-Italic" size:14.0] constrainedToSize:max lineBreakMode:UILineBreakModeWordWrap]; 
+        
         if (j==0 ) {
             if ([[exits objectAtIndex:j] intValue]!=0) {
-                currentY=ylineStart+transferHeight;
+                currentY=ylineStart+transferHeight+expected.height+10;
             } else {
-                currentY=ylineStart+emptyTransferHeight;
+                currentY=ylineStart+emptyTransferHeight+expected.height+10;
             }
             
         } else {
@@ -187,9 +200,9 @@
             }
             
             if ([[exits objectAtIndex:j] intValue]!=0) {
-                currentY+=transferHeight+ylineStart;
+                currentY+=transferHeight+ylineStart+expected.height+10;
             } else {
-                currentY+=emptyTransferHeight+ylineStart;
+                currentY+=emptyTransferHeight+ylineStart+expected.height+10;
             }
             
         }

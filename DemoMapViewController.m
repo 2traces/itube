@@ -192,7 +192,7 @@
         if ([self fileExistsInCache:fn1]) {
             img1 =[self fileFromCache:fn1];
         } else { 
-            img1 = [UIImage imageNamed:@"placeholder1.png"];
+            img1 = [UIImage imageNamed:@"placeholder.png"];
             if (netStatus != NotReachable) { 
                 [self lazyDownloadImage:fn1 product:prodID];
             }
@@ -206,7 +206,7 @@
         if ([self fileExistsInCache:fn2]) {
             img2 =[self fileFromCache:fn2];
         } else { 
-            img2 = [UIImage imageNamed:@"placeholder2.png"];
+            img2 = [UIImage imageNamed:@"placeholder.png"];
             if (netStatus != NotReachable) { 
                 [self lazyDownloadImage:fn2 product:prodID];
             }
@@ -220,7 +220,7 @@
         if ([self fileExistsInCache:fn3]) {
             img3 =[self fileFromCache:fn3];
         } else { 
-            img3 = [UIImage imageNamed:@"placeholder3.png"];
+            img3 = [UIImage imageNamed:@"placeholder.png"];
             if (netStatus != NotReachable) { 
                 [self lazyDownloadImage:fn3 product:prodID];
             }
