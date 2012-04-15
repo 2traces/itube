@@ -43,5 +43,6 @@
 -(BOOL)dsIsEndingTransfer;
 -(UIColor*)dsFirstStationSaturatedColor;
 -(UIColor*)dsLastStationSaturatedColor;
+-(NSMutableArray*)dsGetDirectionNames;
 
 @end

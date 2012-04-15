@@ -518,13 +518,29 @@
 
 -(BOOL)isProductInstalled:(NSString*)mapName
 {
-    
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@/Metro.map",[mapName lowercaseString]]];
-    
     NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *mapDirPath = [cacheDir stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@",[mapName lowercaseString]]];
     
-    if ([manager fileExistsAtPath:path]) {
+    BOOL mapFile = NO;
+    BOOL trpFile = NO;
+    BOOL trpNewFile = NO;
+    
+    if ([[manager contentsOfDirectoryAtPath:mapDirPath error:nil] count]>0) {
+        NSDirectoryEnumerator *dirEnum = [manager enumeratorAtPath:mapDirPath];
+        NSString *file;
+        
+        while (file = [dirEnum nextObject]) {
+            if ([[file pathExtension] isEqualToString: @"map"]) {
+                mapFile=YES;
+            } else if ([[file pathExtension] isEqualToString: @"trp"]) {
+                trpFile=YES;
+            } else if ([[file pathExtension] isEqualToString: @"trpnew"]) {
+                trpNewFile=YES;
+            }
+        }
+    } 
+    if (mapFile && (trpFile || trpNewFile)) {
         return YES;
     }
     

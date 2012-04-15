@@ -473,12 +473,24 @@
             
             if (currentIndexLine!=[[[segment start] line] index]) {
                 
-                NSString *finalStation;
+                NSMutableString *finalStation = [NSMutableString stringWithString:@""];
                 
                 if ([[segment start] index]<[[segment end] index]) {
-                    finalStation = [[[[[segment start] line] stations] lastObject] name];
+                    for (Station *station in [[segment start] lastStations]) {
+                        if ([finalStation isEqual:@""]) {
+                            [finalStation appendFormat:@"%@",[station name]];
+                        } else {
+                            [finalStation appendFormat:@", %@",[station name]];
+                        }
+                    }
                 } else {
-                    finalStation = [[[[[segment start] line] stations] objectAtIndex:0] name];
+                    for (Station *station in [[segment start] firstStations]) {
+                        if ([finalStation isEqual:@""]) {
+                            [finalStation appendFormat:@"%@",[station name]];
+                        } else {
+                            [finalStation appendFormat:@", %@",[station name]];
+                        }
+                    }
                 }
                 
                 directionName=[NSString stringWithFormat:@"%@, direction %@",[[[segment start] line] name],finalStation];
@@ -649,8 +661,8 @@
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
 //    NSArray *path11 = appDelegate.cityMap.activePath;
     
-    CGFloat transferHeight = 100.0f;
-    CGFloat emptyTransferHeight = 50.0f; //without train picture, without exit information
+    CGFloat transferHeight = 70.0f;
+    CGFloat emptyTransferHeight = 30.0f; //without train picture, without exit information
     CGFloat stationHeight = 20.0f;
     CGFloat finalHeight = 60.0f;
     
@@ -713,6 +725,13 @@
         } else {
             tempTH = emptyTransferHeight;
         }
+        
+        NSString *directionName = [directions objectAtIndex:[stations indexOfObject:tempStations]];
+        
+        CGSize max = CGSizeMake(235, 500);
+        CGSize expected = [directionName sizeWithFont:[UIFont fontWithName:@"MyriadPr-Italic" size:14.0] constrainedToSize:max lineBreakMode:UILineBreakModeWordWrap]; 
+        
+        tempTH+=expected.height+10.0;
         
         segmentHeight =  (float)trainType * tempTH +(float)finalType*finalHeight + (float)stationType * stationHeight;    
         [points addObject:[NSNumber numberWithFloat:segmentHeight]];
@@ -788,14 +807,6 @@
     int endCount=segmentsCount;
     int start = 0;
     
-    /*    if ([[path11 objectAtIndex:0] isKindOfClass:[Transfer class]]) {
-     start+=1;
-     } 
-     
-     if ([[path11 lastObject] isKindOfClass:[Transfer class]]) {
-     endCount-=1;
-     } 
-     */    
     int stationCounter = 1;
     
     for (int j=start;j<endCount;j++) {
@@ -829,22 +840,33 @@
             [trainSubview release];
             
             currentY+=transferHeight;
-            directionLabel = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY-32.0, 235.0, 22.0)];
         } else {
             currentY+=emptyTransferHeight;
-            directionLabel = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY-29.0, 235.0, 22.0)];
         }
         
         // ----
         
+        directionLabel = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY, 235.0, 22.0)];
+
         directionLabel.font=[UIFont fontWithName:@"MyriadPr-Italic" size:14.0];
         
-        NSString *directionName = [directions objectAtIndex:j];
+        directionLabel.lineBreakMode = UILineBreakModeWordWrap;
+        directionLabel.numberOfLines = 0;
         
+        NSString *directionName = [directions objectAtIndex:j];
+
+        CGRect currentFrame = directionLabel.frame;
+        CGSize max = CGSizeMake(directionLabel.frame.size.width, 500);
+        CGSize expected = [directionName sizeWithFont:directionLabel.font constrainedToSize:max lineBreakMode:directionLabel.lineBreakMode]; 
+        currentFrame.size.height = expected.height;
+        directionLabel.frame = currentFrame;
+
         directionLabel.text=directionName;
         directionLabel.backgroundColor=[UIColor clearColor];
         [self.pathScrollView addSubview:directionLabel];
         [directionLabel release];
+        
+        currentY+=expected.height+10;
         
         // ----
 
