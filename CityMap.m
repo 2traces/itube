@@ -1412,23 +1412,23 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)additionalPointsBetween:(NSString *)station1 and:(NSString *)station2 points:(NSArray *)points
 {
-    NSString *st1 = [[ComplexText makePlainString:station1] uppercaseString];
-    NSString *st2 = [[ComplexText makePlainString:station2] uppercaseString];
+    NSString *st1 = [[ComplexText makePlainString:station1] lowercaseString];
+    NSString *st2 = [[ComplexText makePlainString:station2] lowercaseString];
     for (Station *s in stations) {
         BOOL search = NO;
         BOOL rev = NO;
-        if([[s.name uppercaseString] isEqualToString:st1]) {
+        if([[s.name lowercaseString] isEqualToString:st1]) {
             search = YES;
         }
-        else if([[s.name uppercaseString] isEqualToString:st2]) {
+        else if([[s.name lowercaseString] isEqualToString:st2]) {
             search = rev = YES;
         }
         if(search) {
             NSMutableArray *allseg = [NSMutableArray arrayWithArray:s.segment];
             [allseg addObjectsFromArray:s.backSegment];
             for (Segment *seg in allseg) {
-                if(([[seg.end.name uppercaseString] isEqualToString:st1] && rev)
-                   || ([[seg.end.name uppercaseString] isEqualToString:st2] && !rev)) {
+                if(([[seg.end.name lowercaseString] isEqualToString:st1] && rev)
+                   || ([[seg.end.name lowercaseString] isEqualToString:st2] && !rev)) {
                     NSEnumerator *enumer;
                     if(rev) enumer = [points reverseObjectEnumerator];
                     else enumer = [points objectEnumerator];
@@ -1446,7 +1446,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             }
         }
     }
-    NSLog(@"can't add point between '%@' and '%@' in line '%@'", station1, station2, name);
+    NSLog(@"can't add point between '%@' and '%@' in line '%@'", st1, st2, name);
 }
 
 -(Station*)getStation:(NSString *)stName
@@ -2163,7 +2163,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 - (UIColor *) colorForHex:(NSString *)hexColor {
 	hexColor = [[hexColor stringByTrimmingCharactersInSet:
 				 [NSCharacterSet whitespaceAndNewlineCharacterSet]
-				 ] uppercaseString];  
+				 ] lowercaseString];  
 	
     // String should be 6 or 7 characters if it includes '#'  
     if ([hexColor length] < 6) 
