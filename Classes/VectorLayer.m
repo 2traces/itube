@@ -400,7 +400,24 @@
 {
     currentAngle = 0;
     [elements removeAllObjects];
-    NSString *fn = [[NSBundle mainBundle] pathForResource:fileName ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@",dir]];
+    NSString *fn = nil;
+
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *mapDirPath = [cacheDir stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@",dir]];
+    if ([[manager contentsOfDirectoryAtPath:mapDirPath error:nil] count]>0) {
+        NSDirectoryEnumerator *dirEnum = [manager enumeratorAtPath:mapDirPath];
+        NSString *file;
+        while (file = [dirEnum nextObject]) {
+            if ([file isEqualToString: fileName]) {
+                fn = [NSString stringWithFormat:@"%@/%@", mapDirPath, file];
+                break;
+            }
+        }
+    } 
+    if (fn == nil) {
+        fn = [[NSBundle mainBundle] pathForResource:fileName ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@",dir]];
+    }
     NSString *contents = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
     [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
         NSArray *words = [line componentsSeparatedByString:@" "];
