@@ -17,9 +17,10 @@
     int line;
     float time;
     SchPoint *next;
-    float weight;
     SchPoint *backPath;
     char dock;
+@public
+    float weight;
 }
 @property (nonatomic, retain) NSString* name;
 @property (nonatomic, assign) int line;
@@ -73,3 +74,22 @@
 
 -(NSArray*)findPathFrom:(NSString *)fromStation to:(NSString*)toStation;
 @end
+
+/***** SortedArray *****/
+
+@interface SortedArray : NSObject {
+    int maxSize;
+    int size;
+    SchPoint** data;
+}
+
++(id) array;
+-(id) init;
+-(void) addObject:(SchPoint*)point;
+-(BOOL) removeObject:(SchPoint*)point;
+-(int) count;
+-(SchPoint*) objectAtIndex:(int)index;
+
+@end
+
+

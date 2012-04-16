@@ -2452,8 +2452,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             
         } else {
             GraphNode *n2 = [pathMap objectAtIndex:i+1];
-            
-            if (n1.line==n2.line) {
+            if(n1.line == n2.line && [n1.name isEqualToString:n2.name]) {
+                // одна и та же станция - пересадка внутри одной линии
+                // чё делать пока не понятно
+            } else if (n1.line==n2.line) {
                 [path addObject:[l getSegmentFrom:n1.name to:n2.name]];
             } 
             
