@@ -340,7 +340,7 @@ NSCharacterSet *pCharacterSet = nil;
     [self clean];
     
     NSTimeInterval now = [self getNowTime];
-    NSMutableArray *propagate = [[NSMutableArray alloc] init];
+    SortedArray *propagate = [[SortedArray alloc] init];
     NSMutableDictionary *flag = [NSMutableDictionary dictionary];
     for (NSString *ln in lines) {
         SchLine *l = [lines valueForKey:ln];
@@ -354,7 +354,7 @@ NSCharacterSet *pCharacterSet = nil;
     SchPoint *target = nil;
     while ([propagate count] > 0) {
         //[propagate sortUsingSelector:@selector(greaterThan:)];
-        SchPoint *p = [self nearestPoint:propagate];// [propagate objectAtIndex:0];
+        SchPoint *p = [propagate objectAtIndex:0]; //[self nearestPoint:propagate];
         if([p.name isEqualToString:toStation]) {
             // found a path
             target = p;
@@ -400,3 +400,115 @@ NSCharacterSet *pCharacterSet = nil;
 
 @end
 
+/***** SortedArray *****/
+
+@implementation SortedArray
+
++(id) array
+{
+    SortedArray *sa = [[SortedArray alloc] init];
+    return [sa autorelease];
+}
+
+-(id) init
+{
+    if((self = [super init])) {
+        size = 0;
+        maxSize = 10;
+        data = malloc(maxSize * sizeof(SchPoint*));
+    }
+    return self;
+}
+
+-(void) addObject:(SchPoint*)point
+{
+    if(size == maxSize) {
+        maxSize *= 2;
+        data = realloc(data, maxSize * sizeof(SchPoint*));
+    }
+    if(size > 0) {
+        int b1 = 0, b2 = size-1, ind = -1;
+        float pw = point->weight;
+        if(data[b1]->weight >= pw) {
+            ind = b1;
+        }
+        if(data[b2]->weight <= pw) {
+            ind = b2+1;
+        }
+        while (ind < 0) {
+            int b = (b1+b2)/2;
+            float w = data[b]->weight;
+            if(w < pw) {
+                b1 = b;
+            } else if(w > pw) {
+                b2 = b;
+            } else {
+                ind = b;
+            }
+            if(b2-b1 <= 1) ind = b2;
+        }
+        memmove(data + ind + 1, data + ind, (size-ind)*sizeof(SchPoint*));
+        data[ind] = point;
+        size ++;
+    } else {
+        data[0] = point;
+        size = 1;
+    }
+}
+
+-(BOOL) removeObject:(SchPoint*)point
+{
+    if(data[0] == point) {
+        memmove(data, data+1, (size-1)*sizeof(SchPoint*));
+        size --;
+        return YES;
+    }
+    int b1 = 0, b2 = size-1, ind = -1, ind2 = -1;
+    float pw = point->weight;
+    if(data[b1]->weight > pw) {
+        return NO;
+    }
+    if(data[b2]->weight < pw) {
+        return NO;
+    }
+    while (ind < 0) {
+        int b = (b1+b2)/2;
+        float w = data[b]->weight;
+        if(w < pw) {
+            b1 = b;
+        } else if(w > pw) {
+            b2 = b;
+        } else {
+            ind = b;
+        }
+        if(b2-b1 < 1) ind = b2;
+    }
+    for(int i=ind; ind2 < 0 && data[i]->weight == pw; i--) {
+        if(data[i] == point) ind2 = i;
+    }
+    for(int i=ind; ind2 < 0 && data[i]->weight == pw; i++) {
+        if(data[i] == point) ind2 = i;
+    }
+    if(ind2 < 0) return NO;
+    memmove(data + ind2, data + ind2 + 1, (size-ind2-1)*sizeof(SchPoint*));
+    size --;
+    return YES;
+}
+
+-(int) count
+{
+    return size;
+}
+
+-(SchPoint*) objectAtIndex:(int)index
+{
+    return data[index];
+}
+
+-(void)dealloc
+{
+    free(data);
+    [super dealloc];
+}
+
+@end
