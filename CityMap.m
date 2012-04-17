@@ -934,7 +934,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if([forwardWay containsObject:st]) return true;
     if([backwardWay containsObject:st]) return false;
     // unknown way!
+#ifdef DEBUG
     NSLog(@"Warning: unknown way from %@ to %@", name, st.name);
+#endif
     return false;
 }
 
@@ -942,7 +944,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 {
     NSArray *ways = [transferWay objectForKey:transferStation];
     if(ways == nil) {
+#ifdef DEBUG
         NSLog(@"no way from %@ to %@", name, transferStation.name);
+#endif
         return NOWAY;
     }
     BOOL prevForwardWay = [prevStation checkForwardWay:self];
@@ -959,7 +963,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 {
     NSArray *ways = [transferWay objectForKey:transferStation];
     if(ways == nil) {
+#ifdef DEBUG
         NSLog(@"no way from %@ to %@", name, transferStation.name);
+#endif
         return NOWAY;
     }
     BOOL prevForwardWay = [prevStation checkForwardWay:self];
@@ -1031,7 +1037,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         [end.backSegment addObject:self];
         driving = dr;
         //NSAssert(driving > 0, @"illegal driving");
+#ifdef DEBUG
         if(driving <= 0) NSLog(@"zero driving from %@ to %@", from.name, to.name);
+#endif
         CGRect s1 = CGRectMake(from.pos.x - 5, from.pos.y - 5, 10, 10);
         CGRect s2 = CGRectMake(to.pos.x - 5, to.pos.y - 5, 10, 10);
         boundingBox = CGRectUnion(s1, s2);
@@ -1260,7 +1268,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 [last addSibling:st];
             }
             [stations addObject:st];
+#ifdef DEBUG
             NSLog(@"read station: %@", st.name);
+#endif
 
             MStation *station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
             station.name=st.name;
@@ -1380,7 +1390,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             }
         }
     }
+#ifdef DEBUG
     NSLog(@"Error: no segment between %@ and %@ on line %@", station1, station2, name);
+#endif
     return nil;
 }
 
@@ -1446,7 +1458,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             }
         }
     }
+#ifdef DEBUG
     NSLog(@"can't add point between '%@' and '%@' in line '%@'", st1, st2, name);
+#endif
 }
 
 -(Station*)getStation:(NSString *)stName
@@ -1613,7 +1627,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         
         files = [[NSBundle mainBundle] pathsForResourcesOfType:@"map" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         if([files count] <= 0) {
+#ifdef DEBUG
             NSLog(@"map file not found: %@", mapName);
+#endif
             return;
         }
         mapFile = [files objectAtIndex:0];
@@ -1622,7 +1638,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         if([files count] <= 0) {
             files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trp" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
             if([files count] <= 0) {
+#ifdef DEBUG
                 NSLog(@"trp file not found: %@", mapName);
+#endif
                 return;
             } else {
                 NSString *trpFile = [files objectAtIndex:0];
@@ -1715,7 +1733,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         if([parserTrp getSection:sectionName] == nil) break;
 		NSString *lineName = [parserTrp get:@"Name" section:sectionName];
         if(lineName == nil) continue;
+#ifdef DEBUG
         NSLog(@"read line: %@", lineName);
+#endif
 
 		NSString *colors = [parserMap get:@"Color" section:lineName];
 		NSString *coords = [parserMap get:@"Coordinates" section:lineName];
@@ -1837,7 +1857,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 		NSString *sectionName = [NSString stringWithFormat:@"Line%d", i ];
 		NSString *lineName = [parserTrp get:@"Name" section:sectionName];
         if(lineName == nil) break;
+#ifdef DEBUG
         NSLog(@"read line: %@", lineName);
+#endif
         
 		NSString *colors = [parserMap get:@"Color" section:lineName];
         NSArray *coords = [[parserMap get:@"Coordinates" section:lineName] componentsSeparatedByString:@", "];
@@ -1875,7 +1897,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             } else {
                 // station
                 if(si >= [coords count]) {
+#ifdef DEBUG
                     NSLog(@"ERROR: Station %@ doesn't have coordinates!", value);
+#endif
                     continue;
                 }
                 NSArray *stn = [value componentsSeparatedByString:@"\t"];
@@ -1909,7 +1933,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     station.lines=newLine;
                     station.index = [NSNumber numberWithInt:si];
                     si ++;
+#ifdef DEBUG
                     NSLog(@"read station %@", st.name);
+#endif
                 }
                 [stations setValue:st forKey:key];
                 if([stn count] >= 3) st.way1 = StringToWay([stn objectAtIndex:[stn count]-2]);
@@ -1949,7 +1975,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 for(int sti = first; sti<=last; sti ++, dri++) {
                     Station *st2 = [stations objectForKey:[NSString stringWithFormat:@"%d", sti]];
                     if(firstStation == nil) firstStation = st2;
-                    [st2.firstStations addObject:firstStation];
+                    if(![st2.firstStations containsObject:firstStation])
+                        [st2.firstStations addObject:firstStation];
                     [branch addObject:st2];
                     if(st != nil && st2 != nil) {
                         if([st addSibling:st2]) {
@@ -1957,7 +1984,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                             if(dri <= [dr count]) driving = [dr objectAtIndex:dri-1];
                             else {
                                 driving = @"0";
+#ifdef DEBUG
                                 NSLog(@"ERROR: No driving for station %@!", st.name);
+#endif
                             }
                             [st.relationDriving addObject:driving];
                             if(direction & 0x2) {  // forward
@@ -1979,7 +2008,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 }
             }
             for (Station* s in branch) {
-                [s.lastStations addObject:lastStation];
+                if(![s.lastStations containsObject:lastStation])
+                    [s.lastStations addObject:lastStation];
             }
         }
         [l postInit];
@@ -2049,16 +2079,20 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
     if(schedule != nil) {
         NSArray *path = [schedule findPathFrom:firstStation to:secondStation];
+#ifdef DEBUG
         NSLog(@"schedule path is %@", path);
+#endif
         return [NSDictionary dictionaryWithObject:path forKey:[NSNumber numberWithDouble:[[path lastObject] weight]]];
     }
 	//NSArray *pp = [graph shortestPath:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum]];
     NSDictionary *paths = [graph getPaths:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum]];
     NSArray *keys = [[paths allKeys] sortedArrayUsingSelector:@selector(compare:)];
+#ifdef DEBUG
     for (NSNumber *weight in keys) {
         NSLog(@"weight is %@", weight);
         NSLog(@"path is %@", [paths objectForKey:weight]);
     }
+#endif
 	 
 	return paths;
 }
@@ -2074,8 +2108,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
     Station *ss1 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation1].index intValue]-1] getStation:station1];
     Station *ss2 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation2].index intValue]-1] getStation:station2];
+#ifdef DEBUG
     if(ss1 == nil) NSLog(@"Error: station %@ from line %@ not found", station1, lineStation1);
     if(ss2 == nil) NSLog(@"Error: station %@ from line %@ not found", station2, lineStation2);
+#endif
     if(ss1.transfer != nil && ss2.transfer != nil) {
         
     } else if(ss1.transfer) {
@@ -2103,7 +2139,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     Station *ss1 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation1].index intValue]-1] getStation:station1];
     Station *ss2 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation2].index intValue]-1] getStation:station2];
     if(ss1 == nil || ss2 == nil) {
+#ifdef DEBUG
         NSLog(@"Error: stations for transfer not found! %@ at %@ and %@ at %@", station1, lineStation1, station2, lineStation2);
+#endif
         return;
     }
     if([elements count] >= 5) {
@@ -2157,7 +2195,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             return;
         }
     }
+#ifdef DEBUG
     NSLog(@"Error (additional point): line %@ and stations %@,%@ not found", lineName, [stations objectAtIndex:1], [stations objectAtIndex:2]);
+#endif
 }
 
 - (UIColor *) colorForHex:(NSString *)hexColor {
@@ -2307,10 +2347,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         if([n1 isKindOfClass:[SchPoint class]]) sp1 = (SchPoint*)n1;
         Line* l = [mapLines objectAtIndex:n1.line-1];
         Station *s = [l getStation:n1.name];
+#ifdef DEBUG
         if(prevStation != nil) {
             NSLog(@"forward way is %d", [prevStation transferWayTo:s]);
             NSLog(@"backward way is %d", [s transferWayFrom:prevStation]);
         }
+#endif
         activeExtent = CGRectUnion(activeExtent, s.textRect);
         activeExtent = CGRectUnion(activeExtent, s.boundingBox);
         
@@ -2350,7 +2392,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     activeExtent.origin.y -= activeExtent.size.height * offset;
     activeExtent.size.width *= (1.f + offset * 2.f);
     activeExtent.size.height *= (1.f + offset * 2.f);
+#ifdef DEBUG
     NSLog(@"%@", pathTimesList);
+#endif
 }
 
 -(void) resetPath
