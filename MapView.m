@@ -20,8 +20,7 @@
 @synthesize stationSelected;
 @synthesize selectedStationLine;
 @synthesize nearestStationName;
-@synthesize nearestStationImage;
-@synthesize selectedStationLayer;
+@synthesize nearestStationPositionTranslated;
 @synthesize Scale;
 @synthesize MaxScale;
 @synthesize MinScale;
@@ -73,7 +72,7 @@
 	if (![st.name isEqualToString:nearestStationName])
 	{
 		nearestStationName=st.name;
-        selectedStationLayer.position = st.pos;
+        nearestStationPosition = st.pos;
         
         [self setNeedsDisplay];
 	};
@@ -165,13 +164,6 @@
         midground2.backgroundColor = [UIColor whiteColor];
         midground2.hidden = YES;
 
-		[self initData];
-		
-		selectedStationLayer = [[CALayer layer] retain];
-        selectedStationLayer.frame = CGRectMake(0, 0, nearestStationImage.size.width, nearestStationImage.size.height);
-        selectedStationLayer.contents=(id)[nearestStationImage CGImage];
-        [self.layer addSublayer:selectedStationLayer];
-
         activeLayer = [[ActiveView alloc] initWithFrame:frame];
         activeLayer.hidden = YES;
         
@@ -252,7 +244,6 @@
     [mainLabel release];
     [labelBg release];
 	[cityMap release];
-	[nearestStationImage release];
     for(int i=0; i<MAXCACHE; i++) CGLayerRelease(cacheLayer[i]);
     [midground1 release];
     [midground2 release];
@@ -300,12 +291,6 @@
     CGContextDrawLayerAtPoint(context, CGPointZero, cacheLayer[cc]);
 #endif
     CGContextRestoreGState(context);
-}
-
--(void) initData {
-	nearestStationImage = [[UIImage imageWithContentsOfFile: 
-						   [[NSBundle mainBundle] pathForResource:@"select_near_station" ofType:@"png"]]retain];
-
 }
 
 #pragma mark -
@@ -412,11 +397,13 @@
     //printf("offset is %d %d\n", (int)scrollView.contentOffset.x, (int)scrollView.contentOffset.y);
 }
 
--(void) scrollViewDidScroll:(UIScrollView *)scrollView
+-(void) scrollViewDidScroll:(UIScrollView *)_scrollView
 {
     if(stationSelected) {
         stationSelected = NO;
     }
+    CGPoint p = [_scrollView convertPoint:nearestStationPosition fromView:self];
+    nearestStationPositionTranslated = [_scrollView convertPoint:p toView:_scrollView.superview];
 }
 
 -(void) scrollViewDidZoom:(UIScrollView *)scrollView
