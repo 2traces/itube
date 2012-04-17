@@ -140,7 +140,7 @@
     CGRect frame = CGRectMake(0, 3, 160, 44);
 	UILabel *label = [[[UILabel alloc] initWithFrame:frame] autorelease];
 	label.backgroundColor = [UIColor clearColor];
-	label.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0];
+	label.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:20.0];
     //	label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
 	label.textAlignment = UITextAlignmentCenter;
 	label.textColor = [UIColor darkGrayColor];
@@ -149,10 +149,12 @@
     self.navigationItem.titleView=iv;
     [iv release];
 	
-    UIImage *back_image=[UIImage imageNamed:@"settings_back_button.png"];
+    UIImage *back_image=[UIImage imageNamed:@"backstation.png"];
+    UIImage *back_image_high=[UIImage imageNamed:@"pr_backstation.png"];
 	UIButton *back_button = [UIButton buttonWithType:UIButtonTypeCustom];
 	back_button.bounds = CGRectMake( 0, 0, back_image.size.width, back_image.size.height );    
 	[back_button setBackgroundImage:back_image forState:UIControlStateNormal];
+	[back_button setBackgroundImage:back_image_high forState:UIControlStateHighlighted];
 	[back_button addTarget:self action:@selector(donePressed:) forControlEvents:UIControlEventTouchUpInside];    
 	UIBarButtonItem *barButtonItem_back = [[UIBarButtonItem alloc] initWithCustomView:back_button];
     self.navigationItem.leftBarButtonItem = barButtonItem_back;
@@ -188,12 +190,9 @@
     
     cityTableView.frame = CGRectMake(8, 179, 304, tableHeight);
     
-    CGRect buyAll = buyAllButton.frame;
-    buyAllButton.frame = CGRectMake(buyAll.origin.x, 179+tableHeight+8, buyAll.size.width, buyAll.size.height);
+    textLabel3.frame = CGRectMake(textLabel3.frame.origin.x, 179+tableHeight+17, textLabel3.frame.size.width, textLabel3.frame.size.height);
     
-    textLabel3.frame = CGRectMake(textLabel3.frame.origin.x, buyAllButton.frame.origin.y+buyAllButton.frame.size.height+17.0, textLabel3.frame.size.width, textLabel3.frame.size.height);
-    
-    sendMailButton.frame = CGRectMake(sendMailButton.frame.origin.x, buyAllButton.frame.origin.y+buyAllButton.frame.size.height+8.0, sendMailButton.frame.size.width, sendMailButton.frame.size.height);
+    sendMailButton.frame = CGRectMake(sendMailButton.frame.origin.x, 179+tableHeight+8, sendMailButton.frame.size.width, sendMailButton.frame.size.height);
     
     scrollView.contentSize = CGSizeMake(320, sendMailButton.frame.origin.y+sendMailButton.frame.size.height+15.0);
     scrollView.frame = CGRectMake(0.0, 0.0, 320.0, 460.0-44.0);
@@ -282,9 +281,11 @@
         cell.backgroundColor = [UIColor clearColor];
         
         if ([indexPath isEqual:self.selectedPath]) {
-            cell.accessoryType=UITableViewCellAccessoryCheckmark;
+            cell.accessoryType=UITableViewCellAccessoryNone;
+            [[(CityCell*)cell checkView] setImage:[UIImage imageNamed:@"checkmark.png"]];
         } else {
             cell.accessoryType=UITableViewCellAccessoryNone;
+            [[(CityCell*)cell checkView] setImage:nil];
         }
         
         //
@@ -993,7 +994,7 @@
             MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
             picker.mailComposeDelegate = self;
             [picker setSubject:@"Paris Metro"];
-            [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"zuev.sergey@gmail.com"]]];
+            [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"fusio@yandex.ru"]]];
             [self presentModalViewController:picker animated:YES]; [picker release];
         } else {
             // Device is not configured for sending emails, so notify user.

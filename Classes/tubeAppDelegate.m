@@ -49,6 +49,47 @@ void uncaughtExceptionHandler(NSException *exception) {
     [window makeKeyAndVisible];
 }
 
+- (void)awakeFromNib
+{
+	if ([[NSUserDefaults standardUserDefaults] integerForKey:@"launches"])
+	{
+        if ([[NSUserDefaults standardUserDefaults] integerForKey:@"launches"]==10) {
+            UIAlertView *buttonAlert = [[UIAlertView alloc] initWithTitle:@"Thank you" message:@"Please rate our application" delegate:self cancelButtonTitle:@"Later" otherButtonTitles:@"Ok!", nil];
+            [buttonAlert show];
+            [buttonAlert release];
+            
+        } else if  ([[NSUserDefaults standardUserDefaults] integerForKey:@"launches"]<10) {
+            
+            NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
+            [prefs setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"launches"]+1 forKey:@"launches"];
+            [prefs synchronize];
+        }
+	} else {
+        NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
+        [prefs setInteger:1 forKey:@"launches"];
+        [prefs synchronize];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex { 
+    if (buttonIndex == 0) {
+        
+        NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
+        [prefs setInteger:1 forKey:@"launches"];
+        [prefs synchronize];
+        
+    } else if (buttonIndex == 1) {
+        
+        NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
+        [prefs setInteger:40 forKey:@"launches"];
+        [prefs synchronize];
+        
+        NSURL *url = [NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=513581498"]; 
+        [[UIApplication sharedApplication] openURL:url];
+    }
+}
+
+
 -(void)applicationDidEnterBackground:(UIApplication *)application
 {
     MHelper *helper = [MHelper sharedHelper];

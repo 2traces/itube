@@ -73,10 +73,12 @@
     self.navigationItem.titleView=iv;
     [iv release];
 	
-    UIImage *back_image=[UIImage imageNamed:@"settings_back_button.png"];
+    UIImage *back_image=[UIImage imageNamed:@"demo_back.png"];
+    UIImage *back_image_high=[UIImage imageNamed:@"demo_back_high.png"];
 	UIButton *back_button = [UIButton buttonWithType:UIButtonTypeCustom];
 	back_button.bounds = CGRectMake( 0, 0, back_image.size.width, back_image.size.height );    
 	[back_button setBackgroundImage:back_image forState:UIControlStateNormal];
+    [back_button setBackgroundImage:back_image_high forState:UIControlStateHighlighted];
 	[back_button addTarget:self action:@selector(donePressed:) forControlEvents:UIControlEventTouchUpInside];    
 	UIBarButtonItem *barButtonItem_back = [[UIBarButtonItem alloc] initWithCustomView:back_button];
     self.navigationItem.leftBarButtonItem = barButtonItem_back;
