@@ -135,7 +135,9 @@ NSCharacterSet *pCharacterSet = nil;
     NSError *error = nil;
     NSData *xmlData = [[NSData alloc] initWithContentsOfFile:fn];
     TBXML *tbxml = [[TBXML alloc] initWithXMLData:xmlData error:&error];
+#ifdef DEBUG
     if(error) NSLog(@"%@", error);
+#endif
     TBXMLElement *dir = [TBXML childElementNamed:@"direction" parentElement:tbxml.rootXMLElement];
     while (dir) {
         TBXMLElement *tts = [TBXML childElementNamed:@"timetables" parentElement:dir];
@@ -239,7 +241,9 @@ NSCharacterSet *pCharacterSet = nil;
         NSData *xmlData = [[NSData alloc] initWithContentsOfFile:fn];
         TBXML *tbxml = [TBXML tbxmlWithXMLData:xmlData error:&error];
         if(error) {
+#ifdef DEBUG
             NSLog(@"%@ %@", [error localizedDescription], [error userInfo]);
+#endif
             [xmlData release];
             [self release];
             return nil;
@@ -280,7 +284,9 @@ NSCharacterSet *pCharacterSet = nil;
         [l setIndex:ind];
         return YES;
     } else {
+#ifdef DEBUG
         NSLog(@"Error: line %@ not found in %@", line, _path);
+#endif
         return NO;
     }
 }
@@ -292,7 +298,9 @@ NSCharacterSet *pCharacterSet = nil;
         if([l.catalog valueForKey:station] != nil)
             return YES;
         else {
+#ifdef DEBUG
             NSLog(@"Error: Station %@ not found", station);
+#endif
             return NO;
         }
     } else {
