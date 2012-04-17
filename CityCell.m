@@ -13,6 +13,8 @@
 @synthesize cityName;
 @synthesize cellButton;
 @synthesize progress;
+@synthesize checkView;
+
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -32,6 +34,7 @@
 
 -(void)dealloc
 {
+    [checkView release];
     [cityName release];
     [cellButton release];
     [progress release];
