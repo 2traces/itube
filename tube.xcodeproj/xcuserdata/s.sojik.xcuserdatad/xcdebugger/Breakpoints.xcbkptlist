@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/MainViewController.m"
-         timestampString = "356187179.815534"
+         timestampString = "356365981.707646"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "770"
-         endingLineNumber = "770"
+         startingLineNumber = "771"
+         endingLineNumber = "771"
          landmarkName = "-drawPathScrollView"
          landmarkType = "5">
       </FileBreakpoint>

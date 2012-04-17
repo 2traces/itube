@@ -616,6 +616,7 @@
     }
     
     [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
+    [pathes2 release];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)ascrollView{ 
