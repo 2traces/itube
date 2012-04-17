@@ -614,7 +614,7 @@
             [pathView release];
         }
     }
-
+    
     [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
 }
 
@@ -659,7 +659,7 @@
 -(void)drawPathScrollView
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-//    NSArray *path11 = appDelegate.cityMap.activePath;
+    //    NSArray *path11 = appDelegate.cityMap.activePath;
     
     CGFloat transferHeight = 70.0f;
     CGFloat emptyTransferHeight = 30.0f; //without train picture, without exit information
@@ -701,7 +701,7 @@
     
     for (NSMutableArray *tempStations in stations) {
         
-//        segmentHeight=0;
+        //        segmentHeight=0;
         trainType=0;
         finalType=0;
         stationType=0;
@@ -717,7 +717,7 @@
         } else if (lineStationCount>=2) {
             trainType++;
         }
-
+        
         CGFloat tempTH = 0.0f;
         
         if ([[exits objectAtIndex:[stations indexOfObject:tempStations]] intValue]!=0) {
@@ -847,20 +847,20 @@
         // ----
         
         directionLabel = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY, 235.0, 22.0)];
-
+        
         directionLabel.font=[UIFont fontWithName:@"MyriadPr-Italic" size:14.0];
         
         directionLabel.lineBreakMode = UILineBreakModeWordWrap;
         directionLabel.numberOfLines = 0;
         
         NSString *directionName = [directions objectAtIndex:j];
-
+        
         CGRect currentFrame = directionLabel.frame;
         CGSize max = CGSizeMake(directionLabel.frame.size.width, 500);
         CGSize expected = [directionName sizeWithFont:directionLabel.font constrainedToSize:max lineBreakMode:directionLabel.lineBreakMode]; 
         currentFrame.size.height = expected.height;
         directionLabel.frame = currentFrame;
-
+        
         directionLabel.text=directionName;
         directionLabel.backgroundColor=[UIColor clearColor];
         [self.pathScrollView addSubview:directionLabel];
@@ -869,7 +869,7 @@
         currentY+=expected.height+10;
         
         // ----
-
+        
         for (int jj=1;jj<[[stations objectAtIndex:j] count]-1;jj++) {
             
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40.0, currentY, 235.0, 22.0)];
@@ -971,10 +971,17 @@
         if ([stationName1 isEqualToString:stationName2]) {
             
             NSString *dateString1;
-            if([appDelegate.cityMap.pathTimesList count] > i) 
-                dateString1 = [formatter stringFromDate:[appDelegate.cityMap.pathTimesList objectAtIndex:i]];
-            else 
+            if([appDelegate.cityMap.pathTimesList count] > i)  {
+                int real_index=0; 
+                
+                for (int kk=0; kk<=i; kk++) {
+                    real_index += [[stationsTime objectAtIndex:kk] count];
+                }
+                
+                dateString1 = [formatter stringFromDate:[appDelegate.cityMap.pathTimesList objectAtIndex:real_index]];
+            }   else {  
                 dateString1 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time1*60.0]];
+            }
             CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
             UILabel *dateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize1.width, currentY-8.0, dateSize1.width, 25.0)];
             dateLabel1.text = dateString1;
