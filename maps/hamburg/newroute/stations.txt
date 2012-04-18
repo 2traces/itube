@@ -1,0 +1,160 @@
+0	Blankenese
+1	Hochkamp
+2	Klein Flottbek (Botanischer Garten)
+3	Othmarschen
+4	Bahrenfeld
+5	Altona
+6	Stadthausbrücke
+7	Holstenstraße
+8	Sternschanze (Messe)
+9	Dammtor (Messe/CCH)
+10	Hauptbahnhof.
+11	Berliner Tor
+12	Landwehr
+13	Hasselbrook
+14	Wandsbeker Chaussee
+15	Friedrichsberg
+16	Barmbek
+17	Alte Wöhr (Stadtpark)
+18	Rübenkamp (City Nord)
+19	Ohlsdorf
+20	Landungsbrücken
+21	Kornweg (Klein Borstel)
+22	Hoheneichen
+23	Wellingsbüttel
+24	Poppenbüttel
+25	Hamburg Airport (Flughafen)
+26	Jungfernstieg
+27	Hauptbahnhof
+28	Hoisbüttel
+29	Mittlerer Landweg
+30	Allermöhe
+31	Nettelnburg
+32	Bergedorf
+33	Reeperbahn
+34	Königstraße
+35	Iserbrook
+36	Sülldorf
+37	Rissen
+38	Wedel
+39	Billwerder-Moorfleet
+40	Halstenbek
+41	Aumühle
+42	Wohltorf
+43	Reinbek
+44	Tiefstack
+45	Rothenburgsort
+46	Diebsteich
+47	Langenfelde
+48	Stellingen (Arenen)
+49	Eidelstedt
+50	Krupunder
+51	Elbgaustraße
+52	Harburg
+53	Harburg Rathaus
+54	Aumühle C
+55	Wilhelmsburg
+56	Veddel (BallinStadt)
+57	Hammerbrook (City Süd)
+58	Heimfeld
+59	Neuwiedenthal
+60	Neugraben
+61	Pinneberg
+62	Thesdorf
+63	Stade
+64	Agathenburg
+65	Dollern
+66	Horneburg
+67	Neukloster
+68	Buxtehude
+69	Neu Wulmstorf
+70	Fischbek
+71	Eidelstedt  €»
+72	Ohlstedt
+73	Buckhorn
+74	Volksdorf
+75	Großhansdorf
+76	Kiekut
+77	Schmalenbeck
+78	Ahrensburg Ost
+79	Ahrensburg West
+80	Buchenkamp
+81	Meiendorfer Weg
+82	Berne
+83	Farmsen
+84	Christuskirche
+85	Trabrennbahn
+86	Wandsbek-Gartenstadt
+87	Emilienstraße
+88	Alter Teichweg
+89	Straßburger Straße
+90	Wandsbek Markt
+91	Osterstraße
+92	Ritterstraße
+93	Wartenau
+94	Lübecker Straße
+95	Lohmühlenstraße
+96	Hauptbahnhof Süd
+97	Steinstraße
+98	Meßberg
+99	Stephansplatz (Oper/CCH)
+100	Hallerstraße
+101	Klosterstern
+102	Kellinghusenstraße EH
+103	Hudtwalckerstraße
+104	Lattenkamp
+105	Alsterdorf
+106	Sengelmannstraße (City Nord)
+107	Ohlsdorf 9 €
+108	Schlump
+109	Klein Borstel
+110	Fuhlsbüttel
+111	Fuhlsbüttel Nord
+112	Langenhorn Markt
+113	Langenhorn Nord
+114	Kiwittsmoor
+115	Ochsenzoll
+116	Garstedt
+117	Richtweg
+118	Norderstedt Mitte
+119	Kellinghusenstraße
+120	Messehallen
+121	Gänsemarkt (Oper)
+122	Hauptbahnhof Nord
+123	Burgstraße
+124	Hammer Kirche
+125	Rauhes Haus
+126	Horner Rennbahn
+127	Berliner
+128	Mümmelmannsberg
+129	Steinfurther Allee
+130	Merkenstraße
+131	Billstedt
+132	Legienstraße
+133	Lutterothstraße
+134	Hagenbecks Tierpark
+135	Hamburger Straße
+136	Hagendeel
+137	Niendorf Markt
+138	Uhlandstraße
+139	Joachim-Mähl-Straße
+140	Schippelsweg
+141	Niendorf Nord
+142	Dehnhaide
+143	Habichtstraße
+144	Schlump(
+145	Mundsburg
+146	Mönckebergstraße
+147	Rathaus
+148	Rödingsmarkt
+149	Baumwall
+150	St.Pauli
+151	Feldstraße (Heiligengeistfeld)
+152	Schlump  ШШ
+153	Hoheluftbrücke
+154	Eppendorfer Baum
+155	Sierichstraße
+156	Borgweg (Stadtpark)
+157	Saarlandstraße
+158	Kellinghusenstraße EI1
+159	Schlump ШШ
