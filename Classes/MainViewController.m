@@ -662,7 +662,7 @@
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     //    NSArray *path11 = appDelegate.cityMap.activePath;
     
-    CGFloat transferHeight = 83.0f;
+    CGFloat transferHeight = 80.0f;
     CGFloat emptyTransferHeight = 30.0f; //without train picture, without exit information
     CGFloat stationHeight = 20.0f;
     CGFloat finalHeight = 60.0f;
@@ -831,7 +831,7 @@
         UILabel *directionLabel;
         
         if (exitNumb!=0) {
-            NSString *trainName = [NSString stringWithFormat:@"%@/train%d.png",appDelegate.cityMap.pathToMap,exitNumb];
+            NSString *trainName = [NSString stringWithFormat:@"%@/train_%d.png",appDelegate.cityMap.pathToMap,exitNumb];
             UIImage *trainImage = [UIImage imageWithContentsOfFile:trainName];
             
             UIImageView *trainSubview = [[UIImageView alloc] initWithImage:trainImage];
