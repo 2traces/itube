@@ -15,6 +15,7 @@
     [self hideExistingTabBar];
 }
 
+
 - (void)hideExistingTabBar
 {
 	for(UIView *view in self.view.subviews)
