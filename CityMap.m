@@ -1667,7 +1667,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [[MHelper sharedHelper] readBookmarkFile:mapName];
 #ifdef DEBUG
     NSString *routePath = [NSString stringWithFormat:@"%@/route", self.pathToMap];
-    if((schedule = [[Schedule alloc] initSchedule:@"routes" path:routePath])) {
+    if((schedule = [[Schedule alloc] initFastSchedule:@"routes" path:[NSString stringWithFormat:@"%@/newroute", self.pathToMap]]) ||
+       (schedule = [[Schedule alloc] initSchedule:@"routes" path:routePath])) {
         for (Line *l in mapLines) {
             if([schedule setIndex:l.index forLine:l.name]) {
                 for (Station *s in l.stations) {
