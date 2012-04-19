@@ -125,6 +125,20 @@ NSCharacterSet *pCharacterSet = nil;
     return self;
 }
 
+-(id)initWithName:(NSString *)name fastFile:(NSString *)fileName path:(NSString *)path stations:(NSArray *)stations
+{
+    if((self = [super init])) {
+        lineName = [name retain];
+        index = 0;
+        dateForm = [[NSDateFormatter alloc] init];
+        [dateForm setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+        [dateForm setDateFormat:@"HH:mm"];
+        catalog = [[NSMutableDictionary alloc] init];
+        [self appendFastFile:fileName path:path stations:stations];
+    }
+    return self;
+}
+
 -(void) appendFile:(NSString *)fileName path:(NSString *)path
 {
     NSString *fn = nil;
@@ -174,6 +188,35 @@ NSCharacterSet *pCharacterSet = nil;
     }
     [tbxml release];
     [xmlData release];
+}
+
+-(void) appendFastFile:(NSString *)fileName path:(NSString *)path stations:(NSArray *)stations
+{
+    NSString *fn = nil;
+    if(path == nil)
+        fn = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
+    else 
+        fn = [NSString stringWithFormat:@"%@/%@",path,fileName];
+
+    lastPoint = nil;
+    NSString *contents = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
+    [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+        if([line length] <= 1) {
+            lastPoint = nil;
+        } else {
+            NSArray *com = [line componentsSeparatedByString:@"\t"];
+            int stId = [[com objectAtIndex:0] intValue];
+            double time = 60.f * [[com objectAtIndex:1] intValue];
+            SchPoint *p = [[[SchPoint alloc] initWithStation:[stations objectAtIndex:stId] andTime:time] autorelease];
+            if(lastPoint != nil) lastPoint.next = p;
+            if([catalog valueForKey:p.name] == nil)
+                [catalog setValue:[NSMutableArray array] forKey:p.name];
+            else 
+                p.name = [[[catalog valueForKey:p.name] objectAtIndex:0] name];
+            [[catalog valueForKey:p.name] addObject:p];
+            lastPoint = p;
+        }
+    }];
 }
 
 -(void) dealloc
@@ -259,6 +302,76 @@ NSCharacterSet *pCharacterSet = nil;
                     [lines setValue:l forKey:route];
                 } else {
                     [l appendFile:file path:_path];
+                }
+                el = [TBXML nextSiblingNamed:@"route" searchFromElement:el];
+            }
+        }
+        [xmlData release];
+    }
+    [SchPoint cleanup];
+    return self;
+}
+
+-(id) initFastSchedule:(NSString *)fileName path:(NSString *)path
+{
+    if((self = [super init])) {
+        cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        lines = [[NSMutableDictionary alloc] init];
+        _path = [path retain];
+        NSString *fn = nil;
+        NSString *stations = nil;
+        if(path == nil) {
+            fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
+            stations = [[NSBundle mainBundle] pathForResource:@"stations" ofType:@"txt"];
+        } else {
+            fn = [NSString stringWithFormat:@"%@/%@.xml",path,fileName];
+            //fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml" inDirectory:path];
+            stations = [NSString stringWithFormat:@"%@/stations.txt", path];
+        }
+        if(fn == nil) {
+            [self release];
+            return nil;
+        }
+        NSError *error = nil;
+        NSData *xmlData = [[NSData alloc] initWithContentsOfFile:fn];
+        TBXML *tbxml = [TBXML tbxmlWithXMLData:xmlData error:&error];
+        if(error) {
+#ifdef DEBUG
+            NSLog(@"%@ %@", [error localizedDescription], [error userInfo]);
+#endif
+            [xmlData release];
+            [self release];
+            return nil;
+        }
+        NSMutableArray *stationList = [NSMutableArray array];
+        NSString *stationsFile = [NSString stringWithContentsOfFile:stations encoding:NSUTF8StringEncoding error:nil];
+        [stationsFile enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+            [stationList addObject:[[line componentsSeparatedByString:@"\t"] objectAtIndex:1]];
+        }];
+        int now = (int)([self getNowTime] / 60.f);
+        TBXMLElement * el = [TBXML childElementNamed:@"route" parentElement:tbxml.rootXMLElement];
+        while (el != nil) {
+            @autoreleasepool {
+                NSString * route = [TBXML valueOfAttributeNamed:@"route" forElement:el];
+                SchLine *l = [lines valueForKey:route];
+                TBXMLElement *f = [TBXML childElementNamed:@"file" parentElement:[TBXML childElementNamed:@"files" parentElement:el]];
+                while(f != nil) {
+                    int from = [[TBXML valueOfAttributeNamed:@"time_from" forElement:f] intValue];
+                    int to = [[TBXML valueOfAttributeNamed:@"time_to" forElement:f] intValue];
+                    if(to < from) {
+                        if(now >= from-120) to += 60*24;
+                        else from -= 60*24;
+                    }
+                    if(to >= now && from - now <= 120) {
+                        NSString * file = [NSString stringWithUTF8String:f->text];
+                        if(l == nil) {
+                            l = [[[SchLine alloc] initWithName:route fastFile:file path:_path stations:stationList] autorelease];
+                            [lines setValue:l forKey:route];
+                        } else {
+                            [l appendFastFile:file path:_path stations:stationList];
+                        }
+                    }
+                    f = [TBXML nextSiblingNamed:@"file" searchFromElement:f];
                 }
                 el = [TBXML nextSiblingNamed:@"route" searchFromElement:el];
             }
