@@ -37,10 +37,10 @@ extern int const imagesCount;
 	NSMutableString *selectedStationName;
 	NSInteger selectedStationLine;
 		
+	CALayer *selectedStationLayer;
 	NSString *nearestStationName;
-    CGPoint nearestStationPosition;
-    CGPoint nearestStationPositionTranslated;
 	//
+	UIImage *nearestStationImage;
     CGFloat Scale, MaxScale, MinScale;
     UIScrollView *scrollView;
     CGLayerRef cacheLayer[MAXCACHE];
@@ -56,7 +56,12 @@ extern int const imagesCount;
 }
 
 @property (assign) NSString *nearestStationName;
-@property (nonatomic, readonly) CGPoint nearestStationPositionTranslated;
+
+@property (nonatomic, retain) CALayer *selectedStationLayer;
+
+//
+@property (nonatomic, retain) UIImage *nearestStationImage;
+
 @property Boolean stationSelected;
 @property NSInteger selectedStationLine;
 @property (nonatomic, retain) CityMap *cityMap;
@@ -86,5 +91,7 @@ extern int const imagesCount;
 -(int)  pathsCount;
 // select one of the paths (num must be less then pathsCount)
 -(void) selectPath:(int)num;
+//
+-(void) initData ;
 
 @end

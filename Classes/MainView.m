@@ -111,10 +111,7 @@ NSInteger const toolbarWidth=320;
 	[CLController.locMgr startUpdatingLocation];
 	*/
 	//UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
-	//[containerView addGestureRecognizer:singleTap];
-    
-    selectedStation = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"select_near_station"]];
-    [self addSubview:selectedStation];
+	//[containerView addGestureRecognizer:singleTap];    
 
     stationMark = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"station_mark"]];
     stationMark.hidden = YES;
@@ -147,7 +144,7 @@ NSInteger const toolbarWidth=320;
     shadow.frame = CGRectMake(0, 44, 320, 61);
     [self addSubview:shadow];
     
-    NSTimer *timer = [NSTimer timerWithTimeInterval:0.25f target:self selector:@selector(supervisor) userInfo:nil repeats:YES];
+    NSTimer *timer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(supervisor) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
@@ -276,8 +273,6 @@ NSInteger const toolbarWidth=320;
 	[stationNameView release];
     [sourceButton release];
     [destinationButton release];
-    [stationMark release];
-    [selectedStation release];
 }
 
 -(void)selectStationAt:(CGPoint)currentPosition
@@ -297,8 +292,6 @@ NSInteger const toolbarWidth=320;
 -(void) supervisor
 {
     if(buttonsVisible && !mapView.stationSelected) [self hideButtons];
-    [UIView animateWithDuration:0.1f animations:^{ selectedStation.center = mapView.nearestStationPositionTranslated; }];
-    //[selectedStation setCenter:mapView.nearestStationPositionTranslated];
 }
 
 -(void) showSettings
