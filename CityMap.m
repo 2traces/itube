@@ -1545,6 +1545,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize currentScale;
 @synthesize backgroundImageFile;
 @synthesize foregroundImageFile;
+@synthesize gpsCircleScale;
 
 -(StationKind) stationKind { return StKind; }
 -(void) setStationKind:(StationKind)stationKind { StKind = stationKind; }
@@ -1563,6 +1564,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     LineWidth = 4.f;
     StationDiameter = 8.f;
     FontSize = 7.f;
+    gpsCircleScale = 5.f;
     StKind = LIKE_PARIS;
     TrKind = LIKE_PARIS;
     TEXT_FONT = @"Arial-BoldMT";
@@ -1660,11 +1662,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }   
     
     self.pathToMap = [mapFile stringByDeletingLastPathComponent];
-    NSString *routePath = [NSString stringWithFormat:@"%@/route", self.pathToMap];
     
     [[MHelper sharedHelper] readHistoryFile:mapName];
     [[MHelper sharedHelper] readBookmarkFile:mapName];
-    
+#ifdef DEBUG
+    NSString *routePath = [NSString stringWithFormat:@"%@/route", self.pathToMap];
     if((schedule = [[Schedule alloc] initSchedule:@"routes" path:routePath])) {
         for (Line *l in mapLines) {
             if([schedule setIndex:l.index forLine:l.name]) {
@@ -1674,6 +1676,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             }
         }
     }
+#endif
     
     // check different stations with equal names
     for (Line *l in mapLines) {
@@ -1721,6 +1724,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(sc != 0.f) {
         maxScale = sc;
         PredrawScale = maxScale;
+    }
+    sc = [[parserMap get:@"GpsMarkScale" section:@"Options"] floatValue];
+    if(sc != 0.f) {
+        gpsCircleScale = sc;
     }
     BOOL tuneEnabled = [[parserMap get:@"TuneTransfers" section:@"Options"] boolValue];
 	
@@ -1847,6 +1854,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         PredrawScale = maxScale;
     }
     BOOL tuneEnabled = [[parserMap get:@"TuneTransfers" section:@"Options"] boolValue];
+    sc = [[parserMap get:@"GpsMarkScale" section:@"Options"] floatValue];
+    if(sc != 0.f) {
+        gpsCircleScale = sc;
+    }
 	
 	_w = 0;
 	_h = 0;
