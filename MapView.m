@@ -180,6 +180,7 @@
     MinScale = MIN( (float)visualFrame.size.width / cityMap.size.width, (float)visualFrame.size.height / cityMap.size.height);
     MaxScale = cityMap.maxScale;
     Scale = MinScale * 2.f;
+    selectedStationLayer.frame = CGRectMake(0, 0, 0.5f/MinScale*nearestStationImage.size.width, 0.5f/MinScale*nearestStationImage.size.height);
 
     midground1.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     midground1.hidden = YES;
