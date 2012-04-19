@@ -31,7 +31,7 @@
     CGFloat ylineStart = 20.0f;
     CGFloat x=20.0f;
     
-    CGFloat transferHeight = 70.0f;
+    CGFloat transferHeight = 83.0f;
     CGFloat emptyTransferHeight = 30.0f; //without train picture, without exit information
     CGFloat stationHeight = 20.0f;
     CGFloat finalHeight = 60.0f;

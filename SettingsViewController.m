@@ -993,7 +993,8 @@
         if ([mailClass canSendMail]) {
             MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
             picker.mailComposeDelegate = self;
-            [picker setSubject:@"Paris Metro"];
+            tubeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            [picker setSubject:[NSString stringWithFormat:@"%@ map",[appDelegate getDefaultCityName]]];
             [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"fusio@yandex.ru"]]];
             [self presentModalViewController:picker animated:YES]; [picker release];
         } else {
