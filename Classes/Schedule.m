@@ -412,7 +412,7 @@ NSCharacterSet *pCharacterSet = nil;
             return YES;
         else {
 #ifdef DEBUG
-            NSLog(@"Error: Station %@ not found", station);
+            NSLog(@"Error: Station %@ at line %@ not found", station, line);
 #endif
             return NO;
         }
@@ -488,12 +488,14 @@ NSCharacterSet *pCharacterSet = nil;
                 [np setWeightFrom:p];
                 [propagate addObject:np];
             }
+            float curTime = np.time;
             if([flag valueForKey:np.name] == nil) {
                 [flag setValue:@"YES" forKey:np.name];
                 for (NSString *ln in lines) {
                     SchLine *l = [lines valueForKey:ln];
                     NSArray *sts = [l.catalog valueForKey:np.name];
                     for (SchPoint *tp in sts) {
+                        if(tp.time <= curTime) continue;
                         if(tp == np) continue;
                         if(tp.backPath != nil) [tp setWeightFrom:np];
                         else {
