@@ -114,7 +114,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 break;
         }
     }
-    str = [[str stringByReplacingOccurrencesOfString:@";" withString:@""] retain];
+    str = [[str stringByReplacingOccurrencesOfString:@";" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     return str;
 }
 
@@ -162,7 +162,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             else string = [string substringFromIndex:1];
         }
         words = [[string componentsSeparatedByString:@";"] retain];
-        string = [[string stringByReplacingOccurrencesOfString:@";" withString:@""] retain];
+        string = [[[string stringByReplacingOccurrencesOfString:@";" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
         if(angle == 0) {
             CGFloat d = rect.size.height * 0.5f;
             boundingBox = rect;

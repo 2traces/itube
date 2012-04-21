@@ -412,7 +412,7 @@ NSCharacterSet *pCharacterSet = nil;
             return YES;
         else {
 #ifdef DEBUG
-            NSLog(@"Error: Station %@ not found", station);
+            NSLog(@"Error: Station %@ at line %@ not found", station, line);
 #endif
             return NO;
         }
