@@ -34,10 +34,6 @@ NSCharacterSet *pCharacterSet = nil;
 @synthesize backPath;
 @synthesize dock;
 
-+(void)cleanup
-{
-}
-
 -(id)initWithStation:(NSString *)st andTime:(double)t
 {
     if((self = [super init])) {
@@ -168,7 +164,16 @@ NSCharacterSet *pCharacterSet = nil;
                         NSTimeInterval t0 = TimeParser(t->text);
                         if(t0 >= 0) {
                             SchPoint *p = [[[SchPoint alloc] initWithStation:currentStation andTime:t0] autorelease];
-                            if(lastPoint != nil) lastPoint.next = p;
+                            p.line = index;
+                            if(lastPoint != nil) {
+                                lastPoint.next = p;
+#ifdef DEBUG
+                                float dt = p.time - lastPoint.time;
+                                if(dt < 0 && dt > -23*60*60) {
+                                    NSLog(@"wrong schedule time from %@ (at %d) to %@ (at %d) dT is %d", lastPoint.name, (int)lastPoint.time/60, p.name, (int)p.time/60, (int)dt/60);
+                                }
+#endif
+                            }
                             //[[routes lastObject] addObject:p];
                             if([catalog valueForKey:p.name] == nil)
                                 [catalog setValue:[NSMutableArray array] forKey:p.name];
@@ -208,7 +213,16 @@ NSCharacterSet *pCharacterSet = nil;
             int stId = [[com objectAtIndex:0] intValue];
             double time = 60.f * [[com objectAtIndex:1] intValue];
             SchPoint *p = [[[SchPoint alloc] initWithStation:[stations objectAtIndex:stId] andTime:time] autorelease];
-            if(lastPoint != nil) lastPoint.next = p;
+            p.line = index;
+            if(lastPoint != nil) {
+                lastPoint.next = p;
+#ifdef DEBUG
+                float dt = p.time - lastPoint.time;
+                if(dt < 0 && dt > -23*60*60) {
+                    NSLog(@"wrong schedule time from %@ (at %d) to %@ (at %d) dT is %d", lastPoint.name, (int)lastPoint.time/60, p.name, (int)p.time/60, (int)dt/60);
+                }
+#endif
+            }
             if([catalog valueForKey:p.name] == nil)
                 [catalog setValue:[NSMutableArray array] forKey:p.name];
             else 
@@ -257,6 +271,11 @@ NSCharacterSet *pCharacterSet = nil;
     }
 }
 
+-(void)removeAllPoints
+{
+    [catalog removeAllObjects];
+}
+
 @end
 
 /***** Schedule *****/
@@ -266,6 +285,7 @@ NSCharacterSet *pCharacterSet = nil;
 -(id)initSchedule:(NSString *)fileName path:(NSString *)path
 {
     if((self = [super init])) {
+        loadTime = -1;
         cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         lines = [[NSMutableDictionary alloc] init];
         _path = [path retain];
@@ -308,8 +328,60 @@ NSCharacterSet *pCharacterSet = nil;
         }
         [xmlData release];
     }
-    [SchPoint cleanup];
     return self;
+}
+
+-(BOOL) loadFastSchedule
+{
+    for (NSString *ln in lines) {
+        [[lines valueForKey:ln ] removeAllPoints];
+    }
+    NSError *error = nil;
+    NSData *xmlData = [[NSData alloc] initWithContentsOfFile:xmlFile];
+    TBXML *tbxml = [TBXML tbxmlWithXMLData:xmlData error:&error];
+    if(error) {
+#ifdef DEBUG
+        NSLog(@"%@ %@", [error localizedDescription], [error userInfo]);
+#endif
+        [xmlData release];
+        return NO;
+    }
+    [xmlData release];
+    NSMutableArray *stationList = [NSMutableArray array];
+    NSString *stations = [NSString stringWithContentsOfFile:stationsFile encoding:NSUTF8StringEncoding error:nil];
+    [stations enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+        [stationList addObject:[[line componentsSeparatedByString:@"\t"] objectAtIndex:1]];
+    }];
+    loadTime = [self getNowTime];
+    int now = (int)(loadTime / 60.f);
+    TBXMLElement * el = [TBXML childElementNamed:@"route" parentElement:tbxml.rootXMLElement];
+    while (el != nil) {
+        @autoreleasepool {
+            NSString * route = [TBXML valueOfAttributeNamed:@"route" forElement:el];
+            SchLine *l = [lines valueForKey:route];
+            TBXMLElement *f = [TBXML childElementNamed:@"file" parentElement:[TBXML childElementNamed:@"files" parentElement:el]];
+            while(f != nil) {
+                int from = [[TBXML valueOfAttributeNamed:@"time_from" forElement:f] intValue];
+                int to = [[TBXML valueOfAttributeNamed:@"time_to" forElement:f] intValue];
+                if(to < from) {
+                    if(now >= from-120) to += 60*24;
+                    else from -= 60*24;
+                }
+                if(to >= now && from - now <= 120) {
+                    NSString * file = [NSString stringWithUTF8String:f->text];
+                    if(l == nil) {
+                        l = [[[SchLine alloc] initWithName:route fastFile:file path:_path stations:stationList] autorelease];
+                        [lines setValue:l forKey:route];
+                    } else {
+                        [l appendFastFile:file path:_path stations:stationList];
+                    }
+                }
+                f = [TBXML nextSiblingNamed:@"file" searchFromElement:f];
+            }
+            el = [TBXML nextSiblingNamed:@"route" searchFromElement:el];
+        }
+    }
+    return YES;
 }
 
 -(id) initFastSchedule:(NSString *)fileName path:(NSString *)path
@@ -318,67 +390,23 @@ NSCharacterSet *pCharacterSet = nil;
         cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         lines = [[NSMutableDictionary alloc] init];
         _path = [path retain];
-        NSString *fn = nil;
-        NSString *stations = nil;
         if(path == nil) {
-            fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"];
-            stations = [[NSBundle mainBundle] pathForResource:@"stations" ofType:@"txt"];
+            xmlFile = [[[NSBundle mainBundle] pathForResource:fileName ofType:@"xml"] retain];
+            stationsFile = [[[NSBundle mainBundle] pathForResource:@"stations" ofType:@"txt"] retain];
         } else {
-            fn = [NSString stringWithFormat:@"%@/%@.xml",path,fileName];
+            xmlFile = [[NSString stringWithFormat:@"%@/%@.xml",path,fileName] retain];
             //fn = [[NSBundle mainBundle] pathForResource:fileName ofType:@"xml" inDirectory:path];
-            stations = [NSString stringWithFormat:@"%@/stations.txt", path];
+            stationsFile = [[NSString stringWithFormat:@"%@/stations.txt", path] retain];
         }
-        if(fn == nil) {
+        if(xmlFile == nil) {
             [self release];
             return nil;
         }
-        NSError *error = nil;
-        NSData *xmlData = [[NSData alloc] initWithContentsOfFile:fn];
-        TBXML *tbxml = [TBXML tbxmlWithXMLData:xmlData error:&error];
-        if(error) {
-#ifdef DEBUG
-            NSLog(@"%@ %@", [error localizedDescription], [error userInfo]);
-#endif
-            [xmlData release];
+        if(![self loadFastSchedule]) {
             [self release];
             return nil;
         }
-        NSMutableArray *stationList = [NSMutableArray array];
-        NSString *stationsFile = [NSString stringWithContentsOfFile:stations encoding:NSUTF8StringEncoding error:nil];
-        [stationsFile enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-            [stationList addObject:[[line componentsSeparatedByString:@"\t"] objectAtIndex:1]];
-        }];
-        int now = (int)([self getNowTime] / 60.f);
-        TBXMLElement * el = [TBXML childElementNamed:@"route" parentElement:tbxml.rootXMLElement];
-        while (el != nil) {
-            @autoreleasepool {
-                NSString * route = [TBXML valueOfAttributeNamed:@"route" forElement:el];
-                SchLine *l = [lines valueForKey:route];
-                TBXMLElement *f = [TBXML childElementNamed:@"file" parentElement:[TBXML childElementNamed:@"files" parentElement:el]];
-                while(f != nil) {
-                    int from = [[TBXML valueOfAttributeNamed:@"time_from" forElement:f] intValue];
-                    int to = [[TBXML valueOfAttributeNamed:@"time_to" forElement:f] intValue];
-                    if(to < from) {
-                        if(now >= from-120) to += 60*24;
-                        else from -= 60*24;
-                    }
-                    if(to >= now && from - now <= 120) {
-                        NSString * file = [NSString stringWithUTF8String:f->text];
-                        if(l == nil) {
-                            l = [[[SchLine alloc] initWithName:route fastFile:file path:_path stations:stationList] autorelease];
-                            [lines setValue:l forKey:route];
-                        } else {
-                            [l appendFastFile:file path:_path stations:stationList];
-                        }
-                    }
-                    f = [TBXML nextSiblingNamed:@"file" searchFromElement:f];
-                }
-                el = [TBXML nextSiblingNamed:@"route" searchFromElement:el];
-            }
-        }
-        [xmlData release];
     }
-    [SchPoint cleanup];
     return self;
 }
 
@@ -458,9 +486,15 @@ NSCharacterSet *pCharacterSet = nil;
 -(NSArray*)findPathFrom:(NSString *)fromStation to:(NSString*)toStation
 {
     if([fromStation isEqualToString:toStation]) return [NSArray array];
-    [self clean];
     
     NSTimeInterval now = [self getNowTime];
+    if(loadTime >= 0) {
+        if(now > loadTime+900 || (now < loadTime && now+24*60*60 > loadTime+900)) {
+            // we will try to update the schedule every 15 minutes
+            [self loadFastSchedule];
+        }
+    }
+    [self clean];
     SortedArray *propagate = [[SortedArray alloc] init];
     NSMutableDictionary *flag = [NSMutableDictionary dictionary];
     for (NSString *ln in lines) {
@@ -488,14 +522,12 @@ NSCharacterSet *pCharacterSet = nil;
                 [np setWeightFrom:p];
                 [propagate addObject:np];
             }
-            float curTime = np.time;
             if([flag valueForKey:np.name] == nil) {
                 [flag setValue:@"YES" forKey:np.name];
                 for (NSString *ln in lines) {
                     SchLine *l = [lines valueForKey:ln];
                     NSArray *sts = [l.catalog valueForKey:np.name];
                     for (SchPoint *tp in sts) {
-                        if(tp.time <= curTime) continue;
                         if(tp == np) continue;
                         if(tp.backPath != nil) [tp setWeightFrom:np];
                         else {

@@ -8,7 +8,7 @@
 7	Holstenstraße
 8	Sternschanze (Messe)
 9	Dammtor (Messe/CCH)
-10	Hauptbahnhof.
+10	Hauptbahnhof
 11	Berliner Tor
 12	Landwehr
 13	Hasselbrook
@@ -52,7 +52,7 @@
 51	Elbgaustraße
 52	Harburg
 53	Harburg Rathaus
-54	Aumühle C
+54	Aumühle
 55	Wilhelmsburg
 56	Veddel (BallinStadt)
 57	Hammerbrook (City Süd)
@@ -69,7 +69,7 @@
 68	Buxtehude
 69	Neu Wulmstorf
 70	Fischbek
-71	Eidelstedt  €»
+71	Eidelstedt
 72	Ohlstedt
 73	Buckhorn
 74	Volksdorf
@@ -94,18 +94,18 @@
 93	Wartenau
 94	Lübecker Straße
 95	Lohmühlenstraße
-96	Hauptbahnhof Süd
+96	Hauptbahnhof
 97	Steinstraße
 98	Meßberg
 99	Stephansplatz (Oper/CCH)
 100	Hallerstraße
 101	Klosterstern
-102	Kellinghusenstraße EH
+102	Kellinghusenstraße
 103	Hudtwalckerstraße
 104	Lattenkamp
 105	Alsterdorf
 106	Sengelmannstraße (City Nord)
-107	Ohlsdorf 9 €
+107	Ohlsdorf
 108	Schlump
 109	Klein Borstel
 110	Fuhlsbüttel
@@ -120,12 +120,12 @@
 119	Kellinghusenstraße
 120	Messehallen
 121	Gänsemarkt (Oper)
-122	Hauptbahnhof Nord
+122	Hauptbahnhof
 123	Burgstraße
 124	Hammer Kirche
 125	Rauhes Haus
 126	Horner Rennbahn
-127	Berliner
+127	Berliner Tor
 128	Mümmelmannsberg
 129	Steinfurther Allee
 130	Merkenstraße
@@ -142,7 +142,7 @@
 141	Niendorf Nord
 142	Dehnhaide
 143	Habichtstraße
-144	Schlump(
+144	Schlump
 145	Mundsburg
 146	Mönckebergstraße
 147	Rathaus
@@ -150,11 +150,11 @@
 149	Baumwall
 150	St.Pauli
 151	Feldstraße (Heiligengeistfeld)
-152	Schlump  ШШ
+152	Schlump
 153	Hoheluftbrücke
 154	Eppendorfer Baum
 155	Sierichstraße
 156	Borgweg (Stadtpark)
 157	Saarlandstraße
-158	Kellinghusenstraße EI1
-159	Schlump ШШ
+158	Kellinghusenstraße
+159	Schlump
