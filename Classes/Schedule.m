@@ -168,7 +168,15 @@ NSCharacterSet *pCharacterSet = nil;
                         NSTimeInterval t0 = TimeParser(t->text);
                         if(t0 >= 0) {
                             SchPoint *p = [[[SchPoint alloc] initWithStation:currentStation andTime:t0] autorelease];
-                            if(lastPoint != nil) lastPoint.next = p;
+                            if(lastPoint != nil) {
+                                lastPoint.next = p;
+#ifdef DEBUG
+                                float dt = p.time - lastPoint.time;
+                                if(dt < 0 && dt > -23*60*60) {
+                                    NSLog(@"wrong schedule time from %@ (at %d) to %@ (at %d) dT is %d", lastPoint.name, (int)lastPoint.time/60, p.name, (int)p.time/60, (int)dt/60);
+                                }
+#endif
+                            }
                             //[[routes lastObject] addObject:p];
                             if([catalog valueForKey:p.name] == nil)
                                 [catalog setValue:[NSMutableArray array] forKey:p.name];
@@ -208,7 +216,15 @@ NSCharacterSet *pCharacterSet = nil;
             int stId = [[com objectAtIndex:0] intValue];
             double time = 60.f * [[com objectAtIndex:1] intValue];
             SchPoint *p = [[[SchPoint alloc] initWithStation:[stations objectAtIndex:stId] andTime:time] autorelease];
-            if(lastPoint != nil) lastPoint.next = p;
+            if(lastPoint != nil) {
+                lastPoint.next = p;
+#ifdef DEBUG
+                float dt = p.time - lastPoint.time;
+                if(dt < 0 && dt > -23*60*60) {
+                    NSLog(@"wrong schedule time from %@ (at %d) to %@ (at %d) dT is %d", lastPoint.name, (int)lastPoint.time/60, p.name, (int)p.time/60, (int)dt/60);
+                }
+#endif
+            }
             if([catalog valueForKey:p.name] == nil)
                 [catalog setValue:[NSMutableArray array] forKey:p.name];
             else 
@@ -488,14 +504,12 @@ NSCharacterSet *pCharacterSet = nil;
                 [np setWeightFrom:p];
                 [propagate addObject:np];
             }
-            float curTime = np.time;
             if([flag valueForKey:np.name] == nil) {
                 [flag setValue:@"YES" forKey:np.name];
                 for (NSString *ln in lines) {
                     SchLine *l = [lines valueForKey:ln];
                     NSArray *sts = [l.catalog valueForKey:np.name];
                     for (SchPoint *tp in sts) {
-                        if(tp.time <= curTime) continue;
                         if(tp == np) continue;
                         if(tp.backPath != nil) [tp setWeightFrom:np];
                         else {
