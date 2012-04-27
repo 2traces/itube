@@ -114,7 +114,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 break;
         }
     }
-    str = [[str stringByReplacingOccurrencesOfString:@";" withString:@""] retain];
+    str = [[str stringByReplacingOccurrencesOfString:@";" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     return str;
 }
 
@@ -162,7 +162,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             else string = [string substringFromIndex:1];
         }
         words = [[string componentsSeparatedByString:@";"] retain];
-        string = [[string stringByReplacingOccurrencesOfString:@";" withString:@""] retain];
+        string = [[[string stringByReplacingOccurrencesOfString:@";" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
         if(angle == 0) {
             CGFloat d = rect.size.height * 0.5f;
             boundingBox = rect;
@@ -1667,7 +1667,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [[MHelper sharedHelper] readBookmarkFile:mapName];
 #ifdef DEBUG
     NSString *routePath = [NSString stringWithFormat:@"%@/route", self.pathToMap];
-    if((schedule = [[Schedule alloc] initSchedule:@"routes" path:routePath])) {
+    if((schedule = [[Schedule alloc] initFastSchedule:@"routes" path:[NSString stringWithFormat:@"%@/newroute", self.pathToMap]]) ||
+       (schedule = [[Schedule alloc] initSchedule:@"routes" path:routePath])) {
         for (Line *l in mapLines) {
             if([schedule setIndex:l.index forLine:l.name]) {
                 for (Station *s in l.stations) {

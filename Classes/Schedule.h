@@ -35,7 +35,6 @@
 -(void) setWeightBy:(double)time;
 -(void) clean;
 -(BOOL) greaterThan:(SchPoint*)p;
-+(void) cleanup;
 @end
 
 /***** SchLine *****/
@@ -57,6 +56,9 @@
 
 -(id)initWithName:(NSString*)name file:(NSString*)fileName path:(NSString*)path;
 -(void)appendFile:(NSString*)fileName path:(NSString*)path;
+-(id)initWithName:(NSString*)name fastFile:(NSString*)fileName path:(NSString*)path stations:(NSArray*)stations;
+-(void)appendFastFile:(NSString*)fileName path:(NSString*)path stations:(NSArray*)stations;
+-(void)removeAllPoints;
 @end
 
 /***** Schedule *****/
@@ -65,9 +67,13 @@
     NSCalendar *cal;
     NSMutableDictionary *lines;
     NSString* _path;
+    NSTimeInterval loadTime;
+    NSString *xmlFile;
+    NSString *stationsFile;
 }
 
 -(id) initSchedule:(NSString*)fileName path:(NSString*)path;
+-(id) initFastSchedule:(NSString *)fileName path:(NSString *)path;
 -(BOOL) setIndex:(int)ind forLine:(NSString*)line;
 -(BOOL) checkStation:(NSString*)station line:(NSString*)line;
 -(NSDate*) getPointDate:(SchPoint*)p;
