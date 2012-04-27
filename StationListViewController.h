@@ -22,6 +22,8 @@
     
     IBOutlet UITableView *mytableView;
     IBOutlet UIImageView *imageView;
+    
+    UISearchDisplayController *mySearchDC;
 
 }
 
@@ -33,6 +35,7 @@
 @property (nonatomic,retain) IBOutlet UITableView *mytableView;
 @property (nonatomic,retain) IBOutlet UIImageView *imageView;
 @property (nonatomic,retain) NSMutableDictionary *indexDictionary;
+@property (nonatomic,retain) UISearchDisplayController *mySearchDC;
 
 -(void)createStationIndex;
 -(UIImage*)drawCircleView:(UIColor*)myColor;
