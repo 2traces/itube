@@ -23,6 +23,7 @@
 @synthesize mytableView;
 @synthesize imageView;
 @synthesize indexDictionary;
+@synthesize mySearchDC;
 
 - (void)didReceiveMemoryWarning
 {
@@ -60,7 +61,7 @@
     
     UISearchDisplayController *searchDC = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     
-    [self performSelector:@selector(setSearchDisplayController:) withObject:searchDC];
+    self.mySearchDC = searchDC;
     
     searchDC.delegate = self;
     searchDC.searchResultsDataSource = self;
@@ -162,7 +163,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (tableView == self.mySearchDC.searchResultsTableView) {
         return 1;
     } else {
         return [stationIndex count];
@@ -181,7 +182,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if  (tableView == self.searchDisplayController.searchResultsTableView)
+    if  (tableView == self.mySearchDC.searchResultsTableView)
 	{
         return [filteredStation count];
     }
@@ -207,7 +208,7 @@
         [[cell mybutton] addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    if (tableView == self.searchDisplayController.searchResultsTableView)
+    if (tableView == self.mySearchDC.searchResultsTableView)
     {
         NSString *cellValue = [[self.filteredStation objectAtIndex:indexPath.row] name];
         cell.mylabel.text = cellValue;
@@ -264,7 +265,7 @@
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (tableView == self.mySearchDC.searchResultsTableView) {
         return nil;
     } else {
         return stationIndex;
@@ -283,7 +284,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if  (tableView == self.searchDisplayController.searchResultsTableView)
+    if  (tableView == self.mySearchDC.searchResultsTableView)
 	{
         NSLog(@"%@",[[self.filteredStation objectAtIndex:indexPath.row] name]); 
         
@@ -324,11 +325,11 @@
     
     UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
         
-    if (self.searchDisplayController.active) {
+    if (self.mySearchDC.active) {
 
-        NSIndexPath *path = [self.searchDisplayController.searchResultsTableView indexPathForCell:cell];
+        NSIndexPath *path = [self.mySearchDC.searchResultsTableView indexPathForCell:cell];
 
-        [self.searchDisplayController.searchResultsTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationNone];
+        [self.mySearchDC.searchResultsTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationNone];
     } else {
         
         NSIndexPath *path = [self.mytableView indexPathForCell:cell];
@@ -450,7 +451,7 @@
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
 {
-	[self filterContentForSearchText:[self.searchDisplayController.searchBar text] scope:nil];
+	[self filterContentForSearchText:[self.mySearchDC.searchBar text] scope:nil];
     
     // Return YES to cause the search result table view to be reloaded.
     return YES;
@@ -464,10 +465,11 @@
 -(void)dealloc
 {
     self.dataSource=nil;
-    self.searchDisplayController.delegate = nil;
-    self.searchDisplayController.searchResultsDelegate = nil;
-    self.searchDisplayController.searchResultsDataSource = nil;
+    self.mySearchDC.delegate = nil;
+    self.mySearchDC.searchResultsDelegate = nil;
+    self.mySearchDC.searchResultsDataSource = nil;
 
+    [mySearchDC release];
     [stationList release];
     [stationIndex release];
     [filteredStation release];
