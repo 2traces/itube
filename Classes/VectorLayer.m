@@ -460,7 +460,9 @@
             NSArray *www = [ww filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF <> \"\""]];
             CGPoint pos = CGPointMake([[www objectAtIndex:3] intValue], [[www objectAtIndex:4] intValue]);
             [elements addObject:[[[VectorText alloc] initWithFontName:@"Arial" fontSize:[[www objectAtIndex:2] intValue] point:pos text:[www objectAtIndex:5] andColor:penColor ] autorelease]];
-            [[elements lastObject] rotateAt:-currentAngle-[[www objectAtIndex:1] intValue] center:pos];
+            CGFloat ang = [[www objectAtIndex:1] floatValue];
+            ang /= 180.f / M_PI;
+            [[elements lastObject] rotateAt:-currentAngle-ang center:pos];
             
         } else if([w isEqualToString:@"angle"]) {
             CGFloat ang = [[words objectAtIndex:1] floatValue];
