@@ -254,6 +254,7 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
     NSString *foregroundImageFile;
     Schedule *schedule;
     CGFloat gpsCircleScale;
+    UIColor *backgroundColor;
 @public
     CGFloat PredrawScale;
     CGFloat LineWidth;
@@ -284,6 +285,7 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 @property (nonatomic, readonly) NSString* backgroundImageFile;
 @property (nonatomic, readonly) NSString* foregroundImageFile;
 @property (nonatomic, readonly) CGFloat gpsCircleScale;
+@property (nonatomic, readonly) UIColor *backgroundColor;
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //

@@ -63,6 +63,7 @@ NSInteger const toolbarWidth=320;
 	mapView = [[[MapView alloc] initWithFrame:scrollSize] autorelease];
     mapView.cityMap = appDelegate.cityMap;
     mapView.vcontroller = self.vcontroller;
+    self.backgroundColor = mapView.backgroundColor;
 
 	containerView = [[MyScrollView alloc] initWithFrame:scrollSize];
 	[containerView setContentSize:mapView.size];
@@ -184,6 +185,7 @@ NSInteger const toolbarWidth=320;
     else 
         [containerView setContentOffset:CGPointZero];
     [self insertSubview:mapView.labelView belowSubview:sourceButton];
+    self.backgroundColor = mapView.backgroundColor;
 }
 
 -(void)showButtons:(CGPoint)pos

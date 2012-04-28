@@ -1546,6 +1546,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize backgroundImageFile;
 @synthesize foregroundImageFile;
 @synthesize gpsCircleScale;
+@synthesize backgroundColor;
 
 -(StationKind) stationKind { return StKind; }
 -(void) setStationKind:(StationKind)stationKind { StKind = stationKind; }
@@ -1731,6 +1732,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         gpsCircleScale = sc;
     }
     BOOL tuneEnabled = [[parserMap get:@"TuneTransfers" section:@"Options"] boolValue];
+    NSString *bgColor = [parserMap get:@"BackgroundColor" section:@"Options"];
+    if(bgColor != nil && [bgColor length] > 0) {
+        backgroundColor = [self colorForHex:bgColor];
+    } else backgroundColor = [[UIColor whiteColor] retain];
 	
 	_w = 0;
 	_h = 0;
@@ -1859,6 +1864,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(sc != 0.f) {
         gpsCircleScale = sc;
     }
+    NSString *bgColor = [parserMap get:@"BackgroundColor" section:@"Options"];
+    if(bgColor != nil && [bgColor length] > 0) {
+        backgroundColor = [self colorForHex:bgColor];
+    } else backgroundColor = [[UIColor whiteColor] retain];
 	
 	_w = 0;
 	_h = 0;

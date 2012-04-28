@@ -475,7 +475,7 @@
                 
                 NSMutableString *finalStation = [NSMutableString stringWithString:@""];
                 
-                if ([[segment start] index]<[[segment end] index]) {
+                if([[segment start] checkForwardWay:[segment end]]) {
                     for (Station *station in [[segment start] lastStations]) {
                         if ([finalStation isEqual:@""]) {
                             [finalStation appendFormat:@"%@",[station name]];
