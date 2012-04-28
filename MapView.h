@@ -78,6 +78,7 @@ extern int const imagesCount;
 @property (nonatomic, readonly) UIView* labelView;
 @property (nonatomic, readonly) ActiveView *activeLayer;
 @property (nonatomic, readonly) NSDictionary *foundPaths;
+@property (nonatomic, readonly) UIColor *backgroundColor;
 
 - (void)viewDidLoad;
 // 
