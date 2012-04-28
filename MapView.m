@@ -51,6 +51,11 @@
     return labelBg;
 }
 
+-(UIColor*) backgroundColor
+{
+    return cityMap.backgroundColor;
+}
+
 #pragma mark gps stuff 
 -(BOOL) enableUserLocation
 {
