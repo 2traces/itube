@@ -181,6 +181,7 @@
         activeLayer.hidden = YES;
         
         [self enableUserLocation];
+        
     }
     return self;
 }
@@ -218,6 +219,9 @@
         vectorLayer2 = nil;
     }
     [self makePreview];
+    if(rasterLayer == nil)
+        rasterLayer = [[RasterLayer alloc] initWithRect:self.frame];
+    
     // это недокументированный метод, так что если он в будущем изменится, то ой
     [self.layer invalidateContents];
     [self setNeedsDisplay];
@@ -274,9 +278,9 @@
 	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
 	CGContextFillRect(context, r);
 
-#ifdef AGRESSIVE_CACHE
     CGFloat drawScale = 1024.f / MAX(r.size.width, r.size.height);
     CGFloat presentScale = 1.f/drawScale;
+#ifdef AGRESSIVE_CACHE
     int cc = currentCacheLayer;
     currentCacheLayer++;
     if(currentCacheLayer >= MAXCACHE) currentCacheLayer = 0;
@@ -299,6 +303,7 @@
     [cityMap drawTransfers:ctx inRect:r];
     if(vectorLayer2) [vectorLayer2 draw:context inRect:r];
     [cityMap drawStations:ctx inRect:r]; 
+    [rasterLayer draw:context inRect:r withScale:presentScale*4];
 
 #ifdef AGRESSIVE_CACHE
     CGContextTranslateCTM(context, r.origin.x, r.origin.y);

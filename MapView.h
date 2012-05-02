@@ -14,6 +14,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "VectorLayer.h"
 #import "ActiveView.h"
+#import "RasterLayer.h"
 
 extern int const imagesCount;
 
@@ -53,6 +54,7 @@ extern int const imagesCount;
     ActiveView *activeLayer;
     NSDictionary *foundPaths;
     CLLocationManager *locationManager;
+    RasterLayer *rasterLayer;
 }
 
 @property (assign) NSString *nearestStationName;
