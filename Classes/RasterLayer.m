@@ -8,23 +8,50 @@
 
 #import "RasterLayer.h"
 
-@class RPiece;
+/***** RPiece *****/
 
-/***** RManager *****/
+@implementation RPiece
 
-@interface RManager : NSObject {
-    NSMutableArray *queue;
-    NSTimer *timer;
-    id target;
-    SEL selector;
-    NSString *path;
+-(id) initWithRect:(CGRect)r level:(int)_level x:(int)_x y:(int)_y
+{
+    if((self = [super init])) {
+        rect = r;
+        level = _level;
+        x = _x;
+        y = _y;
+        image = nil;
+        actuality = 0;
+    }
+    return self;
 }
 
--(id)initWithPath:(NSString*)path;
--(id)initWithTarget:(id)target selector:(SEL)selector andPath:(NSString*)path;
--(void)load:(RPiece*)piece;
+-(BOOL) loaded
+{
+    return image != nil;
+}
+
+-(void) draw:(CGContextRef)context
+{
+    if(image != nil) {
+        CGContextDrawImage(context, rect, image);
+        actuality = 0;
+    }
+}
+
+-(void) skip
+{
+    actuality ++;
+}
+
+-(void)dealloc
+{
+    if(image) CGImageRelease(image);
+    [super dealloc];
+}
 
 @end
+
+/***** RManager *****/
 
 @implementation RManager
 
@@ -32,17 +59,19 @@
 {
     BOOL res = NO;
     while([queue count]) {
-        [[queue objectAtIndex:0] load];
+        RPiece *p = [queue objectAtIndex:0];
+        if(p->image == nil) {
+            NSString *pt = [NSString stringWithFormat:@"%@/%d/%d/%d.jpg", path, p->level, p->x, p->y];
+            const char* fileName = [pt UTF8String];
+            CGDataProviderRef dataProvider = CGDataProviderCreateWithFilename(fileName);
+            p->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
+        }
+        [queue removeObjectAtIndex:0];
         res = YES;
     }
     if(res) {
         [target performSelector:selector];
     }
-}
-
--(id)initWithPath:(NSString*)p
-{
-    return [self initWithTarget:nil selector:nil andPath:p];
 }
 
 -(id)initWithTarget:(id)t selector:(SEL)s andPath:(NSString*)p
@@ -72,97 +101,9 @@
 
 @end
 
-/***** RPiece *****/
-
-@interface RPiece : NSObject {
-    CGRect rect;
-    NSString *path;
-    CGImageRef image;
-    int actuality;
-}
-@property (nonatomic, readonly) CGRect rect;
-@property (nonatomic, readonly) int actuality;
-@property (nonatomic, readonly) BOOL loaded;
-
--(id)initWithPath:(NSString*)path andRect:(CGRect)r;
--(BOOL)draw:(CGContextRef)context;
--(void)skip;
--(void)load;
--(void)unload;
-
-@end
-
-@implementation RPiece
-
-@synthesize rect;
-@synthesize actuality;
-
--(id) initWithPath:(NSString *)p andRect:(CGRect)r
-{
-    if((self = [super init])) {
-        const char* pf = [p UTF8String];
-        FILE *fi = fopen(pf, "r");
-        if(fi == 0) {
-            [self release];
-            return nil;
-        }
-        path = [p retain];
-        rect = r;
-        image = nil;
-        actuality = 0;
-    }
-    return self;
-}
-
--(BOOL) loaded
-{
-    return image != nil;
-}
-
--(BOOL) draw:(CGContextRef)context
-{
-    if(image == nil) {
-        [Manager load:self];
-        return NO;
-    } else {
-        CGContextDrawImage(context, rect, image);
-        actuality = 0;
-        return YES;
-    }
-}
-
--(void) skip
-{
-    actuality ++;
-}
-
--(void)load
-{
-	const char* fileName = [path UTF8String];
-	CGDataProviderRef dataProvider = CGDataProviderCreateWithFilename(fileName);
-	image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
-}
-
--(void)unload
-{
-    if(image != nil) {
-        CGImageRelease(image);
-        image = nil;
-    }
-}
-
--(void)dealloc
-{
-    [path release];
-    if(image) CGImageRelease(image);
-    [super dealloc];
-}
-
-@end
-
 /***** RLayer *****/
 
-@interface RLayer : NSObject {
+/*@interface RLayer : NSObject {
     NSString *layerPath;
     NSMutableArray *pieces;
 }
@@ -251,7 +192,7 @@
 }
 
 @end
-
+*/
 
 /***** RasterLayer *****/
 
@@ -260,24 +201,30 @@
 -(id) initWithRect:(CGRect)rect
 {
     if((self = [super init])) {
-        rasterPath = [[NSBundle mainBundle] pathForResource:@"raster" ofType:nil];
-        layers = [[NSMutableArray alloc] init];
-        for (int i=0; i<=13; i++) {
-            [layers addObject:[[RLayer alloc] initWithPath:[NSString stringWithFormat:@"%@/%d",rasterPath,i] num:i andRect:rect]];
-        }
-        [[layers objectAtIndex:0] upload];
+        NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"raster" ofType:nil];
+        pieces = [[NSMutableArray alloc] init];
+        level = 0;
+        loader = [[RManager alloc] initWithTarget:self selector:@selector(complete) andPath:rasterPath];
+        RPiece *p = [[RPiece alloc] initWithRect:rect level:0 x:0 y:0];
+        [loader load:p];
     }
     return self;
+}
+
+-(void)complete
+{
+    // TODO
 }
 
 -(BOOL)draw:(CGContextRef)context inRect:(CGRect)rect withScale:(CGFloat)scale
 {
     int l = (int)(scale - 0.5f);
     if(l < 0) l = 0;
-    if(l >= [layers count]) l = [layers count]-1;
-    for(int i=0; i<[layers count]; i++) {
-        if(i != l) [[layers objectAtIndex:i] skip];
+    if(level != l) {
+        [pieces removeAllObjects];
+        level = l;
     }
+
     if([[layers objectAtIndex:l] covers:rect]) {
         [[layers objectAtIndex:l] draw:context rect:rect];
         return YES;
@@ -291,8 +238,8 @@
 
 -(void) freeSomeMemory
 {
-    for (RLayer *l in layers) {
-        [l freeSomeMemory];
+    for (RPiece *p in pieces) {
+        if(p->actuality > 5) [pieces removeObject:p];
     }
 }
 
