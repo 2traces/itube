@@ -201,6 +201,7 @@
 -(id) initWithRect:(CGRect)rect
 {
     if((self = [super init])) {
+        allRect = rect;
         NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"raster" ofType:nil];
         pieces = [[NSMutableArray alloc] init];
         level = 0;
@@ -218,28 +219,45 @@
 
 -(BOOL)draw:(CGContextRef)context inRect:(CGRect)rect withScale:(CGFloat)scale
 {
-    int l = (int)(scale - 0.5f);
-    if(l < 0) l = 0;
-    if(level != l) {
-        [pieces removeAllObjects];
-        level = l;
+    level = (int)(scale - 0.5f);
+    if(level < 0) level = 0;
+    NSNumber *n = [NSNumber numberWithInt:level];
+    NSMutableArray *lev = [levels objectForKey:n];
+    if(lev == nil) {
+        lev = [NSMutableArray array];
+        [levels setObject:lev forKey:n];
     }
-
-    if([[layers objectAtIndex:l] covers:rect]) {
-        [[layers objectAtIndex:l] draw:context rect:rect];
-        return YES;
-    } else {
-        [[layers objectAtIndex:0] draw:context rect:rect];
-        [[layers objectAtIndex:l] draw:context rect:rect];
-        return NO;
+    int size = 1 << level;
+    CGFloat dx = allRect.size.width / size, dy = allRect.size.height / size;
+    int x1 = rect.origin.x / dx, y1 = rect.origin.y / dy;
+    int x2 = (rect.origin.x + rect.size.width) / dx, y2 = (rect.origin.y + rect.size.height) / dy;
+    for(int X=x1; X<=x2; X++) {
+        for(int Y=y1; Y<=y2; Y++) {
+            BOOL found = NO;
+            for (RPiece *p in lev) {
+                if(p->x == X && p->y == Y) {
+                    [p draw:context];
+                    found = YES;
+                }
+            }
+            if(!found) {
+                // loading
+            }
+        }
     }
 }
 
 
 -(void) freeSomeMemory
 {
-    for (RPiece *p in pieces) {
-        if(p->actuality > 5) [pieces removeObject:p];
+    for (id key in levels) {
+        NSMutableArray *l = [levels objectForKey:key];
+        for (RPiece *p in l) {
+            if(p->actuality > 5) [l removeObject:p];
+        }
+        if([l count] <= 0) {
+            [levels removeObjectForKey:key];
+        }
     }
 }
 

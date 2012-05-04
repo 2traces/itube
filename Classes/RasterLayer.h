@@ -43,8 +43,9 @@
 
 @interface RasterLayer : NSObject {
     RManager *loader;
-    NSMutableArray *pieces;
+    NSMutableDictionary *levels;
     int level;
+    CGRect allRect;
 }
 
 -(id) initWithRect:(CGRect)rect;
