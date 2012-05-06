@@ -33,7 +33,11 @@
 -(void) draw:(CGContextRef)context
 {
     if(image != nil) {
+        CGContextSaveGState(context);
+        CGContextTranslateCTM(context, 0.f, rect.origin.y*2.f + rect.size.height);
+        CGContextScaleCTM(context, 1.f, -1.f);
         CGContextDrawImage(context, rect, image);
+        CGContextRestoreGState(context);
         actuality = 0;
     }
 }
@@ -55,19 +59,28 @@
 
 @implementation RManager
 
+@synthesize lock;
+
 -(void)loading
 {
     BOOL res = NO;
     while([queue count]) {
+        [lock lock];
         RPiece *p = [queue objectAtIndex:0];
         if(p->image == nil) {
             NSString *pt = [NSString stringWithFormat:@"%@/%d/%d/%d.jpg", path, p->level, p->x, p->y];
             const char* fileName = [pt UTF8String];
             CGDataProviderRef dataProvider = CGDataProviderCreateWithFilename(fileName);
-            p->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
+            if(dataProvider == nil) {
+                //NSLog(@"file not found %@", pt);
+                p->level = -1;
+            } else {
+                p->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
+                res = YES;
+            }
         }
         [queue removeObjectAtIndex:0];
-        res = YES;
+        [lock unlock];
     }
     if(res) {
         [target performSelector:selector];
@@ -78,10 +91,12 @@
 {
     if((self = [super init])) {
         path = [p retain];
-        target = target;
-        selector = selector;
+        target = t;
+        selector = s;
+        lock = [[NSRecursiveLock alloc] init];
         queue = [[NSMutableArray alloc] init];
         timer = [NSTimer timerWithTimeInterval:0.1f target:self selector:@selector(loading) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     }
     return self;
 }
@@ -203,23 +218,49 @@
     if((self = [super init])) {
         allRect = rect;
         NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"raster" ofType:nil];
-        pieces = [[NSMutableArray alloc] init];
+        levels = [[NSMutableDictionary alloc] init];
         level = 0;
         loader = [[RManager alloc] initWithTarget:self selector:@selector(complete) andPath:rasterPath];
-        RPiece *p = [[RPiece alloc] initWithRect:rect level:0 x:0 y:0];
-        [loader load:p];
+        piecesCount = 0;
     }
     return self;
 }
 
 -(void)complete
 {
-    // TODO
+    NSLog(@"raster map is loaded");
+    [loader.lock lock];
+    NSMutableArray *l = [levels objectForKey:[NSNumber numberWithInt:level]];
+    NSMutableArray *removePieces = [NSMutableArray array];
+    for (RPiece *p in l) {
+        if(p->level < 0) {
+            [removePieces addObject:p];
+            piecesCount --;
+        }
+    }
+    [l removeObjectsInArray:removePieces];
+    if([l count] <= 0) [levels removeObjectForKey:[NSNumber numberWithInt:level]];
+    [loader.lock unlock];
+    if(target != nil) {
+        [target performSelector:selector];
+    }
 }
 
 -(BOOL)draw:(CGContextRef)context inRect:(CGRect)rect withScale:(CGFloat)scale
 {
-    level = (int)(scale - 0.5f);
+    [loader.lock lock];
+    for (id key in levels) {
+        NSMutableArray *l = [levels objectForKey:key];
+        if([l count] > 0) for (RPiece *p in l) {
+            [p skip];
+        }
+    }
+    int _sc = 1, _lvl = 0;
+    while (scale > _sc) {
+        _sc *= 2;
+        _lvl ++;
+    }
+    level = _lvl;
     if(level < 0) level = 0;
     NSNumber *n = [NSNumber numberWithInt:level];
     NSMutableArray *lev = [levels objectForKey:n];
@@ -227,6 +268,7 @@
         lev = [NSMutableArray array];
         [levels setObject:lev forKey:n];
     }
+    BOOL allLoaded = YES;
     int size = 1 << level;
     CGFloat dx = allRect.size.width / size, dy = allRect.size.height / size;
     int x1 = rect.origin.x / dx, y1 = rect.origin.y / dy;
@@ -242,23 +284,68 @@
             }
             if(!found) {
                 // loading
+                CGRect r = CGRectMake(x1 + dx*X, y1 + dy*Y, dx, dy);
+                RPiece *p = [[RPiece alloc] initWithRect:r level:level x:X y:Y];
+                [lev addObject:p];
+                [loader load:p];
+                allLoaded = NO;
+                piecesCount ++;
             }
         }
     }
+    while(piecesCount > 20) {
+        [self freeSomeMemory];
+    }
+    [loader.lock unlock];
+    if(allLoaded) NSLog(@"raster drawing complete at level %d, %d pieces", level, piecesCount);
+    else NSLog(@"raster drawing not complete at level %d, %d pieces", level, piecesCount);
+    return allLoaded;
+}
+
+-(void)setSignal:(id)_target selector:(SEL)_selector
+{
+    target = _target;
+    selector = _selector;
 }
 
 
 -(void) freeSomeMemory
 {
+    // remove one piece
+    id farthest = nil;
+    int length = -1;
     for (id key in levels) {
-        NSMutableArray *l = [levels objectForKey:key];
-        for (RPiece *p in l) {
-            if(p->actuality > 5) [l removeObject:p];
-        }
-        if([l count] <= 0) {
-            [levels removeObjectForKey:key];
+        int l = abs([key intValue] - level);
+        if(length < l) {
+            length = l;
+            farthest = key;
         }
     }
+    if (farthest != nil) {
+        NSMutableArray *l = [levels objectForKey:farthest];
+        int act = -1;
+        RPiece *fp = nil;
+        for (RPiece *p in l) {
+            if(p->actuality > act)  {
+                act = p->actuality;
+                fp = p;
+            }
+        }
+        if(fp != nil) {
+            [l removeObject:fp];
+            piecesCount --;
+        }
+        if([l count] <= 0) {
+            [levels removeObjectForKey:farthest];
+        }
+    }
+}
+
+-(void)dealloc
+{
+    [loader release];
+    [levels release];
+    [super dealloc];
 }
 
 @end

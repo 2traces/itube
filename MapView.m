@@ -56,6 +56,13 @@
     return cityMap.backgroundColor;
 }
 
+-(void)redraw
+{
+    NSLog(@"redraw map");
+    [self.layer invalidateContents];
+    [self setNeedsDisplay];
+}
+
 #pragma mark gps stuff 
 -(BOOL) enableUserLocation
 {
@@ -99,11 +106,12 @@
     CGContextScaleCTM(context, backScale, backScale);
     r.size.width /= backScale;
     r.size.height /= backScale;
-    [vectorLayer draw:context inRect:r];
+    /*[vectorLayer draw:context inRect:r];
     [cityMap drawMap:context inRect:r];
     [cityMap drawTransfers:context inRect:r];
     [cityMap drawStations:context inRect:r]; 
     [vectorLayer2 draw:context inRect:r];
+     */
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     previewImage = [[UIImageView alloc] initWithImage:img];
     previewImage.frame = CGRectMake(0, 0, img.size.width, img.size.height);
@@ -124,8 +132,8 @@
 		
 		//близжайщней станции пока нет
 		nearestStationName = @"";
-        MinScale = 0.25f;
-        MaxScale = 4.f;
+        MinScale = 0.01f;
+        MaxScale = 50.f;
         Scale = 2.f;
         selectedStationName = [[NSMutableString alloc] init];
 		
@@ -182,6 +190,9 @@
         
         [self enableUserLocation];
         
+        //timer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(redraw) userInfo:nil repeats:YES];
+        //[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+
     }
     return self;
 }
@@ -191,8 +202,8 @@
     [cityMap release];
     cityMap = [_cityMap retain];
     self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
-    MinScale = MIN( (float)visualFrame.size.width / cityMap.size.width, (float)visualFrame.size.height / cityMap.size.height);
-    MaxScale = cityMap.maxScale;
+    //MinScale = MIN( (float)visualFrame.size.width / cityMap.size.width, (float)visualFrame.size.height / cityMap.size.height);
+    //MaxScale = cityMap.maxScale;
     Scale = MinScale * 2.f;
     selectedStationLayer.frame = CGRectMake(0, 0, cityMap.gpsCircleScale*nearestStationImage.size.width, cityMap.gpsCircleScale*nearestStationImage.size.height);
 
@@ -219,8 +230,10 @@
         vectorLayer2 = nil;
     }
     [self makePreview];
-    if(rasterLayer == nil)
+    if(rasterLayer == nil) {
         rasterLayer = [[RasterLayer alloc] initWithRect:self.frame];
+        [rasterLayer setSignal:self selector:@selector(redraw)];
+    }
     
     // это недокументированный метод, так что если он в будущем изменится, то ой
     [self.layer invalidateContents];
@@ -250,6 +263,7 @@
 }
 
 - (void)dealloc {
+    [timer release];
     [labelBg removeFromSuperview];
     [previewImage removeFromSuperview];
     [midground1 removeFromSuperview];
@@ -297,13 +311,14 @@
     CGContextSetShouldSmoothFonts(ctx, false);
     CGContextSetAllowsFontSmoothing(ctx, false);
     
-    if(vectorLayer) [vectorLayer draw:context inRect:r];
+    /*if(vectorLayer) [vectorLayer draw:context inRect:r];
     cityMap.currentScale = scrollView.zoomScale / MaxScale;
     [cityMap drawMap:ctx inRect:r];
     [cityMap drawTransfers:ctx inRect:r];
     if(vectorLayer2) [vectorLayer2 draw:context inRect:r];
     [cityMap drawStations:ctx inRect:r]; 
-    [rasterLayer draw:context inRect:r withScale:presentScale*4];
+     */
+    [rasterLayer draw:context inRect:r withScale:Scale*4];
 
 #ifdef AGRESSIVE_CACHE
     CGContextTranslateCTM(context, r.origin.x, r.origin.y);
@@ -416,6 +431,7 @@
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
 {
     Scale = scale;
+    [self redraw];
 }
 
 - (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate

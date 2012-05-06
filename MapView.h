@@ -55,6 +55,7 @@ extern int const imagesCount;
     NSDictionary *foundPaths;
     CLLocationManager *locationManager;
     RasterLayer *rasterLayer;
+    NSTimer *timer;
 }
 
 @property (assign) NSString *nearestStationName;

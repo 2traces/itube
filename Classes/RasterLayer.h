@@ -31,7 +31,9 @@
     id target;
     SEL selector;
     NSString *path;
+    NSRecursiveLock *lock;
 }
+@property (nonatomic, readonly) NSRecursiveLock *lock;
 
 -(id)initWithTarget:(id)target selector:(SEL)selector andPath:(NSString*)path;
 -(void)load:(RPiece*)piece;
@@ -44,12 +46,15 @@
 @interface RasterLayer : NSObject {
     RManager *loader;
     NSMutableDictionary *levels;
-    int level;
+    int level, piecesCount;
     CGRect allRect;
+    id target;
+    SEL selector;
 }
 
 -(id) initWithRect:(CGRect)rect;
 -(BOOL) draw:(CGContextRef)context inRect:(CGRect)rect withScale:(CGFloat)scale;
 -(void) freeSomeMemory;
+-(void) setSignal:(id)target selector:(SEL)selector;
 
 @end
