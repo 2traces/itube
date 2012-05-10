@@ -167,7 +167,7 @@
             
             NSArray *array = [[transfer stations] allObjects];
             
-            if ([array objectAtIndex:0]==threadStart) {
+            if ([array objectAtIndex:0]==threadStart && [array count] > 1) {
                 threadStart = [array objectAtIndex:1];
             } else {
                 threadStart = [array objectAtIndex:0];
