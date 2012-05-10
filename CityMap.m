@@ -1396,6 +1396,38 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     return nil;
 }
 
+-(BOOL)findPathFrom:(Station*)st to:(NSString*)station2 withArray:(NSMutableArray*)res
+{
+    if([st.name isEqualToString:station2]) {
+        return YES;
+    }
+    for (Segment *s in st.segment) {
+        if([self findPathFrom:s.end to:station2 withArray:res]) {
+            [res addObject:s];
+            return YES;
+        }
+    }
+    return NO;
+}
+
+-(NSArray*)activatePathFrom:(NSString *)station1 to:(NSString *)station2
+{
+    NSMutableArray *res = [NSMutableArray array];
+    for (Station *s in stations) {
+        NSString *another = nil;
+        if([s.name isEqualToString:station1]) another = station2;
+        if([s.name isEqualToString:station2]) another = station1;
+        if(another != nil) {
+            if([self findPathFrom:s to:another withArray:res]) break;
+        }
+    }
+    for (Segment *s in res) {
+        s.start.active = YES;
+        s.end.active = YES;
+    }
+    return [[res reverseObjectEnumerator] allObjects];
+}
+
 -(Segment*)getSegmentFrom:(NSString *)station1 to:(NSString *)station2
 {
     for (Station *s in stations) {
@@ -1408,6 +1440,20 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
     }
     return nil;
+}
+
+-(NSArray*)getPathFrom:(NSString *)station1 to:(NSString *)station2
+{
+    NSMutableArray *res = [NSMutableArray array];
+    for (Station *s in stations) {
+        NSString *another = nil;
+        if([s.name isEqualToString:station1]) another = station2;
+        if([s.name isEqualToString:station2]) another = station1;
+        if(another != nil) {
+            if([self findPathFrom:s to:another withArray:res]) break;
+        }
+    }
+    return [[res reverseObjectEnumerator] allObjects];
 }
 
 
@@ -1677,6 +1723,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 }
             }
         }
+        [schedule removeUncheckedStations];
     }
 #endif
     
@@ -2056,6 +2103,19 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 	[parserMap release];
     [parserTrp release];
     
+    if(TrKind == LIKE_VENICE) {
+        for (Line *l in mapLines) {
+            for (Station* st in l.stations) {
+                if(st.transfer == nil) {
+                    Transfer *tr = [[[Transfer alloc] initWithMap:self] autorelease];
+                    tr.time = 0.f;
+                    [tr addStation:st];
+                    [transfers addObject:tr];
+                }
+            }
+        }
+    }
+    
     for (Line *l in mapLines) {
         [l calcStations];
     }
@@ -2391,7 +2451,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 // strange, but sometimes it's possible
             } else
             if (n1.line==n2.line) {
-                [activePath addObject:[l activateSegmentFrom:n1.name to:n2.name]];
+                Segment *as = [l activateSegmentFrom:n1.name to:n2.name];
+                if(as != nil) [activePath addObject:as];
+                else {
+                    [activePath addObjectsFromArray:[l activatePathFrom:n1.name to:n2.name]];
+                }
                 [pathStationsList addObject:n1.name];
                 if(sp1 && schedule) [pathTimesList addObject:[schedule getPointDate:sp1]];
             } else
@@ -2521,7 +2585,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 // одна и та же станция - пересадка внутри одной линии
                 // чё делать пока не понятно
             } else if (n1.line==n2.line) {
-                [path addObject:[l getSegmentFrom:n1.name to:n2.name]];
+                Segment *seg = [l getSegmentFrom:n1.name to:n2.name];
+                if(seg != nil) [path addObject:seg];
+                else [path addObjectsFromArray:[l getPathFrom:n1.name to:n2.name]];
             } 
             
             if(n1.line != n2.line) {
