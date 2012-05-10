@@ -59,6 +59,8 @@
 -(id)initWithName:(NSString*)name fastFile:(NSString*)fileName path:(NSString*)path stations:(NSArray*)stations;
 -(void)appendFastFile:(NSString*)fileName path:(NSString*)path stations:(NSArray*)stations;
 -(void)removeAllPoints;
+-(void)setIndexFor:(NSString*)stationName;
+-(void)removeUncheckedPoints;
 @end
 
 /***** Schedule *****/
@@ -70,6 +72,9 @@
     NSTimeInterval loadTime;
     NSString *xmlFile;
     NSString *stationsFile;
+    
+    SchLine *currentLine;
+    int currentIndex;
 }
 
 -(id) initSchedule:(NSString*)fileName path:(NSString*)path;
@@ -77,6 +82,7 @@
 -(BOOL) setIndex:(int)ind forLine:(NSString*)line;
 -(BOOL) checkStation:(NSString*)station line:(NSString*)line;
 -(NSDate*) getPointDate:(SchPoint*)p;
+-(void) removeUncheckedStations;
 
 -(NSArray*)findPathFrom:(NSString *)fromStation to:(NSString*)toStation;
 @end

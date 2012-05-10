@@ -17,7 +17,7 @@
 		<key>zip_donwload</key>
 		<string>/maps/london/london1.zip</string>
 	</dict>
-	<key>default</key>
+	<key>com.zuev.itube.paris.paris</key>
 	<dict>
 		<key>ver</key>
 		<string>1</string>
@@ -62,7 +62,7 @@
 		<key>zip_download</key>
 		<string>/maps/hamburg/hamburg1.zip</string>
 	</dict>
-	<key>com.zuev.itube.paris.venice</key>
+	<key>default</key>
 	<dict>
 		<key>ver</key>
 		<string>1</string>

@@ -245,25 +245,37 @@ NSCharacterSet *pCharacterSet = nil;
 -(void)setIndex:(int)_index
 {
     index = _index;
-    /*for (NSArray* r in routes) {
-        for (SchPoint *p in r) {
-            p.line = index;
-        }
-    }*/
-    for (NSString* key in [catalog allKeys]) {
+    /*for (NSString* key in [catalog allKeys]) {
         for (SchPoint* p in [catalog valueForKey:key]) {
             p.line = index;
         }
+    }*/
+}
+
+-(void)setIndexFor:(NSString *)stationName
+{
+    for (SchPoint* p in [catalog valueForKey:stationName]) {
+        p.line = index;
     }
+}
+
+-(void)removeUncheckedPoints
+{
+    NSMutableArray *rm = [NSMutableArray array];
+    for (NSString* key in [catalog allKeys]) {
+        for (SchPoint* p in [catalog valueForKey:key]) {
+            if(p.line == 0) [rm addObject:p];
+            else if(p.next.line == 0) p.next = nil;
+        }
+    }
+    for (SchPoint *p in rm) {
+        [[catalog valueForKey:p.name] removeObject:p]; 
+    }
+    [rm removeAllObjects];
 }
 
 -(void)clean
 {
-    /*for (NSArray* r in routes) {
-        for (SchPoint *p in r) {
-            [p clean];
-        }
-    }*/
     for (NSString* key in [catalog allKeys]) {
         for (SchPoint* p in [catalog valueForKey:key]) {
             [p clean];
@@ -436,9 +448,10 @@ NSCharacterSet *pCharacterSet = nil;
 {
     SchLine *l = [lines valueForKey:line];
     if(l != nil) {
-        if([l.catalog valueForKey:station] != nil)
+        if([l.catalog valueForKey:station] != nil) {
+            [l setIndexFor:station];
             return YES;
-        else {
+        } else {
 #ifdef DEBUG
             NSLog(@"Error: Station %@ at line %@ not found", station, line);
 #endif
@@ -551,6 +564,13 @@ NSCharacterSet *pCharacterSet = nil;
         return result;
     }
     return [NSArray array];
+}
+
+-(void) removeUncheckedStations
+{
+    for (NSString *ln in lines) {
+        [[lines valueForKey:ln] removeUncheckedPoints];
+    }
 }
 
 @end

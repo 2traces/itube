@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <routes updated="2012-04-27T06:44:03">
-  <route route="LINEA 1" title="P.ROMA - FERROVIA - RIALTO - S.TOMA&amp;apos; - S.MARCO - LIDO">
+  <route route="1" title="P.ROMA - FERROVIA - RIALTO - S.TOMA&amp;apos; - S.MARCO - LIDO">
     <files>
       <file time_from="301" time_to="399" type="direct">1-direct-02.txt</file>
       <file time_from="361" time_to="529" type="direct">1-direct-03.txt</file>
@@ -24,7 +24,7 @@
       <file time_from="1326" time_to="4" type="return">1-return-11.txt</file>
     </files>
   </route>
-  <route route="LINEA 2" title="S.ZACCARIA - GIUDECCA - TRONCHETTO - P.ROMA - FERROVIA - RIALTO - S.MARCO GIARDINETTI">
+  <route route="2" title="S.ZACCARIA - GIUDECCA - TRONCHETTO - P.ROMA - FERROVIA - RIALTO - S.MARCO GIARDINETTI">
     <files>
       <file time_from="299" time_to="411" type="direct">2-direct-02.txt</file>
       <file time_from="369" time_to="531" type="direct">2-direct-03.txt</file>
@@ -48,7 +48,7 @@
       <file time_from="1320" time_to="24" type="return">2-return-11.txt</file>
     </files>
   </route>
-  <route route="LINEA 3" title="P.LE ROMA - FERROVIA - MURANO - FERROVIA - P.LE ROMA">
+  <route route="3" title="P.LE ROMA - FERROVIA - MURANO - FERROVIA - P.LE ROMA">
     <files>
       <file time_from="380" time_to="527" type="direct">3-direct-03.txt</file>
       <file time_from="500" time_to="647" type="direct">3-direct-04.txt</file>
@@ -59,7 +59,7 @@
       <file time_from="1090" time_to="1148" type="direct">3-direct-09.txt</file>
     </files>
   </route>
-  <route route="LINEA 4" title="MURANO - F.TE NOVE - FERROVIA - P.ROMA - GIUDECCA -S.ZACCARIA - F.TE NOVE ‐ MURANO">
+  <route route="4.1" title="MURANO - F.TE NOVE - FERROVIA - P.ROMA - GIUDECCA -S.ZACCARIA - F.TE NOVE ‐ MURANO">
     <files>
       <file time_from="374" time_to="572" type="direct">4-direct-03.txt</file>
       <file time_from="492" time_to="692" type="direct">4-direct-04.txt</file>
@@ -81,7 +81,7 @@
       <file time_from="1325" time_to="3" type="return">4-return-11.txt</file>
     </files>
   </route>
-  <route route="LINEA 5" title="LIDO - OSPEDALE ‐ F.TE NOVE - FERROVIA - P.ROMA - ZACCARIA - LIDO">
+  <route route="5.1" title="LIDO - OSPEDALE ‐ F.TE NOVE - FERROVIA - P.ROMA - ZACCARIA - LIDO">
     <files>
       <file time_from="15" time_to="52" type="direct">5-direct-00.txt</file>
       <file time_from="274" time_to="402" type="direct">5-direct-02.txt</file>
@@ -107,7 +107,7 @@
       <file time_from="1322" time_to="20" type="return">5-return-11.txt</file>
     </files>
   </route>
-  <route route="LINEA 6" title="P.ROMA - S.MARTA - S.BASILIO - ZATTERE - GIARDINI - S.ELENA - LIDO">
+  <route route="6" title="P.ROMA - S.MARTA - S.BASILIO - ZATTERE - GIARDINI - S.ELENA - LIDO">
     <files>
       <file time_from="379" time_to="512" type="direct">6-direct-03.txt</file>
       <file time_from="499" time_to="632" type="direct">6-direct-04.txt</file>
@@ -127,7 +127,7 @@
       <file time_from="1202" time_to="1233" type="return">6-return-10.txt</file>
     </files>
   </route>
-  <route route="LINEA 7" title="LINEA 7">
+  <route route="7" title="LINEA 7">
     <files>
       <file time_from="614" time_to="772" type="direct">7-direct-05.txt</file>
       <file time_from="734" time_to="892" type="direct">7-direct-06.txt</file>
@@ -135,7 +135,7 @@
       <file time_from="974" time_to="1072" type="direct">7-direct-08.txt</file>
     </files>
   </route>
-  <route route="LINEA 8" title="LINEA 8">
+  <route route="8" title="LINEA 8">
     <files>
       <file time_from="496" time_to="632" type="direct">8-direct-04.txt</file>
       <file time_from="616" time_to="692" type="direct">8-direct-05.txt</file>
@@ -143,7 +143,7 @@
       <file time_from="1087" time_to="1224" type="return">8-return-09.txt</file>
     </files>
   </route>
-  <route route="LINEA 9" title="BURANO - TORCELLO">
+  <route route="9" title="BURANO - TORCELLO">
     <files>
       <file time_from="425" time_to="460" type="direct">9-direct-03.txt</file>
       <file time_from="485" time_to="580" type="direct">9-direct-04.txt</file>
@@ -163,7 +163,7 @@
       <file time_from="1210" time_to="1215" type="return">9-return-10.txt</file>
     </files>
   </route>
-  <route route="LINEA 10_1" title="NAVETTA LIDO - S. MARCO GIARDINETTI">
+  <route route="10" title="NAVETTA LIDO - S. MARCO GIARDINETTI">
     <files>
       <file time_from="430" time_to="491" type="direct">10-direct-03.txt</file>
       <file time_from="490" time_to="545" type="direct">10-direct-04.txt</file>
@@ -217,7 +217,7 @@
       <file time_from="1365" time_to="60" type="return">12-return-11.txt</file>
     </files>
   </route>
-  <route route="LINEA 12" title="F.TE NOVE - BURANO - TREPORTI - PUNTA SABBIONI">
+  <route route="12" title="F.TE NOVE - BURANO - TREPORTI - PUNTA SABBIONI">
     <files>
       <file time_from="0" time_to="68" type="direct">13-direct-00.txt</file>
       <file time_from="260" time_to="397" type="direct">13-direct-02.txt</file>
@@ -243,7 +243,7 @@
       <file time_from="1361" time_to="53" type="return">13-return-11.txt</file>
     </files>
   </route>
-  <route route="LINEA 13" title="F.TE NOVE - MURANO - VIGNOLE - S.ERASMO / S.ERASMO -TREPORTI">
+  <route route="13" title="F.TE NOVE - MURANO - VIGNOLE - S.ERASMO / S.ERASMO -TREPORTI">
     <files>
       <file time_from="265" time_to="373" type="direct">14-direct-02.txt</file>
       <file time_from="365" time_to="505" type="direct">14-direct-03.txt</file>
@@ -267,7 +267,7 @@
       <file time_from="1360" time_to="38" type="return">14-return-11.txt</file>
     </files>
   </route>
-  <route route="LINEA 14" title="VENEZIA (Pietà) - LIDO (S.M.E.- S.Nicolò) - P.SABBIONI P.SABBIONI -TREPORTI - BURANO - MURANO - VENEZIA (F.te Nove)">
+  <route route="14" title="VENEZIA (Pietà) - LIDO (S.M.E.- S.Nicolò) - P.SABBIONI P.SABBIONI -TREPORTI - BURANO - MURANO - VENEZIA (F.te Nove)">
     <files>
       <file time_from="28" time_to="68" type="direct">15-direct-00.txt</file>
       <file time_from="135" time_to="230" type="direct">15-direct-01.txt</file>
@@ -295,7 +295,7 @@
       <file time_from="1361" time_to="16" type="return">15-return-11.txt</file>
     </files>
   </route>
-  <route route="LINEA 15" title="VENEZIA - P.SABBIONI">
+  <route route="15" title="VENEZIA - P.SABBIONI">
     <files>
       <file time_from="372" time_to="492" type="direct">16-direct-03.txt</file>
       <file time_from="975" time_to="1098" type="direct">16-direct-08.txt</file>
@@ -308,7 +308,7 @@
       <file time_from="600" time_to="720" type="return">16-return-05.txt</file>
     </files>
   </route>
-  <route route="LINEA 16" title="FUSINA - ZATTERE">
+  <route route="16" title="FUSINA - ZATTERE">
     <files>
       <file time_from="480" time_to="565" type="direct">17-direct-04.txt</file>
       <file time_from="600" time_to="685" type="direct">17-direct-05.txt</file>
@@ -328,7 +328,7 @@
       <file time_from="1350" time_to="1375" type="return">17-return-11.txt</file>
     </files>
   </route>
-  <route route="LINEA 17" title="SERVIZIO TRASPORTO AUTOMEZZI TRONCHETTO - LIDO S.NICOLO&amp;apos;">
+  <route route="17" title="SERVIZIO TRASPORTO AUTOMEZZI TRONCHETTO - LIDO S.NICOLO&amp;apos;">
     <files>
       <file time_from="10" time_to="135" type="direct">18-direct-00.txt</file>
       <file time_from="350" time_to="385" type="direct">18-direct-02.txt</file>
@@ -354,7 +354,7 @@
       <file time_from="1350" time_to="1435" type="return">18-return-11.txt</file>
     </files>
   </route>
-  <route route="LINEA 18" title="LINEA 18">
+  <route route="18" title="LINEA 18">
     <files>
       <file time_from="542" time_to="607" type="direct">19-direct-04.txt</file>
       <file time_from="602" time_to="727" type="direct">19-direct-05.txt</file>
@@ -364,13 +364,13 @@
       <file time_from="1103" time_to="1212" type="direct">19-direct-09.txt</file>
     </files>
   </route>
-  <route route="LINEA 19" title="LINEA 19">
+  <route route="19" title="LINEA 19">
     <files>
       <file time_from="545" time_to="645" type="direct">20-direct-04.txt</file>
       <file time_from="1020" time_to="1120" type="return">20-return-08.txt</file>
     </files>
   </route>
-  <route route="LINEA 20" title="S.ZACCARIA - S.SERVOLO - S.LAZZARO - S.SERVOLO - S.ZACCARIA">
+  <route route="20" title="S.ZACCARIA - S.SERVOLO - S.LAZZARO - S.SERVOLO - S.ZACCARIA">
     <files>
       <file time_from="25" time_to="110" type="direct">21-direct-00.txt</file>
       <file time_from="130" time_to="150" type="direct">21-direct-01.txt</file>
@@ -403,13 +403,13 @@
       <file time_from="1130" time_to="1217" type="return">22-return-09.txt</file>
     </files>
   </route>
-  <route route="LINEA 22" title="P.SABBIONI - F.TE NOVE - TRE ARCHI ">
+  <route route="22" title="P.SABBIONI - F.TE NOVE - TRE ARCHI ">
     <files>
       <file time_from="420" time_to="489" type="direct">23-direct-03.txt</file>
       <file time_from="808" time_to="860" type="return">23-return-06.txt</file>
     </files>
   </route>
-  <route route="LINEA N" title="S.ZACCARIA - CANALE GIUDECCA - CANAL GRANDE - LIDO">
+  <route route="N" title="S.ZACCARIA - CANALE GIUDECCA - CANAL GRANDE - LIDO">
     <files>
       <file time_from="10" time_to="171" type="direct">24-direct-00.txt</file>
       <file time_from="130" time_to="291" type="direct">24-direct-01.txt</file>
@@ -421,7 +421,7 @@
       <file time_from="1406" time_to="69" type="return">24-return-11.txt</file>
     </files>
   </route>
-  <route route="LINEA NOTTURNO LAGUNA NORD" title="AEROPORTO - MURANO COLONNA - F.TE NOVE - LIDO - S.ZACCARIA - S.MARCO - MOLINO STUCKY - MARITTIMA">
+  <route route="N2" title="AEROPORTO - MURANO COLONNA - F.TE NOVE - LIDO - S.ZACCARIA - S.MARCO - MOLINO STUCKY - MARITTIMA">
     <files>
       <file time_from="0" time_to="167" type="direct">25-direct-00.txt</file>
       <file time_from="170" time_to="227" type="direct">25-direct-01.txt</file>
@@ -430,13 +430,13 @@
       <file time_from="168" time_to="280" type="return">25-return-01.txt</file>
     </files>
   </route>
-  <route route="NOTTURNO MURANO" title="AEROPORTO-FTE NOVE-MADONNA DELL&amp;apos;ORTO-GUGLIE-S.STAE-RIALTO-S.ANGELO-S.MARCO">
+  <route route="N3" title="AEROPORTO-FTE NOVE-MADONNA DELL&amp;apos;ORTO-GUGLIE-S.STAE-RIALTO-S.ANGELO-S.MARCO">
     <files>
       <file time_from="13" time_to="171" type="direct">26-direct-00.txt</file>
       <file time_from="168" time_to="280" type="direct">26-direct-01.txt</file>
     </files>
   </route>
-  <route route="LINEA VAPORETTO DELL&amp;apos;ARTE_2" title="LINEA VAPORETTO DELL&amp;apos;ARTE_2">
+  <route route="VA" title="LINEA VAPORETTO DELL&amp;apos;ARTE_2">
     <files>
       <file time_from="540" time_to="611" type="direct">27-direct-04.txt</file>
       <file time_from="607" time_to="731" type="direct">27-direct-05.txt</file>
@@ -468,7 +468,7 @@
       <file time_from="1087" time_to="1174" type="return">28-return-09.txt</file>
     </files>
   </route>
-  <route route="LINEA ALILAGUNA ROSSA" title="LINEA ALILAGUNA ROSSA">
+  <route route="R" title="LINEA ALILAGUNA ROSSA">
     <files>
       <file time_from="440" time_to="498" type="direct">29-direct-03.txt</file>
       <file time_from="500" time_to="618" type="direct">29-direct-04.txt</file>
@@ -492,7 +492,7 @@
       <file time_from="966" time_to="1088" type="direct">30-direct-08.txt</file>
     </files>
   </route>
-  <route route="LINEA ALILAGUNA BLU_1" title="LINEA ALILAGUNA BLU_1">
+  <route route="B" title="LINEA ALILAGUNA BLU_1">
     <files>
       <file time_from="220" time_to="297" type="direct">31-direct-01.txt</file>
       <file time_from="275" time_to="427" type="direct">31-direct-02.txt</file>
@@ -517,7 +517,7 @@
       <file time_from="1335" time_to="60" type="return">31-return-11.txt</file>
     </files>
   </route>
-  <route route="LINEA ALILAGUNA BLU_2" title="LINEA ALILAGUNA BLU_2">
+  <route route="B" title="LINEA ALILAGUNA BLU_2">
     <files>
       <file time_from="220" time_to="299" type="direct">32-direct-01.txt</file>
       <file time_from="275" time_to="427" type="direct">32-direct-02.txt</file>
@@ -542,7 +542,7 @@
       <file time_from="1335" time_to="1440" type="return">32-return-11.txt</file>
     </files>
   </route>
-  <route route="LINEA ALILAGUNA ARANCIO_1" title="LINEA ALILAGUNA ARANCIO_1">
+  <route route="A" title="LINEA ALILAGUNA ARANCIO_1">
     <files>
       <file time_from="480" time_to="644" type="direct">33-direct-04.txt</file>
       <file time_from="600" time_to="764" type="direct">33-direct-05.txt</file>
@@ -563,7 +563,7 @@
       <file time_from="1336" time_to="1410" type="return">33-return-11.txt</file>
     </files>
   </route>
-  <route route="LINEA ALILAGUNA ARANCIO_2" title="LINEA ALILAGUNA ARANCIO_2">
+  <route route="A" title="LINEA ALILAGUNA ARANCIO_2">
     <files>
       <file time_from="480" time_to="644" type="direct">34-direct-04.txt</file>
       <file time_from="600" time_to="764" type="direct">34-direct-05.txt</file>
