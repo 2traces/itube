@@ -38,7 +38,7 @@ NSInteger const toolbarWidth=320;
 
 	DLog(@"initWithFrame ");
     if (self = [super initWithFrame:frame]) {
-
+        
         // Initialization code
 
     }
@@ -57,6 +57,9 @@ NSInteger const toolbarWidth=320;
 	self.userInteractionEnabled = YES;
     buttonsVisible = NO;
 	DLog(@"ViewDidLoad main View");	
+    MBProgressHUD *aiv = [[MBProgressHUD alloc] initWithView:self];
+    commonActivityIndicator = aiv;
+    [self addSubview:aiv];
 
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     CGRect scrollSize = CGRectMake(0,44,(320),(480-64));
@@ -147,6 +150,7 @@ NSInteger const toolbarWidth=320;
     
     NSTimer *timer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(supervisor) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    [self bringSubviewToFront:commonActivityIndicator];
 }
 
 -(void)setCityMap:(CityMap*)cm
@@ -186,6 +190,7 @@ NSInteger const toolbarWidth=320;
         [containerView setContentOffset:CGPointZero];
     [self insertSubview:mapView.labelView belowSubview:sourceButton];
     self.backgroundColor = mapView.backgroundColor;
+    [self bringSubviewToFront:commonActivityIndicator];
 }
 
 -(void)showButtons:(CGPoint)pos
