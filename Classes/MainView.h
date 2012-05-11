@@ -11,11 +11,14 @@
 #import "MyScrollView.h"
 #import "SelectedPathMap.h"
 #import "CoreLocationController.h"
+#import "MBProgressHUD.h"
 
 extern NSInteger const toolbarHeight;
 extern NSInteger const toolbarWidth;
 
 @class MainViewController;
+
+MBProgressHUD *commonActivityIndicator;
 
 //@interface MainView : UIView <UIScrollViewDelegate, UITextFieldDelegate , CoreLocationControllerDelegate>{
 

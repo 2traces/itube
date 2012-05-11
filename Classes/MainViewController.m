@@ -1219,22 +1219,31 @@
         if (self.pathScrollView) {
             [self changeView:nil];
         }
+        mainView.mapView.stationSelected=false;
 	} else {
-        [mainView findPathFrom:[fromStation name] To:[toStation name] FirstLine:[[[fromStation lines] index] integerValue] LastLine:[[[toStation lines] index] integerValue]];
-        if ([[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] activePath] count]>0) {
-            if (!([[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] activePath] count]==1 && [[[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] activePath] objectAtIndex:0] isKindOfClass:[Transfer class]])) {
-                [stationsView transitToPathView];
-                [self showScrollView];
-            }
-        }
+        commonActivityIndicator.delegate = self;
+        [commonActivityIndicator showWhileExecuting:@selector(performFindingPath) onTarget:self withObject:nil animated:YES];
 	}
     
-	mainView.mapView.stationSelected=false;
-    
-    //    MHelper *helper = [MHelper sharedHelper];
-    //    [helper saveBookmarkFile];
-    //    [helper saveHistoryFile];
-    //    [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)performFindingPath
+{
+    MainView *mainView = (MainView*)self.view;
+    [mainView findPathFrom:[fromStation name] To:[toStation name] FirstLine:[[[fromStation lines] index] integerValue] LastLine:[[[toStation lines] index] integerValue]];
+}
+
+- (void)hudWasHidden
+{
+    MainView *mainView = (MainView*)self.view;
+    tubeAppDelegate * delegate = [[UIApplication sharedApplication] delegate];
+    if ([[[delegate cityMap] activePath] count]>0) {
+        if (!([[[delegate cityMap] activePath] count]==1 && [[[[delegate cityMap] activePath] objectAtIndex:0] isKindOfClass:[Transfer class]])) {
+            [stationsView transitToPathView];
+            [self showScrollView];
+        }
+    }
+    mainView.mapView.stationSelected=false;
 }
 
 -(void)returnFromSelection:(NSArray*)stations

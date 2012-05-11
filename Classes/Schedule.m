@@ -9,6 +9,7 @@
 #import "Schedule.h"
 #import "tubeAppDelegate.h"
 #import "CityMap.h"
+#import "MainView.h"
 
 double TimeParser(const char* ts)
 {
@@ -498,8 +499,9 @@ NSCharacterSet *pCharacterSet = nil;
 
 -(NSArray*)findPathFrom:(NSString *)fromStation to:(NSString*)toStation
 {
-    if([fromStation isEqualToString:toStation]) return [NSArray array];
-    
+    if([fromStation isEqualToString:toStation]) {
+        return [NSArray array];
+    }
     NSTimeInterval now = [self getNowTime];
     if(loadTime >= 0) {
         if(now > loadTime+900 || (now < loadTime && now+24*60*60 > loadTime+900)) {
