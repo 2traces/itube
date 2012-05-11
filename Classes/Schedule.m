@@ -379,7 +379,7 @@ NSCharacterSet *pCharacterSet = nil;
                     if(now >= from-120) to += 60*24;
                     else from -= 60*24;
                 }
-                //if(to >= now && from - now <= 120) {
+                if(to >= now && from - now <= 120) {
                     NSString * file = [NSString stringWithUTF8String:f->text];
                     if(l == nil) {
                         l = [[[SchLine alloc] initWithName:route fastFile:file path:_path stations:stationList] autorelease];
@@ -387,7 +387,7 @@ NSCharacterSet *pCharacterSet = nil;
                     } else {
                         [l appendFastFile:file path:_path stations:stationList];
                     }
-                //}
+                }
                 f = [TBXML nextSiblingNamed:@"file" searchFromElement:f];
             }
             el = [TBXML nextSiblingNamed:@"route" searchFromElement:el];
