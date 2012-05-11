@@ -10,10 +10,11 @@
 #import "SelectingTabBarViewController.h"
 #import "ManagedObjects.h"
 #import "PathDrawView.h"
+#import "MBProgressHUD.h"
 
 @class TopTwoStationsView;
 
-@interface MainViewController : UIViewController <FlipsideViewControllerDelegate,SelectingTabBarProtocol,UIScrollViewDelegate,PathDrawProtocol> {
+@interface MainViewController : UIViewController <FlipsideViewControllerDelegate,SelectingTabBarProtocol,UIScrollViewDelegate,PathDrawProtocol,MBProgressHUDDelegate> {
     int currentSelection;
     MStation *fromStation;
     MStation *toStation;
