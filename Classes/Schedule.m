@@ -344,7 +344,7 @@ NSCharacterSet *pCharacterSet = nil;
     return self;
 }
 
--(BOOL) loadFastSchedule
+-(BOOL) loadFastSchedule:(int)hours
 {
     for (NSString *ln in lines) {
         [[lines valueForKey:ln ] removeAllPoints];
@@ -377,10 +377,10 @@ NSCharacterSet *pCharacterSet = nil;
                 int from = [[TBXML valueOfAttributeNamed:@"time_from" forElement:f] intValue];
                 int to = [[TBXML valueOfAttributeNamed:@"time_to" forElement:f] intValue];
                 if(to < from) {
-                    if(now >= from-120) to += 60*24;
+                    if(now >= from-60*hours) to += 60*24;
                     else from -= 60*24;
                 }
-                if(to >= now && from - now <= 120) {
+                if(to >= now && from - now <= 60*hours) {
                     NSString * file = [NSString stringWithUTF8String:f->text];
                     if(l == nil) {
                         l = [[[SchLine alloc] initWithName:route fastFile:file path:_path stations:stationList] autorelease];
@@ -415,7 +415,7 @@ NSCharacterSet *pCharacterSet = nil;
             [self release];
             return nil;
         }
-        if(![self loadFastSchedule]) {
+        if(![self loadFastSchedule:2]) {
             [self release];
             return nil;
         }
@@ -499,16 +499,31 @@ NSCharacterSet *pCharacterSet = nil;
 
 -(NSArray*)findPathFrom:(NSString *)fromStation to:(NSString*)toStation
 {
+    NSArray *res = nil;
+    NSTimeInterval now = [self getNowTime];
+    int hours = 2;
+    if(loadTime >= 0) {
+        if(now > loadTime+900 || (now < loadTime && now+24*60*60 > loadTime+900)) {
+            // we will try to update the schedule every 15 minutes
+            [self loadFastSchedule:hours];
+        }
+    }
+    do {
+        res = [self internalFindPathFrom:fromStation to:toStation];
+        if(res != nil && [res count] > 0) break;
+        hours += 2;
+        if(hours > 24) break;
+        [self loadFastSchedule:hours];
+    } while (true);
+    return res;
+}
+
+-(NSArray*)internalFindPathFrom:(NSString*)fromStation to:(NSString*)toStation
+{
     if([fromStation isEqualToString:toStation]) {
         return [NSArray array];
     }
     NSTimeInterval now = [self getNowTime];
-    if(loadTime >= 0) {
-        if(now > loadTime+900 || (now < loadTime && now+24*60*60 > loadTime+900)) {
-            // we will try to update the schedule every 15 minutes
-            [self loadFastSchedule];
-        }
-    }
     [self clean];
     SortedArray *propagate = [[SortedArray alloc] init];
     NSMutableDictionary *flag = [NSMutableDictionary dictionary];
@@ -637,6 +652,10 @@ NSCharacterSet *pCharacterSet = nil;
 {
     if(data[0] == point) {
         memmove(data, data+1, (size-1)*sizeof(SchPoint*));
+        size --;
+        return YES;
+    }
+    if(data[size-1] == point) {
         size --;
         return YES;
     }
