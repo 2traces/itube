@@ -292,7 +292,7 @@
 	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
 	CGContextFillRect(context, r);
 
-    CGFloat drawScale = 1024.f / MAX(r.size.width, r.size.height);
+    CGFloat drawScale = 256.f / MAX(r.size.width, r.size.height);
     CGFloat presentScale = 1.f/drawScale;
 #ifdef AGRESSIVE_CACHE
     int cc = currentCacheLayer;

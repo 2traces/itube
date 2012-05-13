@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class RasterLayer;
+
 /***** RPiece *****/
 
 @interface RPiece : NSObject {
@@ -15,6 +17,7 @@
     CGRect rect;
     CGImageRef image;
     int actuality, level, x, y;
+    RasterLayer *layer;
 }
 @property (nonatomic, readonly) BOOL loaded;
 
@@ -27,6 +30,7 @@
 
 @interface RManager : NSObject {
     NSMutableArray *queue;
+    NSMutableArray *secondQueue;
     NSTimer *timer;
     id target;
     SEL selector;
@@ -37,6 +41,7 @@
 
 -(id)initWithTarget:(id)target selector:(SEL)selector andPath:(NSString*)path;
 -(void)load:(RPiece*)piece;
+-(void)secondLoad:(RPiece*)piece;
 
 @end
 
@@ -46,10 +51,12 @@
 @interface RasterLayer : NSObject {
     RManager *loader;
     NSMutableDictionary *levels;
-    int level, piecesCount;
+    int level, MAX_PIECES;
     CGRect allRect;
     id target;
     SEL selector;
+@public
+    int piecesCount;
 }
 
 -(id) initWithRect:(CGRect)rect;
