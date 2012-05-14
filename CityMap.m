@@ -666,6 +666,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize firstStations;
 @synthesize lastStations;
 
+
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"Station '%@' at line '%@'", name, line.name];
+}
+
 -(id)copyWithZone:(NSZone*)zone
 {
     return [self retain];
@@ -1022,6 +1028,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize boundingBox;
 @synthesize active;
 @synthesize isSpline;
+
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"Segment from '%@' to '%@' at line '%@'", start.name, end.name, start.line.name];
+}
 
 -(NSArray*)splinePoints {
     return splinePoints;
@@ -2465,7 +2476,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 [pathStationsList addObject:@"---"]; //временно до обновления модели
                 if(sp1 && schedule) {
                     [pathTimesList addObject:[schedule getPointDate:sp1]];
-                    [pathTimesList addObject:[schedule getPointDate:(SchPoint*)n2]];
+                    //[pathTimesList addObject:[schedule getPointDate:(SchPoint*)n2]];
                 }
             }
         }
@@ -2478,6 +2489,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     activeExtent.size.width *= (1.f + offset * 2.f);
     activeExtent.size.height *= (1.f + offset * 2.f);
 #ifdef DEBUG
+    NSLog(@"%@", activePath);
     NSLog(@"%@", pathTimesList);
 #endif
 }
@@ -2604,3 +2616,15 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 
 @end
+
+CGFloat FindTransferTime(int line1, NSString* station1, int line2, NSString* station2)
+{
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSMutableArray *stations = [[appDelegate.cityMap.mapLines objectAtIndex:line1-1] stations];
+    for (Station *s in stations) {
+        if([s.name isEqualToString:station1] && s.transfer != nil) {
+            return s.transfer.time;
+        }
+    }
+    return 0;
+}

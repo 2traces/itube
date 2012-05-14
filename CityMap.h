@@ -324,3 +324,5 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 
 -(NSMutableArray*) describePath:(NSArray*)pathMap;
 @end
+
+CGFloat FindTransferTime(int line1, NSString* station1, int line2, NSString* station2);

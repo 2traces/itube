@@ -76,6 +76,18 @@ NSCharacterSet *pCharacterSet = nil;
     return NO;
 }
 
+-(BOOL)setWeightFrom:(SchPoint *)p withTransferTime:(double)tt
+{
+    double dw = time - (p.time+tt);
+    while (dw < 0) dw += 24*60*60;
+    if(weight >= p.weight + dw) {
+        weight = p.weight + dw;
+        backPath = p;
+        return YES;
+    }
+    return NO;
+}
+
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"%@ at %d:%d", name, (int)time/3600, ((int)time%3600)/60];
@@ -559,9 +571,10 @@ NSCharacterSet *pCharacterSet = nil;
                     NSArray *sts = [l.catalog valueForKey:np.name];
                     for (SchPoint *tp in sts) {
                         if(tp == np) continue;
-                        if(tp.backPath != nil) [tp setWeightFrom:np];
+                        CGFloat trtime = FindTransferTime(np.line, np.name, tp.line, tp.name);
+                        if(tp.backPath != nil) [tp setWeightFrom:np withTransferTime:trtime];
                         else {
-                            [tp setWeightFrom:np];
+                            [tp setWeightFrom:np withTransferTime:trtime];
                             [propagate addObject:tp];
                         }
                     }
