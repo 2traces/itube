@@ -660,8 +660,8 @@
 -(void)drawPathScrollView
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    //    NSArray *path11 = appDelegate.cityMap.activePath;
     
+    // константы нужные для рисования экрана - они регулируют высоту секторов
     CGFloat transferHeight = 83.0f;
     CGFloat emptyTransferHeight = 30.0f; //without train picture, without exit information
     CGFloat stationHeight = 20.0f;
@@ -672,13 +672,12 @@
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateStyle:NSDateFormatterNoStyle];
     
-    NSMutableArray *stations = [[[NSMutableArray alloc] initWithArray:[self dsGetStationsArray]] autorelease];
-    NSArray *stationsTime = [self dsGetEveryStationTime];
-    NSMutableArray *exits = [self dsGetExitForStations]; 
-    NSArray *transferTime = [self dsGetEveryTransferTime];
-    NSMutableArray *directions = [self dsGetDirectionNames];
-    
-    //    int transferNumb = [stations count]-1;
+    // получаем все стартовые данные для начала рисования
+    NSMutableArray *stations = [[[NSMutableArray alloc] initWithArray:[self dsGetStationsArray]] autorelease];  // список станций - массив массивов 
+    NSArray *stationsTime = [self dsGetEveryStationTime]; // времена прохода станций при условии отсутствия расписания - массив массивов
+    NSMutableArray *exits = [self dsGetExitForStations];  // выходы со станций - массив
+    NSArray *transferTime = [self dsGetEveryTransferTime]; // времена перехода между линиями
+    NSMutableArray *directions = [self dsGetDirectionNames]; // направления движения
     
     int trainType = 0;
     int stationType = 0;
@@ -702,7 +701,6 @@
     
     for (NSMutableArray *tempStations in stations) {
         
-        //        segmentHeight=0;
         trainType=0;
         finalType=0;
         stationType=0;
@@ -769,11 +767,8 @@
     
     // первый и последний лебл даты прибытия станций
     NSString *dateString1;
-    if([appDelegate.cityMap.pathTimesList count] > 0) dateString1 = [formatter stringFromDate:[appDelegate.cityMap.pathTimesList objectAtIndex:0]];
-    else {
-        time= [[[stationsTime objectAtIndex:0] objectAtIndex:0] intValue];
-        dateString1 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
-    }
+    time= [[[stationsTime objectAtIndex:0] objectAtIndex:0] intValue];
+    dateString1 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
     CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
     UILabel *dateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize1.width, lineStart-7.0, dateSize1.width, 25.0)];
     dateLabel1.text = dateString1;
@@ -785,15 +780,12 @@
     
     
     NSString *dateString2;
-    if([appDelegate.cityMap.pathTimesList count] > 1) dateString2 = [formatter stringFromDate:[appDelegate.cityMap.pathTimesList lastObject]];
-    else {
-        time= [[[stationsTime lastObject] lastObject] intValue];
-        
-        if ([self dsIsEndingTransfer]) {
-            time+=[[transferTime lastObject] intValue];
-        }
-        dateString2 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
+    time= [[[stationsTime lastObject] lastObject] intValue];
+    
+    if ([self dsIsEndingTransfer]) {
+        time+=[[transferTime lastObject] intValue];
     }
+    dateString2 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
     CGSize dateSize2 = [dateString2 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
     UILabel *dateLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize2.width, lineStart+viewHeight-7.0, dateSize2.width, 25.0)];
     dateLabel2.text = dateString2;
@@ -888,11 +880,7 @@
             
             time = [[[stationsTime objectAtIndex:j-start] objectAtIndex:jj] intValue];
             
-            NSString *dateString;
-            if([appDelegate.cityMap.pathTimesList count] > stationCounter)
-                dateString = [formatter stringFromDate:[appDelegate.cityMap.pathTimesList objectAtIndex:stationCounter]];
-            else 
-                dateString = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
+            NSString *dateString = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
             
             CGSize dateSize = [dateString sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
             
@@ -971,18 +959,7 @@
         
         if ([stationName1 isEqualToString:stationName2]) {
             
-            NSString *dateString1;
-            if([appDelegate.cityMap.pathTimesList count] > i)  {
-                int real_index=0; 
-                
-                for (int kk=0; kk<=i; kk++) {
-                    real_index += [[stationsTime objectAtIndex:kk] count];
-                }
-                
-                dateString1 = [formatter stringFromDate:[appDelegate.cityMap.pathTimesList objectAtIndex:real_index]];
-            }   else {  
-                dateString1 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time1*60.0]];
-            }
+            NSString *dateString1 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time1*60.0]];
             CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
             UILabel *dateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize1.width, currentY-8.0, dateSize1.width, 25.0)];
             dateLabel1.text = dateString1;
@@ -994,11 +971,7 @@
             
         } else {
             
-            NSString *dateString1;
-            if([appDelegate.cityMap.pathTimesList count] > i)
-                dateString1 = [formatter stringFromDate:[appDelegate.cityMap.pathTimesList objectAtIndex:i]];
-            else 
-                dateString1 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time1*60.0]];
+            NSString *dateString1=[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time1*60.0]];
             CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
             UILabel *dateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize1.width, currentY-16.0, dateSize1.width, 25.0)];
             dateLabel1.text = dateString1;
@@ -1009,11 +982,7 @@
             [dateLabel1 release];
             
             
-            NSString *dateString2;
-            if([appDelegate.cityMap.pathTimesList count] > i+1)
-                dateString2 = [formatter stringFromDate:[appDelegate.cityMap.pathTimesList objectAtIndex:i+1]];
-            else
-                dateString2 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time2*60.0]];
+            NSString *dateString2 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time2*60.0]];
             CGSize dateSize2 = [dateString2 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
             UILabel *dateLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize2.width, currentY+8.0, dateSize2.width, 25.0)];
             dateLabel2.text = dateString2;
