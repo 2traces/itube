@@ -32,6 +32,7 @@
 
 -(id) initWithStation:(NSString*)st andTime:(double)t;
 -(BOOL) setWeightFrom:(SchPoint*)p;
+-(BOOL) setWeightFrom:(SchPoint *)p withTransferTime:(double)tt;
 -(void) setWeightBy:(double)time;
 -(void) clean;
 -(BOOL) greaterThan:(SchPoint*)p;
