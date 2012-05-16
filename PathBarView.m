@@ -9,6 +9,7 @@
 #import "PathBarView.h"
 #import "PathDrawView.h"
 #import "CityMap.h"
+#import "tubeAppDelegate.h"
 
 @implementation PathBarView
 
@@ -98,7 +99,17 @@
 
 -(NSString*)getArrivalTimeFromNow:(NSInteger)time
 {
-    
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    if ([appDelegate.cityMap.pathTimesList count]>1) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setTimeStyle:NSDateFormatterShortStyle];
+        [formatter setDateStyle:NSDateFormatterNoStyle];
+        NSString *arrivalTime = [formatter stringFromDate:[appDelegate.cityMap.pathTimesList lastObject]];
+        [formatter release];
+        return arrivalTime;    
+    }
+
     NSDate *newDate = [NSDate dateWithTimeIntervalSinceNow:time*60.0]; 
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -116,6 +127,14 @@
 
 -(NSInteger)dsGetTravelTime:(NSArray*)thisPath
 {
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if ([appDelegate.cityMap.pathTimesList count]>1) {
+        NSTimeInterval timeInterval = [[appDelegate.cityMap.pathTimesList lastObject] timeIntervalSinceNow];
+        NSInteger transferTimeS = ceil((float)timeInterval/60.0);
+        return transferTimeS;    
+    }
+
     NSArray *path = thisPath;
     int objectNum = [path count];
     
