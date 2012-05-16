@@ -119,7 +119,7 @@
 118	Horner Rennbahn
 119	Rauhes Haus
 120	Hammer Kirche
-121	BurgStraße
+121	Burgstraße
 122	Hauptbahnhof
 123	Gänsemarkt (Oper)
 124	Messehallen

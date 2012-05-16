@@ -92,6 +92,16 @@
 
 -(NSString*)getArrivalTimeFromNow:(NSInteger)time
 {
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    if ([appDelegate.cityMap.pathTimesList count]>1) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setTimeStyle:NSDateFormatterShortStyle];
+        [formatter setDateStyle:NSDateFormatterNoStyle];
+        NSString *arrivalTime = [formatter stringFromDate:[appDelegate.cityMap.pathTimesList lastObject]];
+        [formatter release];
+        return arrivalTime;    
+    }
     
     NSDate *newDate = [NSDate dateWithTimeIntervalSinceNow:time*60.0]; 
     
@@ -379,6 +389,70 @@
     
 }
 
+-(NSMutableArray*)dsGetEveryStationTimeScheduled
+{
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSArray *path = appDelegate.cityMap.activePath;
+    int objectNum = [path count];
+    
+    NSArray *times = appDelegate.cityMap.pathTimesList;
+    
+    NSMutableArray *stationsArray = [NSMutableArray array];
+
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateStyle:NSDateFormatterNoStyle];
+
+    int currentIndexLine = -1;
+    
+    int a=0;
+    
+    NSMutableArray *tempArray;
+    
+    for (int i=0; i<objectNum; i++) {
+        if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
+            Segment *segment = (Segment*)[path objectAtIndex:i];
+            if (currentIndexLine==[[[segment start] line] index]) {
+                [tempArray addObject:[formatter stringFromDate:[times objectAtIndex:a]]];
+                a++;
+            } else {
+                if (currentIndexLine!=-1) {
+                    [stationsArray addObject:tempArray]; 
+                }
+                tempArray = [NSMutableArray array];
+                [tempArray addObject:[formatter stringFromDate:[times objectAtIndex:a]]];
+                a++;
+                [tempArray addObject:[formatter stringFromDate:[times objectAtIndex:a]]];
+                a++;
+                currentIndexLine=[[[segment start] line] index];
+            }
+        }
+        if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]]) {
+            
+            if (i==0) {
+                tempArray = [NSMutableArray array];
+                [tempArray addObject:[formatter stringFromDate:[times objectAtIndex:a]]];
+                currentIndexLine=-2;
+                a++;
+            }
+            
+            if (i==objectNum-1) {
+                [stationsArray addObject:tempArray];    
+                tempArray = [NSMutableArray array];
+                [tempArray addObject:[formatter stringFromDate:[times objectAtIndex:a]]];
+                a++;
+            }
+        }
+    }
+    
+    [stationsArray addObject:tempArray];  
+    
+    [formatter release];
+    
+    return stationsArray;
+}
+
 -(NSMutableArray*)dsGetEveryStationTime
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -387,6 +461,11 @@
     
     NSMutableArray *stationsArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateStyle:NSDateFormatterNoStyle];
+    
     int currentIndexLine = -1;
     
     int time = 0;
@@ -394,47 +473,47 @@
     NSMutableArray *tempArray;
     
     for (int i=0; i<objectNum; i++) {
-        
         if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
-            
             Segment *segment = (Segment*)[path objectAtIndex:i];
-            
             if (currentIndexLine==[[[segment start] line] index]) {
-                
                 time += [segment driving];
-                
-                [tempArray addObject:[NSNumber numberWithInt:time]];
-                
+                [tempArray addObject:[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]]];
             } else {
-                
                 if (currentIndexLine!=-1) {
-                    
                     [stationsArray addObject:tempArray];    
-                    
                 }
-                
-                tempArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
-                
-                [tempArray addObject:[NSNumber numberWithInt:time]];
-                
+                tempArray = [NSMutableArray array];
+                [tempArray addObject:[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]]];
                 time += [segment driving];
-                
-                [tempArray addObject:[NSNumber numberWithInt:time]];
-                
+                [tempArray addObject:[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]]];
                 currentIndexLine=[[[segment start] line] index];
             }
         }
-        
         if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]]) {
-            time+=[(Transfer*)[path objectAtIndex:i] time];  
+            
+            if (i==0) {
+                tempArray = [NSMutableArray array];
+                [tempArray addObject:[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]]];
+                currentIndexLine=-2;
+            }
+            
+            time+=[(Transfer*)[path objectAtIndex:i] time];
+
+            if (i==objectNum-1) {
+                [stationsArray addObject:tempArray];    
+                tempArray = [NSMutableArray array];
+                [tempArray addObject:[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]]];
+            }
         }
-        
     }
+
+    [stationsArray addObject:tempArray];  
     
-    [stationsArray addObject:tempArray];    
+    [formatter release];
     
     return stationsArray;
 }
+
 
 -(NSMutableArray*)dsGetEveryTransferTime
 {
@@ -660,25 +739,39 @@
 -(void)drawPathScrollView
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    //    NSArray *path11 = appDelegate.cityMap.activePath;
     
+    // константы нужные для рисования экрана - они регулируют высоту секторов
     CGFloat transferHeight = 83.0f;
     CGFloat emptyTransferHeight = 30.0f; //without train picture, without exit information
     CGFloat stationHeight = 20.0f;
     CGFloat finalHeight = 60.0f;
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    // получаем все стартовые данные для начала рисования
+    NSMutableArray *stations = [[[NSMutableArray alloc] initWithArray:[self dsGetStationsArray]] autorelease];  // список станций - массив массивов 
+    NSMutableArray *exits = [self dsGetExitForStations];  // выходы со станций - массив
+    NSMutableArray *directions = [self dsGetDirectionNames]; // направления движения
+
+    NSArray *stationsTime;
+
+    if ([appDelegate.cityMap.pathTimesList count] > 0) {
+        stationsTime = [self dsGetEveryStationTimeScheduled]; // времена прохода станций при условии наличия расписания - массив массивов
+    } else {
+        stationsTime = [self dsGetEveryStationTime]; // времена прохода станций при условии отсутствия расписания - массив массивов
+    }
     
-    [formatter setTimeStyle:NSDateFormatterShortStyle];
-    [formatter setDateStyle:NSDateFormatterNoStyle];
+    // ====
     
-    NSMutableArray *stations = [[[NSMutableArray alloc] initWithArray:[self dsGetStationsArray]] autorelease];
-    NSArray *stationsTime = [self dsGetEveryStationTime];
-    NSMutableArray *exits = [self dsGetExitForStations]; 
-    NSArray *transferTime = [self dsGetEveryTransferTime];
-    NSMutableArray *directions = [self dsGetDirectionNames];
+    NSMutableArray *timeArrayNew = [self dsGetEveryStationTimeScheduled];
     
-    //    int transferNumb = [stations count]-1;
+    for (int a1=0;a1<[stations count];a1++) {
+        NSArray *s1 = [stations objectAtIndex:a1];
+        NSArray *t1 = [timeArrayNew objectAtIndex:a1];
+        for (int a2=0; a2<[s1 count]; a2++) {
+             NSLog(@"Station - %@ at %@",[s1 objectAtIndex:a2],[t1 objectAtIndex:a2]);
+        }
+    }
+    
+    // ====
     
     int trainType = 0;
     int stationType = 0;
@@ -702,7 +795,6 @@
     
     for (NSMutableArray *tempStations in stations) {
         
-        //        segmentHeight=0;
         trainType=0;
         finalType=0;
         stationType=0;
@@ -743,12 +835,9 @@
     self.pathScrollView.contentSize=CGSizeMake(320.0f, viewHeight+100.0);
     self.pathScrollView.bounces=YES;
     self.pathScrollView.delegate = self;
-    
     self.pathScrollView.backgroundColor = [UIColor whiteColor];
     
     int segmentsCount = [stations count];
-    
-    int time=0;
     
     // первый и последний лейбл станции
     UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(40.0, lineStart-5.0, 235.0, 22.0)];
@@ -768,12 +857,7 @@
     // -------
     
     // первый и последний лебл даты прибытия станций
-    NSString *dateString1;
-    if([appDelegate.cityMap.pathTimesList count] > 0) dateString1 = [formatter stringFromDate:[appDelegate.cityMap.pathTimesList objectAtIndex:0]];
-    else {
-        time= [[[stationsTime objectAtIndex:0] objectAtIndex:0] intValue];
-        dateString1 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
-    }
+    NSString *dateString1 = [[stationsTime objectAtIndex:0] objectAtIndex:0]; 
     CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
     UILabel *dateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize1.width, lineStart-7.0, dateSize1.width, 25.0)];
     dateLabel1.text = dateString1;
@@ -784,16 +868,7 @@
     [dateLabel1 release];
     
     
-    NSString *dateString2;
-    if([appDelegate.cityMap.pathTimesList count] > 1) dateString2 = [formatter stringFromDate:[appDelegate.cityMap.pathTimesList lastObject]];
-    else {
-        time= [[[stationsTime lastObject] lastObject] intValue];
-        
-        if ([self dsIsEndingTransfer]) {
-            time+=[[transferTime lastObject] intValue];
-        }
-        dateString2 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
-    }
+    NSString *dateString2 = [[stationsTime lastObject] lastObject];
     CGSize dateSize2 = [dateString2 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
     UILabel *dateLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize2.width, lineStart+viewHeight-7.0, dateSize2.width, 25.0)];
     dateLabel2.text = dateString2;
@@ -807,8 +882,6 @@
     
     int endCount=segmentsCount;
     int start = 0;
-    
-    int stationCounter = 1;
     
     for (int j=start;j<endCount;j++) {
         
@@ -886,13 +959,7 @@
             
             // -------
             
-            time = [[[stationsTime objectAtIndex:j-start] objectAtIndex:jj] intValue];
-            
-            NSString *dateString;
-            if([appDelegate.cityMap.pathTimesList count] > stationCounter)
-                dateString = [formatter stringFromDate:[appDelegate.cityMap.pathTimesList objectAtIndex:stationCounter]];
-            else 
-                dateString = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]];
+            NSString *dateString = [[stationsTime objectAtIndex:j-start] objectAtIndex:jj];
             
             CGSize dateSize = [dateString sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
             
@@ -909,14 +976,20 @@
             // -------
             
             currentY+=stationHeight;
-            
-            stationCounter ++;
         }
-        
     }
     
     NSArray *timeArray = [self dsGetLinesTimeArray];
+    NSMutableArray *fixedStationsTime = [NSMutableArray arrayWithArray:stationsTime];
     
+    if ([self dsIsStartingTransfer]) {
+        [fixedStationsTime removeObjectAtIndex:0];
+    }
+    
+    if ([self dsIsEndingTransfer]) {
+        [fixedStationsTime removeLastObject];
+    }
+
     for (int i=0;i<[timeArray count]-1;i++)
     {
         currentY=0;
@@ -934,9 +1007,6 @@
         
         NSString *stationName1 = [[stations objectAtIndex:i] lastObject];            
         NSString *stationName2 = [[stations objectAtIndex:i+1] objectAtIndex:0];
-        
-        int time1 = [[[stationsTime objectAtIndex:i] lastObject] intValue];            
-        int time2 = time1+[[transferTime objectAtIndex:i] intValue];
         
         if ([stationName1 isEqualToString:stationName2]) {
             
@@ -966,23 +1036,9 @@
             
         }
         
-        // -------
-        
-        
         if ([stationName1 isEqualToString:stationName2]) {
             
-            NSString *dateString1;
-            if([appDelegate.cityMap.pathTimesList count] > i)  {
-                int real_index=0; 
-                
-                for (int kk=0; kk<=i; kk++) {
-                    real_index += [[stationsTime objectAtIndex:kk] count];
-                }
-                
-                dateString1 = [formatter stringFromDate:[appDelegate.cityMap.pathTimesList objectAtIndex:real_index]];
-            }   else {  
-                dateString1 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time1*60.0]];
-            }
+            NSString *dateString1 = [[stationsTime objectAtIndex:i] lastObject];
             CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
             UILabel *dateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize1.width, currentY-8.0, dateSize1.width, 25.0)];
             dateLabel1.text = dateString1;
@@ -994,11 +1050,7 @@
             
         } else {
             
-            NSString *dateString1;
-            if([appDelegate.cityMap.pathTimesList count] > i)
-                dateString1 = [formatter stringFromDate:[appDelegate.cityMap.pathTimesList objectAtIndex:i]];
-            else 
-                dateString1 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time1*60.0]];
+            NSString *dateString1=[[stationsTime objectAtIndex:i] lastObject];
             CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
             UILabel *dateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize1.width, currentY-16.0, dateSize1.width, 25.0)];
             dateLabel1.text = dateString1;
@@ -1009,11 +1061,7 @@
             [dateLabel1 release];
             
             
-            NSString *dateString2;
-            if([appDelegate.cityMap.pathTimesList count] > i+1)
-                dateString2 = [formatter stringFromDate:[appDelegate.cityMap.pathTimesList objectAtIndex:i+1]];
-            else
-                dateString2 = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time2*60.0]];
+            NSString *dateString2 = [[stationsTime objectAtIndex:i+1] objectAtIndex:0];
             CGSize dateSize2 = [dateString2 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
             UILabel *dateLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize2.width, currentY+8.0, dateSize2.width, 25.0)];
             dateLabel2.text = dateString2;
@@ -1032,8 +1080,6 @@
     drawView.delegate=self;
     [self.pathScrollView addSubview:drawView];
     [drawView release];
-    
-    [formatter release];
 }
 
 -(IBAction)changeView:(id)sender
