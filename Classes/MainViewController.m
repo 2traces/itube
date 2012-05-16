@@ -92,6 +92,16 @@
 
 -(NSString*)getArrivalTimeFromNow:(NSInteger)time
 {
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    if ([appDelegate.cityMap.pathTimesList count]>1) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setTimeStyle:NSDateFormatterShortStyle];
+        [formatter setDateStyle:NSDateFormatterNoStyle];
+        NSString *arrivalTime = [formatter stringFromDate:[appDelegate.cityMap.pathTimesList lastObject]];
+        [formatter release];
+        return arrivalTime;    
+    }
     
     NSDate *newDate = [NSDate dateWithTimeIntervalSinceNow:time*60.0]; 
     
@@ -379,64 +389,71 @@
     
 }
 
--(NSMutableArray*)dsGetEveryStationTime
+-(NSMutableArray*)dsGetEveryStationTimeScheduled
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSArray *path = appDelegate.cityMap.activePath;
     int objectNum = [path count];
     
-    NSMutableArray *stationsArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
+    NSArray *times = appDelegate.cityMap.pathTimesList;
     
+    NSMutableArray *stationsArray = [NSMutableArray array];
+
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateStyle:NSDateFormatterNoStyle];
+
     int currentIndexLine = -1;
     
-    int time = 0;
+    int a=0;
     
     NSMutableArray *tempArray;
     
     for (int i=0; i<objectNum; i++) {
-        
         if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
-            
             Segment *segment = (Segment*)[path objectAtIndex:i];
-            
             if (currentIndexLine==[[[segment start] line] index]) {
-                
-                time += [segment driving];
-                
-                [tempArray addObject:[NSNumber numberWithInt:time]];
-                
+                [tempArray addObject:[formatter stringFromDate:[times objectAtIndex:a]]];
+                a++;
             } else {
-                
                 if (currentIndexLine!=-1) {
-                    
-                    [stationsArray addObject:tempArray];    
-                    
+                    [stationsArray addObject:tempArray]; 
                 }
-                
-                tempArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
-                
-                [tempArray addObject:[NSNumber numberWithInt:time]];
-                
-                time += [segment driving];
-                
-                [tempArray addObject:[NSNumber numberWithInt:time]];
-                
+                tempArray = [NSMutableArray array];
+                [tempArray addObject:[formatter stringFromDate:[times objectAtIndex:a]]];
+                a++;
+                [tempArray addObject:[formatter stringFromDate:[times objectAtIndex:a]]];
+                a++;
                 currentIndexLine=[[[segment start] line] index];
             }
         }
-        
         if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]]) {
-            time+=[(Transfer*)[path objectAtIndex:i] time];  
+            
+            if (i==0) {
+                tempArray = [NSMutableArray array];
+                [tempArray addObject:[formatter stringFromDate:[times objectAtIndex:a]]];
+                currentIndexLine=-2;
+                a++;
+            }
+            
+            if (i==objectNum-1) {
+                [stationsArray addObject:tempArray];    
+                tempArray = [NSMutableArray array];
+                [tempArray addObject:[formatter stringFromDate:[times objectAtIndex:a]]];
+                a++;
+            }
         }
-        
     }
     
-    [stationsArray addObject:tempArray];    
+    [stationsArray addObject:tempArray];  
+    
+    [formatter release];
     
     return stationsArray;
 }
 
--(NSMutableArray*)dsGetEveryStationTime2
+-(NSMutableArray*)dsGetEveryStationTime
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSArray *path = appDelegate.cityMap.activePath;
@@ -490,7 +507,10 @@
         }
     }
 
-    [stationsArray addObject:tempArray];    
+    [stationsArray addObject:tempArray];  
+    
+    [formatter release];
+    
     return stationsArray;
 }
 
@@ -726,21 +746,22 @@
     CGFloat stationHeight = 20.0f;
     CGFloat finalHeight = 60.0f;
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    
-    [formatter setTimeStyle:NSDateFormatterShortStyle];
-    [formatter setDateStyle:NSDateFormatterNoStyle];
-    
     // получаем все стартовые данные для начала рисования
     NSMutableArray *stations = [[[NSMutableArray alloc] initWithArray:[self dsGetStationsArray]] autorelease];  // список станций - массив массивов 
-    NSArray *stationsTime = [self dsGetEveryStationTime2]; // времена прохода станций при условии отсутствия расписания - массив массивов
     NSMutableArray *exits = [self dsGetExitForStations];  // выходы со станций - массив
-//    NSArray *transferTime = [self dsGetEveryTransferTime]; // времена перехода между линиями
     NSMutableArray *directions = [self dsGetDirectionNames]; // направления движения
+
+    NSArray *stationsTime;
+
+    if ([appDelegate.cityMap.pathTimesList count] > 0) {
+        stationsTime = [self dsGetEveryStationTimeScheduled]; // времена прохода станций при условии наличия расписания - массив массивов
+    } else {
+        stationsTime = [self dsGetEveryStationTime]; // времена прохода станций при условии отсутствия расписания - массив массивов
+    }
     
     // ====
     
-    NSMutableArray *timeArrayNew = [self dsGetEveryStationTime2];
+    NSMutableArray *timeArrayNew = [self dsGetEveryStationTimeScheduled];
     
     for (int a1=0;a1<[stations count];a1++) {
         for (int a2=0; a2<[[stations objectAtIndex:a1] count]; a2++) {
@@ -1057,8 +1078,6 @@
     drawView.delegate=self;
     [self.pathScrollView addSubview:drawView];
     [drawView release];
-    
-    [formatter release];
 }
 
 -(IBAction)changeView:(id)sender
