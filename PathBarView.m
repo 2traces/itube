@@ -132,6 +132,7 @@
     if ([appDelegate.cityMap.pathTimesList count]>1) {
         NSTimeInterval timeInterval = [[appDelegate.cityMap.pathTimesList lastObject] timeIntervalSinceNow];
         NSInteger transferTimeS = ceil((float)timeInterval/60.0);
+        if(transferTimeS < 0) transferTimeS += 60*24;
         return transferTimeS;    
     }
 
