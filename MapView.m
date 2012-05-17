@@ -356,6 +356,9 @@
     } else {
         [foundPaths release];
         foundPaths = nil;
+        // path not found
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"NoPathHeader", @"") message:NSLocalizedString(@"NoPathText", @"") delegate:nil cancelButtonTitle:NSLocalizedString(@"NoPathButton", @"") otherButtonTitles:nil];
+        [alert show];
     }
 }
 
