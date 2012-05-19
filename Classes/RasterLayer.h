@@ -55,12 +55,14 @@
     CGRect allRect;
     id target;
     SEL selector;
+    NSLock *lock;
 @public
     int piecesCount;
 }
 
 -(id) initWithRect:(CGRect)rect;
 -(BOOL) draw:(CGContextRef)context inRect:(CGRect)rect withScale:(CGFloat)scale;
+-(BOOL) checkLevel:(CGFloat)scale;
 -(void) freeSomeMemory;
 -(void) setSignal:(id)target selector:(SEL)selector;
 

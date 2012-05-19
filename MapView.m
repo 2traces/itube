@@ -32,6 +32,9 @@
 @synthesize activeLayer;
 @synthesize foundPaths;
 
+#define SIZE 5120
+#define SCALE 20
+
 + (Class)layerClass
 {
     return [MyTiledLayer class];
@@ -44,7 +47,7 @@
 }
 
 - (CGSize) size {
-    return CGSizeMake(cityMap.w, cityMap.h);
+    return CGSizeMake(SIZE, SIZE);
 }
 
 -(UIView*) labelView {
@@ -53,13 +56,13 @@
 
 -(UIColor*) backgroundColor
 {
-    return cityMap.backgroundColor;
+    return [UIColor whiteColor];
 }
 
 -(void)redraw
 {
     NSLog(@"redraw map");
-    [self.layer invalidateContents];
+    //[self.layer invalidateContents];
     [self setNeedsDisplay];
 }
 
@@ -80,7 +83,7 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-	Station *st = [cityMap findNearestStationTo:CGPointMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude)];
+	/*Station *st = [cityMap findNearestStationTo:CGPointMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude)];
 	
 	if (![st.name isEqualToString:nearestStationName])
 	{
@@ -88,7 +91,7 @@
         selectedStationLayer.position = st.pos;
         
         [self setNeedsDisplay];
-	};
+	};*/
 }
 
 -(void) makePreview {
@@ -124,17 +127,17 @@
     if (self = [super initWithFrame:frame]) {
         // Initialization code
         visualFrame = frame;
-        [self.layer setLevelsOfDetail:5];
-        [self.layer setLevelsOfDetailBias:2];
+        [self.layer setLevelsOfDetail:10];
+        [self.layer setLevelsOfDetailBias:5];
         for(int i=0; i<MAXCACHE; i++) cacheLayer[i] = nil;
 
 		DLog(@" InitMapView	initWithFrame; ");
 		
 		//близжайщней станции пока нет
 		nearestStationName = @"";
-        MinScale = 0.01f;
-        MaxScale = 50.f;
-        Scale = 2.f;
+        MinScale = 0.05f;
+        MaxScale = 100.f;
+        Scale = 0.05f;
         selectedStationName = [[NSMutableString alloc] init];
 		
 		int scale = 1;
@@ -199,11 +202,12 @@
 
 -(void)setCityMap:(CityMap *)_cityMap
 {
-    [cityMap release];
+    self.frame = CGRectMake(0, 0, SIZE, SIZE);
+    /*[cityMap release];
     cityMap = [_cityMap retain];
     self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
-    //MinScale = MIN( (float)visualFrame.size.width / cityMap.size.width, (float)visualFrame.size.height / cityMap.size.height);
-    //MaxScale = cityMap.maxScale;
+    MinScale = MIN( (float)visualFrame.size.width / cityMap.size.width, (float)visualFrame.size.height / cityMap.size.height);
+    MaxScale = cityMap.maxScale;
     Scale = MinScale * 2.f;
     selectedStationLayer.frame = CGRectMake(0, 0, cityMap.gpsCircleScale*nearestStationImage.size.width, cityMap.gpsCircleScale*nearestStationImage.size.height);
 
@@ -230,6 +234,7 @@
         vectorLayer2 = nil;
     }
     [self makePreview];
+     */
     if(rasterLayer == nil) {
         rasterLayer = [[RasterLayer alloc] initWithRect:self.frame];
         [rasterLayer setSignal:self selector:@selector(redraw)];
@@ -275,7 +280,7 @@
     [vectorLayer2 release];
     [mainLabel release];
     [labelBg release];
-	[cityMap release];
+	//[cityMap release];
 	[nearestStationImage release];
     for(int i=0; i<MAXCACHE; i++) CGLayerRelease(cacheLayer[i]);
     [midground1 release];
@@ -292,9 +297,9 @@
 	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
 	CGContextFillRect(context, r);
 
+#ifdef AGRESSIVE_CACHE
     CGFloat drawScale = 256.f / MAX(r.size.width, r.size.height);
     CGFloat presentScale = 1.f/drawScale;
-#ifdef AGRESSIVE_CACHE
     int cc = currentCacheLayer;
     currentCacheLayer++;
     if(currentCacheLayer >= MAXCACHE) currentCacheLayer = 0;
@@ -318,7 +323,7 @@
     if(vectorLayer2) [vectorLayer2 draw:context inRect:r];
     [cityMap drawStations:ctx inRect:r]; 
      */
-    [rasterLayer draw:context inRect:r withScale:Scale*4];
+    [rasterLayer draw:context inRect:r withScale:Scale*SCALE];
 
 #ifdef AGRESSIVE_CACHE
     CGContextTranslateCTM(context, r.origin.x, r.origin.y);
@@ -355,7 +360,7 @@
 
 -(void)selectStationAt:(CGPoint*)currentPosition
 {
-    selectedStationLine = [cityMap checkPoint:currentPosition Station:selectedStationName];
+    /*selectedStationLine = [cityMap checkPoint:currentPosition Station:selectedStationName];
     if(selectedStationLine > 0) {
 		stationSelected=true;
 		mainLabel.text = selectedStationName;
@@ -364,12 +369,12 @@
         lineLabel.text = l.shortName;
     } else {
         stationSelected=false;
-    }
+    }*/
 }
 
 -(void) findPathFrom :(NSString*) fSt To:(NSString*) sSt FirstLine:(NSInteger) fStl LastLine:(NSInteger)sStl {
 
-    [foundPaths release];
+    /*[foundPaths release];
     foundPaths = [[cityMap calcPath:fSt :sSt :fStl :sStl] retain];
     if([foundPaths count] > 0) {
         [self selectPath:0];
@@ -377,11 +382,12 @@
         [foundPaths release];
         foundPaths = nil;
     }
+     */
 }
 
 -(void) clearPath
 {
-    [foundPaths release];
+    /*[foundPaths release];
     foundPaths = nil;
     if([cityMap.activePath count] > 0) {
         [cityMap resetPath];
@@ -392,6 +398,7 @@
         midground1.hidden = YES;
         midground2.hidden = YES;
     }
+     */
 }
 
 -(int) pathsCount
@@ -402,7 +409,7 @@
 
 -(void) selectPath:(int)num
 {
-    NSArray *keys = [[foundPaths allKeys] sortedArrayUsingSelector:@selector(compare:)];
+    /*NSArray *keys = [[foundPaths allKeys] sortedArrayUsingSelector:@selector(compare:)];
     NSArray *pathArray = [foundPaths objectForKey:[keys objectAtIndex:num]];
     if(pathArray == nil || [pathArray count] == 0) return;
 
@@ -418,7 +425,7 @@
     midground2.hidden = NO;
     midground2.alpha = 1.f;
     [UIView animateWithDuration:0.5f animations:^(void) { activeLayer.alpha = 1.f; midground1.alpha = 1.f; midground2.alpha = 0.f; } completion:^(BOOL finish) { midground2.hidden = YES; }];
-
+     */
 }
 
 #pragma mark UIScrollViewDelegate methods
@@ -431,7 +438,8 @@
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
 {
     Scale = scale;
-    [self redraw];
+    if([rasterLayer checkLevel:Scale*SCALE])
+        [self redraw];
 }
 
 - (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate

@@ -32,13 +32,13 @@ void uncaughtExceptionHandler(NSException *exception) {
 	self.mainViewController = aController;
 	[aController release];
     
-    CityMap *cm = [[CityMap alloc] init];
+    /*CityMap *cm = [[CityMap alloc] init];
     NSString *mapName =[self nameCurrentMap];
     [cm loadMap:mapName];
    
     self.cityMap = cm;
     [cm release];
-    
+    */
     self.cityName= [self nameCurrentCity];
     
     // Override point for customization after application launch.

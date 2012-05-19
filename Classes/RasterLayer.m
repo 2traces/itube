@@ -64,14 +64,14 @@
 -(BOOL)loadPiece:(RPiece*)p
 {
     if(p->image == nil) {
-        NSString *pt = [NSString stringWithFormat:@"%@/%d/%d/%d.png", path, p->level, p->x, p->y];
+        NSString *pt = [NSString stringWithFormat:@"%@/%d/%d/%d.jpg", path, p->level, p->x, p->y];
         const char* fileName = [pt UTF8String];
         CGDataProviderRef dataProvider = CGDataProviderCreateWithFilename(fileName);
         if(dataProvider == nil) {
             //NSLog(@"file not found %@", pt);
             p->level = -1;
         } else {
-            p->image = CGImageCreateWithPNGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
+            p->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
             p->layer->piecesCount ++;
             return YES;
         }
@@ -239,8 +239,9 @@
         allRect = rect;
         NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"raster" ofType:nil];
         levels = [[NSMutableDictionary alloc] init];
+        lock = [[NSLock alloc] init];
         level = 0;
-        MAX_PIECES = 30;
+        MAX_PIECES = 60;
         loader = [[RManager alloc] initWithTarget:self selector:@selector(complete) andPath:rasterPath];
         piecesCount = 0;
     }
@@ -269,8 +270,19 @@
     }
 }
 
+-(BOOL)checkLevel:(CGFloat)scale
+{
+    int _sc = 1, _lvl = 0;
+    while (scale > _sc) {
+        _sc *= 2;
+        _lvl ++;
+    }
+    return  level != _lvl;
+}
+
 -(BOOL)draw:(CGContextRef)context inRect:(CGRect)rect withScale:(CGFloat)scale
 {
+    [lock lock];
     for (id key in levels) {
         NSMutableArray *l = [levels objectForKey:key];
         if([l count] > 0) for (RPiece *p in l) {
@@ -293,7 +305,7 @@
     [loader.lock lock];
     BOOL allLoaded = YES;
     int size = 1 << level;
-    CGFloat dx = allRect.size.width / size, dy = allRect.size.height / size;
+    double dx = (double)allRect.size.width / size, dy = (double)allRect.size.height / size;
     int x1 = rect.origin.x / dx, y1 = rect.origin.y / dy;
     int x2 = (rect.origin.x + rect.size.width) / dx, y2 = (rect.origin.y + rect.size.height) / dy;
     for(int X=x1; X<=x2; X++) {
@@ -308,7 +320,7 @@
             }
             if(!found) {
                 // loading
-                CGRect r = CGRectMake(x1 + dx*X, y1 + dy*Y, dx, dy);
+                CGRect r = CGRectMake(dx*X, dy*Y, dx, dy);
                 RPiece *p = [[RPiece alloc] initWithRect:r level:level x:X y:Y];
                 p->layer = self;
                 [lev addObject:p];
@@ -342,7 +354,7 @@
             }
             if(!found) {
                 // loading
-                CGRect r = CGRectMake(x1 + dx*X, y1 + dy*Y, dx, dy);
+                CGRect r = CGRectMake(dx*X, dy*Y, dx, dy);
                 RPiece *p = [[RPiece alloc] initWithRect:r level:level+1 x:X y:Y];
                 p->layer = self;
                 [lev addObject:p];
@@ -351,10 +363,14 @@
             }
         }
     }
-    
     [loader.lock unlock];
+    [lock unlock];
     if(allLoaded) NSLog(@"raster drawing complete at level %d, %d pieces", level, piecesCount);
     else NSLog(@"raster drawing not complete at level %d, %d pieces", level, piecesCount);
+
+    if(allLoaded) while(piecesCount > MAX_PIECES) {
+        [self freeSomeMemory];
+    }
     return allLoaded;
 }
 
@@ -364,10 +380,10 @@
     selector = _selector;
 }
 
-
 -(void) freeSomeMemory
 {
     // remove one piece
+    [lock lock];
     id farthest = nil;
     int length = -1;
     for (id key in levels) {
@@ -395,6 +411,7 @@
             [levels removeObjectForKey:farthest];
         }
     }
+    [lock unlock];
 }
 
 -(void)dealloc
