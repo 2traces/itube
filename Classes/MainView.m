@@ -92,7 +92,12 @@ NSInteger const toolbarWidth=320;
     [containerView addSubview:mapView.midground2];
     
 	//TODO
-	[containerView setContentOffset:CGPointMake(mapView.size.width * 0.25f * mapView.Scale, mapView.size.height * 0.25f * mapView.Scale ) animated:NO];
+    CGPoint pos;
+    int level;
+    [appDelegate getDefaultExtent:&pos level:&level];
+    CGFloat scale = mapView.MinScale * (1 << level);
+    [containerView setZoomScale:scale animated:YES];
+	[containerView setContentOffset:CGPointMake(mapView.size.width * pos.x * scale, mapView.size.height * pos.y * scale ) animated:YES];
 	
 	stationNameView = [[UIView alloc] initWithFrame:self.frame];
 	[stationNameView setOpaque:YES];
