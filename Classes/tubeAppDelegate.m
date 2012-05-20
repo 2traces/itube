@@ -26,7 +26,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
-    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 	MainViewController *aController = [[MainViewController alloc] init];
 	self.mainViewController = aController;
@@ -175,6 +175,14 @@ void uncaughtExceptionHandler(NSException *exception) {
     [dict release];
     
     return cityFileName;
+}
+
+-(void)getDefaultExtent:(CGPoint*)pos level:(int*)level
+{
+    // TODO loading
+    pos->x = 0.26f;
+    pos->y = 0.41f;
+    *level = 5;
 }
 
 - (void)dealloc {

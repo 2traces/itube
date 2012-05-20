@@ -19,9 +19,9 @@
 }
 
 // выключаем фейд рисуемых участков, чем экономим 1/4 секунды на участок
-+(CFTimeInterval)fadeDuration
+/*+(CFTimeInterval)fadeDuration
 {
-    return 0.001;
+    return 0.5;
 }
-
+*/
 @end
