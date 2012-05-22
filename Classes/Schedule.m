@@ -68,7 +68,7 @@ NSCharacterSet *pCharacterSet = nil;
 {
     double dw = time - p.time;
     while (dw < 0) dw += 24*60*60;
-    if(weight >= p.weight + dw) {
+    if(weight > p.weight + dw) {
         weight = p.weight + dw;
         backPath = p;
         return YES;
@@ -80,7 +80,7 @@ NSCharacterSet *pCharacterSet = nil;
 {
     double dw = time - (p.time+tt);
     while (dw < 0) dw += 24*60*60;
-    if(weight >= p.weight + dw) {
+    if(weight > p.weight + dw) {
         weight = p.weight + dw;
         backPath = p;
         return YES;
@@ -477,6 +477,7 @@ NSCharacterSet *pCharacterSet = nil;
 
 -(NSTimeInterval)getNowTime
 {
+    return 43200;
     NSDateComponents *comp = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate date]];
     NSDate *midnight = [cal dateFromComponents:comp];
     return [[NSDate date] timeIntervalSinceDate:midnight];
