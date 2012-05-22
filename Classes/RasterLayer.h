@@ -10,6 +10,20 @@
 
 @class RasterLayer;
 
+/***** RObject *****/
+
+@interface RObject : NSObject {
+@public
+    CGColorRef color;
+    CGMutablePathRef path;
+    int number;
+    CGFloat lineWidth;
+}
+-(id)initWithString:(NSString*)str rect:(CGRect)rect;
+-(void)draw:(CGContextRef)context;
+
+@end
+
 /***** RPiece *****/
 
 @interface RPiece : NSObject {
@@ -18,6 +32,7 @@
     CGImageRef image;
     int actuality, level, x, y;
     RasterLayer *layer;
+    NSMutableArray *objects;
 }
 @property (nonatomic, readonly) BOOL loaded;
 

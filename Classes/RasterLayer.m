@@ -8,6 +8,49 @@
 
 #import "RasterLayer.h"
 
+/***** RObject *****/
+
+@implementation RObject
+
+-(id)initWithString:(NSString *)str rect:(CGRect)rect
+{
+    if((self = [super init])) {
+        NSArray *a1 = [str componentsSeparatedByString:@"\t"];
+        number = [[a1 objectAtIndex:0] intValue];
+        path = CGPathCreateMutable();
+        NSArray *a2 = [[a1 objectAtIndex:1] componentsSeparatedByString:@","];
+        for(int i=0; i<[a2 count]; i+=2) {
+            CGFloat x = (CGFloat)[[a2 objectAtIndex:i] intValue] / 256.f * rect.size.width;// + rect.origin.x;
+            CGFloat y = (CGFloat)[[a2 objectAtIndex:i+1] intValue] / 256.f * rect.size.height;// + rect.origin.y;
+            if(!i) CGPathMoveToPoint(path, nil, x, y);
+            else CGPathAddLineToPoint(path, nil, x, y);
+        }
+        CGPathCloseSubpath(path);
+        lineWidth = rect.size.width / 256.f;
+        color = CGColorRetain([[UIColor redColor] CGColor]);
+    }
+    return self;
+}
+
+-(void)draw:(CGContextRef)context
+{
+    CGContextSetStrokeColorWithColor(context, color);
+    CGContextSetLineWidth(context, lineWidth);
+    CGContextSetLineCap(context, kCGLineCapRound);
+    CGContextSetLineJoin(context, kCGLineJoinRound);
+    CGContextAddPath(context, path);
+    CGContextStrokePath(context);
+}
+
+-(void)dealloc
+{
+    if(color) CGColorRelease(color);
+    if(path) CGPathRelease(path);
+    [super dealloc];
+}
+
+@end
+
 /***** RPiece *****/
 
 @implementation RPiece
@@ -39,6 +82,12 @@
         CGContextDrawImage(context, rect, image);
         CGContextRestoreGState(context);
         actuality = 0;
+        CGContextSaveGState(context);
+        CGContextTranslateCTM(context, rect.origin.x, rect.origin.y);
+        for (RObject *ob in objects) {
+            [ob draw:context];
+        }
+        CGContextRestoreGState(context);
     }
 }
 
@@ -50,6 +99,7 @@
 -(void)dealloc
 {
     if(image) CGImageRelease(image);
+    [objects release];
     [super dealloc];
 }
 
@@ -73,6 +123,12 @@
         } else {
             p->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
             p->layer->piecesCount ++;
+            pt = [NSString stringWithFormat:@"%@/%d/%d/%d.txt", path, p->level, p->x, p->y];
+            NSString *contents = [NSString stringWithContentsOfFile:pt encoding:NSUTF8StringEncoding error:nil];
+            if(contents != nil) p->objects = [[NSMutableArray alloc] init];
+            [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+                [p->objects addObject:[[RObject alloc] initWithString:line rect:p->rect]];
+            }];
             return YES;
         }
     }
