@@ -360,6 +360,9 @@
 
 -(void)selectStationAt:(CGPoint*)currentPosition
 {
+    if([rasterLayer checkPoint:currentPosition]) {
+        
+    }
     /*selectedStationLine = [cityMap checkPoint:currentPosition Station:selectedStationName];
     if(selectedStationLine > 0) {
 		stationSelected=true;

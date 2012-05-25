@@ -28,6 +28,7 @@
         CGPathCloseSubpath(path);
         lineWidth = rect.size.width / 256.f;
         color = CGColorRetain([[UIColor redColor] CGColor]);
+        boundingBox = CGPathGetBoundingBox(path);
     }
     return self;
 }
@@ -94,6 +95,16 @@
 -(void) skip
 {
     actuality ++;
+}
+
+-(BOOL)checkPoint:(CGPoint)point
+{
+    for (RObject *ob in objects) {
+        if(CGRectContainsPoint(ob->boundingBox, point)) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 -(void)dealloc
@@ -468,6 +479,24 @@
         }
     }
     [lock unlock];
+}
+
+-(BOOL)checkPoint:(CGPoint *)point
+{
+    NSNumber *n = [NSNumber numberWithInt:level];
+    NSMutableArray *lev = [levels objectForKey:n];
+    if(lev == nil) {
+        return NO;
+    }
+    int size = 1 << level;
+    double dx = (double)allRect.size.width / size, dy = (double)allRect.size.height / size;
+    int X = point->x / dx, Y = point->y / dy;
+    for (RPiece *p in lev) {
+        if(p->x == X && p->y == Y) {
+            return [p checkPoint:CGPointMake(point->x - X*dx, point->y - Y*dy)];
+        }
+    }
+    return NO;
 }
 
 -(void)dealloc

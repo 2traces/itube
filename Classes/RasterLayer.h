@@ -18,6 +18,7 @@
     CGMutablePathRef path;
     int number;
     CGFloat lineWidth;
+    CGRect boundingBox;
 }
 -(id)initWithString:(NSString*)str rect:(CGRect)rect;
 -(void)draw:(CGContextRef)context;
@@ -38,6 +39,7 @@
 
 -(id)initWithRect:(CGRect)r level:(int)level x:(int)x y:(int)y;
 -(void)draw:(CGContextRef)context;
+-(BOOL)checkPoint:(CGPoint)point;
 
 @end
 
@@ -80,5 +82,6 @@
 -(BOOL) checkLevel:(CGFloat)scale;
 -(void) freeSomeMemory;
 -(void) setSignal:(id)target selector:(SEL)selector;
+-(BOOL) checkPoint:(CGPoint*)point;
 
 @end
