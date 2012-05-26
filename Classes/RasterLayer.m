@@ -8,6 +8,68 @@
 
 #import "RasterLayer.h"
 
+/***** RDescription *****/
+
+@implementation RDescription
+
+@synthesize name;
+@synthesize description;
+
+-(id)initWithName:(NSString *)n andDescription:(NSString *)descr
+{
+    if((self = [super init])) {
+        self->name = [n retain];
+        self->description = [description retain];
+    }
+    return self;
+}
+
+@end
+
+/***** RObject *****/
+
+@implementation RObject
+
+-(id)initWithString:(NSString *)str rect:(CGRect)rect
+{
+    if((self = [super init])) {
+        NSArray *a1 = [str componentsSeparatedByString:@"\t"];
+        number = [[a1 objectAtIndex:0] intValue];
+        path = CGPathCreateMutable();
+        NSArray *a2 = [[a1 objectAtIndex:1] componentsSeparatedByString:@","];
+        for(int i=0; i<[a2 count]; i+=2) {
+            CGFloat x = (CGFloat)[[a2 objectAtIndex:i] intValue] / 256.f * rect.size.width;// + rect.origin.x;
+            CGFloat y = (CGFloat)[[a2 objectAtIndex:i+1] intValue] / 256.f * rect.size.height;// + rect.origin.y;
+            if(!i) CGPathMoveToPoint(path, nil, x, y);
+            else CGPathAddLineToPoint(path, nil, x, y);
+        }
+        CGPathCloseSubpath(path);
+        lineWidth = rect.size.width / 256.f;
+        color = CGColorRetain([[UIColor redColor] CGColor]);
+        boundingBox = CGPathGetBoundingBox(path);
+    }
+    return self;
+}
+
+-(void)draw:(CGContextRef)context
+{
+    CGContextSetStrokeColorWithColor(context, color);
+    CGContextSetLineWidth(context, lineWidth);
+    CGContextSetLineCap(context, kCGLineCapRound);
+    CGContextSetLineJoin(context, kCGLineJoinRound);
+    CGContextAddPath(context, path);
+    CGContextStrokePath(context);
+}
+
+-(void)dealloc
+{
+    if(color) CGColorRelease(color);
+    if(path) CGPathRelease(path);
+    [super dealloc];
+}
+
+@end
+
 /***** RPiece *****/
 
 @implementation RPiece
@@ -39,6 +101,12 @@
         CGContextDrawImage(context, rect, image);
         CGContextRestoreGState(context);
         actuality = 0;
+        CGContextSaveGState(context);
+        CGContextTranslateCTM(context, rect.origin.x, rect.origin.y);
+        for (RObject *ob in objects) {
+            [ob draw:context];
+        }
+        CGContextRestoreGState(context);
     }
 }
 
@@ -47,9 +115,20 @@
     actuality ++;
 }
 
+-(int)checkPoint:(CGPoint)point
+{
+    for (RObject *ob in objects) {
+        if(CGRectContainsPoint(ob->boundingBox, point)) {
+            return ob->number;
+        }
+    }
+    return -1;
+}
+
 -(void)dealloc
 {
     if(image) CGImageRelease(image);
+    [objects release];
     [super dealloc];
 }
 
@@ -73,6 +152,12 @@
         } else {
             p->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
             p->layer->piecesCount ++;
+            pt = [NSString stringWithFormat:@"%@/%d/%d/%d.txt", path, p->level, p->x, p->y];
+            NSString *contents = [NSString stringWithContentsOfFile:pt encoding:NSUTF8StringEncoding error:nil];
+            if(contents != nil) p->objects = [[NSMutableArray alloc] init];
+            [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+                [p->objects addObject:[[RObject alloc] initWithString:line rect:p->rect]];
+            }];
             return YES;
         }
     }
@@ -232,6 +317,8 @@
 /***** RasterLayer *****/
 
 @implementation RasterLayer
+@synthesize currentObject;
+@synthesize currentObjectNumber;
 
 -(id) initWithRect:(CGRect)rect
 {
@@ -243,6 +330,39 @@
         level = 0;
         MAX_PIECES = 60;
         loader = [[RManager alloc] initWithTarget:self selector:@selector(complete) andPath:rasterPath];
+        // TODO other languages
+        NSString *fn = [NSString stringWithFormat:@"%@/en-names.txt", rasterPath];
+        NSString *contents = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
+        [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+            NSArray *words = [line componentsSeparatedByString:@"\t"];
+            int _id = [[words objectAtIndex:0] intValue];
+            NSString *name = [words objectAtIndex:1];
+            NSLog(@"name for %d is %@", _id, name);
+            RDescription *desc = [description objectForKey:[NSNumber numberWithInt:_id]];
+            if(desc == nil) {
+                desc = [[RDescription alloc] initWithName:name andDescription:nil];
+                [description setObject:desc forKey:[NSNumber numberWithInt:_id]];
+            } else {
+                desc.name = name;
+            }
+        }];
+        // TODO other languages
+        fn = [NSString stringWithFormat:@"%@/en-descriptions.txt", rasterPath];
+        NSString *contents2 = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
+        [contents2 enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+            NSArray *words = [line componentsSeparatedByString:@"\t"];
+            int _id = [[words objectAtIndex:0] intValue];
+            NSString *name = [words objectAtIndex:1];
+            NSLog(@"description for %d is %@", _id, name);
+            RDescription *desc = [description objectForKey:[NSNumber numberWithInt:_id]];
+            if(desc == nil) {
+                desc = [[RDescription alloc] initWithName:nil andDescription:name];
+                [description setObject:desc forKey:[NSNumber numberWithInt:_id]];
+            } else {
+                desc.description = name;
+            }
+        }];
+        
         piecesCount = 0;
     }
     return self;
@@ -412,6 +532,31 @@
         }
     }
     [lock unlock];
+}
+
+-(BOOL)checkPoint:(CGPoint *)point
+{
+    NSNumber *n = [NSNumber numberWithInt:level];
+    NSMutableArray *lev = [levels objectForKey:n];
+    if(lev == nil) {
+        return NO;
+    }
+    int size = 1 << level;
+    double dx = (double)allRect.size.width / size, dy = (double)allRect.size.height / size;
+    int X = point->x / dx, Y = point->y / dy;
+    for (RPiece *p in lev) {
+        if(p->x == X && p->y == Y) {
+            currentObjectNumber = [p checkPoint:CGPointMake(point->x - X*dx, point->y - Y*dy)];
+            if(currentObjectNumber >= 0) {
+                currentObject = [description objectForKey:[NSNumber numberWithInt:currentObjectNumber]];
+                return YES;
+            } else {
+                currentObject = nil;
+                return NO;
+            }
+        }
+    }
+    return NO;
 }
 
 -(void)dealloc

@@ -360,6 +360,9 @@
 
 -(void)selectStationAt:(CGPoint*)currentPosition
 {
+    if([rasterLayer checkPoint:currentPosition]) {
+        NSLog(@"select object №%d %@", rasterLayer.currentObjectNumber, rasterLayer.currentObject.name);
+    }
     /*selectedStationLine = [cityMap checkPoint:currentPosition Station:selectedStationName];
     if(selectedStationLine > 0) {
 		stationSelected=true;
