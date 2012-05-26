@@ -8,6 +8,24 @@
 
 #import "RasterLayer.h"
 
+/***** RDescription *****/
+
+@implementation RDescription
+
+@synthesize name;
+@synthesize description;
+
+-(id)initWithName:(NSString *)n andDescription:(NSString *)descr
+{
+    if((self = [super init])) {
+        self->name = [n retain];
+        self->description = [description retain];
+    }
+    return self;
+}
+
+@end
+
 /***** RObject *****/
 
 @implementation RObject
@@ -97,14 +115,14 @@
     actuality ++;
 }
 
--(BOOL)checkPoint:(CGPoint)point
+-(int)checkPoint:(CGPoint)point
 {
     for (RObject *ob in objects) {
         if(CGRectContainsPoint(ob->boundingBox, point)) {
-            return YES;
+            return ob->number;
         }
     }
-    return NO;
+    return -1;
 }
 
 -(void)dealloc
@@ -299,6 +317,8 @@
 /***** RasterLayer *****/
 
 @implementation RasterLayer
+@synthesize currentObject;
+@synthesize currentObjectNumber;
 
 -(id) initWithRect:(CGRect)rect
 {
@@ -310,6 +330,39 @@
         level = 0;
         MAX_PIECES = 60;
         loader = [[RManager alloc] initWithTarget:self selector:@selector(complete) andPath:rasterPath];
+        // TODO other languages
+        NSString *fn = [NSString stringWithFormat:@"%@/en-names.txt", rasterPath];
+        NSString *contents = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
+        [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+            NSArray *words = [line componentsSeparatedByString:@"\t"];
+            int _id = [[words objectAtIndex:0] intValue];
+            NSString *name = [words objectAtIndex:1];
+            NSLog(@"name for %d is %@", _id, name);
+            RDescription *desc = [description objectForKey:[NSNumber numberWithInt:_id]];
+            if(desc == nil) {
+                desc = [[RDescription alloc] initWithName:name andDescription:nil];
+                [description setObject:desc forKey:[NSNumber numberWithInt:_id]];
+            } else {
+                desc.name = name;
+            }
+        }];
+        // TODO other languages
+        fn = [NSString stringWithFormat:@"%@/en-descriptions.txt", rasterPath];
+        NSString *contents2 = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
+        [contents2 enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+            NSArray *words = [line componentsSeparatedByString:@"\t"];
+            int _id = [[words objectAtIndex:0] intValue];
+            NSString *name = [words objectAtIndex:1];
+            NSLog(@"description for %d is %@", _id, name);
+            RDescription *desc = [description objectForKey:[NSNumber numberWithInt:_id]];
+            if(desc == nil) {
+                desc = [[RDescription alloc] initWithName:nil andDescription:name];
+                [description setObject:desc forKey:[NSNumber numberWithInt:_id]];
+            } else {
+                desc.description = name;
+            }
+        }];
+        
         piecesCount = 0;
     }
     return self;
@@ -493,7 +546,14 @@
     int X = point->x / dx, Y = point->y / dy;
     for (RPiece *p in lev) {
         if(p->x == X && p->y == Y) {
-            return [p checkPoint:CGPointMake(point->x - X*dx, point->y - Y*dy)];
+            currentObjectNumber = [p checkPoint:CGPointMake(point->x - X*dx, point->y - Y*dy)];
+            if(currentObjectNumber >= 0) {
+                currentObject = [description objectForKey:[NSNumber numberWithInt:currentObjectNumber]];
+                return YES;
+            } else {
+                currentObject = nil;
+                return NO;
+            }
         }
     }
     return NO;
