@@ -1,0 +1,4406 @@
+0	Isla de la Juventud
+1	Peninsula de Guanahacabibes
+2	Cayo Largo
+10	Nueva Gerona
+13	Canal de la Cruz
+18	Maceo
+19	Cayo Sijú
+21	Santa Fé
+27	Rafael Cabrera Airport
+29	La Fé
+31	Passe de Quitasol
+32	La Demajagua
+33	Guayabo
+35	La Melvis
+36	Valle San Juan
+37	Mina de Oro
+38	Presidio Modelo
+39	Playa Sirena
+41	Aeropuerto Siguanea
+43	Playa Bibijagua
+44	Cayo Piedra
+46	Crocodile breeding station
+47	La Reforma
+48	Cocodrilo
+49	Reparto Chacón
+50	Argelia Libre
+52	Atanagildo Gajigat
+53	Julio Antonio Mella
+56	edp deparment of narcoticts
+58	Júcaro
+61	edp deparmen of narcotics
+63	Marina Siguanea
+64	Penrose prison
+65	Hotel Colony
+66	edp private departament
+67	Playa Larga
+68	Playa Paraiso
+72	Stadium
+73	Cristóbal Labra Stadium
+74	Ballpark
+75	edp deparment of narcosts of fresa 
+76	Ballpark
+77	Ballpark
+78	Graveyard
+79	Ballpark
+80	Marina Internacional Cayo Largo
+81	Graveyard
+82	edp deparmen of narcoticos del fresa
+83	Graveyard
+85	Graveyard
+86	Carapachibey lighthouse
+87	Criadero de Quelonios
+89	Graveyard
+90	edp almacen de narcoticos de la isla de juventud Adiel(gringo) adrian(fresa)
+92	La Furnia Lighthouse
+93	Cabanas Playa Paraiso
+94	edp departamentos de narcoticos 4 fresa y gringo
+97	Cayman Islands
+98	Grand Cayman
+99	North Sound
+100	Cayman
+101	Little Sound
+102	Colliers Bay
+103	Seven Mile Beach
+104	Kitesurfing spot Cayman Islands!
+105	Camana Bay
+106	Governor´s Creek
+107	West Bay
+108	Double Head Bay
+109	Old Man Bay
+110	North Sound Golf Course
+111	Malportas Pond
+112	Grand Cayman Landfill
+113	Duck Pond Bight
+114	Blue Tip Golf Course
+115	North Side
+116	Britannia Condos & Golf Course
+117	Queen Elizabeth II. Botanic Park
+118	Gun Bay
+119	Vista del Mar
+120	Canal Point Channel
+121	Channel
+122	Golf Course Lake
+123	The Shores
+124	Safe Haven Channel
+125	Jackson´s Pond
+126	Rum Point
+127	Ritz Carlton Hotel Grand Cayman
+128	Jackson´s Pond
+129	Snug Harbour Channel
+130	Treasure Island
+131	Stingray Sand Bar
+132	Morritt's Tortuga Club / Morritt's Grand
+133	Channel
+134	Travis's estate
+135	Cayman Island Yacht Club
+136	The Westin Casuarina Resort & Spa, Grand Cayman 
+137	The Reef Resort
+138	Ramada Grand Caymanian Resort
+139	Hell, Grand Cayman
+140	The Strand
+141	Villa Royale
+142	Dolphin Cove Cayman Attraction
+143	Ritz-Carlton Resort and Residences
+144	Grandview 
+145	Governor's Square
+146	Lime Tree Bay
+147	Southampton Park
+148	Coconut Place
+149	Silver Sands Condos
+150	Villas of the Galleon
+151	Waterways
+152	Ocean Pointe Villas
+153	Grand Cayman Marriott Beach Resort
+154	Courtyard Marriott Grand Cayman
+155	Lacovia
+156	Georgetown Villas
+157	Plantation Village
+158	Cost-U-Less
+159	Coralstone Club
+160	The Great House
+161	Regal Beach Club
+162	Cemetery
+163	Channel
+164	Islands Club
+165	Plantana
+166	Tarpon Alley
+167	Seven Mile Public Beach
+168	Sunshine Suites
+169	Villas Papagallo
+170	Discovery Point Club
+171	The Governor's Residence
+172	Harquail Theatre
+173	Christopher Columbus
+174	Galleria Plaza
+175	The Retreat Condominiums  Rum Point
+176	Casa Caribe
+177	Pond
+178	westbay baseball field 
+179	Cayman Falls
+180	Oceanside Plantations
+181	Caribbean Club
+182	Colonial Club
+183	Crescent Point
+184	DiveTech
+185	St. Matthew's Residency Suites
+186	Grand Cayman Beach Suites
+187	7 Mile Shops
+188	World Gym and Dunkin Donuts
+189	Tamarind Bay
+190	Foster Bay Villas
+191	Comfort Suites
+192	The Meridian
+193	Ritz-Carlton/Nick Bollettierri Tennis Center
+194	Turtle Cove Development
+195	The Anchorage
+196	London House
+197	Bonnies Arch
+198	Wesleyan Church
+199	Aqua Bay Club
+200	The commonwealth
+201	Royal Palms
+202	St. Matthew's School of Medicine
+203	7 Mile Beach Resort
+204	USS Kittiwake Dive Wreck
+205	Marine Deisel
+206	Cotton Tree Resort
+207	The Palms
+208	The Heritage Club
+209	89 Nexus Way
+210	Coral Reef
+211	Foster's Food Fair at The Strand
+212	Tiki Beach
+213	Christ the Redeemer Chapel
+214	Cemetery (beach and reef)
+215	Frank Sound Fire Station
+216	Shagri-La
+217	Paradise Pointe
+218	Hell's Post Office and Souvenir Shop
+219	Calico Jack's Bar
+220	Harold House
+221	Deckers 269 Restaurant
+222	Morgans Harbour Seafood Restuarant & Marina 
+223	roomrent
+224	Cayman Chillin
+225	Andy's Auto Repair
+226	New Orleans Club 
+227	Andy's Rent-A-Car
+228	Kintyre Drive
+229	Periwinkle Restaurant
+230	jose yard 
+231	Foster's Express Store
+232	andys yard
+233	Calypso Grill
+234	Halal Farms
+235	Post Restaurant
+236	ashleyy future house
+237	RBC Royal Bank of Canada
+238	Big Daddy'S/mezza
+239	Gateway of India,Cayman Islands
+240	Cafe del Sol - Camana Bay
+241	Haggen Daas
+242	Ye Olde English Bakery (East End)
+243	Arteccentrix Fine Art Gallery Ltd
+244	Curves fitness centre
+245	Purple Dragon Dojo
+246	tylers estate
+247	Quinoz Sub 
+248	Macumba Lounge
+250	Al La Kebab
+251	Capt. Ron's Watersports
+252	Cayman Brac
+253	Little Cayman
+254	Cayman Brac Parrot Reserve
+255	Booby Pond
+256	Blossom Village
+257	Scott Development Quarry
+258	Gerrard Smith International Airport
+259	Jackson´s Pond
+260	Long Beach
+261	Westerly Pond West
+262	Edward Bodden Airfield
+263	Easterly Pond
+264	Pond
+265	Salt Water Pond
+266	Divi Tiara Beach Resort
+267	Grape Tree Pond
+268	Sandy Point Pond
+269	Westerley Pond East
+270	Easterly Pond
+271	Owen Island
+272	Charles Bight Pond
+273	Spot Bay Pond
+274	Layman E. Scott Sr. High School
+275	Affordable Housing Scheme
+276	Brac Reef Beach Resort
+277	Cayman Brac Landfill
+278	Southern Cross Club
+279	Pirates Point Resort
+280	Cayman Brac Agriculture Grounds
+281	Wreck of Russian Frigate - M/V Captain Keith Tibbetts
+282	Pond
+283	Faith Hospital
+284	Cayman Brac Community Park
+285	Little Cayman Beach Resort
+286	Conch Club Condominiums
+287	Cayman Brac Port Authority
+288	Cayman Brac Power & Light Plant
+289	Cayman Brac Power & Light Plant
+290	West End Primary School
+292	Creek & Spot Bay Primary School (Infants)
+293	Cayman Brac Heritage House
+294	Scotts Dock
+295	Seafan Meadows
+296	Stella Maris Catholic Church Cayman Brac
+297	Scott Development Co. Ltd.
+298	Cayman Brac Fire Station
+299	Christopher Columbus Gardens
+300	MRCU Cayman Brac
+301	Kirkconnell's Market
+303	Cayman Brac Public Works Department
+304	Alexander Hotel Cayman Brac
+305	Paradise Villas
+306	Blue Lagoon Lodge
+307	Suzie Soto's Sir Turtle Resort
+308	Aston Rutty Centre
+309	Sam McCoy´s Fishing & Diving Lodge
+310	Cayman Breakers
+311	Creek & Spot Bay Primary School (Juniors)
+312	Cayman Brac Government Administration Building
+313	Kirkconnell Community Care Centre
+314	The Club
+315	Cayman Brac Day Care Centre
+316	Cayman Brac Water Authority Plant
+317	West End Cemetery
+318	Ebenezer Baptist Church
+319	Spot Bay Cemetery
+320	Spot Bay Park 
+321	Billy's Supermarket & Appliance Centre
+322	Cayman Brac Public Beach
+323	Cayman Brac Lighthouse
+324	Seamans Centre
+325	Cotton Tree Bay Baptist Church
+326	Tibbett's Enterprises
+327	Crossroads United Baptist Church
+328	Tibbett's Square 
+329	UCCI Cayman Brac Campus
+330	Hillside Chapel Cayman Brac
+331	The Shoppe
+332	Creek Seventh-Day Adeventist Church
+333	Bethel Baptist Church
+334	Captain's Table Restaurant
+335	New Testament Church of God
+336	Village Square
+337	Cayman National Bank Cayman Brac
+338	Little Cayman Baptist Church
+339	West End Texaco
+340	Coral Isle
+341	Foster's Corner
+342	Stake Bay Baptist Church
+343	Little Cayman Museum
+344	White Bay Plaza
+345	Temple Beth Shalom Cayman Brac
+346	Edd's Place
+347	Tranquil Realty Cayman Brac
+348	Red Shrimp Hole
+349	West End Post Office
+350	Little Cayman Cemetery
+351	Star Island Restaurant
+352	Nationat Trust House Little Cayman
+353	Teignmouth Electron Wreck
+354	LIME Cayman Brac Office
+355	Walton's Mango Manor
+356	Bodden Business Centre
+357	B&S Motor Ventures
+358	Horizon Building Supply
+359	Avistar Plaza
+360	Catboat Plaza
+361	Telly's Flower Shop
+362	Stake Bay Cemetery
+363	CB Rent-A-Car 
+364	Western Auto
+365	L&M Super Store
+366	Economy Electronics
+367	Little Cayman Marine Museum
+368	Bluff View Store
+369	Tip-Top Boutique
+370	Pirate's Dream Vacation Rental
+371	Brac Infomatics Centre
+372	Aunt Sha's Kitchen
+373	Spot Bay Post Office
+374	cemetery
+375	The Ryan Building
+376	Cayman Brac Public LIbrary
+377	Brac Marine Supplies
+378	Cayman Brac Museum
+379	Rebecca's Cave Entrance
+380	Brac Snack Shack
+381	Cayman Brac Power & Light Office
+382	Bat Cave Entrance
+383	Kirk Freeport Cayman Brac
+384	WestStar Cable TV Ltd. Cayman Brac Office
+385	National Trust HQ
+386	Niquero
+387	Media Luna
+388	San Ramon
+389	Caoba
+390	Los Chorros
+391	Sevilla Arriba
+392	Realengo de Ojo de Agua
+393	Playa las Coloradas
+394	Manguito
+395	Bélic
+396	Guanito el Granma
+397	Júcaro
+398	Reventón
+399	Thats Pilon Airstrip MUPL
+400	Quarry
+401	La Manteca
+402	Cabo Cruz
+403	Sugar factory
+404	Sugar factory
+405	Sports ground
+406	Dam
+407	Graveyard
+408	Baseball park
+409	Baseball park
+410	Baseball field
+411	Baseball field
+412	Baseball field
+413	Baseball field
+414	Graveyard
+415	Graveyard
+416	Graveyard
+417	Overflow
+418	Graveyard
+419	Southernmost Point in Cuba
+420	Bayamo  
+421	Manzanillo
+422	Palma Soriano
+423	Bartolomé Masó
+424	Guisa
+425	Contamaestre
+426	Campechuela
+427	Jiguani
+428	Yara
+429	Rio Cauto
+430	San Germán
+431	Pilon
+432	Chivirico
+433	Baire
+434	Blanquizal
+435	Loynaz Hechevarria
+436	Sierra Maestra
+437	Manzanillo Sierra Maestra Airport (ICAO: MUMZ, IATA: MZO)
+438	Mangos de Baraguá
+439	Veguitas
+440	Ceiba Hueca
+441	Uvero
+442	Maffo
+443	Matias
+444	Airfield
+446	Pico Turquino
+447	Dos Rios
+448	Cayo Casino
+449	Santa Rita
+450	Alto Cedro
+451	Quiebra Seca
+452	Palmas Altas
+453	José Marti
+454	Los Negros
+455	Ciudad Pesquera
+457	Guamo Embarcadero
+459	La Aguada
+460	Troya
+461	Caletón Blanco
+462	Central Azucarera Lopez Peña
+463	Guamá Abajo
+465	Cauto Embarcadero
+466	ICP
+467	Cruce de los Banos
+468	Calicito
+469	Portillo
+470	Ceiba Hueca Arriba
+471	Playa Mar Verde
+472	San Francisco
+473	Rio Secu
+475	Lake
+476	San Miguel
+477	Juan Gonzáles
+478	Barranca
+479	El Majá
+480	Playa El Frances
+481	El Paraiso
+482	Dos Rios
+483	Las Cuevas
+484	Nito Ortega
+485	dam
+486	La Mula
+487	Playa Blanca
+488	Airfield ?
+489	Sugar factory
+491	Las Novillas
+492	Sugar factory
+493	Sugar Mill
+494	Granma University
+495	Israel Licea
+496	Dam
+497	Ranco Cruz
+498	airfield ?
+499	Dam
+500	airfield ?
+502	Lake
+503	Factory
+504	Hotel Brisas Sierra Mar
+505	Hotel del Ejercito
+506	Dam
+507	La Demajagua
+508	Playa de El Buey Cabon
+509	Sugar factory
+510	Dam
+511	Airfield
+512	College of education
+513	dam
+514	airfield ?
+515	airfield
+516	University for Informatic
+517	Salvador sugar factory (disused)
+518	Fisheries harbour
+519	Graveyard
+520	Sugar factory
+521	Pueblo Nuevo
+522	Marea del Portillo Hotel
+523	Transformator station
+524	airfield ?
+525	Palma Soriano's graveyard
+526	Dam
+527	Sugar factory (disused)
+528	Wilfredo Pagés sports ground
+529	Lake
+530	Sports ground
+531	Overflow
+533	Brisas Sierra Mar Los Galeones
+534	Dam
+535	Sports ground
+536	La Demajagua museum
+537	Graveyard
+538	Dam
+539	Graveyard
+540	Graveyard
+541	Graveyard
+542	Overflow
+543	Punta Piedra Hotel
+544	Graveyard
+545	Dama Island
+546	Soccer field
+547	Sports ground
+549	Baseball stadion
+550	Baseball stadion
+551	Baseball field
+552	Mártires de Barbados Stadium
+553	Graveyard
+554	Baseball field
+555	Baseball park
+556	Baseball park
+557	Overflow
+558	Baseball stadion
+559	Graveyard
+560	Hotel Guacanayabo
+561	Boat builder
+562	Farallon del Caribe
+563	Baseball field
+564	Baseball field
+565	Baseball field
+566	Baseball park
+567	Baseball field
+568	Baseball field
+569	Baseball field
+570	Baseball stadion
+572	Ambrosio Grillo Hospital 
+573	Baseball field
+574	Baseball stadion
+575	Baseball field
+577	Graveyard
+578	Baseball field
+579	Obelisc Erigido a la Protesta de Baraguá
+580	Baseball field
+581	Baseball field
+582	Graveyard
+583	Baseball field
+584	Graveyard
+586	Baseball field
+588	Baseball field
+589	Graveyard
+590	Sports ground
+591	Airfield
+593	Hotel Villa Bayamo
+594	Céspedes park
+596	Graveyard
+597	Graveyard
+598	Baseball stadium
+599	Parque Cespedes, historic center
+600	Overflow
+602	Baseball field
+603	Graveyard
+604	Graveyard
+605	Graveyard
+606	Cultural centre
+607	Lake
+608	Graveyard
+609	Graveyard
+611	Park
+612	Baseball field
+614	Baseball field
+615	Train station
+617	Amigo Marea Del Portillo Resort
+618	Graveyard
+623	River Bridge
+624	Graveyard
+625	Bridge
+626	La Playita beach
+627	Park Marti
+628	Viewing stand
+630	Graveyard
+634	Lake
+636	Iglesia Parroquial Mayor de San Salvador 
+637	El Cobre
+638	Pond
+639	Manzanillo VOR-DME
+640	Railway bridge
+641	Magazin
+642	Graveyard
+643	Pond
+644	Church
+645	Lake
+646	Pond
+647	Pond
+648	Pond
+652	Pavilion La Glorieta
+653	Railway bridge
+655	Hotel Palma
+656	Pond
+660	Casa de la Trova
+663	Lake Bacanoa
+664	Antonio Maceo Airport
+665	El Oasis
+667	Quarry
+668	Siboney
+669	Playa Daiquiri
+670	Baconao
+671	El Verraco
+672	Juragua
+673	Club Amigo Carisol
+674	Club Amigo Corales
+675	Club Bucanero
+676	Hotel Costa Morena
+679	Aquarium Bocanoa
+680	Playa Verracu
+681	Jardin de Cactus
+682	Camping Juragua
+683	Baseball field
+684	Playa Juragua
+685	Baseball field
+686	Playa Bacajagua
+687	Airport terminal
+688	Castillo de San Pedro de la Roca
+689	Service station
+690	Transport museum
+691	Graveyard
+692	Water Batteries
+693	Casa del Piedra El Cojo
+695	watchtower
+696	Swimming pool
+697	Lighthouse
+698	Guantanamo Bay Naval Base
+699	Granadillo Bay
+700	Mohomilla Bay
+702	Leeward Point Field
+703	Guantanamo Bay Detention Camp
+704	Villamar/Nob Hill
+705	Caramela Point
+706	Yatera Seca Golf Course
+707	Tortuguilla
+708	Granadillo Point
+709	McCalla Field (Inactive)
+710	Deer Point
+711	Camp Delta complex
+712	John Paul Jones Hill
+713	Landfill
+714	Marine Hill
+715	Camp Bulkely
+716	Radio Point
+717	Marina Point
+718	Phillips Park
+719	Kittery Beach Housing
+720	Tierra Kay Housing
+721	Base Rifle Range
+722	Paola Point
+723	Windward Loop
+724	Caribbean Circle
+725	Evans Point
+726	Iguana Terrace
+727	Hospital Cay
+728	Camp America
+729	Metal Scrap Yard
+730	Camp America
+731	Tent City
+732	Cuzco Barracks
+733	C Pool
+734	Camp 1
+735	Camp 2 and Camp 3
+736	Reverse Osmosis Desalinization Plant
+737	J4 - Maintenence, Logistics, and Transportation 
+738	Amusement park
+739	Transportation Maintenance
+740	Mobile Point
+741	Granadillo Circle
+742	Cemetery
+743	Windmill Beach
+744	Camp Echo
+745	Playa Uvero
+746	Cable Beach
+747	Paintball Course 
+748	Football stadion
+749	Satellite Eavesdropping Station
+750	Sports ground
+751	Bachelor Officers Quarters
+752	Deer Point Marina
+753	NEX - Navy Exchange
+754	The North East Gate
+755	Recycling
+756	Cuzco Beach
+757	Camp Seven
+758	Munitions Bunkers
+759	Naval Station Ordanace/Armory
+760	Kittery Beach 
+761	William T. Sampson Elementary School 
+762	Glass Beach
+763	Camp 5
+764	William T. Sampson High School
+765	Guantanamo Bay Lighthouse Museum
+766	Blue Beach
+767	TOLTEST
+768	Baseball field
+769	Camp 6
+770	Naval Hospital Guantanamo Bay, Cuba
+771	Baseball field
+772	Goldhill Towers
+773	Camp 4
+774	Chapman Beach
+775	Naval Station Pistol Range
+776	Downtown Lyceum
+777	Cbq Trailers 2363
+778	Former William T. Sampson High School
+779	Marine Barracks
+780	Camp No
+781	Marblehead Lanes Bowling Center
+782	Windjamer Pool
+783	Enlisted Quarters
+784	C-2 Greyhounds
+785	Ferry Landing Beach
+786	Guantanamo Grand Prix
+787	Cbq Trailers 2364
+788	av59 warehouse
+789	Tennis court
+790	Windjammer Café and Ballroom
+791	Tennis courts
+792	Morrin Center
+793	Ordinance Bunkers
+794	BRSC Contractor Office
+795	Denich Gym
+796	Ferry Landing
+797	CH-53E Sea Stallions
+798	Fort Hicacal
+799	Skate Park
+800	AF-2W Possible Crash Site, April 1955
+801	Helipad
+802	Helipad
+803	Base Chapel
+804	Av526
+805	Bunker
+806	Miniature Golf
+807	Old CDC
+808	Headquarters - Ground Defense Force
+809	Bunker
+810	Guantanamo Bay Ns VOR
+811	E-2C Hawkeyes
+812	Marine Hill Swimming Pool
+813	NSGA Guantanamo Bay
+814	Tennis courts
+815	Heliport
+816	JIFF
+817	Hidden Beach
+818	Teen Center
+819	USS Santaquin (YTB-824) & USS Dakanawida (YTB-831)
+820	Navy Lodge
+821	Detainee Hospital
+822	Volleyball courts
+823	Skating Rink
+824	McDonald's
+825	EDG shop
+826	Phillips Park Pier
+827	Basketball court
+828	Dentention Operations Centre
+829	Batting Cages
+830	Rec Area
+831	Bunker
+832	Basketball courts
+833	Basketball court
+834	Tennis court
+835	Marine Corps Mess Hall
+836	Hidden Beach
+837	Forts overlooking the bay
+838	Missile Launch Facility
+839	Basketball courts
+840	Missile Launch Facility
+841	Girl Scout Beach
+842	Mess
+843	Mini Mart
+844	Bunker
+845	Forts overlooking the bay
+846	Bunker
+847	Intel/Intrp
+848	Bunker
+849	Bunker
+850	Base Library
+851	Tennis court
+852	Bunker
+853	Basketball courts
+854	Missile Launch Facility
+856	Missile Launch Facility
+857	Detainnee Clinic
+858	Missile Launch Facility
+859	Basketball court
+860	Basketball court
+861	Basketball court
+862	Basketball courts
+863	Basketball court
+864	Basketball court
+865	JIIF
+866	Bunker
+867	Marine Lookout Tower
+868	Missile Launch Facility
+869	Basketball court
+870	Basketball courts
+871	GEMD
+872	Boy Scouts
+873	Basketball court
+874	Bridge over the Guantanamo River
+875	CBQ Trailers 2364 
+876	Cuban Club
+877	Basketball court
+878	Basketball courts
+879	Bridge on Guantanamo River
+880	Basketball court
+881	Basketball court
+882	Ferry Terminus
+883	Generators
+884	Checkpoint
+885	C-12 Huron
+886	Wind Turbine
+887	Wind Turbine
+888	Administration
+889	The Jerk House
+890	Wind Turbine
+891	Wind Turbine
+892	Plane on display [F-4]
+893	Watchtower, Camera Clusters - U.S. Maintained Bunker and Surveillance Facility
+894	"The Swamp" 3rd Sqd, 3rd Plt, 571st MP Co, Jun-Dec '02.
+895	Skyline Drive Lookout
+896	Windward Passage
+897	Presqu'ile du Mole Saint Nicolas
+898	Baracoa
+899	Maisi
+901	Magasin
+903	Bombardopolis
+904	La Maquina
+905	Cajobabo
+906	Jamal
+907	Môle-Saint-Nicolas
+908	Mosquitero
+909	Bellevue
+910	La Asunción
+911	Jean Rabel
+912	Mabujabo
+913	Baie de Henne
+914	La Maya
+915	La Plateforme
+916	L'Echange
+917	Río Seco
+918	Jauco
+919	Aeropuerto Gustavo Rizo
+920	Fatgunt
+921	Terre Rouge
+923	Sabana
+924	Ti Lagon
+926	Playa Blanca
+928	Boca de Yumri
+929	Chafarina
+930	Mole Saint Nicolas Airfield
+931	Terre Rouge
+932	Punta De Maisi Airport (uma)
+937	Baseball field
+938	Transformator station
+940	Ruine Poudriere
+941	Hotel El Castillo
+942	Fort Matachin Museum
+943	Église du Môle Saint-Nicolas
+945	National bus terminal
+946	Banco de Crédito y Comercio
+947	Service station
+948	Airport terminal
+949	Santiago de Cuba
+950	San Luis
+951	La Maya
+953	La Prueba
+954	Dos Caminos
+955	Abel Santa Maria
+956	Quarry
+957	Dos Caminos de San Luis
+958	Boniato
+959	El Modelo
+960	El Cristo
+961	Chile
+962	Cuabitas
+963	San Benito
+964	Textile industry Celia Sanchez
+965	Ducoreaux
+966	Jarahueca
+967	El Caney
+968	Versalles
+969	Dos Bocas
+970	Altavista
+971	Las Flores
+973	Oanones
+976	San Vincente
+977	Antonio Maceo
+978	Cement factory
+980	Lake Chalons
+981	IMS plant
+983	Prosperidad
+984	Teachers university
+985	Railroad yard
+986	Frank País García School
+987	San Juan Hill
+988	Granma Island
+990	Graveyard Santa Efigenia
+991	Zoological garden
+993	Boniato prison
+994	Maceira college
+995	Dam
+996	Sugar factory
+997	Corea
+998	Lake
+999	Master classes
+1001	Fish cold storage
+1002	Cuartel Moncada
+1005	Sugar factory
+1006	Provincial hospital Saturnino Lora
+1007	Santiago In-Bond
+1008	Sport Center Antonio Maceo
+1010	Oil refinery
+1012	Prison Mayor Severidad
+1013	Transformer station
+1014	Children hospital
+1015	Merrimac
+1016	Abel Santa Maria park
+1018	State police
+1019	Port Guillermon Moncada
+1022	Apartment housing
+1023	Women´s prison
+1025	Sports ground
+1027	Area de Santa Rosa, San Carlos, Santo Tomas y San Prdro
+1028	Baseball field
+1029	Hotel Versalles
+1030	Graveyard
+1032	Plaza de la Revolucion
+1036	Baseball field
+1037	Baseball field
+1038	Antonio Maceo Stadium
+1039	Military hospital Castillo Duany
+1040	La Maya graveyard
+1041	Oncological hospital
+1042	Heredia Theater
+1045	Sam Site
+1046	Graveyard
+1047	Railroad station
+1049	Baseball field
+1050	Cabaret Tropicana
+1053	Hotel Melia 
+1054	Baseball field
+1063	Baseball field
+1064	Baseball field
+1066	Transmitter station
+1067	Motel Rancho Club
+1068	El Caney's graveyard
+1069	Caribe softball stadium
+1072	Pond
+1075	Maternity hospital Los Angeles
+1076	Norma de Maestros school
+1077	Children hospital
+1079	Plaza Marte
+1080	Policlinic Ramón López Pena
+1081	Villa La Gran Piedra
+1082	Baseball field
+1084	Ferreiro Park
+1085	Coffee plantation
+1086	San Juan hotel
+1088	Kindergarden
+1089	Provincial court
+1090	Lake
+1091	Bus depot
+1092	Overflow
+1093	Lake
+1094	High School Cuqui Bosch
+1095	Market
+1096	Lake
+1097	Mendive college
+1098	Graveyard
+1099	Santiago de Cuba VOR DME
+1100	Gran Piedra
+1103	Lake
+1104	El Caney Park
+1105	Maternity hospital
+1106	Cespedes park
+1108	Amphitheatre
+1109	Amphit theater
+1110	Chalons' Dam
+1112	Cathedral
+1114	Colegio De La Salle
+1118	City hall
+1119	Provincial administration
+1120	Ice creme parlour
+1121	Service station Quintero
+1123	26th of July school
+1129	Service station Trocha
+1131	Villa Gaviota
+1132	Casa de Velazquez
+1137	San Juan Hill Monument
+1138	Bus station
+1139	Business school
+1140	Post office
+1142	Academia Perez Acosta
+1144	Pond
+1151	Banco de Credit
+1152	Library of the University of Oriente
+1154	La Via Central
+1156	Archbishop offices
+1157	Church
+1159	Antonio Maceo monument
+1164	Pharmacy Provincial
+1172	Swimming pool
+1173	Santiago 1900
+1174	Tennis court
+1176	Pond
+1178	Fort del Viso
+1179	Pond
+1181	Banco Popular de Ahorro
+1183	Patio de los 2 Abuelos
+1184	Cafeteria
+1187	Pond
+1189	Los Reynaldos
+1190	Carrera Larga
+1191	Costa Rica
+1192	Vilorio
+1193	Niceto Pérez
+1195	Dam
+1196	Cuneira
+1197	Matahambre
+1198	Ullao
+1199	Vivero
+1200	La Yaya Dam
+1201	Central Los Reynaldos
+1202	Dam
+1203	Central Costa Rica
+1204	Sports ground
+1205	Baseball field
+1206	Baseball field
+1207	Football field
+1208	Baseball field
+1209	Graveyard
+1210	Baseball field
+1211	Baseball field
+1212	Baseball field
+1213	Graveyard
+1214	Baseball field
+1215	Baseball field
+1217	Baseball field
+1218	Baseball field
+1219	Graveyard
+1220	Football field
+1222	Baseball field
+1223	Baseball field
+1224	Pond
+1225	Pond
+1226	Swimming pool
+1227	Pond
+1229	Pond
+1230	Moa Nickel Mine
+1231	Guantánamo
+1233	Mud lake
+1234	San Justo
+1237	Usine Che Guevara
+1240	Imias
+1241	Manuel Tames
+1243	Clarification plant
+1244	Caimanera
+1245	Héctor Infante
+1247	San Antonio del Sur
+1248	 Los Canos Airport
+1249	Punta Gorda
+1250	Baitiquiri
+1252	Cananova
+1253	Honduras
+1255	Dam
+1256	Paraguay
+1257	Medio island
+1259	Paso de Toa
+1260	Yamaniguey
+1262	Los Indios
+1263	El Acueducto
+1264	Nibujón
+1265	Power plant
+1266	Boquerón
+1267	El Sitio
+1269	Macambo
+1270	El Jigüe
+1271	Guantánamo Military Railway Station
+1272	Cayamo
+1274	Guarico point
+1275	Revolution plaza
+1276	Glorieta
+1277	El Salado
+1278	Yacabo Abajo
+1279	Jaragua point
+1280	Airstrip - unpaved
+1281	Arroyo Bueno
+1282	Central El Salvador
+1284	Barracks
+1285	Dam
+1286	Lake
+1290	Transformator station
+1291	Dam
+1292	Sugar factory - demolished
+1293	Sugar factory
+1294	Graveyard
+1295	Del Mangle point
+1296	Lake
+1297	Road use to quickly move tankes, artillery, and missiles down to firing positions near GITMO
+1298	anti-tank ditch
+1300	Sports ground
+1301	Sports ground
+1302	Nguyen Van Troi Stadium
+1303	Bus terminal
+1304	Sports ground
+1305	Bus terminal
+1309	Baseball field
+1310	Baseball field
+1311	Baseball field
+1312	Baseball field
+1313	Baseball field
+1314	Baseball stadion
+1316	Graveyard
+1320	Baseball field
+1322	Bunkers
+1323	Baseball field
+1324	Bunkers
+1326	Baseball field
+1328	Baseball field
+1329	Villa Maguana
+1330	Baseball field
+1331	Old "Krug Array" Antenna Site
+1332	SAM Launch Sites
+1334	Graveyard
+1336	Baseball field
+1337	Bunker
+1338	Sugar factory
+1339	Lake
+1340	Pond
+1341	Pond
+1342	Martí park
+1343	Hotel Guantánamo
+1344	Transmitter station
+1345	Swimming pool
+1346	Railway station
+1347	Marine Lookout Post 
+1348	Cinema under the open skies
+1349	Grand stand
+1350	Baseball field
+1352	High school
+1353	Provincial museum
+1354	Airport terminal
+1355	Service station
+1356	Restaurant
+1357	Museum of Art
+1358	Santa Catalina church
+1359	Bautista church
+1362	Guantanamo Bay Chain
+1363	Methodist church
+1364	Control point
+1365	Mining area
+1366	Julio Antonio Mella
+1367	Palmarito de Cauto
+1368	Biran
+1369	Loma Blanca
+1370	La Pedrona
+1371	Pinalito
+1372	Sugar factory
+1373	Castro Family Farm
+1374	Villa Pinares de Mayari (Gaviota)
+1375	Factory
+1376	Baseball field
+1377	Graveyard
+1378	Baseball stadion
+1379	Waterfalls and Look-out tower
+1380	Graveyard
+1381	Graveyard
+1382	Graveyard
+1383	Baseball field
+1385	Nicaro Nickel Mine
+1386	Mayari Arriba
+1387	Sagua de Tanamo
+1388	San Benito
+1389	Bayate
+1390	La Quijada
+1391	Rio Grande
+1392	Tumba Siete
+1393	Micara Lake
+1394	La Calabaza
+1395	Magueyal
+1396	Soledad
+1397	Saltadero
+1398	El Toro
+1399	Lake
+1401	Micara Dam
+1406	Dam
+1408	Sagua de Tanamo's Graveyard
+1410	Pond
+1412	Emilio Bárcenas Pier Hospital
+1413	Overflow
+1414	Frank País García Museum
+1419	Pond
+1420	Lake
+1422	Pond
+1423	Post office
+1425	Cape San Antonio
+1427	Maria La Gorda
+1428	Cabo Corrientes
+1429	Quarry / Strip Mine
+1430	La Banjada
+1435	Vilo Acuña Airport
+1436	Playa Blanca Hotel
+1437	Sol Pelicano
+1439	Sol Cayo Largo
+1441	Villa Guajimico Resort and Dive Center
+1443	Hotel Villa Lindamar
+1444	Caprichio
+1445	Villa Coral
+1446	Hotel Isla del Sur
+1447	Playa Blanca
+1450	The old Capricho
+1451	Radio Tower
+1452	Ranchon
+1455	Jatibonico
+1456	ZaZa Reservoir
+1458	Ciego de Avila
+1459	Jatibonico 
+1461	Trinidad
+1462	Colon
+1463	Majagua
+1464	Araca
+1465	Dangerous road because of migration of millions of landcrabs over this road in march and april
+1466	Sanquily
+1468	Orlando Gonzáles
+1469	Silveira
+1471	Guasimal
+1472	Casilda
+1474	Venezuela
+1476	Combinado de Papeles Bancos Panchito Gómez Toro
+1477	La Sierpe
+1478	El Jibaro
+1479	Condado
+1480	Playa Ancón
+1481	Mapos
+1483	Zaza dam
+1485	Paredes
+1486	Airport (closed)
+1490	Guayacanes
+1492	Airport
+1495	San Pedro
+1496	Palmarito
+1498	Manacas Iznaga
+1500	La Boca
+1501	La Yaya
+1505	Stewart
+1506	Santo Tomás
+1510	Júcaro
+1520	Airfield ?
+1522	La Ferrolana
+1526	Airfield
+1529	Tunas de Zaza
+1530	airfield
+1532	Airfield?
+1533	Airfield
+1535	El Mégano
+1536	Airfield
+1540	Sugar factory
+1546	Embarcadero Palo Alto
+1547	Brisas Trinidad Del Mar
+1548	Airfield
+1550	Airfield
+1551	Airfield
+1553	Hotel Club Amigo Costasur
+1555	Hotel Club Amigo Ancón
+1556	Lake
+1562	Sugar factory
+1573	Graveyard
+1574	Baseball stadion
+1577	José Antonio Huelga Stadium
+1580	Overflow
+1582	Baseball Diamond
+1589	Ballpark
+1590	Overflow
+1593	Ballpark
+1597	Graveyard
+1598	Ballpark
+1599	Ballpark
+1600	Baseball diamond
+1605	flood control dam
+1606	Marina Trinidad
+1612	Revolution plaza
+1619	Forest island
+1620	Graveyard
+1621	Grille Carib
+1624	Ballpark
+1626	Parque Centrale
+1627	Serafin Sanchez park
+1628	Maceo park
+1629	Graveyard
+1630	Graveyard
+1631	Plaza Mayor
+1635	Church of the Holy Trinity
+1640	Tennis Courts Club Ancon
+1642	Graveyard
+1644	Cantero Palace
+1645	1919 Steam Train
+1646	Graveyard
+1649	Museum of Guamuhaya Archeology
+1650	Church
+1652	Swamp
+1653	Brunet Palace
+1656	Dancing and Live Music
+1661	Live Entertainment, Bar, and Snack bar
+1665	Bridge
+1669	Railway station
+1673	Bridge
+1687	Dancing and Live Music, Restaraunt
+1704	Beach Restaraunt Club Ancon
+1707	Punto de venta TRD
+1710	Palenque de la Congo Reales
+1717	La Canchanchara
+1720	Beach Grill Club Ancon
+1736	Camagüey
+1738	Vertientes
+1739	Florida
+1740	Colombia
+1741	Santa Rosa
+1742	Santa Cruz del Sur
+1743	Esmeralda
+1744	Guáimaro
+1745	Cándido González
+1746	Minas
+1747	Pedro Ballester
+1748	Ign Agramonte International Airport / Camagüey Airforce Base
+1749	Senado
+1750	Baragua
+1751	Primero de Enero
+1752	Jaronú
+1753	Sola
+1754	Sibanicú
+1755	Lugareno
+1756	finca Santo Domingo, de Blanca Cisneros Socarras
+1758	Carlos Manuel de Céspedes
+1759	Cascorro
+1760	La Gloria
+1761	Caspar
+1768	Arroyo Blanco
+1769	Jiqui
+1770	Mamanantuabo
+1771	Siboney
+1772	Piedrecitas
+1773	Prison Kilo 7
+1777	Redención
+1778	Najasa
+1779	Marti
+1780	Colorado
+1781	Magarabomba
+1783	Hatuey
+1785	Altagracia
+1786	Cuatro Caminos
+1787	Guaicanamar
+1788	Amancio
+1789	La Jagua
+1790	Canabo
+1792	Crucer de Caspar
+1794	Guayabal
+1798	Donato
+1800	Cayo Romero
+1801	San Pedro
+1807	Batalla de las Guasimas
+1808	Santo Tomás de Duménigo
+1809	Train yard
+1810	El Brazo
+1814	Pablo
+1816	Cubitas
+1817	Playa Piloto
+1820	Nasaja
+1821	Tuli
+1823	Casa Grande
+1824	Santa Adela
+1828	High security area
+1833	Modesto Reyes
+1835	Camagüey
+1836	Oriente Rebelde
+1837	Las Piedras
+1838	Sports college (EIDE)
+1840	El Paraiso
+1841	Airfield
+1846	dam
+1847	El Pilar
+1851	Military School
+1855	El Ciego
+1859	Sports college (EPEF)
+1860	Airfield
+1861	La Yaya
+1865	Hato Potrero
+1866	Airfield ?
+1867	Sugar factory
+1868	Airfield
+1873	Sugar Factory
+1878	Airfield
+1880	Universidad de camaguey
+1882	Sugar factory
+1887	Sugar factory
+1890	Sugar factory
+1893	San Jose Northwest Airport
+1895	Sugar factory
+1896	Airfield
+1897	Central Argentina
+1898	airfield ?
+1899	Airstrip
+1900	Airfield
+1901	Sugar factory
+1902	Dam
+1903	Airfield
+1910	Sports ground
+1912	Airfield
+1913	Sports ground
+1917	Casino Campestre
+1918	Playa Jiguey
+1920	Florida Airport
+1928	Prison
+1936	Airfield
+1940	Sugar factory
+1944	Graveyard
+1949	dam
+1953	Fish processing plant
+1958	Surgery
+1961	Sugar factory
+1963	Graveyard
+1964	Sugar factory
+1965	Revolution plaza
+1966	ISCM-C
+1968	Marchena sugar factory
+1971	Graveyard
+1973	Factory
+1974	Camaguey Zoo
+1976	Sports ground
+1977	Sports ground
+1978	Playa Habanero
+1979	Baseball Field
+1980	Baseball field
+1981	Stadion Candido Gonzales
+1982	Hotel Camagüey
+1983	Raul House
+1986	Soccer field
+1987	Ballpark
+1988	Ball park
+1989	Graveyard
+1990	Soccer field
+1991	Ballpark
+1992	Prison Kilo 5
+1994	Ballpark
+1995	School
+1996	Ballpark
+1997	Graveyard
+1998	Ballpark
+1999	Terminal Viazul Camagüey
+2000	Baseball park
+2001	Graveyard
+2002	Baseball park
+2003	Ballpark
+2004	Ballpark
+2005	roundhouse
+2006	Terminal building
+2007	Graveyard
+2008	Graveyard
+2009	Graveyard
+2010	Ballpark
+2011	Graveyard
+2013	Graveyard
+2015	Graveyard
+2017	Park
+2018	Electro medical services
+2021	Trabajadores church
+2023	Market
+2024	Constitution park
+2025	Train station
+2026	Graveyard
+2027	Bus terminal
+2028	Graveyard
+2029	San Juan de Dios Church, Hospital and Plaza
+2032	Nuestra Senora de la Caridad
+2033	Gran Hotel
+2034	Service station
+2035	Telecommunications center
+2036	Theatre
+2037	Church La Soledad
+2038	State security agency
+2039	Old airport terminal
+2040	Cinema América
+2041	Plaza Trabajadores
+2042	Cinema Avellaneda
+2043	Santa Ana church
+2044	Cinema Encanto
+2045	Cinema Casablanca
+2046	Cinema Guerro
+2047	Church
+2048	Casa Ignacio Agramonte
+2050	Bautista church
+2051	Blanca rosa del valle house
+2052	Bar La Popular
+2055	Central post office
+2057	Las Tunas
+2058	Jobabo
+2059	Vázquez
+2060	Calixto
+2061	Buenaventura
+2062	Mir
+2063	Las Parras
+2064	Bartle
+2065	Omaja
+2066	Dumanuecos
+2067	Becerra
+2068	Las Tunas Airport (vtu)
+2069	Gastón
+2070	Naranjo
+2071	Sabanazo
+2072	Maniabón
+2073	Palo Seco
+2074	La División
+2075	Molinet
+2076	Leviste
+2077	La Victoria
+2078	La Manteca
+2079	Mercedes
+2081	Villanueya
+2082	airfield ?
+2083	Rincón
+2084	Naranjo
+2085	Mario
+2086	Sugar factory
+2087	Sugar factory (disused)
+2088	Airfield ?
+2089	Airfield
+2091	Santa Rita
+2092	Airfield (disused)
+2093	Airfield
+2094	Niguas
+2095	Santa Teresa
+2096	Hospital Che Guevara
+2097	Baseball field
+2098	Graveyard
+2102	Sports ground
+2103	Transformer station
+2104	Julio Antonio Mella Stadium
+2105	Graveyard
+2106	Baseball park
+2107	Baseball park
+2108	Baseball park
+2109	Baseball field
+2110	Baseball field
+2111	Baseball field
+2112	Baseball field
+2113	Swimming pool
+2114	Las Tunas Hotel
+2115	Baseball field
+2116	Baseball field
+2117	Baseball field
+2118	Baseball field
+2119	Baseball park
+2120	Graveyard
+2121	Graveyard
+2122	Graveyard
+2124	Baseball field
+2125	Free entertainment area "El Tanque de Buena Vista"
+2126	Graveyard
+2127	Maceo park
+2129	Graveyard
+2130	Fruit and Vegetables Market
+2131	Rachone Restaurant  Holasasi
+2132	Train and Bus terminal Las Tunas
+2135	Vicente Garcia Central Park
+2137	Jose Marti Monument and Sun Clock
+2138	El Bodegón
+2139	Bus and taxi terminal to go to Havana or to other provinces
+2140	Antiguo Hotel Ferroviario
+2141	La Casa Azul
+2142	ICAP Las Tunas. Casa amistad con los pueblos
+2143	Luanda Movie theater and disco
+2144	Las Tunas Theatre
+2145	Childrens Park
+2146	Cafeteria, Bar,restaurant center "Dos Palmas"
+2147	Pizza and Restaurant Il Scudo
+2148	Movie theater 28 september
+2149	Shooping 
+2150	Rent a Car offices
+2151	Las Tunas Museum
+2152	Las Tunas Catholic Church
+2153	Provincial department of housing
+2155	Restaurant "La casa del ave" and Open Bar in the second floor
+2156	Reymar Restaurant
+2157	Jorge houseஅன்பே சிவம் holasasi
+2158	Don Jose Alvarez House
+2159	Cadillac hotel
+2160	Jose Marti Library
+2162	Santiago Bar and Hotel
+2163	La cubana, bar and restaurant
+2164	Bar and coffe center
+2165	Paladar "La Bamba"
+2166	Art Gallery
+2167	EDWIN & ERICK HOME
+2168	Piano Bar Las tunas
+2169	Art Gallery
+2170	Open Bar and Refresh site
+2172	Roly and Elsy rent House.
+2174	ALAMARY HOUSE RAVI RENT
+2176	Piano bar
+2177	The wine Bar and Restaurant
+2178	Frank País International Airport / Holguín Airbase (HOG, MUHG)
+2179	Holguin
+2180	Jesús Menéndez
+2181	Porto Padre
+2182	Rafael Freyre
+2183	Velasco
+2184	Cueto
+2185	Delicias
+2186	Báguanos
+2187	Diaz Coello
+2188	Tacajo
+2189	Maceo
+2190	Gibara
+2191	Cococum
+2192	San Andres
+2193	Los Guillenes
+2194	Cayo Cedro
+2195	Cohatal
+2196	Alcides Pino
+2197	Floro Pérez
+2198	San Manuel
+2199	Puerto Garúpano
+2200	Fray Viuda
+2202	Purnio
+2203	Nuevo Holguin
+2204	Poplado Unas
+2205	San Piedra
+2206	Salgacero
+2207	Bocas
+2208	San Martin
+2209	Los Rasos
+2210	Lora
+2211	Lomo del Cedro
+2212	Military Base
+2213	Military area
+2214	Estrada
+2215	La Florida
+2216	Playa Blanca
+2217	Correa
+2218	Playa Janita of Porto Padre - Las Tunas Cuba
+2219	Antonio Guiteras sugar factory
+2220	El Paraiso
+2221	Oscar Lucero Moya University
+2222	Central Cristino Naranjo
+2223	Monte Alto
+2224	El Nispero
+2225	Fidelidad
+2226	Airfield
+2227	Prison
+2228	Airfield
+2229	Sugar factory
+2230	Graveyard
+2231	Sugar factory
+2233	Plaza Revolution
+2234	Prison
+2235	V. I. Lenin hospital
+2236	Puerto de Vita
+2239	Hospital
+2241	Graveyard
+2243	University hospital
+2244	Calixto García Íñiguez Stadium
+2245	Mig Alert Pads
+2246	Mig Alert Pad Connector
+2247	MiG Alert Pads
+2248	Baseball field
+2249	dam
+2250	Baseball field
+2251	interesting facility
+2252	Transformator station
+2253	Baseball field
+2254	Baseball field
+2255	Baseball park
+2256	Baseball field
+2257	Graveyard
+2258	Baseball field
+2259	Graveyard
+2260	Children playground
+2261	Baseball stadion
+2262	Baseball field
+2263	Baseball field
+2264	Baseball field
+2265	Helio- Alert Pads
+2266	Baseball field
+2267	Baseball field
+2268	Graveyard
+2269	Céspedes park
+2270	Baseball field
+2271	Calixto Garcia park
+2272	Graveyard
+2273	Graveyard
+2274	Graveyard
+2275	Plaza
+2277	Graveyard
+2278	Los Cabalitos
+2279	Baseball field
+2280	MiG Alert Pads
+2281	Graveyard
+2282	Graveyard
+2283	Graveyard
+2284	Parque de la Indenpencia.
+2286	Military Vehicle Staging Area
+2287	Peralta park
+2288	Steps to the top of Loma de la Cruz
+2290	Graveyard
+2291	Graveyard
+2292	HAS
+2293	Graveyard
+2294	"Parque de los Vagos"
+2295	Marqueta Plaza
+2296	Overflow
+2297	HAS
+2298	La Concha beach
+2299	HAS
+2300	HAS
+2301	HAS
+2302	HAS
+2303	HAS
+2304	HAS
+2305	HAS
+2306	HAS
+2307	HAS
+2308	HAS
+2309	HAS
+2310	HAS
+2311	Swimming pool
+2312	HAS
+2313	HAS
+2314	HAS
+2315	HAS
+2316	HAS
+2317	HAS
+2318	Park
+2319	Graveyard
+2320	HAS
+2321	Police
+2322	HAS
+2323	HAS
+2324	HAS
+2325	HAS
+2326	HAS
+2327	Railway station
+2328	Henry Garcia Suárez theater
+2329	HAS
+2330	San José church
+2331	La Reforma
+2332	Bunker
+2333	Courthouse
+2334	Bunker
+2335	Casa de la Cultura
+2336	Cathedral San Isidoro
+2337	Poder Popular Municipal
+2338	Plaza
+2339	Belvedere at Loma de la Cruz
+2340	Centro Cultural Mona Lisa
+2341	Casa del Tabaco
+2342	Museo Municipal - Liceo
+2343	Parroquia San Jose - Saint John Church (Catholic)
+2344	Bunker
+2345	Bunker
+2346	El Muelle
+2347	Display Aircraft
+2351	Busto de las Madres
+2352	Banes
+2354	Mud lake
+2355	Moa
+2356	Mayarí
+2357	Guardalavaca
+2358	Moa Grande island
+2359	Antilla
+2360	Cayo Mambi
+2361	Delicia
+2362	Guaro
+2363	Guatemala
+2364	Nicaro
+2365	Felton
+2366	Levisa
+2367	Ni and Cr factory
+2368	Macabi
+2369	Aguada La Piedra
+2370	Navy military base
+2371	Lake
+2372	Los Negritos
+2373	Reparto 26
+2374	Playa Pesquero Resort
+2375	Barrederas
+2376	Cebolla Cuatro
+2377	Airport Orestes Acosta
+2378	Castillito
+2379	Sirenis Playa Turquesa
+2380	Airfield
+2381	Reparto Emergencia
+2382	Juan Vicente
+2383	Thermoelectric plant
+2384	Chavaleta
+2385	Dam
+2386	Embarcadero de Banes
+2387	Paradisus Rio de Oro
+2388	Nicaro airfield
+2389	Atlantico
+2390	Playa Costa Verde
+2391	Miraflores
+2392	San Isabel de Nipe
+2393	Samá
+2394	El Palmar
+2395	Sol Rio Luna Mares
+2396	Central Guatemala
+2397	Playa Juan Vicente
+2398	Las Coloradas
+2399	Villa Cayo Saetica
+2400	El Cocal
+2401	Preston Airport (pst) ?
+2402	Esteron
+2403	Brisas Hotel Guardalavaca
+2404	Boca de Tanamo
+2405	Caimana
+2406	Club Amigo Atlántico
+2407	The port of Nicaro
+2408	Blau Costa Verde
+2409	Dumos
+2410	3 Floor Hotel
+2411	Prison
+2412	Playa de Morales
+2413	Hotel Miraflores
+2414	Good snorkling
+2415	Club Amigo Guaralavaca, Bungalow Section
+2416	Marina Bahia de Naranjo
+2417	Graveyard
+2418	Heliport
+2419	Aquarium
+2420	Container terminal
+2421	ex Soviet military base
+2422	Graveyard
+2423	Soccer field
+2424	Overflow
+2425	Quarry
+2427	Baseball field
+2428	Park
+2429	Prison
+2430	Baseball field
+2431	Baseball field
+2432	Baseball field
+2433	Baseball field
+2434	Baseball stadion
+2435	Baseball field
+2436	Baseball field
+2437	Transformator station
+2438	Baseball field
+2439	Baseball field
+2440	Baseball field
+2441	Baseball field
+2442	Baseball field
+2443	Baseball field
+2444	Baseball field
+2445	Baseball field
+2446	Bitiri Motel
+2447	Baseball field
+2448	Baseball field
+2449	Graveyard
+2450	Baseball park
+2451	Baseball field
+2452	Baseball field
+2453	Villa Cabanas
+2454	Baseball field
+2455	Playa Corinthia
+2456	Market
+2457	Graveyard
+2459	Shopping center
+2463	Disco Club La Roca
+2464	Cupet service station
+2465	Centro Comercial
+2467	El Ancla
+2468	Landing pier
+2469	Landing pier
+2470	Drydock
+2471	Lighthouse
+2472	Main hotel lobby - Brisas Guardalavaca
+2473	Swimming pool
+2474	Cinema
+2475	San Gregorio
+2476	Landing place
+2477	City Hall
+2478	Villa's Lobby - Brisas Guardalavaca
+2479	Clinic
+2480	Landing point
+2481	Gate house
+2482	Cayo Saetia bridge
+2483	Lighthouse
+2484	Great Iguana National Park
+2485	South Bay
+2486	Matthew Town
+2487	Matthew Town Airport
+2488	Heli Port
+2489	Salt Loading Facilities
+2490	Sports Ground
+2491	Mathew Town Harbour
+2492	Tennis Court
+2493	Landing pier
+2494	Mathew Town Lighthouse
+2495	Nuevitas
+2496	Manati
+2497	Camalote
+2498	Puerto de Pastelillo
+2499	Puerto Tarafa
+2500	Tararaco
+2501	Santa Lucia Airport (ICAO: MUSL)
+2502	San Miguel de Bagá
+2503	San Basilio
+2504	Playa Covarrubias 
+2506	Puerto Manati
+2509	Club Mayanabo
+2510	Sugar factory (disused)
+2511	Santa Rita
+2512	Manati airfield (closed)
+2514	Gran Club Santa Lucia
+2515	Caracol
+2520	Graveyard
+2522	Soccer field
+2523	Baseball park
+2524	Soccer field
+2525	Graveyard
+2526	Roundhouse
+2527	Remote Beach House
+2528	Chicxulub Impact Crater
+2529	Scorpion Reef (Arrecife Alacranes)
+2530	Colorados Archipelago
+2531	U-2513(wreck)
+2532	Location of rare 5.8 in Gulf of Mexico on 9-10-06
+2533	Arroyos de Mantua
+2534	Facility : "The Six-Pack" 
+2535	San Julian Airbase (SNJ)
+2537	Pinar del Rio
+2544	Minas de Matahambre
+2547	Mine
+2548	Sandino
+2549	Guane
+2550	Manuel Lazo
+2551	San Juan y Martinez
+2552	Mantua
+2553	San Luis
+2554	El Moncada
+2555	San Ramón
+2556	Pons
+2558	Las Martinas
+2559	Cortés
+2560	La Vigia
+2561	Dimas
+2563	José Marti
+2565	Runway 08 / 26 SNJ
+2566	Bolivar
+2567	Runway (Civ)  SNJ
+2568	El Sábalo
+2569	Airport
+2570	El Pino
+2571	La Fe
+2572	La Güira
+2573	José Marti
+2574	Los Ciegos
+2575	Molina
+2576	Sports ground
+2577	El Batey
+2578	Paso Leona
+2579	School
+2580	School
+2581	Pinar Del Rio Airport
+2582	Hacienda Oliva
+2583	Cabesa
+2584	Managuaco
+2585	Pino Gordo
+2586	El Ali
+2587	Calazán
+2588	Rocket launching site
+2589	Santa Isabel
+2590	Playa Colorada
+2591	School
+2592	School
+2593	MiG Alert Pad
+2594	Power plant
+2595	MiG Alert Pad
+2596	Park
+2597	Villa Aguas Claras Resort
+2598	Hector Luis Prieto -- Cigar Plantation 
+2599	Facility With 600 Foot Round Cleared Space
+2600	Babineyes
+2601	Pozo 2
+2602	Regional hospital
+2603	Estadio Capitan San Luis
+2604	La Bodega de la Calle 5ta
+2605	Cabaret Rumayor
+2606	PRISION KILOMETRO 5.12
+2607	Pozo 1
+2608	Aserio 3
+2609	Ballpark
+2610	Sports ground
+2611	Canal Facility
+2612	Taxiway-Usable Connection Highway-to-MiG Parking
+2613	Sports ground
+2614	Ball park
+2615	Ballpark
+2616	Villa Laguna Grande
+2617	Transformation plant
+2618	Ballpark
+2619	Ballpark
+2620	edp almace de narcoticos de el fresa(adrian)
+2621	Dam
+2622	Raiknight Power Plant
+2623	Ballpark
+2624	Graveyard
+2625	Graveyard
+2626	School
+2627	Ballpark
+2628	Ballpark
+2629	Graveyard
+2630	Graveyard
+2631	Motel Deportivo
+2632	edp almacen de narcoticos con entrada del rio de el fresa(adrian)
+2633	abel santamaria hospital
+2634	cementerio 1 1/2 luis lazo
+2635	panaderia la Martha
+2636	Hotel pinar del rio
+2637	Farmers Market
+2638	apartamento de el fresa (adrian)
+2639	Pharmacy
+2640	Hospital
+2641	Police station
+2642	Cinema
+2643	School
+2644	Banco Popular
+2645	Emo Club
+2646	Boat Launch
+2647	Cultural center
+2648	Taller electrics
+2649	Military post
+2650	Catholic church
+2651	UJC municipal
+2653	La Taberna
+2654	Edy Club
+2655	Munitions Storage
+2656	1950 Gas station has Beer
+2657	La Pipa
+2658	Main house
+2659	Monument of Isabelita Rubio
+2660	Dons Place
+2661	Dip house
+2663	Cayo Real
+2664	Consolaciyn del Sur
+2665	Los Palacios
+2666	Herradura
+2667	La Coloma Airport
+2668	Guatana
+2669	Pilotos
+2671	Entronque de Herradura
+2672	La Coloma
+2673	Alonso de Rojas
+2674	La Ceiba
+2675	Trece de La Coloma
+2676	La Conchita
+2677	Briones Mantoto
+2678	Paso Real de San Diego
+2679	Mijan
+2681	Sierra Maestra
+2682	Quince de La Coloma
+2683	Dam
+2684	Santa Teresa
+2685	Santa Mónica
+2686	Baro
+2687	El Brazo
+2689	El Caribe
+2690	Dam
+2691	Airstrip
+2692	La Asuncion Airport
+2693	Airfield
+2694	Airstrip
+2695	Playa Las Canas
+2697	Airstrip
+2698	Dam
+2699	Fabrica la Conchita
+2700	Playa Dayaniguas
+2701	Overflow
+2702	Tejar de Ladrillos y Losas de la Conchita
+2703	Transformer station
+2704	Alturas de la Central
+2705	Ballpark
+2706	Overflow
+2707	New Processing Furnace in The Bricks and Tile Factory in La Conchita, Pinar del Rio
+2708	Overflow
+2710	Cine La Conchita
+2729	Bay of Pigs
+2730	Cayo Ernest Thaelmann - is the last official territory of the good old Deutsche Demokratische Republik.
+2733	Jagüey Grande
+2734	Covadonga
+2737	Cayo Ramona
+2738	Playa Giron
+2739	Amarillas
+2740	Calimete
+2742	Manguito
+2744	Playa Larga
+2746	Reynold Garcia
+2747	Indian Village
+2748	Helechal
+2749	Jesus Rabi
+2750	Crocodile Farm
+2753	Los Hondones
+2754	Bermejas
+2759	airfield
+2761	Airfield
+2762	airfield
+2763	Sugar factory
+2766	Restaurant
+2767	Sugar factory
+2768	airfield
+2769	Cave of Fish
+2772	Ishfaq Hussain's University In Cuba
+2773	Graveyard
+2774	Soccer field
+2776	Ballpark
+2778	Ballpark
+2779	Ballpark
+2780	Soccer field
+2781	Graveyard
+2782	Ballpark
+2783	Ballpark
+2784	Ballpark
+2785	Ballpark
+2787	Graveyard
+2789	Graveyard
+2790	Graveyard
+2791	Ballpark
+2792	Central park
+2793	Public transport bus station
+2794	Restaurant La Boca
+2795	Microwave Relay Tower and Broadcast Transmitter
+2798	Restaurant
+2799	City administration
+2807	Cienfuegos 
+2808	Juraguá Nuclear Power Plant
+2809	Large Refinery
+2811	Santo Domingo
+2812	Cumanayagua
+2813	Aguada de Pasajeros
+2814	Ranchuelo
+2815	Cruces
+2816	Lajas
+2819	Palmira
+2820	Jaime González Airport
+2821	Rodas
+2822	Caunao
+2824	Ciego Montero
+2825	Tulipan
+2826	Botanical gardens of Cienfuegos
+2827	Cartagena
+2828	Pueblo Griffo
+2829	Abreus
+2831	San Fernando de Camarones
+2832	Real Campina
+2833	Ariza
+2834	Primero de Mayo
+2835	Jicotea
+2836	Santiago de Cartagena
+2837	La Sierrita
+2838	Ramon Balboa
+2839	La Piragua
+2842	Carlos Caraballo
+2844	Espartaco
+2845	Congojas
+2847	Céspedes
+2849	Veintiseis de Julio
+2850	Ciudad Caracas
+2852	San Nicolas
+2853	Dam
+2854	Catorce de Julio
+2856	Manaquitas
+2858	Efrain Alfonso
+2860	Limones
+2864	Dam
+2866	Soviet Airbase - Alert Aircraft Positions - MiG Base
+2868	Silverita
+2871	Entronque la Mina
+2873	Lake
+2876	dam
+2877	Margarita airfield (disused)
+2878	University for media and cinematography
+2880	Sugar factory
+2882	Docks for very large submarines
+2884	Hospital Provincial
+2885	Prison
+2886	Sugar factory
+2887	Sugar factory
+2889	Former Soviet Aircraft Repair Hangar with Parking Pads around perimeter
+2890	Dam
+2891	Sugar factory
+2892	Sugar factory
+2893	A Cuban Prison
+2895	Ballpark
+2897	Soccer field
+2898	Hotel Faro Luna
+2899	Hotel Jaguar
+2900	Graveyard
+2902	Ballpark
+2903	Ballpark
+2904	Graveyard
+2905	Ballpark
+2907	School
+2909	Baseball diamond
+2910	Ballpark
+2911	Ballpark
+2912	Soccer field
+2913	Graveyard La Reina
+2914	Soccer field
+2915	Ballpark
+2916	Ballpark
+2917	Jose Marti park
+2918	Ballpark
+2919	Ballpark
+2920	Ballpark
+2921	Ballpark
+2922	Ballpark
+2923	Ballpark
+2924	Ballpark
+2925	Graveyard
+2926	Graveyard
+2927	Ballpark
+2928	Sports ground
+2930	Overflow
+2931	Graveyard
+2932	Graveyard
+2933	Graveyard
+2934	Central park
+2935	Hospital Paquito Gonzales
+2936	Overflow
+2937	Pasacaballo Hotel
+2938	Recreation center
+2939	Regional hospital
+2940	Unit 1
+2941	Ballpark
+2942	Villuendas park
+2944	Graveyard
+2945	Boulevard
+2946	Unit 2
+2947	Central park
+2949	Surface to AIr Missile Battery
+2950	Soccer field
+2952	Delfinario
+2953	Castillo de Jagua
+2954	Lake
+2955	Graveyard
+2957	Graveyard
+2959	Hotel Union
+2961	Supermarket
+2963	Overflow
+2964	Graveyard
+2965	dam
+2967	Cabaret Costasur
+2968	Sport museum
+2969	Graveyard
+2970	Terry theater
+2971	Historic museum
+2974	Graveyard
+2975	Public market
+2976	Cathedral Purisma Concepcion
+2977	Cultural center Benjamin Duarte
+2978	Old Power Station, by Blas
+2979	Service station
+2980	International clinic
+2981	Service station
+2983	Church
+2984	Church
+2988	med clg
+2989	Panteón de Gil
+2990	Lapido's Residence
+2992	Santa Clara
+2993	Santa Clara Airport
+2995	Placetas
+2996	Cabaiguán
+2997	Caibarién
+2998	Manicaragua
+2999	Santa Clara - city center
+3000	Camajuani
+3001	Fomento
+3002	Remedios
+3003	Vueltas
+3004	Lake
+3005	Guayos
+3006	Cuban Missile Crisis – Remedios III
+3007	Báez
+3008	Mantaguá
+3009	Universidad Central Martha Abreu de Las villas, Cuba
+3010	San Juan de los Yeras
+3011	Falcon
+3012	San Diego del Valle
+3013	Hatillo
+3014	Guaracabulla
+3015	Hermanos Ameijeiras
+3016	La Moza
+3017	Manjanabo
+3018	Potrerillo
+3019	El Nicho
+3020	Diez de Octobre
+3021	Miller
+3022	Osvaldo Herrera
+3023	Radio transmitter
+3024	Barajagua
+3025	Jorobada
+3026	Military Facility
+3027	Carmita
+3029	Minerba dam
+3031	El Nicho
+3033	Underground Hangars - Bombers
+3035	Escuela Victory SantaClara
+3036	Sugar factory
+3038	Jibacoa dam
+3039	Motor cross track
+3041	The hill
+3042	Central Remberto Aleman
+3043	Power Substation
+3044	Sugar factory
+3046	Underground Hangars - Bombers
+3048	Sugar factory
+3049	aircraft dispersal areas
+3050	Radio tower
+3051	Sugar factory
+3052	Military Aircraft Service Hangar
+3053	Escuela De Sordos y Mudos,School of Silent and Mute Children
+3054	High Security Compound
+3056	Sugar factory
+3057	Underground Hangars - Bombers
+3058	Sugar factory
+3059	Hotel Hanabanilla
+3060	Water Treatment plant
+3061	Augusto César Sandino Stadium
+3062	MiG Fighter-Bomber Bunkers, Underground Hangars
+3063	Underground Hangars - Bombers
+3064	MiG Fighter-Bomber Bunkers, Underground Hangars
+3065	Underground Hangars - Medium Range Bombers
+3066	Water Dam
+3067	MiG Fighter-Bomber Bunkers, Underground Hangars
+3069	Graveyard
+3070	Baseball diamond
+3071	Ballpark
+3072	Ballpark
+3073	Ballpark
+3074	Ballpark
+3075	Ballpark
+3076	Graveyard
+3078	Ballpark
+3079	Ballpark
+3080	Ballpark
+3081	Ballpark
+3083	Ballpark
+3084	Ballpark
+3085	Graveyard
+3086	Ballpark
+3089	Electrical sub station
+3090	Ballpark
+3091	Ballpark
+3092	Aircraft Bunker
+3093	Aircraft Bunker
+3094	Aircraft Bunker
+3096	Overflow
+3097	Soviet Tactical and Strategic Aircraft on Static Display, includes missile launchers
+3098	Underground Hangars - Bombers
+3099	Ballpark
+3100	Aircraft Bunker
+3102	Ice Factory
+3104	Graveyard
+3105	Graveyard
+3106	Tactical Aircraft Parking Pad
+3107	Electrical sub station 	 	
+3108	Aircraft Bunker
+3109	Aircraft Bunker
+3110	Park
+3112	Aircraft Bunker
+3114	Bridge
+3116	Aircraft Bunker
+3119	Graveyard
+3120	Hind Helicopters - Gun Ships
+3121	Service station
+3122	Airport terminal
+3124	Graveyard
+3125	Graveyard
+3127	Armored Train (Battle of Santa Clara)
+3128	MiG Boneyard - Scrap Aircraft
+3132	Hotel Santa Clara Libre
+3133	MiG Fulcrum
+3134	MiG-21 Fishbed Interceptor
+3135	Church
+3136	Railway station
+3145	Yaguajay
+3146	Maximo Gomez Airport (avi)
+3147	Radio communications
+3148	Chambas
+3149	Meneses
+3152	Fella
+3153	Florencia
+3154	Taguasco
+3155	Máximo Gómez
+3156	Zaza Del Medio
+3158	Simón Bolivar
+3159	Siguaney
+3160	Venegas Nuevo
+3161	Iguara
+3162	Obdulio Morales
+3164	Tuinicu
+3165	Punta Alegre
+3166	Jarahueca
+3167	Perea
+3168	Tamarindo
+3169	Los Perros
+3172	Quarry
+3173	Jiquima de Peláez
+3176	El Calvario
+3179	Sancti Spiritus Airport (uss)
+3190	Sugar factory
+3191	Mayajigua Airport (closed)
+3195	CAIBARIEN YACTH CLUB EN LAS VILLAS CUBA
+3199	El Pedraplen
+3201	Playa Victoria
+3202	Sugar factory
+3204	Soccer field
+3205	Factory
+3208	Ballpark
+3209	Ballpark
+3211	dam
+3213	Ballpark
+3214	Ballpark
+3217	Ballpark
+3218	Ballpark
+3219	Graveyard
+3220	Zaza del Medio station
+3221	Ballpark
+3227	Graveyard
+3228	Graveyard
+3230	Graveyard
+3233	Graveyard
+3237	Graveyard
+3238	Toll Booth
+3242	Graveyard
+3246	Service station
+3288	Tongue of the Ocean
+3289	Cayo Coco Island
+3290	Laguna de la Leche
+3291	Cayo Cruz
+3292	Cayo Guillermo
+3293	El Bagá Natural Park
+3294	La Redonda
+3295	Morón
+3296	Jardines del Rey Airport
+3297	Bolivia
+3298	Ciro Redondo
+3300	Ceballos
+3302	Versailles, Cayo Romano Camaguey Cuba
+3304	Hotel NH Kyrstal Laguna (5*), Cayo Coco
+3305	Disguised Soviet Air Base, Disguised SIGINT Base with runway that appears to be a highway
+3308	Hotel Tryp Cayo Coco (5*), Cayo Coco
+3309	San Rafael
+3313	El Salado
+3316	Abandoned French Resort
+3318	Villa Cojimar, Cayo Guillermo, Cuba
+3319	Hotel Blau Colonial (5*), Cayo Coco
+3320	Sol Cayo Guillermo, Cayo Guillermo, Cuba
+3322	Half Moon Island, Cuba
+3324	Army Base on Cayo Guillermo, Cuba
+3325	Melia Cayo Guillermo, Cayo Guillermo, Cuba
+3327	Iberostar Daiquiri
+3329	Hotel Melia Cayo Coco ****, Cayo Coco
+3330	Factory
+3331	Hotel Blue Bay Cayo Coco
+3332	Hotel Sol Cayo Coco
+3334	Playa La Tinaja
+3335	Poblado Holandés
+3336	La Loma
+3339	Manati
+3342	Power Plant on Cayo Guillermo, Cuba
+3344	Philippe Island
+3345	Sports ground
+3346	Pilar Beach
+3349	Hotel Gaviota (3*), Cayo Coco
+3350	Graveyard
+3352	Soccer field
+3353	Aquatic Center and Marina on Cayo Guillermo, Cuba
+3354	Soccer field
+3356	Ballpark
+3357	Ballpark
+3360	HOTEL sol CAYO GUILLERMO
+3361	Lighthouse
+3362	Velodrom
+3363	Roundabout
+3364	NH Krystal
+3365	Service station
+3366	Ranchon Las Dunas Seafood Restaurant
+3367	NH Krystal Disco Club
+3368	Tollgate
+3370	Rental Car
+3371	Pasarela Hemingway
+3372	Gazebo
+3373	Souvenir / Gift Shop
+3374	Mayaguana
+3376	Rum Cay - Santa Maria de la Conception Island
+3377	Samana Cay
+3378	Plana Cays
+3379	Long Cay
+3380	Acklins
+3381	Crooked Island
+3382	Ragged Island
+3383	Conception Island
+3384	Plana Cays
+3385	Stella Maris Estate
+3386	Storr´s Lake
+3387	Columbus Landing
+3388	Island
+3389	Lake
+3390	Hog Cay
+3391	Granny Lake
+3392	Long Island
+3394	Cat Island
+3395	Little Exuma
+3396	Stouts Lake
+3397	Little Lake
+3398	Lake
+3399	Deadman´s Cay
+3400	Lake
+3401	Crab Cay
+3402	Salt Lake
+3403	Lake
+3404	Little Lake
+3405	Green Turtle Cay
+3406	Hog Cay
+3407	Hooper´s Bay
+3408	Flamingo Pomd
+3409	Jewfish Cay
+3410	Betsy Bay
+3411	Lake
+3412	Culmer´s Cay
+3413	Six Pack Pond
+3414	Santa Maria Beach
+3415	Tommy Young´s Cay
+3416	Hog Cay
+3417	Snug Corner
+3418	George Town Airport
+3419	Exuma International Airport
+3420	San Salvador Airport
+3421	Duck Pond
+3422	Great Exuma
+3423	Cockburn Town
+3424	Colonel Hill
+3425	Salinas Point
+3426	New Bight Airport
+3427	Hartswell
+3428	Port Nelson
+3429	Clarence Town
+3430	Spring Point
+3431	Elizabeth Island
+3432	Major´s Cay
+3433	George Town, Great Exuma Island
+3434	Roses
+3435	Binnacle Hill
+3436	South Granny Lake
+3437	Delactable Bay
+3438	Jamaica Cay
+3439	Davy Cay
+3440	Spring Point Airport
+3441	Mermaid Pond
+3442	Dixon Settlement
+3443	Ramsey´s
+3444	Port Howe
+3445	Glass Cay
+3446	Deadman´s Cay Airport
+3447	Bain Town
+3448	Stocking Island
+3449	Glenton
+3450	Burnt Ground
+3451	Petty´s
+3452	February Point
+3453	Loveley Bay
+3454	Landrail Point
+3455	Montana Marina
+3456	Oceania Heights
+3457	Lake
+3458	New Bight
+3459	Club Med Hotel
+3460	Forest Settlement
+3461	Steventon
+3462	Booby Cay
+3463	Hawk's Nest Airport
+3464	Mount Thompson
+3465	Lake
+3466	Hawk´s Nest
+3467	Simm´s
+3468	Albert Town
+3469	Salt Pond
+3470	Pond
+3471	United Estates Settlement
+3472	Guana Cay
+3473	Four Seasons Resort Great Exuma at Emerald Bay (closed)
+3474	Rum Cay International Airport
+3475	Seymour
+3476	Stella Maris Airport
+3477	Hard Hill
+3478	High Cay
+3479	Rum Cay Resort and Marina
+3480	Snowhill
+3481	Duncan Town Airfield
+3482	Lake
+3483	Cripple Hill
+3484	Mariah Cay Beaches
+3485	Roaker´s
+3486	Blue Hole
+3487	Sandy Cay
+3488	Farmer´s Hill
+3489	Low Cay
+3490	Fowl Cay
+3491	Chesters
+3492	Moss Town
+3493	Pond
+3494	Salt Lake
+3495	Brandy Hill Settlement
+3496	Pond
+3497	Stella Maris Marina
+3498	Crab Cay Marina
+3499	Lake
+3500	Lake Victoria
+3501	Pinefield
+3502	Roker's Cay
+3503	Masons Bay
+3504	Elizabeth Harbour Estates
+3505	Crooked Island Airport
+3506	Ocean Ridge Estate
+3507	Fortune Hill
+3508	The Palms at Three Sisters
+3509	Lake
+3510	Lake
+3511	Bluff
+3512	Moss Town
+3513	Lake
+3514	Moss Cay
+3515	Rolle Cay
+3516	Grand Isle Resort
+3517	Williams Town
+3518	Rolle Town
+3519	Goat Cay
+3520	Green Cay
+3521	Marina Beach Estate
+3522	Stella Maris Resort
+3523	Cape Santa Maria Airstrip
+3524	Conch Cay
+3525	Riding Rock Marina
+3526	Pond
+3527	Cut Cay
+3528	Pond
+3529	Hog Cay Airstrip
+3530	Heli-Port
+3531	Man Head Cay
+3532	Bird Rock Cay
+3533	Pittstown Point Landing
+3534	Pond
+3535	Cutlass Bay Airport
+3536	White Cay
+3537	Riding Rock Resort
+3538	Exuma Docking Service
+3539	Sumner Point Marina
+3540	Goulding Cay
+3541	Middle Cay
+3542	Palm Bay Beach Club
+3543	Pond
+3544	Pond
+3545	Poor Betty´s Cay
+3546	Cape Santa Maria Beach
+3547	Catto Cay
+3548	Chat 'n' Chill
+3549	Gauin Cay
+3550	Stella Maris Beach Reserve
+3551	Hog Cay Airfield
+3552	Pitts Town Airfield
+3553	Pond
+3554	Lake
+3555	Pond
+3556	Airfield
+3557	Coral Gardens
+3558	Darville Lumber
+3559	St. Francis Resort
+3560	Pond
+3561	Fish Fry
+3562	Pond
+3563	The Palms at Three Sisters
+3564	Peace & Plenty Bonefish Lodge
+3565	Pond
+3566	Crab Island Beach Resort
+3567	School
+3568	BEC Power Plant
+3569	Houseman's
+3570	Kermit's Airport Lounge
+3571	Government Dock
+3572	Three Sisters Islands
+3573	Bahama Houseboats
+3574	Pagoda Place Apartments site
+3575	Pond
+3576	Regatta Point
+3577	Club Peace & Plenty
+3578	Lake
+3579	Pond
+3580	Bridge between Great Exuma and Little Exuma Islands
+3581	Royal Bank of Canada
+3582	Dean's Blue Hole
+3583	Stella Maris Tennis Courts
+3584	Church Grove
+3585	Stella Maris General Store
+3586	Out Island Inn
+3587	BaTelCo
+3588	Government Administration Building
+3589	Eddie´s Edgewater Inn
+3590	Crab Island Bridge
+3591	Gas Station
+3592	St. Andrew´s Anglican Church
+3593	Exuma Markets
+3594	Bridge
+3595	Stella Maris Flight Center
+3596	Public Pier
+3597	Glenton´s Dock
+3598	Foxy's
+3599	Scotiabank
+3600	Government Clinic
+3601	Church
+3602	Kay´s Restaurant & Bar
+3603	CNK Liquor
+3604	Regatta Park
+3605	Smitty's 
+3606	Church
+3607	Dixon Hill Lighthouse
+3608	Anglican Church
+3609	Rum Cay School
+3610	Two Sisters Takeaway
+3611	Tobs Bar
+3612	Bridge
+3613	Bird Rock Lighthouse
+3614	Lighthouse
+3615	Tiki Bar
+3616	Lake Victoria Bridge
+3617	Taylor's Production
+3618	Landing Stage
+3619	Castle Island Lighthouse
+3620	Laundry
+3621	Vinales Valley
+3622	Cayo Jutias
+3623	Strip Mine / Quarry
+3624	Santa Lucia
+3625	Vinales
+3626	Strip Mine / Quarry
+3627	Puerto Esperanza
+3628	La Sabana
+3629	San Cayetane
+3630	floded forrest
+3631	Ironworks
+3632	Cueva del Indio
+3633	Littoral Vessels Facility
+3634	Factory
+3635	Hotel Rancho San Vincente
+3636	Hotel La Ermita
+3637	Lake
+3638	Cueva de San Miguel
+3639	Ball park
+3640	Graveyard
+3641	Canal
+3642	Crossroad to La Sabana
+3643	El Banito
+3644	Electrical substation
+3645	Graveyard
+3646	Hotel Jazmines
+3647	Youth club
+3655	Hacienda
+3656	Best Casa Particular from Vinales: owner Yvan and Rosi
+3657	Sierra del Rosario
+3658	Cuban naval base
+3659	Bahia Honda
+3660	San Cristóbal
+3661	Cuban Missile Crisis – San Cristobál II
+3662	Los Pinos
+3663	Candelaria
+3664	Pablo de la Torriente Brau
+3665	Cayo Levisa
+3666	Cuban Missile Crisis – San Cristobál I
+3667	La Palma
+3668	josé Marti
+3669	Manuel Sanguily
+3670	San Carlos
+3671	Santa Cruz
+3672	Mango Jobo
+3673	Gregorio Garcia
+3674	Cayo Arenas
+3675	Silvio Claro
+3676	Taco Taco
+3677	Military Facility
+3678	La Guira
+3679	Harlem
+3680	Montana
+3681	Cuban Missile Crisis, San Cristobál IV
+3682	Dam
+3683	Fierro
+3684	Carabela
+3685	Dam
+3686	Cuban Missile Crisis – San Cristobál III
+3687	La Unión
+3688	Dam
+3689	Chirigotas
+3690	Dam
+3691	Punta de Piedra
+3692	Ship Builder's / Breakers Yard
+3693	San José
+3694	Dam
+3695	Puerta Prieta
+3696	Sugar factory
+3697	San Ignacio
+3698	Airstrip
+3699	Playa el Morrillo
+3700	Hotel Villa Soroa
+3701	Soroa Orchid Botanical Garden
+3702	Central José Marti Sugar Mill
+3703	Abandoned airfield [?]
+3704	Mario Gonsales
+3705	Playa Carrenero
+3706	Playa La Altura
+3707	dam
+3708	Central Harlem sugar mill
+3709	Overflow
+3710	Hotel Cayo Levisa
+3711	Central Manuel Sanguily Sugar Mill
+3712	Overflow
+3713	Anti-Aircraft Revetments
+3714	sports ground
+3715	Police school
+3716	School
+3717	Slipway
+3718	Overflow
+3719	Lighthouse
+3720	Overflow
+3721	Graveyard
+3722	Overflow
+3723	Community center
+3724	Old Revetments
+3725	Restaurant Castle of Clouds
+3726	Pier
+3727	Cine Mambi
+3728	Gatehouse
+3729	Artemisa
+3730	Represa El Corojal
+3731	Guanajay
+3732	Lake Piedra
+3733	El Majagual 
+3734	Abraham Lincoln
+3735	Eduardo G. Lavandero
+3736	La Ofelia
+3737	Pijirigua
+3738	Las Canas
+3739	Punta Sucia
+3740	Las Mangas
+3741	El Corojal
+3742	Mango Dulce
+3743	Ceiba del Agua
+3744	Las Terrazas
+3745	Cuartel Coronel Hevia
+3746	El Portugués
+3747	Los Gatos
+3748	Naranjo China
+3749	Guanimar
+3750	Pluma
+3751	Gamboa Lake ( Laguna Gamboa / Raul Doucunge)
+3752	Playa Majana
+3753	Ciudad Industrial (Industrial City)
+3754	Airfield
+3755	IPUEC Manuel Ascunce Domenech
+3756	Airstrip
+3757	Laguna Maria Elena (Lake Maria Elena)
+3758	Central Abraham Lincoln Sugar Mill
+3760	Paso Jicara
+3761	Angelo Lake (Laguna Aldao)
+3762	Ballpark
+3763	Agusto Cesar Sandino Elementary School
+3764	Hotel Moko
+3765	Caiman Lake (Laguna Los Caimanes)
+3766	El Ato
+3767	Graveyard
+3768	Jose Ramon Ranch ( Rancho Jose Ramon)
+3769	Scuela Secundaria Manuel Valdez ( Manuel Valdez Middle School)
+3770	Cine Juarez 
+3771	Hotel Campo Amor
+3772	San Antonio de los Baños Airforce Base
+3774	San Antonio de los Banos
+3775	Güira de Melena
+3776	Alquízar
+3777	Batabano
+3778	Quivicán
+3779	Surgidero de Batabano
+3780	Major Military Facility - Tank and Artillery Present Here
+3781	Camache
+3782	San Felipe
+3783	La Palma
+3784	La Julia
+3785	Driving Range for tanks and heavy armorered vehicles
+3786	Gabriel
+3787	Aircraft Dispersal Area
+3788	San Augustin
+3789	La Cucaracha
+3790	Alquitex
+3791	Tienda del Porate
+3792	Playa del Cajio
+3793	Military Depot
+3795	Central Pablo Noriega Sugar Mill
+3796	Ordnance Storage Site
+3797	Airfield (disused)
+3798	Radio Havana Cuba
+3799	Radio Havana Cuba Bauta
+3800	Three SA-6 Launch Positions
+3801	Airstrip
+3802	MiG Parking Areas - 3 ea
+3803	Driving Range for Tanks
+3804	High Security Compound - Previously a Satellite Tracking Facility, Current Use Unknown
+3806	Antenna Farm for Eavesdropping / SIGINT/ELINT Station Nearby - Still active and in use
+3807	Military Aircraft Service Center
+3809	Graveyard
+3810	Munitions Assembly
+3811	Sports ground
+3812	Eavesdropping Station
+3813	Antenna Farm for Eavesdropping / SIGINT/ELINT Station Nearby - Still active and in use
+3814	Pull Through SAM Service Bay for Loading Missiles onto Portable Launchers
+3815	MiG Underground Hangars / Bunkers
+3816	Hospital
+3817	Underground Aircraft Bunker
+3818	Ballpark
+3819	Jets
+3820	Surface to Air Missile and Anti-Aircraft Artillery Battery - Support Base
+3821	Baseball Field of Alquizar
+3822	Secret Signals Intelligence SIGINT / COMINT Eavesdropping Station
+3823	Ballpark
+3824	Hardened Aircraft Bunker
+3825	Ballpark
+3826	Ballpark
+3827	Ballpark
+3828	Ballpark
+3829	Graveyard
+3830	water well Cuenca Sur aqueduct
+3831	Graveyard
+3832	Water well for Cuenca Sur aqueduct
+3833	Water well for Cuenca Sur aquedut
+3834	Water well, Cuenca Sur aqueduct
+3835	Water well for Cuenca Sur aqueduct
+3836	water well for Cuenca Sur aqueduct
+3837	Ballpark
+3838	Water well for Cuenca Sur aqueduct
+3839	Water well for Cuenca Sur aquedut
+3840	Aircraft Parking Pad and Bunker
+3841	Water well for Cuenca Sur aqueduct
+3842	Nuclear Weapons Assembly Area
+3843	Antenna Farm for Eavesdropping / SIGINT/ELINT Station Nearby - Still active and in use
+3844	Aircraft Bunker
+3845	Surface to AIr Defenssive Missles
+3846	water well for Cuenca Sur aqueduct
+3847	fuel storage
+3848	Antenna Farm
+3849	Sports ground
+3850	Aircraft Parking Pad
+3851	Graveyard
+3852	Partially Covered AIrcraft Hangar
+3853	Ballpark
+3854	Antenna Farm
+3856	Aircraft Parking Pad
+3857	Antenna Farm
+3858	Antenna Farm
+3859	RTS - Remote Tracking Station for Satellite Interception
+3860	Power Substation
+3861	Bunker
+3862	Anton Nilson Middle School
+3863	aircraft display
+3864	Exposed Double Spar Bunker
+3865	Missile Bunker
+3866	Graveyard
+3867	Hardened Bunker - Large Enough for Multiple Tanks
+3868	bunker
+3869	Bunker / Firing Position, Likley for Tanks for Mobile Missile Launchers
+3870	Bunker / Firing Position, Likley for Tanks for Mobile Missile Launchers
+3871	Bunker / Firing Position, Likley for Tanks for Mobile Missile Launchers
+3872	Bunker / Firing Position, Likley for Tanks for Mobile Missile Launchers
+3873	Bunker / Firing Position, Likley for Tanks for Mobile Missile Launchers
+3874	Bunker / Firing Position, Likley for Tanks for Mobile Missile Launchers
+3875	Bunker / Firing Position, Likley for Tanks for Mobile Missile Launchers
+3876	Missle Battery
+3877	bunker
+3878	bunker
+3879	bunker
+3880	bunker
+3881	bunker
+3882	bunker
+3883	bunker ?
+3884	bunker ?
+3885	bunker
+3886	bunker
+3887	bunker
+3888	bunker
+3889	bunker
+3890	bunker
+3891	bunker
+3892	bunker
+3893	Bunker / Firing Position, Likley for Tanks for Mobile Missile Launchers
+3894	bunker
+3895	bunker
+3896	bunker
+3897	bunker
+3898	bunker
+3899	bunker
+3900	bunker
+3901	bunker
+3902	bunker
+3903	bunker
+3904	bunker
+3905	bunker
+3906	bunker
+3907	bunker
+3908	bunker
+3909	bunker
+3910	bunker
+3911	bunker
+3912	bunker
+3913	bunker
+3914	bunker
+3915	bunker
+3916	bunker
+3917	Firing Position
+3918	Interconnected Bunker
+3919	Command and Control - Command Post
+3920	Airbase Entrance
+3921	Aircraft Taxiway to Roadway
+3922	Church
+3923	Директриса мотострелков
+3924	SA-8 Medium Range Missile Battery
+3925	Firing Position
+3926	Taxiway
+3927	Church
+3928	Exposed Fulcrum Fighter Bomber Bunker
+3930	Church
+3933	Miltary Tunnel - North Korean / Chinese Style Bunker Entry
+3935	Missile Launcher Gantry
+3941	Wrecked Mig
+3944	Havana,Ciudad de la Habana
+3946	Guanabacoa
+3947	Cotorro
+3948	Valle de Picadura
+3949	Matanzas
+3950	Alamar
+3951	Cotorro
+3952	Guanabo
+3953	Santa Maria
+3954	Güines
+3955	San José de las Lajas 
+3956	Playa del Este
+3957	Missile Launch Facility, Major Launch Complex on East Side
+3958	Tarara
+3959	San Nicolás
+3960	Madruga
+3961	Missile Base
+3962	Jaruco
+3963	Melena del Sur
+3964	Central termoelectric power plant
+3965	Santa Cruz del Norte
+3966	Aguacate
+3968	Campo Florido
+3969	Agricultural University (UNAH)
+3970	Los Palos
+3971	Naranjal
+3972	Nueva Paz
+3973	Hector Molina
+3974	Jail Combinado del Este
+3977	Camillo Cienfuegos.... (aka) Hershey
+3978	Cabezas
+3979	Managua Airport
+3980	Catalina de Güines
+3981	Alacranes
+3982	Osvaldo Sanchez
+3983	Alberro
+3984	San Antonio de Rio Blanco
+3985	Tapaste
+3986	Caraballo
+3987	San Antonio de Las Vegas
+3988	Ceiba Mocha
+3989	Combinado del Este Prison
+3990	Vegas
+3991	Cuban campismos
+3992	Bainoa
+3993	Cuban campismos
+3994	La Rosalia
+3995	Military Base
+3996	La Sierra
+3997	San Francisco de Paula
+3998	Minas
+3999	Arcos de Canasi
+4000	Ronero Havana Club
+4001	Bermeja
+4002	Dormitories, Commanders Office, Medical Facilities, Chow Hall for Missile Crews
+4003	Jibacoa
+4004	Guara
+4005	Pipián
+4008	Jamaica
+4009	Quarry / Strip mine
+4010	Lake Guayaba
+4011	La Casita sugar factory
+4012	Zaragoza
+4013	Melena prison
+4014	Pedrin Troya
+4015	Lechuga
+4016	Graveyard
+4017	Quarry / Strip mine
+4018	Airfield
+4019	Playa Mayabeque
+4020	Playa del Caimito
+4021	WWII Ammo Dumps Under San Antonio, TX
+4022	Hotel Cameleon Villas Jibacoa
+4023	Camilo Cienfuegos Sugar Mill, previously Hershey Mill
+4024	Morales
+4025	MiG Fighter-Bomber Alert Pad
+4026	Airfield
+4027	High Security Compound
+4028	Cardboard factory
+4029	Motorcycle Racetrack
+4030	Tarara River
+4031	Santa Coloma
+4032	Hotel Breezes Jibacoa
+4033	Airfield
+4037	Reservoir lake
+4038	Runway and Alert Pad
+4039	Club Arenal
+4040	Graveyard
+4041	Parusa "Pioneer" Camp
+4042	Hotel Megano
+4043	Central Azucaero sugar mill
+4044	Rancho Gaviota
+4045	Rogelio Perea school
+4046	Electrical sub-station
+4047	Playa jibacoa
+4048	Sugar factory
+4049	Hotel Islazul Villa Bacuranao
+4051	Cuban Military Intelligence Facility
+4052	5 star pentagram
+4053	MiG Fighter-Bomber Alert Pad
+4054	Water reserve
+4056	Excavation
+4058	Missile Launcher Parking Areas and Reventments, Active and In Use
+4061	Fabrica de La Ceramica
+4062	Hotel Atlantico
+4063	Dam
+4065	Puente de Bacunayagua
+4066	Missile Launch Site
+4067	Sports ground
+4068	Palmar De Junco - Baseball Stadium
+4069	Playa Tasajera
+4070	Old Ovoid Berms
+4071	Ballpark
+4072	Park with kiddie rides
+4073	Excavation
+4074	Reparto Bostok
+4075	Power sub-station
+4076	Playa Rosario
+4077	Highway to Runway Intersection
+4078	Missile Launcher Parking Areas and Reventments, Likley Used for Training
+4080	Graveyard
+4082	Ballpark
+4083	Hospital
+4085	Ballpark
+4086	Ballpark
+4087	Missile Launcher Parking Areas and Reventments, Active and In Use
+4088	Ballpark
+4089	Ballpark
+4090	Ballpark
+4091	Ballpark
+4092	Ballpark
+4093	Ballpark
+4094	Ballpark
+4095	Ballpark
+4096	Sports ground
+4097	Ballpark
+4098	Monserrate
+4099	Ballpark
+4100	Ballpark
+4101	Graveyard
+4102	Ballpark
+4103	Ballpark
+4105	Ballpark
+4106	Antiguo Hotel Delicias del Copey
+4107	Ballpark
+4108	Sub-power station
+4109	Policlinico Hospital
+4110	Ballpark
+4112	Ballpark
+4113	Ballpark
+4114	Missile Launcher Parking Areas and Reventments, Active and In Use
+4115	Ballpark
+4116	Ballpark
+4117	Graveyard
+4118	Ballpark
+4119	Graveyard
+4120	Ballpark
+4121	Electrical Substation
+4122	Parque de Libertad (Liberty Park)
+4124	Ballpark
+4125	Guanabo Resort
+4126	jib
+4128	Graveyard
+4129	AT&T Guanabo - Troposcatter Station to Key Largo, FL
+4130	Zoo
+4131	Graveyard
+4132	Fire Control Building for Missile Launchers
+4133	Villa Playa Hormosa
+4134	Sports ground
+4135	Santo Theatre
+4136	Covert Fishbed Interceptor Parking Pad and Shelter - Puts Fighters Right on the Highway
+4137	Covert Fishbed Interceptor Parking Pad and Shelter - Puts Fighters Right on the Highway - Recently and Heavily Used
+4138	Graveyard
+4139	Three Active Tanks in Reventment and Parking Area, Signs of Recent Movement
+4140	Ballpark
+4141	Melena park
+4142	Ballpark
+4143	Covert Fishbed Interceptor Parking Pad and Shelter - Puts Fighters Right on the Highway
+4144	Missile Launch Sites
+4146	Revolution plaza
+4147	Graveyard
+4148	Graveyard
+4150	Shopping Center Guanabo
+4151	Antenna Sites
+4152	Covert Fishbed Interceptor Parking Pad and Shelter - Puts Fighters Right on the Highway
+4153	"Tennis Courts"
+4155	Graveyard
+4156	Tank Parking Pad and Shelter - Puts Tank Right on the Highway
+4157	International Clinic
+4158	Graveyard
+4159	Railway station
+4160	Graveyard
+4161	Mirador, Bus stop
+4162	Covert Fishbed Interceptor Parking Pad and Shelter - Puts Fighters Right on the Highway - Recently Used
+4163	Mi Cayito Beach
+4164	Park
+4165	Mi Cayito
+4166	Graveyard
+4167	Police station
+4168	Graveyard
+4169	Graveyard
+4170	Tunnel on Military Road to San Antonio de los Baños and Complex of Various Bunkers
+4171	Dam
+4172	Servi-Cupet
+4175	NB1978
+4177	Underground Bunker Drive-Thru Type
+4178	Discotheque Guanabo
+4179	Underground Warhead Bunker (Drive-Thru Type)
+4181	Railway station
+4182	Missle Warhead Storage (Drive-Thru Underground Bunker)
+4183	Bunker, Drive-Thru Type
+4184	Missile Launcher Position
+4186	Church
+4187	Cadeca Bank
+4189	Church
+4190	Staging Area for Frog-7 Missile Trailer-Laucher Unit/s
+4191	Drive Through Underground Missle Bunker / Tunnel
+4193	Souvenir Shop and observation desk
+4195	Railway station
+4196	Poli clinic
+4198	Mi Casita de Coral
+4199	Excavation
+4200	Church
+4201	Microwave Relay Station and Radar
+4202	Missile Launcher Position
+4203	Missile Launcher Position
+4204	Missile Launcher Position - Missile in Launchable Position
+4205	Missile Launcher Position
+4206	Missile Launcher Position
+4207	Missile Launcher Position
+4208	Missile Launcher Position - Launch Gantry Erected on this Pad
+4209	Maria Salome Guest House
+4210	Railway station
+4212	El Rapido
+4213	Small Rocket Monument
+4216	Beautiful Varadero Playa
+4217	Cardenas
+4218	Colón
+4219	Juan Gualberto Gómez Airport
+4222	Jovellanos
+4223	Maximo Gomez
+4224	Marti
+4225	Santa Marta
+4226	Pedro Betancourt
+4227	Perico
+4228	Limonar
+4229	Unión de Reyes
+4230	Bolodrón
+4231	Itabo
+4232	Agramonte
+4233	Golf course
+4234	Seis de Agosto
+4235	old airport (local)
+4236	Boca de Camarioca
+4238	Esteban Hernández
+4239	Desengano
+4240	Sergio Gonzáles
+4241	pastorita
+4243	Güira de Macurijes
+4244	Cidra
+4245	Fractuoso Rodriguez
+4246	JoséSmith Comas
+4247	REFINERY
+4248	Coliseo
+4249	Espania Republicana
+4250	Guanábana
+4251	Libertad
+4252	University Matanzas Camillo Cienfuegos
+4253	Sirenis la Salina Hotel
+4254	Soviet Fighter Alert Pad - Fulcrum
+4255	Ategorrieta
+4256	Barcelo Marina Palace
+4257	Guareiras
+4259	RIU Varadero
+4260	Paradisus Varadero Resort
+4261	Iberostar Laguna Azul
+4262	Isla del Sur
+4263	Admiración
+4264	Gramma
+4265	Mercedita
+4266	Allegro Varadero 
+4267	Sugar factory
+4268	Hotel Sol Sirenas Coral
+4269	Varahicacos Ecological Reserve
+4271	Sandals Royal Hicacos
+4272	Airfield
+4273	Favorito
+4275	Old Airfield
+4276	Hotel Sol Palmeras
+4277	Paradisus Princesa Del Mar Hotel
+4278	Hotel Tryp Pennisula Varadero, *****
+4279	Iberostar Varadero Resort
+4280	Cayo Piedras del Norte
+4282	Primero de Enero
+4283	Brisas Del Caribe
+4284	Peñas Altas
+4285	Superclubs Breezes Varadero
+4287	dam
+4288	Barcelo Solymar Resort Hotel
+4289	Arenas Doradas 
+4290	Hotel Blau Varadero 
+4291	Hotel Villa Cuba
+4292	Melia Las Antillas
+4293	Iberostar Playa Alameda Hotel
+4294	Hotel Arenas Blancas
+4295	Be Live Turquesa
+4296	Beach at Cayo Blanco
+4297	Snorkelling from Catamarans
+4298	Mercure Club Playa De Oro (formerly Coralia)
+4299	old airfield ?
+4302	Josone Park, Varadero
+4303	Sugar factory
+4304	El Roque Prison
+4305	Bellevue Palma Real Hotel 4*
+4306	CEMETERY 
+4307	Hotel Meliá Las Américas
+4308	Cayo Libertad
+4309	Gramma Sugar Mill
+4310	Sports ground
+4311	Hotel Tuxpan
+4312	College De Los Curas
+4313	Melia Varadero
+4314	Workers Residences
+4315	Breezes Bella Costa
+4316	Playa Caleta by Hoteles C
+4317	Darsena Marina (rough translation)
+4318	Hotel Club Puntarena
+4319	Hotel Varadero Internacional
+4320	Villa Tortuga
+4322	Varadero Golf Club Driving Range
+4323	Sugar Factory
+4324	Sugar factory
+4326	Graveyard
+4327	Club Kawama
+4329	Plaza Las Americas
+4331	playa Cayo Blanco
+4332	Sugar factory
+4333	Islazul Mar del Sur
+4334	Hospital Regional De Colon
+4335	Be Live Las Morlas
+4336	Boat Tour begins/ends at lunch stop area
+4337	Airfield
+4338	Hotel Villa La Mar
+4339	Soccer field
+4340	Islazul Oasis Hotel
+4341	Hotel Barlovento
+4342	School
+4343	Tropicana
+4345	Graveyard
+4347	Dolphin Pens
+4348	Small Zoo
+4350	Stores
+4351	Club Amigo Tropical *** all inclusive
+4352	Ballpark
+4353	Graveyard
+4354	Ballpark
+4355	Playa Buey Vaca
+4356	Ballpark
+4357	Ballpark
+4358	Ballpark
+4359	Ballpark
+4360	Ballpark
+4361	Ballpark
+4362	Graveyard
+4363	Ballpark
+4366	 Dolphinarium
+4367	Ballpark
+4369	Ballpark
+4370	Graveyard
+4371	Playa del Coral
+4372	Ballpark
+4373	former amphitheater (open air)
+4374	Bridge on the River Canimar
+4375	Todo en Uno
+4376	Ballpark
+4377	Sunbeach Varadero 3*
+4378	Graveyard
+4379	Memories Varadero
+4380	Railway station
+4381	Concrete batching plant
+4382	Coast Guard
+4385	Villa Punta Blanca
+4386	El Parque De Colon
+4387	train station
+4389	Graveyard
+4391	Graveyard
+4393	Old Oil Platform
+4394	Calle 36
+4395	SATURNO CAVES
+4396	School
+4397	Souviner Market
+4398	Palma Real Beach Bar/Snack Bar/Massage
+4399	Acuazul Hotel
+4400	School
+4401	Hotel for locals (military people)
+4402	Children's amusement park
+4403	Graveyard
+4404	RESTAURANT OF THE YEAR
+4406	Boat Tour transfer point
+4407	Hotel Islazul Herradura 2*
+4408	Souvenir Market
+4409	Grocery Store and Shop
+4410	Catholic church
+4413	NOT La Casa de Al Capone Restaurant
+4414	Hotel Caridad
+4415	Bridge 
+4416	Graveyard
+4417	AL Capones House (Restaurant)
+4419	souvenir market
+4420	"Xanadú" Mansion  Clubhouse of the Varadero Golf Club
+4423	CUARTO PALMAS - LAS PALMAS section
+4424	Buffet and Pool bar 
+4425	La Rumba, Varadero
+4428	SHOP PAMERICANO
+4430	Gas Station
+4431	Rent a car
+4434	Toll Booth
+4435	Railway station
+4436	Mambo Club Varadero
+4437	Rent a car
+4438	Roundabout
+4440	Fish restraurant
+4441	Varazul Hotel
+4442	Mediteranio Nightclub
+4443	Islazul Dos Mares Pullman 2*
+4447	Gaviota Tours Varadero
+4449	Italian restaurant
+4450	Dive Club Barracuda
+4451	Intercesion
+4452	Railway station
+4454	Restaurant on Beach
+4455	Stores
+4456	Hotel Santiago La Habana
+4458	Church
+4459	Casa de Habana
+4461	Barbacoa Restaurant
+4463	Casa de la Musica ?
+4464	Souveneir Market
+4465	La Cueva del Pirata
+4466	BANK
+4467	La Vicaria restaurant
+4468	Government Cigar Store ( Casa de Habana )
+4469	Casa Particular Ricardo
+4471	"El Criollo" restaurant
+4472	Kikis
+4474	Breezes Varadero Disco
+4475	Barlovento Beach Bar
+4476	International Bank
+4477	Barlovento Animation Stage
+4478	Calle 13,restaurant.
+4479	Theatre
+4480	Coral restaurant
+4482	Marys and Tristans first time in the ocean
+4485	Beach Bar and Grill and Towel Hut
+4486	LaTaberna restaurant ( beach grill )
+4487	la Campana - Josone Park
+4488	Cupex Gas Staion
+4489	The post office. Before the revolution, the gate at the entrance to the land of Irénée du Pont
+4490	BAR
+4491	Benny Moores restaurant-bar
+4492	Grocery store at Calle 54 
+4494	P Break Bar
+4496	Melaito restaurant
+4497	Jewelry store 
+4499	David & Deimys casa particular rent room
+4500	Rent Room Varadero
+4502	Calle 62
+4503	Mallorca
+4505	LCDH Cigar Store
+4506	Sport items store
+4507	Internet cafe
+4508	small tourist market
+4509	Casa de Miel
+4510	Havana Club (Night Club)
+4511	Bank
+4512	Dantes Restaurant ( Italian )
+4513	small cheap restaurant (24h)
+4516	Sidewalk bar/grill
+4517	Horse Rentals 
+4518	Best Restaurant in CUBA 
+4519	Beach Bar
+4521	Stone Watchtower
+4522	Bank
+4523	"Calle 62" disco
+4526	Casa del Chief ( restaurant )
+4527	Cactus Patriarch (el Patriarca)
+4528	Tobacco and Cuban Cigars Store
+4531	Casa Nostra Cubana
+4533	Villa La Mar Beach Bar
+4534	Small snack shop
+4535	Phone
+4539	Money Exchange
+4541	Peso Grill
+4542	El Cainey
+4543	Hotel Sandal Royal Hicacos
+4544	Presa Alacranes
+4547	Quemado de Güines
+4549	Los Arabos
+4550	Rancho Veloz
+4551	Corraillo
+4553	Hoyo Colorado
+4554	San José de los Ramos
+4555	Rodrigo
+4556	Caguaguas
+4559	Sierra Morena
+4560	México
+4561	José R. Riquelme
+4562	Banagüises
+4563	Panchito Gómez Toro
+4564	El Àrbol de Guernica
+4565	Deleite
+4566	Palma Sola
+4567	Banos de Elguea
+4568	Kindelán
+4570	Quintin Banderas
+4571	Aurora
+4572	Chinchila
+4573	Santa Ana
+4574	La Panchita
+4575	Zapato
+4576	Carahatas
+4577	Las Palmas
+4578	Paz
+4579	Playa El Salto
+4580	Playa Ganuza
+4582	La Teja
+4583	Sugar factory
+4584	Sugar factory
+4585	Ballpark
+4586	Ballpark
+4587	Playa Sierra Morena
+4588	Central park
+4589	Graveyard
+4591	dam
+4592	Graveyard
+4595	Sagua La Grande
+4600	Encrucijada
+4603	Cifuentes
+4604	Calabazar de Sagua
+4606	El Purio
+4607	Siliecito
+4608	Amaro
+4610	Isabela de Sagua
+4611	Mata
+4612	El Santo
+4614	Cuban Missile Crisis – Sagua la Grande II
+4617	Nazábal
+4618	Cuban Missile Crisis, Sagua la Grande I
+4619	El Vaquerito
+4620	Viana
+4621	Sitio Grande
+4623	Punta Cubereta
+4626	Armonia
+4627	Sugar factory
+4628	Airfield
+4629	Playa Nazábal
+4630	dam
+4631	La Punta
+4633	Airfield
+4634	Ramal Pura y Moraima
+4635	Playa Uvero
+4636	Airfield
+4637	Sugar factory
+4638	Sugar factory
+4639	Factory
+4643	Ballpark
+4644	Ballpark
+4645	Ballpark
+4646	Graveyard
+4647	Graveyard
+4648	Graveyard
+4649	Bridge
+4650	Cayo Santa Maria
+4651	Cayo Las Brujas
+4652	Cayo Ensenachos
+4654	Melia Las Dunas
+4655	Cayo Las Brujas Airport
+4658	Sol Cayo Santa Maria
+4659	Melia Cayo Santa Maria
+4660	Barcelo Cayo santa maria
+4663	Melia Buenavista
+4664	Melia Las Dunas Resort
+4667	Cayo Las Brujas Resort
+4668	Cayo Las Brujas Gas Station
+4669	Mariel Harbor
+4670	La Boca
+4671	Cargo Terminal (Ex-Mariel Airfield /  MUML)
+4672	Mariel
+4673	Cabanas
+4675	Quiebra Hacha
+4676	Cuban Missile Crisis – Guanajay I
+4677	Orlando Nodarse
+4678	Guayabal
+4679	Santa Marta
+4680	Cuban Missile Crisis – Guanajay II
+4681	State prison
+4682	La Herradura
+4683	Power Plant
+4684	Ballpark
+4685	Graveyard
+4686	Ballpark
+4687	Sports ground
+4688	Graveyard
+4689	Ballpark
+4690	Bridge
+4691	Graveyard
+4692	Central park
+4693	Bridge
+4694	Graveyard
+4695	Policlinic
+4696	Drydock
+4697	Vincente Mora theatre
+4698	Library
+4699	Del Valle's Residence
+4700	Church
+4701	Water Tower
+4703	Playa
+4705	Marianao
+4706	Playa Baracoa Airport  (UPB / MUPB)
+4707	Lourdes Signals Intelligence Facility
+4709	Computers technologies University in Habana (since 2002)
+4710	Bauta
+4711	Caimito
+4712	Punta Brava
+4713	Arroyo Arenas
+4714	Munitions Bunkers
+4715	Fidel Castro's home
+4719	Food Industry Research Institute (IIIA)
+4721	El Cano
+4722	Santa Fe Airport
+4724	"Fidel's Folly" - Lourdes
+4725	Abandoned SAM Site
+4726	Air-Freight Facilities 
+4727	Guatao
+4729	"highway strip" airfield
+4731	Centro de Ingeniería Genetica y Biotecnología
+4732	Lourdes Central SIGINT COmplex - HQ/Admin Building
+4733	Radio and Television Broadcasting Antenna Facility
+4736	High Security Military Compound
+4737	Lourdes Central SIGINT Complex - Space Associated Electronics Area North
+4739	Old Soviet Aircraft Bunker and MiG Service Area
+4740	Greenhouses
+4741	Raul Castro Residence
+4742	Soviet Dorms for SIGINT/ELINT Technicians
+4743	Lourdes Central SIGINT COmplex - Space Associated Electronics - South Area (Targets Miami, Key West, Open Atlantic)
+4745	Castro Executive Aircraft Staging Area
+4746	Signals Intelligence Station - Bejucal West
+4747	Kart Racing Track
+4749	Graveyard
+4750	Covert Aircraft Maintenance Facility
+4751	La Pradera Hotel &Spa
+4753	Manto Negro Prison
+4755	SAM site
+4758	Soviet Aircraft Parking Pad for Defense of Lourdes SIGINT Station
+4759	Launch Control Facility
+4760	Four or Five Bunkers, likely tubular Soviet style
+4761	Instituto Superior de Ciencias Básicas y Pre-clníicas "Victoria de Girón"
+4763	La Mansión de Mark Pollack
+4764	Drive In Movie Theater
+4766	High Security Command and Control Facility for Lourdes
+4767	missile battery site
+4770	Sports ground
+4772	Manuel Isla Pérez School
+4775	Castro Helicopter Staging Area 
+4776	Aircraft Museum
+4777	Ballpark
+4779	Ruins
+4781	Downlink station - Used to eavesdrop on all U.S. Military Satellites
+4784	Covert Aircraft Bunkers
+4785	Undergroud Aircraft Bunker
+4787	Soviet Embassy Grammar School Site
+4788	Graveyard
+4789	Underground Hangar
+4790	La Laguna
+4791	Neurology
+4792	Heavy Lift Aircraft Taxi Way
+4794	Security offices to Fidel Castro
+4795	Northern Tip of Lourdes SIGINT Station Runway
+4796	Runway to Taxiway Aircraft Transitions Point
+4797	Taxiway for heavy lift cargo aircraft and heavy SIGINT Planes
+4798	Military Aircraft Hangar
+4800	Satellite Uplink/Downlink Station to SIGINT Relay Birds
+4802	Old Revetments
+4804	House of Ramon Castro Ruiz
+4805	Southern Tip of Lourdes SIGINT Station Runway
+4808	Bridge
+4809	Old PC
+4811	School
+4812	Rodeo de Bauta
+4813	Rancho Luna
+4814	Former Airbase Structures
+4816	Residencia Instituto Superior de Ciencias Básicas "Victoria de Girón"
+4817	Home of the Commandant
+4820	Memorial
+4822	ICID COMBIOMED
+4823	El Cachon
+4824	Southern Taxiway of Lourdes SIGINT Station Runway - Fishbed Interceptors
+4829	Residence of the vice president
+4830	Dental clinic
+4831	Radome
+4832	Torrens, 1
+4833	Bunker
+4834	Bunker
+4835	Bunker
+4836	Bunker
+4837	Bunker
+4838	Bunker
+4839	Bunker
+4840	Bunker
+4841	Bunker
+4842	Bunker
+4846	Graveyard
+4847	MiG Parking Pad
+4848	Taxi Way - Fighter Aircraft
+4849	Direction-finder "DOM"
+4852	Medical Helipad
+4855	Church
+4857	Surface to Air Missile Battery Position - Look like an old SA-2 site, but there has been a recent launch here
+4858	Surface to Air Missile Battery Position - Look like an old SA-2 site, but there has been a recent launch here
+4861	Bunker Entrance
+4862	SAM
+4863	another missile
+4864	missile
+4865	Surface to Air Missile - Air Defense
+4867	Bưu điện huyện Mĩ Lộc
+4869	casa de forte
+4870	Policlinico prdro fonseca
+4877	Arroyo Naranjo
+4878	San Miguel del Padrón
+4879	Diez de Octubre
+4880	Cerro
+4881	Parque Lenin
+4882	National Botanic Garden
+4883	José Martí International Airport
+4884	Párraga / El Rosario
+4885	Santiago de la Vega
+4886	Reparto El Electrico
+4887	Narokko, 12th Educational centre (new brigade) МО the USSR
+4888	Tank and Heavy Atillery Bunk - and training/practice range
+4889	Bejucal
+4890	Mantilla
+4891	Military compound
+4892	Calabazar
+4893	Havana Train Station
+4894	Bejucal East Station - Signals Intelligence / Eavesdropping Station
+4895	ISPJAE (CUJAE)
+4896	El Calvario
+4897	Víbora Park
+4898	El Moro
+4899	SIGINT Facility
+4900	ExpoCuba
+4901	National Zoo
+4902	Oriental Park horse race track
+4903	Lenin High School
+4904	Anti-Aircraft Missile Sites
+4905	Arroyo Apolo
+4907	Havanna Golf Club
+4908	RadioCommunication Antenna Site near the Airport
+4909	La Lira
+4910	La Palma
+4913	Amusement park
+4916	Toledo
+4918	7th OMSB МО the USSR 12th Educational centre (an old brigade)
+4920	IIMA Instituto de Investigacion de Maquinaria Agricola
+4921	Lake Cacao
+4922	dam
+4923	School
+4925	Underground Chinese SIGINT Bunkers
+4926	Sports center El Palmar
+4927	Leisure park Rio Cristal
+4930	Monument to Antonio Maceo, Cacahual
+4933	The  Finca Vigia - Home of Ernest Hemmingway 1938-1961
+4935	Sports ground
+4936	Ingenio Azucarero Manuel Martinez Prieto
+4939	Russian SIGINT Processing Facility
+4941	Stadion Cerro Pelado
+4943	Santiago de las Vegas Experimental Agronomical Station
+4947	Paediatric CardioCenter "William Soler" 
+4948	Soccer field
+4949	International flights
+4951	Graveyard
+4952	Ballpark
+4956	Ballpark
+4957	Pediatric Hospital
+4959	Charter Flights Terminal (to and from the USA)
+4960	Area Deportiva de 124
+4962	Pre Revolution Rancho Boyeros Airport (HAV)
+4964	DOCE PLANTAS DE VENTO
+4965	SIGINT
+4967	Jorge Dimitrov school
+4968	El Barrio
+4970	Soccer stadion
+4974	Base for Soviet Era Satellite Dish and Radome (now removed)
+4976	Bakery
+4979	El puente de la Lisa
+4988	Marianao City Hall
+4989	Plaza de Mariano
+4990	Enrrique Garcia school
+4992	Remains from a huge microwave dish used for SIGINT
+4993	Residencia Estudiandil(Edificio 100 )
+4994	Museo de Marianao
+4996	fiestas locas
+4997	House of Fructuoso Rodriguez
+4998	Children playground
+5000	Fountain
+5003	Medical unit
+5005	Policlinic Carlos J. Finlay
+5007	Headquaters
+5010	School
+5016	Ration depot
+5020	Antiguo cine Alfa
+5021	Mariano Cinema
+5023	Парк ВУН ПВО
+5024	Restaurant Rio Cristal
+5029	Casa Magaly
+5030	Gran Cine de Marianao
+5034	bath house
+5052	Pilar - Finca Vigía
+5053	Water tank
+5056	Pianist
+5075	офицерская сауна 
+5081	Iglesia Apostolica de Jesucristo
+5090	Los cocos Park
+5091	La Casa de Doña Leonol León Oliva
+5106	Miramar
+5107	Ciudad Libertad Airport
+5108	Reparto Flores
+5109	Reparto Barlovento
+5110	The National Art Schools
+5111	Havana Biltmore Yacht and Country Club
+5112	Runway (MULB)
+5113	El Reparto Nautico
+5114	Columbia Airbase Hangars & Facilities
+5116	Coney Island Park
+5118	Hotel Cubanacan Comodoro
+5119	Hotel Neptuno and Triton
+5120	Hotel Melia Habana
+5121	Old Greyhound Racetrack
+5122	Club Acuario
+5123	Casino Espanol de La Habana
+5124	Jaimanitas Coast Guard base
+5126	IPQ Martires de Giron
+5127	Area de la Playa Gerardo Abreu Fontan antiguo Circulo Militar 
+5128	Area de la playa La Concha
+5129	El Laguito in Country Club Residential area.
+5130	Club Havanna
+5131	Sportsground
+5136	Grounds of the Havana Yacht Club
+5137	U.S. Ambassador's Residence
+5139	Miramar Business Centers
+5140	Convention Palace - Palacio de Convenciones
+5141	PanExpo Complex
+5142	The School of Plastic Arts
+5144	Jesus de Miramar Church
+5147	Instituto Politecnico de Quimica "Martires de Giron"
+5149	The School of Modern Dance
+5150	Former depot and garage for routes 32 & 79 of the C.O.A.
+5154	Marcelo Salado Social Club
+5155	Club Nautico de Marianao
+5157	Jaimanitas Beach
+5158	Former Delmonico Supermarket
+5159	The School of Ballet
+5161	Hotel
+5162	 Comodoro Shopping Mall
+5163	The School of Music
+5164	Gran Casino Nacional de Marianao
+5165	Antiguo MiniMax Supermarket
+5167	Fidel Castro Ruz Familiar Home
+5168	Miramar Movie Theatre, Howard Johnson's Restaurant and MiniMax Supermarket
+5169	El Palenque Restaurant
+5170	Super Mercado Palco
+5171	Havana Yacht Club
+5172	Fountain Plaza
+5173	Formerly a Texaco Service Station
+5174	Ballpark
+5175	The School of Dramatic Arts
+5178	Oficina de Guias de Turismo 
+5180	Corporacion Cubanacan
+5183	Power plant
+5184	Catholic Church
+5186	Service station
+5187	helipad
+5192	la scala restaurant
+5194	Radio station
+5196	TVS, Copextel S.A
+5197	Residencia Rosité
+5198	Our last home in what once was a beautiful Country (Cuba) and a fabulous metro area (Havana)
+5200	 303
+5201	hisham kingfor soy marroqoui
+5202	El Vedado
+5203	Habana Vieja - Old Havana
+5204	Centro Habana
+5205	Consejo Popular Vedado-Malecón
+5207	Colon Cemetery
+5209	Ciudad Escolar Libertad
+5211	INDER Instituto Nacional de Deportes, Educación física y Recreación
+5212	Ciudad Deportiva. Sports City
+5214	Loma del Quinto Distrito Hill
+5215	Echavarria/Alonso
+5216	Havana Zoo
+5218	Abandoned Runway (MULB)
+5220	Ampliacion del Casino Deportivo
+5224	Loma de Chaple
+5225	Service station José Ramirez Casamayor
+5226	Finca de los Monos or Quinta Las Delicias
+5227	Asilo Santovenia
+5228	Donkey Hill
+5229	Occidental Miramar Hotel
+5231	Freight Railcar Production Plant
+5233	Hotel Nacional de Cuba
+5234	El Prícipe castle
+5235	University stadion
+5236	Prision "El Principe"
+5237	University of Havana
+5239	Quinta de los Molinos
+5240	Quinto Distrito Militar (5th Military District) 
+5241	Parque Almendares
+5242	CIUDAD DEPORTIVA
+5243	Vedado Tennis Club
+5244	PALATINO water plant
+5245	Terminal Interprovincial de Autobuses de la Habana
+5246	Sports grounds "José Martí"
+5247	Almendares River Estuary
+5249	Estadio Pedro Marrero
+5250	Cabaret Tropicana
+5251	Ciudad Deportiva roundabout
+5252	Russian Embassy
+5254	Gran Estadio del Cerro (now Estadio Latinoamericano)
+5255	Castillo San Salvador de la Punta
+5256	Private Beach for Ministry of the Interior Employees - MINIT
+5257	"El colegio de las monjas". Girl's catholic school
+5259	Plaza de la Revolucion
+5260	Maceo Park
+5261	Castillo de los Tres Reyes Magos del Morro (or Castillo del Morro)
+5263	Cerro park
+5265	Tallapiedra Electrical Plant
+5266	Hotel Habana Riviera
+5268	High School (Instituto Preuniversitario Manolito Aguiar)
+5269	National Aquarium
+5270	Ministry of the Interior
+5271	Panorama Hotel
+5272	Tunel de la Habana
+5273	Revolution Palace
+5274	Atarés Castle
+5277	El Colegio Catolico La Salle.
+5278	Central Station
+5279	 Tribune "José Martí" aka Tribuna de los comemierdas.
+5280	Fraternity park
+5281	Heladeria Coppelia
+5282	Instituto Politécnico de Telecomunicaciones Osvaldo Herrera
+5284	Hotel Copacabana
+5285	Market 70
+5286	Hotel Meliá Cohiba
+5287	Paseo del Prado
+5288	Capitolio Nacional
+5289	LA SALLE SCHOOL (Private Catholic)
+5290	Candler College
+5295	John Lennon Park
+5297	Hotel Tryp Habana Libre
+5298	13 March Square
+5301	Park on 21st. street
+5302	Parque Japones
+5303	El Platanito
+5304	Parque Central (Central park)
+5307	Chateau Miramar Hotel
+5308	Castro's most infamous torture and killing center: Seguridad del Estado
+5309	Former streetcar barn
+5310	Colegio de La Salle Miramar
+5311	EL CANAL
+5312	Saul Delgado High School
+5313	Institut Vibora
+5314	Hotel Mercure Sevilla
+5316	Colegio Hermanos Maristas/ IPU Raul Cepero Bonilla
+5317	Edificio FOCSA
+5318	Colegio De Las Ursulinas
+5319	Hospital Hermanos Almeijeiras 
+5321	Paradero de varias Rutas de la C.O.A.
+5322	Colegio Buenavista
+5325	Faculty of Dentistry (Raul Gonzales Sanchez)
+5328	La Finquita
+5329	Chapel Main building, Commerce, Libray, Dining- room,  Bachillerato and Elementary Shools Buildings of Candler College
+5331	Mariana Grajales Park
+5332	Instituto de Economia
+5333	Fountain de la Juventud
+5334	Estación Central ASTRO
+5336	Park
+5337	Escuela Primaria Roberto Poland
+5339	De La Salle School
+5340	casa del amistad
+5342	Workshops in Candler college fields for sports
+5343	Ministry of the Armed Forces
+5344	Crossroad
+5345	Museo Nacional de Bellas Artes de La Habana
+5346	U.S. Interests Section - U.S. diplomatic representation
+5348	MINREX, Ministry of Foreign Relations
+5352	Pineras park
+5353	Manzana de Gomez
+5356	Antiguo edificio Rosita de Ornedo
+5357	Secundaria Basica
+5359	Hotel Montehabana
+5360	Esta es la entrada del Casino Deportivo
+5362	International School of Havana
+5363	National Theatre
+5366	El Colegio San Juan Bosco
+5367	el Gimnasio de Candler College
+5369	San Antonio Catholic Church
+5370	Institut Edison
+5371	Escuela Primaria Joe Westbrook
+5373	Great Theatre of Havana
+5374	Swiss Embassy
+5375	park of fabrica
+5376	Carlos Aguirre park
+5377	Parque de Avenida de Acosta
+5379	Parque Penon
+5380	Plaza with Star Decoration
+5382	El Curita Park
+5384	Dominican Convent and Parish, San Juan de Letran
+5388	Asilo de Ancianos
+5390	Park of the Martyrs
+5391	Los Chivos park
+5393	10th Street between 1st and 3rd, Miramar
+5394	Mario Munoz Monroy school
+5395	British Embassy
+5397	Mercado Agropecuario
+5399	Avenida de los Presidentes and La Rampa
+5400	Market
+5401	Institut for industrial design
+5402	Asociacion de Dependientes del Comercio de La Habana.
+5403	Plaza Olivia Armenteros
+5405	Tunnel below Rio Almendares
+5406	Galerias de Paseo
+5408	Reverendos Padres Pasionistas church
+5409	José Martí Memorial
+5410	MOVIE THEATER "EL MARAVILLA"
+5411	"Kid Chocolate" boxing gym
+5412	Theater Blanquita Amaro
+5413	Jose Martí National Library
+5415	Parque Coyula
+5416	Hotel Plaza
+5417	CEDAI
+5419	La Puntilla Shopping Centre
+5421	Tunnel Under Almendares River
+5422	Museum of Decorative Arts
+5423	Anfiteatro de la Habana
+5425	Escuela de Arte San Alejandro
+5427	Puente de Hierro
+5428	Former embassy of Haiti
+5429	Parque Fe del Valle (former site of "El Encanto" Department Store)
+5430	Monument to José Miguel Gómez
+5434	Hotel Presidente
+5435	Jalisco Park
+5437	Belgian and Dutch Embassies
+5439	Colegio Champagnat-Hermanos Maristas
+5440	Los 12 Apostoles
+5443	Embassy of Vietnam 
+5444	policlinico 19 de abril
+5445	Abuela's house
+5446	Canadian Embassy
+5448	Former chocolate factory "La Estrella"
+5449	Embassy of Malaysia in Cuba
+5451	Cigar Factory
+5454	Antigua escuela Nuestra Señora del Buen Consejo
+5456	Facultad de Fisica
+5457	Solidarity with Chile Elementary School
+5458	Beach
+5460	Libyan embassy
+5461	Police Headquarters
+5463	Secundaria Basica  Enrique Maza
+5464	Remnants of the Old City Wall
+5466	Marti Theatre
+5467	Edicio del MININT
+5469	Cine Rodi
+5470	Don Cangrejo
+5471	El Carmelo Restaurant and Bar
+5472	Luminosa fountain
+5473	School of Art and Design
+5474	Former site of a Chevrolet dealership
+5475	Banco Nacional de Cuba
+5477	F.W. Woolworth 5 & 10 Store
+5478	Hijas de Galicia Clinic
+5479	Granma memorial
+5480	Iglesia Metodista de Marianao, on the back part of the Auditorium
+5481	Jardin Casa Oliva
+5484	The Auditorium of Candler and Buenavista
+5485	Institute of Radio and TV
+5486	Cabaret Montmartre
+5489	Antsys, Copextel
+5490	Embassy of Indonesia/Embajada de Indonesia 
+5493	Antigua escuela privada Briseida Miranda
+5494	Hotel Capri (under renovation)
+5495	Escuela Primaria Hermanas Giral
+5497	Casa de tejas verdes estilo ingles
+5498	Church of Saint Rita
+5500	Embajada del Korea Norte
+5501	University of Havana
+5503	Hamel's Alley
+5504	Regla
+5505	Oil refineries and oil reserves
+5506	Cojimar
+5507	Antonio Guiteras
+5508	Casablanca
+5509	Ciudad Camilo Cienfuegos
+5512	Villa Panamericana
+5513	Astilleros Palmer
+5514	Castillo de San Carlos de la Cabaña
+5516	Naval Hospital
+5517	Estadio Panamericano
+5518	Bus terminal Bahia
+5519	Guanabacoa Bus Terminal
+5520	Cojimar roundabout
+5521	Casablanca Park
+5522	Technical high school Lazaro Pena
+5523	Chivo Beach
+5524	Los Judios graveyard
+5525	Hidrography Cuban Institute (ICH)
+5527	Walled Compound With Bunkers
+5528	Hotel Las Brisas
+5529	Los Escolapios
+5530	Floating Drydock
+5531	Cruise Ship Dock
+5532	Ballpark
+5533	Ballpark
+5535	Public bus transport terminal
+5536	Rafael Conte stadion
+5538	Calle 4ta
+5539	Guanabacoa amphitheatre
+5540	Fidel Castro Compound
+5542	Harbour master
+5545	Escuela Rolando Garcia  32
+5547	Plaza Vieja
+5549	Jesus Lancha school
+5550	Centro Commercial
+5552	Palacio de los Capitanes Generales
+5553	Lenin park
+5554	Plaza de Armas
+5555	Plaza San Fransisco de Asís
+5556	Seminario de San Carlos y San Ambrosio
+5557	Mercado La Plaza
+5558	Guanabacoa roundabout
+5559	Los Alelies kindergarten
+5560	Lonja del Comercio
+5561	La Divina Pastora
+5562	Guanabacoa park
+5563	Casablanca Lanchita "Terminal"
+5565	Hotel Santa Isabel
+5566	Castillo de la Real Fuerza
+5567	Church
+5569	Casa de la Obra Pía
+5570	Cathedral of San Cristobal de la Habana
+5571	Russian Maritime Register of Shipping, Branch Office in Cuba
+5572	Palacio del Segundo Cabo
+5574	Cuban Missile Crisis: Old Soviet Weapons
+5575	Plaza de la Catedral
+5576	Edificio 13
+5577	Saint Virgen de Regla church
+5578	Cañonazo
+5580	Restaurant
+5582	Antiguo Forjadores del Futuro
+5583	Hostal Valencia/Comendador
+5584	Museum of Colonial Art
+5585	Basilica Menor de San Francisco de Asis
+5586	Guaicanamar park
+5587	Palacio de los Marqueses de Arcos
+5588	Habaguanex S.A.
+5589	Calle Oficios
+5590	Hotel Raquel
+5593	Municipal authorities
+5594	Hotel Ambos Mundos
+5595	Oldtimer Museum
+5596	Bar Dos Hermanos
+5597	Palacio del Conde Lombillo
+5599	Casa de la Comedia
+5600	Iglesia de San Francisco de Paula
+5601	Casa de los Arabes
+5602	Statue : Neptune
+5603	Mercado Ave del Puerto
+5606	El Templete
+5607	Cafe del Oriente
+5611	Churruca - Train Waggon
+5612	Palacio de los Marqueses de Aguas Claras
+5613	Greek Orthodox Church
+5614	Cristo de la Habana
+5616	Taller Experimental de Gráfica
+5619	Farmacia Taquechel
+5620	Calle Enna
+5621	Casa del Aqua 'La Tinaja'
+5626	A bridge
+5627	Spanish Castle
+5630	Monroe County, Florida
+5631	Hawk Channel, Florida
+5632	Sand Key Lighthouse
+5634	Woman Key
+5635	U-157
+5636	Ballast Key
+5637	Eastern Dry Rocks
+5638	Rock Key
+5639	Cayman Salvage Master
+5640	Ten Fathom Bar
+5641	Aquanaut
+5642	Hoyt S. Vandenberg
+5643	Joe's Tug
+5644	Pelican Shoal Reef
+5646	American Shoal Lighthouse
+5647	Dock
+5648	N5485S Shootdown
+5649	Main house
+5650	N2456S Shootdown
+5651	Cay Sal
+5652	ex-USS Fred T. Berry (DD-858)
+5653	Wilkes Barre Wreck
+5654	Spiegel Grove
+5655	American Shoal Lighthouse
+5656	Cay Sal Bank
+5657	South Anguilla Cay
+5658	Andros Island
+5659	High Ridge Cay
+5660	Kemp´s Bay
+5661	Moxey Town
+5662	High Rock
+5663	Steamer Cay
+5664	Cargill Creek
+5665	Mangrove Cay
+5666	Congo Town
+5667	The Bluff
+5668	Gibson Cay
+5669	Mars Bay
+5670	Drigg´s Hill
+5671	Clarence Bain Airport
+5672	Little Creek
+5673	 KHOO island
+5674	Bastian Point
+5675	South Andros Airport
+5676	Lisbon Creek
+5677	South Andros Black Hole
+5678	Behring Point
+5679	Deep Creek
+5680	Emerald Palms of South Andros
+5681	Rolle Town
+5682	Black Point
+5683	Tiamo Resort
+5684	Tranquility Hill Bonefish Lodge
+5685	Seascape Inn
+5686	Bridge
+5687	Heli Port
+5688	Dock
+5689	Heli Port
+5690	Mangrove Cay Dock
+5691	Bridge
+5692	Dock
+5693	Dock
+5694	Dock
+5695	Bridge
+5696	Dock
+5697	Great Guana Cay
+5698	Shroud Cay
+5699	Hawksbill Cay
+5700	Lee Stocking Island
+5701	Compass Cay
+5702	Darby Island
+5703	Big Farmers Cay
+5704	Norman's Pond Cay
+5705	Sampson Cay
+5706	Halls Pond Cay
+5707	Madame Daus Cay
+5708	Staniel Cay
+5709	Bock Cay
+5710	Rudder Cut Cay
+5711	Bell Island
+5712	Pipe Cay
+5713	Coakley Cay
+5714	Blue Pond
+5715	Young Island
+5716	Bowe Cay
+5717	Big Majors Spot
+5718	Cambridge Cay
+5719	Cave Cay
+5720	Little Darby Island
+5721	Bitter Guana Cay
+5722	Cistern Cay
+5723	Little Farmers Cay
+5724	Williams Cay
+5725	Rolleville
+5726	Cuff´s Cay
+5727	Little Majors Spot
+5728	Gold Ring Cay
+5729	O'Brian´s Cay
+5730	Warderick Wells North Anchorage
+5731	Warderick Wells Cay
+5732	Thomas Cay
+5733	Long Cay
+5734	Joe Cay
+5735	Harvey Cay
+5736	Over Yonder Cay
+5737	Salt Lake
+5738	Lignumvitae Cay
+5739	Warderick Wells South Anchorage
+5740	Black Point
+5741	Deadmans cay
+5742	Alexander
+5743	Cook´s Cay
+5744	Cut Cay
+5745	Jimmy Cay
+5746	Glass Cay
+5747	Baraterra
+5748	Soldier Cay
+5749	Fowl Cay
+5750	West Shroud Cay
+5751	Square Rock Cay
+5752	Bell Island
+5753	Soldier Cay
+5754	Bo Cat Cay
+5755	Fowl Cay
+5756	Big Galliot Cay
+5757	Black Cay
+5758	Little Hawksbill Cay
+5759	Little Cistern Cay
+5760	Rat Cay
+5761	Richmond Hill
+5762	Kemp Cay
+5763	Leaf Cay
+5764	Salt Lake
+5765	Long Rock Cay
+5766	Little Hog Cay
+5767	Little Galliot Cay
+5768	Anne´s Tract
+5769	White Bay Cay
+5770	Salt Lake
+5771	Sugar Cay
+5772	Staniel Cay Airport
+5773	Black Point Airfield
+5774	Cay
+5775	Salt Cay
+5776	Private Island
+5777	Peggy Wild Cay
+5778	White Cay
+5779	Airfield
+5780	Boysie Cay
+5781	Rocky Dundas
+5782	Lee Stocking Island Airfield
+5783	Little Pigeon Cay
+5784	Petit Bock Cay
+5785	Pigeon Cay
+5786	Lansing Cay
+5787	Elbow Cay
+5788	Little Bell Island
+5789	North Gaulin Cay
+5790	Salt Lake
+5791	Dennis Cay
+5792	Salt Lake
+5793	Salt Lake
+5794	Sandy Cay
+5795	Sampson Cay Marina
+5796	Salt Lake
+5797	Guana Cay
+5798	High Cay
+5799	Rudder Cut Cay Airfield
+5800	North Waderick Wells Cay
+5801	Jimmy Cay
+5802	Farmer´s Cay Airport
+5803	Salt Lake
+5804	Airstrip
+5805	Wood Dove Cay
+5806	Hamlet Cay
+5807	Darling Cay
+5808	Sampson Cay Airfield
+5809	Black Rock
+5810	Little Darby Island Airstrip
+5811	Airfield
+5812	Airfield
+5813	Compass Cay Marina
+5814	Staniel Cay Yacht Club
+5815	Thunderball Cave
+5816	Bridge
+5817	Solar Plant
+5818	Birdcage Villa
+5819	Pier
+5820	Island Dock
+5821	Island Dock
