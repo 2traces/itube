@@ -525,6 +525,9 @@ NSCharacterSet *pCharacterSet = nil;
         if(res != nil && [res count] > 0) break;
         hours += 2;
         if(hours > 24) break;
+        NSTimeInterval now2 = [self getNowTime];
+        // time out
+        if(now2-now >= 15.0) return res;
         [self loadFastSchedule:hours];
     } while (true);
     return res;
