@@ -63,7 +63,7 @@
 	[firstStation setClearButtonMode:UITextFieldViewModeNever];
     firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
     firstStation.tag = 111;
-    firstStation.placeholder=@"From..";
+    firstStation.placeholder=NSLocalizedString(@"FromDest", @"From..");
     
 	[toolbar addSubview:firstStation];	
     
@@ -95,7 +95,7 @@
 	secondStation.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
     secondStation.tag =222;
-    secondStation.placeholder=@"To..";
+    secondStation.placeholder=NSLocalizedString(@"ToDest", @"To..");
     
 	[toolbar addSubview:secondStation];
     
