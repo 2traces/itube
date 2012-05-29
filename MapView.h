@@ -56,6 +56,7 @@ extern int const imagesCount;
     CLLocationManager *locationManager;
     RasterLayer *rasterLayer;
     NSTimer *timer;
+    CGPoint oldOffset;
 }
 
 @property (assign) NSString *nearestStationName;

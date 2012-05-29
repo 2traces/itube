@@ -89,12 +89,16 @@
     NSLock *lock;
     RDescription *currentObject;
     int currentObjectNumber;
+    int cacheZoom;
+    int cacheDirection;
 @public
     int piecesCount;
 }
 
 @property (nonatomic, readonly) RDescription* currentObject;
 @property (nonatomic, readonly) int currentObjectNumber;
+@property (nonatomic, assign) int cacheZoom;
+@property (nonatomic, assign) int cacheDirection;
 
 -(id) initWithRect:(CGRect)rect;
 -(BOOL) draw:(CGContextRef)context inRect:(CGRect)rect withScale:(CGFloat)scale;
@@ -102,5 +106,6 @@
 -(void) freeSomeMemory;
 -(void) setSignal:(id)target selector:(SEL)selector;
 -(BOOL) checkPoint:(CGPoint*)point;
+-(void) setCacheZoom:(int)z andDirection:(int)d;
 
 @end

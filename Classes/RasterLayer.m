@@ -319,6 +319,8 @@
 @implementation RasterLayer
 @synthesize currentObject;
 @synthesize currentObjectNumber;
+@synthesize cacheZoom;
+@synthesize cacheDirection;
 
 -(id) initWithRect:(CGRect)rect
 {
@@ -450,14 +452,64 @@
         }
     }
     // check next layer
-    dx *= 0.5f;
-    dy *= 0.5f;
-    x1 *= 2;
-    y1 *= 2;
-    x2 *= 2;
-    y2 *= 2;
-    n = [NSNumber numberWithInt:level+1];
-    lev = [levels objectForKey:n];
+    int nextLevel = level;
+    if(cacheZoom > 0) {
+        NSLog(@"cache zoom in");
+        dx *= 0.5f;
+        dy *= 0.5f;
+        x1 *= 2;
+        y1 *= 2;
+        x2 *= 2;
+        y2 *= 2;
+        nextLevel = level+1;
+        n = [NSNumber numberWithInt:nextLevel];
+        lev = [levels objectForKey:n];
+    } else if(cacheZoom < 0 && level > 0) {
+        NSLog(@"cache zoom out");
+        dx *= 2.f;
+        dy *= 2.f;
+        x1 *= 0.5f;
+        y1 *= 0.5f;
+        x2 *= 0.5f;
+        y2 *= 0.5f;
+        nextLevel = level-1;
+        n = [NSNumber numberWithInt:nextLevel];
+        lev = [levels objectForKey:n];
+    }
+    switch (cacheDirection) {
+        case 0:
+        default:
+            // nothing to do
+            break;
+        case 1: {
+            NSLog(@"cache to right");
+            int st = (x2-x1)/2;
+            x1 += st;
+            x2 += st;
+            break;
+        }
+        case 2: {
+            NSLog(@"cache to bottom");
+            int st = (y2-y1)/2;
+            y1 += st;
+            y2 += st;
+            break;
+        }
+        case 3: {
+            NSLog(@"cache to left");
+            int st = (x2-x1)/2;
+            x1 -= st;
+            x2 -= st;
+            break;
+        }
+        case 4: {
+            NSLog(@"cache to up");
+            int st = (y2-y1)/2;
+            y1 -= st;
+            y2 -= st;
+            break;
+        }
+    }
     if(lev == nil) {
         lev = [NSMutableArray array];
         [levels setObject:lev forKey:n];
@@ -475,7 +527,7 @@
             if(!found) {
                 // loading
                 CGRect r = CGRectMake(dx*X, dy*Y, dx, dy);
-                RPiece *p = [[RPiece alloc] initWithRect:r level:level+1 x:X y:Y];
+                RPiece *p = [[RPiece alloc] initWithRect:r level:nextLevel x:X y:Y];
                 p->layer = self;
                 [lev addObject:p];
                 [loader secondLoad:p];
