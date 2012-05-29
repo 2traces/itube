@@ -446,6 +446,10 @@
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
 {
+    int z = 0;
+    if (scale < Scale) z = -1;
+    if (scale > Scale) z = 1;
+    rasterLayer.cacheZoom = z;
     Scale = scale;
     if([rasterLayer checkLevel:Scale*SCALE])
         [self redraw];
@@ -453,6 +457,17 @@
 
 - (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
+    CGPoint offset = scrollView.contentOffset;
+    float dx = offset.x - oldOffset.x;
+    float dy = offset.y - oldOffset.y;
+    if(fabs(dx) > fabs(dy)) {
+        if(dx > 0) rasterLayer.cacheDirection = 1;
+        else rasterLayer.cacheDirection = 3;
+    } else {
+        if(dy > 0) rasterLayer.cacheDirection = 2;
+        else rasterLayer.cacheDirection = 4;
+    }
+    oldOffset = offset;
     //printf("offset is %d %d\n", (int)scrollView.contentOffset.x, (int)scrollView.contentOffset.y);
 }
 
