@@ -19,7 +19,7 @@
 {
     if((self = [super init])) {
         self->name = [n retain];
-        self->description = [description retain];
+        self->description = [descr retain];
     }
     return self;
 }
@@ -549,6 +549,9 @@
             currentObjectNumber = [p checkPoint:CGPointMake(point->x - X*dx, point->y - Y*dy)];
             if(currentObjectNumber >= 0) {
                 currentObject = [description objectForKey:[NSNumber numberWithInt:currentObjectNumber]];
+                if(currentObject == nil) {
+                    currentObject = [[RDescription alloc] initWithName:[NSString stringWithFormat:@"Name of object #%d",currentObjectNumber] andDescription:[NSString stringWithFormat:@"Description of object #%d",currentObjectNumber]];
+                }
                 return YES;
             } else {
                 currentObject = nil;

@@ -30,7 +30,7 @@ extern int const imagesCount;
     CGRect visualFrame;
 	UILabel *mainLabel;
     UILabel *lineLabel;
-    UIView *circleLabel;
+    //UIView *circleLabel;
     UIImageView *labelBg;
 	CityMap *cityMap;
 	Boolean stationSelected;

@@ -149,29 +149,30 @@
 		}
 
 		//метка которая показывает названия станций
-		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 27, 140, 25)];
-		mainLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:21.0];
+		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 33, 227, 65)];
+		mainLabel.font = [UIFont fontWithName:@"Arial" size:12.0];
         mainLabel.textAlignment = UITextAlignmentCenter;
 		mainLabel.backgroundColor = [UIColor clearColor];
         mainLabel.shadowColor = [UIColor whiteColor];
         mainLabel.shadowOffset = CGSizeMake(0.5f, 1.f);
-        lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(180, 27, 40, 25)];
-        lineLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:21.f];
+        lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 227, 23)];
+        lineLabel.font = [UIFont fontWithName:@"Arial" size:18.f];
         lineLabel.textAlignment = UITextAlignmentCenter;
-        lineLabel.textColor = [UIColor colorWithRed:0.5f green:0.5f blue:0.5f alpha:1.0f];
-        lineLabel.text = @"1";
+        lineLabel.textColor = [UIColor whiteColor];
+        lineLabel.text = @"";
         lineLabel.backgroundColor = [UIColor clearColor];
-        lineLabel.shadowColor = [UIColor whiteColor];
-        lineLabel.shadowOffset = CGSizeMake(0.5f, 1.f);
-        circleLabel = [[UIView alloc] initWithFrame:CGRectMake(25, 23, 21, 21)];
+        //lineLabel.shadowColor = [UIColor whiteColor];
+        //lineLabel.shadowOffset = CGSizeMake(0.5f, 1.f);
+        /*circleLabel = [[UIView alloc] initWithFrame:CGRectMake(25, 23, 21, 21)];
         circleLabel.layer.cornerRadius = 11.f;
         circleLabel.backgroundColor = [UIColor redColor];
         [circleLabel addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"embossed_circle"]]];
+         */
         
-        labelBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"station_label"]];
+        labelBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"box"]];
         [labelBg addSubview:mainLabel];
         [labelBg addSubview:lineLabel];
-        [labelBg addSubview:circleLabel];
+        //[labelBg addSubview:circleLabel];
 		labelBg.hidden=true;
         
         midground1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
@@ -362,6 +363,11 @@
 {
     if([rasterLayer checkPoint:currentPosition]) {
         NSLog(@"select object №%d %@", rasterLayer.currentObjectNumber, rasterLayer.currentObject.name);
+        stationSelected = YES;
+        lineLabel.text = rasterLayer.currentObject.name;
+		mainLabel.text = rasterLayer.currentObject.description;
+    } else {
+        stationSelected = NO;
     }
     /*selectedStationLine = [cityMap checkPoint:currentPosition Station:selectedStationName];
     if(selectedStationLine > 0) {

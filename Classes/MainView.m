@@ -119,25 +119,27 @@ NSInteger const toolbarWidth=320;
 	//UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
 	//[containerView addGestureRecognizer:singleTap];    
 
-    stationMark = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"station_mark"]];
+    stationMark = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin"]];
     stationMark.hidden = YES;
     [self addSubview:stationMark];
     [self addSubview:mapView.labelView];
 	
-    sourceButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    /*sourceButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [sourceButton setImage:[UIImage imageNamed:@"src_button_normal"] forState:UIControlStateNormal];
     [sourceButton setImage:[UIImage imageNamed:@"src_button_pressed"] forState:UIControlStateHighlighted];
     [sourceButton addTarget:self action:@selector(selectFromStationByButton) forControlEvents:UIControlEventTouchUpInside];
     [sourceButton setFrame:CGRectMake(-90, 190, 96, 96)];
+     */
     
-    destinationButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    /*destinationButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [destinationButton setImage:[UIImage imageNamed:@"dst_button_normal"] forState:UIControlStateNormal];
     [destinationButton setImage:[UIImage imageNamed:@"dst_button_pressed"] forState:UIControlStateHighlighted];
     [destinationButton addTarget:self action:@selector(selectToStationByButton) forControlEvents:UIControlEventTouchUpInside];
     [destinationButton setFrame:CGRectMake(315, 190, 96, 96)];
+     */
     
-    [self addSubview:sourceButton];
-    [self addSubview:destinationButton];
+    //[self addSubview:sourceButton];
+    //[self addSubview:destinationButton];
     
     UIButton *settings = [UIButton buttonWithType:UIButtonTypeCustom];
     [settings setImage:[UIImage imageNamed:@"settings_btn_normal"] forState:UIControlStateNormal];
@@ -189,7 +191,7 @@ NSInteger const toolbarWidth=320;
         [containerView setContentOffset:CGPointMake(mapView.size.width * 0.25f * mapView.Scale, mapView.size.height * 0.25f * mapView.Scale ) animated:NO];
     else 
         [containerView setContentOffset:CGPointZero];
-    [self insertSubview:mapView.labelView belowSubview:sourceButton];
+    //[self insertSubview:mapView.labelView belowSubview:sourceButton];
     self.backgroundColor = mapView.backgroundColor;
 }
 
@@ -212,8 +214,8 @@ NSInteger const toolbarWidth=320;
     if(pos.y < 130) pos.y += 200;
     if(pos.y > 380) pos.y = 380;
 
-    [UIView animateWithDuration:0.25f animations:^{ sourceButton.center = CGPointMake(pos.x-60, pos.y+20); }];
-    [UIView animateWithDuration:0.25f animations:^{ destinationButton.center = CGPointMake(pos.x+60, pos.y+20); }];
+    //[UIView animateWithDuration:0.25f animations:^{ sourceButton.center = CGPointMake(pos.x-60, pos.y+20); }];
+    //[UIView animateWithDuration:0.25f animations:^{ destinationButton.center = CGPointMake(pos.x+60, pos.y+20); }];
 
     if(mapView.labelView.hidden) {
         mapView.labelView.center = CGPointMake(pos.x, pos.y-55);
@@ -230,12 +232,14 @@ NSInteger const toolbarWidth=320;
     buttonsVisible = NO;
     [UIView animateWithDuration:0.25f animations:^{ stationMark.alpha = 0.f; } completion:^(BOOL finished) { stationMark.hidden = YES; }];
     [UIView animateWithDuration:0.125f animations:^{ mapView.labelView.alpha = 0.f; } completion:^(BOOL finished){ if(finished) {mapView.labelView.hidden = YES; } }];
-    CGPoint p = sourceButton.center;
+    /*CGPoint p = sourceButton.center;
     p.x = -40;
     [UIView animateWithDuration:0.125f animations:^{ sourceButton.center = p; } ];
-    p = destinationButton.center;
+     */
+    /*p = destinationButton.center;
     p.x = 360;
     [UIView animateWithDuration:0.125f animations:^{ destinationButton.center = p; }];
+     */
 }
 
 -(void) selectFromStationByButton {
@@ -278,8 +282,8 @@ NSInteger const toolbarWidth=320;
 	//[CLController release];
     [super dealloc];
 	[stationNameView release];
-    [sourceButton release];
-    [destinationButton release];
+    //[sourceButton release];
+    //[destinationButton release];
 }
 
 -(void)selectStationAt:(CGPoint)currentPosition
