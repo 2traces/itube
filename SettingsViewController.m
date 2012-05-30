@@ -144,13 +144,13 @@
     //	label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
 	label.textAlignment = UITextAlignmentCenter;
 	label.textColor = [UIColor darkGrayColor];
-    label.text = @"Settings";
+    label.text = NSLocalizedString(@"Settings",@"Settings");
     [iv addSubview:label];
     self.navigationItem.titleView=iv;
     [iv release];
 	
-    UIImage *back_image=[UIImage imageNamed:@"backstation.png"];
-    UIImage *back_image_high=[UIImage imageNamed:@"pr_backstation.png"];
+    UIImage *back_image=[UIImage imageNamed:NSLocalizedString(@"backstation", @"backstation")];
+    UIImage *back_image_high=[UIImage imageNamed:NSLocalizedString(@"pr_backstation", @"pr_backstation")];
 	UIButton *back_button = [UIButton buttonWithType:UIButtonTypeCustom];
 	back_button.bounds = CGRectMake( 0, 0, back_image.size.width, back_image.size.height );    
 	[back_button setBackgroundImage:back_image forState:UIControlStateNormal];

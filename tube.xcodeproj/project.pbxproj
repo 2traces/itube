@@ -187,6 +187,7 @@
 		BC6890E4157611C4002232E6 /* it_settingsstation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6890CC157611C4002232E6 /* it_settingsstation@2x.png */; };
 		BC6890E5157611C4002232E6 /* it_stationsstation.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6890CD157611C4002232E6 /* it_stationsstation.png */; };
 		BC6890E6157611C4002232E6 /* it_stationsstation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6890CE157611C4002232E6 /* it_stationsstation@2x.png */; };
+		BC6890EB15761C58002232E6 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC6890ED15761C58002232E6 /* SettingsViewController.xib */; };
 		BC6FEB7014E252530066D6E6 /* bottomtabbarstation.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6FEB6E14E252530066D6E6 /* bottomtabbarstation.png */; };
 		BC6FEB7114E252530066D6E6 /* bottomtabbarstation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6FEB6F14E252530066D6E6 /* bottomtabbarstation@2x.png */; };
 		BC6FEB7514E267320066D6E6 /* lines_edge.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6FEB7314E267320066D6E6 /* lines_edge.png */; };
@@ -211,7 +212,6 @@
 		BC876AC914DFAF23008AC06C /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC876ABC14DFAF23008AC06C /* MainView.xib */; };
 		BC876ACA14DFAF23008AC06C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC876ABD14DFAF23008AC06C /* MainWindow.xib */; };
 		BC876ACB14DFAF23008AC06C /* MyriadPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = BC876ABE14DFAF23008AC06C /* MyriadPro-Regular.otf */; };
-		BC876ACD14DFAF23008AC06C /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC876AC014DFAF23008AC06C /* SettingsViewController.xib */; };
 		BC876ACE14DFAF23008AC06C /* StationListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC876AC114DFAF23008AC06C /* StationListCell.xib */; };
 		BC876ACF14DFAF23008AC06C /* StationListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC876AC214DFAF23008AC06C /* StationListViewController.xib */; };
 		BC876AEA14DFAFF1008AC06C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = BC876ADC14DFAFF1008AC06C /* background.png */; };
@@ -652,6 +652,10 @@
 		BC6890CC157611C4002232E6 /* it_settingsstation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "it_settingsstation@2x.png"; path = "images/it_settingsstation@2x.png"; sourceTree = "<group>"; };
 		BC6890CD157611C4002232E6 /* it_stationsstation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = it_stationsstation.png; path = images/it_stationsstation.png; sourceTree = "<group>"; };
 		BC6890CE157611C4002232E6 /* it_stationsstation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "it_stationsstation@2x.png"; path = "images/it_stationsstation@2x.png"; sourceTree = "<group>"; };
+		BC6890EC15761C58002232E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
+		BC6890EF15761C62002232E6 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
+		BC6890F015761C64002232E6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
+		BC6890F115761C66002232E6 /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = it.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
 		BC6FEB6E14E252530066D6E6 /* bottomtabbarstation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bottomtabbarstation.png; path = images/bottomtabbarstation.png; sourceTree = "<group>"; };
 		BC6FEB6F14E252530066D6E6 /* bottomtabbarstation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bottomtabbarstation@2x.png"; path = "images/bottomtabbarstation@2x.png"; sourceTree = "<group>"; };
 		BC6FEB7314E267320066D6E6 /* lines_edge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lines_edge.png; path = images/lines_edge.png; sourceTree = "<group>"; };
@@ -682,7 +686,6 @@
 		BC876ABC14DFAF23008AC06C /* MainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainView.xib; path = Resources/MainView.xib; sourceTree = "<group>"; };
 		BC876ABD14DFAF23008AC06C /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
 		BC876ABE14DFAF23008AC06C /* MyriadPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MyriadPro-Regular.otf"; path = "Resources/MyriadPro-Regular.otf"; sourceTree = "<group>"; };
-		BC876AC014DFAF23008AC06C /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsViewController.xib; path = Resources/SettingsViewController.xib; sourceTree = "<group>"; };
 		BC876AC114DFAF23008AC06C /* StationListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StationListCell.xib; path = Resources/StationListCell.xib; sourceTree = "<group>"; };
 		BC876AC214DFAF23008AC06C /* StationListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StationListViewController.xib; path = Resources/StationListViewController.xib; sourceTree = "<group>"; };
 		BC876ADC14DFAFF1008AC06C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = images/background.png; sourceTree = "<group>"; };
@@ -1121,7 +1124,7 @@
 				BC8F052C14EBB18F007D0C7B /* MyriadPro-Semibold.otf */,
 				BC787C3D153574F20020915A /* MyriadPr-It.otf */,
 				BC6890501575E075002232E6 /* SelectingTabBarViewController.xib */,
-				BC876AC014DFAF23008AC06C /* SettingsViewController.xib */,
+				BC6890ED15761C58002232E6 /* SettingsViewController.xib */,
 				BC876AC114DFAF23008AC06C /* StationListCell.xib */,
 				BC876AC214DFAF23008AC06C /* StationListViewController.xib */,
 				BC90F13C14D7AECC001852F0 /* PathBar */,
@@ -1678,7 +1681,7 @@
 				BC876ACA14DFAF23008AC06C /* MainWindow.xib in Resources */,
 				BC876ACB14DFAF23008AC06C /* MyriadPro-Regular.otf in Resources */,
 				BC68904E1575E075002232E6 /* SelectingTabBarViewController.xib in Resources */,
-				BC876ACD14DFAF23008AC06C /* SettingsViewController.xib in Resources */,
+				BC6890EB15761C58002232E6 /* SettingsViewController.xib in Resources */,
 				BC876ACE14DFAF23008AC06C /* StationListCell.xib in Resources */,
 				BC876ACF14DFAF23008AC06C /* StationListViewController.xib in Resources */,
 				BC876AEA14DFAFF1008AC06C /* background.png in Resources */,
@@ -2104,6 +2107,18 @@
 				BC6890531575E083002232E6 /* it */,
 			);
 			name = SelectingTabBarViewController.xib;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BC6890ED15761C58002232E6 /* SettingsViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC6890EC15761C58002232E6 /* en */,
+				BC6890EF15761C62002232E6 /* de */,
+				BC6890F015761C64002232E6 /* fr */,
+				BC6890F115761C66002232E6 /* it */,
+			);
+			name = SettingsViewController.xib;
 			path = Resources;
 			sourceTree = "<group>";
 		};
