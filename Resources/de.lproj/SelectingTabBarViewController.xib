@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">11D50</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1138.32</string>
-		<string key="IBDocument.HIToolboxVersion">568.00</string>
+		<int key="IBDocument.SystemTarget">1296</int>
+		<string key="IBDocument.SystemVersion">11E53</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2182</string>
+		<string key="IBDocument.AppKitVersion">1138.47</string>
+		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">933</string>
+			<string key="NS.object.0">1181</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBUIButton</string>
@@ -58,7 +58,7 @@
 							<object class="IBUIButton" id="74684942">
 								<reference key="NSNextResponder" ref="26441259"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{0, 10}, {74, 40}}</string>
+								<string key="NSFrame">{{0, 10}, {83, 40}}</string>
 								<reference key="NSSuperview" ref="26441259"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="225494757"/>
@@ -81,11 +81,11 @@
 								</object>
 								<object class="NSCustomResource" key="IBUIHighlightedImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">pr_backstation.png</string>
+									<string key="NSResourceName">de_pr_backstation.png</string>
 								</object>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">backstation.png</string>
+									<string key="NSResourceName">de_backstation.png</string>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="395449978">
 									<int key="type">2</int>
@@ -100,7 +100,7 @@
 							<object class="IBUIButton" id="225494757">
 								<reference key="NSNextResponder" ref="26441259"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{74, 10}, {122, 40}}</string>
+								<string key="NSFrame">{{83, 10}, {113, 40}}</string>
 								<reference key="NSSuperview" ref="26441259"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="393488694"/>
@@ -115,14 +115,14 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="141072342"/>
-								<object class="NSCustomResource" key="IBUIHighlightedImage" id="639575527">
+								<object class="NSCustomResource" key="IBUIHighlightedImage" id="814789793">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">pr_stationsstation.png</string>
+									<string key="NSResourceName">de_pr_stationsstation.png</string>
 								</object>
-								<reference key="IBUISelectedImage" ref="639575527"/>
+								<reference key="IBUISelectedImage" ref="814789793"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">stationsstation.png</string>
+									<string key="NSResourceName">de_stationsstation.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="395449978"/>
 								<reference key="IBUIFont" ref="274730660"/>
@@ -145,14 +145,14 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="141072342"/>
-								<object class="NSCustomResource" key="IBUIHighlightedImage" id="658424836">
+								<object class="NSCustomResource" key="IBUIHighlightedImage" id="908757548">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">pr_linesstation.png</string>
+									<string key="NSResourceName">de_pr_linesstation.png</string>
 								</object>
-								<reference key="IBUISelectedImage" ref="658424836"/>
+								<reference key="IBUISelectedImage" ref="908757548"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">linesstation.png</string>
+									<string key="NSResourceName">de_linesstation.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="395449978"/>
 								<reference key="IBUIFont" ref="274730660"/>
@@ -188,7 +188,7 @@
 							<object class="IBUIButton" id="793621068">
 								<reference key="NSNextResponder" ref="288418518"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{0, 4}, {107, 32}}</string>
+								<string key="NSFrame">{{0, 4}, {105, 32}}</string>
 								<reference key="NSSuperview" ref="288418518"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="77726195"/>
@@ -203,14 +203,14 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="141072342"/>
-								<object class="NSCustomResource" key="IBUIHighlightedImage" id="125391237">
+								<object class="NSCustomResource" key="IBUIHighlightedImage" id="667831445">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">pr_bookmarkstation.png</string>
+									<string key="NSResourceName">de_pr_bookmarkstation.png</string>
 								</object>
-								<reference key="IBUISelectedImage" ref="125391237"/>
+								<reference key="IBUISelectedImage" ref="667831445"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">bookmarkstation.png</string>
+									<string key="NSResourceName">de_bookmarkstation.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="395449978"/>
 								<reference key="IBUIFont" ref="274730660"/>
@@ -218,7 +218,7 @@
 							<object class="IBUIButton" id="77726195">
 								<reference key="NSNextResponder" ref="288418518"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{107, 4}, {105, 32}}</string>
+								<string key="NSFrame">{{105, 4}, {97, 32}}</string>
 								<reference key="NSSuperview" ref="288418518"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="768958806"/>
@@ -233,14 +233,14 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="141072342"/>
-								<object class="NSCustomResource" key="IBUIHighlightedImage" id="844020721">
+								<object class="NSCustomResource" key="IBUIHighlightedImage" id="295567535">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">pr_historystation.png</string>
+									<string key="NSResourceName">de_pr_historystation.png</string>
 								</object>
-								<reference key="IBUISelectedImage" ref="844020721"/>
+								<reference key="IBUISelectedImage" ref="295567535"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">historystation.png</string>
+									<string key="NSResourceName">de_historystation.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="395449978"/>
 								<reference key="IBUIFont" ref="274730660"/>
@@ -248,7 +248,7 @@
 							<object class="IBUIButton" id="768958806">
 								<reference key="NSNextResponder" ref="288418518"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{212, 4}, {108, 32}}</string>
+								<string key="NSFrame">{{202, 4}, {118, 32}}</string>
 								<reference key="NSSuperview" ref="288418518"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -265,11 +265,11 @@
 								<reference key="IBUINormalTitleShadowColor" ref="141072342"/>
 								<object class="NSCustomResource" key="IBUIHighlightedImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">pr_settingsstations.png</string>
+									<string key="NSResourceName">de_pr_settingsstation.png</string>
 								</object>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">settingsstations.png</string>
+									<string key="NSResourceName">de_settingsstation.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="395449978"/>
 								<reference key="IBUIFont" ref="274730660"/>
@@ -508,20 +508,20 @@
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="18.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="18.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="19.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="19.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="20.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="20.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="20.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="21.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="21.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="21.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="36.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="40.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="41.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="42.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="42.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="42.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="43.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="43.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="43.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
@@ -611,24 +611,28 @@
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
+			<real value="1296" key="NS.object.0"/>
+		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="backstation.png">{74, 40}</string>
-			<string key="bookmarkstation.png">{107, 32}</string>
 			<string key="bottomtabbarstation.png">{320, 39}</string>
-			<string key="historystation.png">{105, 32}</string>
-			<string key="linesstation.png">{124, 40}</string>
-			<string key="pr_backstation.png">{74, 40}</string>
-			<string key="pr_bookmarkstation.png">{107, 32}</string>
-			<string key="pr_historystation.png">{105, 32}</string>
-			<string key="pr_linesstation.png">{124, 40}</string>
-			<string key="pr_settingsstations.png">{108, 32}</string>
-			<string key="pr_stationsstation.png">{122, 40}</string>
-			<string key="settingsstations.png">{107, 32}</string>
-			<string key="stationsstation.png">{122, 40}</string>
+			<string key="de_backstation.png">{83, 40}</string>
+			<string key="de_bookmarkstation.png">{106, 32}</string>
+			<string key="de_historystation.png">{97, 32}</string>
+			<string key="de_linesstation.png">{124, 40}</string>
+			<string key="de_pr_backstation.png">{83, 40}</string>
+			<string key="de_pr_bookmarkstation.png">{106, 32}</string>
+			<string key="de_pr_historystation.png">{97, 32}</string>
+			<string key="de_pr_linesstation.png">{124, 40}</string>
+			<string key="de_pr_settingsstation.png">{118, 32}</string>
+			<string key="de_pr_stationsstation.png">{113, 40}</string>
+			<string key="de_settingsstation.png">{118, 32}</string>
+			<string key="de_stationsstation.png">{113, 40}</string>
 			<string key="toptabbarstation.png">{320, 63}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">933</string>
+		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>
 </archive>

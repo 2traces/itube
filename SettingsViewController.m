@@ -186,13 +186,15 @@
 
 -(void)adjustViewHeight
 {
+    CGFloat cityTableStartY = cityTableView.frame.origin.y;
+    
     CGFloat tableHeight = [maps count]*45.0f+2.0;
     
-    cityTableView.frame = CGRectMake(8, 179, 304, tableHeight);
+    cityTableView.frame = CGRectMake(8, cityTableStartY, 304, tableHeight);
     
-    textLabel3.frame = CGRectMake(textLabel3.frame.origin.x, 179+tableHeight+17, textLabel3.frame.size.width, textLabel3.frame.size.height);
+    textLabel3.frame = CGRectMake(textLabel3.frame.origin.x, cityTableStartY+tableHeight+17, textLabel3.frame.size.width, textLabel3.frame.size.height);
     
-    sendMailButton.frame = CGRectMake(sendMailButton.frame.origin.x, 179+tableHeight+8, sendMailButton.frame.size.width, sendMailButton.frame.size.height);
+    sendMailButton.frame = CGRectMake(sendMailButton.frame.origin.x, cityTableStartY+tableHeight+8, sendMailButton.frame.size.width, sendMailButton.frame.size.height);
     
     scrollView.contentSize = CGSizeMake(320, sendMailButton.frame.origin.y+sendMailButton.frame.size.height+15.0);
     scrollView.frame = CGRectMake(0.0, 0.0, 320.0, 460.0-44.0);
