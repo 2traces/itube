@@ -894,6 +894,10 @@
 		BCE1C9E4151F63630029CCB2 /* n3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "n3@2x.png"; path = "images/n3@2x.png"; sourceTree = "<group>"; };
 		BCF52DCB14CAD69400D76E0F /* FastAccessTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastAccessTableViewController.h; sourceTree = "<group>"; };
 		BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastAccessTableViewController.m; sourceTree = "<group>"; };
+		BCF68E4A15764564003B60C3 /* fr */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fr; path = fr.lproj/Default.png; sourceTree = "<group>"; };
+		BCF68E4C15764567003B60C3 /* it */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = it; path = it.lproj/Default.png; sourceTree = "<group>"; };
+		BCF68E4D1576456D003B60C3 /* fr */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fr; path = "fr.lproj/Default@2x.png"; sourceTree = "<group>"; };
+		BCF68E4E15764570003B60C3 /* it */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = it; path = "it.lproj/Default@2x.png"; sourceTree = "<group>"; };
 		CE1146C81466EAF200EF5A28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CE81FA6D146BDC91008BF969 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "images/Icon-72.png"; sourceTree = "<group>"; };
 		CE81FA6E146BDC91008BF969 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = images/Icon.png; sourceTree = "<group>"; };
@@ -2085,6 +2089,8 @@
 			children = (
 				BC102A2C1570F44B009390A6 /* en */,
 				BC102A2E1570F453009390A6 /* de */,
+				BCF68E4A15764564003B60C3 /* fr */,
+				BCF68E4C15764567003B60C3 /* it */,
 			);
 			name = Default.png;
 			sourceTree = "<group>";
@@ -2094,6 +2100,8 @@
 			children = (
 				BC102A301570F458009390A6 /* en */,
 				BC102A321570F45F009390A6 /* de */,
+				BCF68E4D1576456D003B60C3 /* fr */,
+				BCF68E4E15764570003B60C3 /* it */,
 			);
 			name = "Default@2x.png";
 			sourceTree = "<group>";
