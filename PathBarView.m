@@ -55,7 +55,7 @@
         
         NSInteger travelTime = [self dsGetTravelTime:thisPath];
         UILabel *travelTimeLabel = [[UILabel alloc] init];
-        travelTimeLabel.text=[NSString stringWithFormat:@"%d minutes",travelTime];        
+        travelTimeLabel.text=[NSString stringWithFormat:@"%d %@",travelTime,NSLocalizedString(@"minutes", @"minutes")];        
         travelTimeLabel.backgroundColor = [UIColor clearColor];
         travelTimeLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:13.0];
         travelTimeLabel.textColor = [UIColor darkGrayColor];
