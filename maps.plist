@@ -17,7 +17,7 @@
 		<key>zip_donwload</key>
 		<string>/maps/london/london1.zip</string>
 	</dict>
-	<key>com.zuev.itube.paris.paris</key>
+	<key>default</key>
 	<dict>
 		<key>ver</key>
 		<string>1</string>
@@ -47,7 +47,7 @@
 		<key>zip_download</key>
 		<string>/maps/berlin/berlin1.zip</string>
 	</dict>
-	<key>default</key>
+	<key>com.zuev.itube.paris.hamburg</key>
 	<dict>
 		<key>ver</key>
 		<string>1</string>
@@ -61,21 +61,6 @@
 		<string>hamburg.png</string>
 		<key>zip_download</key>
 		<string>/maps/hamburg/hamburg1.zip</string>
-	</dict>
-	<key>com.zuev.itube.paris.venice</key>
-	<dict>
-		<key>ver</key>
-		<string>1</string>
-		<key>name</key>
-		<string>Venice</string>
-		<key>filename</key>
-		<string>venice</string>
-		<key>description</key>
-		<string>venice.txt</string>
-		<key>picture</key>
-		<string>venice.png</string>
-		<key>zip_download</key>
-		<string>/maps/venice/venice1.zip</string>
 	</dict>
 </dict>
 </plist>

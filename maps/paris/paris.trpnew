@@ -253,9 +253,10 @@ Name=Ligne 7bis
 227	<Pre ;St-Gervais 48.8802255,0.023987371	,	M	M
 79	Danube 48.8820106,0.023930240	,	M	M
 
-branch11 = >140, 32, 28, 37, 30, 196, 227, 79, 30, 37, 28, 32, 40
-
-driving12 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+branch11 = >30, 196, 227, 79, 30
+driving11 = 1, 1, 1, 1
+branch12 = <>140, 32, 28, 37, 30
+driving12 = 1, 1, 1, 1
 
 [Line10]
 Name=Ligne 8
@@ -346,7 +347,7 @@ driving15 = 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 [Line12]
 Name=Ligne 10
 33	<^Boulogne ;Pont de Saint-Cloud 48.8406835,0.022283311	, 	E	E
-32	Boulogne ;Jean Jaures 48.8419727,0.022387862	, 	SE	SE
+32	<^Boulogne ;Jean Jaures 48.8419727,0.022387862	, 	SE	SE
 165	>^Michel-;Ange ;Molitor 48.8451448,0.022616628	,	M	M
 47	Chardon Lagache 48.8451429,0.022662185	, 	S	S
 166	Mirabeau  48.8470600,0.022725713,	M	M
@@ -370,7 +371,7 @@ Name=Ligne 10
 98	<_Gare d'Austerlitz 48.8426348,0.023649691	, 	SE	SE
 
 branch16 = <>98, 120, 43, 162, 63, 178, 144, 274, 284, 84, 276, 126, 12, 49, 117
-branch17 = <117, 298, 207, 164, 32, 33
+branch17 = >117, 298, 207, 164, 32, 33
 branch18 = >33, 32, 165, 47, 166, 117
 driving16 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 driving17 = 1, 1, 1, 1, 1
@@ -485,6 +486,64 @@ Name=Ligne 14
 
 branch3 = <>179, 21, 71, 20, 99, 59, 228, 145, 259
 driving3 = 1, 1, 1, 1, 1, 1, 1, 1
+
+[Line17]
+Name=B3
+800	aeroport charles; de gaulle2 49.003955,2.571144	, 	SME	SME
+801	aeroport charles; de gaulle1 49.009684,2.561145	, 	SME	SME
+802	park des; expositions 48.973795,2.514582	, 	SME	SME
+803	villepinte 48.963174,2.512372	, 	SME	SME
+804	sevran; beaudottes 48.947435,2.524452	, 	SME	SME
+805	vert galant 48.94432,2.566595	, 	SME	SME
+806	villeparisis; mitry le neuf 48.952973,2.601829	, 	SME	SME
+807	mitry claye 48.975767,2.64174	, 	SME	SME
+808	le bourget 48.930733,2.425833	, 	SME	SME
+809	la courneuve; aubervilliers 48.924022,2.384505	, 	SME	SME
+810	la plaine stade; de france 48.917564,2.361631	, 	SME	SME
+811	gare du nord 48.879788,2.356138	, 	SME	SME
+812	chatelet les halles 48.861835,2.346783	, 	SME	SME
+813	st michel; notre dame 48.853449,2.345495	, 	SME	SME
+814	Luxembourg 48.845627,2.33983	, 	SME	SME
+815	port royal 48.83995,2.336912	, 	SME	SME
+816	denfert; rochereau 48.833848,2.33305	, 	SME	SME
+817	cite; universitaire 48.820767,2.339101	, 	SME	SME
+818	gentilly 48.815738,2.340989	, 	SME	SME
+819 	laplace 48.807853,2.33335	, 	SME	SME
+820	arcueil cachan 48.798497,2.328115	, 	SME	SME
+821	bagneux 48.793238,2.321334	, 	SME	SME
+822	bourg la reine 48.780656,2.312407	, 	SME	SME
+823	sceaux 48.781335,2.297473	, 	SME	SME
+824 	fontenay aux roses 48.787555,2.293139	, 	SME	SME
+825	robinson 48.779977,2.281079	, 	SME	SME
+826	parc de sceaux 48.770701,2.310219	, 	SME	SME
+827	la croix; de berny 48.762102,2.304554	, 	SME	SME
+828	antony 48.754944,2.300692	, 	SME	SME
+829	fontaine michalon 48.743031,2.295671	, 	SME	SME
+830	les baconnets 48.739607,2.287645	, 	SME	SME
+831	massy palaiseau 48.72551,2.259965	, 	SME	SME
+832	palaiseau 48.718036,2.246318	, 	SME	SME
+833	palaiseau villebon 48.707672,2.236791	, 	SME	SME
+834	lozere 48.706036,2.211621	, 	SME	SME
+835	le guichet 48.704812,2.191676	, 	SME	SME
+836	orsay ville 48.697724,2.182213	, 	SME	SME
+837	bures sur yvette 48.695812,2.163534	, 	SME	SME
+838	la hacquiniere 48.694983,2.152644	, 	SME	SME
+839	gif sur yvette 48.698163,2.136809	, 	SME	SME
+840	courcelle sur yvette 48.700889,2.098861	, 	SME	SME
+841	saint remy les chevreuse 48.702659,2.071095	, 	SME	SME
+
+branch80 = <>800...804, 808...825
+driving80 = 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+branch81 = <>807, 806, 805, 808...822, 826...841
+driving81 = 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+
+[Line18]
+Name=OrlyVal
+850	antony 48.754951,2.301099	, 	SME	SME
+851	Orly 48.729686,2.360194	, 	SME	SME
+
+branch82 = <>850, 851
+driving82 = 2
 
 [Transfers]
 
@@ -692,3 +751,23 @@ driving3 = 1, 1, 1, 1, 1, 1, 1, 1
 202=Ligne 14,Madeleine,Ligne 8,Madeleine,5, E, E, SM, SM
 203=Ligne 14,Chatelet,Ligne 11,Chatelet,5, SE, SE, EMS, EMS
 204=Ligne 14,Madeleine,Ligne 12,Madeleine,5, S, S, E, E
+
+205=B3,chatelet les halles,Ligne 4,Gare du Nord,2
+206=B3,chatelet les halles,Ligne 5,Gare du Nord,2
+207=B3,chatelet les halles,Ligne 2,La Chapelle,2
+208=Ligne 4,Gare du Nord,B3,chatelet les halles,2
+209=Ligne 4,Gare du Nord,Ligne 5,Gare du Nord,2
+210=Ligne 4,Gare du Nord,Ligne 2,La Chapelle,2
+211=Ligne 2,La Chapelle,B3,chatelet les halles,2
+212=Ligne 2,La Chapelle,Ligne 5,Gare du Nord,2
+213=Ligne 2,La Chapelle,Ligne 4,Gare du Nord,2
+214=Ligne 5,Gare du Nord,B3,chatelet les halles,2
+215=B3,st michel notre dame,Ligne 10,Cluny La Sorbonne,2
+216=Ligne 10,Cluny La Sorbonne,B3,st michel notre dame,2
+217=B3,st michel notre dame,Ligne 4,Saint-Michel,2
+218=Ligne 4,Saint-Michel,B3,st michel notre dame,2
+219=B3,denfert rochereau,Ligne 6,Denfert-Rochereau,2
+220=B3,denfert rochereau,Ligne 4,Denfert-Rochereau,2
+221=B3,antony,OrlyVal,antony,2
+
+

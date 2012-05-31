@@ -759,20 +759,6 @@
         stationsTime = [self dsGetEveryStationTime]; // времена прохода станций при условии отсутствия расписания - массив массивов
     }
     
-    // ====
-    
-    NSMutableArray *timeArrayNew = [self dsGetEveryStationTimeScheduled];
-    
-    for (int a1=0;a1<[stations count];a1++) {
-        NSArray *s1 = [stations objectAtIndex:a1];
-        NSArray *t1 = [timeArrayNew objectAtIndex:a1];
-        for (int a2=0; a2<[s1 count]; a2++) {
-             NSLog(@"Station - %@ at %@",[s1 objectAtIndex:a2],[t1 objectAtIndex:a2]);
-        }
-    }
-    
-    // ====
-    
     int trainType = 0;
     int stationType = 0;
     int finalType = 0;
