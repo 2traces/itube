@@ -286,7 +286,7 @@
 {
     if  (tableView == self.mySearchDC.searchResultsTableView)
 	{
-        NSLog(@"%@",[[self.filteredStation objectAtIndex:indexPath.row] name]); 
+//        NSLog(@"%@",[[self.filteredStation objectAtIndex:indexPath.row] name]); 
         
         tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
         
@@ -299,7 +299,7 @@
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name beginswith[c] %@", alphabet];
         NSArray *stations = [self.stationList filteredArrayUsingPredicate:predicate];
         
-        NSLog(@"%@",[[stations objectAtIndex:indexPath.row] name]); 
+//        NSLog(@"%@",[[stations objectAtIndex:indexPath.row] name]); 
         
         tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
         

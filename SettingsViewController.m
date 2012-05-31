@@ -136,8 +136,8 @@
 	cityTableView.backgroundColor = [UIColor clearColor];
     cityTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,160,44)];
-    CGRect frame = CGRectMake(0, 3, 160, 44);
+    UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,180,44)];
+    CGRect frame = CGRectMake(0, 3, 180, 44);
 	UILabel *label = [[[UILabel alloc] initWithFrame:frame] autorelease];
 	label.backgroundColor = [UIColor clearColor];
 	label.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:20.0];

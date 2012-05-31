@@ -119,7 +119,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDate *date = [NSDate date];
+//    NSDate *date = [NSDate date];
     
     static NSString *CellIdentifier = @"StationCell";
     
@@ -150,8 +150,8 @@
     UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
     myImageView.image = [self imageWithColor:[station lines]];
     
-    NSDate *date2 = [NSDate date];
-    NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
+//    NSDate *date2 = [NSDate date];
+//    NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
     
     return cell;
 }
@@ -163,7 +163,7 @@
 {
     MStation  *station = [self.stationList objectAtIndex:indexPath.row];
     
-    NSLog(@"%@",[station name]); 
+//    NSLog(@"%@",[station name]); 
     
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
