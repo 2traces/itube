@@ -149,13 +149,15 @@
 		}
 
 		//метка которая показывает названия станций
-		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 33, 227, 65)];
+		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 33, 220, 65)];
 		mainLabel.font = [UIFont fontWithName:@"Arial" size:12.0];
         mainLabel.textAlignment = UITextAlignmentCenter;
 		mainLabel.backgroundColor = [UIColor clearColor];
         mainLabel.shadowColor = [UIColor whiteColor];
         mainLabel.shadowOffset = CGSizeMake(0.5f, 1.f);
-        lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 227, 23)];
+        mainLabel.lineBreakMode = UILineBreakModeWordWrap;
+        mainLabel.numberOfLines = 3;
+        lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 10, 220, 23)];
         lineLabel.font = [UIFont fontWithName:@"Arial" size:18.f];
         lineLabel.textAlignment = UITextAlignmentCenter;
         lineLabel.textColor = [UIColor whiteColor];

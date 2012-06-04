@@ -426,6 +426,7 @@
         level = 0;
         MAX_PIECES = 60;
         loader = [[RManager alloc] initWithTarget:self selector:@selector(complete) andPath:rasterPath];
+        description = [[NSMutableDictionary alloc] init];
         // TODO other languages
         NSString *fn = [NSString stringWithFormat:@"%@/en-names.txt", rasterPath];
         NSString *contents = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
@@ -433,7 +434,6 @@
             NSArray *words = [line componentsSeparatedByString:@"\t"];
             int _id = [[words objectAtIndex:0] intValue];
             NSString *name = [words objectAtIndex:1];
-            NSLog(@"name for %d is %@", _id, name);
             RDescription *desc = [description objectForKey:[NSNumber numberWithInt:_id]];
             if(desc == nil) {
                 desc = [[RDescription alloc] initWithName:name andDescription:nil];
@@ -449,7 +449,6 @@
             NSArray *words = [line componentsSeparatedByString:@"\t"];
             int _id = [[words objectAtIndex:0] intValue];
             NSString *name = [words objectAtIndex:1];
-            NSLog(@"description for %d is %@", _id, name);
             RDescription *desc = [description objectForKey:[NSNumber numberWithInt:_id]];
             if(desc == nil) {
                 desc = [[RDescription alloc] initWithName:nil andDescription:name];
@@ -697,6 +696,7 @@
                 currentObject = [description objectForKey:[NSNumber numberWithInt:currentObjectNumber]];
                 if(currentObject == nil) {
                     currentObject = [[RDescription alloc] initWithName:[NSString stringWithFormat:@"Name of object #%d",currentObjectNumber] andDescription:[NSString stringWithFormat:@"Description of object #%d",currentObjectNumber]];
+                    [description setObject:currentObject forKey:[NSNumber numberWithInt:currentObjectNumber]];
                 }
                 return YES;
             } else {
