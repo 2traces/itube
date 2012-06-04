@@ -75,6 +75,70 @@
 
 @end
 
+/***** DownloadPiece *****/
+
+@interface DownloadPiece : NSObject {
+@public
+    RPiece *piece;
+    NSMutableData *data;
+    NSURLConnection *connection;
+}
+
+-(id)initWithPiece:(RPiece*)p andConnection:(NSURLConnection*)con;
+
+@end
+
+/***** RasterDownloader *****/
+
+@interface RasterDownloader : NSObject {
+    NSString *baseUrl;
+    NSMutableDictionary *queue;
+    NSMutableArray *secondQueue;
+    id target;
+    SEL selector;
+    BOOL signal;
+}
+
+-(id)initWithUrl:(NSString*)url target:(id)t andSelector:(SEL)sel;
+-(BOOL)loadPiece:(RPiece*)piece;
+-(void)secondLoadPiece:(RPiece*)piece;
+
+@end
+
+/***** VectorDownloader *****/
+
+@interface VectorDownloader : NSObject {
+    
+}
+
+-(id)initWithUrl:(NSString*)url;
+-(BOOL)loadPiece:(RPiece*)piece;
+-(void)secondLoadPiece:(RPiece*)piece;
+
+@end
+
+/***** RDownloader *****/
+
+@interface RDownloadManager : NSObject {
+    NSMutableArray *queue;
+    NSMutableArray *secondQueue;
+    NSTimer *timer;
+    id target;
+    SEL selector;
+    NSRecursiveLock *lock;
+    id rasterDownloader;
+    id vectorDownloader;
+}
+@property (nonatomic, readonly) NSRecursiveLock *lock;
+@property (nonatomic, retain) id rasterDownloader;
+@property (nonatomic, retain) id vectorDownloader;
+
+-(id)initWithTarget:(id)target selector:(SEL)selector;
+-(void)load:(RPiece*)piece;
+-(void)secondLoad:(RPiece*)piece;
+
+@end
+
 
 /***** RasterLayer *****/
 
@@ -106,6 +170,5 @@
 -(void) freeSomeMemory;
 -(void) setSignal:(id)target selector:(SEL)selector;
 -(BOOL) checkPoint:(CGPoint*)point;
--(void) setCacheZoom:(int)z andDirection:(int)d;
 
 @end

@@ -221,98 +221,192 @@
 
 @end
 
-/***** RLayer *****/
+/***** DownloadPiece *****/
 
-/*@interface RLayer : NSObject {
-    NSString *layerPath;
-    NSMutableArray *pieces;
-}
--(id) initWithPath:(NSString*)path num:(int)num andRect:(CGRect)rect;
--(void)draw:(CGContextRef)context rect:(CGRect)rect;
--(void)upload;
--(BOOL)covers:(CGRect)rect;
--(void)skip;
--(void)freeSomeMemory;
+@implementation DownloadPiece
 
-@end
-
-@implementation RLayer
-
--(id)initWithPath:(NSString *)path num:(int)num andRect:(CGRect)r
+-(id)initWithPiece:(RPiece *)p andConnection:(NSURLConnection *)con
 {
     if((self = [super init])) {
-        layerPath = [path retain];
-        pieces = [[NSMutableArray alloc] init];
-        int size = 1;
-        for(int i=0; i<num; i++) size *= 2;
-        CGFloat dx = r.size.width / size;
-        CGFloat dy = r.size.height / size;
-        CGRect r1 = CGRectMake(r.origin.x, r.origin.y, dx, dy);
-        for(int x=0; x<size; x++) {
-            r1.origin.x = r.origin.x + x*dx;
-            for(int y=0; y<size; y++) {
-                r1.origin.y = r.origin.y + y*dy;
-                NSString *p1 = [NSString stringWithFormat:@"%@/%d/%d.jpg", path, x, y];
-                RPiece *p = [[RPiece alloc] initWithPath:p1 andRect:r1];
-                if(p != nil) {
-                    [pieces addObject:p];
-                }
-            }
-        }
-        
+        piece = p;
+        connection = con;
+        data = [[NSMutableData data] retain];
     }
     return self;
 }
 
--(void)draw:(CGContextRef)context rect:(CGRect)rect
-{
-    for (RPiece *p in pieces) {
-        if(CGRectIntersectsRect(rect, p.rect)) {
-            [p draw:context];
-        } else {
-            [p skip];
-        }
-    }
-}
-
--(void) upload
-{
-    for (RPiece* p in pieces) {
-        [p load];
-    }
-}
-
--(BOOL) covers:(CGRect)rect
-{
-    for (RPiece *p in pieces) {
-        if(CGRectIntersectsRect(rect, p.rect) && !p.loaded)
-            return NO;
-    }
-    return YES;
-}
-
--(void) skip
-{
-    for (RPiece *p in pieces) {
-        [p skip];
-    }
-}
-
--(void)freeSomeMemory
-{
-    for (RPiece *p in pieces) {
-        if(p.actuality > 5) [p unload];
-    }
-}
-
 -(void)dealloc
 {
-    [layerPath release];
+    [connection release];
+    [data release];
     [super dealloc];
 }
 
 @end
-*/
+
+/***** RasterDownloader *****/
+
+@implementation RasterDownloader
+
+-(id)initWithUrl:(NSString *)url target:(id)t andSelector:(SEL)sel
+{
+    if((self = [super init])) {
+        target = t;
+        selector = sel;
+        baseUrl = [url retain];
+        queue = [[NSMutableDictionary alloc] init];
+        secondQueue = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+-(void)check
+{
+    if([queue count] == 0) {
+        if(signal) [target performSelector:selector];
+        for (RPiece* piece in secondQueue) {
+            signal = NO;
+            NSString *url = [NSString stringWithFormat:@"%@/%d/%d/%d.jpg_", baseUrl, piece->level, piece->x, piece->y];
+            NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+            NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+            if (theConnection)
+                [queue setObject:[[DownloadPiece alloc] initWithPiece:piece andConnection:theConnection] forKey:theConnection];
+        }
+    }
+}
+
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    DownloadPiece *dp = [queue objectForKey:connection];
+    [queue removeObjectForKey:connection];
+    dp->piece->level = -1;
+    [dp release];
+    [self check];
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection*)connection
+{
+    DownloadPiece *dp = [queue objectForKey:connection];
+    [queue removeObjectForKey:connection];
+    CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData(dp->data);
+    if(dataProvider == nil) {
+        dp->piece->level = -1;
+    } else {
+        dp->piece->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
+    }
+    [dp release];
+    [self check];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    DownloadPiece *dp = [queue objectForKey:connection];
+    [dp->data appendData:data];
+}
+
+-(BOOL)loadPiece:(RPiece *)piece
+{
+    if(piece->image == nil) {
+        signal = YES;
+        NSString *url = [NSString stringWithFormat:@"%@/%d/%d/%d.jpg_", baseUrl, piece->level, piece->x, piece->y];
+        // Create the request.
+        NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+        // create the connection with the request
+        // and start loading the data
+        NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+        if (theConnection) {
+            [queue setObject:[[DownloadPiece alloc] initWithPiece:piece andConnection:theConnection] forKey:theConnection];
+            return YES;
+        } else {
+            // Inform the user that the connection failed.
+            return NO;
+        }
+    }
+    return NO;
+}
+
+-(void)secondLoadPiece:(RPiece *)piece
+{
+    [secondQueue addObject:piece];
+}
+
+-(void)dealloc
+{
+    [baseUrl release];
+    [queue release];
+    [super dealloc];
+}
+
+@end
+
+/***** VectorDownloader *****/
+
+@implementation VectorDownloader
+
+
+
+@end
+
+/***** RDownloadManger *****/
+@implementation RDownloadManager
+@synthesize lock;
+@synthesize rasterDownloader;
+@synthesize vectorDownloader;
+
+-(void)loading
+{
+    int res = 0;
+    while([queue count]) {
+        [lock lock];
+        if([self loadPiece:[queue objectAtIndex:0]]) res ++;
+        [queue removeObjectAtIndex:0];
+        [lock unlock];
+    }
+    if(res) {
+        [target performSelector:selector];
+    }
+    res = 0;
+    while([secondQueue count]) {
+        [lock lock];
+        if([self loadPiece:[secondQueue objectAtIndex:0]]) res ++;
+        [secondQueue removeObjectAtIndex:0];
+        [lock unlock];
+    }
+}
+
+-(id)initWithTarget:(id)t selector:(SEL)s 
+{
+    if((self = [super init])) {
+        target = t;
+        selector = s;
+        lock = [[NSRecursiveLock alloc] init];
+        queue = [[NSMutableArray alloc] init];
+        secondQueue = [[NSMutableArray alloc] init];
+        timer = [NSTimer timerWithTimeInterval:0.1f target:self selector:@selector(loading) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    }
+    return self;
+}
+
+-(void)load:(RPiece *)piece
+{
+    [queue addObject:piece];
+}
+
+-(void)secondLoad:(RPiece *)piece
+{
+    [secondQueue addObject:piece];
+}
+
+-(void)dealloc
+{
+    [queue release];
+    [secondQueue release];
+    [timer release];
+    [super dealloc];
+}
+
+@end
 
 /***** RasterLayer *****/
 
