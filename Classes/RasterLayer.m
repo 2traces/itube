@@ -248,16 +248,20 @@
 
 @implementation RasterDownloader
 
--(id)initWithUrl:(NSString *)url target:(id)t andSelector:(SEL)sel
+-(id)initWithUrl:(NSString *)url
 {
     if((self = [super init])) {
-        target = t;
-        selector = sel;
         baseUrl = [url retain];
         queue = [[NSMutableDictionary alloc] init];
         secondQueue = [[NSMutableArray alloc] init];
     }
     return self;
+}
+
+-(void)setTarget:(id)t andSelector:(SEL)sel
+{
+    target = t;
+    selector = sel;
 }
 
 -(void)check
@@ -348,30 +352,46 @@
 @end
 
 /***** RDownloadManger *****/
+
 @implementation RDownloadManager
 @synthesize lock;
-@synthesize rasterDownloader;
-@synthesize vectorDownloader;
+//@synthesize rasterDownloader;
+//@synthesize vectorDownloader;
 
--(void)loading
+-(void)rasterComplete
 {
-    int res = 0;
-    while([queue count]) {
-        [lock lock];
-        if([self loadPiece:[queue objectAtIndex:0]]) res ++;
-        [queue removeObjectAtIndex:0];
-        [lock unlock];
-    }
-    if(res) {
+    complete ++;
+    if(complete >= 2)
         [target performSelector:selector];
-    }
-    res = 0;
-    while([secondQueue count]) {
-        [lock lock];
-        if([self loadPiece:[secondQueue objectAtIndex:0]]) res ++;
-        [secondQueue removeObjectAtIndex:0];
-        [lock unlock];
-    }
+}
+
+-(void)vectorComplete
+{
+    complete ++;
+    if(complete >= 2)
+        [target performSelector:selector];
+}
+
+-(void)setRasterDownloader:(id)_rasterDownloader
+{
+    rasterDownloader = _rasterDownloader;
+    [rasterDownloader setTarget:self andSelector:@selector(rasterComplete)];
+}
+
+-(id)rasterDownloader
+{
+    return rasterDownloader;
+}
+
+-(void)setVectorDownloader:(id)_vectorDownloader
+{
+    vectorDownloader = _vectorDownloader;
+    [vectorDownloader setTarget:self andSelector:@selector(vectorComplete)];
+}
+
+-(id)vectorDownloader
+{
+    return vectorDownloader;
 }
 
 -(id)initWithTarget:(id)t selector:(SEL)s 
@@ -390,12 +410,16 @@
 
 -(void)load:(RPiece *)piece
 {
-    [queue addObject:piece];
+    [rasterDownloader load:piece];
+    [vectorDownloader load:piece];
+    complete = 0;
 }
 
 -(void)secondLoad:(RPiece *)piece
 {
-    [secondQueue addObject:piece];
+    [rasterDownloader secondLoad:piece];
+    [vectorDownloader secondLoad:piece];
+    complete = 0;
 }
 
 -(void)dealloc

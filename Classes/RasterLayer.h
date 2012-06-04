@@ -99,7 +99,8 @@
     BOOL signal;
 }
 
--(id)initWithUrl:(NSString*)url target:(id)t andSelector:(SEL)sel;
+-(id)initWithUrl:(NSString*)url;
+-(void)setTarget:(id)t andSelector:(SEL)sel;
 -(BOOL)loadPiece:(RPiece*)piece;
 -(void)secondLoadPiece:(RPiece*)piece;
 
@@ -117,7 +118,7 @@
 
 @end
 
-/***** RDownloader *****/
+/***** RDownloaderManager *****/
 
 @interface RDownloadManager : NSObject {
     NSMutableArray *queue;
@@ -128,6 +129,7 @@
     NSRecursiveLock *lock;
     id rasterDownloader;
     id vectorDownloader;
+    int complete;
 }
 @property (nonatomic, readonly) NSRecursiveLock *lock;
 @property (nonatomic, retain) id rasterDownloader;
