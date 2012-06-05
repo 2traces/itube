@@ -88,12 +88,25 @@
 
 @end
 
+/***** DownloadCache *****/
+
+@interface DownloadCache : NSObject {
+@public
+    NSData* data;
+    int level, x, y;
+}
+-(id)initWithLevel:(int)l x:(int)x y:(int)y data:(NSData*)d;
+- (BOOL)isEqualToDownloadCache:(DownloadCache*)other;
+
+@end
+
 /***** RasterDownloader *****/
 
 @interface RasterDownloader : NSObject {
     NSString *baseUrl;
     NSMutableDictionary *queue;
     NSMutableArray *secondQueue;
+    NSMutableSet *minusCache, *plusCache;
     id target;
     SEL selector;
     BOOL signal;
@@ -118,12 +131,11 @@
 
 @end
 
-/***** RDownloaderManager *****/
+/***** RDownloadManager *****/
 
 @interface RDownloadManager : NSObject {
     NSMutableArray *queue;
     NSMutableArray *secondQueue;
-    NSTimer *timer;
     id target;
     SEL selector;
     NSRecursiveLock *lock;
