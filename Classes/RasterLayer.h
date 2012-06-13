@@ -41,6 +41,7 @@
 /***** RPiece *****/
 
 @interface RPiece : NSObject {
+    BOOL vloaded, rloaded;
 @public
     CGRect rect;
     CGImageRef image;
@@ -53,7 +54,10 @@
 -(id)initWithRect:(CGRect)r level:(int)level x:(int)x y:(int)y;
 -(void)draw:(CGContextRef)context;
 -(int)checkPoint:(CGPoint)point;
-
+-(BOOL)empty;
+-(BOOL)trash;
+-(void)rasterLoaded;
+-(void)vectorLoaded;
 @end
 
 /***** RManager *****/
@@ -67,11 +71,12 @@
     NSString *path;
     NSRecursiveLock *lock;
 }
-@property (nonatomic, readonly) NSRecursiveLock *lock;
+//@property (nonatomic, readonly) NSRecursiveLock *lock;
 
 -(id)initWithTarget:(id)target selector:(SEL)selector andPath:(NSString*)path;
 -(void)load:(RPiece*)piece;
 -(void)secondLoad:(RPiece*)piece;
+-(void)debugStatus;
 
 @end
 
@@ -110,46 +115,55 @@
     id target;
     SEL selector;
     BOOL signal;
+    int loadedPieces;
 }
 
 -(id)initWithUrl:(NSString*)url;
 -(void)setTarget:(id)t andSelector:(SEL)sel;
 -(BOOL)loadPiece:(RPiece*)piece;
 -(void)secondLoadPiece:(RPiece*)piece;
+-(void)debugStatus;
 
 @end
 
 /***** VectorDownloader *****/
 
 @interface VectorDownloader : NSObject {
-    
+    NSString *baseUrl;
+    NSMutableDictionary *queue;
+    NSMutableArray *secondQueue;
+    NSMutableSet *minusCache, *plusCache;
+    id target;
+    SEL selector;
+    BOOL signal;
+    int loadedPieces;
 }
 
 -(id)initWithUrl:(NSString*)url;
+-(void)setTarget:(id)t andSelector:(SEL)sel;
 -(BOOL)loadPiece:(RPiece*)piece;
 -(void)secondLoadPiece:(RPiece*)piece;
+-(void)debugStatus;
 
 @end
 
 /***** RDownloadManager *****/
 
 @interface RDownloadManager : NSObject {
-    NSMutableArray *queue;
-    NSMutableArray *secondQueue;
     id target;
     SEL selector;
-    NSRecursiveLock *lock;
+    //NSRecursiveLock *lock;
     id rasterDownloader;
     id vectorDownloader;
-    int complete;
 }
-@property (nonatomic, readonly) NSRecursiveLock *lock;
+//@property (nonatomic, readonly) NSRecursiveLock *lock;
 @property (nonatomic, retain) id rasterDownloader;
 @property (nonatomic, retain) id vectorDownloader;
 
 -(id)initWithTarget:(id)target selector:(SEL)selector;
 -(void)load:(RPiece*)piece;
 -(void)secondLoad:(RPiece*)piece;
+-(void)debugStatus;
 
 @end
 
@@ -169,6 +183,7 @@
     int currentObjectNumber;
     int cacheZoom;
     int cacheDirection;
+    NSTimer *timer;
 @public
     int piecesCount;
 }

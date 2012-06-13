@@ -61,7 +61,7 @@
 
 -(void)redraw
 {
-    NSLog(@"redraw map");
+    //NSLog(@"redraw map");
     //[self.layer invalidateContents];
     [self setNeedsDisplay];
 }

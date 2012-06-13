@@ -87,11 +87,6 @@
     return self;
 }
 
--(BOOL) loaded
-{
-    return image != nil;
-}
-
 -(void) draw:(CGContextRef)context
 {
     if(image != nil) {
@@ -100,7 +95,9 @@
         CGContextScaleCTM(context, 1.f, -1.f);
         CGContextDrawImage(context, rect, image);
         CGContextRestoreGState(context);
-        actuality = 0;
+    }
+    actuality = 0;
+    if([objects count] > 0) {
         CGContextSaveGState(context);
         CGContextTranslateCTM(context, rect.origin.x, rect.origin.y);
         for (RObject *ob in objects) {
@@ -132,23 +129,44 @@
     [super dealloc];
 }
 
+-(BOOL)empty
+{
+    return image == nil && [objects count] == 0;
+}
+
+-(BOOL)trash
+{
+    return [self empty] && rloaded && vloaded;
+}
+
+-(void)rasterLoaded
+{
+    rloaded = YES;
+}
+
+-(void)vectorLoaded
+{
+    vloaded = YES;
+}
+
 @end
 
 /***** RManager *****/
 
 @implementation RManager
 
-@synthesize lock;
+//@synthesize lock;
 
 -(BOOL)loadPiece:(RPiece*)p
 {
     if(p->image == nil) {
+        [p rasterLoaded];
+        [p vectorLoaded];
         NSString *pt = [NSString stringWithFormat:@"%@/%d/%d/%d.jpg", path, p->level, p->x, p->y];
         const char* fileName = [pt UTF8String];
         CGDataProviderRef dataProvider = CGDataProviderCreateWithFilename(fileName);
         if(dataProvider == nil) {
             //NSLog(@"file not found %@", pt);
-            p->level = -1;
         } else {
             p->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
             p->layer->piecesCount ++;
@@ -217,6 +235,11 @@
     [secondQueue release];
     [timer release];
     [super dealloc];
+}
+
+-(void)debugStatus
+{
+    NSLog(@"queue %d pieces, second queue %d pieces", [queue count], [secondQueue count]);
 }
 
 @end
@@ -312,15 +335,14 @@
 {
     DownloadCache *dc = [[[DownloadCache alloc] initWithLevel:piece->level x:piece->x y:piece->y data:nil] autorelease];
     if([minusCache containsObject:dc]) {
-        piece->level = -1;
+        [piece rasterLoaded];
         return YES;
     }
     dc = [plusCache member:dc];
     if(dc != nil) {
+        [piece rasterLoaded];
         CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((CFDataRef)dc->data);
-        if(dataProvider == nil) 
-            piece->level = -1;
-        else 
+        if(dataProvider != nil) 
             piece->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
         return YES;
     }
@@ -330,8 +352,9 @@
 -(void)checkQueue
 {
     if([queue count] == 0) {
-        if(signal) 
+        if(signal && loadedPieces > 0) 
             [target performSelector:selector];
+        loadedPieces = 0;
         for (RPiece* piece in secondQueue) {
             if([self checkCache:piece]) continue;
             signal = NO;
@@ -353,32 +376,42 @@
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     DownloadPiece *dp = [queue valueForKey:connection.originalRequest.URL.absoluteString];
-    [queue removeObjectForKey:connection.originalRequest.URL.absoluteString];
-    dp->piece->level = -1;
-    [minusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil]];
-    [dp release];
+    if(dp != nil) {
+        [dp->piece rasterLoaded];
+        [queue removeObjectForKey:connection.originalRequest.URL.absoluteString];
+        [minusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil]];
+        [dp release];
+    }
     [self checkQueue];
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection*)connection
 {
     DownloadPiece *dp = [queue valueForKey:connection.originalRequest.URL.absoluteString];
-    [queue removeObjectForKey:connection.originalRequest.URL.absoluteString];
-    CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((CFDataRef)dp->data);
-    if(dataProvider == nil) {
-        dp->piece->level = -1;
+    if(dp == nil) {
+        NSLog(@"Lost piece '%@'", connection.originalRequest.URL.absoluteString);
     } else {
-        dp->piece->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
-        dp->piece->layer->piecesCount ++;
+        loadedPieces ++;
+        [dp->piece rasterLoaded];
+        [queue removeObjectForKey:connection.originalRequest.URL.absoluteString];
+        CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((CFDataRef)dp->data);
+        if(dataProvider != nil) {
+            dp->piece->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
+            dp->piece->layer->piecesCount ++;
+        }
+        [plusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:dp->data]];
+        [dp release];
     }
-    [plusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:dp->data]];
-    [dp release];
     [self checkQueue];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     DownloadPiece *dp = [queue valueForKey:connection.originalRequest.URL.absoluteString];
+    if(dp == nil) {
+        NSLog(@"Lost piece '%@'", connection.originalRequest.URL.absoluteString);
+        return;
+    }
     [dp->data appendData:data];
 }
 
@@ -419,35 +452,182 @@
     [super dealloc];
 }
 
+-(void)debugStatus
+{
+    NSLog(@"raster queue %d pieces, second queue %d pieces", [queue count], [secondQueue count]);
+}
+
 @end
 
 /***** VectorDownloader *****/
 
 @implementation VectorDownloader
 
+-(id)initWithUrl:(NSString *)url
+{
+    if((self = [super init])) {
+        baseUrl = [url retain];
+        queue = [[NSMutableDictionary alloc] init];
+        secondQueue = [[NSMutableArray alloc] init];
+        minusCache = [[NSMutableSet alloc] init];
+        plusCache = [[NSMutableSet alloc] init];
+    }
+    return self;
+}
 
+-(void)setTarget:(id)t andSelector:(SEL)sel
+{
+    target = t;
+    selector = sel;
+}
+
+-(BOOL)checkCache:(RPiece*)piece
+{
+    DownloadCache *dc = [[[DownloadCache alloc] initWithLevel:piece->level x:piece->x y:piece->y data:nil] autorelease];
+    if([minusCache containsObject:dc]) {
+        [piece vectorLoaded];
+        return YES;
+    }
+    dc = [plusCache member:dc];
+    if(dc != nil) {
+        [piece vectorLoaded];
+        NSString *contents = [NSString stringWithCString:(const char*)([dc->data bytes]) encoding:NSUTF8StringEncoding];
+        if(contents != nil) piece->objects = [[NSMutableArray alloc] init];
+        [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+            [piece->objects addObject:[[RObject alloc] initWithString:line rect:piece->rect]];
+        }];
+
+        return YES;
+    }
+    return NO;
+}
+
+-(void)checkQueue
+{
+    if([queue count] == 0) {
+        if(signal && loadedPieces > 0) 
+            [target performSelector:selector];
+        loadedPieces = 0;
+        for (RPiece* piece in secondQueue) {
+            if([self checkCache:piece]) continue;
+            signal = NO;
+            NSString *url = [NSString stringWithFormat:@"%@/%d/%d/%d.txt", baseUrl, piece->level, piece->x, piece->y];
+            NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+            NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+            if (theConnection)
+                [queue setValue:[[DownloadPiece alloc] initWithPiece:piece andConnection:theConnection] forKey:theConnection.originalRequest.URL.absoluteString];
+        }
+        [secondQueue removeAllObjects];
+    }
+}
+
+- (void)connection:(NSURLConnection *)theConnection didReceiveResponse:(NSURLResponse *)response
+{
+    //NSLog(@"response");
+}
+
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    DownloadPiece *dp = [queue valueForKey:connection.originalRequest.URL.absoluteString];
+    if(dp != nil) {
+        [dp->piece vectorLoaded];
+        [queue removeObjectForKey:connection.originalRequest.URL.absoluteString];
+        [minusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil]];
+        [dp release];
+    }
+    [self checkQueue];
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection*)connection
+{
+    DownloadPiece *dp = [queue valueForKey:connection.originalRequest.URL.absoluteString];
+    if(dp != nil) {
+        char term = 0;
+        [dp->data appendBytes:&term length:1];
+        [queue removeObjectForKey:connection.originalRequest.URL.absoluteString];
+        loadedPieces ++;
+        [dp->piece vectorLoaded];
+        NSString *contents = [NSString stringWithCString:(const char*)([dp->data bytes]) encoding:NSUTF8StringEncoding];
+        if(contents != nil) {
+            dp->piece->objects = [[NSMutableArray alloc] init];
+        }
+        [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+            [dp->piece->objects addObject:[[RObject alloc] initWithString:line rect:dp->piece->rect]];
+        }];
+
+        [plusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:dp->data]];
+        [dp release];
+    } 
+    [self checkQueue];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    DownloadPiece *dp = [queue valueForKey:connection.originalRequest.URL.absoluteString];
+    if(dp != nil)
+        [dp->data appendData:data];
+}
+
+-(BOOL)loadPiece:(RPiece *)piece
+{
+    if(piece->image == nil) {
+        if([self checkCache:piece]) return YES;
+        signal = YES;
+        NSString *url = [NSString stringWithFormat:@"%@/%d/%d/%d.txt", baseUrl, piece->level, piece->x, piece->y];
+        // Create the request.
+        NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+        // create the connection with the request
+        // and start loading the data
+        NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+        if (theConnection) {
+            [queue setValue:[[DownloadPiece alloc] initWithPiece:piece andConnection:theConnection] forKey:theConnection.originalRequest.URL.absoluteString];
+            return YES;
+        } else {
+            // Inform the user that the connection failed.
+            return NO;
+        }
+    }
+    return NO;
+}
+
+
+-(void)secondLoadPiece:(RPiece *)piece
+{
+    [secondQueue addObject:piece];
+}
+
+-(void)dealloc
+{
+    [baseUrl release];
+    [queue release];
+    [secondQueue release];
+    [minusCache release];
+    [plusCache release];
+    [super dealloc];
+}
+
+-(void)debugStatus
+{
+    NSLog(@"vector queue %d pieces, second queue %d pieces", [queue count], [secondQueue count]);
+}
 
 @end
 
 /***** RDownloadManger *****/
 
 @implementation RDownloadManager
-@synthesize lock;
+//@synthesize lock;
 //@synthesize rasterDownloader;
 //@synthesize vectorDownloader;
 
 -(void)rasterComplete
 {
-    complete ++;
-    if(complete > 0)
-        [target performSelector:selector];
+    [target performSelector:selector];
 }
 
 -(void)vectorComplete
 {
-    complete ++;
-    if(complete > 0)
-        [target performSelector:selector];
+    [target performSelector:selector];
 }
 
 -(void)setRasterDownloader:(id)_rasterDownloader
@@ -479,32 +659,40 @@
     if((self = [super init])) {
         target = t;
         selector = s;
-        lock = [[NSRecursiveLock alloc] init];
-        queue = [[NSMutableArray alloc] init];
-        secondQueue = [[NSMutableArray alloc] init];
+        //lock = [[NSRecursiveLock alloc] init];
     }
     return self;
 }
 
 -(void)load:(RPiece *)piece
 {
-    [rasterDownloader performSelectorOnMainThread:@selector(loadPiece:) withObject:piece waitUntilDone:NO];
-    [vectorDownloader performSelectorOnMainThread:@selector(loadPiece:) withObject:piece waitUntilDone:NO];
-    complete = 0;
+    if(rasterDownloader != nil)
+        [rasterDownloader performSelectorOnMainThread:@selector(loadPiece:) withObject:piece waitUntilDone:NO];
+    else
+        [piece rasterLoaded];
+    if(vectorDownloader != nil)
+        [vectorDownloader performSelectorOnMainThread:@selector(loadPiece:) withObject:piece waitUntilDone:NO];
+    else 
+        [piece vectorLoaded];
 }
 
 -(void)secondLoad:(RPiece *)piece
 {
-    [rasterDownloader secondLoadPiece:piece];
-    [vectorDownloader secondLoadPiece:piece];
-    complete = 0;
+    if(rasterDownloader != nil) [rasterDownloader secondLoadPiece:piece];
+    else [piece rasterLoaded];
+    if(vectorDownloader != nil) [vectorDownloader secondLoadPiece:piece];
+    else [piece vectorLoaded];
 }
 
 -(void)dealloc
 {
-    [queue release];
-    [secondQueue release];
     [super dealloc];
+}
+
+-(void)debugStatus
+{
+    [rasterDownloader debugStatus];
+    [vectorDownloader debugStatus];
 }
 
 @end
@@ -524,15 +712,21 @@
         NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"raster" ofType:nil];
         levels = [[NSMutableDictionary alloc] init];
         lock = [[NSLock alloc] init];
+        timer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(freeSomeMemory) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
         level = 0;
         MAX_PIECES = 60;
-        loader = [[RManager alloc] initWithTarget:self selector:@selector(complete) andPath:rasterPath];
-        /*
+        //loader = [[RManager alloc] initWithTarget:self selector:@selector(complete) andPath:rasterPath];
+        
         RDownloadManager* dm = [[RDownloadManager alloc] initWithTarget:self selector:@selector(complete)];
         //dm.rasterDownloader = [[RasterDownloader alloc] initWithUrl:@"http://www.x-provocation.com/maps/cuba/RASTER"];
-        dm.rasterDownloader = [[RasterDownloader alloc] initWithUrl:@"http://www.x-provocation.com/maps/cuba/OSM"];
+        //dm.rasterDownloader = [[RasterDownloader alloc] initWithUrl:@"http://www.x-provocation.com/maps/cuba/OSM"];
+        NSURL *vurl = [[[NSURL alloc] initFileURLWithPath:rasterPath] autorelease];
+        NSString* vurlstr = [vurl absoluteString];
+        dm.vectorDownloader = [[VectorDownloader alloc] initWithUrl:vurlstr];
+        dm.rasterDownloader = [[RasterDownloader alloc] initWithUrl:vurlstr];
         loader = dm;
-        */
+        
         description = [[NSMutableDictionary alloc] init];
         // TODO other languages
         NSString *fn = [NSString stringWithFormat:@"%@/en-names.txt", rasterPath];
@@ -573,7 +767,7 @@
 -(void)complete
 {
     NSLog(@"raster map is loaded");
-    [loader.lock lock];
+    //[loader.lock lock];
     NSMutableArray *l = [levels objectForKey:[NSNumber numberWithInt:level]];
     NSMutableArray *removePieces = [NSMutableArray array];
     for (RPiece *p in l) {
@@ -583,13 +777,13 @@
     }
     [l removeObjectsInArray:removePieces];
     if([l count] <= 0) [levels removeObjectForKey:[NSNumber numberWithInt:level]];
-    [loader.lock unlock];
+    //[loader.lock unlock];
     if(target != nil) {
         [target performSelector:selector];
     }
-    while(piecesCount > MAX_PIECES) {
+    /*while(piecesCount > MAX_PIECES) {
         [self freeSomeMemory];
-    }
+    }*/
 }
 
 -(BOOL)checkLevel:(CGFloat)scale
@@ -624,7 +818,7 @@
         lev = [NSMutableArray array];
         [levels setObject:lev forKey:n];
     }
-    [loader.lock lock];
+    //[loader.lock lock];
     BOOL allLoaded = YES;
     int size = 1 << level;
     double dx = (double)allRect.size.width / size, dy = (double)allRect.size.height / size;
@@ -651,10 +845,11 @@
             }
         }
     }
+    
     // check next layer
     int nextLevel = level;
     if(cacheZoom > 0) {
-        NSLog(@"cache zoom in");
+        //NSLog(@"cache zoom in");
         dx *= 0.5f;
         dy *= 0.5f;
         x1 *= 2;
@@ -665,7 +860,7 @@
         n = [NSNumber numberWithInt:nextLevel];
         lev = [levels objectForKey:n];
     } else if(cacheZoom < 0 && level > 0) {
-        NSLog(@"cache zoom out");
+        //NSLog(@"cache zoom out");
         dx *= 2.f;
         dy *= 2.f;
         x1 *= 0.5f;
@@ -682,28 +877,28 @@
             // nothing to do
             break;
         case 1: {
-            NSLog(@"cache to right");
+            //NSLog(@"cache to right");
             int st = (x2-x1)/2;
             x1 += st;
             x2 += st;
             break;
         }
         case 2: {
-            NSLog(@"cache to bottom");
+            //NSLog(@"cache to bottom");
             int st = (y2-y1)/2;
             y1 += st;
             y2 += st;
             break;
         }
         case 3: {
-            NSLog(@"cache to left");
+            //NSLog(@"cache to left");
             int st = (x2-x1)/2;
             x1 -= st;
             x2 -= st;
             break;
         }
         case 4: {
-            NSLog(@"cache to up");
+            //NSLog(@"cache to up");
             int st = (y2-y1)/2;
             y1 -= st;
             y2 -= st;
@@ -730,19 +925,20 @@
                 RPiece *p = [[RPiece alloc] initWithRect:r level:nextLevel x:X y:Y];
                 p->layer = self;
                 [lev addObject:p];
-                [loader secondLoad:p];
+                [loader load:p];
                 cached ++;
             }
         }
     }
-    [loader.lock unlock];
+    //[loader.lock unlock];
     [lock unlock];
-    if(allLoaded) NSLog(@"raster drawing complete at level %d, %d pieces", level, piecesCount);
-    else NSLog(@"raster drawing not complete at level %d, %d pieces", level, piecesCount);
+    //if(allLoaded) NSLog(@"raster drawing complete at level %d, %d pieces", level, piecesCount);
+    //else NSLog(@"raster drawing not complete at level %d, %d pieces", level, piecesCount);
+    [loader debugStatus];
 
-    if(allLoaded) while(piecesCount > MAX_PIECES) {
+    /*if(allLoaded) while(piecesCount > MAX_PIECES) {
         [self freeSomeMemory];
-    }
+    }*/
     return allLoaded;
 }
 
@@ -754,36 +950,38 @@
 
 -(void) freeSomeMemory
 {
-    // remove one piece
-    [lock lock];
-    id farthest = nil;
-    int length = -1;
-    for (id key in levels) {
-        int l = abs([key intValue] - level);
-        if(length < l) {
-            length = l;
-            farthest = key;
-        }
-    }
-    if (farthest != nil) {
-        NSMutableArray *l = [levels objectForKey:farthest];
-        int act = -1;
-        RPiece *fp = nil;
-        for (RPiece *p in l) {
-            if(p->actuality > act)  {
-                act = p->actuality;
-                fp = p;
+    while(piecesCount > MAX_PIECES) {
+        // remove one piece
+        [lock lock];
+        id farthest = nil;
+        int length = -1;
+        for (id key in levels) {
+            int l = abs([key intValue] - level);
+            if(length < l) {
+                length = l;
+                farthest = key;
             }
         }
-        if(fp != nil) {
-            [l removeObject:fp];
-            piecesCount --;
+        if (farthest != nil) {
+            NSMutableArray *l = [levels objectForKey:farthest];
+            int act = -1;
+            RPiece *fp = nil;
+            for (RPiece *p in l) {
+                if(p->actuality > act)  {
+                    act = p->actuality;
+                    fp = p;
+                }
+            }
+            if(fp != nil) {
+                [l removeObject:fp];
+                piecesCount --;
+            }
+            if([l count] <= 0) {
+                [levels removeObjectForKey:farthest];
+            }
         }
-        if([l count] <= 0) {
-            [levels removeObjectForKey:farthest];
-        }
+        [lock unlock];
     }
-    [lock unlock];
 }
 
 -(BOOL)checkPoint:(CGPoint *)point
@@ -817,6 +1015,7 @@
 
 -(void)dealloc
 {
+    [timer release];
     [loader release];
     [levels release];
     [super dealloc];
