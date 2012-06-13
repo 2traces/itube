@@ -83,15 +83,16 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-	/*Station *st = [cityMap findNearestStationTo:CGPointMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude)];
-	
-	if (![st.name isEqualToString:nearestStationName])
-	{
-		nearestStationName=st.name;
-        selectedStationLayer.position = st.pos;
-        
-        [self setNeedsDisplay];
-	};*/
+    CGPoint p = CGPointMake(newLocation.coordinate.longitude, newLocation.coordinate.latitude);
+    p.x = p.x / 360.f + 0.5f;
+    p.y = 1.f - (p.y / 360.f + 0.5f);
+    while(p.x < 0.f) p.x += 1.f;
+    while(p.x > 1.f) p.x -= 1.f;
+    while(p.y < 0.f) p.y += 1.f;
+    while(p.y > 1.f) p.y -= 1.f;
+    p.x *= SIZE;
+    p.y *= SIZE;
+    selectedStationLayer.position = p;
 }
 
 -(void) makePreview {

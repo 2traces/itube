@@ -35,6 +35,7 @@
 }
 -(id)initWithString:(NSString*)str rect:(CGRect)rect;
 -(void)draw:(CGContextRef)context;
+-(int)checkPoint:(CGPoint)point;
 
 @end
 
@@ -93,6 +94,20 @@
 
 @end
 
+/***** ConnectionQueue *****/
+
+@interface ConnectionQueue : NSObject {
+    NSMutableArray *array;
+}
+-(id)init;
+-(void)put:(DownloadPiece*)piece;
+-(DownloadPiece*)get:(NSURLConnection*)connection;
+-(void)removeByConnection:(NSURLConnection*)connection;
+-(void)removePiece:(DownloadPiece*)piece;
+-(int)count;
+
+@end
+
 /***** DownloadCache *****/
 
 @interface DownloadCache : NSObject {
@@ -109,7 +124,7 @@
 
 @interface RasterDownloader : NSObject {
     NSString *baseUrl;
-    NSMutableDictionary *queue;
+    ConnectionQueue *queue;
     NSMutableArray *secondQueue;
     NSMutableSet *minusCache, *plusCache;
     id target;
@@ -130,7 +145,7 @@
 
 @interface VectorDownloader : NSObject {
     NSString *baseUrl;
-    NSMutableDictionary *queue;
+    ConnectionQueue *queue;
     NSMutableArray *secondQueue;
     NSMutableSet *minusCache, *plusCache;
     id target;

@@ -68,6 +68,14 @@
     [super dealloc];
 }
 
+-(int)checkPoint:(CGPoint)point
+{
+    if(CGPathContainsPoint(path, nil, point, true)) {
+        return number;
+    }
+    return -1;
+}
+
 @end
 
 /***** RPiece *****/
@@ -115,9 +123,11 @@
 -(int)checkPoint:(CGPoint)point
 {
     for (RObject *ob in objects) {
-        if(CGRectContainsPoint(ob->boundingBox, point)) {
+        int n = [ob checkPoint:point];
+        if(n >= 0) return n;
+        /*if(CGRectContainsPoint(ob->boundingBox, point)) {
             return ob->number;
-        }
+        }*/
     }
     return -1;
 }
@@ -267,6 +277,54 @@
 
 @end
 
+/***** ConnectionQueue *****/
+
+@implementation ConnectionQueue
+
+-(id)init
+{
+    if((self = [super init])) {
+        array = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+-(void)put:(DownloadPiece*)piece
+{
+    [array addObject:piece];
+}
+
+-(DownloadPiece*)get:(NSURLConnection*)connection
+{
+    for (DownloadPiece* p in array) {
+        if(p->connection == connection) return p;
+    }
+    return nil;
+}
+
+-(void)removeByConnection:(NSURLConnection*)connection
+{
+    [array removeObject:[self get:connection]];
+}
+
+-(void)removePiece:(DownloadPiece*)piece
+{
+    [array removeObject:piece];
+}
+
+-(void)dealloc
+{
+    [array release];
+    [super dealloc];
+}
+
+-(int)count 
+{
+    return [array count];
+}
+
+@end
+
 /***** DownloadCache *****/
 
 @implementation DownloadCache
@@ -317,7 +375,7 @@
 {
     if((self = [super init])) {
         baseUrl = [url retain];
-        queue = [[NSMutableDictionary alloc] init];
+        queue = [[ConnectionQueue alloc] init];
         secondQueue = [[NSMutableArray alloc] init];
         minusCache = [[NSMutableSet alloc] init];
         plusCache = [[NSMutableSet alloc] init];
@@ -362,7 +420,7 @@
             NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
             NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
             if (theConnection)
-                [queue setValue:[[DownloadPiece alloc] initWithPiece:piece andConnection:theConnection] forKey:theConnection.originalRequest.URL.absoluteString];
+                [queue put:[[DownloadPiece alloc] initWithPiece:piece andConnection:theConnection]];
         }
         [secondQueue removeAllObjects];
     }
@@ -375,10 +433,10 @@
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    DownloadPiece *dp = [queue valueForKey:connection.originalRequest.URL.absoluteString];
+    DownloadPiece *dp = [queue get:connection];
     if(dp != nil) {
         [dp->piece rasterLoaded];
-        [queue removeObjectForKey:connection.originalRequest.URL.absoluteString];
+        [queue removeByConnection:connection];
         [minusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil]];
         [dp release];
     }
@@ -387,13 +445,13 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection*)connection
 {
-    DownloadPiece *dp = [queue valueForKey:connection.originalRequest.URL.absoluteString];
+    DownloadPiece *dp = [queue get:connection];
     if(dp == nil) {
         NSLog(@"Lost piece '%@'", connection.originalRequest.URL.absoluteString);
     } else {
         loadedPieces ++;
         [dp->piece rasterLoaded];
-        [queue removeObjectForKey:connection.originalRequest.URL.absoluteString];
+        [queue removeByConnection:connection];
         CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((CFDataRef)dp->data);
         if(dataProvider != nil) {
             dp->piece->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
@@ -407,7 +465,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    DownloadPiece *dp = [queue valueForKey:connection.originalRequest.URL.absoluteString];
+    DownloadPiece *dp = [queue get:connection];
     if(dp == nil) {
         NSLog(@"Lost piece '%@'", connection.originalRequest.URL.absoluteString);
         return;
@@ -427,7 +485,7 @@
         // and start loading the data
         NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
         if (theConnection) {
-            [queue setValue:[[DownloadPiece alloc] initWithPiece:piece andConnection:theConnection] forKey:theConnection.originalRequest.URL.absoluteString];
+            [queue put:[[DownloadPiece alloc] initWithPiece:piece andConnection:theConnection]];
             return YES;
         } else {
             // Inform the user that the connection failed.
@@ -467,7 +525,7 @@
 {
     if((self = [super init])) {
         baseUrl = [url retain];
-        queue = [[NSMutableDictionary alloc] init];
+        queue = [[ConnectionQueue alloc] init];
         secondQueue = [[NSMutableArray alloc] init];
         minusCache = [[NSMutableSet alloc] init];
         plusCache = [[NSMutableSet alloc] init];
@@ -515,7 +573,7 @@
             NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
             NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
             if (theConnection)
-                [queue setValue:[[DownloadPiece alloc] initWithPiece:piece andConnection:theConnection] forKey:theConnection.originalRequest.URL.absoluteString];
+                [queue put:[[DownloadPiece alloc] initWithPiece:piece andConnection:theConnection]];
         }
         [secondQueue removeAllObjects];
     }
@@ -528,10 +586,10 @@
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    DownloadPiece *dp = [queue valueForKey:connection.originalRequest.URL.absoluteString];
+    DownloadPiece *dp = [queue get:connection];
     if(dp != nil) {
         [dp->piece vectorLoaded];
-        [queue removeObjectForKey:connection.originalRequest.URL.absoluteString];
+        [queue removeByConnection:connection];
         [minusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil]];
         [dp release];
     }
@@ -540,11 +598,11 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection*)connection
 {
-    DownloadPiece *dp = [queue valueForKey:connection.originalRequest.URL.absoluteString];
+    DownloadPiece *dp = [queue get:connection];
     if(dp != nil) {
         char term = 0;
         [dp->data appendBytes:&term length:1];
-        [queue removeObjectForKey:connection.originalRequest.URL.absoluteString];
+        [queue removeByConnection:connection];
         loadedPieces ++;
         [dp->piece vectorLoaded];
         NSString *contents = [NSString stringWithCString:(const char*)([dp->data bytes]) encoding:NSUTF8StringEncoding];
@@ -563,7 +621,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    DownloadPiece *dp = [queue valueForKey:connection.originalRequest.URL.absoluteString];
+    DownloadPiece *dp = [queue get:connection];
     if(dp != nil)
         [dp->data appendData:data];
 }
@@ -580,7 +638,7 @@
         // and start loading the data
         NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
         if (theConnection) {
-            [queue setValue:[[DownloadPiece alloc] initWithPiece:piece andConnection:theConnection] forKey:theConnection.originalRequest.URL.absoluteString];
+            [queue put:[[DownloadPiece alloc] initWithPiece:piece andConnection:theConnection]];
             return YES;
         } else {
             // Inform the user that the connection failed.
