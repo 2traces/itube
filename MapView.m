@@ -494,4 +494,12 @@
     }
 }
 
+-(BOOL) changeSource
+{
+    BOOL r = [rasterLayer changeSource];
+    [self.layer invalidateContents];
+    [self setNeedsDisplay];
+    return r;
+}
+
 @end

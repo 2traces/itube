@@ -35,6 +35,7 @@ extern NSInteger const toolbarWidth;
     UIButton *sourceButton, *destinationButton;
     UIImageView *stationMark;
     BOOL buttonsVisible;
+    UIButton *sourceData;
 }
 
 @property (nonatomic, retain) UIView *stationNameView;

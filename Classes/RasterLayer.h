@@ -50,7 +50,6 @@
     RasterLayer *layer;
     NSMutableArray *objects;
 }
-@property (nonatomic, readonly) BOOL loaded;
 
 -(id)initWithRect:(CGRect)r level:(int)level x:(int)x y:(int)y;
 -(void)draw:(CGContextRef)context;
@@ -199,6 +198,9 @@
     int cacheZoom;
     int cacheDirection;
     NSTimer *timer;
+    BOOL altSource;
+    VectorDownloader *vloader;
+    RasterDownloader *rloader1, *rloader2;
 @public
     int piecesCount;
 }
@@ -214,5 +216,6 @@
 -(void) freeSomeMemory;
 -(void) setSignal:(id)target selector:(SEL)selector;
 -(BOOL) checkPoint:(CGPoint*)point;
+-(BOOL) changeSource;
 
 @end

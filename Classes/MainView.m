@@ -148,6 +148,13 @@ NSInteger const toolbarWidth=320;
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:settings];
     
+    sourceData = [UIButton buttonWithType:UIButtonTypeCustom];
+    [sourceData setImage:[UIImage imageNamed:@"vector"] forState:UIControlStateNormal];
+    [sourceData setImage:[UIImage imageNamed:@"terrain"] forState:UIControlStateSelected];
+    sourceData.frame = CGRectMake(15, 400, 88, 53);
+    [sourceData addTarget:self action:@selector(changeSource) forControlEvents:UIControlStateHighlighted];
+    [self addSubview:sourceData];
+    
     UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
     shadow.frame = CGRectMake(0, 44, 320, 61);
     [self addSubview:shadow];
@@ -310,6 +317,12 @@ NSInteger const toolbarWidth=320;
     SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];
     [self.vcontroller presentModalViewController:controller animated:YES];
     [controller release];
+}
+
+-(void) changeSource
+{
+    BOOL s = [mapView changeSource];
+    [sourceData setSelected:s];
 }
 
 @end

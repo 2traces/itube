@@ -552,10 +552,14 @@
     if(dc != nil) {
         [piece vectorLoaded];
         NSString *contents = [NSString stringWithCString:(const char*)([dc->data bytes]) encoding:NSUTF8StringEncoding];
-        if(contents != nil) piece->objects = [[NSMutableArray alloc] init];
-        [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-            [piece->objects addObject:[[RObject alloc] initWithString:line rect:piece->rect]];
-        }];
+        if(contents != nil) {
+            NSMutableArray *a = [[NSMutableArray alloc] init];
+            [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+                [a addObject:[[RObject alloc] initWithString:line rect:piece->rect]];
+            }];
+            [piece->objects release];
+            piece->objects = a;
+        }
         [target performSelector:selector withObject:piece];
         return YES;
     }
@@ -609,11 +613,13 @@
         [dp->piece vectorLoaded];
         NSString *contents = [NSString stringWithCString:(const char*)([dp->data bytes]) encoding:NSUTF8StringEncoding];
         if(contents != nil) {
-            dp->piece->objects = [[NSMutableArray alloc] init];
+            NSMutableArray *a = [[NSMutableArray alloc] init];
+            [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+                [a addObject:[[RObject alloc] initWithString:line rect:dp->piece->rect]];
+            }];
+            [dp->piece->objects release];
+            dp->piece->objects = a;
         }
-        [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-            [dp->piece->objects addObject:[[RObject alloc] initWithString:line rect:dp->piece->rect]];
-        }];
 
         [plusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:dp->data]];
         [target performSelector:selector withObject:dp->piece];
@@ -784,8 +790,11 @@
         //dm.rasterDownloader = [[RasterDownloader alloc] initWithUrl:@"http://www.x-provocation.com/maps/cuba/OSM"];
         NSURL *vurl = [[[NSURL alloc] initFileURLWithPath:rasterPath] autorelease];
         NSString* vurlstr = [vurl absoluteString];
-        dm.vectorDownloader = [[VectorDownloader alloc] initWithUrl:vurlstr];
-        dm.rasterDownloader = [[RasterDownloader alloc] initWithUrl:vurlstr];
+        vloader = [[VectorDownloader alloc] initWithUrl:vurlstr];
+        rloader1 = [[RasterDownloader alloc] initWithUrl:@"http://www.x-provocation.com/maps/cuba/OSM"];
+        rloader2 = [[RasterDownloader alloc] initWithUrl:@"http://www.x-provocation.com/maps/cuba/RASTER"];
+        dm.vectorDownloader = vloader;
+        dm.rasterDownloader = rloader1;
         loader = dm;
         
         description = [[NSMutableDictionary alloc] init];
@@ -1076,10 +1085,27 @@
 
 -(void)dealloc
 {
+    [vloader release];
+    [rloader1 release];
+    [rloader2 release];
     [timer release];
     [loader release];
     [levels release];
     [super dealloc];
+}
+
+-(BOOL) changeSource
+{
+    altSource = !altSource;
+    if(altSource) {
+        loader.rasterDownloader = rloader2;
+        loader.vectorDownloader = nil;
+    } else {
+        loader.rasterDownloader = rloader1;
+        loader.vectorDownloader = vloader;
+    }
+    [levels removeAllObjects];
+    return altSource;
 }
 
 @end
