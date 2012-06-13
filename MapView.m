@@ -66,6 +66,12 @@
     [self setNeedsDisplay];
 }
 
+-(void)redrawRect:(NSValue*)value
+{
+    CGRect rect = [value CGRectValue];
+    [self setNeedsDisplayInRect:rect];
+}
+
 #pragma mark gps stuff 
 -(BOOL) enableUserLocation
 {
@@ -241,7 +247,7 @@
      */
     if(rasterLayer == nil) {
         rasterLayer = [[RasterLayer alloc] initWithRect:self.frame];
-        [rasterLayer setSignal:self selector:@selector(redraw)];
+        [rasterLayer setSignal:self selector:@selector(redrawRect:)];
     }
     
     // это недокументированный метод, так что если он в будущем изменится, то ой

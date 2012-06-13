@@ -63,7 +63,7 @@
 
 /***** RManager *****/
 
-@interface RManager : NSObject {
+/*@interface RManager : NSObject {
     NSMutableArray *queue;
     NSMutableArray *secondQueue;
     NSTimer *timer;
@@ -80,7 +80,7 @@
 -(void)debugStatus;
 
 @end
-
+*/
 /***** DownloadPiece *****/
 
 @interface DownloadPiece : NSObject {
@@ -186,7 +186,7 @@
 /***** RasterLayer *****/
 
 @interface RasterLayer : NSObject {
-    RManager *loader;
+    RDownloadManager *loader;
     NSMutableDictionary *levels;
     NSMutableDictionary *description;
     int level, MAX_PIECES;

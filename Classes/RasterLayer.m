@@ -163,7 +163,7 @@
 
 /***** RManager *****/
 
-@implementation RManager
+/*@implementation RManager
 
 //@synthesize lock;
 
@@ -253,7 +253,7 @@
 }
 
 @end
-
+*/
 /***** DownloadPiece *****/
 
 @implementation DownloadPiece
@@ -402,6 +402,7 @@
         CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((CFDataRef)dc->data);
         if(dataProvider != nil) 
             piece->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
+        [target performSelector:selector withObject:piece];
         return YES;
     }
     return NO;
@@ -410,8 +411,8 @@
 -(void)checkQueue
 {
     if([queue count] == 0) {
-        if(signal && loadedPieces > 0) 
-            [target performSelector:selector];
+        //if(signal && loadedPieces > 0) 
+        //    [target performSelector:selector];
         loadedPieces = 0;
         for (RPiece* piece in secondQueue) {
             if([self checkCache:piece]) continue;
@@ -458,6 +459,7 @@
             dp->piece->layer->piecesCount ++;
         }
         [plusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:dp->data]];
+        [target performSelector:selector withObject:dp->piece];
         [dp release];
     }
     [self checkQueue];
@@ -554,7 +556,7 @@
         [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
             [piece->objects addObject:[[RObject alloc] initWithString:line rect:piece->rect]];
         }];
-
+        [target performSelector:selector withObject:piece];
         return YES;
     }
     return NO;
@@ -563,8 +565,8 @@
 -(void)checkQueue
 {
     if([queue count] == 0) {
-        if(signal && loadedPieces > 0) 
-            [target performSelector:selector];
+        //if(signal && loadedPieces > 0) 
+        //    [target performSelector:selector];
         loadedPieces = 0;
         for (RPiece* piece in secondQueue) {
             if([self checkCache:piece]) continue;
@@ -614,6 +616,7 @@
         }];
 
         [plusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:dp->data]];
+        [target performSelector:selector withObject:dp->piece];
         [dp release];
     } 
     [self checkQueue];
@@ -678,21 +681,21 @@
 //@synthesize rasterDownloader;
 //@synthesize vectorDownloader;
 
--(void)rasterComplete
+-(void)rasterComplete:(RPiece*)piece
 {
-    [target performSelector:selector];
+    [target performSelector:selector withObject:[NSValue valueWithCGRect:piece->rect]];
 }
 
--(void)vectorComplete
+-(void)vectorComplete:(RPiece*)piece
 {
-    [target performSelector:selector];
+    [target performSelector:selector withObject:[NSValue valueWithCGRect:piece->rect]];
 }
 
 -(void)setRasterDownloader:(id)_rasterDownloader
 {
     if(rasterDownloader != nil) [rasterDownloader setTarget:nil andSelector:nil];
     rasterDownloader = _rasterDownloader;
-    [rasterDownloader setTarget:self andSelector:@selector(rasterComplete)];
+    [rasterDownloader setTarget:self andSelector:@selector(rasterComplete:)];
 }
 
 -(id)rasterDownloader
@@ -704,7 +707,7 @@
 {
     if(vectorDownloader != nil) [vectorDownloader setTarget:nil andSelector:nil];
     vectorDownloader = _vectorDownloader;
-    [vectorDownloader setTarget:self andSelector:@selector(vectorComplete)];
+    [vectorDownloader setTarget:self andSelector:@selector(vectorComplete:)];
 }
 
 -(id)vectorDownloader
@@ -776,7 +779,7 @@
         MAX_PIECES = 60;
         //loader = [[RManager alloc] initWithTarget:self selector:@selector(complete) andPath:rasterPath];
         
-        RDownloadManager* dm = [[RDownloadManager alloc] initWithTarget:self selector:@selector(complete)];
+        RDownloadManager* dm = [[RDownloadManager alloc] initWithTarget:self selector:@selector(complete:)];
         //dm.rasterDownloader = [[RasterDownloader alloc] initWithUrl:@"http://www.x-provocation.com/maps/cuba/RASTER"];
         //dm.rasterDownloader = [[RasterDownloader alloc] initWithUrl:@"http://www.x-provocation.com/maps/cuba/OSM"];
         NSURL *vurl = [[[NSURL alloc] initFileURLWithPath:rasterPath] autorelease];
@@ -822,7 +825,7 @@
     return self;
 }
 
--(void)complete
+-(void)complete:(NSValue*)value
 {
     NSLog(@"raster map is loaded");
     //[loader.lock lock];
@@ -837,7 +840,7 @@
     if([l count] <= 0) [levels removeObjectForKey:[NSNumber numberWithInt:level]];
     //[loader.lock unlock];
     if(target != nil) {
-        [target performSelector:selector];
+        [target performSelector:selector withObject:value];
     }
     /*while(piecesCount > MAX_PIECES) {
         [self freeSomeMemory];
