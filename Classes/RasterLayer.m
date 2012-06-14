@@ -1096,6 +1096,7 @@
 
 -(BOOL) changeSource
 {
+    [lock lock];
     altSource = !altSource;
     if(altSource) {
         loader.rasterDownloader = rloader2;
@@ -1105,6 +1106,7 @@
         loader.vectorDownloader = vloader;
     }
     [levels removeAllObjects];
+    [lock unlock];
     return altSource;
 }
 
