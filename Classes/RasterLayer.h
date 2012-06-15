@@ -32,6 +32,7 @@
     int number;
     CGFloat lineWidth;
     CGRect boundingBox;
+    CGPoint center;
 }
 -(id)initWithString:(NSString*)str rect:(CGRect)rect;
 -(void)draw:(CGContextRef)context;
@@ -53,7 +54,7 @@
 
 -(id)initWithRect:(CGRect)r level:(int)level x:(int)x y:(int)y;
 -(void)draw:(CGContextRef)context;
--(int)checkPoint:(CGPoint)point;
+-(RObject*)checkPoint:(CGPoint)point;
 -(BOOL)empty;
 -(BOOL)trash;
 -(void)rasterLoaded;
@@ -104,6 +105,7 @@
 -(void)removeByConnection:(NSURLConnection*)connection;
 -(void)removePiece:(DownloadPiece*)piece;
 -(int)count;
+-(NSArray*)allConnections;
 
 @end
 
@@ -128,15 +130,17 @@
     NSMutableSet *minusCache, *plusCache;
     id target;
     SEL selector;
-    BOOL signal;
-    int loadedPieces;
+    NSString *altSource;
 }
+@property (nonatomic, retain) NSString* altSource;
 
 -(id)initWithUrl:(NSString*)url;
 -(void)setTarget:(id)t andSelector:(SEL)sel;
--(BOOL)loadPiece:(RPiece*)piece;
+-(void)loadPiece:(RPiece*)piece;
 -(void)secondLoadPiece:(RPiece*)piece;
 -(void)debugStatus;
+-(void)stop;
+-(void)advance:(RPiece*)piece;
 
 @end
 
@@ -149,15 +153,17 @@
     NSMutableSet *minusCache, *plusCache;
     id target;
     SEL selector;
-    BOOL signal;
-    int loadedPieces;
+    NSString *altSource;
 }
+@property (nonatomic, retain) NSString* altSource;
 
 -(id)initWithUrl:(NSString*)url;
 -(void)setTarget:(id)t andSelector:(SEL)sel;
--(BOOL)loadPiece:(RPiece*)piece;
+-(void)loadPiece:(RPiece*)piece;
 -(void)secondLoadPiece:(RPiece*)piece;
 -(void)debugStatus;
+-(void)stop;
+-(void)advance:(RPiece*)piece;
 
 @end
 
@@ -178,6 +184,7 @@
 -(void)load:(RPiece*)piece;
 -(void)secondLoad:(RPiece*)piece;
 -(void)debugStatus;
+-(void)advance:(RPiece*)piece;
 
 @end
 
@@ -192,7 +199,7 @@
     CGRect allRect;
     id target;
     SEL selector;
-    NSLock *lock;
+    NSRecursiveLock *lock;
     RDescription *currentObject;
     int currentObjectNumber;
     int cacheZoom;
@@ -217,5 +224,6 @@
 -(void) setSignal:(id)target selector:(SEL)selector;
 -(BOOL) checkPoint:(CGPoint*)point;
 -(BOOL) changeSource;
+-(void) stopLoading;
 
 @end
