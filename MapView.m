@@ -460,8 +460,10 @@
     if (scale > Scale) z = 1;
     rasterLayer.cacheZoom = z;
     Scale = scale;
-    if([rasterLayer checkLevel:Scale*SCALE])
+    if([rasterLayer checkLevel:Scale*SCALE]) {
+        //[rasterLayer stopLoading];
         [self redraw];
+    }
 }
 
 - (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
