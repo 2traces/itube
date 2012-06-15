@@ -27,7 +27,6 @@
 		4BC1C946142E36CA003651BB /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC1C945142E36CA003651BB /* MapView.m */; };
 		5109C21B1509376600A3142F /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 5109C21A1509376600A3142F /* Schedule.m */; };
 		5121FCBF14C9E23000A9192A /* MyTiledLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5121FCBE14C9E23000A9192A /* MyTiledLayer.m */; };
-		514C401115561BD200722496 /* raster in Resources */ = {isa = PBXBuildFile; fileRef = 514C401015561BD200722496 /* raster */; };
 		515B9C2F14EEAE740034BB12 /* mainscreen_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 515B9C2D14EEAE740034BB12 /* mainscreen_shadow.png */; };
 		515B9C3014EEAE740034BB12 /* mainscreen_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 515B9C2E14EEAE740034BB12 /* mainscreen_shadow@2x.png */; };
 		515D75151534BB9700C25074 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 515D75141534BB9700C25074 /* libxml2.dylib */; };
@@ -35,6 +34,9 @@
 		51D20F3514B849A3007AC4BD /* ManagedObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D20F3414B849A3007AC4BD /* ManagedObjects.m */; };
 		51D20F3914B85185007AC4BD /* tubee.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 51D20F3714B85185007AC4BD /* tubee.xcdatamodeld */; };
 		51D20F3B14B85468007AC4BD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D20F3A14B85468007AC4BD /* CoreData.framework */; };
+		51D35F40158BBB8A008518EC /* OSM in Resources */ = {isa = PBXBuildFile; fileRef = 51D35F3F158BBB8A008518EC /* OSM */; };
+		51D35F43158BBB95008518EC /* RASTER in Resources */ = {isa = PBXBuildFile; fileRef = 51D35F42158BBB95008518EC /* RASTER */; };
+		51D35F45158BBC58008518EC /* vector in Resources */ = {isa = PBXBuildFile; fileRef = 51D35F44158BBC58008518EC /* vector */; };
 		51E9C614154E9A02000D3950 /* RasterLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51E9C613154E9A02000D3950 /* RasterLayer.m */; };
 		51F15F7714D99A3800D11B79 /* VectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F15F7614D99A3800D11B79 /* VectorLayer.m */; };
 		9F1EA31715748F240076B2E0 /* box.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1EA31515748F240076B2E0 /* box.png */; };
@@ -390,7 +392,6 @@
 		5109C21A1509376600A3142F /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Schedule.m; path = Classes/Schedule.m; sourceTree = "<group>"; };
 		5121FCBD14C9E23000A9192A /* MyTiledLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyTiledLayer.h; path = Classes/MyTiledLayer.h; sourceTree = "<group>"; };
 		5121FCBE14C9E23000A9192A /* MyTiledLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTiledLayer.m; path = Classes/MyTiledLayer.m; sourceTree = "<group>"; };
-		514C401015561BD200722496 /* raster */ = {isa = PBXFileReference; lastKnownFileType = folder; path = raster; sourceTree = "<group>"; };
 		515B9C2D14EEAE740034BB12 /* mainscreen_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainscreen_shadow.png; sourceTree = "<group>"; };
 		515B9C2E14EEAE740034BB12 /* mainscreen_shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainscreen_shadow@2x.png"; sourceTree = "<group>"; };
 		515D75141534BB9700C25074 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -400,6 +401,9 @@
 		51D20F3414B849A3007AC4BD /* ManagedObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManagedObjects.m; path = Classes/ManagedObjects.m; sourceTree = "<group>"; };
 		51D20F3814B85185007AC4BD /* tubee.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tubee.xcdatamodel; sourceTree = "<group>"; };
 		51D20F3A14B85468007AC4BD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		51D35F3F158BBB8A008518EC /* OSM */ = {isa = PBXFileReference; lastKnownFileType = folder; path = OSM; sourceTree = "<group>"; };
+		51D35F42158BBB95008518EC /* RASTER */ = {isa = PBXFileReference; lastKnownFileType = folder; path = RASTER; sourceTree = "<group>"; };
+		51D35F44158BBC58008518EC /* vector */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vector; sourceTree = "<group>"; };
 		51E9C612154E9A02000D3950 /* RasterLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RasterLayer.h; path = Classes/RasterLayer.h; sourceTree = "<group>"; };
 		51E9C613154E9A02000D3950 /* RasterLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RasterLayer.m; path = Classes/RasterLayer.m; sourceTree = "<group>"; };
 		51F15F7514D99A3800D11B79 /* VectorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VectorLayer.h; path = Classes/VectorLayer.h; sourceTree = "<group>"; };
@@ -923,6 +927,9 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				51D35F44158BBC58008518EC /* vector */,
+				51D35F42158BBB95008518EC /* RASTER */,
+				51D35F3F158BBB8A008518EC /* OSM */,
 				BC76ACF1151B1A74009BDABC /* minizip */,
 				BC506EA714E12BCE00587BD6 /* Default.png */,
 				BCA7374F14E029D30065EC2D /* Default@2x.png */,
@@ -931,7 +938,6 @@
 				080E96DDFE201D6D7F000001 /* Application Delegate */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				9F9CF245150729AC0055B63B /* maps */,
-				514C401015561BD200722496 /* raster */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -1668,13 +1674,15 @@
 				BC7AF891153D5E7200BD1838 /* demo_back@2x.png in Resources */,
 				BC3AAD9F153DB0C6009AF367 /* checkmark.png in Resources */,
 				BC3AADA0153DB0C6009AF367 /* checkmark@2x.png in Resources */,
-				514C401115561BD200722496 /* raster in Resources */,
 				9F1EA31715748F240076B2E0 /* box.png in Resources */,
 				9F1EA31815748F240076B2E0 /* box@2x.png in Resources */,
 				9F1EA31C157490420076B2E0 /* pin.png in Resources */,
 				9F1EA31D157490420076B2E0 /* pin@2x.png in Resources */,
 				9F6EE3111588AE5B009F72E9 /* terrain.png in Resources */,
 				9F6EE3121588AE5B009F72E9 /* vector.png in Resources */,
+				51D35F40158BBB8A008518EC /* OSM in Resources */,
+				51D35F43158BBB95008518EC /* RASTER in Resources */,
+				51D35F45158BBC58008518EC /* vector in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
