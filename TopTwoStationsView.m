@@ -40,7 +40,7 @@
 	[self addSubview:toolbar];
 
 	UIImage *imageOpenList = [UIImage imageNamed:@"openlist.png"];
-    UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist_highlight.png"];
+    UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist.png"];
 	
 	UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [refreshButton setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
@@ -48,7 +48,7 @@
     [refreshButton setImage:imageOpenListHL forState:UIControlStateHighlighted];
 	[refreshButton addTarget:self action:@selector(selectFromStation) forControlEvents:UIControlEventTouchUpInside];
     
-	firstStation = [[StationTextField alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+	firstStation = [[StationTextField alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
 	firstStation.delegate = self;
 	firstStation.borderStyle = UITextBorderStyleNone;
 	firstStation.rightView = refreshButton;
@@ -73,39 +73,6 @@
     self.firstButton=button1;
     
     [toolbar addSubview:button1];
-    
-	UIButton *refreshButton2 = [UIButton buttonWithType:UIButtonTypeCustom];
-	[refreshButton2 setImage:imageOpenList forState:UIControlStateNormal];
-    [refreshButton2 setImage:imageOpenListHL forState:UIControlStateHighlighted];
-    [refreshButton2 setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
-	[refreshButton2 addTarget:self action:@selector(selectToStation) forControlEvents:UIControlEventTouchUpInside];
-	 
-	secondStation = [[StationTextField alloc] initWithFrame:CGRectMake(160, 0, 160, 44)];
-	secondStation.delegate=self;
-	secondStation.borderStyle = UITextBorderStyleNone;
-	secondStation.rightView = refreshButton2;
-	secondStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
-    secondStation.backgroundColor = [UIColor clearColor];
-	secondStation.textAlignment = UITextAlignmentLeft;
-	secondStation.rightViewMode = UITextFieldViewModeAlways;
-    secondStation.autocorrectionType=UITextAutocorrectionTypeNo;
-    secondStation.autocapitalizationType=UITextAutocapitalizationTypeNone; 
-	[secondStation setReturnKeyType:UIReturnKeyDone];
-	[secondStation setClearButtonMode:UITextFieldViewModeNever];
-	secondStation.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
-    secondStation.tag =222;
-    secondStation.placeholder=@"To..";
-    
-	[toolbar addSubview:secondStation];
-    
-    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-	[button2 addTarget:self action:@selector(transitSecondToBigField) forControlEvents:UIControlEventTouchUpInside];
-	button2.frame = CGRectMake(160 ,6, 130, 44);
-    self.secondButton=button2;
-    
-    [toolbar addSubview:button2];
-    
     arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrowIcon.png"]];
     [arrowView setFrame:CGRectMake(153, 6, 15, 15)];
     [toolbar addSubview:arrowView];
@@ -118,28 +85,28 @@
 
 -(void)transitFirstToBigField
 {
-    NSTimeInterval duration = 0.2f;
-    
-    [UIView animateWithDuration:duration animations:^{ 
-        isEditing=YES;
-        
-        secondStation.hidden=YES;
-        
-        firstButton.hidden=YES;
-        secondButton.hidden=YES;
-        
-        firstButton.userInteractionEnabled=NO;
-        secondButton.userInteractionEnabled=NO;
-        
-        firstStation.frame = CGRectMake(0, 0, 320, 44);
-        firstStation.background = [UIImage imageNamed:@"toolbar_big_bg_lighted.png"];
-        
-        firstStation.text = @"";
-        firstStation.rightViewMode = UITextFieldViewModeAlways;
-        firstStation.leftView=nil;
-        firstStation.leftViewMode=UITextFieldViewModeAlways;
-
-    }];
+//    NSTimeInterval duration = 0.2f;
+//    
+//    [UIView animateWithDuration:duration animations:^{ 
+//        isEditing=YES;
+//        
+//        secondStation.hidden=YES;
+//        
+//        firstButton.hidden=YES;
+//        secondButton.hidden=YES;
+//        
+//        firstButton.userInteractionEnabled=NO;
+//        secondButton.userInteractionEnabled=NO;
+//        
+//        firstStation.frame = CGRectMake(0, 0, 320, 44);
+//        firstStation.background = [UIImage imageNamed:@"toolbar_big_bg_lighted.png"];
+//        
+//        firstStation.text = @"";
+//        firstStation.rightViewMode = UITextFieldViewModeAlways;
+//        firstStation.leftView=nil;
+//        firstStation.leftViewMode=UITextFieldViewModeAlways;
+//
+//    }];
     
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     FastAccessTableViewController *controller = [appDelegate.mainViewController showTableView];
@@ -152,96 +119,96 @@
     [firstStation becomeFirstResponder];
 }
 
--(void)transitFirstToSmallField
-{
-    NSTimeInterval duration = 0.2f;
-    
-    [UIView animateWithDuration:duration animations:^{ 
-        isEditing=NO;
-        
-        secondStation.hidden=NO;
-        
-        firstButton.hidden=NO;
-        secondButton.hidden=NO;
-        
-        firstButton.userInteractionEnabled=YES;
-        secondButton.userInteractionEnabled=YES;
-        
-        firstStation.frame = CGRectMake(0, 0, 160, 44);
-        firstStation.background = [UIImage imageNamed:@"toolbar_bg.png"];
-
-    }];
-    
-    firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
-    
-    firstStation.delegate=self;
-    self.tableView=nil;
-    [firstStation resignFirstResponder];    
-}
-
--(void)transitSecondToBigField
-{
-    NSTimeInterval duration = 0.2f;
-    
-    [UIView animateWithDuration:duration animations:^{ 
-        isEditing=YES;
-        
-        firstStation.hidden=YES;
-        
-        firstButton.hidden=YES;
-        secondButton.hidden=YES;
-        
-        firstButton.userInteractionEnabled=NO;
-        secondButton.userInteractionEnabled=NO;
-        
-        secondStation.frame = CGRectMake(0, 0, 320, 44);
-        secondStation.background = [UIImage imageNamed:@"toolbar_big_bg_lighted.png"];
-
-        secondStation.text = @"";
-        secondStation.rightViewMode = UITextFieldViewModeAlways;
-        secondStation.leftView=nil;
-        secondStation.leftViewMode=UITextFieldViewModeAlways;
-        
-    }];
-    
-    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    FastAccessTableViewController *controller = [appDelegate.mainViewController showTableView];
-    appDelegate.mainViewController.currentSelection=1;
-    
-    secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
-    
-    self.tableView=controller;
-    secondStation.delegate = self.tableView;
-    [secondStation becomeFirstResponder];
-}
-
--(void)transitSecondToSmallField
-{
-    NSTimeInterval duration = 0.2f;
-    
-    [UIView animateWithDuration:duration animations:^{ 
-        isEditing=NO;
-        
-        firstStation.hidden=NO;
-        
-        firstButton.hidden=NO;
-        secondButton.hidden=NO;
-        
-        firstButton.userInteractionEnabled=YES;
-        secondButton.userInteractionEnabled=YES;
-        
-        secondStation.background = [UIImage imageNamed:@"toolbar_bg.png"];
-        secondStation.frame = CGRectMake(160, 0, 160, 44);
-        
-    }];
-    
-    secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
-    
-    secondStation.delegate=self;
-    self.tableView=nil;
-    [secondStation resignFirstResponder];
-}
-
+//-(void)transitFirstToSmallField
+//{
+//    NSTimeInterval duration = 0.2f;
+//    
+//    [UIView animateWithDuration:duration animations:^{ 
+//        isEditing=NO;
+//        
+//        secondStation.hidden=NO;
+//        
+//        firstButton.hidden=NO;
+//        secondButton.hidden=NO;
+//        
+//        firstButton.userInteractionEnabled=YES;
+//        secondButton.userInteractionEnabled=YES;
+//        
+//        firstStation.frame = CGRectMake(0, 0, 160, 44);
+//        firstStation.background = [UIImage imageNamed:@"toolbar_bg.png"];
+//
+//    }];
+//    
+//    firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
+//    
+//    firstStation.delegate=self;
+//    self.tableView=nil;
+//    [firstStation resignFirstResponder];    
+//}
+//
+//-(void)transitSecondToBigField
+//{
+//    NSTimeInterval duration = 0.2f;
+//    
+//    [UIView animateWithDuration:duration animations:^{ 
+//        isEditing=YES;
+//        
+//        firstStation.hidden=YES;
+//        
+//        firstButton.hidden=YES;
+//        secondButton.hidden=YES;
+//        
+//        firstButton.userInteractionEnabled=NO;
+//        secondButton.userInteractionEnabled=NO;
+//        
+//        secondStation.frame = CGRectMake(0, 0, 320, 44);
+//        secondStation.background = [UIImage imageNamed:@"toolbar_big_bg_lighted.png"];
+//
+//        secondStation.text = @"";
+//        secondStation.rightViewMode = UITextFieldViewModeAlways;
+//        secondStation.leftView=nil;
+//        secondStation.leftViewMode=UITextFieldViewModeAlways;
+//        
+//    }];
+//    
+//    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+//    FastAccessTableViewController *controller = [appDelegate.mainViewController showTableView];
+//    appDelegate.mainViewController.currentSelection=1;
+//    
+//    secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+//    
+//    self.tableView=controller;
+//    secondStation.delegate = self.tableView;
+//    [secondStation becomeFirstResponder];
+//}
+//
+//-(void)transitSecondToSmallField
+//{
+//    NSTimeInterval duration = 0.2f;
+//    
+//    [UIView animateWithDuration:duration animations:^{ 
+//        isEditing=NO;
+//        
+//        firstStation.hidden=NO;
+//        
+//        firstButton.hidden=NO;
+//        secondButton.hidden=NO;
+//        
+//        firstButton.userInteractionEnabled=YES;
+//        secondButton.userInteractionEnabled=YES;
+//        
+//        secondStation.background = [UIImage imageNamed:@"toolbar_bg.png"];
+//        secondStation.frame = CGRectMake(160, 0, 160, 44);
+//        
+//    }];
+//    
+//    secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
+//    
+//    secondStation.delegate=self;
+//    self.tableView=nil;
+//    [secondStation resignFirstResponder];
+//}
+//
 -(void)transitToPathView
 {
     NSTimeInterval duration = 0.2f;
@@ -415,13 +382,13 @@
 }
 
 
--(UIImage*)imageWithColor:(MLine*)line
+-(UIImage*)imageWithColor:(MCategory*)line
 {
     UIImage *image = [self drawCircleView:[line color]];
     return image;
 }
 
--(UIImage*)biggerImageWithColor:(MLine*)line
+-(UIImage*)biggerImageWithColor:(MCategory*)line
 {
     UIImage *image = [self drawBiggerCircleView:[line color]];
     return image;
@@ -432,7 +399,7 @@
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate.mainViewController removeTableView];
     if ([firstButton isHidden]) {
-        [self transitFirstToSmallField];
+       // [self transitFirstToSmallField];
     }
     [appDelegate.mainViewController pressedSelectFromStation];
 }
@@ -442,7 +409,7 @@
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate.mainViewController removeTableView];
     if ([secondButton isHidden]) {
-        [self transitSecondToSmallField];
+       // [self transitSecondToSmallField];
     }
     [appDelegate.mainViewController pressedSelectToStation];
 }
@@ -488,10 +455,10 @@
 
 }
 
--(void)setFromStation:(MStation*)fromStation
+-(void)setFromStation:(MItem*)fromStation
 {
     if ([firstButton isHidden]) {
-        [self transitFirstToSmallField];
+       // [self transitFirstToSmallField];
     }
     
     if (shouldEnlarge)
@@ -519,11 +486,11 @@
     }
 }
 
--(void)setToStation:(MStation*)toStation
+-(void)setToStation:(MItem*)toStation
 {
 
     if ([secondButton isHidden]) {
-        [self transitSecondToSmallField];
+        //[self transitSecondToSmallField];
     }
 
     if (shouldEnlarge)

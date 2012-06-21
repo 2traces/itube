@@ -9,28 +9,27 @@
 #import "ManagedObjects.h"
 #import "tubeAppDelegate.h"
 
-@implementation MStation
+@implementation MItem
 
 @dynamic index;
 @dynamic isFavorite;
 @dynamic name;
-@dynamic lines;
+@dynamic categories;
 @dynamic transfer;
 @end
 
 @implementation MHistory
 
 @dynamic adate;
-@dynamic fromStation;
-@dynamic toStation;
+@dynamic theItem;
 @end
 
-@implementation MLine
+@implementation MCategory
 
 @dynamic index;
 @dynamic color;
 @dynamic name;
-@dynamic stations;
+@dynamic items;
 @end
 
 @implementation MHelper
@@ -120,7 +119,7 @@ static MHelper * _sharedHelper;
     {
         return __managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"tubee" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"offlinemaps" withExtension:@"momd"];
     __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return __managedObjectModel;
 }
@@ -173,13 +172,13 @@ static MHelper * _sharedHelper;
     }    
 }
 
--(MLine*)lineByIndex:(int)index
+-(MCategory*)categoryByIndex:(int)index
 {
     NSError *error =nil;
     
     NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Line" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
@@ -196,13 +195,13 @@ static MHelper * _sharedHelper;
     }
 }
 
--(MLine*)lineByName:(NSString *)name
+-(MCategory*)categoryByName:(NSString *)name
 {
     NSError *error =nil;
     
     NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Line" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
@@ -211,7 +210,7 @@ static MHelper * _sharedHelper;
     [fetchRequest setPredicate:predicate];
     
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if(![fetchedItems count]) NSLog(@"line not found %@", name);
+    if(![fetchedItems count]) NSLog(@"category not found %@", name);
     
     if ([fetchedItems count]>0) {
         return [fetchedItems objectAtIndex:0];
@@ -220,13 +219,13 @@ static MHelper * _sharedHelper;
     }
 }
 
--(NSArray*)getStationList
+-(NSArray*)getItemList
 {
     NSError *error =nil;
     
     NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Station" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
@@ -243,13 +242,13 @@ static MHelper * _sharedHelper;
     return fetchedItems;    
 }
 
--(NSArray*)getLineList
+-(NSArray*)getCategoryList
 {
     NSError *error =nil;
     
     NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Line" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
@@ -283,19 +282,20 @@ static MHelper * _sharedHelper;
 }
 
 /// сортировка по индексу
--(NSArray*)getStationsForLineIndex:(int)lineIndex
+-(NSArray*)getItemsForCategoryIndex:(int)lineIndex
 {
     NSError *error =nil;
     
     NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Station" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"lines.index=%@",[NSNumber numberWithInt:lineIndex]];
+    ///!!!
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"any categories.index=%@",[NSNumber numberWithInt:lineIndex]];
     [fetchRequest setPredicate:predicate];
     
     // Edit the sort key as appropriate.
@@ -310,19 +310,19 @@ static MHelper * _sharedHelper;
 }
 
 /// сортировка по имени
--(NSArray*)getStationsForLine:(MLine*)line
+-(NSArray*)getItemsForCategory:(MCategory*)category
 {
     NSError *error =nil;
     
     NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Station" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"lines=%@",line];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"any categories=%@",category];
     [fetchRequest setPredicate:predicate];
     
     // Edit the sort key as appropriate.
@@ -336,13 +336,13 @@ static MHelper * _sharedHelper;
     return fetchedItems; 
 }
 
--(NSArray*)getFavoriteStationList
+-(NSArray*)getFavoriteItemList
 {
     NSError *error =nil;
     
     NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Station" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isFavorite=%@",[NSNumber numberWithInt:1]];
@@ -362,16 +362,16 @@ static MHelper * _sharedHelper;
     return fetchedItems;    
 }
 
--(MStation*)getStationWithIndex:(int)index andLineIndex:(int)lineIndex
+-(MItem*)getItemWithIndex:(int)index andCategoryIndex:(int)catIndex
 {
     NSError *error =nil;
     
     NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Station" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"lines.index=%@ and index=%@",[NSNumber numberWithInt:lineIndex], [NSNumber numberWithInt:index]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"any categories.index=%@ and index=%@",[NSNumber numberWithInt:catIndex], [NSNumber numberWithInt:index]];
     [fetchRequest setPredicate:predicate];
     
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
@@ -383,27 +383,40 @@ static MHelper * _sharedHelper;
     }
 }
 
--(MStation*)getStationWithName:(NSString*)station forLine:(NSString*)lineName
+
+-(MItem*)getItemWithName:(NSString*)item forCategories:(NSArray*)categoryNames
 {
     NSError *error =nil;
     
     NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Station" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"lines.name like[c] %@ and name like[c] %@",lineName,station];
+    //As a result we should get smth like 
+    //"any categories.name like[c] cat1 and any categories.name like[c] cat2 and..."
+    //so that resulted item(s) will contain all mentioned categories
+    
+    NSMutableString *categoriesListing = [NSMutableString stringWithString:@"any categories.name like[c] "];
+    for (NSString *catName in categoryNames) {
+        [categoriesListing appendFormat:@"%@ ", catName];
+        if (![catName isEqualToString:[categoryNames lastObject]]) {
+            [categoriesListing appendString:@"and any categories.name like[c] "];
+        }
+    }
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ and name like[c] %@",categoriesListing,item];
     [fetchRequest setPredicate:predicate];
     
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if([fetchedItems count] == 0) {
         NSFetchRequest *fetchRequest2 = [[[NSFetchRequest alloc] init] autorelease];
-        NSEntityDescription *entity2 = [NSEntityDescription entityForName:@"Station" inManagedObjectContext:self.managedObjectContext];
+        NSEntityDescription *entity2 = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
         [fetchRequest2 setEntity:entity2];
-        NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"lines.name like[c] %@",lineName];
+        NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"%@", categoriesListing];
         [fetchRequest2 setPredicate:predicate2];
         NSArray *fetchedItems2 = [self.managedObjectContext executeFetchRequest:fetchRequest2 error:&error];
-        for (MStation* s in fetchedItems2) {
+        for (MItem* s in fetchedItems2) {
             NSLog(@"%@", s.name);
         }
     }
@@ -416,6 +429,8 @@ static MHelper * _sharedHelper;
     }
      
 }
+
+
 
 -(NSArray*)getHistoryList
 {
@@ -435,6 +450,8 @@ static MHelper * _sharedHelper;
     
     return fetchedItems;       
 }
+
+
 
 -(void)readBookmarkFile:(NSString*)mapName
 {
@@ -462,10 +479,10 @@ static MHelper * _sharedHelper;
         
         for(NSString *aKey in enumerator){
             
-            MStation *station = [self getStationWithName:[[temp objectForKey:aKey] objectAtIndex:0] forLine:[[temp objectForKey:aKey] objectAtIndex:1]];
+            MItem *item = [self getItemWithName:aKey forCategories:[temp objectForKey:aKey]];
             
-            if (station) {
-                [station setIsFavorite:[NSNumber numberWithInt:1]];
+            if (item) {
+                [item setIsFavorite:[NSNumber numberWithInt:1]];
             }
         }
     }
@@ -480,16 +497,19 @@ static MHelper * _sharedHelper;
     NSString *fileName = [NSString stringWithFormat:@"%@_bookmarks.plist",[delegate nameCurrentMap]];
     NSString *plistPath = [documentsPath stringByAppendingPathComponent:fileName];
     
-    NSArray *favStations = [self getFavoriteStationList];
+    NSArray *favStations = [self getFavoriteItemList];
     NSMutableDictionary *temp = [[NSMutableDictionary alloc] initWithCapacity:[favStations count]];
     
-    for (MStation *station in favStations) {
-        NSString *lineName = [station.lines name];
-        NSString *stationName = [station name];
-        NSString *aKey = [NSString stringWithFormat:@"%@_%@",lineName,stationName];
+    for (MItem *item in favStations) {
+        NSMutableArray *tempArray = [NSMutableArray arrayWithCapacity:[item.categories count]];
+        for (MCategory *category in [item categories]) {
+            [tempArray addObject:[category name]];
+        }
+        NSArray *categoriesNames = [NSArray arrayWithArray:tempArray];
         
-        NSArray *forkeyArray = [NSArray arrayWithObjects:stationName,lineName, nil];
-        [temp setObject:forkeyArray forKey:aKey];
+        NSString *itemName = [item name];
+        
+        [temp setObject:categoriesNames forKey:itemName];
     }
     
     // create dictionary with values in UITextFields
@@ -513,6 +533,8 @@ static MHelper * _sharedHelper;
         [error release];
     }
 }
+
+
 
 -(void)readHistoryFile:(NSString*)mapName
 {
@@ -550,13 +572,12 @@ static MHelper * _sharedHelper;
             
             NSDictionary *histDict = [temp objectForKey:dataKey]; 
             
-            NSArray *fromArray = [histDict objectForKey:@"From"]; 
-            NSArray *toArray = [histDict objectForKey:@"To"];
+            NSString *itemName = [[histDict allKeys] lastObject];
+            NSArray *categoriesArray = [histDict objectForKey:itemName];
             
-            MStation *fromStation = [self getStationWithName:[fromArray objectAtIndex:1] forLine:[fromArray objectAtIndex:0]];
-            MStation *toStation = [self getStationWithName:[toArray objectAtIndex:1] forLine:[toArray objectAtIndex:0]];
-            
-            if (fromStation && toStation) {
+            MItem *theItem = [self getItemWithName:itemName forCategories:categoriesArray];
+
+            if (theItem) {
                 
                 NSError *error =nil;
                 
@@ -564,8 +585,7 @@ static MHelper * _sharedHelper;
                 MHistory *newhistory = [[MHistory alloc] initWithEntity:entity insertIntoManagedObjectContext:__managedObjectContext];
                 
                 newhistory.adate=historyDate;
-                newhistory.fromStation=fromStation;
-                newhistory.toStation =toStation;
+                newhistory.theItem=theItem;
                 
   //              NSLog(@"From: %@ --- To: %@",[fromStation name],[toStation name]);
                 
@@ -589,15 +609,17 @@ static MHelper * _sharedHelper;
     }
 }
 
--(void)addHistory:(NSDate*)date fromStation:(MStation*)fromStation toStation:(MStation*)toStation
+
+
+
+-(void)addHistory:(NSDate*)date item:(MItem*)item
 {
     NSError *error =nil;
     
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"History" inManagedObjectContext:__managedObjectContext];
     MHistory *newhistory = [[MHistory alloc] initWithEntity:entity insertIntoManagedObjectContext:__managedObjectContext];    
     newhistory.adate=date;
-    newhistory.fromStation=fromStation;
-    newhistory.toStation =toStation;
+    newhistory.theItem=item;
     [newhistory release];
     
     if (![__managedObjectContext save:&error]) {
@@ -612,21 +634,11 @@ static MHelper * _sharedHelper;
     }
 }
 
--(void)addHistory:(NSDate*)date :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl 
-{
-    MLine *fromLine = [self lineByIndex:fsl];
-    MLine *toLine;
-  
-    if (fsl==ssl) {
-        toLine = fromLine;
-    } else {
-        toLine = [self lineByIndex:ssl];
-    }
+-(void)addHistory:(NSDate*)date item:(NSString*)item categories:(NSArray *)categories {
+
+    MItem *theItem = [self getItemWithName:item forCategories:categories];
     
-    MStation *fromStation = [self getStationWithName:fs forLine:fromLine.name];
-    MStation *toStation = [self getStationWithName:ss forLine:toLine.name];
-    
-    [self addHistory:date fromStation:fromStation toStation:toStation];
+    [self addHistory:date item:theItem];
 }
 
 
@@ -662,19 +674,14 @@ static MHelper * _sharedHelper;
         
         NSString *mainKey = [formatter stringFromDate:history.adate]; 
         
-        NSString *fromlineName = [history.fromStation name];
-        NSString *fromstationName = [[history.fromStation lines] name];
+        NSString *theItemName = [history.theItem name];
+        NSMutableArray *tempArray = [NSMutableArray arrayWithCapacity:[history.theItem.categories count]];
+        for (MCategory *category in [history.theItem categories]) {
+            [tempArray addObject:[category name]];
+        }
+        NSArray *categoriesNames = [NSArray arrayWithArray:tempArray];
         
-        NSString *tolineName = [history.toStation name];
-        NSString *tostationName = [[history.toStation lines] name];
-        
-        NSString *fromKey = [NSString stringWithString:@"From"];
-        NSString *toKey = [NSString stringWithString:@"To"];
-        
-        NSArray *fromkeyArray = [NSArray arrayWithObjects:fromstationName,fromlineName, nil];
-        NSArray *tokeyArray = [NSArray arrayWithObjects:tostationName,tolineName, nil];
-        
-        NSDictionary *oneHistDict = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:fromkeyArray,tokeyArray,nil] forKeys:[NSArray arrayWithObjects:fromKey,toKey,nil]];
+        NSDictionary *oneHistDict = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:categoriesNames,nil] forKeys:[NSArray arrayWithObjects:theItemName,nil]];
         
         [temp setObject:oneHistDict forKey:mainKey];
         

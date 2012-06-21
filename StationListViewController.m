@@ -42,7 +42,7 @@
     MHelper *helper = [MHelper sharedHelper];
     self.dataSource = helper;
     
-    self.stationList = [dataSource getStationList];
+    self.stationList = [dataSource getItemList];
     
     [self createStationIndex];
     
@@ -110,7 +110,7 @@
 }
 
 
--(UIImage*)imageWithColor:(MLine*)line
+-(UIImage*)imageWithColor:(MCategory*)line
 {
     if ([self.colorDictionary objectForKey:[line name]]) {
         return [self.colorDictionary objectForKey:[line name]];
@@ -228,7 +228,7 @@
         }
         
         UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
-        myImageView.image = [self imageWithColor:[(MStation*)[self.filteredStation objectAtIndex:indexPath.row] lines]];    
+        myImageView.image = [self imageWithColor:[(MItem*)[self.filteredStation objectAtIndex:indexPath.row] lines]];    
     }
     else
     {
@@ -255,7 +255,7 @@
             }
             
             UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
-            myImageView.image = [self imageWithColor:[(MStation*)[stations objectAtIndex:indexPath.row] lines]];
+            myImageView.image = [self imageWithColor:[(MItem*)[stations objectAtIndex:indexPath.row] lines]];
         }
     }
 //    NSDate *date2 = [NSDate date];
@@ -425,7 +425,7 @@
 {
 	[filteredStation removeAllObjects]; 
 	
-	for (MStation* station in self.stationList)
+	for (MItem* station in self.stationList)
 	{
 		NSRange isFound = [[station name] rangeOfString:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)];
         

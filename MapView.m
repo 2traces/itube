@@ -368,7 +368,7 @@
 		alignment: UITextAlignmentCenter];
 }
 
--(void)selectStationAt:(CGPoint*)currentPosition
+-(void)selectItemAt:(CGPoint*)currentPosition
 {
     if([rasterLayer checkPoint:currentPosition]) {
         NSLog(@"select object №%d %@", rasterLayer.currentObjectNumber, rasterLayer.currentObject.name);

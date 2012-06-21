@@ -50,7 +50,7 @@
 }
 
 
--(UIImage*)imageWithColor:(MLine*)line
+-(UIImage*)imageWithColor:(MCategory*)line
 {
     if ([self.colorDictionary objectForKey:[line name]]) {
         return [self.colorDictionary objectForKey:[line name]];
@@ -130,14 +130,14 @@
  
     MHistory *history = [self.historyList objectAtIndex:indexPath.row];
     
-    cell.fromStation.text = [history.fromStation name];
+    cell.fromStation.text = [history.theItem name];
     
-    cell.toStation.text = [history.toStation name];
+//    cell.toStation.text = [history.toStation name];
     
     cell.dateLabel.text = [formatter stringFromDate:history.adate]; 
     
-    cell.fromLineCircle.image = [self imageWithColor:[history.fromStation lines]];
-    cell.toLineCircle.image = [self imageWithColor:[history.toStation lines]];
+    cell.fromLineCircle.image = [self imageWithColor:[history.theItem categories]];
+//    cell.toLineCircle.image = [self imageWithColor:[history.toStation lines]];
     
     return cell;
 }
@@ -151,7 +151,7 @@
     
     MHistory *history = [self.historyList objectAtIndex:indexPath.row];
 
-    [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObjects:history.fromStation,history.toStation,nil]];
+    [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObjects:history.theItem,nil]];
 
 }
 

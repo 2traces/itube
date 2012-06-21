@@ -151,9 +151,15 @@ NSInteger const toolbarWidth=320;
     sourceData = [UIButton buttonWithType:UIButtonTypeCustom];
     [sourceData setImage:[UIImage imageNamed:@"vector"] forState:UIControlStateNormal];
     [sourceData setImage:[UIImage imageNamed:@"terrain"] forState:UIControlStateSelected];
-    sourceData.frame = CGRectMake(15, 400, 88, 53);
+    sourceData.frame = CGRectMake(15, 420, 44, 27);
     [sourceData addTarget:self action:@selector(changeSource) forControlEvents:UIControlStateHighlighted];
     [self addSubview:sourceData];
+    
+    userPosition = [UIButton buttonWithType:UIButtonTypeCustom];
+    [userPosition setImage:[UIImage imageNamed:@"navigate_btn"] forState:UIControlStateNormal];
+    userPosition.frame = CGRectMake(0, 44, 40, 40);
+    [userPosition addTarget:self action:@selector(getUserPosition) forControlEvents:UIControlStateHighlighted];
+    [self addSubview:userPosition];
     
     UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
     shadow.frame = CGRectMake(0, 44, 320, 61);
@@ -254,8 +260,8 @@ NSInteger const toolbarWidth=320;
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.mainViewController.currentSelection=0;
     
-    MLine *line = [[MHelper sharedHelper] lineByIndex:mapView.selectedStationLine];
-    MStation *station = [[MHelper sharedHelper] getStationWithName:mapView.selectedStationName forLine:[line name]];
+    MCategory *line = [[MHelper sharedHelper] categoryByIndex:mapView.selectedStationLine];
+    MItem *station = [[MHelper sharedHelper] getItemWithName:mapView.selectedStationName forCategories:[NSArray arrayWithObject:[line name]]];
     [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:station]];
     
 	mapView.stationSelected=false;
@@ -267,8 +273,8 @@ NSInteger const toolbarWidth=320;
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.mainViewController.currentSelection=1;
     
-    MLine *line = [[MHelper sharedHelper] lineByIndex:mapView.selectedStationLine];
-    MStation *station = [[MHelper sharedHelper] getStationWithName:mapView.selectedStationName forLine:[line name]];
+    MCategory *line = [[MHelper sharedHelper] categoryByIndex:mapView.selectedStationLine];
+    MItem *station = [[MHelper sharedHelper] getItemWithName:mapView.selectedStationName forCategories:[NSArray arrayWithObject:[line name]]];
     [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:station]];
 	mapView.stationSelected=false;
     [self hideButtons];
@@ -304,7 +310,7 @@ NSInteger const toolbarWidth=320;
 
 -(void) findPathFrom :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl  {
 	[mapView findPathFrom:fs To:ss FirstLine:fsl LastLine:ssl];
-    [[MHelper sharedHelper] addHistory:[NSDate date] :fs To:ss FirstLine:fsl LastLine:ssl];
+    [[MHelper sharedHelper] addHistory:[NSDate date] item:fs categories:fsl];
 }
 
 -(void) supervisor
@@ -317,6 +323,10 @@ NSInteger const toolbarWidth=320;
     SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];
     [self.vcontroller presentModalViewController:controller animated:YES];
     [controller release];
+}
+
+- (void) getUserPosition {
+
 }
 
 -(void) changeSource

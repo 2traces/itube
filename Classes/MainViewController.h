@@ -15,8 +15,8 @@
 
 @interface MainViewController : UIViewController <FlipsideViewControllerDelegate,SelectingTabBarProtocol,UIScrollViewDelegate,PathDrawProtocol> {
     int currentSelection;
-    MStation *fromStation;
-    MStation *toStation;
+    MItem *fromStation;
+    MItem *toStation;
     NSArray *route;
     
     TopTwoStationsView *stationsView;
@@ -24,8 +24,8 @@
     UIScrollView *pathScrollView;
 }
 
-@property (nonatomic, retain) MStation *fromStation;
-@property (nonatomic, retain) MStation *toStation;
+@property (nonatomic, retain) MItem *fromStation;
+@property (nonatomic, retain) MItem *toStation;
 @property (nonatomic, retain) NSArray *route;
 @property (nonatomic, retain) TopTwoStationsView *stationsView;
 @property (nonatomic, assign) int currentSelection;

@@ -63,7 +63,7 @@
     openSectionIndex_ = NSNotFound;
 }
 
--(UIImage*)imageWithColor:(MLine*)line
+-(UIImage*)imageWithColor:(MCategory*)line
 {
     if ([self.colorDictionary objectForKey:[line name]]) {
         return [self.colorDictionary objectForKey:[line name]];
@@ -102,7 +102,7 @@
         // For each play, set up a corresponding SectionInfo object to contain the default height for each row.
 		NSMutableArray *infoArray = [[NSMutableArray alloc] init];
 		
-		for (MLine* line in self.lineList) {
+		for (MCategory* line in self.lineList) {
 			
 			SectionInfo *sectionInfo = [[SectionInfo alloc] init];			
 			sectionInfo.line = line;
@@ -191,7 +191,7 @@
     
     UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
     
-    myImageView.image = [self imageWithColor:[(MStation*)[self.stationsList objectAtIndex:indexPath.row] lines]];
+    myImageView.image = [self imageWithColor:[(MItem*)[self.stationsList objectAtIndex:indexPath.row] lines]];
     
     NSDate *date2 = [NSDate date];
     NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
@@ -208,7 +208,7 @@
     /*
      Create an array containing the index paths of the rows to insert: These correspond to the rows for each quotation in the current section.
      */
-    NSInteger countOfRowsToInsert = [sectionInfo.line.stations count];
+    NSInteger countOfRowsToInsert = [sectionInfo.line.items count];
     self.stationsList = [dataSource getStationsForLine:sectionInfo.line];
     NSMutableArray *indexPathsToInsert = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < countOfRowsToInsert; i++) {
@@ -226,7 +226,7 @@
 		SectionInfo *previousOpenSection = [self.sectionInfoArray objectAtIndex:previousOpenSectionIndex];
         previousOpenSection.open = NO;
         [previousOpenSection.headerView toggleOpenWithUserAction:NO];
-        NSInteger countOfRowsToDelete = [previousOpenSection.line.stations count];
+        NSInteger countOfRowsToDelete = [previousOpenSection.line.items count];
         for (NSInteger i = 0; i < countOfRowsToDelete; i++) {
             [indexPathsToDelete addObject:[NSIndexPath indexPathForRow:i inSection:previousOpenSectionIndex]];
         }
@@ -290,7 +290,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MLine *line = [self.lineList objectAtIndex:[indexPath section]];
+    MCategory *line = [self.lineList objectAtIndex:[indexPath section]];
     
     NSArray *stations = [dataSource getStationsForLine:line];
     
@@ -318,11 +318,11 @@
     
     NSIndexPath *path = [self.mytableView indexPathForCell:cell];
     
-    MLine *line = [self.lineList objectAtIndex:[path section]];
+    MCategory *line = [self.lineList objectAtIndex:[path section]];
     
     NSArray *stations = [dataSource getStationsForLine:line];
     
-    MStation *station = [stations objectAtIndex:path.row];
+    MItem *station = [stations objectAtIndex:path.row];
     
     //    NSLog(@"%@",cellValue);
     

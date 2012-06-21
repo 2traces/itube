@@ -1272,10 +1272,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             NSLog(@"read station: %@", st.name);
 #endif
 
-            MStation *station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+            MItem *station = [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
             station.name=st.name;
             station.isFavorite=[NSNumber numberWithInt:0];
-            station.lines=[[MHelper sharedHelper] lineByName:name ];
+            station.categories=[[MHelper sharedHelper] lineByName:name ];
             station.index = [NSNumber numberWithInt:i];
         }
         // создаём отложенные связи
@@ -1757,7 +1757,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 		NSString *coordsTime = [parserTrp get:@"Driving" section:sectionName];
         if([coords length] == 0 || [coordsText length] == 0 || [stations length] == 0 || [coordsTime length] == 0) continue;
 		
-        MLine *newLine = [NSEntityDescription insertNewObjectForEntityForName:@"Line" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+        MCategory *newLine = [NSEntityDescription insertNewObjectForEntityForName:@"Line" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
         newLine.name=lineName;
         newLine.index = [[[NSNumber alloc] initWithInt:index] autorelease];
         newLine.color = [self colorForHex:colors];
@@ -1892,7 +1892,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         l.index = index;
         l.color = [self colorForHex:colors];
         [mapLines addObject:l];
-        MLine *newLine = [NSEntityDescription insertNewObjectForEntityForName:@"Line" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+        MCategory *newLine = [NSEntityDescription insertNewObjectForEntityForName:@"Line" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
         newLine.name=lineName;
         newLine.index = [NSNumber numberWithInt:index];
         newLine.color = [self colorForHex:colors];
@@ -1948,10 +1948,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     st.line = l;
                     st.gpsCoords = CGPointMake([[gpsCoords objectAtIndex:0] floatValue], [[gpsCoords objectAtIndex:1] floatValue]);
                     [l.stations addObject:st];
-                    MStation *station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+                    MItem *station = [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
                     station.name=st.name;
                     station.isFavorite=[NSNumber numberWithInt:0];
-                    station.lines=newLine;
+                    station.categories=newLine;
                     station.index = [NSNumber numberWithInt:si];
                     si ++;
 #ifdef DEBUG
@@ -2127,8 +2127,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     NSString *lineStation2 = [elements objectAtIndex:2];
     NSString *station2 = [ComplexText makePlainString:[elements objectAtIndex:3]];
 
-    Station *ss1 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation1].index intValue]-1] getStation:station1];
-    Station *ss2 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation2].index intValue]-1] getStation:station2];
+    Station *ss1 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] categoryByName:lineStation1].index intValue]-1] getStation:station1];
+    Station *ss2 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] categoryByName:lineStation2].index intValue]-1] getStation:station2];
 #ifdef DEBUG
     if(ss1 == nil) NSLog(@"Error: station %@ from line %@ not found", station1, lineStation1);
     if(ss2 == nil) NSLog(@"Error: station %@ from line %@ not found", station2, lineStation2);
@@ -2157,8 +2157,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     NSString *lineStation2 = [elements objectAtIndex:2];
     NSString *station2 = [ComplexText makePlainString:[elements objectAtIndex:3]];
     
-    Station *ss1 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation1].index intValue]-1] getStation:station1];
-    Station *ss2 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] lineByName:lineStation2].index intValue]-1] getStation:station2];
+    Station *ss1 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] categoryByName:lineStation1].index intValue]-1] getStation:station1];
+    Station *ss2 = [[mapLines objectAtIndex:[[[MHelper sharedHelper] categoryByName:lineStation2].index intValue]-1] getStation:station2];
     if(ss1 == nil || ss2 == nil) {
 #ifdef DEBUG
         NSLog(@"Error: stations for transfer not found! %@ at %@ and %@ at %@", station1, lineStation1, station2, lineStation2);

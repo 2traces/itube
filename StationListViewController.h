@@ -45,7 +45,7 @@
 
 @protocol StationListViewProtocol
 
--(NSArray*)getStationList;
+-(NSArray*)getItemList;
 
 @end
 

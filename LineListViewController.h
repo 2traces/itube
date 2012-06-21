@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SectionHeaderView.h"
 
-@class MLine;
+@class MCategory;
 
 @protocol LineListViewProtocol;
 
@@ -43,7 +43,7 @@
 @protocol LineListViewProtocol
 
 -(NSArray*)getLineList;
--(NSArray*)getStationsForLine:(MLine*)line;
+-(NSArray*)getStationsForLine:(MCategory*)line;
 
 
 @end

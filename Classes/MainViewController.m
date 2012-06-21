@@ -117,26 +117,26 @@
     
     Station *firstStation;
     
-    if (count>0) {
-        if ([[path objectAtIndex:0] isKindOfClass:[Segment class]]) {
-            Segment *firstSegment = (Segment*)[path objectAtIndex:0];
-            Station *someStation = [firstSegment start];
-            if ([someStation.name isEqual:[self.fromStation name]] && someStation.line.index == [self.fromStation.lines.index intValue]) {
-                firstStation = someStation;
-            } else {
-                firstStation = [firstSegment end];
-            }
-        } else {
-            Transfer *transfer = (Transfer*)[path objectAtIndex:0];
-            NSArray *array = [[transfer stations] allObjects];
-            Station *someStation = [array objectAtIndex:0];
-            if ([someStation.name isEqual:[self.fromStation name]] && someStation.line.index == [self.fromStation.lines.index intValue]) {
-                firstStation = someStation;
-            } else {
-                firstStation = [array objectAtIndex:1];
-            }
-        }
-    }
+//    if (count>0) {
+//        if ([[path objectAtIndex:0] isKindOfClass:[Segment class]]) {
+//            Segment *firstSegment = (Segment*)[path objectAtIndex:0];
+//            Station *someStation = [firstSegment start];
+//            if ([someStation.name isEqual:[self.fromStation name]] && someStation.line.index == [self.fromStation.categories.index intValue]) {
+//                firstStation = someStation;
+//            } else {
+//                firstStation = [firstSegment end];
+//            }
+//        } else {
+//            Transfer *transfer = (Transfer*)[path objectAtIndex:0];
+//            NSArray *array = [[transfer stations] allObjects];
+//            Station *someStation = [array objectAtIndex:0];
+//            if ([someStation.name isEqual:[self.fromStation name]] && someStation.line.index == [self.fromStation.categories.index intValue]) {
+//                firstStation = someStation;
+//            } else {
+//                firstStation = [array objectAtIndex:1];
+//            }
+//        }
+//    }
     
     NSMutableArray *normalPath = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     
@@ -1157,14 +1157,14 @@
 
 #pragma mark - choosing stations etc
 
--(void)returnFromSelection2:(NSArray*)stations
+-(void)returnFromSelection2:(NSArray*)items
 {
     MainView *mainView = (MainView*)self.view;
     
-    if ([stations count]>1) {
+    if ([items count]>1) {
         // это история и надо ставить обе станции
-        self.fromStation = [stations objectAtIndex:0];
-        self.toStation = [stations objectAtIndex:1];
+        self.fromStation = [items objectAtIndex:0];
+        self.toStation = [items objectAtIndex:1];
         
         if (currentSelection==0) {
             [stationsView setFromStation:self.fromStation];
@@ -1177,29 +1177,29 @@
         //     [self.routeScrollView appear];
         
         
-    } else if ([stations count]==1) {
+    } else if ([items count]==1) {
         // это конкретная станция
         if (currentSelection==0) {
-            if ([stations objectAtIndex:0]==self.toStation) {
+            if ([items objectAtIndex:0]==self.toStation) {
                 self.fromStation=nil;
                 [stationsView resetFromStation];
             } else {
-                self.fromStation = [stations objectAtIndex:0];
+                self.fromStation = [items objectAtIndex:0];
                 [stationsView setFromStation:self.fromStation];
             }
         } else {
-            if ([stations objectAtIndex:0]==self.fromStation) {
+            if ([items objectAtIndex:0]==self.fromStation) {
                 self.toStation=nil;
                 [stationsView resetToStation];
             } else {
-                self.toStation = [stations objectAtIndex:0];
+                self.toStation = [items objectAtIndex:0];
                 [stationsView setToStation:self.toStation];
             }
             
             
         }
         
-    } else if ([stations count]==0) {
+    } else if ([items count]==0) {
         if (currentSelection==0) {
             self.fromStation=nil;
             [stationsView setFromStation:self.fromStation];

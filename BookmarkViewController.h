@@ -33,7 +33,7 @@
 
 @protocol BookmarkViewProtocol
 
--(NSArray*)getFavoriteStationList;
+-(NSArray*)getFavoriteItemList;
 
 @end
 

@@ -17,32 +17,31 @@
 
 // все объекты для CoreData собраны в одном месте
 
-@class MLine;
+@class MCategory;
 @class MTransfer;
 
-@interface MStation : NSManagedObject
+@interface MItem : NSManagedObject
 
 @property (nonatomic, retain) NSNumber* index;
 @property (nonatomic, retain) NSNumber * isFavorite;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) MLine *lines;
+@property (nonatomic, retain) NSSet *categories;
 @property (nonatomic, retain) MTransfer* transfer;
 @end
 
 @interface MHistory : NSManagedObject
 
 @property (nonatomic, retain) NSDate * adate;
-@property (nonatomic, retain) MStation *fromStation;
-@property (nonatomic, retain) MStation *toStation;
+@property (nonatomic, retain) MItem *theItem;
 
 @end
 
-@interface MLine : NSManagedObject
+@interface MCategory : NSManagedObject
 
 @property (nonatomic, assign) NSNumber* index;
 @property (nonatomic, retain) id color;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSSet *stations;
+@property (nonatomic, retain) NSSet *items;
 @end
 
 @interface MHelper : NSObject <StationListViewProtocol, LineListViewProtocol, BookmarkViewProtocol, HistoryViewProtocol, FastAccessTableViewProtocol, NSFetchedResultsControllerDelegate> {
@@ -58,18 +57,18 @@
 -(void)saveContext;
 -(void)clearContent;
 -(NSURL*)applicationDocumentsDirectory;
--(NSArray*)getLineList;
--(NSArray*)getStationList;
+-(NSArray*)getCategoryList;
+-(NSArray*)getItemList;
 -(NSArray*)getTransferList;
--(MLine*)lineByName:(NSString*)name;
--(MLine*)lineByIndex:(int)index;
--(MStation*)getStationWithName:(NSString*)station forLine:(NSString*)lineName;
--(MStation*)getStationWithIndex:(int)index andLineIndex:(int)lineIndex;
+-(MCategory*)categoryByName:(NSString*)name;
+-(MCategory*)categoryByIndex:(int)index;
+-(MItem*)getItemWithName:(NSString*)item forCategories:(NSArray*)categoryNames;
+-(MItem*)getItemWithIndex:(int)index andCategoryIndex:(int)categoryIndex;
 // возвращает станции для линии
 // сортировка по индексу
--(NSArray*)getStationsForLineIndex:(int)lineIndex;
+-(NSArray*)getItemForCategoryIndex:(int)lineIndex;
 
--(void)addHistory:(NSDate*)date :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl; 
+-(void)addHistory:(NSDate*)date item:(NSString*)item categories:(NSArray*) categories;
 
 -(void)saveBookmarkFile;
 -(void)readBookmarkFile:(NSString*)mapName;

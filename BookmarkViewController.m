@@ -40,14 +40,14 @@
     [self.mytableView setBackgroundColor:[UIColor clearColor]];
     self.imageView.image = [UIImage imageNamed:@"lines_shadow.png"];
     
-//    self.stationList = [NSMutableArray arrayWithArray:[dataSource getFavoriteStationList]];
+//    self.stationList = [NSMutableArray arrayWithArray:[dataSource getFavoriteItemList]];
     
     self.colorDictionary = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
     
 }
 
 
--(UIImage*)imageWithColor:(MLine*)line
+-(UIImage*)imageWithColor:(MCategory*)line
 {
     if ([self.colorDictionary objectForKey:[line name]]) {
         return [self.colorDictionary objectForKey:[line name]];
@@ -79,7 +79,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.stationList = [NSMutableArray arrayWithArray:[dataSource getFavoriteStationList]];
+    self.stationList = [NSMutableArray arrayWithArray:[dataSource getFavoriteItemList]];
     [self.mytableView reloadData];
 }
 
@@ -130,7 +130,7 @@
     }
     
     // название и прочее
-    MStation *station = [self.stationList objectAtIndex:indexPath.row];
+    MItem *station = [self.stationList objectAtIndex:indexPath.row];
     NSString *cellValue = [station name];
     cell.mylabel.text = cellValue;
     cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
@@ -161,7 +161,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MStation  *station = [self.stationList objectAtIndex:indexPath.row];
+    MItem  *station = [self.stationList objectAtIndex:indexPath.row];
     
     NSLog(@"%@",[station name]); 
     

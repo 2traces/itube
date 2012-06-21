@@ -14,7 +14,7 @@
 @interface SectionInfo : NSObject 
 
 @property (nonatomic,assign) BOOL open;
-@property (nonatomic,retain) MLine* line;
+@property (nonatomic,retain) MCategory* line;
 @property (nonatomic,retain) SectionHeaderView* headerView;
 
 @property (nonatomic,retain,readonly) NSMutableArray *rowHeights;

@@ -32,6 +32,6 @@
 
 @protocol FastAccessTableViewProtocol
 
--(NSArray*)getStationList;
+-(NSArray*)getItemList;
 
 @end

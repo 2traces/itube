@@ -32,13 +32,19 @@
 		515D75151534BB9700C25074 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 515D75141534BB9700C25074 /* libxml2.dylib */; };
 		51839DE115360BE5003A8E23 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 51839DE015360BE5003A8E23 /* TBXML.m */; };
 		51D20F3514B849A3007AC4BD /* ManagedObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D20F3414B849A3007AC4BD /* ManagedObjects.m */; };
-		51D20F3914B85185007AC4BD /* tubee.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 51D20F3714B85185007AC4BD /* tubee.xcdatamodeld */; };
 		51D20F3B14B85468007AC4BD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D20F3A14B85468007AC4BD /* CoreData.framework */; };
 		51D35F40158BBB8A008518EC /* OSM in Resources */ = {isa = PBXBuildFile; fileRef = 51D35F3F158BBB8A008518EC /* OSM */; };
 		51D35F43158BBB95008518EC /* RASTER in Resources */ = {isa = PBXBuildFile; fileRef = 51D35F42158BBB95008518EC /* RASTER */; };
 		51D35F45158BBC58008518EC /* vector in Resources */ = {isa = PBXBuildFile; fileRef = 51D35F44158BBC58008518EC /* vector */; };
 		51E9C614154E9A02000D3950 /* RasterLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51E9C613154E9A02000D3950 /* RasterLayer.m */; };
 		51F15F7714D99A3800D11B79 /* VectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F15F7614D99A3800D11B79 /* VectorLayer.m */; };
+		570BB1D01590B50F00CE1AA5 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 570BB1CF1590B50F00CE1AA5 /* Icon.png */; };
+		570BB1D21590B56200CE1AA5 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 570BB1D11590B56200CE1AA5 /* Icon@2x.png */; };
+		570BB1D51590C59400CE1AA5 /* terrain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 570BB1D31590C59200CE1AA5 /* terrain@2x.png */; };
+		570BB1D61590C59400CE1AA5 /* vector@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 570BB1D41590C59300CE1AA5 /* vector@2x.png */; };
+		570BB1D91590CC7100CE1AA5 /* navigate_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 570BB1D71590CC7000CE1AA5 /* navigate_btn.png */; };
+		570BB1DA1590CC7100CE1AA5 /* navigate_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 570BB1D81590CC7100CE1AA5 /* navigate_btn@2x.png */; };
+		576A061315923E9D0001E95D /* offlinemaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 576A061115923E9D0001E95D /* offlinemaps.xcdatamodeld */; };
 		9F1EA31715748F240076B2E0 /* box.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1EA31515748F240076B2E0 /* box.png */; };
 		9F1EA31815748F240076B2E0 /* box@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1EA31615748F240076B2E0 /* box@2x.png */; };
 		9F1EA31C157490420076B2E0 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1EA31A157490420076B2E0 /* pin.png */; };
@@ -357,7 +363,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* tubeAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tubeAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* tubeAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tubeAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* tube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tube.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* offline_maps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = offline_maps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765580DF743DE002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		289233A20DB2D0840083E9F9 /* FlipsideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlipsideView.h; path = Classes/FlipsideView.h; sourceTree = "<group>"; };
@@ -399,7 +405,6 @@
 		51839DE015360BE5003A8E23 /* TBXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBXML.m; path = Classes/TBXML/TBXML.m; sourceTree = "<group>"; };
 		51D20F3314B849A3007AC4BD /* ManagedObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManagedObjects.h; path = Classes/ManagedObjects.h; sourceTree = "<group>"; };
 		51D20F3414B849A3007AC4BD /* ManagedObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManagedObjects.m; path = Classes/ManagedObjects.m; sourceTree = "<group>"; };
-		51D20F3814B85185007AC4BD /* tubee.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tubee.xcdatamodel; sourceTree = "<group>"; };
 		51D20F3A14B85468007AC4BD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		51D35F3F158BBB8A008518EC /* OSM */ = {isa = PBXFileReference; lastKnownFileType = folder; path = OSM; sourceTree = "<group>"; };
 		51D35F42158BBB95008518EC /* RASTER */ = {isa = PBXFileReference; lastKnownFileType = folder; path = RASTER; sourceTree = "<group>"; };
@@ -408,6 +413,13 @@
 		51E9C613154E9A02000D3950 /* RasterLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RasterLayer.m; path = Classes/RasterLayer.m; sourceTree = "<group>"; };
 		51F15F7514D99A3800D11B79 /* VectorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VectorLayer.h; path = Classes/VectorLayer.h; sourceTree = "<group>"; };
 		51F15F7614D99A3800D11B79 /* VectorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VectorLayer.m; path = Classes/VectorLayer.m; sourceTree = "<group>"; };
+		570BB1CF1590B50F00CE1AA5 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		570BB1D11590B56200CE1AA5 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		570BB1D31590C59200CE1AA5 /* terrain@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terrain@2x.png"; sourceTree = "<group>"; };
+		570BB1D41590C59300CE1AA5 /* vector@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vector@2x.png"; sourceTree = "<group>"; };
+		570BB1D71590CC7000CE1AA5 /* navigate_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigate_btn.png; sourceTree = "<group>"; };
+		570BB1D81590CC7100CE1AA5 /* navigate_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigate_btn@2x.png"; sourceTree = "<group>"; };
+		576A061215923E9D0001E95D /* offlinemaps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = offlinemaps.xcdatamodel; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* tube-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "tube-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9F1EA31515748F240076B2E0 /* box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box.png; sourceTree = "<group>"; };
 		9F1EA31615748F240076B2E0 /* box@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box@2x.png"; sourceTree = "<group>"; };
@@ -809,7 +821,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* tube.app */,
+				1D6058910D05DD3D006BFB54 /* offline_maps.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -875,7 +887,7 @@
 				BC3D14E514C338370059A17E /* SettingsViewController.m */,
 				BC88F911152052C800BC7FAA /* LanguageViewController.h */,
 				BC88F912152052C800BC7FAA /* LanguageViewController.m */,
-				51D20F3714B85185007AC4BD /* tubee.xcdatamodeld */,
+				576A061115923E9D0001E95D /* offlinemaps.xcdatamodeld */,
 				51D20F3314B849A3007AC4BD /* ManagedObjects.h */,
 				51D20F3414B849A3007AC4BD /* ManagedObjects.m */,
 				289233A40DB2D0840083E9F9 /* MainView.h */,
@@ -927,6 +939,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				570BB1D11590B56200CE1AA5 /* Icon@2x.png */,
+				570BB1CF1590B50F00CE1AA5 /* Icon.png */,
 				51D35F44158BBC58008518EC /* vector */,
 				51D35F42158BBB95008518EC /* RASTER */,
 				51D35F3F158BBB8A008518EC /* OSM */,
@@ -1324,6 +1338,10 @@
 		CE96C6F41468307C005A56F3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				570BB1D71590CC7000CE1AA5 /* navigate_btn.png */,
+				570BB1D81590CC7100CE1AA5 /* navigate_btn@2x.png */,
+				570BB1D31590C59200CE1AA5 /* terrain@2x.png */,
+				570BB1D41590C59300CE1AA5 /* vector@2x.png */,
 				9F6EE30F1588AE5B009F72E9 /* terrain.png */,
 				9F6EE3101588AE5B009F72E9 /* vector.png */,
 				BC5AF6F414F5180400C8463F /* splash.png */,
@@ -1366,9 +1384,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* tube */ = {
+		1D6058900D05DD3D006BFB54 /* offline_maps */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "tube" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "offline_maps" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -1378,9 +1396,9 @@
 			);
 			dependencies = (
 			);
-			name = tube;
+			name = offline_maps;
 			productName = tube;
-			productReference = 1D6058910D05DD3D006BFB54 /* tube.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* offline_maps.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1409,7 +1427,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* tube */,
+				1D6058900D05DD3D006BFB54 /* offline_maps */,
 			);
 		};
 /* End PBXProject section */
@@ -1683,6 +1701,12 @@
 				51D35F40158BBB8A008518EC /* OSM in Resources */,
 				51D35F43158BBB95008518EC /* RASTER in Resources */,
 				51D35F45158BBC58008518EC /* vector in Resources */,
+				570BB1D01590B50F00CE1AA5 /* Icon.png in Resources */,
+				570BB1D21590B56200CE1AA5 /* Icon@2x.png in Resources */,
+				570BB1D51590C59400CE1AA5 /* terrain@2x.png in Resources */,
+				570BB1D61590C59400CE1AA5 /* vector@2x.png in Resources */,
+				570BB1D91590CC7100CE1AA5 /* navigate_btn.png in Resources */,
+				570BB1DA1590CC7100CE1AA5 /* navigate_btn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1716,7 +1740,6 @@
 				CE93AE1A148E5E9400DAD165 /* section.m in Sources */,
 				CE93AE1D148E5E9400DAD165 /* utils.m in Sources */,
 				51D20F3514B849A3007AC4BD /* ManagedObjects.m in Sources */,
-				51D20F3914B85185007AC4BD /* tubee.xcdatamodeld in Sources */,
 				BC3D14E814C338380059A17E /* HistoryListCell.m in Sources */,
 				BC3D14EB14C338380059A17E /* StationListCell.m in Sources */,
 				BC3D14EC14C338380059A17E /* SelectingTabBarViewController.m in Sources */,
@@ -1762,6 +1785,7 @@
 				51839DE115360BE5003A8E23 /* TBXML.m in Sources */,
 				BC4DA4181537F03700B941F1 /* ImageDownloader.m in Sources */,
 				51E9C614154E9A02000D3950 /* RasterLayer.m in Sources */,
+				576A061315923E9D0001E95D /* offlinemaps.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1794,7 +1818,7 @@
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "tube-Info.plist";
-				PRODUCT_NAME = tube;
+				PRODUCT_NAME = offline_maps;
 			};
 			name = Debug;
 		};
@@ -1807,7 +1831,7 @@
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "tube-Info.plist";
-				PRODUCT_NAME = tube;
+				PRODUCT_NAME = offline_maps;
 			};
 			name = Release;
 		};
@@ -1853,7 +1877,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "tube" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "offline_maps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -1874,13 +1898,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		51D20F3714B85185007AC4BD /* tubee.xcdatamodeld */ = {
+		576A061115923E9D0001E95D /* offlinemaps.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				51D20F3814B85185007AC4BD /* tubee.xcdatamodel */,
+				576A061215923E9D0001E95D /* offlinemaps.xcdatamodel */,
 			);
-			currentVersion = 51D20F3814B85185007AC4BD /* tubee.xcdatamodel */;
-			path = tubee.xcdatamodeld;
+			currentVersion = 576A061215923E9D0001E95D /* offlinemaps.xcdatamodel */;
+			path = offlinemaps.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class MStation;
+@class MItem;
 @class FastAccessTableViewController;
 @class StationTextField;
 
@@ -33,8 +33,8 @@
 @property (nonatomic, retain) UIImageView *arrowView;
 
 -(void)drawInitialState;
--(void)setFromStation:(MStation*)fromStation;
--(void)setToStation:(MStation*)toStation;
+-(void)setFromStation:(MItem*)fromStation;
+-(void)setToStation:(MItem*)toStation;
 -(UIImage*)drawCircleView:(UIColor*)myColor;
 -(UIImage*)drawBiggerCircleView:(UIColor*)myColor;
 -(void)transitToPathView;

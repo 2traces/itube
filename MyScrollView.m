@@ -44,10 +44,10 @@
         CGPoint p1;// = [sender locationInView:self.superview];
         CGPoint p2 = [sender locationInView:scrolledView];
 
-        [scrolledView selectStationAt:&p2];
+        [scrolledView selectItemAt:&p2];
         p1 = [self convertPoint:p2 fromView:scrolledView];
         p1 = [self convertPoint:p1 toView:self.superview];
-        [self.superview selectStationAt:p1];
+        [self.superview selectItemAt:p1];
     }
 }
 
