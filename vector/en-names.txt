@@ -1,8 +1,17 @@
-0	Isla de la Juventud
+[categories]
+0	Hotels
+1	Shitty stuff
+2	Never go there
+3	Fucking hell
+4	Get outta here!
+5	Run, Forest, run!
+6	Pusher place
+[list]
+0	Isla de la Juventud	0,1,2,3
 1	Peninsula de Guanahacabibes
 2	Cayo Largo
 10	Nueva Gerona
-13	Canal de la Cruz
+13	Canal de la Cruz	0,1,2,3,6
 18	Maceo
 19	Cayo Sijú
 21	Santa Fé
@@ -13,18 +22,18 @@
 33	Guayabo
 35	La Melvis
 36	Valle San Juan
-37	Mina de Oro
+37	Mina de Oro	3,4,5,6
 38	Presidio Modelo
 39	Playa Sirena
 41	Aeropuerto Siguanea
 43	Playa Bibijagua
 44	Cayo Piedra
-46	Crocodile breeding station
+46	Crocodile breeding station	0,1,2,3,4,5,6
 47	La Reforma
 48	Cocodrilo
 49	Reparto Chacón
 50	Argelia Libre
-52	Atanagildo Gajigat
+52	Atanagildo Gajigat	0,1,2,3,4,5,6
 53	Julio Antonio Mella
 56	edp deparment of narcoticts
 58	Júcaro
@@ -62,7 +71,7 @@
 101	Little Sound
 102	Colliers Bay
 103	Seven Mile Beach
-104	Kitesurfing spot Cayman Islands!
+104	Kitesurfing spot Cayman Islands!	0,1,2,3,4,5,6
 105	Camana Bay
 106	Governor´s Creek
 107	West Bay
@@ -121,7 +130,7 @@
 160	The Great House
 161	Regal Beach Club
 162	Cemetery
-163	Channel
+163	Channel	0,1,2,3,4,5,6
 164	Islands Club
 165	Plantana
 166	Tarpon Alley
@@ -232,11 +241,11 @@
 272	Charles Bight Pond
 273	Spot Bay Pond
 274	Layman E. Scott Sr. High School
-275	Affordable Housing Scheme
-276	Brac Reef Beach Resort
+275	Affordable Housing Scheme	0
+276	Brac Reef Beach Resort	0
 277	Cayman Brac Landfill
 278	Southern Cross Club
-279	Pirates Point Resort
+279	Pirates Point Resort	0
 280	Cayman Brac Agriculture Grounds
 281	Wreck of Russian Frigate - M/V Captain Keith Tibbetts
 282	Pond
@@ -385,7 +394,7 @@
 427	Jiguani
 428	Yara
 429	Rio Cauto
-430	San Germán
+430	San Germán	0,1,2,3,4,5,6
 431	Pilon
 432	Chivirico
 433	Baire
@@ -396,20 +405,20 @@
 438	Mangos de Baraguá
 439	Veguitas
 440	Ceiba Hueca
-441	Uvero
+441	Uvero	0,1,2,3,4,5,6
 442	Maffo
 443	Matias
 444	Airfield
 446	Pico Turquino
-447	Dos Rios
+447	Dos Rios	0,1,2,3,4,5,6
 448	Cayo Casino
 449	Santa Rita
 450	Alto Cedro
 451	Quiebra Seca
 452	Palmas Altas
 453	José Marti
-454	Los Negros
-455	Ciudad Pesquera
+454	Los Negros	0,1,2,3,4,5,6
+455	Ciudad Pesquera	0,1,2,3,4,5,6
 457	Guamo Embarcadero
 459	La Aguada
 460	Troya
@@ -419,7 +428,7 @@
 465	Cauto Embarcadero
 466	ICP
 467	Cruce de los Banos
-468	Calicito
+468	Calicito	0,1,2,3,4,5,6
 469	Portillo
 470	Ceiba Hueca Arriba
 471	Playa Mar Verde
@@ -703,7 +712,7 @@
 787	Cbq Trailers 2364
 788	av59 warehouse
 789	Tennis court
-790	Windjammer Café and Ballroom
+790	Windjammer Café and Ballroom	0
 791	Tennis courts
 792	Morrin Center
 793	Ordinance Bunkers
@@ -712,7 +721,7 @@
 796	Ferry Landing
 797	CH-53E Sea Stallions
 798	Fort Hicacal
-799	Skate Park
+799	Skate Park	0
 800	AF-2W Possible Crash Site, April 1955
 801	Helipad
 802	Helipad
@@ -728,7 +737,7 @@
 812	Marine Hill Swimming Pool
 813	NSGA Guantanamo Bay
 814	Tennis courts
-815	Heliport
+815	Heliport	6
 816	JIFF
 817	Hidden Beach
 818	Teen Center
@@ -949,7 +958,7 @@
 1088	Kindergarden
 1089	Provincial court
 1090	Lake
-1091	Bus depot
+1091	Bus depot	6
 1092	Overflow
 1093	Lake
 1094	High School Cuqui Bosch
@@ -958,7 +967,7 @@
 1097	Mendive college
 1098	Graveyard
 1099	Santiago de Cuba VOR DME
-1100	Gran Piedra
+1100	Gran Piedra	6
 1103	Lake
 1104	El Caney Park
 1105	Maternity hospital
@@ -968,7 +977,7 @@
 1110	Chalons' Dam
 1112	Cathedral
 1114	Colegio De La Salle
-1118	City hall
+1118	City hall	0,1
 1119	Provincial administration
 1120	Ice creme parlour
 1121	Service station Quintero
@@ -1141,34 +1150,34 @@
 1365	Mining area
 1366	Julio Antonio Mella
 1367	Palmarito de Cauto
-1368	Biran
+1368	Biran	0,1,2,3,4,5,6
 1369	Loma Blanca
 1370	La Pedrona
 1371	Pinalito
 1372	Sugar factory
 1373	Castro Family Farm
-1374	Villa Pinares de Mayari (Gaviota)
+1374	Villa Pinares de Mayari (Gaviota)	0,1,2,3,4,5,6
 1375	Factory
 1376	Baseball field
 1377	Graveyard
 1378	Baseball stadion
 1379	Waterfalls and Look-out tower
-1380	Graveyard
+1380	Graveyard	0,1,2,3,4,5,6
 1381	Graveyard
 1382	Graveyard
 1383	Baseball field
 1385	Nicaro Nickel Mine
 1386	Mayari Arriba
-1387	Sagua de Tanamo
+1387	Sagua de Tanamo	0,1,2,3,4,5,6
 1388	San Benito
 1389	Bayate
-1390	La Quijada
+1390	La Quijada	0,1,2,3,4,5,6
 1391	Rio Grande
 1392	Tumba Siete
 1393	Micara Lake
-1394	La Calabaza
+1394	La Calabaza	0,1,2,3,4,5,6
 1395	Magueyal
-1396	Soledad
+1396	Soledad	0,1,2,3,4,5,6
 1397	Saltadero
 1398	El Toro
 1399	Lake
@@ -1473,20 +1482,20 @@
 2042	Cinema Avellaneda
 2043	Santa Ana church
 2044	Cinema Encanto
-2045	Cinema Casablanca
+2045	Cinema Casablanca	0,1,2,3,4,5,6
 2046	Cinema Guerro
 2047	Church
 2048	Casa Ignacio Agramonte
 2050	Bautista church
 2051	Blanca rosa del valle house
 2052	Bar La Popular
-2055	Central post office
+2055	Central post office	0,1,2,3,4,5,6
 2057	Las Tunas
 2058	Jobabo
 2059	Vázquez
 2060	Calixto
 2061	Buenaventura
-2062	Mir
+2062	Mir	0,1,2,3,4,5,6
 2063	Las Parras
 2064	Bartle
 2065	Omaja
@@ -1532,7 +1541,7 @@
 2110	Baseball field
 2111	Baseball field
 2112	Baseball field
-2113	Swimming pool
+2113	Swimming pool	0,1,2,3,4,5,6
 2114	Las Tunas Hotel
 2115	Baseball field
 2116	Baseball field
@@ -1541,7 +1550,7 @@
 2119	Baseball park
 2120	Graveyard
 2121	Graveyard
-2122	Graveyard
+2122	Graveyard	0,1,2,3,4,5,6
 2124	Baseball field
 2125	Free entertainment area "El Tanque de Buena Vista"
 2126	Graveyard
@@ -1596,7 +1605,7 @@
 2184	Cueto
 2185	Delicias
 2186	Báguanos
-2187	Diaz Coello
+2187	Diaz Coello	0,1,2,3,4
 2188	Tacajo
 2189	Maceo
 2190	Gibara
@@ -1616,7 +1625,7 @@
 2205	San Piedra
 2206	Salgacero
 2207	Bocas
-2208	San Martin
+2208	San Martin	0,1,2,3,4,5,6
 2209	Los Rasos
 2210	Lora
 2211	Lomo del Cedro
@@ -1634,7 +1643,7 @@
 2223	Monte Alto
 2224	El Nispero
 2225	Fidelidad
-2226	Airfield
+2226	Airfield	0,1,2,3,4,5,6
 2227	Prison
 2228	Airfield
 2229	Sugar factory
@@ -1643,7 +1652,7 @@
 2233	Plaza Revolution
 2234	Prison
 2235	V. I. Lenin hospital
-2236	Puerto de Vita
+2236	Puerto de Vita	0,1,2,3,4,5,6
 2239	Hospital
 2241	Graveyard
 2243	University hospital
@@ -1674,7 +1683,7 @@
 2268	Graveyard
 2269	Céspedes park
 2270	Baseball field
-2271	Calixto Garcia park
+2271	Calixto Garcia park	0,1,2,3,4,5,6
 2272	Graveyard
 2273	Graveyard
 2274	Graveyard
@@ -1705,7 +1714,7 @@
 2302	HAS
 2303	HAS
 2304	HAS
-2305	HAS
+2305	HAS	0,1,2,3,4,5
 2306	HAS
 2307	HAS
 2308	HAS
@@ -1713,12 +1722,12 @@
 2310	HAS
 2311	Swimming pool
 2312	HAS
-2313	HAS
+2313	HAS	0,1,2,3,4,5
 2314	HAS
 2315	HAS
 2316	HAS
 2317	HAS
-2318	Park
+2318	Park	0,4,5,6
 2319	Graveyard
 2320	HAS
 2321	Police
@@ -1884,20 +1893,20 @@
 2491	Mathew Town Harbour
 2492	Tennis Court
 2493	Landing pier
-2494	Mathew Town Lighthouse
+2494	Mathew Town Lighthouse	0,1,2,3
 2495	Nuevitas
 2496	Manati
-2497	Camalote
+2497	Camalote	0,1,2
 2498	Puerto de Pastelillo
 2499	Puerto Tarafa
 2500	Tararaco
 2501	Santa Lucia Airport (ICAO: MUSL)
 2502	San Miguel de Bagá
-2503	San Basilio
+2503	San Basilio	0,1,2,3,4,5,6
 2504	Playa Covarrubias 
 2506	Puerto Manati
 2509	Club Mayanabo
-2510	Sugar factory (disused)
+2510	Sugar factory (disused)	0,1,2,3,4,5,6
 2511	Santa Rita
 2512	Manati airfield (closed)
 2514	Gran Club Santa Lucia
@@ -2035,7 +2044,7 @@
 2665	Los Palacios
 2666	Herradura
 2667	La Coloma Airport
-2668	Guatana
+2668	Guatana	0,1,2,3,4,5,6
 2669	Pilotos
 2671	Entronque de Herradura
 2672	La Coloma
@@ -2518,13 +2527,13 @@
 3409	Jewfish Cay
 3410	Betsy Bay
 3411	Lake
-3412	Culmer´s Cay
+3412	Culmer´s Cay	0,1,2,3,4,5,6
 3413	Six Pack Pond
 3414	Santa Maria Beach
 3415	Tommy Young´s Cay
 3416	Hog Cay
 3417	Snug Corner
-3418	George Town Airport
+3418	George Town Airport	0,1,2,3,4,5,6
 3419	Exuma International Airport
 3420	San Salvador Airport
 3421	Duck Pond
@@ -2533,7 +2542,7 @@
 3424	Colonel Hill
 3425	Salinas Point
 3426	New Bight Airport
-3427	Hartswell
+3427	Hartswell	0,1,2,3,4,5,6
 3428	Port Nelson
 3429	Clarence Town
 3430	Spring Point
@@ -2674,20 +2683,20 @@
 3565	Pond
 3566	Crab Island Beach Resort
 3567	School
-3568	BEC Power Plant
+3568	BEC Power Plant	0,1,2,3,4,5,6
 3569	Houseman's
 3570	Kermit's Airport Lounge
 3571	Government Dock
 3572	Three Sisters Islands
 3573	Bahama Houseboats
-3574	Pagoda Place Apartments site
+3574	Pagoda Place Apartments site	0,1,2,3,4
 3575	Pond
 3576	Regatta Point
 3577	Club Peace & Plenty
 3578	Lake
-3579	Pond
+3579	Pond	0,1,2,3,4,5,6
 3580	Bridge between Great Exuma and Little Exuma Islands
-3581	Royal Bank of Canada
+3581	Royal Bank of Canada	0,1,2,3,4,5,6
 3582	Dean's Blue Hole
 3583	Stella Maris Tennis Courts
 3584	Church Grove
@@ -2772,7 +2781,7 @@
 3670	San Carlos
 3671	Santa Cruz
 3672	Mango Jobo
-3673	Gregorio Garcia
+3673	Gregorio Garcia	0,1,2,3,4
 3674	Cayo Arenas
 3675	Silvio Claro
 3676	Taco Taco
@@ -2781,7 +2790,7 @@
 3679	Harlem
 3680	Montana
 3681	Cuban Missile Crisis, San Cristobál IV
-3682	Dam
+3682	Dam	0,1,2,3,4,5,6
 3683	Fierro
 3684	Carabela
 3685	Dam
@@ -2791,7 +2800,7 @@
 3689	Chirigotas
 3690	Dam
 3691	Punta de Piedra
-3692	Ship Builder's / Breakers Yard
+3692	Ship Builder's / Breakers Yard	0,1,2,3,4,5,6
 3693	San José
 3694	Dam
 3695	Puerta Prieta
@@ -3050,7 +3059,7 @@
 3966	Aguacate
 3968	Campo Florido
 3969	Agricultural University (UNAH)
-3970	Los Palos
+3970	Los Palos	0,1,2,3,4
 3971	Naranjal
 3972	Nueva Paz
 3973	Hector Molina
@@ -3099,7 +3108,7 @@
 4020	Playa del Caimito
 4021	WWII Ammo Dumps Under San Antonio, TX
 4022	Hotel Cameleon Villas Jibacoa
-4023	Camilo Cienfuegos Sugar Mill, previously Hershey Mill
+4023	Camilo Cienfuegos Sugar Mill, previously Hershey Mill	0,1,2,3,4,5,6
 4024	Morales
 4025	MiG Fighter-Bomber Alert Pad
 4026	Airfield
@@ -3210,7 +3219,7 @@
 4148	Graveyard
 4150	Shopping Center Guanabo
 4151	Antenna Sites
-4152	Covert Fishbed Interceptor Parking Pad and Shelter - Puts Fighters Right on the Highway
+4152	Covert Fishbed Interceptor Parking Pad and Shelter - Puts Fighters Right on the Highway	0,1,2
 4153	"Tennis Courts"
 4155	Graveyard
 4156	Tank Parking Pad and Shelter - Puts Tank Right on the Highway
@@ -3219,7 +3228,7 @@
 4159	Railway station
 4160	Graveyard
 4161	Mirador, Bus stop
-4162	Covert Fishbed Interceptor Parking Pad and Shelter - Puts Fighters Right on the Highway - Recently Used
+4162	Covert Fishbed Interceptor Parking Pad and Shelter - Puts Fighters Right on the Highway - Recently Used	5,6
 4163	Mi Cayito Beach
 4164	Park
 4165	Mi Cayito
@@ -3228,7 +3237,7 @@
 4168	Graveyard
 4169	Graveyard
 4170	Tunnel on Military Road to San Antonio de los Baños and Complex of Various Bunkers
-4171	Dam
+4171	Dam	4,5,6
 4172	Servi-Cupet
 4175	NB1978
 4177	Underground Bunker Drive-Thru Type
@@ -3238,10 +3247,10 @@
 4182	Missle Warhead Storage (Drive-Thru Underground Bunker)
 4183	Bunker, Drive-Thru Type
 4184	Missile Launcher Position
-4186	Church
+4186	Church	0,1,2,3,4,5,6
 4187	Cadeca Bank
 4189	Church
-4190	Staging Area for Frog-7 Missile Trailer-Laucher Unit/s
+4190	Staging Area for Frog-7 Missile Trailer-Laucher Unit/s	0,1,2,3,4,5,6
 4191	Drive Through Underground Missle Bunker / Tunnel
 4193	Souvenir Shop and observation desk
 4195	Railway station
@@ -3325,10 +3334,10 @@
 4285	Superclubs Breezes Varadero
 4287	dam
 4288	Barcelo Solymar Resort Hotel
-4289	Arenas Doradas 
+4289	Arenas Doradas 	0,1,2,3,4,5,6
 4290	Hotel Blau Varadero 
 4291	Hotel Villa Cuba
-4292	Melia Las Antillas
+4292	Melia Las Antillas	0,1,2,3,4,5,6
 4293	Iberostar Playa Alameda Hotel
 4294	Hotel Arenas Blancas
 4295	Be Live Turquesa
@@ -3483,7 +3492,7 @@
 4486	LaTaberna restaurant ( beach grill )
 4487	la Campana - Josone Park
 4488	Cupex Gas Staion
-4489	The post office. Before the revolution, the gate at the entrance to the land of Irénée du Pont
+4489	The post office. Before the revolution, the gate at the entrance to the land of Irénée du Pont	0,1,2,3,4,5,6
 4490	BAR
 4491	Benny Moores restaurant-bar
 4492	Grocery store at Calle 54 
@@ -3497,7 +3506,7 @@
 4505	LCDH Cigar Store
 4506	Sport items store
 4507	Internet cafe
-4508	small tourist market
+4508	small tourist market	0,1,2,3,4,5,6
 4509	Casa de Miel
 4510	Havana Club (Night Club)
 4511	Bank
@@ -3584,26 +3593,26 @@
 4629	Playa Nazábal
 4630	dam
 4631	La Punta
-4633	Airfield
+4633	Airfield	0,1,2,3,4,5,6
 4634	Ramal Pura y Moraima
 4635	Playa Uvero
 4636	Airfield
 4637	Sugar factory
 4638	Sugar factory
 4639	Factory
-4643	Ballpark
-4644	Ballpark
-4645	Ballpark
+4643	Ballpark	0,1,2,3,4,5,6
+4644	Ballpark	0,1,2,3,4,5,6
+4645	Ballpark	0,1,2,3,4,5,6
 4646	Graveyard
 4647	Graveyard
 4648	Graveyard
 4649	Bridge
 4650	Cayo Santa Maria
 4651	Cayo Las Brujas
-4652	Cayo Ensenachos
+4652	Cayo Ensenachos	0,1,2,3,4,5,6
 4654	Melia Las Dunas
 4655	Cayo Las Brujas Airport
-4658	Sol Cayo Santa Maria
+4658	Sol Cayo Santa Maria	0,1,2,3,4,5,6
 4659	Melia Cayo Santa Maria
 4660	Barcelo Cayo santa maria
 4663	Melia Buenavista
@@ -3654,15 +3663,15 @@
 4714	Munitions Bunkers
 4715	Fidel Castro's home
 4719	Food Industry Research Institute (IIIA)
-4721	El Cano
+4721	El Cano	0,1,6
 4722	Santa Fe Airport
 4724	"Fidel's Folly" - Lourdes
 4725	Abandoned SAM Site
 4726	Air-Freight Facilities 
 4727	Guatao
-4729	"highway strip" airfield
+4729	"highway strip" airfield	0,5,6
 4731	Centro de Ingeniería Genetica y Biotecnología
-4732	Lourdes Central SIGINT COmplex - HQ/Admin Building
+4732	Lourdes Central SIGINT COmplex - HQ/Admin Building	0,1,6
 4733	Radio and Television Broadcasting Antenna Facility
 4736	High Security Military Compound
 4737	Lourdes Central SIGINT Complex - Space Associated Electronics Area North
@@ -3701,13 +3710,13 @@
 4789	Underground Hangar
 4790	La Laguna
 4791	Neurology
-4792	Heavy Lift Aircraft Taxi Way
+4792	Heavy Lift Aircraft Taxi Way	0,1,2,3,4,5,6
 4794	Security offices to Fidel Castro
 4795	Northern Tip of Lourdes SIGINT Station Runway
 4796	Runway to Taxiway Aircraft Transitions Point
 4797	Taxiway for heavy lift cargo aircraft and heavy SIGINT Planes
 4798	Military Aircraft Hangar
-4800	Satellite Uplink/Downlink Station to SIGINT Relay Birds
+4800	Satellite Uplink/Downlink Station to SIGINT Relay Birds	0,1,2,3,4,5,6
 4802	Old Revetments
 4804	House of Ramon Castro Ruiz
 4805	Southern Tip of Lourdes SIGINT Station Runway
@@ -3720,7 +3729,7 @@
 4816	Residencia Instituto Superior de Ciencias Básicas "Victoria de Girón"
 4817	Home of the Commandant
 4820	Memorial
-4822	ICID COMBIOMED
+4822	ICID COMBIOMED	0,1,2,3,4,5,6
 4823	El Cachon
 4824	Southern Taxiway of Lourdes SIGINT Station Runway - Fishbed Interceptors
 4829	Residence of the vice president
@@ -3728,23 +3737,23 @@
 4831	Radome
 4832	Torrens, 1
 4833	Bunker
-4834	Bunker
+4834	Bunker	4,5,6
 4835	Bunker
 4836	Bunker
 4837	Bunker
-4838	Bunker
+4838	Bunker	0,1,2,6
 4839	Bunker
 4840	Bunker
 4841	Bunker
-4842	Bunker
+4842	Bunker	0,1,2,3,4,5,6
 4846	Graveyard
 4847	MiG Parking Pad
 4848	Taxi Way - Fighter Aircraft
 4849	Direction-finder "DOM"
-4852	Medical Helipad
+4852	Medical Helipad	0,1,2,3
 4855	Church
 4857	Surface to Air Missile Battery Position - Look like an old SA-2 site, but there has been a recent launch here
-4858	Surface to Air Missile Battery Position - Look like an old SA-2 site, but there has been a recent launch here
+4858	Surface to Air Missile Battery Position - Look like an old SA-2 site, but there has been a recent launch here	0,1,2,3,4,5,6
 4861	Bunker Entrance
 4862	SAM
 4863	another missile
@@ -3752,41 +3761,41 @@
 4865	Surface to Air Missile - Air Defense
 4867	Bưu điện huyện Mĩ Lộc
 4869	casa de forte
-4870	Policlinico prdro fonseca
+4870	Policlinico prdro fonseca	0,1,2
 4877	Arroyo Naranjo
 4878	San Miguel del Padrón
 4879	Diez de Octubre
 4880	Cerro
 4881	Parque Lenin
 4882	National Botanic Garden
-4883	José Martí International Airport
+4883	José Martí International Airport	0,1,2,3,4,5,6
 4884	Párraga / El Rosario
 4885	Santiago de la Vega
-4886	Reparto El Electrico
+4886	Reparto El Electrico	0,1,2,3,4,5,6
 4887	Narokko, 12th Educational centre (new brigade) МО the USSR
-4888	Tank and Heavy Atillery Bunk - and training/practice range
+4888	Tank and Heavy Atillery Bunk - and training/practice range	5,6
 4889	Bejucal
 4890	Mantilla
-4891	Military compound
+4891	Military compound	0,1,2,3,4,5,6
 4892	Calabazar
 4893	Havana Train Station
 4894	Bejucal East Station - Signals Intelligence / Eavesdropping Station
 4895	ISPJAE (CUJAE)
 4896	El Calvario
-4897	Víbora Park
+4897	Víbora Park	0,1,2,3,4,5,6
 4898	El Moro
-4899	SIGINT Facility
+4899	SIGINT Facility	0,1,2,3,4,5,6
 4900	ExpoCuba
 4901	National Zoo
 4902	Oriental Park horse race track
-4903	Lenin High School
-4904	Anti-Aircraft Missile Sites
+4903	Lenin High School	0,1,2,3,4,5,6
+4904	Anti-Aircraft Missile Sites	0,1,2,3,4,5,6
 4905	Arroyo Apolo
 4907	Havanna Golf Club
 4908	RadioCommunication Antenna Site near the Airport
 4909	La Lira
-4910	La Palma
-4913	Amusement park
+4910	La Palma	6
+4913	Amusement park	5,6
 4916	Toledo
 4918	7th OMSB МО the USSR 12th Educational centre (an old brigade)
 4920	IIMA Instituto de Investigacion de Maquinaria Agricola
@@ -3801,7 +3810,7 @@
 4935	Sports ground
 4936	Ingenio Azucarero Manuel Martinez Prieto
 4939	Russian SIGINT Processing Facility
-4941	Stadion Cerro Pelado
+4941	Stadion Cerro Pelado	0,1,2,3,4,5,6
 4943	Santiago de las Vegas Experimental Agronomical Station
 4947	Paediatric CardioCenter "William Soler" 
 4948	Soccer field
@@ -3829,7 +3838,7 @@
 4994	Museo de Marianao
 4996	fiestas locas
 4997	House of Fructuoso Rodriguez
-4998	Children playground
+4998	Children playground	0,1,5,6
 5000	Fountain
 5003	Medical unit
 5005	Policlinic Carlos J. Finlay
@@ -3857,9 +3866,9 @@
 5110	The National Art Schools
 5111	Havana Biltmore Yacht and Country Club
 5112	Runway (MULB)
-5113	El Reparto Nautico
+5113	El Reparto Nautico	0,1,2,3,4,5,6
 5114	Columbia Airbase Hangars & Facilities
-5116	Coney Island Park
+5116	Coney Island Park	0
 5118	Hotel Cubanacan Comodoro
 5119	Hotel Neptuno and Triton
 5120	Hotel Melia Habana
@@ -3917,11 +3926,11 @@
 5201	hisham kingfor soy marroqoui
 5202	El Vedado
 5203	Habana Vieja - Old Havana
-5204	Centro Habana
+5204	Centro Habana	0,1,2,3,4,5,6
 5205	Consejo Popular Vedado-Malecón
 5207	Colon Cemetery
 5209	Ciudad Escolar Libertad
-5211	INDER Instituto Nacional de Deportes, Educación física y Recreación
+5211	INDER Instituto Nacional de Deportes, Educación física y Recreación	0,1,2,3,4,5,6
 5212	Ciudad Deportiva. Sports City
 5214	Loma del Quinto Distrito Hill
 5215	Echavarria/Alonso
@@ -3929,7 +3938,7 @@
 5218	Abandoned Runway (MULB)
 5220	Ampliacion del Casino Deportivo
 5224	Loma de Chaple
-5225	Service station José Ramirez Casamayor
+5225	Service station José Ramirez Casamayor	0,4,5,6
 5226	Finca de los Monos or Quinta Las Delicias
 5227	Asilo Santovenia
 5228	Donkey Hill
@@ -4085,14 +4094,14 @@
 5445	Abuela's house
 5446	Canadian Embassy
 5448	Former chocolate factory "La Estrella"
-5449	Embassy of Malaysia in Cuba
+5449	Embassy of Malaysia in Cuba	0,1,2,3,4,5,6
 5451	Cigar Factory
 5454	Antigua escuela Nuestra Señora del Buen Consejo
 5456	Facultad de Fisica
 5457	Solidarity with Chile Elementary School
 5458	Beach
 5460	Libyan embassy
-5461	Police Headquarters
+5461	Police Headquarters	0,1,2,3,4,5,6
 5463	Secundaria Basica  Enrique Maza
 5464	Remnants of the Old City Wall
 5466	Marti Theatre
@@ -4136,7 +4145,7 @@
 5518	Bus terminal Bahia
 5519	Guanabacoa Bus Terminal
 5520	Cojimar roundabout
-5521	Casablanca Park
+5521	Casablanca Park	0,1,2,3,4,5,6
 5522	Technical high school Lazaro Pena
 5523	Chivo Beach
 5524	Los Judios graveyard
@@ -4164,7 +4173,7 @@
 5555	Plaza San Fransisco de Asís
 5556	Seminario de San Carlos y San Ambrosio
 5557	Mercado La Plaza
-5558	Guanabacoa roundabout
+5558	Guanabacoa roundabout	0,1,2,3,4,5,6
 5559	Los Alelies kindergarten
 5560	Lonja del Comercio
 5561	La Divina Pastora
@@ -4187,25 +4196,25 @@
 5583	Hostal Valencia/Comendador
 5584	Museum of Colonial Art
 5585	Basilica Menor de San Francisco de Asis
-5586	Guaicanamar park
+5586	Guaicanamar park	0,1,2,3,4,5,6
 5587	Palacio de los Marqueses de Arcos
 5588	Habaguanex S.A.
 5589	Calle Oficios
 5590	Hotel Raquel
-5593	Municipal authorities
+5593	Municipal authorities	0,1,2,3,4,5,6
 5594	Hotel Ambos Mundos
 5595	Oldtimer Museum
 5596	Bar Dos Hermanos
 5597	Palacio del Conde Lombillo
 5599	Casa de la Comedia
 5600	Iglesia de San Francisco de Paula
-5601	Casa de los Arabes
+5601	Casa de los Arabes	0,1,2,3,4,5,6
 5602	Statue : Neptune
 5603	Mercado Ave del Puerto
 5606	El Templete
 5607	Cafe del Oriente
 5611	Churruca - Train Waggon
-5612	Palacio de los Marqueses de Aguas Claras
+5612	Palacio de los Marqueses de Aguas Claras	0,1,2,3,4,5,6
 5613	Greek Orthodox Church
 5614	Cristo de la Habana
 5616	Taller Experimental de Gráfica
@@ -4344,63 +4353,63 @@
 5759	Little Cistern Cay
 5760	Rat Cay
 5761	Richmond Hill
-5762	Kemp Cay
+5762	Kemp Cay	0,1,2,3,4,5,6
 5763	Leaf Cay
 5764	Salt Lake
 5765	Long Rock Cay
 5766	Little Hog Cay
 5767	Little Galliot Cay
 5768	Anne´s Tract
-5769	White Bay Cay
+5769	White Bay Cay	0,1,2,3,4,5,6
 5770	Salt Lake
 5771	Sugar Cay
 5772	Staniel Cay Airport
 5773	Black Point Airfield
 5774	Cay
-5775	Salt Cay
+5775	Salt Cay	0,1,2,3,4,5,6
 5776	Private Island
 5777	Peggy Wild Cay
 5778	White Cay
 5779	Airfield
 5780	Boysie Cay
 5781	Rocky Dundas
-5782	Lee Stocking Island Airfield
+5782	Lee Stocking Island Airfield	0,1,2,3,4,5,6
 5783	Little Pigeon Cay
-5784	Petit Bock Cay
+5784	Petit Bock Cay	0,1,2,3,4,5,6
 5785	Pigeon Cay
-5786	Lansing Cay
+5786	Lansing Cay	0,1,2,3,4,5,6
 5787	Elbow Cay
-5788	Little Bell Island
-5789	North Gaulin Cay
+5788	Little Bell Island	0,1,2,3,4,5,6
+5789	North Gaulin Cay	0,1,2,3,4,5,6
 5790	Salt Lake
 5791	Dennis Cay
 5792	Salt Lake
-5793	Salt Lake
+5793	Salt Lake	0,1,2,3,4,5,6
 5794	Sandy Cay
-5795	Sampson Cay Marina
-5796	Salt Lake
+5795	Sampson Cay Marina	0,1,2,3,4,5,6
+5796	Salt Lake	0,1,2,3,4,5,6
 5797	Guana Cay
 5798	High Cay
 5799	Rudder Cut Cay Airfield
 5800	North Waderick Wells Cay
-5801	Jimmy Cay
+5801	Jimmy Cay	0,1,2,3,4,5,6
 5802	Farmer´s Cay Airport
 5803	Salt Lake
 5804	Airstrip
-5805	Wood Dove Cay
+5805	Wood Dove Cay	0,1,2,3,4,5,6
 5806	Hamlet Cay
 5807	Darling Cay
-5808	Sampson Cay Airfield
+5808	Sampson Cay Airfield	0,1,2,3,4,5,6
 5809	Black Rock
 5810	Little Darby Island Airstrip
 5811	Airfield
 5812	Airfield
 5813	Compass Cay Marina
-5814	Staniel Cay Yacht Club
+5814	Staniel Cay Yacht Club	0,1,2,3,4,5,6
 5815	Thunderball Cave
 5816	Bridge
 5817	Solar Plant
-5818	Birdcage Villa
+5818	Birdcage Villa	0,1,2,3,4,5,6
 5819	Pier
 5820	Island Dock
 5821	Island Dock

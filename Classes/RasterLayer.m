@@ -7,6 +7,7 @@
 //
 
 #import "RasterLayer.h"
+#import "ManagedObjects.h"
 
 #define MAX_QUEUE 10
 
@@ -889,41 +890,91 @@
         dm.rasterDownloader = rloader1;
         loader = dm;
         
-        description = [[NSMutableDictionary alloc] init];
-        // TODO other languages
-        NSString *fn = [NSString stringWithFormat:@"%@/en-names.txt", rasterPath];
-        NSString *contents = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
-        [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-            NSArray *words = [line componentsSeparatedByString:@"\t"];
-            int _id = [[words objectAtIndex:0] intValue];
-            NSString *name = [words objectAtIndex:1];
-            RDescription *desc = [description objectForKey:[NSNumber numberWithInt:_id]];
-            if(desc == nil) {
-                desc = [[RDescription alloc] initWithName:name andDescription:nil];
-                [description setObject:desc forKey:[NSNumber numberWithInt:_id]];
-            } else {
-                desc.name = name;
-            }
-        }];
-        // TODO other languages
-        fn = [NSString stringWithFormat:@"%@/en-descriptions.txt", rasterPath];
-        NSString *contents2 = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
-        [contents2 enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-            NSArray *words = [line componentsSeparatedByString:@"\t"];
-            int _id = [[words objectAtIndex:0] intValue];
-            NSString *name = [words objectAtIndex:1];
-            RDescription *desc = [description objectForKey:[NSNumber numberWithInt:_id]];
-            if(desc == nil) {
-                desc = [[RDescription alloc] initWithName:nil andDescription:name];
-                [description setObject:desc forKey:[NSNumber numberWithInt:_id]];
-            } else {
-                desc.description = name;
-            }
-        }];
+//        description = [[NSMutableDictionary alloc] init];
+//        // TODO other languages
+//        NSString *fn = [NSString stringWithFormat:@"%@/en-names.txt", rasterPath];
+//        NSString *contents = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
+//        [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+//            NSArray *words = [line componentsSeparatedByString:@"\t"];
+//            int _id = [[words objectAtIndex:0] intValue];
+//            NSString *name = [words objectAtIndex:1];
+//            RDescription *desc = [description objectForKey:[NSNumber numberWithInt:_id]];
+//            if(desc == nil) {
+//                desc = [[RDescription alloc] initWithName:name andDescription:nil];
+//                [description setObject:desc forKey:[NSNumber numberWithInt:_id]];
+//            } else {
+//                desc.name = name;
+//            }
+//        }];
+//        // TODO other languages
+//        fn = [NSString stringWithFormat:@"%@/en-descriptions.txt", rasterPath];
+//        NSString *contents2 = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
+//        [contents2 enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+//            NSArray *words = [line componentsSeparatedByString:@"\t"];
+//            int _id = [[words objectAtIndex:0] intValue];
+//            NSString *name = [words objectAtIndex:1];
+//            RDescription *desc = [description objectForKey:[NSNumber numberWithInt:_id]];
+//            if(desc == nil) {
+//                desc = [[RDescription alloc] initWithName:nil andDescription:name];
+//                [description setObject:desc forKey:[NSNumber numberWithInt:_id]];
+//            } else {
+//                desc.description = name;
+//            }
+//        }];
+        
+        [self readMapItemNames];
         
         piecesCount = 0;
     }
     return self;
+}
+
+- (void)readMapItemNames {
+//    [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+    NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:nil];
+    NSString *fn = [NSString stringWithFormat:@"%@/en-names.txt", rasterPath];
+    NSString *contents = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
+    __block BOOL areWeReadingCategories = YES;
+    [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+        
+        if ([line isEqualToString:@"[categories]"]) {
+            areWeReadingCategories = YES;
+        } 
+        else if ([line isEqualToString:@"[list]"]) {
+            areWeReadingCategories = NO;
+        } 
+        else {
+            NSArray *words = [line componentsSeparatedByString:@"\t"];
+            int _id = [[words objectAtIndex:0] intValue];
+            NSString *name = [words objectAtIndex:1];
+            if (areWeReadingCategories) {
+                MCategory *category = [NSEntityDescription insertNewObjectForEntityForName:@"Category" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+                category.name = name;
+                category.index = [NSNumber numberWithInt:_id];
+            } 
+            else {
+                MItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+                item.name = name;
+                item.index = [NSNumber numberWithInt:_id];
+                NSString *categories = nil;
+                if ([words count] > 2) {
+                    categories = [words objectAtIndex:2];   
+                }
+                if (categories) {
+                    NSArray *catIds = [categories componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
+                    NSMutableSet *set = [item mutableSetValueForKey:@"categories"];
+                    for (NSString *catId in catIds) {
+                        MCategory *cat = [[MHelper sharedHelper] categoryByIndex:[catId intValue]];
+                        if (cat) {
+                            [set addObject:cat];
+                        }
+                    }
+                }
+
+            }
+        }
+        [[MHelper sharedHelper] saveContext];
+    }];
 }
 
 -(void)complete:(NSValue*)value
