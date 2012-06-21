@@ -461,7 +461,7 @@
     rasterLayer.cacheZoom = z;
     Scale = scale;
     if([rasterLayer checkLevel:Scale*SCALE]) {
-        //[rasterLayer stopLoading];
+        [rasterLayer stopLoadingBut:Scale*SCALE];
         [self redraw];
     }
 }
