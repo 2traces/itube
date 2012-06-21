@@ -151,7 +151,7 @@
     }
     
     UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
-    myImageView.image = [self imageWithColor:[(MItem*)[self.filteredStation objectAtIndex:indexPath.row] lines]];    
+//    myImageView.image = [self imageWithColor:[(MItem*)[self.filteredStation objectAtIndex:indexPath.row] lines]];    
     
     return cell;
 }

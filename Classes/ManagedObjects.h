@@ -27,6 +27,8 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *categories;
 @property (nonatomic, retain) MTransfer* transfer;
+
+
 @end
 
 @interface MHistory : NSManagedObject

@@ -9,6 +9,12 @@
 #import "ManagedObjects.h"
 #import "tubeAppDelegate.h"
 
+@interface MItem (CoreDataGeneratedAccessors)
+
+- (void)addCategoriesObject:(MCategory*)value;
+
+@end
+
 @implementation MItem
 
 @dynamic index;

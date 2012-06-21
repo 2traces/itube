@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11E53" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Category" syncable="YES">
+    <entity name="Category" representedClassName="MCategory" syncable="YES">
         <attribute name="color" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="items" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="categories" inverseEntity="Item" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="categories" inverseEntity="Item" syncable="YES"/>
     </entity>
-    <entity name="History" syncable="YES">
+    <entity name="History" representedClassName="MHistory" syncable="YES">
         <attribute name="adate" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="theItem" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
     </entity>
-    <entity name="Item" syncable="YES">
+    <entity name="Item" representedClassName="MItem" syncable="YES">
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="categories" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="items" inverseEntity="Category" syncable="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="items" inverseEntity="Category" syncable="YES"/>
     </entity>
     <elements>
         <element name="Category" positionX="160" positionY="192" width="128" height="105"/>
