@@ -1,11 +1,11 @@
 [categories]
-0	Hotels
-1	Shitty stuff
+0	Hotel
+1	Airport
 2	Never go there
-3	Fucking hell
+3	Worth visiting
 4	Get outta here!
 5	Run, Forest, run!
-6	Pusher place
+6	Hospital
 [list]
 0	Isla de la Juventud	0,1,2,3
 1	Peninsula de Guanahacabibes

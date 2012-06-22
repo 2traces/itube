@@ -8,6 +8,7 @@
 
 #import "RasterLayer.h"
 #import "ManagedObjects.h"
+#import "tubeAppDelegate.h"
 
 #define MAX_QUEUE 10
 
@@ -924,6 +925,10 @@
         
         [self readMapItemNames];
         
+        tubeAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+        [[MHelper sharedHelper] readHistoryFile:[delegate nameCurrentMap]];
+        [[MHelper sharedHelper] readBookmarkFile:[delegate nameCurrentMap]];
+        
         piecesCount = 0;
     }
     return self;
@@ -970,7 +975,6 @@
                         }
                     }
                 }
-
             }
         }
         [[MHelper sharedHelper] saveContext];

@@ -399,23 +399,34 @@ static MHelper * _sharedHelper;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    //As a result we should get smth like 
-    //"any categories.name like[c] cat1 and any categories.name like[c] cat2 and..."
-    //so that resulted item(s) will contain all mentioned categories
+    NSPredicate *predicate = nil;
+    NSMutableString *categoriesListing = nil;
     
-    NSMutableString *categoriesListing = [NSMutableString stringWithString:@"any categories.name like[c] "];
-    for (NSString *catName in categoryNames) {
-        [categoriesListing appendFormat:@"%@ ", catName];
-        if (![catName isEqualToString:[categoryNames lastObject]]) {
-            [categoriesListing appendString:@"and any categories.name like[c] "];
+    if (categoryNames && [categoryNames count]) {
+        
+        //As a result we should get smth like 
+        //"any categories.name like[c] cat1 and any categories.name like[c] cat2 and..."
+        //so that resulted item(s) will contain all mentioned categories
+        
+        categoriesListing = [NSMutableString stringWithString:@"any categories.name like[c] "];
+        for (NSString *catName in categoryNames) {
+            [categoriesListing appendFormat:@"%@ ", catName];
+            if (![catName isEqualToString:[categoryNames lastObject]]) {
+                [categoriesListing appendString:@"and any categories.name like[c] "];
+            }
         }
+        
+        predicate = [NSPredicate predicateWithFormat:@"%@ and name like[c] %@",categoriesListing,item];
+        [fetchRequest setPredicate:predicate];
     }
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ and name like[c] %@",categoriesListing,item];
-    [fetchRequest setPredicate:predicate];
+    else {
+        predicate = [NSPredicate predicateWithFormat:@"name like[c] %@",item];
+        [fetchRequest setPredicate:predicate]; 
+    }
+
     
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if([fetchedItems count] == 0) {
+    if([fetchedItems count] == 0 && categoriesListing) {
         NSFetchRequest *fetchRequest2 = [[[NSFetchRequest alloc] init] autorelease];
         NSEntityDescription *entity2 = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
         [fetchRequest2 setEntity:entity2];
