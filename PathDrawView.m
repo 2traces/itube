@@ -99,14 +99,16 @@
 
 -(UIColor*)dsFirstStationSaturatedColor
 {
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    return [(UIColor*)[[appDelegate.mainViewController.fromStation lines] color] saturatedColor];
+    //tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    //return [(UIColor*)[[appDelegate.mainViewController.fromStation lines] color] saturatedColor];
+    return nil;
 }
 
 -(UIColor*)dsLastStationSaturatedColor
 {
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    return [(UIColor*)[[appDelegate.mainViewController.toStation lines] color] saturatedColor];
+    //tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    //return [(UIColor*)[[appDelegate.mainViewController.toStation lines] color] saturatedColor];
+    return nil;
 }
 
 

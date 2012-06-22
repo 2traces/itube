@@ -148,7 +148,7 @@
     }
     
     UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
-    myImageView.image = [self imageWithColor:[station lines]];
+    //myImageView.image = [self imageWithColor:[station categories]];
     
     NSDate *date2 = [NSDate date];
     NSLog(@"%f",[date2 timeIntervalSinceDate:date]);

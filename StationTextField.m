@@ -51,7 +51,7 @@
     
     CGRect newFrame;
     
-    newFrame.origin.x=13.0;
+    newFrame.origin.x=20.0;
     newFrame.origin.y=bounds.size.height/2-leftViewFrame.size.height/2;
     newFrame.size.width=leftViewFrame.size.width;
     newFrame.size.height = leftViewFrame.size.height;
@@ -69,7 +69,7 @@
     CGRect newFrame;
     CGSize textBounds = [self.text sizeWithFont:self.font];
     
-    newFrame.origin.x=3.0;
+    newFrame.origin.x=15.0;
     newFrame.origin.y=3.0;
     newFrame.size.width=rect.size.width-10.0;
     newFrame.size.height = textBounds.height;

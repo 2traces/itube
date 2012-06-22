@@ -236,12 +236,12 @@
 
 -(UIColor*)dsFirstStationSaturatedColor
 {
-    return [(UIColor*)[[self.fromStation lines] color] saturatedColor];
+    //return [(UIColor*)[[self.fromStation lines] color] saturatedColor];
 }
 
 -(UIColor*)dsLastStationSaturatedColor
 {
-    return [(UIColor*)[[self.toStation lines] color] saturatedColor];    
+    //return [(UIColor*)[[self.toStation lines] color] saturatedColor];    
 }
 
 
@@ -1161,73 +1161,15 @@
 {
     MainView *mainView = (MainView*)self.view;
     
-    if ([items count]>1) {
-        // это история и надо ставить обе станции
+    if ([items count]) {
         self.fromStation = [items objectAtIndex:0];
-        self.toStation = [items objectAtIndex:1];
-        
-        if (currentSelection==0) {
-            [stationsView setFromStation:self.fromStation];
-            [stationsView setToStation:self.toStation];
-        } else {
-            [stationsView setToStation:self.toStation];
-            [stationsView setFromStation:self.fromStation];
-        }
-        //       [self.stationsView transitToRouteState]; // with Station1 Station2
-        //     [self.routeScrollView appear];
-        
-        
-    } else if ([items count]==1) {
-        // это конкретная станция
-        if (currentSelection==0) {
-            if ([items objectAtIndex:0]==self.toStation) {
-                self.fromStation=nil;
-                [stationsView resetFromStation];
-            } else {
-                self.fromStation = [items objectAtIndex:0];
-                [stationsView setFromStation:self.fromStation];
-            }
-        } else {
-            if ([items objectAtIndex:0]==self.fromStation) {
-                self.toStation=nil;
-                [stationsView resetToStation];
-            } else {
-                self.toStation = [items objectAtIndex:0];
-                [stationsView setToStation:self.toStation];
-            }
-            
-            
-        }
-        
-    } else if ([items count]==0) {
-        if (currentSelection==0) {
-            self.fromStation=nil;
-            [stationsView setFromStation:self.fromStation];
-        } else {
-            self.toStation=nil;
-            [stationsView setToStation:self.toStation];
-        }
+        [stationsView setFromStation:self.fromStation];
+    }
+    else {
+        self.fromStation=nil;
+        //[stationsView resetFromStation];
     }
     
-    if ((self.fromStation==nil || self.toStation==nil)) {
-        [mainView.mapView clearPath];
-        
-        if (self.scrollView) {
-            [self removeScrollView];
-        }
-        
-        if (self.pathScrollView) {
-            [self changeView:nil];
-        }
-	} else {
-        [mainView findPathFrom:[fromStation name] To:[toStation name] FirstLine:[[[fromStation lines] index] integerValue] LastLine:[[[toStation lines] index] integerValue]];
-        if ([[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] activePath] count]>0) {
-            if (!([[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] activePath] count]==1 && [[[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] activePath] objectAtIndex:0] isKindOfClass:[Transfer class]])) {
-                [stationsView transitToPathView];
-                [self showScrollView];
-            }
-        }
-	}
     
 	mainView.mapView.stationSelected=false;
     

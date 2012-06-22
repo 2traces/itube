@@ -47,7 +47,7 @@
     MHelper *helper = [MHelper sharedHelper];
     self.dataSource = helper;
     
-    self.lineList = [dataSource getLineList];
+    self.lineList = [dataSource getCategoryList];
     
     self.colorDictionary = [[[NSMutableDictionary alloc] initWithCapacity:[self.lineList count]] autorelease];
     
@@ -109,7 +109,7 @@
 			sectionInfo.open = NO;
 			
             NSNumber *defaultRowHeight = [NSNumber numberWithInteger:DEFAULT_ROW_HEIGHT];
-			NSInteger countOfQuotations = [[line stations] count];
+			NSInteger countOfQuotations = [[line items] count];
             
 			for (NSInteger i = 0; i < countOfQuotations; i++) {
 				[sectionInfo insertObject:defaultRowHeight inRowHeightsAtIndex:i];
@@ -160,7 +160,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:section];
-	NSInteger numStoriesInSection = [[sectionInfo.line stations] count];
+	NSInteger numStoriesInSection = [[sectionInfo.line items] count];
 	
     return sectionInfo.open ? numStoriesInSection : 0;
     
@@ -191,7 +191,7 @@
     
     UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
     
-    myImageView.image = [self imageWithColor:[(MItem*)[self.stationsList objectAtIndex:indexPath.row] lines]];
+    //myImageView.image = [self imageWithColor:[(MItem*)[self.stationsList objectAtIndex:indexPath.row] lines]];
     
     NSDate *date2 = [NSDate date];
     NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
@@ -209,7 +209,7 @@
      Create an array containing the index paths of the rows to insert: These correspond to the rows for each quotation in the current section.
      */
     NSInteger countOfRowsToInsert = [sectionInfo.line.items count];
-    self.stationsList = [dataSource getStationsForLine:sectionInfo.line];
+    self.stationsList = [dataSource getItemsForCategory:sectionInfo.line];
     NSMutableArray *indexPathsToInsert = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < countOfRowsToInsert; i++) {
         [indexPathsToInsert addObject:[NSIndexPath indexPathForRow:i inSection:sectionOpened]];
@@ -292,7 +292,7 @@
 {
     MCategory *line = [self.lineList objectAtIndex:[indexPath section]];
     
-    NSArray *stations = [dataSource getStationsForLine:line];
+    NSArray *stations = [dataSource getItemsForCategory:line];
     
     NSString *cellValue = [[stations objectAtIndex:indexPath.row] name];
     
@@ -320,7 +320,7 @@
     
     MCategory *line = [self.lineList objectAtIndex:[path section]];
     
-    NSArray *stations = [dataSource getStationsForLine:line];
+    NSArray *stations = [dataSource getItemsForCategory:line];
     
     MItem *station = [stations objectAtIndex:path.row];
     
@@ -347,7 +347,7 @@
 	SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:section];
     if (!sectionInfo.headerView) {
 		NSString *lineName = sectionInfo.line.name;
-        sectionInfo.headerView = [[[SectionHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.mytableView.bounds.size.width, HEADER_HEIGHT) title:lineName color:[(UIColor*)sectionInfo.line.color saturatedColor] section:section delegate:self] autorelease];
+        sectionInfo.headerView = [[[SectionHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.mytableView.bounds.size.width, HEADER_HEIGHT) title:lineName color:[UIColor grayColor] section:section delegate:self] autorelease];
     }
     
     return sectionInfo.headerView;

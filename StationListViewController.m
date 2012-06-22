@@ -228,7 +228,7 @@
         }
         
         UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
-        myImageView.image = [self imageWithColor:[(MItem*)[self.filteredStation objectAtIndex:indexPath.row] lines]];    
+        //myImageView.image = [self imageWithColor:[(MItem*)[self.filteredStation objectAtIndex:indexPath.row] lines]];    
     }
     else
     {
@@ -255,7 +255,7 @@
             }
             
             UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
-            myImageView.image = [self imageWithColor:[(MItem*)[stations objectAtIndex:indexPath.row] lines]];
+           // myImageView.image = [self imageWithColor:[(MItem*)[stations objectAtIndex:indexPath.row] lines]];
         }
     }
 //    NSDate *date2 = [NSDate date];

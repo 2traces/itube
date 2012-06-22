@@ -11,12 +11,12 @@
 
 @class MCategory;
 
-@protocol LineListViewProtocol;
+@protocol CategoryListViewProtocol;
 
 @interface LineListViewController : UIViewController <UISearchDisplayDelegate,UITableViewDataSource, UITableViewDelegate,SectionHeaderViewDelegate> {
     NSArray *lineList;
 
-    id <LineListViewProtocol> dataSource;
+    id <CategoryListViewProtocol> dataSource;
     
     IBOutlet UITableView *mytableView;
     IBOutlet UIImageView *imageView;
@@ -24,7 +24,7 @@
 }
 
 @property (nonatomic, retain) NSArray *lineList;
-@property (nonatomic, assign) id <LineListViewProtocol> dataSource;
+@property (nonatomic, assign) id <CategoryListViewProtocol> dataSource;
 @property (nonatomic, retain) NSMutableDictionary *colorDictionary;
 
 @property (nonatomic, retain) NSMutableArray* sectionInfoArray;
@@ -40,10 +40,10 @@
 
 @end
 
-@protocol LineListViewProtocol
+@protocol CategoryListViewProtocol
 
--(NSArray*)getLineList;
--(NSArray*)getStationsForLine:(MCategory*)line;
+-(NSArray*)getCategoryList;
+-(NSArray*)getItemsForCategory:(MCategory*)category;
 
 
 @end

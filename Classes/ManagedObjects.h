@@ -46,7 +46,7 @@
 @property (nonatomic, retain) NSSet *items;
 @end
 
-@interface MHelper : NSObject <StationListViewProtocol, LineListViewProtocol, BookmarkViewProtocol, HistoryViewProtocol, FastAccessTableViewProtocol, NSFetchedResultsControllerDelegate> {
+@interface MHelper : NSObject <StationListViewProtocol, CategoryListViewProtocol, BookmarkViewProtocol, HistoryViewProtocol, FastAccessTableViewProtocol, NSFetchedResultsControllerDelegate> {
 }
 
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
