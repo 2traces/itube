@@ -139,7 +139,7 @@
 -(void)loadPiece:(RPiece*)piece;
 -(void)secondLoadPiece:(RPiece*)piece;
 -(void)debugStatus;
--(void)stop;
+-(void)stopBut:(int)level;
 -(void)advance:(RPiece*)piece;
 
 @end
@@ -162,7 +162,7 @@
 -(void)loadPiece:(RPiece*)piece;
 -(void)secondLoadPiece:(RPiece*)piece;
 -(void)debugStatus;
--(void)stop;
+-(void)stopBut:(int)level;
 -(void)advance:(RPiece*)piece;
 
 @end
@@ -224,6 +224,6 @@
 -(void) setSignal:(id)target selector:(SEL)selector;
 -(BOOL) checkPoint:(CGPoint*)point;
 -(BOOL) changeSource;
--(void) stopLoading;
+-(void) stopLoadingBut:(CGFloat)scale;
 
 @end

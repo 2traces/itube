@@ -117,6 +117,11 @@
         CGContextScaleCTM(context, 1.f, -1.f);
         CGContextDrawImage(context, rect, image);
         CGContextRestoreGState(context);
+    } else {
+        CGFloat color[3];
+        color[0] = color[1] = color[2] = 0.5f;
+        CGContextSetFillColor(context, color);
+        CGContextFillRect(context, rect);
     }
     actuality = 0;
     if([objects count] > 0) {
@@ -152,7 +157,7 @@
 
 -(BOOL)empty
 {
-    return image == nil && [objects count] == 0;
+    return image == nil;// && [objects count] == 0;
 }
 
 -(BOOL)trash
@@ -552,12 +557,15 @@
     NSLog(@"raster queue %d pieces, second queue %d pieces", [queue count], [secondQueue count]);
 }
 
--(void)stop
+-(void)stopBut:(int)level
 {
     NSArray *cons = [queue allConnections];
     for (NSURLConnection *con in cons) {
-        [con cancel];
-        [queue removeByConnection:con];
+        DownloadPiece *dp = [queue get:con];
+        if(abs(dp->piece->level - level) > 1) {
+            [con cancel];
+            [queue removeByConnection:con];
+        }
     }
 }
 
@@ -745,12 +753,15 @@
     NSLog(@"vector queue %d pieces, second queue %d pieces", [queue count], [secondQueue count]);
 }
 
--(void)stop
+-(void)stopBut:(int)level
 {
     NSArray *cons = [queue allConnections];
     for (NSURLConnection *con in cons) {
-        [con cancel];
-        [queue removeByConnection:con];
+        DownloadPiece *dp = [queue get:con];
+        if(abs(dp->piece->level - level) > 1) {
+            [con cancel];
+            [queue removeByConnection:con];
+        }
     }
 }
 
@@ -1010,6 +1021,56 @@
     return  level != _lvl;
 }
 
+-(BOOL)upperDraw:(CGContextRef)context rect:(CGRect)rect level:(int)l
+{
+    for(int curlev = l; curlev >= 0; curlev --) {
+        NSNumber *n = [NSNumber numberWithInt:curlev];
+        NSMutableArray *lev = [levels objectForKey:n];
+        if(lev == nil) continue;
+        int size = 1 << curlev;
+        double dx = (double)allRect.size.width / size, dy = (double)allRect.size.height / size;
+        int x1 = rect.origin.x / dx, y1 = rect.origin.y / dy;
+        for (RPiece *p in lev) {
+            if(p->x == x1 && p->y == y1) {
+                if(![p empty]) {
+                    CGContextSaveGState(context);
+                    CGContextClipToRect(context, rect);
+                    [p draw:context];
+                    CGContextRestoreGState(context);
+                    return YES;
+                }
+                break;
+            }
+        }
+    }
+    return NO;
+}
+
+-(BOOL)lowerDraw:(CGContextRef)context rect:(CGRect)rect level:(int)l
+{
+    NSNumber *n = [NSNumber numberWithInt:l];
+    NSMutableArray *lev = [levels objectForKey:n];
+    if(lev == nil) return NO;
+    int size = 1 << l;
+    double dx = (double)allRect.size.width / size, dy = (double)allRect.size.height / size;
+    int x1 = rect.origin.x / dx, y1 = rect.origin.y / dy;
+    int x2 = (rect.origin.x + rect.size.width) / dx, y2 = (rect.origin.y + rect.size.height) / dy;
+    int pcount = 0;
+    for(int X=x1; X<=x2; X++) {
+        for(int Y=y1; Y<=y2; Y++) {
+            for (RPiece *p in lev) {
+                if(p->x == X && p->y == Y) {
+                    if(![p empty]) {
+                        pcount ++;
+                        [p draw:context];
+                    }
+                }
+            }
+        }
+    }
+    return pcount > 0;
+}
+
 -(BOOL)draw:(CGContextRef)context inRect:(CGRect)rect withScale:(CGFloat)scale
 {
     [lock lock];
@@ -1045,6 +1106,8 @@
                 if(p->x == X && p->y == Y) {
                     if([p empty]) {
                         [loader advance:p];
+                        CGRect r = CGRectMake(dx*X, dy*Y, dx, dy);
+                        if([self upperDraw:context rect:r level:level-1] || [self lowerDraw:context rect:r level:level+1]) {}
                     } else {
                         [p draw:context];
                     }
@@ -1055,6 +1118,7 @@
             if(!found) {
                 // loading
                 CGRect r = CGRectMake(dx*X, dy*Y, dx, dy);
+                if([self upperDraw:context rect:r level:level-1] || [self lowerDraw:context rect:r level:level+1]) {}
                 RPiece *p = [[RPiece alloc] initWithRect:r level:level x:X y:Y];
                 p->layer = self;
                 [lev addObject:p];
@@ -1261,10 +1325,15 @@
     return altSource;
 }
 
--(void) stopLoading
+-(void) stopLoadingBut:(CGFloat)scale
 {
-    [loader.rasterDownloader stop];
-    [loader.vectorDownloader stop];
+    int _sc = 1, _lvl = 0;
+    while (scale > _sc) {
+        _sc *= 2;
+        _lvl ++;
+    }
+    [loader.rasterDownloader stopBut:_lvl];
+    [loader.vectorDownloader stopBut:_lvl];
 }
 
 @end
