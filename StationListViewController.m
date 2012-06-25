@@ -110,15 +110,26 @@
 }
 
 
--(UIImage*)imageWithColor:(MCategory*)line
+-(UIImage*)imageWithColor:(MCategory*)category
 {
-    if ([self.colorDictionary objectForKey:[line name]]) {
-        return [self.colorDictionary objectForKey:[line name]];
+    if (!category) {
+        UIImage *image = [self drawCircleView:[UIColor grayColor]];
+        return image;
+    }
+    
+    if ([self.colorDictionary objectForKey:[category name]]) {
+        return [self.colorDictionary objectForKey:[category name]];
     } 
     
-    UIImage *image = [self drawCircleView:[line color]];
-    [self.colorDictionary setObject:image forKey:[line name]];
+    NSInteger index = [[[MHelper sharedHelper] getCategoryList] indexOfObject:category];
     
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    UIImage *image = [self drawCircleView:[appDelegate colorForCategoryIndex:index]];
+    if ([category name]) {
+        [self.colorDictionary setObject:image forKey:[category name]];
+        
+    }    
     return image;
 }
 
@@ -228,7 +239,7 @@
         }
         
         UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
-        //myImageView.image = [self imageWithColor:[(MItem*)[self.filteredStation objectAtIndex:indexPath.row] lines]];    
+        myImageView.image = [self imageWithColor:[[(MItem*)[self.filteredStation objectAtIndex:indexPath.row] categories] anyObject]];    
     }
     else
     {
@@ -255,8 +266,8 @@
             }
             
             UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
-           // myImageView.image = [self imageWithColor:[(MItem*)[stations objectAtIndex:indexPath.row] lines]];
-        }
+                        
+        myImageView.image = [self imageWithColor:[[(MItem*)[self.filteredStation objectAtIndex:indexPath.row] categories] anyObject]];         }
     }
 //    NSDate *date2 = [NSDate date];
 //    NSLog(@"%f",[date2 timeIntervalSinceDate:date]);

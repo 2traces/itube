@@ -19,6 +19,13 @@
 @synthesize cityName;
 @synthesize parseQueue;
 
+static NSArray *colors;
+
+- (UIColor*)colorForCategoryIndex:(NSInteger)index {
+    return [colors objectAtIndex:index%10];
+}
+
+
 void uncaughtExceptionHandler(NSException *exception) {
     NSLog(@"CRASH: %@", exception);
     NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
@@ -40,6 +47,17 @@ void uncaughtExceptionHandler(NSException *exception) {
     [cm release];
     */
     self.cityName= [self nameCurrentCity];
+    
+    colors = [[NSArray arrayWithObjects:[UIColor  magentaColor],
+              [UIColor blueColor], 
+              [UIColor yellowColor], 
+              [UIColor orangeColor], 
+              [UIColor greenColor], 
+              [UIColor cyanColor], 
+              [UIColor blackColor], 
+              [UIColor redColor], 
+              [UIColor brownColor], 
+              [UIColor purpleColor], nil] retain];
     
     // Override point for customization after application launch.
     [[SKPaymentQueue defaultQueue] addTransactionObserver:[TubeAppIAPHelper sharedHelper]];

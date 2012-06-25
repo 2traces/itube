@@ -38,6 +38,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 -(NSString*)getDefaultMapName;
 -(NSString*)getDefaultCityName;
 -(void)getDefaultExtent:(CGPoint*)pos level:(int*)level;
+- (UIColor*)colorForCategoryIndex:(NSInteger)index;
 
 @end
 

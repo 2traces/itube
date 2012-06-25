@@ -21,6 +21,7 @@
 @dynamic isFavorite;
 @dynamic name;
 @dynamic categories;
+@dynamic photos;
 @dynamic transfer;
 @end
 
@@ -36,6 +37,13 @@
 @dynamic color;
 @dynamic name;
 @dynamic items;
+@end
+
+@implementation MPhoto
+
+@dynamic isFavorite;
+@dynamic fileName;
+@dynamic theItem;
 @end
 
 @implementation MHelper
@@ -248,20 +256,19 @@ static MHelper * _sharedHelper;
     return fetchedItems;    
 }
 
--(NSArray*)getCategoryList
-{
+-(NSArray*)getPhotoList {
     NSError *error =nil;
     
     NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES] autorelease];
+    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"fileName" ascending:YES] autorelease];
     NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -281,6 +288,30 @@ static MHelper * _sharedHelper;
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
+    
+    NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    return fetchedItems; 
+}
+
+
+-(NSArray*)getCategoryList
+{
+    NSError *error =nil;
+    
+    NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:20];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES] autorelease];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
     
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
@@ -400,31 +431,20 @@ static MHelper * _sharedHelper;
     [fetchRequest setEntity:entity];
     
     NSPredicate *predicate = nil;
-    NSMutableString *categoriesListing = nil;
+    NSMutableArray *categoriesListing = [NSMutableArray arrayWithCapacity:1];
     
     if (categoryNames && [categoryNames count]) {
-        
-        //As a result we should get smth like 
-        //"any categories.name like[c] cat1 and any categories.name like[c] cat2 and..."
-        //so that resulted item(s) will contain all mentioned categories
-        
-        categoriesListing = [NSMutableString stringWithString:@"any categories.name like[c] "];
         for (NSString *catName in categoryNames) {
-            [categoriesListing appendFormat:@"%@ ", catName];
-            if (![catName isEqualToString:[categoryNames lastObject]]) {
-                [categoriesListing appendString:@"and any categories.name like[c] "];
-            }
-        }
-        
-        predicate = [NSPredicate predicateWithFormat:@"%@ and name like[c] %@",categoriesListing,item];
-        [fetchRequest setPredicate:predicate];
-    }
-    else {
-        predicate = [NSPredicate predicateWithFormat:@"name like[c] %@",item];
-        [fetchRequest setPredicate:predicate]; 
-    }
+            [categoriesListing addObject:[NSPredicate predicateWithFormat:@"any categories.name like[c] %@", catName]];
 
+        }
+    }
     
+    [categoriesListing addObject:[NSPredicate predicateWithFormat:@"name like[c] %@", item]];
+    
+    predicate = [NSCompoundPredicate andPredicateWithSubpredicates:categoriesListing];
+    [fetchRequest setPredicate:predicate]; 
+
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if([fetchedItems count] == 0 && categoriesListing) {
         NSFetchRequest *fetchRequest2 = [[[NSFetchRequest alloc] init] autorelease];

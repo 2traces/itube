@@ -960,7 +960,7 @@
             areWeReadingCategories = NO;
         } 
         else {
-            NSArray *words = [line componentsSeparatedByString:@"\t"];
+            NSMutableArray *words = [NSMutableArray arrayWithArray:[line componentsSeparatedByString:@"\t"]];
             int _id = [[words objectAtIndex:0] intValue];
             NSString *name = [words objectAtIndex:1];
             if (areWeReadingCategories) {
@@ -973,6 +973,9 @@
                 item.name = name;
                 item.index = [NSNumber numberWithInt:_id];
                 NSString *categories = nil;
+                NSString *images = nil;
+                
+                //Try reading categories
                 if ([words count] > 2) {
                     categories = [words objectAtIndex:2];   
                 }
@@ -983,6 +986,30 @@
                         MCategory *cat = [[MHelper sharedHelper] categoryByIndex:[catId intValue]];
                         if (cat) {
                             [set addObject:cat];
+                        }
+                        else {
+                            //OMG, it's not a category, it's an... image!
+                            [words addObject:categories]; //let images be on index 3, as expected
+                            break;
+                        }
+                    }
+                }
+                
+                //Try reading images
+                if ([words count] > 3) {
+                    images = [words objectAtIndex:3];
+                }
+                if (images) {
+                    NSArray *imageNames = [images componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
+                    NSMutableSet *set = [item mutableSetValueForKey:@"photos"];
+                    for (NSString *imageName in imageNames) {
+                        if (![imageName isEqualToString:@""]) {
+                            MPhoto *photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+                            photo.fileName = imageName;
+                            if (photo) {
+                                [set addObject:photo];
+                            }
+                            [[MHelper sharedHelper] saveContext];
                         }
                     }
                 }

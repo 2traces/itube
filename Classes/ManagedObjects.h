@@ -26,6 +26,7 @@
 @property (nonatomic, retain) NSNumber * isFavorite;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *categories;
+@property (nonatomic, retain) NSSet *photos;
 @property (nonatomic, retain) MTransfer* transfer;
 
 
@@ -46,6 +47,16 @@
 @property (nonatomic, retain) NSSet *items;
 @end
 
+
+@interface MPhoto : NSManagedObject
+
+@property (nonatomic, retain) NSNumber * isFavorite;
+@property (nonatomic, retain) NSString * fileName;
+@property (nonatomic, retain) MItem* theItem;
+
+@end
+
+
 @interface MHelper : NSObject <StationListViewProtocol, CategoryListViewProtocol, BookmarkViewProtocol, HistoryViewProtocol, FastAccessTableViewProtocol, NSFetchedResultsControllerDelegate> {
 }
 
@@ -62,6 +73,7 @@
 -(NSArray*)getCategoryList;
 -(NSArray*)getItemList;
 -(NSArray*)getTransferList;
+-(NSArray*)getPhotoList;
 -(MCategory*)categoryByName:(NSString*)name;
 -(MCategory*)categoryByIndex:(int)index;
 -(MItem*)getItemWithName:(NSString*)item forCategories:(NSArray*)categoryNames;

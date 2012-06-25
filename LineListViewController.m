@@ -63,15 +63,26 @@
     openSectionIndex_ = NSNotFound;
 }
 
--(UIImage*)imageWithColor:(MCategory*)line
+-(UIImage*)imageWithColor:(MCategory*)category
 {
-    if ([self.colorDictionary objectForKey:[line name]]) {
-        return [self.colorDictionary objectForKey:[line name]];
+    if (!category) {
+        UIImage *image = [self drawCircleView:[UIColor grayColor]];
+        return image;
+    }
+    
+    if ([self.colorDictionary objectForKey:[category name]]) {
+        return [self.colorDictionary objectForKey:[category name]];
     } 
     
-    UIImage *image = [self drawCircleView:[line color]];
-    [self.colorDictionary setObject:image forKey:[line name]];
+    NSInteger index = [[[MHelper sharedHelper] getCategoryList] indexOfObject:category];
     
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    UIImage *image = [self drawCircleView:[appDelegate colorForCategoryIndex:index]];
+    if ([category name]) {
+        [self.colorDictionary setObject:image forKey:[category name]];
+        
+    }    
     return image;
 }
 
@@ -191,7 +202,7 @@
     
     UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
     
-    //myImageView.image = [self imageWithColor:[(MItem*)[self.stationsList objectAtIndex:indexPath.row] lines]];
+    myImageView.image = [self imageWithColor:[[(MItem*)[self.stationsList objectAtIndex:indexPath.row] categories] anyObject]];
     
     NSDate *date2 = [NSDate date];
     NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
@@ -342,12 +353,13 @@
     /*
      Create the section header views lazily.
      */
-    
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
     
 	SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:section];
     if (!sectionInfo.headerView) {
 		NSString *lineName = sectionInfo.line.name;
-        sectionInfo.headerView = [[[SectionHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.mytableView.bounds.size.width, HEADER_HEIGHT) title:lineName color:[UIColor grayColor] section:section delegate:self] autorelease];
+        sectionInfo.headerView = [[[SectionHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.mytableView.bounds.size.width, HEADER_HEIGHT) title:lineName color:[appDelegate colorForCategoryIndex:section] section:section delegate:self] autorelease];
     }
     
     return sectionInfo.headerView;

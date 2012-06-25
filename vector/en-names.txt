@@ -22,15 +22,15 @@
 33	Guayabo
 35	La Melvis
 36	Valle San Juan
-37	Mina de Oro	3,4,5,6
-38	Presidio Modelo
-39	Playa Sirena
+37	Mina de Oro	3,4,5,6	1.jpeg,2.jpeg
+38	Presidio Modelo	5.jpeg,102.jpeg
+39	Playa Sirena	103.jpeg
 41	Aeropuerto Siguanea
 43	Playa Bibijagua
 44	Cayo Piedra
-46	Crocodile breeding station	0,1,2,3,4,5,6
+46	Crocodile breeding station	0,1,2,3,4,5,6	777.jpeg,999.jpeg,1000.jpeg
 47	La Reforma
-48	Cocodrilo
+48	Cocodrilo	1023.jpeg,1027.jpeg,2048.jpeg
 49	Reparto Chacón
 50	Argelia Libre
 52	Atanagildo Gajigat	0,1,2,3,4,5,6

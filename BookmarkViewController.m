@@ -47,15 +47,22 @@
 }
 
 
--(UIImage*)imageWithColor:(MCategory*)line
+-(UIImage*)imageWithColor:(MCategory*)category
 {
-    if ([self.colorDictionary objectForKey:[line name]]) {
-        return [self.colorDictionary objectForKey:[line name]];
-    } 
     
-    UIImage *image = [self drawCircleView:[line color]];
-    [self.colorDictionary setObject:image forKey:[line name]];
+    if ([self.colorDictionary objectForKey:[category name]]) {
+        return [self.colorDictionary objectForKey:[category name]];
+    }
     
+    NSInteger index = [[[MHelper sharedHelper] getCategoryList] indexOfObject:category];
+    
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    UIImage *image = [self drawCircleView:[appDelegate colorForCategoryIndex:index]];
+    if ([category name]) {
+        [self.colorDictionary setObject:image forKey:[category name]];
+        
+    }    
     return image;
 }
 
@@ -148,7 +155,9 @@
     }
     
     UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
-    //myImageView.image = [self imageWithColor:[station categories]];
+    
+    //For now it will be this way...
+    myImageView.image = [self imageWithColor:[[station categories] anyObject]];
     
     NSDate *date2 = [NSDate date];
     NSLog(@"%f",[date2 timeIntervalSinceDate:date]);

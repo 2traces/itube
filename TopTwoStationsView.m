@@ -292,9 +292,20 @@
 }
 
 
--(UIImage*)imageWithColor:(MCategory*)line
+-(UIImage*)imageWithColor:(MCategory*)category
 {
-    UIImage *image = [self drawCircleView:[line color]];
+    if (!category) {
+        UIImage *image = [self drawCircleView:[UIColor grayColor]];
+        return image;
+    }
+    
+    NSInteger index = [[[MHelper sharedHelper] getCategoryList] indexOfObject:category];
+    
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    UIImage *image = [self drawCircleView:[appDelegate colorForCategoryIndex:index]];
+    
+    
     return image;
 }
 
@@ -384,9 +395,9 @@
 
         firstStation.rightViewMode = UITextFieldViewModeAlways;
         
-        //UIImageView *lineColor = [[UIImageView alloc] initWithImage:[self imageWithColor:[fromStation lines]]];
-        //[firstStation setLeftView:lineColor];
-        //[lineColor release];
+        UIImageView *lineColor = [[UIImageView alloc] initWithImage:[self imageWithColor:[[fromStation categories] anyObject]]];
+        [firstStation setLeftView:lineColor];
+        [lineColor release];
         
         [firstStation setLeftViewMode: UITextFieldViewModeAlways];
         firstStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];

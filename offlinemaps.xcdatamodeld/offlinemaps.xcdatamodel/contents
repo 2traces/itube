@@ -15,10 +15,17 @@
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="items" inverseEntity="Category" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="theItem" inverseEntity="Photo" syncable="YES"/>
+    </entity>
+    <entity name="Photo" representedClassName="MPhoto" syncable="YES">
+        <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="theItem" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="photos" inverseEntity="Item" syncable="YES"/>
     </entity>
     <elements>
         <element name="Category" positionX="160" positionY="192" width="128" height="105"/>
         <element name="History" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Item" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Photo" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>

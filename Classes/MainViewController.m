@@ -1146,8 +1146,22 @@
 {
     SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
     controller.delegate = self;
-    [self presentModalViewController:controller animated:YES];
-    [controller release];
+    
+    CGRect frame = controller.view.frame;
+    frame.origin.y = self.view.frame.size.height;
+    controller.view.frame = frame;
+    
+    [self.view addSubview:controller.view];
+    frame.origin.y = 0;
+
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.3f];
+    controller.view.frame = frame;
+    
+    [UIView commitAnimations];
+    
+//    [self presentModalViewController:controller animated:YES];
+    [controller autorelease];
 }
 
 -(void)transitToRouteState

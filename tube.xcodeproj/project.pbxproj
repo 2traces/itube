@@ -44,6 +44,10 @@
 		570BB1D61590C59400CE1AA5 /* vector@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 570BB1D41590C59300CE1AA5 /* vector@2x.png */; };
 		570BB1D91590CC7100CE1AA5 /* navigate_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 570BB1D71590CC7000CE1AA5 /* navigate_btn.png */; };
 		570BB1DA1590CC7100CE1AA5 /* navigate_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 570BB1D81590CC7100CE1AA5 /* navigate_btn@2x.png */; };
+		573AF99615989A34001F09B7 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 573AF99515989A33001F09B7 /* GalleryViewController.m */; };
+		573AF99915989A6A001F09B7 /* GalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 573AF99815989A69001F09B7 /* GalleryViewController.xib */; };
+		573AF99C15989D4C001F09B7 /* gallery_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 573AF99A15989D4C001F09B7 /* gallery_bg.png */; };
+		573AF99D15989D4C001F09B7 /* gallery_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 573AF99B15989D4C001F09B7 /* gallery_bg@2x.png */; };
 		576A061315923E9D0001E95D /* offlinemaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 576A061115923E9D0001E95D /* offlinemaps.xcdatamodeld */; };
 		57F3FCCF1594C85400B856A5 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 57F3FCCC1594C84A00B856A5 /* iTunesArtwork */; };
 		57F3FCD01594C85400B856A5 /* SpotLightSearch_iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 57F3FCCD1594C84D00B856A5 /* SpotLightSearch_iPhone.png */; };
@@ -422,6 +426,11 @@
 		570BB1D41590C59300CE1AA5 /* vector@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vector@2x.png"; sourceTree = "<group>"; };
 		570BB1D71590CC7000CE1AA5 /* navigate_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigate_btn.png; sourceTree = "<group>"; };
 		570BB1D81590CC7100CE1AA5 /* navigate_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigate_btn@2x.png"; sourceTree = "<group>"; };
+		573AF99415989A32001F09B7 /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
+		573AF99515989A33001F09B7 /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
+		573AF99815989A69001F09B7 /* GalleryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GalleryViewController.xib; path = Resources/GalleryViewController.xib; sourceTree = "<group>"; };
+		573AF99A15989D4C001F09B7 /* gallery_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery_bg.png; sourceTree = "<group>"; };
+		573AF99B15989D4C001F09B7 /* gallery_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_bg@2x.png"; sourceTree = "<group>"; };
 		576A061215923E9D0001E95D /* offlinemaps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = offlinemaps.xcdatamodel; sourceTree = "<group>"; };
 		57F3FCCC1594C84A00B856A5 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		57F3FCCD1594C84D00B856A5 /* SpotLightSearch_iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpotLightSearch_iPhone.png; sourceTree = "<group>"; };
@@ -938,6 +947,8 @@
 				BC88A2A9151A328E0060F860 /* SettingsNavController.m */,
 				CE96C6F9146830A8005A56F3 /* Resource.h */,
 				CE96C6FA146830A8005A56F3 /* Resource.m */,
+				573AF99415989A32001F09B7 /* GalleryViewController.h */,
+				573AF99515989A33001F09B7 /* GalleryViewController.m */,
 			);
 			name = "Main View";
 			sourceTree = "<group>";
@@ -990,6 +1001,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				573AF99815989A69001F09B7 /* GalleryViewController.xib */,
 				BCD7E24B151AF85C007C658A /* CityCell.xib */,
 				BC8E2EB31522043E00F30619 /* DemoMapViewController.xib */,
 				BC88F91A15205B6A00BC7FAA /* LanguageViewController.xib */,
@@ -1347,6 +1359,8 @@
 		CE96C6F41468307C005A56F3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				573AF99A15989D4C001F09B7 /* gallery_bg.png */,
+				573AF99B15989D4C001F09B7 /* gallery_bg@2x.png */,
 				570BB1D71590CC7000CE1AA5 /* navigate_btn.png */,
 				570BB1D81590CC7100CE1AA5 /* navigate_btn@2x.png */,
 				570BB1D31590C59200CE1AA5 /* terrain@2x.png */,
@@ -1719,6 +1733,9 @@
 				57F3FCCF1594C85400B856A5 /* iTunesArtwork in Resources */,
 				57F3FCD01594C85400B856A5 /* SpotLightSearch_iPhone.png in Resources */,
 				57F3FCD11594C85400B856A5 /* SpotLightSearch_iPhone@2x.png in Resources */,
+				573AF99915989A6A001F09B7 /* GalleryViewController.xib in Resources */,
+				573AF99C15989D4C001F09B7 /* gallery_bg.png in Resources */,
+				573AF99D15989D4C001F09B7 /* gallery_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1798,6 +1815,7 @@
 				BC4DA4181537F03700B941F1 /* ImageDownloader.m in Sources */,
 				51E9C614154E9A02000D3950 /* RasterLayer.m in Sources */,
 				576A061315923E9D0001E95D /* offlinemaps.xcdatamodeld in Sources */,
+				573AF99615989A34001F09B7 /* GalleryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

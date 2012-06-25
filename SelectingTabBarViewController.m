@@ -12,6 +12,7 @@
 #import "SettingsViewController.h"
 #import "SettingsNavController.h"
 #import "BookmarkViewController.h"
+#import "GalleryViewController.h"
 #import "HistoryViewController.h"
 #import "CustomTabBar.h"
 #import "ManagedObjects.h"
@@ -59,8 +60,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapChanged:) name:kMapChanged object:nil];
     
-    StationListViewController *viewController1 = [[[StationListViewController alloc] initWithNibName:@"StationListViewController" bundle:nil] autorelease];
-    LineListViewController *viewController2 = [[[LineListViewController alloc] initWithNibName:@"LineListViewController" bundle:nil] autorelease];
+    LineListViewController *viewController1 = [[[LineListViewController alloc] initWithNibName:@"LineListViewController" bundle:nil] autorelease];
+    GalleryViewController *viewController2 = [[[GalleryViewController alloc] initWithNibName:@"GalleryViewController" bundle:nil] autorelease];
     BookmarkViewController *viewController3 = [[[BookmarkViewController alloc] initWithNibName:@"BookmarkViewController" bundle:nil] autorelease];
     HistoryViewController *viewController4 = [[[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil] autorelease];
     
@@ -73,12 +74,18 @@
     [self.view bringSubviewToFront:[self.view viewWithTag:333]];
     
     stationButton.selected=YES;
+    
+    //As we use this controller's view without any holding reference to the controller itself, we need
+    //to perform [self retain] and [self autorelease] (further in the code), as an exceptional way to
+    //manage memory of this controller. I am aware that this is not a good practice, however, this was the easiest 
+    //way to replace presentModalViewController with addSubview to be able to show the view half-screen.
+    [self retain];
 }
 
 -(void)mapChanged:(NSNotification*)note
 {
-    StationListViewController *viewController1 = [[[StationListViewController alloc] initWithNibName:@"StationListViewController" bundle:nil] autorelease];
-    LineListViewController *viewController2 = [[[LineListViewController alloc] initWithNibName:@"LineListViewController" bundle:nil] autorelease];
+    LineListViewController *viewController1 = [[[LineListViewController alloc] initWithNibName:@"LineListViewController" bundle:nil] autorelease];
+    GalleryViewController *viewController2 = [[[GalleryViewController alloc] initWithNibName:@"GalleryViewController" bundle:nil] autorelease];
     BookmarkViewController *viewController3 = [[[BookmarkViewController alloc] initWithNibName:@"BookmarkViewController" bundle:nil] autorelease];
     HistoryViewController *viewController4 = [[[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil] autorelease];
     
@@ -104,6 +111,7 @@
     linesButton.selected=NO;
     bookmarkButton.selected=NO;
     historyButton.selected=NO;
+    [self.view setFrame:CGRectMake(0,0,320,460)]; 
 }
 
 -(IBAction)stationsPressed:(id)sender
@@ -118,6 +126,9 @@
     [self.tabBarController setSelectedIndex:1];
     [self setAllButtonsUnselected];
     linesButton.selected=YES;
+    [self.view setFrame:CGRectMake(0,0,320,291)]; 
+
+
 }
 
 -(IBAction)bookmarkPressed:(id)sender
@@ -143,11 +154,30 @@
 
 -(IBAction)backPressed:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    //[self dismissModalViewControllerAnimated:YES];
+    
+    CGRect frame = self.view.frame;
+    frame.origin.y = self.view.superview.frame.size.height;
+
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.3f];
+    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
+    [UIView setAnimationDelegate:self];
+    self.view.frame = frame;
+    
+    [UIView commitAnimations];
+    
+    
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate.mainViewController returnFromSelection:[NSArray array]];
 }
 
+- (void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
+    [self.view removeFromSuperview];
+    //we did call [self retain] previously, so are eligible to autorelease self
+    [self autorelease];
+}
 
 -(void) dealloc {
     [stationButton release];
