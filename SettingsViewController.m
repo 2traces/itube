@@ -136,21 +136,21 @@
 	cityTableView.backgroundColor = [UIColor clearColor];
     cityTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,160,44)];
-    CGRect frame = CGRectMake(0, 3, 160, 44);
+    UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,180,44)];
+    CGRect frame = CGRectMake(0, 3, 180, 44);
 	UILabel *label = [[[UILabel alloc] initWithFrame:frame] autorelease];
 	label.backgroundColor = [UIColor clearColor];
 	label.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:20.0];
     //	label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
 	label.textAlignment = UITextAlignmentCenter;
 	label.textColor = [UIColor darkGrayColor];
-    label.text = @"Settings";
+    label.text = NSLocalizedString(@"Settings",@"Settings");
     [iv addSubview:label];
     self.navigationItem.titleView=iv;
     [iv release];
 	
-    UIImage *back_image=[UIImage imageNamed:@"backstation.png"];
-    UIImage *back_image_high=[UIImage imageNamed:@"pr_backstation.png"];
+    UIImage *back_image=[UIImage imageNamed:NSLocalizedString(@"backstation", @"backstation")];
+    UIImage *back_image_high=[UIImage imageNamed:NSLocalizedString(@"pr_backstation", @"pr_backstation")];
 	UIButton *back_button = [UIButton buttonWithType:UIButtonTypeCustom];
 	back_button.bounds = CGRectMake( 0, 0, back_image.size.width, back_image.size.height );    
 	[back_button setBackgroundImage:back_image forState:UIControlStateNormal];
@@ -186,13 +186,15 @@
 
 -(void)adjustViewHeight
 {
+    CGFloat cityTableStartY = cityTableView.frame.origin.y;
+    
     CGFloat tableHeight = [maps count]*45.0f+2.0;
     
-    cityTableView.frame = CGRectMake(8, 179, 304, tableHeight);
+    cityTableView.frame = CGRectMake(8, cityTableStartY, 304, tableHeight);
     
-    textLabel3.frame = CGRectMake(textLabel3.frame.origin.x, 179+tableHeight+17, textLabel3.frame.size.width, textLabel3.frame.size.height);
+    textLabel3.frame = CGRectMake(textLabel3.frame.origin.x, cityTableStartY+tableHeight+17, textLabel3.frame.size.width, textLabel3.frame.size.height);
     
-    sendMailButton.frame = CGRectMake(sendMailButton.frame.origin.x, 179+tableHeight+8, sendMailButton.frame.size.width, sendMailButton.frame.size.height);
+    sendMailButton.frame = CGRectMake(sendMailButton.frame.origin.x, cityTableStartY+tableHeight+8, sendMailButton.frame.size.width, sendMailButton.frame.size.height);
     
     scrollView.contentSize = CGSizeMake(320, sendMailButton.frame.origin.y+sendMailButton.frame.size.height+15.0);
     scrollView.frame = CGRectMake(0.0, 0.0, 320.0, 460.0-44.0);
