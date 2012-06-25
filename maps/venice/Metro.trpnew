@@ -24,7 +24,7 @@ Name=1
 
 
 Branch1 = <>101...121
-Driving1 = 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+Driving1 = 3,3,3,2,2,3,3,3,2,2,3,2,3,2,3,4,3,3,4,5
 
 [Line2]
 Name=2
@@ -48,7 +48,7 @@ Name=2
 147	S.MARCO 45.43213,12.337368
 
 Branch2 = <>130...147
-Driving2 = 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+Driving2 = 3,3,3,2,4,2,3,8,2,8,4,5,5,5,5,2,5
 
 [Line3]
 Name=3
@@ -63,7 +63,7 @@ Name=3
 168 <COLONNA. 45.45119,12.349073
 
 Branch3 = <>160...168
-Driving3 = 2,2,2,2,2,2,2,2
+Driving3 = 4,17,3,2,2,2,2,3
 
 [Line4]
 Name=4.1
@@ -102,7 +102,7 @@ Name=4.1
 212 \<MUSEO. 45.456165,12.355317
 
 Branch4 = <>180...212
-Driving4 = 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+Driving4 = 3,3,3,3,6,2,2,3,8,3,6,3,3,3,4,3,3,3,4,4,3,5,4,5,2,5,9,3,4,3,1,2
 
 [Line5]
 Name=5.1
@@ -127,7 +127,7 @@ Name=5.1
 238 <LIDO. 45.417996,12.368867
 
 Branch5 = <>220...238
-Driving5 = 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+Driving5 = 10,7,2,3,2,5,2,5,4,2,3,3,6,7,7,5,4,5
 
 [Line6]
 Name=6
@@ -141,7 +141,7 @@ Name=6
 257 <LIDO 45.417996,12.368867
 
 Branch6 = <>250...257
-Driving6 = 2,2,2,2,2,2,2
+Driving6 = 6,4,3,2,10,3,5
 
 [Line7]
 Name=9
@@ -149,7 +149,7 @@ Name=9
 261 /_TORCELLO 45.495052,12.412341
 
 Branch7 = <>260...261
-Driving7 = 2
+Driving7 = 5
 
 [Line8]
 Name=10
@@ -158,7 +158,7 @@ Name=10
 272 ZATTERE 45.429246,12.326333
 
 Branch8 = <>270...272
-Driving8 = 2,2
+Driving8 = 15,6
 
 [Line9]
 Name=12
@@ -171,7 +171,7 @@ Name=12
 286 PUNTA SABBIONI 45.447528,12.424679
 
 Branch9 = <>280...286
-Driving9 = 2,2,2,2,2,2
+Driving9 = 9,8,25,5,5,13
 
 [Line10]
 Name=13
@@ -184,7 +184,7 @@ Name=13
 296 TREPORTI 45.471252,12.447107
 
 Branch10 = <>290...296
-Driving10 = 2,2,2,2,2,2
+Driving10 = 9,9,10,2,10,7
 
 [Line11]
 Name=14
@@ -193,7 +193,7 @@ Name=14
 302 PUNTA SABBIONI 45.447528,12.424679
 
 Branch11 = <>300...302
-Driving11 = 2,2
+Driving11 = 15,25
 
 [Line12]
 Name=15
@@ -201,7 +201,7 @@ Name=15
 311 PUNTA SABBIONI 45.447528,12.424679
 
 Branch12 = <>310...311
-Driving12 = 2
+Driving12 = 30
 
 [Line13]
 Name=16
@@ -209,7 +209,7 @@ Name=16
 321 ZATTERE 45.429246,12.326333
 
 Branch13 = <>320...321
-Driving13 = 2
+Driving13 = 25
 
 [Line14]
 Name=17
@@ -217,7 +217,7 @@ Name=17
 331 /TRONCHETTO 45.440569,12.306361
 
 Branch14 = <>330...331
-Driving14 = 2
+Driving14 = 35
 
 [Line15]
 Name=20
@@ -227,7 +227,7 @@ Name=20
 343 S.MARCO-S.ZACCARIA 45.433395,12.342099
 
 Branch15 = <>340...343
-Driving15 = 2,2,2
+Driving15 = 30,5,20
 
 [Line16]
 Name=22
@@ -237,7 +237,7 @@ Name=22
 353 \<_TRE ARCHI 45.44641,12.319579
 
 Branch16 = <>350...353
-Driving16 = 2,2,2
+Driving16 = 37,2,15
 
 [Line17]
 Name=A
@@ -250,7 +250,7 @@ Name=A
 366 S.MARCO 45.43213,12.337368
 
 Branch17 = <>360...366
-Driving17 = 2,2,2,2,2,2
+Driving17 = 30,12,9,6,4,13
 
 [Line18]
 Name=N
@@ -281,7 +281,7 @@ Name=N
 394 <LIDO 45.417996,12.368867
 
 Branch18 = <>370...394
-Driving18 = 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+Driving18 = 3,3,3,2,3,2,3,3,8,2,7,3,3,2,2,3,2,3,5,2,2,4,4,4,6
 
 [Line19]
 Name=VA
@@ -297,7 +297,7 @@ Name=VA
 409 GIARDINI 45.429894,12.354888
 
 Branch19 = <>400...409
-Driving19 = 2,2,2,2,2,2,2,2,2
+Driving19 = 7,2,10,4,3,3,5
 
 [Line20]
 Name=N2
@@ -307,7 +307,7 @@ Name=N2
 423 PUNTA SABBIONI 45.447528,12.424679
 
 Branch20 = <>420...423
-Driving20 = 2,2,2
+Driving20 = 20,20,27
 
 [Line21]
 Name=N3
@@ -316,7 +316,7 @@ Name=N3
 432 MURANO. ,
 
 Branch21 = <>430...432
-Driving21 = 2,2
+Driving21 = 9,15
 
 [Line22]
 Name=B
@@ -330,7 +330,7 @@ Name=B
 447 /^MARITTIMA ,
 
 Branch22 = <>440...447
-Driving22 = 2,2,2,2,2,2,2
+Driving22 = 30,8,20,19,6,15,7
 
 [Line23]
 Name=R
@@ -338,7 +338,7 @@ Name=R
 451 <LIDO 45.417996,12.368867
 
 Branch23 = <>450...451
-Driving23 = 2
+Driving23 = 62
 
 [Line24]
 Name=7
@@ -349,7 +349,7 @@ Name=7
 464 S.MARCO-S.ZACCARIA 45.433395,12.342099
 
 Branch24 = <>460...464
-Driving24 = 2,2,2,0
+Driving24 = 28,5,3,22
 
 [Line25]
 Name=18
@@ -359,7 +359,7 @@ Name=18
 473 <LIDO 45.417996,12.368867
 
 Branch25 = <>470...473
-Driving25 = 2,2,2
+Driving25 = 5,7,18
 
 [Line26]
 Name=14L
@@ -367,7 +367,7 @@ Name=14L
 481 <LIDO 45.417996,12.368867
 
 Branch26 = <>480...481
-Driving26 = 2
+Driving26 = 25
 
 [Line27]
 Name=8
@@ -376,7 +376,7 @@ Name=8
 492 SACCA FISOLA 45.429035,12.315599
 
 Branch27 = <>490...492
-Driving27 = 2,2
+Driving27 = 27,9
 
 [Line28]
 Name=19
@@ -384,7 +384,7 @@ Name=19
 501 CHIOGGIA 45.22378,12.280569
 
 Branch28 = <>500…501
-Driving28 = 2
+Driving28 = 30
 
 [Transfers]
 1=4.1,SACCA FISOLA,8,SACCA FISOLA,2

@@ -1390,12 +1390,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     for (Station *s in stations) {
         if([s.name isEqualToString:station1] || [s.name isEqualToString:station2]) {
             s.active = YES;
-            if(s.transfer) s.transfer.active = YES;
+            if(s.transfer && map->TrKind != LIKE_VENICE) s.transfer.active = YES;
             for (Segment *seg in s.segment) {
                 if([seg.end.name isEqualToString:station1] || [seg.end.name isEqualToString:station2]) {
                     seg.end.active = YES;
                     seg.active = YES;
-                    if(seg.end.transfer) seg.end.transfer.active = YES;
+                    if(seg.end.transfer && map->TrKind != LIKE_VENICE) seg.end.transfer.active = YES;
                     return seg;
                 }
             }
@@ -1421,7 +1421,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     return NO;
 }
 
--(NSArray*)activatePathFrom:(NSString *)station1 to:(NSString *)station2
+-(Segment*)activatePathFrom:(NSString *)station1 to:(NSString *)station2
 {
     NSMutableArray *res = [NSMutableArray array];
     for (Station *s in stations) {
@@ -1432,11 +1432,16 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             if([self findPathFrom:s to:another withArray:res]) break;
         }
     }
+#ifdef DEBUG
+    if([res count] == 0) NSLog(@"can't activate path from %@ to %@", station1, station2);
+#endif
     for (Segment *s in res) {
         s.start.active = YES;
         s.end.active = YES;
     }
-    return [[res reverseObjectEnumerator] allObjects];
+    if([res count] > 0) return [res objectAtIndex:0];
+    return nil;
+    //return [[res reverseObjectEnumerator] allObjects];
 }
 
 -(Segment*)getSegmentFrom:(NSString *)station1 to:(NSString *)station2
@@ -2465,7 +2470,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 Segment *as = [l activateSegmentFrom:n1.name to:n2.name];
                 if(as != nil) [activePath addObject:as];
                 else {
-                    [activePath addObjectsFromArray:[l activatePathFrom:n1.name to:n2.name]];
+                    [activePath addObject:[l activatePathFrom:n1.name to:n2.name]];
                 }
                 [pathStationsList addObject:n1.name];
                 if(sp1 && schedule) [pathTimesList addObject:[schedule getPointDate:sp1]];

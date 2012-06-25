@@ -232,7 +232,7 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 -(void)additionalPointsBetween:(NSString*)station1 and:(NSString*)station2 points:(NSArray*)points;
 -(Station*)getStation:(NSString*)stName;
 -(Segment*)activateSegmentFrom:(NSString*)station1 to:(NSString*)station2;
--(NSArray*)activatePathFrom:(NSString*)station1 to:(NSString*)station2;
+-(Segment*)activatePathFrom:(NSString*)station1 to:(NSString*)station2;
 -(void)setEnabled:(BOOL)en;
 -(void)predraw:(CGContextRef)context;
 @end
