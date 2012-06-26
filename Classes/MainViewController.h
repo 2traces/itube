@@ -44,5 +44,4 @@
 
 -(void)changeMapTo:(NSString*)newMap andCity:(NSString*)cityName;
 
-
 @end

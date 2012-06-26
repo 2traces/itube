@@ -49,6 +49,16 @@
 		573AF99C15989D4C001F09B7 /* gallery_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 573AF99A15989D4C001F09B7 /* gallery_bg.png */; };
 		573AF99D15989D4C001F09B7 /* gallery_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 573AF99B15989D4C001F09B7 /* gallery_bg@2x.png */; };
 		576A061315923E9D0001E95D /* offlinemaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 576A061115923E9D0001E95D /* offlinemaps.xcdatamodeld */; };
+		579E9D4115999C9200D509D0 /* GalleryItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 579E9D4015999C9200D509D0 /* GalleryItemView.xib */; };
+		579E9D4515999CB900D509D0 /* GalleryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 579E9D4415999CB900D509D0 /* GalleryItemView.m */; };
+		579E9D6F1599C70000D509D0 /* GalleryFullscreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579E9D6E1599C70000D509D0 /* GalleryFullscreenViewController.m */; };
+		579E9D711599C71C00D509D0 /* GalleryFullscreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 579E9D701599C71C00D509D0 /* GalleryFullscreenViewController.xib */; };
+		579E9D781599CA9300D509D0 /* gallery_fs_bar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 579E9D721599CA9300D509D0 /* gallery_fs_bar_bg.png */; };
+		579E9D791599CA9300D509D0 /* gallery_fs_bar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 579E9D731599CA9300D509D0 /* gallery_fs_bar_bg@2x.png */; };
+		579E9D7A1599CA9300D509D0 /* gallery_fs_bt_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 579E9D741599CA9300D509D0 /* gallery_fs_bt_back.png */; };
+		579E9D7B1599CA9300D509D0 /* gallery_fs_bt_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 579E9D751599CA9300D509D0 /* gallery_fs_bt_back@2x.png */; };
+		579E9D7C1599CA9300D509D0 /* gallery_fs_bt_locate.png in Resources */ = {isa = PBXBuildFile; fileRef = 579E9D761599CA9300D509D0 /* gallery_fs_bt_locate.png */; };
+		579E9D7D1599CA9300D509D0 /* gallery_fs_bt_locate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 579E9D771599CA9300D509D0 /* gallery_fs_bt_locate@2x.png */; };
 		57F3FCCF1594C85400B856A5 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 57F3FCCC1594C84A00B856A5 /* iTunesArtwork */; };
 		57F3FCD01594C85400B856A5 /* SpotLightSearch_iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 57F3FCCD1594C84D00B856A5 /* SpotLightSearch_iPhone.png */; };
 		57F3FCD11594C85400B856A5 /* SpotLightSearch_iPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57F3FCCE1594C84F00B856A5 /* SpotLightSearch_iPhone@2x.png */; };
@@ -432,6 +442,18 @@
 		573AF99A15989D4C001F09B7 /* gallery_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery_bg.png; sourceTree = "<group>"; };
 		573AF99B15989D4C001F09B7 /* gallery_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_bg@2x.png"; sourceTree = "<group>"; };
 		576A061215923E9D0001E95D /* offlinemaps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = offlinemaps.xcdatamodel; sourceTree = "<group>"; };
+		579E9D4015999C9200D509D0 /* GalleryItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GalleryItemView.xib; path = Resources/GalleryItemView.xib; sourceTree = "<group>"; };
+		579E9D4315999CB900D509D0 /* GalleryItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryItemView.h; sourceTree = "<group>"; };
+		579E9D4415999CB900D509D0 /* GalleryItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryItemView.m; sourceTree = "<group>"; };
+		579E9D6D1599C70000D509D0 /* GalleryFullscreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryFullscreenViewController.h; sourceTree = "<group>"; };
+		579E9D6E1599C70000D509D0 /* GalleryFullscreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryFullscreenViewController.m; sourceTree = "<group>"; };
+		579E9D701599C71C00D509D0 /* GalleryFullscreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GalleryFullscreenViewController.xib; path = Resources/GalleryFullscreenViewController.xib; sourceTree = "<group>"; };
+		579E9D721599CA9300D509D0 /* gallery_fs_bar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery_fs_bar_bg.png; sourceTree = "<group>"; };
+		579E9D731599CA9300D509D0 /* gallery_fs_bar_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_fs_bar_bg@2x.png"; sourceTree = "<group>"; };
+		579E9D741599CA9300D509D0 /* gallery_fs_bt_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery_fs_bt_back.png; sourceTree = "<group>"; };
+		579E9D751599CA9300D509D0 /* gallery_fs_bt_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_fs_bt_back@2x.png"; sourceTree = "<group>"; };
+		579E9D761599CA9300D509D0 /* gallery_fs_bt_locate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery_fs_bt_locate.png; sourceTree = "<group>"; };
+		579E9D771599CA9300D509D0 /* gallery_fs_bt_locate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_fs_bt_locate@2x.png"; sourceTree = "<group>"; };
 		57F3FCCC1594C84A00B856A5 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		57F3FCCD1594C84D00B856A5 /* SpotLightSearch_iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpotLightSearch_iPhone.png; sourceTree = "<group>"; };
 		57F3FCCE1594C84F00B856A5 /* SpotLightSearch_iPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SpotLightSearch_iPhone@2x.png"; sourceTree = "<group>"; };
@@ -949,6 +971,10 @@
 				CE96C6FA146830A8005A56F3 /* Resource.m */,
 				573AF99415989A32001F09B7 /* GalleryViewController.h */,
 				573AF99515989A33001F09B7 /* GalleryViewController.m */,
+				579E9D4315999CB900D509D0 /* GalleryItemView.h */,
+				579E9D4415999CB900D509D0 /* GalleryItemView.m */,
+				579E9D6D1599C70000D509D0 /* GalleryFullscreenViewController.h */,
+				579E9D6E1599C70000D509D0 /* GalleryFullscreenViewController.m */,
 			);
 			name = "Main View";
 			sourceTree = "<group>";
@@ -1001,6 +1027,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				579E9D701599C71C00D509D0 /* GalleryFullscreenViewController.xib */,
+				579E9D4015999C9200D509D0 /* GalleryItemView.xib */,
 				573AF99815989A69001F09B7 /* GalleryViewController.xib */,
 				BCD7E24B151AF85C007C658A /* CityCell.xib */,
 				BC8E2EB31522043E00F30619 /* DemoMapViewController.xib */,
@@ -1359,6 +1387,12 @@
 		CE96C6F41468307C005A56F3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				579E9D721599CA9300D509D0 /* gallery_fs_bar_bg.png */,
+				579E9D731599CA9300D509D0 /* gallery_fs_bar_bg@2x.png */,
+				579E9D741599CA9300D509D0 /* gallery_fs_bt_back.png */,
+				579E9D751599CA9300D509D0 /* gallery_fs_bt_back@2x.png */,
+				579E9D761599CA9300D509D0 /* gallery_fs_bt_locate.png */,
+				579E9D771599CA9300D509D0 /* gallery_fs_bt_locate@2x.png */,
 				573AF99A15989D4C001F09B7 /* gallery_bg.png */,
 				573AF99B15989D4C001F09B7 /* gallery_bg@2x.png */,
 				570BB1D71590CC7000CE1AA5 /* navigate_btn.png */,
@@ -1736,6 +1770,14 @@
 				573AF99915989A6A001F09B7 /* GalleryViewController.xib in Resources */,
 				573AF99C15989D4C001F09B7 /* gallery_bg.png in Resources */,
 				573AF99D15989D4C001F09B7 /* gallery_bg@2x.png in Resources */,
+				579E9D4115999C9200D509D0 /* GalleryItemView.xib in Resources */,
+				579E9D711599C71C00D509D0 /* GalleryFullscreenViewController.xib in Resources */,
+				579E9D781599CA9300D509D0 /* gallery_fs_bar_bg.png in Resources */,
+				579E9D791599CA9300D509D0 /* gallery_fs_bar_bg@2x.png in Resources */,
+				579E9D7A1599CA9300D509D0 /* gallery_fs_bt_back.png in Resources */,
+				579E9D7B1599CA9300D509D0 /* gallery_fs_bt_back@2x.png in Resources */,
+				579E9D7C1599CA9300D509D0 /* gallery_fs_bt_locate.png in Resources */,
+				579E9D7D1599CA9300D509D0 /* gallery_fs_bt_locate@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1816,6 +1858,8 @@
 				51E9C614154E9A02000D3950 /* RasterLayer.m in Sources */,
 				576A061315923E9D0001E95D /* offlinemaps.xcdatamodeld in Sources */,
 				573AF99615989A34001F09B7 /* GalleryViewController.m in Sources */,
+				579E9D4515999CB900D509D0 /* GalleryItemView.m in Sources */,
+				579E9D6F1599C70000D509D0 /* GalleryFullscreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

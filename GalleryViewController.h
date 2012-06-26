@@ -7,14 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GalleryItemView.h"
 
-@interface GalleryViewController : UIViewController {
+@interface GalleryViewController : UIViewController <UIScrollViewDelegate, GalleryItemDelegate> {
     UIScrollView *scrollView;
     UILabel *label;
     NSArray *images;
+    CGFloat currentPage;
+    UIView *loadingView;
 }
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UILabel *label;
+@property (nonatomic, retain) IBOutlet UIView *loadingView;
 
 @end

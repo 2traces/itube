@@ -7,30 +7,30 @@
 5	Run, Forest, run!
 6	Hospital
 [list]
-0	Isla de la Juventud	0,1,2,3
+0	Isla de la Juventud	0,1,2,3	00.jpg,01.jpg,02.jpg,03.jpg,04.jpg,05.jpg
 1	Peninsula de Guanahacabibes
-2	Cayo Largo
-10	Nueva Gerona
+2	Cayo Largo	06.jpg,07.jpg,08.jpg,09.jpg,10.jpg,11.jpg,12.jpg,13.jpg,14.jpg,15.jpg,16.jpg,17.jpg,18.jpg,19.jpg,20.jpg
+10	Nueva Gerona	22.jpg,22.jpg,23.jpg,24.jpg,25.jpg,26.jpg,27.jpg,28.jpg,29.jpg,30.jpg,32.jpg,32.jpg,33.jpg,34.jpg,35.jpg,36.jpg,37.jpg,38.jpg,39.jpg,40.jpg,42.jpg,42.jpg,43.jpg,44.jpg,45.jpg,46.jpg
 13	Canal de la Cruz	0,1,2,3,6
-18	Maceo
+18	Maceo	47.jpg,48.jpg,49.jpg,50.jpg,52.jpg,52.jpg,53.jpg,54.jpg,55.jpg,56.jpg,57.jpg,58.jpg,59.jpg,60.jpg,62.jpg
 19	Cayo Sijú
 21	Santa Fé
-27	Rafael Cabrera Airport
-29	La Fé
+27	Rafael Cabrera Airport	62.jpg,63.jpg,64.jpg,65.jpg,66.jpg,67.jpg,68.jpg,69.jpg,70.jpg,72.jpg,72.jpg,73.jpg,74.jpg,75.jpg
+29	La Fé	76.jpg,77.jpg,78.jpg,79.jpg,80.jpg,82.jpg,82.jpg,83.jpg,84.jpg,85.jpg,86.jpg,87.jpg,88.jpg,89.jpg,90.jpg
 31	Passe de Quitasol
 32	La Demajagua
-33	Guayabo
+33	Guayabo	92.jpg,92.jpg,93.jpg,94.jpg,95.jpg,96.jpg,97.jpg,98.jpg,99.jpg
 35	La Melvis
 36	Valle San Juan
-37	Mina de Oro	3,4,5,6	1.jpeg,2.jpeg
-38	Presidio Modelo	5.jpeg,102.jpeg
-39	Playa Sirena	103.jpeg
+37	Mina de Oro	3,4,5,6
+38	Presidio Modelo
+39	Playa Sirena
 41	Aeropuerto Siguanea
 43	Playa Bibijagua
 44	Cayo Piedra
-46	Crocodile breeding station	0,1,2,3,4,5,6	777.jpeg,999.jpeg,1000.jpeg
+46	Crocodile breeding station	0,1,2,3,4,5,6
 47	La Reforma
-48	Cocodrilo	1023.jpeg,1027.jpeg,2048.jpeg
+48	Cocodrilo
 49	Reparto Chacón
 50	Argelia Libre
 52	Atanagildo Gajigat	0,1,2,3,4,5,6
