@@ -7,19 +7,19 @@
 5	Run, Forest, run!
 6	Hospital
 [list]
-0	Isla de la Juventud	0,1,2,3	00.jpg,01.jpg,02.jpg,03.jpg,04.jpg,05.jpg
-1	Peninsula de Guanahacabibes
-2	Cayo Largo	06.jpg,07.jpg,08.jpg,09.jpg,10.jpg,11.jpg,12.jpg,13.jpg,14.jpg,15.jpg,16.jpg,17.jpg,18.jpg,19.jpg,20.jpg
-10	Nueva Gerona	22.jpg,22.jpg,23.jpg,24.jpg,25.jpg,26.jpg,27.jpg,28.jpg,29.jpg,30.jpg,32.jpg,32.jpg,33.jpg,34.jpg,35.jpg,36.jpg,37.jpg,38.jpg,39.jpg,40.jpg,42.jpg,42.jpg,43.jpg,44.jpg,45.jpg,46.jpg
+0	Isla de la Juventud	0,1,2,3
+1	Peninsula de Guanahacabibes	00.jpeg,01.jpeg,02.jpeg
+2	Cayo Largo
+10	Nueva Gerona	03.jpeg,04.jpeg,05.jpeg
 13	Canal de la Cruz	0,1,2,3,6
-18	Maceo	47.jpg,48.jpg,49.jpg,50.jpg,52.jpg,52.jpg,53.jpg,54.jpg,55.jpg,56.jpg,57.jpg,58.jpg,59.jpg,60.jpg,62.jpg
+18	Maceo	06.jpeg,07.jpeg,08.jpeg
 19	Cayo Sijú
-21	Santa Fé
-27	Rafael Cabrera Airport	62.jpg,63.jpg,64.jpg,65.jpg,66.jpg,67.jpg,68.jpg,69.jpg,70.jpg,72.jpg,72.jpg,73.jpg,74.jpg,75.jpg
-29	La Fé	76.jpg,77.jpg,78.jpg,79.jpg,80.jpg,82.jpg,82.jpg,83.jpg,84.jpg,85.jpg,86.jpg,87.jpg,88.jpg,89.jpg,90.jpg
+21	Santa Fé	09.jpeg,10.jpeg,11.jpeg,12.jpeg
+27	Rafael Cabrera Airport
+29	La Fé
 31	Passe de Quitasol
 32	La Demajagua
-33	Guayabo	92.jpg,92.jpg,93.jpg,94.jpg,95.jpg,96.jpg,97.jpg,98.jpg,99.jpg
+33	Guayabo
 35	La Melvis
 36	Valle San Juan
 37	Mina de Oro	3,4,5,6
@@ -33,7 +33,7 @@
 48	Cocodrilo
 49	Reparto Chacón
 50	Argelia Libre
-52	Atanagildo Gajigat	0,1,2,3,4,5,6
+52	Atanagildo Gajigat	0,1,2,3,4,5,6	23.jpeg,24.jpeg,25.jpeg,26.jpeg,27.jpeg
 53	Julio Antonio Mella
 56	edp deparment of narcoticts
 58	Júcaro
@@ -60,7 +60,7 @@
 86	Carapachibey lighthouse
 87	Criadero de Quelonios
 89	Graveyard
-90	edp almacen de narcoticos de la isla de juventud Adiel(gringo) adrian(fresa)
+90	edp almacen de narcoticos de la isla de juventud Adiel(gringo) adrian(fresa)	13.jpeg,14.jpeg,15.jpeg
 92	La Furnia Lighthouse
 93	Cabanas Playa Paraiso
 94	edp departamentos de narcoticos 4 fresa y gringo
@@ -103,15 +103,15 @@
 133	Channel
 134	Travis's estate
 135	Cayman Island Yacht Club
-136	The Westin Casuarina Resort & Spa, Grand Cayman 
+136	The Westin Casuarina Resort & Spa, Grand Cayman	16.jpeg,17.jpeg,18.jpeg
 137	The Reef Resort
 138	Ramada Grand Caymanian Resort
 139	Hell, Grand Cayman
 140	The Strand
 141	Villa Royale
-142	Dolphin Cove Cayman Attraction
+142	Dolphin Cove Cayman Attraction	19.jpeg,20.jpeg,21.jpeg
 143	Ritz-Carlton Resort and Residences
-144	Grandview 
+144	Grandview	22.jpeg,22.jpeg
 145	Governor's Square
 146	Lime Tree Bay
 147	Southampton Park
