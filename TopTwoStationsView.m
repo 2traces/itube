@@ -295,15 +295,11 @@
 -(UIImage*)imageWithColor:(MCategory*)category
 {
     if (!category) {
-        UIImage *image = [self drawCircleView:[UIColor grayColor]];
+        UIImage *image = [self drawCircleView:[UIColor whiteColor]];
         return image;
     }
     
-    NSInteger index = [[[MHelper sharedHelper] getCategoryList] indexOfObject:category];
-    
-    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    UIImage *image = [self drawCircleView:[appDelegate colorForCategoryIndex:index]];
+    UIImage *image = [self drawCircleView:category.color];
     
     
     return image;
@@ -440,6 +436,10 @@
 
 -(UIImage*)drawCircleView:(UIColor*)myColor
 {
+    if (!myColor) {
+        myColor = [UIColor whiteColor];
+    }
+    
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(10,10), NO, 0.0);
     
     CGRect circleRect = CGRectMake(0.0, 0.0, 9.0, 9.0);

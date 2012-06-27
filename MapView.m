@@ -12,6 +12,8 @@
 #import "tubeAppDelegate.h"
 #import "MyTiledLayer.h"
 #import "Schedule.h"
+#import <MapKit/MapKit.h>
+#import <AddressBook/AddressBook.h>
 
 @implementation MapView
 @synthesize cityMap;
@@ -99,6 +101,30 @@
     p.x *= SIZE;
     p.y *= SIZE;
     selectedStationLayer.position = p;
+    
+    MKReverseGeocoder *geoCoder = [[MKReverseGeocoder alloc] initWithCoordinate:newLocation.coordinate];
+    geoCoder.delegate = self;
+    [geoCoder start];
+}
+
+- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
+{
+    MKPlacemark * myPlacemark = placemark;
+    
+    lineLabel.text = @"Current Location";
+
+    
+    NSString *city = [myPlacemark.addressDictionary objectForKey:(NSString*) kABPersonAddressCityKey];
+    NSString *country = [myPlacemark.addressDictionary objectForKey:(NSString*) kABPersonAddressCountryKey];
+    NSString *street = [myPlacemark.addressDictionary objectForKey:(NSString*) kABPersonAddressStreetKey];
+    
+    mainLabel.text = [NSString stringWithFormat:@"%@, %@, %@", street, city, country];
+    [self showLabel];
+}
+
+- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
+{
+    NSLog(@"reverseGeocoder:%@ didFailWithError:%@", geocoder, error);
 }
 
 -(void) makePreview {
@@ -179,6 +205,8 @@
          */
         
         labelBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"box"]];
+        mainLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:13.0];
+        lineLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:13.0];
         [labelBg addSubview:mainLabel];
         [labelBg addSubview:lineLabel];
         //[labelBg addSubview:circleLabel];
@@ -259,13 +287,17 @@
 -(void)showLabel
 {
     if(labelBg.hidden) {
+        labelBg.center = CGPointMake(visualFrame.size.width/2.0f, visualFrame.size.height/2.0f);
         labelBg.hidden=false;
         labelBg.alpha = 0.f;
         [UIView animateWithDuration:0.25f animations:^{ labelBg.alpha = 1.f; }];
     }
+    NSTimer *_timer = [NSTimer timerWithTimeInterval:3.0f target:self selector:@selector(hideLabel:) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
+
 }
 
--(void)hideLabel
+-(void)hideLabel:(NSTimer*)theTimer
 {
     if(!labelBg.hidden) {
         [UIView animateWithDuration:0.25f animations:^{ labelBg.alpha = 0.f; } completion:^(BOOL finished){ if(finished) {labelBg.hidden = YES; } }];

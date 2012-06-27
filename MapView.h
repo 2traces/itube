@@ -100,5 +100,6 @@ extern int const imagesCount;
 -(void) initData ;
 
 -(BOOL)changeSource;
+-(BOOL) enableUserLocation;
 
 @end

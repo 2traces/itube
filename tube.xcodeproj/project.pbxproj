@@ -49,6 +49,8 @@
 		573AF99C15989D4C001F09B7 /* gallery_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 573AF99A15989D4C001F09B7 /* gallery_bg.png */; };
 		573AF99D15989D4C001F09B7 /* gallery_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 573AF99B15989D4C001F09B7 /* gallery_bg@2x.png */; };
 		576A061315923E9D0001E95D /* offlinemaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 576A061115923E9D0001E95D /* offlinemaps.xcdatamodeld */; };
+		57892B9D159B5FE900188337 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57892B9C159B5FE900188337 /* MapKit.framework */; };
+		57892BA0159B60D200188337 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57892B9F159B60D200188337 /* AddressBook.framework */; };
 		579E9D4115999C9200D509D0 /* GalleryItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 579E9D4015999C9200D509D0 /* GalleryItemView.xib */; };
 		579E9D4515999CB900D509D0 /* GalleryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 579E9D4415999CB900D509D0 /* GalleryItemView.m */; };
 		579E9D6F1599C70000D509D0 /* GalleryFullscreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579E9D6E1599C70000D509D0 /* GalleryFullscreenViewController.m */; };
@@ -442,6 +444,8 @@
 		573AF99A15989D4C001F09B7 /* gallery_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery_bg.png; sourceTree = "<group>"; };
 		573AF99B15989D4C001F09B7 /* gallery_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_bg@2x.png"; sourceTree = "<group>"; };
 		576A061215923E9D0001E95D /* offlinemaps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = offlinemaps.xcdatamodel; sourceTree = "<group>"; };
+		57892B9C159B5FE900188337 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		57892B9F159B60D200188337 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		579E9D4015999C9200D509D0 /* GalleryItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GalleryItemView.xib; path = Resources/GalleryItemView.xib; sourceTree = "<group>"; };
 		579E9D4315999CB900D509D0 /* GalleryItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryItemView.h; sourceTree = "<group>"; };
 		579E9D4415999CB900D509D0 /* GalleryItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryItemView.m; sourceTree = "<group>"; };
@@ -830,8 +834,10 @@
 			files = (
 				515D75151534BB9700C25074 /* libxml2.dylib in Frameworks */,
 				BC76ACE5151B168A009BDABC /* libz.dylib in Frameworks */,
+				57892BA0159B60D200188337 /* AddressBook.framework in Frameworks */,
 				BC3D156714C33E170059A17E /* StoreKit.framework in Frameworks */,
 				BC3D156514C33E0E0059A17E /* SystemConfiguration.framework in Frameworks */,
+				57892B9D159B5FE900188337 /* MapKit.framework in Frameworks */,
 				BC3D156314C33E060059A17E /* MessageUI.framework in Frameworks */,
 				51D20F3B14B85468007AC4BD /* CoreData.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -1071,6 +1077,8 @@
 			children = (
 				515D75141534BB9700C25074 /* libxml2.dylib */,
 				BC76ACE4151B168A009BDABC /* libz.dylib */,
+				57892B9F159B60D200188337 /* AddressBook.framework */,
+				57892B9C159B5FE900188337 /* MapKit.framework */,
 				BC3D156614C33E160059A17E /* StoreKit.framework */,
 				BC3D156414C33E0C0059A17E /* SystemConfiguration.framework */,
 				BC3D156214C33E050059A17E /* MessageUI.framework */,

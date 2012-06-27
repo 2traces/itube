@@ -326,7 +326,7 @@ NSInteger const toolbarWidth=320;
 }
 
 - (void) getUserPosition {
-
+    [mapView enableUserLocation];
 }
 
 -(void) changeSource

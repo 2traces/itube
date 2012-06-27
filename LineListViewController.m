@@ -66,19 +66,16 @@
 -(UIImage*)imageWithColor:(MCategory*)category
 {
     if (!category) {
-        UIImage *image = [self drawCircleView:[UIColor grayColor]];
+        UIImage *image = [self drawCircleView:[UIColor whiteColor]];
         return image;
     }
     
     if ([self.colorDictionary objectForKey:[category name]]) {
         return [self.colorDictionary objectForKey:[category name]];
     } 
+
     
-    NSInteger index = [[[MHelper sharedHelper] getCategoryList] indexOfObject:category];
-    
-    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    UIImage *image = [self drawCircleView:[appDelegate colorForCategoryIndex:index]];
+    UIImage *image = [self drawCircleView:category.color];
     if ([category name]) {
         [self.colorDictionary setObject:image forKey:[category name]];
         
@@ -359,7 +356,7 @@
 	SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:section];
     if (!sectionInfo.headerView) {
 		NSString *lineName = sectionInfo.line.name;
-        sectionInfo.headerView = [[[SectionHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.mytableView.bounds.size.width, HEADER_HEIGHT) title:lineName color:[appDelegate colorForCategoryIndex:section] section:section delegate:self] autorelease];
+        sectionInfo.headerView = [[[SectionHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.mytableView.bounds.size.width, HEADER_HEIGHT) title:lineName color:sectionInfo.line.color section:section delegate:self] autorelease];
     }
     
     return sectionInfo.headerView;
@@ -402,6 +399,10 @@
 
 -(UIImage*)drawCircleView:(UIColor*)myColor
 {
+    if (!myColor) {
+        myColor = [UIColor whiteColor];
+    }
+    
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(27, 27), NO, 0.0);
     
     UIImage *radialImg = [UIImage imageNamed:@"radial.png"];

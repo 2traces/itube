@@ -54,11 +54,7 @@
         return [self.colorDictionary objectForKey:[category name]];
     }
     
-    NSInteger index = [[[MHelper sharedHelper] getCategoryList] indexOfObject:category];
-    
-    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    UIImage *image = [self drawCircleView:[appDelegate colorForCategoryIndex:index]];
+    UIImage *image = [self drawCircleView:category.color];
     if ([category name]) {
         [self.colorDictionary setObject:image forKey:[category name]];
         
@@ -201,6 +197,10 @@
 
 -(UIImage*)drawCircleView:(UIColor*)myColor
 {
+    if (!myColor) {
+        myColor = [UIColor whiteColor];
+    }
+    
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(27, 27), NO, 0.0);
     
     UIImage *radialImg = [UIImage imageNamed:@"radial.png"];

@@ -967,6 +967,18 @@
                 MCategory *category = [NSEntityDescription insertNewObjectForEntityForName:@"Category" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
                 category.name = name;
                 category.index = [NSNumber numberWithInt:_id];
+                NSString *colors = nil;
+                if ([words count] > 2) {
+                    colors = [words objectAtIndex:2];
+                }
+                if (colors) {
+                    NSArray *colorValues = [colors componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
+                    CGFloat red = [[colorValues objectAtIndex:0] floatValue];
+                    CGFloat green = [[colorValues objectAtIndex:1] floatValue];
+                    CGFloat blue = [[colorValues objectAtIndex:2] floatValue];
+                    UIColor *color = [UIColor colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:1.0f];
+                    category.color = color;
+                }
             } 
             else {
                 MItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
