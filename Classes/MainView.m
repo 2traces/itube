@@ -335,4 +335,55 @@ NSInteger const toolbarWidth=320;
     [sourceData setSelected:s];
 }
 
+- (CGPoint) pointOnMapViewForPointOnVisibleRect:(CGPoint)point
+{
+    CGPoint p;
+    p = [self convertPoint:point fromView:containerView];
+    p = [self convertPoint:p toView:mapView];
+    return p;
+}
+
+- (BOOL) centerMapOnItemWithID:(NSInteger)itemID
+{
+    CGPoint p = [mapView pointOnMapViewForItemWithID:itemID];
+    CGPoint p2 = mapView.userPosition;
+    if(p.x != 0 || p.y != 0) { 
+        CGRect rect;
+        rect.size.width = fabsf(p.x - p2.x) * 2.2f;
+        rect.size.height = fabsf(p.y - p2.y) * 2.2f;
+        rect.origin.x = p.x - rect.size.width * 0.5f;
+        rect.origin.y = p.y - rect.size.height * 0.5f;
+        [containerView setContentStretch:rect];
+        return YES;
+    } else return NO;
+}
+
+- (BOOL) centerMapOnUserAndItemWithID:(NSInteger)itemID 
+{
+    CGPoint p = [mapView pointOnMapViewForItemWithID:itemID];
+    CGPoint p2 = mapView.userPosition;
+    if(p.x != 0 || p.y != 0) { 
+        CGRect rect;
+        rect.size.width = fabsf(p.x - p2.x) * 1.2f;
+        rect.size.height = fabsf(p.y - p2.y) * 1.2f;
+        rect.origin.x = (p.x + p2.x - rect.size.width) * 0.5f;
+        rect.origin.y = (p.y + p2.y - rect.size.height) * 0.5f;
+        [containerView setContentStretch:rect];
+        return YES;
+    } else return NO;
+}
+
+- (CGFloat) distanceToItemWithID:(NSInteger)itemID
+{
+    CGPoint p = [mapView pointOnMapViewForItemWithID:itemID];
+    CGPoint p2 = mapView.userPosition;
+    if(p.x != 0 || p.y != 0) { 
+        p = CGPointMake(2 * M_PI * (p.x / mapView.size.width - 0.5f), 2 * M_PI * (0.5f - p.y / mapView.size.height));
+        p2 = CGPointMake(2 *M_PI * (p2.x / mapView.size.width - 0.5f), 2 * M_PI * (0.5f - p2.y / mapView.size.height));
+        double cosd = sin(p.y)*sin(p2.y) + cos(p.y)*cos(p2.y)*cos(p.x-p2.x);
+        double d = acos(cosd) * 6371;
+        return d;
+    } else return 0;
+}
+
 @end

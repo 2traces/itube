@@ -33,6 +33,7 @@
 @synthesize previewImage;
 @synthesize activeLayer;
 @synthesize foundPaths;
+@synthesize userPosition;
 
 #define SIZE 5120
 #define SCALE 20
@@ -101,6 +102,7 @@
     p.x *= SIZE;
     p.y *= SIZE;
     selectedStationLayer.position = p;
+    userPosition = p;
     
     MKReverseGeocoder *geoCoder = [[MKReverseGeocoder alloc] initWithCoordinate:newLocation.coordinate];
     geoCoder.delegate = self;
@@ -534,6 +536,11 @@
     [self.layer invalidateContents];
     [self setNeedsDisplay];
     return r;
+}
+
+-(CGPoint) pointOnMapViewForItemWithID:(NSInteger)itemID
+{
+    return [rasterLayer pointOnMapViewForItemWithID:itemID];
 }
 
 @end

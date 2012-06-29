@@ -27,6 +27,8 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *categories;
 @property (nonatomic, retain) NSSet *photos;
+@property (nonatomic, retain) NSNumber* posX;
+@property (nonatomic, retain) NSNumber* posY;
 @property (nonatomic, retain) MTransfer* transfer;
 
 
@@ -78,6 +80,7 @@
 -(MCategory*)categoryByIndex:(int)index;
 -(MItem*)getItemWithName:(NSString*)item forCategories:(NSArray*)categoryNames;
 -(MItem*)getItemWithIndex:(int)index andCategoryIndex:(int)categoryIndex;
+-(MItem*)getItemWithIndex:(int)index;
 // возвращает станции для линии
 // сортировка по индексу
 -(NSArray*)getItemForCategoryIndex:(int)lineIndex;

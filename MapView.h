@@ -57,6 +57,7 @@ extern int const imagesCount;
     RasterLayer *rasterLayer;
     NSTimer *timer;
     CGPoint oldOffset;
+    CGPoint userPosition;
 }
 
 @property (assign) NSString *nearestStationName;
@@ -83,6 +84,7 @@ extern int const imagesCount;
 @property (nonatomic, readonly) ActiveView *activeLayer;
 @property (nonatomic, readonly) NSDictionary *foundPaths;
 @property (nonatomic, readonly) UIColor *backgroundColor;
+@property (nonatomic, readonly) CGPoint userPosition;
 
 - (void)viewDidLoad;
 // 
@@ -101,5 +103,8 @@ extern int const imagesCount;
 
 -(BOOL)changeSource;
 -(BOOL) enableUserLocation;
+
+//Получить координаты точки в системе координат UIView карты, в которую нужно будет положить пин
+- (CGPoint) pointOnMapViewForItemWithID:(NSInteger)itemID; 
 
 @end

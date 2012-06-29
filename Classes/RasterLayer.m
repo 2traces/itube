@@ -58,6 +58,15 @@
         boundingBox.origin.y -= dy;
         boundingBox.size.width *= 2.f;
         boundingBox.size.height *= 2.f;
+        
+        MItem *it = [[MHelper sharedHelper] getItemWithIndex:number];
+        if(it) {
+            NSNumber *zero = [NSNumber numberWithDouble:0];
+            if([it.posX isEqualToNumber:zero] || [it.posY isEqualToNumber:zero]) {
+                it.posX = [NSNumber numberWithDouble:rect.origin.x + center.x];
+                it.posY = [NSNumber numberWithDouble:rect.origin.y + center.y];
+            }
+        }
     }
     return self;
 }
@@ -1373,6 +1382,13 @@
     }
     [loader.rasterDownloader stopBut:_lvl];
     [loader.vectorDownloader stopBut:_lvl];
+}
+
+- (CGPoint) pointOnMapViewForItemWithID:(NSInteger)itemID
+{
+    MItem *it = [[MHelper sharedHelper] getItemWithIndex:itemID];
+    if(it != nil) return CGPointMake([it.posX floatValue], [it.posY floatValue]);
+    return CGPointZero;
 }
 
 @end

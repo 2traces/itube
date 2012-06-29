@@ -58,6 +58,9 @@ extern NSInteger const toolbarWidth;
 - (void) viewInit:(MainViewController*)vcontroller;
 -(void) findPathFrom :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl ;
 -(void)setCityMap:(CityMap*)cm;
-
+- (CGPoint) pointOnMapViewForPointOnVisibleRect:(CGPoint)point;
+- (BOOL) centerMapOnItemWithID:(NSInteger)itemID;
+- (BOOL) centerMapOnUserAndItemWithID:(NSInteger)itemID;
+- (CGFloat) distanceToItemWithID:(NSInteger)itemID; 
 
 @end

@@ -226,4 +226,7 @@
 -(BOOL) changeSource;
 -(void) stopLoadingBut:(CGFloat)scale;
 
+//Получить координаты точки в системе координат UIView карты, в которую нужно будет положить пин
+- (CGPoint) pointOnMapViewForItemWithID:(NSInteger)itemID; 
+
 @end
