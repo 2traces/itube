@@ -2185,7 +2185,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
         NSDictionary *paths = [graph getPaths:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum] withoutStations:missingStations];
         NSArray *keys = [[paths allKeys] sortedArrayUsingSelector:@selector(compare:)];
-        NSMutableDictionary *trpaths = [NSDictionary dictionary];
+        NSMutableDictionary *trpaths = [NSMutableDictionary dictionary];
         for (NSNumber *weight in keys) {
             NSArray *trpath;
             trpath = [schedule translatePath:[paths objectForKey:weight]];

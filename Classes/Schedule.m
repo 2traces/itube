@@ -623,7 +623,8 @@ NSCharacterSet *pCharacterSet = nil;
 
 -(SchLine*)lineByIndex:(int)index
 {
-    for (SchLine *l in lines) {
+    for (NSString *lname in lines) {
+        SchLine *l = [lines objectForKey:lname];
         if(l.index == index) return l;
     }
     return nil;
@@ -636,24 +637,38 @@ NSCharacterSet *pCharacterSet = nil;
     SortedArray *propagate = [[SortedArray alloc] init];
     [self clean];
     GraphNode *prevNode = nil;
-    for (GraphNode *node in graphNodes) {
+    int curnode = 0;
+    for (; curnode < [graphNodes count]; curnode++) {
+        GraphNode *node = [graphNodes objectAtIndex:curnode];
         if(prevNode != nil || prevNode.line != node.line) {
             // transfer or first point
             SchLine *l = [self lineByIndex:node.line];
             NSArray *sts = [l.catalog valueForKey:node.name];
+            [propagate removeAllObjects];
             for (SchPoint *tp in sts) {
                 CGFloat trtime = 0;
                 if(prevNode != nil) trtime = FindTransferTime(prevNode.line, prevNode.name, node.line, node.name);
                 if([result count] > 0) [tp setWeightFrom:[result lastObject] withTransferTime:trtime];
-                if(tp.backPath == nil) 
-                    [propagate addObject:tp];
+                else [tp setWeightBy:now];
+                [propagate addObject:tp];
             }
             [result addObject:[propagate objectAtIndex:0]];
         } else {
-            
+            SchPoint *nextP = [[result lastObject] next];
+            while(![nextP.name isEqualToString:node.name]) {
+                curnode++;
+                if(curnode < [graphNodes count]) node = [graphNodes objectAtIndex:curnode];
+                else break;
+            }
+            if(curnode >= [graphNodes count]) {
+                // error
+                NSLog(@"path not found!");
+            } else {
+                [result addObject:nextP];
+            }
         }
         prevNode = node;
-}
+    }
     return result;
 }
 
@@ -770,6 +785,7 @@ NSCharacterSet *pCharacterSet = nil;
 
 -(SchPoint*) objectAtIndex:(int)index
 {
+    NSAssert1(index < size, @"Index %d out of range", index);
     return data[index];
 }
 
