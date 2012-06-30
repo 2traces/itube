@@ -69,7 +69,7 @@
     
 	UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
 	[button1 addTarget:self action:@selector(transitFirstToBigField) forControlEvents:UIControlEventTouchUpInside];
-	button1.frame = CGRectMake(0, 6, 130, 44);
+	button1.frame = CGRectMake(0, 6, 320, 44);
     self.firstButton=button1;
     
     [toolbar addSubview:button1];
@@ -88,20 +88,20 @@
 //    NSTimeInterval duration = 0.2f;
 //    
 //    [UIView animateWithDuration:duration animations:^{ 
-//        isEditing=YES;
+        isEditing=YES;
 //        
 //        secondStation.hidden=YES;
 //        
-//        firstButton.hidden=YES;
+        firstButton.hidden=YES;
 //        secondButton.hidden=YES;
 //        
-//        firstButton.userInteractionEnabled=NO;
+        firstButton.userInteractionEnabled=NO;
 //        secondButton.userInteractionEnabled=NO;
 //        
 //        firstStation.frame = CGRectMake(0, 0, 320, 44);
 //        firstStation.background = [UIImage imageNamed:@"toolbar_big_bg_lighted.png"];
 //        
-//        firstStation.text = @"";
+        firstStation.text = @"";
 //        firstStation.rightViewMode = UITextFieldViewModeAlways;
 //        firstStation.leftView=nil;
 //        firstStation.leftViewMode=UITextFieldViewModeAlways;
@@ -232,15 +232,16 @@
 //    NSTimeInterval duration = 0.2f;
 //    
 //    [UIView animateWithDuration:duration animations:^{ 
-//        isEditing=NO;
+        isEditing=NO;
 //        
-//        firstStation.hidden=NO;
+        firstStation.hidden=NO;
 //        firstStation.userInteractionEnabled=YES;
 //        
 //        secondStation.hidden=NO;
 //        secondStation.userInteractionEnabled=YES;
 //        
-//        firstButton.hidden=NO;
+        firstButton.hidden=NO;
+        firstButton.userInteractionEnabled = YES;
 //        secondButton.hidden=NO;
 //        
 //        firstStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
@@ -374,14 +375,19 @@
 
 -(void)setFromStation:(MItem*)fromStation
 {
-    if ([firstButton isHidden]) {
-       // [self transitFirstToSmallField];
-    }
+//    if ([firstButton isHidden]) {
+        //[self transitFirstToSmallField];
+        [firstButton setHidden:NO];
+        firstButton.userInteractionEnabled = YES;
+//    }
+
+    isEditing = NO;
+    [firstStation resignFirstResponder];
     
-    if (shouldEnlarge)
-    {
+//    if (shouldEnlarge)
+//    {
         [self transitToInitialSize];
-    }
+//    }
     
     if (fromStation) {
        
