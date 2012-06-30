@@ -1177,7 +1177,11 @@
     if ([items count]) {
         self.fromStation = [items objectAtIndex:0];
         [stationsView setFromStation:self.fromStation];
-        [mainView centerMapOnUserAndItemWithID:[self.fromStation.index integerValue]];
+        if(![mainView centerMapOnUserAndItemWithID:[self.fromStation.index integerValue]]) {
+#ifdef DEBUG
+            NSLog(@"object %@ not found!", self.fromStation.index);
+#endif
+        }
     }
     else {
         self.fromStation=nil;

@@ -67,6 +67,12 @@
                 it.posY = [NSNumber numberWithDouble:rect.origin.y + center.y];
             }
         }
+        /*it = [[MHelper sharedHelper] getItemWithIndex:110];
+        if(it) {
+            NSLog(@"item number 110 placed at %@, %@", it.posX, it.posY);
+        } else {
+            NSLog(@"item number 110 not found!");
+        }*/
     }
     return self;
 }

@@ -353,7 +353,7 @@ NSInteger const toolbarWidth=320;
         rect.size.height = fabsf(p.y - p2.y) * 2.2f;
         rect.origin.x = p.x - rect.size.width * 0.5f;
         rect.origin.y = p.y - rect.size.height * 0.5f;
-        [containerView setContentStretch:rect];
+        [containerView zoomToRect:rect animated:YES];
         return YES;
     } else return NO;
 }
@@ -368,7 +368,7 @@ NSInteger const toolbarWidth=320;
         rect.size.height = fabsf(p.y - p2.y) * 1.2f;
         rect.origin.x = (p.x + p2.x - rect.size.width) * 0.5f;
         rect.origin.y = (p.y + p2.y - rect.size.height) * 0.5f;
-        [containerView setContentStretch:rect];
+        [containerView zoomToRect:rect animated:YES];
         return YES;
     } else return NO;
 }

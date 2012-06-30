@@ -17,8 +17,8 @@
 
 @implementation MItem
 
-@synthesize posX;
-@synthesize posY;
+@dynamic posX;
+@dynamic posY;
 @dynamic index;
 @dynamic isFavorite;
 @dynamic name;
@@ -437,14 +437,7 @@ static MHelper * _sharedHelper;
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
     if ([fetchedItems count]>0) {
-        MItem *item = [fetchedItems objectAtIndex:0];
-        if (!item.posX) {
-            item.posX = [NSNumber numberWithDouble:0];
-        }
-        if (!item.posY) {
-            item.posY = [NSNumber numberWithDouble:0];
-        }
-        return item;
+        return [fetchedItems objectAtIndex:0];
     } else {
         return nil;
     }
