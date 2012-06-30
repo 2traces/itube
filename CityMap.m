@@ -2175,11 +2175,37 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(NSDictionary*) calcPath :(NSString*) firstStation :(NSString*) secondStation :(NSInteger) firstStationLineNum :(NSInteger)secondStationLineNum {
 
     if(schedule != nil) {
-        NSArray *path = [schedule findPathFrom:firstStation to:secondStation];
+        NSMutableSet *missingStations = [NSMutableSet set];
+        for (Line *l in mapLines) {
+            for (Station *s in l.stations) {
+                if(![schedule existStation:s.name line:l.name]) {
+                    [missingStations addObject:[GraphNode nodeWithName:s.name andLine:s.line.index]];
+                }
+            }
+        }
+        NSDictionary *paths = [graph getPaths:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum] withoutStations:missingStations];
+        NSArray *keys = [[paths allKeys] sortedArrayUsingSelector:@selector(compare:)];
+        NSMutableDictionary *trpaths = [NSDictionary dictionary];
+        for (NSNumber *weight in keys) {
+            NSArray *trpath;
+            trpath = [schedule translatePath:[paths objectForKey:weight]];
+            if(trpath != nil) {
 #ifdef DEBUG
-        NSLog(@"schedule path is %@", path);
+                NSLog(@"weight is %@", weight);
+                NSLog(@"path is %@", [paths objectForKey:weight]);
+                NSLog(@"schedule path is %@", trpath);
 #endif
-        return [NSDictionary dictionaryWithObject:path forKey:[NSNumber numberWithDouble:[[path lastObject] weight]]];
+                [trpaths setObject:trpaths forKey:[NSNumber numberWithDouble:[[trpath lastObject] weight]]];
+                //return [NSDictionary dictionaryWithObject:trpath forKey:[NSNumber numberWithDouble:[[trpath lastObject] weight]]];
+            }
+        }
+        return trpaths;
+        
+        //NSArray *path = [schedule findPathFrom:firstStation to:secondStation];
+#ifdef DEBUG
+        //NSLog(@"schedule path is %@", path);
+#endif
+        //return [NSDictionary dictionaryWithObject:path forKey:[NSNumber numberWithDouble:[[path lastObject] weight]]];
     }
 	//NSArray *pp = [graph shortestPath:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum]];
     NSDictionary *paths = [graph getPaths:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum]];

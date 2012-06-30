@@ -126,16 +126,23 @@
 }
 
 -(NSDictionary*)getPaths:(GraphNode*)source to:(GraphNode*)target {
+    return [self getPaths:source to:target withoutStations:nil];
+}
+
+-(NSDictionary*)getPaths:(GraphNode *)source to:(GraphNode *)target withoutStations:(NSSet *)clNodes
+{
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     
     CGFloat weight = 0;
-    NSArray *path = [self shortestPath:source to:target weight:&weight closedNodes:nil];
+    NSArray *path = [self shortestPath:source to:target weight:&weight closedNodes:clNodes];
     [result setObject:path forKey:[NSNumber numberWithFloat:weight]];
     
     int prevLine = -1;
     for (GraphNode *n in path) {
         if(prevLine > 0 && prevLine != n.line) {
-            NSArray *altPath = [self shortestPath:source to:target weight:&weight closedNodes:[NSSet setWithObject:n]];
+            NSMutableSet *cll = [NSMutableSet setWithSet:clNodes];
+            [cll addObject:n];
+            NSArray *altPath = [self shortestPath:source to:target weight:&weight closedNodes:cll];
             if([altPath count] > 0)
                 [result setObject:altPath forKey:[NSNumber numberWithFloat:weight]];
             if([result count] >= 3) break; // max 3 paths

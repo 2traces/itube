@@ -475,6 +475,20 @@ NSCharacterSet *pCharacterSet = nil;
     }
 }
 
+-(BOOL)existStation:(NSString *)station line:(NSString *)line
+{
+    SchLine *l = [lines valueForKey:line];
+    if(l != nil) {
+        if([l.catalog valueForKey:station] != nil) {
+            return YES;
+        } else {
+            return NO;
+        }
+    } else {
+        return NO;
+    }
+}
+
 -(NSTimeInterval)getNowTime
 {
     return 43200;
@@ -607,6 +621,42 @@ NSCharacterSet *pCharacterSet = nil;
     }
 }
 
+-(SchLine*)lineByIndex:(int)index
+{
+    for (SchLine *l in lines) {
+        if(l.index == index) return l;
+    }
+    return nil;
+}
+
+-(NSArray*)translatePath:(NSArray *)graphNodes
+{
+    NSMutableArray *result = [NSMutableArray array];
+    NSTimeInterval now = [self getNowTime];
+    SortedArray *propagate = [[SortedArray alloc] init];
+    [self clean];
+    GraphNode *prevNode = nil;
+    for (GraphNode *node in graphNodes) {
+        if(prevNode != nil || prevNode.line != node.line) {
+            // transfer or first point
+            SchLine *l = [self lineByIndex:node.line];
+            NSArray *sts = [l.catalog valueForKey:node.name];
+            for (SchPoint *tp in sts) {
+                CGFloat trtime = 0;
+                if(prevNode != nil) trtime = FindTransferTime(prevNode.line, prevNode.name, node.line, node.name);
+                if([result count] > 0) [tp setWeightFrom:[result lastObject] withTransferTime:trtime];
+                if(tp.backPath == nil) 
+                    [propagate addObject:tp];
+            }
+            [result addObject:[propagate objectAtIndex:0]];
+        } else {
+            
+        }
+        prevNode = node;
+}
+    return result;
+}
+
 @end
 
 /***** SortedArray *****/
@@ -706,6 +756,11 @@ NSCharacterSet *pCharacterSet = nil;
     memmove(data + ind2, data + ind2 + 1, (size-ind2-1)*sizeof(SchPoint*));
     size --;
     return YES;
+}
+
+-(void) removeAllObjects
+{
+    size = 0;
 }
 
 -(int) count
