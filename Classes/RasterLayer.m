@@ -1387,7 +1387,8 @@
 - (CGPoint) pointOnMapViewForItemWithID:(NSInteger)itemID
 {
     MItem *it = [[MHelper sharedHelper] getItemWithIndex:itemID];
-    if(it != nil) return CGPointMake([it.posX floatValue], [it.posY floatValue]);
+    if(it != nil) 
+        return CGPointMake([it.posX floatValue], [it.posY floatValue]);
     return CGPointZero;
 }
 

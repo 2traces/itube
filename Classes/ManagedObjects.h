@@ -20,7 +20,10 @@
 @class MCategory;
 @class MTransfer;
 
-@interface MItem : NSManagedObject
+@interface MItem : NSManagedObject {
+    NSNumber* posX;
+    NSNumber* posY;
+}
 
 @property (nonatomic, retain) NSNumber* index;
 @property (nonatomic, retain) NSNumber * isFavorite;

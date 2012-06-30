@@ -120,8 +120,12 @@
     NSString *country = [myPlacemark.addressDictionary objectForKey:(NSString*) kABPersonAddressCountryKey];
     NSString *street = [myPlacemark.addressDictionary objectForKey:(NSString*) kABPersonAddressStreetKey];
     
-    mainLabel.text = [NSString stringWithFormat:@"%@, %@, %@", street, city, country];
-    [self showLabel];
+    NSString *labelText = [NSString stringWithFormat:@"%@, %@, %@", street, city, country];
+    
+    if (![labelText isEqualToString:mainLabel.text]) {
+        mainLabel.text = labelText;
+        [self showLabel]; 
+    }
 }
 
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
@@ -378,8 +382,7 @@
 }
 
 -(void) initData {
-	nearestStationImage = [[UIImage imageWithContentsOfFile: 
-						   [[NSBundle mainBundle] pathForResource:@"select_near_station" ofType:@"png"]]retain];
+	nearestStationImage = [[UIImage imageNamed:@"user_pin.png"]retain];
 
 }
 

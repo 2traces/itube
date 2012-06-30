@@ -13,6 +13,7 @@
 #import "GalleryFullscreenViewController.h"
 #import "tubeAppDelegate.h"
 #import "MainViewController.h"
+#import "MainView.h"
 
 @interface GalleryViewController ()
 
@@ -146,7 +147,13 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     MPhoto *photo = [images objectAtIndex:currentPage];
-    self.label.text = [NSString stringWithFormat:@"%@, ~ %i km", photo.theItem.name, 21];
+
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    MainView* mainView = (MainView*)appDelegate.mainViewController.view;    
+
+    CGFloat distance = [mainView distanceToItemWithID:[photo.theItem.index integerValue]];
+    
+    self.label.text = [NSString stringWithFormat:@"%@, ~ %f km", photo.theItem.name, distance];
 }
 
 - (void)showFullscreenItemWithID:(NSInteger)itemID {

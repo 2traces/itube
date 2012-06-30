@@ -1174,10 +1174,10 @@
 -(void)returnFromSelection2:(NSArray*)items
 {
     MainView *mainView = (MainView*)self.view;
-    
     if ([items count]) {
         self.fromStation = [items objectAtIndex:0];
         [stationsView setFromStation:self.fromStation];
+        [mainView centerMapOnUserAndItemWithID:[self.fromStation.index integerValue]];
     }
     else {
         self.fromStation=nil;

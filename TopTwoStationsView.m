@@ -391,9 +391,9 @@
 
         firstStation.rightViewMode = UITextFieldViewModeAlways;
         
-        UIImageView *lineColor = [[UIImageView alloc] initWithImage:[self imageWithColor:[[fromStation categories] anyObject]]];
-        [firstStation setLeftView:lineColor];
-        [lineColor release];
+//        UIImageView *lineColor = [[UIImageView alloc] initWithImage:[self imageWithColor:[[fromStation categories] anyObject]]];
+//        [firstStation setLeftView:lineColor];
+//        [lineColor release];
         
         [firstStation setLeftViewMode: UITextFieldViewModeAlways];
         firstStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];
