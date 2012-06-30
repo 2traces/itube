@@ -59,14 +59,14 @@
         boundingBox.size.width *= 2.f;
         boundingBox.size.height *= 2.f;
         
-        MItem *it = [[MHelper sharedHelper] getItemWithIndex:number];
-        if(it) {
-            NSNumber *zero = [NSNumber numberWithDouble:0];
-            if([it.posX isEqualToNumber:zero] || [it.posY isEqualToNumber:zero]) {
-                it.posX = [NSNumber numberWithDouble:rect.origin.x + center.x];
-                it.posY = [NSNumber numberWithDouble:rect.origin.y + center.y];
-            }
-        }
+//        MItem *it = [[MHelper sharedHelper] getItemWithIndex:number];
+//        if(it) {
+//            NSNumber *zero = [NSNumber numberWithDouble:0];
+//            if([it.posX isEqualToNumber:zero] || [it.posY isEqualToNumber:zero]) {
+//                it.posX = [NSNumber numberWithDouble:rect.origin.x + center.x];
+//                it.posY = [NSNumber numberWithDouble:rect.origin.y + center.y];
+//            }
+//        }
     }
     return self;
 }
