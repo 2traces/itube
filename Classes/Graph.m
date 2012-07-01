@@ -119,6 +119,78 @@
     return [NSArray array];
 }
 
+-(NSArray*)shortestWay:(GraphNode *)source to:(GraphNode *)target weight:(CGFloat *)weight closedNodes:(NSSet *)clNodes
+{
+    if (![nodes_ containsObject:source] || ![nodes_ containsObject:target]) 
+    {
+        return [NSArray array];
+    }
+    if([source isEqualToGraphNode:target]) return [NSArray array];
+    
+    NSMutableSet* remaining = [[nodes_ mutableCopy] autorelease];
+    
+    GraphNode *minNode = nil;
+    for(GraphNode* node in [remaining objectEnumerator]) {
+        node->customData = nil;
+        if([node isEqualToGraphNode:source]) {
+            node->dist = 0.0f;
+            minNode = node;
+        } 
+        else node->dist = INFINITY;
+    }
+    if(clNodes != nil) {
+        [remaining minusSet:clNodes];
+    }
+    
+    while ([remaining count] != 0) {
+        if(minNode == nil) {
+            // find the node in remaining with the smallest distance
+            minNode = [self smallest_distance:remaining];
+            
+            if (minNode->dist == INFINITY)
+                break;
+            
+            // we found it!
+            if( [minNode.name isEqualToString:target.name] ) {
+                if(weight != nil) *weight = minNode->dist;
+                NSMutableArray* path = [NSMutableArray array];
+                GraphNode* temp = minNode;
+                while (temp != nil) {
+                    [path addObject:temp];
+                    temp = temp->customData;
+                }
+                return [ NSMutableArray arrayWithArray:
+                        [ [path reverseObjectEnumerator ] allObjects]];
+            }
+        }
+        
+        // didn't find it yet, keep going
+        
+        [remaining removeObject:minNode];
+        
+        // find neighbors that have not been removed yet
+        NSMutableSet* neighbors = [minNode outNodes];
+        [neighbors intersectSet:remaining];
+        
+        // loop through each neighbor to find min dist
+        for (GraphNode* neighbor in [neighbors objectEnumerator]) {
+            //NSLog(@"Looping neighbor %@", (NSString*)[neighbor value]);
+            BOOL setPrevPath = YES;
+            float alt = minNode->dist;
+            alt += [[minNode edgeConnectedTo: neighbor] weight];
+            
+            if( alt < neighbor->dist ) {
+                neighbor->dist = alt;
+                if(setPrevPath) neighbor->customData = minNode;
+                else neighbor->customData = nil;
+            }
+        }
+        minNode = nil;
+    }
+    
+    return [NSArray array];
+}
+
 // Using Dijkstra's algorithm to find shortest path
 // See http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
 - (NSArray*)shortestPath:(GraphNode*)source to:(GraphNode*)target {
@@ -126,15 +198,32 @@
 }
 
 -(NSDictionary*)getPaths:(GraphNode*)source to:(GraphNode*)target {
-    return [self getPaths:source to:target withoutStations:nil];
+    NSMutableDictionary *result = [NSMutableDictionary dictionary];
+    
+    CGFloat weight = 0;
+    NSArray *path = [self shortestPath:source to:target weight:&weight closedNodes:nil];
+    [result setObject:path forKey:[NSNumber numberWithFloat:weight]];
+    
+    int prevLine = -1;
+    for (GraphNode *n in path) {
+        if(prevLine > 0 && prevLine != n.line) {
+            NSArray *altPath = [self shortestPath:source to:target weight:&weight closedNodes:[NSSet setWithObject:n]];
+            if([altPath count] > 0)
+                [result setObject:altPath forKey:[NSNumber numberWithFloat:weight]];
+            if([result count] >= 3) break; // max 3 paths
+        }
+        prevLine = n.line;
+    }
+    
+    return result;
 }
 
--(NSDictionary*)getPaths:(GraphNode *)source to:(GraphNode *)target withoutStations:(NSSet *)clNodes
+-(NSDictionary*)getWays:(GraphNode *)source to:(GraphNode *)target withoutStations:(NSSet *)clNodes
 {
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     
     CGFloat weight = 0;
-    NSArray *path = [self shortestPath:source to:target weight:&weight closedNodes:clNodes];
+    NSArray *path = [self shortestWay:source to:target weight:&weight closedNodes:clNodes];
     [result setObject:path forKey:[NSNumber numberWithFloat:weight]];
     
     int prevLine = -1;
@@ -142,7 +231,7 @@
         if(prevLine > 0 && prevLine != n.line) {
             NSMutableSet *cll = [NSMutableSet setWithSet:clNodes];
             [cll addObject:n];
-            NSArray *altPath = [self shortestPath:source to:target weight:&weight closedNodes:cll];
+            NSArray *altPath = [self shortestWay:source to:target weight:&weight closedNodes:cll];
             if([altPath count] > 0)
                 [result setObject:altPath forKey:[NSNumber numberWithFloat:weight]];
             if([result count] >= 3) break; // max 3 paths

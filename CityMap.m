@@ -1438,6 +1438,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     for (Segment *s in res) {
         s.start.active = YES;
         s.end.active = YES;
+        s.active = YES;
     }
     if([res count] > 0) return [res objectAtIndex:0];
     return nil;
@@ -2183,7 +2184,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 }
             }
         }
-        NSDictionary *paths = [graph getPaths:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum] withoutStations:missingStations];
+        NSDictionary *paths = [graph getWays:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum] withoutStations:missingStations];
         NSArray *keys = [[paths allKeys] sortedArrayUsingSelector:@selector(compare:)];
         NSMutableDictionary *trpaths = [NSMutableDictionary dictionary];
         for (NSNumber *weight in keys) {
@@ -2195,7 +2196,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 NSLog(@"path is %@", [paths objectForKey:weight]);
                 NSLog(@"schedule path is %@", trpath);
 #endif
-                [trpaths setObject:trpaths forKey:[NSNumber numberWithDouble:[[trpath lastObject] weight]]];
+                [trpaths setObject:trpath forKey:[NSNumber numberWithDouble:[[trpath lastObject] weight]]];
                 //return [NSDictionary dictionaryWithObject:trpath forKey:[NSNumber numberWithDouble:[[trpath lastObject] weight]]];
             }
         }
