@@ -82,10 +82,12 @@
 -(id) initFastSchedule:(NSString *)fileName path:(NSString *)path;
 -(BOOL) setIndex:(int)ind forLine:(NSString*)line;
 -(BOOL) checkStation:(NSString*)station line:(NSString*)line;
+-(BOOL) existStation:(NSString*)station line:(NSString*)line;
 -(NSDate*) getPointDate:(SchPoint*)p;
 -(void) removeUncheckedStations;
 
 -(NSArray*)findPathFrom:(NSString *)fromStation to:(NSString*)toStation;
+-(NSArray*)translatePath:(NSArray*)graphNodes;
 @end
 
 /***** SortedArray *****/
@@ -100,6 +102,7 @@
 -(id) init;
 -(void) addObject:(SchPoint*)point;
 -(BOOL) removeObject:(SchPoint*)point;
+-(void) removeAllObjects;
 -(int) count;
 -(SchPoint*) objectAtIndex:(int)index;
 

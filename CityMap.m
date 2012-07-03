@@ -1390,12 +1390,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     for (Station *s in stations) {
         if([s.name isEqualToString:station1] || [s.name isEqualToString:station2]) {
             s.active = YES;
-            if(s.transfer) s.transfer.active = YES;
+            if(s.transfer && map->TrKind != LIKE_VENICE) s.transfer.active = YES;
             for (Segment *seg in s.segment) {
                 if([seg.end.name isEqualToString:station1] || [seg.end.name isEqualToString:station2]) {
                     seg.end.active = YES;
                     seg.active = YES;
-                    if(seg.end.transfer) seg.end.transfer.active = YES;
+                    if(seg.end.transfer && map->TrKind != LIKE_VENICE) seg.end.transfer.active = YES;
                     return seg;
                 }
             }
@@ -1421,7 +1421,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     return NO;
 }
 
--(NSArray*)activatePathFrom:(NSString *)station1 to:(NSString *)station2
+-(Segment*)activatePathFrom:(NSString *)station1 to:(NSString *)station2
 {
     NSMutableArray *res = [NSMutableArray array];
     for (Station *s in stations) {
@@ -1432,11 +1432,17 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             if([self findPathFrom:s to:another withArray:res]) break;
         }
     }
+#ifdef DEBUG
+    if([res count] == 0) NSLog(@"can't activate path from %@ to %@", station1, station2);
+#endif
     for (Segment *s in res) {
         s.start.active = YES;
         s.end.active = YES;
+        s.active = YES;
     }
-    return [[res reverseObjectEnumerator] allObjects];
+    if([res count] > 0) return [res objectAtIndex:0];
+    return nil;
+    //return [[res reverseObjectEnumerator] allObjects];
 }
 
 -(Segment*)getSegmentFrom:(NSString *)station1 to:(NSString *)station2
@@ -2170,11 +2176,37 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(NSDictionary*) calcPath :(NSString*) firstStation :(NSString*) secondStation :(NSInteger) firstStationLineNum :(NSInteger)secondStationLineNum {
 
     if(schedule != nil) {
-        NSArray *path = [schedule findPathFrom:firstStation to:secondStation];
+        NSMutableSet *missingStations = [NSMutableSet set];
+        for (Line *l in mapLines) {
+            for (Station *s in l.stations) {
+                if(![schedule existStation:s.name line:l.name]) {
+                    [missingStations addObject:[GraphNode nodeWithName:s.name andLine:s.line.index]];
+                }
+            }
+        }
+        NSDictionary *paths = [graph getWays:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum] withoutStations:missingStations];
+        NSArray *keys = [[paths allKeys] sortedArrayUsingSelector:@selector(compare:)];
+        NSMutableDictionary *trpaths = [NSMutableDictionary dictionary];
+        for (NSNumber *weight in keys) {
+            NSArray *trpath;
+            trpath = [schedule translatePath:[paths objectForKey:weight]];
+            if(trpath != nil) {
 #ifdef DEBUG
-        NSLog(@"schedule path is %@", path);
+                NSLog(@"weight is %@", weight);
+                NSLog(@"path is %@", [paths objectForKey:weight]);
+                NSLog(@"schedule path is %@", trpath);
 #endif
-        return [NSDictionary dictionaryWithObject:path forKey:[NSNumber numberWithDouble:[[path lastObject] weight]]];
+                [trpaths setObject:trpath forKey:[NSNumber numberWithDouble:[[trpath lastObject] weight]]];
+                //return [NSDictionary dictionaryWithObject:trpath forKey:[NSNumber numberWithDouble:[[trpath lastObject] weight]]];
+            }
+        }
+        return trpaths;
+        
+        //NSArray *path = [schedule findPathFrom:firstStation to:secondStation];
+#ifdef DEBUG
+        //NSLog(@"schedule path is %@", path);
+#endif
+        //return [NSDictionary dictionaryWithObject:path forKey:[NSNumber numberWithDouble:[[path lastObject] weight]]];
     }
 	//NSArray *pp = [graph shortestPath:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum]];
     NSDictionary *paths = [graph getPaths:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum]];
@@ -2465,7 +2497,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 Segment *as = [l activateSegmentFrom:n1.name to:n2.name];
                 if(as != nil) [activePath addObject:as];
                 else {
-                    [activePath addObjectsFromArray:[l activatePathFrom:n1.name to:n2.name]];
+                    [activePath addObject:[l activatePathFrom:n1.name to:n2.name]];
                 }
                 [pathStationsList addObject:n1.name];
                 if(sp1 && schedule) [pathTimesList addObject:[schedule getPointDate:sp1]];

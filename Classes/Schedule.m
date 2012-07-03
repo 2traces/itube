@@ -68,7 +68,7 @@ NSCharacterSet *pCharacterSet = nil;
 {
     double dw = time - p.time;
     while (dw < 0) dw += 24*60*60;
-    if(weight >= p.weight + dw) {
+    if(weight > p.weight + dw) {
         weight = p.weight + dw;
         backPath = p;
         return YES;
@@ -80,7 +80,7 @@ NSCharacterSet *pCharacterSet = nil;
 {
     double dw = time - (p.time+tt);
     while (dw < 0) dw += 24*60*60;
-    if(weight >= p.weight + dw) {
+    if(weight > p.weight + dw) {
         weight = p.weight + dw;
         backPath = p;
         return YES;
@@ -427,7 +427,7 @@ NSCharacterSet *pCharacterSet = nil;
             [self release];
             return nil;
         }
-        if(![self loadFastSchedule:2]) {
+        if(![self loadFastSchedule:4]) {
             [self release];
             return nil;
         }
@@ -475,8 +475,23 @@ NSCharacterSet *pCharacterSet = nil;
     }
 }
 
+-(BOOL)existStation:(NSString *)station line:(NSString *)line
+{
+    SchLine *l = [lines valueForKey:line];
+    if(l != nil) {
+        if([l.catalog valueForKey:station] != nil) {
+            return YES;
+        } else {
+            return NO;
+        }
+    } else {
+        return NO;
+    }
+}
+
 -(NSTimeInterval)getNowTime
 {
+    //return 43200;
     NSDateComponents *comp = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate date]];
     NSDate *midnight = [cal dateFromComponents:comp];
     return [[NSDate date] timeIntervalSinceDate:midnight];
@@ -606,6 +621,136 @@ NSCharacterSet *pCharacterSet = nil;
     }
 }
 
+-(SchLine*)lineByIndex:(int)index
+{
+    for (NSString *lname in lines) {
+        SchLine *l = [lines objectForKey:lname];
+        if(l.index == index) return l;
+    }
+    return nil;
+}
+
+-(BOOL)findRestOfPath:(NSArray*)graphNodes points:(NSMutableArray*)schPoints
+{
+    if([graphNodes count] == 0) return YES;
+    SchPoint *lastP = [schPoints lastObject];
+    GraphNode *node = [graphNodes objectAtIndex:0];
+    SortedArray *propagate = [[SortedArray alloc] init];
+    if(lastP.line != node.line) {
+        // transfer
+        SchLine *l = [self lineByIndex:node.line];
+        NSArray *sts = [l.catalog valueForKey:node.name];
+        [propagate removeAllObjects];
+        for (SchPoint *tp in sts) {
+            CGFloat trtime = 0;
+            trtime = FindTransferTime(lastP.line, lastP.name, node.line, node.name);
+            [tp setWeightFrom:lastP withTransferTime:trtime];
+            [propagate addObject:tp];
+        }
+        for(int i=0; i<[propagate count]; i++) {
+            [schPoints addObject:[propagate objectAtIndex:i]];
+            NSRange range;
+            range.location = 1;
+            range.length = [graphNodes count]-1;
+            if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints]) {
+                return YES;
+            } else {
+                [schPoints removeLastObject];
+            }
+        }
+    } else {
+        // line
+        SchPoint *nextP = lastP.next;
+        if(nextP != nil) {
+            for(int i=0; i<[graphNodes count]; i++) {
+                if([nextP.name isEqualToString:[[graphNodes objectAtIndex:i] name]]) {
+                    [schPoints addObject:nextP];
+                    NSRange range;
+                    range.location = i+1;
+                    range.length = [graphNodes count]-range.location;
+                    if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints]) {
+                        return YES;
+                    } else {
+                        [schPoints removeLastObject];
+                    }
+                }
+            }
+        }
+    }
+    return NO;
+}
+
+-(NSArray*)translatePath:(NSArray *)graphNodes
+{
+    NSMutableArray *result = [NSMutableArray array];
+    NSTimeInterval now = [self getNowTime];
+    SortedArray *propagate = [[SortedArray alloc] init];
+    [self clean];
+    GraphNode *node = [graphNodes objectAtIndex:0];
+    SchLine *l = [self lineByIndex:node.line];
+    NSArray *sts = [l.catalog valueForKey:node.name];
+    [propagate removeAllObjects];
+    for (SchPoint *tp in sts) {
+        [tp setWeightBy:now];
+        [propagate addObject:tp];
+    }
+    for(int i=0; i<[propagate count]; i++) {
+        [result removeAllObjects];
+        [result addObject:[propagate objectAtIndex:i]];
+        NSRange range;
+        range.location = 1;
+        range.length = [graphNodes count]-1;
+        if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:result]) {
+            if([result count] > 1 && [[result objectAtIndex:0] line] != [[result objectAtIndex:1] line]) {
+                NSRange range;
+                range.location = 1;
+                range.length = [result count] -1;
+                return [result subarrayWithRange:range];
+            }
+            return result;
+        }
+    }
+    
+    
+    /*GraphNode *prevNode = nil;
+    int curnode = 0;
+    for (; curnode < [graphNodes count]; curnode++) {
+        GraphNode *node = [graphNodes objectAtIndex:curnode];
+        if(prevNode == nil || prevNode.line != node.line) {
+            // transfer or first point
+            SchLine *l = [self lineByIndex:node.line];
+            NSArray *sts = [l.catalog valueForKey:node.name];
+            [propagate removeAllObjects];
+            for (SchPoint *tp in sts) {
+                CGFloat trtime = 0;
+                if(prevNode != nil) trtime = FindTransferTime(prevNode.line, prevNode.name, node.line, node.name);
+                if([result count] > 0) [tp setWeightFrom:[result lastObject] withTransferTime:trtime];
+                else [tp setWeightBy:now];
+                [propagate addObject:tp];
+            }
+            if([result count] == 1) 
+                [result removeAllObjects];
+            [result addObject:[propagate objectAtIndex:0]];
+        } else {
+            SchPoint *nextP = [[result lastObject] next];
+            while(![nextP.name isEqualToString:node.name]) {
+                curnode++;
+                if(curnode < [graphNodes count]) node = [graphNodes objectAtIndex:curnode];
+                else break;
+            }
+            if(curnode >= [graphNodes count]) {
+                // error
+                NSLog(@"path not found!");
+            } else {
+                [result addObject:nextP];
+            }
+        }
+        prevNode = node;
+    }*/
+    NSLog(@"path not found!");
+    return nil;
+}
+
 @end
 
 /***** SortedArray *****/
@@ -707,6 +852,11 @@ NSCharacterSet *pCharacterSet = nil;
     return YES;
 }
 
+-(void) removeAllObjects
+{
+    size = 0;
+}
+
 -(int) count
 {
     return size;
@@ -714,6 +864,7 @@ NSCharacterSet *pCharacterSet = nil;
 
 -(SchPoint*) objectAtIndex:(int)index
 {
+    NSAssert1(index < size, @"Index %d out of range", index);
     return data[index];
 }
 
