@@ -490,7 +490,7 @@
 
 -(void)setFromStation:(MStation*)fromStation
 {
-    if ([firstButton isHidden]) {
+    if ([firstButton isHidden]) {  // менял тут
         [self transitFirstToSmallField];
     }
     

@@ -30,16 +30,16 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Classes/ManagedObjects.m"
-         timestampString = "360160489.479625"
+         filePath = "Classes/MainViewController.m"
+         timestampString = "361792795.279852"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "630"
-         endingLineNumber = "630"
-         landmarkName = "-addHistory::To:FirstLine:LastLine:"
+         startingLineNumber = "1214"
+         endingLineNumber = "1214"
+         landmarkName = "-returnFromSelection2:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
