@@ -1604,6 +1604,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize pathToMap;
 @synthesize pathStationsList;
 @synthesize pathTimesList;
+@synthesize pathDocksList;
 @synthesize mapLines;
 @synthesize currentScale;
 @synthesize backgroundImageFile;
@@ -1640,6 +1641,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     activePath = [[NSMutableArray alloc] init];
     pathStationsList = [[NSMutableArray alloc] init];
     pathTimesList = [[NSMutableArray alloc] init];
+    pathDocksList = [[NSMutableArray alloc] init];
     maxScale = 4;
 }
 
@@ -2485,7 +2487,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             activeExtent = CGRectUnion(activeExtent, s.textRect);
             activeExtent = CGRectUnion(activeExtent, s.boundingBox);
             [pathStationsList addObject:n1.name];
-            if(sp1 && schedule) [pathTimesList addObject:[schedule getPointDate:sp1]];
+            if(sp1 && schedule) {
+                [pathTimesList addObject:[schedule getPointDate:sp1]];
+                [pathDocksList addObject:[NSString stringWithFormat:@"%c", sp1.dock]];
+            }
         } else {
             GraphNode *n2 = [pathMap objectAtIndex:i+1];
             
@@ -2500,7 +2505,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     [activePath addObject:[l activatePathFrom:n1.name to:n2.name]];
                 }
                 [pathStationsList addObject:n1.name];
-                if(sp1 && schedule) [pathTimesList addObject:[schedule getPointDate:sp1]];
+                if(sp1 && schedule) {
+                    [pathTimesList addObject:[schedule getPointDate:sp1]];
+                    [pathDocksList addObject:[NSString stringWithFormat:@"%c", sp1.dock]];
+                }
             } else
             if(n1.line != n2.line) {
                 [activePath addObject:s.transfer];
@@ -2509,6 +2517,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 if(sp1 && schedule) {
                     [pathTimesList addObject:[schedule getPointDate:sp1]];
                     //[pathTimesList addObject:[schedule getPointDate:(SchPoint*)n2]];
+                    [pathDocksList addObject:[NSString stringWithFormat:@"%c", sp1.dock]];
                 }
             }
         }
@@ -2523,6 +2532,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 #ifdef DEBUG
     NSLog(@"%@", activePath);
     NSLog(@"%@", pathTimesList);
+    NSLog(@"%@", pathDocksList);
 #endif
 }
 
