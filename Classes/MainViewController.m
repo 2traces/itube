@@ -823,6 +823,8 @@
     self.pathScrollView.delegate = self;
     self.pathScrollView.backgroundColor = [UIColor whiteColor];
     
+    [self.pathScrollView scrollRectToVisible:CGRectMake(0.0, 0.0, 320.0, 300.0) animated:YES];
+    
     int segmentsCount = [stations count];
     
     // первый и последний лейбл станции
@@ -863,6 +865,27 @@
     dateLabel2.textColor = [UIColor darkGrayColor];
     [self.pathScrollView addSubview:dateLabel2];
     [dateLabel2 release];
+    
+//    NSMutableArray *fixedStationsTime = [NSMutableArray arrayWithArray:stationsTime];
+//    
+//    if ([self dsIsStartingTransfer]) {
+//        [fixedStationsTime removeObjectAtIndex:0];
+//    }
+//    
+//    if ([self dsIsEndingTransfer]) {
+//        [fixedStationsTime removeLastObject];
+//    }
+
+    NSMutableArray *fixedStationsTime = [NSMutableArray arrayWithArray:stationsTime];
+    
+    if ([self dsIsStartingTransfer]) {
+        [fixedStationsTime removeObjectAtIndex:0];
+    }
+    
+    if ([self dsIsEndingTransfer]) {
+        [fixedStationsTime removeLastObject];
+    }
+
     
     // точки станций
     
@@ -945,7 +968,7 @@
             
             // -------
             
-            NSString *dateString = [[stationsTime objectAtIndex:j-start] objectAtIndex:jj];
+            NSString *dateString = [[fixedStationsTime objectAtIndex:j-start] objectAtIndex:jj];
             
             CGSize dateSize = [dateString sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
             
@@ -966,15 +989,6 @@
     }
     
     NSArray *timeArray = [self dsGetLinesTimeArray];
-    NSMutableArray *fixedStationsTime = [NSMutableArray arrayWithArray:stationsTime];
-    
-    if ([self dsIsStartingTransfer]) {
-        [fixedStationsTime removeObjectAtIndex:0];
-    }
-    
-    if ([self dsIsEndingTransfer]) {
-        [fixedStationsTime removeLastObject];
-    }
 
     for (int i=0;i<[timeArray count]-1;i++)
     {
@@ -1024,7 +1038,7 @@
         
         if ([stationName1 isEqualToString:stationName2]) {
             
-            NSString *dateString1 = [[stationsTime objectAtIndex:i] lastObject];
+            NSString *dateString1 = [[fixedStationsTime objectAtIndex:i] lastObject];
             CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
             UILabel *dateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize1.width, currentY-8.0, dateSize1.width, 25.0)];
             dateLabel1.text = dateString1;
@@ -1036,7 +1050,7 @@
             
         } else {
             
-            NSString *dateString1=[[stationsTime objectAtIndex:i] lastObject];
+            NSString *dateString1=[[fixedStationsTime objectAtIndex:i] lastObject];
             CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
             UILabel *dateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize1.width, currentY-16.0, dateSize1.width, 25.0)];
             dateLabel1.text = dateString1;
@@ -1047,7 +1061,7 @@
             [dateLabel1 release];
             
             
-            NSString *dateString2 = [[stationsTime objectAtIndex:i+1] objectAtIndex:0];
+            NSString *dateString2 = [[fixedStationsTime objectAtIndex:i+1] objectAtIndex:0];
             CGSize dateSize2 = [dateString2 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
             UILabel *dateLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize2.width, currentY+8.0, dateSize2.width, 25.0)];
             dateLabel2.text = dateString2;
