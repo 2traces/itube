@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "LanguageCell.h"
 #import "CityCell.h"
+#import "CountryMapCell.h"
 #import "MyNavigationBar.h"
 #import "CityMap.h"
 #import "tubeAppDelegate.h"
@@ -262,78 +263,89 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView==cityTableView) {
-        static NSString *cellIdentifier = @"CityCell";
+        static NSString *cellIdentifier = @"CountryMapCell";
         
         UITableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         
         if (cell == nil) { 
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"CityCell" owner:self options:nil] lastObject];
-            [[(CityCell*)cell cellButton] addTarget:self action:@selector(buyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"CountryMapCell" owner:self options:nil] lastObject];
+            [[(CountryMapCell*)cell cellButton] addTarget:self action:@selector(buyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         }    
         
         NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
         NSString *mapName = [map objectForKey:@"name"];
         
-        [[(CityCell*)cell cityName] setText:mapName];
-        [[(CityCell*)cell cityName] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
-        [[(CityCell*)cell cityName] setHighlightedTextColor:[UIColor whiteColor]];
+        [[(CountryMapCell*)cell mapName] setText:mapName];
+        [[(CountryMapCell*)cell mapName] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
+        [[(CountryMapCell*)cell mapName] setHighlightedTextColor:[UIColor whiteColor]];
+        
+        [[(CountryMapCell*)cell mapStatus] setText:@"to-be-implemented Mb"];
+        [[(CountryMapCell*)cell mapStatus] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
+        [[(CountryMapCell*)cell mapStatus] setHighlightedTextColor:[UIColor whiteColor]];
         
         cell.backgroundColor = [UIColor clearColor];
         
         if ([indexPath isEqual:self.selectedPath]) {
             cell.accessoryType=UITableViewCellAccessoryNone;
-            [[(CityCell*)cell checkView] setImage:[UIImage imageNamed:@"checkmark.png"]];
+            [[(CountryMapCell*)cell checkView] setImage:[UIImage imageNamed:@"checkmark.png"]];
         } else {
             cell.accessoryType=UITableViewCellAccessoryNone;
-            [[(CityCell*)cell checkView] setImage:nil];
+            [[(CountryMapCell*)cell checkView] setImage:nil];
         }
         
         //
         // setting button background
         //
         
-        UIButton *cellButton = [(CityCell*)cell cellButton];
+        UIButton *cellButton = [(CountryMapCell*)cell cellButton];
         cellButton.hidden=NO;
         
-        UIProgressView *progress = [(CityCell*)cell progress];
+        UIProgressView *progress = [(CountryMapCell*)cell progress];
         progress.hidden=YES;
         progress.tag=123;
         
-        if ([self isProductStatusDefault:[map objectForKey:@"prodID"]] || [self isProductStatusInstalled:[map objectForKey:@"prodID"]]) {
-            [cellButton setTitle:@"Installed" forState:UIControlStateNormal];
-            [cellButton setTitle:@"Installed" forState:UIControlStateHighlighted];
-            [cellButton setBackgroundImage:[UIImage imageNamed:@"blue_button.png"] forState:UIControlStateNormal];
-            [cellButton setBackgroundImage:[UIImage imageNamed:@"blue_button.png"] forState:UIControlStateHighlighted];
-            [cellButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
+        NSString *price = [map valueForKey:@"price"];
+        if ([price isEqualToString:@"0.99"]) {
+            [cellButton setImage:[UIImage imageNamed:@"settings_price_min_bt.png"] forState:UIControlStateNormal];
+        } else {
+            [cellButton setImage:[UIImage imageNamed:@"settings_price_max_bt.png"] forState:UIControlStateNormal];
+        }
+        
+//        if ([self isProductStatusDefault:[map objectForKey:@"prodID"]] || [self isProductStatusInstalled:[map objectForKey:@"prodID"]]) {
+//            [cellButton setTitle:@"Installed" forState:UIControlStateNormal];
+//            [cellButton setTitle:@"Installed" forState:UIControlStateHighlighted];
+//            [cellButton setBackgroundImage:[UIImage imageNamed:@"blue_button.png"] forState:UIControlStateNormal];
+//            [cellButton setBackgroundImage:[UIImage imageNamed:@"blue_button.png"] forState:UIControlStateHighlighted];
+//            [cellButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
+//            
+//        } else if ([self isProductStatusPurchased:[map objectForKey:@"prodID"]])  {
+//            
+//            [cellButton setTitle:@"Install" forState:UIControlStateNormal];
+//            [cellButton setTitle:@"Install" forState:UIControlStateHighlighted];
+//            [cellButton setBackgroundImage:[UIImage imageNamed:@"green_button.png"] forState:UIControlStateNormal];
+//            [cellButton setBackgroundImage:[UIImage imageNamed:@"high_green_button.png"] forState:UIControlStateHighlighted];
+//            [cellButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
+//            
+//        } else if ([self isProductStatusAvailable:[map objectForKey:@"prodID"]])  {
+//            
+//            [cellButton setTitle:[map valueForKey:@"price"] forState:UIControlStateNormal];
+//            [cellButton setTitle:[map valueForKey:@"price"] forState:UIControlStateHighlighted];
+//            [cellButton setBackgroundImage:[UIImage imageNamed:@"buy_button.png"] forState:UIControlStateNormal];
+//            [cellButton setBackgroundImage:[UIImage imageNamed:@"high_buy_button.png"] forState:UIControlStateHighlighted];
+//            [cellButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
+//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             
-        } else if ([self isProductStatusPurchased:[map objectForKey:@"prodID"]])  {
-            
-            [cellButton setTitle:@"Install" forState:UIControlStateNormal];
-            [cellButton setTitle:@"Install" forState:UIControlStateHighlighted];
-            [cellButton setBackgroundImage:[UIImage imageNamed:@"green_button.png"] forState:UIControlStateNormal];
-            [cellButton setBackgroundImage:[UIImage imageNamed:@"high_green_button.png"] forState:UIControlStateHighlighted];
-            [cellButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
-            
-        } else if ([self isProductStatusAvailable:[map objectForKey:@"prodID"]])  {
-            
-            [cellButton setTitle:[map valueForKey:@"price"] forState:UIControlStateNormal];
-            [cellButton setTitle:[map valueForKey:@"price"] forState:UIControlStateHighlighted];
-            [cellButton setBackgroundImage:[UIImage imageNamed:@"buy_button.png"] forState:UIControlStateNormal];
-            [cellButton setBackgroundImage:[UIImage imageNamed:@"high_buy_button.png"] forState:UIControlStateHighlighted];
-            [cellButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            
-        } else if ([self isProductStatusDownloading:[map objectForKey:@"prodID"]]){
+        if ([self isProductStatusDownloading:[map objectForKey:@"prodID"]]){
             
             cellButton.hidden=YES;
             progress.hidden=NO;
 
         } else {
-            cellButton.hidden=YES;
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cellButton.hidden=NO;
+            progress.hidden=YES;
         }
         
         //
@@ -345,30 +357,30 @@
         NSInteger sectionRows = [tableView numberOfRowsInSection:[indexPath section]];
         NSInteger crow = [indexPath row];
         
-        if (crow == 0 && crow == sectionRows - 1)
-        {
-            // у нас таких быть не должно вообще но 
-            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
-        }
-        else if (crow == 0)
-        {
-            rowBackground = [UIImage imageNamed:@"first_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_first_cell_bg.png"];
-        }
-        else if (crow == sectionRows - 1)
-        {
-            rowBackground = [UIImage imageNamed:@"last_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_last_cell_bg.png"];
-        }
-        else
-        {
-            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
-        }
-        
-        cell.backgroundView  = [[[UIImageView alloc] initWithImage:rowBackground] autorelease];
-        cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:selectionBackground] autorelease];
+//        if (crow == 0 && crow == sectionRows - 1)
+//        {
+//            // у нас таких быть не должно вообще но 
+//            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
+//            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+//        }
+//        else if (crow == 0)
+//        {
+//            rowBackground = [UIImage imageNamed:@"first_cell_bg.png"];
+//            selectionBackground = [UIImage imageNamed:@"high_first_cell_bg.png"];
+//        }
+//        else if (crow == sectionRows - 1)
+//        {
+//            rowBackground = [UIImage imageNamed:@"last_cell_bg.png"];
+//            selectionBackground = [UIImage imageNamed:@"high_last_cell_bg.png"];
+//        }
+//        else
+//        {
+//            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
+//            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+//        }
+//        
+//        cell.backgroundView  = [[[UIImageView alloc] initWithImage:rowBackground] autorelease];
+//        cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:selectionBackground] autorelease];
         
         return cell;
         
@@ -480,7 +492,7 @@
 
 -(void)refreshButton:(NSIndexPath*)path
 {
-    CityCell *cell = (CityCell*)[self.cityTableView cellForRowAtIndexPath:path];
+    CountryMapCell *cell = (CountryMapCell*)[self.cityTableView cellForRowAtIndexPath:path];
     UIProgressView *progress = (UIProgressView*)[cell viewWithTag:123];
     NSDictionary *map = [self.maps objectAtIndex:path.row];
     progress.progress=[[map objectForKey:@"progress"] floatValue];
@@ -752,7 +764,7 @@
 
 -(IBAction)buyButtonPressed:(id)sender 
 {
-    CityCell *cell = (CityCell*)[[sender superview] superview];  
+    CountryMapCell *cell = (CountryMapCell*)[[sender superview] superview];  
     NSMutableDictionary *map = [maps objectAtIndex:[cityTableView indexPathForCell:cell].row];
     NSString *prodID = [map valueForKey:@"prodID"];
     

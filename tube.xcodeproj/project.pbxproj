@@ -38,6 +38,15 @@
 		51D35F45158BBC58008518EC /* vector in Resources */ = {isa = PBXBuildFile; fileRef = 51D35F44158BBC58008518EC /* vector */; };
 		51E9C614154E9A02000D3950 /* RasterLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51E9C613154E9A02000D3950 /* RasterLayer.m */; };
 		51F15F7714D99A3800D11B79 /* VectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F15F7614D99A3800D11B79 /* VectorLayer.m */; };
+		570474AE15A48D9700A43E6F /* CountryMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 570474AD15A48D9700A43E6F /* CountryMapView.xib */; };
+		570474B115A48DCD00A43E6F /* CountryMapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 570474B015A48DCD00A43E6F /* CountryMapCell.m */; };
+		570474B515A4903400A43E6F /* country_sample_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 570474B215A4903400A43E6F /* country_sample_image.png */; };
+		570474B615A4903400A43E6F /* settings_item_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 570474B315A4903400A43E6F /* settings_item_bg.png */; };
+		570474B715A4903400A43E6F /* settings_item_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 570474B415A4903400A43E6F /* settings_item_bg@2x.png */; };
+		570474BC15A491CB00A43E6F /* settings_price_min_bt.png in Resources */ = {isa = PBXBuildFile; fileRef = 570474B815A491CB00A43E6F /* settings_price_min_bt.png */; };
+		570474BD15A491CB00A43E6F /* settings_price_min_bt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 570474B915A491CB00A43E6F /* settings_price_min_bt@2x.png */; };
+		570474BE15A491CB00A43E6F /* settings_price_max_bt.png in Resources */ = {isa = PBXBuildFile; fileRef = 570474BA15A491CB00A43E6F /* settings_price_max_bt.png */; };
+		570474BF15A491CB00A43E6F /* settings_price_max_bt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 570474BB15A491CB00A43E6F /* settings_price_max_bt@2x.png */; };
 		570BB1D01590B50F00CE1AA5 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 570BB1CF1590B50F00CE1AA5 /* Icon.png */; };
 		570BB1D21590B56200CE1AA5 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 570BB1D11590B56200CE1AA5 /* Icon@2x.png */; };
 		570BB1D51590C59400CE1AA5 /* terrain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 570BB1D31590C59200CE1AA5 /* terrain@2x.png */; };
@@ -438,6 +447,16 @@
 		51E9C613154E9A02000D3950 /* RasterLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RasterLayer.m; path = Classes/RasterLayer.m; sourceTree = "<group>"; };
 		51F15F7514D99A3800D11B79 /* VectorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VectorLayer.h; path = Classes/VectorLayer.h; sourceTree = "<group>"; };
 		51F15F7614D99A3800D11B79 /* VectorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VectorLayer.m; path = Classes/VectorLayer.m; sourceTree = "<group>"; };
+		570474AD15A48D9700A43E6F /* CountryMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountryMapView.xib; sourceTree = "<group>"; };
+		570474AF15A48DCD00A43E6F /* CountryMapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryMapCell.h; sourceTree = "<group>"; };
+		570474B015A48DCD00A43E6F /* CountryMapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryMapCell.m; sourceTree = "<group>"; };
+		570474B215A4903400A43E6F /* country_sample_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = country_sample_image.png; path = images/country_sample_image.png; sourceTree = "<group>"; };
+		570474B315A4903400A43E6F /* settings_item_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings_item_bg.png; path = images/settings_item_bg.png; sourceTree = "<group>"; };
+		570474B415A4903400A43E6F /* settings_item_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings_item_bg@2x.png"; path = "images/settings_item_bg@2x.png"; sourceTree = "<group>"; };
+		570474B815A491CB00A43E6F /* settings_price_min_bt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings_price_min_bt.png; path = images/settings_price_min_bt.png; sourceTree = "<group>"; };
+		570474B915A491CB00A43E6F /* settings_price_min_bt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings_price_min_bt@2x.png"; path = "images/settings_price_min_bt@2x.png"; sourceTree = "<group>"; };
+		570474BA15A491CB00A43E6F /* settings_price_max_bt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings_price_max_bt.png; path = images/settings_price_max_bt.png; sourceTree = "<group>"; };
+		570474BB15A491CB00A43E6F /* settings_price_max_bt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings_price_max_bt@2x.png"; path = "images/settings_price_max_bt@2x.png"; sourceTree = "<group>"; };
 		570BB1CF1590B50F00CE1AA5 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		570BB1D11590B56200CE1AA5 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		570BB1D31590C59200CE1AA5 /* terrain@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terrain@2x.png"; sourceTree = "<group>"; };
@@ -1050,6 +1069,7 @@
 				579E9D701599C71C00D509D0 /* GalleryFullscreenViewController.xib */,
 				579E9D4015999C9200D509D0 /* GalleryItemView.xib */,
 				573AF99815989A69001F09B7 /* GalleryViewController.xib */,
+				570474AD15A48D9700A43E6F /* CountryMapView.xib */,
 				BCD7E24B151AF85C007C658A /* CityCell.xib */,
 				BC8E2EB31522043E00F30619 /* DemoMapViewController.xib */,
 				BC88F91A15205B6A00BC7FAA /* LanguageViewController.xib */,
@@ -1135,6 +1155,13 @@
 		BC3D150E14C339140059A17E /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				570474B815A491CB00A43E6F /* settings_price_min_bt.png */,
+				570474B915A491CB00A43E6F /* settings_price_min_bt@2x.png */,
+				570474BA15A491CB00A43E6F /* settings_price_max_bt.png */,
+				570474BB15A491CB00A43E6F /* settings_price_max_bt@2x.png */,
+				570474B215A4903400A43E6F /* country_sample_image.png */,
+				570474B315A4903400A43E6F /* settings_item_bg.png */,
+				570474B415A4903400A43E6F /* settings_item_bg@2x.png */,
 				BC28950814F621560054F9EB /* high_language_table_cell.png */,
 				BC28950914F621560054F9EB /* high_language_table_cell@2x.png */,
 				BC28950A14F621560054F9EB /* high_last_cell_bg.png */,
@@ -1371,6 +1398,8 @@
 				BCCC30AA14E4FA6200102064 /* CityCell.m */,
 				BC88F917152058D600BC7FAA /* LanguageCell2.h */,
 				BC88F918152058D600BC7FAA /* LanguageCell2.m */,
+				570474AF15A48DCD00A43E6F /* CountryMapCell.h */,
+				570474B015A48DCD00A43E6F /* CountryMapCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1812,6 +1841,14 @@
 				57AE4551159F3B5A0062EAC3 /* direction_arrow@2x.png in Resources */,
 				57AE4552159F3B5A0062EAC3 /* direction_bg.png in Resources */,
 				57AE4553159F3B5A0062EAC3 /* direction_bg@2x.png in Resources */,
+				570474AE15A48D9700A43E6F /* CountryMapView.xib in Resources */,
+				570474B515A4903400A43E6F /* country_sample_image.png in Resources */,
+				570474B615A4903400A43E6F /* settings_item_bg.png in Resources */,
+				570474B715A4903400A43E6F /* settings_item_bg@2x.png in Resources */,
+				570474BC15A491CB00A43E6F /* settings_price_min_bt.png in Resources */,
+				570474BD15A491CB00A43E6F /* settings_price_min_bt@2x.png in Resources */,
+				570474BE15A491CB00A43E6F /* settings_price_max_bt.png in Resources */,
+				570474BF15A491CB00A43E6F /* settings_price_max_bt@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1894,6 +1931,7 @@
 				573AF99615989A34001F09B7 /* GalleryViewController.m in Sources */,
 				579E9D4515999CB900D509D0 /* GalleryItemView.m in Sources */,
 				579E9D6F1599C70000D509D0 /* GalleryFullscreenViewController.m in Sources */,
+				570474B115A48DCD00A43E6F /* CountryMapCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
