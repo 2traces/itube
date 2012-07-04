@@ -187,13 +187,13 @@
 
 -(void)adjustViewHeight
 {
-    CGFloat tableHeight = [maps count]*45.0f+2.0;
+    CGFloat tableHeight = [maps count]*97.0f+2.0;
     
-    cityTableView.frame = CGRectMake(8, 179, 304, tableHeight);
+    cityTableView.frame = CGRectMake(8, 113, 304, tableHeight);
     
-    textLabel3.frame = CGRectMake(textLabel3.frame.origin.x, 179+tableHeight+17, textLabel3.frame.size.width, textLabel3.frame.size.height);
+    textLabel3.frame = CGRectMake(textLabel3.frame.origin.x, 113+tableHeight+17, textLabel3.frame.size.width, textLabel3.frame.size.height);
     
-    sendMailButton.frame = CGRectMake(sendMailButton.frame.origin.x, 179+tableHeight+8, sendMailButton.frame.size.width, sendMailButton.frame.size.height);
+    sendMailButton.frame = CGRectMake(sendMailButton.frame.origin.x, 113+tableHeight+8, sendMailButton.frame.size.width, sendMailButton.frame.size.height);
     
     scrollView.contentSize = CGSizeMake(320, sendMailButton.frame.origin.y+sendMailButton.frame.size.height+15.0);
     scrollView.frame = CGRectMake(0.0, 0.0, 320.0, 460.0-44.0);
@@ -268,7 +268,7 @@
         UITableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         
         if (cell == nil) { 
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"CountryMapCell" owner:self options:nil] lastObject];
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"CountryMapView" owner:self options:nil] lastObject];
             [[(CountryMapCell*)cell cellButton] addTarget:self action:@selector(buyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         }    
         
@@ -456,7 +456,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    return 45.0;
+    if (tableView == langTableView) {
+        return 45.0;
+    }
+    else if (tableView == cityTableView) {
+        return 97.0f;
+    }
+    return 0;
 }
 
 #pragma mark - Download delegate methods

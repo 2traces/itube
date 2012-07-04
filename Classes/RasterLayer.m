@@ -58,7 +58,7 @@
         boundingBox.origin.y -= dy;
         boundingBox.size.width *= 2.f;
         boundingBox.size.height *= 2.f;
-        
+//      //Uncomment to enable coordinates for objects
         MItem *it = [[MHelper sharedHelper] getItemWithIndex:number];
         if(it) {
             NSNumber *zero = [NSNumber numberWithDouble:0];
