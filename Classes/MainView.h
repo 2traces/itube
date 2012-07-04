@@ -63,5 +63,6 @@ extern NSInteger const toolbarWidth;
 - (BOOL) centerMapOnItemWithID:(NSInteger)itemID;
 - (BOOL) centerMapOnUserAndItemWithID:(NSInteger)itemID;
 - (CGFloat) distanceToItemWithID:(NSInteger)itemID; 
+- (CGFloat) radialOffsetToPoint:(CGPoint)point;
 
 @end

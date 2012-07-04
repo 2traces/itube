@@ -401,4 +401,14 @@ NSInteger const toolbarWidth=320;
     } else return 0;
 }
 
+- (CGFloat) radialOffsetToPoint:(CGPoint)point
+{
+    CGPoint off = containerView.contentOffset;
+    CGSize size = containerView.bounds.size;
+    off.x += size.width*0.5f / containerView.zoomScale;
+    off.y += size.height*0.5f / containerView.zoomScale;
+    
+    return atan2f(point.y - off.y, point.x - off.x);
+}
+
 @end
