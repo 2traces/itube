@@ -152,8 +152,10 @@
     MainView* mainView = (MainView*)appDelegate.mainViewController.view;    
 
     CGFloat distance = [mainView distanceToItemWithID:[photo.theItem.index integerValue]];
+    [mainView centerGalleryShiftedMapOnItemWithID:[photo.theItem.index integerValue]];
+    //[mainView shiftMapForGalleryView];
     
-    self.label.text = [NSString stringWithFormat:@"%@, ~ %f km", photo.theItem.name, distance];
+    self.label.text = [NSString stringWithFormat:@"%@, ~ %i km", photo.theItem.name, (int)distance];
 }
 
 - (void)showFullscreenItemWithID:(NSInteger)itemID {

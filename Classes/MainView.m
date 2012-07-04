@@ -343,6 +343,21 @@ NSInteger const toolbarWidth=320;
     return p;
 }
 
+- (BOOL) centerGalleryShiftedMapOnItemWithID:(NSInteger)itemID {
+    CGPoint p = [mapView pointOnMapViewForItemWithID:itemID];
+    CGPoint p2 = mapView.userPosition;
+    if(p.x != 0 || p.y != 0) { 
+        CGRect rect;
+        rect.size.width = fabsf(p.x - p2.x) * 2.2f;
+        rect.size.height = fabsf(p.y - p2.y) * 2.2f;
+        rect.origin.x = p.x - rect.size.width * 0.5f;
+        rect.origin.y = p.y - rect.size.height * 0.5f - rect.size.height * 0.5f;
+        [containerView zoomToRect:rect animated:YES];
+        return YES;
+    } else return NO;
+}
+
+
 - (BOOL) centerMapOnItemWithID:(NSInteger)itemID
 {
     CGPoint p = [mapView pointOnMapViewForItemWithID:itemID];
