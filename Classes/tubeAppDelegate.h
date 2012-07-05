@@ -6,6 +6,9 @@
 //  Copyright __MyCompanyName__ 2011. All rights reserved.
 //
 
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+
 @class MainViewController;
 @class CityMap;
 
@@ -13,7 +16,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 
 #define kParseComplete @"kParseComplete"
 
-@interface tubeAppDelegate : NSObject <UIApplicationDelegate> {
+@interface tubeAppDelegate : NSObject <UIApplicationDelegate,MFMailComposeViewControllerDelegate> {
     UIWindow *window;
     MainViewController *mainViewController;
     CityMap *cityMap;

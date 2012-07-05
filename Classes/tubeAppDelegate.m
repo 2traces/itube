@@ -35,7 +35,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     CityMap *cm = [[CityMap alloc] init];
     NSString *mapName =[self nameCurrentMap];
     [cm loadMap:mapName];
-   
+    
     self.cityMap = cm;
     [cm release];
     
@@ -54,9 +54,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 	if ([[NSUserDefaults standardUserDefaults] integerForKey:@"launches"])
 	{
         if ([[NSUserDefaults standardUserDefaults] integerForKey:@"launches"]==10) {
-            UIAlertView *buttonAlert = [[UIAlertView alloc] initWithTitle:@"Thank you" message:@"Please rate our application" delegate:self cancelButtonTitle:@"Later" otherButtonTitles:@"Ok!", nil];
-            [buttonAlert show];
-            [buttonAlert release];
+            
+            [self askForRate];
             
         } else if  ([[NSUserDefaults standardUserDefaults] integerForKey:@"launches"]<10) {
             
@@ -72,21 +71,128 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex { 
-    if (buttonIndex == 0) {
-        
-        NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
-        [prefs setInteger:1 forKey:@"launches"];
-        [prefs synchronize];
-        
-    } else if (buttonIndex == 1) {
-        
-        NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
-        [prefs setInteger:40 forKey:@"launches"];
-        [prefs synchronize];
-        
-        NSURL *url = [NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=513581498"]; 
-        [[UIApplication sharedApplication] openURL:url];
+    
+    if (alertView.tag=1) {
+        if (buttonIndex == 0) {
+            
+            NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
+            [prefs setInteger:40 forKey:@"launches"];
+            [prefs synchronize];
+            
+        } else if (buttonIndex == 1) {
+            
+            NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
+            [prefs setInteger:40 forKey:@"launches"];
+            [prefs synchronize];
+            
+            NSURL *url = [NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=513581498"]; 
+            
+            [[UIApplication sharedApplication] openURL:url];
+            
+        } else if (buttonIndex == 2) {
+            
+            NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
+            [prefs setInteger:1 forKey:@"launches"];
+            [prefs synchronize];
+        } else if (buttonIndex == 3) {
+            
+            [self showMailComposer:nil];
+        }
     }
+}
+
+-(NSString*)getAppName
+{
+    NSString *appName;
+    
+    appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+    if ([appName length] == 0)
+    {
+        appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleNameKey];
+    }
+    
+    return appName;
+}
+
+-(void)askForRate
+{    
+    NSString *cancelButtonLabel = NSLocalizedString(@"No, Thanks", @"No, Thanks");
+    NSString *remindButtonLabel = NSLocalizedString(@"Remind Me Later", @"Remind Me Later");
+    NSString *rateButtonLabel = NSLocalizedString(@"Rate It Now", @"Rate It Now");
+    NSString *mailButtonLabel = NSLocalizedString(@"Drop Us An EMail", @"Drop Us An EMail");
+    NSString *rateLabel = [NSString stringWithFormat:NSLocalizedString(@"Rate", @"Rate"),[self getAppName]];
+    NSString *rateMessageLabel = [NSString stringWithFormat:NSLocalizedString(@"RateMessage", @"RateMessage"),[self getAppName]];
+    
+    UIAlertView *buttonAlert = [[UIAlertView alloc] initWithTitle:rateLabel message:rateMessageLabel delegate:self cancelButtonTitle:cancelButtonLabel otherButtonTitles:rateButtonLabel, nil];
+    
+    buttonAlert.tag=1;
+    
+    [buttonAlert addButtonWithTitle:remindButtonLabel];
+    [buttonAlert addButtonWithTitle:mailButtonLabel];
+    [buttonAlert show];
+    [buttonAlert release];
+}
+
+- (void)resizeAlertView:(UIAlertView *)alertView
+{
+    if (alertView.tag=1) {
+        NSInteger imageCount = 0;
+        CGFloat offset = 0.0f;
+        CGFloat messageOffset = 0.0f;
+        for (UIView *view in alertView.subviews)
+        {
+            CGRect frame = view.frame;
+            if ([view isKindOfClass:[UILabel class]])
+            {
+                UILabel *label = (UILabel *)view;
+                if ([label.text isEqualToString:alertView.title])
+                {
+                    [label sizeToFit];
+                    offset = label.frame.size.height - fmax(0.0f, 45.f - label.frame.size.height);
+                    if (label.frame.size.height > frame.size.height)
+                    {
+                        offset = messageOffset = label.frame.size.height - frame.size.height;
+                        frame.size.height = label.frame.size.height;
+                    }
+                }
+                else if ([label.text isEqualToString:alertView.message])
+                {
+                    label.alpha = 1.0f;
+                    label.lineBreakMode = UILineBreakModeWordWrap;
+                    label.numberOfLines = 0;
+                    [label sizeToFit];
+                    offset += label.frame.size.height - frame.size.height;
+                    frame.origin.y += messageOffset;
+                    frame.size.height = label.frame.size.height;
+                }
+            }
+            else if ([view isKindOfClass:[UITextView class]])
+            {
+                view.alpha = 0.0f;
+            }
+            else if ([view isKindOfClass:[UIImageView class]])
+            {
+                if (imageCount++ > 0)
+                {
+                    view.alpha = 0.0f;
+                }
+            }
+            else if ([view isKindOfClass:[UIControl class]])
+            {
+                frame.origin.y += offset;
+            }
+            view.frame = frame;
+        }
+        CGRect frame = alertView.frame;
+        frame.origin.y -= roundf(offset/2.0f);
+        frame.size.height += offset;
+        alertView.frame = frame;
+    }
+}
+
+- (void)willPresentAlertView:(UIAlertView *)alertView
+{
+    [self resizeAlertView:alertView];
 }
 
 
@@ -176,6 +282,60 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     return cityFileName;
 }
+
+#pragma mark - Mail methods
+
+// Displays an email composition interface inside the app // and populates all the Mail fields.
+-(IBAction)showMailComposer:(id)sender
+{
+    Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
+    if (mailClass != nil) {
+        // Test to ensure that device is configured for sending emails.
+        if ([mailClass canSendMail]) {
+            MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+            picker.mailComposeDelegate = self;
+            [picker setSubject:[NSString stringWithString:[self getAppName]]];
+            [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"fusio@yandex.ru"]]];
+            [self.mainViewController presentModalViewController:picker animated:YES];
+            [picker release];
+        } else {
+            // Device is not configured for sending emails, so notify user.
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Can't send email" message:@"This device not configured to send emails" delegate:self cancelButtonTitle:@"Ok, I will try later" otherButtonTitles:nil];
+            [alertView show];
+            [alertView release];
+        }
+    } 
+}
+
+// Dismisses the Mail composer when the user taps Cancel or Send.
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    NSString *resultTitle = nil; NSString *resultMsg = nil;
+    switch (result) {
+        case MFMailComposeResultCancelled:
+            resultTitle = @"Email cancelled";
+            resultMsg = @"You cancelled you email"; break;
+        case MFMailComposeResultSaved:
+            resultTitle = @"Email saved";
+            resultMsg = @"Your draft email was saved"; break;
+        case MFMailComposeResultSent: resultTitle = @"Email sent";
+            resultMsg = @"Your email was sent successfully";
+            break;
+        case MFMailComposeResultFailed:
+            resultTitle = @"Email failed";
+            resultMsg = @"Your email was failed"; break;
+        default:
+            resultTitle = @"Email was not sent";
+            resultMsg = @"Your email was not sent"; break;
+    }
+    // Notifies user of any Mail Composer errors received with an Alert View dialog.
+    UIAlertView *mailAlertView = [[UIAlertView alloc] initWithTitle:resultTitle message:resultMsg delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+    [mailAlertView show];
+    [mailAlertView release];
+    [resultTitle release];
+    [resultMsg release];
+    [self.mainViewController dismissModalViewControllerAnimated:YES];
+}
+
 
 - (void)dealloc {
     [mainViewController release];

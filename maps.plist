@@ -66,10 +66,12 @@
 	<dict>
 		<key>ver</key>
 		<string>1</string>
+		<key>New item</key>
+		<string></string>
 		<key>name</key>
-		<string>Venice</string>
+		<string>Paris</string>
 		<key>filename</key>
-		<string>venice</string>
+		<string>paris</string>
 		<key>description</key>
 		<string>venice.txt</string>
 		<key>picture</key>

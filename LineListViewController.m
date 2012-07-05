@@ -294,7 +294,7 @@
     
     NSArray *stations = [dataSource getStationsForLine:line];
     
-    NSString *cellValue = [[stations objectAtIndex:indexPath.row] name];
+//    NSString *cellValue = [[stations objectAtIndex:indexPath.row] name];
     
 //    NSLog(@"%@",cellValue);
     
@@ -379,13 +379,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     
-    SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:section];
-
-    if (sectionInfo.open) {
-        return HEADER_HEIGHT; 
-    } else {   
-        return HEADER_HEIGHT;
-    }
+//    SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:section];
+//
+//    if (sectionInfo.open) {
+//        return HEADER_HEIGHT; 
+//    } else {   
+//        return HEADER_HEIGHT;
+//    }
+    
+    return HEADER_HEIGHT; 
 }
 
 -(UIImage*)drawCircleView:(UIColor*)myColor
