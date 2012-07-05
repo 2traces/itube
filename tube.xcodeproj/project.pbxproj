@@ -112,6 +112,8 @@
 		BC3D156514C33E0E0059A17E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3D156414C33E0C0059A17E /* SystemConfiguration.framework */; };
 		BC3D156714C33E170059A17E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3D156614C33E160059A17E /* StoreKit.framework */; };
 		BC4DA4181537F03700B941F1 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4DA4171537F03700B941F1 /* ImageDownloader.m */; };
+		BC50B78815A5C68A0078BE8E /* cross_red.png in Resources */ = {isa = PBXBuildFile; fileRef = BC50B78615A5C6890078BE8E /* cross_red.png */; };
+		BC50B78915A5C68A0078BE8E /* cross_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC50B78715A5C6890078BE8E /* cross_red@2x.png */; };
 		BC5AF6F614F5180400C8463F /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = BC5AF6F414F5180400C8463F /* splash.png */; };
 		BC5AF6F714F5180400C8463F /* splash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC5AF6F514F5180400C8463F /* splash@2x.png */; };
 		BC68904E1575E075002232E6 /* SelectingTabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC6890501575E075002232E6 /* SelectingTabBarViewController.xib */; };
@@ -572,6 +574,8 @@
 		BC3D156614C33E160059A17E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		BC4DA4161537F03600B941F1 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDownloader.h; path = Classes/ImageDownloader.h; sourceTree = "<group>"; };
 		BC4DA4171537F03700B941F1 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloader.m; path = Classes/ImageDownloader.m; sourceTree = "<group>"; };
+		BC50B78615A5C6890078BE8E /* cross_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cross_red.png; path = images/cross_red.png; sourceTree = "<group>"; };
+		BC50B78715A5C6890078BE8E /* cross_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cross_red@2x.png"; path = "images/cross_red@2x.png"; sourceTree = "<group>"; };
 		BC5AF6F414F5180400C8463F /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		BC5AF6F514F5180400C8463F /* splash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash@2x.png"; sourceTree = "<group>"; };
 		BC68904B1575DFE7002232E6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1549,6 +1553,8 @@
 				BC876B3B14DFB26F008AC06C /* toolbar_text_bg_lighted@2x.png */,
 				BC876B3C14DFB26F008AC06C /* toolbar_text_bg.png */,
 				BC876B3D14DFB26F008AC06C /* toolbar_text_bg@2x.png */,
+				BC50B78615A5C6890078BE8E /* cross_red.png */,
+				BC50B78715A5C6890078BE8E /* cross_red@2x.png */,
 				BC876B4814DFB296008AC06C /* cross_opaq.png */,
 				BC876B4914DFB296008AC06C /* cross_opaq@2x.png */,
 				BC876B4A14DFB296008AC06C /* cross_transp.png */,
@@ -1989,6 +1995,8 @@
 				BC6890E4157611C4002232E6 /* it_settingsstation@2x.png in Resources */,
 				BC6890E5157611C4002232E6 /* it_stationsstation.png in Resources */,
 				BC6890E6157611C4002232E6 /* it_stationsstation@2x.png in Resources */,
+				BC50B78815A5C68A0078BE8E /* cross_red.png in Resources */,
+				BC50B78915A5C68A0078BE8E /* cross_red@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

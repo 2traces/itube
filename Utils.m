@@ -33,6 +33,7 @@
 	NSArray *list1 = [response componentsSeparatedByString:s];
 	DLog(@"Количество строк %d ",[list1 count]);
 	
+    [response release];
 	
 	//NSArray *ns = [NSArray arrayWithContentsOfFile:appFile];
 	//DLog(@"array ellemcets count %d ",[ns count]);
