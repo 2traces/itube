@@ -120,7 +120,7 @@ NSInteger const toolbarWidth=320;
 	//UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
 	//[containerView addGestureRecognizer:singleTap];    
 
-    stationMark = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin"]];
+    stationMark = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"user_pin"]];
     //stationMark.hidden = YES;
     [self addSubview:stationMark];
     [pins setObject:stationMark forKey:[NSNumber numberWithInt:-1]];
@@ -170,7 +170,19 @@ NSInteger const toolbarWidth=320;
     NSTimer *timer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(supervisor) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     
+    UIGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
+                                      initWithTarget:self action:@selector(handleLongPress:)];
+    [self addGestureRecognizer:[longPress autorelease]];
     [self showPins];
+}
+
+- (void)handleLongPress:(UILongPressGestureRecognizer *)recognizer {
+    CGPoint location = [recognizer locationInView:recognizer.view];
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        CGPoint newPoint = [self.mapView convertPoint:location fromView:self];
+        [self setPin:newPoint];
+        NSLog(@"Long press in %f, %f", newPoint.x, newPoint.y);
+    }
 }
 
 -(void)setCityMap:(CityMap*)cm
@@ -422,6 +434,22 @@ NSInteger const toolbarWidth=320;
     UIImageView *p = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin"]];
     [self addSubview:p];
     [pins setObject:p forKey:[NSNumber numberWithInt:index]];
+    [self updatePins];
+    
+    __block CGRect frame = p.frame;
+    frame.origin.y -= self.frame.size.height;
+    p.frame = frame;
+    
+    [UIView animateWithDuration:0.2 animations:^(void) {
+        frame.origin.y += self.frame.size.height;
+        p.frame = frame;
+    } completion:^(BOOL completion){
+        [self bringSubviewToFront:vcontroller.stationsView];
+        [self bringSubviewToFront:sourceData];
+        [self bringSubviewToFront:userPosition];
+
+    }];
+    
     return index;
 }
 
@@ -473,6 +501,11 @@ NSInteger const toolbarWidth=320;
             [p setCenter:point];
         }
     }
+}
+
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"Touches began!");
 }
 
 @end

@@ -385,7 +385,7 @@
 }
 
 -(void) initData {
-	nearestStationImage = [[UIImage imageNamed:@"user_pin.png"]retain];
+	//nearestStationImage = [[UIImage imageNamed:@"user_pin.png"]retain];
 
 }
 
