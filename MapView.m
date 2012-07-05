@@ -178,6 +178,8 @@
         MaxScale = 100.f;
         Scale = 0.05f;
         selectedStationName = [[NSMutableString alloc] init];
+        pins = [[NSMutableDictionary alloc] init];
+        nextPinId = -2;
 		
 		int scale = 1;
 		if ([self respondsToSelector:@selector(setContentScaleFactor:)])
@@ -316,6 +318,7 @@
 }
 
 - (void)dealloc {
+    [pins release];
     [timer release];
     [labelBg removeFromSuperview];
     [previewImage removeFromSuperview];
@@ -501,6 +504,7 @@
         [rasterLayer stopLoadingBut:Scale*SCALE];
         [self redraw];
     }
+    [self.superview.superview showPins];
 }
 
 - (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
@@ -517,6 +521,7 @@
     }
     oldOffset = offset;
     //printf("offset is %d %d\n", (int)scrollView.contentOffset.x, (int)scrollView.contentOffset.y);
+    [self.superview.superview updatePins];
 }
 
 -(void) scrollViewDidScroll:(UIScrollView *)scrollView
@@ -524,6 +529,7 @@
     if(stationSelected) {
         stationSelected = NO;
     }
+    [self.superview.superview updatePins];
 }
 
 -(void) scrollViewDidZoom:(UIScrollView *)scrollView
@@ -531,6 +537,7 @@
     if(stationSelected) {
         stationSelected = NO;
     }
+    [self.superview.superview hidePins];
 }
 
 -(BOOL) changeSource
@@ -543,7 +550,36 @@
 
 -(CGPoint) pointOnMapViewForItemWithID:(NSInteger)itemID
 {
-    return [rasterLayer pointOnMapViewForItemWithID:itemID];
+    if(itemID < 0) return [self getPin:itemID];
+    else return [rasterLayer pointOnMapViewForItemWithID:itemID];
 }
+
+-(NSInteger) makePinAt:(CGPoint)point
+{
+    NSInteger pi = nextPinId;
+    [pins setObject:[NSValue valueWithCGPoint:point] forKey:[NSNumber numberWithInt:pi]];
+    nextPinId --;
+    return pi;
+}
+
+-(CGPoint) getPin:(NSInteger)index
+{
+    if(index == -1) {
+        return userPosition;
+    } else {
+        return [[pins objectForKey:[NSNumber numberWithInt:index]] CGPointValue];
+    }
+}
+
+-(BOOL) pinExist:(NSInteger)index
+{
+    return index == -1 || [pins objectForKey:[NSNumber numberWithInt:index]] != nil;
+}
+
+-(BOOL) removePin:(NSInteger)index
+{
+    [pins removeObjectForKey:[NSNumber numberWithInt:index]];
+}
+                          
 
 @end

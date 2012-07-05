@@ -38,7 +38,6 @@ NSInteger const toolbarWidth=320;
 
 	DLog(@"initWithFrame ");
     if (self = [super initWithFrame:frame]) {
-
         // Initialization code
 
     }
@@ -56,6 +55,8 @@ NSInteger const toolbarWidth=320;
     self.vcontroller = vc;
 	self.userInteractionEnabled = YES;
     buttonsVisible = NO;
+    pins = [[NSMutableDictionary alloc] init];
+    pinsShown = NO;
 	DLog(@"ViewDidLoad main View");	
 
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -120,8 +121,9 @@ NSInteger const toolbarWidth=320;
 	//[containerView addGestureRecognizer:singleTap];    
 
     stationMark = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin"]];
-    stationMark.hidden = YES;
+    //stationMark.hidden = YES;
     [self addSubview:stationMark];
+    [pins setObject:stationMark forKey:[NSNumber numberWithInt:-1]];
     [self addSubview:mapView.labelView];
 	
     /*sourceButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -167,6 +169,8 @@ NSInteger const toolbarWidth=320;
     
     NSTimer *timer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(supervisor) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    
+    [self showPins];
 }
 
 -(void)setCityMap:(CityMap*)cm
@@ -292,6 +296,7 @@ NSInteger const toolbarWidth=320;
 }
 
 - (void)dealloc {
+    [pins release];
 	//[CLController release];
     [super dealloc];
 	[stationNameView release];
@@ -409,6 +414,65 @@ NSInteger const toolbarWidth=320;
     off.y += size.height*0.5f / containerView.zoomScale;
     
     return atan2f(point.y - off.y, point.x - off.x);
+}
+
+-(NSInteger) setPin:(CGPoint)point
+{
+    NSInteger index = [mapView makePinAt:point];
+    UIImageView *p = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin"]];
+    [self addSubview:p];
+    [pins setObject:p forKey:[NSNumber numberWithInt:index]];
+    return index;
+}
+
+-(void) removePin:(NSInteger)index
+{
+    UIImageView *p = [pins objectForKey:[NSNumber numberWithInt:index]];
+    if(p!= nil) {
+        [p removeFromSuperview];
+        [mapView removePin:index];
+    }
+}
+
+-(void) showPins
+{
+    if(!pinsShown) {
+        for (NSNumber *n in [pins allKeys]) {
+            UIImageView *p = [pins objectForKey:n];
+            if(p != nil) {
+                CGPoint point = [mapView getPin:[n intValue]];
+                point = [self convertPoint:point fromView:mapView];
+                [p setCenter:point];
+                p.hidden = NO;
+            }
+        }
+        pinsShown = YES;
+    }
+}
+
+-(void) hidePins
+{
+    if(pinsShown) {
+        for (NSNumber *n in [pins allKeys]) {
+            UIImageView *p = [pins objectForKey:n];
+            if(p != nil) {
+                p.hidden = YES;
+            }
+        }
+        pinsShown = NO;
+    }
+}
+
+-(void) updatePins
+{
+    for (NSNumber *n in [pins allKeys]) {
+        UIImageView *p = [pins objectForKey:n];
+        if(p != nil) {
+            CGPoint point = [mapView getPin:[n intValue]];
+            point = [self convertPoint:point fromView:mapView];
+            [p setCenter:point];
+        }
+    }
 }
 
 @end

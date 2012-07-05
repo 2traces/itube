@@ -37,6 +37,8 @@ extern NSInteger const toolbarWidth;
     BOOL buttonsVisible;
     UIButton *sourceData;
     UIButton *userPosition;
+    NSMutableDictionary *pins;
+    BOOL pinsShown;
 }
 
 @property (nonatomic, retain) UIView *stationNameView;
@@ -64,5 +66,10 @@ extern NSInteger const toolbarWidth;
 - (BOOL) centerMapOnUserAndItemWithID:(NSInteger)itemID;
 - (CGFloat) distanceToItemWithID:(NSInteger)itemID; 
 - (CGFloat) radialOffsetToPoint:(CGPoint)point;
+-(NSInteger) setPin:(CGPoint)point;
+-(void) removePin:(NSInteger)index;
+-(void) showPins;
+-(void) hidePins;
+-(void) updatePins;
 
 @end

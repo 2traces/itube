@@ -58,6 +58,8 @@ extern int const imagesCount;
     NSTimer *timer;
     CGPoint oldOffset;
     CGPoint userPosition;
+    NSMutableDictionary *pins;
+    NSInteger nextPinId;
 }
 
 @property (assign) NSString *nearestStationName;
@@ -106,5 +108,13 @@ extern int const imagesCount;
 
 //Получить координаты точки в системе координат UIView карты, в которую нужно будет положить пин
 - (CGPoint) pointOnMapViewForItemWithID:(NSInteger)itemID; 
+// Задать точку
+-(NSInteger) makePinAt:(CGPoint)point;
+// Вернуть значение точки по номеру, -1 - позиция пользователя
+-(CGPoint) getPin:(NSInteger)index;
+// Проверка на существование точки
+-(BOOL) pinExist:(NSInteger)index;
+// Удалить точку
+-(BOOL) removePin:(NSInteger)index;
 
 @end
