@@ -294,7 +294,7 @@
     
     NSArray *stations = [dataSource getStationsForLine:line];
     
-    NSString *cellValue = [[stations objectAtIndex:indexPath.row] name];
+//    NSString *cellValue = [[stations objectAtIndex:indexPath.row] name];
     
 //    NSLog(@"%@",cellValue);
     

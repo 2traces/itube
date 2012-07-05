@@ -93,7 +93,7 @@
 -(NSString*)getArrivalTimeFromNow:(NSInteger)time
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-
+    
     if ([appDelegate.cityMap.pathTimesList count]>1) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setTimeStyle:NSDateFormatterShortStyle];
@@ -389,6 +389,24 @@
     
 }
 
+-(NSMutableArray*)dsGetVeniceExitForStations
+{
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSArray *pathX = appDelegate.cityMap.activePath;
+    NSArray *exits = appDelegate.cityMap.pathDocksList;
+    
+    NSMutableArray *stationsArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
+    
+    for (int i=0; i<[pathX count]; i++) {
+        
+        if ([[pathX objectAtIndex:i] isKindOfClass:[Transfer class]]) {
+            [stationsArray addObject:[exits objectAtIndex:i]];
+        } 
+    }
+    
+    return stationsArray;
+}
+
 -(NSMutableArray*)dsGetEveryStationTimeScheduled
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -398,12 +416,12 @@
     NSArray *times = appDelegate.cityMap.pathTimesList;
     
     NSMutableArray *stationsArray = [NSMutableArray array];
-
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateStyle:NSDateFormatterNoStyle];
-
+    
     int currentIndexLine = -1;
     
     int a=0;
@@ -498,7 +516,7 @@
             }
             
             time+=[(Transfer*)[path objectAtIndex:i] time];
-
+            
             if (i==objectNum-1) {
                 [stationsArray addObject:tempArray];    
                 tempArray = [NSMutableArray array];
@@ -506,7 +524,7 @@
             }
         }
     }
-
+    
     [stationsArray addObject:tempArray];  
     
     [formatter release];
@@ -696,6 +714,10 @@
     
     [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
     [pathes2 release];
+    
+    if (numberOfPages>1 && [self helpNeeded]) {
+        [self performSelector:@selector(showScrollViewTips) withObject:nil afterDelay:0.1];
+    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)ascrollView{ 
@@ -705,6 +727,29 @@
         int pathNumb = floor(ascrollView.contentOffset.x/320.0);
         [self performSelector:@selector(changeActivePath:) withObject:[NSNumber numberWithInt:pathNumb] afterDelay:0.1];
     }
+}
+
+-(BOOL)helpNeeded
+{
+    return YES;
+}
+
+-(void)showScrollViewTips
+{
+    [self animateScrollView];
+}
+
+- (void)animateScrollView
+{
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        [self.scrollView scrollRectToVisible:CGRectMake(38.0, 26.0, 320.0, 40.0) animated:NO];
+    } completion:^(BOOL finished){
+        if (finished) {
+            [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+                [self.scrollView scrollRectToVisible:CGRectMake(0.0, 26.0, 320.0, 40.0) animated:NO];
+            } completion:nil];
+        }
+    }];
 }
 
 -(void)changeActivePath:(NSNumber*)pathNumb
@@ -750,13 +795,19 @@
     NSMutableArray *stations = [[[NSMutableArray alloc] initWithArray:[self dsGetStationsArray]] autorelease];  // список станций - массив массивов 
     NSMutableArray *exits = [self dsGetExitForStations];  // выходы со станций - массив
     NSMutableArray *directions = [self dsGetDirectionNames]; // направления движения
-
+    
     NSArray *stationsTime;
-
+    
     if ([appDelegate.cityMap.pathTimesList count] > 0) {
         stationsTime = [self dsGetEveryStationTimeScheduled]; // времена прохода станций при условии наличия расписания - массив массивов
     } else {
         stationsTime = [self dsGetEveryStationTime]; // времена прохода станций при условии отсутствия расписания - массив массивов
+    }
+    
+    NSMutableArray *exitsVenice;
+    
+    if ([[appDelegate nameCurrentMap] isEqual:@"venice"]) {
+        exitsVenice = [self dsGetVeniceExitForStations];
     }
     
     int trainType = 0;
@@ -866,16 +917,6 @@
     [self.pathScrollView addSubview:dateLabel2];
     [dateLabel2 release];
     
-//    NSMutableArray *fixedStationsTime = [NSMutableArray arrayWithArray:stationsTime];
-//    
-//    if ([self dsIsStartingTransfer]) {
-//        [fixedStationsTime removeObjectAtIndex:0];
-//    }
-//    
-//    if ([self dsIsEndingTransfer]) {
-//        [fixedStationsTime removeLastObject];
-//    }
-
     NSMutableArray *fixedStationsTime = [NSMutableArray arrayWithArray:stationsTime];
     
     if ([self dsIsStartingTransfer]) {
@@ -885,7 +926,6 @@
     if ([self dsIsEndingTransfer]) {
         [fixedStationsTime removeLastObject];
     }
-
     
     // точки станций
     
@@ -989,7 +1029,7 @@
     }
     
     NSArray *timeArray = [self dsGetLinesTimeArray];
-
+    
     for (int i=0;i<[timeArray count]-1;i++)
     {
         currentY=0;
@@ -1282,7 +1322,7 @@
 - (void)hudWasHidden
 {
     MainView *mainView = (MainView*)self.view;
-    tubeAppDelegate * delegate = [[UIApplication sharedApplication] delegate];
+    tubeAppDelegate * delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
     if ([[[delegate cityMap] activePath] count]>0) {
         if (!([[[delegate cityMap] activePath] count]==1 && [[[[delegate cityMap] activePath] objectAtIndex:0] isKindOfClass:[Transfer class]])) {
             [stationsView transitToPathView];

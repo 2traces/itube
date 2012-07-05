@@ -51,8 +51,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)awakeFromNib
 {
-    [self askForRate];
-    
 	if ([[NSUserDefaults standardUserDefaults] integerForKey:@"launches"])
 	{
         if ([[NSUserDefaults standardUserDefaults] integerForKey:@"launches"]==10) {
@@ -103,7 +101,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
 }
 
--(void)askForRate
+-(NSString*)getAppName
 {
     NSString *appName;
     
@@ -113,12 +111,17 @@ void uncaughtExceptionHandler(NSException *exception) {
         appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleNameKey];
     }
     
+    return appName;
+}
+
+-(void)askForRate
+{    
     NSString *cancelButtonLabel = NSLocalizedString(@"No, Thanks", @"No, Thanks");
     NSString *remindButtonLabel = NSLocalizedString(@"Remind Me Later", @"Remind Me Later");
     NSString *rateButtonLabel = NSLocalizedString(@"Rate It Now", @"Rate It Now");
-    NSString *mailButtonLabel = NSLocalizedString(@"Drop Us A Mail", @"Drop Us A Mail");
-    NSString *rateLabel = [NSString stringWithFormat:NSLocalizedString(@"Rate", @"Rate"),appName];
-    NSString *rateMessageLabel = [NSString stringWithFormat:NSLocalizedString(@"RateMessage", @"RateMessage"),appName];
+    NSString *mailButtonLabel = NSLocalizedString(@"Drop Us An EMail", @"Drop Us An EMail");
+    NSString *rateLabel = [NSString stringWithFormat:NSLocalizedString(@"Rate", @"Rate"),[self getAppName]];
+    NSString *rateMessageLabel = [NSString stringWithFormat:NSLocalizedString(@"RateMessage", @"RateMessage"),[self getAppName]];
     
     UIAlertView *buttonAlert = [[UIAlertView alloc] initWithTitle:rateLabel message:rateMessageLabel delegate:self cancelButtonTitle:cancelButtonLabel otherButtonTitles:rateButtonLabel, nil];
     
@@ -291,7 +294,7 @@ void uncaughtExceptionHandler(NSException *exception) {
         if ([mailClass canSendMail]) {
             MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
             picker.mailComposeDelegate = self;
-            [picker setSubject:[NSString stringWithFormat:@"%@ map",[self getDefaultCityName]]];
+            [picker setSubject:[NSString stringWithString:[self getAppName]]];
             [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"fusio@yandex.ru"]]];
             [self.mainViewController presentModalViewController:picker animated:YES];
             [picker release];

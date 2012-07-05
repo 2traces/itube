@@ -263,19 +263,19 @@
         
         firstStation.state=3;
         
-        UIImage *crossImage = [UIImage imageNamed:@"cross_transp.png"];
-        UIImage *crossImageHighlighted = [UIImage imageNamed:@"cross_opaq.png"];
+        UIImage *crossImage = [UIImage imageNamed:@"cross_red.png"];
+//        UIImage *crossImageHighlighted = [UIImage imageNamed:@"cross_opaq.png"];
 
         UIButton *cancelButton1 = [UIButton buttonWithType:UIButtonTypeCustom];
         [cancelButton1 setImage:crossImage forState:UIControlStateNormal];
         [cancelButton1 setFrame:CGRectMake(0.0, 0.0, crossImage.size.width, crossImage.size.height)];
-        [cancelButton1 setImage:crossImageHighlighted forState:UIControlStateHighlighted];
+//        [cancelButton1 setImage:crossImageHighlighted forState:UIControlStateHighlighted];
         [cancelButton1 addTarget:self action:@selector(resetFromStation) forControlEvents:UIControlEventTouchUpInside];
 
         UIButton *cancelButton2= [UIButton buttonWithType:UIButtonTypeCustom];
         [cancelButton2 setImage:crossImage forState:UIControlStateNormal];
         [cancelButton2 setFrame:CGRectMake(0.0, 0.0, crossImage.size.width, crossImage.size.height)];
-        [cancelButton2 setImage:crossImageHighlighted forState:UIControlStateHighlighted];
+//        [cancelButton2 setImage:crossImageHighlighted forState:UIControlStateHighlighted];
         [cancelButton2 addTarget:self action:@selector(resetToStation) forControlEvents:UIControlEventTouchUpInside];
 
         firstStation.rightView= cancelButton1;
