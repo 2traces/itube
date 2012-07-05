@@ -2464,6 +2464,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [activePath removeAllObjects];
     [pathStationsList removeAllObjects];
     [pathTimesList removeAllObjects];
+    [pathDocksList removeAllObjects];
 	int count_ = [pathMap count];
     
     Station *prevStation = nil;
