@@ -15,6 +15,7 @@
 #import "ManagedObjects.h"
 #import "SettingsViewController.h"
 #import "SettingsNavController.h"
+#import "DirectionView.h"
 
 NSInteger const toolbarHeight=44;
 NSInteger const toolbarWidth=320;
@@ -156,12 +157,6 @@ NSInteger const toolbarWidth=320;
     sourceData.frame = CGRectMake(15, 420, 44, 27);
     [sourceData addTarget:self action:@selector(changeSource) forControlEvents:UIControlStateHighlighted];
     [self addSubview:sourceData];
-    
-    userPosition = [UIButton buttonWithType:UIButtonTypeCustom];
-    [userPosition setImage:[UIImage imageNamed:@"navigate_btn"] forState:UIControlStateNormal];
-    userPosition.frame = CGRectMake(0, 44, 40, 40);
-    [userPosition addTarget:self action:@selector(getUserPosition) forControlEvents:UIControlStateHighlighted];
-    [self addSubview:userPosition];
     
     UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
     shadow.frame = CGRectMake(0, 44, 320, 61);
@@ -312,6 +307,7 @@ NSInteger const toolbarWidth=320;
 	//[CLController release];
     [super dealloc];
 	[stationNameView release];
+    [arrayDirectionViews release];
     //[sourceButton release];
     //[destinationButton release];
 }
@@ -424,7 +420,6 @@ NSInteger const toolbarWidth=320;
     CGSize size = containerView.bounds.size;
     off.x += size.width*0.5f / containerView.zoomScale;
     off.y += size.height*0.5f / containerView.zoomScale;
-    
     return atan2f(point.y - off.y, point.x - off.x);
 }
 
@@ -434,7 +429,21 @@ NSInteger const toolbarWidth=320;
     UIImageView *p = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin"]];
     [self addSubview:p];
     [pins setObject:p forKey:[NSNumber numberWithInt:index]];
+    
+    DirectionView *dirView = [[DirectionView alloc] initWithPinCoordinates:[mapView pointOnMapViewForItemWithID:index] pinID:index];
+    
+    [self addSubview:dirView];
+    
+    
+    
+    if (!arrayDirectionViews) {
+        arrayDirectionViews = [[NSMutableArray arrayWithCapacity:10] retain];
+    }
+    [arrayDirectionViews addObject:dirView];
+    [dirView autorelease];
+    
     [self updatePins];
+
     
     __block CGRect frame = p.frame;
     frame.origin.y -= self.frame.size.height;
@@ -500,6 +509,54 @@ NSInteger const toolbarWidth=320;
             point = [self convertPoint:point fromView:mapView];
             [p setCenter:point];
         }
+    }
+    for (DirectionView *view in arrayDirectionViews) {
+        CGPoint off = [self convertPoint:view.pinCoordinates fromView:mapView];
+
+        CGFloat angle = [self radialOffsetToPoint:off];
+        [view setRadialOffset:angle];
+        
+        
+        
+        NSLog(@"Offset to point: %f, %f", off.x, off.y);
+        
+        CGFloat xOff, yOff;
+        
+        if (off.x < 0) {
+            xOff = 0;
+        }
+        else if (off.x > 270.0) {
+            xOff = 270.0;
+        }
+        else {
+            xOff = off.x;
+        }
+
+        if (off.y < 40) {
+            yOff = 40;
+        }
+        else if (off.y > 360.0) {
+            yOff = 360.0;
+        }
+        else {
+            yOff = off.y;
+        }
+        
+        CGRect frame = view.frame;
+        frame.origin = CGPointMake(xOff, yOff);
+        view.frame = frame;
+        
+        off.y -= 50;
+        
+        if ([self pointInside:off withEvent:nil]) {
+            view.hidden = YES;
+        }
+        else {
+            view.hidden = NO;
+
+        }
+        
+        
     }
 }
 

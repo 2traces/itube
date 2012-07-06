@@ -39,6 +39,7 @@ extern NSInteger const toolbarWidth;
     UIButton *userPosition;
     NSMutableDictionary *pins;
     BOOL pinsShown;
+    NSMutableArray *arrayDirectionViews;
 }
 
 @property (nonatomic, retain) UIView *stationNameView;

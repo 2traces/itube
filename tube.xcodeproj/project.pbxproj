@@ -51,8 +51,7 @@
 		570BB1D21590B56200CE1AA5 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 570BB1D11590B56200CE1AA5 /* Icon@2x.png */; };
 		570BB1D51590C59400CE1AA5 /* terrain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 570BB1D31590C59200CE1AA5 /* terrain@2x.png */; };
 		570BB1D61590C59400CE1AA5 /* vector@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 570BB1D41590C59300CE1AA5 /* vector@2x.png */; };
-		570BB1D91590CC7100CE1AA5 /* navigate_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 570BB1D71590CC7000CE1AA5 /* navigate_btn.png */; };
-		570BB1DA1590CC7100CE1AA5 /* navigate_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 570BB1D81590CC7100CE1AA5 /* navigate_btn@2x.png */; };
+		571EEF4415A72CAF00CE09AC /* DirectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 571EEF4315A72CAF00CE09AC /* DirectionView.m */; };
 		573AF99615989A34001F09B7 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 573AF99515989A33001F09B7 /* GalleryViewController.m */; };
 		573AF99915989A6A001F09B7 /* GalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 573AF99815989A69001F09B7 /* GalleryViewController.xib */; };
 		573AF99C15989D4C001F09B7 /* gallery_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 573AF99A15989D4C001F09B7 /* gallery_bg.png */; };
@@ -461,8 +460,8 @@
 		570BB1D11590B56200CE1AA5 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		570BB1D31590C59200CE1AA5 /* terrain@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terrain@2x.png"; sourceTree = "<group>"; };
 		570BB1D41590C59300CE1AA5 /* vector@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vector@2x.png"; sourceTree = "<group>"; };
-		570BB1D71590CC7000CE1AA5 /* navigate_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigate_btn.png; sourceTree = "<group>"; };
-		570BB1D81590CC7100CE1AA5 /* navigate_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigate_btn@2x.png"; sourceTree = "<group>"; };
+		571EEF4215A72CAF00CE09AC /* DirectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionView.h; sourceTree = "<group>"; };
+		571EEF4315A72CAF00CE09AC /* DirectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionView.m; sourceTree = "<group>"; };
 		573AF99415989A32001F09B7 /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
 		573AF99515989A33001F09B7 /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
 		573AF99815989A69001F09B7 /* GalleryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GalleryViewController.xib; path = Resources/GalleryViewController.xib; sourceTree = "<group>"; };
@@ -1013,6 +1012,8 @@
 				579E9D4415999CB900D509D0 /* GalleryItemView.m */,
 				579E9D6D1599C70000D509D0 /* GalleryFullscreenViewController.h */,
 				579E9D6E1599C70000D509D0 /* GalleryFullscreenViewController.m */,
+				571EEF4215A72CAF00CE09AC /* DirectionView.h */,
+				571EEF4315A72CAF00CE09AC /* DirectionView.m */,
 			);
 			name = "Main View";
 			sourceTree = "<group>";
@@ -1452,8 +1453,6 @@
 				579E9D771599CA9300D509D0 /* gallery_fs_bt_locate@2x.png */,
 				573AF99A15989D4C001F09B7 /* gallery_bg.png */,
 				573AF99B15989D4C001F09B7 /* gallery_bg@2x.png */,
-				570BB1D71590CC7000CE1AA5 /* navigate_btn.png */,
-				570BB1D81590CC7100CE1AA5 /* navigate_btn@2x.png */,
 				570BB1D31590C59200CE1AA5 /* terrain@2x.png */,
 				570BB1D41590C59300CE1AA5 /* vector@2x.png */,
 				9F6EE30F1588AE5B009F72E9 /* terrain.png */,
@@ -1819,8 +1818,6 @@
 				570BB1D21590B56200CE1AA5 /* Icon@2x.png in Resources */,
 				570BB1D51590C59400CE1AA5 /* terrain@2x.png in Resources */,
 				570BB1D61590C59400CE1AA5 /* vector@2x.png in Resources */,
-				570BB1D91590CC7100CE1AA5 /* navigate_btn.png in Resources */,
-				570BB1DA1590CC7100CE1AA5 /* navigate_btn@2x.png in Resources */,
 				57F3FCCF1594C85400B856A5 /* iTunesArtwork in Resources */,
 				57F3FCD01594C85400B856A5 /* SpotLightSearch_iPhone.png in Resources */,
 				57F3FCD11594C85400B856A5 /* SpotLightSearch_iPhone@2x.png in Resources */,
@@ -1932,6 +1929,7 @@
 				579E9D4515999CB900D509D0 /* GalleryItemView.m in Sources */,
 				579E9D6F1599C70000D509D0 /* GalleryFullscreenViewController.m in Sources */,
 				570474B115A48DCD00A43E6F /* CountryMapCell.m in Sources */,
+				571EEF4415A72CAF00CE09AC /* DirectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
