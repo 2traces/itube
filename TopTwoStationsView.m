@@ -490,7 +490,13 @@
 
 -(void)setFromStation:(MStation*)fromStation
 {
-    if ([firstButton isHidden]) {  // менял тут
+    
+    if ([firstButton isHidden] && [secondButton isHidden] && fromStation) { // мы уже в режиме пути просто меняем текст
+        firstStation.text = fromStation.name;
+        return;
+    }
+    
+    if ([firstButton isHidden]) {  
         [self transitFirstToSmallField];
     }
     
@@ -521,6 +527,11 @@
 
 -(void)setToStation:(MStation*)toStation
 {
+
+    if ([firstButton isHidden] && [secondButton isHidden] && toStation) { // мы уже в режиме пути просто меняем текст
+        secondStation.text = toStation.name;
+        return;
+    }
 
     if ([secondButton isHidden]) {
         [self transitSecondToSmallField];
