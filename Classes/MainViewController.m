@@ -31,6 +31,7 @@
 @synthesize currentSelection;
 @synthesize scrollView;
 @synthesize pathScrollView;
+@synthesize timer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	DLog(@"initWithNibName");
@@ -715,8 +716,17 @@
     [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
     [pathes2 release];
     
-    if (numberOfPages>1 && [self helpNeeded]) {
-        [self performSelector:@selector(showScrollViewTips) withObject:nil afterDelay:0.1];
+    if (numberOfPages>1) {
+        if ([self helpNeeded]) {
+            [self.timer invalidate];
+            self.timer = nil;
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:5
+                                                          target:self
+                                                        selector:@selector(showScrollViewTips)
+                                                        userInfo:nil
+                                                         repeats:NO];
+            
+        }
     }
 }
 
@@ -731,7 +741,19 @@
 
 -(BOOL)helpNeeded
 {
-    return YES;
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"scrollHelp"])
+	{
+        if ([[NSUserDefaults standardUserDefaults] integerForKey:@"scrollHelp"]<15) {
+            return YES;
+        } else {
+            return NO;
+        }
+	} else {
+        NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
+        [prefs setInteger:1 forKey:@"scrollHelp"];
+        [prefs synchronize];
+        return YES;
+    }
 }
 
 -(void)showScrollViewTips
@@ -741,15 +763,25 @@
 
 - (void)animateScrollView
 {
-    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
-        [self.scrollView scrollRectToVisible:CGRectMake(38.0, 26.0, 320.0, 40.0) animated:NO];
-    } completion:^(BOOL finished){
-        if (finished) {
-            [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
-                [self.scrollView scrollRectToVisible:CGRectMake(0.0, 26.0, 320.0, 40.0) animated:NO];
-            } completion:nil];
-        }
-    }];
+    if (self.scrollView && self.scrollView.contentSize.width>320.0f && self.scrollView.contentOffset.x==0.0f) {
+        [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+            [self.scrollView scrollRectToVisible:CGRectMake(38.0, 26.0, 320.0, 40.0) animated:NO];
+        } completion:^(BOOL finished){
+            if (finished) {
+                [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+                    [self.scrollView scrollRectToVisible:CGRectMake(0.0, 26.0, 320.0, 40.0) animated:NO];
+                } completion:nil];
+            }
+        }];  
+        
+        NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
+        [prefs setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"scrollHelp"]+1 forKey:@"scrollHelp"];
+        [prefs synchronize];
+
+    }
+    
+    [self.timer invalidate];
+    self.timer=nil;
 }
 
 -(void)changeActivePath:(NSNumber*)pathNumb
