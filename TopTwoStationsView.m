@@ -491,7 +491,7 @@
 -(void)setFromStation:(MStation*)fromStation
 {
     
-    if ([firstButton isHidden] && [secondButton isHidden] && fromStation) { // мы уже в режиме пути просто меняем текст
+    if ([firstButton isHidden] && [secondButton isHidden] && fromStation && !isEditing) { // мы уже в режиме пути просто меняем текст
         firstStation.text = fromStation.name;
         return;
     }
@@ -528,7 +528,7 @@
 -(void)setToStation:(MStation*)toStation
 {
 
-    if ([firstButton isHidden] && [secondButton isHidden] && toStation) { // мы уже в режиме пути просто меняем текст
+    if ([firstButton isHidden] && [secondButton isHidden] && toStation && !isEditing) { // мы уже в режиме пути просто меняем текст
         secondStation.text = toStation.name;
         return;
     }
