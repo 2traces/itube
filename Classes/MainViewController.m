@@ -1160,6 +1160,8 @@
     
     [UIView commitAnimations];
     
+    ((MainView*)self.view).shouldNotDropPins = YES;
+    
 //    [self presentModalViewController:controller animated:YES];
     [controller autorelease];
 }
@@ -1201,6 +1203,7 @@
 {
     [self dismissModalViewControllerAnimated:YES];
     [self performSelector:@selector(returnFromSelection2:) withObject:stations afterDelay:0.1];
+    ((MainView*)self.view).shouldNotDropPins = NO;
 }
 
 -(void)returnFromSelectionFastAccess:(NSArray *)stations

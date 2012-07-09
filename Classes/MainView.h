@@ -40,6 +40,9 @@ extern NSInteger const toolbarWidth;
     NSMutableDictionary *pins;
     BOOL pinsShown;
     NSMutableArray *arrayDirectionViews;
+    UIButton *removePinButton;
+    NSInteger pinToRemove;
+    BOOL shouldNotDropPins;
 }
 
 @property (nonatomic, retain) UIView *stationNameView;
@@ -54,7 +57,7 @@ extern NSInteger const toolbarWidth;
 @property (nonatomic, retain) UIToolbar *toolbar;
 @property (nonatomic, retain) UITextField *firstStation;
 @property (nonatomic, retain) UITextField *secondStation;
-
+@property (nonatomic, assign) BOOL shouldNotDropPins;
 @property(nonatomic,assign) MainViewController *vcontroller;
 
 - (void) initVar;

@@ -22,6 +22,7 @@ NSInteger const toolbarWidth=320;
 
 @implementation MainView
 @synthesize stationNameView;
+@synthesize shouldNotDropPins;
 @synthesize mapView;
 @synthesize containerView;
 @synthesize toolbar;
@@ -167,12 +168,33 @@ NSInteger const toolbarWidth=320;
     
     UIGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
                                       initWithTarget:self action:@selector(handleLongPress:)];
-    [self addGestureRecognizer:[longPress autorelease]];
+    [self.mapView addGestureRecognizer:[longPress autorelease]];
+    
+    removePinButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+    UIImage *bubble = [UIImage imageNamed:@"pin_remove_bubble.png"];
+    
+    CGRect frame;
+    frame.size = bubble.size;
+    
+    removePinButton.frame = frame;
+    [self addSubview:removePinButton];
+    removePinButton.hidden = YES;
+    
+    
+    [removePinButton setImage:bubble forState:UIControlStateNormal];
+    
+    [removePinButton addTarget:self action:@selector(removePinFromMap) forControlEvents:UIControlEventTouchUpInside];
+    
     [self showPins];
 }
 
+- (void)removePinFromMap {
+    [self removePin:removePinButton.tag];
+    [self updatePins];
+}
+
 - (void)handleLongPress:(UILongPressGestureRecognizer *)recognizer {
-    CGPoint location = [recognizer locationInView:recognizer.view];
+    CGPoint location = [recognizer locationInView:self];
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         CGPoint newPoint = [self.mapView convertPoint:location fromView:self];
         [self setPin:newPoint];
@@ -423,16 +445,46 @@ NSInteger const toolbarWidth=320;
     return atan2f(point.y - off.y, point.x - off.x);
 }
 
+- (void)pinPress:(UILongPressGestureRecognizer*)gesture {
+    if ( gesture.state == UIGestureRecognizerStateBegan ) {
+        
+        UIImageView *pin = (UIImageView*)gesture.view;
+        
+        CGPoint point = pin.center;
+        point.y -= removePinButton.frame.size.height*0.7f;
+        
+        removePinButton.center = point;
+        
+        removePinButton.hidden = NO;
+        removePinButton.tag = pin.tag;
+    }
+}
+
+- (void)buttonTapped:(UITapGestureRecognizer*)gr {
+    NSLog(@"Button tapped!");
+}
+
 -(NSInteger) setPin:(CGPoint)point
 {
     NSInteger index = [mapView makePinAt:point];
     UIImageView *p = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin"]];
-    [self addSubview:p];
+    p.userInteractionEnabled = YES;
+    p.tag = index;
+    [self insertSubview:p aboveSubview:containerView];
+        
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(pinPress:)];
+    [p addGestureRecognizer:longPress];
+    [longPress release];
+
+    
     [pins setObject:p forKey:[NSNumber numberWithInt:index]];
     
-    DirectionView *dirView = [[DirectionView alloc] initWithPinCoordinates:[mapView pointOnMapViewForItemWithID:index] pinID:index];
+    DirectionView *dirView = [[DirectionView alloc] initWithPinCoordinates:[mapView pointOnMapViewForItemWithID:index] pinID:index mainView:self];
     
-    [self addSubview:dirView];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonTapped:)];
+    [dirView addGestureRecognizer:tap];
+    [tap release];
+    [self insertSubview:dirView aboveSubview:containerView];
     
     
     
@@ -453,9 +505,9 @@ NSInteger const toolbarWidth=320;
         frame.origin.y += self.frame.size.height;
         p.frame = frame;
     } completion:^(BOOL completion){
-        [self bringSubviewToFront:vcontroller.stationsView];
-        [self bringSubviewToFront:sourceData];
-        [self bringSubviewToFront:userPosition];
+//        [self bringSubviewToFront:vcontroller.stationsView];
+//        [self bringSubviewToFront:sourceData];
+//        [self bringSubviewToFront:userPosition];
 
     }];
     
@@ -468,6 +520,12 @@ NSInteger const toolbarWidth=320;
     if(p!= nil) {
         [p removeFromSuperview];
         [mapView removePin:index];
+    }
+    for (DirectionView *pin in arrayDirectionViews) {
+        if (pin.pinID == index) {
+            [arrayDirectionViews removeObject:pin];
+            break;
+        }
     }
 }
 
@@ -502,6 +560,8 @@ NSInteger const toolbarWidth=320;
 
 -(void) updatePins
 {
+    removePinButton.hidden = YES;
+    
     for (NSNumber *n in [pins allKeys]) {
         UIImageView *p = [pins objectForKey:n];
         if(p != nil) {
