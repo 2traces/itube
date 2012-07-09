@@ -418,8 +418,8 @@ NSInteger const toolbarWidth=320;
 {
     CGPoint off = containerView.contentOffset;
     CGSize size = containerView.bounds.size;
-    off.x += size.width*0.5f / containerView.zoomScale;
-    off.y += size.height*0.5f / containerView.zoomScale;
+    off.x = (off.x + size.width*0.5f) / containerView.zoomScale;
+    off.y = (off.y + size.height*0.5f) / containerView.zoomScale;
     return atan2f(point.y - off.y, point.x - off.x);
 }
 
@@ -513,7 +513,7 @@ NSInteger const toolbarWidth=320;
     for (DirectionView *view in arrayDirectionViews) {
         CGPoint off = [self convertPoint:view.pinCoordinates fromView:mapView];
 
-        CGFloat angle = [self radialOffsetToPoint:off];
+        CGFloat angle = [self radialOffsetToPoint:view.pinCoordinates];
         [view setRadialOffset:angle];
         
         

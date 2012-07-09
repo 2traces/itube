@@ -47,7 +47,7 @@
 - (void)setRadialOffset:(CGFloat)offset {
     NSLog(@"Radial offset: %f", offset);
     self.arrow.transform = CGAffineTransformMakeRotation(0);
-    self.arrow.transform = CGAffineTransformMakeRotation(offset);
+    self.arrow.transform = CGAffineTransformMakeRotation(offset + M_PI_2);
 }
 
 /*
