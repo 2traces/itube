@@ -45,7 +45,6 @@
 	UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [refreshButton setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
 	[refreshButton setImage:imageOpenList forState:UIControlStateNormal];
-    [refreshButton setImage:imageOpenListHL forState:UIControlStateHighlighted];
 	[refreshButton addTarget:self action:@selector(selectFromStation) forControlEvents:UIControlEventTouchUpInside];
     
 	firstStation = [[StationTextField alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];

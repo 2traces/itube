@@ -187,7 +187,13 @@
         [[self.stationList objectAtIndex:rowOfButton] setIsFavorite:[NSNumber numberWithInt:0]];
     } else {
         [[self.stationList objectAtIndex:rowOfButton] setIsFavorite:[NSNumber numberWithInt:1]];
+        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        MItem *item = [self.stationList objectAtIndex:rowOfButton];
+        [appDelegate.mainViewController setPinForItem:[[item index] intValue]];    
     }
+    
+    
     
     UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
     

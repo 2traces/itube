@@ -1173,6 +1173,13 @@
 
 #pragma mark - choosing stations etc
 
+- (NSInteger)setPinForItem:(NSInteger)index {
+    MainView *mainView = (MainView*)self.view;
+
+    CGPoint point = [mainView.mapView pointOnMapViewForItemWithID:index];
+    return [mainView setPin:[mainView convertPoint:point fromView:mainView.mapView]];    
+}
+
 -(void)returnFromSelection2:(NSArray*)items
 {
     MainView *mainView = (MainView*)self.view;
@@ -1183,6 +1190,9 @@
 #ifdef DEBUG
             NSLog(@"object %@ not found!", self.fromStation.index);
 #endif
+        }
+        else {
+            [self setPinForItem:[self.fromStation.index integerValue]];
         }
     }
     else {

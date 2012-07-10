@@ -41,7 +41,7 @@
 -(void)resetBothStations;
 -(FastAccessTableViewController*)showTableView;
 -(void)removeTableView;
-
+- (NSInteger)setPinForItem:(NSInteger)index;
 -(void)changeMapTo:(NSString*)newMap andCity:(NSString*)cityName;
 
 @end

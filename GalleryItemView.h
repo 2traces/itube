@@ -19,11 +19,13 @@
 @interface GalleryItemView : UIView {
     NSInteger itemID;
     UIImageView *imageView;
+    UIImageView *shadowView;
     CGSize imageSize;
     id<GalleryItemDelegate> delegate;
 }
 
 @property (nonatomic, retain) UIImageView *imageView;
+@property (nonatomic, retain) UIImageView *shadowView;
 @property (nonatomic, assign) NSInteger itemID;
 @property (nonatomic, assign) id<GalleryItemDelegate> delegate;
 

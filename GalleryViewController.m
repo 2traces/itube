@@ -14,6 +14,7 @@
 #import "tubeAppDelegate.h"
 #import "MainViewController.h"
 #import "MainView.h"
+#import "tubeAppDelegate.h"
 
 @interface GalleryViewController ()
 
@@ -83,6 +84,16 @@
         offset += self.scrollView.frame.size.width;
         index++;
         
+        UIImage *shadow = [UIImage imageNamed:@"gallery_item_shadow.png"];
+        view.shadowView = [[UIImageView alloc] initWithImage:shadow];
+        CGRect shadowFrame = view.shadowView.frame;
+        view.shadowView.contentMode = UIViewContentModeScaleToFill;
+        shadowFrame.size.width = frame.size.width;
+        shadowFrame.origin.x = frame.origin.x;
+        shadowFrame.origin.y = frame.origin.y + frame.size.height;
+        view.shadowView.frame = shadowFrame;
+        [view addSubview:view.shadowView];
+        
         [self.scrollView addSubview:view];
         [view.imageView autorelease];
         [view autorelease];
@@ -138,6 +149,13 @@
             CGSize imageSize = [(GalleryItemView*)subview originalImageSize];
             frame.size = CGSizeMake(imageSize.width*percent, imageSize.height*percent);
             ((GalleryItemView*)subview).imageView.frame = frame;
+            
+            frame = ((GalleryItemView*)subview).shadowView.frame;
+            
+            frame.size.width = imageSize.width*percent;
+            ((GalleryItemView*)subview).shadowView.frame = frame;
+            
+            
             [(GalleryItemView*)subview centerImage];
             
             
@@ -153,6 +171,10 @@
 
     CGFloat distance = [mainView distanceToItemWithID:[photo.theItem.index integerValue]];
     [mainView centerGalleryShiftedMapOnItemWithID:[photo.theItem.index integerValue]];
+
+    [mainView removePin:activePin];
+    activePin = [appDelegate.mainViewController setPinForItem:[photo.theItem.index integerValue]];    
+    
     //[mainView shiftMapForGalleryView];
     
     self.label.text = [NSString stringWithFormat:@"%@, ~ %i km", photo.theItem.name, (int)distance];

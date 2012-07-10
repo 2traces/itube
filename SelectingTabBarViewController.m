@@ -111,7 +111,9 @@
     linesButton.selected=NO;
     bookmarkButton.selected=NO;
     historyButton.selected=NO;
-    [self.view setFrame:CGRectMake(0,0,320,460)]; 
+    [UIView animateWithDuration:0.5f animations:^(void){
+        [self.view setFrame:CGRectMake(0,0,320,460)]; 
+    }];
 }
 
 -(IBAction)stationsPressed:(id)sender
@@ -123,10 +125,20 @@
 
 -(IBAction)linesPresses:(id)sender
 {
-    [self.tabBarController setSelectedIndex:1];
+            [self.tabBarController setSelectedIndex:1];
     [self setAllButtonsUnselected];
     linesButton.selected=YES;
-    [self.view setFrame:CGRectMake(0,0,320,291)]; 
+
+    
+    [UIView animateWithDuration:0.5f animations:^(void){
+        [self.view setFrame:CGRectMake(0,0,320,291)]; 
+
+
+    } completion:^(BOOL finished){
+        if (finished) {
+        }
+    }];
+    
 
 
 }

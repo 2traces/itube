@@ -11,6 +11,7 @@
 @implementation GalleryItemView
 
 @synthesize imageView;
+@synthesize shadowView;
 @synthesize itemID;
 @synthesize delegate;
 
@@ -25,6 +26,11 @@
 
 - (void)centerImage {
     self.imageView.center = CGPointMake(self.frame.size.width/2.0f, self.frame.size.height/2.0f);
+    
+    CGRect shadowFrame = self.shadowView.frame;
+    
+    shadowFrame.origin = CGPointMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y + self.imageView.frame.size.height);
+    self.shadowView.frame = shadowFrame;
 }
 
 - (void)setOriginalImageSize:(CGSize)_imageSize {

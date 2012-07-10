@@ -485,9 +485,7 @@ NSInteger const toolbarWidth=320;
     [dirView addGestureRecognizer:tap];
     [tap release];
     [self insertSubview:dirView aboveSubview:containerView];
-    
-    
-    
+        
     if (!arrayDirectionViews) {
         arrayDirectionViews = [[NSMutableArray arrayWithCapacity:10] retain];
     }
