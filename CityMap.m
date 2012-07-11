@@ -2193,12 +2193,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             NSArray *trpath;
             trpath = [schedule translatePath:[paths objectForKey:weight]];
             if(trpath != nil) {
+                CGFloat weight2 = [[trpath lastObject] weight];
 #ifdef DEBUG
-                NSLog(@"weight is %@", weight);
+                NSLog(@"weight is %f", weight2);
                 NSLog(@"path is %@", [paths objectForKey:weight]);
                 NSLog(@"schedule path is %@", trpath);
 #endif
-                [trpaths setObject:trpath forKey:[NSNumber numberWithDouble:[[trpath lastObject] weight]]];
+                if(weight2 < 60*60*12)  // время пути должно быть меньше 12 часов
+                    [trpaths setObject:trpath forKey:[NSNumber numberWithDouble:weight2]];
                 //return [NSDictionary dictionaryWithObject:trpath forKey:[NSNumber numberWithDouble:[[trpath lastObject] weight]]];
             }
         }
