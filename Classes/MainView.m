@@ -16,6 +16,7 @@
 #import "SettingsViewController.h"
 #import "SettingsNavController.h"
 #import "DirectionView.h"
+#import <iAd/iAd.h>
 
 NSInteger const toolbarHeight=44;
 NSInteger const toolbarWidth=320;
@@ -62,10 +63,15 @@ NSInteger const toolbarWidth=320;
 	DLog(@"ViewDidLoad main View");	
 
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    CGRect scrollSize = CGRectMake(0,44,(320),(480-64));
-	mapView = [[[MapView alloc] initWithFrame:scrollSize] autorelease];
-    mapView.cityMap = appDelegate.cityMap;
-    mapView.vcontroller = self.vcontroller;
+    CGFloat adDelta = 0;
+    if (appDelegate.shouldShowAd) {
+        adDelta = 50.0f;
+    }
+    
+    CGRect scrollSize = CGRectMake(0,44,(320),(480-64 - adDelta));
+//	mapView = [[[MapView alloc] initWithFrame:scrollSize] autorelease];
+//    mapView.cityMap = appDelegate.cityMap;
+//    mapView.vcontroller = self.vcontroller;
     self.backgroundColor = mapView.backgroundColor;
 
 	containerView = [[MyScrollView alloc] initWithFrame:scrollSize];
@@ -93,6 +99,15 @@ NSInteger const toolbarWidth=320;
     [containerView addSubview:mapView.midground1];
     [containerView addSubview:mapView.activeLayer];
     [containerView addSubview:mapView.midground2];
+    
+    [self setCityMap:appDelegate.cityMap];
+    
+    if (appDelegate.shouldShowAd) {
+        ADBannerView *adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, containerView.frame.origin.y + containerView.frame.size.height, 320, 50)];
+        adView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifier320x50];
+        adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier320x50;
+        [self addSubview:[adView autorelease]];
+    }
     
 	//TODO
     CGPoint pos;
@@ -148,14 +163,14 @@ NSInteger const toolbarWidth=320;
     UIButton *settings = [UIButton buttonWithType:UIButtonTypeCustom];
     [settings setImage:[UIImage imageNamed:@"settings_btn_normal"] forState:UIControlStateNormal];
     [settings setImage:[UIImage imageNamed:@"settings_btn"] forState:UIControlStateHighlighted];
-    settings.frame = CGRectMake(285, 420, 27, 27);
+    settings.frame = CGRectMake(285, 420 - adDelta, 27, 27);
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:settings];
     
     sourceData = [UIButton buttonWithType:UIButtonTypeCustom];
     [sourceData setImage:[UIImage imageNamed:@"vector"] forState:UIControlStateNormal];
     [sourceData setImage:[UIImage imageNamed:@"terrain"] forState:UIControlStateSelected];
-    sourceData.frame = CGRectMake(15, 420, 44, 27);
+    sourceData.frame = CGRectMake(15, 420 - adDelta, 44, 27);
     [sourceData addTarget:self action:@selector(changeSource) forControlEvents:UIControlStateHighlighted];
     [self addSubview:sourceData];
     
@@ -165,10 +180,7 @@ NSInteger const toolbarWidth=320;
     
     NSTimer *timer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(supervisor) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-    
-    UIGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
-                                      initWithTarget:self action:@selector(handleLongPress:)];
-    [self.mapView addGestureRecognizer:[longPress autorelease]];
+
     
     removePinButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
     UIImage *bubble = [UIImage imageNamed:@"pin_remove_bubble.png"];
@@ -207,7 +219,12 @@ NSInteger const toolbarWidth=320;
     [mapView removeFromSuperview];
     [containerView removeFromSuperview];
     [containerView release];
-    CGRect scrollSize = CGRectMake(0,44,(320),(480-64));
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    CGFloat adDelta = 0;
+    if (appDelegate.shouldShowAd) {
+        adDelta = 50.0f;
+    }
+    CGRect scrollSize = CGRectMake(0,44,(320),(480-64-adDelta));
     containerView = [[MyScrollView alloc] initWithFrame:scrollSize];
     
     mapView = [[[MapView alloc] initWithFrame:scrollSize] autorelease];
@@ -239,6 +256,12 @@ NSInteger const toolbarWidth=320;
         [containerView setContentOffset:CGPointZero];
     //[self insertSubview:mapView.labelView belowSubview:sourceButton];
     self.backgroundColor = mapView.backgroundColor;
+    
+    UIGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
+                                      initWithTarget:self action:@selector(handleLongPress:)];
+    [self.mapView addGestureRecognizer:[longPress autorelease]];
+    [self updatePins];
+
 }
 
 -(void)showButtons:(CGPoint)pos
@@ -559,7 +582,11 @@ NSInteger const toolbarWidth=320;
 -(void) updatePins
 {
     removePinButton.hidden = YES;
-    
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    CGFloat adDelta = 0;
+    if (appDelegate.shouldShowAd) {
+        adDelta = 50.0f;
+    }
     for (NSNumber *n in [pins allKeys]) {
         UIImageView *p = [pins objectForKey:n];
         if(p != nil) {
@@ -593,8 +620,8 @@ NSInteger const toolbarWidth=320;
         if (off.y < 40) {
             yOff = 40;
         }
-        else if (off.y > 360.0) {
-            yOff = 360.0;
+        else if (off.y > 360.0 - adDelta) {
+            yOff = 360.0 - adDelta;
         }
         else {
             yOff = off.y;
@@ -604,7 +631,7 @@ NSInteger const toolbarWidth=320;
         frame.origin = CGPointMake(xOff, yOff);
         view.frame = frame;
         
-        off.y -= 50;
+        off.y -= 50 - adDelta;
         
         if ([self pointInside:off withEvent:nil]) {
             view.hidden = YES;

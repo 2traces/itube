@@ -59,14 +59,14 @@
         boundingBox.size.width *= 2.f;
         boundingBox.size.height *= 2.f;
 //      //Uncomment to enable coordinates for objects
-        MItem *it = [[MHelper sharedHelper] getItemWithIndex:number];
-        if(it) {
-            NSNumber *zero = [NSNumber numberWithDouble:0];
-            if([it.posX isEqualToNumber:zero] || [it.posY isEqualToNumber:zero]) {
-                it.posX = [NSNumber numberWithDouble:rect.origin.x + center.x];
-                it.posY = [NSNumber numberWithDouble:rect.origin.y + center.y];
-            }
-        }
+//        MItem *it = [[MHelper sharedHelper] getItemWithIndex:number];
+//        if(it) {
+//            NSNumber *zero = [NSNumber numberWithDouble:0];
+//            if([it.posX isEqualToNumber:zero] || [it.posY isEqualToNumber:zero]) {
+//                it.posX = [NSNumber numberWithDouble:rect.origin.x + center.x];
+//                it.posY = [NSNumber numberWithDouble:rect.origin.y + center.y];
+//            }
+//        }
         /*it = [[MHelper sharedHelper] getItemWithIndex:110];
         if(it) {
             NSLog(@"item number 110 placed at %@, %@", it.posX, it.posY);
@@ -890,11 +890,12 @@
 @synthesize cacheZoom;
 @synthesize cacheDirection;
 
--(id) initWithRect:(CGRect)rect
-{
+-(id) initWithRect:(CGRect)rect mapName:(NSString*)mapName {
     if((self = [super init])) {
         allRect = rect;
-        NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:nil];
+        
+        
+        NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         levels = [[NSMutableDictionary alloc] init];
         lock = [[NSRecursiveLock alloc] init];
         timer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(freeSomeMemory) userInfo:nil repeats:YES];
@@ -910,9 +911,9 @@
         NSString* vurlstr = [vurl absoluteString];
         vloader = [[VectorDownloader alloc] initWithUrl:vurlstr];
         rloader1 = [[RasterDownloader alloc] initWithUrl:@"http://www.x-provocation.com/maps/cuba/OSM"];
-        rloader1.altSource = [[NSBundle mainBundle] pathForResource:@"OSM" ofType:nil];
+        rloader1.altSource = [[NSBundle mainBundle] pathForResource:@"OSM" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         rloader2 = [[RasterDownloader alloc] initWithUrl:@"http://www.x-provocation.com/maps/cuba/RASTER"];
-        rloader2.altSource = [[NSBundle mainBundle] pathForResource:@"RASTER" ofType:nil];
+        rloader2.altSource = [[NSBundle mainBundle] pathForResource:@"RASTER" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         dm.vectorDownloader = vloader;
         dm.rasterDownloader = rloader1;
         loader = dm;
@@ -949,7 +950,7 @@
 //            }
 //        }];
         
-        [self readMapItemNames];
+        [self readItemNamesForMap:mapName];
         
         tubeAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
         [[MHelper sharedHelper] readHistoryFile:[delegate nameCurrentMap]];
@@ -960,9 +961,9 @@
     return self;
 }
 
-- (void)readMapItemNames {
+- (void)readItemNamesForMap:(NSString*)mapName {
 //    [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
-    NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:nil];
+    NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
     NSString *fn = [NSString stringWithFormat:@"%@/en-names.txt", rasterPath];
     NSString *contents = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
     __block BOOL areWeReadingCategories = YES;

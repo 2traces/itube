@@ -18,7 +18,7 @@
 @synthesize cityMap;
 @synthesize cityName;
 @synthesize parseQueue;
-
+@synthesize shouldShowAd;
 
 
 void uncaughtExceptionHandler(NSException *exception) {
@@ -34,13 +34,13 @@ void uncaughtExceptionHandler(NSException *exception) {
 	self.mainViewController = aController;
 	[aController release];
     
-    /*CityMap *cm = [[CityMap alloc] init];
+    CityMap *cm = [[CityMap alloc] init];
     NSString *mapName =[self nameCurrentMap];
     [cm loadMap:mapName];
    
     self.cityMap = cm;
     [cm release];
-    */
+    
     self.cityName= [self nameCurrentCity];
 
     
@@ -71,6 +71,20 @@ void uncaughtExceptionHandler(NSException *exception) {
         NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
         [prefs setInteger:1 forKey:@"launches"];
         [prefs synchronize];
+    }
+    
+	if ([[NSUserDefaults standardUserDefaults] integerForKey:@"total_launches"])
+	{
+            NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
+            [prefs setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"total_launches"]+1 forKey:@"total_launches"];
+            [prefs synchronize];
+	} else {
+        NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
+        [prefs setInteger:1 forKey:@"total_launches"];
+        [prefs synchronize];
+    }
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"total_launches"] > kLaunchesBeforeShowingAd) {
+        self.shouldShowAd = YES;
     }
 }
 

@@ -73,7 +73,6 @@
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     // FIXME !!! some classes don't release city map
     [(MainView*)self.view setCityMap:nil];
-    [appDelegate.cityMap release];
     appDelegate.cityMap = nil;
     
     CityMap *cm = [[[CityMap alloc] init] autorelease];

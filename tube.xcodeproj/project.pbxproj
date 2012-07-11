@@ -33,9 +33,6 @@
 		51839DE115360BE5003A8E23 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 51839DE015360BE5003A8E23 /* TBXML.m */; };
 		51D20F3514B849A3007AC4BD /* ManagedObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D20F3414B849A3007AC4BD /* ManagedObjects.m */; };
 		51D20F3B14B85468007AC4BD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D20F3A14B85468007AC4BD /* CoreData.framework */; };
-		51D35F40158BBB8A008518EC /* OSM in Resources */ = {isa = PBXBuildFile; fileRef = 51D35F3F158BBB8A008518EC /* OSM */; };
-		51D35F43158BBB95008518EC /* RASTER in Resources */ = {isa = PBXBuildFile; fileRef = 51D35F42158BBB95008518EC /* RASTER */; };
-		51D35F45158BBC58008518EC /* vector in Resources */ = {isa = PBXBuildFile; fileRef = 51D35F44158BBC58008518EC /* vector */; };
 		51E9C614154E9A02000D3950 /* RasterLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51E9C613154E9A02000D3950 /* RasterLayer.m */; };
 		51F15F7714D99A3800D11B79 /* VectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F15F7614D99A3800D11B79 /* VectorLayer.m */; };
 		570474AE15A48D9700A43E6F /* CountryMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 570474AD15A48D9700A43E6F /* CountryMapView.xib */; };
@@ -63,6 +60,7 @@
 		576A061315923E9D0001E95D /* offlinemaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 576A061115923E9D0001E95D /* offlinemaps.xcdatamodeld */; };
 		57892B9D159B5FE900188337 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57892B9C159B5FE900188337 /* MapKit.framework */; };
 		57892BA0159B60D200188337 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57892B9F159B60D200188337 /* AddressBook.framework */; };
+		5795BA7A15ADC9D600E5A73B /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5795BA7915ADC9D600E5A73B /* iAd.framework */; };
 		579E9D4115999C9200D509D0 /* GalleryItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 579E9D4015999C9200D509D0 /* GalleryItemView.xib */; };
 		579E9D4515999CB900D509D0 /* GalleryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 579E9D4415999CB900D509D0 /* GalleryItemView.m */; };
 		579E9D6F1599C70000D509D0 /* GalleryFullscreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579E9D6E1599C70000D509D0 /* GalleryFullscreenViewController.m */; };
@@ -443,9 +441,6 @@
 		51D20F3314B849A3007AC4BD /* ManagedObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManagedObjects.h; path = Classes/ManagedObjects.h; sourceTree = "<group>"; };
 		51D20F3414B849A3007AC4BD /* ManagedObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManagedObjects.m; path = Classes/ManagedObjects.m; sourceTree = "<group>"; };
 		51D20F3A14B85468007AC4BD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		51D35F3F158BBB8A008518EC /* OSM */ = {isa = PBXFileReference; lastKnownFileType = folder; path = OSM; sourceTree = "<group>"; };
-		51D35F42158BBB95008518EC /* RASTER */ = {isa = PBXFileReference; lastKnownFileType = folder; path = RASTER; sourceTree = "<group>"; };
-		51D35F44158BBC58008518EC /* vector */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vector; sourceTree = "<group>"; };
 		51E9C612154E9A02000D3950 /* RasterLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RasterLayer.h; path = Classes/RasterLayer.h; sourceTree = "<group>"; };
 		51E9C613154E9A02000D3950 /* RasterLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RasterLayer.m; path = Classes/RasterLayer.m; sourceTree = "<group>"; };
 		51F15F7514D99A3800D11B79 /* VectorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VectorLayer.h; path = Classes/VectorLayer.h; sourceTree = "<group>"; };
@@ -478,6 +473,7 @@
 		576A061215923E9D0001E95D /* offlinemaps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = offlinemaps.xcdatamodel; sourceTree = "<group>"; };
 		57892B9C159B5FE900188337 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		57892B9F159B60D200188337 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		5795BA7915ADC9D600E5A73B /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		579E9D4015999C9200D509D0 /* GalleryItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GalleryItemView.xib; path = Resources/GalleryItemView.xib; sourceTree = "<group>"; };
 		579E9D4315999CB900D509D0 /* GalleryItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryItemView.h; sourceTree = "<group>"; };
 		579E9D4415999CB900D509D0 /* GalleryItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryItemView.m; sourceTree = "<group>"; };
@@ -873,6 +869,7 @@
 			files = (
 				515D75151534BB9700C25074 /* libxml2.dylib in Frameworks */,
 				BC76ACE5151B168A009BDABC /* libz.dylib in Frameworks */,
+				5795BA7A15ADC9D600E5A73B /* iAd.framework in Frameworks */,
 				57892BA0159B60D200188337 /* AddressBook.framework in Frameworks */,
 				BC3D156714C33E170059A17E /* StoreKit.framework in Frameworks */,
 				BC3D156514C33E0E0059A17E /* SystemConfiguration.framework in Frameworks */,
@@ -1035,9 +1032,6 @@
 				57F3FCCE1594C84F00B856A5 /* SpotLightSearch_iPhone@2x.png */,
 				570BB1D11590B56200CE1AA5 /* Icon@2x.png */,
 				570BB1CF1590B50F00CE1AA5 /* Icon.png */,
-				51D35F44158BBC58008518EC /* vector */,
-				51D35F42158BBB95008518EC /* RASTER */,
-				51D35F3F158BBB8A008518EC /* OSM */,
 				BC76ACF1151B1A74009BDABC /* minizip */,
 				BC506EA714E12BCE00587BD6 /* Default.png */,
 				BCA7374F14E029D30065EC2D /* Default@2x.png */,
@@ -1120,6 +1114,7 @@
 			children = (
 				515D75141534BB9700C25074 /* libxml2.dylib */,
 				BC76ACE4151B168A009BDABC /* libz.dylib */,
+				5795BA7915ADC9D600E5A73B /* iAd.framework */,
 				57892B9F159B60D200188337 /* AddressBook.framework */,
 				57892B9C159B5FE900188337 /* MapKit.framework */,
 				BC3D156614C33E160059A17E /* StoreKit.framework */,
@@ -1823,9 +1818,6 @@
 				9F1EA31D157490420076B2E0 /* pin@2x.png in Resources */,
 				9F6EE3111588AE5B009F72E9 /* terrain.png in Resources */,
 				9F6EE3121588AE5B009F72E9 /* vector.png in Resources */,
-				51D35F40158BBB8A008518EC /* OSM in Resources */,
-				51D35F43158BBB95008518EC /* RASTER in Resources */,
-				51D35F45158BBC58008518EC /* vector in Resources */,
 				570BB1D01590B50F00CE1AA5 /* Icon.png in Resources */,
 				570BB1D21590B56200CE1AA5 /* Icon@2x.png in Resources */,
 				570BB1D51590C59400CE1AA5 /* terrain@2x.png in Resources */,

@@ -106,7 +106,9 @@
     
     MKReverseGeocoder *geoCoder = [[MKReverseGeocoder alloc] initWithCoordinate:newLocation.coordinate];
     geoCoder.delegate = self;
-    [geoCoder start];
+    [geoCoder start];    
+    [self.superview.superview updatePins];
+
 }
 
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
@@ -281,8 +283,8 @@
     }
     [self makePreview];
      */
-    if(rasterLayer == nil) {
-        rasterLayer = [[RasterLayer alloc] initWithRect:self.frame];
+    if(rasterLayer == nil && _cityMap) {
+        rasterLayer = [[RasterLayer alloc] initWithRect:self.frame mapName:_cityMap.thisMapName];
         [rasterLayer setSignal:self selector:@selector(redrawRect:)];
     }
     

@@ -12,6 +12,7 @@
 static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 
 #define kParseComplete @"kParseComplete"
+#define kLaunchesBeforeShowingAd 3
 
 @interface tubeAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
@@ -24,7 +25,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
     //soj
     NSDictionary *mapsInfo;
     NSMutableArray *purchasedMaps;
-
+    BOOL shouldShowAd;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -32,6 +33,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 @property (nonatomic, retain) CityMap *cityMap;
 @property (nonatomic, retain) NSString *cityName;
 @property (nonatomic, retain) NSOperationQueue *parseQueue; 
+@property (nonatomic, assign) BOOL shouldShowAd;
 
 -(NSString*)nameCurrentMap;
 -(NSString*)nameCurrentCity;

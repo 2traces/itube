@@ -1554,8 +1554,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(void) setTransferKind:(StationKind)transferKind { TrKind = transferKind; }
 
 -(id) init {
-    self = [super init];
-	[self initVars];
+    if (self = [super init]) {
+        [self initVars];
+
+    }
+    
     return self;
 }
 
@@ -1594,105 +1597,105 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
     self.thisMapName=mapName;
     
-    NSFileManager *manager = [NSFileManager defaultManager];
-    NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *mapDirPath = [cacheDir stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@",[mapName lowercaseString]]];
-    
-    NSString *mapFile = [NSString stringWithString:@""];
-    NSString *trpFile = [NSString stringWithString:@""];
-    NSString *trpNewFile =  [NSString stringWithString:@""];
-    BOOL useTrpNew=NO;
-    
-    if ([[manager contentsOfDirectoryAtPath:mapDirPath error:nil] count]>0) {
-        NSDirectoryEnumerator *dirEnum = [manager enumeratorAtPath:mapDirPath];
-        NSString *file;
-        
-        while (file = [dirEnum nextObject]) {
-            if ([[file pathExtension] isEqualToString: @"map"]) {
-                mapFile=[mapDirPath stringByAppendingPathComponent:file];
-            } else if ([[file pathExtension] isEqualToString: @"trp"]) {
-                trpFile=[mapDirPath stringByAppendingPathComponent:file];
-            } else if ([[file pathExtension] isEqualToString: @"trpnew"]) {
-                trpNewFile=[mapDirPath stringByAppendingPathComponent:file];
-                useTrpNew=YES;
-            }
-        }
-    } 
-    
-    if (useTrpNew) {
-        trpFile=trpNewFile;
-    }
-    
-    NSArray *files;
-    
-    // если не получается взять файлы из директории cache - то пытаемся найти их в бандле
-    if ([mapFile isEqual:@""] || [trpFile isEqual:@""]) {
-        
-        files = [[NSBundle mainBundle] pathsForResourcesOfType:@"map" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
-        if([files count] <= 0) {
-#ifdef DEBUG
-            NSLog(@"map file not found: %@", mapName);
-#endif
-            return;
-        }
-        mapFile = [files objectAtIndex:0];
-        
-        files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trpnew" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
-        if([files count] <= 0) {
-            files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trp" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
-            if([files count] <= 0) {
-#ifdef DEBUG
-                NSLog(@"trp file not found: %@", mapName);
-#endif
-                return;
-            } else {
-                NSString *trpFile = [files objectAtIndex:0];
-                [self loadOldMap:mapFile trp:trpFile];
-            }
-        } else {
-            NSString *trpFile = [files objectAtIndex:0];
-            [self loadNewMap:mapFile trp:trpFile];
-        }
-
-    } else {
-        if (useTrpNew) {
-            [self loadNewMap:mapFile trp:trpFile];
-        } else {
-            [self loadOldMap:mapFile trp:trpFile];
-        }
-    }   
-    
-    self.pathToMap = [mapFile stringByDeletingLastPathComponent];
-    
-    [[MHelper sharedHelper] readHistoryFile:mapName];
-    [[MHelper sharedHelper] readBookmarkFile:mapName];
-#ifdef DEBUG
-    NSString *routePath = [NSString stringWithFormat:@"%@/route", self.pathToMap];
-    if((schedule = [[Schedule alloc] initFastSchedule:@"routes" path:[NSString stringWithFormat:@"%@/newroute", self.pathToMap]]) ||
-       (schedule = [[Schedule alloc] initSchedule:@"routes" path:routePath])) {
-        for (Line *l in mapLines) {
-            if([schedule setIndex:l.index forLine:l.name]) {
-                for (Station *s in l.stations) {
-                    [schedule checkStation:s.name line:l.name];
-                }
-            }
-        }
-    }
-#endif
-    
-    // check different stations with equal names
-    for (Line *l in mapLines) {
-        for (Station* st in l.stations) {
-            if(st.transfer == nil && st.drawName) {
-                for (Line* l2 in mapLines) {
-                    for (Station *st2 in l2.stations) {
-                        if(st2 != st && st2.transfer == nil && [st2.name isEqualToString:st.name])
-                            st2.drawName = false;
-                    }
-                }
-            }
-        }
-    }
+//    NSFileManager *manager = [NSFileManager defaultManager];
+//    NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+//    NSString *mapDirPath = [cacheDir stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@",[mapName lowercaseString]]];
+//    
+//    NSString *mapFile = [NSString stringWithString:@""];
+//    NSString *trpFile = [NSString stringWithString:@""];
+//    NSString *trpNewFile =  [NSString stringWithString:@""];
+//    BOOL useTrpNew=NO;
+//    
+//    if ([[manager contentsOfDirectoryAtPath:mapDirPath error:nil] count]>0) {
+//        NSDirectoryEnumerator *dirEnum = [manager enumeratorAtPath:mapDirPath];
+//        NSString *file;
+//        
+//        while (file = [dirEnum nextObject]) {
+//            if ([[file pathExtension] isEqualToString: @"map"]) {
+//                mapFile=[mapDirPath stringByAppendingPathComponent:file];
+//            } else if ([[file pathExtension] isEqualToString: @"trp"]) {
+//                trpFile=[mapDirPath stringByAppendingPathComponent:file];
+//            } else if ([[file pathExtension] isEqualToString: @"trpnew"]) {
+//                trpNewFile=[mapDirPath stringByAppendingPathComponent:file];
+//                useTrpNew=YES;
+//            }
+//        }
+//    } 
+//    
+//    if (useTrpNew) {
+//        trpFile=trpNewFile;
+//    }
+//    
+//    NSArray *files;
+//    
+//    // если не получается взять файлы из директории cache - то пытаемся найти их в бандле
+//    if ([mapFile isEqual:@""] || [trpFile isEqual:@""]) {
+//        
+//        files = [[NSBundle mainBundle] pathsForResourcesOfType:@"map" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+//        if([files count] <= 0) {
+//#ifdef DEBUG
+//            NSLog(@"map file not found: %@", mapName);
+//#endif
+//            return;
+//        }
+//        mapFile = [files objectAtIndex:0];
+//        
+//        files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trpnew" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+//        if([files count] <= 0) {
+//            files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trp" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+//            if([files count] <= 0) {
+//#ifdef DEBUG
+//                NSLog(@"trp file not found: %@", mapName);
+//#endif
+//                return;
+//            } else {
+//                NSString *trpFile = [files objectAtIndex:0];
+//                [self loadOldMap:mapFile trp:trpFile];
+//            }
+//        } else {
+//            NSString *trpFile = [files objectAtIndex:0];
+//            [self loadNewMap:mapFile trp:trpFile];
+//        }
+//
+//    } else {
+//        if (useTrpNew) {
+//            [self loadNewMap:mapFile trp:trpFile];
+//        } else {
+//            [self loadOldMap:mapFile trp:trpFile];
+//        }
+//    }   
+//    
+//    self.pathToMap = [mapFile stringByDeletingLastPathComponent];
+//    
+//    [[MHelper sharedHelper] readHistoryFile:mapName];
+//    [[MHelper sharedHelper] readBookmarkFile:mapName];
+//#ifdef DEBUG
+//    NSString *routePath = [NSString stringWithFormat:@"%@/route", self.pathToMap];
+//    if((schedule = [[Schedule alloc] initFastSchedule:@"routes" path:[NSString stringWithFormat:@"%@/newroute", self.pathToMap]]) ||
+//       (schedule = [[Schedule alloc] initSchedule:@"routes" path:routePath])) {
+//        for (Line *l in mapLines) {
+//            if([schedule setIndex:l.index forLine:l.name]) {
+//                for (Station *s in l.stations) {
+//                    [schedule checkStation:s.name line:l.name];
+//                }
+//            }
+//        }
+//    }
+//#endif
+//    
+//    // check different stations with equal names
+//    for (Line *l in mapLines) {
+//        for (Station* st in l.stations) {
+//            if(st.transfer == nil && st.drawName) {
+//                for (Line* l2 in mapLines) {
+//                    for (Station *st2 in l2.stations) {
+//                        if(st2 != st && st2.transfer == nil && [st2.name isEqualToString:st.name])
+//                            st2.drawName = false;
+//                    }
+//                }
+//            }
+//        }
+//    }
 }
 
 -(void) loadOldMap:(NSString *)mapFile trp:(NSString *)trpFile {
@@ -2317,13 +2320,13 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         if(error != nil) 
             NSLog(@"%@", error);
     }*/
-    [transfers release];
-    [mapLines release];
-	[graph release];
-    [activePath release];
-    [pathStationsList release];
-    [pathTimesList release];
-    [schedule release];
+//    [transfers release];
+//    [mapLines release];
+//	[graph release];
+//    [activePath release];
+//    [pathStationsList release];
+//    [pathTimesList release];
+//    [schedule release];
     [super dealloc];
 }
 

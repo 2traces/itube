@@ -217,7 +217,7 @@
 @property (nonatomic, assign) int cacheZoom;
 @property (nonatomic, assign) int cacheDirection;
 
--(id) initWithRect:(CGRect)rect;
+-(id) initWithRect:(CGRect)rect mapName:(NSString*)mapName;
 -(BOOL) draw:(CGContextRef)context inRect:(CGRect)rect withScale:(CGFloat)scale;
 -(BOOL) checkLevel:(CGFloat)scale;
 -(void) freeSomeMemory;
