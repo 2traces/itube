@@ -26,6 +26,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
     NSDictionary *mapsInfo;
     NSMutableArray *purchasedMaps;
     BOOL shouldShowAd;
+    UIImageView *splashScreen;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

@@ -761,7 +761,7 @@
     
     [servers addObject:server];
     
-    NSString *bundleName = [NSString stringWithFormat:@"%@.plist",[[NSBundle mainBundle] bundleIdentifier]];
+    NSString *bundleName = [NSString stringWithFormat:@"%@.plist", @"com.zuev.offmaps.cuba"];//[[NSBundle mainBundle] bundleIdentifier]];
     requested_file_type=plist_;
     [server loadFileAtURL:bundleName];
     [self spinLayer:progressArrows.layer duration:2.0 direction:1];

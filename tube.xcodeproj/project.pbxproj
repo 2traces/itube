@@ -378,9 +378,6 @@
 		BCE1C9EA151F63630029CCB2 /* n3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCE1C9E4151F63630029CCB2 /* n3@2x.png */; };
 		BCF52DCD14CAD69400D76E0F /* FastAccessTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */; };
 		CE1146C91466EAF200EF5A28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1146C81466EAF200EF5A28 /* QuartzCore.framework */; };
-		CE81FA70146BDC91008BF969 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CE81FA6D146BDC91008BF969 /* Icon-72.png */; };
-		CE81FA71146BDC91008BF969 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE81FA6E146BDC91008BF969 /* Icon.png */; };
-		CE81FA72146BDC91008BF969 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE81FA6F146BDC91008BF969 /* Icon@2x.png */; };
 		CE93AE16148E5E9400DAD165 /* ini.m in Sources */ = {isa = PBXBuildFile; fileRef = CE93AE0A148E5E9400DAD165 /* ini.m */; };
 		CE93AE18148E5E9400DAD165 /* parse.m in Sources */ = {isa = PBXBuildFile; fileRef = CE93AE0D148E5E9400DAD165 /* parse.m */; };
 		CE93AE19148E5E9400DAD165 /* retrieve.m in Sources */ = {isa = PBXBuildFile; fileRef = CE93AE0F148E5E9400DAD165 /* retrieve.m */; };
@@ -839,9 +836,6 @@
 		BCF52DCB14CAD69400D76E0F /* FastAccessTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastAccessTableViewController.h; sourceTree = "<group>"; };
 		BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastAccessTableViewController.m; sourceTree = "<group>"; };
 		CE1146C81466EAF200EF5A28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		CE81FA6D146BDC91008BF969 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "images/Icon-72.png"; sourceTree = "<group>"; };
-		CE81FA6E146BDC91008BF969 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = images/Icon.png; sourceTree = "<group>"; };
-		CE81FA6F146BDC91008BF969 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "images/Icon@2x.png"; sourceTree = "<group>"; };
 		CE93AE09148E5E9400DAD165 /* ini.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ini.h; path = Classes/ini/ini.h; sourceTree = "<group>"; };
 		CE93AE0A148E5E9400DAD165 /* ini.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ini.m; path = Classes/ini/ini.m; sourceTree = "<group>"; };
 		CE93AE0C148E5E9400DAD165 /* parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = parse.h; path = Classes/ini/parse.h; sourceTree = "<group>"; };
@@ -1099,10 +1093,7 @@
 				BC3D151014C339230059A17E /* Tabbar */,
 				BC3D150F14C3391C0059A17E /* Stations */,
 				BC3D150E14C339140059A17E /* Settings */,
-				CE81FA6D146BDC91008BF969 /* Icon-72.png */,
 				BC3D150B14C338EE0059A17E /* maps.plist */,
-				CE81FA6E146BDC91008BF969 /* Icon.png */,
-				CE81FA6F146BDC91008BF969 /* Icon@2x.png */,
 				CE96C6F41468307C005A56F3 /* images */,
 				8D1107310486CEB800E47090 /* tube-Info.plist */,
 			);
@@ -1559,9 +1550,6 @@
 			files = (
 				BC787C3E1535750E0020915A /* MyriadPr-It.otf in Resources */,
 				CE96C6F81468307C005A56F3 /* select_near_station.png in Resources */,
-				CE81FA70146BDC91008BF969 /* Icon-72.png in Resources */,
-				CE81FA71146BDC91008BF969 /* Icon.png in Resources */,
-				CE81FA72146BDC91008BF969 /* Icon@2x.png in Resources */,
 				CE966329147BFB8800C31F90 /* textfield.png in Resources */,
 				CE966354147BFFC600C31F90 /* textfield@2x.png in Resources */,
 				BC3D150D14C338EE0059A17E /* maps.plist in Resources */,

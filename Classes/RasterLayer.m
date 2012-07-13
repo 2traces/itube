@@ -910,9 +910,11 @@
         NSURL *vurl = [[[NSURL alloc] initFileURLWithPath:rasterPath] autorelease];
         NSString* vurlstr = [vurl absoluteString];
         vloader = [[VectorDownloader alloc] initWithUrl:vurlstr];
-        rloader1 = [[RasterDownloader alloc] initWithUrl:@"http://www.x-provocation.com/maps/cuba/OSM"];
+        NSString *url1 = [NSString stringWithFormat:@"http://www.x-provocation.com/maps/%@/OSM", mapName];
+        NSString *url2 = [NSString stringWithFormat:@"http://www.x-provocation.com/maps/%@/RASTER", mapName];
+        rloader1 = [[RasterDownloader alloc] initWithUrl:url1];
         rloader1.altSource = [[NSBundle mainBundle] pathForResource:@"OSM" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
-        rloader2 = [[RasterDownloader alloc] initWithUrl:@"http://www.x-provocation.com/maps/cuba/RASTER"];
+        rloader2 = [[RasterDownloader alloc] initWithUrl:url2];
         rloader2.altSource = [[NSBundle mainBundle] pathForResource:@"RASTER" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         dm.vectorDownloader = vloader;
         dm.rasterDownloader = rloader1;

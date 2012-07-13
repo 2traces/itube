@@ -46,7 +46,10 @@
         
         GalleryItemView *view = [[GalleryItemView alloc] init];
         
-        NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:nil];
+        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        NSString *mapName = [appDelegate nameCurrentMap];
+        
+        NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         NSString *fn = [NSString stringWithFormat:@"%@/photos/%@", rasterPath, photo.fileName];
         UIImage *image = [UIImage imageWithContentsOfFile:fn];
         
@@ -185,8 +188,10 @@
     
     MPhoto *photo = [images objectAtIndex:itemID];
     
-    NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:nil];
-    NSString *fn = [NSString stringWithFormat:@"%@/photos/%@", rasterPath, photo.fileName];
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString *mapName = [appDelegate nameCurrentMap];
+    
+    NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];    NSString *fn = [NSString stringWithFormat:@"%@/photos/%@", rasterPath, photo.fileName];
     UIImage *image = [UIImage imageWithContentsOfFile:fn];
     
     GalleryFullscreenViewController *vc = [[GalleryFullscreenViewController alloc] initWithNibName:@"GalleryFullscreenViewController" bundle:[NSBundle mainBundle] title:photo.theItem.name image:image itemID:itemID];
@@ -195,7 +200,6 @@
     vc.delegate = self;
     vc.itemID = itemID;
     
-    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate.mainViewController presentModalViewController:vc animated:YES];
     
     [vc autorelease];
