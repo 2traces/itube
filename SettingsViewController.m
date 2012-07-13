@@ -279,7 +279,9 @@
         [[(CountryMapCell*)cell mapName] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
         [[(CountryMapCell*)cell mapName] setHighlightedTextColor:[UIColor whiteColor]];
         
-        [[(CountryMapCell*)cell mapStatus] setText:@"to-be-implemented Mb"];
+        NSString *mapSize = [map objectForKey:@"size"];
+
+        [[(CountryMapCell*)cell mapStatus] setText:mapSize];
         [[(CountryMapCell*)cell mapStatus] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
         [[(CountryMapCell*)cell mapStatus] setHighlightedTextColor:[UIColor whiteColor]];
         
@@ -437,14 +439,16 @@
             
         } else {
             // показать рекламное окно
-            DemoMapViewController *controller = [[DemoMapViewController alloc] initWithNibName:@"DemoMapViewController" bundle:[NSBundle mainBundle]];
-            NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
-            controller.filename = [map objectForKey:@"filename"];
-            controller.cityName = [map objectForKey:@"name"];
-            controller.prodID = [map objectForKey:@"prodID"];
-            controller.delegate=self;
-            [self.navigationController pushViewController:controller animated:YES];
-            [controller release];
+            [self returnWithPurchase:[map objectForKey:@"prodID"]];
+            
+//            DemoMapViewController *controller = [[DemoMapViewController alloc] initWithNibName:@"DemoMapViewController" bundle:[NSBundle mainBundle]];
+//            NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
+//            controller.filename = [map objectForKey:@"filename"];
+//            controller.cityName = [map objectForKey:@"name"];
+//            controller.prodID = [map objectForKey:@"prodID"];
+//            controller.delegate=self;
+//            [self.navigationController pushViewController:controller animated:YES];
+//            [controller release];
         }    
     } else {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -645,6 +649,7 @@
 
 -(void)processPlistFromServer:(NSMutableData*)data
 {
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     NSDictionary *dict = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:nil errorDescription:nil];
     
     NSArray *array = [dict allKeys];
@@ -845,7 +850,7 @@
 
 -(void)returnWithPurchase:(NSString *)prodID
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
     [self purchaseProduct:prodID];
 }
 

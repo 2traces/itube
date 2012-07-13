@@ -15,7 +15,7 @@
 @synthesize listener;
 @synthesize prodID;
 
-NSString *mainurl = @"http://findmystation.info";
+NSString *mainurl = @"http://x-provocation.com";
 
 - (id)init
 {
