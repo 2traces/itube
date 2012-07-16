@@ -56,6 +56,17 @@
     return cityMap.backgroundColor;
 }
 
+-(DrawNameType) drawName
+{
+    return cityMap.drawName;
+}
+
+-(void) setDrawName:(DrawNameType)drawName
+{
+    cityMap.drawName = drawName;
+    [self setNeedsDisplay];
+}
+
 #pragma mark gps stuff 
 -(BOOL) enableUserLocation
 {

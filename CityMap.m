@@ -114,6 +114,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 break;
         }
     }
+    int alternative = [str rangeOfString:@"&"].location;
+    if(alternative != NSNotFound) str = [str substringToIndex:alternative];
     str = [[str stringByReplacingOccurrencesOfString:@";" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     return str;
 }
@@ -161,7 +163,185 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             if(finish) break;
             else string = [string substringFromIndex:1];
         }
+        int alternative = [string rangeOfString:@"&"].location;
+        if(alternative != NSNotFound) {
+            string = [string substringToIndex:alternative];
+        }
         words = [[string componentsSeparatedByString:@";"] retain];
+        string = [[[string stringByReplacingOccurrencesOfString:@";" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
+        if(angle == 0) {
+            CGFloat d = rect.size.height * 0.5f;
+            boundingBox = rect;
+            boundingBox.origin.x -= d;
+            boundingBox.origin.y -= d;
+            boundingBox.size.width += 2*d;
+            boundingBox.size.height += 2*d;
+        } else {
+            CGPoint rbase = rect.origin;
+            switch (align & 0x3) {
+                case 0x0:
+                    rbase.y = rect.origin.y + rect.size.height/2; break;
+                case 0x1:
+                    rbase.y = rect.origin.y; break;
+                case 0x2:
+                    rbase.y = rect.origin.y + rect.size.height; break;
+            }
+            switch (align & 0xc) {
+                case 0x0:
+                    rbase.x = rect.origin.x + rect.size.width/2; break;
+                case 0x4:
+                    rbase.x = rect.origin.x; break;
+                case 0x8:
+                    rbase.x = rect.origin.x + rect.size.width; break;
+            }
+            CGAffineTransform tr = CGAffineTransformMakeTranslation(rbase.x, rbase.y);
+            tr = CGAffineTransformRotate(tr, angle);
+            tr = CGAffineTransformTranslate(tr, -rbase.x, -rbase.y);
+            CGRect r1, r2, r3, r4;
+            r1.origin = CGPointApplyAffineTransform(rect.origin, tr);
+            r2.origin = CGPointApplyAffineTransform(CGPointMake(rect.origin.x + rect.size.width, rect.origin.y), tr);
+            r3.origin = CGPointApplyAffineTransform(CGPointMake(rect.origin.x + rect.size.width, rect.origin.y + rect.size.height), tr);
+            r4.origin = CGPointApplyAffineTransform(CGPointMake(rect.origin.x, rect.origin.y + rect.size.height), tr);
+            r1.size = r2.size = r3.size = r4.size = CGSizeMake(0.01f, 0.01f);
+            boundingBox = CGRectUnion(CGRectUnion(r1, r2), CGRectUnion(r3, r4));
+        }
+    }
+    return self;
+}
+
+-(id) initWithAlternativeString:(NSString *)_string font:(UIFont *)_font andRect:(CGRect)_rect
+{
+    if((self = [super init])) {
+        angle = 0;
+        align = 0;
+        string = _string;
+        font = [_font retain];
+        rect = _rect;
+        while (true) {
+            unichar ch = [string characterAtIndex:0];
+            BOOL finish = NO;
+            switch (ch) {
+                case '/':
+                    angle = -M_PI_4;
+                    break;
+                case '\\':
+                    angle = M_PI_4;
+                    break;
+                case '^':
+                    align |= 0x1;
+                    break;
+                case '_':
+                    align |= 0x2;
+                    break;
+                case '-':
+                    align &= 0xc;
+                    break;
+                case '<':
+                    align |= 0x4;
+                    break;
+                case '>':
+                    align |= 0x8;
+                    break;
+                case '|':
+                    align &= 0x3;
+                    break;
+                default:
+                    finish = YES;
+                    break;
+            }
+            if(finish) break;
+            else string = [string substringFromIndex:1];
+        }
+        int alternative = [string rangeOfString:@"&"].location;
+        if(alternative != NSNotFound) {
+            string = [string substringFromIndex:alternative+1];
+        }
+        words = [[string componentsSeparatedByString:@";"] retain];
+        string = [[[string stringByReplacingOccurrencesOfString:@";" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
+        if(angle == 0) {
+            CGFloat d = rect.size.height * 0.5f;
+            boundingBox = rect;
+            boundingBox.origin.x -= d;
+            boundingBox.origin.y -= d;
+            boundingBox.size.width += 2*d;
+            boundingBox.size.height += 2*d;
+        } else {
+            CGPoint rbase = rect.origin;
+            switch (align & 0x3) {
+                case 0x0:
+                    rbase.y = rect.origin.y + rect.size.height/2; break;
+                case 0x1:
+                    rbase.y = rect.origin.y; break;
+                case 0x2:
+                    rbase.y = rect.origin.y + rect.size.height; break;
+            }
+            switch (align & 0xc) {
+                case 0x0:
+                    rbase.x = rect.origin.x + rect.size.width/2; break;
+                case 0x4:
+                    rbase.x = rect.origin.x; break;
+                case 0x8:
+                    rbase.x = rect.origin.x + rect.size.width; break;
+            }
+            CGAffineTransform tr = CGAffineTransformMakeTranslation(rbase.x, rbase.y);
+            tr = CGAffineTransformRotate(tr, angle);
+            tr = CGAffineTransformTranslate(tr, -rbase.x, -rbase.y);
+            CGRect r1, r2, r3, r4;
+            r1.origin = CGPointApplyAffineTransform(rect.origin, tr);
+            r2.origin = CGPointApplyAffineTransform(CGPointMake(rect.origin.x + rect.size.width, rect.origin.y), tr);
+            r3.origin = CGPointApplyAffineTransform(CGPointMake(rect.origin.x + rect.size.width, rect.origin.y + rect.size.height), tr);
+            r4.origin = CGPointApplyAffineTransform(CGPointMake(rect.origin.x, rect.origin.y + rect.size.height), tr);
+            r1.size = r2.size = r3.size = r4.size = CGSizeMake(0.01f, 0.01f);
+            boundingBox = CGRectUnion(CGRectUnion(r1, r2), CGRectUnion(r3, r4));
+        }
+    }
+    return self;
+}
+
+-(id) initWithBothString:(NSString *)_string font:(UIFont *)_font andRect:(CGRect)_rect
+{
+    if((self = [super init])) {
+        angle = 0;
+        align = 0;
+        string = _string;
+        font = [_font retain];
+        rect = _rect;
+        while (true) {
+            unichar ch = [string characterAtIndex:0];
+            BOOL finish = NO;
+            switch (ch) {
+                case '/':
+                    angle = -M_PI_4;
+                    break;
+                case '\\':
+                    angle = M_PI_4;
+                    break;
+                case '^':
+                    align |= 0x1;
+                    break;
+                case '_':
+                    align |= 0x2;
+                    break;
+                case '-':
+                    align &= 0xc;
+                    break;
+                case '<':
+                    align |= 0x4;
+                    break;
+                case '>':
+                    align |= 0x8;
+                    break;
+                case '|':
+                    align &= 0x3;
+                    break;
+                default:
+                    finish = YES;
+                    break;
+            }
+            if(finish) break;
+            else string = [string substringFromIndex:1];
+        }
+        words = [[string componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@";&"]] retain];
         string = [[[string stringByReplacingOccurrencesOfString:@";" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
         if(angle == 0) {
             CGFloat d = rect.size.height * 0.5f;
@@ -714,6 +894,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         lastStations = [[NSMutableArray alloc] init];
         
         NSUInteger br = [sname rangeOfString:@"("].location;
+        NSUInteger alternative = [sname rangeOfString:@"&"].location;
+        if(alternative != NSNotFound) {
+            altText = [[ComplexText alloc] initWithAlternativeString:sname font:[UIFont fontWithName:map->TEXT_FONT size:map->FontSize] andRect:textRect];
+            bothText = [[ComplexText alloc] initWithBothString:sname font:[UIFont fontWithName:map->TEXT_FONT size:map->FontSize] andRect:textRect];
+        }
         if(br == NSNotFound) {
             text = [[ComplexText alloc] initWithString:sname font:[UIFont fontWithName:map->TEXT_FONT size:map->FontSize] andRect:textRect];
             name = [text.string retain];
@@ -758,6 +943,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(void)dealloc
 {
     [text release];
+    [altText release];
+    [bothText release];
     [segment release];
     [backSegment release];
     [relation release];
@@ -792,7 +979,18 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void)drawName:(CGContextRef)context
 {
-    [text draw:context];
+    switch (map->DrawName) {
+        default:
+        case NAME_NORMAL:
+            [text draw:context];
+            break;
+        case NAME_ALTERNATIVE:
+            [altText draw:context];
+            break;
+        case NAME_BOTH:
+            [bothText draw:context];
+            break;
+    }
 }
 
 -(void)drawStation:(CGContextRef)context
@@ -822,6 +1020,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(void)predraw:(CGContextRef) context
 {
     [text predraw:context scale:map->PredrawScale];
+    [altText predraw:context scale:map->PredrawScale];
+    [bothText predraw:context scale:map->PredrawScale];
 }
 
 -(void) makeSegments
@@ -1616,6 +1816,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(void) setStationKind:(StationKind)stationKind { StKind = stationKind; }
 -(StationKind) transferKind { return TrKind; }
 -(void) setTransferKind:(StationKind)transferKind { TrKind = transferKind; }
+-(DrawNameType) drawName { return DrawName; }
+-(void) setDrawName:(DrawNameType)drawName { DrawName = drawName; }
 
 -(id) init {
     self = [super init];

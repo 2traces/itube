@@ -21,6 +21,8 @@ typedef enum {DONT_DRAW=0, LIKE_PARIS=1, LIKE_LONDON=2, LIKE_MOSCOW=3, LIKE_HAMB
 
 typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 
+typedef enum {NAME_NORMAL=0, NAME_ALTERNATIVE=1, NAME_BOTH=2} DrawNameType;
+
 @class Station;
 @class Line;
 @class CityMap;
@@ -42,6 +44,8 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 
 +(NSString*) makePlainString:(NSString*)_str;
 -(id) initWithString:(NSString*)string font:(UIFont*)font andRect:(CGRect)rect;
+-(id) initWithAlternativeString:(NSString*)string font:(UIFont*)font andRect:(CGRect)rect;
+-(id) initWithBothString:(NSString*)string font:(UIFont*)font andRect:(CGRect)rect;
 -(void) predraw:(CGContextRef)context scale:(CGFloat)scale;
 -(void) draw:(CGContextRef)context;
 @end
@@ -96,6 +100,8 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
     CGPoint tangent, normal;
     CityMap *map;
     ComplexText *text;
+    ComplexText *altText;
+    ComplexText *bothText;
     int way1, way2;
     NSMutableDictionary *transferDriving;
     CGFloat defaultTransferDriving;
@@ -264,6 +270,7 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
     CGFloat FontSize;
     StationKind StKind;
     StationKind TrKind;
+    DrawNameType DrawName;
     NSString *TEXT_FONT;
 }
 
@@ -289,6 +296,7 @@ typedef enum {NOWAY=0, WAY_BEGIN=1, WAY_MIDDLE=2, WAY_END=4, WAY_ALL=7} WayPos;
 @property (nonatomic, readonly) NSString* foregroundImageFile;
 @property (nonatomic, readonly) CGFloat gpsCircleScale;
 @property (nonatomic, readonly) UIColor *backgroundColor;
+@property (nonatomic, assign) DrawNameType drawName;
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //

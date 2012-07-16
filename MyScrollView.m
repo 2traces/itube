@@ -69,6 +69,10 @@
 -(void)handleDebugTap:(UITapGestureRecognizer*)sender
 {
     //[scrolledView setShowVectorLayer:![scrolledView showVectorLayer]];
+    int dn = [scrolledView drawName];
+    dn ++;
+    if(dn > 2) dn = 0;
+    [scrolledView setDrawName:dn];
 }
 
 -(void)layoutSubviews
