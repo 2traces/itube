@@ -80,8 +80,8 @@ NSCharacterSet *pCharacterSet = nil;
 {
     double dw = time - (p.time+tt);
     while (dw < 0) dw += 24*60*60;
-    if(weight > p.weight + dw) {
-        weight = p.weight + dw;
+    if(weight > p.weight + dw + tt) {
+        weight = p.weight + dw + tt;
         backPath = p;
         return YES;
     }
@@ -491,7 +491,7 @@ NSCharacterSet *pCharacterSet = nil;
 
 -(NSTimeInterval)getNowTime
 {
-    //return 43200;
+    //return 64000;
     NSDateComponents *comp = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate date]];
     NSDate *midnight = [cal dateFromComponents:comp];
     return [[NSDate date] timeIntervalSinceDate:midnight];
@@ -630,7 +630,7 @@ NSCharacterSet *pCharacterSet = nil;
     return nil;
 }
 
--(BOOL)findRestOfPath:(NSArray*)graphNodes points:(NSMutableArray*)schPoints
+-(BOOL)findRestOfPath:(NSArray*)graphNodes points:(NSMutableArray*)schPoints wait:(BOOL)wait
 {
     if([graphNodes count] == 0) return YES;
     SchPoint *lastP = [schPoints lastObject];
@@ -652,7 +652,7 @@ NSCharacterSet *pCharacterSet = nil;
             NSRange range;
             range.location = 1;
             range.length = [graphNodes count]-1;
-            if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints]) {
+            if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints wait:YES]) {
                 return YES;
             } else {
                 [schPoints removeLastObject];
@@ -664,15 +664,37 @@ NSCharacterSet *pCharacterSet = nil;
         if(nextP != nil) {
             for(int i=0; i<[graphNodes count]; i++) {
                 if([nextP.name isEqualToString:[[graphNodes objectAtIndex:i] name]]) {
+                    [nextP setWeightFrom:lastP];
                     [schPoints addObject:nextP];
                     NSRange range;
                     range.location = i+1;
                     range.length = [graphNodes count]-range.location;
-                    if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints]) {
+                    if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints wait:YES]) {
                         return YES;
                     } else {
                         [schPoints removeLastObject];
                     }
+                }
+            }
+        }
+        if(wait) {
+            // check transfer within the same line
+            SchLine *l = [self lineByIndex:lastP.line];
+            NSArray *sts = [l.catalog valueForKey:lastP.name];
+            [propagate removeAllObjects];
+            for (SchPoint *tp in sts) {
+                if(tp.next == nil) continue;
+                [tp setWeightFrom:lastP withTransferTime:2];
+                [propagate addObject:tp];
+            }
+            for(int i=0; i<[propagate count]; i++) {
+                SchPoint * curP = [propagate objectAtIndex:i];
+                if(curP.weight > 60*60*4) break;
+                [schPoints addObject:curP];
+                if([self findRestOfPath:graphNodes points:schPoints wait:NO]) {
+                    return YES;
+                } else {
+                    [schPoints removeLastObject];
                 }
             }
         }
@@ -682,6 +704,7 @@ NSCharacterSet *pCharacterSet = nil;
 
 -(NSArray*)translatePath:(NSArray *)graphNodes
 {
+    if([graphNodes count] == 0) return nil;
     NSMutableArray *result = [NSMutableArray array];
     NSTimeInterval now = [self getNowTime];
     SortedArray *propagate = [[SortedArray alloc] init];
@@ -700,7 +723,7 @@ NSCharacterSet *pCharacterSet = nil;
         NSRange range;
         range.location = 1;
         range.length = [graphNodes count]-1;
-        if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:result]) {
+        if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:result wait:NO]) {
             if([result count] > 1 && [[result objectAtIndex:0] line] != [[result objectAtIndex:1] line]) {
                 NSRange range;
                 range.location = 1;

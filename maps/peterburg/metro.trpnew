@@ -1,0 +1,118 @@
+[Line1]
+Name=1
+101 <Devyatkino&Девяткино 60.05021,30.442974,
+102 <Grazhdansky Prospekt&Гражданский проспект 60.034966,30.418234,
+103 <Akademicheskaya&Академическая 60.012797,30.396025,
+104 <Politekhnicheskaya&Политехническая 60.008941,30.370831,
+105 <Ploschad Muzhestva&Площадь Мужества 59.999587,30.366025,
+106 <Lesnaya&Лесная 59.984949,30.34431,
+107 <Vyborgskaya&Выборгская 59.971637,30.34843,
+108 <Lenin Square&Площадь Ленина 59.957331,30.355296,
+109 <Chernyshevskaya&Чернышевская 59.944566,30.359759,
+110 <Ploshchad Vosstaniya&Площадь Восстания 59.930377,30.360961,
+111 <Vladimirskaya&Владимирская 59.927754,30.347743,
+112 <Pushkinskaya&Пушкинская 59.9207,30.329547,
+113 <Tekhnologichesky Institut&Технологический институт 59.91657,30.318389,
+114 <Baltiyskaya&Балтийская 59.90749,30.30045,
+115 <Narvskaya&Нарвская 59.901207,30.274873,
+116 <Kirovsky Zavod&Кировский завод 59.879764,30.261655,
+117 <Avtovo&Автово 59.867271,30.261226,
+118 <Leninsky Prospekt&Ленинский проспект 59.851627,30.269208,
+119 <Prospekt Veteranov&Проспект Ветеранов 59.84184,30.251784,
+
+Branch10 =  <>101...119
+Driving10 = 4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4
+
+[Line2]
+Name=2
+
+120 <Kupchino&Купчино 59.82978,30.3757,
+121 <Zvezdnaya&Звездная 59.833247,30.349427,
+122 <Moskovskaya&Московская 59.851336,30.321532,
+123 <Park Pobedy&Парк победы 59.866334,30.321811,
+124 <Elektrosila&Электросила 59.879183,30.318636,
+125 <Moskovskiye Vorota&Московские ворота 59.891789,30.317863,
+126 <Frunzenskaya&Фрунзенская 59.906264,30.317413,
+127 <Tekhnologichesky Institut&Технологический институт 59.916516,30.318443,
+128 <Sennaya Ploshchad&Сенная площадь 59.927141,30.320288,
+129 <Nevsky Prospekt&Невский проспект 59.935043,30.329665,
+130 <Gorkovskaya&Горьковская 59.956138,30.318786,
+131 <Petrogradskaya&Петроградская 59.966386,30.311276,
+132 <Chornaya River&Чорная речка 59.985443,30.300804,
+133 <Pionerskaya&Пионерская 60.002484,30.296727,
+134 <Udelnaya&Удельная 60.016706,30.315589,
+135 <Ozerki&Озерки 60.037096,30.321468,
+136 <Prospekt Prosvescheniya&Проспект Просвещения 60.051442,30.332562,
+137 <Parnas&Парнас 60.066982,30.333828,
+
+Branch11 =  <>120...137
+Driving11 = 4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4
+
+[Line3]
+Name=3
+
+138 <Primorskaya&Приморская 59.948564,30.234275,
+139 <Vasileostrovskaya&Василеостровская 59.942546,30.278134,
+140 <Gostiny Dvor&Гостинный двор 59.933946,30.333323,
+141 <Mayakovskaya&Маяковская 59.931323,30.354609,
+142 <Ploshchad Alexandra Nevskogo&Площадь Александра Невского 59.924055,30.384135,
+143 <Elizarovskaya&Елизаровская 59.896644,30.423617,
+144 <Lomonosovskaya&Ломоносовская 59.877352,30.441642,
+145 <Proletarskaya&Пролетарская 59.865547,30.469451,
+146 <Obuhovo&Обухово 59.848436,30.457435,
+147 <Rybatskoe&Рыбацкое 59.830885,30.50138,
+
+Branch12 =  <>138...147
+Driving12 = 4,4,4,4,4,4,4,4,4
+
+[Line4]
+Name=4
+
+148 <Spasskaya&Спасская 59.927066,30.320363, 
+149 <Dostoevskaya&Достоевская 59.928184,30.346112,
+150 <Ligovsky Prospekt&Лиговский проспект 59.920786,30.355039,
+151 <Ploshchad Alexandra Nevskogo&Площадь Александра Невского 59.924055,30.383964,
+152 <Novocherkasskaya&Новочеркасская 59.929001,30.411859,
+153 <Ladozhskaya&Ладожская 59.932355,30.439153,
+154 <Prospekt Bolshevikov&Проспект Большевиков 59.919796,30.466876,
+155 <Ulitsa Dybenko&Улица Дыбенко 59.908007,30.48327,
+
+Branch13 =  <>148...155
+Driving13 = 4,4,4,4,4,4,4
+
+[Line5]
+Name=5
+
+156 <Komendantskiy Prospekt&Комендантский проспект 60.008255,30.25835,
+157 <Staraya Derevnya&Старая Деревня 59.9892,30.254917,
+158 <Krestovsky Ostrov&Крестовский остров 59.971723,30.259337,
+159 <Chkalovskaya&Чкаловская 59.960983,30.291867,
+159 <Sportivnaya&Спортивная 59.952475,30.292125,
+160 <Admiralteyskaya&Адмиралтейская 59.93601,30.314698,
+161 <Sadovaya&Садовая 59.926678,30.317616,
+162 <Zvenigorodskaya&Звенигородская 59.920613,30.32964,
+163 <Obvodny Canal&Обводный канал 59.914547,30.349631,
+164 <Volkovskaya&Волковская 59.896019,30.357578,
+
+Branch14 =  <>156...164
+Driving14 = 4,4,4,4,4,4,4,4,4
+
+[Transfers]
+1=2,Nevsky Prospekt&Невский проспект,3,Gostiny Dvor&Гостинный двор,2
+2=3,Gostiny Dvor&Гостинный двор,2,Nevsky Prospekt&Невский проспект,2
+3=1,Tekhnologichesky Institut&Технологический институт,2,Tekhnologichesky Institut&Технологический институт,2
+4=2,Tekhnologichesky Institut&Технологический институт,1,Tekhnologichesky Institut&Технологический институт,2
+5=4,Dostoevskaya&Достоевская,1,Vladimirskaya&Владимирская,2
+6=1,Vladimirskaya&Владимирская,4,Dostoevskaya&Достоевская,2
+7=1,Pushkinskaya&Пушкинская,5,Zvenigorodskaya&Звенигородская,2
+8=5,Zvenigorodskaya&Звенигородская,1,Pushkinskaya&Пушкинская,2
+9=3,Ploshchad Alexandra Nevskogo&Площадь Александра Невского,4,Ploshchad Alexandra Nevskogo&Площадь Александра Невского,2
+10=4,Ploshchad Alexandra Nevskogo&Площадь Александра Невского,3,Ploshchad Alexandra Nevskogo&Площадь Александра Невского,2
+11=1,Ploshchad Vosstaniya&Площадь Восстания,3,Mayakovskaya&Маяковская,2
+12=3,Mayakovskaya&Маяковская,1,Ploshchad Vosstaniya&Площадь Восстания,2
+14=5,Sadovaya&Садовая,2,Sennaya Ploshchad&Сенная площадь,2
+15=2,Sennaya Ploshchad&Сенная площадь,5,Sadovaya&Садовая,2
+16=5,Sadovaya&Садовая,4,Spasskaya&Спасская,2
+17=4,Spasskaya&Спасская,5,Sadovaya&Садовая,2
+18=4,Spasskaya&Спасская,2,Sennaya Ploshchad&Сенная площадь,2
+19=2,Sennaya Ploshchad&Сенная площадь,4,Spasskaya&Спасская,2

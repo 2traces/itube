@@ -79,6 +79,7 @@ extern int const imagesCount;
 @property (nonatomic, readonly) ActiveView *activeLayer;
 @property (nonatomic, readonly) NSDictionary *foundPaths;
 @property (nonatomic, readonly) UIColor *backgroundColor;
+@property (nonatomic, assign) DrawNameType drawName;
 
 - (void)viewDidLoad;
 // 
