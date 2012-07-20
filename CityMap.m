@@ -1716,7 +1716,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                         [seg appendPoint:CGPointMake([[coord objectAtIndex:0] intValue], [[coord objectAtIndex:1] intValue])];
                     }
                     //[seg calcSpline];
-                    return;
+                    //return;
                 }
             }
         }
@@ -2382,9 +2382,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(schedule != nil) {
         NSMutableSet *missingStations = [NSMutableSet set];
         for (Line *l in mapLines) {
-            for (Station *s in l.stations) {
-                if(![schedule existStation:s.name line:l.name]) {
+            BOOL el = [schedule existLine:l.name];
+            if(!el) {
+                for (Station *s in l.stations) {
+                    //if(![schedule existStation:s.name line:l.name]) {
                     [missingStations addObject:[GraphNode nodeWithName:s.name andLine:s.line.index]];
+                    //}
                 }
             }
         }

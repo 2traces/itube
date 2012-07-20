@@ -489,6 +489,15 @@ NSCharacterSet *pCharacterSet = nil;
     }
 }
 
+-(BOOL)existLine:(NSString*)line
+{
+    SchLine *l = [lines valueForKey:line];
+    if(l != nil) {
+        if([l.catalog count] > 0) return YES;
+    }
+    return NO;
+}
+
 -(NSTimeInterval)getNowTime
 {
     //return 49680;
