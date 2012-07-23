@@ -2709,7 +2709,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             // the last station
             activeExtent = CGRectUnion(activeExtent, s.textRect);
             activeExtent = CGRectUnion(activeExtent, s.boundingBox);
-            [pathStationsList addObject:n1.name];
+            if(DrawName == NAME_ALTERNATIVE) [pathStationsList addObject:s.altText.string];
+            else [pathStationsList addObject:n1.name];
             if(sp1 && schedule) {
                 [pathTimesList addObject:[schedule getPointDate:sp1]];
                 [pathDocksList addObject:[NSString stringWithFormat:@"%c", sp1.dock]];
@@ -2727,7 +2728,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 else {
                     [activePath addObject:[l activatePathFrom:n1.name to:n2.name]];
                 }
-                [pathStationsList addObject:n1.name];
+                if(DrawName == NAME_ALTERNATIVE) [pathStationsList addObject:s.altText.string];
+                else [pathStationsList addObject:n1.name];
                 if(sp1 && schedule) {
                     [pathTimesList addObject:[schedule getPointDate:sp1]];
                     [pathDocksList addObject:[NSString stringWithFormat:@"%c", sp1.dock]];
@@ -2735,7 +2737,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             } else
             if(n1.line != n2.line) {
                 [activePath addObject:s.transfer];
-                [pathStationsList addObject:n1.name];
+                if(DrawName == NAME_ALTERNATIVE) [pathStationsList addObject:s.altText.string];
+                else [pathStationsList addObject:n1.name];
                 [pathStationsList addObject:@"---"]; //временно до обновления модели
                 if(sp1 && schedule) {
                     [pathTimesList addObject:[schedule getPointDate:sp1]];
