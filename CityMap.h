@@ -145,6 +145,7 @@ typedef enum {NAME_NORMAL=0, NAME_ALTERNATIVE=1, NAME_BOTH=2} DrawNameType;
 @property (nonatomic, readonly) NSMutableArray* backwardWay;
 @property (nonatomic, readonly) NSMutableArray* firstStations;
 @property (nonatomic, readonly) NSMutableArray* lastStations;
+@property (nonatomic, readonly) ComplexText* altText;
 
 -(id) initWithMap:(CityMap*)cityMap name:(NSString*)sname pos:(CGPoint)p index:(int)i rect:(CGRect)r andDriving:(NSString*)dr;
 -(BOOL) addSibling:(Station*)st;
@@ -297,6 +298,7 @@ typedef enum {NAME_NORMAL=0, NAME_ALTERNATIVE=1, NAME_BOTH=2} DrawNameType;
 @property (nonatomic, readonly) CGFloat gpsCircleScale;
 @property (nonatomic, readonly) UIColor *backgroundColor;
 @property (nonatomic, assign) DrawNameType drawName;
+@property (nonatomic, retain) NSMutableArray *languages;
 
 - (UIColor *) colorForHex:(NSString *)hexColor;
 //

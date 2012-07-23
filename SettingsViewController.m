@@ -121,7 +121,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+        
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
@@ -995,7 +995,7 @@
         if ([mailClass canSendMail]) {
             MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
             picker.mailComposeDelegate = self;
-            tubeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            tubeAppDelegate *appDelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
             [picker setSubject:[NSString stringWithFormat:@"%@ map",[appDelegate getDefaultCityName]]];
             [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"fusio@yandex.ru"]]];
             [self presentModalViewController:picker animated:YES]; [picker release];

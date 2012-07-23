@@ -8,6 +8,10 @@
 
 #import "LanguageViewController.h"
 #import "LanguageCell2.h"
+#import "tubeAppDelegate.h"
+#import "CityMap.h"
+#import "SelectingTabBarViewController.h"
+#import "ManagedObjects.h"
 
 @interface LanguageViewController ()
 
@@ -23,7 +27,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.languages=[NSArray arrayWithObject:@"English"];
+        tubeAppDelegate *delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+        self.languages=delegate.cityMap.languages;
     }
     return self;
 }
@@ -108,6 +113,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [[MHelper sharedHelper] saveLanguageIndex:indexPath.row];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kLangChanged object:nil];
 }
 
 -(IBAction)donePressed:(id)sender

@@ -492,7 +492,11 @@
 {
     
     if ([firstButton isHidden] && [secondButton isHidden] && fromStation && !isEditing) { // мы уже в режиме пути просто меняем текст
-        firstStation.text = fromStation.name;
+        if ([[MHelper sharedHelper] languageIndex]) {
+            firstStation.text = fromStation.altname;
+        } else {
+            firstStation.text = fromStation.name;
+        }
         return;
     }
     
@@ -506,9 +510,12 @@
     }
     
     if (fromStation) {
-       
-        firstStation.text = fromStation.name;
-        
+        if ([[MHelper sharedHelper] languageIndex]) {
+            firstStation.text = fromStation.altname;
+        } else {
+            firstStation.text = fromStation.name;
+        }
+
         firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
 
         firstStation.rightViewMode = UITextFieldViewModeNever;
@@ -529,7 +536,11 @@
 {
 
     if ([firstButton isHidden] && [secondButton isHidden] && toStation && !isEditing) { // мы уже в режиме пути просто меняем текст
-        secondStation.text = toStation.name;
+        if ([[MHelper sharedHelper] languageIndex]) {
+            secondStation.text = toStation.altname;
+        } else {
+            secondStation.text = toStation.name;
+        }
         return;
     }
 
@@ -543,7 +554,11 @@
     }
     
     if (toStation) {
-        secondStation.text = toStation.name;
+        if ([[MHelper sharedHelper] languageIndex]) {
+            secondStation.text = toStation.altname;
+        } else {
+            secondStation.text = toStation.name;
+        }
  
         secondStation.rightViewMode = UITextFieldViewModeNever;
         

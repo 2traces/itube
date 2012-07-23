@@ -1,0 +1,244 @@
+[Options]
+Languages=en&fr
+
+[Line1]
+Name=BP
+7	Choa Chu Kang&蔡厝港地铁/轻轨列车站 1.385076,103.744808
+8	South View&南景轻轨列车站 1.38026,103.745225
+9	Keat Hong&吉丰轻轨列车站 1.378662,103.748916
+10	Teck Whye&德惠轻轨列车站 1.376849,103.75295
+11	Phoenix&凤凰轻轨列车站 1.378469,103.757703
+12	Bukit Panjang&武吉班让轻轨/地铁列车站 1.378126,103.763571
+13	Petir&柏提轻轨列车站 1.37731,103.767359
+14	Pending&秉定轻轨列车站 1.376249,103.771296
+15	Bankit&万吉轻轨列车站 1.380357,103.772551
+16	Fajar&法嘉轻轨列车站 1.384722,103.771071
+17	Segar&实加轻轨列车站 1.387511,103.770159
+18	Jelapad&泽拉邦轻轨列车站 1.386835,103.764666
+19	Senja&信佳轻轨列车站 1.38321,103.762134
+20	Ten Mile Junction&十里广场轻轨列车站 1.37989,103.760709
+
+Branch10 =  <>7...20
+Driving10 = 2,2,2,2,2,2,2,2,2,2,2,2,2
+
+[Line2]
+Name=PG
+21	Punggol&榜鹅地铁/轻轨列车站 1.404736,103.90204
+22	Cove&海湾轻轨列车站 1.399116,103.906238
+23	Meridian&丽园轻轨列车站 1.396799,103.909371
+24	Coral Edge&珊瑚轻轨列车站 1.393967,103.912761
+25	Riviera&里维拉轻轨列车站 1.394611,103.916366
+26	Kadaloor&卡达鲁轻轨列车站 1.399545,103.916967
+27	Oasis&绿洲轻轨列车站 1.401518,103.913748
+28	Damai&达迈轻轨列车站 1.405465,103.908041
+29	Punggol.&榜鹅地铁/轻轨列车站 1.404736,103.90204
+
+Branch20 =  <>21...29
+Driving20 = 2,2,2,2,2,2,2,2
+
+[Line3]
+Name=SK
+30	Sengkang&盛港地铁/轻轨列车站 1.391694,103.895663
+31	Compassavale&康埔桦轻轨列车站 1.394439,103.899972
+32	Rumbia&棕美轻轨列车站 1.391093,103.906238
+33	Bakau&码高轻轨列车站 1.387789,103.90538
+34	Kangkar&港脚轻轨列车站 1.383714,103.902247
+35	Ranggung&兰岗轻轨列车站 1.383585,103.897612
+36	Cheng Lim&振林轻轨列车站 ,
+37	Farmway&农道轻轨列车站 1.396885,103.8889
+38	Kupang&古邦轻轨列车站 ,
+39	Thanggam&丹甘轻轨列车站 1.397357,103.875511
+40	Fernvale&芬微轻轨列车站 1.391951,103.876197
+41	Layar&拉雅轻轨列车站 1.391994,103.879888
+42	Tongkang&同港轻轨列车站 1.389205,103.886179
+43	Renjong&仁宗轻轨列车站 1.386459,103.890402
+44	Sengkang.&盛港地铁/轻轨列车站 1.391694,103.895663
+
+Branch30 =  <>30...44
+Driving30 = 2,2,2,2,2,2,2,2,2,2,2,2,2,2
+
+[Line4]
+Name=CC
+45	Dhoby Ghaut&多美歌地铁站 1.29885,103.844869
+46	Bras Basah&百胜地铁站 1.296791,103.850706
+47	Esplanade&滨海中心地铁站 1.293402,103.855344
+48	Promenade&宝门廊地铁站 1.293101,103.861048
+49	Nicoll Highway&尼诰大道地铁站 1.299623,103.863627
+50	Stadium&体育场地铁站 1.302819,103.875257
+51	Mountbatten&蒙巴登地铁站 1.306273,103.882488
+52	Dakota&达科达地铁站 1.308246,103.888174
+53	Paya Lebar&巴耶利峇地铁站 1.317943,103.892251
+54	MacPherson&麦波申地铁站 1.326652,103.890384
+55	Tai Seng&大成地铁站 1.335834,103.887895
+56	Bartley&巴特礼地铁站 1.342655,103.880149
+57	Serangoon&实龙岗地铁站 1.348812,103.873519
+58	Lorong Chuan&罗弄泉地铁站 1.35159,103.86365
+59	Bishan&碧山地铁站 1.350828,103.848134
+60	Marymount&玛丽蒙地铁站 1.349048,103.839744
+61	Caldecott&加利谷地铁站 1.337829,103.8388
+62	Botanic Gardens&植物园地铁站 1.322255,103.815424
+63	Farrer Road&花拉路地铁站 1.317117,103.807592
+64	Holland Village&荷兰村地铁站 1.312247,103.796241
+65	Buona Vista&波那维斯达地铁站 1.307174,103.790683
+66	one-north&纬壹地铁站 1.299194,103.787336
+67	Kent Ridge&肯特岗地铁站 1.29323,103.784632
+68	Haw Par Villa&虎豹别墅地铁站 1.282375,103.782004
+69	Pasir Panjang&巴西班让地铁站 1.276326,103.791466
+70	Labrador Park&拉柏多公园地铁站 1.272507,103.803064
+71	Telok Blangah&直落布兰雅地铁站 1.270555,103.80963
+72	HarbourFront&港湾地铁站 1.265331,103.820627
+
+Branch40 =  <>45...72
+Driving40 = 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+
+[Line5]
+Name=NS
+73	Jurong East&裕廊东地铁站 1.334075,103.741622
+74	Bukit Batok&武吉巴督地铁站 1.348662,103.749211
+75	Bukit Gombak&武吉甘柏地铁站 1.358787,103.751829
+76	Choa Chu Kang&蔡厝港地铁/轻轨列车站 1.385172,103.744748
+77	Yew Tee&油池地铁站 1.397528,103.747237
+78	Kranji&克兰芝地铁站 1.424986,103.761699
+79	Marsiling&马西岭地铁站 1.432537,103.774102
+80	Woodlands&兀兰地铁站 1.436998,103.786376
+81	Admiralty&海军部地铁站 1.440602,103.800924
+82	Sembawang&三巴旺地铁站 1.449097,103.820021
+83	Yishun&义顺地铁站 1.429405,103.834956
+84	Khatib&卡迪地铁站 1.417306,103.832982
+85	Yio Chu Kang&杨厝港地铁站 1.381826,103.844955
+86	Ang Mo Kio&宏茂桥地铁站 1.369942,103.849547
+87	Bishan&碧山地铁站 1.350936,103.848002
+88	Braddell&布莱德地铁站 1.340339,103.845084
+89	Toa Payoh&大巴窑地铁站 1.332702,103.847659
+90	Novena&诺维娜地铁站 1.320088,103.843367
+91	Newton&纽顿地铁站 1.312322,103.837831
+92	Orchard&乌节地铁站 1.304213,103.831995
+93	Somerset&索美塞地铁站 1.300309,103.838603
+94	Dhoby Ghaut&多美歌地铁站 1.298679,103.844869
+95	City Hall&政府大厦地铁站 1.293058,103.852379
+96	Raffles Place&莱佛士坊地铁站 1.283233,103.851607
+97	Marina Bay&滨海湾地铁站 1.275982,103.854783
+
+Branch50 =  <>73...97
+Driving50 = 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+
+[Line6]
+Name=EW
+98	Pasir Ris&巴西立地铁站 1.37243,103.949118
+99	Tampines&淡滨尼地铁站 1.352952,103.945255
+100	Simei&四美地铁站 1.343213,103.953316
+101	Tanah Merah&丹那美拉地铁站 1.327424,103.946235
+102	Bedok&勿洛地铁站 1.324078,103.929842
+103	Kembangan&景万岸地铁站 1.320989,103.91289
+104	Eunos&友诺士地铁站 1.319702,103.902977
+105	Paya Lebar&巴耶利峇地铁站 1.317943,103.892162
+106	Aljunied&阿裕尼地铁站 1.316398,103.882678
+107	Kallang&加冷地铁站 1.311636,103.87109
+108	Lavender&劳明达地铁站 1.307174,103.862765
+109	Bugis&武吉士地铁站 1.300652,103.856113
+110	City Hall&政府大厦地铁站 1.293101,103.852208
+111	Raffles Place&莱佛士坊地铁站 1.283834,103.851607
+112	Tanjong Pagar&丹戎巴葛地铁站 1.276411,103.845685
+113	Outram Park&欧南园地铁站 1.281002,103.839161
+114	Tiong Bahru&中峇鲁地铁站 1.286194,103.826845
+115	Redhill&红山地铁站 1.28954,103.816674
+116	Queenstown&女皇镇地铁站 1.294603,103.806202
+117	Commonwealth&联邦地铁站 1.30254,103.798134
+118	Buona Vista&波那维斯达地铁站 1.307303,103.790581
+119	Dover&杜弗地铁站 1.311421,103.778865
+120	Clementi&金文泰地铁站 1.315197,103.765132
+121	Jurong East&裕廊东地铁站 1.33416,103.741615
+122	Chinese Garden&裕华园地铁站 1.342312,103.732431
+123	Lakeside&湖畔地铁站 1.3442,103.720672
+124	Boon Lay&文礼地铁站 1.338622,103.705566
+125	Pioner&先驱地铁站 1.337292,103.69694
+126	Joo Koon&裕群地铁站 1.327725,103.678615
+
+Branch60 =  <>98...126
+Driving60 = 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+
+[Line7]
+Name=NE
+127	HarbourFront&港湾地铁站 1.265331,103.820627
+128	Outram Park&欧南园地铁站 1.281238,103.839315
+129	Chinatown&牛车水地铁站 1.28437,103.843392
+130	Clarke Quay&克拉码头地铁站 1.288446,103.846568
+131	Dhoby Ghaut&多美歌地铁站 1.298807,103.844937
+132	Little India&小印度地铁站 1.307195,103.849915
+133	Farrer Park&花拉公园地铁站 1.312322,103.854507
+134	Boon Keng&文庆地铁站 1.319595,103.861824
+135	Potong Pasir&波东巴西地铁站 1.331264,103.869163
+136	Woodleigh&兀里地铁站 1.33933,103.870729
+137	Serangoon&实龙岗地铁站 1.348812,103.87354
+138	Kovan&高文地铁站 1.360374,103.88517
+139	Hougang&后港地铁站 1.370886,103.892444
+140	Buangkok&万国地铁站 1.382276,103.893174
+141	Sengkang&盛港地铁/轻轨列车站 1.391694,103.895663
+142	Punggol&榜鹅地铁/轻轨列车站 1.404693,103.901972
+
+Branch70 =  <>127...142
+Driving70 = 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+
+[Line8]
+Name=CG
+143	Changi Airport&樟宜机场地铁站 1.357414,103.988771
+144	Expo&博览地铁站 1.334547,103.961642
+145	Tanah Merah&丹那美拉地铁站 1.327339,103.946364
+
+Branch80 =  <>143...145
+Driving80 = 2,2,2
+
+[Line9]
+Name=CE
+146	Marina Bay&滨海湾地铁站 1.275982,103.854783
+147	Bayfront&海湾舫地铁站 1.282203,103.859246
+148	Promenade&宝门廊地铁站 1.293101,103.861005
+
+Branch90 =  <>146...148
+Driving90 = 2,2,2
+
+[Transfers]
+1=EW,Jurong East,NS,Jurong East,2
+2=NS,Jurong East,EW,Jurong East,2
+3=NS,Choa Chu Kang,BP,Choa Chu Kang,2
+4=BP,Choa Chu Kang,NS,Choa Chu Kang,2
+5=CC,Buona Vista,EW,Buona Vista,2
+6=EW,Buona Vista,CC,Buona Vista,2
+7=EW,Outram Park,NE,Outram Park,2
+8=NE,Outram Park,EW,Outram Park,2
+9=CC,HarbourFront,NE,HarbourFront,2
+10=NE,HarbourFront,CC,HarbourFront,2
+11=CC,Dhoby Ghaut,NS,Dhoby Ghaut,2
+12=NS,Dhoby Ghaut,CC,Dhoby Ghaut,2
+13=CC,Dhoby Ghaut,NE,Dhoby Ghaut,2
+14=NE,Dhoby Ghaut,CC,Dhoby Ghaut,2
+15=NS,Dhoby Ghaut,NE,Dhoby Ghaut,2
+16=NE,Dhoby Ghaut,NS,Dhoby Ghaut,2
+17=CC,Bishan,NS,Bishan,2
+18=NS,Bishan,CC,Bishan,2
+19=CC,Serangoon,NE,Serangoon,2
+20=NE,Serangoon,CC,Serangoon,2
+21=EW,Paya Lebar,CC,Paya Lebar,2
+22=CC,Paya Lebar,EW,Paya Lebar,2
+23=EW,Tanah Merah,CG,Tanah Merah,2
+24=CG,Tanah Merah,EW,Tanah Merah,2
+25=NE,Punggol,PG,Punggol,2
+26=PG,Punggol,NE,Punggol,2
+27=NE,Punggol,PG,Punggol.,2
+28=PG,Punggol.,NE,Punggol,2
+29=PG,Punggol,PG,Punggol.,2
+30=PG,Punggol.,PG,Punggol,2
+31=NE,Sengkang,SK,Sengkang,2
+32=SK,Sengkang,NE,Sengkang,2
+33=NE,Sengkang,SK,Sengkang.,2
+34=SK,Sengkang.,NE,Sengkang,2
+35=SK,Sengkang,SK,Sengkang.,2
+36=SK,Sengkang.,SK,Sengkang,2
+37=EW,Raffles Place,NS,Raffles Place,2
+38=NS,Raffles Place,EW,Raffles Place,2
+39=EW,City Hall,NS,City Hall,2
+40=NS,City Hall,EW,City Hall,2
+41=CE,Marina Bay,NS,Marina Bay,2
+42=NS,Marina Bay,CE,Marina Bay,2
+43=CC,Promenade,CE,Promenade,2
+44=CE,Promenade,CC,Promenade,2

@@ -69,15 +69,9 @@
 		<key>New item</key>
 		<string></string>
 		<key>name</key>
-<<<<<<< HEAD
-		<string>Berlin</string>
-		<key>filename</key>
-		<string>berlin</string>
-=======
 		<string>Venice</string>
 		<key>filename</key>
 		<string>venice</string>
->>>>>>> upstream/master
 		<key>description</key>
 		<string>venice.txt</string>
 		<key>picture</key>
