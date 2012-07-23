@@ -1,0 +1,222 @@
+Size 3963x2757
+;Image SINGAPOREEd.png
+
+BrushColor DC143C
+PenColor DC143C
+Polygon 648,635, 715,635, 715,665, 648,665
+BrushColor DC143C
+PenColor FFFFFF
+TextOut arial,25,663,639,NS,1
+
+BrushColor 808080
+PenColor 808080
+Polygon 729,635, 796,635, 796,665, 729,665
+BrushColor 808080
+PenColor FFFFFF
+TextOut arial,25,744,639,BP,1
+
+
+BrushColor DC143C
+PenColor DC143C
+Polygon 860,1304, 927,1304, 927,1334, 860,1334
+BrushColor DC143C
+PenColor FFFFFF
+TextOut arial,25,875,1308,NS,1
+
+
+BrushColor 228B22
+PenColor 228B22
+Polygon 942,1304, 1009,1304, 1009,1334, 942,1334
+BrushColor 228B22
+PenColor FFFFFF
+TextOut arial,25,957,1308,EW,1
+
+
+BrushColor 800080
+PenColor 800080
+Polygon 2698,1147, 2765,1147, 2765,1177, 2698,1177
+BrushColor 800080
+PenColor FFFFFF
+TextOut arial,25,2713,1151,NE,1
+
+
+BrushColor DAA520
+PenColor DAA520
+Polygon 2780,1147, 2847,1147, 2847,1177, 2780,1177
+BrushColor DAA520
+PenColor FFFFFF
+TextOut arial,25,2795,1151,CC,1
+
+
+BrushColor 800080
+PenColor 800080
+Polygon 2924,675, 2991,675, 2991,705, 2924,705
+BrushColor 800080
+PenColor FFFFFF
+TextOut arial,25,2939,679,NE,1
+
+BrushColor 808080
+PenColor 808080
+Polygon 3003,675, 3070,675, 3070,705, 3003,705
+BrushColor 808080
+PenColor FFFFFF
+TextOut arial,25,3018,679,SK,1
+
+BrushColor 800080
+PenColor 800080
+Polygon 3461,388, 3528,388, 3528,418, 3461,418
+BrushColor 800080
+PenColor FFFFFF
+TextOut arial,25,3476,392,NE,1
+
+BrushColor 808080
+PenColor 808080
+Polygon 3541,388, 3608,388, 3608,418, 3541,418
+BrushColor 808080
+PenColor FFFFFF
+TextOut arial,25,3556,392,PG,1
+
+BrushColor 228B22
+PenColor 228B22
+Polygon 3747,1260, 3814,1260, 3814,1290, 3747,1290
+BrushColor 228B22
+PenColor FFFFFF
+TextOut arial,25,3762,1264,EW,1
+
+BrushColor 228B22
+PenColor 228B22
+Polygon 3460,1638, 3527,1638, 3527,1668, 3460,1668
+BrushColor 228B22
+PenColor FFFFFF
+TextOut arial,25,3475,1642,EW,1
+
+BrushColor 228B22
+PenColor 228B22
+Polygon 2824,1554, 2891,1554, 2891,1584, 2824,1584
+BrushColor 228B22
+PenColor FFFFFF
+TextOut arial,25,2839,1558,EW,1
+
+BrushColor 228B22
+PenColor 228B22
+Polygon 3762,1769, 3829,1769, 3829,1799, 3762,1799
+BrushColor 228B22
+PenColor FFFFFF
+TextOut arial,25,3777,1773,CG,1
+
+BrushColor 228B22
+PenColor 228B22
+Polygon 3347,1638, 3414,1638, 3414,1668, 3347,1668
+BrushColor 228B22
+PenColor FFFFFF
+TextOut arial,25,3362,1642,CG,1
+
+BrushColor DAA520
+PenColor DAA520
+Polygon 2706,1633, 2773,1633, 2773,1663, 2706,1663
+BrushColor DAA520
+PenColor FFFFFF
+TextOut arial,25,2721,1637,CC,1
+
+BrushColor DC143C
+PenColor DC143C
+Polygon 1911,2583, 1978,2583, 1978,2613, 1911,2613
+BrushColor DC143C
+PenColor FFFFFF
+TextOut arial,25,1926,2587,NS,1
+
+BrushColor DAA520
+PenColor DAA520
+Polygon 1994,2583, 2061,2583, 2061,2613, 1994,2613
+BrushColor DAA520
+PenColor FFFFFF
+TextOut arial,25,2009,2587,CE,1
+
+BrushColor DC143C
+PenColor DC143C
+Polygon 1662,1830, 1729,1830, 1729,1860, 1662,1860
+BrushColor DC143C
+PenColor FFFFFF
+TextOut arial,25,1677,1834,NS,1
+
+BrushColor 800080
+PenColor 800080
+Polygon 1743,1830, 1810,1830, 1810,1860, 1743,1860
+BrushColor 800080
+PenColor FFFFFF
+TextOut arial,25,1758,1834,NE,1
+
+BrushColor DAA520
+PenColor DAA520
+Polygon 1825,1830, 1892,1830, 1892,1860, 1825,1860
+BrushColor DAA520
+PenColor FFFFFF
+TextOut arial,25,1840,1834,CC,1
+
+BrushColor 228B22
+PenColor 228B22
+Polygon 1435,2164, 1502,2164, 1502,2194, 1435,2194
+BrushColor 228B22
+PenColor FFFFFF
+TextOut arial,25,1450,2168,EW,1
+
+BrushColor 800080
+PenColor 800080
+Polygon 1524,2164, 1591,2164, 1591,2194, 1524,2194
+BrushColor 800080
+PenColor FFFFFF
+TextOut arial,25,1539,2168,NE,1
+
+BrushColor DAA520
+PenColor DAA520
+Polygon 1264,2340, 1331,2340, 1331,2370, 1264,2370
+BrushColor DAA520
+PenColor FFFFFF
+TextOut arial,25,1279,2344,CC,1
+
+BrushColor 800080
+PenColor 800080
+Polygon 1483,2340, 1550,2340, 1550,2370, 1483,2370
+BrushColor 800080
+PenColor FFFFFF
+TextOut arial,25,1498,2344,NE,1
+
+BrushColor 228B22
+PenColor 228B22
+Polygon 150,1310, 217,1310, 217,1340, 150,1340
+BrushColor 228B22
+PenColor FFFFFF
+TextOut arial,25,165,1314,EW,1
+
+BrushColor DC143C
+PenColor DC143C
+Polygon 2193,1006, 2260,1006, 2260,1036, 2193,1036
+BrushColor DC143C
+PenColor FFFFFF
+TextOut arial,25,2208,1010,NS,1
+
+BrushColor DAA520
+PenColor DAA520
+Polygon 2275,1006, 2342,1006, 2342,1036, 2275,1036
+BrushColor DAA520
+PenColor FFFFFF
+TextOut arial,25,2290,1010,CC,1
+
+
+BrushColor DAA520
+PenColor DAA520
+Polygon 1063,1679, 1130,1679, 1130,1709, 1063,1709
+BrushColor DAA520
+PenColor FFFFFF
+TextOut arial,25,1078,1683,CC,1
+
+BrushColor 228B22
+PenColor 228B22
+Polygon 981,1679, 1048,1679, 1048,1709, 981,1709
+BrushColor 228B22
+PenColor FFFFFF
+TextOut arial,25,996,1683,EW,1
+
+
+
+

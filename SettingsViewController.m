@@ -7,7 +7,6 @@
 //
 
 #import "SettingsViewController.h"
-#import "LanguageCell.h"
 #import "CityCell.h"
 #import "MyNavigationBar.h"
 #import "CityMap.h"
@@ -17,27 +16,26 @@
 #import "TubeAppIAPHelper.h"
 #import "DemoMapViewController.h"
 #import "SSZipArchive.h"
-#import "LanguageViewController.h"
 
 #define plist_ 1
 #define zip_  2
 
 @implementation SettingsViewController
 
-@synthesize cityButton;
-@synthesize buyButton;
 @synthesize langTableView;
 @synthesize cityTableView;
+@synthesize feedbackTableView;
 @synthesize maps;
-@synthesize textLabel1,textLabel2,textLabel3;
+@synthesize textLabel1,textLabel2,textLabel3,textLabel4;
 @synthesize scrollView;
 @synthesize selectedPath;
-@synthesize buyAllButton,sendMailButton;
 @synthesize hud = _hud;
 @synthesize delegate;
 @synthesize servers;
 @synthesize timer;
 @synthesize progressArrows;
+@synthesize languages;
+@synthesize feedback;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,6 +43,9 @@
     if (self) {
         self.maps = [self getMapsList];
         self.servers = [[[NSMutableArray alloc] init] autorelease];
+        tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+        self.languages=appdelegate.cityMap.languages;
+        self.feedback = [NSArray arrayWithObjects:NSLocalizedString(@"FeedbackRate",@"FeedbackRate"),NSLocalizedString(@"FeedbackMail",@"FeedbackMail"), nil];
     }
     return self;
 }
@@ -132,9 +133,13 @@
     textLabel1.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
     textLabel2.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
     textLabel3.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+    textLabel4.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
     
 	cityTableView.backgroundColor = [UIColor clearColor];
     cityTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+	feedbackTableView.backgroundColor = [UIColor clearColor];
+    feedbackTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,180,44)];
     CGRect frame = CGRectMake(0, 3, 180, 44);
@@ -186,17 +191,18 @@
 
 -(void)adjustViewHeight
 {
-    CGFloat cityTableStartY = cityTableView.frame.origin.y;
+    CGFloat langTableHeight = [languages count]*45.0f+2.0;
+    CGFloat cityTableHeight = [maps count]*45.0f+2.0;
+    CGFloat feedbackTableHeight = 2.0*45.0f+2.0; 
     
-    CGFloat tableHeight = [maps count]*45.0f+2.0;
-    
-    cityTableView.frame = CGRectMake(8, cityTableStartY, 304, tableHeight);
-    
-    textLabel3.frame = CGRectMake(textLabel3.frame.origin.x, cityTableStartY+tableHeight+17, textLabel3.frame.size.width, textLabel3.frame.size.height);
-    
-    sendMailButton.frame = CGRectMake(sendMailButton.frame.origin.x, cityTableStartY+tableHeight+8, sendMailButton.frame.size.width, sendMailButton.frame.size.height);
-    
-    scrollView.contentSize = CGSizeMake(320, sendMailButton.frame.origin.y+sendMailButton.frame.size.height+15.0);
+    textLabel2.frame=CGRectMake(20, 95, 280, 21);
+    langTableView.frame=CGRectMake(langTableView.frame.origin.x, langTableView.frame.origin.y, langTableView.frame.size.width, langTableHeight);
+    textLabel3.frame=CGRectMake(textLabel3.frame.origin.x, langTableView.frame.origin.y+langTableHeight+17, textLabel3.frame.size.width, textLabel3.frame.size.height);
+    cityTableView.frame=CGRectMake(cityTableView.frame.origin.x, textLabel3.frame.origin.y+textLabel3.frame.size.height+10, cityTableView.frame.size.width,  cityTableHeight);
+    textLabel4.frame=CGRectMake(textLabel4.frame.origin.x, cityTableView.frame.origin.y+cityTableHeight+17, textLabel4.frame.size.width, textLabel4.frame.size.height);
+    feedbackTableView.frame=CGRectMake(feedbackTableView.frame.origin.x, textLabel4.frame.origin.y+textLabel4.frame.size.height+10, feedbackTableView.frame.size.width, feedbackTableHeight);
+        
+    scrollView.contentSize = CGSizeMake(320, feedbackTableView.frame.origin.y+feedbackTableView.frame.size.height+15.0);
     scrollView.frame = CGRectMake(0.0, 0.0, 320.0, 460.0-44.0);
     
     [scrollView flashScrollIndicators];
@@ -211,23 +217,21 @@
 
 - (void)viewDidUnload
 {
-    [self setCityButton:nil];
-    [self setBuyButton:nil];
     [super viewDidUnload];
 }
 
 - (void)dealloc {
     [_hud release];
     _hud = nil;
-    [cityButton release];
-    [buyButton release];
     
     [langTableView release];
     [cityTableView release];
+    [feedbackTableView release];
     
     [textLabel1 release];
     [textLabel2 release];
     [textLabel3 release];
+    [textLabel4 release];
     
     [servers release];
     [timer release];
@@ -235,8 +239,6 @@
     
     [scrollView release];
     
-    [buyAllButton release];
-    [sendMailButton release];
     [maps release];
     [selectedPath release];
     delegate = nil;
@@ -255,8 +257,10 @@
 {
     if (tableView==cityTableView) {
         return [maps count];
+    } else if (tableView==cityTableView) {
+        return [languages count];
     } else {
-        return 1;
+        return 2;
     }
 }
 
@@ -374,28 +378,129 @@
         
         return cell;
         
-    } else {
-        static NSString *cellIdentifier = @"LanguageCell";
+    } else if (tableView==langTableView) {
+        static NSString *cellIdentifier = @"CityCell";
         
         UITableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         
         if (cell == nil) { 
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"LanguageCell" owner:self options:nil] lastObject];
-        }
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"CityCell" owner:self options:nil] lastObject];
+        }    
         
-        [[(LanguageCell*)cell languageWordLabel] setText:@"Language"];
-        [[(LanguageCell*)cell languageWordLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
-        [[(LanguageCell*)cell languageWordLabel] setHighlightedTextColor:[UIColor whiteColor]];
+        [[(CityCell*)cell cellButton] setHidden:YES];
+        [[(CityCell*)cell progress] setHidden:YES];
         
-        [[(LanguageCell*)cell languageLabel] setText:@"English"];
-        [[(LanguageCell*)cell languageLabel] setFont:[UIFont fontWithName:@"MyriadPro-Regular" size:18.0]];
-        [[(LanguageCell*)cell languageLabel] setTextColor:[UIColor darkGrayColor]];
-        [[(LanguageCell*)cell languageLabel] setHighlightedTextColor:[UIColor whiteColor]];
-        
+        [[(CityCell*)cell cityName] setText:[languages objectAtIndex:indexPath.row]];
+        [[(CityCell*)cell cityName] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
+        [[(CityCell*)cell cityName] setHighlightedTextColor:[UIColor whiteColor]];
         
         cell.backgroundColor = [UIColor clearColor];
-        cell.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"language_table_cell.png"]] autorelease];
-        cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"high_language_table_cell.png"]] autorelease];
+        
+        if ([[MHelper sharedHelper] languageIndex]==indexPath.row) {
+            cell.accessoryType=UITableViewCellAccessoryNone;
+            [[(CityCell*)cell checkView] setImage:[UIImage imageNamed:@"checkmark.png"]];
+        } else {
+            cell.accessoryType=UITableViewCellAccessoryNone;
+            [[(CityCell*)cell checkView] setImage:nil];
+        }
+        
+        //
+        // setting background
+        //
+        
+        UIImage *rowBackground;
+        UIImage *selectionBackground;
+        NSInteger sectionRows = [tableView numberOfRowsInSection:[indexPath section]];
+        NSInteger crow = [indexPath row];
+        
+        if (crow == 0 && crow == sectionRows - 1)
+        {
+            // у нас таких быть не должно вообще но 
+            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
+            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+        }
+        else if (crow == 0)
+        {
+            rowBackground = [UIImage imageNamed:@"first_cell_bg.png"];
+            selectionBackground = [UIImage imageNamed:@"high_first_cell_bg.png"];
+        }
+        else if (crow == sectionRows - 1)
+        {
+            rowBackground = [UIImage imageNamed:@"last_cell_bg.png"];
+            selectionBackground = [UIImage imageNamed:@"high_last_cell_bg.png"];
+        }
+        else
+        {
+            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
+            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+        }
+        
+        cell.backgroundView  = [[[UIImageView alloc] initWithImage:rowBackground] autorelease];
+        cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:selectionBackground] autorelease];
+        
+        return cell;
+    } else {
+        static NSString *cellIdentifier = @"CityCell";
+        
+        UITableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
+        if (cell == nil) { 
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"CityCell" owner:self options:nil] lastObject];
+        }    
+        
+        [[(CityCell*)cell cellButton] setHidden:YES];
+        [[(CityCell*)cell progress] setHidden:YES];
+        
+        [[(CityCell*)cell cityName] setText:[feedback objectAtIndex:indexPath.row]];
+        [[(CityCell*)cell cityName] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
+        [[(CityCell*)cell cityName] setHighlightedTextColor:[UIColor whiteColor]];
+        
+        cell.backgroundColor = [UIColor clearColor];
+        
+//        if ([[MHelper sharedHelper] languageIndex]==indexPath.row) {
+//            cell.accessoryType=UITableViewCellAccessoryNone;
+//            [[(CityCell*)cell checkView] setImage:[UIImage imageNamed:@"checkmark.png"]];
+//        } else {
+//            cell.accessoryType=UITableViewCellAccessoryNone;
+//            [[(CityCell*)cell checkView] setImage:nil];
+//        }
+        
+        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+        [[(CityCell*)cell checkView] setImage:nil];
+        
+        //
+        // setting background
+        //
+        
+        UIImage *rowBackground;
+        UIImage *selectionBackground;
+        NSInteger sectionRows = [tableView numberOfRowsInSection:[indexPath section]];
+        NSInteger crow = [indexPath row];
+        
+        if (crow == 0 && crow == sectionRows - 1)
+        {
+            // у нас таких быть не должно вообще но 
+            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
+            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+        }
+        else if (crow == 0)
+        {
+            rowBackground = [UIImage imageNamed:@"first_cell_bg.png"];
+            selectionBackground = [UIImage imageNamed:@"high_first_cell_bg.png"];
+        }
+        else if (crow == sectionRows - 1)
+        {
+            rowBackground = [UIImage imageNamed:@"last_cell_bg.png"];
+            selectionBackground = [UIImage imageNamed:@"high_last_cell_bg.png"];
+        }
+        else
+        {
+            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
+            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+        }
+        
+        cell.backgroundView  = [[[UIImageView alloc] initWithImage:rowBackground] autorelease];
+        cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:selectionBackground] autorelease];
         
         return cell;
     }
@@ -436,11 +541,18 @@
             [self.navigationController pushViewController:controller animated:YES];
             [controller release];
         }    
+    } else if (tableView==langTableView){
+        [[MHelper sharedHelper] saveLanguageIndex:indexPath.row];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLangChanged object:nil];
+        [tableView reloadData];
     } else {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        LanguageViewController *controller = [[LanguageViewController alloc] initWithNibName:@"LanguageViewController" bundle:[NSBundle mainBundle]];
-        [self.navigationController pushViewController:controller animated:YES];
-        [controller release];
+        if (indexPath.row==0) {
+            NSURL *url = [NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=513581498"];             
+            [[UIApplication sharedApplication] openURL:url];
+        } else {
+            [self showMailComposer:nil];
+        }
     }
 }
 
