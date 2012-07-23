@@ -50,10 +50,13 @@
     int actuality, level, x, y;
     RasterLayer *layer;
     NSMutableArray *objects;
+    unsigned int gltex;
 }
 
 -(id)initWithRect:(CGRect)r level:(int)level x:(int)x y:(int)y;
 -(void)draw:(CGContextRef)context;
+-(void)drawGl;
+-(void)drawGlRect:(CGRect)r;
 -(RObject*)checkPoint:(CGPoint)point;
 -(BOOL)empty;
 -(BOOL)trash;
@@ -219,6 +222,7 @@
 
 -(id) initWithRect:(CGRect)rect mapName:(NSString*)mapName;
 -(BOOL) draw:(CGContextRef)context inRect:(CGRect)rect withScale:(CGFloat)scale;
+-(void) drawGlInRect:(CGRect)rect withScale:(CGFloat)scale;
 -(BOOL) checkLevel:(CGFloat)scale;
 -(void) freeSomeMemory;
 -(void) setSignal:(id)target selector:(SEL)selector;

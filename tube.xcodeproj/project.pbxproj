@@ -26,11 +26,19 @@
 		4BC043E4142FC42F00A643B8 /* CityMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC043E3142FC42F00A643B8 /* CityMap.m */; };
 		4BC1C946142E36CA003651BB /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC1C945142E36CA003651BB /* MapView.m */; };
 		5109C21B1509376600A3142F /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 5109C21A1509376600A3142F /* Schedule.m */; };
+		5120286415BBAFF700AA4F19 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5120286315BBAFF700AA4F19 /* GLKit.framework */; };
+		5120286715BBAFFD00AA4F19 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5120286615BBAFFD00AA4F19 /* OpenGLES.framework */; };
 		5121FCBF14C9E23000A9192A /* MyTiledLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5121FCBE14C9E23000A9192A /* MyTiledLayer.m */; };
 		515B9C2F14EEAE740034BB12 /* mainscreen_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 515B9C2D14EEAE740034BB12 /* mainscreen_shadow.png */; };
 		515B9C3014EEAE740034BB12 /* mainscreen_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 515B9C2E14EEAE740034BB12 /* mainscreen_shadow@2x.png */; };
 		515D75151534BB9700C25074 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 515D75141534BB9700C25074 /* libxml2.dylib */; };
 		51839DE115360BE5003A8E23 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 51839DE015360BE5003A8E23 /* TBXML.m */; };
+		51A4A44B15BBBC9500A97AAF /* GlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A4A44715BBBC9500A97AAF /* GlViewController.m */; };
+		51A4A44C15BBBC9500A97AAF /* GlViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51A4A44815BBBC9500A97AAF /* GlViewController.xib */; };
+		51A4A44D15BBBC9500A97AAF /* Shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 51A4A44915BBBC9500A97AAF /* Shader.fsh */; };
+		51A4A44E15BBBC9500A97AAF /* Shader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 51A4A44A15BBBC9500A97AAF /* Shader.vsh */; };
+		51A4A44F15BBD22A00A97AAF /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 51A4A44915BBBC9500A97AAF /* Shader.fsh */; };
+		51A4A45015BBD22D00A97AAF /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 51A4A44A15BBBC9500A97AAF /* Shader.vsh */; };
 		51D20F3514B849A3007AC4BD /* ManagedObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D20F3414B849A3007AC4BD /* ManagedObjects.m */; };
 		51D20F3B14B85468007AC4BD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D20F3A14B85468007AC4BD /* CoreData.framework */; };
 		51E9C614154E9A02000D3950 /* RasterLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51E9C613154E9A02000D3950 /* RasterLayer.m */; };
@@ -428,6 +436,8 @@
 		4BC1C945142E36CA003651BB /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
 		5109C2191509376600A3142F /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Schedule.h; path = Classes/Schedule.h; sourceTree = "<group>"; };
 		5109C21A1509376600A3142F /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Schedule.m; path = Classes/Schedule.m; sourceTree = "<group>"; };
+		5120286315BBAFF700AA4F19 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		5120286615BBAFFD00AA4F19 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		5121FCBD14C9E23000A9192A /* MyTiledLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyTiledLayer.h; path = Classes/MyTiledLayer.h; sourceTree = "<group>"; };
 		5121FCBE14C9E23000A9192A /* MyTiledLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTiledLayer.m; path = Classes/MyTiledLayer.m; sourceTree = "<group>"; };
 		515B9C2D14EEAE740034BB12 /* mainscreen_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainscreen_shadow.png; sourceTree = "<group>"; };
@@ -435,6 +445,11 @@
 		515D75141534BB9700C25074 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		51839DDF15360BE5003A8E23 /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBXML.h; path = Classes/TBXML/TBXML.h; sourceTree = "<group>"; };
 		51839DE015360BE5003A8E23 /* TBXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBXML.m; path = Classes/TBXML/TBXML.m; sourceTree = "<group>"; };
+		51A4A44615BBBC9500A97AAF /* GlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlViewController.h; sourceTree = "<group>"; };
+		51A4A44715BBBC9500A97AAF /* GlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlViewController.m; sourceTree = "<group>"; };
+		51A4A44815BBBC9500A97AAF /* GlViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GlViewController.xib; sourceTree = "<group>"; };
+		51A4A44915BBBC9500A97AAF /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		51A4A44A15BBBC9500A97AAF /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		51D20F3314B849A3007AC4BD /* ManagedObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManagedObjects.h; path = Classes/ManagedObjects.h; sourceTree = "<group>"; };
 		51D20F3414B849A3007AC4BD /* ManagedObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManagedObjects.m; path = Classes/ManagedObjects.m; sourceTree = "<group>"; };
 		51D20F3A14B85468007AC4BD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -861,6 +876,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5120286715BBAFFD00AA4F19 /* OpenGLES.framework in Frameworks */,
+				5120286415BBAFF700AA4F19 /* GLKit.framework in Frameworks */,
 				515D75151534BB9700C25074 /* libxml2.dylib in Frameworks */,
 				BC76ACE5151B168A009BDABC /* libz.dylib in Frameworks */,
 				5795BA7A15ADC9D600E5A73B /* iAd.framework in Frameworks */,
@@ -913,6 +930,8 @@
 		289233A00DB2D0730083E9F9 /* Main View */ = {
 			isa = PBXGroup;
 			children = (
+				51A4A44515BBBC9500A97AAF /* gl */,
+				51A4A44115BBB92C00A97AAF /* old files */,
 				BCCC309D14E4F0F000102064 /* Cells */,
 				BCCC309A14E4DB4600102064 /* MyNavigationBar.h */,
 				BCCC309B14E4DB4600102064 /* MyNavigationBar.m */,
@@ -963,8 +982,6 @@
 				576A061115923E9D0001E95D /* offlinemaps.xcdatamodeld */,
 				51D20F3314B849A3007AC4BD /* ManagedObjects.h */,
 				51D20F3414B849A3007AC4BD /* ManagedObjects.m */,
-				289233A40DB2D0840083E9F9 /* MainView.h */,
-				289233A50DB2D0840083E9F9 /* MainView.m */,
 				289233A80DB2D0DB0083E9F9 /* MainViewController.h */,
 				289233A90DB2D0DB0083E9F9 /* MainViewController.m */,
 				BC8C71EC14D98F810038EE0F /* PathScrollView.h */,
@@ -977,8 +994,6 @@
 				BC1061A114D7DCDB00B08E63 /* PathDrawView.m */,
 				BC8DF97D14DAD8DE00294B61 /* PathDrawVertView.h */,
 				BC8DF97E14DAD8DE00294B61 /* PathDrawVertView.m */,
-				4BC1C944142E36CA003651BB /* MapView.h */,
-				4BC1C945142E36CA003651BB /* MapView.m */,
 				9FFA6EBA14EE17920086199F /* ActiveView.h */,
 				9FFA6EBB14EE17920086199F /* ActiveView.m */,
 				4BC043DF142FC30F00A643B8 /* Utils.h */,
@@ -989,14 +1004,8 @@
 				51E9C613154E9A02000D3950 /* RasterLayer.m */,
 				BCD3538814E138BC00D4278A /* UIColor-enhanced.h */,
 				BCD3538914E138BC00D4278A /* UIColor-enhanced.m */,
-				4BC043E2142FC42F00A643B8 /* CityMap.h */,
-				4BC043E3142FC42F00A643B8 /* CityMap.m */,
 				5109C2191509376600A3142F /* Schedule.h */,
 				5109C21A1509376600A3142F /* Schedule.m */,
-				5121FCBD14C9E23000A9192A /* MyTiledLayer.h */,
-				5121FCBE14C9E23000A9192A /* MyTiledLayer.m */,
-				4B234757144C9099005BC336 /* MyScrollView.h */,
-				4B234758144C9099005BC336 /* MyScrollView.m */,
 				4B985D20145B0F5A00F32066 /* SelectedPathMap.h */,
 				4B985D21145B0F5A00F32066 /* SelectedPathMap.m */,
 				4B216D8714606B9D005B6F38 /* StationList.h */,
@@ -1103,6 +1112,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5120286615BBAFFD00AA4F19 /* OpenGLES.framework */,
+				5120286315BBAFF700AA4F19 /* GLKit.framework */,
 				515D75141534BB9700C25074 /* libxml2.dylib */,
 				BC76ACE4151B168A009BDABC /* libz.dylib */,
 				5795BA7915ADC9D600E5A73B /* iAd.framework */,
@@ -1128,6 +1139,36 @@
 				51839DE015360BE5003A8E23 /* TBXML.m */,
 			);
 			name = TBXML;
+			sourceTree = "<group>";
+		};
+		51A4A44115BBB92C00A97AAF /* old files */ = {
+			isa = PBXGroup;
+			children = (
+				289233A40DB2D0840083E9F9 /* MainView.h */,
+				289233A50DB2D0840083E9F9 /* MainView.m */,
+				4BC1C944142E36CA003651BB /* MapView.h */,
+				4BC1C945142E36CA003651BB /* MapView.m */,
+				4BC043E2142FC42F00A643B8 /* CityMap.h */,
+				4BC043E3142FC42F00A643B8 /* CityMap.m */,
+				5121FCBD14C9E23000A9192A /* MyTiledLayer.h */,
+				5121FCBE14C9E23000A9192A /* MyTiledLayer.m */,
+				4B234757144C9099005BC336 /* MyScrollView.h */,
+				4B234758144C9099005BC336 /* MyScrollView.m */,
+			);
+			name = "old files";
+			sourceTree = "<group>";
+		};
+		51A4A44515BBBC9500A97AAF /* gl */ = {
+			isa = PBXGroup;
+			children = (
+				51A4A44615BBBC9500A97AAF /* GlViewController.h */,
+				51A4A44715BBBC9500A97AAF /* GlViewController.m */,
+				51A4A44815BBBC9500A97AAF /* GlViewController.xib */,
+				51A4A44915BBBC9500A97AAF /* Shader.fsh */,
+				51A4A44A15BBBC9500A97AAF /* Shader.vsh */,
+			);
+			name = gl;
+			path = Classes/gl;
 			sourceTree = "<group>";
 		};
 		9F5E306F14A457F600D549E4 /* ini */ = {
@@ -1842,6 +1883,9 @@
 				571EEFBC15AB26A500CE09AC /* pin_remove_bubble@2x.png in Resources */,
 				573655FA15AC9B8D00DF0487 /* gallery_item_shadow.png in Resources */,
 				573655FB15AC9B8D00DF0487 /* gallery_item_shadow@2x.png in Resources */,
+				51A4A44C15BBBC9500A97AAF /* GlViewController.xib in Resources */,
+				51A4A44F15BBD22A00A97AAF /* Shader.fsh in Resources */,
+				51A4A45015BBD22D00A97AAF /* Shader.vsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1926,6 +1970,9 @@
 				579E9D6F1599C70000D509D0 /* GalleryFullscreenViewController.m in Sources */,
 				570474B115A48DCD00A43E6F /* CountryMapCell.m in Sources */,
 				571EEF4415A72CAF00CE09AC /* DirectionView.m in Sources */,
+				51A4A44B15BBBC9500A97AAF /* GlViewController.m in Sources */,
+				51A4A44D15BBBC9500A97AAF /* Shader.fsh in Sources */,
+				51A4A44E15BBBC9500A97AAF /* Shader.vsh in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

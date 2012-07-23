@@ -30,25 +30,30 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-	MainViewController *aController = [[MainViewController alloc] init];
-	self.mainViewController = aController;
-	[aController release];
+	//MainViewController *aController = [[MainViewController alloc] init];
+	//self.mainViewController = aController;
+	//[aController release];
+    glController = [[[GlViewController alloc] initWithNibName:@"GlViewController" bundle:nil] autorelease];
+    [mainViewController addChildViewController:glController];
     
-    CityMap *cm = [[CityMap alloc] init];
-    NSString *mapName =[self nameCurrentMap];
-    [cm loadMap:mapName];
+    //CityMap *cm = [[CityMap alloc] init];
+    //NSString *mapName =[self nameCurrentMap];
+    //[cm loadMap:mapName];
    
-    self.cityMap = cm;
-    [cm release];
+    //self.cityMap = cm;
+    //[cm release];
     
-    self.cityName= [self nameCurrentCity];
+    //self.cityName= [self nameCurrentCity];
 
     
     // Override point for customization after application launch.
     [[SKPaymentQueue defaultQueue] addTransactionObserver:[TubeAppIAPHelper sharedHelper]];
     
-    mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
-    [window addSubview:[mainViewController view]];
+    //mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
+    //[window addSubview:[mainViewController view]];
+    glController.view.frame = [UIScreen mainScreen].applicationFrame;
+    window.rootViewController = glController;
+    [window addSubview:[glController view]];
     [window makeKeyAndVisible];
 }
 

@@ -120,8 +120,28 @@
         y = _y;
         image = nil;
         actuality = 0;
+        gltex = 0;
     }
     return self;
+}
+
+-(void) uploadTex
+{
+    size_t width = CGImageGetWidth(image);
+    size_t height = CGImageGetHeight(image);
+    GLubyte * spriteData = (GLubyte *) calloc(width*height*4, sizeof(GLubyte));
+    CGContextRef spriteContext = CGBitmapContextCreate(spriteData, width, height, 8, width*4, 
+                                                       CGImageGetColorSpace(image), kCGImageAlphaPremultipliedLast);    
+
+    CGContextDrawImage(spriteContext, CGRectMake(0, 0, width, height), image);
+    CGContextRelease(spriteContext);
+    
+    glGenTextures(1, &gltex);
+    glBindTexture(GL_TEXTURE_2D, gltex);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); 
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
+    
+    free(spriteData);    
 }
 
 -(void) draw:(CGContextRef)context
@@ -147,6 +167,20 @@
         }
         CGContextRestoreGState(context);
     }
+}
+
+-(void) drawGl
+{
+    if(!gltex && image) [self uploadTex];
+    if(gltex) {
+        glBindTexture(GL_TEXTURE_2D, gltex);
+        glDrawTexfOES(rect.origin.x, rect.origin.y, 1, rect.size.width, rect.size.height);
+    }
+}
+
+-(void) drawGlRect:(CGRect)r
+{
+    
 }
 
 -(void) skip
@@ -1103,6 +1137,28 @@
     return NO;
 }
 
+-(BOOL)upperDrawGlInRect:(CGRect)rect level:(int)l
+{
+    for(int curlev = l; curlev >= 0; curlev --) {
+        NSNumber *n = [NSNumber numberWithInt:curlev];
+        NSMutableArray *lev = [levels objectForKey:n];
+        if(lev == nil) continue;
+        int size = 1 << curlev;
+        double dx = (double)allRect.size.width / size, dy = (double)allRect.size.height / size;
+        int x1 = rect.origin.x / dx, y1 = rect.origin.y / dy;
+        for (RPiece *p in lev) {
+            if(p->x == x1 && p->y == y1) {
+                if(![p empty]) {
+                    [p drawGlRect:rect];
+                    return YES;
+                }
+                break;
+            }
+        }
+    }
+    return NO;
+}
+
 -(BOOL)lowerDraw:(CGContextRef)context rect:(CGRect)rect level:(int)l
 {
     NSNumber *n = [NSNumber numberWithInt:l];
@@ -1120,6 +1176,31 @@
                     if(![p empty]) {
                         pcount ++;
                         [p draw:context];
+                    }
+                }
+            }
+        }
+    }
+    return pcount > 0;
+}
+
+-(BOOL)lowerDrawGlInRect:(CGRect)rect level:(int)l
+{
+    NSNumber *n = [NSNumber numberWithInt:l];
+    NSMutableArray *lev = [levels objectForKey:n];
+    if(lev == nil) return NO;
+    int size = 1 << l;
+    double dx = (double)allRect.size.width / size, dy = (double)allRect.size.height / size;
+    int x1 = rect.origin.x / dx, y1 = rect.origin.y / dy;
+    int x2 = (rect.origin.x + rect.size.width) / dx, y2 = (rect.origin.y + rect.size.height) / dy;
+    int pcount = 0;
+    for(int X=x1; X<=x2; X++) {
+        for(int Y=y1; Y<=y2; Y++) {
+            for (RPiece *p in lev) {
+                if(p->x == X && p->y == Y) {
+                    if(![p empty]) {
+                        pcount ++;
+                        [p drawGl];
                     }
                 }
             }
@@ -1279,6 +1360,67 @@
         [self freeSomeMemory];
     }*/
     return allLoaded;
+}
+
+-(void)drawGlInRect:(CGRect)rect withScale:(CGFloat)scale
+{
+    [lock lock];
+    for (id key in levels) {
+        NSMutableArray *l = [levels objectForKey:key];
+        if([l count] > 0) for (RPiece *p in l) {
+            [p skip];
+        }
+    }
+    int _sc = 1, _lvl = 0;
+    while (scale > _sc) {
+        _sc *= 2;
+        _lvl ++;
+    }
+    level = _lvl;
+    if(level < 0) level = 0;
+    NSNumber *n = [NSNumber numberWithInt:level];
+    NSMutableArray *lev = [levels objectForKey:n];
+    if(lev == nil) {
+        lev = [NSMutableArray array];
+        [levels setObject:lev forKey:n];
+    }
+    //[loader.lock lock];
+    BOOL allLoaded = YES;
+    int size = 1 << level;
+    double dx = (double)allRect.size.width / size, dy = (double)allRect.size.height / size;
+    double x1 = rect.origin.x / dx, y1 = rect.origin.y / dy;
+    double x2 = (rect.origin.x + rect.size.width) / dx, y2 = (rect.origin.y + rect.size.height) / dy;
+    for(int X=x1; X<=x2; X++) {
+        for(int Y=y1; Y<=y2; Y++) {
+            BOOL found = NO;
+            for (RPiece *p in lev) {
+                if(p->x == X && p->y == Y) {
+                    if([p empty]) {
+                        [loader advance:p];
+                        CGRect r = CGRectMake(dx*X, dy*Y, dx, dy);
+                        if([self upperDrawGlInRect:r level:level-1] || [self lowerDrawGlInRect:r level:level+1]) {}
+                    } else {
+                        [p drawGl];
+                    }
+                    found = YES;
+                    break;
+                }
+            }
+            if(!found) {
+                // loading
+                CGRect r = CGRectMake(dx*X, dy*Y, dx, dy);
+                if([self upperDrawGlInRect:r level:level-1] || [self lowerDrawGlInRect:r level:level+1]) {}
+                RPiece *p = [[RPiece alloc] initWithRect:r level:level x:X y:Y];
+                p->layer = self;
+                [lev addObject:p];
+                [loader load:p];
+                allLoaded = NO;
+            }
+        }
+    }
+    
+    [lock unlock];
+    [loader debugStatus];
 }
 
 -(void)setSignal:(id)_target selector:(SEL)_selector

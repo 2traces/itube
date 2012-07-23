@@ -6,6 +6,8 @@
 //  Copyright __MyCompanyName__ 2011. All rights reserved.
 //
 
+#import "GlViewController.h"
+
 @class MainViewController;
 @class CityMap;
 
@@ -17,6 +19,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 @interface tubeAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     MainViewController *mainViewController;
+    GlViewController *glController;
     CityMap *cityMap;
     NSString *cityName;
     
