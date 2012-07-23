@@ -1,0 +1,243 @@
+[Line1]
+Name=BP
+Stations=Choa Chu Kang,South View,Keat Hong,Teck Whye,Phoenix,Bukit Panjang,Petir,Pending,Bankit,Fajar,Segar,Jelapad,Senja,Ten Mile Junction
+Driving=0,0,0,0,0,0,0,0,0,0,0,0,0
+
+7	Choa Chu Kang	1.385076,103.744808
+8	South View	1.38026,103.745225
+9	Keat Hong	1.378662,103.748916
+10	Teck Whye	1.376849,103.75295
+11	Phoenix	1.378469,103.757703
+12	Bukit Panjang	1.378126,103.763571
+13	Petir	1.37731,103.767359
+14	Pending	1.376249,103.771296
+15	Bankit	1.380357,103.772551
+16	Fajar	1.384722,103.771071
+17	Segar	1.387511,103.770159
+18	Jelapad	1.386835,103.764666
+19	Senja	1.38321,103.762134
+20	Ten Mile Junction	1.37989,103.760709
+
+
+
+[Line2]
+Name=PG
+Stations=Punggol,Cove,Meridian,Coral Edge,Riviera,Kadaloor,Oasis,Damai,Punggol.
+Driving=0,0,0,0,0,0,0,0
+
+21	Punggol	1.404736,103.90204
+22	Cove	1.399116,103.906238
+23	Meridian	1.396799,103.909371
+24	Coral Edge	1.393967,103.912761
+25	Riviera	1.394611,103.916366
+26	Kadaloor	1.399545,103.916967
+27	Oasis	1.401518,103.913748
+28	Damai	1.405465,103.908041
+29	Punggol.	1.404736,103.90204
+
+
+
+[Line3]
+Name=SK
+Stations=Sengkang,Compassavale,Rumbia,Bakau,Kangkar,Ranggung,Cheng Lim,Farmway,Kupang,Thanggam,Fernvale,Layar,Tongkang,Renjong,Sengkang.
+Driving=0,0,0,0,0,0,0,0,0,0,0,0,0,0
+30	Sengkang	1.391694,103.895663
+31	Compassavale	1.394439,103.899972
+32	Rumbia	1.391093,103.906238
+33	Bakau	1.387789,103.90538
+34	Kangkar	1.383714,103.902247
+35	Ranggung	1.383585,103.897612
+36	Cheng Lim	
+37	Farmway	1.396885,103.8889
+38	Kupang	
+39	Thanggam	1.397357,103.875511
+40	Fernvale	1.391951,103.876197
+41	Layar	1.391994,103.879888
+42	Tongkang	1.389205,103.886179
+43	Renjong	1.386459,103.890402
+44	Sengkang.	1.391694,103.895663
+
+[Line4]
+Name=CC
+Stations=Dhoby Ghaut,Bras Basah,Esplanade,Promenade,Nicoll Highway,Stadium,Mountbatten,Dakota,Paya Lebar,MacPherson,Tai Seng,Bartley,Serangoon,Lorong Chuan,Bishan,Marymount,Caldecott,Botanic Gardens,Farrer Road,Holland Village,Buona Vista,one-north,Kent Ridge,Haw Par Villa,Pasir Panjang,Labrador Park,Telok Blangah,HarbourFrontDriving=0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+45	Dhoby Ghaut	1.29885,103.844869
+46	Bras Basah	1.296791,103.850706
+47	Esplanade	1.293402,103.855344
+48	Promenade	1.293101,103.861048
+49	Nicoll Highway	1.299623,103.863627
+50	Stadium	1.302819,103.875257
+51	Mountbatten	1.306273,103.882488
+52	Dakota	1.308246,103.888174
+53	Paya Lebar	1.317943,103.892251
+54	MacPherson	1.326652,103.890384
+55	Tai Seng	1.335834,103.887895
+56	Bartley	1.342655,103.880149
+57	Serangoon	1.348812,103.873519
+58	Lorong Chuan	1.35159,103.86365
+59	Bishan	1.350828,103.848134
+60	Marymount	1.349048,103.839744
+61	Caldecott	1.337829,103.8388
+62	Botanic Gardens	1.322255,103.815424
+63	Farrer Road	1.317117,103.807592
+64	Holland Village	1.312247,103.796241
+65	Buona Vista	1.307174,103.790683
+66	one-north	1.299194,103.787336
+67	Kent Ridge	1.29323,103.784632
+68	Haw Par Villa	1.282375,103.782004
+69	Pasir Panjang	1.276326,103.791466
+70	Labrador Park	1.272507,103.803064
+71	Telok Blangah	1.270555,103.80963
+72	HarbourFront	1.265331,103.820627
+
+[Line5]
+Name=NS
+Stations=Jurong East,Bukit Batok,Bukit Gombak,Choa Chu Kang,Yew Tee,Kranji,Marsiling,Woodlands,Admiralty,Sembawang,Yishun,Khatib,Yio Chu Kang,Ang Mo Kio,Bishan,Braddell,Toa Payoh,Novena,Newton,Orchard,Somerset,Dhoby Ghaut,City Hall,Raffles Place,Marina Bay
+Driving=0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+73	Jurong East	1.334075,103.741622
+74	Bukit Batok	1.348662,103.749211
+75	Bukit Gombak	1.358787,103.751829
+76	Choa Chu Kang	1.385172,103.744748
+77	Yew Tee	1.397528,103.747237
+78	Kranji	1.424986,103.761699
+79	Marsiling	1.432537,103.774102
+80	Woodlands	1.436998,103.786376
+81	Admiralty	1.440602,103.800924
+82	Sembawang	1.449097,103.820021
+83	Yishun	1.429405,103.834956
+84	Khatib	1.417306,103.832982
+85	Yio Chu Kang	1.381826,103.844955
+86	Ang Mo Kio	1.369942,103.849547
+87	Bishan	1.350936,103.848002
+88	Braddell	1.340339,103.845084
+89	Toa Payoh	1.332702,103.847659
+90	Novena	1.320088,103.843367
+91	Newton	1.312322,103.837831
+92	Orchard	1.304213,103.831995
+93	Somerset	1.300309,103.838603
+94	Dhoby Ghaut	1.298679,103.844869
+95	City Hall	1.293058,103.852379
+96	Raffles Place	1.283233,103.851607
+97	Marina Bay	1.275982,103.854783
+
+[Line6]
+Name=EW
+Stations=Pasir Ris,Tampines,Simei,Tanah Merah,Bedok,Kembangan,Eunos,Paya Lebar,Aljunied,Kallang,Lavender,Bugis,City Hall,Raffles Place,Tanjong Pagar,Outram Park,Tiong Bahru,Redhill,Queenstown,Commonwealth,Buona Vista,Dover,Clementi,Jurong East,Chinese Garden,Lakeside,Boon Lay,Pioner,Joo Koon
+Driving=0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+98	Pasir Ris	1.37243,103.949118
+99	Tampines	1.352952,103.945255
+100	Simei	1.343213,103.953316
+101	Tanah Merah	1.327424,103.946235
+102	Bedok	1.324078,103.929842
+103	Kembangan	1.320989,103.91289
+104	Eunos	1.319702,103.902977
+105	Paya Lebar	1.317943,103.892162
+106	Aljunied	1.316398,103.882678
+107	Kallang	1.311636,103.87109
+108	Lavender	1.307174,103.862765
+109	Bugis	1.300652,103.856113
+110	City Hall	1.293101,103.852208
+111	Raffles Place	1.283834,103.851607
+112	Tanjong Pagar	1.276411,103.845685
+113	Outram Park	1.281002,103.839161
+114	Tiong Bahru	1.286194,103.826845
+115	Redhill	1.28954,103.816674
+116	Queenstown	1.294603,103.806202
+117	Commonwealth	1.30254,103.798134
+118	Buona Vista	1.307303,103.790581
+119	Dover	1.311421,103.778865
+120	Clementi	1.315197,103.765132
+121	Jurong East	1.33416,103.741615
+122	Chinese Garden	1.342312,103.732431
+123	Lakeside	1.3442,103.720672
+124	Boon Lay	1.338622,103.705566
+125	Pioner	1.337292,103.69694
+126	Joo Koon	1.327725,103.678615
+
+
+[Line7]
+Name=NE
+Stations=HarbourFront,Outram Park,Chinatown,Clarke Quay,Dhoby Ghaut,Little India,Farrer Park,Boon Keng,Potong Pasir,Woodleigh,Serangoon,Kovan,Hougang,Buangkok,Sengkang,Punggol
+Driving=0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+127	HarbourFront	1.265331,103.820627
+128	Outram Park	1.281238,103.839315
+129	Chinatown	1.28437,103.843392
+130	Clarke Quay	1.288446,103.846568
+131	Dhoby Ghaut	1.298807,103.844937
+132	Little India	1.307195,103.849915
+133	Farrer Park	1.312322,103.854507
+134	Boon Keng	1.319595,103.861824
+135	Potong Pasir	1.331264,103.869163
+136	Woodleigh	1.33933,103.870729
+137	Serangoon	1.348812,103.87354
+138	Kovan	1.360374,103.88517
+139	Hougang	1.370886,103.892444
+140	Buangkok	1.382276,103.893174
+141	Sengkang	1.391694,103.895663
+142	Punggol	1.404693,103.901972
+
+[Line8]
+Name=CG
+Stations=Changi Airport,Expo,Tanah Merah
+Driving=0,0
+
+143	Changi Airport	1.357414,103.988771
+144	Expo	1.334547,103.961642
+145	Tanah Merah	1.327339,103.946364
+
+[Line9]
+Name=CE
+Stations=Marina Bay,Bayfront,Promenade
+Driving=0,0
+
+146	Marina Bay	1.275982,103.854783
+147	Bayfront	1.282203,103.859246
+148	Promenade	1.293101,103.861005
+
+
+
+[Transfers]
+1=EW,Jurong East,NS,Jurong East,2
+2=NS,Jurong East,EW,Jurong East,2
+3=NS,Choa Chu Kang,BP,Choa Chu Kang,2
+4=BP,Choa Chu Kang,NS,Choa Chu Kang,2
+5=CC,Buona Vista,EW,Buona Vista,2
+6=EW,Buona Vista,CC,Buona Vista,2
+7=EW,Outram Park,NE,Outram Park,2
+8=NE,Outram Park,EW,Outram Park,2
+9=CC,HarbourFront,NE,HarbourFront,2
+10=NE,HarbourFront,CC,HarbourFront,2
+11=CC,Dhoby Ghaut,NS,Dhoby Ghaut,2
+12=NS,Dhoby Ghaut,CC,Dhoby Ghaut,2
+13=CC,Dhoby Ghaut,NE,Dhoby Ghaut,2
+14=NE,Dhoby Ghaut,CC,Dhoby Ghaut,2
+15=NS,Dhoby Ghaut,NE,Dhoby Ghaut,2
+16=NE,Dhoby Ghaut,NS,Dhoby Ghaut,2
+17=CC,Bishan,NS,Bishan,2
+18=NS,Bishan,CC,Bishan,2
+19=CC,Serangoon,NE,Serangoon,2
+20=NE,Serangoon,CC,Serangoon,2
+21=EW,Paya Lebar,CC,Paya Lebar,2
+22=CC,Paya Lebar,EW,Paya Lebar,2
+23=EW,Tanah Merah,CG,Tanah Merah,2
+24=CG,Tanah Merah,EW,Tanah Merah,2
+25=NE,Punggol,PG,Punggol,2
+26=PG,Punggol,NE,Punggol,2
+27=NE,Punggol,PG,Punggol.,2
+28=PG,Punggol.,NE,Punggol,2
+29=PG,Punggol,PG,Punggol.,2
+30=PG,Punggol.,PG,Punggol,2
+31=NE,Sengkang,SK,Sengkang,2
+32=SK,Sengkang,NE,Sengkang,2
+33=NE,Sengkang,SK,Sengkang.,2
+34=SK,Sengkang.,NE,Sengkang,2
+35=SK,Sengkang,SK,Sengkang.,2
+36=SK,Sengkang.,SK,Sengkang,2
+37=EW,Raffles Place,NS,Raffles Place,2
+38=NS,Raffles Place,EW,Raffles Place,2
+39=EW,City Hall,NS,City Hall,2
+40=NS,City Hall,EW,City Hall,2
+41=CE,Marina Bay,NS,Marina Bay,2
+42=NS,Marina Bay,CE,Marina Bay,2
+43=CC,Promenade,CE,Promenade,2
+44=CE,Promenade,CC,Promenade,2
