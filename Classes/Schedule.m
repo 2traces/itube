@@ -489,9 +489,18 @@ NSCharacterSet *pCharacterSet = nil;
     }
 }
 
+-(BOOL)existLine:(NSString*)line
+{
+    SchLine *l = [lines valueForKey:line];
+    if(l != nil) {
+        if([l.catalog count] > 0) return YES;
+    }
+    return NO;
+}
+
 -(NSTimeInterval)getNowTime
 {
-    //return 64000;
+    //return 49680;
     NSDateComponents *comp = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate date]];
     NSDate *midnight = [cal dateFromComponents:comp];
     return [[NSDate date] timeIntervalSinceDate:midnight];
@@ -644,8 +653,8 @@ NSCharacterSet *pCharacterSet = nil;
         for (SchPoint *tp in sts) {
             CGFloat trtime = 0;
             trtime = FindTransferTime(lastP.line, lastP.name, node.line, node.name);
-            [tp setWeightFrom:lastP withTransferTime:trtime];
-            [propagate addObject:tp];
+            if([tp setWeightFrom:lastP withTransferTime:trtime])
+                [propagate addObject:tp];
         }
         for(int i=0; i<[propagate count]; i++) {
             [schPoints addObject:[propagate objectAtIndex:i]];
@@ -684,8 +693,8 @@ NSCharacterSet *pCharacterSet = nil;
             [propagate removeAllObjects];
             for (SchPoint *tp in sts) {
                 if(tp.next == nil) continue;
-                [tp setWeightFrom:lastP withTransferTime:2];
-                [propagate addObject:tp];
+                if([tp setWeightFrom:lastP withTransferTime:2])
+                    [propagate addObject:tp];
             }
             for(int i=0; i<[propagate count]; i++) {
                 SchPoint * curP = [propagate objectAtIndex:i];

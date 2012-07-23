@@ -83,6 +83,7 @@
 -(BOOL) setIndex:(int)ind forLine:(NSString*)line;
 -(BOOL) checkStation:(NSString*)station line:(NSString*)line;
 -(BOOL) existStation:(NSString*)station line:(NSString*)line;
+-(BOOL) existLine:(NSString*)line;
 -(NSDate*) getPointDate:(SchPoint*)p;
 -(void) removeUncheckedStations;
 
