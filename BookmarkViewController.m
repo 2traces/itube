@@ -131,7 +131,14 @@
     
     // название и прочее
     MStation *station = [self.stationList objectAtIndex:indexPath.row];
-    NSString *cellValue = [station name];
+
+    NSString *cellValue;
+    if ([[MHelper sharedHelper] languageIndex]) {
+        cellValue = [station altname];
+    } else {
+        cellValue = [station name];
+    }
+    
     cell.mylabel.text = cellValue;
     cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
     cell.mylabel.textColor = [UIColor blackColor];

@@ -18,7 +18,6 @@
 #define DEFAULT_ROW_HEIGHT 38
 #define HEADER_HEIGHT 40
 
-
 @implementation LineListViewController
 
 @synthesize lineList;
@@ -184,7 +183,12 @@
         [[cell mybutton] setImage:[UIImage imageNamed:@"starbutton_off.png"] forState:UIControlStateNormal];
     }
     
-    NSString *cellValue = [[self.stationsList objectAtIndex:indexPath.row] name];
+    NSString *cellValue;
+    if ([[MHelper sharedHelper] languageIndex]) {
+        cellValue = [[self.stationsList objectAtIndex:indexPath.row] altname];
+    } else {
+        cellValue = [[self.stationsList objectAtIndex:indexPath.row] name];
+    }
     cell.mylabel.text = cellValue;
     cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
     cell.mylabel.textColor = [UIColor blackColor];
@@ -294,10 +298,6 @@
     
     NSArray *stations = [dataSource getStationsForLine:line];
     
-//    NSString *cellValue = [[stations objectAtIndex:indexPath.row] name];
-    
-//    NSLog(@"%@",cellValue);
-    
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:[stations objectAtIndex:indexPath.row]]];
@@ -337,12 +337,10 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    
+{    
     /*
      Create the section header views lazily.
      */
-    
     
 	SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:section];
     if (!sectionInfo.headerView) {
@@ -351,42 +349,10 @@
     }
     
     return sectionInfo.headerView;
-    
-    
-    
-    
-    
-    /*
-     Create the section header views lazily.
-     */
-    
-    /*
-	SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:section];
-   
-        if (sectionInfo.open) {
-		NSString *lineName = sectionInfo.line.name;
-        sectionInfo.headerView = [[[SectionHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.mytableView.bounds.size.width, HEADER_HEIGHT+10) title:lineName color:[(UIColor*)sectionInfo.line.color saturatedColor] section:section delegate:self] autorelease];
-        } else {
-            NSString *lineName = sectionInfo.line.name;
-            sectionInfo.headerView = [[[SectionHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.mytableView.bounds.size.width, HEADER_HEIGHT) title:lineName color:[(UIColor*)sectionInfo.line.color saturatedColor] section:section delegate:self] autorelease];
-        }
-    
-    return sectionInfo.headerView;
-     */
-     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    
-//    SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:section];
-//
-//    if (sectionInfo.open) {
-//        return HEADER_HEIGHT; 
-//    } else {   
-//        return HEADER_HEIGHT;
-//    }
-    
+{    
     return HEADER_HEIGHT; 
 }
 

@@ -14,6 +14,7 @@
 @dynamic index;
 @dynamic isFavorite;
 @dynamic name;
+@dynamic altname;
 @dynamic lines;
 @dynamic transfer;
 @end
@@ -39,6 +40,7 @@
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 @synthesize fetchedResultsController = __fetchedResultsController;
+@synthesize languageIndex;
 
 static MHelper * _sharedHelper;
 
@@ -233,7 +235,12 @@ static MHelper * _sharedHelper;
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
+    NSSortDescriptor *sortDescriptor;
+    if (languageIndex) {
+        sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"altname" ascending:YES] autorelease];
+    } else {
+        sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];        
+    }
     NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -326,7 +333,12 @@ static MHelper * _sharedHelper;
     [fetchRequest setPredicate:predicate];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
+    NSSortDescriptor *sortDescriptor;
+    if (languageIndex) {
+        sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"altname" ascending:YES] autorelease];
+    } else {
+        sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];        
+    }
     NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -352,7 +364,12 @@ static MHelper * _sharedHelper;
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
+    NSSortDescriptor *sortDescriptor;
+    if (languageIndex) {
+        sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"altname" ascending:YES] autorelease];
+    } else {
+        sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];        
+    }
     NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -476,7 +493,7 @@ static MHelper * _sharedHelper;
     NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [paths objectAtIndex:0];
     
-    tubeAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    tubeAppDelegate *delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
     NSString *fileName = [NSString stringWithFormat:@"%@_bookmarks.plist",[delegate nameCurrentMap]];
     NSString *plistPath = [documentsPath stringByAppendingPathComponent:fileName];
     
@@ -512,6 +529,64 @@ static MHelper * _sharedHelper;
         NSLog(@"Error in saveData: %@", error);
         [error release];
     }
+}
+
+-(void)readLanguageIndex:(NSString*)mapName
+{
+    int index=0;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    NSString *fileName = [NSString stringWithFormat:@"%@_language.plist",mapName];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:fileName];
+        
+    if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath])
+    {
+        NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
+        NSString *errorDesc = nil;
+        NSPropertyListFormat format;
+        
+        NSDictionary *temp = (NSDictionary *)[NSPropertyListSerialization propertyListFromData:plistXML mutabilityOption:NSPropertyListMutableContainersAndLeaves format:&format errorDescription:&errorDesc];
+        
+        if (!temp)
+        {
+            NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+        }
+            
+        index = [[temp objectForKey:@"language"] intValue];
+    }
+
+    self.languageIndex=index;
+}
+
+-(void)saveLanguageIndex:(int)index
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    
+    tubeAppDelegate *delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSString *fileName = [NSString stringWithFormat:@"%@_language.plist",[delegate nameCurrentMap]];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:fileName];
+    
+    // create dictionary with values in UITextFields
+    NSDictionary *plistDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:index] forKey:@"language"];
+    
+    NSString *error = nil;
+    // create NSData from dictionary
+    NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:plistDict format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
+    
+    // check is plistData exists
+    if(plistData)
+    {
+        // write plistData to our Data.plist file
+        [plistData writeToFile:plistPath atomically:YES];
+    }
+    else
+    {
+        NSLog(@"Error in saveData: %@", error);
+        [error release];
+    }
+    
+    self.languageIndex=index;
 }
 
 -(void)readHistoryFile:(NSString*)mapName
@@ -635,7 +710,7 @@ static MHelper * _sharedHelper;
     NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [paths objectAtIndex:0];
     
-    tubeAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    tubeAppDelegate *delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
     NSString *fileName = [NSString stringWithFormat:@"%@_history.plist",[delegate nameCurrentMap]];
     NSString *plistPath = [documentsPath stringByAppendingPathComponent:fileName];
 

@@ -43,6 +43,9 @@
     self.dataSource = helper;
     
     self.stationList = [dataSource getStationList];
+//    if ([[MHelper sharedHelper] languageIndex]) {
+//        [self resortStationListForAlternate];
+//    }
     
     [self createStationIndex];
     
@@ -73,6 +76,12 @@
     self.colorDictionary = [[[NSMutableDictionary alloc] init] autorelease];
 }
 
+-(void)resortStationListForAlternate
+{
+    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"altname" ascending:YES] autorelease];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+    self.stationList = [self.stationList sortedArrayUsingDescriptors:sortDescriptors];
+}
 
 -(void)createStationIndex
 {
@@ -87,12 +96,17 @@
     
     for (int i=0; i<[self.stationList count]-1; i++){
 
-        char alphabet = [[[self.stationList objectAtIndex:i] name] characterAtIndex:0];
-        NSString *uniChar = [NSString stringWithFormat:@"%C", alphabet];
+        NSString *stationName;
+        if ([[MHelper sharedHelper] languageIndex]) {
+            stationName = [[self.stationList objectAtIndex:i] altname];
+        } else {
+            stationName = [[self.stationList objectAtIndex:i] name];
+        }
+        NSString *uniChar = [stationName substringWithRange:[stationName rangeOfComposedCharacterSequenceAtIndex:0]];
         
         //---add each letter to the index array---
         if (![stationIndex containsObject:uniChar]) {            
-        
+            
             [stationIndex addObject:uniChar];
             
             NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -104,7 +118,7 @@
             
             NSMutableArray *array = [dict objectForKey:uniChar];
             [array addObject:[self.stationList objectAtIndex:i]];
-        
+            
         }
     }
 }
@@ -122,14 +136,12 @@
     return image;
 }
 
-
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -198,7 +210,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSDate *date = [NSDate date];
+    //    NSDate *date = [NSDate date];
     
     static NSString *CellIdentifier = @"StationCell";
     
@@ -210,7 +222,12 @@
     
     if (tableView == self.mySearchDC.searchResultsTableView)
     {
-        NSString *cellValue = [[self.filteredStation objectAtIndex:indexPath.row] name];
+        NSString *cellValue;
+        if ([[MHelper sharedHelper] languageIndex]) {
+            cellValue = [[self.filteredStation objectAtIndex:indexPath.row] altname];
+        } else {
+            cellValue = [[self.filteredStation objectAtIndex:indexPath.row] name];
+        }
         cell.mylabel.text = cellValue;
         cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
         cell.mylabel.textColor = [UIColor blackColor];
@@ -236,9 +253,14 @@
         NSString *alphabet = [stationIndex objectAtIndex:[indexPath section]];
         
         NSMutableArray *stations = [self.indexDictionary objectForKey:alphabet];
-
+        
         if ([stations count]>0) {
-            NSString *cellValue = [[stations objectAtIndex:indexPath.row] name];
+            NSString *cellValue;
+            if ([[MHelper sharedHelper] languageIndex]) {
+                cellValue = [[stations objectAtIndex:indexPath.row] altname];
+            } else {
+                cellValue = [[stations objectAtIndex:indexPath.row] name];
+            }
             cell.mylabel.text = cellValue;
             cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
             cell.mylabel.textColor = [UIColor blackColor];
@@ -258,9 +280,9 @@
             myImageView.image = [self imageWithColor:[(MStation*)[stations objectAtIndex:indexPath.row] lines]];
         }
     }
-//    NSDate *date2 = [NSDate date];
-//    NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
-
+    //    NSDate *date2 = [NSDate date];
+    //    NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
+    
     return cell;
 }
 
@@ -286,7 +308,7 @@
 {
     if  (tableView == self.mySearchDC.searchResultsTableView)
 	{
-//        NSLog(@"%@",[[self.filteredStation objectAtIndex:indexPath.row] name]); 
+        //        NSLog(@"%@",[[self.filteredStation objectAtIndex:indexPath.row] name]); 
         
         tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
         
@@ -296,15 +318,22 @@
 	{	
         NSString *alphabet = [stationIndex objectAtIndex:indexPath.section];
         
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name beginswith[c] %@", alphabet];
+        NSPredicate *predicate;
+        
+        if ([[MHelper sharedHelper] languageIndex]) {
+            predicate = [NSPredicate predicateWithFormat:@"altname beginswith[c] %@", alphabet];
+        } else {
+            predicate = [NSPredicate predicateWithFormat:@"name beginswith[c] %@", alphabet];
+        }
+
         NSArray *stations = [self.stationList filteredArrayUsingPredicate:predicate];
         
-//        NSLog(@"%@",[[stations objectAtIndex:indexPath.row] name]); 
+        //        NSLog(@"%@",[[stations objectAtIndex:indexPath.row] name]); 
         
         tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
         
         [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:[stations objectAtIndex:indexPath.row]]];
-
+        
     }
 }
 
@@ -324,16 +353,16 @@
     }
     
     UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
-        
+    
     if (self.mySearchDC.active) {
-
+        
         NSIndexPath *path = [self.mySearchDC.searchResultsTableView indexPathForCell:cell];
-
+        
         [self.mySearchDC.searchResultsTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationNone];
     } else {
         
         NSIndexPath *path = [self.mytableView indexPathForCell:cell];
-
+        
         [self.mytableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationNone];
     }
 }
@@ -344,7 +373,7 @@
         UIView *sectionView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
         // Return the header section view
         return sectionView;
-
+        
     } else {
         
         // Create a stretchable image that emulates the default gradient
@@ -354,7 +383,7 @@
         // Create the view for the header
         CGRect sectionFrame = CGRectMake(0.0, 0.0, 320.0, 22.0);
         UIView *sectionView = [[[UIView alloc] initWithFrame:sectionFrame] autorelease];
-//        sectionView.alpha = 0.;
+        //        sectionView.alpha = 0.;
         
         UIView *bgView = [[[UIView alloc] initWithFrame:sectionFrame] autorelease];
         bgView.backgroundColor = [UIColor colorWithPatternImage:stretchableButtonImageNormal];
@@ -468,7 +497,7 @@
     self.mySearchDC.delegate = nil;
     self.mySearchDC.searchResultsDelegate = nil;
     self.mySearchDC.searchResultsDataSource = nil;
-
+    
     [mySearchDC release];
     [stationList release];
     [stationIndex release];

@@ -12,6 +12,7 @@
 #import "tubeAppDelegate.h"
 #import "MyTiledLayer.h"
 #import "Schedule.h"
+#import "ManagedObjects.h"
 
 @implementation MapView
 @synthesize cityMap;
@@ -192,6 +193,8 @@
         activeLayer.hidden = YES;
         
         [self enableUserLocation];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(languageChanged:) name:@"kLangChanged" object:nil];
     }
     return self;
 }
@@ -255,6 +258,12 @@
 {
     [self drawLayer:nil inContext:UIGraphicsGetCurrentContext()];
 }
+
+-(void)languageChanged:(NSNotification*)note
+{
+    [self setDrawName:[[MHelper sharedHelper] languageIndex]];
+}
+
 
 - (void)dealloc {
     [labelBg removeFromSuperview];

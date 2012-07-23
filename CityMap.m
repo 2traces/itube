@@ -845,6 +845,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize backwardWay;
 @synthesize firstStations;
 @synthesize lastStations;
+@synthesize altText;
 
 
 - (NSString*)description
@@ -1811,6 +1812,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize foregroundImageFile;
 @synthesize gpsCircleScale;
 @synthesize backgroundColor;
+@synthesize languages;
 
 -(StationKind) stationKind { return StKind; }
 -(void) setStationKind:(StationKind)stationKind { StKind = stationKind; }
@@ -1933,6 +1935,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     
     [[MHelper sharedHelper] readHistoryFile:mapName];
     [[MHelper sharedHelper] readBookmarkFile:mapName];
+    [[MHelper sharedHelper] readLanguageIndex:mapName];
 #ifdef DEBUG
     NSString *routePath = [NSString stringWithFormat:@"%@/route", self.pathToMap];
     if((schedule = [[Schedule alloc] initFastSchedule:@"routes" path:[NSString stringWithFormat:@"%@/newroute", self.pathToMap]]) ||
@@ -2217,7 +2220,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     st.gpsCoords = CGPointMake([[gpsCoords objectAtIndex:0] floatValue], [[gpsCoords objectAtIndex:1] floatValue]);
                     [l.stations addObject:st];
                     MStation *station = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
-                    station.name=st.name;
+                    station.name= st.name;
+                    station.altname = [st.altText string];
                     station.isFavorite=[NSNumber numberWithInt:0];
                     station.lines=newLine;
                     station.index = [NSNumber numberWithInt:si];
@@ -2320,7 +2324,17 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 		NSString *value = [section2 retrieve:key];
 		[self processTransfers2:value];
 	}
-	
+    
+    NSString *availableLanguages = [parserTrp get:@"Languages" section:@"Options"];
+    NSArray *langCodes = [availableLanguages componentsSeparatedByString:@"&"];
+    if (!langCodes) langCodes = [NSArray arrayWithObject:@"en"];
+    NSMutableArray *languagesList = [NSMutableArray array];
+    for (NSString *langID in langCodes) {
+        NSString *langName = [[[NSLocale currentLocale] displayNameForKey:NSLocaleLanguageCode value:langID] capitalizedString];
+        [languagesList addObject:langName];
+    }
+    self.languages=languagesList;
+    
 	[parserMap release];
     [parserTrp release];
     
@@ -2636,6 +2650,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [pathStationsList release];
     [pathTimesList release];
     [schedule release];
+    [languages release];
     [super dealloc];
 }
 
