@@ -130,10 +130,14 @@
  
     MHistory *history = [self.historyList objectAtIndex:indexPath.row];
     
-    cell.fromStation.text = [history.fromStation name];
-    
-    cell.toStation.text = [history.toStation name];
-    
+    if ([[MHelper sharedHelper] languageIndex]) {
+        cell.fromStation.text = [history.fromStation altname];
+        cell.toStation.text = [history.toStation altname];
+    } else {
+        cell.fromStation.text = [history.fromStation name];
+        cell.toStation.text = [history.toStation name];        
+    }
+
     cell.dateLabel.text = [formatter stringFromDate:history.adate]; 
     
     cell.fromLineCircle.image = [self imageWithColor:[history.fromStation lines]];

@@ -314,8 +314,6 @@
 		BC88781314EB90D600E7BEF7 /* switch_to_path@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC88780B14EB90D600E7BEF7 /* switch_to_path@2x.png */; };
 		BC88A2AB151A328E0060F860 /* SettingsNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC88A2A9151A328E0060F860 /* SettingsNavController.m */; };
 		BC88A2C0151A3C5D0060F860 /* DemoMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC88A2BE151A3C5D0060F860 /* DemoMapViewController.m */; };
-		BC88F914152052C800BC7FAA /* LanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC88F912152052C800BC7FAA /* LanguageViewController.m */; };
-		BC88F919152058D600BC7FAA /* LanguageCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = BC88F918152058D600BC7FAA /* LanguageCell2.m */; };
 		BC88F91B15205B6B00BC7FAA /* LanguageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC88F91A15205B6A00BC7FAA /* LanguageViewController.xib */; };
 		BC8C57E814EA23C30005561D /* bevel.png in Resources */ = {isa = PBXBuildFile; fileRef = BC8C57E614EA23C30005561D /* bevel.png */; };
 		BC8C57E914EA23C30005561D /* bevel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC8C57E714EA23C30005561D /* bevel@2x.png */; };
@@ -389,7 +387,6 @@
 		BCCC308814E4DAAB00102064 /* settings_upd_button.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCC307A14E4DAAB00102064 /* settings_upd_button.png */; };
 		BCCC308914E4DAAB00102064 /* settings_upd_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCC307B14E4DAAB00102064 /* settings_upd_button@2x.png */; };
 		BCCC309C14E4DB4600102064 /* MyNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCC309B14E4DB4600102064 /* MyNavigationBar.m */; };
-		BCCC30A014E4F12800102064 /* LanguageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCC309F14E4F12800102064 /* LanguageCell.m */; };
 		BCCC30A214E4F19900102064 /* LanguageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCCC30A114E4F19900102064 /* LanguageCell.xib */; };
 		BCCC30AB14E4FA6200102064 /* CityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCC30AA14E4FA6200102064 /* CityCell.m */; };
 		BCD3538A14E138BC00D4278A /* UIColor-enhanced.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD3538914E138BC00D4278A /* UIColor-enhanced.m */; };
@@ -792,10 +789,6 @@
 		BC88A2A9151A328E0060F860 /* SettingsNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsNavController.m; sourceTree = "<group>"; };
 		BC88A2BD151A3C5C0060F860 /* DemoMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoMapViewController.h; sourceTree = "<group>"; };
 		BC88A2BE151A3C5D0060F860 /* DemoMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoMapViewController.m; sourceTree = "<group>"; };
-		BC88F911152052C800BC7FAA /* LanguageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageViewController.h; sourceTree = "<group>"; };
-		BC88F912152052C800BC7FAA /* LanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageViewController.m; sourceTree = "<group>"; };
-		BC88F917152058D600BC7FAA /* LanguageCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageCell2.h; sourceTree = "<group>"; };
-		BC88F918152058D600BC7FAA /* LanguageCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageCell2.m; sourceTree = "<group>"; };
 		BC88F91A15205B6A00BC7FAA /* LanguageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LanguageViewController.xib; path = Resources/LanguageViewController.xib; sourceTree = "<group>"; };
 		BC8C57E614EA23C30005561D /* bevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bevel.png; path = images/bevel.png; sourceTree = "<group>"; };
 		BC8C57E714EA23C30005561D /* bevel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bevel@2x.png"; path = "images/bevel@2x.png"; sourceTree = "<group>"; };
@@ -877,8 +870,6 @@
 		BCCC307B14E4DAAB00102064 /* settings_upd_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings_upd_button@2x.png"; path = "images/settings_upd_button@2x.png"; sourceTree = "<group>"; };
 		BCCC309A14E4DB4600102064 /* MyNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNavigationBar.h; sourceTree = "<group>"; };
 		BCCC309B14E4DB4600102064 /* MyNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNavigationBar.m; sourceTree = "<group>"; };
-		BCCC309E14E4F12800102064 /* LanguageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageCell.h; sourceTree = "<group>"; };
-		BCCC309F14E4F12800102064 /* LanguageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageCell.m; sourceTree = "<group>"; };
 		BCCC30A114E4F19900102064 /* LanguageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LanguageCell.xib; path = Resources/LanguageCell.xib; sourceTree = "<group>"; };
 		BCCC30A914E4FA6200102064 /* CityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityCell.h; sourceTree = "<group>"; };
 		BCCC30AA14E4FA6200102064 /* CityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityCell.m; sourceTree = "<group>"; };
@@ -1025,8 +1016,6 @@
 				BC3D14E214C338360059A17E /* LineListViewController.m */,
 				BC3D14E414C338370059A17E /* SettingsViewController.h */,
 				BC3D14E514C338370059A17E /* SettingsViewController.m */,
-				BC88F911152052C800BC7FAA /* LanguageViewController.h */,
-				BC88F912152052C800BC7FAA /* LanguageViewController.m */,
 				51D20F3714B85185007AC4BD /* tubee.xcdatamodeld */,
 				51D20F3314B849A3007AC4BD /* ManagedObjects.h */,
 				51D20F3414B849A3007AC4BD /* ManagedObjects.m */,
@@ -1524,12 +1513,8 @@
 				BC3D14C214C338280059A17E /* HistoryListCell.m */,
 				BC3D14C414C338280059A17E /* StationListCell.h */,
 				BC3D14C614C3382A0059A17E /* StationListCell.m */,
-				BCCC309E14E4F12800102064 /* LanguageCell.h */,
-				BCCC309F14E4F12800102064 /* LanguageCell.m */,
 				BCCC30A914E4FA6200102064 /* CityCell.h */,
 				BCCC30AA14E4FA6200102064 /* CityCell.m */,
-				BC88F917152058D600BC7FAA /* LanguageCell2.h */,
-				BC88F918152058D600BC7FAA /* LanguageCell2.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -2058,7 +2043,6 @@
 				51F15F7714D99A3800D11B79 /* VectorLayer.m in Sources */,
 				BCD3538A14E138BC00D4278A /* UIColor-enhanced.m in Sources */,
 				BCCC309C14E4DB4600102064 /* MyNavigationBar.m in Sources */,
-				BCCC30A014E4F12800102064 /* LanguageCell.m in Sources */,
 				BCCC30AB14E4FA6200102064 /* CityCell.m in Sources */,
 				BCB362E014E6C31C0066FB3A /* StationTextField.m in Sources */,
 				9FFA6EBC14EE17920086199F /* ActiveView.m in Sources */,
@@ -2071,8 +2055,6 @@
 				BC76ACFC151B1A85009BDABC /* mztools.c in Sources */,
 				BC76ACFD151B1A85009BDABC /* unzip.c in Sources */,
 				BC76ACFE151B1A85009BDABC /* zip.c in Sources */,
-				BC88F914152052C800BC7FAA /* LanguageViewController.m in Sources */,
-				BC88F919152058D600BC7FAA /* LanguageCell2.m in Sources */,
 				51839DE115360BE5003A8E23 /* TBXML.m in Sources */,
 				BC4DA4181537F03700B941F1 /* ImageDownloader.m in Sources */,
 			);

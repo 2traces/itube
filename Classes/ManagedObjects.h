@@ -25,6 +25,7 @@
 @property (nonatomic, retain) NSNumber* index;
 @property (nonatomic, retain) NSNumber * isFavorite;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * altname;
 @property (nonatomic, retain) MLine *lines;
 @property (nonatomic, retain) MTransfer* transfer;
 @end
@@ -52,6 +53,7 @@
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, assign) int languageIndex;
 
 + (MHelper *) sharedHelper;
 
@@ -68,6 +70,9 @@
 // возвращает станции для линии
 // сортировка по индексу
 -(NSArray*)getStationsForLineIndex:(int)lineIndex;
+
+-(void)readLanguageIndex:(NSString*)mapName;
+-(void)saveLanguageIndex:(int)index;
 
 -(void)addHistory:(NSDate*)date :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl; 
 

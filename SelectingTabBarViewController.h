@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define kMapChanged @"kMapChanged"
+#define kLangChanged @"kLangChanged"
 
 @protocol SelectingTabBarProtocol;
 

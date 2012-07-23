@@ -1,3 +1,6 @@
+[Options]
+Languages=en&zh-sg
+
 [Line1]
 Name=BP
 7	Choa Chu Kang&蔡厝港地铁/轻轨列车站 1.385076,103.744808	,	SE,	SE
@@ -136,7 +139,7 @@ Name=EW
 109	<Bugis&武吉士地铁站 1.300652,103.856113	,	M	,	M
 110	<City Hall&政府大厦地铁站 1.293101,103.852208	,	M	,	M	
 111	<Raffles Place&莱佛士坊地铁站 1.283834,103.851607	,	SME	,	SME
-112	Tanjong Pagar&丹戎巴葛地铁站1.276411,103.845685	,	SE	,	SE
+112	Tanjong Pagar&丹戎巴葛地铁站 1.276411,103.845685	,	SE	,	SE
 113	<Outram Park&欧南园地铁站 1.281002,103.839161	,	ME	,	SM
 114	>Tiong Bahru&中峇鲁地铁站 1.286194,103.826845	,	M	,	M
 115	>Redhill&红山地铁站 1.28954,103.816674	,	E	,	S

@@ -55,6 +55,8 @@
     [twoStationsView release];
     
     [self performSelector:@selector(refreshInApp) withObject:nil afterDelay:0.2];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(languageChanged:) name:@"kLangChanged" object:nil];
 }
 
 -(void)refreshInApp
@@ -764,20 +766,15 @@
 - (void)animateScrollView
 {
     if (self.scrollView && self.scrollView.contentSize.width>320.0f && self.scrollView.contentOffset.x==0.0f) {
-        [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        [UIView animateWithDuration:1 delay:0 options:(UIViewAnimationCurveEaseInOut | UIViewAnimationOptionAutoreverse) animations:^{
             [self.scrollView scrollRectToVisible:CGRectMake(38.0, 26.0, 320.0, 40.0) animated:NO];
         } completion:^(BOOL finished){
-            if (finished) {
-                [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
-                    [self.scrollView scrollRectToVisible:CGRectMake(0.0, 26.0, 320.0, 40.0) animated:NO];
-                } completion:nil];
-            }
+            [self.scrollView scrollRectToVisible:CGRectMake(0.0, 26.0, 320.0, 40.0) animated:NO];
         }];  
         
         NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
         [prefs setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"scrollHelp"]+1 forKey:@"scrollHelp"];
         [prefs synchronize];
-
     }
     
     [self.timer invalidate];
@@ -1274,6 +1271,17 @@
 }
 
 #pragma mark - choosing stations etc
+
+-(void)languageChanged:(NSNotification*)note
+{
+    if (self.fromStation) {
+        [stationsView setFromStation:self.fromStation];
+    }
+    
+    if (self.toStation) {
+        [stationsView setToStation:self.toStation];
+    }    
+}
 
 -(void)returnFromSelection2:(NSArray*)stations
 {
