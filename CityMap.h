@@ -316,7 +316,7 @@ typedef enum {NAME_NORMAL=0, NAME_ALTERNATIVE=1, NAME_BOTH=2} DrawNameType;
 //graph func
 -(NSDictionary*) calcPath :(NSString*) firstStation :(NSString*) secondStation :(NSInteger) firstStationLineNum :(NSInteger)secondStationLineNum ;
 
--(NSInteger) checkPoint:(CGPoint*)point Station:(NSMutableString*)stationName;
+-(Station*) checkPoint:(CGPoint*)point Station:(NSMutableString*)stationName;
 	
 // load stuff 
 -(void) processTransfers:(NSString*)transferInfo;

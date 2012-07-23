@@ -355,10 +355,22 @@
 
 -(void)selectStationAt:(CGPoint*)currentPosition
 {
-    selectedStationLine = [cityMap checkPoint:currentPosition Station:selectedStationName];
-    if(selectedStationLine > 0) {
+    Station *s = [cityMap checkPoint:currentPosition Station:selectedStationName];
+    if(s != nil) {
+        selectedStationLine = s.line.index;
 		stationSelected=true;
-		mainLabel.text = selectedStationName;
+        switch (cityMap.drawName) {
+            case NAME_ALTERNATIVE:
+                mainLabel.text = s.altText.string;
+                break;
+            case NAME_NORMAL:
+                mainLabel.text = selectedStationName;
+                break;
+            case NAME_BOTH:
+                // TODO which one should I prefer?
+                mainLabel.text = selectedStationName;
+                break;
+        }
         Line *l = [cityMap.mapLines objectAtIndex:selectedStationLine-1];
         circleLabel.backgroundColor = l.color;
         lineLabel.text = l.shortName;

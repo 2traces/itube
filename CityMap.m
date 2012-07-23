@@ -2787,18 +2787,18 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     CGContextRestoreGState(context);
 }
 
--(NSInteger) checkPoint:(CGPoint*)point Station:(NSMutableString *)stationName
+-(Station*) checkPoint:(CGPoint*)point Station:(NSMutableString *)stationName
 {
     for (Line *l in mapLines) {
         for (Station *s in l.stations) {
             if(CGRectContainsPoint(s.tapArea, *point) || CGRectContainsPoint(s.tapTextArea, *point)) {
                 [stationName setString:s.name];
                 *point = CGPointMake(s.pos.x, s.pos.y);
-                return l.index;
+                return s;
             }
         }
     }
-    return -1;
+    return nil;
 }
 
 -(void) drawActive:(CGContextRef)context inRect:(CGRect)rect
