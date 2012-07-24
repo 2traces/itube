@@ -2709,7 +2709,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             // the last station
             activeExtent = CGRectUnion(activeExtent, s.textRect);
             activeExtent = CGRectUnion(activeExtent, s.boundingBox);
-            [pathStationsList addObject:n1.name];
+            if(DrawName == NAME_ALTERNATIVE) [pathStationsList addObject:s.altText.string];
+            else [pathStationsList addObject:n1.name];
             if(sp1 && schedule) {
                 [pathTimesList addObject:[schedule getPointDate:sp1]];
                 [pathDocksList addObject:[NSString stringWithFormat:@"%c", sp1.dock]];
@@ -2727,7 +2728,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 else {
                     [activePath addObject:[l activatePathFrom:n1.name to:n2.name]];
                 }
-                [pathStationsList addObject:n1.name];
+                if(DrawName == NAME_ALTERNATIVE) [pathStationsList addObject:s.altText.string];
+                else [pathStationsList addObject:n1.name];
                 if(sp1 && schedule) {
                     [pathTimesList addObject:[schedule getPointDate:sp1]];
                     [pathDocksList addObject:[NSString stringWithFormat:@"%c", sp1.dock]];
@@ -2735,7 +2737,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             } else
             if(n1.line != n2.line) {
                 [activePath addObject:s.transfer];
-                [pathStationsList addObject:n1.name];
+                if(DrawName == NAME_ALTERNATIVE) [pathStationsList addObject:s.altText.string];
+                else [pathStationsList addObject:n1.name];
                 [pathStationsList addObject:@"---"]; //временно до обновления модели
                 if(sp1 && schedule) {
                     [pathTimesList addObject:[schedule getPointDate:sp1]];
@@ -2787,18 +2790,18 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     CGContextRestoreGState(context);
 }
 
--(NSInteger) checkPoint:(CGPoint*)point Station:(NSMutableString *)stationName
+-(Station*) checkPoint:(CGPoint*)point Station:(NSMutableString *)stationName
 {
     for (Line *l in mapLines) {
         for (Station *s in l.stations) {
             if(CGRectContainsPoint(s.tapArea, *point) || CGRectContainsPoint(s.tapTextArea, *point)) {
                 [stationName setString:s.name];
                 *point = CGPointMake(s.pos.x, s.pos.y);
-                return l.index;
+                return s;
             }
         }
     }
-    return -1;
+    return nil;
 }
 
 -(void) drawActive:(CGContextRef)context inRect:(CGRect)rect

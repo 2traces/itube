@@ -644,6 +644,7 @@ NSCharacterSet *pCharacterSet = nil;
     if([graphNodes count] == 0) return YES;
     SchPoint *lastP = [schPoints lastObject];
     GraphNode *node = [graphNodes objectAtIndex:0];
+    BOOL nextWait = [node.edgesIn count] > 2 || [node.edgesOut count] > 2;
     SortedArray *propagate = [[SortedArray alloc] init];
     if(lastP.line != node.line) {
         // transfer
@@ -661,7 +662,8 @@ NSCharacterSet *pCharacterSet = nil;
             NSRange range;
             range.location = 1;
             range.length = [graphNodes count]-1;
-            if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints wait:YES]) {
+            if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints wait:nextWait]) {
+                [propagate release];
                 return YES;
             } else {
                 [schPoints removeLastObject];
@@ -671,20 +673,20 @@ NSCharacterSet *pCharacterSet = nil;
         // line
         SchPoint *nextP = lastP.next;
         if(nextP != nil) {
+            [nextP setWeightFrom:lastP];
+            [schPoints addObject:nextP];
             for(int i=0; i<[graphNodes count]; i++) {
                 if([nextP.name isEqualToString:[[graphNodes objectAtIndex:i] name]]) {
-                    [nextP setWeightFrom:lastP];
-                    [schPoints addObject:nextP];
                     NSRange range;
                     range.location = i+1;
                     range.length = [graphNodes count]-range.location;
-                    if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints wait:YES]) {
+                    if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints wait:nextWait]) {
+                        [propagate release];
                         return YES;
-                    } else {
-                        [schPoints removeLastObject];
                     }
                 }
             }
+            [schPoints removeLastObject];
         }
         if(wait) {
             // check transfer within the same line
@@ -701,6 +703,7 @@ NSCharacterSet *pCharacterSet = nil;
                 if(curP.weight > 60*60*4) break;
                 [schPoints addObject:curP];
                 if([self findRestOfPath:graphNodes points:schPoints wait:NO]) {
+                    [propagate release];
                     return YES;
                 } else {
                     [schPoints removeLastObject];
@@ -708,6 +711,7 @@ NSCharacterSet *pCharacterSet = nil;
             }
         }
     }
+    [propagate release];
     return NO;
 }
 
@@ -737,11 +741,14 @@ NSCharacterSet *pCharacterSet = nil;
                 NSRange range;
                 range.location = 1;
                 range.length = [result count] -1;
+                [propagate release];
                 return [result subarrayWithRange:range];
             }
+            [propagate release];
             return result;
         }
     }
+    [propagate release];
     
     
     /*GraphNode *prevNode = nil;
