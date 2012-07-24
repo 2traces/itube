@@ -257,7 +257,7 @@
 {
     if (tableView==cityTableView) {
         return [maps count];
-    } else if (tableView==cityTableView) {
+    } else if (tableView==langTableView) {
         return [languages count];
     } else {
         return 2;
