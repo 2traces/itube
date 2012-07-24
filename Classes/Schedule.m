@@ -662,6 +662,7 @@ NSCharacterSet *pCharacterSet = nil;
             range.location = 1;
             range.length = [graphNodes count]-1;
             if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints wait:YES]) {
+                [propagate release];
                 return YES;
             } else {
                 [schPoints removeLastObject];
@@ -679,6 +680,7 @@ NSCharacterSet *pCharacterSet = nil;
                     range.location = i+1;
                     range.length = [graphNodes count]-range.location;
                     if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints wait:YES]) {
+                        [propagate release];
                         return YES;
                     } else {
                         [schPoints removeLastObject];
@@ -701,6 +703,7 @@ NSCharacterSet *pCharacterSet = nil;
                 if(curP.weight > 60*60*4) break;
                 [schPoints addObject:curP];
                 if([self findRestOfPath:graphNodes points:schPoints wait:NO]) {
+                    [propagate release];
                     return YES;
                 } else {
                     [schPoints removeLastObject];
@@ -708,6 +711,7 @@ NSCharacterSet *pCharacterSet = nil;
             }
         }
     }
+    [propagate release];
     return NO;
 }
 
@@ -737,11 +741,14 @@ NSCharacterSet *pCharacterSet = nil;
                 NSRange range;
                 range.location = 1;
                 range.length = [result count] -1;
+                [propagate release];
                 return [result subarrayWithRange:range];
             }
+            [propagate release];
             return result;
         }
     }
+    [propagate release];
     
     
     /*GraphNode *prevNode = nil;
