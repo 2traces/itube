@@ -644,6 +644,7 @@ NSCharacterSet *pCharacterSet = nil;
     if([graphNodes count] == 0) return YES;
     SchPoint *lastP = [schPoints lastObject];
     GraphNode *node = [graphNodes objectAtIndex:0];
+    BOOL nextWait = [node.edgesIn count] > 2 || [node.edgesOut count] > 2;
     SortedArray *propagate = [[SortedArray alloc] init];
     if(lastP.line != node.line) {
         // transfer
@@ -661,7 +662,7 @@ NSCharacterSet *pCharacterSet = nil;
             NSRange range;
             range.location = 1;
             range.length = [graphNodes count]-1;
-            if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints wait:YES]) {
+            if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints wait:nextWait]) {
                 [propagate release];
                 return YES;
             } else {
@@ -679,7 +680,7 @@ NSCharacterSet *pCharacterSet = nil;
                     NSRange range;
                     range.location = i+1;
                     range.length = [graphNodes count]-range.location;
-                    if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints wait:YES]) {
+                    if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints wait:nextWait]) {
                         [propagate release];
                         return YES;
                     } else {
