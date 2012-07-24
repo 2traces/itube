@@ -673,21 +673,20 @@ NSCharacterSet *pCharacterSet = nil;
         // line
         SchPoint *nextP = lastP.next;
         if(nextP != nil) {
+            [nextP setWeightFrom:lastP];
+            [schPoints addObject:nextP];
             for(int i=0; i<[graphNodes count]; i++) {
                 if([nextP.name isEqualToString:[[graphNodes objectAtIndex:i] name]]) {
-                    [nextP setWeightFrom:lastP];
-                    [schPoints addObject:nextP];
                     NSRange range;
                     range.location = i+1;
                     range.length = [graphNodes count]-range.location;
                     if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints wait:nextWait]) {
                         [propagate release];
                         return YES;
-                    } else {
-                        [schPoints removeLastObject];
                     }
                 }
             }
+            [schPoints removeLastObject];
         }
         if(wait) {
             // check transfer within the same line
