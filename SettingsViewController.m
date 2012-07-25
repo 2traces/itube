@@ -45,7 +45,7 @@
         self.servers = [[[NSMutableArray alloc] init] autorelease];
         tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
         self.languages=appdelegate.cityMap.languages;
-        self.feedback = [NSArray arrayWithObjects:NSLocalizedString(@"FeedbackRate",@"FeedbackRate"),NSLocalizedString(@"FeedbackMail",@"FeedbackMail"), nil];
+        self.feedback = [NSArray arrayWithObjects:NSLocalizedString(@"FeedbackRate",@"FeedbackRate"),NSLocalizedString(@"FeedbackMail",@"FeedbackMail"),NSLocalizedString(@"FeedbackTell",@"FeedbackTell"), nil];
     }
     return self;
 }
@@ -193,9 +193,8 @@
 {
     CGFloat langTableHeight = [languages count]*45.0f+2.0;
     CGFloat cityTableHeight = [maps count]*45.0f+2.0;
-    CGFloat feedbackTableHeight = 2.0*45.0f+2.0; 
+    CGFloat feedbackTableHeight = [feedback count]*45.0f+2.0; 
     
-    textLabel2.frame=CGRectMake(20, 95, 280, 21);
     langTableView.frame=CGRectMake(langTableView.frame.origin.x, langTableView.frame.origin.y, langTableView.frame.size.width, langTableHeight);
     textLabel3.frame=CGRectMake(textLabel3.frame.origin.x, langTableView.frame.origin.y+langTableHeight+17, textLabel3.frame.size.width, textLabel3.frame.size.height);
     cityTableView.frame=CGRectMake(cityTableView.frame.origin.x, textLabel3.frame.origin.y+textLabel3.frame.size.height+10, cityTableView.frame.size.width,  cityTableHeight);
@@ -260,7 +259,7 @@
     } else if (tableView==langTableView) {
         return [languages count];
     } else {
-        return 2;
+        return [feedback count];
     }
 }
 
@@ -353,9 +352,8 @@
         
         if (crow == 0 && crow == sectionRows - 1)
         {
-            // у нас таких быть не должно вообще но 
-            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+            rowBackground = [UIImage imageNamed:@"first_and_last_cell_bg.png"];
+            selectionBackground = [UIImage imageNamed:@"high_first_and_last_cell_bg.png"];
         }
         else if (crow == 0)
         {
@@ -415,9 +413,8 @@
         
         if (crow == 0 && crow == sectionRows - 1)
         {
-            // у нас таких быть не должно вообще но 
-            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+            rowBackground = [UIImage imageNamed:@"first_and_last_cell_bg.png"];
+            selectionBackground = [UIImage imageNamed:@"high_first_and_last_cell_bg.png"];
         }
         else if (crow == 0)
         {
@@ -454,16 +451,10 @@
         [[(CityCell*)cell cityName] setText:[feedback objectAtIndex:indexPath.row]];
         [[(CityCell*)cell cityName] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
         [[(CityCell*)cell cityName] setHighlightedTextColor:[UIColor whiteColor]];
+        [[(CityCell*)cell cityName] setFrame:CGRectMake(20, 16, 200, 21)];
+        
         
         cell.backgroundColor = [UIColor clearColor];
-        
-//        if ([[MHelper sharedHelper] languageIndex]==indexPath.row) {
-//            cell.accessoryType=UITableViewCellAccessoryNone;
-//            [[(CityCell*)cell checkView] setImage:[UIImage imageNamed:@"checkmark.png"]];
-//        } else {
-//            cell.accessoryType=UITableViewCellAccessoryNone;
-//            [[(CityCell*)cell checkView] setImage:nil];
-//        }
         
         cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
         [[(CityCell*)cell checkView] setImage:nil];
@@ -542,16 +533,25 @@
             [controller release];
         }    
     } else if (tableView==langTableView){
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [[MHelper sharedHelper] saveLanguageIndex:indexPath.row];
         [[NSNotificationCenter defaultCenter] postNotificationName:kLangChanged object:nil];
-        [tableView reloadData];
+        if ([[tableView cellForRowAtIndexPath:indexPath] accessoryType]==UITableViewCellAccessoryCheckmark) {
+            [tableView cellForRowAtIndexPath:indexPath].accessoryType=UITableViewCellAccessoryNone;
+        } else {
+            [tableView cellForRowAtIndexPath:indexPath].accessoryType=UITableViewCellAccessoryCheckmark;
+        }
+       // [tableView reloadData];
     } else {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         if (indexPath.row==0) {
             NSURL *url = [NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=513581498"];             
             [[UIApplication sharedApplication] openURL:url];
+        } else if (indexPath.row==1) {
+            tubeAppDelegate *appDelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+            [self showMailComposer:[NSArray arrayWithObject:[NSString stringWithFormat:@"fusio@yandex.ru"]] subject:[NSString stringWithFormat:@"%@ map",[appDelegate getDefaultCityName]] body:nil];
         } else {
-            [self showMailComposer:nil];
+            [self showMailComposer:nil subject:NSLocalizedString(@"FeedbackTellSubject", @"FeedbackTellSubject") body:NSLocalizedString(@"FeedbackTellBody", @"FeedbackTellBody")];
         }
     }
 }
@@ -1099,7 +1099,7 @@
 #pragma mark - Mail methods
 
 // Displays an email composition interface inside the app // and populates all the Mail fields.
--(IBAction)showMailComposer:(id)sender
+-(void)showMailComposer:(NSArray*)recipient subject:(NSString*)subject body:(NSString*)body
 {
     Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
     if (mailClass != nil) {
@@ -1107,9 +1107,9 @@
         if ([mailClass canSendMail]) {
             MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
             picker.mailComposeDelegate = self;
-            tubeAppDelegate *appDelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
-            [picker setSubject:[NSString stringWithFormat:@"%@ map",[appDelegate getDefaultCityName]]];
-            [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"fusio@yandex.ru"]]];
+            [picker setSubject:subject];
+            [picker setToRecipients:recipient];
+            [picker setMessageBody:body isHTML:NO];
             [self presentModalViewController:picker animated:YES]; [picker release];
         } else {
             // Device is not configured for sending emails, so notify user.
