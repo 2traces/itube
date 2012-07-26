@@ -97,7 +97,7 @@
     for (int i=0; i<[self.stationList count]-1; i++){
 
         NSString *stationName;
-        if ([[MHelper sharedHelper] languageIndex]) {
+        if ([[MHelper sharedHelper] languageIndex]%2) {
             stationName = [[self.stationList objectAtIndex:i] altname];
         } else {
             stationName = [[self.stationList objectAtIndex:i] name];
@@ -223,7 +223,7 @@
     if (tableView == self.mySearchDC.searchResultsTableView)
     {
         NSString *cellValue;
-        if ([[MHelper sharedHelper] languageIndex]) {
+        if ([[MHelper sharedHelper] languageIndex]%2) {
             cellValue = [[self.filteredStation objectAtIndex:indexPath.row] altname];
         } else {
             cellValue = [[self.filteredStation objectAtIndex:indexPath.row] name];
@@ -256,7 +256,8 @@
         
         if ([stations count]>0) {
             NSString *cellValue;
-            if ([[MHelper sharedHelper] languageIndex]) {
+            
+            if ([[MHelper sharedHelper] languageIndex]%2) {
                 cellValue = [[stations objectAtIndex:indexPath.row] altname];
             } else {
                 cellValue = [[stations objectAtIndex:indexPath.row] name];
@@ -320,7 +321,7 @@
         
         NSPredicate *predicate;
         
-        if ([[MHelper sharedHelper] languageIndex]) {
+        if ([[MHelper sharedHelper] languageIndex]%2) {
             predicate = [NSPredicate predicateWithFormat:@"altname beginswith[c] %@", alphabet];
         } else {
             predicate = [NSPredicate predicateWithFormat:@"name beginswith[c] %@", alphabet];

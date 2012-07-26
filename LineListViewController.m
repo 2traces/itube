@@ -184,7 +184,7 @@
     }
     
     NSString *cellValue;
-    if ([[MHelper sharedHelper] languageIndex]) {
+    if ([[MHelper sharedHelper] languageIndex]%2) {
         cellValue = [[self.stationsList objectAtIndex:indexPath.row] altname];
     } else {
         cellValue = [[self.stationsList objectAtIndex:indexPath.row] name];

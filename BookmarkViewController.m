@@ -133,7 +133,7 @@
     MStation *station = [self.stationList objectAtIndex:indexPath.row];
 
     NSString *cellValue;
-    if ([[MHelper sharedHelper] languageIndex]) {
+    if ([[MHelper sharedHelper] languageIndex]%2) {
         cellValue = [station altname];
     } else {
         cellValue = [station name];

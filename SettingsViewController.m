@@ -45,6 +45,14 @@
         self.servers = [[[NSMutableArray alloc] init] autorelease];
         tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
         self.languages=appdelegate.cityMap.languages;
+        
+        int currentLanguageIndex = [[MHelper sharedHelper] languageIndex];
+        if (currentLanguageIndex == 2 && [self.languages count] == 2) {
+            selectedLanguages = [[NSMutableArray alloc] initWithObjects:[languages objectAtIndex:0],[languages objectAtIndex:1], nil];
+        } else {
+            selectedLanguages = [[NSMutableArray alloc] initWithObjects:[languages objectAtIndex:currentLanguageIndex], nil];
+        }
+
         self.feedback = [NSArray arrayWithObjects:NSLocalizedString(@"FeedbackRate",@"FeedbackRate"),NSLocalizedString(@"FeedbackMail",@"FeedbackMail"),NSLocalizedString(@"FeedbackTell",@"FeedbackTell"), nil];
     }
     return self;
@@ -167,7 +175,7 @@
 	[barButtonItem_back release];
     
     [TubeAppIAPHelper sharedHelper];
-    
+        
     [self adjustViewHeight];
 }
 
@@ -238,6 +246,7 @@
     
     [scrollView release];
     
+    [selectedLanguages release];
     [maps release];
     [selectedPath release];
     delegate = nil;
@@ -375,6 +384,8 @@
         cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:selectionBackground] autorelease];
         
         return cell;
+
+        // ---------------- language ----------------------
         
     } else if (tableView==langTableView) {
         static NSString *cellIdentifier = @"CityCell";
@@ -392,9 +403,9 @@
         [[(CityCell*)cell cityName] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
         [[(CityCell*)cell cityName] setHighlightedTextColor:[UIColor whiteColor]];
         
-        cell.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = [UIColor clearColor];        
         
-        if ([[MHelper sharedHelper] languageIndex]==indexPath.row) {
+        if ([selectedLanguages containsObject:[self.languages objectAtIndex:indexPath.row]]) {
             cell.accessoryType=UITableViewCellAccessoryNone;
             [[(CityCell*)cell checkView] setImage:[UIImage imageNamed:@"checkmark.png"]];
         } else {
@@ -451,8 +462,7 @@
         [[(CityCell*)cell cityName] setText:[feedback objectAtIndex:indexPath.row]];
         [[(CityCell*)cell cityName] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
         [[(CityCell*)cell cityName] setHighlightedTextColor:[UIColor whiteColor]];
-        [[(CityCell*)cell cityName] setFrame:CGRectMake(20, 16, 200, 21)];
-        
+        [[(CityCell*)cell cityName] setFrame:CGRectMake(20, 16, 240, 21)];
         
         cell.backgroundColor = [UIColor clearColor];
         
@@ -533,15 +543,34 @@
             [controller release];
         }    
     } else if (tableView==langTableView){
+ 
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [[MHelper sharedHelper] saveLanguageIndex:indexPath.row];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kLangChanged object:nil];
-        if ([[tableView cellForRowAtIndexPath:indexPath] accessoryType]==UITableViewCellAccessoryCheckmark) {
-            [tableView cellForRowAtIndexPath:indexPath].accessoryType=UITableViewCellAccessoryNone;
-        } else {
-            [tableView cellForRowAtIndexPath:indexPath].accessoryType=UITableViewCellAccessoryCheckmark;
+        
+        if ([self.languages count]>1) {
+            
+            NSMutableArray *reloadA = [NSMutableArray array];
+            
+            if ([selectedLanguages containsObject:[self.languages objectAtIndex:indexPath.row]]) {
+                [selectedLanguages removeObject:[self.languages objectAtIndex:indexPath.row]];
+            } else {
+                [selectedLanguages addObject:[self.languages objectAtIndex:indexPath.row]];
+            }
+            
+            [reloadA addObject:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
+            
+            if ([selectedLanguages count] == 0) {
+                if (indexPath.row == 0) {
+                    [selectedLanguages addObject:[self.languages objectAtIndex:1]];
+                    [reloadA addObject:[NSIndexPath indexPathForRow:1 inSection:0]];
+                } else {
+                    [selectedLanguages addObject:[self.languages objectAtIndex:0]];
+                    [reloadA addObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+                }
+            }
+            
+            [tableView reloadRowsAtIndexPaths:reloadA withRowAnimation:UITableViewRowAnimationAutomatic];
         }
-       // [tableView reloadData];
+        
     } else {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         if (indexPath.row==0) {
@@ -1004,7 +1033,7 @@
     for (SKProduct *product in products) {
         if ([product.productIdentifier isEqual:prodID]) {
             
-            NSLog(@"Buying %@...", product.productIdentifier);
+            //NSLog(@"Buying %@...", product.productIdentifier);
             [[TubeAppIAPHelper sharedHelper] buyProductIdentifier:product.productIdentifier];
             
             self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -1021,7 +1050,7 @@
     [MBProgressHUD hideHUDForView:self.view animated:YES];    
     
     NSString *productIdentifier = (NSString *) notification.object;
-    NSLog(@"Purchased: %@", productIdentifier);
+    //NSLog(@"Purchased: %@", productIdentifier);
     
     [self markProductAsPurchased:productIdentifier];
     
@@ -1091,6 +1120,17 @@
     }
     
     [servers removeAllObjects];
+    
+    if ([languages count] > 1) {
+        
+        if ([selectedLanguages count]>1) {
+            [[MHelper sharedHelper] saveLanguageIndex:2];
+        } else {
+            [[MHelper sharedHelper] saveLanguageIndex:[languages indexOfObject:[selectedLanguages lastObject]]];
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLangChanged object:nil];
+    }
     
     [delegate donePressed];
 }

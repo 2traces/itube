@@ -217,7 +217,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Map's language:</string>
+								<string key="IBUIText">Language of the map:</string>
 								<reference key="IBUITextColor" ref="25768441"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
@@ -252,7 +252,6 @@
 								<int key="NSvFlags">274</int>
 								<string key="NSFrame">{{8, 344}, {304, 62}}</string>
 								<reference key="NSSuperview" ref="341616846"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="295572923"/>
 								<bool key="IBUIClipsSubviews">YES</bool>

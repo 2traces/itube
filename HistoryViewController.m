@@ -130,7 +130,7 @@
  
     MHistory *history = [self.historyList objectAtIndex:indexPath.row];
     
-    if ([[MHelper sharedHelper] languageIndex]) {
+    if ([[MHelper sharedHelper] languageIndex]%2) {
         cell.fromStation.text = [history.fromStation altname];
         cell.toStation.text = [history.toStation altname];
     } else {

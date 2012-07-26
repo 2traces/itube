@@ -236,7 +236,7 @@ static MHelper * _sharedHelper;
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor;
-    if (languageIndex) {
+    if (languageIndex%2) {
         sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"altname" ascending:YES] autorelease];
     } else {
         sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];        
@@ -334,7 +334,7 @@ static MHelper * _sharedHelper;
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor;
-    if (languageIndex) {
+    if (languageIndex%2) {
         sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"altname" ascending:YES] autorelease];
     } else {
         sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];        
@@ -365,7 +365,7 @@ static MHelper * _sharedHelper;
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor;
-    if (languageIndex) {
+    if (languageIndex%2) {
         sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"altname" ascending:YES] autorelease];
     } else {
         sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];        
