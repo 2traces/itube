@@ -43,10 +43,6 @@
     self.dataSource = helper;
     
     self.stationList = [dataSource getStationList];
-//    if ([[MHelper sharedHelper] languageIndex]) {
-//        [self resortStationListForAlternate];
-//    }
-    
     [self createStationIndex];
     
     [self.mytableView setBackgroundColor:[UIColor clearColor]];
@@ -74,13 +70,6 @@
     [searchDC release];
     
     self.colorDictionary = [[[NSMutableDictionary alloc] init] autorelease];
-}
-
--(void)resortStationListForAlternate
-{
-    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"altname" ascending:YES] autorelease];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
-    self.stationList = [self.stationList sortedArrayUsingDescriptors:sortDescriptors];
 }
 
 -(void)createStationIndex
