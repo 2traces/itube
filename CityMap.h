@@ -221,6 +221,7 @@ typedef enum {NAME_NORMAL=0, NAME_ALTERNATIVE=1, NAME_BOTH=2} DrawNameType;
     CGRect boundingBox;
     BOOL twoStepsDraw;
     CityMap *map;
+    BOOL hasAltNames;
 }
 @property (nonatomic, retain) UIColor* color;
 @property (nonatomic, readonly) NSString* name;
@@ -230,6 +231,7 @@ typedef enum {NAME_NORMAL=0, NAME_ALTERNATIVE=1, NAME_BOTH=2} DrawNameType;
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic, readonly) CGLayerRef stationLayer;
 @property (nonatomic, readonly) CGLayerRef disabledStationLayer;
+@property (nonatomic, readonly) BOOL hasAltNames;
 
 -(id)initWithMap:(CityMap*)cityMap andName:(NSString*)n;
 -(id)initWithMap:(CityMap*)cityMap name:(NSString*)n stations:(NSString*)stations driving:(NSString*)driving coordinates:(NSString*)coordinates rects:(NSString*)rects;
@@ -264,6 +266,7 @@ typedef enum {NAME_NORMAL=0, NAME_ALTERNATIVE=1, NAME_BOTH=2} DrawNameType;
     Schedule *schedule;
     CGFloat gpsCircleScale;
     UIColor *backgroundColor;
+    BOOL hasAltNames;
 @public
     CGFloat PredrawScale;
     CGFloat LineWidth;

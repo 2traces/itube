@@ -1380,6 +1380,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize shortName;
 @synthesize stationLayer;
 @synthesize disabledStationLayer;
+@synthesize hasAltNames;
 
 -(UIColor*) color {
     return _color;
@@ -1469,6 +1470,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             NSString* drv = nil;
             if(i < [drs count]) drv = [drs objectAtIndex:i];
             Station *st = [[[Station alloc] initWithMap:map name:[sts objectAtIndex:i] pos:CGPointMake(x, y) index:i rect:CGRectMake(tx, ty, tw, th) andDriving:drv] autorelease];
+            if(st.altText != nil) hasAltNames = YES;
             st.line = self;
             Station *last = [stations lastObject];
             if([st.relation count] < [st.relationDriving count]) {
@@ -1819,7 +1821,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(StationKind) transferKind { return TrKind; }
 -(void) setTransferKind:(StationKind)transferKind { TrKind = transferKind; }
 -(DrawNameType) drawName { return DrawName; }
--(void) setDrawName:(DrawNameType)drawName { DrawName = drawName; }
+-(void) setDrawName:(DrawNameType)drawName { 
+    if(hasAltNames) DrawName = drawName; 
+    else DrawName = NAME_NORMAL;
+}
 
 -(id) init {
     self = [super init];
@@ -2036,6 +2041,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         // [self processLinesStations:stations	:i];
         
         Line *l = [[[Line alloc] initWithMap:self name:lineName stations:stations driving:coordsTime coordinates:coords rects:coordsText] autorelease];
+        if(l.hasAltNames) 
+            hasAltNames = YES;
         l.index = index;
         l.color = [self colorForHex:colors];
         [mapLines addObject:l];
@@ -2216,6 +2223,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     int tw = [[coord_text objectAtIndex:2] intValue];
                     int th = [[coord_text objectAtIndex:3] intValue];
                     st = [[[Station alloc] initWithMap:self name:stationName pos:CGPointMake(x, y) index:si rect:CGRectMake(tx, ty, tw, th) andDriving:0] autorelease];
+                    if(st.altText) hasAltNames = YES;
                     st.line = l;
                     st.gpsCoords = CGPointMake([[gpsCoords objectAtIndex:0] floatValue], [[gpsCoords objectAtIndex:1] floatValue]);
                     [l.stations addObject:st];
