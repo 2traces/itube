@@ -64,8 +64,11 @@
 
 -(void) setDrawName:(DrawNameType)drawName
 {
-    cityMap.drawName = drawName;
-    [self setNeedsDisplay];
+    if(drawName != cityMap.drawName) {
+        cityMap.drawName = drawName;
+        if(cityMap.drawName == drawName)
+            [self setNeedsDisplay];
+    }
 }
 
 #pragma mark gps stuff 

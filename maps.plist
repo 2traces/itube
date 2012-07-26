@@ -94,7 +94,7 @@
 		<key>zip_download</key>
 		<string>/maps/peterburg/peterburg1.zip</string>
 	</dict>
-	<key>default</key>
+	<key>com.zuev.itube.paris.singapor</key>
 	<dict>
 		<key>ver</key>
 		<string>1</string>
@@ -108,6 +108,21 @@
 		<string>singapor.png</string>
 		<key>zip_download</key>
 		<string>/maps/singapor/singapor1.zip</string>
+	</dict>
+	<key>default</key>
+	<dict>
+		<key>ver</key>
+		<string>1</string>
+		<key>name</key>
+		<string>Shanghai</string>
+		<key>filename</key>
+		<string>shanghai</string>
+		<key>description</key>
+		<string>shanghai.txt</string>
+		<key>picture</key>
+		<string>shanghai.png</string>
+		<key>zip_download</key>
+		<string>/maps/shanghai/shanghai1.zip</string>
 	</dict>
 </dict>
 </plist>
