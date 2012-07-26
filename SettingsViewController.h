@@ -42,6 +42,7 @@
     int requested_file_type;
     
     NSMutableArray *servers;
+    NSMutableArray *selectedLanguages;
     
     NSTimer *timer;
     

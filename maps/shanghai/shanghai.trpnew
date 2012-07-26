@@ -1,0 +1,467 @@
+[Options]
+Languages=en&zh-sg
+
+[Line1]
+Name=L1
+99	Xinzhuang&莘庄 31.111299,121.385179	,	M	M
+100	Waihuan Rd&外环路 31.120631,121.392474	,	ME	SM
+101	Lianhua Rd&莲花路 & 31.131065,121.402774	,	M	M
+102	Jinjiang Park&锦江乐园 & 31.142452,121.413159	,	M	M
+103	South Railway St&上海南站& 31.154572,121.430326	,	ME	SM
+104	Caobao Rd&漕宝路& 31.16816,121.435046	,	SME	EMS
+105	/<Shanghai Indoor Stadium&上海体育馆& 31.182627,121.436763	,	M	M
+106	/>Xujiahui&徐家汇& 31.195329,121.436677	,	SME	EMS
+107	/>Hengshan Rd&衡山路& 31.204873,121.446633  
+108	Changshu Rd&常熟路& 31.213389,121.451097	,	SM	EM
+109	South Shaanxi Rd&陕西南路& 31.215297,121.458392  
+110	South Huangpi Rd&黄陂南路& 31.222637,121.473498  
+111	People s Sq&人民广场& 31.233133,121.475043	,	SM	EM
+112	Xinzha Rd&新闸路& 31.23827,121.468005  
+113	Hanzhong Rd&汉中路& 31.241646,121.45865  
+114	/<Shanghai Railway St&上海火车站& 31.248911,121.45865	,	SME	EMS
+115	\>North Zhongshan Rd&中山北路& 31.258963,121.459336  
+116	\>Yanchang Rd&延长路& 31.271508,121.455302  
+117	\>Circus World&上海马戏城& 31.280311,121.451354  
+118	Wenshui Rd&汶水路& 31.293001,121.450067  
+119	Pengpu Xincun&彭浦新村& 31.307595,121.448436  
+120	Gongkang Rd&共康路& 31.318668,121.447062  
+121	Tonghe Xincun&通河新村& 31.331279,121.441226  
+122	Hulan Rd&呼兰路& 31.340003,121.437707  
+123	Gongfu Xincun&共富新村& 31.355616,121.434188  
+124	Baoan Highway&宝安公路& 31.370054,121.430326	,	M	M
+125	West Youyi Rd&友谊西路& 31.381412,121.427665	,	E	S
+126	Fujin Rd&富锦路& 31.39233,121.424489	,	S	E
+
+Branch10 =  <>99...126
+Driving10 = 2,2,3,3,3,2,3,2,2,2,2,3,2,2,1,2,3,2,3,3,2,3,2,3,3,2,2
+
+[Line2]
+Name=L2
+127	/<Xujing East&徐泾东 31.187693,121.298232	,	SM	EM
+128	/<Hongqiao Railway Station&虹桥火车站 31.192466,121.321235	,	ME	SM	
+129	/<Hongqiao Airport T2&虹桥2号航站楼 31.193053,121.331792	,	SME	EMS 
+130	/<Songhong Rd&淞虹路 31.218454,121.358914	,	SME	EMS
+131	/<Beixinjing&北新泾 31.217573,121.373591  
+132	/<Weining Rd&威宁路 31.21493,121.386209	,	M	M
+133	/<Loushanguan Rd&娄山关路 31.210966,121.403804  
+134	Zhongshan Park&中山公园 31.21816,121.41582	SME	EMS
+135	Jiangsu Rd&江苏路 31.219481,121.431098  
+136	Jing an Temple&静安寺 31.223151,121.446462	,	SME	EMS
+137	West Nanjing Rd&南京西路 31.230271,121.458821  
+138	People s Square&人民广场 31.232619,121.475215	,	SME	EMS
+139	East Nanjing Rd&南京东路 31.238564,121.48603	,	SME	EMS
+140	Lujiazui&陆家嘴 31.238931,121.501737	ME	SM
+141	Dongchang Rd&东昌路 31.233133,121.514869	,	SME	EMS	
+142	/<Century Av&世纪大道 31.229023,121.526799 ,	SME	EMS	
+143	Science  Technology Museum&上海科技馆 31.219261,121.543107	,	SM	EM
+144	Century Park&世纪公园 31.209792,121.550746	,	SM	EM	
+145	Longyang Rd&龙阳路 31.202597,121.557698	,	SME	EMS
+146	/<Zhangjiang High Technology Park&张江高科 31.20179,121.587481	,	SM	EM
+147	/<Jinke Rd&金科路 31.204139,121.601901	,	SM	EM
+148	/<Guanglan Rd&广兰路 31.210599,121.61984	,	M	M
+149	/<Tangzhen&唐镇 31.213168,121.655288	,	SM	EM	
+150	/<Middle Chuangxin Rd&创新中路 31.214783,121.665072  
+151	/<East Huaxia Rd&华夏东路 31.196504,121.676316	,	S	E
+152	Chuansha&川沙 31.186592,121.69786	,	ME	SM
+153	Lingkong Rd&凌空路 31.192539,121.722922  
+154	Yuandong Av&远东大道 31.199734,121.754422	,	M	M
+155	Haitian 3rd Rd&海天三路 31.168968,121.798196	,	M	M
+156	Pudong Airport&浦东国际机场 31.150899,121.805148  
+
+Branch20 =  <>127...156
+Driving20 = 3,2,3,2,2,3,3,2,2,3,3,3,2,2,3,2,2,3,2,2,4,2,3,3,3,3,5,7,3
+
+[Line3]
+Name=L3
+157	South Railway Station&上海南站 31.154572,121.43024	,	SM	EM
+158	Shilong Rd&石龙路 31.156923,121.441398 ,	M	M
+159	\>Longcao Rd&龙漕路 31.170069,121.444659 ,	ME	SM
+160	Caoxi Rd&漕溪路 31.176605,121.438479	,	S	E
+161	/<Yishan Rd&宜山路 31.185931,121.427321	,	E	S
+162	Hongqiao Rd&虹桥路 31.196944,121.420712	,	M	M
+163	West Yan an Rd&延安西路 31.210232,121.416936  
+164	Zhongshan Park&中山公园 31.218233,121.41582	,	M	M
+165	/<Jinshajiang Rd&金沙江路 31.231812,121.412129  
+166	\>Caoyang Rd&曹杨路 31.239885,121.418138  
+167	/<Zhenping Rd&镇坪路 31.246929,121.42921	,	SME	EMS
+168	/<Zhongtan Rd&中潭路 31.254561,121.441569  
+169	/<Shanghai Railway St&上海火车站 31.249057,121.458564	,	M	M
+170	Baoshan Rd&宝山路 31.251405,121.476159  
+171	\>Dongbaoxing Rd&东宝兴路 31.26021,121.480107	,	M	M
+172	\>Hongkou Football Stadium&虹口足球场 31.270995,121.479506	,	M	M
+173	\>Chifeng Rd&赤峰路 31.281852,121.482511 ,	M	M
+174	Dabaishu&大柏树 31.29014,121.482339	,	ME	SM
+175	Jiangwan Town&江湾镇 31.305102,121.484742	,	M	M
+176	West Yingao Rd&殷高西路 31.319841,121.485171	,	M	M
+177	South Changjiang Rd&长江南路 31.331939,121.491351	,	M	M
+178	Songfa Rd&淞发路 31.345867,121.500707  
+179	Zhanghuabang&张华浜 31.363165,121.496587  
+180	Songbin Rd&淞滨路 31.371446,121.492896	,	M	M
+181	Shuichan Rd&水产路 31.381266,121.48809	,	ME	SM
+182	Baoyang Rd&宝杨路 31.395187,121.479421  
+183	Youyi Rd&友谊路 31.403979,121.475987  
+184	Tieli Rd&铁力路 31.40874,121.461396  
+185	North Jiangyang Rd&江杨北路 31.407202,121.439252	,	M	M
+
+Branch30 =  <>157...185
+Driving30 = 2,3,2,2,2,3,2,2,2,3,2,3,3,2,3,2,2,3,2,3,2,3,4,2,3,2,2,2
+ 
+[Line4]
+Name=L4
+186	/<Yishan Rd&宜山路 31.186004,121.427321	,	S	E
+187	/<Shanghai Indoor Stadium&上海体育馆 31.182259,121.437106	,	SME	EMS
+188	Shanghai Stadium&上海体育场 31.185417,121.443372  
+189	Dong an Rd&东安路 31.190777,121.454959	,	SME	EMS
+190	/<Damuqiao Rd&大木桥路 31.194228,121.46277  
+191	/<Luban Rd&鲁班路 31.199147,121.473584  
+192	/<South Xizang Rd&西藏南路 31.201863,121.489291	,	M	M
+193	Nanpu Bridge&南浦大桥 31.208397,121.499162  
+194	Tangqiao&塘桥 31.210893,121.518645  
+195	\>Lancun Rd&蓝村路 31.211921,121.528172	,	M	M
+196	\>Pudian Rd&浦电路 31.222931,121.531434  
+197	/<Century Av&世纪大道 31.229243,121.526456	,	SME	EMS
+198	/<Pudong Av&浦东大道 31.240398,121.519933  
+199	/<Yangshupu Rd&杨树浦路 31.252433,121.517272  
+200	/<Dalian Rd&大连路 31.258156,121.512809  
+201	/<Linping Rd&临平路 31.260871,121.500878  
+202	Hailun Rd&海伦路 31.259403,121.488347  
+203	Baoshan Rd&宝山路 31.251405,121.476159  
+204	/<Shanghai Railway St&上海火车站 31.249057,121.458564	,	ME	SM
+205	/<Zhongtan Rd&中潭路 31.254561,121.441569  
+206	/<Zhenping Rd&镇坪路 31.246929,121.42921	,	M	M
+207	\>Caoyang Rd&曹杨路 31.239885,121.418138	,	E	S
+208	/<Jinshajiang Rd&金沙江路 31.231812,121.412129  
+209	Zhongshan Park&中山公园 31.218233,121.41582	,	M	M
+210	West Yan an Rd&延安西路 31.210012,121.416936  
+211	Hongqiao Rd&虹桥路 31.197091,121.420627	,	S	E
+ 
+Branch40 =  <>186...211
+Driving40 = 2,2,2,1,2,3,2,3,2,2,2,3,2,2,2,2,3,3,3,2,3,1,3,2,2,2
+
+
+[Line5]
+Name=L5
+212	Xinzhuang&莘庄& 31.11152,121.385179  
+213	Chunshen Rd&春申路& 31.098144,121.385436	,	M	M
+214	Yindu Rd&&银都路 31.089766,121.390328	,	M	M
+215	Zhuanqiao&&颛桥 31.06661,121.40183	,	M	M	
+216	Beiqiao&&北桥 31.04536,121.409383	,	M	M
+217	Jianchuan Rd&剑川路 31.026239,121.416678	,	M	M
+218	Dongchuan Rd&东川路 31.017854,121.419683 ,	ME	SM
+219	/<Jinping Rd&金平路 31.01116,121.410327 ,	M	M
+220	/<Huaning Rd&华宁路 31.007261,121.395049 ,	M	M
+221	/<Wenjing Rd&文井路 31.003435,121.380372 ,	M	M
+222	/<Minhang Development Zone&闵行开发区 31.000492,121.369815 ,	M	M
+
+Branch50 =  <>212...222
+Driving50 = 2,2,2,5,3,2,3,2,2,2
+
+[Line6]
+Name=L6
+223	/<Gangcheng Rd&港城路 31.353564,121.574521	,	E	S
+224	/<N Waigaoqiao Free Trade Zone&外高桥保税区北 31.348286,121.58628	,	M	M
+225	/<Hangjin Rd&航津路 31.321381,121.601729	,	M	M
+226	/<S Waigaoqiao Free Trade Zone&外高桥保税区南 31.321381,121.601729	,	M	M
+227	Zhouhai Rd&洲海路 31.312215,121.589456	,	M	M
+228	Wuzhou Av&五洲大道 31.256982,121.581388	,	M	M
+229	Dongjing Rd&东靖路 31.256982,121.581388	,	M	M
+230	Jufeng Rd&巨峰路 31.256982,121.581388	,	E	S
+231	Wulian Rd&五莲路 31.256982,121.581388	,	E	S
+232	Boxing Rd&博兴路 31.256982,121.581388	,	M	M
+233	Jinqiao Rd&金桥路 31.256982,121.581388	,	M	M
+234	Yunshan Rd&云山路 31.250818,121.573749	,	M	M
+235	/<Deping Rd&德平路 31.240031,121.552205	,	SM	EM
+236	/<Beiyangjing Rd&北洋泾路 31.240031,121.552205	,	SM	EM
+237	/<Minsheng Rd&民生路 31.235628,121.542935	,	SM	EM
+238	/<Yuanshen Stadium&源深体育中心 31.232913,121.534266  
+239	/<Century Av&世纪大道 31.229023,121.526799  
+240	\>Pudian Rd&浦电路 31.223867,121.527196	,	SM	EM
+241	\>Lancun Rd&蓝村路 31.211774,121.528344	,	M	M	
+242	Shanghai Children s Medical Center&上海儿童医学中心 31.204286,121.523795	,	M	M
+243	Linyi Xincun&临沂新村 31.1932,121.516843	,	M	M
+244	\>West Gaoke Rd&高科西路 31.185857,121.509805	,	M	M
+245	\>Dongming Rd&东明路 31.17275,121.510695	,	SM	EM
+246	\>Gaoqing Rd&高青路 31.159603,121.515952	,	ME	SM
+247	\>West Huaxia Rd&华夏西路 31.149834,121.514257	,	M	M
+248	Shangnan Rd&上南路 31.148751,121.506511  
+249	South Lingyan Rd&灵岩南路 31.148861,121.494881	,	M	M
+250	Oriental Sports Center&东方体育中心 31.153617,121.480354  
+
+Branch60 =  <>223...250
+Driving60 = 2,3,3,3,2,2,2,2,3,2,2,3,2,2,3,2,3,2,3,2,3,2,3,2,2,2,2
+
+[Line7]
+Name=L7
+251	Huamu Rd&花木路 31.211407,121.562762	,	SM	EM
+252	Longyang Rd&龙阳路 31.202744,121.55787	,	SME	EMS
+253	Fanghua Rd&芳华路 31.192686,121.549802  
+254	Jinxiu Rd&锦绣路 31.18762,121.540103  
+255	\>South Yanggao Rd&杨高南路 31.187693,121.524997	,	SME	EMS
+256	\>West Gaoke Rd&高科西路 31.185711,121.509719	,	M	M
+257	\>Yuntai Rd&云台路 31.181892,121.500278  
+258	\>Yaohua Rd&耀华路 31.178514,121.494441	,	M	M
+259	\>Changqing Rd&长清路 31.174843,121.486373	,	SM	EM
+260	\>Houtan&后滩 31.174255,121.468949  
+261	\>Chuanchang Rd&船厂路 31.184756,121.458564	,	E	S	
+262	Dong an Rd&东安路 31.190924,121.454616  
+263	Zhaojiabang Rd&肇嘉浜路 31.199514,121.45041  
+264	Changshu Rd&常熟路 31.213242,121.451182  
+265	Jing an Temple&静安寺 31.223078,121.446462	,	SME	EMS
+266	Changping Rd&昌平路 31.234234,121.44217	,	M	M
+267	Changshou Rd&长寿路 31.240398,121.437964	,	SME	EMS
+268	/<Zhenping Rd&镇坪路 31.247003,121.429467	,	SME	EMS
+269	\>Langao Rd&岚皋路 31.255588,121.421485	,	SME	EMS
+270	\>Xincun Rd&新村路 31.264319,121.422772  
+271	\>Dahua 3rd Rd&大华三路 31.273563,121.422944  
+272	\>Xingzhi Rd&行知路 31.284639,121.422	,	SME	EMS
+273	\>Dachang Town&大场镇 31.292561,121.416764  
+274	Changzhong Rd&场中路 31.304075,121.413846  
+275	Shangda Rd&上大路 31.314488,121.408868	,	SME	EMS
+276	Nanchen Rd&南陈路 31.321234,121.396852  
+277	Shanghai University&上海大学 31.320574,121.388955  
+278	Gucun Park&顾村公园 31.344328,121.37342	,	M	M
+279	Liuxing&刘行 31.357522,121.363378	,	M	M
+280	Panguang Lu&潘广路 31.364191,121.357112  
+281	Luonan Xincun&罗南新村 31.38874,121.357369	,	M	M
+282	Meilan Lake&美兰湖 31.401781,121.350245	,	M	M
+
+Branch70 =  <>251...282
+Driving70 = 3,2,3,2,3,2,2,2,2,3,2,2,3,2,3,2,2,3,2,2,2,2,3,2,2,3,6,3,2,2,2
+
+[Line8]
+Name=L8
+283	Aerospace Museum&航天博物馆 31.06139,121.511865	,	M	M
+284	Lianhang Rd&联航路 31.074182,121.510148	,	M	M
+285	Jiangyue Rd&江月路 31.083591,121.508603	,	M	M
+286	Pujiang Town&浦江镇 31.096968,121.506972	,	M	M
+287	Luheng Rd&芦恒路 31.117986,121.497703	,	SME	EMS
+288	Lingzhao Xincun&凌兆新村 31.141056,121.489635  
+289	Oriental Sports Center&东方体育中心 31.15347,121.480107	,	SME	EMS
+290	Yangsi&杨思 31.160962,121.493754	,	SME	EMS
+291	Chengshan Rd&成山路 31.171171,121.496072	,	ME	SM
+292	/<Yaohua Rd&耀华路 31.178808,121.494613	,	SME	EMS
+293	/<South Xizang Rd&西藏南路 31.20179,121.489549	,	ME	SM
+294	Lujiabang Rd&陆家浜路 31.212875,121.486716	,	SM	EM	
+295	Laoximen&老西门 31.218894,121.483712	,	M	M
+296	/<Dashijie&大世界 31.227115,121.479077	,	M	M
+297	People s Square&人民广场 31.232693,121.475472	,	M	M
+298	/<Qufu Rd&曲阜路 31.24282,121.472297	,	M	M
+299	\>Zhongxing Rd&中兴路 31.253166,121.468692	,	M	M
+300	\>North Xizang Rd&西藏北路 31.264025,121.469035	,	M	M
+301	\>Hongkou Football Stadium&虹口足球场 31.270848,121.479421	,	M	M
+302	/<Quyang Rd&曲阳路 31.276497,121.490664	,	M	M
+303	Siping Rd&四平路 31.275617,121.500793	,	SME	EMS
+304	/<Anshan Xincun&鞍山新村 31.272902,121.509547	,	ME	SM
+305	/<Jiangpu Rd&江浦路 31.274736,121.518044	,	M	M
+306	/<Huangxing Rd&黄兴路 31.278478,121.527829	,	M	M
+307	Middle Yanji Rd&延吉中路 31.288307,121.534867	,	SME	EMS
+308	Huangxing Park&黄兴公园 31.296595,121.532722	,	SME	EMS
+309	Xiangyin Rd&翔殷路 31.305028,121.531949	,	SME	EMS
+310	Nenjiang Rd&嫩江路 31.315221,121.531863	,	M	M
+311	Shiguang Rd&市光路 31.322041,121.531863	,	M	M
+
+Branch80 =  <>283...311
+Driving80 = 2,2,2,4,3,4,2,2,2,5,2,2,2,2,2,2,3,2,3,4,2,2,2,2,2,2,2,1
+
+[Line9]
+Name=L9
+312	Middle Yanggao Rd&杨高中路 31.227555,121.548429	,	ME	SM
+313	/<Century Av&世纪大道 31.229096,121.526713	,	SME	EMS
+314	Shangcheng Rd&商城路 31.229757,121.515899  
+315	Xiaonanmen&小南门 31.216545,121.498475	,	SM	EM
+316	Lujiabang&陆家浜路 31.212728,121.486716	,	ME	SM
+317	Madang Rd&马当路 31.209131,121.476502	,	M	M
+318	Dapuqiao&打浦桥 31.206929,121.468863	,	SME	EMS
+319	Jiashan Rd&嘉善路 31.202818,121.460881  
+320	Zhaojiabang Rd&肇嘉浜路 31.199587,121.450152	,	SM	EM
+321	\>Xujiahui&徐家汇 31.195182,121.436677	,	SME	EMS
+322	/<Yishan Rd&宜山路 31.186078,121.427321	,	SM	EM
+323	/<Guilin Rd&桂林路 31.174402,121.416936	,	SME	EMS
+324	/<Caohejing Hi-Tech Park&漕河泾开发区 31.17073,121.397882	,	SM	EM
+325	/<Hechuan Rd&合川路 31.166911,121.385865	,	M	M
+326	/<Xingzhong Rd&星中路 31.158318,121.36827	,	M	M
+327	/<Qibao&七宝 31.154866,121.348701	,	ME	SM
+328	/<Zhongchun Rd&中春路 31.149283,121.338229	,	SME	EMS
+329	/<Jiuting&九亭 31.137677,121.319346	,	M	M
+330	/<Sijing&泗泾 31.11828,121.260295  
+331	Sheshan&佘山 31.104244,121.229911	,	M	M
+332	Dongjing&洞泾 31.0844,121.230941	,	SM	EM
+333	Songjiang University Town&松江大学城 31.053853,121.232818	,	M	M
+334	Songjiang Xincheng&松江新城 31.030688,121.231016  
+
+Branch90 =  <>312...334
+Driving90 = 4,2,4,3,2,2,2,2,3,3,3,3,2,3,2,3,4,6,5,3,4,3
+
+[Line10]
+Name=L10
+335	Xinjiangwancheng&新江湾城 31.329029,121.506664	,	M	M
+336	East Yingao Rd&殷高东路 31.321417,121.506566	,	M	M
+337	Sanmen Rd&三门路 31.313031,121.507961  
+338	Jiangwan Stadium&江湾体育场 31.302783,121.513991	,	M	M
+339	Wujiaochang&五角场 31.298666,121.514946	,	M	M
+340	Guoquan Rd&国权路 31.28948,121.510386  
+341	Tongji University&同济大学 31.281338,121.505837	,	SME	EMS
+342	Siping Rd&四平路 31.274966,121.501492	,	M	M
+343	Youdian Xincun&邮电新村 31.268308,121.494529	,	SME	EMS
+344	Hailun Rd&海伦路 31.259614,121.488531  
+345	North Sichuan Rd&四川北路 31.251754,121.484195	,	M	M
+346	Tiantong Rd&天潼路 31.243627,121.482435	,	SME	EMS
+347	East Nanjing Rd&南京东路 31.23761,121.48486	,	SME	EMS
+348	Yuyuan Garden&豫园 31.228344,121.487328	,	ME	SM
+349	Laoximen&老西门 31.218986,121.483701  
+350	Xintiandi&新天地 31.21627,121.475097  
+351	South Shaanxi Rd&陕西南路 31.215132,121.45821  
+352	Shanghai Library&上海图书馆 31.207975,121.444327  
+353	Jiaotong University&交通大学 31.201937,121.434499	,	ME	SM
+354	Hongqiao Rd&虹桥路 31.196889,121.420702  
+355	/<Songyuan Rd&宋园路 31.196632,121.411668	,	M	M
+356	/<Yili Rd&伊犁路 31.19911,121.403364	,	M	M
+357	/<Shuicheng Rd&水城路 31.19911,121.403364	,	SME	EMS
+358	/<Longxi Rd&龙溪路 31.194283,121.379761	,	SME	EMS
+359	/<Shanghai Zoo&上海动物园 31.190245,121.366907	,	M	M
+360	/<Hongqiao Airport Terminal 1&虹桥1号航站楼 31.191162,121.348411	,	M	M
+361	/<Hongqiao Airport Terminal 2&虹桥2号航站楼 31.193126,121.332103	,	M	M
+362	/<Hongqiao Railway Station&虹桥火车站 31.192668,121.321567	,	SME	EMS
+363	/<Longbai Xincun&龙柏新村 31.176807,121.370469	,	SME	EMS
+364	/<Ziteng Rd&紫藤路 31.169482,121.364654	,	M	M
+365	/<Hangzhong Rd&航中路 31.165644,121.354526	,	SME	EMS
+
+Branch100 =  <>335...365
+Driving100 = 1,2,3,2,2,2,2,2,2,3,2,2,3,2,3,3,2,3,2,2,3,2,2,2,3,5,1,1,2,3
+
+[Line11]
+Name=L11
+366	Jiangsu Rd&江苏路 31.219701,121.431699	,	SME	EMS
+367	Longde Rd&隆德路 31.231298,121.422687  
+368	\>Caoyang Rd&曹杨路 31.239885,121.418309	,	SME	EMS
+369	Fengqiao Rd&枫桥路 31.242013,121.411099  
+370	Zhenru Rd&真如 31.251772,121.407838  
+371	West Railway Station&上海西站 31.263218,121.404405	,	E	S
+372	Liziyuan&李子园 31.269821,121.389899  
+373	Qilianshan Rd&祁连山路 31.271362,121.376767  
+374	Wuwei Rd&武威路 31.276497,121.365094  
+375	Taopu Xincun&桃浦新村 31.281632,121.34973  
+376	Nanxiang&南翔 31.296521,121.323209  
+377	Malu&马陆 31.319474,121.269822  
+378	Jiading Xincheng&嘉定新城 31.330326,121.254115  
+379	Baiyin Rd&白银路 31.345794,121.246648	,	M	M
+380	West Jiading&嘉定西 31.376796,121.227765  
+381	North Jiading&嘉定北 31.391524,121.237378	,	M	M 
+382	Shanghai Circuit&上海赛车场 31.331865,121.225362  
+383	East Changji Rd&昌吉东路 31.293661,121.200213	,	SM	EM
+384	Shanghai Inte. Automobile City&上海汽车城 31.285593,121.180387   
+
+Branch120 =  <>366...384
+Driving120 = 3,2,3,2,3,3,3,3,2,5,6,4,2,4,2,2,4,3,2
+
+[Transfers]
+45=L1,/<Shanghai Railway St,L3,/<Shanghai Railway St,2
+46=L3,/<Shanghai Railway St,L1,/<Shanghai Railway St,2
+47=L1,/<Shanghai Railway St,L4,/<Shanghai Railway St,2
+48=L4,/<Shanghai Railway St,L1,/<Shanghai Railway St,2
+49=L3,/<Shanghai Railway St,L4,/<Shanghai Railway St,2
+50=L4,/<Shanghai Railway St,L3,/<Shanghai Railway St,2
+51=L1,People s Sq,L8,People s Square,2
+52=L8,People s Square,L1,People s Sq,2
+53=L1,People s Sq,L2,People s Square,2
+54=L2,People s Square,L1,People s Sq,2
+55=L8,People s Square,L2,People s Square,2
+56=L2,People s Square,L8,People s Square,2
+57=L3,Baoshan Rd,L4,Baoshan Rd,2
+58=L4,Baoshan Rd,L3,Baoshan Rd,2
+59=L10,Hailun Rd,L4,Hailun Rd,2
+60=L4,Hailun Rd,L10,Hailun Rd,2
+61=L3,\>Hongkou Football Stadium,L8,\>Hongkou Football Stadium,2
+62=L8,\>Hongkou Football Stadium,L3,\>Hongkou Football Stadium,2
+63=L1,South Shaanxi Rd,L10,South Shaanxi Rd,2
+64=L10,South Shaanxi Rd,L1,South Shaanxi Rd,2
+65=L1,Changshu Rd,L7,Changshu Rd,2
+66=L7,Changshu Rd,L1,Changshu Rd,2
+67=L2,Jing an Temple,L7,Jing an Temple,2
+68=L7,Jing an Temple,L2,Jing an Temple,2
+69=L3,/<Zhenping Rd,L4,/<Zhenping Rd,2
+70=L4,/<Zhenping Rd,L3,/<Zhenping Rd,2
+71=L3,/<Zhenping Rd,L7,/<Zhenping Rd,2
+72=L7,/<Zhenping Rd,L3,/<Zhenping Rd,2
+73=L4,/<Zhenping Rd,L7,/<Zhenping Rd,2
+74=L7,/<Zhenping Rd,L4,/<Zhenping Rd,2
+75=L4,/<Zhongtan Rd,L3,/<Zhongtan Rd,2
+76=L3,/<Zhongtan Rd,L4,/<Zhongtan Rd,2
+77=L11,\>Caoyang Rd,L3,\>Caoyang Rd,2
+78=L3,\>Caoyang Rd,L11,\>Caoyang Rd,2
+79=L11,\>Caoyang Rd,L4,\>Caoyang Rd,2
+80=L4,\>Caoyang Rd,L11,\>Caoyang Rd,2
+81=L3,\>Caoyang Rd,L4,\>Caoyang Rd,2
+82=L4,\>Caoyang Rd,L3,\>Caoyang Rd,2
+83=L3,/<Jinshajiang Rd,L4,/<Jinshajiang Rd,2
+84=L4,/<Jinshajiang Rd,L3,/<Jinshajiang Rd,2
+85=L4,Zhongshan Park,L2,Zhongshan Park,2
+86=L2,Zhongshan Park,L4,Zhongshan Park,2
+87=L4,Zhongshan Park,L3,Zhongshan Park,2
+88=L3,Zhongshan Park,L4,Zhongshan Park,2
+89=L2,Zhongshan Park,L3,Zhongshan Park,2
+90=L3,Zhongshan Park,L2,Zhongshan Park,2
+91=L11,Jiangsu Rd,L2,Jiangsu Rd,2
+92=L2,Jiangsu Rd,L11,Jiangsu Rd,2
+93=L3,West Yan an Rd,L4,West Yan an Rd,2
+94=L4,West Yan an Rd,L3,West Yan an Rd,2
+95=L10,Hongqiao Rd,L3,Hongqiao Rd,2
+96=L3,Hongqiao Rd,L10,Hongqiao Rd,2
+97=L10,Hongqiao Rd,L4,Hongqiao Rd,2
+98=L4,Hongqiao Rd,L10,Hongqiao Rd,2
+99=L3,Hongqiao Rd,L4,Hongqiao Rd,2
+100=L4,Hongqiao Rd,L3,Hongqiao Rd,2
+101=L9,/<Yishan Rd,L4,/<Yishan Rd,2
+102=L4,/<Yishan Rd,L9,/<Yishan Rd,2
+103=L9,/<Yishan Rd,L3,/<Yishan Rd,2
+104=L3,/<Yishan Rd,L9,/<Yishan Rd,2
+105=L4,/<Yishan Rd,L3,/<Yishan Rd,2
+106=L3,/<Yishan Rd,L4,/<Yishan Rd,2
+107=L1,/<Shanghai Indoor Stadium,L4,/<Shanghai Indoor Stadium,2
+108=L4,/<Shanghai Indoor Stadium,L1,/<Shanghai Indoor Stadium,2
+109=L1,\>Xujiahui,L9,\>Xujiahui,2
+110=L9,\>Xujiahui,L1,\>Xujiahui,2
+111=L7,Zhaojiabang Rd,L9,Zhaojiabang Rd,2
+112=L9,Zhaojiabang Rd,L7,Zhaojiabang Rd,2
+113=L4,Dong an Rd,L7,Dong an Rd,2
+114=L7,Dong an Rd,L4,Dong an Rd,2
+115=L4,/<South Xizang Rd,L8,/<South Xizang Rd,2
+116=L8,/<South Xizang Rd,L4,/<South Xizang Rd,2
+117=L8,Lujiabang Rd,L9,Lujiabang,2
+118=L9,Lujiabang,L8,Lujiabang Rd,2
+119=L10,Laoximen,L8,Laoximen,2
+120=L8,Laoximen,L10,Laoximen,2
+121=L10,East Nanjing Rd,L2,East Nanjing Rd,2
+122=L2,East Nanjing Rd,L10,East Nanjing Rd,2
+123=L1,Xinzhuang,L5,Xinzhuang,2
+124=L5,Xinzhuang,L1,Xinzhuang,2
+125=L3,South Railway Station,L1,South Railway St,2
+126=L1,South Railway St,L3,South Railway Station,2
+127=L10,/<Hongqiao Railway Station,L2,/<Hongqiao Railway Station,2
+128=L2,/<Hongqiao Railway Station,L10,/<Hongqiao Railway Station,2
+129=L10,/<Hongqiao Airport Terminal 2,L2,/<Hongqiao Airport T2,2
+130=L2,/<Hongqiao Airport T2,L10,/<Hongqiao Airport Terminal 2,2
+131=L6,Oriental Sports Center,L8,Oriental Sports Center,2
+132=L8,Oriental Sports Center,L6,Oriental Sports Center,2
+133=L7,\>Yaohua Rd,L8,/<Yaohua Rd,2
+134=L8,/<Yaohua Rd,L7,\>Yaohua Rd,2
+135=L6,\>West Gaoke Rd,L7,\>West Gaoke Rd,2
+136=L7,\>West Gaoke Rd,L6,\>West Gaoke Rd,2
+137=L10,Siping Rd,L8,Siping Rd,2
+138=L8,Siping Rd,L10,Siping Rd,2
+139=L4,\>Lancun Rd,L6,\>Lancun Rd,2
+140=L6,\>Lancun Rd,L4,\>Lancun Rd,2
+141=L2,Longyang Rd,L7,Longyang Rd,2
+142=L7,Longyang Rd,L2,Longyang Rd,2
+143=L9,/<Century Av,L6,/<Century Av,2
+144=L6,/<Century Av,L9,/<Century Av,2
+145=L9,/<Century Av,L4,/<Century Av,2
+146=L4,/<Century Av,L9,/<Century Av,2
+147=L9,/<Century Av,L2,/<Century Av,2
+148=L2,/<Century Av,L9,/<Century Av,2
+149=L6,/<Century Av,L4,/<Century Av,2
+150=L4,/<Century Av,L6,/<Century Av,2
+151=L6,/<Century Av,L2,/<Century Av,2
+152=L2,/<Century Av,L6,/<Century Av,2
+153=L4,/<Century Av,L2,/<Century Av,2
+154=L2,/<Century Av,L4,/<Century Av,2

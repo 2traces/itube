@@ -1,0 +1,156 @@
+Size 2028x2492
+;Image Shanghai30.png
+7
+
+BrushColor D2691E
+PenColor D2691E
+Polygon 653,90, 730,90, 730,120, 653,120
+BrushColor D2691E
+PenColor FFFFFF
+TextOut arial,25,668,94,Line7,1
+
+BrushColor FF4500
+PenColor FF4500
+Polygon 1032,96, 1109,96, 1109,126, 1032,126
+BrushColor FF4500
+PenColor FFFFFF
+TextOut arial,25,1047,100,Line1,1
+
+BrushColor B22222
+PenColor B22222
+Polygon 231,13, 316,13, 316,43, 231,43
+BrushColor B22222
+PenColor FFFFFF
+TextOut arial,25,243,17,Line11,1
+
+BrushColor B22222
+PenColor B22222
+Polygon 6,434, 87,434, 87,464, 6,464
+BrushColor B22222
+PenColor FFFFFF
+TextOut arial,25,18,438,Line11,1
+
+BrushColor 32CD32
+PenColor 32CD32
+Polygon 15,1127, 92,1127, 92,1157, 15,1157
+BrushColor 32CD32
+PenColor FFFFFF
+TextOut arial,25,30,1131,Line2,1
+
+BrushColor BA55D3
+PenColor BA55D3
+Polygon 74,1277, 155,1277, 155,1307, 74,1307
+BrushColor BA55D3
+PenColor FFFFFF
+TextOut arial,25,86,1281,Line10,1
+
+BrushColor 000000
+PenColor 000000
+Polygon 656,983, 733,983, 733,1013, 656,1013
+BrushColor 000000
+PenColor FFFFFF
+TextOut arial,25,671,987,Line4,1
+
+BrushColor FFFF00
+PenColor FFFF00
+Polygon 561,1688, 638,1688, 638,1718, 561,1718
+BrushColor FFFF00
+PenColor FFFFFF
+TextOut arial,25,576,1692,Line3,1
+
+BrushColor FF4500
+PenColor FF4500
+Polygon 264,1777, 341,1777, 341,1807, 264,1807
+BrushColor FF4500
+PenColor FFFFFF
+TextOut arial,25,279,1781,Line1,1
+
+BrushColor 800080
+PenColor 800080
+Polygon 210,1821, 287,1821, 287,1851, 210,1851
+BrushColor 800080
+PenColor FFFFFF
+TextOut arial,25,225,1825,Line5,1
+
+BrushColor 40E0D0
+PenColor 40E0D0
+Polygon 6,1908, 83,1908, 83,1938, 6,1938
+BrushColor 40E0D0
+PenColor FFFFFF
+TextOut arial,25,21,1912,Line9,1
+
+BrushColor 800080
+PenColor 800080
+Polygon 4,2343, 81,2343, 81,2373, 4,2373
+BrushColor 800080
+PenColor FFFFFF
+TextOut arial,25,19,2347,Line5,1
+
+BrushColor DC143C
+PenColor DC143C
+Polygon 922,1879, 999,1879, 999,1909, 922,1909
+BrushColor DC143C
+PenColor FFFFFF
+TextOut arial,25,937,1883,Line6,1
+
+BrushColor 20B2AA
+PenColor 20B2AA
+Polygon 881,2418, 958,2418, 958,2448, 881,2448
+BrushColor 20B2AA
+PenColor FFFFFF
+TextOut arial,25,896,2422,Line8,1
+
+BrushColor 32CD32
+PenColor 32CD32
+Polygon 1934,2361, 2011,2361, 2011,2391, 1934,2391
+BrushColor 32CD32
+PenColor FFFFFF
+TextOut arial,25,1949,2365,Line2,1
+
+BrushColor D2691E
+PenColor D2691E
+Polygon 1538,1530, 1615,1530, 1615,1560, 1538,1560
+BrushColor D2691E
+PenColor FFFFFF
+TextOut arial,25,1553,1534,Line7,1
+
+BrushColor 40E0D0
+PenColor 40E0D0
+Polygon 1527,1373, 1604,1373, 1604,1403, 1527,1403
+BrushColor 40E0D0
+PenColor FFFFFF
+TextOut arial,25,1542,1377,Line9,1
+
+BrushColor BA55D3
+PenColor BA55D3
+Polygon 1483,500, 1564,500, 1564,530, 1483,530
+BrushColor BA55D3
+PenColor FFFFFF
+TextOut arial,25,1495,504,Line10,1
+
+BrushColor 20B2AA
+PenColor 20B2AA
+Polygon 1589,581, 1666,581, 1666,611, 1589,611
+BrushColor 20B2AA
+PenColor FFFFFF
+TextOut arial,25,1604,585,Line8,1
+
+BrushColor DC143C
+PenColor DC143C
+Polygon 1719,541, 1796,541, 1796,571, 1719,571
+BrushColor DC143C
+PenColor FFFFFF
+TextOut arial,25,1734,545,Line6,1
+
+BrushColor FFFF00
+PenColor FFFF00
+Polygon 1329,56, 1406,56, 1406,86, 1329,86
+BrushColor FFFF00
+PenColor FFFFFF
+TextOut arial,25,1344,60,Line3,1
+
+
+
+
+
+

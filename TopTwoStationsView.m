@@ -492,7 +492,7 @@
 {
     
     if ([firstButton isHidden] && [secondButton isHidden] && fromStation && !isEditing) { // мы уже в режиме пути просто меняем текст
-        if ([[MHelper sharedHelper] languageIndex]) {
+        if ([[MHelper sharedHelper] languageIndex]%2) {
             firstStation.text = fromStation.altname;
         } else {
             firstStation.text = fromStation.name;
@@ -510,7 +510,7 @@
     }
     
     if (fromStation) {
-        if ([[MHelper sharedHelper] languageIndex]) {
+        if ([[MHelper sharedHelper] languageIndex]%2) {
             firstStation.text = fromStation.altname;
         } else {
             firstStation.text = fromStation.name;
@@ -536,7 +536,7 @@
 {
 
     if ([firstButton isHidden] && [secondButton isHidden] && toStation && !isEditing) { // мы уже в режиме пути просто меняем текст
-        if ([[MHelper sharedHelper] languageIndex]) {
+        if ([[MHelper sharedHelper] languageIndex]%2) {
             secondStation.text = toStation.altname;
         } else {
             secondStation.text = toStation.name;
@@ -554,7 +554,7 @@
     }
     
     if (toStation) {
-        if ([[MHelper sharedHelper] languageIndex]) {
+        if ([[MHelper sharedHelper] languageIndex]%2) {
             secondStation.text = toStation.altname;
         } else {
             secondStation.text = toStation.name;

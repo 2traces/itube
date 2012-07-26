@@ -45,7 +45,15 @@
         self.servers = [[[NSMutableArray alloc] init] autorelease];
         tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
         self.languages=appdelegate.cityMap.languages;
-        self.feedback = [NSArray arrayWithObjects:NSLocalizedString(@"FeedbackRate",@"FeedbackRate"),NSLocalizedString(@"FeedbackMail",@"FeedbackMail"), nil];
+        
+        int currentLanguageIndex = [[MHelper sharedHelper] languageIndex];
+        if (currentLanguageIndex == 2 && [self.languages count] == 2) {
+            selectedLanguages = [[NSMutableArray alloc] initWithObjects:[languages objectAtIndex:0],[languages objectAtIndex:1], nil];
+        } else {
+            selectedLanguages = [[NSMutableArray alloc] initWithObjects:[languages objectAtIndex:currentLanguageIndex], nil];
+        }
+
+        self.feedback = [NSArray arrayWithObjects:NSLocalizedString(@"FeedbackRate",@"FeedbackRate"),NSLocalizedString(@"FeedbackMail",@"FeedbackMail"),NSLocalizedString(@"FeedbackTell",@"FeedbackTell"), nil];
     }
     return self;
 }
@@ -167,7 +175,7 @@
 	[barButtonItem_back release];
     
     [TubeAppIAPHelper sharedHelper];
-    
+        
     [self adjustViewHeight];
 }
 
@@ -193,9 +201,8 @@
 {
     CGFloat langTableHeight = [languages count]*45.0f+2.0;
     CGFloat cityTableHeight = [maps count]*45.0f+2.0;
-    CGFloat feedbackTableHeight = 2.0*45.0f+2.0; 
+    CGFloat feedbackTableHeight = [feedback count]*45.0f+2.0; 
     
-    textLabel2.frame=CGRectMake(20, 95, 280, 21);
     langTableView.frame=CGRectMake(langTableView.frame.origin.x, langTableView.frame.origin.y, langTableView.frame.size.width, langTableHeight);
     textLabel3.frame=CGRectMake(textLabel3.frame.origin.x, langTableView.frame.origin.y+langTableHeight+17, textLabel3.frame.size.width, textLabel3.frame.size.height);
     cityTableView.frame=CGRectMake(cityTableView.frame.origin.x, textLabel3.frame.origin.y+textLabel3.frame.size.height+10, cityTableView.frame.size.width,  cityTableHeight);
@@ -239,6 +246,7 @@
     
     [scrollView release];
     
+    [selectedLanguages release];
     [maps release];
     [selectedPath release];
     delegate = nil;
@@ -257,10 +265,10 @@
 {
     if (tableView==cityTableView) {
         return [maps count];
-    } else if (tableView==cityTableView) {
+    } else if (tableView==langTableView) {
         return [languages count];
     } else {
-        return 2;
+        return [feedback count];
     }
 }
 
@@ -353,9 +361,8 @@
         
         if (crow == 0 && crow == sectionRows - 1)
         {
-            // у нас таких быть не должно вообще но 
-            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+            rowBackground = [UIImage imageNamed:@"first_and_last_cell_bg.png"];
+            selectionBackground = [UIImage imageNamed:@"high_first_and_last_cell_bg.png"];
         }
         else if (crow == 0)
         {
@@ -377,6 +384,8 @@
         cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:selectionBackground] autorelease];
         
         return cell;
+
+        // ---------------- language ----------------------
         
     } else if (tableView==langTableView) {
         static NSString *cellIdentifier = @"CityCell";
@@ -394,9 +403,9 @@
         [[(CityCell*)cell cityName] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
         [[(CityCell*)cell cityName] setHighlightedTextColor:[UIColor whiteColor]];
         
-        cell.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = [UIColor clearColor];        
         
-        if ([[MHelper sharedHelper] languageIndex]==indexPath.row) {
+        if ([selectedLanguages containsObject:[self.languages objectAtIndex:indexPath.row]]) {
             cell.accessoryType=UITableViewCellAccessoryNone;
             [[(CityCell*)cell checkView] setImage:[UIImage imageNamed:@"checkmark.png"]];
         } else {
@@ -415,9 +424,8 @@
         
         if (crow == 0 && crow == sectionRows - 1)
         {
-            // у нас таких быть не должно вообще но 
-            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+            rowBackground = [UIImage imageNamed:@"first_and_last_cell_bg.png"];
+            selectionBackground = [UIImage imageNamed:@"high_first_and_last_cell_bg.png"];
         }
         else if (crow == 0)
         {
@@ -454,16 +462,9 @@
         [[(CityCell*)cell cityName] setText:[feedback objectAtIndex:indexPath.row]];
         [[(CityCell*)cell cityName] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
         [[(CityCell*)cell cityName] setHighlightedTextColor:[UIColor whiteColor]];
+        [[(CityCell*)cell cityName] setFrame:CGRectMake(20, 16, 240, 21)];
         
         cell.backgroundColor = [UIColor clearColor];
-        
-//        if ([[MHelper sharedHelper] languageIndex]==indexPath.row) {
-//            cell.accessoryType=UITableViewCellAccessoryNone;
-//            [[(CityCell*)cell checkView] setImage:[UIImage imageNamed:@"checkmark.png"]];
-//        } else {
-//            cell.accessoryType=UITableViewCellAccessoryNone;
-//            [[(CityCell*)cell checkView] setImage:nil];
-//        }
         
         cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
         [[(CityCell*)cell checkView] setImage:nil];
@@ -542,16 +543,44 @@
             [controller release];
         }    
     } else if (tableView==langTableView){
-        [[MHelper sharedHelper] saveLanguageIndex:indexPath.row];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kLangChanged object:nil];
-        [tableView reloadData];
+ 
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        if ([self.languages count]>1) {
+            
+            NSMutableArray *reloadA = [NSMutableArray array];
+            
+            if ([selectedLanguages containsObject:[self.languages objectAtIndex:indexPath.row]]) {
+                [selectedLanguages removeObject:[self.languages objectAtIndex:indexPath.row]];
+            } else {
+                [selectedLanguages addObject:[self.languages objectAtIndex:indexPath.row]];
+            }
+            
+            [reloadA addObject:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
+            
+            if ([selectedLanguages count] == 0) {
+                if (indexPath.row == 0) {
+                    [selectedLanguages addObject:[self.languages objectAtIndex:1]];
+                    [reloadA addObject:[NSIndexPath indexPathForRow:1 inSection:0]];
+                } else {
+                    [selectedLanguages addObject:[self.languages objectAtIndex:0]];
+                    [reloadA addObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+                }
+            }
+            
+            [tableView reloadRowsAtIndexPaths:reloadA withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+        
     } else {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         if (indexPath.row==0) {
             NSURL *url = [NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=513581498"];             
             [[UIApplication sharedApplication] openURL:url];
+        } else if (indexPath.row==1) {
+            tubeAppDelegate *appDelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+            [self showMailComposer:[NSArray arrayWithObject:[NSString stringWithFormat:@"fusio@yandex.ru"]] subject:[NSString stringWithFormat:@"%@ map",[appDelegate getDefaultCityName]] body:nil];
         } else {
-            [self showMailComposer:nil];
+            [self showMailComposer:nil subject:NSLocalizedString(@"FeedbackTellSubject", @"FeedbackTellSubject") body:NSLocalizedString(@"FeedbackTellBody", @"FeedbackTellBody")];
         }
     }
 }
@@ -1004,7 +1033,7 @@
     for (SKProduct *product in products) {
         if ([product.productIdentifier isEqual:prodID]) {
             
-            NSLog(@"Buying %@...", product.productIdentifier);
+            //NSLog(@"Buying %@...", product.productIdentifier);
             [[TubeAppIAPHelper sharedHelper] buyProductIdentifier:product.productIdentifier];
             
             self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -1021,7 +1050,7 @@
     [MBProgressHUD hideHUDForView:self.view animated:YES];    
     
     NSString *productIdentifier = (NSString *) notification.object;
-    NSLog(@"Purchased: %@", productIdentifier);
+    //NSLog(@"Purchased: %@", productIdentifier);
     
     [self markProductAsPurchased:productIdentifier];
     
@@ -1092,6 +1121,17 @@
     
     [servers removeAllObjects];
     
+    if ([languages count] > 1) {
+        
+        if ([selectedLanguages count]>1) {
+            [[MHelper sharedHelper] saveLanguageIndex:2];
+        } else {
+            [[MHelper sharedHelper] saveLanguageIndex:[languages indexOfObject:[selectedLanguages lastObject]]];
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLangChanged object:nil];
+    }
+    
     [delegate donePressed];
 }
 
@@ -1099,7 +1139,7 @@
 #pragma mark - Mail methods
 
 // Displays an email composition interface inside the app // and populates all the Mail fields.
--(IBAction)showMailComposer:(id)sender
+-(void)showMailComposer:(NSArray*)recipient subject:(NSString*)subject body:(NSString*)body
 {
     Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
     if (mailClass != nil) {
@@ -1107,9 +1147,9 @@
         if ([mailClass canSendMail]) {
             MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
             picker.mailComposeDelegate = self;
-            tubeAppDelegate *appDelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
-            [picker setSubject:[NSString stringWithFormat:@"%@ map",[appDelegate getDefaultCityName]]];
-            [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"fusio@yandex.ru"]]];
+            [picker setSubject:subject];
+            [picker setToRecipients:recipient];
+            [picker setMessageBody:body isHTML:NO];
             [self presentModalViewController:picker animated:YES]; [picker release];
         } else {
             // Device is not configured for sending emails, so notify user.
