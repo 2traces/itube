@@ -237,7 +237,11 @@ static MHelper * _sharedHelper;
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor;
     if (languageIndex%2) {
-        sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"altname" ascending:YES] autorelease];
+//        sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"altname" ascending:YES] autorelease];
+        sortDescriptor = [[[NSSortDescriptor alloc]
+                                     initWithKey:@"altname"
+                                     ascending:YES
+                                     selector:@selector(localizedCompare:)] autorelease];
     } else {
         sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];        
     }
@@ -335,9 +339,13 @@ static MHelper * _sharedHelper;
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor;
     if (languageIndex%2) {
-        sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"altname" ascending:YES] autorelease];
+//        sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"altname" ascending:YES] autorelease];
+        sortDescriptor = [[[NSSortDescriptor alloc]
+                           initWithKey:@"altname"
+                           ascending:YES
+                           selector:@selector(localizedCompare:)] autorelease];
     } else {
-        sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];        
+        sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
     }
     NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
     
@@ -366,9 +374,13 @@ static MHelper * _sharedHelper;
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor;
     if (languageIndex%2) {
-        sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"altname" ascending:YES] autorelease];
+//        sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"altname" ascending:YES] autorelease];
+        sortDescriptor = [[[NSSortDescriptor alloc]
+                           initWithKey:@"altname"
+                           ascending:YES
+                           selector:@selector(localizedCompare:)] autorelease];
     } else {
-        sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];        
+        sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
     }
     NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
     
