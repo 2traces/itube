@@ -269,6 +269,8 @@
 
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     [labelBg removeFromSuperview];
     [previewImage removeFromSuperview];
     [midground1 removeFromSuperview];
