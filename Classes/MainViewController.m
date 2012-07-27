@@ -724,7 +724,7 @@
             self.timer = nil;
             self.timer = [NSTimer scheduledTimerWithTimeInterval:5
                                                           target:self
-                                                        selector:@selector(showScrollViewTips)
+                                                        selector:@selector(animateScrollView)
                                                         userInfo:nil
                                                          repeats:NO];
             
@@ -758,19 +758,17 @@
     }
 }
 
--(void)showScrollViewTips
-{
-    [self animateScrollView];
-}
-
 - (void)animateScrollView
 {
     if (self.scrollView && self.scrollView.contentSize.width>320.0f && self.scrollView.contentOffset.x==0.0f) {
-        [UIView animateWithDuration:1 delay:0 options:(UIViewAnimationCurveEaseInOut | UIViewAnimationOptionAutoreverse) animations:^{
-            [self.scrollView scrollRectToVisible:CGRectMake(38.0, 26.0, 320.0, 40.0) animated:NO];
+
+        [UIView animateWithDuration:1 delay:0 options:(UIViewAnimationCurveEaseInOut) animations:^{
+            [self.scrollView setContentOffset:CGPointMake(38.0, 0.0)];
         } completion:^(BOOL finished){
-            [self.scrollView scrollRectToVisible:CGRectMake(0.0, 26.0, 320.0, 40.0) animated:NO];
-        }];  
+            [UIView animateWithDuration:1 delay:0 options:(UIViewAnimationCurveEaseInOut) animations:^{
+                [self.scrollView setContentOffset:CGPointMake(0.0, 0.0)];
+            } completion:nil];
+        }];
         
         NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
         [prefs setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"scrollHelp"]+1 forKey:@"scrollHelp"];

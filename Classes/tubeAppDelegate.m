@@ -161,7 +161,7 @@ void uncaughtExceptionHandler(NSException *exception) {
                     label.lineBreakMode = UILineBreakModeWordWrap;
                     label.numberOfLines = 0;
                     [label sizeToFit];
-                    offset += label.frame.size.height - frame.size.height;
+                    offset += label.frame.size.height + 20 - frame.size.height;
                     frame.origin.y += messageOffset;
                     frame.size.height = label.frame.size.height;
                 }
