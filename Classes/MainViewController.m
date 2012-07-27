@@ -81,11 +81,11 @@
     
     CityMap *cm = [[[CityMap alloc] init] autorelease];
     [cm loadMap:newMap];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kMapChanged object:nil];
-    
+        
     [(MainView*)self.view setCityMap:cm];
     appDelegate.cityMap=cm;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMapChanged object:nil];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:newMap forKey:@"current_map"];

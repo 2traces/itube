@@ -161,6 +161,9 @@
 
 
 -(void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kMapChanged object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kLangChanged object:nil];
+    
     [stationButton release];
     [linesButton release];
     [bookmarkButton release];

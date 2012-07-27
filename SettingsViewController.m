@@ -127,6 +127,22 @@
 
 #pragma mark - View lifecycle
 
+- (void)mapChanged:(NSNotification*)note
+{
+    tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+    self.languages=appdelegate.cityMap.languages;
+    
+    int currentLanguageIndex = [[MHelper sharedHelper] languageIndex];
+    if (currentLanguageIndex == 2 && [self.languages count] == 2) {
+        selectedLanguages = [[NSMutableArray alloc] initWithObjects:[languages objectAtIndex:0],[languages objectAtIndex:1], nil];
+    } else {
+        selectedLanguages = [[NSMutableArray alloc] initWithObjects:[languages objectAtIndex:currentLanguageIndex], nil];
+    }
+    
+    [langTableView reloadData];
+    [self adjustViewHeight];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -134,6 +150,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapChanged:) name:kMapChanged object:nil];
     
 	langTableView.backgroundColor = [UIColor clearColor];
     langTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -203,10 +220,11 @@
     
     if ([languages count]<2) {
         textLabel2.hidden=YES;
-        langTableHeight = 0;
-        langTableView.frame=CGRectMake(0,0,0,0);
+        langTableView.hidden=YES;
         textLabel3.frame=CGRectMake(textLabel2.frame.origin.x, textLabel2.frame.origin.y, textLabel2.frame.size.width, textLabel2.frame.size.height);
     } else {
+        textLabel2.hidden=NO;
+        langTableView.hidden=NO;
         langTableHeight = [languages count]*45.0f+2.0;
         langTableView.frame=CGRectMake(langTableView.frame.origin.x, langTableView.frame.origin.y, langTableView.frame.size.width, langTableHeight);
         textLabel3.frame=CGRectMake(textLabel3.frame.origin.x, langTableView.frame.origin.y+langTableHeight+17, textLabel3.frame.size.width, textLabel3.frame.size.height);
@@ -238,6 +256,12 @@
 }
 
 - (void)dealloc {
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductsLoadedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductPurchasedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductPurchaseFailedNotification object: nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kMapChanged object:nil];
+    
     [_hud release];
     _hud = nil;
     

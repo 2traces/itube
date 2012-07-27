@@ -345,9 +345,9 @@
 	SectionInfo *sectionInfo = [self.sectionInfoArray objectAtIndex:section];
     if (!sectionInfo.headerView) {
 		NSString *lineName = sectionInfo.line.name;
-        sectionInfo.headerView = [[[SectionHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.mytableView.bounds.size.width, HEADER_HEIGHT) title:lineName color:[(UIColor*)sectionInfo.line.color saturatedColor] section:section delegate:self] autorelease];
+        sectionInfo.headerView = [[[SectionHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.mytableView.bounds.size.width, HEADER_HEIGHT    ) title:lineName color:[(UIColor*)sectionInfo.line.color saturatedColor] section:section delegate:self] autorelease];
     }
-    
+
     return sectionInfo.headerView;
 }
 
