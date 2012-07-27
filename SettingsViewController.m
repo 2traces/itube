@@ -199,12 +199,22 @@
 
 -(void)adjustViewHeight
 {
-    CGFloat langTableHeight = [languages count]*45.0f+2.0;
+    CGFloat langTableHeight;
+    
+    if ([languages count]<2) {
+        textLabel2.hidden=YES;
+        langTableHeight = 0;
+        langTableView.frame=CGRectMake(0,0,0,0);
+        textLabel3.frame=CGRectMake(textLabel2.frame.origin.x, textLabel2.frame.origin.y, textLabel2.frame.size.width, textLabel2.frame.size.height);
+    } else {
+        langTableHeight = [languages count]*45.0f+2.0;
+        langTableView.frame=CGRectMake(langTableView.frame.origin.x, langTableView.frame.origin.y, langTableView.frame.size.width, langTableHeight);
+        textLabel3.frame=CGRectMake(textLabel3.frame.origin.x, langTableView.frame.origin.y+langTableHeight+17, textLabel3.frame.size.width, textLabel3.frame.size.height);
+    }
+    
     CGFloat cityTableHeight = [maps count]*45.0f+2.0;
     CGFloat feedbackTableHeight = [feedback count]*45.0f+2.0; 
     
-    langTableView.frame=CGRectMake(langTableView.frame.origin.x, langTableView.frame.origin.y, langTableView.frame.size.width, langTableHeight);
-    textLabel3.frame=CGRectMake(textLabel3.frame.origin.x, langTableView.frame.origin.y+langTableHeight+17, textLabel3.frame.size.width, textLabel3.frame.size.height);
     cityTableView.frame=CGRectMake(cityTableView.frame.origin.x, textLabel3.frame.origin.y+textLabel3.frame.size.height+10, cityTableView.frame.size.width,  cityTableHeight);
     textLabel4.frame=CGRectMake(textLabel4.frame.origin.x, cityTableView.frame.origin.y+cityTableHeight+17, textLabel4.frame.size.width, textLabel4.frame.size.height);
     feedbackTableView.frame=CGRectMake(feedbackTableView.frame.origin.x, textLabel4.frame.origin.y+textLabel4.frame.size.height+10, feedbackTableView.frame.size.width, feedbackTableHeight);
@@ -266,7 +276,11 @@
     if (tableView==cityTableView) {
         return [maps count];
     } else if (tableView==langTableView) {
-        return [languages count];
+        if ([languages count]<2) {
+            return 0;
+        } else {
+            return [languages count];
+        }
     } else {
         return [feedback count];
     }

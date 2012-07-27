@@ -133,7 +133,13 @@
         [[cell mybutton] addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    NSString *cellValue = [[self.filteredStation objectAtIndex:indexPath.row] name];
+    NSString *cellValue;
+    if ([[MHelper sharedHelper] languageIndex]%2) {
+        cellValue = [[self.filteredStation objectAtIndex:indexPath.row] altname];
+    } else {
+        cellValue = [[self.filteredStation objectAtIndex:indexPath.row] name];
+    }
+
     cell.mylabel.text = cellValue;
     cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
     cell.mylabel.textColor = [UIColor blackColor];
@@ -191,17 +197,21 @@
 {
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(27, 27), NO, 0.0);
     
+    UIImage *radialImg = [UIImage imageNamed:@"radial.png"];
+    
     CGRect circleRect = CGRectMake(1.0, 1.0, 25.0, 25.0);
-	
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     const CGFloat* components = CGColorGetComponents(myColor.CGColor);
     
-    CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor)); 
-    CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));  
-	CGContextSetLineWidth(context, 1.0);
-	CGContextFillEllipseInRect(context, circleRect);
-	CGContextStrokeEllipseInRect(context, circleRect);
+    CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));
+    CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));
+    CGContextSetLineWidth(context, 0.0);
+    CGContextFillEllipseInRect(context, circleRect);
+    CGContextStrokeEllipseInRect(context, circleRect);
+    
+    [radialImg drawInRect:circleRect];
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
@@ -209,7 +219,6 @@
     
     return image;
 }
-
 
 #pragma mark -
 #pragma mark UISearchBarDelegate
