@@ -125,7 +125,7 @@
     return self;
 }
 
--(void) uploadTex
+-(void) prepareGL
 {
     size_t width = CGImageGetWidth(image);
     size_t height = CGImageGetHeight(image);
@@ -141,7 +141,10 @@
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); 
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
     
-    free(spriteData);    
+    free(spriteData);
+    
+    coords = (float*)calloc(4*4, sizeof(float));
+    uv = (float*)calloc(4*4, sizeof(float));
 }
 
 -(void) draw:(CGContextRef)context
@@ -171,10 +174,34 @@
 
 -(void) drawGl
 {
-    if(!gltex && image) [self uploadTex];
+    if(!gltex && image) [self prepareGL];
     if(gltex) {
+        coords[0] = rect.origin.x;
+        coords[1] = rect.origin.y;
+        coords[2] = rect.origin.x+rect.size.width;
+        coords[3] = rect.origin.y;
+        coords[4] = rect.origin.x;
+        coords[5] = rect.origin.y+rect.size.height;
+        coords[6] = rect.origin.x+rect.size.width;
+        coords[7] = rect.origin.y+rect.size.height;
+        
+        uv[0] = 0.f;
+        uv[1] = 0.f;
+        uv[2] = 1.f;
+        uv[3] = 0.f;
+        uv[4] = 0.f;
+        uv[5] = 1.f;
+        uv[6] = 1.f;
+        uv[7] = 1.f;
+        glActiveTexture( GL_TEXTURE0 );
+        glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, gltex);
-        glDrawTexfOES(rect.origin.x, rect.origin.y, 1, rect.size.width, rect.size.height);
+        glEnableVertexAttribArray(GLKVertexAttribPosition);
+        //glDisableVertexAttribArray(GLKVertexAttribNormal);
+        //glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
+        glVertexAttribPointer(GLKVertexAttribPosition, 2, GL_FLOAT, GL_FALSE, 0, coords);
+        //glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, 0, uv);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
 }
 
@@ -199,6 +226,9 @@
 
 -(void)dealloc
 {
+    if(gltex != 0) glDeleteTextures(1, &gltex);
+    if(coords != 0) free(coords);
+    if(uv != 0) free(uv);
     if(image) CGImageRelease(image);
     [objects release];
     [super dealloc];
