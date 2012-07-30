@@ -1588,10 +1588,22 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
 }
 
--(Segment*)activateSegmentFrom:(NSString *)station1 to:(NSString *)station2
+-(id)activateSegmentFrom:(NSString *)station1 to:(NSString *)station2
 {
     for (Station *s in stations) {
         if([s.name isEqualToString:station1] || [s.name isEqualToString:station2]) {
+            if(s.transfer != nil) {
+                // is there a short way?
+                NSString *anotherStation = nil;
+                if([s.name isEqualToString:station1]) anotherStation = station2;
+                else anotherStation = station1;
+                for (Station *s2 in s.transfer.stations) {
+                    if([s2.name isEqualToString:anotherStation] && s2.line == s.line) {
+                        s.transfer.active = YES;
+                        return s.transfer;
+                    }
+                }
+            }
             s.active = YES;
             if(s.transfer && map->TrKind != LIKE_VENICE) s.transfer.active = YES;
             for (Segment *seg in s.segment) {
@@ -2738,11 +2750,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 }
                 if(DrawName == NAME_ALTERNATIVE) [pathStationsList addObject:s.altText.string];
                 else [pathStationsList addObject:n1.name];
+                if([as isKindOfClass:[Transfer class]]) [pathStationsList addObject:@"---"]; //временно до обновления модели
                 if(sp1 && schedule) {
                     [pathTimesList addObject:[schedule getPointDate:sp1]];
                     [pathDocksList addObject:[NSString stringWithFormat:@"%c", sp1.dock]];
                 }
-            } else
+            } else 
             if(n1.line != n2.line) {
                 [activePath addObject:s.transfer];
                 if(DrawName == NAME_ALTERNATIVE) [pathStationsList addObject:s.altText.string];
@@ -2750,7 +2763,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 [pathStationsList addObject:@"---"]; //временно до обновления модели
                 if(sp1 && schedule) {
                     [pathTimesList addObject:[schedule getPointDate:sp1]];
-                    //[pathTimesList addObject:[schedule getPointDate:(SchPoint*)n2]];
                     [pathDocksList addObject:[NSString stringWithFormat:@"%c", sp1.dock]];
                 }
             }
