@@ -20,6 +20,7 @@
     NSArray *route;
     
     TopTwoStationsView *stationsView;
+    SelectingTabBarViewController *tabBarViewController;
     UIScrollView *scrollView;
     UIScrollView *pathScrollView;
 }

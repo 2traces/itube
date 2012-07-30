@@ -47,6 +47,8 @@
     
     [(MainView*)self.view viewInit:self];
     
+    [self initSelectingTabBarController];
+    
     TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] initWithFrame:CGRectMake(0,0,320,44)];
     self.stationsView = twoStationsView;
     
@@ -1141,9 +1143,13 @@
 	[controller release];
 }
 
+- (void)initSelectingTabBarController {
+    tabBarViewController = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
+}
+
 -(void)showTabBarViewController
 {
-    SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
+    SelectingTabBarViewController *controller = tabBarViewController;
     controller.delegate = self;
     
     CGRect frame = controller.view.frame;
@@ -1162,7 +1168,6 @@
     ((MainView*)self.view).shouldNotDropPins = YES;
     
 //    [self presentModalViewController:controller animated:YES];
-    [controller autorelease];
 }
 
 -(void)transitToRouteState

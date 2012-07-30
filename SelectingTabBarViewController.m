@@ -35,6 +35,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self initGallery];
     }
     return self;
 }
@@ -53,6 +54,10 @@
     return NO;
 }
 
+- (void)initGallery {
+    galleryViewController = [[GalleryViewController alloc] initWithNibName:@"GalleryViewController" bundle:nil];
+    [galleryViewController view];
+}
 
 - (void)viewDidLoad
 {
@@ -61,7 +66,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapChanged:) name:kMapChanged object:nil];
     
     LineListViewController *viewController1 = [[[LineListViewController alloc] initWithNibName:@"LineListViewController" bundle:nil] autorelease];
-    GalleryViewController *viewController2 = [[[GalleryViewController alloc] initWithNibName:@"GalleryViewController" bundle:nil] autorelease];
+    GalleryViewController *viewController2 = galleryViewController;
     BookmarkViewController *viewController3 = [[[BookmarkViewController alloc] initWithNibName:@"BookmarkViewController" bundle:nil] autorelease];
     HistoryViewController *viewController4 = [[[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil] autorelease];
     
@@ -79,7 +84,7 @@
     //to perform [self retain] and [self autorelease] (further in the code), as an exceptional way to
     //manage memory of this controller. I am aware that this is not a good practice, however, this was the easiest 
     //way to replace presentModalViewController with addSubview to be able to show the view half-screen.
-    [self retain];
+    //[self retain];
 }
 
 -(void)mapChanged:(NSNotification*)note
@@ -188,7 +193,7 @@
 - (void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
     [self.view removeFromSuperview];
     //we did call [self retain] previously, so are eligible to autorelease self
-    [self autorelease];
+    //[self autorelease];
 }
 
 -(void) dealloc {

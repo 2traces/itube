@@ -16,6 +16,7 @@
     CGFloat currentPage;
     UIView *loadingView;
     NSInteger activePin;
+    NSArray *galleryItems;
 }
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;

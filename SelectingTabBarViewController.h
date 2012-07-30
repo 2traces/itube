@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GalleryViewController.h"
 
 #define kMapChanged @"kMapChanged"
 
@@ -21,6 +22,8 @@
     IBOutlet UIButton *historyButton;
     
     IBOutlet UITabBarController *tabBarController;
+    
+    GalleryViewController *galleryViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *stationButton;

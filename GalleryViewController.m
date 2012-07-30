@@ -31,15 +31,15 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self initPhotos];
     }
     return self;
 }
 
-- (void)setupScrollView {
+- (void)initPhotos {
+    NSMutableArray *tempItems = [NSMutableArray arrayWithCapacity:15];
     images = [[[MHelper sharedHelper] getPhotoList] retain];
-    self.scrollView.delegate = self;
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [images count], self.scrollView.frame.size.height-2.0f);
-    self.scrollView.pagingEnabled = YES;
+
     CGFloat offset = 0;
     NSInteger index = 0;
     for (MPhoto *photo in images) {
@@ -55,8 +55,8 @@
         
         view.imageView = [[UIImageView alloc] initWithImage:image];
         
-        //The easiest way to set a border is to do that with UIImageView, but in 
-        //this case we will need to adjust its height/width manually, to fit in 
+        //The easiest way to set a border is to do that with UIImageView, but in
+        //this case we will need to adjust its height/width manually, to fit in
         //gallery item view
         [view.imageView.layer setBorderColor: [[UIColor grayColor] CGColor]];
         [view.imageView.layer setBorderWidth: 3.0];
@@ -72,7 +72,7 @@
         view.frame = frame;
         
         frame = view.imageView.frame;
-        CGFloat aspectToFit = (frame.size.height > frame.size.width) ? 
+        CGFloat aspectToFit = (frame.size.height > frame.size.width) ?
         frame.size.height / view.frame.size.height : frame.size.width / view.frame.size.width;
         
         frame.size.height = frame.size.height / aspectToFit;
@@ -83,7 +83,7 @@
         [view setOriginalImageSize:view.imageView.frame.size];
         [view centerImage];
         [view addSubview:view.imageView];
-
+        
         offset += self.scrollView.frame.size.width;
         index++;
         
@@ -97,9 +97,32 @@
         view.shadowView.frame = shadowFrame;
         [view addSubview:view.shadowView];
         
-        [self.scrollView addSubview:view];
         [view.imageView autorelease];
+        [tempItems addObject:view];
         [view autorelease];
+    }
+    
+    galleryItems = [[NSArray arrayWithArray:tempItems] retain];
+}
+
+- (void)setupScrollView {
+    self.scrollView.delegate = self;
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [images count], self.scrollView.frame.size.height-2.0f);
+    self.scrollView.pagingEnabled = YES;
+    CGFloat offset = 0;
+
+    for (GalleryItemView *view in galleryItems) {
+        CGRect frame = view.frame;
+        frame.origin.x = offset + 5.0f;
+        frame.origin.y = 3.0f;
+        frame.size.width = 170.0f;
+        frame.size.height = 140.0f;
+        view.frame = frame;
+        
+        offset += self.scrollView.frame.size.width;
+
+        [self.scrollView addSubview:view];
+
     }
     [self scrollViewDidScroll:self.scrollView];
     [self scrollViewDidEndDecelerating:self.scrollView];
@@ -114,9 +137,10 @@
     self.label.text = @"";
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.5f];
-    self.loadingView.hidden = NO;
+    //self.loadingView.hidden = NO;
     [UIView commitAnimations];
-    [self performSelectorInBackground:@selector(setupScrollView) withObject:nil];
+    [self setupScrollView];
+    //[self performSelectorInBackground:@selector(setupScrollView) withObject:nil];
 }
 
 - (void)viewDidUnload

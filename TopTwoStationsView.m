@@ -43,7 +43,7 @@
     UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist.png"];
 	
 	UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [refreshButton setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
+    [refreshButton setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width*1.2f,imageOpenList.size.height*2)];
 	[refreshButton setImage:imageOpenList forState:UIControlStateNormal];
 	[refreshButton addTarget:self action:@selector(selectFromStation) forControlEvents:UIControlEventTouchUpInside];
     
