@@ -134,6 +134,10 @@
     HistoryListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"HistoryListCell" owner:self options:nil] lastObject];
+        UIView *bgColorView = [[UIView alloc] init];
+        [bgColorView setBackgroundColor:[UIColor brownColor]];
+        [cell setSelectedBackgroundView:bgColorView];
+        [bgColorView release];
     }
  
     MHistory *history = [self.historyList objectAtIndex:indexPath.row];

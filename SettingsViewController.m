@@ -270,6 +270,10 @@
         if (cell == nil) { 
             cell = [[[NSBundle mainBundle] loadNibNamed:@"CountryMapView" owner:self options:nil] lastObject];
             [[(CountryMapCell*)cell cellButton] addTarget:self action:@selector(buyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            UIView *bgColorView = [[UIView alloc] init];
+            [bgColorView setBackgroundColor:[UIColor brownColor]];
+            [cell setSelectedBackgroundView:bgColorView];
+            [bgColorView release];
         }    
         
         NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];

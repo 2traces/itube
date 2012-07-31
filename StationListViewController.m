@@ -214,6 +214,10 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"StationListCell" owner:self options:nil] lastObject];
         [[cell mybutton] addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        UIView *bgColorView = [[UIView alloc] init];
+        [bgColorView setBackgroundColor:[UIColor brownColor]];
+        [cell setSelectedBackgroundView:bgColorView];
+        [bgColorView release];
     }
     
     if (tableView == self.mySearchDC.searchResultsTableView)
