@@ -68,7 +68,7 @@
     
 	UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
 	[button1 addTarget:self action:@selector(transitFirstToBigField) forControlEvents:UIControlEventTouchUpInside];
-	button1.frame = CGRectMake(0, 6, 320, 44);
+	button1.frame = CGRectMake(0, 6, 320 - firstStation.rightView.frame.size.width, 44);
     self.firstButton=button1;
     
     [toolbar addSubview:button1];
