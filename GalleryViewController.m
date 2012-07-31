@@ -25,6 +25,7 @@
 @synthesize label;
 @synthesize scrollView;
 @synthesize loadingView;
+@synthesize lowerShadowImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

@@ -17,10 +17,12 @@
     UIView *loadingView;
     NSInteger activePin;
     NSArray *galleryItems;
+    UIImageView *lowerShadowImage;
 }
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UILabel *label;
 @property (nonatomic, retain) IBOutlet UIView *loadingView;
+@property (nonatomic, retain) IBOutlet UIImageView *lowerShadowImage;
 
 @end

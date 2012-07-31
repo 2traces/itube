@@ -90,7 +90,8 @@
 -(void)mapChanged:(NSNotification*)note
 {
     LineListViewController *viewController1 = [[[LineListViewController alloc] initWithNibName:@"LineListViewController" bundle:nil] autorelease];
-    GalleryViewController *viewController2 = [[[GalleryViewController alloc] initWithNibName:@"GalleryViewController" bundle:nil] autorelease];
+    [self initGallery];
+    GalleryViewController *viewController2 = galleryViewController;
     BookmarkViewController *viewController3 = [[[BookmarkViewController alloc] initWithNibName:@"BookmarkViewController" bundle:nil] autorelease];
     HistoryViewController *viewController4 = [[[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil] autorelease];
     
@@ -116,8 +117,11 @@
     linesButton.selected=NO;
     bookmarkButton.selected=NO;
     historyButton.selected=NO;
+    CGRect frame = galleryViewController.lowerShadowImage.frame;
+    frame.origin.y = 299;
+    galleryViewController.lowerShadowImage.frame = frame;
     [UIView animateWithDuration:0.5f animations:^(void){
-        [self.view setFrame:CGRectMake(0,0,320,460)]; 
+        [self.view setFrame:CGRectMake(0,0,320,522)];
     }];
 }
 
@@ -130,14 +134,16 @@
 
 -(IBAction)linesPresses:(id)sender
 {
-            [self.tabBarController setSelectedIndex:1];
+    [self.tabBarController setSelectedIndex:1];
     [self setAllButtonsUnselected];
     linesButton.selected=YES;
 
     
     [UIView animateWithDuration:0.5f animations:^(void){
-        [self.view setFrame:CGRectMake(0,0,320,291)]; 
-
+        [self.view setFrame:CGRectMake(0,0,320,353)];
+        CGRect frame = galleryViewController.lowerShadowImage.frame;
+        frame.origin.y = 130;
+        galleryViewController.lowerShadowImage.frame = frame;
 
     } completion:^(BOOL finished){
         if (finished) {
@@ -146,6 +152,16 @@
     
 
 
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if ([self.tabBarController selectedIndex] == 1) {
+        [self.view setFrame:CGRectMake(0,0,320,353)];
+    }
+    else {
+        [self.view setFrame:CGRectMake(0,0,320,522)];
+    }
 }
 
 -(IBAction)bookmarkPressed:(id)sender
