@@ -400,12 +400,12 @@
     
     NSMutableArray *stationsArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     
-    for (int i=0; i<[pathX count]; i++) {
-        
-        if ([[pathX objectAtIndex:i] isKindOfClass:[Transfer class]]) {
-            [stationsArray addObject:[exits objectAtIndex:i]];
-        } 
-    }
+//    for (int i=0; i<[pathX count]; i++) {
+//        
+//        if ([[pathX objectAtIndex:i] isKindOfClass:[Transfer class]]) {
+//            [stationsArray addObject:[exits objectAtIndex:i]];
+//        } 
+//    }
     
     return stationsArray;
 }

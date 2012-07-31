@@ -246,7 +246,7 @@
 {
     NSTimeInterval duration = 0.2f;
     
-    [UIView animateWithDuration:duration animations:^{ 
+    [UIView animateWithDuration:duration animations:^{
         isEditing=NO;
         
         firstStation.hidden=NO;
@@ -354,7 +354,7 @@
 {
     NSTimeInterval duration = 0.2f;
     
-    [UIView animateWithDuration:duration animations:^{ 
+    [UIView animateWithDuration:duration animations:^{
         isEditing=NO;
         
         firstStation.hidden=NO;
