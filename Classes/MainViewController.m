@@ -48,7 +48,7 @@
     
     [(MainView*)self.view viewInit:self];
     
-    TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] initWithFrame:CGRectMake(0,0,320,44)];
+    TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] init];
     self.stationsView = twoStationsView;
     
     [(MainView*)self.view addSubview:twoStationsView];
