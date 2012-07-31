@@ -29,7 +29,7 @@
 @synthesize route;
 @synthesize stationsView;
 @synthesize currentSelection;
-@synthesize scrollView;
+@synthesize horizontalPathesScrollView;
 @synthesize pathScrollView;
 @synthesize timer;
 
@@ -50,7 +50,6 @@
     
     TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] init];
     self.stationsView = twoStationsView;
-    
     [(MainView*)self.view addSubview:twoStationsView];
     [twoStationsView release];
     
@@ -91,6 +90,22 @@
     [defaults setObject:newMap forKey:@"current_map"];
     [defaults setObject:cityName forKey:@"current_city"];
     [defaults synchronize];
+}
+
+- (void)didReceiveMemoryWarning {
+	// Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+	
+	// Release any cached data, images, etc that aren't in use.
+}
+
+- (void)viewDidUnload {
+	// Release any retained subviews of the main view.
+	// e.g. self.myOutlet = nil;
+}
+
+- (void)dealloc {
+    [super dealloc];
 }
 
 -(NSString*)getArrivalTimeFromNow:(NSInteger)time
@@ -631,9 +646,9 @@
     return NO;
 }
 
-#pragma mark - horiz and vert path views
+#pragma mark - Horizontal path views
 
--(void)showScrollView
+-(void)showHorizontalPathesScrollView
 {
     int numberOfPages=1;
     
@@ -650,36 +665,36 @@
     
     numberOfPages = [pathes2 count];
     
-    if (!self.scrollView) {
+    if (!self.horizontalPathesScrollView) {
         
         UIScrollView *scview= [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 26.0, 320.0f, 40.0f)];
-        self.scrollView = scview;
+        self.horizontalPathesScrollView = scview;
         [scview release];
         
-        self.scrollView.contentSize=CGSizeMake(numberOfPages * 320.0f, 40.0);
-        self.scrollView.pagingEnabled = YES; 
-        self.scrollView.bounces=NO;
-        self.scrollView.showsVerticalScrollIndicator=NO;
-        self.scrollView.showsHorizontalScrollIndicator=NO;
-        self.scrollView.delegate = self;
+        self.horizontalPathesScrollView.contentSize=CGSizeMake(numberOfPages * 320.0f, 40.0);
+        self.horizontalPathesScrollView.pagingEnabled = YES; 
+        self.horizontalPathesScrollView.bounces=NO;
+        self.horizontalPathesScrollView.showsVerticalScrollIndicator=NO;
+        self.horizontalPathesScrollView.showsHorizontalScrollIndicator=NO;
+        self.horizontalPathesScrollView.delegate = self;
         
         for (int i=0; i<numberOfPages; i++) {
             NSMutableArray *pathWithNumber = [appDelegate.cityMap describePath:[pathes2 objectAtIndex:i]];
             PathBarView *pathView = [[PathBarView alloc] initWithFrame:CGRectMake(i*320.0, 0.0, 320.0, 40) path:pathWithNumber number:i overall:numberOfPages];
-            [self.scrollView addSubview:pathView];
+            [self.horizontalPathesScrollView addSubview:pathView];
             pathView.tag=20000+i;
             [pathView release];
         }
         
-        [(MainView*)self.view addSubview:scrollView];
-        [(MainView*)self.view bringSubviewToFront:scrollView];
+        [(MainView*)self.view addSubview:horizontalPathesScrollView];
+        [(MainView*)self.view bringSubviewToFront:horizontalPathesScrollView];
         
         UIButton *changeViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *img = [UIImage imageNamed:@"switch_to_path.png"];
         UIImage *imgh = [UIImage imageNamed:@"switch_to_path_high.png"];
         [changeViewButton setImage:img forState:UIControlStateNormal];
         [changeViewButton setImage:imgh forState:UIControlStateHighlighted];
-        [changeViewButton addTarget:self action:@selector(changeView:) forControlEvents:UIControlEventTouchUpInside];
+        [changeViewButton addTarget:self action:@selector(changeMapToPathView:) forControlEvents:UIControlEventTouchUpInside];
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         
@@ -697,19 +712,19 @@
         [(MainView*)self.view addSubview:changeViewButton];
     } else {
         
-        NSArray *viewArray = [self.scrollView subviews];
+        NSArray *viewArray = [self.horizontalPathesScrollView subviews];
         for (PathBarView *view in viewArray) {
             [view removeFromSuperview];
         }
         
-        [self.scrollView scrollRectToVisible:CGRectMake(0.0, 26.0, 320.0f, 40.0f) animated:NO];
+        [self.horizontalPathesScrollView scrollRectToVisible:CGRectMake(0.0, 26.0, 320.0f, 40.0f) animated:NO];
         
-        self.scrollView.contentSize=CGSizeMake(numberOfPages * 320.0f, 40.0);
+        self.horizontalPathesScrollView.contentSize=CGSizeMake(numberOfPages * 320.0f, 40.0);
         
         for (int i=0; i<numberOfPages; i++) {
             NSMutableArray *pathWithNumber = [appDelegate.cityMap describePath:[pathes2 objectAtIndex:i]];
             PathBarView *pathView = [[PathBarView alloc] initWithFrame:CGRectMake(i*320.0, 0.0, 320.0, 40) path:pathWithNumber number:i overall:numberOfPages];
-            [self.scrollView addSubview:pathView];
+            [self.horizontalPathesScrollView addSubview:pathView];
             pathView.tag=20000+i;
             [pathView release];
         }
@@ -734,7 +749,7 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)ascrollView{ 
     
-    if (ascrollView==self.scrollView) {
+    if (ascrollView==self.horizontalPathesScrollView) {
         
         int pathNumb = floor(ascrollView.contentOffset.x/320.0);
         [self performSelector:@selector(changeActivePath:) withObject:[NSNumber numberWithInt:pathNumb] afterDelay:0.1];
@@ -760,13 +775,13 @@
 
 - (void)animateScrollView
 {
-    if (self.scrollView && self.scrollView.contentSize.width>320.0f && self.scrollView.contentOffset.x==0.0f) {
+    if (self.horizontalPathesScrollView && self.horizontalPathesScrollView.contentSize.width>320.0f && self.horizontalPathesScrollView.contentOffset.x==0.0f) {
 
         [UIView animateWithDuration:1 delay:0 options:(UIViewAnimationCurveEaseInOut) animations:^{
-            [self.scrollView setContentOffset:CGPointMake(38.0, 0.0)];
+            [self.horizontalPathesScrollView setContentOffset:CGPointMake(38.0, 0.0)];
         } completion:^(BOOL finished){
             [UIView animateWithDuration:1 delay:0 options:(UIViewAnimationCurveEaseInOut) animations:^{
-                [self.scrollView setContentOffset:CGPointMake(0.0, 0.0)];
+                [self.horizontalPathesScrollView setContentOffset:CGPointMake(0.0, 0.0)];
             } completion:nil];
         }];
         
@@ -779,24 +794,16 @@
     self.timer=nil;
 }
 
--(void)changeActivePath:(NSNumber*)pathNumb
-{
-    MainView *mainView = (MainView*)[self view];
-    [mainView.mapView selectPath:[pathNumb intValue]];    
-    
-    if (self.pathScrollView) {
-        [self performSelector:@selector(redrawPathScrollView) withObject:nil afterDelay:0.1];
-    }
-}
-
--(void)removeScrollView
+-(void)removeHorizontalPathesScrollView
 {
     [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 44, 320, 480-64)];
     
-    [self.scrollView removeFromSuperview];
-    self.scrollView=nil;
+    [self.horizontalPathesScrollView removeFromSuperview];
+    self.horizontalPathesScrollView=nil;
     [[(MainView*)self.view viewWithTag:333] removeFromSuperview];
 }
+
+#pragma mark - Vertical path views
 
 -(void)redrawPathScrollView
 {
@@ -806,6 +813,16 @@
     }
     
     [self drawPathScrollView];
+}
+
+-(void)changeActivePath:(NSNumber*)pathNumb
+{
+    MainView *mainView = (MainView*)[self view];
+    [mainView.mapView selectPath:[pathNumb intValue]];
+    
+    if (self.pathScrollView) {
+        [self performSelector:@selector(redrawPathScrollView) withObject:nil afterDelay:0.1];
+    }
 }
 
 -(void)drawPathScrollView
@@ -1149,7 +1166,7 @@
     [drawView release];
 }
 
--(IBAction)changeView:(id)sender
+-(IBAction)changeMapToPathView:(id)sender
 {
     if (!self.pathScrollView ) {
         
@@ -1162,7 +1179,7 @@
         [(MainView*)self.view addSubview:self.pathScrollView];
         [(MainView*)self.view bringSubviewToFront:pathScrollView];
         [(MainView*)self.view bringSubviewToFront:self.stationsView]; 
-        [(MainView*)self.view bringSubviewToFront:self.scrollView]; 
+        [(MainView*)self.view bringSubviewToFront:self.horizontalPathesScrollView]; 
         [(MainView*)self.view bringSubviewToFront:[(MainView*)self.view viewWithTag:333]]; 
         
         UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
@@ -1268,7 +1285,7 @@
     
 }
 
-#pragma mark - choosing stations etc
+#pragma mark - Choosing stations etc
 
 -(void)languageChanged:(NSNotification*)note
 {
@@ -1336,12 +1353,12 @@
     if ((self.fromStation==nil || self.toStation==nil)) {
         [mainView.mapView clearPath];
         
-        if (self.scrollView) {
-            [self removeScrollView];
+        if (self.horizontalPathesScrollView) {
+            [self removeHorizontalPathesScrollView];
         }
         
         if (self.pathScrollView) {
-            [self changeView:nil];
+            [self changeMapToPathView:nil];
         }
         mainView.mapView.stationSelected=false;
 	} else {
@@ -1364,7 +1381,7 @@
     if ([[[delegate cityMap] activePath] count]>0) {
         if (!([[[delegate cityMap] activePath] count]==1 && [[[[delegate cityMap] activePath] objectAtIndex:0] isKindOfClass:[Transfer class]])) {
             [stationsView transitToPathView];
-            [self showScrollView];
+            [self showHorizontalPathesScrollView];
         }
     }
     mainView.mapView.stationSelected=false;
@@ -1446,23 +1463,6 @@
     [self returnFromSelection2:[NSArray array]];
     
     currentSelection=tempSelection;
-}
-
-- (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-	
-	// Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
-}
-
-
-- (void)dealloc {
-    [super dealloc];
 }
 
 

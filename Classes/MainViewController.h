@@ -21,7 +21,7 @@
     NSArray *route;
     
     TopTwoStationsView *stationsView;
-    UIScrollView *scrollView;
+    UIScrollView *horizontalPathesScrollView;
     UIScrollView *pathScrollView;
     
     NSTimer *timer;
@@ -32,7 +32,7 @@
 @property (nonatomic, retain) NSArray *route;
 @property (nonatomic, retain) TopTwoStationsView *stationsView;
 @property (nonatomic, assign) int currentSelection;
-@property (nonatomic, retain) UIScrollView *scrollView;
+@property (nonatomic, retain) UIScrollView *horizontalPathesScrollView;
 @property (nonatomic, retain) UIScrollView *pathScrollView;
 @property (nonatomic, retain) NSTimer *timer;
 
