@@ -36,6 +36,7 @@
 {
     [tgr release];
     [tgr2 release];
+    [super dealloc];
 }
 
 -(void)handleTap:(UITapGestureRecognizer*) sender

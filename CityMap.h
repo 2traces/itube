@@ -240,7 +240,7 @@ typedef enum {NAME_NORMAL=0, NAME_ALTERNATIVE=1, NAME_BOTH=2} DrawNameType;
 -(void)drawNames:(CGContextRef)context inRect:(CGRect)rect;
 -(void)additionalPointsBetween:(NSString*)station1 and:(NSString*)station2 points:(NSArray*)points;
 -(Station*)getStation:(NSString*)stName;
--(Segment*)activateSegmentFrom:(NSString*)station1 to:(NSString*)station2;
+-(id)activateSegmentFrom:(NSString*)station1 to:(NSString*)station2;
 -(Segment*)activatePathFrom:(NSString*)station1 to:(NSString*)station2;
 -(void)setEnabled:(BOOL)en;
 -(void)predraw:(CGContextRef)context;

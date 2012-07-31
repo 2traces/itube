@@ -155,7 +155,6 @@ NSInteger const toolbarWidth=320;
 
 -(void)setCityMap:(CityMap*)cm
 {
-    [mapView removeFromSuperview];
     [containerView removeFromSuperview];
     [containerView release];
     CGRect scrollSize = CGRectMake(0,44,(320),(480-64));
@@ -184,13 +183,15 @@ NSInteger const toolbarWidth=320;
     [containerView addSubview:mapView.midground2];
     [self insertSubview:containerView atIndex:0];
     
-    if(cm != nil)
+    if(cm != nil) {
         [containerView setContentOffset:CGPointMake(mapView.size.width * 0.25f * mapView.Scale, mapView.size.height * 0.25f * mapView.Scale ) animated:NO];
-    else 
+        cm.drawName = [[MHelper sharedHelper] languageIndex];
+    } else 
         [containerView setContentOffset:CGPointZero];
     [self insertSubview:mapView.labelView belowSubview:sourceButton];
     self.backgroundColor = mapView.backgroundColor;
     [self bringSubviewToFront:commonActivityIndicator];
+    
 }
 
 -(void)showButtons:(CGPoint)pos

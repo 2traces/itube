@@ -662,7 +662,7 @@ NSCharacterSet *pCharacterSet = nil;
             NSRange range;
             range.location = 1;
             range.length = [graphNodes count]-1;
-            if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints wait:nextWait]) {
+            if([self findRestOfPath:[graphNodes subarrayWithRange:range] points:schPoints wait:NO]) {
                 [propagate release];
                 return YES;
             } else {
@@ -676,7 +676,7 @@ NSCharacterSet *pCharacterSet = nil;
             [nextP setWeightFrom:lastP];
             [schPoints addObject:nextP];
             for(int i=0; i<[graphNodes count]; i++) {
-                if([nextP.name isEqualToString:[[graphNodes objectAtIndex:i] name]]) {
+                if([nextP.name isEqualToString:[[graphNodes objectAtIndex:i] name]] && nextP.line == [[graphNodes objectAtIndex:i] line] ) {
                     NSRange range;
                     range.location = i+1;
                     range.length = [graphNodes count]-range.location;

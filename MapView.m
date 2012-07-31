@@ -427,7 +427,6 @@
     if(pathArray == nil || [pathArray count] == 0) return;
 
     [cityMap activatePath:pathArray];
-    [scrollView zoomToRect:cityMap.activeExtent animated:YES];
     // это недокументированный метод, так что если он в будущем изменится, то ой
     //[self.layer invalidateContents];
 	//[self setNeedsDisplay];
@@ -437,7 +436,9 @@
     midground1.alpha = 0;
     midground2.hidden = NO;
     midground2.alpha = 1.f;
-    [UIView animateWithDuration:0.5f animations:^(void) { activeLayer.alpha = 1.f; midground1.alpha = 1.f; midground2.alpha = 0.f; } completion:^(BOOL finish) { midground2.hidden = YES; }];
+    [UIView animateWithDuration:0.5f animations:^(void) { activeLayer.alpha = 1.f; midground1.alpha = 1.f; midground2.alpha = 0.f; } completion:^(BOOL finish) { midground2.hidden = YES; 
+        [scrollView zoomToRect:cityMap.activeExtent animated:YES];
+    }];
 
 }
 
