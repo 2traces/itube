@@ -648,6 +648,7 @@
 -(void)processPlistFromServer:(NSMutableData*)data
 {
     NSString *string = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+    NSLog(@"%@", string);
     NSDictionary *dict = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:nil errorDescription:nil];
     
     NSArray *array = [dict allKeys];

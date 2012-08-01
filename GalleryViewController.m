@@ -66,7 +66,7 @@
         view.delegate = self;
         
         CGRect frame = view.frame;
-        frame.origin.x = offset + 5.0f;
+        frame.origin.x = offset;
         frame.origin.y = 3.0f;
         frame.size.width = 170.0f;
         frame.size.height = 140.0f;
@@ -114,7 +114,7 @@
 
     for (GalleryItemView *view in galleryItems) {
         CGRect frame = view.frame;
-        frame.origin.x = offset + 5.0f;
+        frame.origin.x = offset;
         frame.origin.y = 3.0f;
         frame.size.width = 170.0f;
         frame.size.height = 140.0f;
