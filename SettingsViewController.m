@@ -130,9 +130,9 @@
 	langTableView.backgroundColor = [UIColor clearColor];
     langTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    textLabel1.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
-    textLabel2.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
-    textLabel3.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+    textLabel1.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18.0];
+    textLabel2.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18.0];
+    textLabel3.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18.0];
     
 	cityTableView.backgroundColor = [UIColor clearColor];
     cityTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -274,6 +274,7 @@
             [bgColorView setBackgroundColor:[UIColor brownColor]];
             [cell setSelectedBackgroundView:bgColorView];
             [bgColorView release];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }    
         
         NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
@@ -288,6 +289,12 @@
         [[(CountryMapCell*)cell mapStatus] setText:mapSize];
         [[(CountryMapCell*)cell mapStatus] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
         [[(CountryMapCell*)cell mapStatus] setHighlightedTextColor:[UIColor whiteColor]];
+
+        [[(CountryMapCell*)cell mapDownloaded] setText:@""];
+        [[(CountryMapCell*)cell mapDownloaded] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:14.0]];
+        [[(CountryMapCell*)cell mapDownloaded] setHighlightedTextColor:[UIColor whiteColor]];
+        
+        ((CountryMapCell*)cell).mapImage.image = [UIImage imageNamed:[map objectForKey:@"picture"]];
         
         cell.backgroundColor = [UIColor clearColor];
         
@@ -310,6 +317,10 @@
         progress.hidden=YES;
         progress.tag=123;
         
+        UILabel *labelStatus = [(CountryMapCell*)cell mapDownloaded];
+        labelStatus.hidden=YES;
+        labelStatus.text = @"";
+        
         NSString *price = [map valueForKey:@"price"];
         if ([price isEqualToString:@"0.99"]) {
             [cellButton setImage:[UIImage imageNamed:@"settings_price_min_bt.png"] forState:UIControlStateNormal];
@@ -317,41 +328,37 @@
             [cellButton setImage:[UIImage imageNamed:@"settings_price_max_bt.png"] forState:UIControlStateNormal];
         }
         
-//        if ([self isProductStatusDefault:[map objectForKey:@"prodID"]] || [self isProductStatusInstalled:[map objectForKey:@"prodID"]]) {
-//            [cellButton setTitle:@"Installed" forState:UIControlStateNormal];
-//            [cellButton setTitle:@"Installed" forState:UIControlStateHighlighted];
-//            [cellButton setBackgroundImage:[UIImage imageNamed:@"blue_button.png"] forState:UIControlStateNormal];
-//            [cellButton setBackgroundImage:[UIImage imageNamed:@"blue_button.png"] forState:UIControlStateHighlighted];
-//            [cellButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
-//            
-//        } else if ([self isProductStatusPurchased:[map objectForKey:@"prodID"]])  {
-//            
-//            [cellButton setTitle:@"Install" forState:UIControlStateNormal];
-//            [cellButton setTitle:@"Install" forState:UIControlStateHighlighted];
-//            [cellButton setBackgroundImage:[UIImage imageNamed:@"green_button.png"] forState:UIControlStateNormal];
-//            [cellButton setBackgroundImage:[UIImage imageNamed:@"high_green_button.png"] forState:UIControlStateHighlighted];
-//            [cellButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
-//            
-//        } else if ([self isProductStatusAvailable:[map objectForKey:@"prodID"]])  {
-//            
-//            [cellButton setTitle:[map valueForKey:@"price"] forState:UIControlStateNormal];
-//            [cellButton setTitle:[map valueForKey:@"price"] forState:UIControlStateHighlighted];
-//            [cellButton setBackgroundImage:[UIImage imageNamed:@"buy_button.png"] forState:UIControlStateNormal];
-//            [cellButton setBackgroundImage:[UIImage imageNamed:@"high_buy_button.png"] forState:UIControlStateHighlighted];
-//            [cellButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
-//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        if ([self isProductStatusDefault:[map objectForKey:@"prodID"]] || [self isProductStatusInstalled:[map objectForKey:@"prodID"]]) {
+            cellButton.hidden = YES;
+            progress.hidden=YES;
+            labelStatus.hidden=NO;
+            labelStatus.text = @"Installed";
+
+            
+        } else if ([self isProductStatusPurchased:[map objectForKey:@"prodID"]])  {
+            
+            cellButton.hidden = YES;
+            progress.hidden=YES;
+            labelStatus.hidden=NO;
+
+
+            
+        } else if ([self isProductStatusAvailable:[map objectForKey:@"prodID"]])  {
+            
+            cellButton.hidden = NO;
+            progress.hidden=YES;
+            labelStatus.hidden = YES;
+        }
             
         if ([self isProductStatusDownloading:[map objectForKey:@"prodID"]]){
             
             cellButton.hidden=YES;
             progress.hidden=NO;
+            labelStatus.hidden = YES;
 
         } else {
-            cellButton.hidden=NO;
             progress.hidden=YES;
+
         }
         
         //
@@ -442,9 +449,13 @@
             [appDelegate.mainViewController changeMapTo:mapName andCity:cityName];
             
         } else {
-            // показать рекламное окно
-            [self returnWithPurchase:[map objectForKey:@"prodID"]];
+            NSString *prodID = [map valueForKey:@"prodID"];
             
+            if ([self isProductStatusAvailable:prodID]) {
+                [self purchaseProduct:prodID];
+            } else if ([self isProductStatusPurchased:prodID]) {
+                [self downloadProduct:prodID];
+            }
 //            DemoMapViewController *controller = [[DemoMapViewController alloc] initWithNibName:@"DemoMapViewController" bundle:[NSBundle mainBundle]];
 //            NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
 //            controller.filename = [map objectForKey:@"filename"];
@@ -549,27 +560,10 @@
     NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *mapDirPath = [cacheDir stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@",[mapName lowercaseString]]];
     
-    BOOL mapFile = NO;
-    BOOL trpFile = NO;
-    BOOL trpNewFile = NO;
-    
+    //For now we just check if the directory for that map exists
     if ([[manager contentsOfDirectoryAtPath:mapDirPath error:nil] count]>0) {
-        NSDirectoryEnumerator *dirEnum = [manager enumeratorAtPath:mapDirPath];
-        NSString *file;
-        
-        while (file = [dirEnum nextObject]) {
-            if ([[file pathExtension] isEqualToString: @"map"]) {
-                mapFile=YES;
-            } else if ([[file pathExtension] isEqualToString: @"trp"]) {
-                trpFile=YES;
-            } else if ([[file pathExtension] isEqualToString: @"trpnew"]) {
-                trpNewFile=YES;
-            }
-        }
-    } 
-    if (mapFile && (trpFile || trpNewFile)) {
         return YES;
-    }
+    } 
     
     return NO;
 }
@@ -756,7 +750,9 @@
             }
         }
         
-        [appdelegate.mainViewController changeMapTo:mapName andCity:cityName];
+        //!!!TEMPORARY COMMENTED THAT OUT
+        //as map engine is not yet working properly and is crashin at this point
+        //[appdelegate.mainViewController changeMapTo:mapName andCity:cityName];
     }
     
     //    [self.updatButton enabled];
@@ -795,6 +791,18 @@
     for (NSMutableDictionary *map in self.maps) {
         if ([[map valueForKey:@"prodID"] isEqual:prodID]) {
             return [map valueForKey:@"filename"];
+        }
+    }
+    
+    return nil;
+}
+
+
+-(NSString*)getMapUrlForProduct:(NSString*)prodID
+{
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID]) {
+            return [map valueForKey:@"zip_download"];
         }
     }
     
@@ -847,9 +855,11 @@
     
     NSString *mapName = [self getMapNameForProduct:prodID];   
     
+    NSString *mapUrl = [self getMapUrlForProduct:prodID];
+    
     NSString *mapFilePath = [NSString stringWithFormat:@"maps/%@/%@.zip",mapName,mapName];
     requested_file_type=zip_;
-    [server loadFileAtURL:mapFilePath];
+    [server loadFileAtURL:mapUrl];
 }
 
 -(void)returnWithPurchase:(NSString *)prodID

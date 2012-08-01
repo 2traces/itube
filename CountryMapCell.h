@@ -12,6 +12,7 @@
 {
     IBOutlet UILabel *mapName;
     IBOutlet UILabel *mapStatus;
+    IBOutlet UILabel *mapDownloaded;
     IBOutlet UIButton *cellButton;
     IBOutlet UIProgressView *progress;
     IBOutlet UIImageView *mapImage;
@@ -21,6 +22,7 @@
 
 @property (nonatomic, retain) IBOutlet UILabel* mapName;
 @property (nonatomic, retain) IBOutlet UILabel* mapStatus;
+@property (nonatomic, retain) IBOutlet UILabel* mapDownloaded;
 @property (nonatomic, retain) IBOutlet UIButton* cellButton;
 @property (nonatomic, retain) IBOutlet UIProgressView* progress;
 @property (nonatomic, retain) IBOutlet UIImageView *mapImage;

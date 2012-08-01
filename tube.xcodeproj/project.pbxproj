@@ -37,7 +37,7 @@
 		51F15F7714D99A3800D11B79 /* VectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F15F7614D99A3800D11B79 /* VectorLayer.m */; };
 		570474AE15A48D9700A43E6F /* CountryMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 570474AD15A48D9700A43E6F /* CountryMapView.xib */; };
 		570474B115A48DCD00A43E6F /* CountryMapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 570474B015A48DCD00A43E6F /* CountryMapCell.m */; };
-		570474B515A4903400A43E6F /* country_sample_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 570474B215A4903400A43E6F /* country_sample_image.png */; };
+		570474B515A4903400A43E6F /* cuba.png in Resources */ = {isa = PBXBuildFile; fileRef = 570474B215A4903400A43E6F /* cuba.png */; };
 		570474B615A4903400A43E6F /* settings_item_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 570474B315A4903400A43E6F /* settings_item_bg.png */; };
 		570474B715A4903400A43E6F /* settings_item_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 570474B415A4903400A43E6F /* settings_item_bg@2x.png */; };
 		570474BC15A491CB00A43E6F /* settings_price_min_bt.png in Resources */ = {isa = PBXBuildFile; fileRef = 570474B815A491CB00A43E6F /* settings_price_min_bt.png */; };
@@ -57,6 +57,7 @@
 		573AF99915989A6A001F09B7 /* GalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 573AF99815989A69001F09B7 /* GalleryViewController.xib */; };
 		573AF99C15989D4C001F09B7 /* gallery_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 573AF99A15989D4C001F09B7 /* gallery_bg.png */; };
 		573AF99D15989D4C001F09B7 /* gallery_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 573AF99B15989D4C001F09B7 /* gallery_bg@2x.png */; };
+		574B557115C9414C00A95612 /* GalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 574B557015C9414C00A95612 /* GalleryView.m */; };
 		576A061315923E9D0001E95D /* offlinemaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 576A061115923E9D0001E95D /* offlinemaps.xcdatamodeld */; };
 		57892B9D159B5FE900188337 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57892B9C159B5FE900188337 /* MapKit.framework */; };
 		57892BA0159B60D200188337 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57892B9F159B60D200188337 /* AddressBook.framework */; };
@@ -451,7 +452,7 @@
 		570474AD15A48D9700A43E6F /* CountryMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountryMapView.xib; sourceTree = "<group>"; };
 		570474AF15A48DCD00A43E6F /* CountryMapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryMapCell.h; sourceTree = "<group>"; };
 		570474B015A48DCD00A43E6F /* CountryMapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryMapCell.m; sourceTree = "<group>"; };
-		570474B215A4903400A43E6F /* country_sample_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = country_sample_image.png; path = images/country_sample_image.png; sourceTree = "<group>"; };
+		570474B215A4903400A43E6F /* cuba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cuba.png; path = images/cuba.png; sourceTree = "<group>"; };
 		570474B315A4903400A43E6F /* settings_item_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings_item_bg.png; path = images/settings_item_bg.png; sourceTree = "<group>"; };
 		570474B415A4903400A43E6F /* settings_item_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings_item_bg@2x.png"; path = "images/settings_item_bg@2x.png"; sourceTree = "<group>"; };
 		570474B815A491CB00A43E6F /* settings_price_min_bt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings_price_min_bt.png; path = images/settings_price_min_bt.png; sourceTree = "<group>"; };
@@ -473,6 +474,8 @@
 		573AF99815989A69001F09B7 /* GalleryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GalleryViewController.xib; path = Resources/GalleryViewController.xib; sourceTree = "<group>"; };
 		573AF99A15989D4C001F09B7 /* gallery_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery_bg.png; sourceTree = "<group>"; };
 		573AF99B15989D4C001F09B7 /* gallery_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_bg@2x.png"; sourceTree = "<group>"; };
+		574B556F15C9414B00A95612 /* GalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryView.h; sourceTree = "<group>"; };
+		574B557015C9414C00A95612 /* GalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryView.m; sourceTree = "<group>"; };
 		576A061215923E9D0001E95D /* offlinemaps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = offlinemaps.xcdatamodel; sourceTree = "<group>"; };
 		57892B9C159B5FE900188337 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		57892B9F159B60D200188337 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -1025,6 +1028,8 @@
 				579E9D6E1599C70000D509D0 /* GalleryFullscreenViewController.m */,
 				571EEF4215A72CAF00CE09AC /* DirectionView.h */,
 				571EEF4315A72CAF00CE09AC /* DirectionView.m */,
+				574B556F15C9414B00A95612 /* GalleryView.h */,
+				574B557015C9414C00A95612 /* GalleryView.m */,
 			);
 			name = "Main View";
 			sourceTree = "<group>";
@@ -1099,6 +1104,7 @@
 				BC876AC014DFAF23008AC06C /* SettingsViewController.xib */,
 				BC876AC114DFAF23008AC06C /* StationListCell.xib */,
 				BC876AC214DFAF23008AC06C /* StationListViewController.xib */,
+				574B555715C92E8000A95612 /* maps thumbnails */,
 				BC90F13C14D7AECC001852F0 /* PathBar */,
 				BCF7CC9914CFFE060000522C /* TwoStations */,
 				BC3D151114C339330059A17E /* History */,
@@ -1142,6 +1148,14 @@
 			name = TBXML;
 			sourceTree = "<group>";
 		};
+		574B555715C92E8000A95612 /* maps thumbnails */ = {
+			isa = PBXGroup;
+			children = (
+				570474B215A4903400A43E6F /* cuba.png */,
+			);
+			name = "maps thumbnails";
+			sourceTree = "<group>";
+		};
 		9F5E306F14A457F600D549E4 /* ini */ = {
 			isa = PBXGroup;
 			children = (
@@ -1166,7 +1180,6 @@
 				570474B915A491CB00A43E6F /* settings_price_min_bt@2x.png */,
 				570474BA15A491CB00A43E6F /* settings_price_max_bt.png */,
 				570474BB15A491CB00A43E6F /* settings_price_max_bt@2x.png */,
-				570474B215A4903400A43E6F /* country_sample_image.png */,
 				570474B315A4903400A43E6F /* settings_item_bg.png */,
 				570474B415A4903400A43E6F /* settings_item_bg@2x.png */,
 				BC28950814F621560054F9EB /* high_language_table_cell.png */,
@@ -1849,7 +1862,7 @@
 				57AE4552159F3B5A0062EAC3 /* direction_bg.png in Resources */,
 				57AE4553159F3B5A0062EAC3 /* direction_bg@2x.png in Resources */,
 				570474AE15A48D9700A43E6F /* CountryMapView.xib in Resources */,
-				570474B515A4903400A43E6F /* country_sample_image.png in Resources */,
+				570474B515A4903400A43E6F /* cuba.png in Resources */,
 				570474B615A4903400A43E6F /* settings_item_bg.png in Resources */,
 				570474B715A4903400A43E6F /* settings_item_bg@2x.png in Resources */,
 				570474BC15A491CB00A43E6F /* settings_price_min_bt.png in Resources */,
@@ -1950,6 +1963,7 @@
 				579E9D6F1599C70000D509D0 /* GalleryFullscreenViewController.m in Sources */,
 				570474B115A48DCD00A43E6F /* CountryMapCell.m in Sources */,
 				571EEF4415A72CAF00CE09AC /* DirectionView.m in Sources */,
+				574B557115C9414C00A95612 /* GalleryView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2006,15 +2020,16 @@
 					armv6,
 					armv7,
 				);
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Zuev (2AEQRC3ZN4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sergey Zuev (2AEQRC3ZN4)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				ONLY_ACTIVE_ARCH = YES;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "B76FF320-B947-4E39-B8FA-8E7B8D3B5372";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B76FF320-B947-4E39-B8FA-8E7B8D3B5372";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2026,14 +2041,15 @@
 					armv6,
 					armv7,
 				);
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Zuev (2AEQRC3ZN4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sergey Zuev (2AEQRC3ZN4)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				ONLY_ACTIVE_ARCH = YES;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "B76FF320-B947-4E39-B8FA-8E7B8D3B5372";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B76FF320-B947-4E39-B8FA-8E7B8D3B5372";
 				SDKROOT = iphoneos;
 			};
 			name = Release;

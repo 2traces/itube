@@ -163,13 +163,13 @@
     
     MHistory *history = [self.historyList objectAtIndex:indexPath.row];
 
-    [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObjects:history.theItem,nil]];
+    [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObjects:history.theItem, [NSDate date], nil]];
 
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    return 60.0;
+    return 41.0;
 }
 
 

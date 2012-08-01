@@ -1189,7 +1189,18 @@
     MainView *mainView = (MainView*)self.view;
     if ([items count]) {
         self.fromStation = [items objectAtIndex:0];
+        MHelper *helper = [MHelper sharedHelper];
+
+        if ([items count] > 1 && [[items objectAtIndex:1] isKindOfClass:[NSDate class]]) {
+            //We've returned from history, DO NOT ADD THIS ITEM TO HISTORY!
+        }
+        else {
+            [helper addHistory:[NSDate date] item:self.fromStation];
+        }
+        
         [stationsView setFromStation:self.fromStation];
+        
+        
         if(![mainView centerMapOnUserAndItemWithID:[self.fromStation.index integerValue]]) {
 #ifdef DEBUG
             NSLog(@"object %@ not found!", self.fromStation.index);
@@ -1198,6 +1209,9 @@
         else {
             [self setPinForItem:[self.fromStation.index integerValue]];
         }
+        
+        [helper saveHistoryFile];
+
     }
     else {
         self.fromStation=nil;
@@ -1207,9 +1221,7 @@
     
 	mainView.mapView.stationSelected=false;
     
-    //    MHelper *helper = [MHelper sharedHelper];
     //    [helper saveBookmarkFile];
-    //    [helper saveHistoryFile];
     //    [self dismissModalViewControllerAnimated:YES];
 }
 

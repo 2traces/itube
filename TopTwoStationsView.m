@@ -43,7 +43,7 @@
     UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist.png"];
 	
 	UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [refreshButton setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width*1.2f,imageOpenList.size.height*2)];
+    [refreshButton setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
 	[refreshButton setImage:imageOpenList forState:UIControlStateNormal];
 	[refreshButton addTarget:self action:@selector(selectFromStation) forControlEvents:UIControlEventTouchUpInside];
     
@@ -401,7 +401,7 @@
 //        [lineColor release];
         
         [firstStation setLeftViewMode: UITextFieldViewModeAlways];
-        firstStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];
+        //firstStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];
 
     } else {
         [self clearFromStation];
@@ -432,7 +432,7 @@
         //[lineColor release];
         
         [secondStation setLeftViewMode: UITextFieldViewModeAlways];
-        secondStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];
+        //secondStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];
 
     } else {
         [self clearToStation];
