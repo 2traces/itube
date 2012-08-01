@@ -11,17 +11,19 @@
 #import "ManagedObjects.h"
 #import "PathDrawView.h"
 #import "MBProgressHUD.h"
+#import "PathScrollView.h"
 
 @class TopTwoStationsView;
 
-@interface MainViewController : UIViewController <FlipsideViewControllerDelegate,SelectingTabBarProtocol,UIScrollViewDelegate,PathDrawProtocol,MBProgressHUDDelegate> {
+@interface MainViewController : UIViewController <FlipsideViewControllerDelegate,SelectingTabBarProtocol,UIScrollViewDelegate,PathDrawProtocol,MBProgressHUDDelegate,PathScrollViewProtocol> {
+    
     int currentSelection;
     MStation *fromStation;
     MStation *toStation;
     NSArray *route;
     
     TopTwoStationsView *stationsView;
-    UIScrollView *horizontalPathesScrollView;
+    PathScrollView *horizontalPathesScrollView;
     UIScrollView *pathScrollView;
     
     NSTimer *timer;
@@ -32,7 +34,7 @@
 @property (nonatomic, retain) NSArray *route;
 @property (nonatomic, retain) TopTwoStationsView *stationsView;
 @property (nonatomic, assign) int currentSelection;
-@property (nonatomic, retain) UIScrollView *horizontalPathesScrollView;
+@property (nonatomic, retain) PathScrollView *horizontalPathesScrollView;
 @property (nonatomic, retain) UIScrollView *pathScrollView;
 @property (nonatomic, retain) NSTimer *timer;
 

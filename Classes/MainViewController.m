@@ -80,7 +80,7 @@
     
     CityMap *cm = [[[CityMap alloc] init] autorelease];
     [cm loadMap:newMap];
-        
+    
     [(MainView*)self.view setCityMap:cm];
     appDelegate.cityMap=cm;
     
@@ -106,33 +106,6 @@
 
 - (void)dealloc {
     [super dealloc];
-}
-
--(NSString*)getArrivalTimeFromNow:(NSInteger)time
-{
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    if ([appDelegate.cityMap.pathTimesList count]>1) {
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setTimeStyle:NSDateFormatterShortStyle];
-        [formatter setDateStyle:NSDateFormatterNoStyle];
-        NSString *arrivalTime = [formatter stringFromDate:[appDelegate.cityMap.pathTimesList lastObject]];
-        [formatter release];
-        return arrivalTime;    
-    }
-    
-    NSDate *newDate = [NSDate dateWithTimeIntervalSinceNow:time*60.0]; 
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    
-    [formatter setTimeStyle:NSDateFormatterShortStyle];
-    [formatter setDateStyle:NSDateFormatterNoStyle];
-    
-    NSString *arrivalTime = [formatter stringFromDate:newDate];
-    
-    [formatter release];
-    
-    return arrivalTime;
 }
 
 #pragma mark - datasource methods
@@ -202,7 +175,7 @@
             }
             
             [normalPath addObject:transfer];
-        }        
+        }
     }
     
     return normalPath;
@@ -269,7 +242,7 @@
 
 -(UIColor*)dsLastStationSaturatedColor
 {
-    return [(UIColor*)[[self.toStation lines] color] saturatedColor];    
+    return [(UIColor*)[[self.toStation lines] color] saturatedColor];
 }
 
 
@@ -295,7 +268,7 @@
             } else {
                 
                 if (currentIndexLine!=-1) {
-                    [timeArray addObject:[NSNumber numberWithInteger:lineTime]];    
+                    [timeArray addObject:[NSNumber numberWithInteger:lineTime]];
                 }
                 
                 lineTime=[segment driving];
@@ -304,7 +277,7 @@
         }
     }
     
-    [timeArray addObject:[NSNumber numberWithInteger:lineTime]];    
+    [timeArray addObject:[NSNumber numberWithInteger:lineTime]];
     
     return timeArray;
 }
@@ -334,7 +307,7 @@
         }
     }
     
-    [stationsArray addObject:tempArray]; 
+    [stationsArray addObject:tempArray];
     
     return stationsArray;
 }
@@ -415,12 +388,12 @@
     
     NSMutableArray *stationsArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     
-//    for (int i=0; i<[pathX count]; i++) {
-//        
-//        if ([[pathX objectAtIndex:i] isKindOfClass:[Transfer class]]) {
-//            [stationsArray addObject:[exits objectAtIndex:i]];
-//        } 
-//    }
+    //    for (int i=0; i<[pathX count]; i++) {
+    //
+    //        if ([[pathX objectAtIndex:i] isKindOfClass:[Transfer class]]) {
+    //            [stationsArray addObject:[exits objectAtIndex:i]];
+    //        }
+    //    }
     
     return stationsArray;
 }
@@ -454,7 +427,7 @@
                 a++;
             } else {
                 if (currentIndexLine!=-1) {
-                    [stationsArray addObject:tempArray]; 
+                    [stationsArray addObject:tempArray];
                 }
                 tempArray = [NSMutableArray array];
                 [tempArray addObject:[formatter stringFromDate:[times objectAtIndex:a]]];
@@ -474,7 +447,7 @@
             }
             
             if (i==objectNum-1) {
-                [stationsArray addObject:tempArray];    
+                [stationsArray addObject:tempArray];
                 tempArray = [NSMutableArray array];
                 [tempArray addObject:[formatter stringFromDate:[times objectAtIndex:a]]];
                 a++;
@@ -482,7 +455,7 @@
         }
     }
     
-    [stationsArray addObject:tempArray];  
+    [stationsArray addObject:tempArray];
     
     [formatter release];
     
@@ -516,7 +489,7 @@
                 [tempArray addObject:[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]]];
             } else {
                 if (currentIndexLine!=-1) {
-                    [stationsArray addObject:tempArray];    
+                    [stationsArray addObject:tempArray];
                 }
                 tempArray = [NSMutableArray array];
                 [tempArray addObject:[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]]];
@@ -536,14 +509,14 @@
             time+=[(Transfer*)[path objectAtIndex:i] time];
             
             if (i==objectNum-1) {
-                [stationsArray addObject:tempArray];    
+                [stationsArray addObject:tempArray];
                 tempArray = [NSMutableArray array];
                 [tempArray addObject:[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:time*60.0]]];
             }
         }
     }
     
-    [stationsArray addObject:tempArray];  
+    [stationsArray addObject:tempArray];
     
     [formatter release];
     
@@ -562,7 +535,7 @@
     for (int i=0; i<objectNum; i++) {
         
         if ([[path objectAtIndex:i] isKindOfClass:[Transfer class]]) {
-            [stationsArray addObject:[NSNumber numberWithInt:[(Transfer*)[path objectAtIndex:i] time]]];  
+            [stationsArray addObject:[NSNumber numberWithInt:[(Transfer*)[path objectAtIndex:i] time]]];
         }
     }
     
@@ -572,7 +545,7 @@
 -(NSMutableArray*)dsGetDirectionNames
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSArray *pathX = appDelegate.cityMap.activePath;    
+    NSArray *pathX = appDelegate.cityMap.activePath;
     NSMutableArray *path = [self normalizePath:pathX];
     int objectNum = [path count];
     
@@ -609,7 +582,7 @@
                 }
                 
                 directionName=[NSString stringWithFormat:@"%@, direction %@",[[[segment start] line] name],finalStation];
-                [directionsArray addObject:directionName];  
+                [directionsArray addObject:directionName];
                 currentIndexLine=[[[segment start] line] index];
             }
         }
@@ -625,7 +598,7 @@
     
     if ([path count]>0) {
         if ([[path objectAtIndex:0] isKindOfClass:[Transfer class]]) {
-            return YES;    
+            return YES;
         }
     }
     
@@ -639,7 +612,7 @@
     
     if ([path count]>0) {
         if ([[path lastObject] isKindOfClass:[Transfer class]]) {
-            return YES;    
+            return YES;
         }
     }
     
@@ -648,97 +621,57 @@
 
 #pragma mark - Horizontal path views
 
+-(UIButton*)createChangeButton
+{
+    UIButton *changeViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *img = [UIImage imageNamed:@"switch_to_path.png"];
+    UIImage *imgh = [UIImage imageNamed:@"switch_to_path_high.png"];
+    [changeViewButton setImage:img forState:UIControlStateNormal];
+    [changeViewButton setImage:imgh forState:UIControlStateHighlighted];
+    [changeViewButton addTarget:self action:@selector(changeMapToPathView:) forControlEvents:UIControlEventTouchUpInside];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateStyle:NSDateFormatterNoStyle];
+    NSString *dateString = [formatter stringFromDate:[NSDate date]];
+    CGSize dateSize = [dateString sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
+    [formatter release];
+    
+    [changeViewButton setFrame:CGRectMake(320.0-12.0-dateSize.width-img.size.width , 66 , img.size.width, img.size.height)];
+    [changeViewButton setTag:333];
+    
+    return changeViewButton;
+}
+
 -(void)showHorizontalPathesScrollView
 {
-    int numberOfPages=1;
-    
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    MainView *mainView = (MainView*)[self view];
-    NSMutableArray *pathes2 = [[NSMutableArray alloc] init];
-    
-    NSArray *keys = [[mainView.mapView.foundPaths allKeys] sortedArrayUsingSelector:@selector(compare:)];
-    
-    for (NSNumber *pathIndex in keys) {
-        [pathes2 addObject:[mainView.mapView.foundPaths objectForKey:pathIndex]];
-    }
-    
-    numberOfPages = [pathes2 count];
     
     if (!self.horizontalPathesScrollView) {
         
-        UIScrollView *scview= [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 26.0, 320.0f, 40.0f)];
-        self.horizontalPathesScrollView = scview;
-        [scview release];
-        
-        self.horizontalPathesScrollView.contentSize=CGSizeMake(numberOfPages * 320.0f, 40.0);
-        self.horizontalPathesScrollView.pagingEnabled = YES; 
-        self.horizontalPathesScrollView.bounces=NO;
-        self.horizontalPathesScrollView.showsVerticalScrollIndicator=NO;
-        self.horizontalPathesScrollView.showsHorizontalScrollIndicator=NO;
+        PathScrollView *pathView = [[PathScrollView alloc] initWithFrame:CGRectMake(0.0, 26.0, 320.0, 40.0)];
+        self.horizontalPathesScrollView = pathView;
         self.horizontalPathesScrollView.delegate = self;
-        
-        for (int i=0; i<numberOfPages; i++) {
-            NSMutableArray *pathWithNumber = [appDelegate.cityMap describePath:[pathes2 objectAtIndex:i]];
-            PathBarView *pathView = [[PathBarView alloc] initWithFrame:CGRectMake(i*320.0, 0.0, 320.0, 40) path:pathWithNumber number:i overall:numberOfPages];
-            [self.horizontalPathesScrollView addSubview:pathView];
-            pathView.tag=20000+i;
-            [pathView release];
-        }
+        [pathView release];
         
         [(MainView*)self.view addSubview:horizontalPathesScrollView];
         [(MainView*)self.view bringSubviewToFront:horizontalPathesScrollView];
         
-        UIButton *changeViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *img = [UIImage imageNamed:@"switch_to_path.png"];
-        UIImage *imgh = [UIImage imageNamed:@"switch_to_path_high.png"];
-        [changeViewButton setImage:img forState:UIControlStateNormal];
-        [changeViewButton setImage:imgh forState:UIControlStateHighlighted];
-        [changeViewButton addTarget:self action:@selector(changeMapToPathView:) forControlEvents:UIControlEventTouchUpInside];
-        
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        
-        [formatter setTimeStyle:NSDateFormatterShortStyle];
-        [formatter setDateStyle:NSDateFormatterNoStyle];
-        
-        NSString *dateString = [formatter stringFromDate:[NSDate date]];
-        
-        CGSize dateSize = [dateString sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
-        
-        [formatter release];
-        
-        [changeViewButton setFrame:CGRectMake(320.0-12.0-dateSize.width-img.size.width , 66 , img.size.width, img.size.height)];
-        [changeViewButton setTag:333];
+        UIButton *changeViewButton = [self createChangeButton];
         [(MainView*)self.view addSubview:changeViewButton];
+        
     } else {
         
-        NSArray *viewArray = [self.horizontalPathesScrollView subviews];
-        for (PathBarView *view in viewArray) {
-            [view removeFromSuperview];
-        }
-        
-        [self.horizontalPathesScrollView scrollRectToVisible:CGRectMake(0.0, 26.0, 320.0f, 40.0f) animated:NO];
-        
-        self.horizontalPathesScrollView.contentSize=CGSizeMake(numberOfPages * 320.0f, 40.0);
-        
-        for (int i=0; i<numberOfPages; i++) {
-            NSMutableArray *pathWithNumber = [appDelegate.cityMap describePath:[pathes2 objectAtIndex:i]];
-            PathBarView *pathView = [[PathBarView alloc] initWithFrame:CGRectMake(i*320.0, 0.0, 320.0, 40) path:pathWithNumber number:i overall:numberOfPages];
-            [self.horizontalPathesScrollView addSubview:pathView];
-            pathView.tag=20000+i;
-            [pathView release];
-        }
+        [self.horizontalPathesScrollView refreshContent];
     }
     
     [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
-    [pathes2 release];
     
-    if (numberOfPages>1) {
+    if ([self.horizontalPathesScrollView numberOfPages]>1) {
         if ([self helpNeeded]) {
             [self.timer invalidate];
             self.timer = nil;
             self.timer = [NSTimer scheduledTimerWithTimeInterval:5
-                                                          target:self
+                                                          target:horizontalPathesScrollView
                                                         selector:@selector(animateScrollView)
                                                         userInfo:nil
                                                          repeats:NO];
@@ -747,13 +680,8 @@
     }
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)ascrollView{ 
-    
-    if (ascrollView==self.horizontalPathesScrollView) {
-        
-        int pathNumb = floor(ascrollView.contentOffset.x/320.0);
-        [self performSelector:@selector(changeActivePath:) withObject:[NSNumber numberWithInt:pathNumb] afterDelay:0.1];
-    }
+-(void)requestChangeActivePath:(NSNumber*)pathNumb {
+    [self performSelector:@selector(changeActivePath:) withObject:pathNumb afterDelay:0.1];
 }
 
 -(BOOL)helpNeeded
@@ -773,22 +701,12 @@
     }
 }
 
-- (void)animateScrollView
+-(void)animationDidEnd
 {
-    if (self.horizontalPathesScrollView && self.horizontalPathesScrollView.contentSize.width>320.0f && self.horizontalPathesScrollView.contentOffset.x==0.0f) {
+    NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"scrollHelp"]+1 forKey:@"scrollHelp"];
+    [prefs synchronize];
 
-        [UIView animateWithDuration:1 delay:0 options:(UIViewAnimationCurveEaseInOut) animations:^{
-            [self.horizontalPathesScrollView setContentOffset:CGPointMake(38.0, 0.0)];
-        } completion:^(BOOL finished){
-            [UIView animateWithDuration:1 delay:0 options:(UIViewAnimationCurveEaseInOut) animations:^{
-                [self.horizontalPathesScrollView setContentOffset:CGPointMake(0.0, 0.0)];
-            } completion:nil];
-        }];
-        
-        NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
-        [prefs setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"scrollHelp"]+1 forKey:@"scrollHelp"];
-        [prefs synchronize];
-    }
     
     [self.timer invalidate];
     self.timer=nil;
@@ -800,6 +718,7 @@
     
     [self.horizontalPathesScrollView removeFromSuperview];
     self.horizontalPathesScrollView=nil;
+    
     [[(MainView*)self.view viewWithTag:333] removeFromSuperview];
 }
 
@@ -836,7 +755,7 @@
     CGFloat finalHeight = 60.0f;
     
     // получаем все стартовые данные для начала рисования
-    NSMutableArray *stations = [[[NSMutableArray alloc] initWithArray:[self dsGetStationsArray]] autorelease];  // список станций - массив массивов 
+    NSMutableArray *stations = [[[NSMutableArray alloc] initWithArray:[self dsGetStationsArray]] autorelease];  // список станций - массив массивов
     NSMutableArray *exits = [self dsGetExitForStations];  // выходы со станций - массив
     NSMutableArray *directions = [self dsGetDirectionNames]; // направления движения
     
@@ -903,11 +822,11 @@
         NSString *directionName = [directions objectAtIndex:[stations indexOfObject:tempStations]];
         
         CGSize max = CGSizeMake(235, 500);
-        CGSize expected = [directionName sizeWithFont:[UIFont fontWithName:@"MyriadPr-Italic" size:14.0] constrainedToSize:max lineBreakMode:UILineBreakModeWordWrap]; 
+        CGSize expected = [directionName sizeWithFont:[UIFont fontWithName:@"MyriadPr-Italic" size:14.0] constrainedToSize:max lineBreakMode:UILineBreakModeWordWrap];
         
         tempTH+=expected.height+10.0;
         
-        segmentHeight =  (float)trainType * tempTH +(float)finalType*finalHeight + (float)stationType * stationHeight;    
+        segmentHeight =  (float)trainType * tempTH +(float)finalType*finalHeight + (float)stationType * stationHeight;
         [points addObject:[NSNumber numberWithFloat:segmentHeight]];
         
         viewHeight += segmentHeight;
@@ -940,7 +859,7 @@
     // -------
     
     // первый и последний лебл даты прибытия станций
-    NSString *dateString1 = [[stationsTime objectAtIndex:0] objectAtIndex:0]; 
+    NSString *dateString1 = [[stationsTime objectAtIndex:0] objectAtIndex:0];
     CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
     UILabel *dateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize1.width, lineStart-7.0, dateSize1.width, 25.0)];
     dateLabel1.text = dateString1;
@@ -1024,7 +943,7 @@
         
         CGRect currentFrame = directionLabel.frame;
         CGSize max = CGSizeMake(directionLabel.frame.size.width, 500);
-        CGSize expected = [directionName sizeWithFont:directionLabel.font constrainedToSize:max lineBreakMode:directionLabel.lineBreakMode]; 
+        CGSize expected = [directionName sizeWithFont:directionLabel.font constrainedToSize:max lineBreakMode:directionLabel.lineBreakMode];
         currentFrame.size.height = expected.height;
         directionLabel.frame = currentFrame;
         
@@ -1089,7 +1008,7 @@
         CGRect rect1 = CGRectMake(40.0, currentY-16.0, 235, 22.0);
         CGRect rect2 = CGRectMake(40.0, currentY+8.0, 235, 22.0);
         
-        NSString *stationName1 = [[stations objectAtIndex:i] lastObject];            
+        NSString *stationName1 = [[stations objectAtIndex:i] lastObject];
         NSString *stationName2 = [[stations objectAtIndex:i+1] objectAtIndex:0];
         
         if ([stationName1 isEqualToString:stationName2]) {
@@ -1156,7 +1075,7 @@
             [dateLabel2 release];
             
         }
-    } 
+    }
     
     
     PathDrawVertView *drawView = [[PathDrawVertView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320, viewHeight+100.0)];
@@ -1178,9 +1097,9 @@
         
         [(MainView*)self.view addSubview:self.pathScrollView];
         [(MainView*)self.view bringSubviewToFront:pathScrollView];
-        [(MainView*)self.view bringSubviewToFront:self.stationsView]; 
-        [(MainView*)self.view bringSubviewToFront:self.horizontalPathesScrollView]; 
-        [(MainView*)self.view bringSubviewToFront:[(MainView*)self.view viewWithTag:333]]; 
+        [(MainView*)self.view bringSubviewToFront:self.stationsView];
+        [(MainView*)self.view bringSubviewToFront:self.horizontalPathesScrollView];
+        [(MainView*)self.view bringSubviewToFront:[(MainView*)self.view viewWithTag:333]];
         
         UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
         shadow.frame = CGRectMake(0,66, 320, 61);
@@ -1193,7 +1112,7 @@
         
     } else {
         
-        [[(MainView*)self.view viewWithTag:2321] removeFromSuperview]; 
+        [[(MainView*)self.view viewWithTag:2321] removeFromSuperview];
         
         [self.pathScrollView removeFromSuperview];
         self.pathScrollView=nil;
@@ -1261,7 +1180,7 @@
 }
 
 
-- (IBAction)showInfo {    
+- (IBAction)showInfo {
 	
 	FlipsideViewController *controller = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
 	controller.delegate = self;
@@ -1295,7 +1214,7 @@
     
     if (self.toStation) {
         [stationsView setToStation:self.toStation];
-    }    
+    }
 }
 
 -(void)returnFromSelection2:(NSArray*)stations
@@ -1411,7 +1330,7 @@
             } else {
                 [self returnFromSelection:stations];
             }
-        }     
+        }
         
         //      [self returnFromSelection:stations];
     } else {
@@ -1450,7 +1369,7 @@
 }
 
 -(void)resetBothStations
-{   
+{
     int tempSelection = currentSelection;
     
     currentSelection=FromStation;
