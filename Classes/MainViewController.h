@@ -12,10 +12,12 @@
 #import "PathDrawView.h"
 #import "MBProgressHUD.h"
 #import "PathScrollView.h"
+#import "VertPathScrollView.h"
 
 @class TopTwoStationsView;
+@class VertPathScrollView;
 
-@interface MainViewController : UIViewController <FlipsideViewControllerDelegate,SelectingTabBarProtocol,UIScrollViewDelegate,PathDrawProtocol,MBProgressHUDDelegate,PathScrollViewProtocol> {
+@interface MainViewController : UIViewController <SelectingTabBarProtocol,UIScrollViewDelegate,MBProgressHUDDelegate,PathScrollViewProtocol> {
     
     int currentSelection;
     MStation *fromStation;
@@ -24,7 +26,7 @@
     
     TopTwoStationsView *stationsView;
     PathScrollView *horizontalPathesScrollView;
-    UIScrollView *pathScrollView;
+    VertPathScrollView *pathScrollView;
     
     NSTimer *timer;
 }
@@ -35,10 +37,10 @@
 @property (nonatomic, retain) TopTwoStationsView *stationsView;
 @property (nonatomic, assign) int currentSelection;
 @property (nonatomic, retain) PathScrollView *horizontalPathesScrollView;
-@property (nonatomic, retain) UIScrollView *pathScrollView;
+@property (nonatomic, retain) VertPathScrollView *pathScrollView;
 @property (nonatomic, retain) NSTimer *timer;
 
-- (IBAction)showInfo;
+//- (IBAction)showInfo;
 -(void)pressedSelectFromStation;
 -(void)pressedSelectToStation;
 -(void)returnFromSelectionFastAccess:(NSArray *)stations;
