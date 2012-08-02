@@ -33,7 +33,9 @@
 
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-    if ([self pointInside:point withEvent:event]) {
+    CGPoint tempPoint = [self convertPoint:point toView:galleryViewController.scrollView];
+    BOOL pointInsideScrollView = [galleryViewController.scrollView pointInside:tempPoint withEvent:event];
+    if ([self pointInside:point withEvent:event] && !pointInsideScrollView) {
         return galleryViewController.scrollView;
     }
     return [super hitTest:point withEvent:event];
