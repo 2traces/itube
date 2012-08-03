@@ -294,7 +294,20 @@
         [[(CountryMapCell*)cell mapDownloaded] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:14.0]];
         [[(CountryMapCell*)cell mapDownloaded] setHighlightedTextColor:[UIColor whiteColor]];
         
-        ((CountryMapCell*)cell).mapImage.image = [UIImage imageNamed:[map objectForKey:@"picture"]];
+        NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString *mapDirPath = [cacheDir stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@",[mapName lowercaseString]]];
+        if ([mapName isEqualToString:@"Cuba"]) {
+            mapDirPath = [[NSBundle mainBundle] pathForResource:[mapName lowercaseString] ofType:nil inDirectory:@"maps/"];
+        }
+        NSString *picPath = [mapDirPath stringByAppendingPathComponent:[map objectForKey:@"picture"]];
+        
+        UIImage *pic = [UIImage imageWithContentsOfFile:picPath];
+        
+        if (!pic) {
+            pic = [UIImage imageNamed:@"default_map_image.png"];
+        }
+        
+        ((CountryMapCell*)cell).mapImage.image = pic;
         
         cell.backgroundColor = [UIColor clearColor];
         

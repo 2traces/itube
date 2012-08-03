@@ -37,7 +37,6 @@
 		51F15F7714D99A3800D11B79 /* VectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F15F7614D99A3800D11B79 /* VectorLayer.m */; };
 		570474AE15A48D9700A43E6F /* CountryMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 570474AD15A48D9700A43E6F /* CountryMapView.xib */; };
 		570474B115A48DCD00A43E6F /* CountryMapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 570474B015A48DCD00A43E6F /* CountryMapCell.m */; };
-		570474B515A4903400A43E6F /* cuba.png in Resources */ = {isa = PBXBuildFile; fileRef = 570474B215A4903400A43E6F /* cuba.png */; };
 		570474B615A4903400A43E6F /* settings_item_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 570474B315A4903400A43E6F /* settings_item_bg.png */; };
 		570474B715A4903400A43E6F /* settings_item_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 570474B415A4903400A43E6F /* settings_item_bg@2x.png */; };
 		570474BC15A491CB00A43E6F /* settings_price_min_bt.png in Resources */ = {isa = PBXBuildFile; fileRef = 570474B815A491CB00A43E6F /* settings_price_min_bt.png */; };
@@ -53,6 +52,7 @@
 		571EEFBC15AB26A500CE09AC /* pin_remove_bubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 571EEFBA15AB26A500CE09AC /* pin_remove_bubble@2x.png */; };
 		573655FA15AC9B8D00DF0487 /* gallery_item_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 573655F815AC9B8D00DF0487 /* gallery_item_shadow.png */; };
 		573655FB15AC9B8D00DF0487 /* gallery_item_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 573655F915AC9B8D00DF0487 /* gallery_item_shadow@2x.png */; };
+		573A6FB715CBB9A70006ED96 /* default_map_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 573A6FB615CBB9A70006ED96 /* default_map_image.png */; };
 		573AF99615989A34001F09B7 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 573AF99515989A33001F09B7 /* GalleryViewController.m */; };
 		573AF99915989A6A001F09B7 /* GalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 573AF99815989A69001F09B7 /* GalleryViewController.xib */; };
 		573AF99C15989D4C001F09B7 /* gallery_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 573AF99A15989D4C001F09B7 /* gallery_bg.png */; };
@@ -452,7 +452,6 @@
 		570474AD15A48D9700A43E6F /* CountryMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountryMapView.xib; sourceTree = "<group>"; };
 		570474AF15A48DCD00A43E6F /* CountryMapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryMapCell.h; sourceTree = "<group>"; };
 		570474B015A48DCD00A43E6F /* CountryMapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryMapCell.m; sourceTree = "<group>"; };
-		570474B215A4903400A43E6F /* cuba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cuba.png; path = images/cuba.png; sourceTree = "<group>"; };
 		570474B315A4903400A43E6F /* settings_item_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings_item_bg.png; path = images/settings_item_bg.png; sourceTree = "<group>"; };
 		570474B415A4903400A43E6F /* settings_item_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings_item_bg@2x.png"; path = "images/settings_item_bg@2x.png"; sourceTree = "<group>"; };
 		570474B815A491CB00A43E6F /* settings_price_min_bt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings_price_min_bt.png; path = images/settings_price_min_bt.png; sourceTree = "<group>"; };
@@ -469,6 +468,7 @@
 		571EEFBA15AB26A500CE09AC /* pin_remove_bubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin_remove_bubble@2x.png"; sourceTree = "<group>"; };
 		573655F815AC9B8D00DF0487 /* gallery_item_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery_item_shadow.png; sourceTree = "<group>"; };
 		573655F915AC9B8D00DF0487 /* gallery_item_shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_item_shadow@2x.png"; sourceTree = "<group>"; };
+		573A6FB615CBB9A70006ED96 /* default_map_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_map_image.png; sourceTree = "<group>"; };
 		573AF99415989A32001F09B7 /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
 		573AF99515989A33001F09B7 /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
 		573AF99815989A69001F09B7 /* GalleryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GalleryViewController.xib; path = Resources/GalleryViewController.xib; sourceTree = "<group>"; };
@@ -1151,7 +1151,6 @@
 		574B555715C92E8000A95612 /* maps thumbnails */ = {
 			isa = PBXGroup;
 			children = (
-				570474B215A4903400A43E6F /* cuba.png */,
 			);
 			name = "maps thumbnails";
 			sourceTree = "<group>";
@@ -1458,6 +1457,7 @@
 		CE96C6F41468307C005A56F3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				573A6FB615CBB9A70006ED96 /* default_map_image.png */,
 				57DD589415C7CC370003E57A /* gallery_shadow_map.png */,
 				57DD589515C7CC370003E57A /* gallery_shadow_map@2x.png */,
 				57DD588B15C7CBD40003E57A /* gallery_bg_shadow_down.png */,
@@ -1862,7 +1862,6 @@
 				57AE4552159F3B5A0062EAC3 /* direction_bg.png in Resources */,
 				57AE4553159F3B5A0062EAC3 /* direction_bg@2x.png in Resources */,
 				570474AE15A48D9700A43E6F /* CountryMapView.xib in Resources */,
-				570474B515A4903400A43E6F /* cuba.png in Resources */,
 				570474B615A4903400A43E6F /* settings_item_bg.png in Resources */,
 				570474B715A4903400A43E6F /* settings_item_bg@2x.png in Resources */,
 				570474BC15A491CB00A43E6F /* settings_price_min_bt.png in Resources */,
@@ -1879,6 +1878,7 @@
 				57DD589215C7CBD50003E57A /* gallery_bg_shadow_up@2x.png in Resources */,
 				57DD589615C7CC370003E57A /* gallery_shadow_map.png in Resources */,
 				57DD589715C7CC370003E57A /* gallery_shadow_map@2x.png in Resources */,
+				573A6FB715CBB9A70006ED96 /* default_map_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
