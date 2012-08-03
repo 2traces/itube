@@ -301,7 +301,9 @@
         }
         NSString *picPath = [mapDirPath stringByAppendingPathComponent:[map objectForKey:@"picture"]];
         
-        UIImage *pic = [UIImage imageWithContentsOfFile:picPath];
+        //UIImage *pic = [UIImage imageWithContentsOfFile:picPath];
+        UIImage *pic = [UIImage imageNamed:[map objectForKey:@"picture"]];
+        
         
         if (!pic) {
             pic = [UIImage imageNamed:@"default_map_image.png"];

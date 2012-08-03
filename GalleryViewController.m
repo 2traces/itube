@@ -208,6 +208,21 @@
     self.label.text = [NSString stringWithFormat:@"%@, ~ %i km", photo.theItem.name, (int)distance];
 }
 
+- (void)bookmarkItemWithID:(NSInteger)itemID {
+    MPhoto *photo = [images objectAtIndex:itemID];
+    MItem *item = photo.theItem;
+    [item setIsFavorite:[NSNumber numberWithInt:1]];
+    
+    UIImageView *bookmarkView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gallery_bookmark.png"]];
+    
+    for (GalleryItemView *view in galleryItems) {
+        if (view.itemID == itemID) {
+            [view showBookmarkImage];
+        }
+    }
+    
+}
+
 - (void)showFullscreenItemWithID:(NSInteger)itemID {
 
     

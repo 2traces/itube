@@ -10,6 +10,7 @@
 
 @protocol GalleryItemDelegate <NSObject>
 
+- (void)bookmarkItemWithID:(NSInteger)itemID;
 - (void)showFullscreenItemWithID:(NSInteger)itemID;
 - (void)showItemOnMapWithID:(NSInteger)itemID;
 - (void)closeFullscreenItem;
@@ -32,5 +33,6 @@
 - (void)centerImage;
 - (void)setOriginalImageSize:(CGSize)_imageSize;
 - (CGSize)originalImageSize;
+- (void)showBookmarkImage;
 
 @end

@@ -72,6 +72,9 @@
 		579E9D7B1599CA9300D509D0 /* gallery_fs_bt_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 579E9D751599CA9300D509D0 /* gallery_fs_bt_back@2x.png */; };
 		579E9D7C1599CA9300D509D0 /* gallery_fs_bt_locate.png in Resources */ = {isa = PBXBuildFile; fileRef = 579E9D761599CA9300D509D0 /* gallery_fs_bt_locate.png */; };
 		579E9D7D1599CA9300D509D0 /* gallery_fs_bt_locate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 579E9D771599CA9300D509D0 /* gallery_fs_bt_locate@2x.png */; };
+		57A73F5615CBEF1F0090969A /* cuba.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A73F5515CBEF1F0090969A /* cuba.png */; };
+		57A73F5E15CC22B50090969A /* gallery_bookmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A73F5C15CC22B50090969A /* gallery_bookmark.png */; };
+		57A73F5F15CC22B50090969A /* gallery_bookmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A73F5D15CC22B50090969A /* gallery_bookmark@2x.png */; };
 		57AE454A159F2EA20062EAC3 /* user_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 57AE4548159F2EA20062EAC3 /* user_pin.png */; };
 		57AE454B159F2EA20062EAC3 /* user_pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57AE4549159F2EA20062EAC3 /* user_pin@2x.png */; };
 		57AE4550159F3B5A0062EAC3 /* direction_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 57AE454C159F3B5A0062EAC3 /* direction_arrow.png */; };
@@ -492,6 +495,9 @@
 		579E9D751599CA9300D509D0 /* gallery_fs_bt_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_fs_bt_back@2x.png"; sourceTree = "<group>"; };
 		579E9D761599CA9300D509D0 /* gallery_fs_bt_locate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery_fs_bt_locate.png; sourceTree = "<group>"; };
 		579E9D771599CA9300D509D0 /* gallery_fs_bt_locate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_fs_bt_locate@2x.png"; sourceTree = "<group>"; };
+		57A73F5515CBEF1F0090969A /* cuba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cuba.png; path = maps/cuba/cuba.png; sourceTree = "<group>"; };
+		57A73F5C15CC22B50090969A /* gallery_bookmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery_bookmark.png; sourceTree = "<group>"; };
+		57A73F5D15CC22B50090969A /* gallery_bookmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_bookmark@2x.png"; sourceTree = "<group>"; };
 		57AE4546159F23040062EAC3 /* cuba-havana.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "cuba-havana.gpx"; sourceTree = "<group>"; };
 		57AE4548159F2EA20062EAC3 /* user_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_pin.png; sourceTree = "<group>"; };
 		57AE4549159F2EA20062EAC3 /* user_pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_pin@2x.png"; sourceTree = "<group>"; };
@@ -1151,6 +1157,7 @@
 		574B555715C92E8000A95612 /* maps thumbnails */ = {
 			isa = PBXGroup;
 			children = (
+				57A73F5515CBEF1F0090969A /* cuba.png */,
 			);
 			name = "maps thumbnails";
 			sourceTree = "<group>";
@@ -1457,6 +1464,8 @@
 		CE96C6F41468307C005A56F3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				57A73F5C15CC22B50090969A /* gallery_bookmark.png */,
+				57A73F5D15CC22B50090969A /* gallery_bookmark@2x.png */,
 				573A6FB615CBB9A70006ED96 /* default_map_image.png */,
 				57DD589415C7CC370003E57A /* gallery_shadow_map.png */,
 				57DD589515C7CC370003E57A /* gallery_shadow_map@2x.png */,
@@ -1879,6 +1888,9 @@
 				57DD589615C7CC370003E57A /* gallery_shadow_map.png in Resources */,
 				57DD589715C7CC370003E57A /* gallery_shadow_map@2x.png in Resources */,
 				573A6FB715CBB9A70006ED96 /* default_map_image.png in Resources */,
+				57A73F5615CBEF1F0090969A /* cuba.png in Resources */,
+				57A73F5E15CC22B50090969A /* gallery_bookmark.png in Resources */,
+				57A73F5F15CC22B50090969A /* gallery_bookmark@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
