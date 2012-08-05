@@ -342,11 +342,11 @@
     
     Segment *tempSegment = nil;
     
-    if([[path objectAtIndex:0] isKindOfClass:[Segment class]]) {
-        tempSegment = [path objectAtIndex:0];
-        NSInteger aaa = [[tempSegment start] transferWayTo:[tempSegment end]];
-        [stationsArray addObject:[NSNumber numberWithInteger:aaa]];
-    }
+//    if([[path objectAtIndex:0] isKindOfClass:[Segment class]]) {
+//        tempSegment = [path objectAtIndex:0];
+//        NSInteger aaa = [[tempSegment start] transferWayTo:[tempSegment end]];
+//        [stationsArray addObject:[NSNumber numberWithInteger:aaa]];
+//    }
     
     for (int i=0; i<objectNum; i++) {
         
@@ -404,6 +404,9 @@
         
     }
     
+    NSInteger aaa = [[tempSegment start] transferWayTo:[tempSegment end]];
+    [stationsArray addObject:[NSNumber numberWithInteger:aaa]];
+
     //NSInteger aaa = [[tempSegment end] transferWayFrom:[tempSegment start]];
     
     //[stationsArray addObject:[NSNumber numberWithInteger:aaa]];
