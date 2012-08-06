@@ -49,7 +49,7 @@ NSCharacterSet *pCharacterSet = nil;
         if(ch == 0 && ch2 == 0) {
             name = [[st stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
         } else {
-            int len = (ch == 0 || (ch2 != 0 && ch2 < ch)) ? ch2-string : ch-string;
+            int len = (ch == 0 || (ch2 != 0 && ch2 < ch)) ? ch2-string : ch-string-1;
             name = [[[[[NSString alloc] initWithBytes:string length:len encoding:NSUTF8StringEncoding] autorelease]stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
         }
         time = t;
@@ -500,7 +500,7 @@ NSCharacterSet *pCharacterSet = nil;
 
 -(NSTimeInterval)getNowTime
 {
-    //return 32400;
+    //return 43200;
     NSDateComponents *comp = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate date]];
     NSDate *midnight = [cal dateFromComponents:comp];
     return [[NSDate date] timeIntervalSinceDate:midnight];
