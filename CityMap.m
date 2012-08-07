@@ -2814,7 +2814,16 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 {
     for (Line *l in mapLines) {
         for (Station *s in l.stations) {
-            if(CGRectContainsPoint(s.tapArea, *point) || CGRectContainsPoint(s.tapTextArea, *point)) {
+            if(CGRectContainsPoint(s.tapArea, *point)) {
+                [stationName setString:s.name];
+                *point = CGPointMake(s.pos.x, s.pos.y);
+                return s;
+            }
+        }
+    }
+    for (Line *l in mapLines) {
+        for (Station *s in l.stations) {
+            if(CGRectContainsPoint(s.tapTextArea, *point)) {
                 [stationName setString:s.name];
                 *point = CGPointMake(s.pos.x, s.pos.y);
                 return s;

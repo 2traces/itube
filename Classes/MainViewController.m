@@ -342,6 +342,12 @@
     
     Segment *tempSegment = nil;
     
+//    if([[path objectAtIndex:0] isKindOfClass:[Segment class]]) {
+//        tempSegment = [path objectAtIndex:0];
+//        NSInteger aaa = [[tempSegment start] transferWayTo:[tempSegment end]];
+//        [stationsArray addObject:[NSNumber numberWithInteger:aaa]];
+//    }
+    
     for (int i=0; i<objectNum; i++) {
         
         if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
@@ -352,39 +358,58 @@
             
             Transfer *transfer = (Transfer*)[path objectAtIndex:i];
             
-            Station *startStation = [tempSegment end];
+            Station *s0, *s1, *s2, *s3;
+            
+            //Station *startStation = [tempSegment end];
+            if([transfer.stations containsObject:tempSegment.end]) {
+                s0 = tempSegment.start;
+                s1 = tempSegment.end;
+            } else {
+                s0 = tempSegment.end;
+                s1 = tempSegment.start;
+            }
             
             NSArray *array = [[transfer stations] allObjects];
             Segment *nextSegment = nil;
-            Station *endStation;
+            //Station *endStation;
             // transfer can contain more than two stations
             if(i < objectNum-1 && [[path objectAtIndex:(i+1)] isKindOfClass:[Segment class]]) {
                 nextSegment = (Segment*)[path objectAtIndex:(i+1)];
-                endStation = [nextSegment start];
-            } else {
-                if ([array objectAtIndex:0]==startStation) {
-                    endStation = [array objectAtIndex:1];
+                if([transfer.stations containsObject:nextSegment.start]) {
+                    s2 = nextSegment.start;
+                    s3 = nextSegment.end;
                 } else {
-                    endStation = [array objectAtIndex:0];
+                    s2 = nextSegment.end;
+                    s3 = nextSegment.start;
+                }
+                //endStation = [nextSegment start];
+            } else {
+                if ([array objectAtIndex:0]==s1) {
+                    s2 = [array objectAtIndex:1];
+                } else {
+                    s2 = [array objectAtIndex:0];
                 }
             }
             
             NSInteger aaa = NOWAY;
             if(tempSegment != nil && nextSegment != nil) {
-                aaa = [startStation megaTransferWayFrom:[tempSegment start] to:endStation andNextStation:[nextSegment end]];
+                aaa = [s1 megaTransferWayFrom:s0 to:s2 andNextStation:s3];
             } else if(tempSegment != nil) {
-                aaa = [startStation megaTransferWayFrom:[tempSegment start] to:endStation];
+                aaa = [s1 megaTransferWayFrom:s0 to:s2];
             } else
-                aaa = [startStation transferWayTo:endStation];
+                aaa = [s1 transferWayTo:s2];
             
             [stationsArray addObject:[NSNumber numberWithInteger:aaa]];
         }
         
     }
     
-    NSInteger aaa = [[tempSegment end] transferWayFrom:[tempSegment start]];
-    
+    NSInteger aaa = [[tempSegment start] transferWayTo:[tempSegment end]];
     [stationsArray addObject:[NSNumber numberWithInteger:aaa]];
+
+    //NSInteger aaa = [[tempSegment end] transferWayFrom:[tempSegment start]];
+    
+    //[stationsArray addObject:[NSNumber numberWithInteger:aaa]];
     
     //    NSLog(@"%@",stationsArray);
     
