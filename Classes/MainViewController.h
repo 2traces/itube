@@ -29,6 +29,7 @@
     VertPathScrollView *pathScrollView;
     
     NSTimer *timer;
+    UIPopoverController *popover;
 }
 
 @property (nonatomic, retain) MStation *fromStation;

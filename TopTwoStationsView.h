@@ -33,6 +33,7 @@
 @property (nonatomic, retain) UIImageView *arrowView;
 
 -(void)drawInitialState;
+-(void)adjustSubviews;
 -(void)setFromStation:(MStation*)fromStation;
 -(void)setToStation:(MStation*)toStation;
 -(UIImage*)drawCircleView:(UIColor*)myColor;

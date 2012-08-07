@@ -199,7 +199,7 @@
 //    [self markProductAsPurchased:@"com.zuev.itube.paris.berlin"];
 //    [self resortMapArray];
 //    [cityTableView reloadData];
-
+    
 }
 
 -(void)setCurrentMapSelectedPath

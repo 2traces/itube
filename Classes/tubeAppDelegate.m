@@ -10,6 +10,7 @@
 #import "MainViewController.h"
 #import "CityMap.h"
 #import "TubeAppIAPHelper.h"
+#import "TubeSplitViewController.h"
 
 @implementation tubeAppDelegate
 
@@ -44,9 +45,16 @@ void uncaughtExceptionHandler(NSException *exception) {
     // Override point for customization after application launch.
     [[SKPaymentQueue defaultQueue] addTransactionObserver:[TubeAppIAPHelper sharedHelper]];
     
-    mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
-    [window addSubview:[mainViewController view]];
-    [window makeKeyAndVisible];
+    if (IS_IPAD) {
+        TubeSplitViewController *splitController = [[TubeSplitViewController alloc] init];
+        splitController.mainViewController = self.mainViewController;
+        [window addSubview:[splitController view]];
+        [window makeKeyAndVisible];
+    } else {
+        mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
+        [window addSubview:[mainViewController view]];
+        [window makeKeyAndVisible];
+    }
 }
 
 - (void)awakeFromNib

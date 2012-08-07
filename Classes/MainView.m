@@ -53,6 +53,18 @@ NSInteger const toolbarWidth=320;
 -(void)viewInit:(MainViewController*)vc
 {
 	[self initVar];
+
+    CGRect scrollSize,settingsRect,shadowRect;
+    if (IS_IPAD) {
+        scrollSize = CGRectMake(0, 44, 568, (1024-64));
+        settingsRect=CGRectMake(-285, -420, 27, 27);
+        shadowRect = CGRectMake(0, 44, 568, 61);
+    } else {
+        scrollSize = CGRectMake(0,44,(320),(480-64));
+        settingsRect=CGRectMake(285, 420, 27, 27);
+        shadowRect = CGRectMake(0, 44, 320, 61);
+    }
+    
     self.vcontroller = vc;
 	self.userInteractionEnabled = YES;
     buttonsVisible = NO;
@@ -62,7 +74,6 @@ NSInteger const toolbarWidth=320;
     [self addSubview:aiv];
 
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    CGRect scrollSize = CGRectMake(0,44,(320),(480-64));
 	mapView = [[[MapView alloc] initWithFrame:scrollSize] autorelease];
     mapView.cityMap = appDelegate.cityMap;
     mapView.vcontroller = self.vcontroller;
@@ -75,7 +86,7 @@ NSInteger const toolbarWidth=320;
 	containerView.showsVerticalScrollIndicator = NO;
 	containerView.showsHorizontalScrollIndicator = NO;	
 //	containerView.pagingEnabled = YES;
-	containerView.clipsToBounds = NO;//YES;
+	containerView.clipsToBounds = YES;//YES;
 	containerView.bounces = YES;
     [containerView setBouncesZoom:NO];
 	containerView.maximumZoomScale = mapView.MaxScale;
@@ -140,12 +151,12 @@ NSInteger const toolbarWidth=320;
     UIButton *settings = [UIButton buttonWithType:UIButtonTypeCustom];
     [settings setImage:[UIImage imageNamed:@"settings_btn_normal"] forState:UIControlStateNormal];
     [settings setImage:[UIImage imageNamed:@"settings_btn"] forState:UIControlStateHighlighted];
-    settings.frame = CGRectMake(285, 420, 27, 27);
+    settings.frame = settingsRect;
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:settings];
     
     UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
-    shadow.frame = CGRectMake(0, 44, 320, 61);
+    shadow.frame = shadowRect;
     [self addSubview:shadow];
     
     NSTimer *timer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(supervisor) userInfo:nil repeats:YES];
@@ -167,7 +178,7 @@ NSInteger const toolbarWidth=320;
 	containerView.decelerationRate = UIScrollViewDecelerationRateFast ;
 	containerView.showsVerticalScrollIndicator = NO;
 	containerView.showsHorizontalScrollIndicator = NO;	
-	containerView.clipsToBounds = NO;//YES;
+	containerView.clipsToBounds = YES;//YES;
 	containerView.bounces = YES;
     [containerView setBouncesZoom:NO];
 	containerView.maximumZoomScale = mapView.MaxScale;

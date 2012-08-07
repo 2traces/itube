@@ -41,6 +41,12 @@
     return self;
 }
 
+- (void) popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    // Stop holding onto the popover
+    popover = nil;
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     
@@ -95,7 +101,20 @@
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    if (IS_IPAD) {
+        return (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+    } else {
+        return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    }
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    if (fromInterfaceOrientation == UIInterfaceOrientationPortrait) {
+        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 480, 320-86)];
+    } else {
+        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
+    }
 }
 
 -(void)showTabBarViewController
@@ -159,8 +178,12 @@
         [(MainView*)self.view addSubview:horizontalPathesScrollView];
         [(MainView*)self.view bringSubviewToFront:horizontalPathesScrollView];
         
-        UIButton *changeViewButton = [self createChangeButton];
-        [(MainView*)self.view addSubview:changeViewButton];
+        if (IS_IPAD) {
+            
+        } else {
+            UIButton *changeViewButton = [self createChangeButton];
+            [(MainView*)self.view addSubview:changeViewButton];
+        }
         
     } else {
         
@@ -331,27 +354,6 @@
     [[(MainView*)self.view viewWithTag:555] removeFromSuperview];
 }
 
-
-
-
-//- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller {
-//    
-//	[self dismissModalViewControllerAnimated:YES];
-//}
-//
-//
-//- (IBAction)showInfo {
-//	
-//	FlipsideViewController *controller = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
-//	controller.delegate = self;
-//	
-//	controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-//	[self presentModalViewController:controller animated:YES];
-//	
-//	[controller release];
-//}
-
-
 #pragma mark - Choosing stations etc
 
 -(void)languageChanged:(NSNotification*)note
@@ -452,8 +454,14 @@
 
 -(void)returnFromSelection:(NSArray*)stations
 {
-    [self dismissModalViewControllerAnimated:YES];
-    [self performSelector:@selector(returnFromSelection2:) withObject:stations afterDelay:0.1];
+    if (IS_IPAD) {
+        if (popover) [popover dismissPopoverAnimated:YES];
+        [self performSelector:@selector(returnFromSelection2:) withObject:stations afterDelay:0.1];
+        
+    } else {
+        [self dismissModalViewControllerAnimated:YES];
+        [self performSelector:@selector(returnFromSelection2:) withObject:stations afterDelay:0.1];
+    }
 }
 
 -(void)returnFromSelectionFastAccess:(NSArray *)stations
@@ -489,13 +497,53 @@
 -(void)pressedSelectFromStation
 {
     currentSelection=FromStation;
-    [self showTabBarViewController];
+
+    if (popover)
+        [popover dismissPopoverAnimated:YES];
+    
+    if (!IS_IPAD)
+    {
+        [self showTabBarViewController];
+    }
+    else
+    {
+        SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
+        controller.delegate = self;
+        
+        [popover setPopoverContentSize:CGSizeMake(320, 480)];
+        controller.contentSizeForViewInPopover=CGSizeMake(320, 460);
+        
+        [popover setPopoverContentSize:controller.view.frame.size];
+        
+        popover = [[UIPopoverController alloc] initWithContentViewController:controller];
+        [popover presentPopoverFromRect:CGRectMake(self.stationsView.firstStation.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        [controller release];
+    }
 }
 
 -(void)pressedSelectToStation
 {
     currentSelection=ToStation;
-    [self showTabBarViewController];
+
+    if (popover)
+        [popover dismissPopoverAnimated:YES];
+
+    if (!IS_IPAD)
+    {
+        [self showTabBarViewController];
+    }
+    else
+    {
+        SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
+        controller.delegate = self;
+        
+        [popover setPopoverContentSize:CGSizeMake(320, 480)];
+        controller.contentSizeForViewInPopover=CGSizeMake(320, 460);
+            
+        popover = [[UIPopoverController alloc] initWithContentViewController:controller];
+        [popover presentPopoverFromRect:CGRectMake(self.stationsView.secondStation.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        [controller release];
+    }
 }
 
 -(void)resetFromStation
