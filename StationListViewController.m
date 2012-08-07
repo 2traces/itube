@@ -334,6 +334,8 @@
     } else {
         [[self.stationList objectAtIndex:rowOfButton] setIsFavorite:[NSNumber numberWithInt:1]];
     }
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate.mainViewController updateBookmarkPins];
     
     UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
         

@@ -190,8 +190,12 @@
     
     if ([[[self.stationList objectAtIndex:rowOfButton] isFavorite] intValue]==1) {
         [[self.stationList objectAtIndex:rowOfButton] setIsFavorite:[NSNumber numberWithInt:0]];
+        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate.mainViewController updateBookmarkPins];
     } else {
         [[self.stationList objectAtIndex:rowOfButton] setIsFavorite:[NSNumber numberWithInt:1]];
+        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate.mainViewController updateBookmarkPins];
     }
     
     [self.stationList removeObjectAtIndex:rowOfButton];

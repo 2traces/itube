@@ -70,7 +70,7 @@ extern NSInteger const toolbarWidth;
 - (BOOL) centerMapOnUserAndItemWithID:(NSInteger)itemID;
 - (CGFloat) distanceToItemWithID:(NSInteger)itemID; 
 - (CGFloat) radialOffsetToPoint:(CGPoint)point;
--(NSInteger) setPin:(CGPoint)point;
+-(NSInteger) setPin:(CGPoint)point withColorID:(NSString*)colorID;
 -(void) removePin:(NSInteger)index;
 -(void) showPins;
 -(void) hidePins;

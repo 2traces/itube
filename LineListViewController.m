@@ -345,6 +345,9 @@
         [station setIsFavorite:[NSNumber numberWithInt:1]];
     }
     
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate.mainViewController updateBookmarkPins];
+    
     [self.mytableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationNone];
 }
 

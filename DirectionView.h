@@ -22,7 +22,7 @@
 @property (nonatomic, assign) CGPoint pinCoordinates;
 @property (nonatomic, assign) NSInteger pinID;
 
-- (id)initWithPinCoordinates:(CGPoint)coordinates pinID:(NSInteger)pindId mainView:(MainView*)mainView;
+- (id)initWithPinCoordinates:(CGPoint)coordinates pinID:(NSInteger)pindId mainView:(MainView*)mainView colorID:(NSString*)colorID;
 - (void)setRadialOffset:(CGFloat)offset;
 
 @end

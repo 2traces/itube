@@ -23,6 +23,8 @@
     SelectingTabBarViewController *tabBarViewController;
     UIScrollView *scrollView;
     UIScrollView *pathScrollView;
+    
+    NSMutableArray *bookmarkPins;
 }
 
 @property (nonatomic, retain) MItem *fromStation;
@@ -33,6 +35,7 @@
 @property (nonatomic, retain) UIScrollView *scrollView;
 @property (nonatomic, retain) UIScrollView *pathScrollView;
 
+- (void)updateBookmarkPins;
 - (IBAction)showInfo;
 -(void)pressedSelectFromStation;
 -(void)pressedSelectToStation;

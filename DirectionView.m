@@ -26,13 +26,20 @@
     return self;
 }
 
-- (id)initWithPinCoordinates:(CGPoint)coordinates pinID:(NSInteger)pindId mainView:(MainView*)_mainView {
+- (id)initWithPinCoordinates:(CGPoint)coordinates pinID:(NSInteger)pindId mainView:(MainView*)_mainView colorID:(NSString*)colorID {
     self = [super init];
     if (self) {
         // Initialization code
         mainView = _mainView;
         self.button = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *btBg = [UIImage imageNamed:@"direction_bg.png"];
+        
+        NSString *bgName = [NSString stringWithFormat:@"direction_bg_%@", colorID];
+        UIImage *btBg = [UIImage imageNamed:bgName];
+        
+        if (!btBg) {
+            btBg = [UIImage imageNamed:@"direction_bg_11"];
+        }
+        
         CGRect frame = CGRectMake(0, 0, btBg.size.width, btBg.size.height);
         self.button.frame = frame;
         [self.button setImage:btBg forState:UIControlStateNormal];
@@ -41,7 +48,7 @@
         self.arrow.userInteractionEnabled = YES;
         [self addSubview:self.button];
         [self addSubview:self.arrow];
-        [self bringSubviewToFront:self.button];
+        //[self bringSubviewToFront:self.button];
         self.userInteractionEnabled = YES;
         self.pinID = pindId;
         self.pinCoordinates = coordinates;

@@ -9,6 +9,7 @@
 #import "RasterLayer.h"
 #import "ManagedObjects.h"
 #import "tubeAppDelegate.h"
+#import "UIColor+CategoriesColors.h"
 
 #define MAX_QUEUE 10
 
@@ -59,14 +60,14 @@
         boundingBox.size.width *= 2.f;
         boundingBox.size.height *= 2.f;
 //      //Uncomment to enable coordinates for objects
-        MItem *it = [[MHelper sharedHelper] getItemWithIndex:number];
-        if(it) {
-            NSNumber *zero = [NSNumber numberWithDouble:0];
-            if([it.posX isEqualToNumber:zero] || [it.posY isEqualToNumber:zero]) {
-                it.posX = [NSNumber numberWithDouble:rect.origin.x + center.x];
-                it.posY = [NSNumber numberWithDouble:rect.origin.y + center.y];
-            }
-        }
+//        MItem *it = [[MHelper sharedHelper] getItemWithIndex:number];
+//        if(it) {
+//            NSNumber *zero = [NSNumber numberWithDouble:0];
+//            if([it.posX isEqualToNumber:zero] || [it.posY isEqualToNumber:zero]) {
+//                it.posX = [NSNumber numberWithDouble:rect.origin.x + center.x];
+//                it.posY = [NSNumber numberWithDouble:rect.origin.y + center.y];
+//            }
+//        }
         /*it = [[MHelper sharedHelper] getItemWithIndex:110];
         if(it) {
             NSLog(@"item number 110 placed at %@, %@", it.posX, it.posY);
@@ -990,11 +991,13 @@
                     colors = [words objectAtIndex:2];
                 }
                 if (colors) {
-                    NSArray *colorValues = [colors componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
-                    CGFloat red = [[colorValues objectAtIndex:0] floatValue];
-                    CGFloat green = [[colorValues objectAtIndex:1] floatValue];
-                    CGFloat blue = [[colorValues objectAtIndex:2] floatValue];
-                    UIColor *color = [UIColor colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:1.0f];
+                    //Reading categories colors
+//                    NSArray *colorValues = [colors componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
+//                    CGFloat red = [[colorValues objectAtIndex:0] floatValue];
+//                    CGFloat green = [[colorValues objectAtIndex:1] floatValue];
+//                    CGFloat blue = [[colorValues objectAtIndex:2] floatValue];
+//                    UIColor *color = [UIColor colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:1.0f];
+                    UIColor *color = [UIColor colorWithCategoryID:colors];
                     category.color = color;
                 }
             } 

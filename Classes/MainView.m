@@ -17,6 +17,7 @@
 #import "SettingsNavController.h"
 #import "DirectionView.h"
 #import <iAd/iAd.h>
+#include <stdlib.h>
 
 NSInteger const toolbarHeight=44;
 NSInteger const toolbarWidth=320;
@@ -209,7 +210,10 @@ NSInteger const toolbarWidth=320;
     CGPoint location = [recognizer locationInView:self];
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         CGPoint newPoint = [self.mapView convertPoint:location fromView:self];
-        [self setPin:newPoint];
+        
+        NSString *colorID = [NSString stringWithFormat:@"%i", arc4random_uniform(7) + 11];
+        
+        [self setPin:newPoint withColorID:colorID];
         NSLog(@"Long press in %f, %f", newPoint.x, newPoint.y);
     }
 }
@@ -487,10 +491,16 @@ NSInteger const toolbarWidth=320;
     NSLog(@"Button tapped!");
 }
 
--(NSInteger) setPin:(CGPoint)point
+-(NSInteger) setPin:(CGPoint)point withColorID:(NSString*)colorID
 {
     NSInteger index = [mapView makePinAt:point];
-    UIImageView *p = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin"]];
+    NSString *pinName = [NSString stringWithFormat:@"pin_%@", colorID];
+    UIImage *pinImage = [UIImage imageNamed:pinName];
+    if (!pinImage) {
+        pinImage = [UIImage imageNamed:@"pin"];
+    }
+    UIImageView *p = [[UIImageView alloc] initWithImage:pinImage];
+
     p.userInteractionEnabled = YES;
     p.tag = index;
     [self insertSubview:p aboveSubview:containerView];
@@ -502,7 +512,7 @@ NSInteger const toolbarWidth=320;
     
     [pins setObject:p forKey:[NSNumber numberWithInt:index]];
     
-    DirectionView *dirView = [[DirectionView alloc] initWithPinCoordinates:[mapView pointOnMapViewForItemWithID:index] pinID:index mainView:self];
+    DirectionView *dirView = [[DirectionView alloc] initWithPinCoordinates:[mapView pointOnMapViewForItemWithID:index] pinID:index mainView:self colorID:colorID];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonTapped:)];
     [dirView addGestureRecognizer:tap];
@@ -541,9 +551,11 @@ NSInteger const toolbarWidth=320;
     if(p!= nil) {
         [p removeFromSuperview];
         [mapView removePin:index];
+        [pins removeObjectForKey:[NSNumber numberWithInt:index]];
     }
     for (DirectionView *pin in arrayDirectionViews) {
         if (pin.pinID == index) {
+            [pin removeFromSuperview];
             [arrayDirectionViews removeObject:pin];
             break;
         }

@@ -8,6 +8,7 @@
 
 #import "ManagedObjects.h"
 #import "tubeAppDelegate.h"
+#import "MainViewController.h"
 
 @interface MItem (CoreDataGeneratedAccessors)
 
@@ -542,6 +543,8 @@ static MHelper * _sharedHelper;
             
             if (item) {
                 [item setIsFavorite:[NSNumber numberWithInt:1]];
+                tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+                [appDelegate.mainViewController updateBookmarkPins];
             }
         }
     }

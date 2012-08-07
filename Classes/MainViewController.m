@@ -18,6 +18,7 @@
 #import "PathDrawVertView.h"
 #import "TubeAppIAPHelper.h"
 #import "UIColor-enhanced.h"
+#import "UIColor+CategoriesColors.h"
 
 #define FromStation 0
 #define ToStation 1
@@ -56,6 +57,7 @@
     [twoStationsView release];
     
     [self performSelector:@selector(refreshInApp) withObject:nil afterDelay:0.2];
+    [self updateBookmarkPins];
 }
 
 -(void)refreshInApp
@@ -1131,6 +1133,26 @@
 	[self dismissModalViewControllerAnimated:YES];
 }
 
+- (void)updateBookmarkPins {
+    if (!bookmarkPins) {
+        bookmarkPins = [[NSMutableArray alloc] initWithCapacity:10];
+    }
+    
+    for (NSNumber *pin in bookmarkPins) {
+        MainView *view = ((MainView*)self.view);
+        [view removePin:[pin integerValue]];
+    }
+    
+    [bookmarkPins removeAllObjects];
+    
+    MHelper *helper = [MHelper sharedHelper];
+    NSArray *favorites = [helper getFavoriteItemList];
+    for (MItem *fav in favorites) {
+        NSInteger pinID = [self setPinForItem:[fav.index integerValue]];
+        [bookmarkPins addObject:[NSNumber numberWithInteger:pinID]];
+    }
+}
+
 
 - (IBAction)showInfo {    
 	
@@ -1178,10 +1200,16 @@
 #pragma mark - choosing stations etc
 
 - (NSInteger)setPinForItem:(NSInteger)index {
+    //We'll find out the color of this item (its category color)
+    MItem *it = [[MHelper sharedHelper] getItemWithIndex:index];
+    UIColor *catColor = [[[it categories] anyObject] color];
+    
+    NSString *colorID = [catColor categoryID];
+    
     MainView *mainView = (MainView*)self.view;
 
     CGPoint point = [mainView.mapView pointOnMapViewForItemWithID:index];
-    return [mainView setPin:[mainView convertPoint:point fromView:mainView.mapView]];    
+    return [mainView setPin:[mainView convertPoint:point fromView:mainView.mapView] withColorID:colorID];
 }
 
 -(void)returnFromSelection2:(NSArray*)items

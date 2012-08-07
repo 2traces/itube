@@ -125,9 +125,22 @@
         [self.scrollView addSubview:view];
 
     }
+
+    self.loadingView.hidden = YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self scrollViewDidScroll:self.scrollView];
     [self scrollViewDidEndDecelerating:self.scrollView];
-    self.loadingView.hidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    MainView* mainView = (MainView*)appDelegate.mainViewController.view;
+    
+    [mainView removePin:activePin];
 }
 
 - (void)viewDidLoad
@@ -212,8 +225,8 @@
     MPhoto *photo = [images objectAtIndex:itemID];
     MItem *item = photo.theItem;
     [item setIsFavorite:[NSNumber numberWithInt:1]];
-    
-    UIImageView *bookmarkView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gallery_bookmark.png"]];
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate.mainViewController updateBookmarkPins];
     
     for (GalleryItemView *view in galleryItems) {
         if (view.itemID == itemID) {

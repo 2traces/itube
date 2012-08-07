@@ -1,11 +1,11 @@
 [categories]
-0	Hotel	123,70,32
-1	Airport	219,36,31
-2	Never go there	255,206,0
-3	Worth visiting	116,16,85
-4	Get outta here!	50,50,50
-5	Run, Forest, run!	0,167,219
-6	Hospital	212,147,170
+0	Hotel	11
+1	Airport	12
+2	Never go there	13
+3	Worth visiting	14
+4	Get outta here!	15
+5	Run, Forest, run!	16
+6	Hospital	17
 [list]
 0	Isla de la Juventud	0,1,2,3
 1	Peninsula de Guanahacabibes	00.jpeg,01.jpeg,02.jpeg
