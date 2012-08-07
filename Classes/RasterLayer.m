@@ -60,14 +60,14 @@
         boundingBox.size.width *= 2.f;
         boundingBox.size.height *= 2.f;
 //      //Uncomment to enable coordinates for objects
-//        MItem *it = [[MHelper sharedHelper] getItemWithIndex:number];
-//        if(it) {
-//            NSNumber *zero = [NSNumber numberWithDouble:0];
-//            if([it.posX isEqualToNumber:zero] || [it.posY isEqualToNumber:zero]) {
-//                it.posX = [NSNumber numberWithDouble:rect.origin.x + center.x];
-//                it.posY = [NSNumber numberWithDouble:rect.origin.y + center.y];
-//            }
-//        }
+        MItem *it = [[MHelper sharedHelper] getItemWithIndex:number];
+        if(it) {
+            NSNumber *zero = [NSNumber numberWithDouble:0];
+            if([it.posX isEqualToNumber:zero] || [it.posY isEqualToNumber:zero]) {
+                it.posX = [NSNumber numberWithDouble:rect.origin.x + center.x];
+                it.posY = [NSNumber numberWithDouble:rect.origin.y + center.y];
+            }
+        }
         /*it = [[MHelper sharedHelper] getItemWithIndex:110];
         if(it) {
             NSLog(@"item number 110 placed at %@, %@", it.posX, it.posY);
