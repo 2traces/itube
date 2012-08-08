@@ -9,35 +9,35 @@ Name=S1
 306	Lichterfelde West 52.443184,13.293251	,	S	E
 307	Botanischer Garten  52.447975,13.307262	,	E	S
 308	>Rathaus Steglitz  52.455562,13.322776	,	SM	SE
-309	Feuerbachstrae  52.463544,13.332574	,	M	M
-310	Friedenau 52.470584,13.341569	,	E	S
-311	Schoneberg 52.479337,13.351892	,	M	M
-312	Julius-Leber-Brucke 52.486086,13.36062	,	EM	MS
+309	<Feuerbachstrae  52.463544,13.332574	,	M	M
+310	<Friedenau 52.470584,13.341569	,	E	S
+311	<Schoneberg 52.479337,13.351892	,	M	M
+312	<Julius-Leber-Brucke 52.486086,13.36062	,	EM	MS
 313	<Yorckstraße 52.491171,13.372132	,	SE	SE
 314	<Anhalter Bhr  52.503483,13.381353	,	EMS	EMS
 315	<Potsdamer Platz  52.509456,13.376468	,	EMS	EMS
-317	_Brandenburger Tor 52.516147,13.379271	,	SE	SE
+317	>_Brandenburger Tor 52.516147,13.379271	,	SE	SE
 318	<Friedrichstraße  52.520383,13.387312	, EMS	EMS
 319	Oranienburger Str  52.524956,13.392847	,	MS	ME
 320	>Nordbahnhof  52.532044,13.388459	, ME	MS
 321	>Humboldthain  52.543438,13.379056	,	EM	SM
-322	Gesundbrunnen 52.548605,13.390399	, EMS	EMS
+322	>Gesundbrunnen 52.548605,13.390399	, EMS	EMS
 323	<Bornholmer Str 52.554633,13.397845	,	M	M
 324	<Wollankstr  52.565839,13.391773	, SE	SE
-325	Schonholz  52.571277,13.381344	, S	E
+325	<Schonholz  52.571277,13.381344	, S	E
 326	<Wilhelmsruh  52.581657,13.362333	,	E	S
 327	<Wittenau 52.597026,13.334416	,	SE	SE
 328	<Waidmannslust 52.606371,13.321091	,	S	E
-329	Hermsdorf  52.617758,13.308066	, SE	SE
-330	Frohnau  52.632412,13.290299	,	S	E
-331	Hohen Neuendorf  52.668393,13.286973	,	S	E
-332	Birkenwerder  52.691237,13.288776	,	E	S
+329	>Hermsdorf  52.617758,13.308066	, SE	SE
+330	>Frohnau  52.632412,13.290299	,	S	E
+331	>Hohen Neuendorf  52.668393,13.286973	,	S	E
+332	>Birkenwerder  52.691237,13.288776	,	E	S
 333	<Borgsdorf  52.715967,13.276416	,	E	S
 334	<Lehnitz  52.741099,13.263409	,	SE	SE
 335	<Oranienburg 52.753594,13.249505	,	S	E
 
-branch01 = <>300...315,317...335
-driving01 = 2,2,2,2,2,2,2,2,2,2,2,2,1,3,2,2,2,2,2,2,2,2,2,2,3,3,2,2,3,4,3,3,4,2
+branch01 = <>301...315,317...335
+driving01 = 2,2,2,2,2,2,2,2,2,2,2,1,3,2,2,2,2,2,2,2,2,2,2,3,3,2,2,3,4,3,3,4,2
 
 [Line2]
 Name=S2
@@ -49,27 +49,27 @@ Name=S2
 341	<Karow  52.615218,13.469789	,	SE	SE
 342	Blankenburg  52.591448,13.443611	,	S	E
 343	Pankow-Heinersdorf  52.578045,13.42962	,	MS	ME
-344	Pankow  52.56636,13.410866	,	E	S
+344	>Pankow  52.56636,13.410866	,	E	S
 345	<Bornholmer Str  52.554594,13.397777	,	M	M
 346	<Wollankstr  52.56563,13.391469	,	SE	SE
-347	Schonholz  52.571264,13.381383	,	E	S
+347	<Schonholz  52.571264,13.381383	,	E	S
 348	Alt-Reinickendorf  52.577758,13.350356	,	E	S
 349	>Karl-Bonhoeffer-Nervenklinik  52.577700,13.330356	,	M	M
 350	Eichborndamm  52.577654,13.316839	,	E	S
 351	<Tegel  52.588345,13.289698	,	E	S
 352	<Schulzendorf  52.613081,13.245916	,	SE	SE
-353	Heiligensee  52.624597,13.229209	,	E	S
-354	Hennigsdorf  52.638142,13.20567	,	E	S
-355	Gesundbrunnen 52.548625,13.390423	,	SME	SME
+353	<Heiligensee  52.624597,13.229209	,	E	S
+354	<Hennigsdorf  52.638142,13.20567	,	E	S
+355	>Gesundbrunnen 52.548625,13.390423	,	SME	SME
 356	>Humboldthain  52.543425,13.379066	,	SM	SE
 357	>Nordbahnhof  52.532044,13.388464	,	SM	SE
 358	Oranienburger Str  52.524916,13.392824	,	EM	SM
 359	<Friedrichstraße  52.520373,13.38729	,	SME	SME
-360	_Brandenburger Tor 52.516147,13.379271	,	SE	SE
+360	>_Brandenburger Tor 52.516147,13.379271	,	SE	SE
 361	<Potsdamer Platz  52.509456,13.376468	,	SME	SME
 362	<Anhalter Bhr  52.503483,13.381353	,	SME	SME
 363	<Yorckstraße  52.503483,13.381353	,	M	M
-364	Sudkreuz  52.475795,13.365242	,	M	M
+364	>Sudkreuz  52.475795,13.365242	,	M	M
 365	Priesterweg  52.4592,13.356364
 366	<Attilastr  52.447614,13.36087
 367	<Marienfelde  52.424381,13.374413
@@ -78,11 +78,11 @@ Name=S2
 370	<Lichtenrade  52.387282,13.396558
 371	<Mahlow  52.360886,13.407737
 372	<Blankenfelde  52.337188,13.415998
-373	Sudende  52.448438,13.353857
-374	Lankwitz  52.438576,13.341649
-375	Lichterfelde Ost  52.429432,13.327568
-376	Osdorfer Str  52.419094,13.314393
-377	Lichterfelde Sud  52.410718,13.308599
+373	>Sudende  52.448438,13.353857
+374	>Lankwitz  52.438576,13.341649
+375	>Lichterfelde Ost  52.429432,13.327568
+376	>Osdorfer Str  52.419094,13.314393
+377	>Lichterfelde Sud  52.410718,13.308599
 378	Teltow Stadt 52.388274,13.300451
 
 branch22 = <>354,353,352,351,350,349,348,347,346,345,355...372
@@ -92,9 +92,9 @@ driving23 = 2,3,2,3,3,4,2,2,3,2,2,2,2,2,2,2,2,2,3,2,7,2,2,3,2,2,5
 
 [Line3]
 Name=S3
-381	Ostkreuz  52.503031,13.469127	,	S	E
-382	Rummelsburg  52.501306,13.478376	,	E	S
-383	Betriebsbahnhof Rummelsburg  52.493808,13.497795	,	SE	SE
+381	>Ostkreuz  52.503031,13.469127	,	S	E
+382	<Rummelsburg  52.501306,13.478376	,	E	S
+383	<Betriebsbahnhof Rummelsburg  52.493808,13.497795	,	SE	SE
 384	Karlshorst 52.480441,13.52717	,	SE	SE
 385	Wuhlheide 52.469018,13.553585	,	SE	SE
 386	Kopenick  52.458559,13.580943	,	E	S
@@ -111,32 +111,32 @@ driving25 = 2,2,2,3,2,3,2,7,2,5,3,2
 Name=S46
 392	<Westend 52.51861,13.284076	,	EM	ES
 393	<Messe Nord/ICC  52.507654,13.283411	,	SE	SE
-394	Westkreuz  52.500758,13.283755	,	M	M
-395	Halensee  52.496225,13.290299	,	E	S
-396	Hohenzollerndamm  52.48853,13.300234	,	SM	EM
+394	>Westkreuz  52.500758,13.283755	,	M	M
+395	>Halensee  52.496225,13.290299	,	E	S
+396	>Hohenzollerndamm  52.48853,13.300234	,	SM	EM
 397	>Heidelberger Platz  52.479931,13.312036	,	EM	SM
-398	Bundesplatz  52.477644,13.328537	,	EM	SM
+398	>Bundesplatz  52.477644,13.328537	,	EM	SM
 399	Innsbrucker Platz  52.478049,13.341776	,	S	E
-400	Schoneberg  52.479304,13.351861	,	EM	SM
-401	Sudkreuz  52.47588,13.365573	,	SME	SME
+400	<Schoneberg  52.479304,13.351861	,	EM	SM
+401	>Sudkreuz  52.47588,13.365573	,	SME	SME
 402	>Tempelhof  52.470835,13.384498	,	S	E
 403	Hermannstraße  52.467475,13.431298	,	EM	SM
-404	Neukölln  52.469397,13.443013	,	SE	SE
+404	>Neukölln  52.469397,13.443013	,	SE	SE
 405	Kollnische Heide  52.469619,13.467797	,	E	S
-406	Baumschulenweg  52.466952,13.490092	,	M	M
-407	Schoneweide 52.454885,13.509597	,	SE	SE
-408	Oberspree  52.452374,13.537878	,
-409	Spindlersfeld  52.447143,13.56131	,
-410	Betriebsbahnhof Schoneweide 52.447045,13.523181	,	M	M	 
-411	Adlershof  52.435011,13.54113	,	MS	ME
-412	Altglienicke  52.407066,13.558456	,	E	S
-413	Grunbergallee  52.399146,13.541118	,	SE	SE
+406	<Baumschulenweg  52.466952,13.490092	,	M	M
+407	<Schoneweide 52.454885,13.509597	,	SE	SE
+408	<Oberspree  52.452374,13.537878	,
+409	<Spindlersfeld  52.447143,13.56131	,
+410	>Betriebsbahnhof Schoneweide 52.447045,13.523181	,	M	M	 
+411	<Adlershof  52.435011,13.54113	,	MS	ME
+412	<Altglienicke  52.407066,13.558456	,	E	S
+413	<Grunbergallee  52.399146,13.541118	,	SE	SE
 414	Flughafen Berlin-Schonefeld  52.391617,13.513159	,	SE	SE
-415	Grunau 52.412132,13.574358	,	SE	SE
-416	Eichwalde  52.371846,13.614891	,	E	S
-417	Zeuthen  52.348567,13.627506	,	SE	SE
-418	Wildau  52.320101,13.634051	,	S	E
-419	Konigs Wusterhausen  52.296788,13.631455	,	E	S
+415	<Grunau 52.412132,13.574358	,	SE	SE
+416	<Eichwalde  52.371846,13.614891	,	E	S
+417	<Zeuthen  52.348567,13.627506	,	SE	SE
+418	<Wildau  52.320101,13.634051	,	S	E
+419	<Konigs Wusterhausen  52.296788,13.631455	,	E	S
 
 branch26 = <>392...409
 branch27 = <>392...407,410,411...414
@@ -149,31 +149,31 @@ driving27 = 2,1,2,2,2,2,2,2,2,2,4,2,2,3,3,2,3,4,4,3,2,4
 Name=S41
 420	<Westend   52.51861,13.284076	,	EM	MS
 421	<Messe Nord/ICC  52.507654,13.283411	,	SE	SE
-422	Westkreuz  52.500758,13.283755	,	M	M
-423	Halensee  52.496225,13.290299	,	E	S
-424	Hohenzollerndamm  52.48853,13.300234	,	SM	EM
+422	>Westkreuz  52.500758,13.283755	,	M	M
+423	>Halensee  52.496225,13.290299	,	E	S
+424	>Hohenzollerndamm  52.48853,13.300234	,	SM	EM
 425	>Heidelberger Platz  52.479931,13.312036	,	EM	SM
-426	Bundesplatz  52.477644,13.328537	,	EM	SM
+426	>Bundesplatz  52.477644,13.328537	,	EM	SM
 427	Innsbrucker Platz  52.478049,13.341776	,	S	E
-428	Schoneberg  52.479304,13.351861	,	EM	SM
-429	Sudkreuz  52.47588,13.365573	,	SME	SME
+428	<Schoneberg  52.479304,13.351861	,	EM	SM
+429	>Sudkreuz  52.47588,13.365573	,	SME	SME
 430	>Tempelhof  52.470835,13.384498	,	S	E
 431	Hermannstraße  52.467475,13.431298	,	EM	SM	
-432	Neukölln  52.469397,13.443013	,	SE	SE
+432	>Neukölln  52.469397,13.443013	,	SE	SE
 433	Sonnenallee  52.472862,13.455604	,	SM	EM
 434	<Treptower Park  52.493769,13.461458	,	SE	SE
-435	Ostkreuz  52.50305,13.46914	,	SME	SME
-436	Frankfurter Allee  52.515131,13.474558	,	E	S
+435	>Ostkreuz  52.50305,13.46914	,	SME	SME
+436	>Frankfurter Allee  52.515131,13.474558	,	E	S
 437	<Storkower Str 52.523794,13.464409	,	S	E
 438	<Landsberger Allee  52.529505,13.454677	,	SME	SME
 439	<Greifswalder Str  52.539993,13.43955	,	S	E
 440	^Prenzlauer Allee  52.544756,13.426064	,	E	S
-441	Schönhauser Allee  52.548918,13.416311	,	SME	SME
-442	Gesundbrunnen 52.548618,13.390422	,	SE	SE
+441	<Schönhauser Allee  52.548918,13.416311	,	SME	SME
+442	>Gesundbrunnen 52.548618,13.390422	,	SE	SE
 443	Wedding  52.5424,13.366165	,	SME	SME
-444	Westhafen  52.536143,13.344396	,	M	M
+444	>Westhafen  52.536143,13.344396	,	M	M
 445	Beusselstr  52.534315,13.329052	,	M	M
-446	Jungfernheide  52.529982,13.298796	,	SE	SE
+446	<Jungfernheide  52.529982,13.298796	,	SE	SE
 
 branch30 = <420...446
 driving30 = 2,1,2,2,2,2,1,2,2,2,4,2,1,2,2,2,2,2,3,2,1,2,3,2,2,3
@@ -184,31 +184,31 @@ driving31 = 2
 Name=S42
 601	<Westend   52.51861,13.284076	,	EM	MS
 447	<Messe Nord/ICC  52.507654,13.283411	,	SE	SE
-448	Westkreuz  52.500758,13.283755	,	M	M
-449	Halensee  52.496225,13.290299	,	E	S
-450	Hohenzollerndamm  52.48853,13.300234	,	SM	EM
+448	>Westkreuz  52.500758,13.283755	,	M	M
+449	>Halensee  52.496225,13.290299	,	E	S
+450	>Hohenzollerndamm  52.48853,13.300234	,	SM	EM
 451	>Heidelberger Platz  52.479931,13.312036	,	EM	SM
-452	Bundesplatz  52.477644,13.328537	,	EM	SM
+452	>Bundesplatz  52.477644,13.328537	,	EM	SM
 453	Innsbrucker Platz  52.478049,13.341776	,	S	E
-454	Schoneberg  52.479304,13.351861	,	EM	SM
-455	Sudkreuz  52.47588,13.365573	,	SME	SME
+454	<Schoneberg  52.479304,13.351861	,	EM	SM
+455	>Sudkreuz  52.47588,13.365573	,	SME	SME
 456	>Tempelhof  52.470835,13.384498	,	S	E
 457	Hermannstraße  52.467475,13.431298	,	EM	SM
-458	Neukölln  52.469397,13.443013	,	SE	SE
+458	>Neukölln  52.469397,13.443013	,	SE	SE
 459	Sonnenallee  52.472862,13.455604	,	SM	EM
 460	Treptower Park  52.493769,13.461458	,	SE	SE
-461	Ostkreuz  52.50305,13.46914	,	SME	SME
-462	Frankfurter Allee  52.515131,13.474558	,	E	S
+461	>Ostkreuz  52.50305,13.46914	,	SME	SME
+462	>Frankfurter Allee  52.515131,13.474558	,	E	S
 463	<Storkower Str 52.523794,13.464409	,	S	E
 464	<Landsberger Allee  52.529505,13.454677	,	SME	SME
 465	<Greifswalder Str  52.539993,13.43955	,	S	E
 466	^Prenzlauer Allee  52.544756,13.426064	,	E	S
-467	Schönhauser Allee  52.548918,13.416311	,	SME	SME
-468	Gesundbrunnen 52.548618,13.390422	,	SE	SE
+467	<Schönhauser Allee  52.548918,13.416311	,	SME	SME
+468	>Gesundbrunnen 52.548618,13.390422	,	SE	SE
 469	Wedding  52.5424,13.366165	,	SME	SME
-470	Westhafen  52.536143,13.344396	,	M	M
+470	>Westhafen  52.536143,13.344396	,	M	M
 471	Beusselstr  52.534315,13.329052	,	M	M
-472	Jungfernheide  52.529982,13.298796	,	SE	SE
+472	<Jungfernheide  52.529982,13.298796	,	SE	SE
 
 branch35 = >601,447...472
 driving35 = 2,1,2,2,2,2,1,2,2,2,4,2,1,2,2,2,2,2,3,2,1,2,3,2,2,3,3
@@ -222,13 +222,13 @@ Name=S5
 513	>Olympiastadion  52.510971,13.241522	,	SE	SE
 514	>Pichelsberg  52.510318,13.227103	,	SE	SE
 515	>Stresow  52.531914,13.209465	,	SE	SE
-516	Spandau  52.534211,13.198993	,	SE	SE
-474	Westkreuz  52.500777,13.283767	,	M	M
-475	Charlottenburg  52.504702,13.303449	,	SE	SE
+516	>Spandau  52.534211,13.198993	,	SE	SE
+474	>Westkreuz  52.500777,13.283767	,	M	M
+475	>Charlottenburg  52.504702,13.303449	,	SE	SE
 476	Savignyplatz  52.50499,13.319285	,	SE	SE
 477	<Zoologischer Garten  52.50721,13.331988	,	MS	ME
-478	Tiergarten  52.514027,13.336408	,	SE	SE
-479	Bellevue  52.519877,13.34821	,	M	M
+478	>Tiergarten  52.514027,13.336408	,	SE	SE
+479	<Bellevue  52.519877,13.34821	,	M	M
 480	Hauptbahnhof  52.524747,13.36789	,	M	M
 481	<Friedrichstraße  52.520347,13.387309	,	SME	SME
 482	^Hackescher Markt  52.522593,13.402008	,	SM	EM
@@ -236,9 +236,9 @@ Name=S5
 484	<Jannowitzbrücke  52.514145,13.419324	,	M	M
 485	<Ostbahnhof  52.510475,13.434666	,	SME	SME
 486	<Warschauer Straße  52.506244,13.45033	,	M	M
-487	Ostkreuz  52.503057,13.469149	,	SM	EM
-488	Noldnerplatz  52.503475,13.484448	,	E	S
-489	Lichtenberg  52.509887,13.496915	,	SE	SE
+487	>Ostkreuz  52.503057,13.469149	,	SM	EM
+488	<Noldnerplatz  52.503475,13.484448	,	E	S
+489	>Lichtenberg  52.509887,13.496915	,	SE	SE
 490	Friedrichsfelde Ost  52.514393,13.519832	,	EM	SM
 491	Biesdorf  52.513022,13.556138	,	SE	SE
 492	Wuhletal  52.512434,13.575557	,	MS	ME
@@ -264,13 +264,13 @@ Name=S7
 506	Griebnitzsee  52.394354,13.128655	,	S	E
 507	Wannsee  52.421162,13.179545	,	ME	MS
 508	Nikolassee  52.431525,13.193285	,	EM	MS
-509	Grunewald  52.488268,13.260963	,	S	E
-510	Westkreuz 52.500758,13.283789	,	M	M
-517	Charlottenburg 52.504702,13.303539	,	SE	SE
+509	>Grunewald  52.488268,13.260963	,	S	E
+510	>Westkreuz 52.500758,13.283789	,	M	M
+517	>Charlottenburg 52.504702,13.303539	,	SE	SE
 518	Savignyplatz  52.505055,13.319267	,	SE	SE
 519	<Zoologischer Garten 52.507275,13.33197	,	SM	EM
-520	Tiergarten  52.514197,13.33639	,	SE	SE
-521	Bellevue  52.519929,13.348278	,	M	M
+520	>Tiergarten  52.514197,13.33639	,	SE	SE
+521	<Bellevue  52.519929,13.348278	,	M	M
 522	Hauptbahnhof  52.524975,13.369512	,	M	M
 523	<Friedrichstraße  52.520386,13.3873	,	SME	SME
 524	^Hackescher Markt  52.522586,13.402042	,	SM	EM
@@ -278,9 +278,9 @@ Name=S7
 526	<Jannowitzbrücke  52.514138,13.419369	,	M	M
 527	<Ostbahnhof  52.510488,13.43469	,	SME	SME
 528	<Warschauer Straße  52.506224,13.450364	,	M	M
-529	Ostkreuz  52.503063,13.46914	,	SM	EM
-530	Noldnerplatz  52.503481,13.48445	,	E	S
-531	Lichtenberg  52.509887,13.496928	,	SE	SE
+529	>Ostkreuz  52.503063,13.46914	,	SM	EM
+530	<Noldnerplatz  52.503481,13.48445	,	E	S
+531	>Lichtenberg  52.509887,13.496928	,	SE	SE
 532	Friedrichsfelde Ost  52.514132,13.5203	,	EM	SM
 533	<Springpfuhl  52.526248,13.536737	,	SE	SE
 534	<Gehrenseestr  52.556368,13.524764	,	E	S
@@ -299,29 +299,29 @@ driving46 = 2,3,2,3,2,2,2,1,2,3,2,2,14,3,1,3,2,2,2,3,2,3,3,4,3,3
 
 [Line9]
 Name=S8
-542	Zeuthen  52.348567,13.627506	,	SE	SE
-543	Eichwalde  52.371846,13.614891	,	S	E
-544	Grunau 52.412132,13.574358	,	SE	SE
-545	Adlershof  52.435011,13.54113	,	ME	MS
-546	Betriebsbahnhof Schoneweide 52.447045,13.523181	,	M	M 
+542	<Zeuthen  52.348567,13.627506	,	SE	SE
+543	<Eichwalde  52.371846,13.614891	,	S	E
+544	<Grunau 52.412132,13.574358	,	SE	SE
+545	<Adlershof  52.435011,13.54113	,	ME	MS
+546	>Betriebsbahnhof Schoneweide 52.447045,13.523181	,	M	M 
 547	Schoneweide  52.454885,13.509572	,	SE	SE
-548	Baumschulenweg  52.467175,13.490045	,	M	M
-549	Planterwald  52.47852,13.473094	,
+548	<Baumschulenweg  52.467175,13.490045	,	M	M
+549	<Planterwald  52.47852,13.473094	,
 550	<Treptower Park  52.49373,13.461506	,	SE	SE
-551	Ostkreuz  52.503031,13.469188	,	SME	SME
-552	Frankfurter Allee  52.514915,13.474596	,	E	S
+551	>Ostkreuz  52.503031,13.469188	,	SME	SME
+552	>Frankfurter Allee  52.514915,13.474596	,	E	S
 553	<Storkower Str  52.523742,13.464425	,	S	E
 554	<Landsberger Allee  52.529433,13.454726	,	SME	SME
 555	<Greifswalder Str  52.539927,13.439534	,	S	E
 556	^Prenzlauer Allee  52.544704,13.426058,	E	S
-557	Schönhauser Allee  52.548905,13.416402	,	SME	SME
+557	<Schönhauser Allee  52.548905,13.416402	,	SME	SME
 558	<Bornholmer Str  52.554594,13.397863	,	M	M
 559	<Wollankstr  52.565473,13.391769	,	SE	SE
-560	Schonholz  52.571238,13.381383	,	S	E
+560	<Schonholz  52.571238,13.381383	,	S	E
 561	<Wilhelmsruh  52.581618,13.362286	,	E	S
 562	<Wittenau  52.596974,13.334477	,	SE	SE
 563	<Waidmannslust  52.606358,13.321002	,	S	E
-564	Pankow 52.566452,13.410741	,	S	E
+564	>Pankow 52.566452,13.410741	,	S	E
 565	Pankow-Heinersdorf  52.578045,13.429577	,	ME	MS
 566	Blankenburg  52.591474,13.443739	,	E	S
 567	Muhlenbeck-Monchmuhle  52.65478,13.385718	,	E	S
@@ -338,23 +338,23 @@ driving51 = 2, 6, 4, 3, 2, 3, 2, 3, 2, 3, 2, 2, 2, 2, 2, 3, 2, 3, 2, 10, 2, 4, 3
 [Line10]
 Name=S9
 
-583	Pankow  52.519903,13.348253	, 	E	S
+583	>Pankow  52.519903,13.348253	, 	E	S
 584	<Bornholmer Str 52.524747,13.36789	,	M	M
-585	Schönhauser Allee  52.520321,13.387263	, SME	SME
+585	<Schönhauser Allee  52.520321,13.387263	, SME	SME
 586	^Prenzlauer Allee  52.522593,13.401983	,	S	E
 587	<Greifswalder Str  52.521548,13.410995	,	E	S
 588	<Landsberger Allee  52.514132,13.419321	,	SME	SME
 589	<Storkower Str  52.510475,13.434641	,	E	S
-590	Frankfurter Allee  52.506165,13.450348	,	E	S
-591	Ostkreuz  52.503031,13.469017	,	SME	SME
+590	>Frankfurter Allee  52.506165,13.450348	,	E	S
+591	>Ostkreuz  52.503031,13.469017	,	SME	SME
 592	<Treptower Park  52.49373,13.461506	,	SE	SE
-593	Planterwald 52.478494,13.473094	,	
-594	Baumschulenweg  52.467175,13.490088	,	M	M
-595	Schoneweide  52.454859,13.509572	,	SE	SE
-596	Betriebsbahnhof Schoneweide 52.446986,13.523133	,	M	M
-597	Adlershof  52.434979,13.541071	,	MS	ME
-598	Altglienicke  52.407027,13.558366	,	E	S
-599	Grunbergallee  52.399172,13.541157	,	SE	SE
+593	<Planterwald 52.478494,13.473094	,	
+594	<Baumschulenweg  52.467175,13.490088	,	M	M
+595	<Schoneweide  52.454859,13.509572	,	SE	SE
+596	>Betriebsbahnhof Schoneweide 52.446986,13.523133	,	M	M
+597	<Adlershof  52.434979,13.541071	,	MS	ME
+598	<Altglienicke  52.407027,13.558366	,	E	S
+599	<Grunbergallee  52.399172,13.541157	,	SE	SE
 600	Flughafen Berlin-Schonefeld 52.391604,13.513176	,	SE	SE
 
 branch55 = <>583...600
@@ -362,17 +362,17 @@ driving55 = 2,3,2,3,2,2,2,2,2,3,2,2,3,2,2,2,2,3,3,1,3,3,2,3,2,5,2,3
 
 [Line11]
 Name=U1
-153	Uhlandstraße 52.5029913,13.53272958	, 	S	S
-77	Kurfürstendamm 52.5042322,13.53331108	, 	SE	SE
+153	>Uhlandstraße 52.5029913,13.53272958	, 	S	S
+77	>Kurfürstendamm 52.5042322,13.53331108	, 	SE	SE
 167	Wittenbergplatz 52.5018091,13.53428633	, 	SM	M
-98	Nollendorfplatz 52.4995756,13.53537424	, 	ME	SME
-78	Kurfürstenstraße 52.5000262,13.53614349	, 	SE	SE
+98	>Nollendorfplatz 52.4995756,13.53537424	, 	ME	SME
+78	<Kurfürsten;straße 52.5000262,13.53614349	, 	SE	SE
 43	Gleisdreieck 52.4991052,13.53752644	, 	M	E
 93	Möckernbrücke 52.4990988,13.53829570	, 	SM	ME
 49	Hallesches Tor 52.4977076,13.53907032	, 	S	E
 115	Prinzenstraße 52.4985893,13.54052730	, 	S	E
 75	Kottbusser Tor 52.4994253,13.54186625	, 	SME	SME
-46	Görlitzer Bahnhof 52.4989551,13.54289408	, 	E	S
+46	<Görlitzer Bahnhof 52.4989551,13.54289408	, 	E	S
 134	<Schlesisches Tor 52.5008884,13.54415364	, 	M	E
 159	<Warschauer Straße 52.5033309,13.54473515	, 	S	S
 
@@ -384,18 +384,18 @@ Name=U2
 129	<Ruhleben 52.5257324,13.52412183	, 	M	M
 100	<Olympia-Stadion 52.5169586,13.52494259	, 	E	S
 95	<Neu-Westend 52.5162274,13.52591569	, 	SE	SE
-149	Theodor-Heuss-Platz 52.5099266,13.52727611	,	SME	SME
-66	Kaiserdamm 52.5096915,13.52814406	, 	SE	SE
-142	Sophie-Charlotte-Platz 52.5108407,13.52954311	, 	SE	SE
+149	<Theodor-Heuss-;Platz 52.5099266,13.52727611	,	SME	SME
+66	>Kaiserdamm 52.5096915,13.52814406	, 	SE	SE
+142	<Sophie-;Charlotte-Platz 52.5108407,13.52954311	, 	SE	SE
 16	<Bismarckstraße 52.5115393,13.53052265	, 	M	M
 29	Deutsche Oper 52.5118855,13.53107948	, 	SE	SE
 33	<Ernst-Reuter-Platz 52.5118920,13.53223068	, 	M	M
 173	<Zoologischer Garten 52.5072906,13.53322248	, 	SE	SE
 167	Wittenbergplatz 52.5018091,13.53428633	, 	SM	M
-98	Nollendorfplatz 52.4995756,13.53537424	, 	ME	SME
+98	>Nollendorfplatz 52.4995756,13.53537424	, 	ME	SME
 26	Bülowstraße 52.4975965,13.53621216	, 	SE	SE
 43	Gleisdreieck 52.4991052,13.53752644	, 	M	E
-88	Mendelssohn-Bartholdy-Park 52.5041081,13.53755219	, 	SE	SE
+88	>Mendelssohn-Bartholdy-Park 52.5041081,13.53755219	, 	SE	SE
 114	<Potsdamer Platz 52.5093062,13.53776677	, 	SE	SE
 90	Mohrenstraße 52.5117353,13.53845556	, 	SE	SE
 145	Stadtmitte 52.5105273,13.53900380	, 	SE	SE
@@ -407,30 +407,30 @@ Name=U2
 126	<Rosa-Luxemburg-Platz 52.5277494,13.54102082	, 	SE	SE
 140	<Senefelderplatz 52.5327881,13.54129977	, 	SE	SE
 30	<Eberswalder Straße 52.5422111,13.54114528	, 	SE	SE
-137	Schönhauser Allee 52.5489319,13.54164163	, 	ME	SM
+137	<Schönhauser Allee 52.5489319,13.54164163	, 	ME	SM
 156	<Vinetastraße 52.5597731,13.54126973	, 	M	M
-106	Pankow 52.5675210,13.54121609	, 	SM	SM
+106	>Pankow 52.5675210,13.54121609	, 	SM	SM
 
 branch65 = <>129, 100, 95, 149, 66, 142, 16, 29, 33, 173, 167, 98, 26, 43, 88, 114, 90, 145, 52, 144, 92, 72, 3, 126, 140, 30, 137, 156, 106
 driving65 = 1,1,1,1,1,1,1,1,2,3,3,2,2,3,3,6,2,2,2,2,2,2,2,2,2,2,2,2
 
 [Line13]
 Name=U3
-76	Krumme Lanke 52.4432490,13.52413846	, 	S	S
-101	Onkel Toms Hütte 52.4498078,13.52526606	, 	SE	SE
-103	Oskar-Helene-Heim 52.4504061,13.52691133	, 	S	E
-150	Thielplatz 52.4512169,13.52820952	, 	SE	SE
-28	Dahlem-Dorf 52.4570097,13.52894766	, 	S	E
-113	Podbielskiallee 52.4643182,13.52962573	, 	S	E
-22	Breitenbachplatz 52.4666256,13.53082414	, 	SME	SME
-130	Rüdesheimer Platz 52.4730633,13.53144319	, 	SE	SE
+76	<Krumme Lanke 52.4432490,13.52413846	, 	S	S
+101	>Onkel Toms Hütte 52.4498078,13.52526606	, 	SE	SE
+103	>Oskar-Helene-Heim 52.4504061,13.52691133	, 	S	E
+150	>Thielplatz 52.4512169,13.52820952	, 	SE	SE
+28	>Dahlem-Dorf 52.4570097,13.52894766	, 	S	E
+113	>Podbielskiallee 52.4643182,13.52962573	, 	S	E
+22	>Breitenbachplatz 52.4666256,13.53082414	, 	SME	SME
+130	>Rüdesheimer Platz 52.4730633,13.53144319	, 	SE	SE
 53	>Heidelberger Platz 52.4796243,13.53121789	, 	SE	SE
 34	>Fehrbelliner Platz 52.4902086,13.53149898	, 	SME	SME
-58	Hohenzollernplatz 52.4939582,13.53249032	, 	SE	SE
+58	>Hohenzollernplatz 52.4939582,13.53249032	, 	SE	SE
 143	Spichernstraße 52.4965187,13.53306754	, 	SE	SE
 9 	Augsburger Straße 52.5004508,13.53366621	, 	E	S
 167	Wittenbergplatz 52.5018091,13.53428633	, 	SM	M
-98	Nollendorfplatz 52.4995756,13.53537424	, 	ME	SME
+98	>Nollendorfplatz 52.4995756,13.53537424	, 	ME	SME
 
 branch66 = <>98, 167, 9, 143, 58, 34, 53, 130, 22, 113, 28, 150, 103, 101, 76
 driving66 = 2, 2, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 2, 2
@@ -441,7 +441,7 @@ Name=U4
 118	>Rathaus Schöneberg 52.4831069,13.53416724	, 	S	E
 10	Bayerischer Platz 52.4889473,13.53392334	, 	SE	SE
 155	<Viktoria-Luise-Platz 52.4961465,13.53427453	, 	SE	SE
-98	Nollendorfplatz 52.4995756,13.53537424	, 	ME	SME
+98	>Nollendorfplatz 52.4995756,13.53537424	, 	ME	SME
 
 branch67 = <>61, 118, 10, 155, 98
 driving67 = 1, 1, 2, 2
@@ -454,9 +454,9 @@ Name=U5
 160	<Weberwiese 52.5167300,13.54450555	, 	SE	SE
 36	<Frankfurter Tor 52.5159205,13.54534240	, 	M	M
 131	Samariterstraße 52.5149020,13.54643674	, 	SE	SE
-35	Frankfurter Allee 52.5137268,13.54753108	, 	SME	SM
-86	Magdalenenstraße 52.5126037,13.54865546	, 	SE	SE
-82	Lichtenberg 52.5102661,13.54969079	, 	ME	SM
+35	>Frankfurter Allee 52.5137268,13.54753108	, 	SME	SM
+86	<Magdalenenstraße 52.5126037,13.54865546	, 	SE	SE
+82	>Lichtenberg 52.5102661,13.54969079	, 	ME	SM
 40	Friedrichsfelde 52.5056427,13.55127544	, 	SE	SE
 151	>Tierpark 52.4966429,13.55234189	, 	SE	SE
 14	<Biesdorf-Süd 52.4997193,13.55463572	, 	M	M
@@ -480,8 +480,8 @@ Name=U6
 59	Holzhauser Straße 52.5754697,13.52965255	, 	S	E
 105	>Otisstraße 52.5711532,13.53027911	, 	S	E
 132	>Scharnweberstraße 52.5671297,13.53121145	, 	SE	SE
-79	Kurt-Schumacher-Platz 52.5638820,13.53256865	, 	M	M
-2 	Afrikanische Straße 52.5600274,13.53346343	, 	SE	SE
+79	<Kurt-Schumacher-Platz 52.5638820,13.53256865	, 	M	M
+2 	<Afrikanische Straße 52.5600274,13.53346343	, 	SE	SE
 121	Rehberge 52.5568183,13.53412004	, 	SE	SE
 139	Seestraße 52.5499427,13.53528518	, 	M	SE
 81	Leopoldplatz 52.5463740,13.53591712	, 	M	M
@@ -491,9 +491,9 @@ Name=U6
 900	Naturkundemuseum 52.5350788,13.53770132	, 	SE	SE
 102	Oranienburger Tor 52.5253343,13.53870232	, 	SE	SE
 41	<Friedrichstraße 52.5201848,13.53867618	, 	SME	SME
-38	Französische Straße 52.5146343,13.53890080	, 	SE	SE
+38	>Französische Straße 52.5146343,13.53890080	, 	SE	SE
 145	Stadtmitte 52.5105273,13.53900380	, 	SE	SE
-73	Kochstraße 52.5061587,13.53908533	, 	SE	SE
+73	<Kochstraße 52.5061587,13.53908533	, 	SE	SE
 49	Hallesches Tor 52.4977076,13.53907032	, 	S	E
 87	>Mehringdamm 52.4942457,13.53887291	, 	SE	SE
 112	>Platz der Luftbrücke 52.4851650,13.53863580	, 	SE	SE
@@ -505,9 +505,10 @@ Name=U6
 164	<Westphalweg 52.4465285,13.53861113	, 	SE	SE
 4 	<Alt-Mariendorf 52.4396094,13.53886433	, 	SM	SM
 
-branch69 = <>4, 164, 154, 67, 6, 148, 109, 112, 87, 49, 73, 145, 38, 41, 102, 136, 900, 122, 161, 81, 139, 121, 2, 79, 132, 105, 59, 20, 5
-driving69 = 1, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2
-
+branch69 = <>4, 164, 154, 67, 6, 148, 109, 112, 87, 49, 73, 145, 38
+driving69 = 1, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1
+branch80 = <>41, 102, 136, 900, 122, 161, 81, 139, 121, 2, 79, 132, 105, 59, 20, 5
+driving80 = 1, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2
 
 [Line17]
 Name=U7
@@ -518,20 +519,20 @@ Name=U7
 111	Paulsternstraße 52.5377348,13.52481813	, 	M	SE
 125	Rohrdamm 52.5372389,13.52623863	, 	SE	M
 141	Siemensdamm 52.5366907,13.52730292	, 	M	M
-48	Halemweg 52.5366907,13.52863760	, 	ME	M
-62	Jakob-Kaiser-Platz 52.5362535,13.52942939	, 	M	ME
-65	Jungfernheide 52.5299947,13.52988536	, 	M	S
+48	<Halemweg 52.5366907,13.52863760	, 	ME	M
+62	>Jakob-Kaiser-Platz 52.5362535,13.52942939	, 	M	ME
+65	<Jungfernheide 52.5299947,13.52988536	, 	M	S
 89	<Mierendorffplatz 52.5266136,13.53050013	, 	SE	SE
 124	<Richard-Wagner-Platz 52.5156985,13.53074260	, 	SE	SE
 16	<Bismarckstraße 52.5115393,13.53052265	, 	M	M
-165	Wilmersdorfer Straße 52.5069750,13.53064818	, 	SE	SE
+165	>Wilmersdorfer Straße 52.5069750,13.53064818	, 	SE	SE
 1 	>Adenauerplatz 52.4996865,13.53075333	, 	M	M
 74	>Konstanzer Straße 52.4944416,13.53088958	, 	M	M
 34	>Fehrbelliner Platz 52.4902086,13.53149898	, 	SME	SME
-18	Blissestraße 52.4866873,13.53219957	, 	SE	SE
+18	>Blissestraße 52.4866873,13.53219957	, 	SE	SE
 12	Berliner Straße 52.4873080,13.53309543	, 	SE	SE
 10	Bayerischer Platz 52.4889473,13.53392334	, 	SE	SE
-31	Eisenacher Straße 52.4894835,13.53503413	, 	SE	SE
+31	<Eisenacher Straße 52.4894835,13.53503413	, 	SE	SE
 71	Kleistpark 52.4905287,13.53603835	, 	M	M
 170	<Yorckstraße  52.4929425,13.53709246	, 	SE	SE
 93	Möckernbrücke 52.4990988,13.53829570	, 	SM	ME
@@ -541,7 +542,7 @@ Name=U7
 56	<Hermannplatz 52.4865566,13.54244132	, 	SME	SME
 116	Rathaus Neukölln 52.4819699,13.54332323	, 	SE	SE
 69	<Karl-Marx-Straße 52.4761152,13.54390581	, 	SE	SE
-97	Neukölln 52.4694521,13.54429190	, 	SE	SE
+97	>Neukölln 52.4694521,13.54429190	, 	SE	SE
 45	<Grenzallee 52.4634031,13.54438539	, 	SE	SE
 17	<Blaschkoallee 52.4516942,13.54498727	, 	SE	SE
 110	<Parchimer Allee 52.4447236,13.54493685	, 	SE	SE
@@ -567,15 +568,15 @@ Name=U8
 37	Franz-Neumann-Platz 52.5644885,13.53640206	, 	SE	SE
 104	Osloer Straße 52.5571706,13.53732259	, 	M	SME
 107	<Pankstraße 52.5524087,13.53811653	, 	M	M
-42	Gesundbrunnen 52.5486327,13.53904267	, 	SME	SME
+42	>Gesundbrunnen 52.5486327,13.53904267	, 	SME	SME
 157	<Voltastraße 52.5423874,13.53928812	, 	M	M
 13	<Bernauer Straße 52.5376369,13.53966792	, 	M	M
 127	Rosenthaler Platz 52.5299555,13.54010994	, 	M	M
 162	>Weinmeisterstraße 52.5254322,13.54057343	, 	M	M
 3 	<Alexanderplatz 52.5215405,13.54107776	, 	SME	SME
 63	Jannowitzbrücke 52.5141642,13.54193599	, 	SE	SE
-54	Heinrich-Heine-Straße 52.5079944,13.54141476	, 	SE	SE
-91	Moritzplatz 52.5035465,13.54106374	, 	SE	ME
+54	>Heinrich-Heine-Straße 52.5079944,13.54141476	, 	SE	SE
+91	>Moritzplatz 52.5035465,13.54106374	, 	SE	ME
 75	Kottbusser Tor 52.4994253,13.54186625	, 	SME	SME
 138	>Schönleinstraße 52.4929719,13.54221280	, 	SE	SE
 56	<Hermannplatz 52.4865566,13.54244132	, 	SME	SME
@@ -592,19 +593,19 @@ Name=U9
 104	Osloer Straße 52.5571706,13.53732259	, 	M	SME
 94	<Nauener Platz 52.5514627,13.53674216	, 	M	M
 81	Leopoldplatz 52.5463740,13.53591712	, 	M	M
-8 	Amrumer Straße 52.5423221,13.53497083	, 	SE	SE
-163	Westhafen 52.5357771,13.53443224	, 	SE	SE
+8 	>Amrumer Straße 52.5423221,13.53497083	, 	SE	SE
+163	>Westhafen 52.5357771,13.53443224	, 	SE	SE
 15	>Birkenstraße 52.5326053,13.53409858	, 	M	M
 152	>Turmstraße 52.5257912,13.53433890	, 	SE	SE
-50	Hansaplatz 52.5179053,13.53422732	, 	SE	SE
+50	<Hansaplatz 52.5179053,13.53422732	, 	SE	SE
 173	<Zoologischer Garten 52.5072906,13.53322248	, 	SE	SE
-77	Kurfürstendamm 52.5042322,13.53331108	, 	SE	SE
+77	>Kurfürstendamm 52.5042322,13.53331108	, 	SE	SE
 143	Spichernstraße 52.4965187,13.53306754	, 	SE	SE
 47	<Güntzelstraße 52.4906528,13.53310294	, 	SE	SE
 12	Berliner Straße 52.4873080,13.53309543	, 	SE	SE
-24	Bundesplatz 52.4786114,13.53286262	, 	SE	SE
+24	>Bundesplatz 52.4786114,13.53286262	, 	SE	SE
 39	>Friedrich-Wilhelm-Platz 52.4721024,13.53286713	, 	SE	SE
-158	Walther-Schreiber-Platz 52.4648150,13.53285296	, 	SE	SE
+158	>Walther-Schreiber-Platz 52.4648150,13.53285296	, 	SE	SE
 135	Schloßstraße 52.4609321,13.53248711	, 	SE	SE
 120	>Rathaus Steglitz 52.4548718,13.53195281	, 	M	M
 
@@ -613,7 +614,7 @@ driving72 = 1,1,1,2,1,2,1,1,1,2,2,1,1,2,1,2,1
 
 [Line20]
 Name=U55
-620	_Brandenburger Tor 52.4648150,13.53285296	, 	SE	SE
+620	>_Brandenburger Tor 52.4648150,13.53285296	, 	SE	SE
 621	Bundestag 52.4609321,13.53248711	, 	SE	SE
 622	Hauptbahnhof 52.4548718,13.53195281	, 	M	M
 
