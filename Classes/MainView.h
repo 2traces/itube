@@ -72,6 +72,7 @@ extern NSInteger const toolbarWidth;
 - (CGFloat) radialOffsetToPoint:(CGPoint)point;
 -(NSInteger) setPin:(CGPoint)point withColorID:(NSString*)colorID;
 -(void) removePin:(NSInteger)index;
+- (void)updateDirectionDistances;
 -(void) showPins;
 -(void) hidePins;
 -(void) updatePins;

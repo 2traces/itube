@@ -344,6 +344,7 @@ NSInteger const toolbarWidth=320;
 	//locLabel.text = [location description];
 	DLog(@" update %@ ",[location description]);
 	[mapView calcNearStations:location];
+    [self updateDirectionDistances];
 }
 
 - (void)locationError:(NSError *)error {
@@ -491,6 +492,12 @@ NSInteger const toolbarWidth=320;
     NSLog(@"Button tapped!");
 }
 
+- (void)updateDirectionDistances {
+    for (DirectionView *view in arrayDirectionViews) {
+        [view setDistanceValue:[self distanceToItemWithID:view.tag]];
+    }
+}
+
 -(NSInteger) setPin:(CGPoint)point withColorID:(NSString*)colorID
 {
     NSInteger index = [mapView makePinAt:point];
@@ -513,6 +520,9 @@ NSInteger const toolbarWidth=320;
     [pins setObject:p forKey:[NSNumber numberWithInt:index]];
     
     DirectionView *dirView = [[DirectionView alloc] initWithPinCoordinates:[mapView pointOnMapViewForItemWithID:index] pinID:index mainView:self colorID:colorID];
+    
+    [dirView setDistanceValue:[self distanceToItemWithID:index]];
+    dirView.tag = index;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonTapped:)];
     [dirView addGestureRecognizer:tap];
@@ -612,13 +622,12 @@ NSInteger const toolbarWidth=320;
 
         CGFloat angle = [self radialOffsetToPoint:view.pinCoordinates];
         [view setRadialOffset:angle];
-        
-        
-        
+
         NSLog(@"Offset to point: %f, %f", off.x, off.y);
         
         CGFloat xOff, yOff;
         
+        //First we position direction view so that it's always visible
         if (off.x < 0) {
             xOff = 0;
         }
@@ -638,6 +647,17 @@ NSInteger const toolbarWidth=320;
         else {
             yOff = off.y;
         }
+        
+        //Now we position the distance label, so that it's always visible
+        
+        
+        if (off.x < 100) {
+            [view setDistanceLabelPosition:kDistanceLabelPositionRight];
+        }
+        else if (off.x > 170.0) {
+            [view setDistanceLabelPosition:kDistanceLabelPositionLeft];
+        }
+        
         
         CGRect frame = view.frame;
         frame.origin = CGPointMake(xOff, yOff);
