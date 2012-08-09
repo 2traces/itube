@@ -495,6 +495,7 @@ NSInteger const toolbarWidth=320;
 - (void)updateDirectionDistances {
     for (DirectionView *view in arrayDirectionViews) {
         [view setDistanceValue:[self distanceToItemWithID:view.tag]];
+        [self bringSubviewToFront:view];
     }
 }
 
@@ -528,7 +529,7 @@ NSInteger const toolbarWidth=320;
     [dirView addGestureRecognizer:tap];
     [tap release];
     [self insertSubview:dirView aboveSubview:containerView];
-        
+    [self bringSubviewToFront:dirView];
     if (!arrayDirectionViews) {
         arrayDirectionViews = [[NSMutableArray arrayWithCapacity:10] retain];
     }

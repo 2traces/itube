@@ -108,6 +108,7 @@
     geoCoder.delegate = self;
     [geoCoder start];    
     [self.superview.superview updatePins];
+    [self.superview.superview updateDirectionDistances];
 
 }
 

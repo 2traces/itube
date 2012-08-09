@@ -576,7 +576,8 @@
         
         [(MainView*)self.view addSubview:scrollView];
         [(MainView*)self.view bringSubviewToFront:scrollView];
-        
+        [(MainView*)self.view updateDirectionDistances];
+
         UIButton *changeViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *img = [UIImage imageNamed:@"switch_to_path.png"];
         UIImage *imgh = [UIImage imageNamed:@"switch_to_path_high.png"];
@@ -1055,6 +1056,9 @@
         [(MainView*)self.view bringSubviewToFront:self.scrollView]; 
         [(MainView*)self.view bringSubviewToFront:[(MainView*)self.view viewWithTag:333]]; 
         
+        [(MainView*)self.view updateDirectionDistances];
+
+        
         UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
         shadow.frame = CGRectMake(0,66, 320, 61);
         [shadow setIsAccessibilityElement:YES];
@@ -1110,7 +1114,8 @@
     
     [(MainView*)self.view addSubview:tableViewC.tableView];
     [(MainView*)self.view bringSubviewToFront:tableViewC.tableView];
-    
+    [(MainView*)self.view updateDirectionDistances];
+
     return tableViewC;
 }
 

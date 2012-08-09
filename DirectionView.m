@@ -74,9 +74,18 @@
         self.pinID = pindId;
         self.pinCoordinates = coordinates;
         [self setDistanceLabelPosition:kDistanceLabelPositionRight];
+//        UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+//                                    initWithTarget:self action:@selector(handleTap:)];
+//        [self.button addGestureRecognizer:[tap autorelease]];
 
     }
-    return self;    
+    return self;
+}
+
+
+- (void)handleTap:(UILongPressGestureRecognizer *)recognizer {
+    NSLog(@"Tap...");
+    [mainView centerMapOnItemWithID:pinID];    
 }
 
 - (void)setDistanceValue:(CGFloat)distance {
