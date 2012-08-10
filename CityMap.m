@@ -2769,6 +2769,15 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
         prevStation = s;
 	}
+    if([[activePath lastObject] isKindOfClass:[Transfer class]]) {
+        [activePath removeLastObject];
+        [pathStationsList removeLastObject];
+        [pathStationsList removeLastObject];
+        if(schedule) {
+            [pathTimesList removeLastObject];
+            [pathDocksList removeLastObject];
+        }
+    }
     float offset = (25 - (int)[pathStationsList count]) * 0.005f;
     if(offset < 0.02f) offset = 0.02f;
     activeExtent.origin.x -= activeExtent.size.width * offset;
