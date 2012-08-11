@@ -12,6 +12,18 @@
 #import "FastAccessTableViewController.h"
 #import "StationTextField.h"
 
+#define iPadWidth 768.0
+#define iPadHeight 1024.0
+#define iPadTbHeight 44.0
+#define iPadFieldWidth 192.0
+#define iPadFldButton 162.0
+
+#define iPhoneWidth 320.0
+#define iPhoneHeight 480.0
+#define iPhoneTbHeight 44.0
+#define iPhoneFieldWidth 160.0
+#define iPhoneFldButton 130.0
+
 @implementation TopTwoStationsView
 
 @synthesize toolbar;
@@ -25,16 +37,16 @@
 -(id)init{
     if (IS_IPAD) {
         if ([[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeRight) {
-            return [self initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 44.0)];
+            return [self initWithFrame:CGRectMake(0.0, 0.0, iPadHeight, iPadTbHeight)];
         } else {
-            return [self initWithFrame:CGRectMake(0.0, 0.0, 768.0, 44.0)];
+            return [self initWithFrame:CGRectMake(0.0, 0.0, iPadWidth, iPadTbHeight)];
             
         }
     } else {
         if ([[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeRight) {
-            return [self initWithFrame:CGRectMake(0.0, 0.0, 480.0, 44.0)];
+            return [self initWithFrame:CGRectMake(0.0, 0.0, iPhoneHeight, iPhoneTbHeight)];
         } else {
-            return [self initWithFrame:CGRectMake(0.0, 0.0, 320.0, 44.0)];
+            return [self initWithFrame:CGRectMake(0.0, 0.0, iPhoneWidth, iPhoneTbHeight)];
         }
     }
 }
@@ -68,7 +80,7 @@
         [refreshButton setImage:imageOpenListHL forState:UIControlStateHighlighted];
         [refreshButton addTarget:self action:@selector(selectFromStation) forControlEvents:UIControlEventTouchUpInside];
         
-        firstStation = [[StationTextField alloc] initWithFrame:CGRectMake(self.frame.size.width-320, 0, 160, 44)];
+        firstStation = [[StationTextField alloc] initWithFrame:CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFieldWidth, iPadTbHeight)];
         firstStation.delegate = self;
         firstStation.borderStyle = UITextBorderStyleNone;
         firstStation.rightView = refreshButton;
@@ -89,7 +101,7 @@
         
         UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
         [button1 addTarget:self action:@selector(transitFirstToBigField) forControlEvents:UIControlEventTouchUpInside];
-        button1.frame = CGRectMake(0, 6, 130, 44);
+        button1.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFldButton, iPadTbHeight);
         self.firstButton=button1;
         
         [toolbar addSubview:button1];
@@ -100,7 +112,7 @@
         [refreshButton2 setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
         [refreshButton2 addTarget:self action:@selector(selectToStation) forControlEvents:UIControlEventTouchUpInside];
         
-        secondStation = [[StationTextField alloc] initWithFrame:CGRectMake(self.frame.size.width-160, 0, 160, 44)];
+        secondStation = [[StationTextField alloc] initWithFrame:CGRectMake(self.frame.size.width-iPadFieldWidth, 0, iPadFieldWidth, iPadTbHeight)];
         secondStation.delegate=self;
         secondStation.borderStyle = UITextBorderStyleNone;
         secondStation.rightView = refreshButton2;
@@ -121,13 +133,13 @@
         
         UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
         [button2 addTarget:self action:@selector(transitSecondToBigField) forControlEvents:UIControlEventTouchUpInside];
-        button2.frame = CGRectMake(160 ,6, 130, 44);
+        button2.frame = CGRectMake(self.frame.size.width-iPadFieldWidth, 0, iPadFldButton, iPadTbHeight);
         self.secondButton=button2;
         
         [toolbar addSubview:button2];
         
         arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrowIcon.png"]];
-        [arrowView setFrame:CGRectMake(153, 6, 15, 15)];
+        [arrowView setFrame:CGRectMake(self.frame.size.width-iPadFieldWidth-7, 6, 15, 15)];
         [toolbar addSubview:arrowView];
         arrowView.hidden=YES;
         [arrowView release];
@@ -152,7 +164,7 @@
         [refreshButton setImage:imageOpenListHL forState:UIControlStateHighlighted];
         [refreshButton addTarget:self action:@selector(selectFromStation) forControlEvents:UIControlEventTouchUpInside];
         
-        firstStation = [[StationTextField alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
+        firstStation = [[StationTextField alloc] initWithFrame:CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFieldWidth, iPhoneTbHeight)];
         firstStation.delegate = self;
         firstStation.borderStyle = UITextBorderStyleNone;
         firstStation.rightView = refreshButton;
@@ -173,7 +185,7 @@
         
         UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
         [button1 addTarget:self action:@selector(transitFirstToBigField) forControlEvents:UIControlEventTouchUpInside];
-        button1.frame = CGRectMake(0, 6, 130, 44);
+        button1.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFldButton , iPhoneTbHeight);
         self.firstButton=button1;
         
         [toolbar addSubview:button1];
@@ -184,7 +196,7 @@
         [refreshButton2 setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
         [refreshButton2 addTarget:self action:@selector(selectToStation) forControlEvents:UIControlEventTouchUpInside];
         
-        secondStation = [[StationTextField alloc] initWithFrame:CGRectMake(160, 0, 160, 44)];
+        secondStation = [[StationTextField alloc] initWithFrame:CGRectMake(self.frame.size.width-iPhoneFieldWidth, 0, iPhoneFieldWidth, iPhoneTbHeight)];
         secondStation.delegate=self;
         secondStation.borderStyle = UITextBorderStyleNone;
         secondStation.rightView = refreshButton2;
@@ -205,13 +217,13 @@
         
         UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
         [button2 addTarget:self action:@selector(transitSecondToBigField) forControlEvents:UIControlEventTouchUpInside];
-        button2.frame = CGRectMake(160 ,6, 130, 44);
+        button2.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFldButton, iPhoneTbHeight);
         self.secondButton=button2;
         
         [toolbar addSubview:button2];
         
         arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrowIcon.png"]];
-        [arrowView setFrame:CGRectMake(153, 6, 15, 15)];
+        [arrowView setFrame:CGRectMake(self.frame.size.width-iPhoneFieldWidth-7, 6, 15, 15)];
         [toolbar addSubview:arrowView];
         arrowView.hidden=YES;
         [arrowView release];
@@ -225,8 +237,11 @@
 -(void)adjustSubviews
 {
     if (IS_IPAD) {
-        firstStation.frame = CGRectMake(self.frame.size.width-320, 0, 160, 44);
-        secondStation.frame = CGRectMake(self.frame.size.width-160, 0, 160, 44);
+        firstStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFieldWidth, iPadTbHeight);
+        secondStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth, 0, iPadFieldWidth, iPadTbHeight);
+
+        firstButton.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFldButton, iPadTbHeight);
+        secondButton.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFldButton, iPadTbHeight);
     }
 }
 
@@ -244,8 +259,13 @@
         
         firstButton.userInteractionEnabled=NO;
         secondButton.userInteractionEnabled=NO;
+
+        if (IS_IPAD) { 
+            firstStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFieldWidth*2, iPadTbHeight);
+        } else {
+            firstStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFieldWidth*2, iPhoneTbHeight);
+        }
         
-        firstStation.frame = CGRectMake(0, 0, 320, 44);
         firstStation.background = [UIImage imageNamed:@"toolbar_big_bg_lighted.png"];
         
         firstStation.text = @"";
@@ -281,7 +301,12 @@
         firstButton.userInteractionEnabled=YES;
         secondButton.userInteractionEnabled=YES;
         
-        firstStation.frame = CGRectMake(0, 0, 160, 44);
+        if (IS_IPAD) {
+            firstStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFieldWidth, iPadTbHeight);
+        } else {
+            firstStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFieldWidth, iPhoneTbHeight);
+        }
+
         firstStation.background = [UIImage imageNamed:@"toolbar_bg.png"];
         
     }];
@@ -308,7 +333,12 @@
         firstButton.userInteractionEnabled=NO;
         secondButton.userInteractionEnabled=NO;
         
-        secondStation.frame = CGRectMake(0, 0, 320, 44);
+        if (IS_IPAD) {
+            secondStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFieldWidth*2, iPadTbHeight);
+        } else {
+            secondStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFieldWidth*2, iPhoneTbHeight);
+        }
+
         secondStation.background = [UIImage imageNamed:@"toolbar_big_bg_lighted.png"];
         
         secondStation.text = @"";
@@ -345,7 +375,12 @@
         secondButton.userInteractionEnabled=YES;
         
         secondStation.background = [UIImage imageNamed:@"toolbar_bg.png"];
-        secondStation.frame = CGRectMake(160, 0, 160, 44);
+
+        if (IS_IPAD) {
+            secondStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth, 0, iPadFieldWidth, iPadTbHeight);
+        } else {
+            secondStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth, 0, iPhoneFieldWidth, iPhoneTbHeight);
+        }
         
     }];
     
@@ -397,8 +432,13 @@
         secondStation.rightView = cancelButton2;
         secondStation.rightViewMode = UITextFieldViewModeAlways;
         
-        CGFloat addWidth = 60;
-        CGFloat maxWidth = 160;
+        CGFloat addWidth = 65;
+        CGFloat maxWidth;
+        if (IS_IPAD) {
+            maxWidth = 192;
+        } else {
+            maxWidth = 160;
+        }
         
         CGSize textBounds1 = [firstStation.text sizeWithFont:firstStation.font];
         CGSize textBounds2 = [secondStation.text sizeWithFont:secondStation.font];
@@ -521,8 +561,7 @@
         
         firstStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
         secondStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
-        
-        
+                
         UIImage *imageOpenList = [UIImage imageNamed:@"openlist.png"];
         UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist_highlight.png"];
         
@@ -532,7 +571,6 @@
         [refreshButton addTarget:self action:@selector(selectFromStation) forControlEvents:UIControlEventTouchUpInside];
         [refreshButton setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
         
-        
         firstStation.rightView = refreshButton;
         
         UIButton *refreshButton2 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -541,17 +579,35 @@
         [refreshButton2 addTarget:self action:@selector(selectToStation) forControlEvents:UIControlEventTouchUpInside];
         [refreshButton2 setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
         
-        
         secondStation.rightView = refreshButton2;
         
         firstStation.rightViewMode = UITextFieldViewModeAlways;
         secondStation.rightViewMode = UITextFieldViewModeAlways;
         
-        firstStation.frame = CGRectMake(0, 0, 160, 44);
-        secondStation.frame = CGRectMake(160, 0, 160, 44);
-        
-        self.frame=CGRectMake(0,0, 320, 44);
-        self.toolbar.frame=CGRectMake(0,0, 320,44);
+        if (IS_IPAD) {
+            if ([[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeRight) {
+                self.frame=CGRectMake(0,0, iPadHeight, iPadTbHeight);
+                self.toolbar.frame=CGRectMake(0,0, iPadHeight, iPadTbHeight);
+            } else {
+                self.frame=CGRectMake(0,0, iPadWidth, iPadTbHeight);
+                self.toolbar.frame=CGRectMake(0,0, iPadWidth, iPadTbHeight);
+            }
+            
+            firstStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFieldWidth, iPadTbHeight);
+            secondStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth, 0, iPadFieldWidth, iPadTbHeight);
+
+        } else {
+            if ([[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeRight) {
+                self.frame=CGRectMake(0,0, iPhoneHeight, iPhoneTbHeight);
+                self.toolbar.frame=CGRectMake(0,0, iPhoneHeight, iPhoneTbHeight);
+            } else {
+                self.frame=CGRectMake(0,0, iPhoneWidth, iPhoneTbHeight);
+                self.toolbar.frame=CGRectMake(0,0, iPhoneWidth, iPhoneTbHeight);
+            }
+
+            firstStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFieldWidth, iPhoneTbHeight);
+            secondStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth, 0, iPhoneFieldWidth, iPhoneTbHeight);
+        }
         
         [toolbar setImage:[UIImage imageNamed:@"toolbar_bg1.png"]];
         
