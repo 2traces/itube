@@ -202,6 +202,18 @@
     
     CGFloat weight = 0;
     NSArray *path = [self shortestPath:source to:target weight:&weight closedNodes:nil];
+    if([path count] > 2) {
+        if([[path objectAtIndex:0] line] != [[path objectAtIndex:1] line]) {
+            NSMutableArray *tempp = [NSMutableArray arrayWithArray:path];
+            [tempp removeObjectAtIndex:0];
+            path = tempp;
+        }
+        if([[path lastObject] line] != [[path objectAtIndex:[path count]-2] line]) {
+            NSMutableArray *tempp = [NSMutableArray arrayWithArray:path];
+            [tempp removeLastObject];
+            path = tempp;
+        }
+    }
     [result setObject:path forKey:[NSNumber numberWithFloat:weight]];
     
     int prevLine = -1;
@@ -224,6 +236,18 @@
     
     CGFloat weight = 0;
     NSArray *path = [self shortestWay:source to:target weight:&weight closedNodes:clNodes];
+    if([path count] > 2) {
+        if([[path objectAtIndex:0] line] != [[path objectAtIndex:1] line]) {
+            NSMutableArray *tempp = [NSMutableArray arrayWithArray:path];
+            [tempp removeObjectAtIndex:0];
+            path = tempp;
+        }
+        if([[path lastObject] line] != [[path objectAtIndex:[path count]-2] line]) {
+            NSMutableArray *tempp = [NSMutableArray arrayWithArray:path];
+            [tempp removeLastObject];
+            path = tempp;
+        }
+    }
     [result setObject:path forKey:[NSNumber numberWithFloat:weight]];
     
     int prevLine = -1;
