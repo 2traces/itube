@@ -48,7 +48,7 @@
     
     [(MainView*)self.view viewInit:self];
     
-    TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] initWithFrame:CGRectMake(0,0,320,44)];
+    TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] init];
     self.stationsView = twoStationsView;
     
     [(MainView*)self.view addSubview:twoStationsView];
@@ -425,12 +425,12 @@
     
     NSMutableArray *stationsArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     
-    for (int i=0; i<[pathX count]; i++) {
-        
-        if ([[pathX objectAtIndex:i] isKindOfClass:[Transfer class]]) {
-            [stationsArray addObject:[exits objectAtIndex:i]];
-        } 
-    }
+//    for (int i=0; i<[pathX count]; i++) {
+//        
+//        if ([[pathX objectAtIndex:i] isKindOfClass:[Transfer class]]) {
+//            [stationsArray addObject:[exits objectAtIndex:i]];
+//        } 
+//    }
     
     return stationsArray;
 }
@@ -1139,19 +1139,19 @@
             
         }
         
-        if ([stationName1 isEqualToString:stationName2]) {
-            
-            NSString *dateString1 = [[fixedStationsTime objectAtIndex:i] lastObject];
-            CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
-            UILabel *dateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize1.width, currentY-8.0, dateSize1.width, 25.0)];
-            dateLabel1.text = dateString1;
-            dateLabel1.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.0];
-            dateLabel1.backgroundColor = [UIColor clearColor];
-            dateLabel1.textColor = [UIColor darkGrayColor];
-            [self.pathScrollView addSubview:dateLabel1];
-            [dateLabel1 release];
-            
-        } else {
+//        if ([stationName1 isEqualToString:stationName2]) {
+//            
+//            NSString *dateString1 = [[fixedStationsTime objectAtIndex:i] lastObject];
+//            CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
+//            UILabel *dateLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(320.0-10.0-dateSize1.width, currentY-8.0, dateSize1.width, 25.0)];
+//            dateLabel1.text = dateString1;
+//            dateLabel1.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.0];
+//            dateLabel1.backgroundColor = [UIColor clearColor];
+//            dateLabel1.textColor = [UIColor darkGrayColor];
+//            [self.pathScrollView addSubview:dateLabel1];
+//            [dateLabel1 release];
+//            
+//        } else {
             
             NSString *dateString1=[[fixedStationsTime objectAtIndex:i] lastObject];
             CGSize dateSize1 = [dateString1 sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
@@ -1174,7 +1174,7 @@
             [self.pathScrollView addSubview:dateLabel2];
             [dateLabel2 release];
             
-        }
+//        }
     } 
     
     

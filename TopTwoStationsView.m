@@ -22,6 +22,14 @@
 @synthesize tableView;
 @synthesize arrowView;
 
+-(id)init{
+    if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad) {
+       return [self initWithFrame:CGRectMake(0.0, 0.0, 768.0, 80.0)];
+    } else {
+       return [self initWithFrame:CGRectMake(0.0, 0.0, 320, 44.0)];
+    }
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -246,7 +254,7 @@
 {
     NSTimeInterval duration = 0.2f;
     
-    [UIView animateWithDuration:duration animations:^{ 
+    [UIView animateWithDuration:duration animations:^{
         isEditing=NO;
         
         firstStation.hidden=NO;
@@ -354,7 +362,7 @@
 {
     NSTimeInterval duration = 0.2f;
     
-    [UIView animateWithDuration:duration animations:^{ 
+    [UIView animateWithDuration:duration animations:^{
         isEditing=NO;
         
         firstStation.hidden=NO;
