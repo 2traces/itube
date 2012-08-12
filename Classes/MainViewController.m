@@ -582,8 +582,9 @@
 -(NSMutableArray*)dsGetDirectionNames
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSArray *pathX = appDelegate.cityMap.activePath;    
-    NSMutableArray *path = [self normalizePath:pathX];
+    NSString *stn1 = self.fromStation.name, *stn2 = nil;
+    NSArray *path = appDelegate.cityMap.activePath;    
+    //NSMutableArray *path = [self normalizePath:pathX];
     int objectNum = [path count];
     
     NSMutableArray *directionsArray = [[[NSMutableArray alloc] initWithCapacity:objectNum] autorelease];
@@ -595,12 +596,21 @@
         if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
             
             Segment *segment = (Segment*)[path objectAtIndex:i];
+            BOOL forward = NO;
+            if([segment.start.name isEqualToString:stn1]) {
+                stn2 = segment.end.name;
+                forward = YES;
+            } else {
+                stn2 = segment.start.name;
+                forward = NO;
+            }
             
             if (currentIndexLine!=[[[segment start] line] index]) {
                 
                 NSMutableString *finalStation = [NSMutableString stringWithString:@""];
                 
-                if([[segment start] checkForwardWay:[segment end]]) {
+                //if([[segment start] checkForwardWay:[segment end]]) {
+                if(forward) {
                     for (Station *station in [[segment start] lastStations]) {
                         if ([finalStation isEqual:@""]) {
                             [finalStation appendFormat:@"%@",[station name]];
@@ -622,6 +632,7 @@
                 [directionsArray addObject:directionName];  
                 currentIndexLine=[[[segment start] line] index];
             }
+            stn1 = stn2;
         }
     }
     
