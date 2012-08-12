@@ -194,6 +194,12 @@
     [TubeAppIAPHelper sharedHelper];
         
     [self adjustViewHeight];
+
+//    for testing multi-charts
+//    [self markProductAsPurchased:@"com.zuev.itube.paris.berlin"];
+//    [self resortMapArray];
+//    [cityTableView reloadData];
+
 }
 
 -(void)setCurrentMapSelectedPath
