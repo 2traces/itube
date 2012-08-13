@@ -18,6 +18,7 @@
 #import "PathDrawVertView.h"
 #import "TubeAppIAPHelper.h"
 #import "UIColor-enhanced.h"
+#import "LeftiPadPathViewController.h"
 
 #define FromStation 0
 #define ToStation 1
@@ -32,6 +33,7 @@
 @synthesize horizontalPathesScrollView;
 @synthesize pathScrollView;
 @synthesize timer;
+@synthesize spltViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	DLog(@"initWithNibName");
@@ -60,7 +62,7 @@
     [twoStationsView release];
     
     [self performSelector:@selector(refreshInApp) withObject:nil afterDelay:0.2];
-    
+        
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(languageChanged:) name:@"kLangChanged" object:nil];
 }
 
@@ -307,6 +309,11 @@
     }
 }
 
+-(void)showiPadLeftPathView
+{
+    [spltViewController showLeftView];
+}
+
 #pragma mark - FastAccessTableView
 
 -(void)toggleTap
@@ -352,6 +359,34 @@
 {
     [[(MainView*)self.view viewWithTag:554] removeFromSuperview];
     [[(MainView*)self.view viewWithTag:555] removeFromSuperview];
+}
+
+#pragma mark - iPad Livesearch
+
+-(StationListViewController*)showiPadLiveSearchView
+{
+    SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
+    controller.delegate = self;
+    
+    [popover setPopoverContentSize:CGSizeMake(320, 480)];
+    controller.contentSizeForViewInPopover=CGSizeMake(320, 460);
+    
+    [popover setPopoverContentSize:controller.view.frame.size];
+    
+    popover = [[UIPopoverController alloc] initWithContentViewController:controller];
+    
+    CGFloat originx;
+    if (self.currentSelection==0) {
+        originx = self.stationsView.firstStation.frame.origin.x;
+    } else {
+        originx = self.stationsView.secondStation.frame.origin.x;
+    }
+    
+    [popover presentPopoverFromRect:CGRectMake(originx+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    [controller release];
+    
+    StationListViewController *stations = [[controller.tabBarController viewControllers] objectAtIndex:0];
+    return stations;
 }
 
 #pragma mark - Choosing stations etc
@@ -446,7 +481,12 @@
     if ([[[delegate cityMap] activePath] count]>0) {
         if (!([[[delegate cityMap] activePath] count]==1 && [[[[delegate cityMap] activePath] objectAtIndex:0] isKindOfClass:[Transfer class]])) {
             [stationsView transitToPathView];
-            [self showHorizontalPathesScrollView];
+            if (IS_IPAD) {
+                self.stationsView.leftButton.userInteractionEnabled=YES;
+//                [self showiPadLeftPathView];
+            } else {
+                [self showHorizontalPathesScrollView];
+            }
         }
     }
     mainView.mapView.stationSelected=false;

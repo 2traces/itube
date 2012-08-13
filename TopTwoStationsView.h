@@ -31,6 +31,7 @@
 @property (nonatomic, retain) UIButton *secondButton;
 @property (nonatomic, retain) FastAccessTableViewController *tableView;
 @property (nonatomic, retain) UIImageView *arrowView;
+@property (nonatomic, retain) UIButton *leftButton;
 
 -(void)drawInitialState;
 -(void)adjustSubviews;

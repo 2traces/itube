@@ -13,9 +13,11 @@
 #import "MBProgressHUD.h"
 #import "PathScrollView.h"
 #import "VertPathScrollView.h"
+#import "TubeSplitViewController.h"
 
 @class TopTwoStationsView;
 @class VertPathScrollView;
+@class TubeSplitViewController;
 
 @interface MainViewController : UIViewController <SelectingTabBarProtocol,UIScrollViewDelegate,MBProgressHUDDelegate,PathScrollViewProtocol> {
     
@@ -27,6 +29,7 @@
     TopTwoStationsView *stationsView;
     PathScrollView *horizontalPathesScrollView;
     VertPathScrollView *pathScrollView;
+    TubeSplitViewController *spltViewController;
     
     NSTimer *timer;
     UIPopoverController *popover;
@@ -40,6 +43,7 @@
 @property (nonatomic, retain) PathScrollView *horizontalPathesScrollView;
 @property (nonatomic, retain) VertPathScrollView *pathScrollView;
 @property (nonatomic, retain) NSTimer *timer;
+@property (nonatomic, retain) TubeSplitViewController *spltViewController;
 
 //- (IBAction)showInfo;
 -(void)pressedSelectFromStation;

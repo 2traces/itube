@@ -33,6 +33,7 @@
 @synthesize secondButton;
 @synthesize tableView;
 @synthesize arrowView;
+@synthesize leftButton;
 
 -(id)init{
     if (IS_IPAD) {
@@ -144,6 +145,16 @@
         arrowView.hidden=YES;
         [arrowView release];
         
+        UIButton *button3 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        button3.titleLabel.text= @"Left";
+        button3.titleLabel.textAlignment = UITextAlignmentCenter;
+        button3.titleLabel.textColor = [UIColor blackColor];
+        [button3 addTarget:self action:@selector(showiPadLeftPathView) forControlEvents:UIControlEventTouchUpInside];
+        button3.frame = CGRectMake(20, 7, 60, 30);
+        self.leftButton=button3;
+        self.leftButton.userInteractionEnabled=NO;
+        [toolbar addSubview:button3];
+        
         [toolbar release];
         
     } else {
@@ -231,7 +242,6 @@
         [toolbar release];
         
     }
-    
 }
 
 -(void)adjustSubviews
@@ -275,15 +285,23 @@
         
     }];
     
-    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    FastAccessTableViewController *controller = [appDelegate.mainViewController showTableView];
-    
-    firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
-    
-    appDelegate.mainViewController.currentSelection=0;
-    self.tableView=controller;
-    firstStation.delegate = self.tableView;
-    [firstStation becomeFirstResponder];
+    if (IS_IPAD) {
+        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        appDelegate.mainViewController.currentSelection=0;
+        StationListViewController *controller = [appDelegate.mainViewController showiPadLiveSearchView];
+        firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+        firstStation.delegate = controller;
+        controller.isTextFieldInUse=YES;
+        [firstStation becomeFirstResponder];
+    } else {
+        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        FastAccessTableViewController *controller = [appDelegate.mainViewController showTableView];
+        firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+        appDelegate.mainViewController.currentSelection=0;
+        self.tableView=controller;
+        firstStation.delegate = self.tableView;
+        [firstStation becomeFirstResponder];
+    }
 }
 
 -(void)transitFirstToSmallField
@@ -348,15 +366,23 @@
         
     }];
     
-    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    FastAccessTableViewController *controller = [appDelegate.mainViewController showTableView];
-    appDelegate.mainViewController.currentSelection=1;
-    
-    secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
-    
-    self.tableView=controller;
-    secondStation.delegate = self.tableView;
-    [secondStation becomeFirstResponder];
+    if (IS_IPAD) {
+        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        appDelegate.mainViewController.currentSelection=1;
+        StationListViewController *controller = [appDelegate.mainViewController showiPadLiveSearchView];
+        secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+        secondStation.delegate = controller;
+        controller.isTextFieldInUse=YES;
+        [secondStation becomeFirstResponder];
+    } else {
+        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        FastAccessTableViewController *controller = [appDelegate.mainViewController showTableView];
+        secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+        appDelegate.mainViewController.currentSelection=1;
+        self.tableView=controller;
+        secondStation.delegate = self.tableView;
+        [secondStation becomeFirstResponder];
+    }
 }
 
 -(void)transitSecondToSmallField
@@ -623,6 +649,11 @@
     
 }
 
+-(void)showiPadLeftPathView
+{
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate.mainViewController showiPadLeftPathView];
+}
 
 -(UIImage*)imageWithColor:(MLine*)line
 {

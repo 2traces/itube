@@ -64,6 +64,7 @@
 		BC102A2F1570F458009390A6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC102A311570F458009390A6 /* Default@2x.png */; };
 		BC10618F14D7D29600B08E63 /* PathBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC10618E14D7D29600B08E63 /* PathBarView.m */; };
 		BC1061A214D7DCDB00B08E63 /* PathDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1061A114D7DCDB00B08E63 /* PathDrawView.m */; };
+		BC108FF215D8F38E00B81989 /* LeftiPadPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC108FF115D8F38E00B81989 /* LeftiPadPathViewController.m */; };
 		BC14872815CD50C200DA7F99 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC14872715CD50C200DA7F99 /* MainViewController.xib */; };
 		BC28950614F5E0FD0054F9EB /* middle_cell_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BC28950414F5E0FD0054F9EB /* middle_cell_bg.png */; };
 		BC28950714F5E0FD0054F9EB /* middle_cell_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC28950514F5E0FD0054F9EB /* middle_cell_bg@2x.png */; };
@@ -191,6 +192,7 @@
 		BC6890E5157611C4002232E6 /* it_stationsstation.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6890CD157611C4002232E6 /* it_stationsstation.png */; };
 		BC6890E6157611C4002232E6 /* it_stationsstation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6890CE157611C4002232E6 /* it_stationsstation@2x.png */; };
 		BC6890EB15761C58002232E6 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC6890ED15761C58002232E6 /* SettingsViewController.xib */; };
+		BC6C097A15D8FE2F00EAA6D2 /* LeftiPadPathViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC6C097915D8FE2F00EAA6D2 /* LeftiPadPathViewController.xib */; };
 		BC6FEB7014E252530066D6E6 /* bottomtabbarstation.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6FEB6E14E252530066D6E6 /* bottomtabbarstation.png */; };
 		BC6FEB7114E252530066D6E6 /* bottomtabbarstation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6FEB6F14E252530066D6E6 /* bottomtabbarstation@2x.png */; };
 		BC6FEB7514E267320066D6E6 /* lines_edge.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6FEB7314E267320066D6E6 /* lines_edge.png */; };
@@ -513,6 +515,8 @@
 		BC10618E14D7D29600B08E63 /* PathBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathBarView.m; sourceTree = "<group>"; };
 		BC1061A014D7DCDA00B08E63 /* PathDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathDrawView.h; sourceTree = "<group>"; };
 		BC1061A114D7DCDB00B08E63 /* PathDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathDrawView.m; sourceTree = "<group>"; };
+		BC108FF015D8F38E00B81989 /* LeftiPadPathViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftiPadPathViewController.h; sourceTree = "<group>"; };
+		BC108FF115D8F38E00B81989 /* LeftiPadPathViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftiPadPathViewController.m; sourceTree = "<group>"; };
 		BC14872715CD50C200DA7F99 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainViewController.xib; path = Resources/MainViewController.xib; sourceTree = "<group>"; };
 		BC28950414F5E0FD0054F9EB /* middle_cell_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = middle_cell_bg.png; path = images/middle_cell_bg.png; sourceTree = "<group>"; };
 		BC28950514F5E0FD0054F9EB /* middle_cell_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "middle_cell_bg@2x.png"; path = "images/middle_cell_bg@2x.png"; sourceTree = "<group>"; };
@@ -666,6 +670,7 @@
 		BC6890EF15761C62002232E6 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
 		BC6890F015761C64002232E6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
 		BC6890F115761C66002232E6 /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = it.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
+		BC6C097915D8FE2F00EAA6D2 /* LeftiPadPathViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LeftiPadPathViewController.xib; path = Resources/LeftiPadPathViewController.xib; sourceTree = "<group>"; };
 		BC6FEB6E14E252530066D6E6 /* bottomtabbarstation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bottomtabbarstation.png; path = images/bottomtabbarstation.png; sourceTree = "<group>"; };
 		BC6FEB6F14E252530066D6E6 /* bottomtabbarstation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bottomtabbarstation@2x.png"; path = "images/bottomtabbarstation@2x.png"; sourceTree = "<group>"; };
 		BC6FEB7314E267320066D6E6 /* lines_edge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lines_edge.png; path = images/lines_edge.png; sourceTree = "<group>"; };
@@ -1041,6 +1046,8 @@
 				289233A50DB2D0840083E9F9 /* MainView.m */,
 				289233A80DB2D0DB0083E9F9 /* MainViewController.h */,
 				289233A90DB2D0DB0083E9F9 /* MainViewController.m */,
+				BC108FF015D8F38E00B81989 /* LeftiPadPathViewController.h */,
+				BC108FF115D8F38E00B81989 /* LeftiPadPathViewController.m */,
 				BC8C71EC14D98F810038EE0F /* PathScrollView.h */,
 				BC8C71ED14D98F810038EE0F /* PathScrollView.m */,
 				BCAEF46B15C8F07A008A8014 /* VertPathScrollView.h */,
@@ -1134,6 +1141,7 @@
 				BCD7E24D151AF85C007C658A /* SettingsNavController.xib */,
 				BCCC30A114E4F19900102064 /* LanguageCell.xib */,
 				BC876AB614DFAF23008AC06C /* BookmarkViewController.xib */,
+				BC6C097915D8FE2F00EAA6D2 /* LeftiPadPathViewController.xib */,
 				BC876AB714DFAF23008AC06C /* FlipsideView.xib */,
 				BC876AB814DFAF23008AC06C /* HistoryListCell.xib */,
 				BC876AB914DFAF23008AC06C /* HistoryViewController.xib */,
@@ -2024,6 +2032,7 @@
 				BCDFF0F115CCDCEA00E004E6 /* MainWindow-iPad.xib in Resources */,
 				BCDFF0FA15CCE20500E004E6 /* TubeSplitViewController.xib in Resources */,
 				BC14872815CD50C200DA7F99 /* MainViewController.xib in Resources */,
+				BC6C097A15D8FE2F00EAA6D2 /* LeftiPadPathViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2101,6 +2110,7 @@
 				BC4DA4181537F03700B941F1 /* ImageDownloader.m in Sources */,
 				BCAEF46D15C8F07A008A8014 /* VertPathScrollView.m in Sources */,
 				BCDFF0F415CCDE1600E004E6 /* TubeSplitViewController.m in Sources */,
+				BC108FF215D8F38E00B81989 /* LeftiPadPathViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

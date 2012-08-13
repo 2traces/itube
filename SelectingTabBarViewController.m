@@ -26,6 +26,7 @@
 @synthesize bookmarkButton;
 @synthesize backButton;
 @synthesize historyButton;
+@synthesize settingsButton;
 @synthesize tabBarController;
 @synthesize delegate;
 
@@ -74,6 +75,11 @@
     [self.view bringSubviewToFront:[self.view viewWithTag:333]];
     
     stationButton.selected=YES;
+    
+    if (IS_IPAD) {
+        backButton.hidden=YES;
+        settingsButton.hidden=YES;
+    }
 }
 
 -(void)mapChanged:(NSNotification*)note

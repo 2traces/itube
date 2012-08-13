@@ -24,6 +24,7 @@
 @synthesize imageView;
 @synthesize indexDictionary;
 @synthesize mySearchDC;
+@synthesize isTextFieldInUse;
 
 - (void)didReceiveMemoryWarning
 {
@@ -70,6 +71,9 @@
     [searchDC release];
     
     self.colorDictionary = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+
 }
 
 -(void)createStationIndex
@@ -164,7 +168,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (tableView == self.mySearchDC.searchResultsTableView) {
+    if (tableView == self.mySearchDC.searchResultsTableView || isTextFieldInUse) {
         return 1;
     } else {
         return [stationIndex count];
@@ -183,7 +187,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if  (tableView == self.mySearchDC.searchResultsTableView)
+    if  (tableView == self.mySearchDC.searchResultsTableView || isTextFieldInUse)
 	{
         return [filteredStation count];
     }
@@ -209,7 +213,7 @@
         [[cell mybutton] addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    if (tableView == self.mySearchDC.searchResultsTableView)
+    if (tableView == self.mySearchDC.searchResultsTableView || isTextFieldInUse)
     {
         NSString *cellValue;
         if ([[MHelper sharedHelper] languageIndex]%2) {
@@ -277,7 +281,7 @@
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    if (tableView == self.mySearchDC.searchResultsTableView) {
+    if (tableView == self.mySearchDC.searchResultsTableView || isTextFieldInUse) {
         return nil;
     } else {
         return stationIndex;
@@ -296,7 +300,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if  (tableView == self.mySearchDC.searchResultsTableView)
+    if  (tableView == self.mySearchDC.searchResultsTableView || isTextFieldInUse)
 	{
         //        NSLog(@"%@",[[self.filteredStation objectAtIndex:indexPath.row] name]); 
         
@@ -433,6 +437,20 @@
     return image;
 }
 
+#pragma mark - 
+#pragma mark UITextFieldDelegate
+
+-(void)textDidChange:(NSNotification *)note
+{
+    UITextField *tf = [note object];
+    [self filterContentForSearchText:tf.text scope:nil];
+    
+    if (self.mytableView.hidden) {
+        self.mytableView.hidden=NO;
+    }
+    
+    [self.mytableView reloadData];
+}
 
 #pragma mark -
 #pragma mark UISearchBarDelegate
