@@ -128,7 +128,7 @@
 -(NSInteger)dsGetTravelTime:(NSArray*)thisPath
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
+ 
     if ([appDelegate.cityMap.pathTimesList count]>1) {
         NSTimeInterval timeInterval = [[appDelegate.cityMap.pathTimesList lastObject] timeIntervalSinceNow];
         NSInteger transferTimeS = ceil((float)timeInterval/60.0);
