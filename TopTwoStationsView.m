@@ -66,7 +66,7 @@
 {
     if (IS_IPAD) {
         toolbar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-        [toolbar setImage:[UIImage imageNamed:@"toolbar_bg1.png"]];
+        [toolbar setImage:[[UIImage imageNamed:@"toolbar_bg1.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0]];
         [toolbar setUserInteractionEnabled:YES];
         toolbar.autoresizesSubviews = YES;
         toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -85,7 +85,7 @@
         firstStation.delegate = self;
         firstStation.borderStyle = UITextBorderStyleNone;
         firstStation.rightView = refreshButton;
-        firstStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
+        firstStation.background = [[UIImage imageNamed:@"toolbar_text_bg.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
         firstStation.backgroundColor = [UIColor clearColor];
         firstStation.textAlignment = UITextAlignmentLeft;
         firstStation.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -117,7 +117,7 @@
         secondStation.delegate=self;
         secondStation.borderStyle = UITextBorderStyleNone;
         secondStation.rightView = refreshButton2;
-        secondStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
+        secondStation.background = [[UIImage imageNamed:@"toolbar_text_bg.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
         secondStation.backgroundColor = [UIColor clearColor];
         secondStation.textAlignment = UITextAlignmentLeft;
         secondStation.rightViewMode = UITextFieldViewModeAlways;
@@ -146,21 +146,27 @@
         [arrowView release];
         
         UIButton *button3 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        button3.titleLabel.text= @"Left";
-        button3.titleLabel.textAlignment = UITextAlignmentCenter;
-        button3.titleLabel.textColor = [UIColor blackColor];
+        [button3  setTitle: @"Path" forState:UIControlStateNormal];
         [button3 addTarget:self action:@selector(showiPadLeftPathView) forControlEvents:UIControlEventTouchUpInside];
         button3.frame = CGRectMake(20, 7, 60, 30);
         self.leftButton=button3;
         self.leftButton.userInteractionEnabled=NO;
         [toolbar addSubview:button3];
-        
+
+        UIButton *button4 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [button4  setTitle: @"Settings" forState:UIControlStateNormal];
+        [button4 addTarget:self action:@selector(showiPadSettingsModalView) forControlEvents:UIControlEventTouchUpInside];
+        button4.frame = CGRectMake(100, 7, 80, 30);
+//        self.leftButton=button3;
+//        self.leftButton.userInteractionEnabled=NO;
+        [toolbar addSubview:button4];
+
         [toolbar release];
         
     } else {
         
         toolbar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-        [toolbar setImage:[UIImage imageNamed:@"toolbar_bg1.png"]];
+        [toolbar setImage:[[UIImage imageNamed:@"toolbar_bg1.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0]];
         [toolbar setUserInteractionEnabled:YES];
         toolbar.autoresizesSubviews = YES;
         toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -179,7 +185,7 @@
         firstStation.delegate = self;
         firstStation.borderStyle = UITextBorderStyleNone;
         firstStation.rightView = refreshButton;
-        firstStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
+        firstStation.background = [[UIImage imageNamed:@"toolbar_text_bg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
         firstStation.backgroundColor = [UIColor clearColor];
         firstStation.textAlignment = UITextAlignmentLeft;
         firstStation.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -211,7 +217,7 @@
         secondStation.delegate=self;
         secondStation.borderStyle = UITextBorderStyleNone;
         secondStation.rightView = refreshButton2;
-        secondStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
+        secondStation.background = [[UIImage imageNamed:@"toolbar_text_bg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
         secondStation.backgroundColor = [UIColor clearColor];
         secondStation.textAlignment = UITextAlignmentLeft;
         secondStation.rightViewMode = UITextFieldViewModeAlways;
@@ -228,7 +234,7 @@
         
         UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
         [button2 addTarget:self action:@selector(transitSecondToBigField) forControlEvents:UIControlEventTouchUpInside];
-        button2.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFldButton, iPhoneTbHeight);
+        button2.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth, 0, iPhoneFldButton, iPhoneTbHeight);
         self.secondButton=button2;
         
         [toolbar addSubview:button2];
@@ -276,7 +282,7 @@
             firstStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFieldWidth*2, iPhoneTbHeight);
         }
         
-        firstStation.background = [UIImage imageNamed:@"toolbar_big_bg_lighted.png"];
+        firstStation.background = [[UIImage imageNamed:@"toolbar_big_bg_lighted.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
         
         firstStation.text = @"";
         firstStation.rightViewMode = UITextFieldViewModeAlways;
@@ -325,7 +331,7 @@
             firstStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFieldWidth, iPhoneTbHeight);
         }
 
-        firstStation.background = [UIImage imageNamed:@"toolbar_bg.png"];
+        firstStation.background = [[UIImage imageNamed:@"toolbar_bg.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
         
     }];
     
@@ -357,7 +363,7 @@
             secondStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFieldWidth*2, iPhoneTbHeight);
         }
 
-        secondStation.background = [UIImage imageNamed:@"toolbar_big_bg_lighted.png"];
+        secondStation.background = [[UIImage imageNamed:@"toolbar_big_bg_lighted.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
         
         secondStation.text = @"";
         secondStation.rightViewMode = UITextFieldViewModeAlways;
@@ -400,7 +406,7 @@
         firstButton.userInteractionEnabled=YES;
         secondButton.userInteractionEnabled=YES;
         
-        secondStation.background = [UIImage imageNamed:@"toolbar_bg.png"];
+        secondStation.background = [[UIImage imageNamed:@"toolbar_bg.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
 
         if (IS_IPAD) {
             secondStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth, 0, iPadFieldWidth, iPadTbHeight);
@@ -550,9 +556,9 @@
 
             arrowView.frame =CGRectMake(arrowOrigin, arrowView.frame.origin.y, arrowView.frame.size.width, arrowView.frame.size.height);
         
+            [toolbar setImage:[[UIImage imageNamed:@"upper_path_bg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0]];
+            
         }
-        
-        [toolbar setImage:[UIImage imageNamed:@"upper_path_bg.png"]];
         
         arrowView.hidden=NO;
         
@@ -585,8 +591,8 @@
         firstButton.hidden=NO;
         secondButton.hidden=NO;
         
-        firstStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
-        secondStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
+        firstStation.background = [[UIImage imageNamed:@"toolbar_text_bg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
+        secondStation.background = [[UIImage imageNamed:@"toolbar_text_bg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
                 
         UIImage *imageOpenList = [UIImage imageNamed:@"openlist.png"];
         UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist_highlight.png"];
@@ -635,7 +641,7 @@
             secondStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth, 0, iPhoneFieldWidth, iPhoneTbHeight);
         }
         
-        [toolbar setImage:[UIImage imageNamed:@"toolbar_bg1.png"]];
+        [toolbar setImage:[[UIImage imageNamed:@"toolbar_bg1.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0]];
         
         arrowView.hidden=YES;
         
@@ -653,6 +659,12 @@
 {
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate.mainViewController showiPadLeftPathView];
+}
+
+-(void)showiPadSettingsModalView
+{
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate.mainViewController showiPadSettingsModalView];
 }
 
 -(UIImage*)imageWithColor:(MLine*)line
@@ -714,7 +726,7 @@
     firstStation.rightViewMode = UITextFieldViewModeAlways;
     [firstStation setLeftView:nil];
     [firstStation setLeftViewMode: UITextFieldViewModeNever];
-    firstStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
+    firstStation.background = [[UIImage imageNamed:@"toolbar_text_bg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
     
 }
 
@@ -724,7 +736,7 @@
     secondStation.rightViewMode = UITextFieldViewModeAlways;
     [secondStation setLeftView:nil];
     [secondStation setLeftViewMode: UITextFieldViewModeNever];
-    secondStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
+    secondStation.background = [[UIImage imageNamed:@"toolbar_text_bg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
     
 }
 
@@ -765,7 +777,7 @@
         [lineColor release];
         
         [firstStation setLeftViewMode: UITextFieldViewModeAlways];
-        firstStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];
+        firstStation.background = [[UIImage imageNamed:@"toolbar_text_bg_lighted.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
         
     } else {
         [self clearFromStation];
@@ -809,7 +821,7 @@
         [lineColor release];
         
         [secondStation setLeftViewMode: UITextFieldViewModeAlways];
-        secondStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];
+        secondStation.background = [[UIImage imageNamed:@"toolbar_text_bg_lighted.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
         
     } else {
         [self clearToStation];

@@ -19,6 +19,7 @@
 #import "TubeAppIAPHelper.h"
 #import "UIColor-enhanced.h"
 #import "LeftiPadPathViewController.h"
+#import "SettingsNavController.h"
 
 #define FromStation 0
 #define ToStation 1
@@ -47,6 +48,14 @@
 {
     // Stop holding onto the popover
     popover = nil;
+    [self returnFromSelectionFastAccess:nil];
+    
+    if (currentSelection==0) {
+        [stationsView.firstStation resignFirstResponder];
+    } else {
+        [stationsView.secondStation resignFirstResponder];
+    }
+
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -374,6 +383,7 @@
     [popover setPopoverContentSize:controller.view.frame.size];
     
     popover = [[UIPopoverController alloc] initWithContentViewController:controller];
+    popover.delegate=self;
     
     CGFloat originx;
     if (self.currentSelection==0) {
@@ -387,6 +397,16 @@
     
     StationListViewController *stations = [[controller.tabBarController viewControllers] objectAtIndex:0];
     return stations;
+}
+
+-(void)showiPadSettingsModalView
+{
+    SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
+    UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:controller];
+    navcontroller.modalPresentationStyle=UIModalPresentationFormSheet;
+    [self presentModalViewController:navcontroller animated:YES];
+    [controller release];
+    [navcontroller release];
 }
 
 #pragma mark - Choosing stations etc

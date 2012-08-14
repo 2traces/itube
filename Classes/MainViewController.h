@@ -19,7 +19,7 @@
 @class VertPathScrollView;
 @class TubeSplitViewController;
 
-@interface MainViewController : UIViewController <SelectingTabBarProtocol,UIScrollViewDelegate,MBProgressHUDDelegate,PathScrollViewProtocol> {
+@interface MainViewController : UIViewController <SelectingTabBarProtocol,UIScrollViewDelegate,MBProgressHUDDelegate,PathScrollViewProtocol,UIPopoverControllerDelegate> {
     
     int currentSelection;
     MStation *fromStation;
