@@ -500,7 +500,7 @@ NSCharacterSet *pCharacterSet = nil;
 
 -(NSTimeInterval)getNowTime
 {
-    return 64800;
+    //return 39360;
     NSDateComponents *comp = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate date]];
     NSDate *midnight = [cal dateFromComponents:comp];
     return [[NSDate date] timeIntervalSinceDate:midnight];

@@ -242,14 +242,16 @@
     [result setObject:path forKey:[NSNumber numberWithFloat:weight]];
     
     int prevLine = -1;
+    int nodeNum = 0;
     for (GraphNode *n in path) {
-        if(prevLine > 0 && prevLine != n.line) {
+        if((prevLine > 0 && prevLine != n.line) || nodeNum == 1) {
             NSArray *altPath = [self shortestPath:source to:target weight:&weight closedNodes:[NSSet setWithObject:n]];
             if([altPath count] > 0)
                 [result setObject:altPath forKey:[NSNumber numberWithFloat:weight]];
             if([result count] >= 3) break; // max 3 paths
         }
         prevLine = n.line;
+        nodeNum ++;
     }
     [self normalizePaths:result];
     
@@ -265,8 +267,9 @@
     [result setObject:path forKey:[NSNumber numberWithFloat:weight]];
     
     int prevLine = -1;
+    int nodeNum = 0;
     for (GraphNode *n in path) {
-        if(prevLine > 0 && prevLine != n.line) {
+        if((prevLine > 0 && prevLine != n.line) || nodeNum == 1) {
             NSMutableSet *cll = [NSMutableSet setWithSet:clNodes];
             [cll addObject:n];
             NSArray *altPath = [self shortestWay:source to:target weight:&weight closedNodes:cll];
@@ -275,6 +278,7 @@
             if([result count] >= 3) break; // max 3 paths
         }
         prevLine = n.line;
+        nodeNum ++;
     }
     [self normalizePaths:result];
     
