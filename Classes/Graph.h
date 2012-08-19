@@ -17,7 +17,7 @@
 @property (nonatomic, readonly, retain) NSSet *nodes;
 
 - (NSDictionary*)getPaths:(GraphNode*)source to:(GraphNode*)target;
-- (NSDictionary*)getWays:(GraphNode *)source to:(GraphNode *)target withoutStations:(NSSet*)clNodes;
+- (NSArray*)getWays:(GraphNode *)source to:(GraphNode *)target withoutStations:(NSSet*)clNodes;
 - (NSArray*)shortestPath:(GraphNode*)source to:(GraphNode*)target;
 // compare node's names and lines
 - (NSArray*)shortestPath:(GraphNode*)source to:(GraphNode*)target weight:(CGFloat*)weight closedNodes:(NSSet*)clNodes;

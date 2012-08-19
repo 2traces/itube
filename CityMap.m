@@ -2422,17 +2422,16 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 }
             }
         }
-        NSDictionary *paths = [graph getWays:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum] withoutStations:missingStations];
-        NSArray *keys = [[paths allKeys] sortedArrayUsingSelector:@selector(compare:)];
+        NSArray *paths = [graph getWays:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum] withoutStations:missingStations];
         NSMutableDictionary *trpaths = [NSMutableDictionary dictionary];
-        for (NSNumber *weight in keys) {
+        for (NSArray *path in paths) {
             NSArray *trpath;
-            trpath = [schedule translatePath:[paths objectForKey:weight]];
+            trpath = [schedule translatePath:path];
             if(trpath != nil) {
                 CGFloat weight2 = [[trpath lastObject] weight];
 #ifdef DEBUG
                 NSLog(@"weight is %f", weight2);
-                NSLog(@"path is %@", [paths objectForKey:weight]);
+                NSLog(@"path is %@", path);
                 NSLog(@"schedule path is %@", trpath);
 #endif
                 if(weight2 < 60*60*12)  // время пути должно быть меньше 12 часов
