@@ -11,6 +11,8 @@
 #import "CityMap.h"
 #import "MainView.h"
 
+#define DEFAULT_HOURS 1
+
 double TimeParser(const char* ts)
 {
     char * ss = 0;
@@ -406,6 +408,7 @@ NSCharacterSet *pCharacterSet = nil;
             el = [TBXML nextSiblingNamed:@"route" searchFromElement:el];
         }
     }
+    loadedHours = hours;
     return YES;
 }
 
@@ -427,7 +430,7 @@ NSCharacterSet *pCharacterSet = nil;
             [self release];
             return nil;
         }
-        if(![self loadFastSchedule:4]) {
+        if(![self loadFastSchedule:DEFAULT_HOURS]) {
             [self release];
             return nil;
         }
@@ -500,7 +503,7 @@ NSCharacterSet *pCharacterSet = nil;
 
 -(NSTimeInterval)getNowTime
 {
-    //return 4440;
+    //return 72240;
     NSDateComponents *comp = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate date]];
     NSDate *midnight = [cal dateFromComponents:comp];
     return [[NSDate date] timeIntervalSinceDate:midnight];
@@ -537,7 +540,7 @@ NSCharacterSet *pCharacterSet = nil;
 {
     NSArray *res = nil;
     NSTimeInterval now = [self getNowTime];
-    int hours = 2;
+    int hours = DEFAULT_HOURS;
     if(loadTime >= 0) {
         if(now > loadTime+900 || (now < loadTime && now+24*60*60 > loadTime+900)) {
             // we will try to update the schedule every 15 minutes
@@ -547,7 +550,7 @@ NSCharacterSet *pCharacterSet = nil;
     do {
         res = [self internalFindPathFrom:fromStation to:toStation];
         if(res != nil && [res count] > 0) break;
-        hours += 2;
+        hours += DEFAULT_HOURS;
         if(hours > 24) break;
         NSTimeInterval now2 = [self getNowTime];
         // time out
@@ -788,6 +791,15 @@ NSCharacterSet *pCharacterSet = nil;
     }*/
     NSLog(@"path not found!");
     return nil;
+}
+
+-(BOOL) uploadFastSchedule
+{
+    int hours = loadedHours + DEFAULT_HOURS;
+    if(hours < 24) {
+        [self loadFastSchedule:hours];
+        return YES;
+    } else return NO;
 }
 
 @end

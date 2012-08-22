@@ -73,6 +73,7 @@
     NSTimeInterval loadTime;
     NSString *xmlFile;
     NSString *stationsFile;
+    int loadedHours;
     
     SchLine *currentLine;
     int currentIndex;
@@ -86,6 +87,7 @@
 -(BOOL) existLine:(NSString*)line;
 -(NSDate*) getPointDate:(SchPoint*)p;
 -(void) removeUncheckedStations;
+-(BOOL) uploadFastSchedule;
 
 -(NSArray*)findPathFrom:(NSString *)fromStation to:(NSString*)toStation;
 -(NSArray*)translatePath:(NSArray*)graphNodes;

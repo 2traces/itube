@@ -2412,34 +2412,40 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
     if(schedule != nil) {
         NSMutableSet *missingStations = [NSMutableSet set];
-        for (Line *l in mapLines) {
-            BOOL el = [schedule existLine:l.name];
-            if(!el) {
-                for (Station *s in l.stations) {
-                    //if(![schedule existStation:s.name line:l.name]) {
-                    [missingStations addObject:[GraphNode nodeWithName:s.name andLine:s.line.index]];
-                    //}
+        NSMutableDictionary *trpaths = [NSMutableDictionary dictionary];
+        int tries = 0;
+        do {
+            for (Line *l in mapLines) {
+                BOOL el = [schedule existLine:l.name];
+                if(!el) {
+                    for (Station *s in l.stations) {
+                        //if(![schedule existStation:s.name line:l.name]) {
+                        [missingStations addObject:[GraphNode nodeWithName:s.name andLine:s.line.index]];
+                        //}
+                    }
                 }
             }
-        }
-        NSArray *paths = [graph getWays:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum] withoutStations:missingStations];
-        NSMutableDictionary *trpaths = [NSMutableDictionary dictionary];
-        for (NSArray *path in paths) {
-            NSArray *trpath;
-            trpath = [schedule translatePath:path];
-            if(trpath != nil) {
-                CGFloat weight2 = [[trpath lastObject] weight];
+            NSArray *paths = [graph getWays:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum] withoutStations:missingStations];
+            for (NSArray *path in paths) {
+                NSArray *trpath;
+                trpath = [schedule translatePath:path];
+                if(trpath != nil) {
+                    CGFloat weight2 = [[trpath lastObject] weight];
 #ifdef DEBUG
-                NSLog(@"weight is %f", weight2);
-                NSLog(@"path is %@", path);
-                NSLog(@"schedule path is %@", trpath);
+                    NSLog(@"weight is %f", weight2);
+                    NSLog(@"path is %@", path);
+                    NSLog(@"schedule path is %@", trpath);
 #endif
-                if(weight2 < 60*60*12)  // время пути должно быть меньше 12 часов
-                    [trpaths setObject:trpath forKey:[NSNumber numberWithDouble:weight2]];
-                //return [NSDictionary dictionaryWithObject:trpath forKey:[NSNumber numberWithDouble:[[trpath lastObject] weight]]];
+                    if(weight2 < 60*60*12)  // время пути должно быть меньше 12 часов
+                        [trpaths setObject:trpath forKey:[NSNumber numberWithDouble:weight2]];
+                    //return [NSDictionary dictionaryWithObject:trpath forKey:[NSNumber numberWithDouble:[[trpath lastObject] weight]]];
+                }
             }
-        }
-        return trpaths;
+            tries ++;
+            if([trpaths count] > 0 || tries > 4 || ![schedule uploadFastSchedule])
+                return trpaths;
+            [missingStations removeAllObjects];
+        } while (YES);
         
         //NSArray *path = [schedule findPathFrom:firstStation to:secondStation];
 #ifdef DEBUG
