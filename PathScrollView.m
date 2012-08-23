@@ -39,9 +39,9 @@
         CGFloat viewWidth = 320.0f;
         CGFloat viewHeight = 40.0f;
         
-        if (UI_USER_INTERFACE_IDIOM()== UIUserInterfaceIdiomPad) {
+        if (IS_IPAD) {
             viewStartX = 0.0f;
-            viewStartY = 26.0f;
+            viewStartY = 0.0f;
             viewWidth = 320.0f;
             viewHeight = 40.0f;
         }
@@ -99,7 +99,7 @@
     
     if (UI_USER_INTERFACE_IDIOM()== UIUserInterfaceIdiomPad) {
         viewStartX = 0.0f;
-        viewStartY = 26.0f;
+        viewStartY = 0.0f;
         viewWidth = 320.0f;
         viewHeight = 40.0f;
     }

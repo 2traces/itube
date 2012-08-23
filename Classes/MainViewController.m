@@ -19,7 +19,6 @@
 #import "TubeAppIAPHelper.h"
 #import "UIColor-enhanced.h"
 #import "LeftiPadPathViewController.h"
-#import "SettingsNavController.h"
 
 #define FromStation 0
 #define ToStation 1
@@ -323,6 +322,11 @@
     [spltViewController showLeftView];
 }
 
+-(void)hideiPadLeftPathView
+{
+    [spltViewController hideLeftView];
+}
+
 #pragma mark - FastAccessTableView
 
 -(void)toggleTap
@@ -402,11 +406,23 @@
 -(void)showiPadSettingsModalView
 {
     SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
+    controller.delegate=self;
     UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:controller];
     navcontroller.modalPresentationStyle=UIModalPresentationFormSheet;
     [self presentModalViewController:navcontroller animated:YES];
+    
+//    navcontroller.view.superview.autoresizingMask = UIViewAutoresizingFlexibleTopMargin |UIViewAutoresizingFlexibleBottomMargin;
+//    navcontroller.view.superview.frame = CGRectMake(navcontroller.view.superview.frame.origin.x, navcontroller.view.superview.frame.origin.x, 320, 700);
+//    
+//    navcontroller.view.superview.center = self.view.center;
+    
     [controller release];
     [navcontroller release];
+}
+
+-(void)donePressed
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - Choosing stations etc
@@ -502,8 +518,7 @@
         if (!([[[delegate cityMap] activePath] count]==1 && [[[[delegate cityMap] activePath] objectAtIndex:0] isKindOfClass:[Transfer class]])) {
             [stationsView transitToPathView];
             if (IS_IPAD) {
-                self.stationsView.leftButton.userInteractionEnabled=YES;
-//                [self showiPadLeftPathView];
+                [spltViewController refreshPath];
             } else {
                 [self showHorizontalPathesScrollView];
             }

@@ -146,17 +146,17 @@
         [arrowView release];
         
         UIButton *button3 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [button3  setTitle: @"Path" forState:UIControlStateNormal];
+        [button3  setTitle: @"<" forState:UIControlStateNormal];
         [button3 addTarget:self action:@selector(showiPadLeftPathView) forControlEvents:UIControlEventTouchUpInside];
-        button3.frame = CGRectMake(20, 7, 60, 30);
+        button3.frame = CGRectMake(10, 7, 30, 30);
         self.leftButton=button3;
-        self.leftButton.userInteractionEnabled=NO;
+        self.leftButton.userInteractionEnabled=YES;
         [toolbar addSubview:button3];
 
         UIButton *button4 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [button4  setTitle: @"Settings" forState:UIControlStateNormal];
+        [button4  setTitle: @"S" forState:UIControlStateNormal];
         [button4 addTarget:self action:@selector(showiPadSettingsModalView) forControlEvents:UIControlEventTouchUpInside];
-        button4.frame = CGRectMake(100, 7, 80, 30);
+        button4.frame = CGRectMake(50, 7, 30, 30);
 //        self.leftButton=button3;
 //        self.leftButton.userInteractionEnabled=NO;
         [toolbar addSubview:button4];
@@ -257,7 +257,10 @@
         secondStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth, 0, iPadFieldWidth, iPadTbHeight);
 
         firstButton.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFldButton, iPadTbHeight);
-        secondButton.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFldButton, iPadTbHeight);
+        secondButton.frame = CGRectMake(self.frame.size.width-iPadFieldWidth, 0, iPadFldButton, iPadTbHeight);
+        
+        CGFloat desireOrigin = (secondStation.frame.origin.x - firstStation.frame.origin.x - firstStation.frame.size.width)/2.0+7.0;        
+        arrowView.frame = CGRectMake(secondStation.frame.origin.x-desireOrigin,15, arrowView.frame.size.width, arrowView.frame.size.height);
     }
 }
 
@@ -494,7 +497,7 @@
                     desireOrigin2=self.frame.size.width-desireWidth2;
                     desireOrigin1=firstStation.frame.origin.x;
                     desireWidth1 = desireOrigin2 - arrowView.frame.size.width-desireOrigin1;
-                    arrowOrigin = desireOrigin2 - arrowView.frame.size.width;;
+                    arrowOrigin = desireOrigin2 - arrowView.frame.size.width;
                 } else {
                     desireWidth1=textBounds1.width+addWidth;
                     desireOrigin1=firstStation.frame.origin.x;
@@ -618,11 +621,11 @@
         
         if (IS_IPAD) {
             if ([[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeRight) {
-                self.frame=CGRectMake(0,0, iPadHeight, iPadTbHeight);
-                self.toolbar.frame=CGRectMake(0,0, iPadHeight, iPadTbHeight);
+//                self.frame=CGRectMake(0,0, self., iPadTbHeight);
+//                self.toolbar.frame=CGRectMake(0,0, iPadHeight, iPadTbHeight);
             } else {
-                self.frame=CGRectMake(0,0, iPadWidth, iPadTbHeight);
-                self.toolbar.frame=CGRectMake(0,0, iPadWidth, iPadTbHeight);
+//                self.frame=CGRectMake(0,0, iPadWidth, iPadTbHeight);
+//                self.toolbar.frame=CGRectMake(0,0, iPadWidth, iPadTbHeight);
             }
             
             firstStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFieldWidth, iPadTbHeight);

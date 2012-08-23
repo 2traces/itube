@@ -58,7 +58,7 @@ NSInteger const toolbarWidth=320;
     if (IS_IPAD) {
         scrollSize = CGRectMake(0, 44, 568, (1024-64));
         settingsRect=CGRectMake(-285, -420, 27, 27);
-        shadowRect = CGRectMake(0, 44, 568, 61);
+        shadowRect = CGRectMake(0, 44, 1024, 61);
     } else {
         scrollSize = CGRectMake(0,44,(320),(480-64));
         settingsRect=CGRectMake(285, 420, 27, 27);
@@ -143,8 +143,11 @@ NSInteger const toolbarWidth=320;
     [destinationButton setImage:[UIImage imageNamed:@"dst_button_normal"] forState:UIControlStateNormal];
     [destinationButton setImage:[UIImage imageNamed:@"dst_button_pressed"] forState:UIControlStateHighlighted];
     [destinationButton addTarget:self action:@selector(selectToStationByButton) forControlEvents:UIControlEventTouchUpInside];
-    [destinationButton setFrame:CGRectMake(315, 190, 96, 96)];
-    
+    if (IS_IPAD) {
+        [destinationButton setFrame:CGRectMake(1024, 190, 96, 96)];
+    } else {
+        [destinationButton setFrame:CGRectMake(315, 190, 96, 96)];
+    }
     [self addSubview:sourceButton];
     [self addSubview:destinationButton];
     
@@ -246,7 +249,11 @@ NSInteger const toolbarWidth=320;
     p.x = -40;
     [UIView animateWithDuration:0.125f animations:^{ sourceButton.center = p; } ];
     p = destinationButton.center;
-    p.x = 360;
+    if (IS_IPAD) {
+        p.x = 1064;
+    } else {
+        p.x = 360;
+    }
     [UIView animateWithDuration:0.125f animations:^{ destinationButton.center = p; }];
 }
 

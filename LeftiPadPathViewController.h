@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PathScrollView.h"
+#import "VertPathScrollView.h"
 
-@interface LeftiPadPathViewController : UIViewController
+@interface LeftiPadPathViewController : UIViewController <PathScrollViewProtocol>
+{
+    NSTimer *timer;
+
+}
+
+@property (nonatomic,retain) PathScrollView *horizontalPathesScrollView;
+@property (nonatomic,retain) NSTimer *timer;
+@property (nonatomic,retain) VertPathScrollView *pathScrollView;
 
 @end

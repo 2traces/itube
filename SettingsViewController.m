@@ -242,9 +242,14 @@
     cityTableView.frame=CGRectMake(cityTableView.frame.origin.x, textLabel3.frame.origin.y+textLabel3.frame.size.height+10, cityTableView.frame.size.width,  cityTableHeight);
     textLabel4.frame=CGRectMake(textLabel4.frame.origin.x, cityTableView.frame.origin.y+cityTableHeight+17, textLabel4.frame.size.width, textLabel4.frame.size.height);
     feedbackTableView.frame=CGRectMake(feedbackTableView.frame.origin.x, textLabel4.frame.origin.y+textLabel4.frame.size.height+10, feedbackTableView.frame.size.width, feedbackTableHeight);
-        
-    scrollView.contentSize = CGSizeMake(320, feedbackTableView.frame.origin.y+feedbackTableView.frame.size.height+15.0);
-    scrollView.frame = CGRectMake(0.0, 0.0, 320.0, 460.0-44.0);
+ 
+    if (IS_IPAD) {
+        scrollView.contentSize = CGSizeMake(320, feedbackTableView.frame.origin.y+feedbackTableView.frame.size.height+15.0);
+        scrollView.frame = CGRectMake(110.0, 0.0, 320.0, 620.0-44.0);
+    } else {
+        scrollView.contentSize = CGSizeMake(320, feedbackTableView.frame.origin.y+feedbackTableView.frame.size.height+15.0);
+        scrollView.frame = CGRectMake(0.0, 0.0, 320.0, 460.0-44.0);
+    }
     
     [scrollView flashScrollIndicators];
 }
