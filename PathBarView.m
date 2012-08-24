@@ -44,6 +44,7 @@
         
         UIImageView *clockView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"clock.png"]];
         clockView.frame = CGRectMake(37, 4, 14, 14);
+        clockView.tag=6400+page;
         [self addSubview:clockView];
         [clockView release];
         
@@ -91,7 +92,19 @@
         
         CGRect flagRect = [(UILabel*)[self viewWithTag:6500+page] frame];
         [(UIImageView*)[self viewWithTag:6500+page] setFrame:CGRectMake(labelStart-flagRect.size.width-2.0, flagRect.origin.y, flagRect.size.width, flagRect.size.height)];
+        
+        if (IS_IPAD) {
+            [[self viewWithTag:10000+page] removeFromSuperview];
+            [[self viewWithTag:6400+page] setFrame:CGRectMake(37, 10, 18, 18)];
+            [[self viewWithTag:6500+page] setFrame:CGRectMake(170, 10, 18, 18)];
 
+            [[self viewWithTag:6000+page] setFrame:CGRectMake(63, 12, 90, 20)];
+            [(UILabel*)[self viewWithTag:6000+page] setFont:[UIFont fontWithName:@"MyriadPro-Regular" size:16.0]];
+
+            [[self viewWithTag:7000+page] setFrame:CGRectMake(196, 12, 90, 20)];
+            [(UILabel*)[self viewWithTag:7000+page] setFont:[UIFont fontWithName:@"MyriadPro-Regular" size:16.0]];
+            [(UILabel*)[self viewWithTag:7000+page] setTextAlignment:UITextAlignmentLeft];
+        }
     }
 
     return self;

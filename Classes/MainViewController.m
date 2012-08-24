@@ -319,7 +319,10 @@
 
 -(void)showiPadLeftPathView
 {
-    [spltViewController showLeftView];
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+    if (appDelegate.cityMap.activeExtent.size.width!=0) {
+        [spltViewController showLeftView];
+    }
 }
 
 -(void)hideiPadLeftPathView
@@ -626,6 +629,8 @@
     currentSelection=FromStation;
     [stationsView setToStation:self.toStation];
     [self returnFromSelection:[NSArray array]];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kPathCleared" object:nil];
 }
 
 -(void)resetToStation
@@ -633,6 +638,8 @@
     currentSelection=ToStation;
     [stationsView setFromStation:self.fromStation];
     [self returnFromSelection:[NSArray array]];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kPathCleared" object:nil];
 }
 
 -(void)resetBothStations
@@ -649,6 +656,8 @@
     [self returnFromSelection2:[NSArray array]];
     
     currentSelection=tempSelection;
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kPathCleared" object:nil];
 }
 
 

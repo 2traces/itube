@@ -33,13 +33,26 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Classes/MainViewController.m"
-         timestampString = "367427587.621617"
+         filePath = "IAPHelper.m"
+         timestampString = "367479249.701992"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "515"
-         endingLineNumber = "515"
-         landmarkName = "-hudWasHidden"
+         startingLineNumber = "60"
+         endingLineNumber = "60"
+         landmarkName = "@implementation IAPHelper"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "TubeSplitViewController.m"
+         timestampString = "367495236.600158"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "75"
+         endingLineNumber = "75"
+         landmarkName = "-sizeRotated"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

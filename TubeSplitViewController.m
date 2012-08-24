@@ -45,10 +45,12 @@ static float koefficient = 0.0f;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.view.frame = CGRectMake(0.0, 20.0, 768.0, 1004.0);
+    
     tubeAppDelegate *delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
     MainView *vvv = (MainView*)[delegate.mainViewController view];
     delegate.mainViewController.spltViewController=self;
-    vvv.frame = CGRectMake(0.0, 20.0, 768.0, 1004.0);
+    vvv.frame = CGRectMake(0.0, 0.0, 768.0, 1004.0);
     [[vvv containerView] setFrame:CGRectMake(0.0, 0.0, 768.0, 1004)];
     self.mapView = vvv;
     [self.view addSubview:vvv];
@@ -60,6 +62,7 @@ static float koefficient = 0.0f;
     [self.view addSubview:controller.view];
     [controller release];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pathCleared:) name:@"kPathCleared" object:nil];
 }
 
 - (CGSize) sizeRotated {
@@ -120,6 +123,20 @@ static float koefficient = 0.0f;
     
 }
 
+-(void)adjustMapView
+{
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+    if (appDelegate.cityMap.activeExtent.size.width!=0) {
+        [[(MainView*)self.mapView mapView] adjustMap];
+    }
+}
+
+-(void)adjustPathView
+{
+    CGSize size = [self sizeRotated];
+    
+    [self.leftPathController.pathScrollView setFrame:CGRectMake(0.0, 44.0, 320.0, size.height-44.0)];
+}
 
 -(void)showLeftView
 {
@@ -134,10 +151,9 @@ static float koefficient = 0.0f;
                            
                         }];
 
+        [self adjustMapView];
+
         tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-        if (appDelegate.cityMap.activeExtent.size.width!=0) {
-            [[(MainView*)self.mapView mapView] adjustMap];
-        }
         if ([[[appDelegate cityMap] activePath] count]>0) {
             [self.leftPathController showHorizontalPathesScrollView];
             [self.leftPathController showVerticalPathScrollView];
@@ -155,16 +171,38 @@ static float koefficient = 0.0f;
         
     }];
     
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-    if (appDelegate.cityMap.activeExtent.size.width!=0) {
-        [[(MainView*)self.mapView mapView] adjustMap];
-    }
+    [self adjustMapView];
 }
 
 -(void)refreshPath
 {
     [self.leftPathController.horizontalPathesScrollView refreshContent];
     [self.leftPathController redrawPathScrollView];
+    if (!isLeftShown) {
+        [self showLeftView];
+    }
+}
+
+-(void)pathCleared:(NSNotification*)note
+{
+    
+    isLeftShown=NO;
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        [self layoutSubviews];
+        
+    }];
+}
+
+-(void)pathFound:(NSNotification*)note
+{
+    
+    isLeftShown=YES;
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        [self layoutSubviews];
+        
+    }];
 }
 
 - (void)viewDidUnload
@@ -232,13 +270,15 @@ static float koefficient = 0.0f;
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
 	[leftPathController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 	[mainViewController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    [self layoutSubviews];
+//    [self layoutSubviews];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
 	[leftPathController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 	[mainViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     [self layoutSubviews];
+    [self adjustMapView];
+    [self adjustPathView];
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
