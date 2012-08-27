@@ -208,6 +208,11 @@
 		BC7AF88F153D5E7200BD1838 /* demo_back_high@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC7AF88B153D5E7200BD1838 /* demo_back_high@2x.png */; };
 		BC7AF890153D5E7200BD1838 /* demo_back.png in Resources */ = {isa = PBXBuildFile; fileRef = BC7AF88C153D5E7200BD1838 /* demo_back.png */; };
 		BC7AF891153D5E7200BD1838 /* demo_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC7AF88D153D5E7200BD1838 /* demo_back@2x.png */; };
+		BC7D9C8715EB4C60005684E4 /* CustomPopoverBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7D9C8615EB4C60005684E4 /* CustomPopoverBackgroundView.m */; };
+		BC7D9C8A15EB506F005684E4 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = BC7D9C8915EB506F005684E4 /* arrow.png */; };
+		BC7D9C8C15EB5084005684E4 /* popover-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BC7D9C8B15EB5084005684E4 /* popover-bg.png */; };
+		BC7D9C8F15EB5871005684E4 /* popover-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC7D9C8D15EB5871005684E4 /* popover-bg@2x.png */; };
+		BC7D9C9015EB5871005684E4 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC7D9C8E15EB5871005684E4 /* arrow@2x.png */; };
 		BC876AC314DFAF23008AC06C /* BookmarkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC876AB614DFAF23008AC06C /* BookmarkViewController.xib */; };
 		BC876AC414DFAF23008AC06C /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC876AB714DFAF23008AC06C /* FlipsideView.xib */; };
 		BC876AC514DFAF23008AC06C /* HistoryListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC876AB814DFAF23008AC06C /* HistoryListCell.xib */; };
@@ -695,6 +700,12 @@
 		BC7AF88B153D5E7200BD1838 /* demo_back_high@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "demo_back_high@2x.png"; path = "images/demo_back_high@2x.png"; sourceTree = "<group>"; };
 		BC7AF88C153D5E7200BD1838 /* demo_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = demo_back.png; path = images/demo_back.png; sourceTree = "<group>"; };
 		BC7AF88D153D5E7200BD1838 /* demo_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "demo_back@2x.png"; path = "images/demo_back@2x.png"; sourceTree = "<group>"; };
+		BC7D9C8515EB4C60005684E4 /* CustomPopoverBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPopoverBackgroundView.h; sourceTree = "<group>"; };
+		BC7D9C8615EB4C60005684E4 /* CustomPopoverBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPopoverBackgroundView.m; sourceTree = "<group>"; };
+		BC7D9C8915EB506F005684E4 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		BC7D9C8B15EB5084005684E4 /* popover-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popover-bg.png"; sourceTree = "<group>"; };
+		BC7D9C8D15EB5871005684E4 /* popover-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popover-bg@2x.png"; sourceTree = "<group>"; };
+		BC7D9C8E15EB5871005684E4 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
 		BC876AB614DFAF23008AC06C /* BookmarkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookmarkViewController.xib; path = Resources/BookmarkViewController.xib; sourceTree = "<group>"; };
 		BC876AB714DFAF23008AC06C /* FlipsideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FlipsideView.xib; path = Resources/FlipsideView.xib; sourceTree = "<group>"; };
 		BC876AB814DFAF23008AC06C /* HistoryListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HistoryListCell.xib; path = Resources/HistoryListCell.xib; sourceTree = "<group>"; };
@@ -1092,6 +1103,8 @@
 				4B216D8814606B9D005B6F38 /* StationList.m */,
 				BC88A2A8151A328E0060F860 /* SettingsNavController.h */,
 				BC88A2A9151A328E0060F860 /* SettingsNavController.m */,
+				BC7D9C8515EB4C60005684E4 /* CustomPopoverBackgroundView.h */,
+				BC7D9C8615EB4C60005684E4 /* CustomPopoverBackgroundView.m */,
 				CE96C6F9146830A8005A56F3 /* Resource.h */,
 				CE96C6FA146830A8005A56F3 /* Resource.m */,
 			);
@@ -1608,6 +1621,10 @@
 				BCABF19F15E761FD00A38108 /* close_ipad_button@2x.png */,
 				BCABF1A015E761FD00A38108 /* settings_ipad_button.png */,
 				BCABF1A115E761FD00A38108 /* close_ipad_button.png */,
+				BC7D9C8915EB506F005684E4 /* arrow.png */,
+				BC7D9C8B15EB5084005684E4 /* popover-bg.png */,
+				BC7D9C8D15EB5871005684E4 /* popover-bg@2x.png */,
+				BC7D9C8E15EB5871005684E4 /* arrow@2x.png */,
 				BC5AF6F414F5180400C8463F /* splash.png */,
 				BC5AF6F514F5180400C8463F /* splash@2x.png */,
 				9F4997E814E245EA0058AA96 /* settings_btn.png */,
@@ -2045,6 +2062,10 @@
 				BCABF1A315E761FD00A38108 /* close_ipad_button@2x.png in Resources */,
 				BCABF1A415E761FD00A38108 /* settings_ipad_button.png in Resources */,
 				BCABF1A515E761FD00A38108 /* close_ipad_button.png in Resources */,
+				BC7D9C8A15EB506F005684E4 /* arrow.png in Resources */,
+				BC7D9C8C15EB5084005684E4 /* popover-bg.png in Resources */,
+				BC7D9C8F15EB5871005684E4 /* popover-bg@2x.png in Resources */,
+				BC7D9C9015EB5871005684E4 /* arrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2123,6 +2144,7 @@
 				BCAEF46D15C8F07A008A8014 /* VertPathScrollView.m in Sources */,
 				BCDFF0F415CCDE1600E004E6 /* TubeSplitViewController.m in Sources */,
 				BC108FF215D8F38E00B81989 /* LeftiPadPathViewController.m in Sources */,
+				BC7D9C8715EB4C60005684E4 /* CustomPopoverBackgroundView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

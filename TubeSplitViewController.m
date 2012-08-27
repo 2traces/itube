@@ -68,7 +68,7 @@ static float koefficient = 0.0f;
 - (CGSize) sizeRotated {
     
 	UIScreen *screen = [UIScreen mainScreen];
-	CGRect bounds = screen.bounds; 
+	CGRect bounds = screen.bounds;
 	CGRect appFrame = screen.applicationFrame;
 	CGSize size = bounds.size;
 	
@@ -87,7 +87,7 @@ static float koefficient = 0.0f;
 - (void) layoutSubviews {
     
 	CGSize size = [self sizeRotated];
-
+    
     if (isLeftShown) {
         pathView.frame = CGRectMake(0,
                                     0 - koefficient,
@@ -97,7 +97,7 @@ static float koefficient = 0.0f;
                                    0 - koefficient,
                                    size.width - constDetailStartPoint,
                                    size.height + koefficient);
-
+        
         //	_divider.frame = CGRectMake(constMasterWidth, 0, constDividerWidth, size.height);
         
         [[(MainView*)self.mapView containerView] setFrame:CGRectMake(0.0, 0.0, size.width - constDetailStartPoint,size.height + koefficient)];
@@ -118,7 +118,7 @@ static float koefficient = 0.0f;
         [[(MainView*)self.mapView containerView] setFrame:CGRectMake(0.0, 0.0, size.width ,size.height + koefficient)];
         [mainViewController.stationsView setFrame:CGRectMake(0, 0, size.width, 44)];
     }
-
+    
     [mainViewController.stationsView adjustSubviews];
     
 }
@@ -143,21 +143,26 @@ static float koefficient = 0.0f;
     if (isLeftShown) {
         [self hideLeftView];
     } else {
-
+        
         isLeftShown=YES;
         
-                        [UIView animateWithDuration:0.5 animations:^{
-                            [self layoutSubviews];
-                           
-                        }];
-
-        [self adjustMapView];
-
         tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
         if ([[[appDelegate cityMap] activePath] count]>0) {
             [self.leftPathController showHorizontalPathesScrollView];
             [self.leftPathController showVerticalPathScrollView];
         }
+        
+//        [UIView animateWithDuration:0.5 animations:^{
+//            [self layoutSubviews];
+//
+//        }];
+//        [self adjustMapView];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            [self layoutSubviews];
+        } completion:^(BOOL finished) {
+ //           [self adjustMapView];
+        }];
     }
 }
 
@@ -165,13 +170,19 @@ static float koefficient = 0.0f;
 {
     
     isLeftShown=NO;
-    
+
     [UIView animateWithDuration:0.5 animations:^{
         [self layoutSubviews];
-        
+    } completion:^(BOOL finished) {
+//    [self adjustMapView];
     }];
-    
-    [self adjustMapView];
+
+//    [UIView animateWithDuration:0.5 animations:^{
+//        [self layoutSubviews];
+//        
+//    }];
+//    
+//    [self adjustMapView];
 }
 
 -(void)refreshPath
@@ -246,7 +257,7 @@ static float koefficient = 0.0f;
     else
         koefficient = 0.0f;
     
-//    [self layoutSubviews];
+    //    [self layoutSubviews];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -270,7 +281,7 @@ static float koefficient = 0.0f;
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
 	[leftPathController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 	[mainViewController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-//    [self layoutSubviews];
+    //    [self layoutSubviews];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {

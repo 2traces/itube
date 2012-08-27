@@ -19,9 +19,80 @@
 #import "TubeAppIAPHelper.h"
 #import "UIColor-enhanced.h"
 #import "LeftiPadPathViewController.h"
+#import "CustomPopoverBackgroundView.h"
 
 #define FromStation 0
 #define ToStation 1
+
+@interface UIPopoverController(removeInnerShadow)
+
+- (void)removeInnerShadow;
+- (void)presentPopoverWithoutInnerShadowFromRect:(CGRect)rect
+                                          inView:(UIView *)view
+                        permittedArrowDirections:(UIPopoverArrowDirection)direction
+                                        animated:(BOOL)animated;
+
+- (void)presentPopoverWithoutInnerShadowFromBarButtonItem:(UIBarButtonItem *)item
+                                 permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections
+                                                 animated:(BOOL)animated;
+
+@end
+
+@implementation UIPopoverController(removeInnerShadow)
+
+- (void)presentPopoverWithoutInnerShadowFromRect:(CGRect)rect inView:(UIView *)view permittedArrowDirections:(UIPopoverArrowDirection)direction animated:(BOOL)animated
+{
+    [self presentPopoverFromRect:rect inView:view permittedArrowDirections:direction animated:animated];
+    [self removeInnerShadow];
+}
+
+- (void)presentPopoverWithoutInnerShadowFromBarButtonItem:(UIBarButtonItem *)item
+                                 permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections
+                                                 animated:(BOOL)animated
+{
+    [self presentPopoverFromBarButtonItem:item permittedArrowDirections:arrowDirections animated:animated];
+    [self removeInnerShadow];
+}
+
+- (void)removeInnerShadow
+{
+    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    
+    for (UIView *windowSubView in window.subviews)
+    {
+        if ([NSStringFromClass([windowSubView class]) isEqualToString:@"UIDimmingView"])
+        {
+            for (UIView *dimmingViewSubviews in windowSubView.subviews)
+            {
+                for (UIView *popoverSubview in dimmingViewSubviews.subviews)
+                {
+                    if([NSStringFromClass([popoverSubview class]) isEqualToString:@"UIView"])
+                    {
+                        for (UIView *subviewA in popoverSubview.subviews)
+                        {
+                            if ([NSStringFromClass([subviewA class]) isEqualToString:@"UILayoutContainerView"])
+                            {
+                                subviewA.layer.cornerRadius = 7;
+                                subviewA.layer.borderColor = [UIColor grayColor].CGColor;
+                                subviewA.layer.borderWidth = 0.0f;
+                            }
+                            
+                            for (UIView *subviewB in subviewA.subviews)
+                            {
+                                if ([NSStringFromClass([subviewB class]) isEqualToString:@"UIImageView"] )
+                                {
+                                    [subviewB removeFromSuperview];
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+    }
+}
+
+@end
 
 @implementation MainViewController
 
@@ -399,7 +470,9 @@
         originx = self.stationsView.secondStation.frame.origin.x;
     }
     
-    [popover presentPopoverFromRect:CGRectMake(originx+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
+    //        [popover presentPopoverFromRect:CGRectMake(self.stationsView.firstStation.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(originx+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
     [controller release];
     
     StationListViewController *stations = [[controller.tabBarController viewControllers] objectAtIndex:0];
@@ -594,7 +667,9 @@
         [popover setPopoverContentSize:controller.view.frame.size];
         
         popover = [[UIPopoverController alloc] initWithContentViewController:controller];
-        [popover presentPopoverFromRect:CGRectMake(self.stationsView.firstStation.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
+//        [popover presentPopoverFromRect:CGRectMake(self.stationsView.firstStation.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.firstStation.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
         [controller release];
     }
 }
@@ -619,7 +694,8 @@
         controller.contentSizeForViewInPopover=CGSizeMake(320, 460);
             
         popover = [[UIPopoverController alloc] initWithContentViewController:controller];
-        [popover presentPopoverFromRect:CGRectMake(self.stationsView.secondStation.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
+        [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.secondStation.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
         [controller release];
     }
 }
