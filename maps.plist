@@ -62,12 +62,10 @@
 		<key>zip_download</key>
 		<string>/maps/hamburg/hamburg1.zip</string>
 	</dict>
-	<key>com.zuev.itube.paris.venice</key>
+	<key>default</key>
 	<dict>
 		<key>ver</key>
 		<string>1</string>
-		<key>New item</key>
-		<string></string>
 		<key>name</key>
 		<string>Venice</string>
 		<key>filename</key>
@@ -94,7 +92,7 @@
 		<key>zip_download</key>
 		<string>/maps/peterburg/peterburg1.zip</string>
 	</dict>
-	<key>default</key>
+	<key>com.zuev.itube.paris.shanghai</key>
 	<dict>
 		<key>ver</key>
 		<string>1</string>
