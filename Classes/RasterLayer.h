@@ -50,8 +50,8 @@
     int actuality, level, x, y;
     RasterLayer *layer;
     NSMutableArray *objects;
-    unsigned int gltex;
-    float *coords, *uv;
+    unsigned int gltex, vertexBuffer;
+    //float *coords, *uv;
 }
 
 -(id)initWithRect:(CGRect)r level:(int)level x:(int)x y:(int)y;

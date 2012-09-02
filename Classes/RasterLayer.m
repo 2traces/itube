@@ -11,6 +11,7 @@
 #import "tubeAppDelegate.h"
 
 #define MAX_QUEUE 10
+#define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
 /***** RDescription *****/
 
@@ -143,8 +144,37 @@
     
     free(spriteData);
     
-    coords = (float*)calloc(4*4, sizeof(float));
-    uv = (float*)calloc(4*4, sizeof(float));
+    //coords = (float*)calloc(4*4, sizeof(float));
+    //uv = (float*)calloc(4*4, sizeof(float));
+    int bufSize = (3*4 + 2*4) * sizeof(float);
+    float *buf = (float*)calloc(bufSize, 1);
+
+    buf[0] = rect.origin.x;
+    buf[1] = rect.origin.y;
+    buf[2] = 0.f; //z
+    buf[3] = 0.f; //u
+    buf[4] = 0.f; //v
+    buf[5] = rect.origin.x+rect.size.width;
+    buf[6] = rect.origin.y;
+    buf[7] = 0.f; //z
+    buf[8] = 1.f; //u
+    buf[9] = 0.f; //v
+    buf[10] = rect.origin.x;
+    buf[11] = rect.origin.y+rect.size.height;
+    buf[12] = 0.f; //z
+    buf[13] = 0.f; //u
+    buf[14] = 1.f; //v
+    buf[15] = rect.origin.x+rect.size.width;
+    buf[16] = rect.origin.y+rect.size.height;
+    buf[17] = 0.f; //z
+    buf[18] = 1.f; //u
+    buf[19] = 1.f; //v
+    
+    glGenBuffers(1, &vertexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+    glBufferData(GL_ARRAY_BUFFER, bufSize, buf, GL_STATIC_DRAW);
+    
+    free(buf);
 }
 
 -(void) draw:(CGContextRef)context
@@ -176,31 +206,15 @@
 {
     if(!gltex && image) [self prepareGL];
     if(gltex) {
-        coords[0] = rect.origin.x;
-        coords[1] = rect.origin.y;
-        coords[2] = rect.origin.x+rect.size.width;
-        coords[3] = rect.origin.y;
-        coords[4] = rect.origin.x;
-        coords[5] = rect.origin.y+rect.size.height;
-        coords[6] = rect.origin.x+rect.size.width;
-        coords[7] = rect.origin.y+rect.size.height;
-        
-        uv[0] = 0.f;
-        uv[1] = 0.f;
-        uv[2] = 1.f;
-        uv[3] = 0.f;
-        uv[4] = 0.f;
-        uv[5] = 1.f;
-        uv[6] = 1.f;
-        uv[7] = 1.f;
+        glColor4f(1.f, 1.f, 1.f, 1.f);
         glActiveTexture( GL_TEXTURE0 );
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, gltex);
+        glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
         glEnableVertexAttribArray(GLKVertexAttribPosition);
-        //glDisableVertexAttribArray(GLKVertexAttribNormal);
-        //glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
-        glVertexAttribPointer(GLKVertexAttribPosition, 2, GL_FLOAT, GL_FALSE, 0, coords);
-        //glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, 0, uv);
+        glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
+        glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 20, BUFFER_OFFSET(0));
+        glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, 20, BUFFER_OFFSET(12));
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
 }
@@ -226,9 +240,8 @@
 
 -(void)dealloc
 {
+    glDeleteBuffers(1, &vertexBuffer);
     if(gltex != 0) glDeleteTextures(1, &gltex);
-    if(coords != 0) free(coords);
-    if(uv != 0) free(uv);
     if(image) CGImageRelease(image);
     [objects release];
     [super dealloc];
