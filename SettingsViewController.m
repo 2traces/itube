@@ -36,6 +36,8 @@
 @synthesize progressArrows;
 @synthesize languages;
 @synthesize feedback;
+@synthesize updateButton;
+@synthesize updateImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,6 +56,8 @@
         }
 
         self.feedback = [NSArray arrayWithObjects:NSLocalizedString(@"FeedbackRate",@"FeedbackRate"),NSLocalizedString(@"FeedbackMail",@"FeedbackMail"),NSLocalizedString(@"FeedbackTell",@"FeedbackTell"), nil];
+        
+        isFirstTime=YES;
     }
     return self;
 }
@@ -223,6 +227,19 @@
 -(void)adjustViewHeight
 {
     CGFloat langTableHeight;
+    CGFloat addX = 0.0;
+    
+    if (IS_IPAD) {
+        if (isFirstTime) {
+            addX=110.0;
+            isFirstTime=NO;
+        }
+    }
+    
+    textLabel1.frame = CGRectMake(textLabel1.frame.origin.x+addX, textLabel1.frame.origin.y, textLabel1.frame.size.width, textLabel1.frame.size.height);
+    updateButton.frame = CGRectMake(updateButton.frame.origin.x+addX, updateButton.frame.origin.y, updateButton.frame.size.width, updateButton.frame.size.height);
+    updateImageView.frame = CGRectMake(updateImageView.frame.origin.x+addX, updateImageView.frame.origin.y, updateImageView.frame.size.width, updateImageView.frame.size.height);
+    textLabel2.frame = CGRectMake(textLabel2.frame.origin.x+addX, textLabel2.frame.origin.y, textLabel2.frame.size.width, textLabel2.frame.size.height);
     
     if ([languages count]<2) {
         textLabel2.hidden=YES;
@@ -232,37 +249,43 @@
         textLabel2.hidden=NO;
         langTableView.hidden=NO;
         langTableHeight = [languages count]*45.0f+2.0;
-        langTableView.frame=CGRectMake(langTableView.frame.origin.x, langTableView.frame.origin.y, langTableView.frame.size.width, langTableHeight);
-        textLabel3.frame=CGRectMake(textLabel3.frame.origin.x, langTableView.frame.origin.y+langTableHeight+17, textLabel3.frame.size.width, textLabel3.frame.size.height);
+        langTableView.frame=CGRectMake(langTableView.frame.origin.x+addX, langTableView.frame.origin.y, langTableView.frame.size.width, langTableHeight);
+        textLabel3.frame=CGRectMake(textLabel3.frame.origin.x+addX, langTableView.frame.origin.y+langTableHeight+17, textLabel3.frame.size.width, textLabel3.frame.size.height);
     }
     
     CGFloat cityTableHeight = [maps count]*45.0f+2.0;
     CGFloat feedbackTableHeight = [feedback count]*45.0f+2.0; 
     
-    cityTableView.frame=CGRectMake(cityTableView.frame.origin.x, textLabel3.frame.origin.y+textLabel3.frame.size.height+10, cityTableView.frame.size.width,  cityTableHeight);
-    textLabel4.frame=CGRectMake(textLabel4.frame.origin.x, cityTableView.frame.origin.y+cityTableHeight+17, textLabel4.frame.size.width, textLabel4.frame.size.height);
-    feedbackTableView.frame=CGRectMake(feedbackTableView.frame.origin.x, textLabel4.frame.origin.y+textLabel4.frame.size.height+10, feedbackTableView.frame.size.width, feedbackTableHeight);
- 
+    cityTableView.frame=CGRectMake(cityTableView.frame.origin.x+addX, textLabel3.frame.origin.y+textLabel3.frame.size.height+10, cityTableView.frame.size.width,  cityTableHeight);
+    textLabel4.frame=CGRectMake(textLabel4.frame.origin.x+addX, cityTableView.frame.origin.y+cityTableHeight+17, textLabel4.frame.size.width, textLabel4.frame.size.height);
+    feedbackTableView.frame=CGRectMake(feedbackTableView.frame.origin.x+addX, textLabel4.frame.origin.y+textLabel4.frame.size.height+10, feedbackTableView.frame.size.width, feedbackTableHeight);
+
     if (IS_IPAD) {
-        scrollView.contentSize = CGSizeMake(320, feedbackTableView.frame.origin.y+feedbackTableView.frame.size.height+15.0);
-        scrollView.frame = CGRectMake(110.0, 0.0, 320.0, 620.0-44.0);
+        scrollView.contentSize = CGSizeMake(540, feedbackTableView.frame.origin.y+feedbackTableView.frame.size.height+15.0);
+        scrollView.frame = CGRectMake(0.0, 0.0, 540.0, 620.0-44.0);
     } else {
         scrollView.contentSize = CGSizeMake(320, feedbackTableView.frame.origin.y+feedbackTableView.frame.size.height+15.0);
         scrollView.frame = CGRectMake(0.0, 0.0, 320.0, 460.0-44.0);
     }
+
     
     [scrollView flashScrollIndicators];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    if (IS_IPAD) {
+        return YES;
+    } else {
+        return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    }    
 }
-
 
 - (void)viewDidUnload
 {
+    [updateButton release];
+    updateButton = nil;
+    [updateImageView release];
+    updateImageView = nil;
     [super viewDidUnload];
 }
 
@@ -295,6 +318,8 @@
     [maps release];
     [selectedPath release];
     delegate = nil;
+    [updateButton release];
+    [updateImageView release];
     [super dealloc];    
 }
 

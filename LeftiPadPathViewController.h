@@ -20,4 +20,8 @@
 @property (nonatomic,retain) NSTimer *timer;
 @property (nonatomic,retain) VertPathScrollView *pathScrollView;
 
+-(void)showHorizontalPathesScrollView;
+-(void)showVerticalPathScrollView;
+-(void)redrawPathScrollView;
+
 @end

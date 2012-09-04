@@ -18,9 +18,6 @@
     UIView *mapView;
     MainViewController *mainViewController;
     LeftiPadPathViewController *leftPathController;
-    
-    
-    
     BOOL isLeftShown;
 }
 

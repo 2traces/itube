@@ -13,16 +13,13 @@
 #import "TopTwoStationsView.h"
 #import "LeftiPadPathViewController.h"
 #import "CityMap.h"
+#import "SettingsViewController.h"
 
 #define constDividerWidth 1.0f
 #define constMasterWidth 320.0f
 #define constDetailStartPoint (constMasterWidth+constDividerWidth)
 
 static float koefficient = 0.0f;
-
-@interface TubeSplitViewController ()
-
-@end
 
 @implementation TubeSplitViewController
 
@@ -98,8 +95,6 @@ static float koefficient = 0.0f;
                                    size.width - constDetailStartPoint,
                                    size.height + koefficient);
         
-        //	_divider.frame = CGRectMake(constMasterWidth, 0, constDividerWidth, size.height);
-        
         [[(MainView*)self.mapView containerView] setFrame:CGRectMake(0.0, 0.0, size.width - constDetailStartPoint,size.height + koefficient)];
         [mainViewController.stationsView setFrame:CGRectMake(0, 0, size.width - constDetailStartPoint, 44)];
         
@@ -112,8 +107,6 @@ static float koefficient = 0.0f;
                                    0 - koefficient,
                                    size.width,
                                    size.height + koefficient);
-        
-        //	_divider.frame = CGRectMake(constMasterWidth, 0, constDividerWidth, size.height);
         
         [[(MainView*)self.mapView containerView] setFrame:CGRectMake(0.0, 0.0, size.width ,size.height + koefficient)];
         [mainViewController.stationsView setFrame:CGRectMake(0, 0, size.width, 44)];
@@ -152,12 +145,6 @@ static float koefficient = 0.0f;
             [self.leftPathController showVerticalPathScrollView];
         }
         
-//        [UIView animateWithDuration:0.5 animations:^{
-//            [self layoutSubviews];
-//
-//        }];
-//        [self adjustMapView];
-        
         [UIView animateWithDuration:0.5 animations:^{
             [self layoutSubviews];
         } completion:^(BOOL finished) {
@@ -168,7 +155,6 @@ static float koefficient = 0.0f;
 
 -(void)hideLeftView
 {
-    
     isLeftShown=NO;
 
     [UIView animateWithDuration:0.5 animations:^{
@@ -176,13 +162,6 @@ static float koefficient = 0.0f;
     } completion:^(BOOL finished) {
 //    [self adjustMapView];
     }];
-
-//    [UIView animateWithDuration:0.5 animations:^{
-//        [self layoutSubviews];
-//        
-//    }];
-//    
-//    [self adjustMapView];
 }
 
 -(void)refreshPath
@@ -221,6 +200,9 @@ static float koefficient = 0.0f;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
+
+
+
 
 //- (void) viewDidLoad {
 //    [super viewDidLoad];

@@ -191,11 +191,13 @@
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    if (fromInterfaceOrientation == UIInterfaceOrientationPortrait) {
-        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 480, 320-86)];
-    } else {
-        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
-    }
+//    if (fromInterfaceOrientation == UIInterfaceOrientationPortrait) {
+//        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 480, 320-86)];
+//    } else {
+//        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
+//    }
+    
+     if (popover) [popover dismissPopoverAnimated:YES];
 }
 
 -(void)showTabBarViewController
@@ -455,9 +457,14 @@
     SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
     controller.delegate = self;
     
-    [popover setPopoverContentSize:CGSizeMake(320, 480)];
-    controller.contentSizeForViewInPopover=CGSizeMake(320, 460);
-    
+    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+        controller.contentSizeForViewInPopover=CGSizeMake(320, 200);
+        [popover setPopoverContentSize:CGSizeMake(320, 220)];
+    } else {
+        controller.contentSizeForViewInPopover=CGSizeMake(320, 460);
+        [popover setPopoverContentSize:CGSizeMake(320, 480)];
+    }
+
     [popover setPopoverContentSize:controller.view.frame.size];
     
     popover = [[UIPopoverController alloc] initWithContentViewController:controller];
@@ -487,10 +494,10 @@
     navcontroller.modalPresentationStyle=UIModalPresentationFormSheet;
     [self presentModalViewController:navcontroller animated:YES];
     
-//    navcontroller.view.superview.autoresizingMask = UIViewAutoresizingFlexibleTopMargin |UIViewAutoresizingFlexibleBottomMargin;
-//    navcontroller.view.superview.frame = CGRectMake(navcontroller.view.superview.frame.origin.x, navcontroller.view.superview.frame.origin.x, 320, 700);
-//    
-//    navcontroller.view.superview.center = self.view.center;
+    //    navcontroller.view.superview.autoresizingMask = UIViewAutoresizingFlexibleTopMargin |UIViewAutoresizingFlexibleBottomMargin;
+    //    navcontroller.view.superview.frame = CGRectMake(navcontroller.view.superview.frame.origin.x, navcontroller.view.superview.frame.origin.x, 320, 700);
+    //
+    //    navcontroller.view.superview.center = self.view.center;
     
     [controller release];
     [navcontroller release];
