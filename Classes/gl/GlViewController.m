@@ -341,9 +341,9 @@ GLfloat gCubeVertexData[216] =
     glUniform1i(uniforms[UNIFORM_SAMPLER], 0);
     float sc = scale;
     if(sc < 3.f) sc = 3.f;
-    if(sc > 12.f) sc = 12.f;
+    if(sc > 50.f) sc = 50.f;
     float W = self.view.bounds.size.width, W2 = W*0.5f, H = self.view.bounds.size.height, H2 = H*0.5f;
-    [rasterLayer drawGlInRect:CGRectMake(128 - W2/scale, 128 - H2/scale, W/scale, H/scale) withScale:sc];
+    [rasterLayer drawGlInRect:CGRectMake(128 - position.x - W2/scale, 128 - position.y - H2/scale, W/scale, H/scale) withScale:sc];
 }
 
 #pragma mark -  OpenGL ES 2 shader compilation

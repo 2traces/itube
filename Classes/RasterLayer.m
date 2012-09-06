@@ -970,7 +970,7 @@
 -(id) initWithRect:(CGRect)rect mapName:(NSString*)mapName {
     if((self = [super init])) {
         allRect = rect;
-        
+        tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
         
         NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         levels = [[NSMutableDictionary alloc] init];
@@ -987,12 +987,16 @@
         NSURL *vurl = [[[NSURL alloc] initFileURLWithPath:rasterPath] autorelease];
         NSString* vurlstr = [vurl absoluteString];
         vloader = [[VectorDownloader alloc] initWithUrl:vurlstr];
-        NSString *url1 = [NSString stringWithFormat:@"http://www.x-provocation.com/maps/%@/OSM", mapName];
-        NSString *url2 = [NSString stringWithFormat:@"http://www.x-provocation.com/maps/%@/RASTER", mapName];
+        NSString *url1 = [NSString stringWithFormat:[appDelegate getDefaultMapUrl1], mapName];
+        NSString *url2 = [NSString stringWithFormat:[appDelegate getDefaultMapUrl2], mapName];
+        //NSString *url1 = [NSString stringWithFormat:@"http://www.x-provocation.com/maps/%@/OSM", mapName];
+        //NSString *url2 = [NSString stringWithFormat:@"http://www.x-provocation.com/maps/%@/RASTER", mapName];
+        //NSString *url1 = [NSString stringWithFormat:@"ftp://skotin:M2prs22l@x-provocation.com/public_html/maps/%@/OSM", mapName];
+        //NSString *url2 = [NSString stringWithFormat:@"ftp://skotin:M2prs22l@x-provocation.com/public_html/maps/%@/RASTER", mapName];
         rloader1 = [[RasterDownloader alloc] initWithUrl:url1];
-        rloader1.altSource = [[NSBundle mainBundle] pathForResource:@"OSM" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+        //rloader1.altSource = [[NSBundle mainBundle] pathForResource:@"OSM" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         rloader2 = [[RasterDownloader alloc] initWithUrl:url2];
-        rloader2.altSource = [[NSBundle mainBundle] pathForResource:@"RASTER" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+        //rloader2.altSource = [[NSBundle mainBundle] pathForResource:@"RASTER" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         dm.vectorDownloader = vloader;
         dm.rasterDownloader = rloader1;
         loader = dm;
@@ -1434,7 +1438,9 @@
     double x1 = rect.origin.x / dx, y1 = rect.origin.y / dy;
     double x2 = (rect.origin.x + rect.size.width) / dx, y2 = (rect.origin.y + rect.size.height) / dy;
     for(int X=x1; X<=x2; X++) {
+        if(X < 0 || X >= size) continue;
         for(int Y=y1; Y<=y2; Y++) {
+            if(Y < 0 || Y >= size) continue;
             BOOL found = NO;
             for (RPiece *p in lev) {
                 if(p->x == X && p->y == Y) {
