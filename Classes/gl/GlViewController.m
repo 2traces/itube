@@ -259,7 +259,7 @@ GLfloat gCubeVertexData[216] =
     
     //self.effect.transform.projectionMatrix = projectionMatrix;
     
-    GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(-W2, -W2, 0.0f);
+    GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(-128, -128, 0.0f);
     //baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _rotation, -1.0f, 1.0f, 0.0f);
     
     // Compute the model view matrix for the object rendered with GLKit
@@ -341,7 +341,7 @@ GLfloat gCubeVertexData[216] =
     glUniform1i(uniforms[UNIFORM_SAMPLER], 0);
     float sc = scale;
     if(sc < 3.f) sc = 3.f;
-    if(sc > 50.f) sc = 50.f;
+    if(sc > 2000.f) sc = 2000.f;
     float W = self.view.bounds.size.width, W2 = W*0.5f, H = self.view.bounds.size.height, H2 = H*0.5f;
     [rasterLayer drawGlInRect:CGRectMake(128 - position.x - W2/scale, 128 - position.y - H2/scale, W/scale, H/scale) withScale:sc];
 }
