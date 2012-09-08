@@ -216,12 +216,29 @@
         glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 20, BUFFER_OFFSET(0));
         glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, 20, BUFFER_OFFSET(12));
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        //glDrawArrays(GL_LINE_LOOP, 0, 4);
     }
 }
 
 -(void) drawGlRect:(CGRect)r
 {
-    
+    float plane0[4] = {r.size.height, 0, 0, -r.origin.x * r.size.height};
+    float plane1[4] = {0, -r.size.width, 0, r.size.width * (r.origin.y+r.size.height)};
+    float plane2[4] = {-r.size.height, 0, 0, r.size.height * (r.origin.x+r.size.width)};
+    float plane3[4] = {0, r.size.width, 0, -r.size.width * r.origin.y};
+    glClipPlanef(GL_CLIP_PLANE0, plane0);
+    glClipPlanef(GL_CLIP_PLANE1, plane1);
+    glClipPlanef(GL_CLIP_PLANE2, plane2);
+    glClipPlanef(GL_CLIP_PLANE3, plane3);
+    glEnable(GL_CLIP_PLANE0);
+    glEnable(GL_CLIP_PLANE1);
+    glEnable(GL_CLIP_PLANE2);
+    glEnable(GL_CLIP_PLANE3);
+    [self drawGl];
+    glDisable(GL_CLIP_PLANE0);
+    glDisable(GL_CLIP_PLANE1);
+    glDisable(GL_CLIP_PLANE2);
+    glDisable(GL_CLIP_PLANE3);
 }
 
 -(void) skip
