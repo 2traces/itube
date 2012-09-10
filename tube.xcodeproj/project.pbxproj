@@ -66,6 +66,7 @@
 		BC1061A214D7DCDB00B08E63 /* PathDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1061A114D7DCDB00B08E63 /* PathDrawView.m */; };
 		BC108FF215D8F38E00B81989 /* LeftiPadPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC108FF115D8F38E00B81989 /* LeftiPadPathViewController.m */; };
 		BC14872815CD50C200DA7F99 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC14872715CD50C200DA7F99 /* MainViewController.xib */; };
+		BC1898C615F5E98800921F5F /* StatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1898C515F5E98800921F5F /* StatusViewController.m */; };
 		BC28950614F5E0FD0054F9EB /* middle_cell_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BC28950414F5E0FD0054F9EB /* middle_cell_bg.png */; };
 		BC28950714F5E0FD0054F9EB /* middle_cell_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC28950514F5E0FD0054F9EB /* middle_cell_bg@2x.png */; };
 		BC28951E14F621590054F9EB /* high_language_table_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = BC28950814F621560054F9EB /* high_language_table_cell.png */; };
@@ -389,6 +390,7 @@
 		BCAF2D1E15BEA78000BB672E /* high_first_and_last_cell_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BCAF2D1C15BEA77300BB672E /* high_first_and_last_cell_bg.png */; };
 		BCAF2D1F15BEA78000BB672E /* high_first_and_last_cell_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCAF2D1D15BEA77900BB672E /* high_first_and_last_cell_bg@2x.png */; };
 		BCAF3A39153B1DE6007B0826 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = BCAF3A38153B1DE6007B0826 /* placeholder.png */; };
+		BCB33A5D15F77F8F00692789 /* StatusDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB33A5C15F77F8F00692789 /* StatusDownloader.m */; };
 		BCB362E014E6C31C0066FB3A /* StationTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB362DF14E6C31C0066FB3A /* StationTextField.m */; };
 		BCCC307C14E4DAAB00102064 /* buy_button.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCC306E14E4DAAA00102064 /* buy_button.png */; };
 		BCCC307D14E4DAAB00102064 /* buy_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCC306F14E4DAAA00102064 /* buy_button@2x.png */; };
@@ -526,6 +528,8 @@
 		BC108FF015D8F38E00B81989 /* LeftiPadPathViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftiPadPathViewController.h; sourceTree = "<group>"; };
 		BC108FF115D8F38E00B81989 /* LeftiPadPathViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftiPadPathViewController.m; sourceTree = "<group>"; };
 		BC14872715CD50C200DA7F99 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainViewController.xib; path = Resources/MainViewController.xib; sourceTree = "<group>"; };
+		BC1898C415F5E98800921F5F /* StatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusViewController.h; sourceTree = "<group>"; };
+		BC1898C515F5E98800921F5F /* StatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusViewController.m; sourceTree = "<group>"; };
 		BC28950414F5E0FD0054F9EB /* middle_cell_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = middle_cell_bg.png; path = images/middle_cell_bg.png; sourceTree = "<group>"; };
 		BC28950514F5E0FD0054F9EB /* middle_cell_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "middle_cell_bg@2x.png"; path = "images/middle_cell_bg@2x.png"; sourceTree = "<group>"; };
 		BC28950814F621560054F9EB /* high_language_table_cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = high_language_table_cell.png; path = images/high_language_table_cell.png; sourceTree = "<group>"; };
@@ -891,6 +895,8 @@
 		BCAF2D1C15BEA77300BB672E /* high_first_and_last_cell_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = high_first_and_last_cell_bg.png; path = images/high_first_and_last_cell_bg.png; sourceTree = "<group>"; };
 		BCAF2D1D15BEA77900BB672E /* high_first_and_last_cell_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "high_first_and_last_cell_bg@2x.png"; path = "images/high_first_and_last_cell_bg@2x.png"; sourceTree = "<group>"; };
 		BCAF3A38153B1DE6007B0826 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = placeholder.png; path = images/placeholder.png; sourceTree = "<group>"; };
+		BCB33A5B15F77F8F00692789 /* StatusDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusDownloader.h; sourceTree = "<group>"; };
+		BCB33A5C15F77F8F00692789 /* StatusDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusDownloader.m; sourceTree = "<group>"; };
 		BCB362DE14E6C31C0066FB3A /* StationTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationTextField.h; sourceTree = "<group>"; };
 		BCB362DF14E6C31C0066FB3A /* StationTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationTextField.m; sourceTree = "<group>"; };
 		BCCC306E14E4DAAA00102064 /* buy_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buy_button.png; path = images/buy_button.png; sourceTree = "<group>"; };
@@ -1014,6 +1020,8 @@
 				BCCC309D14E4F0F000102064 /* Cells */,
 				BCCC309A14E4DB4600102064 /* MyNavigationBar.h */,
 				BCCC309B14E4DB4600102064 /* MyNavigationBar.m */,
+				BC1898C415F5E98800921F5F /* StatusViewController.h */,
+				BC1898C515F5E98800921F5F /* StatusViewController.m */,
 				BC76ACEE151B1A60009BDABC /* SSZipArchive.m */,
 				BC76ACEF151B1A60009BDABC /* SSZipArchive.h */,
 				BC3D14C714C3382A0059A17E /* SelectingTabBarViewController.h */,
@@ -1063,6 +1071,8 @@
 				289233A50DB2D0840083E9F9 /* MainView.m */,
 				289233A80DB2D0DB0083E9F9 /* MainViewController.h */,
 				289233A90DB2D0DB0083E9F9 /* MainViewController.m */,
+				BCB33A5B15F77F8F00692789 /* StatusDownloader.h */,
+				BCB33A5C15F77F8F00692789 /* StatusDownloader.m */,
 				BC108FF015D8F38E00B81989 /* LeftiPadPathViewController.h */,
 				BC108FF115D8F38E00B81989 /* LeftiPadPathViewController.m */,
 				BC8C71EC14D98F810038EE0F /* PathScrollView.h */,
@@ -2145,6 +2155,8 @@
 				BCDFF0F415CCDE1600E004E6 /* TubeSplitViewController.m in Sources */,
 				BC108FF215D8F38E00B81989 /* LeftiPadPathViewController.m in Sources */,
 				BC7D9C8715EB4C60005684E4 /* CustomPopoverBackgroundView.m in Sources */,
+				BC1898C615F5E98800921F5F /* StatusViewController.m in Sources */,
+				BCB33A5D15F77F8F00692789 /* StatusDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

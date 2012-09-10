@@ -19,6 +19,7 @@
 @class TopTwoStationsView;
 @class VertPathScrollView;
 @class TubeSplitViewController;
+@class StatusViewController;
 
 @interface MainViewController : UIViewController <SelectingTabBarProtocol,UIScrollViewDelegate,MBProgressHUDDelegate,PathScrollViewProtocol,UIPopoverControllerDelegate,SettingsViewControllerDelegate> {
     
@@ -31,6 +32,9 @@
     PathScrollView *horizontalPathesScrollView;
     VertPathScrollView *pathScrollView;
     TubeSplitViewController *spltViewController;
+    StatusViewController *statusViewController;
+    
+    UIButton *changeViewButton;
     
     NSTimer *timer;
     UIPopoverController *popover;
@@ -45,6 +49,8 @@
 @property (nonatomic, retain) VertPathScrollView *pathScrollView;
 @property (nonatomic, retain) NSTimer *timer;
 @property (nonatomic, retain) TubeSplitViewController *spltViewController;
+@property (nonatomic, retain) StatusViewController *statusViewController;
+@property (nonatomic, retain) UIButton *changeViewButton;
 
 //- (IBAction)showInfo;
 -(void)pressedSelectFromStation;
@@ -55,8 +61,6 @@
 -(void)resetBothStations;
 -(FastAccessTableViewController*)showTableView;
 -(void)removeTableView;
-
 -(void)changeMapTo:(NSString*)newMap andCity:(NSString*)cityName;
-
 
 @end

@@ -20,6 +20,7 @@
 #import "UIColor-enhanced.h"
 #import "LeftiPadPathViewController.h"
 #import "CustomPopoverBackgroundView.h"
+#import "StatusViewController.h"
 
 #define FromStation 0
 #define ToStation 1
@@ -88,7 +89,7 @@
                     }
                 }
             }
-        } 
+        }
     }
 }
 
@@ -105,6 +106,8 @@
 @synthesize pathScrollView;
 @synthesize timer;
 @synthesize spltViewController;
+@synthesize statusViewController;
+@synthesize changeViewButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	DLog(@"initWithNibName");
@@ -125,7 +128,7 @@
     } else {
         [stationsView.secondStation resignFirstResponder];
     }
-
+    
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -135,15 +138,39 @@
     
     [(MainView*)self.view viewInit:self];
     
+    if (!IS_IPAD) {
+//        [self addStatusView];
+    }
+    
     TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] init];
     self.stationsView = twoStationsView;
     [(MainView*)self.view addSubview:twoStationsView];
     [twoStationsView release];
     
     [self performSelector:@selector(refreshInApp) withObject:nil afterDelay:0.2];
-        
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(languageChanged:) name:@"kLangChanged" object:nil];
+    
 }
+
+// --- status lines
+
+-(void)addStatusView
+{
+    StatusViewController *statusView = [[StatusViewController alloc] init];
+    statusView.view.frame = CGRectMake(0, -400, 320, 400);
+    statusView.view.backgroundColor = [UIColor lightGrayColor];
+    [(MainView*)self.view addSubview:statusView.view];
+
+    self.statusViewController =statusView;
+    [statusView release];
+    
+    [self.statusViewController recieveStatusInfo];
+}
+
+
+
+// --- status lines
 
 -(void)refreshInApp
 {
@@ -183,21 +210,57 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     if (IS_IPAD) {
-        return (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+        return YES;
     } else {
-        return (interfaceOrientation == UIInterfaceOrientationPortrait);
+        return (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+    }
+}
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    if (IS_IPAD) {
+
+    } else {
+        if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+            self.stationsView.hidden=NO;
+            self.horizontalPathesScrollView.hidden=NO;
+            self.changeViewButton.hidden=NO;
+            
+            tubeAppDelegate * delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+            if ([[[delegate cityMap] activePath] count]>0) {
+                if (!([[[delegate cityMap] activePath] count]==1 && [[[[delegate cityMap] activePath] objectAtIndex:0] isKindOfClass:[Transfer class]])) {
+                    if (!IS_IPAD) {
+                        [stationsView transitToPathView];
+                        [self showHorizontalPathesScrollView];
+                    }
+                }
+            }
+            
+            [(MainView*)self.view changeShadowFrameToRect:CGRectMake(0.0, 44.0, 320.0, 61.0)];
+                
+        } else {
+            self.stationsView.hidden=YES;
+            self.horizontalPathesScrollView.hidden=YES;
+            self.changeViewButton.hidden=YES;
+            if (self.pathScrollView) {
+                [self removeVerticalPathView];
+            }
+            [(MainView*)self.view changeShadowFrameToRect:CGRectMake(0.0, 0.0, 480.0, 61.0)];
+        }
     }
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-//    if (fromInterfaceOrientation == UIInterfaceOrientationPortrait) {
-//        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 480, 320-86)];
-//    } else {
-//        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
-//    }
-    
-     if (popover) [popover dismissPopoverAnimated:YES];
+    if (IS_IPAD) {
+        if (popover) [popover dismissPopoverAnimated:YES];
+    } else {
+        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+            [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 0, 480, 320-20)];
+        } else {
+            [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 40, 320, 480-60)];
+        }
+    }
 }
 
 -(void)showTabBarViewController
@@ -228,12 +291,12 @@
 
 -(UIButton*)createChangeButton
 {
-    UIButton *changeViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *changeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *img = [UIImage imageNamed:@"switch_to_path.png"];
     UIImage *imgh = [UIImage imageNamed:@"switch_to_path_high.png"];
-    [changeViewButton setImage:img forState:UIControlStateNormal];
-    [changeViewButton setImage:imgh forState:UIControlStateHighlighted];
-    [changeViewButton addTarget:self action:@selector(changeMapToPathView:) forControlEvents:UIControlEventTouchUpInside];
+    [changeButton setImage:img forState:UIControlStateNormal];
+    [changeButton setImage:imgh forState:UIControlStateHighlighted];
+    [changeButton addTarget:self action:@selector(changeMapToPathView:) forControlEvents:UIControlEventTouchUpInside];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
@@ -242,10 +305,9 @@
     CGSize dateSize = [dateString sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
     [formatter release];
     
-    [changeViewButton setFrame:CGRectMake(320.0-12.0-dateSize.width-img.size.width , 66 , img.size.width, img.size.height)];
-    [changeViewButton setTag:333];
+    [changeButton setFrame:CGRectMake(320.0-12.0-dateSize.width-img.size.width , 66 , img.size.width, img.size.height)];
     
-    return changeViewButton;
+    return changeButton;
 }
 
 -(void)showHorizontalPathesScrollView
@@ -264,8 +326,8 @@
         if (IS_IPAD) {
             
         } else {
-            UIButton *changeViewButton = [self createChangeButton];
-            [(MainView*)self.view addSubview:changeViewButton];
+            self.changeViewButton = [self createChangeButton];
+            [(MainView*)self.view addSubview:self.changeViewButton];
         }
         
     } else {
@@ -315,7 +377,7 @@
     NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
     [prefs setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"scrollHelp"]+1 forKey:@"scrollHelp"];
     [prefs synchronize];
-
+    
     
     [self.timer invalidate];
     self.timer=nil;
@@ -328,7 +390,7 @@
     [self.horizontalPathesScrollView removeFromSuperview];
     self.horizontalPathesScrollView=nil;
     
-    [[(MainView*)self.view viewWithTag:333] removeFromSuperview];
+    [self.changeViewButton removeFromSuperview];
 }
 
 #pragma mark - Vertical path views
@@ -368,7 +430,7 @@
         [(MainView*)self.view bringSubviewToFront:pathScrollView];
         [(MainView*)self.view bringSubviewToFront:self.stationsView];
         [(MainView*)self.view bringSubviewToFront:self.horizontalPathesScrollView];
-        [(MainView*)self.view bringSubviewToFront:[(MainView*)self.view viewWithTag:333]];
+        [(MainView*)self.view bringSubviewToFront:self.changeViewButton];
         
         UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
         shadow.frame = CGRectMake(0,66, 320, 61);
@@ -376,26 +438,32 @@
         shadow.tag = 2321;
         [(MainView*)self.view addSubview:shadow];
         
-        [(UIButton*)[(MainView*)self.view viewWithTag:333] setImage:[UIImage imageNamed:@"switch_to_map.png"] forState:UIControlStateNormal];
-        [(UIButton*)[(MainView*)self.view viewWithTag:333] setImage:[UIImage imageNamed:@"switch_to_map_high.png"] forState:UIControlStateHighlighted];
+        [self.changeViewButton setImage:[UIImage imageNamed:@"switch_to_map.png"] forState:UIControlStateNormal];
+        [self.changeViewButton setImage:[UIImage imageNamed:@"switch_to_map_high.png"] forState:UIControlStateHighlighted];
         
     } else {
         
-        [[(MainView*)self.view viewWithTag:2321] removeFromSuperview];
+        [self removeVerticalPathView];
         
-        [self.pathScrollView removeFromSuperview];
-        self.pathScrollView=nil;
-        [(UIButton*)[(MainView*)self.view viewWithTag:333] setImage:[UIImage imageNamed:@"switch_to_path.png"] forState:UIControlStateNormal];
-        [(UIButton*)[(MainView*)self.view viewWithTag:333] setImage:[UIImage imageNamed:@"switch_to_path_high.png"] forState:UIControlStateHighlighted];
     }
+}
+
+-(void)removeVerticalPathView
+{
+    [[(MainView*)self.view viewWithTag:2321] removeFromSuperview];
+    
+    [self.pathScrollView removeFromSuperview];
+    self.pathScrollView=nil;
+    [self.changeViewButton setImage:[UIImage imageNamed:@"switch_to_path.png"] forState:UIControlStateNormal];
+    [self.changeViewButton setImage:[UIImage imageNamed:@"switch_to_path_high.png"] forState:UIControlStateHighlighted];
 }
 
 -(void)showiPadLeftPathView
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-    if (appDelegate.cityMap.activeExtent.size.width!=0) {
+//    if (appDelegate.cityMap.activeExtent.size.width!=0) {
         [spltViewController showLeftView];
-    }
+//    }
 }
 
 -(void)hideiPadLeftPathView
@@ -464,7 +532,7 @@
         controller.contentSizeForViewInPopover=CGSizeMake(320, 460);
         [popover setPopoverContentSize:CGSizeMake(320, 480)];
     }
-
+    
     [popover setPopoverContentSize:controller.view.frame.size];
     
     popover = [[UIPopoverController alloc] initWithContentViewController:controller];
@@ -599,14 +667,18 @@
     tubeAppDelegate * delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
     if ([[[delegate cityMap] activePath] count]>0) {
         if (!([[[delegate cityMap] activePath] count]==1 && [[[[delegate cityMap] activePath] objectAtIndex:0] isKindOfClass:[Transfer class]])) {
-            [stationsView transitToPathView];
             if (IS_IPAD) {
+                [stationsView transitToPathView];
                 [spltViewController refreshPath];
             } else {
-                [self showHorizontalPathesScrollView];
+                if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+                    [stationsView transitToPathView];
+                    [self showHorizontalPathesScrollView];
+                }
             }
         }
     }
+    
     mainView.mapView.stationSelected=false;
 }
 
@@ -655,7 +727,7 @@
 -(void)pressedSelectFromStation
 {
     currentSelection=FromStation;
-
+    
     if (popover)
         [popover dismissPopoverAnimated:YES];
     
@@ -675,7 +747,7 @@
         
         popover = [[UIPopoverController alloc] initWithContentViewController:controller];
         popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
-//        [popover presentPopoverFromRect:CGRectMake(self.stationsView.firstStation.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        //        [popover presentPopoverFromRect:CGRectMake(self.stationsView.firstStation.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
         [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.firstStation.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
         [controller release];
     }
@@ -684,10 +756,10 @@
 -(void)pressedSelectToStation
 {
     currentSelection=ToStation;
-
+    
     if (popover)
         [popover dismissPopoverAnimated:YES];
-
+    
     if (!IS_IPAD)
     {
         [self showTabBarViewController];
@@ -699,7 +771,7 @@
         
         [popover setPopoverContentSize:CGSizeMake(320, 480)];
         controller.contentSizeForViewInPopover=CGSizeMake(320, 460);
-            
+        
         popover = [[UIPopoverController alloc] initWithContentViewController:controller];
         popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
         [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.secondStation.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
@@ -721,7 +793,7 @@
     currentSelection=ToStation;
     [stationsView setFromStation:self.fromStation];
     [self returnFromSelection:[NSArray array]];
-
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kPathCleared" object:nil];
 }
 
@@ -739,7 +811,7 @@
     [self returnFromSelection2:[NSArray array]];
     
     currentSelection=tempSelection;
-
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kPathCleared" object:nil];
 }
 

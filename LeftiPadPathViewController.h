@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PathScrollView.h"
 #import "VertPathScrollView.h"
+#import "StatusViewController.h"
 
 @interface LeftiPadPathViewController : UIViewController <PathScrollViewProtocol>
 {
@@ -19,6 +20,7 @@
 @property (nonatomic,retain) PathScrollView *horizontalPathesScrollView;
 @property (nonatomic,retain) NSTimer *timer;
 @property (nonatomic,retain) VertPathScrollView *pathScrollView;
+@property (nonatomic,retain) StatusViewController *statusViewController;
 
 -(void)showHorizontalPathesScrollView;
 -(void)showVerticalPathScrollView;

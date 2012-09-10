@@ -17,6 +17,7 @@
 @synthesize horizontalPathesScrollView;
 @synthesize timer;
 @synthesize pathScrollView;
+@synthesize statusViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +38,8 @@
     toolbar.autoresizesSubviews = YES;
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:toolbar];
+    
+    [self addStatusView];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -57,6 +60,19 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+-(void)addStatusView
+{
+    StatusViewController *statusView = [[StatusViewController alloc] init];
+    statusView.view.frame = CGRectMake(0, 44, 320, 600);
+    [self.view addSubview:statusView.view];
+    self.statusViewController =statusView;
+    statusView.view.tag=10001;
+    [statusView release];
+    
+    [self.statusViewController recieveStatusInfo];
+}
+
 
 #pragma mark - Horizontal path views
 
@@ -167,6 +183,7 @@
         [self.pathScrollView drawPathScrollView];
         
         [self.view addSubview:self.pathScrollView];
+        self.pathScrollView.tag=10002;
         
         UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
         shadow.frame = CGRectMake(0, 44, 320, 61);
@@ -174,6 +191,49 @@
         shadow.tag = 2321;
         [self.view addSubview:shadow];
     }
+}
+
+-(UIButton*)createSwitchButton
+{
+    UIButton *changeViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *img = [UIImage imageNamed:@"switch_to_path.png"];
+    UIImage *imgh = [UIImage imageNamed:@"switch_to_path_high.png"];
+    [changeViewButton setImage:img forState:UIControlStateNormal];
+    [changeViewButton setImage:imgh forState:UIControlStateHighlighted];
+    [changeViewButton addTarget:self action:@selector(changeMapToPathView:) forControlEvents:UIControlEventTouchUpInside];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateStyle:NSDateFormatterNoStyle];
+    NSString *dateString = [formatter stringFromDate:[NSDate date]];
+    CGSize dateSize = [dateString sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
+    [formatter release];
+    
+    [changeViewButton setFrame:CGRectMake(320.0-12.0-dateSize.width-img.size.width , 66 , img.size.width, img.size.height)];
+    [changeViewButton setTag:333];
+    
+    return changeViewButton;
+}
+
+-(void)statusInfoExits
+{
+    UIButton *switchViewButton = [self createSwitchButton];
+    [self.view addSubview:switchViewButton];
+}
+
+-(IBAction)changeMapToPathView:(id)sender
+{
+    [self.view exchangeSubviewAtIndex:1 withSubviewAtIndex:2];
+}
+
+-(void)bringStatusToFront
+{
+//    [self.view exchangeSubviewAtIndex:1 withSubviewAtIndex:2];
+}
+
+-(void)bringPathToFront
+{
+    
 }
 
 @end

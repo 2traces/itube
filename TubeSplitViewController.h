@@ -26,4 +26,6 @@
 @property (nonatomic,retain) MainViewController *mainViewController;
 @property (nonatomic,retain) LeftiPadPathViewController *leftPathController;
 
+-(void)refreshPath;
+
 @end

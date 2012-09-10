@@ -62,7 +62,7 @@ NSInteger const toolbarWidth=320;
     } else {
         scrollSize = CGRectMake(0,44,(320),(480-64));
         settingsRect=CGRectMake(285, 420, 27, 27);
-        shadowRect = CGRectMake(0, 44, 320, 61);
+        shadowRect = CGRectMake(0, 44, 480, 61);
     }
     
     self.vcontroller = vc;
@@ -146,7 +146,7 @@ NSInteger const toolbarWidth=320;
     if (IS_IPAD) {
         [destinationButton setFrame:CGRectMake(1024, 190, 96, 96)];
     } else {
-        [destinationButton setFrame:CGRectMake(315, 190, 96, 96)];
+        [destinationButton setFrame:CGRectMake(475, 190, 96, 96)];
     }
     [self addSubview:sourceButton];
     [self addSubview:destinationButton];
@@ -161,6 +161,7 @@ NSInteger const toolbarWidth=320;
     UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
     shadow.frame = shadowRect;
     [self addSubview:shadow];
+    shadow.tag=717;
     
     NSTimer *timer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(supervisor) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
@@ -252,7 +253,7 @@ NSInteger const toolbarWidth=320;
     if (IS_IPAD) {
         p.x = 1064;
     } else {
-        p.x = 360;
+        p.x = 520;
     }
     [UIView animateWithDuration:0.125f animations:^{ destinationButton.center = p; }];
 }
@@ -325,6 +326,12 @@ NSInteger const toolbarWidth=320;
     SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];
     [self.vcontroller presentModalViewController:controller animated:YES];
     [controller release];
+}
+
+-(void)changeShadowFrameToRect:(CGRect)rect
+{
+    UIImageView *shadow = (UIImageView*)[self viewWithTag:717];
+    shadow.frame = rect;
 }
 
 @end
