@@ -11,6 +11,7 @@
 #import "CityMap.h"
 #import "TubeAppIAPHelper.h"
 #import "TubeSplitViewController.h"
+#import "StatusViewController.h"
 
 @implementation tubeAppDelegate
 
@@ -203,6 +204,15 @@ void uncaughtExceptionHandler(NSException *exception) {
     [self resizeAlertView:alertView];
 }
 
+//- (void)applicationDidBecomeActive:(UIApplication *)application
+//{
+//    [self.mainViewController.statusViewController refreshStatusInfo];
+//}
+
+-(void)applicationWillEnterForeground:(UIApplication *)application
+{
+    [self.mainViewController.statusViewController refreshStatusInfo];
+}
 
 -(void)applicationDidEnterBackground:(UIApplication *)application
 {

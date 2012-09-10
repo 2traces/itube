@@ -14,7 +14,15 @@
 @property (nonatomic,retain) UISwipeGestureRecognizer *swipeRecognizerU;
 @property (nonatomic,retain) UISwipeGestureRecognizer *swipeRecognizerD;
 @property (nonatomic,retain) UITextView *textView;
+@property (nonatomic,readonly) BOOL isShown;
+@property (nonatomic,retain) NSString *infoURL;
+@property (nonatomic,retain) UIImageView *shadowView;
 
 -(void)recieveStatusInfo;
+-(void)refreshStatusInfo;
+-(void)showInitialSizeView;
+-(void)hideInitialSizeView;
+-(void)showFullSizeView;
+-(void)hideFullSizeView;
 
 @end

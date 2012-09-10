@@ -139,13 +139,20 @@
     [(MainView*)self.view viewInit:self];
     
     if (!IS_IPAD) {
-//        [self addStatusView];
+        NSString *url = [self getStatusInfoURL];
+        if (url) {
+            [self addStatusView:url];
+        }
     }
     
     TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] init];
     self.stationsView = twoStationsView;
     [(MainView*)self.view addSubview:twoStationsView];
     [twoStationsView release];
+    
+    UISwipeGestureRecognizer *swipeRecognizerD = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];
+    [swipeRecognizerD setDirection:UISwipeGestureRecognizerDirectionDown];
+    [self.stationsView addGestureRecognizer:swipeRecognizerD];
     
     [self performSelector:@selector(refreshInApp) withObject:nil afterDelay:0.2];
     
@@ -155,20 +162,43 @@
 
 // --- status lines
 
--(void)addStatusView
+-(NSString*)getStatusInfoURL
 {
-    StatusViewController *statusView = [[StatusViewController alloc] init];
-    statusView.view.frame = CGRectMake(0, -400, 320, 400);
-    statusView.view.backgroundColor = [UIColor lightGrayColor];
-    [(MainView*)self.view addSubview:statusView.view];
-
-    self.statusViewController =statusView;
-    [statusView release];
+    NSString *url;
     
-    [self.statusViewController recieveStatusInfo];
+    NSString *currentMap = [[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] thisMapName];
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    
+    NSArray *mapIDs = [dict allKeys];
+    for (NSString* mapID in mapIDs) {
+        NSDictionary *map = [dict objectForKey:mapID];
+        if ([[map objectForKey:@"filename"] isEqual:currentMap]) {
+            url = [map objectForKey:@"statusURL"];
+        }
+    }
+    
+    return url;
 }
 
+-(void)addStatusView:(NSString*)url
+{
+    StatusViewController *statusView = [[StatusViewController alloc] init];
+    [(MainView*)self.view addSubview:statusView.view];
+    self.statusViewController =statusView;
+    self.statusViewController.infoURL=url;
+    [self.statusViewController recieveStatusInfo];
+    [statusView release];    
+}
 
+-(void)handleSwipeDown:(UISwipeGestureRecognizer*)recognizer
+{
+    if (!self.horizontalPathesScrollView && self.statusViewController) {
+        [StatusViewController cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideInitialSizeView) object:nil];
+        [self.statusViewController showFullSizeView];
+    }
+}
 
 // --- status lines
 
@@ -245,6 +275,11 @@
             if (self.pathScrollView) {
                 [self removeVerticalPathView];
             }
+            
+            if (self.statusViewController.isShown) {
+                [self.statusViewController hideFullSizeView];
+            }
+            
             [(MainView*)self.view changeShadowFrameToRect:CGRectMake(0.0, 0.0, 480.0, 61.0)];
         }
     }
@@ -674,6 +709,9 @@
                 if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
                     [stationsView transitToPathView];
                     [self showHorizontalPathesScrollView];
+                    if (self.statusViewController.isShown) {
+                        [self.statusViewController hideFullSizeView];
+                    }
                 }
             }
         }

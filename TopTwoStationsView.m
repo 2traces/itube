@@ -21,8 +21,8 @@
 #define iPhoneWidth 320.0
 #define iPhoneHeight 480.0
 #define iPhoneTbHeight 44.0
-#define iPhoneFieldWidth 160.0
-#define iPhoneFldButton 130.0
+#define iPhoneFieldWidth 160.0 // 160
+#define iPhoneFldButton 130.0 // 130
 
 @implementation TopTwoStationsView
 
