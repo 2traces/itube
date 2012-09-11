@@ -2254,7 +2254,7 @@
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "tube-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = tube;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2269,7 +2269,7 @@
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "tube-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = tube;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

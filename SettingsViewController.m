@@ -84,15 +84,15 @@
         [product setObject:mapID forKey:@"prodID"];
         
         if ([mapID isEqual:@"default"]) {
-            [product setObject:[NSString stringWithString:@"D"] forKey:@"status"];
+            [product setObject:@"D" forKey:@"status"];
         } else if ([self isProductPurchased:mapID]) {
             if ([self isProductInstalled:[product valueForKey:@"filename"]]) {
-                [product setObject:[NSString stringWithString:@"I"] forKey:@"status"];
+                [product setObject:@"I" forKey:@"status"];
             } else {
-                [product setObject:[NSString stringWithString:@"P"] forKey:@"status"];
+                [product setObject:@"P" forKey:@"status"];
             }
         } else {
-            [product setObject:[NSString stringWithString:@"Z"] forKey:@"status"];
+            [product setObject:@"Z" forKey:@"status"];
         };
         
         [mapsInfoArray addObject:product];
@@ -780,7 +780,7 @@
 -(BOOL)isProductStatusDownloading:(NSString*)prodID
 {
     for (NSMutableDictionary *map in self.maps) {
-        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:[NSString stringWithString:@"N"]]) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:@"N"]) {
             return YES;
         }
     }
@@ -791,7 +791,7 @@
 -(BOOL)isProductStatusInstalled:(NSString*)prodID
 {
     for (NSMutableDictionary *map in self.maps) {
-        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:[NSString stringWithString:@"I"]]) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:@"I"]) {
             return YES;
         }
     }
@@ -802,7 +802,7 @@
 -(BOOL)isProductStatusPurchased:(NSString*)prodID
 {
     for (NSMutableDictionary *map in self.maps) {
-        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:[NSString stringWithString:@"P"]]) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:@"P"]) {
             return YES;
         }
     }
@@ -813,7 +813,7 @@
 -(BOOL)isProductStatusAvailable:(NSString*)prodID
 {
     for (NSMutableDictionary *map in self.maps) {
-        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:[NSString stringWithString:@"V"]]) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:@"V"]) {
             return YES;
         }
     }
@@ -1086,7 +1086,7 @@
         if ([[map valueForKey:@"status"] isEqual:@"Z"]) {
             for (SKProduct *product in [TubeAppIAPHelper sharedHelper].products) {
                 if ([product.productIdentifier isEqual:[map valueForKey:@"prodID"]]) {
-                    [map setObject:[NSString stringWithString:@"V"] forKey:@"status"];
+                    [map setObject:@"V" forKey:@"status"];
                     
                     [numberFormatter setLocale:product.priceLocale];
                     NSString *formattedString = [numberFormatter stringFromNumber:product.price];
@@ -1137,8 +1137,8 @@
 -(void)markProductAsPurchased:(NSString*)prodID
 {
     for (NSMutableDictionary *map in self.maps) {
-        if ([[map valueForKey:@"prodID"] isEqual:prodID] && ([[map valueForKey:@"status"] isEqual:[NSString stringWithString:@"V"]] || [[map valueForKey:@"status"] isEqual:[NSString stringWithString:@"Z"]]) ) {
-            [map setObject:[NSString stringWithString:@"P"] forKey:@"status"];
+        if ([[map valueForKey:@"prodID"] isEqual:prodID] && ([[map valueForKey:@"status"] isEqual:@"V"] || [[map valueForKey:@"status"] isEqual:@"Z"]) ) {
+            [map setObject:@"P" forKey:@"status"];
         }
     }
 }
@@ -1147,7 +1147,7 @@
 {
     for (NSMutableDictionary *map in self.maps) {
         if ([[map valueForKey:@"prodID"] isEqual:prodID]) {
-            [map setObject:[NSString stringWithString:@"I"] forKey:@"status"];
+            [map setObject:@"I" forKey:@"status"];
         }
     }
 }

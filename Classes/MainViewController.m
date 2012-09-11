@@ -153,6 +153,7 @@
     UISwipeGestureRecognizer *swipeRecognizerD = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];
     [swipeRecognizerD setDirection:UISwipeGestureRecognizerDirectionDown];
     [self.stationsView addGestureRecognizer:swipeRecognizerD];
+
     
     [self performSelector:@selector(refreshInApp) withObject:nil afterDelay:0.2];
     

@@ -64,18 +64,12 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [cacheDir stringByAppendingPathComponent:imageName];
-    
-//    [self.activeDownload writeToFile:path atomically:YES];
-    
     NSString *text = [[[NSString alloc] initWithData:self.activeDownload encoding:NSUTF8StringEncoding] autorelease];
     
     [delegate statusInfoDidLoad:text];
     
     self.activeDownload = nil;
     self.imageConnection = nil;
-    
 }
 
 @end

@@ -27,5 +27,7 @@
 @property (nonatomic,retain) LeftiPadPathViewController *leftPathController;
 
 -(void)refreshPath;
+-(void)showLeftView;
+-(void)hideLeftView;
 
 @end

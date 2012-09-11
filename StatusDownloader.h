@@ -34,6 +34,6 @@
 
 @protocol StatusDownloaderDelegate
 
-- (void)statusInfoDidLoad;
+- (void)statusInfoDidLoad:(NSString*)info;
 
 @end

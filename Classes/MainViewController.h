@@ -62,5 +62,8 @@
 -(FastAccessTableViewController*)showTableView;
 -(void)removeTableView;
 -(void)changeMapTo:(NSString*)newMap andCity:(NSString*)cityName;
+-(StationListViewController*)showiPadLiveSearchView;
+-(void)showiPadSettingsModalView;
+-(void)showiPadLeftPathView;
 
 @end
