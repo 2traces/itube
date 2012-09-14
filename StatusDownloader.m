@@ -66,7 +66,7 @@
 {
     NSString *text = [[[NSString alloc] initWithData:self.activeDownload encoding:NSUTF8StringEncoding] autorelease];
     
-    [delegate statusInfoDidLoad:text];
+    [delegate statusInfoDidLoad:text server:self];
     
     self.activeDownload = nil;
     self.imageConnection = nil;

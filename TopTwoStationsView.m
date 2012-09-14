@@ -147,7 +147,7 @@
         
         UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
         [button3 addTarget:self action:@selector(showiPadLeftPathView) forControlEvents:UIControlEventTouchUpInside];
-        [button3 setImage:[UIImage imageNamed:@"close_ipad_button.png"] forState:UIControlStateNormal];
+        [button3 setImage:[UIImage imageNamed:@"inv_close_ipad_button.png"] forState:UIControlStateNormal];
         button3.frame = CGRectMake(5, 5, 35, 38);
         self.leftButton=button3;
         self.leftButton.userInteractionEnabled=YES;
@@ -248,7 +248,7 @@
     }
 }
 
--(void)adjustSubviews
+-(void)adjustSubviews:(UIInterfaceOrientation)interfaceOrientation
 {
     if (IS_IPAD) {
         firstStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFieldWidth, iPadTbHeight);
@@ -259,6 +259,20 @@
         
         CGFloat desireOrigin = (secondStation.frame.origin.x - firstStation.frame.origin.x - firstStation.frame.size.width)/2.0+7.0;        
         arrowView.frame = CGRectMake(secondStation.frame.origin.x-desireOrigin,15, arrowView.frame.size.width, arrowView.frame.size.height);
+        
+        if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+            if (self.frame.size.width<iPadHeight) {
+                [self.leftButton setImage:[UIImage imageNamed:@"close_ipad_button.png"] forState:UIControlStateNormal];
+            } else {
+                [self.leftButton setImage:[UIImage imageNamed:@"inv_close_ipad_button.png"] forState:UIControlStateNormal];
+            }
+        } else {
+            if (self.frame.size.width<iPadWidth) {
+                [self.leftButton setImage:[UIImage imageNamed:@"close_ipad_button.png"] forState:UIControlStateNormal];
+            } else {                
+                [self.leftButton setImage:[UIImage imageNamed:@"inv_close_ipad_button.png"] forState:UIControlStateNormal];
+            }
+        }
     }
 }
 
@@ -440,8 +454,8 @@
         firstButton.hidden=YES;
         secondButton.hidden=YES;
         
-        firstStation.background = nil;
-        secondStation.background = nil;
+        firstStation.background = [UIImage imageNamed:@"pixeldummy.png"];
+        secondStation.background = [UIImage imageNamed:@"pixeldummy.png"];
         
         firstStation.state=3;
         

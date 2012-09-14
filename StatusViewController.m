@@ -9,6 +9,7 @@
 #import "StatusViewController.h"
 #import "Classes/tubeAppDelegate.h"
 #import "Reachability.h"
+#import "CityMap.h"
 
 @implementation StatusViewController
 
@@ -17,6 +18,8 @@
 @synthesize isShown;
 @synthesize infoURL;
 @synthesize shadowView;
+@synthesize isNewMapAvailable;
+@synthesize servers;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,10 +45,12 @@
         [shadowView setIsAccessibilityElement:YES];
         [shadowView setUserInteractionEnabled:YES];
         [self.view insertSubview:shadowView aboveSubview:imv];
-
+        
         [imv release];
+        
+        self.servers=[NSMutableArray array];
     }
-    return self;    
+    return self;
 }
 
 - (void)viewDidLoad
@@ -53,6 +58,7 @@
     [super viewDidLoad];
     
     isShown=NO;
+    isNewMapAvailable=NO;
     
     self.textView = [[UITextView alloc] init];
     textView.editable=NO;
@@ -64,9 +70,9 @@
     if (IS_IPAD) {
         
         textView.frame = CGRectMake(10.0, 10.0, 300.0, 600.0);
-    
+        
     } else {
- 
+        
         self.swipeRecognizerD = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];
         [self.swipeRecognizerD setDirection:UISwipeGestureRecognizerDirectionDown];
         [self.view addGestureRecognizer:self.swipeRecognizerD];
@@ -82,19 +88,21 @@
     [self.view bringSubviewToFront:textView];
 }
 
--(void)statusInfoDidLoad:(NSString*)statusInfo
+-(void)statusInfoDidLoad:(NSString*)statusInfo server:(StatusDownloader*)server
 {
     if (statusInfo) {
-            [[self textView] setText:statusInfo];
+        [[self textView] setText:statusInfo];
+        
+        if (IS_IPAD) {
             
-            if (IS_IPAD) {
-                
-            } else {
-                if (!isShown) {
-                    [self  performSelector:@selector(showInitialSizeView) withObject:nil afterDelay:3];
-                }
+        } else {
+            if (!isShown) {
+                [self  performSelector:@selector(showInitialSizeView) withObject:nil afterDelay:3];
             }
+        }
     }
+    
+    [servers removeObject:server];
 }
 
 -(void)recieveStatusInfo
@@ -107,6 +115,12 @@
         statusDownloader.delegate = self;
         statusDownloader.imageURLString=infoURL;
         [statusDownloader startDownload];
+        
+        [servers addObject:statusDownloader];
+        [statusDownloader release];
+        
+        [self checkNewMaps];
+        
     } else {
         textView.text=NSLocalizedString(@"CheckInternet", @"CheckInternet");
     }
@@ -144,20 +158,20 @@
 {
     if (!isShown) {
         
-    CGFloat newY;
-    
-    newY = -280.0;
-    
-    self.shadowView.frame=CGRectMake(0, 324, 320, 20);
-    
-    [UIView animateWithDuration:0.55 animations:^{
-        self.view.frame = CGRectMake(0, newY, 320, 354);
-    }];
-    
-    isShown=YES;
-    
-    [self  performSelector:@selector(hideInitialSizeView) withObject:nil afterDelay:4];
-
+        CGFloat newY;
+        
+        newY = -280.0;
+        
+        self.shadowView.frame=CGRectMake(0, 324, 320, 20);
+        
+        [UIView animateWithDuration:0.55 animations:^{
+            self.view.frame = CGRectMake(0, newY, 320, 354);
+        }];
+        
+        isShown=YES;
+        
+        [self  performSelector:@selector(hideInitialSizeView) withObject:nil afterDelay:4];
+        
     }
 }
 
@@ -203,5 +217,80 @@
     
     isShown=NO;
 }
+
+-(void)checkNewMaps
+{
+    DownloadServer *server = [[[DownloadServer alloc] init] autorelease];
+    server.listener=self;
+    
+    [servers addObject:server];
+    
+    NSString *bundleName = [NSString stringWithFormat:@"%@.plist",[[NSBundle mainBundle] bundleIdentifier]];
+    [server loadFileAtURL:bundleName];
+    
+}
+
+-(void)downloadDone:(NSMutableData *)data prodID:(NSString*)prodID server:(DownloadServer *)myid
+{
+    [self processPlistFromServer:data];
+    [servers removeObject:myid];
+}
+
+-(void)processPlistFromServer:(NSMutableData*)data
+{
+    NSDictionary *dict = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:nil errorDescription:nil];
+    
+    NSString *newVersionN = [self getCurrentMapVersionFromDict:dict];
+    
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+    
+    NSMutableDictionary *mapFile = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSString *oldVersionN = [self getCurrentMapVersionFromDict:mapFile];
+    
+    if (newVersionN && oldVersionN) {
+        if ([oldVersionN integerValue]<[newVersionN integerValue]) {
+            isNewMapAvailable=YES;
+            NSLog(@"New version is available!!! Old - %@, New - %@",oldVersionN,newVersionN);
+        } else {
+            NSLog(@"No new version is available. Old - %@, New - %@",oldVersionN,newVersionN);
+        }
+    }
+}
+
+-(NSString*)getCurrentMapVersionFromDict:(NSDictionary*)dict
+{
+    NSString *verNumber;
+    
+    NSString *currentMap = [[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] thisMapName];
+    
+    NSArray *mapIDs = [dict allKeys];
+    
+    for (NSString* mapID in mapIDs) {
+        NSDictionary *map = [dict objectForKey:mapID];
+        if ([[map objectForKey:@"filename"] isEqual:currentMap]) {
+            verNumber = [NSString stringWithString:[map objectForKey:@"ver"]];
+        }
+    }
+    
+    return verNumber;
+}
+
+-(void)startDownloading:(NSString*)prodID
+{
+    
+}
+
+-(void)downloadedBytes:(float)part prodID:(NSString*)prodID
+{
+    
+}
+
+-(void)downloadFailed:(DownloadServer*)myid
+{
+    
+}
+
+
 
 @end

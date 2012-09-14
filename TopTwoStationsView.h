@@ -34,7 +34,7 @@
 @property (nonatomic, retain) UIButton *leftButton;
 
 -(void)drawInitialState;
--(void)adjustSubviews;
+-(void)adjustSubviews:(UIInterfaceOrientation)interfaceOrientation;
 -(void)setFromStation:(MStation*)fromStation;
 -(void)setToStation:(MStation*)toStation;
 -(UIImage*)drawCircleView:(UIColor*)myColor;

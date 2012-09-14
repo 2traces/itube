@@ -153,7 +153,7 @@
     UISwipeGestureRecognizer *swipeRecognizerD = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];
     [swipeRecognizerD setDirection:UISwipeGestureRecognizerDirectionDown];
     [self.stationsView addGestureRecognizer:swipeRecognizerD];
-
+    [swipeRecognizerD release];
     
     [self performSelector:@selector(refreshInApp) withObject:nil afterDelay:0.2];
     
@@ -176,10 +176,13 @@
     for (NSString* mapID in mapIDs) {
         NSDictionary *map = [dict objectForKey:mapID];
         if ([[map objectForKey:@"filename"] isEqual:currentMap]) {
-            url = [map objectForKey:@"statusURL"];
+            if ([map objectForKey:@"statusURL"]) {
+                url = [NSString stringWithString:[map objectForKey:@"statusURL"]];
+            }
         }
     }
     
+    [dict release];
     return url;
 }
 
@@ -246,6 +249,15 @@
         return (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
     }
 }
+
+//- (BOOL)shouldAutorotate {
+//        return YES;
+//}
+//
+//-(NSUInteger)supportedInterfaceOrientations{
+//    return UIInterfaceOrientationMaskAll;
+//}
+
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {

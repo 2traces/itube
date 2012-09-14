@@ -112,7 +112,7 @@ static float koefficient = 0.0f;
         [mainViewController.stationsView setFrame:CGRectMake(0, 0, size.width, 44)];
     }
     
-    [mainViewController.stationsView adjustSubviews];
+    [mainViewController.stationsView adjustSubviews:self.interfaceOrientation];
     
 }
 

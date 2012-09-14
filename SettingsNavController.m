@@ -59,6 +59,11 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 -(void) dealloc
 {
     [navController release];

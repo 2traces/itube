@@ -115,6 +115,11 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 -(void)setAllButtonsUnselected
 {
     stationButton.selected=NO;

@@ -59,6 +59,8 @@
 		9F9CF246150729AC0055B63B /* maps in Resources */ = {isa = PBXBuildFile; fileRef = 9F9CF245150729AC0055B63B /* maps */; };
 		9FCE946914E2774600E2B354 /* zones_btn_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FCE946814E2774600E2B354 /* zones_btn_pressed@2x.png */; };
 		9FFA6EBC14EE17920086199F /* ActiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA6EBB14EE17920086199F /* ActiveView.m */; };
+		BC0FD7011601B4A900C048FF /* pixeldummy.png in Resources */ = {isa = PBXBuildFile; fileRef = BC0FD7001601B4A900C048FF /* pixeldummy.png */; };
+		BC0FD7031601DD8C00C048FF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0FD7021601DD8C00C048FF /* MapKit.framework */; };
 		BC102A271570F42E009390A6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC102A291570F42E009390A6 /* Localizable.strings */; };
 		BC102A2B1570F44B009390A6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BC102A2D1570F44B009390A6 /* Default.png */; };
 		BC102A2F1570F458009390A6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC102A311570F458009390A6 /* Default@2x.png */; };
@@ -517,6 +519,9 @@
 		9FCE946814E2774600E2B354 /* zones_btn_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zones_btn_pressed@2x.png"; sourceTree = "<group>"; };
 		9FFA6EBA14EE17920086199F /* ActiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActiveView.h; path = Classes/ActiveView.h; sourceTree = "<group>"; };
 		9FFA6EBB14EE17920086199F /* ActiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActiveView.m; path = Classes/ActiveView.m; sourceTree = "<group>"; };
+		BC0FD7001601B4A900C048FF /* pixeldummy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pixeldummy.png; sourceTree = "<group>"; };
+		BC0FD7021601DD8C00C048FF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		BC0FD7041601E05D00C048FF /* Paris.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = Paris.geojson; sourceTree = "<group>"; };
 		BC102A281570F42E009390A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BC102A2A1570F43B009390A6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BC102A2C1570F44B009390A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/Default.png; sourceTree = "<group>"; };
@@ -972,6 +977,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC0FD7031601DD8C00C048FF /* MapKit.framework in Frameworks */,
 				515D75151534BB9700C25074 /* libxml2.dylib in Frameworks */,
 				BC76ACE5151B168A009BDABC /* libz.dylib in Frameworks */,
 				BC3D156714C33E170059A17E /* StoreKit.framework in Frameworks */,
@@ -1128,6 +1134,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				BC0FD7021601DD8C00C048FF /* MapKit.framework */,
 				BC76ACF1151B1A74009BDABC /* minizip */,
 				289233A00DB2D0730083E9F9 /* Main View */,
 				281C6CD70DB2D82200F60ACC /* Flipside View */,
@@ -1197,6 +1204,7 @@
 				CE81FA6D146BDC91008BF969 /* Icon-72.png */,
 				BC3D150B14C338EE0059A17E /* maps.plist */,
 				CE81FA6E146BDC91008BF969 /* Icon.png */,
+				BC0FD7041601E05D00C048FF /* Paris.geojson */,
 				CE81FA6F146BDC91008BF969 /* Icon@2x.png */,
 				CE96C6F41468307C005A56F3 /* images */,
 				8D1107310486CEB800E47090 /* tube-Info.plist */,
@@ -1631,6 +1639,7 @@
 		CE96C6F41468307C005A56F3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				BC0FD7001601B4A900C048FF /* pixeldummy.png */,
 				BC6015CE15FDF522008910C9 /* statusViewBG.png */,
 				BC6015CF15FDF522008910C9 /* statusViewBG@2x.png */,
 				BCABF19E15E761FD00A38108 /* settings_ipad_button@2x.png */,
@@ -2084,6 +2093,7 @@
 				BC7D9C9015EB5871005684E4 /* arrow@2x.png in Resources */,
 				BC6015D015FDF522008910C9 /* statusViewBG.png in Resources */,
 				BC6015D115FDF522008910C9 /* statusViewBG@2x.png in Resources */,
+				BC0FD7011601B4A900C048FF /* pixeldummy.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
