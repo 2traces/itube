@@ -197,71 +197,111 @@
     return [self shortestPath:source to:target weight:nil closedNodes:nil];
 }
 
+-(BOOL)normalizePath:(NSMutableArray*)path
+{
+    BOOL changed = NO;
+    if([path count] > 2) {
+        if([[path objectAtIndex:0] line] != [[path objectAtIndex:1] line]) {
+            [path removeObjectAtIndex:0];
+            changed = YES;
+        }
+        if([[path lastObject] line] != [[path objectAtIndex:[path count]-2] line]) {
+            [path removeLastObject];
+            changed = YES;
+        }
+        GraphNode* prevEl = nil;
+        int transfers = 0;
+        NSMutableArray *remList = [NSMutableArray array];
+        for (GraphNode* el in path) {
+            if(prevEl.line != el.line) transfers ++;
+            else transfers = 0;
+            if(transfers > 1) {
+                [remList addObject:prevEl];
+                changed = YES;
+            }
+            prevEl = el;
+        }
+        for (GraphNode *el in remList) {
+            [path removeObject:el];
+        }
+    }
+    return changed;
+}
+
+-(void)normalizePaths:(NSMutableDictionary*)paths
+{
+    for (NSNumber* n in [paths allKeys]) {
+        NSArray *path = [paths objectForKey:n];
+        NSMutableArray *npath = [NSMutableArray arrayWithArray:path];
+        BOOL changed = [self normalizePath:npath];
+        if(changed) {
+            [paths setObject:npath forKey:n];
+        }
+    }
+}
+
+-(void)normalizePathsArray:(NSMutableArray*)paths
+{
+    NSMutableArray *paths2 = [NSMutableArray array];
+    for (NSArray *path in paths) {
+        NSMutableArray *npath = [NSMutableArray arrayWithArray:path];
+        BOOL changed = [self normalizePath:npath];
+        if(changed) {
+            [paths2 addObject:npath];
+        } else {
+            [paths2 addObject:path];
+        }
+    }
+    [paths setArray:paths2];
+}
+
 -(NSDictionary*)getPaths:(GraphNode*)source to:(GraphNode*)target {
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     
     CGFloat weight = 0;
     NSArray *path = [self shortestPath:source to:target weight:&weight closedNodes:nil];
-    if([path count] > 2) {
-        if([[path objectAtIndex:0] line] != [[path objectAtIndex:1] line]) {
-            NSMutableArray *tempp = [NSMutableArray arrayWithArray:path];
-            [tempp removeObjectAtIndex:0];
-            path = tempp;
-        }
-        if([[path lastObject] line] != [[path objectAtIndex:[path count]-2] line]) {
-            NSMutableArray *tempp = [NSMutableArray arrayWithArray:path];
-            [tempp removeLastObject];
-            path = tempp;
-        }
-    }
     [result setObject:path forKey:[NSNumber numberWithFloat:weight]];
     
     int prevLine = -1;
+    int nodeNum = 0;
     for (GraphNode *n in path) {
-        if(prevLine > 0 && prevLine != n.line) {
+        if((prevLine > 0 && prevLine != n.line) || nodeNum == 1) {
             NSArray *altPath = [self shortestPath:source to:target weight:&weight closedNodes:[NSSet setWithObject:n]];
             if([altPath count] > 0)
                 [result setObject:altPath forKey:[NSNumber numberWithFloat:weight]];
-            if([result count] >= 3) break; // max 3 paths
+            if([result count] >= 5) break; // max 5 paths
         }
         prevLine = n.line;
+        nodeNum ++;
     }
+    [self normalizePaths:result];
     
     return result;
 }
 
--(NSDictionary*)getWays:(GraphNode *)source to:(GraphNode *)target withoutStations:(NSSet *)clNodes
+-(NSArray*)getWays:(GraphNode *)source to:(GraphNode *)target withoutStations:(NSSet *)clNodes
 {
-    NSMutableDictionary *result = [NSMutableDictionary dictionary];
+    NSMutableArray *result = [NSMutableArray array];
     
     CGFloat weight = 0;
     NSArray *path = [self shortestWay:source to:target weight:&weight closedNodes:clNodes];
-    if([path count] > 2) {
-        if([[path objectAtIndex:0] line] != [[path objectAtIndex:1] line]) {
-            NSMutableArray *tempp = [NSMutableArray arrayWithArray:path];
-            [tempp removeObjectAtIndex:0];
-            path = tempp;
-        }
-        if([[path lastObject] line] != [[path objectAtIndex:[path count]-2] line]) {
-            NSMutableArray *tempp = [NSMutableArray arrayWithArray:path];
-            [tempp removeLastObject];
-            path = tempp;
-        }
-    }
-    [result setObject:path forKey:[NSNumber numberWithFloat:weight]];
+    [result addObject:path];
     
     int prevLine = -1;
+    int nodeNum = 0;
     for (GraphNode *n in path) {
-        if(prevLine > 0 && prevLine != n.line) {
+        if((prevLine > 0 && prevLine != n.line) || nodeNum == 1) {
             NSMutableSet *cll = [NSMutableSet setWithSet:clNodes];
             [cll addObject:n];
             NSArray *altPath = [self shortestWay:source to:target weight:&weight closedNodes:cll];
             if([altPath count] > 0)
-                [result setObject:altPath forKey:[NSNumber numberWithFloat:weight]];
-            if([result count] >= 3) break; // max 3 paths
+                [result addObject:altPath];
+            if([result count] >= 5) break; // max 5 paths
         }
         prevLine = n.line;
+        nodeNum ++;
     }
+    [self normalizePathsArray:result];
     
     return result;
 }
