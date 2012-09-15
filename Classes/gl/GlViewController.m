@@ -221,7 +221,7 @@ GLfloat gCubeVertexData[216] =
     //self.effect.light0.enabled = GL_TRUE;
     //self.effect.light0.diffuseColor = GLKVector4Make(1.0f, 0.4f, 0.4f, 1.0f);
     
-    glEnable(GL_DEPTH_TEST);
+    glDisable(GL_DEPTH_TEST);
     
     glGenVertexArraysOES(1, &_vertexArray);
     glBindVertexArrayOES(_vertexArray);

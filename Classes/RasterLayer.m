@@ -78,6 +78,49 @@
     return self;
 }
 
+-(id)initGlWithString:(NSString *)str rect:(CGRect)rect
+{
+    if((self = [super init])) {
+        NSArray *a1 = [str componentsSeparatedByString:@"\t"];
+        number = [[a1 objectAtIndex:0] intValue];
+        path = CGPathCreateMutable();
+        NSArray *a2 = [[a1 objectAtIndex:1] componentsSeparatedByString:@","];
+        N = [a2 count]/2;
+        int bufSize = (3*N) * sizeof(float);
+        float *buf = (float*)calloc(bufSize, 1);
+        float mX = -1, MX = -1, mY = -1, MY = -1;
+        int ind = 0;
+        for(int i=0; i<[a2 count]; i+=2) {
+            CGFloat x = (CGFloat)[[a2 objectAtIndex:i] intValue] / 256.f * rect.size.width + rect.origin.x;
+            CGFloat y = (CGFloat)[[a2 objectAtIndex:i+1] intValue] / 256.f * rect.size.height + rect.origin.y;
+            buf[ind] = x;
+            buf[ind+1] = y;
+            buf[ind+2] = 0.f; //z
+            ind += 3;
+            if(mX > x || mX < 0) mX = x;
+            if(MX < x) MX = x;
+            if(mY > y || mY < 0) mY = y;
+            if(MY < y) MY = y;
+        }
+        glGenBuffers(1, &vertexBuffer);
+        glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+        glBufferData(GL_ARRAY_BUFFER, bufSize, buf, GL_STATIC_DRAW);
+        
+        lineWidth = rect.size.width / 256.f;
+        color = CGColorRetain([[UIColor redColor] CGColor]);
+        boundingBox = CGRectMake(mX, mY, MX-mX, MY-mY);
+        center = CGPointMake(boundingBox.origin.x + boundingBox.size.width*0.5f, boundingBox.origin.y + boundingBox.size.height*0.5f);
+        float dx = boundingBox.size.width * 0.5f;
+        float dy = boundingBox.size.height * 0.5f;
+        boundingBox.origin.x -= dx;
+        boundingBox.origin.y -= dy;
+        boundingBox.size.width *= 2.f;
+        boundingBox.size.height *= 2.f;
+        free(buf);
+    }
+    return self;
+}
+
 -(void)draw:(CGContextRef)context
 {
     CGContextSetStrokeColorWithColor(context, color);
@@ -88,8 +131,21 @@
     CGContextStrokePath(context);
 }
 
+-(void)drawGl
+{
+    glColor4f(1.f, 1.f, 1.f, 1.f);
+    glDisable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+    glEnableVertexAttribArray(GLKVertexAttribPosition);
+    glDisableVertexAttribArray(GLKVertexAttribTexCoord0);
+    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 12, BUFFER_OFFSET(0));
+    glDrawArrays(GL_LINE_LOOP, 0, N);
+}
+
 -(void)dealloc
 {
+    if(vertexBuffer != 0) glDeleteBuffers(1, &vertexBuffer);
     if(color) CGColorRelease(color);
     if(path) CGPathRelease(path);
     [super dealloc];
@@ -216,7 +272,11 @@
         glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 20, BUFFER_OFFSET(0));
         glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, 20, BUFFER_OFFSET(12));
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-        //glDrawArrays(GL_LINE_LOOP, 0, 4);
+    }
+    if([objects count] > 0) {
+        for (RObject *ob in objects) {
+            [ob drawGl];
+        }
     }
 }
 
@@ -257,7 +317,7 @@
 
 -(void)dealloc
 {
-    glDeleteBuffers(1, &vertexBuffer);
+    if(vertexBuffer != 0) glDeleteBuffers(1, &vertexBuffer);
     if(gltex != 0) glDeleteTextures(1, &gltex);
     if(image) CGImageRelease(image);
     [objects release];
@@ -725,7 +785,7 @@
         if(contents != nil) {
             NSMutableArray *a = [[NSMutableArray alloc] init];
             [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-                [a addObject:[[RObject alloc] initWithString:line rect:piece->rect]];
+                [a addObject:[[RObject alloc] initGlWithString:line rect:piece->rect]];
             }];
             [piece->objects release];
             piece->objects = a;
@@ -774,7 +834,7 @@
         [piece vectorLoaded];
         piece->objects = [[NSMutableArray alloc] init];
         [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-            [piece->objects addObject:[[RObject alloc] initWithString:line rect:piece->rect]];
+            [piece->objects addObject:[[RObject alloc] initGlWithString:line rect:piece->rect]];
         }];
         return YES;
     }
@@ -810,7 +870,7 @@
         if(contents != nil) {
             NSMutableArray *a = [[NSMutableArray alloc] init];
             [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-                [a addObject:[[RObject alloc] initWithString:line rect:dp->piece->rect]];
+                [a addObject:[[RObject alloc] initGlWithString:line rect:dp->piece->rect]];
             }];
             [dp->piece->objects release];
             dp->piece->objects = a;
@@ -989,7 +1049,6 @@
         allRect = rect;
         tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
         
-        NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         levels = [[NSMutableDictionary alloc] init];
         lock = [[NSRecursiveLock alloc] init];
         timer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(freeSomeMemory) userInfo:nil repeats:YES];
@@ -1001,6 +1060,7 @@
         RDownloadManager* dm = [[RDownloadManager alloc] initWithTarget:self selector:@selector(complete:)];
         //dm.rasterDownloader = [[RasterDownloader alloc] initWithUrl:@"http://www.x-provocation.com/maps/cuba/RASTER"];
         //dm.rasterDownloader = [[RasterDownloader alloc] initWithUrl:@"http://www.x-provocation.com/maps/cuba/OSM"];
+        NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         NSURL *vurl = [[[NSURL alloc] initFileURLWithPath:rasterPath] autorelease];
         NSString* vurlstr = [vurl absoluteString];
         vloader = [[VectorDownloader alloc] initWithUrl:vurlstr];
@@ -1010,7 +1070,7 @@
         //NSString *url2 = [NSString stringWithFormat:@"http://www.x-provocation.com/maps/%@/RASTER", mapName];
         //NSString *url1 = [NSString stringWithFormat:@"ftp://skotin:M2prs22l@x-provocation.com/public_html/maps/%@/OSM", mapName];
         //NSString *url2 = [NSString stringWithFormat:@"ftp://skotin:M2prs22l@x-provocation.com/public_html/maps/%@/RASTER", mapName];
-        rloader1 = [[RasterDownloader alloc] initWithUrl:url1];
+        rloader1 = [[RasterDownloader alloc] initWithUrl:vurlstr];
         //rloader1.altSource = [[NSBundle mainBundle] pathForResource:@"OSM" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         rloader2 = [[RasterDownloader alloc] initWithUrl:url2];
         //rloader2.altSource = [[NSBundle mainBundle] pathForResource:@"RASTER" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];

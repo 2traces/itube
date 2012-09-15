@@ -26,6 +26,9 @@
 /***** RObject *****/
 
 @interface RObject : NSObject {
+@private
+    unsigned int vertexBuffer;
+    int N;
 @public
     CGColorRef color;
     CGMutablePathRef path;
@@ -35,7 +38,9 @@
     CGPoint center;
 }
 -(id)initWithString:(NSString*)str rect:(CGRect)rect;
+-(id)initGlWithString:(NSString*)str rect:(CGRect)rect;
 -(void)draw:(CGContextRef)context;
+-(void)drawGl;
 -(int)checkPoint:(CGPoint)point;
 
 @end
