@@ -264,8 +264,15 @@
         scrollView.contentSize = CGSizeMake(540, feedbackTableView.frame.origin.y+feedbackTableView.frame.size.height+15.0);
         scrollView.frame = CGRectMake(0.0, 0.0, 540.0, 620.0-44.0);
     } else {
-        scrollView.contentSize = CGSizeMake(320, feedbackTableView.frame.origin.y+feedbackTableView.frame.size.height+15.0);
-        scrollView.frame = CGRectMake(0.0, 0.0, 320.0, 460.0-44.0);
+        tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+        
+        if ([appDelegate isIPHONE5]) {
+            scrollView.contentSize = CGSizeMake(320, feedbackTableView.frame.origin.y+feedbackTableView.frame.size.height+15.0);
+            scrollView.frame = CGRectMake(0.0, 0.0, 320.0, 568.0-44.0);
+        } else {
+            scrollView.contentSize = CGSizeMake(320, feedbackTableView.frame.origin.y+feedbackTableView.frame.size.height+15.0);
+            scrollView.frame = CGRectMake(0.0, 0.0, 320.0, 460.0-44.0);
+        }
     }
 
     

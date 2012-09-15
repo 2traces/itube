@@ -69,6 +69,8 @@
 		BC108FF215D8F38E00B81989 /* LeftiPadPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC108FF115D8F38E00B81989 /* LeftiPadPathViewController.m */; };
 		BC14872815CD50C200DA7F99 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC14872715CD50C200DA7F99 /* MainViewController.xib */; };
 		BC1898C615F5E98800921F5F /* StatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1898C515F5E98800921F5F /* StatusViewController.m */; };
+		BC2279491604881C00414693 /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = BC2279451604881C00414693 /* Default-568h.png */; };
+		BC22794A1604881C00414693 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC2279471604881C00414693 /* Default-568h@2x.png */; };
 		BC28950614F5E0FD0054F9EB /* middle_cell_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BC28950414F5E0FD0054F9EB /* middle_cell_bg.png */; };
 		BC28950714F5E0FD0054F9EB /* middle_cell_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC28950514F5E0FD0054F9EB /* middle_cell_bg@2x.png */; };
 		BC28951E14F621590054F9EB /* high_language_table_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = BC28950814F621560054F9EB /* high_language_table_cell.png */; };
@@ -537,6 +539,13 @@
 		BC14872715CD50C200DA7F99 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainViewController.xib; path = Resources/MainViewController.xib; sourceTree = "<group>"; };
 		BC1898C415F5E98800921F5F /* StatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusViewController.h; sourceTree = "<group>"; };
 		BC1898C515F5E98800921F5F /* StatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusViewController.m; sourceTree = "<group>"; };
+		BC2279461604881C00414693 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default-568h.png"; sourceTree = "<group>"; };
+		BC2279481604881C00414693 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/Default-568h@2x.png"; sourceTree = "<group>"; };
+		BC22794C1604884F00414693 /* de */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = de; path = "de.lproj/Default-568h.png"; sourceTree = "<group>"; };
+		BC22794D1604885000414693 /* fr */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fr; path = "fr.lproj/Default-568h.png"; sourceTree = "<group>"; };
+		BC22794E1604885100414693 /* it */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = it; path = "it.lproj/Default-568h.png"; sourceTree = "<group>"; };
+		BC22794F1604885400414693 /* de */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = de; path = "de.lproj/Default-568h@2x.png"; sourceTree = "<group>"; };
+		BC2279501604885500414693 /* fr */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fr; path = "fr.lproj/Default-568h@2x.png"; sourceTree = "<group>"; };
 		BC28950414F5E0FD0054F9EB /* middle_cell_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = middle_cell_bg.png; path = images/middle_cell_bg.png; sourceTree = "<group>"; };
 		BC28950514F5E0FD0054F9EB /* middle_cell_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "middle_cell_bg@2x.png"; path = "images/middle_cell_bg@2x.png"; sourceTree = "<group>"; };
 		BC28950814F621560054F9EB /* high_language_table_cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = high_language_table_cell.png; path = images/high_language_table_cell.png; sourceTree = "<group>"; };
@@ -879,6 +888,7 @@
 		BC8E2EB61522045A00F30619 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/DemoMapViewController.xib; sourceTree = "<group>"; };
 		BC8E2EB71522047600F30619 /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = it.lproj/DemoMapViewController.xib; sourceTree = "<group>"; };
 		BC8F052C14EBB18F007D0C7B /* MyriadPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MyriadPro-Semibold.otf"; path = "Resources/MyriadPro-Semibold.otf"; sourceTree = "<group>"; };
+		BC8FF4CD1604888000C427A8 /* it */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = it; path = "it.lproj/Default-568h@2x.png"; sourceTree = "<group>"; };
 		BC95F643150621AE00E1BF75 /* blue_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue_button.png; path = images/blue_button.png; sourceTree = "<group>"; };
 		BC95F644150621AE00E1BF75 /* green_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = green_button.png; path = images/green_button.png; sourceTree = "<group>"; };
 		BC95F645150621AE00E1BF75 /* high_green_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = high_green_button.png; path = images/high_green_button.png; sourceTree = "<group>"; };
@@ -1176,6 +1186,8 @@
 				BC102A291570F42E009390A6 /* Localizable.strings */,
 				BCD7E24B151AF85C007C658A /* CityCell.xib */,
 				BC8E2EB31522043E00F30619 /* DemoMapViewController.xib */,
+				BC2279451604881C00414693 /* Default-568h.png */,
+				BC2279471604881C00414693 /* Default-568h@2x.png */,
 				BC88F91A15205B6A00BC7FAA /* LanguageViewController.xib */,
 				BCD7E24D151AF85C007C658A /* SettingsNavController.xib */,
 				BCCC30A114E4F19900102064 /* LanguageCell.xib */,
@@ -2094,6 +2106,8 @@
 				BC6015D015FDF522008910C9 /* statusViewBG.png in Resources */,
 				BC6015D115FDF522008910C9 /* statusViewBG@2x.png in Resources */,
 				BC0FD7011601B4A900C048FF /* pixeldummy.png in Resources */,
+				BC2279491604881C00414693 /* Default-568h.png in Resources */,
+				BC22794A1604881C00414693 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2212,6 +2226,28 @@
 				BCF68E4E15764570003B60C3 /* it */,
 			);
 			name = "Default@2x.png";
+			sourceTree = "<group>";
+		};
+		BC2279451604881C00414693 /* Default-568h.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC2279461604881C00414693 /* en */,
+				BC22794C1604884F00414693 /* de */,
+				BC22794D1604885000414693 /* fr */,
+				BC22794E1604885100414693 /* it */,
+			);
+			name = "Default-568h.png";
+			sourceTree = "<group>";
+		};
+		BC2279471604881C00414693 /* Default-568h@2x.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC2279481604881C00414693 /* en */,
+				BC22794F1604885400414693 /* de */,
+				BC2279501604885500414693 /* fr */,
+				BC8FF4CD1604888000C427A8 /* it */,
+			);
+			name = "Default-568h@2x.png";
 			sourceTree = "<group>";
 		};
 		BC6890501575E075002232E6 /* SelectingTabBarViewController.xib */ = {

@@ -387,6 +387,21 @@ void uncaughtExceptionHandler(NSException *exception) {
     return NO;
 }
 
+-(BOOL)isIPHONE5
+{
+    if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
+        CGSize result = [[UIScreen mainScreen] bounds].size;
+        CGFloat scale = [UIScreen mainScreen].scale;
+        result = CGSizeMake(result.width * scale, result.height * scale);
+        
+        if(result.height == 1136){
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
 
 - (void)dealloc {
     [mainViewController release];

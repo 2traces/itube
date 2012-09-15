@@ -292,21 +292,36 @@
             if (self.statusViewController.isShown) {
                 [self.statusViewController hideFullSizeView];
             }
-            
-            [(MainView*)self.view changeShadowFrameToRect:CGRectMake(0.0, 0.0, 480.0, 61.0)];
+            tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+            if ([appDelegate isIPHONE5]) {
+                [(MainView*)self.view changeShadowFrameToRect:CGRectMake(0.0, 0.0, 568.0, 61.0)];
+            } else {
+                [(MainView*)self.view changeShadowFrameToRect:CGRectMake(0.0, 0.0, 480.0, 61.0)];
+            }
+
         }
     }
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+
     if (IS_IPAD) {
         if (popover) [popover dismissPopoverAnimated:YES];
     } else {
         if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-            [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 0, 480, 320-20)];
+            if ([appDelegate isIPHONE5]) {
+                [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 0, 568, 320-20)];
+            } else {
+                [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 0, 480, 320-20)];
+            }
         } else {
-            [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 40, 320, 480-60)];
+            if ([appDelegate isIPHONE5]) {
+                [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 40, 320, 568-60)];
+            } else {
+                [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 40, 320, 480-60)];
+            }
         }
     }
 }
@@ -382,8 +397,13 @@
         
         [self.horizontalPathesScrollView refreshContent];
     }
-    
-    [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+
+    if ([appDelegate isIPHONE5]) {
+        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 568-86)];
+    } else {
+        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
+    }
     
     if ([self.horizontalPathesScrollView numberOfPages]>1) {
         if ([self helpNeeded]) {
@@ -433,7 +453,14 @@
 
 -(void)removeHorizontalPathesScrollView
 {
-    [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 44, 320, 480-64)];
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    if ([appDelegate isIPHONE5]) {
+        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 44, 320, 568-64)];
+    } else {
+        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 44, 320, 480-64)];
+    }
+
     
     [self.horizontalPathesScrollView removeFromSuperview];
     self.horizontalPathesScrollView=nil;
@@ -467,7 +494,16 @@
 {
     if (!self.pathScrollView ) {
         
-        VertPathScrollView *scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, 66.0, 320.0f, 414.0f)];
+        tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+        
+        VertPathScrollView *scview;
+        
+        if ([appDelegate isIPHONE5]) {
+            scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, 66.0, 320.0f, 502.0f)];
+        } else {
+            scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, 66.0, 320.0f, 414.0f)];
+        }
+                
         self.pathScrollView = scview;
         scview.mainController=self;
         [scview release];

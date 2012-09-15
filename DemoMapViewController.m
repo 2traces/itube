@@ -45,7 +45,13 @@
     
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
         
-    scrollView.frame = CGRectMake(0.0, 0.0, 320, 416);
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    if ([appDelegate isIPHONE5]) {
+        scrollView.frame = CGRectMake(0.0, 0.0, 320, 502);
+    } else {
+        scrollView.frame = CGRectMake(0.0, 0.0, 320, 416);
+    }
     scrollView.contentSize = CGSizeMake(320, 939);
     
     text1.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:13.0];
