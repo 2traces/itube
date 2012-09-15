@@ -291,6 +291,15 @@
     
 }
 
-
+-(void)dealloc
+{
+    [swipeRecognizerD release];
+    [swipeRecognizerU release];
+    [textView release];
+    [infoURL release];
+    [shadowView release];
+    [servers release];
+    [super dealloc];
+}
 
 @end
