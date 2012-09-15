@@ -20,6 +20,7 @@
     IBOutlet UIButton *bookmarkButton;
     IBOutlet UIButton *backButton;
     IBOutlet UIButton *historyButton;
+    IBOutlet UIButton *settingsButton;
     
     IBOutlet UITabBarController *tabBarController;
 }
@@ -29,6 +30,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *bookmarkButton;
 @property (nonatomic, retain) IBOutlet UIButton *backButton;
 @property (nonatomic, retain) IBOutlet UIButton *historyButton;
+@property (nonatomic, retain) IBOutlet UIButton *settingsButton;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 
 @property (nonatomic, assign) id <SelectingTabBarProtocol> delegate;

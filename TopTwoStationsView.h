@@ -31,8 +31,10 @@
 @property (nonatomic, retain) UIButton *secondButton;
 @property (nonatomic, retain) FastAccessTableViewController *tableView;
 @property (nonatomic, retain) UIImageView *arrowView;
+@property (nonatomic, retain) UIButton *leftButton;
 
 -(void)drawInitialState;
+-(void)adjustSubviews:(UIInterfaceOrientation)interfaceOrientation;
 -(void)setFromStation:(MStation*)fromStation;
 -(void)setToStation:(MStation*)toStation;
 -(UIImage*)drawCircleView:(UIColor*)myColor;

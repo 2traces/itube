@@ -10,6 +10,10 @@
 #import "MainViewController.h"
 #import "CityMap.h"
 #import "TubeAppIAPHelper.h"
+#import "TubeSplitViewController.h"
+#import "StatusViewController.h"
+#import <MapKit/MapKit.h>
+#import "ManagedObjects.h"
 
 @implementation tubeAppDelegate
 
@@ -44,9 +48,19 @@ void uncaughtExceptionHandler(NSException *exception) {
     // Override point for customization after application launch.
     [[SKPaymentQueue defaultQueue] addTransactionObserver:[TubeAppIAPHelper sharedHelper]];
     
-    mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
-    [window addSubview:[mainViewController view]];
-    [window makeKeyAndVisible];
+    if (IS_IPAD) {
+        TubeSplitViewController *splitController = [[TubeSplitViewController alloc] init];
+        splitController.mainViewController = self.mainViewController;
+        [window addSubview:[splitController view]];
+        [window setRootViewController:splitController];
+        [splitController release];
+        [window makeKeyAndVisible];
+    } else {
+        mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
+        [window addSubview:[mainViewController view]];
+        [window setRootViewController:mainViewController];
+        [window makeKeyAndVisible];
+    }
 }
 
 - (void)awakeFromNib
@@ -195,6 +209,15 @@ void uncaughtExceptionHandler(NSException *exception) {
     [self resizeAlertView:alertView];
 }
 
+//- (void)applicationDidBecomeActive:(UIApplication *)application
+//{
+//    [self.mainViewController.statusViewController refreshStatusInfo];
+//}
+
+-(void)applicationWillEnterForeground:(UIApplication *)application
+{
+    [self.mainViewController.statusViewController refreshStatusInfo];
+}
 
 -(void)applicationDidEnterBackground:(UIApplication *)application
 {
@@ -334,6 +357,34 @@ void uncaughtExceptionHandler(NSException *exception) {
     [resultTitle release];
     [resultMsg release];
     [self.mainViewController dismissModalViewControllerAnimated:YES];
+}
+
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    if ([MKDirectionsRequest isDirectionsRequestURL:url]) {
+
+        MKDirectionsRequest *request = [[MKDirectionsRequest alloc] initWithContentsOfURL:url];
+        
+        MKMapItem *startItem = [request source];
+        MKMapItem *endItem = [request destination];
+        
+        CGPoint startPoint = CGPointMake(startItem.placemark.coordinate.latitude, startItem.placemark.coordinate.longitude);
+        CGPoint endPoint = CGPointMake(endItem.placemark.coordinate.latitude, endItem.placemark.coordinate.longitude);
+        
+        Station *startStation  = [cityMap findNearestStationTo:startPoint];
+        Station *endStation  = [cityMap findNearestStationTo:endPoint];
+
+        NSLog(@"%@ - %@",startStation,endStation);
+    
+        MStation *mStartStation = [[MHelper sharedHelper] getStationWithIndex:startStation.index andLineIndex:startStation.line.index];
+        MStation *mEndStation = [[MHelper sharedHelper] getStationWithIndex:endStation.index andLineIndex:endStation.line.index];
+        
+        [mainViewController returnFromSelection:[NSArray arrayWithObjects:mStartStation, mEndStation,nil]];
+        
+        return YES;
+    }
+    
+    return NO;
 }
 
 

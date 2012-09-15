@@ -52,6 +52,24 @@
     text2.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:13.0];
     text3.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:13.0];
     
+    if (IS_IPAD) {
+
+        scrollView.frame = CGRectMake(0.0, 0.0, 540, 620-44.0);
+        scrollView.contentSize = CGSizeMake(540, 939);
+
+        CGFloat centerX = 270.0f;//self.view.center.x;
+
+        text1.center = CGPointMake(centerX, text1.center.y);
+        text2.center = CGPointMake(centerX, text2.center.y);
+        text3.center = CGPointMake(centerX, text3.center.y);
+        
+        image1.center = CGPointMake(centerX, image1.center.y);
+        image2.center = CGPointMake(centerX, image2.center.y);
+        image3.center = CGPointMake(centerX, image3.center.y);
+
+        buyButton.center = CGPointMake(centerX, buyButton.center.y);
+    }
+    
     [self loadImagesForScreen];
         
     [self.view addSubview:scrollView];
