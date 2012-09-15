@@ -145,7 +145,6 @@
     return timeArray;
 }
 
-
 -(BOOL)dsIsStartingTransfer
 {
     NSArray *path = self.apath;
@@ -171,7 +170,6 @@
     
     return NO;
 }
-
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

@@ -10,7 +10,7 @@
 
 @protocol StationListViewProtocol;
 
-@interface StationListViewController : UIViewController <UISearchDisplayDelegate,UITableViewDataSource, UITableViewDelegate>
+@interface StationListViewController : UIViewController <UISearchDisplayDelegate,UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate>
 {
     NSArray *stationList;
     NSMutableArray *stationIndex;
@@ -36,6 +36,7 @@
 @property (nonatomic,retain) IBOutlet UIImageView *imageView;
 @property (nonatomic,retain) NSMutableDictionary *indexDictionary;
 @property (nonatomic,retain) UISearchDisplayController *mySearchDC;
+@property (nonatomic,assign) BOOL isTextFieldInUse;
 
 -(void)createStationIndex;
 -(UIImage*)drawCircleView:(UIColor*)myColor;

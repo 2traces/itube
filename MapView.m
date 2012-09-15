@@ -436,10 +436,23 @@
     midground1.alpha = 0;
     midground2.hidden = NO;
     midground2.alpha = 1.f;
-    [UIView animateWithDuration:0.5f animations:^(void) { activeLayer.alpha = 1.f; midground1.alpha = 1.f; midground2.alpha = 0.f; } completion:^(BOOL finish) { midground2.hidden = YES; 
+    [UIView animateWithDuration:0.5f animations:^(void) { activeLayer.alpha = 1.f; midground1.alpha = 1.f; midground2.alpha = 0.f; } completion:^(BOOL finish) { midground2.hidden = YES;
         [scrollView zoomToRect:cityMap.activeExtent animated:YES];
     }];
 
+}
+
+-(void)adjustMap
+{
+    activeLayer.hidden = NO;
+    activeLayer.alpha = 0;
+    midground1.hidden = NO;
+    midground1.alpha = 0;
+    midground2.hidden = NO;
+    midground2.alpha = 1.f;
+    [UIView animateWithDuration:0.5f animations:^(void) { activeLayer.alpha = 1.f; midground1.alpha = 1.f; midground2.alpha = 0.f; } completion:^(BOOL finish) { midground2.hidden = YES;
+        [scrollView zoomToRect:cityMap.activeExtent animated:YES];
+    }];    
 }
 
 #pragma mark UIScrollViewDelegate methods
