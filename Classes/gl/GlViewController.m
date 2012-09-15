@@ -8,6 +8,8 @@
 
 #import "GlViewController.h"
 #import "RasterLayer.h"
+#import "TopTwoStationsView.h"
+#import "SettingsNavController.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -80,6 +82,7 @@ GLfloat gCubeVertexData[216] =
     RasterLayer *rasterLayer;
     CGPoint position, prevPosition;
     CGFloat scale, prevScale;
+    UIButton *sourceData, *settings;
 }
 @property (strong, nonatomic) EAGLContext *context;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
@@ -133,6 +136,42 @@ GLfloat gCubeVertexData[216] =
     
     rasterLayer = [[RasterLayer alloc] initWithRect:CGRectMake(0, 0, 256, 256) mapName:@"cuba"];
     //[rasterLayer setSignal:self selector:@selector(redrawRect:)];
+    
+    TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] initWithFrame:CGRectMake(0,0,320,44)];
+    //self.stationsView = twoStationsView;
+    
+    [view addSubview:twoStationsView];
+    [twoStationsView release];
+    
+    int adDelta = 0;
+    
+    settings = [UIButton buttonWithType:UIButtonTypeCustom];
+    [settings setImage:[UIImage imageNamed:@"settings_btn_normal"] forState:UIControlStateNormal];
+    [settings setImage:[UIImage imageNamed:@"settings_btn"] forState:UIControlStateHighlighted];
+    settings.frame = CGRectMake(285, 420 - adDelta, 27, 27);
+    [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:settings];
+    
+    sourceData = [UIButton buttonWithType:UIButtonTypeCustom];
+    [sourceData setImage:[UIImage imageNamed:@"vector"] forState:UIControlStateNormal];
+    [sourceData setImage:[UIImage imageNamed:@"terrain"] forState:UIControlStateSelected];
+    sourceData.frame = CGRectMake(15, 420 - adDelta, 44, 27);
+    [sourceData addTarget:self action:@selector(changeSource) forControlEvents:UIControlStateHighlighted];
+    [view addSubview:sourceData];
+
+}
+
+-(void) changeSource
+{
+    //BOOL s = [mapView changeSource];
+    //[sourceData setSelected:s];
+}
+
+-(void) showSettings
+{
+    SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];
+    [self presentModalViewController:controller animated:YES];
+    [controller release];
 }
 
 -(void)handlePanGesture:(UIPanGestureRecognizer*)recognizer

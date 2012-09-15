@@ -34,7 +34,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 	//self.mainViewController = aController;
 	//[aController release];
     glController = [[[GlViewController alloc] initWithNibName:@"GlViewController" bundle:nil] autorelease];
-    [mainViewController addChildViewController:glController];
+    //[mainViewController addChildViewController:glController];
     
     //CityMap *cm = [[CityMap alloc] init];
     //NSString *mapName =[self nameCurrentMap];
