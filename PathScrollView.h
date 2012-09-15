@@ -8,6 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PathScrollView : UIView
+@protocol PathScrollViewProtocol;
+
+@interface PathScrollView : UIView <UIScrollViewDelegate> {
+    
+}
+
+@property (nonatomic,retain) UIScrollView *scrollView;
+@property (nonatomic,assign) id <PathScrollViewProtocol> delegate;
+@property (nonatomic,assign) int numberOfPages;
+
+-(void)refreshContent;
+
+@end
+
+@protocol PathScrollViewProtocol
+
+-(void)requestChangeActivePath:(NSNumber*)pathNumb;
+-(void)animationDidEnd;
 
 @end

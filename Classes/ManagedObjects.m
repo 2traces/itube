@@ -755,8 +755,8 @@ static MHelper * _sharedHelper;
         NSString *tolineName = [history.toStation name];
         NSString *tostationName = [[history.toStation lines] name];
         
-        NSString *fromKey = [NSString stringWithString:@"From"];
-        NSString *toKey = [NSString stringWithString:@"To"];
+        NSString *fromKey = @"From";
+        NSString *toKey = @"To";
         
         NSArray *fromkeyArray = [NSArray arrayWithObjects:fromstationName,fromlineName, nil];
         NSArray *tokeyArray = [NSArray arrayWithObjects:tostationName,tolineName, nil];

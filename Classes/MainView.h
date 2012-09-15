@@ -59,6 +59,6 @@ MBProgressHUD *commonActivityIndicator;
 - (void) viewInit:(MainViewController*)vcontroller;
 -(void) findPathFrom :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl ;
 -(void)setCityMap:(CityMap*)cm;
-
+-(void)changeShadowFrameToRect:(CGRect)rect;
 
 @end
