@@ -30,7 +30,9 @@
     IBOutlet UILabel *textLabel3;   
     IBOutlet UILabel *textLabel4;   
     
+    IBOutlet UIButton *updateButton;
     IBOutlet UIScrollView *scrollView;
+    IBOutlet UIImageView *updateImageView;
     
     NSArray *maps;
     
@@ -45,6 +47,7 @@
     NSMutableArray *selectedLanguages;
     
     NSTimer *timer;
+    BOOL isFirstTime;
     
     id <SettingsViewControllerDelegate> delegate;
 }
@@ -66,6 +69,8 @@
 @property (nonatomic, retain) UIImageView *progressArrows;
 @property (nonatomic, retain) NSArray *languages;
 @property (nonatomic, retain) NSArray *feedback;
+@property (nonatomic, retain) IBOutlet UIButton *updateButton;
+@property (nonatomic, retain) IBOutlet UIImageView *updateImageView;
 
 -(BOOL)isProductInstalled:(NSString*)prodID;
 -(BOOL)isProductPurchased:(NSString*)prodID;

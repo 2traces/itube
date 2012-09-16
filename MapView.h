@@ -95,5 +95,8 @@ extern int const imagesCount;
 -(void) selectPath:(int)num;
 //
 -(void) initData ;
+// adjust map after resizing parent views
+-(void)adjustMap;
+
 
 @end
