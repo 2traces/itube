@@ -1231,7 +1231,7 @@
             [picker setSubject:subject];
             [picker setToRecipients:recipient];
             [picker setMessageBody:body isHTML:NO];
-            [self presentModalViewController:picker animated:YES]; [picker release];
+            [self.navigationController presentModalViewController:picker animated:YES]; [picker release];
         } else {
             // Device is not configured for sending emails, so notify user.
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Can't send email" message:@"This device not configured to send emails" delegate:self cancelButtonTitle:@"Ok, I will try later" otherButtonTitles:nil];
@@ -1267,7 +1267,7 @@
     [mailAlertView release];
     [resultTitle release];
     [resultMsg release];
-    [self dismissModalViewControllerAnimated:YES];
+    [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 @end

@@ -48,6 +48,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     // Override point for customization after application launch.
     [[SKPaymentQueue defaultQueue] addTransactionObserver:[TubeAppIAPHelper sharedHelper]];
     
+    self.window.frame = [[UIScreen mainScreen] bounds];
+    
     if (IS_IPAD) {
         TubeSplitViewController *splitController = [[TubeSplitViewController alloc] init];
         splitController.mainViewController = self.mainViewController;
