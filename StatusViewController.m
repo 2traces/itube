@@ -14,12 +14,14 @@
 @implementation StatusViewController
 
 @synthesize swipeRecognizerU,swipeRecognizerD;
-@synthesize textView;
+@synthesize textView,updateTextView;
 @synthesize isShown;
 @synthesize infoURL;
 @synthesize shadowView;
 @synthesize isNewMapAvailable;
 @synthesize servers;
+@synthesize tapRecognizer;
+@synthesize yellowView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,6 +38,7 @@
     if (self) {
         self.view.frame=CGRectMake(0.0, -354, 320, 354);
         UIImageView *imv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"statusViewBG.png"]];
+
         [self.view addSubview:imv];
         [imv setUserInteractionEnabled:YES];
         [self.view sendSubviewToBack:imv];
@@ -45,6 +48,12 @@
         [shadowView setIsAccessibilityElement:YES];
         [shadowView setUserInteractionEnabled:YES];
         [self.view insertSubview:shadowView aboveSubview:imv];
+        
+        self.yellowView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"statViewYellowBG.png"]] autorelease];
+        yellowView.frame = CGRectMake(0, 44, 320, 63);
+        [yellowView setUserInteractionEnabled:YES];
+        [self.view insertSubview:yellowView aboveSubview:imv];
+        [yellowView setHidden:YES];
         
         [imv release];
         
@@ -66,7 +75,18 @@
     textView.backgroundColor = [UIColor clearColor];
     textView.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
     textView.text=NSLocalizedString(@"NoStatusInfo", @"NoStatusInfo");
+
+    self.updateTextView = [[UITextView alloc] init];
+    updateTextView.editable=NO;
+    updateTextView.scrollEnabled=NO;
+    updateTextView.backgroundColor = [UIColor clearColor];
+    updateTextView.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
+    updateTextView.text=NSLocalizedString(@"UpdateMaps", @"UpdateMaps");
     
+    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(updateMaps)];
+    [self.tapRecognizer setNumberOfTapsRequired:1];
+    [self.updateTextView addGestureRecognizer:self.tapRecognizer];
+
     if (IS_IPAD) {
         
         textView.frame = CGRectMake(10.0, 10.0, 300.0, 600.0);
@@ -81,9 +101,14 @@
         [self.swipeRecognizerU setDirection:UISwipeGestureRecognizerDirectionUp];
         [self.view addGestureRecognizer:self.swipeRecognizerU];
         
+        self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)];
+        [self.tapRecognizer setNumberOfTapsRequired:1];
+        [self.view addGestureRecognizer:self.tapRecognizer];
+        
         textView.frame = CGRectMake(10.0, 322.0, 300.0, 25.0);
     }
     
+    [self.view addSubview:updateTextView];
     [self.view addSubview:textView];
     [self.view bringSubviewToFront:textView];
 }
@@ -190,32 +215,44 @@
 
 -(void)showFullSizeView
 {
-    CGFloat newY;
-    
-    newY = 0.0;
-    
-    shadowView.frame = CGRectMake(0, 44, 320, 61);
-    
-    [UIView animateWithDuration:0.55 animations:^{
-        self.view.frame = CGRectMake(0, newY, 320, 354);
-        textView.frame = CGRectMake(10.0, 44.0, 300.0, 354.0-44.0-10.0);
-    }];
-    
     isShown=YES;
+
+    [UIView animateWithDuration:0.55 animations:^{
+        [self layoutSubviews];
+    }];
 }
 
 -(void)hideFullSizeView
 {
-    CGFloat newY;
-    
-    newY = -354.0;
+    isShown=NO;
     
     [UIView animateWithDuration:0.55 animations:^{
-        self.view.frame = CGRectMake(0, newY, 320, 354);
-        textView.frame = CGRectMake(10.0, 322.0, 300.0, 25.0);
+        [self layoutSubviews];
     }];
+}
+
+-(void)layoutSubviews
+{
+    if (isShown) {
+        self.view.frame = CGRectMake(0, 0, 320, 354);
+        self.shadowView.frame=CGRectMake(0, 44, 320, 20);
+        if (isNewMapAvailable) {
+            updateTextView.hidden=NO;
+            yellowView.hidden=NO;
+            updateTextView.frame = CGRectMake(10.0, 48.0, 300.0, 60.0);
+            textView.frame = CGRectMake(10.0, 44.0+68, 300.0, 354.0-44.0-10.0-68);
+        } else {
+            textView.frame = CGRectMake(10.0, 44.0, 300.0, 354.0-44.0-10.0);
+            updateTextView.hidden=YES;
+            yellowView.hidden=YES;
+        }
+
     
-    isShown=NO;
+    } else {
+        self.view.frame = CGRectMake(0, -354, 320, 354);
+        textView.frame = CGRectMake(10.0, 322.0, 300.0, 25.0);
+        
+    }
 }
 
 -(void)checkNewMaps
@@ -253,6 +290,7 @@
             isNewMapAvailable=YES;
             NSLog(@"New version is available!!! Old - %@, New - %@",oldVersionN,newVersionN);
         } else {
+            isNewMapAvailable=NO;
             NSLog(@"No new version is available. Old - %@, New - %@",oldVersionN,newVersionN);
         }
     }
@@ -276,6 +314,13 @@
     return verNumber;
 }
 
+-(void)updateMaps
+{
+    NSLog(@"Maps updated!!!");
+    [self hideFullSizeView];
+    [[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] mainViewController] view] showSettings];
+}
+
 -(void)startDownloading:(NSString*)prodID
 {
     
@@ -293,8 +338,10 @@
 
 -(void)dealloc
 {
+    [tapRecognizer release];
     [swipeRecognizerD release];
     [swipeRecognizerU release];
+    [updateTextView release];
     [textView release];
     [infoURL release];
     [shadowView release];

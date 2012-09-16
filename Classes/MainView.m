@@ -55,6 +55,11 @@ NSInteger const toolbarWidth=320;
 	[self initVar];
 
     CGRect scrollSize,settingsRect,shadowRect;
+
+    scrollSize = CGRectMake(0,44,(320),(480-64));
+    settingsRect=CGRectMake(285, 420, 27, 27);
+    shadowRect = CGRectMake(0, 44, 480, 61);
+
     if (IS_IPAD) {
         scrollSize = CGRectMake(0, 44, 568, (1024-64));
         settingsRect=CGRectMake(-285, -420, 27, 27);
@@ -65,21 +70,11 @@ NSInteger const toolbarWidth=320;
             CGFloat scale = [UIScreen mainScreen].scale;
             result = CGSizeMake(result.width * scale, result.height * scale);
             
-            if(result.height == 960){
-                scrollSize = CGRectMake(0,44,(320),(480-64));
-                settingsRect=CGRectMake(285, 420, 27, 27);
-                shadowRect = CGRectMake(0, 44, 480, 61);
-            }
             if(result.height == 1136){
                 scrollSize = CGRectMake(0,44,(320),(568-64));
                 settingsRect=CGRectMake(285, 508, 27, 27);
                 shadowRect = CGRectMake(0, 44, 568, 61);
             }
-        }
-        else{
-            scrollSize = CGRectMake(0,44,(320),(480-64));
-            settingsRect=CGRectMake(285, 420, 27, 27);
-            shadowRect = CGRectMake(0, 44, 480, 61);
         }
     }
     
@@ -190,7 +185,24 @@ NSInteger const toolbarWidth=320;
 {
     [containerView removeFromSuperview];
     [containerView release];
-    CGRect scrollSize = CGRectMake(0,44,(320),(480-64));
+    CGRect scrollSize;
+    
+    scrollSize = CGRectMake(0,44,(320),(480-64));
+    
+    if (IS_IPAD) {
+        scrollSize = CGRectMake(0, 44, 568, (1024-64));
+    } else {
+        if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
+            CGSize result = [[UIScreen mainScreen] bounds].size;
+            CGFloat scale = [UIScreen mainScreen].scale;
+            result = CGSizeMake(result.width * scale, result.height * scale);
+            
+            if(result.height == 1136){
+                scrollSize = CGRectMake(0,44,(320),(568-64));
+            }
+        }
+    }
+
     containerView = [[MyScrollView alloc] initWithFrame:scrollSize];
     
     mapView = [[[MapView alloc] initWithFrame:scrollSize] autorelease];
