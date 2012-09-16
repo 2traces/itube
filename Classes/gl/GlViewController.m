@@ -8,7 +8,6 @@
 
 #import "GlViewController.h"
 #import "RasterLayer.h"
-#import "TopTwoStationsView.h"
 #import "SettingsNavController.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
@@ -83,6 +82,11 @@ GLfloat gCubeVertexData[216] =
     CGPoint position, prevPosition;
     CGFloat scale, prevScale;
     UIButton *sourceData, *settings;
+    
+    int currentSelection;
+    MItem *fromStation;
+    MItem *toStation;
+    TopTwoStationsView *stationsView;
 }
 @property (strong, nonatomic) EAGLContext *context;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
@@ -100,9 +104,14 @@ GLfloat gCubeVertexData[216] =
 
 @synthesize context = _context;
 //@synthesize effect = _effect;
+@synthesize currentSelection;
+@synthesize toStation;
+@synthesize fromStation;
+@synthesize stationsView;
 
 - (void)dealloc
 {
+    [stationsView release];
     [_context release];
     //[_effect release];
     [rasterLayer release];
@@ -137,11 +146,8 @@ GLfloat gCubeVertexData[216] =
     rasterLayer = [[RasterLayer alloc] initWithRect:CGRectMake(0, 0, 256, 256) mapName:@"cuba"];
     //[rasterLayer setSignal:self selector:@selector(redrawRect:)];
     
-    TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] initWithFrame:CGRectMake(0,0,320,44)];
-    //self.stationsView = twoStationsView;
-    
-    [view addSubview:twoStationsView];
-    [twoStationsView release];
+    stationsView = [[TopTwoStationsView alloc] initWithFrame:CGRectMake(0,0,320,44)];
+    [view addSubview:stationsView];
     
     int adDelta = 0;
     
@@ -284,6 +290,104 @@ GLfloat gCubeVertexData[216] =
     if (_program) {
         glDeleteProgram(_program);
         _program = 0;
+    }
+}
+
+#pragma mark - others methods
+
+-(FastAccessTableViewController*)showTableView
+{
+    UIView *blackView = [[UIView alloc] initWithFrame:CGRectMake(0,44,320,440)];
+    blackView.backgroundColor  = [UIColor blackColor];
+    blackView.alpha=0.4;
+    blackView.tag=554;
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleTap)];
+    [blackView addGestureRecognizer:tapGesture];
+    [tapGesture release];
+    
+    [self.view addSubview:blackView];
+    [blackView release];
+    
+    FastAccessTableViewController *tableViewC=[[[FastAccessTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
+    tableViewC.view.frame=CGRectMake(0,44,320,200);
+    
+    tableViewC.tableView.hidden=YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:tableViewC selector:@selector(textDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+    
+    tableViewC.tableView.tag=555;
+    
+    [self.view addSubview:tableViewC.tableView];
+    [self.view bringSubviewToFront:tableViewC.tableView];
+    
+    return tableViewC;
+}
+
+-(void)removeTableView
+{
+    [[self.view viewWithTag:554] removeFromSuperview];
+    [[self.view viewWithTag:555] removeFromSuperview];
+}
+
+-(void)returnFromSelection:(NSArray*)stations
+{
+    [self dismissModalViewControllerAnimated:YES];
+    [self performSelector:@selector(returnFromSelection2:) withObject:stations afterDelay:0.1];
+    //((MainView*)self.view).shouldNotDropPins = NO;
+}
+
+-(void)returnFromSelection2:(NSArray*)items
+{
+    /*MainView *mainView = (MainView*)self.view;
+    if ([items count]) {
+        self.fromStation = [items objectAtIndex:0];
+        [stationsView setFromStation:self.fromStation];
+        if(![mainView centerMapOnUserAndItemWithID:[self.fromStation.index integerValue]]) {
+#ifdef DEBUG
+            NSLog(@"object %@ not found!", self.fromStation.index);
+#endif
+        }
+        else {
+            [self setPinForItem:[self.fromStation.index integerValue]];
+        }
+    }
+    else {
+        self.fromStation=nil;
+    }
+    
+	mainView.mapView.stationSelected=false;
+     */
+}
+
+
+-(void)returnFromSelectionFastAccess:(NSArray *)stations
+{
+    [self removeTableView];
+    if (stations) {
+        if (currentSelection==0) {
+            if ([stations objectAtIndex:0]==self.toStation) {
+                self.fromStation=nil;
+                [stationsView resetFromStation];
+            } else {
+                [self returnFromSelection:stations];
+            }
+        } else {
+            if ([stations objectAtIndex:0]==self.fromStation) {
+                self.toStation=nil;
+                [stationsView resetToStation];
+            } else {
+                [self returnFromSelection:stations];
+            }
+        }     
+        
+        //      [self returnFromSelection:stations];
+    } else {
+        if (currentSelection==0) {
+            [stationsView setFromStation:self.fromStation];
+        } else {
+            [stationsView setToStation:self.toStation];
+        }
     }
 }
 

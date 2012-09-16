@@ -18,8 +18,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 
 @interface tubeAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
-    MainViewController *mainViewController;
-    GlViewController *glController;
+    GlViewController *mainViewController;
     CityMap *cityMap;
     NSString *cityName;
     
@@ -33,7 +32,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) MainViewController *mainViewController;
+@property (nonatomic, retain) GlViewController *mainViewController;
 @property (nonatomic, retain) CityMap *cityMap;
 @property (nonatomic, retain) NSString *cityName;
 @property (nonatomic, retain) NSOperationQueue *parseQueue; 

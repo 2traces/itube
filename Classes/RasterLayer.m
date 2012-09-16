@@ -1070,7 +1070,7 @@
         //NSString *url2 = [NSString stringWithFormat:@"http://www.x-provocation.com/maps/%@/RASTER", mapName];
         //NSString *url1 = [NSString stringWithFormat:@"ftp://skotin:M2prs22l@x-provocation.com/public_html/maps/%@/OSM", mapName];
         //NSString *url2 = [NSString stringWithFormat:@"ftp://skotin:M2prs22l@x-provocation.com/public_html/maps/%@/RASTER", mapName];
-        rloader1 = [[RasterDownloader alloc] initWithUrl:vurlstr];
+        rloader1 = [[RasterDownloader alloc] initWithUrl:url1];
         //rloader1.altSource = [[NSBundle mainBundle] pathForResource:@"OSM" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         rloader2 = [[RasterDownloader alloc] initWithUrl:url2];
         //rloader2.altSource = [[NSBundle mainBundle] pathForResource:@"RASTER" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];

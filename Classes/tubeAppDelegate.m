@@ -33,7 +33,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 	//MainViewController *aController = [[MainViewController alloc] init];
 	//self.mainViewController = aController;
 	//[aController release];
-    glController = [[[GlViewController alloc] initWithNibName:@"GlViewController" bundle:nil] autorelease];
+    mainViewController = [[[GlViewController alloc] initWithNibName:@"GlViewController" bundle:nil] autorelease];
     //[mainViewController addChildViewController:glController];
     
     //CityMap *cm = [[CityMap alloc] init];
@@ -51,9 +51,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     //mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
     //[window addSubview:[mainViewController view]];
-    glController.view.frame = [UIScreen mainScreen].applicationFrame;
-    window.rootViewController = glController;
-    [window addSubview:[glController view]];
+    mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
+    window.rootViewController = mainViewController;
+    [window addSubview:[mainViewController view]];
     [window makeKeyAndVisible];
 }
 
