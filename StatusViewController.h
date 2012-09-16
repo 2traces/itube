@@ -14,10 +14,13 @@
 
 @property (nonatomic,retain) UISwipeGestureRecognizer *swipeRecognizerU;
 @property (nonatomic,retain) UISwipeGestureRecognizer *swipeRecognizerD;
+@property (nonatomic,retain) UITapGestureRecognizer *tapRecognizer;
 @property (nonatomic,retain) UITextView *textView;
+@property (nonatomic,retain) UITextView *updateTextView;
 @property (nonatomic,readonly) BOOL isShown;
 @property (nonatomic,retain) NSString *infoURL;
 @property (nonatomic,retain) UIImageView *shadowView;
+@property (nonatomic,retain) UIImageView *yellowView;
 @property (nonatomic,assign) BOOL isNewMapAvailable;
 @property (nonatomic,retain) NSMutableArray *servers;
 
@@ -27,5 +30,7 @@
 -(void)hideInitialSizeView;
 -(void)showFullSizeView;
 -(void)hideFullSizeView;
+
+-(void)checkNewMaps;
 
 @end

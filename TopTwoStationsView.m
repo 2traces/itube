@@ -148,7 +148,7 @@
         UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
         [button3 addTarget:self action:@selector(showiPadLeftPathView) forControlEvents:UIControlEventTouchUpInside];
         [button3 setImage:[UIImage imageNamed:@"inv_close_ipad_button.png"] forState:UIControlStateNormal];
-        button3.frame = CGRectMake(5, 5, 35, 38);
+        button3.frame = CGRectMake(15, 8, 17, 30);
         self.leftButton=button3;
         self.leftButton.userInteractionEnabled=YES;
         [toolbar addSubview:button3];

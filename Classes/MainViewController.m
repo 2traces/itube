@@ -238,6 +238,8 @@
     [defaults setObject:newMap forKey:@"current_map"];
     [defaults setObject:cityName forKey:@"current_city"];
     [defaults synchronize];
+    
+    [self.statusViewController checkNewMaps];
 }
 
 // Override to allow orientations other than the default portrait orientation.
@@ -310,6 +312,7 @@
     if (IS_IPAD) {
         if (popover) [popover dismissPopoverAnimated:YES];
     } else {
+        
         if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
             if ([appDelegate isIPHONE5]) {
                 [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 0, 568, 320-20)];
@@ -582,7 +585,14 @@
     [blackView release];
     
     FastAccessTableViewController *tableViewC=[[[FastAccessTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
+
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     tableViewC.view.frame=CGRectMake(0,44,320,200);
+
+    if ([appDelegate isIPHONE5]) {
+        tableViewC.view.frame=CGRectMake(0,44,320,288);
+        [[(MainView*)self.view viewWithTag:554] setFrame:CGRectMake(0,44,320,528)];
+    }
     
     tableViewC.tableView.hidden=YES;
     
