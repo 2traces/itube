@@ -53,7 +53,7 @@ static float koefficient = 0.0f;
     [self.view addSubview:vvv];
     
     LeftiPadPathViewController *controller = [[LeftiPadPathViewController alloc] init];
-    controller.view.frame=CGRectMake(-320.0, 0.0, 200.0, 1004.0);
+    controller.view.frame=CGRectMake(-320.0, 0.0, 320.0, 1004.0);
     self.pathView=controller.view;
     self.leftPathController=controller;
     [self.view addSubview:controller.view];
@@ -136,40 +136,38 @@ static float koefficient = 0.0f;
     if (isLeftShown) {
         [self hideLeftView];
     } else {
-        
-        isLeftShown=YES;
-        
-        tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-        if ([[[appDelegate cityMap] activePath] count]>0) {
-            [self.leftPathController showHorizontalPathesScrollView];
-            [self.leftPathController showVerticalPathScrollView];
+        if ([self.leftPathController isReadyToShow]) {
+
+            isLeftShown=YES;
+
+            [self.leftPathController prepareToShow];
+            
+            [UIView animateWithDuration:0.5 animations:^{
+                [self layoutSubviews];
+            } completion:^(BOOL finished) {
+                //           [self adjustMapView];
+            }];
         }
-        
-        [UIView animateWithDuration:0.5 animations:^{
-            [self layoutSubviews];
-        } completion:^(BOOL finished) {
- //           [self adjustMapView];
-        }];
     }
 }
 
 -(void)hideLeftView
 {
     isLeftShown=NO;
-
+    
     [UIView animateWithDuration:0.5 animations:^{
         [self layoutSubviews];
     } completion:^(BOOL finished) {
-//    [self adjustMapView];
+        //    [self adjustMapView];
     }];
 }
 
 -(void)refreshPath
 {
-    [self.leftPathController.horizontalPathesScrollView refreshContent];
-    [self.leftPathController redrawPathScrollView];
     if (!isLeftShown) {
         [self showLeftView];
+    } else {
+        [self.leftPathController prepareToShow];
     }
 }
 

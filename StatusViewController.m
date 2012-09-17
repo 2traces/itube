@@ -22,6 +22,7 @@
 @synthesize servers;
 @synthesize tapRecognizer;
 @synthesize yellowView;
+@synthesize isStatusRecieved;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,8 +37,17 @@
 {
     self = [super init];
     if (self) {
-        self.view.frame=CGRectMake(0.0, -354, 320, 354);
-        UIImageView *imv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"statusViewBG.png"]];
+
+        UIImageView *imv;
+        if (!IS_IPAD) {
+            imv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"statusViewBG.png"]];
+            self.view.frame=CGRectMake(0.0, -354, 320, 354);
+        } else {
+            imv = [[UIImageView alloc] init];
+            imv.hidden=YES;
+            self.view.frame=CGRectMake(0.0, 0.0, 320, 1004);
+            self.view.backgroundColor = [UIColor whiteColor];
+        }
 
         [self.view addSubview:imv];
         [imv setUserInteractionEnabled:YES];
@@ -68,14 +78,15 @@
     
     isShown=NO;
     isNewMapAvailable=NO;
+    isStatusRecieved=NO;
     
-    self.textView = [[UITextView alloc] init];
+    self.textView = [[UITextView alloc] initWithFrame:CGRectZero];
     textView.editable=NO;
     textView.scrollEnabled=NO;
     textView.backgroundColor = [UIColor clearColor];
     textView.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
     textView.text=NSLocalizedString(@"NoStatusInfo", @"NoStatusInfo");
-
+    
     self.updateTextView = [[UITextView alloc] init];
     updateTextView.editable=NO;
     updateTextView.scrollEnabled=NO;
@@ -86,9 +97,10 @@
     self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(updateMaps)];
     [self.tapRecognizer setNumberOfTapsRequired:1];
     [self.updateTextView addGestureRecognizer:self.tapRecognizer];
-
+    
     if (IS_IPAD) {
         
+        self.view.frame = CGRectMake(0.0, 0.0, 320.0, 600.0);
         textView.frame = CGRectMake(10.0, 10.0, 300.0, 600.0);
         
     } else {
@@ -113,13 +125,17 @@
     [self.view bringSubviewToFront:textView];
 }
 
+
+
 -(void)statusInfoDidLoad:(NSString*)statusInfo server:(StatusDownloader*)server
 {
     if (statusInfo) {
         [[self textView] setText:statusInfo];
+        isStatusRecieved=YES;
         
         if (IS_IPAD) {
-            
+            [[self textView] setText:[statusInfo substringToIndex:600]];
+            NSLog(@"%@",textView);
         } else {
             if (!isShown) {
                 [self  performSelector:@selector(showInitialSizeView) withObject:nil afterDelay:3];
@@ -216,7 +232,7 @@
 -(void)showFullSizeView
 {
     isShown=YES;
-
+    
     [UIView animateWithDuration:0.55 animations:^{
         [self layoutSubviews];
     }];
@@ -233,25 +249,38 @@
 
 -(void)layoutSubviews
 {
-    if (isShown) {
-        self.view.frame = CGRectMake(0, 0, 320, 354);
-        self.shadowView.frame=CGRectMake(0, 44, 320, 20);
+    if (IS_IPAD) {
+        self.view.frame = CGRectMake(0.0, 44.0, 320.0, 1004.0-44.0);
         if (isNewMapAvailable) {
             updateTextView.hidden=NO;
             yellowView.hidden=NO;
-            updateTextView.frame = CGRectMake(10.0, 48.0, 300.0, 60.0);
-            textView.frame = CGRectMake(10.0, 44.0+68, 300.0, 354.0-44.0-10.0-68);
+            updateTextView.frame = CGRectMake(10.0, 4.0, 300.0, 60.0);
+            textView.frame = CGRectMake(10.0, 68, 300.0, 600.0-10.0-68.0);
+            yellowView.frame = CGRectMake(0, 0, 320, 63);
         } else {
-            textView.frame = CGRectMake(10.0, 44.0, 300.0, 354.0-44.0-10.0);
+            textView.frame = CGRectMake(10.0, 0, 300.0, 600.0-10.0);
             updateTextView.hidden=YES;
             yellowView.hidden=YES;
         }
-
-    
     } else {
-        self.view.frame = CGRectMake(0, -354, 320, 354);
-        textView.frame = CGRectMake(10.0, 322.0, 300.0, 25.0);
-        
+        if (isShown) {
+            self.view.frame = CGRectMake(0, 0, 320, 354);
+            self.shadowView.frame=CGRectMake(0, 44, 320, 20);
+            if (isNewMapAvailable) {
+                updateTextView.hidden=NO;
+                yellowView.hidden=NO;
+                updateTextView.frame = CGRectMake(10.0, 48.0, 300.0, 60.0);
+                textView.frame = CGRectMake(10.0, 44.0+68, 300.0, 354.0-44.0-10.0-68);
+            } else {
+                textView.frame = CGRectMake(10.0, 44.0, 300.0, 354.0-44.0-10.0);
+                updateTextView.hidden=YES;
+                yellowView.hidden=YES;
+            }
+        } else {
+            self.view.frame = CGRectMake(0, -354, 320, 354);
+            textView.frame = CGRectMake(10.0, 322.0, 300.0, 25.0);
+            
+        }
     }
 }
 
@@ -264,7 +293,6 @@
     
     NSString *bundleName = [NSString stringWithFormat:@"%@.plist",[[NSBundle mainBundle] bundleIdentifier]];
     [server loadFileAtURL:bundleName];
-    
 }
 
 -(void)downloadDone:(NSMutableData *)data prodID:(NSString*)prodID server:(DownloadServer *)myid
@@ -316,9 +344,13 @@
 
 -(void)updateMaps
 {
-    NSLog(@"Maps updated!!!");
-    [self hideFullSizeView];
-    [[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] mainViewController] view] showSettings];
+    if (IS_IPAD) {
+        // show setting modal
+        [[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] mainViewController] showiPadSettingsModalView];
+    } else {
+        [self hideFullSizeView];
+        [[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] mainViewController] view] showSettings];
+    }
 }
 
 -(void)startDownloading:(NSString*)prodID
