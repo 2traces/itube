@@ -22,6 +22,7 @@
 @property (nonatomic,retain) UIImageView *shadowView;
 @property (nonatomic,retain) UIImageView *yellowView;
 @property (nonatomic,assign) BOOL isNewMapAvailable;
+@property (nonatomic,assign) BOOL isStatusRecieved;
 @property (nonatomic,retain) NSMutableArray *servers;
 
 -(void)recieveStatusInfo;
@@ -32,5 +33,6 @@
 -(void)hideFullSizeView;
 
 -(void)checkNewMaps;
+-(void)layoutSubviews;
 
 @end
