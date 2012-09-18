@@ -238,6 +238,8 @@
     [defaults setObject:newMap forKey:@"current_map"];
     [defaults setObject:cityName forKey:@"current_city"];
     [defaults synchronize];
+    
+    [self.statusViewController checkNewMaps];
 }
 
 // Override to allow orientations other than the default portrait orientation.
@@ -298,7 +300,7 @@
             } else {
                 [(MainView*)self.view changeShadowFrameToRect:CGRectMake(0.0, 0.0, 480.0, 61.0)];
             }
-
+            
         }
     }
 }
@@ -306,10 +308,11 @@
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-
+    
     if (IS_IPAD) {
         if (popover) [popover dismissPopoverAnimated:YES];
     } else {
+        
         if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
             if ([appDelegate isIPHONE5]) {
                 [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 0, 568, 320-20)];
@@ -398,7 +401,7 @@
         [self.horizontalPathesScrollView refreshContent];
     }
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-
+    
     if ([appDelegate isIPHONE5]) {
         [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 568-86)];
     } else {
@@ -460,7 +463,7 @@
     } else {
         [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 44, 320, 480-64)];
     }
-
+    
     
     [self.horizontalPathesScrollView removeFromSuperview];
     self.horizontalPathesScrollView=nil;
@@ -503,7 +506,7 @@
         } else {
             scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, 66.0, 320.0f, 414.0f)];
         }
-                
+        
         self.pathScrollView = scview;
         scview.mainController=self;
         [scview release];
@@ -545,9 +548,9 @@
 -(void)showiPadLeftPathView
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-    //    if (appDelegate.cityMap.activeExtent.size.width!=0) {
-    [spltViewController showLeftView];
-    //    }
+ //   if (appDelegate.cityMap.activeExtent.size.width!=0) {
+        [spltViewController showLeftView];
+//    }
 }
 
 -(void)hideiPadLeftPathView
@@ -582,7 +585,14 @@
     [blackView release];
     
     FastAccessTableViewController *tableViewC=[[[FastAccessTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
+    
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     tableViewC.view.frame=CGRectMake(0,44,320,200);
+    
+    if ([appDelegate isIPHONE5]) {
+        tableViewC.view.frame=CGRectMake(0,44,320,288);
+        [[(MainView*)self.view viewWithTag:554] setFrame:CGRectMake(0,44,320,528)];
+    }
     
     tableViewC.tableView.hidden=YES;
     
