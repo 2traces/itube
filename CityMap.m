@@ -1950,7 +1950,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [[MHelper sharedHelper] readHistoryFile:mapName];
     [[MHelper sharedHelper] readBookmarkFile:mapName];
     [[MHelper sharedHelper] readLanguageIndex:mapName];
-#ifdef DEBUG
     NSString *routePath = [NSString stringWithFormat:@"%@/route", self.pathToMap];
     if((schedule = [[Schedule alloc] initFastSchedule:@"routes" path:[NSString stringWithFormat:@"%@/newroute", self.pathToMap]]) ||
        (schedule = [[Schedule alloc] initSchedule:@"routes" path:routePath])) {
@@ -1963,7 +1962,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
         [schedule removeUncheckedStations];
     }
-#endif
     
     // check different stations with equal names
     for (Line *l in mapLines) {
@@ -2430,6 +2428,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 }
             }
             NSArray *paths = [graph getWays:[GraphNode nodeWithName:firstStation andLine:firstStationLineNum] to:[GraphNode nodeWithName:secondStation andLine:secondStationLineNum] withoutStations:missingStations];
+            int pathCount = 0;
             for (NSArray *path in paths) {
                 NSArray *trpath;
                 trpath = [schedule translatePath:path];
@@ -2440,8 +2439,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     NSLog(@"path is %@", path);
                     NSLog(@"schedule path is %@", trpath);
 #endif
-                    if(weight2 < 60*60*12)  // время пути должно быть меньше 12 часов
+                    if(weight2 < 60*60*12 && pathCount < 3) {  // время пути должно быть меньше 12 часов
                         [trpaths setObject:trpath forKey:[NSNumber numberWithDouble:weight2]];
+                        pathCount ++;
+                    }
                     //return [NSDictionary dictionaryWithObject:trpath forKey:[NSNumber numberWithDouble:[[trpath lastObject] weight]]];
                 }
             }

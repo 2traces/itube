@@ -269,7 +269,7 @@
             NSArray *altPath = [self shortestPath:source to:target weight:&weight closedNodes:[NSSet setWithObject:n]];
             if([altPath count] > 0)
                 [result setObject:altPath forKey:[NSNumber numberWithFloat:weight]];
-            if([result count] >= 5) break; // max 5 paths
+            if([result count] >= 3) break; // max 3 paths
         }
         prevLine = n.line;
         nodeNum ++;
