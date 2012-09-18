@@ -326,7 +326,7 @@
 
 -(NSString*)getCurrentMapVersionFromDict:(NSDictionary*)dict
 {
-    NSString *verNumber;
+    NSString *verNumber = nil;
     
     NSString *currentMap = [[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] thisMapName];
     

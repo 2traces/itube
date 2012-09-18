@@ -118,7 +118,8 @@
 
 -(NSUInteger)supportedInterfaceOrientations
 {
-    return UIInterfaceOrientationMaskPortrait;
+    //return UIInterfaceOrientationMaskPortrait;
+    return 1 << UIInterfaceOrientationPortrait;
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

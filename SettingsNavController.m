@@ -61,7 +61,8 @@
 
 -(NSUInteger)supportedInterfaceOrientations
 {
-    return UIInterfaceOrientationMaskPortrait;
+    //return UIInterfaceOrientationMaskPortrait;
+    return 1 << UIInterfaceOrientationPortrait;
 }
 
 -(void) dealloc

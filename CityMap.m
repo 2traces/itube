@@ -1982,6 +1982,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(void) loadOldMap:(NSString *)mapFile trp:(NSString *)trpFile {
 
+    int scale = [[UIScreen mainScreen] scale];
 	int err;
 	INIParser* parserTrp, *parserMap;
 
@@ -2007,7 +2008,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(val >= 0 && val < KINDS_NUM) StKind = val;
     val = [[parserMap get:@"FontSize" section:@"Options"] intValue];
     if(val > 0) FontSize = val;
-    float sc = [[parserMap get:@"MaxScale" section:@"Options"] floatValue];
+    float sc = 1.f;
+    sc = [[parserMap get:@"MaxScale" section:@"Options"] floatValue];
+    if(IS_IPAD && scale == 1) sc = [[parserMap get:@"MaxScaleiPad" section:@"Options"] floatValue];
+    if(IS_IPAD && scale > 1) sc = [[parserMap get:@"MaxScaleiPad3" section:@"Options"] floatValue];
     if(sc != 0.f) {
         maxScale = sc;
         PredrawScale = maxScale;
@@ -2107,7 +2111,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
     }
     // для ретиновских устройств генерируем предварительно отрисованные данные в двойном размере
-    int scale = [[UIScreen mainScreen] scale];
     if(scale > 1) PredrawScale *= scale;
 
     [self calcGraph];
@@ -2117,6 +2120,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(void) loadNewMap:(NSString *)mapFile trp:(NSString *)trpFile {
 
 	INIParser* parserTrp, *parserMap;
+    int scale = [[UIScreen mainScreen] scale];
 	
 	int err;
 	parserTrp = [[INIParser alloc] init];
@@ -2141,7 +2145,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(val >= 0 && val < KINDS_NUM) StKind = val;
     val = [[parserMap get:@"FontSize" section:@"Options"] intValue];
     if(val > 0) FontSize = val;
-    float sc = [[parserMap get:@"MaxScale" section:@"Options"] floatValue];
+    float sc = 1.f;
+    sc = [[parserMap get:@"MaxScale" section:@"Options"] floatValue];
+    if(IS_IPAD && scale == 1) sc = [[parserMap get:@"MaxScaleiPad" section:@"Options"] floatValue];
+    if(IS_IPAD && scale > 1) sc = [[parserMap get:@"MaxScaleiPad3" section:@"Options"] floatValue];
     if(sc != 0.f) {
         maxScale = sc;
         PredrawScale = maxScale;
@@ -2386,7 +2393,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
     }
     // для ретиновских устройств генерируем предварительно отрисованные данные в двойном размере
-    int scale = [[UIScreen mainScreen] scale];
     if(scale > 1) PredrawScale *= scale;
     
     [self processTransfersForGraph2];

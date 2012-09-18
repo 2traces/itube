@@ -7,6 +7,8 @@ WordWrap=False
 UpperCase=False
 FontSize=30
 MaxScale=2
+MaxScaleiPad=1
+MaxScaleiPad3=0.5
 DisplayStations=5
 DisplayTransfers=5
 
