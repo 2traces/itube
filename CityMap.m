@@ -2010,12 +2010,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(val > 0) FontSize = val;
     float sc = 1.f;
     sc = [[parserMap get:@"MaxScale" section:@"Options"] floatValue];
+    if(sc != 0.f) maxScale = sc;
     if(IS_IPAD && scale == 1) sc = [[parserMap get:@"MaxScaleiPad" section:@"Options"] floatValue];
     if(IS_IPAD && scale > 1) sc = [[parserMap get:@"MaxScaleiPad3" section:@"Options"] floatValue];
-    if(sc != 0.f) {
-        maxScale = sc;
-        PredrawScale = maxScale;
-    }
+    if(sc != 0.f) maxScale = sc;
+    PredrawScale = maxScale;
     sc = [[parserMap get:@"GpsMarkScale" section:@"Options"] floatValue];
     if(sc != 0.f) {
         gpsCircleScale = sc;
@@ -2147,12 +2146,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(val > 0) FontSize = val;
     float sc = 1.f;
     sc = [[parserMap get:@"MaxScale" section:@"Options"] floatValue];
+    if(sc != 0.f) maxScale = sc;
     if(IS_IPAD && scale == 1) sc = [[parserMap get:@"MaxScaleiPad" section:@"Options"] floatValue];
     if(IS_IPAD && scale > 1) sc = [[parserMap get:@"MaxScaleiPad3" section:@"Options"] floatValue];
-    if(sc != 0.f) {
-        maxScale = sc;
-        PredrawScale = maxScale;
-    }
+    if(sc != 0.f) maxScale = sc;
+    PredrawScale = maxScale;
     BOOL tuneEnabled = [[parserMap get:@"TuneTransfers" section:@"Options"] boolValue];
     sc = [[parserMap get:@"GpsMarkScale" section:@"Options"] floatValue];
     if(sc != 0.f) {
