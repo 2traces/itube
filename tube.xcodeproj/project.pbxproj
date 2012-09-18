@@ -1144,7 +1144,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				BC0FD7021601DD8C00C048FF /* MapKit.framework */,
 				BC76ACF1151B1A74009BDABC /* minizip */,
 				289233A00DB2D0730083E9F9 /* Main View */,
 				281C6CD70DB2D82200F60ACC /* Flipside View */,
@@ -1227,6 +1226,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BC0FD7021601DD8C00C048FF /* MapKit.framework */,
 				515D75141534BB9700C25074 /* libxml2.dylib */,
 				BC76ACE4151B168A009BDABC /* libz.dylib */,
 				BC3D156614C33E160059A17E /* StoreKit.framework */,
@@ -2328,22 +2328,14 @@
 					armv6,
 					armv7,
 				);
-<<<<<<< HEAD
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-=======
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Mingalev (7JL6T6YKP5)";
->>>>>>> 937f77e8cc124df9f0d31d85c3cc806784482af7
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				ONLY_ACTIVE_ARCH = YES;
-<<<<<<< HEAD
-				PROVISIONING_PROFILE = "";
-=======
 				PROVISIONING_PROFILE = "68A30648-4F38-4485-B3D3-9260E0173230";
->>>>>>> 937f77e8cc124df9f0d31d85c3cc806784482af7
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2355,21 +2347,13 @@
 					armv6,
 					armv7,
 				);
-<<<<<<< HEAD
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-=======
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Mingalev (7JL6T6YKP5)";
->>>>>>> 937f77e8cc124df9f0d31d85c3cc806784482af7
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				ONLY_ACTIVE_ARCH = YES;
-<<<<<<< HEAD
-				PROVISIONING_PROFILE = "";
-=======
 				PROVISIONING_PROFILE = "68A30648-4F38-4485-B3D3-9260E0173230";
->>>>>>> 937f77e8cc124df9f0d31d85c3cc806784482af7
 				SDKROOT = iphoneos;
 			};
 			name = Release;
