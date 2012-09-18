@@ -199,6 +199,10 @@ static float koefficient = 0.0f;
     // Release any retained subviews of the main view.
 }
 
+-(void)refreshStatusInfo
+{
+    [leftPathController refreshStatusInfo];
+}
 
 
 

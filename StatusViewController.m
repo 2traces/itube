@@ -169,6 +169,8 @@
 
 -(void)refreshStatusInfo
 {
+    isNewMapAvailable=NO;
+    isStatusRecieved=NO;
     textView.text=NSLocalizedString(@"NoStatusInfo", @"NoStatusInfo");
     [self recieveStatusInfo];
 }
