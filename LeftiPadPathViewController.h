@@ -32,5 +32,6 @@
 
 -(BOOL)isReadyToShow;
 -(void)prepareToShow;
+-(void)refreshStatusInfo;
 
 @end

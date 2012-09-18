@@ -29,5 +29,6 @@
 -(void)refreshPath;
 -(void)showLeftView;
 -(void)hideLeftView;
+-(void)refreshStatusInfo;
 
 @end
