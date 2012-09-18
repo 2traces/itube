@@ -1950,7 +1950,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [[MHelper sharedHelper] readHistoryFile:mapName];
     [[MHelper sharedHelper] readBookmarkFile:mapName];
     [[MHelper sharedHelper] readLanguageIndex:mapName];
-#ifdef DEBUG
     NSString *routePath = [NSString stringWithFormat:@"%@/route", self.pathToMap];
     if((schedule = [[Schedule alloc] initFastSchedule:@"routes" path:[NSString stringWithFormat:@"%@/newroute", self.pathToMap]]) ||
        (schedule = [[Schedule alloc] initSchedule:@"routes" path:routePath])) {
@@ -1963,7 +1962,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
         [schedule removeUncheckedStations];
     }
-#endif
     
     // check different stations with equal names
     for (Line *l in mapLines) {
