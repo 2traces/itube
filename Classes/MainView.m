@@ -190,7 +190,7 @@ NSInteger const toolbarWidth=320;
     scrollSize = CGRectMake(0,44,(320),(480-64));
     
     if (IS_IPAD) {
-        scrollSize = CGRectMake(0, 44, 568, (1024-64));
+        scrollSize = CGRectMake(0, 44, 768, (1024-64));
     } else {
         if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
             CGSize result = [[UIScreen mainScreen] bounds].size;

@@ -136,6 +136,15 @@
     
     [super viewDidLoad];
     
+    if (!IS_IPAD) {
+        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(orientationChanged:)
+                                                     name:UIDeviceOrientationDidChangeNotification
+                                                   object:nil];
+        
+    }
+
     [(MainView*)self.view viewInit:self];
     
     if (!IS_IPAD) {
@@ -159,6 +168,13 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(languageChanged:) name:@"kLangChanged" object:nil];
     
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+        NSLog(@"qqq");
+    }
 }
 
 // --- status lines
@@ -214,6 +230,7 @@
 -(void)changeMapTo:(NSString*)newMap andCity:(NSString*)cityName
 {
     [stationsView resetBothStations];
+    [self.spltViewController hideLeftView];
     
     MHelper *helper = [MHelper sharedHelper];
     [helper saveBookmarkFile];
@@ -239,7 +256,11 @@
     [defaults setObject:cityName forKey:@"current_city"];
     [defaults synchronize];
     
-    [self.statusViewController checkNewMaps];
+    if (IS_IPAD) {
+        [self.spltViewController refreshStatusInfo];
+    } else {
+        [self.statusViewController checkNewMaps];
+    }
 }
 
 // Override to allow orientations other than the default portrait orientation.
@@ -329,11 +350,72 @@
     }
 }
 
+- (void)orientationChanged:(NSNotification *)notification
+{
+    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+    if (UIDeviceOrientationIsLandscape(deviceOrientation) &&
+        !isShowingLandscapeView)
+    {
+        [self dismissModalViewControllerAnimated:YES];
+        
+        self.stationsView.hidden=YES;
+        self.horizontalPathesScrollView.hidden=YES;
+        self.changeViewButton.hidden=YES;
+        if (self.pathScrollView) {
+            [self removeVerticalPathView];
+        }
+        
+        if (self.statusViewController.isShown) {
+            [self.statusViewController hideFullSizeView];
+        }
+        tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+
+        if ([appDelegate isIPHONE5]) {
+            [(MainView*)self.view changeShadowFrameToRect:CGRectMake(0.0, 0.0, 568.0, 61.0)];
+            [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 0, 568, 320-20)];
+        } else {
+            [(MainView*)self.view changeShadowFrameToRect:CGRectMake(0.0, 0.0, 480.0, 61.0)];
+            [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 0, 480, 320-20)];
+        }
+        
+        isShowingLandscapeView = YES;
+    }
+    else if ((deviceOrientation==UIDeviceOrientationPortrait) &&
+             isShowingLandscapeView)
+    {
+        self.stationsView.hidden=NO;
+        self.horizontalPathesScrollView.hidden=NO;
+        self.changeViewButton.hidden=NO;
+        
+        tubeAppDelegate * delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+        if ([[[delegate cityMap] activePath] count]>0) {
+            if (!([[[delegate cityMap] activePath] count]==1 && [[[[delegate cityMap] activePath] objectAtIndex:0] isKindOfClass:[Transfer class]])) {
+                    [stationsView transitToPathView];
+                    [self showHorizontalPathesScrollView];
+            }
+        }
+        
+        [(MainView*)self.view changeShadowFrameToRect:CGRectMake(0.0, 44.0, 320.0, 61.0)];
+        
+        tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+
+        if ([appDelegate isIPHONE5]) {
+            [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 40, 320, 568-60)];
+        } else {
+            [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 40, 320, 480-60)];
+        }
+
+        
+        isShowingLandscapeView = NO;
+    }
+}
+
 -(void)showTabBarViewController
 {
     SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
     controller.delegate = self;
     [self presentModalViewController:controller animated:YES];
+//    [self presentViewController:controller animated:YES completion:nil];
     [controller release];
 }
 

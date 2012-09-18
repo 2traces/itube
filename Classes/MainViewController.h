@@ -38,6 +38,7 @@
     
     NSTimer *timer;
     UIPopoverController *popover;
+    BOOL isShowingLandscapeView;
 }
 
 @property (nonatomic, retain) MStation *fromStation;

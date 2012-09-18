@@ -338,4 +338,9 @@
     }
 }
 
+-(void)refreshStatusInfo
+{
+    [self.statusViewController refreshStatusInfo];
+}
+
 @end
