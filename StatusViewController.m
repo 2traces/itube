@@ -252,15 +252,15 @@
 -(void)layoutSubviews
 {
     if (IS_IPAD) {
-        self.view.frame = CGRectMake(0.0, 44.0, 320.0, 1004.0-44.0);
+        self.view.frame = CGRectMake(0.0, 44.0, 320.0, 1004.0-84.0);
         if (isNewMapAvailable) {
             updateTextView.hidden=NO;
             yellowView.hidden=NO;
-            updateTextView.frame = CGRectMake(10.0, 4.0, 300.0, 60.0);
-            textView.frame = CGRectMake(10.0, 68, 300.0, 600.0-10.0-68.0);
-            yellowView.frame = CGRectMake(0, 0, 320, 63);
+            updateTextView.frame = CGRectMake(10.0, 44.0, 300.0, 60.0);
+            textView.frame = CGRectMake(10.0, 68+40, 300.0, 600.0-10.0-68.0-44);
+            yellowView.frame = CGRectMake(0, 40, 320, 63);
         } else {
-            textView.frame = CGRectMake(10.0, 0, 300.0, 600.0-10.0);
+            textView.frame = CGRectMake(10.0, 44, 300.0, 600.0-10.0-44);
             updateTextView.hidden=YES;
             yellowView.hidden=YES;
         }
