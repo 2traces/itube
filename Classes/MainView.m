@@ -56,12 +56,12 @@ NSInteger const toolbarWidth=320;
 
     CGRect scrollSize,settingsRect,shadowRect;
 
-    scrollSize = CGRectMake(0,44,(320),(480-64));
+    scrollSize = CGRectMake(0, 44,(320),(480-64));
     settingsRect=CGRectMake(285, 420, 27, 27);
     shadowRect = CGRectMake(0, 44, 480, 61);
 
     if (IS_IPAD) {
-        scrollSize = CGRectMake(0, 44, 568, (1024-64));
+        scrollSize = CGRectMake(0, 44, 768, (1024-74));
         settingsRect=CGRectMake(-285, -420, 27, 27);
         shadowRect = CGRectMake(0, 44, 1024, 61);
     } else {       

@@ -47,8 +47,8 @@ static float koefficient = 0.0f;
     tubeAppDelegate *delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
     MainView *vvv = (MainView*)[delegate.mainViewController view];
     delegate.mainViewController.spltViewController=self;
-    vvv.frame = CGRectMake(0.0, 0.0, 768.0, 1004.0);
-    [[vvv containerView] setFrame:CGRectMake(0.0, 0.0, 768.0, 1004)];
+    vvv.frame = CGRectMake(0.0, 0.0, 768.0, 1004.0-44.0);
+    [[vvv containerView] setFrame:CGRectMake(0.0, 44.0, 768.0, 1004-44.0)];
     self.mapView = vvv;
     [self.view addSubview:vvv];
     
@@ -95,7 +95,7 @@ static float koefficient = 0.0f;
                                    size.width - constDetailStartPoint,
                                    size.height + koefficient);
         
-        [[(MainView*)self.mapView containerView] setFrame:CGRectMake(0.0, 0.0, size.width - constDetailStartPoint,size.height + koefficient)];
+        [[(MainView*)self.mapView containerView] setFrame:CGRectMake(0.0, 44.0, size.width - constDetailStartPoint,size.height + koefficient - 44.0)];
         [mainViewController.stationsView setFrame:CGRectMake(0, 0, size.width - constDetailStartPoint, 44)];
         
     } else {
@@ -108,7 +108,7 @@ static float koefficient = 0.0f;
                                    size.width,
                                    size.height + koefficient);
         
-        [[(MainView*)self.mapView containerView] setFrame:CGRectMake(0.0, 0.0, size.width ,size.height + koefficient)];
+        [[(MainView*)self.mapView containerView] setFrame:CGRectMake(0.0, 44.0, size.width ,size.height + koefficient - 44.0)];
         [mainViewController.stationsView setFrame:CGRectMake(0, 0, size.width, 44)];
     }
     
@@ -128,7 +128,7 @@ static float koefficient = 0.0f;
 {
     CGSize size = [self sizeRotated];
     
-    [self.leftPathController.pathScrollView setFrame:CGRectMake(0.0, 44.0, 320.0, size.height-44.0)];
+    [self.leftPathController.pathScrollView setFrame:CGRectMake(0.0, 84.0, 320.0, size.height-84.0)];
 }
 
 -(void)showLeftView

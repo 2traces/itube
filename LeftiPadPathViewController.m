@@ -171,7 +171,7 @@
         self.horizontalPathesScrollView.hidden=NO;
         self.statusLabel.hidden=NO;
         [[self.view viewWithTag:2321] setHidden:NO];
-
+        [[self.statusViewController shadowView] setHidden:YES];
 
         //  расположить по индексам вьюшки
         [self.view sendSubviewToBack:self.statusViewController.view];
@@ -284,7 +284,7 @@
 {
     if (!self.pathScrollView ) {
         
-        VertPathScrollView *scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, 44.0, 320.0f, self.view.frame.size.height-44.0)];
+        VertPathScrollView *scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, 84.0, 320.0f, self.view.frame.size.height-84.0)];
         self.pathScrollView = scview;
         tubeAppDelegate * delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
         scview.mainController=delegate.mainViewController;
@@ -331,10 +331,12 @@
         self.horizontalPathesScrollView.hidden=YES;
         [[self.view viewWithTag:2321] setHidden:YES];
         self.statusLabel.hidden=NO;
+        [[self.statusViewController shadowView] setHidden:NO];
     } else {
         self.horizontalPathesScrollView.hidden=NO;
         [[self.view viewWithTag:2321] setHidden:NO];
         self.statusLabel.hidden=YES;
+        [[self.statusViewController shadowView] setHidden:YES];
     }
 }
 
