@@ -10,6 +10,7 @@
 #include "ini.h"
 #import "ManagedObjects.h"
 #import "tubeAppDelegate.h"
+#import "Utils.h"
 
 CGFloat sqr(CGFloat v) {
     return v*v;
@@ -2011,6 +2012,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(sc != 0.f) maxScale = sc;
     if(IS_IPAD && scale == 1) sc = [[parserMap get:@"MaxScaleiPad" section:@"Options"] floatValue];
     if(IS_IPAD && scale > 1) sc = [[parserMap get:@"MaxScaleiPad3" section:@"Options"] floatValue];
+    if([[Utils getModel] isEqualToString:@"iPod4thGen"]) sc = [[parserMap get:@"MaxScaleiPod4" section:@"Options"] floatValue];
     if(sc != 0.f) maxScale = sc;
     PredrawScale = maxScale;
     sc = [[parserMap get:@"GpsMarkScale" section:@"Options"] floatValue];
@@ -2147,6 +2149,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(sc != 0.f) maxScale = sc;
     if(IS_IPAD && scale == 1) sc = [[parserMap get:@"MaxScaleiPad" section:@"Options"] floatValue];
     if(IS_IPAD && scale > 1) sc = [[parserMap get:@"MaxScaleiPad3" section:@"Options"] floatValue];
+    if([[Utils getModel] isEqualToString:@"iPod4thGen"]) sc = [[parserMap get:@"MaxScaleiPod4" section:@"Options"] floatValue];
     if(sc != 0.f) maxScale = sc;
     PredrawScale = maxScale;
     BOOL tuneEnabled = [[parserMap get:@"TuneTransfers" section:@"Options"] boolValue];

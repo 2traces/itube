@@ -16,4 +16,5 @@
 }
 
 -(NSArray*) readMap: (NSString*)filename;
++ (NSString *)getModel;
 @end
