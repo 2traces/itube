@@ -35,12 +35,12 @@ NSInteger const toolbarWidth=320;
 
 
 - (id)initWithFrame:(CGRect)frame {
-
+    
 	DLog(@"initWithFrame ");
     if (self = [super initWithFrame:frame]) {
         
         // Initialization code
-
+        
     }
     return self;
 }
@@ -53,18 +53,18 @@ NSInteger const toolbarWidth=320;
 -(void)viewInit:(MainViewController*)vc
 {
 	[self initVar];
-
+    
     CGRect scrollSize,settingsRect,shadowRect;
-
+    
     scrollSize = CGRectMake(0, 44,(320),(480-64));
     settingsRect=CGRectMake(285, 420, 27, 27);
     shadowRect = CGRectMake(0, 44, 480, 61);
-
+    
     if (IS_IPAD) {
         scrollSize = CGRectMake(0, 44, 768, (1024-74));
         settingsRect=CGRectMake(-285, -420, 27, 27);
         shadowRect = CGRectMake(0, 44, 1024, 61);
-    } else {       
+    } else {
         if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
             CGSize result = [[UIScreen mainScreen] bounds].size;
             CGFloat scale = [UIScreen mainScreen].scale;
@@ -81,33 +81,33 @@ NSInteger const toolbarWidth=320;
     self.vcontroller = vc;
 	self.userInteractionEnabled = YES;
     buttonsVisible = NO;
-	DLog(@"ViewDidLoad main View");	
+	DLog(@"ViewDidLoad main View");
     MBProgressHUD *aiv = [[MBProgressHUD alloc] initWithView:self];
     commonActivityIndicator = aiv;
     [self addSubview:aiv];
-
+    
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	mapView = [[[MapView alloc] initWithFrame:scrollSize] autorelease];
     mapView.cityMap = appDelegate.cityMap;
     mapView.vcontroller = self.vcontroller;
     self.backgroundColor = mapView.backgroundColor;
-
+    
 	containerView = [[MyScrollView alloc] initWithFrame:scrollSize];
 	[containerView setContentSize:mapView.size];
 	containerView.scrollEnabled = YES;
 	containerView.decelerationRate = UIScrollViewDecelerationRateFast ;
 	containerView.showsVerticalScrollIndicator = NO;
-	containerView.showsHorizontalScrollIndicator = NO;	
-//	containerView.pagingEnabled = YES;
+	containerView.showsHorizontalScrollIndicator = NO;
+    //	containerView.pagingEnabled = YES;
 	containerView.clipsToBounds = YES;//YES;
 	containerView.bounces = YES;
     [containerView setBouncesZoom:NO];
 	containerView.maximumZoomScale = mapView.MaxScale;
 	containerView.minimumZoomScale = mapView.MinScale;
 	//containerView.directionalLockEnabled = YES;
-//	containerView.userInteractionEnabled = YES;
-//	mapView.exclusiveTouch = NO;
-
+    //	containerView.userInteractionEnabled = YES;
+    //	mapView.exclusiveTouch = NO;
+    
     [containerView addSubview:mapView.previewImage];
     containerView.scrolledView = mapView;
 	containerView.delegate = mapView;
@@ -123,24 +123,24 @@ NSInteger const toolbarWidth=320;
 	
 	stationNameView = [[UIView alloc] initWithFrame:self.frame];
 	[stationNameView setOpaque:YES];
-
+    
 	stationNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
-
+    
 	stationNameLabel.text = @"some text";
 	[stationNameView addSubview:stationNameLabel];
     
     stationNameLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
 	
 	//œ[self addSubview:stationNameView];
-	stationNameView.userInteractionEnabled = YES;	
+	stationNameView.userInteractionEnabled = YES;
 	/*
-	CLController = [[CoreLocationController alloc] init];
-	CLController.delegate = self;
-	[CLController.locMgr startUpdatingLocation];
-	*/
+     CLController = [[CoreLocationController alloc] init];
+     CLController.delegate = self;
+     [CLController.locMgr startUpdatingLocation];
+     */
 	//UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
-	//[containerView addGestureRecognizer:singleTap];    
-
+	//[containerView addGestureRecognizer:singleTap];
+    
     stationMark = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"station_mark"]];
     stationMark.hidden = YES;
     [self addSubview:stationMark];
@@ -190,7 +190,11 @@ NSInteger const toolbarWidth=320;
     scrollSize = CGRectMake(0,44,(320),(480-64));
     
     if (IS_IPAD) {
-        scrollSize = CGRectMake(0, 44, 768, (1024-64));
+        if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+            scrollSize = CGRectMake(0, 44, 768, (1024-64));
+        } else {
+            scrollSize = CGRectMake(0, 44, 1024, (768-64));
+        }
     } else {
         if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
             CGSize result = [[UIScreen mainScreen] bounds].size;
@@ -202,7 +206,7 @@ NSInteger const toolbarWidth=320;
             }
         }
     }
-
+    
     containerView = [[MyScrollView alloc] initWithFrame:scrollSize];
     
     mapView = [[[MapView alloc] initWithFrame:scrollSize] autorelease];
@@ -211,7 +215,7 @@ NSInteger const toolbarWidth=320;
 	containerView.scrollEnabled = YES;
 	containerView.decelerationRate = UIScrollViewDecelerationRateFast ;
 	containerView.showsVerticalScrollIndicator = NO;
-	containerView.showsHorizontalScrollIndicator = NO;	
+	containerView.showsHorizontalScrollIndicator = NO;
 	containerView.clipsToBounds = YES;//YES;
 	containerView.bounces = YES;
     [containerView setBouncesZoom:NO];
@@ -231,7 +235,7 @@ NSInteger const toolbarWidth=320;
     if(cm != nil) {
         [containerView setContentOffset:CGPointMake(mapView.size.width * 0.25f * mapView.Scale, mapView.size.height * 0.25f * mapView.Scale ) animated:NO];
         cm.drawName = [[MHelper sharedHelper] languageIndex];
-    } else 
+    } else
         [containerView setContentOffset:CGPointZero];
     [self insertSubview:mapView.labelView belowSubview:sourceButton];
     self.backgroundColor = mapView.backgroundColor;
@@ -257,10 +261,10 @@ NSInteger const toolbarWidth=320;
     if(pos.x > 200) pos.x = 200;
     if(pos.y < 130) pos.y += 200;
     if(pos.y > 380) pos.y = 380;
-
+    
     [UIView animateWithDuration:0.25f animations:^{ sourceButton.center = CGPointMake(pos.x-60, pos.y+20); }];
     [UIView animateWithDuration:0.25f animations:^{ destinationButton.center = CGPointMake(pos.x+60, pos.y+20); }];
-
+    
     if(mapView.labelView.hidden) {
         mapView.labelView.center = CGPointMake(pos.x, pos.y-55);
         mapView.labelView.hidden=false;

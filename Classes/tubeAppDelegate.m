@@ -375,9 +375,9 @@ void uncaughtExceptionHandler(NSException *exception) {
         
         Station *startStation  = [cityMap findNearestStationTo:startPoint];
         Station *endStation  = [cityMap findNearestStationTo:endPoint];
+        
+        [request release];
 
-        NSLog(@"%@ - %@",startStation,endStation);
-    
         MStation *mStartStation = [[MHelper sharedHelper] getStationWithIndex:startStation.index andLineIndex:startStation.line.index];
         MStation *mEndStation = [[MHelper sharedHelper] getStationWithIndex:endStation.index andLineIndex:endStation.line.index];
         
