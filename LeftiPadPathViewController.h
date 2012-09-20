@@ -25,6 +25,7 @@
 @property (nonatomic,retain) UIButton *switchButton;
 @property (nonatomic,retain) UIImageView *toolbar;
 @property (nonatomic,retain) UILabel *statusLabel;
+@property (nonatomic,retain) UIImageView *statusShadowView;
 
 -(void)showHorizontalPathesScrollView;
 -(void)showVerticalPathScrollView;

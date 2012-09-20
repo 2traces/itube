@@ -21,6 +21,7 @@
 @synthesize switchButton;
 @synthesize toolbar;
 @synthesize statusLabel;
+@synthesize statusShadowView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,15 +35,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    isPathExists=NO;
+    isStatusAvailable=NO;
+    
 	// Do any additional setup after loading the view.
-    self.toolbar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44.0)];
+    self.toolbar = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44.0)] autorelease];
     [self.toolbar setImage:[[UIImage imageNamed:@"toolbar_bg1.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0]];
     [self.toolbar setUserInteractionEnabled:YES];
     self.toolbar.autoresizesSubviews = YES;
     self.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:self.toolbar];
     
-    self.statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 6, 300, 40)];
+    self.statusLabel = [[[UILabel alloc] initWithFrame:CGRectMake(90, 6, 300, 40)] autorelease];
     self.statusLabel.backgroundColor=[UIColor clearColor];
     self.statusLabel.textColor = [UIColor grayColor];
     self.statusLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:22.0];
@@ -50,21 +55,10 @@
     [self.view addSubview:self.statusLabel];
     self.statusLabel.hidden=YES;
     
-    isPathExists=NO;
-    isStatusAvailable=NO;
-    
     [self addStatusView];
-
+    
     self.switchButton = [self createSwitchButton];
     [self.view addSubview:switchButton];
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-//    tubeAppDelegate * delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
-//    if ([[[delegate cityMap] activePath] count]>0) {
-//        [self showHorizontalPathesScrollView];
-//    }
 }
 
 - (void)viewDidUnload
@@ -159,28 +153,30 @@
         self.pathScrollView.hidden=YES;
         self.switchButton.hidden=YES;
     } else if (isStatusAvailable==NO && isPathExists==YES) {
+        // show only path
         self.statusViewController.view.hidden=YES;
         self.pathScrollView.hidden=NO;
         self.switchButton.hidden=YES;
         self.horizontalPathesScrollView.hidden=NO;
         self.statusLabel.hidden=YES;
     } else if (isStatusAvailable==YES && isPathExists==YES) {
+        //show both status and path
         self.statusViewController.view.hidden=NO;
         self.pathScrollView.hidden=NO;
         self.switchButton.hidden=NO;
         self.horizontalPathesScrollView.hidden=NO;
         self.statusLabel.hidden=NO;
-        [[self.view viewWithTag:2321] setHidden:NO];
+        self.statusShadowView.hidden=NO;
         [[self.statusViewController shadowView] setHidden:YES];
-
-        //  расположить по индексам вьюшки
+        
+        // arrange views
         [self.view sendSubviewToBack:self.statusViewController.view];
         [self.view sendSubviewToBack:self.horizontalPathesScrollView];
         [self.view sendSubviewToBack:self.statusLabel];
         [self.view sendSubviewToBack:self.toolbar];
         [self.view bringSubviewToFront:self.pathScrollView];
-        [self.view bringSubviewToFront:[self.view viewWithTag:2321]];
-        [self.view bringSubviewToFront:self.switchButton];        
+        [self.view bringSubviewToFront:self.statusShadowView];
+        [self.view bringSubviewToFront:self.switchButton];
     }
 }
 
@@ -296,7 +292,7 @@
         UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
         shadow.frame = CGRectMake(0, 44, 320, 61);
         [shadow setIsAccessibilityElement:YES];
-        shadow.tag = 2321;
+        self.statusShadowView=shadow;
         [self.view addSubview:shadow];
     } else {
         [self redrawPathScrollView];
@@ -329,12 +325,12 @@
     [self.view exchangeSubviewAtIndex:3 withSubviewAtIndex:4];
     if ([self.view.subviews objectAtIndex:4]==self.statusViewController.view) {
         self.horizontalPathesScrollView.hidden=YES;
-        [[self.view viewWithTag:2321] setHidden:YES];
+        self.statusShadowView.hidden=YES;
         self.statusLabel.hidden=NO;
         [[self.statusViewController shadowView] setHidden:NO];
     } else {
         self.horizontalPathesScrollView.hidden=NO;
-        [[self.view viewWithTag:2321] setHidden:NO];
+        self.statusShadowView.hidden=NO;
         self.statusLabel.hidden=YES;
         [[self.statusViewController shadowView] setHidden:YES];
     }
@@ -345,4 +341,17 @@
     [self.statusViewController refreshStatusInfo];
 }
 
+-(void)dealloc
+{
+    [horizontalPathesScrollView release];
+    [timer release];
+    [pathScrollView release];
+    [statusShadowView release];
+    [statusViewController release];
+    [switchButton release];
+    [toolbar release];
+    [statusLabel release];
+    
+    [super dealloc];
+}
 @end

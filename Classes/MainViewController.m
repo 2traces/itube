@@ -144,7 +144,7 @@
                                                    object:nil];
         
     }
-
+    
     [(MainView*)self.view viewInit:self];
     
     if (!IS_IPAD) {
@@ -295,10 +295,8 @@
             tubeAppDelegate * delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
             if ([[[delegate cityMap] activePath] count]>0) {
                 if (!([[[delegate cityMap] activePath] count]==1 && [[[[delegate cityMap] activePath] objectAtIndex:0] isKindOfClass:[Transfer class]])) {
-                    if (!IS_IPAD) {
-                        [stationsView transitToPathView];
-                        [self showHorizontalPathesScrollView];
-                    }
+                    [stationsView transitToPathView];
+                    [self showHorizontalPathesScrollView];
                 }
             }
             
@@ -369,7 +367,7 @@
             [self.statusViewController hideFullSizeView];
         }
         tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-
+        
         if ([appDelegate isIPHONE5]) {
             [(MainView*)self.view changeShadowFrameToRect:CGRectMake(0.0, 0.0, 568.0, 61.0)];
             [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 0, 568, 320-20)];
@@ -390,21 +388,21 @@
         tubeAppDelegate * delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
         if ([[[delegate cityMap] activePath] count]>0) {
             if (!([[[delegate cityMap] activePath] count]==1 && [[[[delegate cityMap] activePath] objectAtIndex:0] isKindOfClass:[Transfer class]])) {
-                    [stationsView transitToPathView];
-                    [self showHorizontalPathesScrollView];
+                [stationsView transitToPathView];
+                [self showHorizontalPathesScrollView];
             }
         }
         
         [(MainView*)self.view changeShadowFrameToRect:CGRectMake(0.0, 44.0, 320.0, 61.0)];
         
         tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-
+        
         if ([appDelegate isIPHONE5]) {
             [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 40, 320, 568-60)];
         } else {
             [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 40, 320, 480-60)];
         }
-
+        
         
         isShowingLandscapeView = NO;
     }
@@ -415,7 +413,7 @@
     SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
     controller.delegate = self;
     [self presentModalViewController:controller animated:YES];
-//    [self presentViewController:controller animated:YES completion:nil];
+    //    [self presentViewController:controller animated:YES completion:nil];
     [controller release];
 }
 
@@ -629,10 +627,7 @@
 
 -(void)showiPadLeftPathView
 {
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
- //   if (appDelegate.cityMap.activeExtent.size.width!=0) {
-        [spltViewController showLeftView];
-//    }
+    [spltViewController showLeftView];
 }
 
 -(void)hideiPadLeftPathView
