@@ -80,21 +80,21 @@
     isNewMapAvailable=NO;
     isStatusRecieved=NO;
     
-    self.textView = [[UITextView alloc] initWithFrame:CGRectZero];
+    self.textView = [[[UITextView alloc] initWithFrame:CGRectZero] autorelease];
     textView.editable=NO;
     textView.scrollEnabled=NO;
     textView.backgroundColor = [UIColor clearColor];
     textView.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
     textView.text=NSLocalizedString(@"NoStatusInfo", @"NoStatusInfo");
     
-    self.updateTextView = [[UITextView alloc] init];
+    self.updateTextView = [[[UITextView alloc] init] autorelease];
     updateTextView.editable=NO;
     updateTextView.scrollEnabled=NO;
     updateTextView.backgroundColor = [UIColor clearColor];
     updateTextView.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
     updateTextView.text=NSLocalizedString(@"UpdateMaps", @"UpdateMaps");
     
-    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(updateMaps)];
+    self.tapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(updateMaps)] autorelease];
     [self.tapRecognizer setNumberOfTapsRequired:1];
     [self.updateTextView addGestureRecognizer:self.tapRecognizer];
     
@@ -105,15 +105,15 @@
         
     } else {
         
-        self.swipeRecognizerD = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];
+        self.swipeRecognizerD = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)] autorelease];
         [self.swipeRecognizerD setDirection:UISwipeGestureRecognizerDirectionDown];
         [self.view addGestureRecognizer:self.swipeRecognizerD];
         
-        self.swipeRecognizerU = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)];
+        self.swipeRecognizerU = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)] autorelease];
         [self.swipeRecognizerU setDirection:UISwipeGestureRecognizerDirectionUp];
         [self.view addGestureRecognizer:self.swipeRecognizerU];
         
-        self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)];
+        self.tapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)] autorelease];
         [self.tapRecognizer setNumberOfTapsRequired:1];
         [self.view addGestureRecognizer:self.tapRecognizer];
         
@@ -318,12 +318,12 @@
     if (newVersionN && oldVersionN) {
         if ([oldVersionN integerValue]<[newVersionN integerValue]) {
             isNewMapAvailable=YES;
-            NSLog(@"New version is available!!! Old - %@, New - %@",oldVersionN,newVersionN);
         } else {
             isNewMapAvailable=NO;
-            NSLog(@"No new version is available. Old - %@, New - %@",oldVersionN,newVersionN);
         }
     }
+    
+    [mapFile release];
 }
 
 -(NSString*)getCurrentMapVersionFromDict:(NSDictionary*)dict

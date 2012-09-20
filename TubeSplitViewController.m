@@ -45,12 +45,12 @@ static float koefficient = 0.0f;
     self.view.frame = CGRectMake(0.0, 20.0, 768.0, 1004.0);
     
     tubeAppDelegate *delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
-    MainView *vvv = (MainView*)[delegate.mainViewController view];
+    MainView *mainView = (MainView*)[delegate.mainViewController view];
     delegate.mainViewController.spltViewController=self;
-    vvv.frame = CGRectMake(0.0, 0.0, 768.0, 1004.0-44.0);
-    [[vvv containerView] setFrame:CGRectMake(0.0, 44.0, 768.0, 1004-44.0)];
-    self.mapView = vvv;
-    [self.view addSubview:vvv];
+    mainView.frame = CGRectMake(0.0, 0.0, 768.0, 1004.0-44.0);
+    [[mainView containerView] setFrame:CGRectMake(0.0, 44.0, 768.0, 1004-44.0)];
+    self.mapView = mainView;
+    [self.view addSubview:mainView];
     
     LeftiPadPathViewController *controller = [[LeftiPadPathViewController alloc] init];
     controller.view.frame=CGRectMake(-320.0, 0.0, 320.0, 1004.0);
@@ -145,7 +145,7 @@ static float koefficient = 0.0f;
             [UIView animateWithDuration:0.5 animations:^{
                 [self layoutSubviews];
             } completion:^(BOOL finished) {
-                //           [self adjustMapView];
+                //           [self adjustMapView]; //выключили изза производительности
             }];
         }
     }
@@ -158,7 +158,7 @@ static float koefficient = 0.0f;
     [UIView animateWithDuration:0.5 animations:^{
         [self layoutSubviews];
     } completion:^(BOOL finished) {
-        //    [self adjustMapView];
+        //    [self adjustMapView]; //выключили изза производительности
     }];
 }
 
@@ -204,22 +204,6 @@ static float koefficient = 0.0f;
     [leftPathController refreshStatusInfo];
 }
 
-
-
-//- (void) viewDidLoad {
-//    [super viewDidLoad];
-//
-//    pathView = ;
-//    mapView = ;
-//
-//}
-
-//- (void) viewDidUnload {
-//
-//    [pathView release], pathView = nil;
-//    [mapView release], mapView = nil;
-//}
-
 - (void) viewWillAppear:(BOOL)animated {
 	
     [super viewWillAppear:animated];
@@ -240,8 +224,6 @@ static float koefficient = 0.0f;
         koefficient = 20.0f;
     else
         koefficient = 0.0f;
-    
-    //    [self layoutSubviews];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
