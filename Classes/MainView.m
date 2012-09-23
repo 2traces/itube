@@ -15,6 +15,7 @@
 #import "ManagedObjects.h"
 #import "SettingsViewController.h"
 #import "SettingsNavController.h"
+#import "GlViewController.h"
 
 NSInteger const toolbarHeight=44;
 NSInteger const toolbarWidth=320;
@@ -54,16 +55,18 @@ NSInteger const toolbarWidth=320;
 {
 	[self initVar];
     
-    CGRect scrollSize,settingsRect,shadowRect;
+    CGRect scrollSize,settingsRect,shadowRect,zonesRect;
     
     scrollSize = CGRectMake(0, 44,(320),(480-64));
     settingsRect=CGRectMake(285, 420, 27, 27);
     shadowRect = CGRectMake(0, 44, 480, 61);
+    zonesRect=CGRectMake(55, 420, 27, 27);
     
     if (IS_IPAD) {
         scrollSize = CGRectMake(0, 44, 768, (1024-74));
         settingsRect=CGRectMake(-285, -420, 27, 27);
         shadowRect = CGRectMake(0, 44, 1024, 61);
+        zonesRect=CGRectMake(-55, -420, 27, 27);
     } else {
         if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
             CGSize result = [[UIScreen mainScreen] bounds].size;
@@ -74,6 +77,7 @@ NSInteger const toolbarWidth=320;
                 scrollSize = CGRectMake(0,44,(320),(568-64));
                 settingsRect=CGRectMake(285, 508, 27, 27);
                 shadowRect = CGRectMake(0, 44, 568, 61);
+                settingsRect=CGRectMake(55, 508, 27, 27);
             }
         }
     }
@@ -170,7 +174,14 @@ NSInteger const toolbarWidth=320;
     settings.frame = settingsRect;
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:settings];
-    
+
+    UIButton *zones = [UIButton buttonWithType:UIButtonTypeCustom];
+    [zones setImage:[UIImage imageNamed:@"zones_btn_normal"] forState:UIControlStateNormal];
+    [zones setImage:[UIImage imageNamed:@"zones_btn"] forState:UIControlStateHighlighted];
+    zones.frame = zonesRect;
+    [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:zones];
+
     UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
     shadow.frame = shadowRect;
     [self addSubview:shadow];
@@ -360,6 +371,13 @@ NSInteger const toolbarWidth=320;
     SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];
     [self.vcontroller presentModalViewController:controller animated:YES];
     [controller release];
+}
+
+-(void) changeZones
+{
+    GlViewController *gl = [[GlViewController alloc] initWithNibName:@"GlViewController" bundle:[NSBundle mainBundle]];
+    [self.vcontroller presentModalViewController:gl animated:YES];
+    [gl release];
 }
 
 -(void)changeShadowFrameToRect:(CGRect)rect

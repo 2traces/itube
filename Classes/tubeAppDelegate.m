@@ -308,6 +308,51 @@ void uncaughtExceptionHandler(NSException *exception) {
     return cityFileName;
 }
 
+-(NSString*)getDefaultMapUrl1
+{
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+    
+    NSFileManager *manager = [NSFileManager defaultManager];
+    
+    if (![manager fileExistsAtPath:path]) {
+        NSBundle *bundle = [NSBundle mainBundle];
+        NSError *error = nil;
+        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
+        
+        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
+    }
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSString *mapUrl =[NSString stringWithString:[[dict objectForKey:@"default"] objectForKey:@"url1"]];
+    [dict release];
+    
+    return mapUrl;
+}
+
+-(NSString*)getDefaultMapUrl2
+{
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+    
+    NSFileManager *manager = [NSFileManager defaultManager];
+    
+    if (![manager fileExistsAtPath:path]) {
+        NSBundle *bundle = [NSBundle mainBundle];
+        NSError *error = nil;
+        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
+        
+        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
+    }
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSString *mapUrl =[NSString stringWithString:[[dict objectForKey:@"default"] objectForKey:@"url2"]];
+    [dict release];
+    
+    return mapUrl;
+}
+
+
 #pragma mark - Mail methods
 
 // Displays an email composition interface inside the app // and populates all the Mail fields.
