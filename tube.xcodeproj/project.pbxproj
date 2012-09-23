@@ -34,6 +34,13 @@
 		51D20F3514B849A3007AC4BD /* ManagedObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D20F3414B849A3007AC4BD /* ManagedObjects.m */; };
 		51D20F3914B85185007AC4BD /* tubee.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 51D20F3714B85185007AC4BD /* tubee.xcdatamodeld */; };
 		51D20F3B14B85468007AC4BD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D20F3A14B85468007AC4BD /* CoreData.framework */; };
+		51D4D92E160EF35500C9D02B /* GlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D4D928160EF35500C9D02B /* GlViewController.m */; };
+		51D4D92F160EF35500C9D02B /* GlViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51D4D929160EF35500C9D02B /* GlViewController.xib */; };
+		51D4D930160EF35500C9D02B /* RasterLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D4D92B160EF35500C9D02B /* RasterLayer.m */; };
+		51D4D931160EF35500C9D02B /* Shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 51D4D92C160EF35500C9D02B /* Shader.fsh */; };
+		51D4D932160EF35500C9D02B /* Shader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 51D4D92D160EF35500C9D02B /* Shader.vsh */; };
+		51D4D934160EF39000C9D02B /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 51D4D92C160EF35500C9D02B /* Shader.fsh */; };
+		51D4D935160EF39400C9D02B /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 51D4D92D160EF35500C9D02B /* Shader.vsh */; };
 		51F15F7714D99A3800D11B79 /* VectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F15F7614D99A3800D11B79 /* VectorLayer.m */; };
 		9F39FDAD14CD345800A8043C /* dst_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F39FDA314CD345800A8043C /* dst_button_normal.png */; };
 		9F39FDAE14CD345800A8043C /* dst_button_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F39FDA414CD345800A8043C /* dst_button_normal@2x.png */; };
@@ -498,6 +505,13 @@
 		51D20F3414B849A3007AC4BD /* ManagedObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManagedObjects.m; path = Classes/ManagedObjects.m; sourceTree = "<group>"; };
 		51D20F3814B85185007AC4BD /* tubee.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tubee.xcdatamodel; sourceTree = "<group>"; };
 		51D20F3A14B85468007AC4BD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		51D4D927160EF35500C9D02B /* GlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlViewController.h; sourceTree = "<group>"; };
+		51D4D928160EF35500C9D02B /* GlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlViewController.m; sourceTree = "<group>"; };
+		51D4D929160EF35500C9D02B /* GlViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GlViewController.xib; sourceTree = "<group>"; };
+		51D4D92A160EF35500C9D02B /* RasterLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasterLayer.h; sourceTree = "<group>"; };
+		51D4D92B160EF35500C9D02B /* RasterLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasterLayer.m; sourceTree = "<group>"; };
+		51D4D92C160EF35500C9D02B /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		51D4D92D160EF35500C9D02B /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		51F15F7514D99A3800D11B79 /* VectorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VectorLayer.h; path = Classes/VectorLayer.h; sourceTree = "<group>"; };
 		51F15F7614D99A3800D11B79 /* VectorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VectorLayer.m; path = Classes/VectorLayer.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* tube-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "tube-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -1050,6 +1064,7 @@
 		289233A00DB2D0730083E9F9 /* Main View */ = {
 			isa = PBXGroup;
 			children = (
+				51D4D926160EF35500C9D02B /* gl */,
 				BCCC309D14E4F0F000102064 /* Cells */,
 				BCCC309A14E4DB4600102064 /* MyNavigationBar.h */,
 				BCCC309B14E4DB4600102064 /* MyNavigationBar.m */,
@@ -1263,6 +1278,21 @@
 				51839DE015360BE5003A8E23 /* TBXML.m */,
 			);
 			name = TBXML;
+			sourceTree = "<group>";
+		};
+		51D4D926160EF35500C9D02B /* gl */ = {
+			isa = PBXGroup;
+			children = (
+				51D4D927160EF35500C9D02B /* GlViewController.h */,
+				51D4D928160EF35500C9D02B /* GlViewController.m */,
+				51D4D929160EF35500C9D02B /* GlViewController.xib */,
+				51D4D92A160EF35500C9D02B /* RasterLayer.h */,
+				51D4D92B160EF35500C9D02B /* RasterLayer.m */,
+				51D4D92C160EF35500C9D02B /* Shader.fsh */,
+				51D4D92D160EF35500C9D02B /* Shader.vsh */,
+			);
+			name = gl;
+			path = Classes/gl;
 			sourceTree = "<group>";
 		};
 		9F5E306F14A457F600D549E4 /* ini */ = {
@@ -2131,6 +2161,9 @@
 				BC95C8461605C2C600806BF1 /* close_ipad_button.png in Resources */,
 				BC95C8471605C2C600806BF1 /* inv_close_ipad_button@2x.png in Resources */,
 				BC95C8481605C2C600806BF1 /* close_ipad_button@2x.png in Resources */,
+				51D4D92F160EF35500C9D02B /* GlViewController.xib in Resources */,
+				51D4D934160EF39000C9D02B /* Shader.fsh in Resources */,
+				51D4D935160EF39400C9D02B /* Shader.vsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2212,6 +2245,10 @@
 				BC7D9C8715EB4C60005684E4 /* CustomPopoverBackgroundView.m in Sources */,
 				BC1898C615F5E98800921F5F /* StatusViewController.m in Sources */,
 				BCB33A5D15F77F8F00692789 /* StatusDownloader.m in Sources */,
+				51D4D92E160EF35500C9D02B /* GlViewController.m in Sources */,
+				51D4D930160EF35500C9D02B /* RasterLayer.m in Sources */,
+				51D4D931160EF35500C9D02B /* Shader.fsh in Sources */,
+				51D4D932160EF35500C9D02B /* Shader.vsh in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

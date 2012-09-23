@@ -363,7 +363,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    if ([MKDirectionsRequest isDirectionsRequestURL:url]) {
+    /*if ([MKDirectionsRequest isDirectionsRequestURL:url]) {
 
         MKDirectionsRequest *request = [[MKDirectionsRequest alloc] initWithContentsOfURL:url];
         
@@ -384,7 +384,7 @@ void uncaughtExceptionHandler(NSException *exception) {
         [mainViewController returnFromSelection:[NSArray arrayWithObjects:mStartStation, mEndStation,nil]];
         
         return YES;
-    }
+    }*/
     
     return NO;
 }
