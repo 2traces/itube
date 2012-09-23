@@ -9,6 +9,7 @@
 #import "GlViewController.h"
 #import "RasterLayer.h"
 #import "SettingsNavController.h"
+#import "tubeAppDelegate.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -121,6 +122,33 @@ GLfloat gCubeVertexData[216] =
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    CGRect scrollSize,settingsRect,shadowRect,zonesRect;
+    
+    //scrollSize = CGRectMake(0, 44,(320),(480-64));
+    //settingsRect=CGRectMake(285, 420, 27, 27);
+    //shadowRect = CGRectMake(0, 44, 480, 61);
+    zonesRect=CGRectMake(55, 420, 27, 27);
+    
+    if (IS_IPAD) {
+        //scrollSize = CGRectMake(0, 44, 768, (1024-74));
+        //settingsRect=CGRectMake(-285, -420, 27, 27);
+        //shadowRect = CGRectMake(0, 44, 1024, 61);
+        zonesRect=CGRectMake(-55, -420, 27, 27);
+    } else {
+        if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
+            CGSize result = [[UIScreen mainScreen] bounds].size;
+            CGFloat scale = [UIScreen mainScreen].scale;
+            result = CGSizeMake(result.width * scale, result.height * scale);
+            
+            if(result.height == 1136){
+                //scrollSize = CGRectMake(0,44,(320),(568-64));
+                //settingsRect=CGRectMake(285, 508, 27, 27);
+                //shadowRect = CGRectMake(0, 44, 568, 61);
+                settingsRect=CGRectMake(55, 508, 27, 27);
+            }
+        }
+    }
     
     self.context = [[[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2] autorelease];
 
@@ -165,6 +193,12 @@ GLfloat gCubeVertexData[216] =
     [sourceData addTarget:self action:@selector(changeSource) forControlEvents:UIControlStateHighlighted];
     [view addSubview:sourceData];
 
+    UIButton *zones = [UIButton buttonWithType:UIButtonTypeCustom];
+    [zones setImage:[UIImage imageNamed:@"zones_btn_normal"] forState:UIControlStateNormal];
+    [zones setImage:[UIImage imageNamed:@"zones_btn"] forState:UIControlStateHighlighted];
+    zones.frame = zonesRect;
+    [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:zones];
 }
 
 -(void) changeSource
@@ -389,6 +423,11 @@ GLfloat gCubeVertexData[216] =
             [stationsView setToStation:self.toStation];
         }
     }
+}
+
+-(void) changeZones
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods

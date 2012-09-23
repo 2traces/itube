@@ -19,6 +19,7 @@
 
 @synthesize window;
 @synthesize mainViewController;
+@synthesize glViewController = gl;
 @synthesize cityMap;
 @synthesize cityName;
 @synthesize parseQueue;
@@ -32,6 +33,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+    gl = [[GlViewController alloc] initWithNibName:@"GlViewController" bundle:[NSBundle mainBundle]];
 	MainViewController *aController = [[MainViewController alloc] init];
 	self.mainViewController = aController;
 	[aController release];
@@ -451,6 +453,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 
 - (void)dealloc {
+    [gl release];
     [mainViewController release];
     [window release];
     [cityMap release];

@@ -868,6 +868,10 @@
         [queue removeByConnection:connection];
         [dp->piece vectorLoaded];
         NSString *contents = [NSString stringWithCString:(const char*)([dp->data bytes]) encoding:NSUTF8StringEncoding];
+        if([[contents substringToIndex:2] isEqualToString:@"<!"]) {
+            // html, probably there is an error
+            contents = nil;
+        }
         if(contents != nil) {
             NSMutableArray *a = [[NSMutableArray alloc] init];
             [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
@@ -1058,19 +1062,15 @@
         MAX_PIECES = 60;
         //loader = [[RManager alloc] initWithTarget:self selector:@selector(complete) andPath:rasterPath];
         
+        NSString *url1 = [NSString stringWithFormat:[appDelegate getDefaultMapUrl1], mapName];
+        NSString *url2 = [NSString stringWithFormat:[appDelegate getDefaultMapUrl2], mapName];
         RDownloadManager* dm = [[RDownloadManager alloc] initWithTarget:self selector:@selector(complete:)];
         //dm.rasterDownloader = [[RasterDownloader alloc] initWithUrl:@"http://www.x-provocation.com/maps/cuba/RASTER"];
         //dm.rasterDownloader = [[RasterDownloader alloc] initWithUrl:@"http://www.x-provocation.com/maps/cuba/OSM"];
-        NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
-        NSURL *vurl = [[[NSURL alloc] initFileURLWithPath:rasterPath] autorelease];
-        NSString* vurlstr = [vurl absoluteString];
-        vloader = [[VectorDownloader alloc] initWithUrl:vurlstr];
-        NSString *url1 = [NSString stringWithFormat:[appDelegate getDefaultMapUrl1], mapName];
-        NSString *url2 = [NSString stringWithFormat:[appDelegate getDefaultMapUrl2], mapName];
-        //NSString *url1 = [NSString stringWithFormat:@"http://www.x-provocation.com/maps/%@/OSM", mapName];
-        //NSString *url2 = [NSString stringWithFormat:@"http://www.x-provocation.com/maps/%@/RASTER", mapName];
-        //NSString *url1 = [NSString stringWithFormat:@"ftp://skotin:M2prs22l@x-provocation.com/public_html/maps/%@/OSM", mapName];
-        //NSString *url2 = [NSString stringWithFormat:@"ftp://skotin:M2prs22l@x-provocation.com/public_html/maps/%@/RASTER", mapName];
+        //NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+        //NSURL *vurl = [[[NSURL alloc] initFileURLWithPath:rasterPath] autorelease];
+        //NSString* vurlstr = [vurl absoluteString];
+        vloader = [[VectorDownloader alloc] initWithUrl:url1];
         rloader1 = [[RasterDownloader alloc] initWithUrl:url1];
         //rloader1.altSource = [[NSBundle mainBundle] pathForResource:@"OSM" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         rloader2 = [[RasterDownloader alloc] initWithUrl:url2];

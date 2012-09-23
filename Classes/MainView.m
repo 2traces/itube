@@ -375,9 +375,8 @@ NSInteger const toolbarWidth=320;
 
 -(void) changeZones
 {
-    GlViewController *gl = [[GlViewController alloc] initWithNibName:@"GlViewController" bundle:[NSBundle mainBundle]];
-    [self.vcontroller presentModalViewController:gl animated:YES];
-    [gl release];
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [self.vcontroller presentModalViewController:appDelegate.glViewController animated:YES];
 }
 
 -(void)changeShadowFrameToRect:(CGRect)rect

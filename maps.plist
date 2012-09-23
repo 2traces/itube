@@ -66,6 +66,10 @@
 	</dict>
 	<key>default</key>
 	<dict>
+		<key>url1</key>
+		<string>http://www.x-provocation.com/maps/cuba/OSM</string>
+		<key>url2</key>
+		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>
