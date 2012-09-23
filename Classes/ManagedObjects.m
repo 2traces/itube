@@ -9,6 +9,39 @@
 #import "ManagedObjects.h"
 #import "tubeAppDelegate.h"
 
+@interface MItem (CoreDataGeneratedAccessors)
+
+- (void)addCategoriesObject:(MCategory*)value;
+
+@end
+
+@implementation MItem
+
+@dynamic posX;
+@dynamic posY;
+@dynamic index;
+@dynamic isFavorite;
+@dynamic name;
+@dynamic categories;
+@dynamic photos;
+@dynamic transfer;
+@end
+
+@implementation MCategory
+
+@dynamic index;
+@dynamic color;
+@dynamic name;
+@dynamic items;
+@end
+
+@implementation MPhoto
+
+@dynamic isFavorite;
+@dynamic fileName;
+@dynamic theItem;
+@end
+
 @implementation MStation
 
 @dynamic index;

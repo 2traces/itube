@@ -9,6 +9,7 @@
 #import "RasterLayer.h"
 #import "ManagedObjects.h"
 #import "tubeAppDelegate.h"
+#import <GLKit/GLKit.h>
 
 #define MAX_QUEUE 10
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))

@@ -20,6 +20,35 @@
 @class MLine;
 @class MTransfer;
 
+@interface MItem : NSManagedObject
+
+@property (nonatomic, retain) NSNumber* index;
+@property (nonatomic, retain) NSNumber * isFavorite;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSSet *categories;
+@property (nonatomic, retain) NSSet *photos;
+@property (nonatomic, retain) NSNumber* posX;
+@property (nonatomic, retain) NSNumber* posY;
+@property (nonatomic, retain) MTransfer* transfer;
+
+@end
+
+@interface MCategory : NSManagedObject
+
+@property (nonatomic, assign) NSNumber* index;
+@property (nonatomic, retain) id color;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSSet *items;
+@end
+
+@interface MPhoto : NSManagedObject
+
+@property (nonatomic, retain) NSNumber * isFavorite;
+@property (nonatomic, retain) NSString * fileName;
+@property (nonatomic, retain) MItem* theItem;
+
+@end
+
 @interface MStation : NSManagedObject
 
 @property (nonatomic, retain) NSNumber* index;
