@@ -172,9 +172,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-        NSLog(@"qqq");
-    }
 }
 
 // --- status lines
@@ -182,6 +179,8 @@
 -(NSString*)getStatusInfoURL
 {
     NSString *url;
+    
+    url=nil;
     
     NSString *currentMap = [[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] thisMapName];
     NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -205,8 +204,14 @@
 -(void)addStatusView:(NSString*)url
 {
     StatusViewController *statusView = [[StatusViewController alloc] init];
-    [(MainView*)self.view addSubview:statusView.view];
-    self.statusViewController =statusView;
+
+    if (self.stationsView) {
+        [(MainView*)self.view insertSubview:statusView.view belowSubview:self.stationsView];
+    } else {
+        [(MainView*)self.view addSubview:statusView.view];
+    }
+    
+    self.statusViewController=statusView;
     self.statusViewController.infoURL=url;
     [self.statusViewController recieveStatusInfo];
     [statusView release];
@@ -257,9 +262,14 @@
     [defaults synchronize];
     
     if (IS_IPAD) {
-        [self.spltViewController refreshStatusInfo];
+        [self.spltViewController changeStatusView];
     } else {
-        [self.statusViewController checkNewMaps];
+        [self.statusViewController.view removeFromSuperview];
+        NSString *url=[self getStatusInfoURL];
+        if (url) {
+            [self addStatusView:url];            
+        }
+        
     }
 }
 

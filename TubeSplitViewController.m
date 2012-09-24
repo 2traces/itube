@@ -204,6 +204,11 @@ static float koefficient = 0.0f;
     [leftPathController refreshStatusInfo];
 }
 
+-(void)changeStatusView
+{
+    [leftPathController changeStatusView];
+}
+
 - (void) viewWillAppear:(BOOL)animated {
 	
     [super viewWillAppear:animated];

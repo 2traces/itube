@@ -134,8 +134,11 @@
         isStatusRecieved=YES;
         
         if (IS_IPAD) {
-            [[self textView] setText:[statusInfo substringToIndex:600]];
-            NSLog(@"%@",textView);
+            if ([statusInfo length]>600) {
+                [[self textView] setText:[statusInfo substringToIndex:600]];
+            } else {
+                [[self textView] setText:statusInfo];
+            }
         } else {
             if (!isShown) {
                 [self  performSelector:@selector(showInitialSizeView) withObject:nil afterDelay:3];

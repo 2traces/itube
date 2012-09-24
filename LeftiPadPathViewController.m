@@ -82,9 +82,23 @@
     [statusView release];
 }
 
+-(void)removeStatusView
+{
+    [self.statusViewController.view removeFromSuperview];
+    self.statusViewController=nil;
+}
+
+-(void)changeStatusView
+{
+    [self removeStatusView];
+    [self addStatusView];
+}
+
 -(NSString*)getStatusInfoURL
 {
     NSString *url;
+    
+    url = nil;
     
     NSString *currentMap = [[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] thisMapName];
     NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
