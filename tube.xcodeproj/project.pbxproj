@@ -118,6 +118,10 @@
 		BC3D156314C33E060059A17E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3D156214C33E050059A17E /* MessageUI.framework */; };
 		BC3D156514C33E0E0059A17E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3D156414C33E0C0059A17E /* SystemConfiguration.framework */; };
 		BC3D156714C33E170059A17E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3D156614C33E160059A17E /* StoreKit.framework */; };
+		BC47CB101610650E00C4725D /* statusButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BC47CB0C1610650D00C4725D /* statusButton.png */; };
+		BC47CB111610650E00C4725D /* pathButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BC47CB0D1610650D00C4725D /* pathButton.png */; };
+		BC47CB121610650E00C4725D /* pathButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC47CB0E1610650E00C4725D /* pathButton@2x.png */; };
+		BC47CB131610650E00C4725D /* statusButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC47CB0F1610650E00C4725D /* statusButton@2x.png */; };
 		BC4DA4181537F03700B941F1 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4DA4171537F03700B941F1 /* ImageDownloader.m */; };
 		BC50B78815A5C68A0078BE8E /* cross_red.png in Resources */ = {isa = PBXBuildFile; fileRef = BC50B78615A5C6890078BE8E /* cross_red.png */; };
 		BC50B78915A5C68A0078BE8E /* cross_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC50B78715A5C6890078BE8E /* cross_red@2x.png */; };
@@ -615,6 +619,10 @@
 		BC3D156214C33E050059A17E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		BC3D156414C33E0C0059A17E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BC3D156614C33E160059A17E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		BC47CB0C1610650D00C4725D /* statusButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = statusButton.png; path = images/statusButton.png; sourceTree = "<group>"; };
+		BC47CB0D1610650D00C4725D /* pathButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pathButton.png; path = images/pathButton.png; sourceTree = "<group>"; };
+		BC47CB0E1610650E00C4725D /* pathButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pathButton@2x.png"; path = "images/pathButton@2x.png"; sourceTree = "<group>"; };
+		BC47CB0F1610650E00C4725D /* statusButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "statusButton@2x.png"; path = "images/statusButton@2x.png"; sourceTree = "<group>"; };
 		BC4DA4161537F03600B941F1 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDownloader.h; path = Classes/ImageDownloader.h; sourceTree = "<group>"; };
 		BC4DA4171537F03700B941F1 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloader.m; path = Classes/ImageDownloader.m; sourceTree = "<group>"; };
 		BC50B78615A5C6890078BE8E /* cross_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cross_red.png; path = images/cross_red.png; sourceTree = "<group>"; };
@@ -1592,6 +1600,10 @@
 				BCE1C9E2151F63630029CCB2 /* n2@2x.png */,
 				BCE1C9E3151F63630029CCB2 /* n3.png */,
 				BCE1C9E4151F63630029CCB2 /* n3@2x.png */,
+				BC47CB0C1610650D00C4725D /* statusButton.png */,
+				BC47CB0D1610650D00C4725D /* pathButton.png */,
+				BC47CB0E1610650E00C4725D /* pathButton@2x.png */,
+				BC47CB0F1610650E00C4725D /* statusButton@2x.png */,
 				BC88780414EB90D600E7BEF7 /* switch_to_map_high.png */,
 				BC88780514EB90D600E7BEF7 /* switch_to_map_high@2x.png */,
 				BC88780614EB90D600E7BEF7 /* switch_to_map.png */,
@@ -2131,6 +2143,10 @@
 				BC95C8461605C2C600806BF1 /* close_ipad_button.png in Resources */,
 				BC95C8471605C2C600806BF1 /* inv_close_ipad_button@2x.png in Resources */,
 				BC95C8481605C2C600806BF1 /* close_ipad_button@2x.png in Resources */,
+				BC47CB101610650E00C4725D /* statusButton.png in Resources */,
+				BC47CB111610650E00C4725D /* pathButton.png in Resources */,
+				BC47CB121610650E00C4725D /* pathButton@2x.png in Resources */,
+				BC47CB131610650E00C4725D /* statusButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

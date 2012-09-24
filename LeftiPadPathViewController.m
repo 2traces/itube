@@ -178,6 +178,7 @@
         self.statusViewController.view.hidden=NO;
         self.pathScrollView.hidden=NO;
         self.switchButton.hidden=NO;
+        [self.switchButton setImage:[UIImage imageNamed:@"statusButton.png"] forState:UIControlStateNormal];
         self.horizontalPathesScrollView.hidden=NO;
         self.statusLabel.hidden=NO;
         self.statusShadowView.hidden=NO;
@@ -294,7 +295,7 @@
 {
     if (!self.pathScrollView ) {
         
-        VertPathScrollView *scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, 84.0, 320.0f, self.view.frame.size.height-84.0)];
+        VertPathScrollView *scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, 44.0, 320.0f, self.view.frame.size.height-44.0)];
         self.pathScrollView = scview;
         tubeAppDelegate * delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
         scview.mainController=delegate.mainViewController;
@@ -316,20 +317,11 @@
 -(UIButton*)createSwitchButton
 {
     UIButton *changeViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *img = [UIImage imageNamed:@"switch_to_path.png"];
-    UIImage *imgh = [UIImage imageNamed:@"switch_to_path_high.png"];
+    UIImage *img = [UIImage imageNamed:@"statusButton.png"];
     [changeViewButton setImage:img forState:UIControlStateNormal];
-    [changeViewButton setImage:imgh forState:UIControlStateHighlighted];
     [changeViewButton addTarget:self action:@selector(changeMapToPathView:) forControlEvents:UIControlEventTouchUpInside];
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setTimeStyle:NSDateFormatterShortStyle];
-    [formatter setDateStyle:NSDateFormatterNoStyle];
-    NSString *dateString = [formatter stringFromDate:[NSDate date]];
-    CGSize dateSize = [dateString sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
-    [formatter release];
-    
-    [changeViewButton setFrame:CGRectMake(320.0-12.0-dateSize.width-img.size.width , 44 , img.size.width, img.size.height)];
+    [changeViewButton setFrame:CGRectMake(34 , 44 , img.size.width, img.size.height)];
     
     return changeViewButton;
 }
@@ -342,11 +334,13 @@
         self.statusShadowView.hidden=YES;
         self.statusLabel.hidden=NO;
         [[self.statusViewController shadowView] setHidden:NO];
+        [self.switchButton setImage:[UIImage imageNamed:@"pathButton.png"] forState:UIControlStateNormal];
     } else {
         self.horizontalPathesScrollView.hidden=NO;
         self.statusShadowView.hidden=NO;
         self.statusLabel.hidden=YES;
         [[self.statusViewController shadowView] setHidden:YES];
+        [self.switchButton setImage:[UIImage imageNamed:@"statusButton.png"] forState:UIControlStateNormal];
     }
 }
 

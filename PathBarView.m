@@ -94,14 +94,18 @@
         [(UIImageView*)[self viewWithTag:6500+page] setFrame:CGRectMake(labelStart-flagRect.size.width-2.0, flagRect.origin.y, flagRect.size.width, flagRect.size.height)];
         
         if (IS_IPAD) {
+            
+            CGSize dateSize = [arrivalTime sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:16.0]];
+            
             [[self viewWithTag:10000+page] removeFromSuperview];
             [[self viewWithTag:6400+page] setFrame:CGRectMake(37, 10, 18, 18)];
-            [[self viewWithTag:6500+page] setFrame:CGRectMake(170, 10, 18, 18)];
+            [[self viewWithTag:6500+page] setFrame:CGRectMake(320.0-10.0-dateSize.width-5-26, 10, 18, 18)];
 
             [[self viewWithTag:6000+page] setFrame:CGRectMake(63, 12, 90, 20)];
             [(UILabel*)[self viewWithTag:6000+page] setFont:[UIFont fontWithName:@"MyriadPro-Regular" size:16.0]];
 
-            [[self viewWithTag:7000+page] setFrame:CGRectMake(196, 12, 90, 20)];
+//            [[self viewWithTag:7000+page] setFrame:CGRectMake(196, 12, 90, 20)];
+            [[self viewWithTag:7000+page] setFrame:CGRectMake(320.0-10.0-dateSize.width-5 , 12 , dateSize.width+5 , 20)];
             [(UILabel*)[self viewWithTag:7000+page] setFont:[UIFont fontWithName:@"MyriadPro-Regular" size:16.0]];
             [(UILabel*)[self viewWithTag:7000+page] setTextAlignment:UITextAlignmentLeft];
         }
