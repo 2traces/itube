@@ -8,6 +8,7 @@
 
 #import "PathDrawVertView.h"
 #import "PathDrawView.h"
+#import "tubeAppDelegate.h"
 
 @implementation PathDrawVertView
 
@@ -29,6 +30,11 @@
 {
     CGFloat segmentLenght;
     CGFloat ylineStart = 20.0f;
+    
+    if (IS_IPAD) {
+        ylineStart=60.0f;
+    }
+    
     CGFloat x=20.0f;
     
     CGFloat transferHeight = 83.0f;

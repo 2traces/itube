@@ -16,6 +16,8 @@
 		<string>london.png</string>
 		<key>zip_donwload</key>
 		<string>/maps/london/london1.zip</string>
+		<key>statusURL</key>
+		<string>http://metro.dim0xff.com/london/lines.txt</string>
 	</dict>
 	<key>com.zuev.itube.paris.paris</key>
 	<dict>
@@ -48,6 +50,8 @@
 		<string>berlin.png</string>
 		<key>zip_download</key>
 		<string>/maps/berlin/berlin1.zip</string>
+		<key>statusURL</key>
+		<string>   </string>
 	</dict>
 	<key>com.zuev.itube.paris.hamburg</key>
 	<dict>
