@@ -79,7 +79,6 @@
     
     if (IS_IPAD) {
         backButton.hidden=YES;
-        settingsButton.hidden=YES;
     }
 }
 
@@ -165,9 +164,14 @@
 
 -(IBAction)settingsPressed:(id)sender
 {
-    SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];
-    [self presentModalViewController:controller animated:YES];
-    [controller release];
+    if (IS_IPAD) {
+        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate.mainViewController showiPadSettingsModalView];
+    } else {
+        SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];
+        [self presentModalViewController:controller animated:YES];
+        [controller release];
+    }
 }
 
 -(IBAction)backPressed:(id)sender

@@ -109,9 +109,9 @@
         [self.swipeRecognizerD setDirection:UISwipeGestureRecognizerDirectionDown];
         [self.view addGestureRecognizer:self.swipeRecognizerD];
         
-        self.swipeRecognizerU = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)] autorelease];
-        [self.swipeRecognizerU setDirection:UISwipeGestureRecognizerDirectionUp];
-        [self.view addGestureRecognizer:self.swipeRecognizerU];
+//        self.swipeRecognizerU = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)] autorelease];
+//        [self.swipeRecognizerU setDirection:UISwipeGestureRecognizerDirectionUp];
+//        [self.view addGestureRecognizer:self.swipeRecognizerU];
         
         self.tapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)] autorelease];
         [self.tapRecognizer setNumberOfTapsRequired:1];
@@ -134,8 +134,11 @@
         isStatusRecieved=YES;
         
         if (IS_IPAD) {
-            [[self textView] setText:[statusInfo substringToIndex:600]];
-            NSLog(@"%@",textView);
+            if ([statusInfo length]>600) {
+                [[self textView] setText:[statusInfo substringToIndex:600]];
+            } else {
+                [[self textView] setText:statusInfo];
+            }
         } else {
             if (!isShown) {
                 [self  performSelector:@selector(showInitialSizeView) withObject:nil afterDelay:3];
@@ -205,6 +208,9 @@
         
         newY = -280.0;
         
+        textView.scrollEnabled=NO;
+        [textView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
+        
         self.shadowView.frame=CGRectMake(0, 324, 320, 20);
         
         [UIView animateWithDuration:0.55 animations:^{
@@ -235,6 +241,9 @@
 {
     isShown=YES;
     
+    textView.scrollEnabled=YES;
+    [textView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
+    
     [UIView animateWithDuration:0.55 animations:^{
         [self layoutSubviews];
     }];
@@ -244,6 +253,7 @@
 {
     isShown=NO;
     
+    textView.scrollEnabled=NO;
     [UIView animateWithDuration:0.55 animations:^{
         [self layoutSubviews];
     }];
@@ -252,7 +262,7 @@
 -(void)layoutSubviews
 {
     if (IS_IPAD) {
-        self.view.frame = CGRectMake(0.0, 44.0, 320.0, 1004.0-84.0);
+        self.view.frame = CGRectMake(0.0, 44.0, 320.0, 1004.0-44.0);
         if (isNewMapAvailable) {
             updateTextView.hidden=NO;
             yellowView.hidden=NO;

@@ -30,5 +30,6 @@
 -(void)showLeftView;
 -(void)hideLeftView;
 -(void)refreshStatusInfo;
+-(void)changeStatusView;
 
 @end

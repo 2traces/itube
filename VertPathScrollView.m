@@ -575,6 +575,10 @@
     CGFloat currentY;
     CGFloat lineStart=17.0;
     
+    if (IS_IPAD) {
+        lineStart=57.0;
+    }
+    
     if ([self dsIsStartingTransfer]) {
         [stations removeObjectAtIndex:0];
         lineStart+=20.0;
