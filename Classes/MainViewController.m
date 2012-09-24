@@ -737,6 +737,8 @@
 
 -(void)showiPadSettingsModalView
 {
+    if (popover) [popover dismissPopoverAnimated:YES];
+
     SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
     controller.delegate=self;
     UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:controller];
