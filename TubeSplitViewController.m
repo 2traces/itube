@@ -146,6 +146,7 @@ static float koefficient = 0.0f;
                 [self layoutSubviews];
             } completion:^(BOOL finished) {
                 //           [self adjustMapView]; //выключили изза производительности
+                [leftPathController refreshUITextView]; //fixing ios bug 
             }];
         }
     }

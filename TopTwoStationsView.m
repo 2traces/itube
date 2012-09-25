@@ -15,8 +15,8 @@
 #define iPadWidth 768.0
 #define iPadHeight 1024.0
 #define iPadTbHeight 44.0
-#define iPadFieldWidth 192.0
-#define iPadFldButton 162.0
+#define iPadFieldWidth 189.0
+#define iPadFldButton 159.0
 
 #define iPhoneWidth 320.0
 #define iPhoneHeight 480.0
@@ -156,7 +156,7 @@
         UIButton *button4 = [UIButton buttonWithType:UIButtonTypeCustom];
         [button4 setImage:[UIImage imageNamed:@"settings_ipad_button.png"] forState:UIControlStateNormal];
         [button4 addTarget:self action:@selector(showiPadSettingsModalView) forControlEvents:UIControlEventTouchUpInside];
-        button4.frame = CGRectMake(40, 5, 35, 38);
+        button4.frame = CGRectMake(38, 4, 35, 38);
         [toolbar addSubview:button4];
 
         [toolbar release];
@@ -482,7 +482,7 @@
         CGFloat addWidth = 65;
         CGFloat maxWidth;
         if (IS_IPAD) {
-            maxWidth = 192;
+            maxWidth = 189;
         } else {
             maxWidth = 160;
         }
@@ -499,10 +499,10 @@
         if (IS_IPAD) {
             if (textBounds1.width+textBounds2.width+addWidth*2+arrowView.frame.size.width>maxWidth*2) {
                 if (textBounds1.width+addWidth>maxWidth && textBounds2.width+addWidth>maxWidth) {
-                    desireWidth1=maxWidth;
-                    desireWidth2=maxWidth;
+                    desireWidth1=maxWidth-arrowView.frame.size.width/2;
+                    desireWidth2=maxWidth-arrowView.frame.size.width/2;
                     desireOrigin1 = firstStation.frame.origin.x;
-                    desireOrigin2 = self.frame.size.width-maxWidth;
+                    desireOrigin2 = self.frame.size.width-desireWidth2;
                     arrowOrigin = desireOrigin2-arrowView.frame.size.width;
                 } else if (textBounds1.width+addWidth>=maxWidth && textBounds2.width+addWidth<=maxWidth) {
                     desireWidth2=textBounds2.width+addWidth;

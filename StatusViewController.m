@@ -102,6 +102,7 @@
         
         self.view.frame = CGRectMake(0.0, 0.0, 320.0, 600.0);
         textView.frame = CGRectMake(10.0, 10.0, 300.0, 600.0);
+        textView.scrollEnabled=YES;
         
     } else {
         
@@ -118,6 +119,7 @@
         [self.view addGestureRecognizer:self.tapRecognizer];
         
         textView.frame = CGRectMake(10.0, 322.0, 300.0, 25.0);
+        
     }
     
     [self.view addSubview:updateTextView];
@@ -134,10 +136,13 @@
         isStatusRecieved=YES;
         
         if (IS_IPAD) {
-            if ([statusInfo length]>600) {
-                [[self textView] setText:[statusInfo substringToIndex:600]];
+            if ([statusInfo length]>26600) {
+                [textView setText:[statusInfo substringToIndex:600]];
             } else {
-                [[self textView] setText:statusInfo];
+                [textView setText:statusInfo];
+                CGRect frame = textView.frame;
+                frame.size.height += 1;
+                textView.frame = frame;
             }
         } else {
             if (!isShown) {
@@ -378,6 +383,18 @@
 -(void)downloadFailed:(DownloadServer*)myid
 {
     
+}
+
+-(void)fixTextView
+{
+    if (IS_IPAD) {
+        if (isNewMapAvailable) {
+            textView.frame = CGRectMake(10.0, 68+40, 300.0, 600.0-10.0-68.0-44);
+        } else {
+            textView.frame = CGRectMake(10.0, 44, 300.0, 600.0-10.0-44);
+        }
+        [textView setNeedsDisplay];
+    }
 }
 
 -(void)dealloc
