@@ -157,6 +157,11 @@
     [self layoutSubviews];
 }
 
+-(void)refreshUITextView
+{
+    [self.statusViewController fixTextView];
+}
+
 -(void)layoutSubviews
 {
     if (isStatusAvailable==YES && isPathExists==NO) {
@@ -166,6 +171,8 @@
         self.horizontalPathesScrollView.hidden=YES;
         self.pathScrollView.hidden=YES;
         self.switchButton.hidden=YES;
+        self.statusShadowView.hidden=YES;
+        [[self.statusViewController shadowView] setHidden:NO];
     } else if (isStatusAvailable==NO && isPathExists==YES) {
         // show only path
         self.statusViewController.view.hidden=YES;
@@ -173,12 +180,15 @@
         self.switchButton.hidden=YES;
         self.horizontalPathesScrollView.hidden=NO;
         self.statusLabel.hidden=YES;
+        self.statusShadowView.hidden=NO;
+        [[self.statusViewController shadowView] setHidden:YES];
     } else if (isStatusAvailable==YES && isPathExists==YES) {
         //show both status and path
         self.statusViewController.view.hidden=NO;
         self.pathScrollView.hidden=NO;
         self.switchButton.hidden=NO;
         [self.switchButton setImage:[UIImage imageNamed:@"statusButton.png"] forState:UIControlStateNormal];
+        [self.switchButton setImage:[UIImage imageNamed:@"statusButtonPressed.png"] forState:UIControlStateHighlighted];
         self.horizontalPathesScrollView.hidden=NO;
         self.statusLabel.hidden=NO;
         self.statusShadowView.hidden=NO;
@@ -319,6 +329,7 @@
     UIButton *changeViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *img = [UIImage imageNamed:@"statusButton.png"];
     [changeViewButton setImage:img forState:UIControlStateNormal];
+    [changeViewButton setImage:[UIImage imageNamed:@"statusButtonPressed.png"] forState:UIControlStateHighlighted];
     [changeViewButton addTarget:self action:@selector(changeMapToPathView:) forControlEvents:UIControlEventTouchUpInside];
     
     [changeViewButton setFrame:CGRectMake(34 , 44 , img.size.width, img.size.height)];
@@ -335,12 +346,17 @@
         self.statusLabel.hidden=NO;
         [[self.statusViewController shadowView] setHidden:NO];
         [self.switchButton setImage:[UIImage imageNamed:@"pathButton.png"] forState:UIControlStateNormal];
+        [self.switchButton setImage:[UIImage imageNamed:@"pathButtonPressed.png"] forState:UIControlStateHighlighted];
+
     } else {
         self.horizontalPathesScrollView.hidden=NO;
         self.statusShadowView.hidden=NO;
         self.statusLabel.hidden=YES;
         [[self.statusViewController shadowView] setHidden:YES];
         [self.switchButton setImage:[UIImage imageNamed:@"statusButton.png"] forState:UIControlStateNormal];
+        [self.switchButton setImage:[UIImage imageNamed:@"statusButtonPressed.png"] forState:UIControlStateHighlighted];
+
+        
     }
 }
 

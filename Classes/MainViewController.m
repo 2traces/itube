@@ -607,7 +607,6 @@
         [(MainView*)self.view bringSubviewToFront:pathScrollView];
         [(MainView*)self.view bringSubviewToFront:self.stationsView];
         [(MainView*)self.view bringSubviewToFront:self.horizontalPathesScrollView];
-        [(MainView*)self.view bringSubviewToFront:self.changeViewButton];
         
         UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
         shadow.frame = CGRectMake(0,66, 320, 61);
@@ -615,8 +614,10 @@
         shadow.tag = 2321;
         [(MainView*)self.view addSubview:shadow];
         
-        [self.changeViewButton setImage:[UIImage imageNamed:@"switch_to_map.png"] forState:UIControlStateNormal];
-        [self.changeViewButton setImage:[UIImage imageNamed:@"switch_to_map_high.png"] forState:UIControlStateHighlighted];
+        [self.changeViewButton setImage:[UIImage imageNamed:@"pathButton.png"] forState:UIControlStateNormal];
+        [self.changeViewButton setImage:[UIImage imageNamed:@"pathButtonPressed.png"] forState:UIControlStateHighlighted];
+
+        [(MainView*)self.view bringSubviewToFront:self.changeViewButton];
         
     } else {
         
