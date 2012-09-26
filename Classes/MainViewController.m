@@ -339,7 +339,10 @@
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     
     if (IS_IPAD) {
-        if (popover) [popover dismissPopoverAnimated:YES];
+        if (popover) {
+            [popover dismissPopoverAnimated:YES];
+            [popover.delegate popoverControllerDidDismissPopover:popover];
+        }
     } else {
         
         if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
