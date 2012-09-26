@@ -385,17 +385,52 @@
     
 }
 
--(void)fixTextView
+-(void)connectionFailed:(StatusDownloader*)server
+{
+    [servers removeObject:server];
+    NSLog(@"%@",servers);
+}
+
+-(void)fixTextView:(UIInterfaceOrientation)orientation
 {
     if (IS_IPAD) {
         if (isNewMapAvailable) {
-            textView.frame = CGRectMake(10.0, 68+40, 300.0, 600.0-10.0-68.0-44);
+            if (UIInterfaceOrientationIsLandscape(orientation)) {
+                textView.frame = CGRectMake(10.0, 68+40, 300.0, 748-68-40);
+            } else {
+                textView.frame = CGRectMake(10.0, 68+40, 300.0, 1004-68-44);
+            }
         } else {
-            textView.frame = CGRectMake(10.0, 44, 300.0, 600.0-10.0-44);
+            if (UIInterfaceOrientationIsLandscape(orientation)) {
+                textView.frame = CGRectMake(10.0, 44, 300.0, 748-44);
+            } else {
+                textView.frame = CGRectMake(10.0, 44, 300.0, 1004-44);
+            }
         }
         [textView setNeedsDisplay];
     }
 }
+
+-(void)rotateTextViewFromOrientation:(UIInterfaceOrientation)orientation
+{
+    if (IS_IPAD) {
+        if (isNewMapAvailable) {
+            if (UIInterfaceOrientationIsPortrait(orientation)) {
+                textView.frame = CGRectMake(10.0, 68+40, 300.0, 748-68-40);
+            } else {
+                textView.frame = CGRectMake(10.0, 68+40, 300.0, 1004-68-44);
+            }
+        } else {
+            if (UIInterfaceOrientationIsPortrait(orientation)) {
+                textView.frame = CGRectMake(10.0, 44, 300.0, 748-44);
+            } else {
+                textView.frame = CGRectMake(10.0, 44, 300.0, 1004-44);
+            }
+        }
+        [textView setNeedsDisplay];
+    }
+}
+
 
 -(void)dealloc
 {

@@ -297,7 +297,7 @@
             firstStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFieldWidth*2, iPhoneTbHeight);
         }
         
-        firstStation.background = [[UIImage imageNamed:@"toolbar_big_bg_lighted.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
+        firstStation.background = [[UIImage imageNamed:@"toolbar_text_bg_lighted.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
         
         firstStation.text = @"";
         firstStation.rightViewMode = UITextFieldViewModeAlways;
@@ -378,7 +378,7 @@
             secondStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFieldWidth*2, iPhoneTbHeight);
         }
 
-        secondStation.background = [[UIImage imageNamed:@"toolbar_big_bg_lighted.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
+        secondStation.background = [[UIImage imageNamed:@"toolbar_text_bg_lighted.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
         
         secondStation.text = @"";
         secondStation.rightViewMode = UITextFieldViewModeAlways;
