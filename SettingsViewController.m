@@ -200,11 +200,11 @@
     [self adjustViewHeight];
 
     //for testing multi-charts
-    [self markProductAsPurchased:@"com.zuev.itube.paris.berlin"];
-    [self markProductAsPurchased:@"com.zuev.itube.paris.london"];
-    [self markProductAsPurchased:@"com.zuev.itube.paris.hamburg"];
-    [self resortMapArray];
-    [cityTableView reloadData];
+//    [self markProductAsPurchased:@"com.zuev.itube.paris.berlin"];
+//    [self markProductAsPurchased:@"com.zuev.itube.paris.london"];
+//    [self markProductAsPurchased:@"com.zuev.itube.paris.hamburg"];
+//    [self resortMapArray];
+//    [cityTableView reloadData];
     
 }
 

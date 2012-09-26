@@ -627,7 +627,12 @@
         viewHeight += segmentHeight;
     }
     
-    self.contentSize=CGSizeMake(320.0f, viewHeight+100.0);
+//    if (IS_IPAD) {
+//        self.contentSize=CGSizeMake(320.0f, viewHeight+200.0);
+//    } else {
+        self.contentSize=CGSizeMake(320.0f, viewHeight+100.0);
+//    }
+    
     self.bounces=YES;
     self.delegate = self;
     self.backgroundColor = [UIColor whiteColor];
@@ -878,7 +883,107 @@
     drawView.delegate=self;
     [self addSubview:drawView];
     [drawView release];
+    
+//    if (IS_IPAD) {
+//        UIButton *sendToFriend = [UIButton buttonWithType:UIButtonTypeCustom];
+//        UIImage *img = [UIImage imageNamed:@"sendToFriend.png"];
+//        [sendToFriend  setImage:img forState:UIControlStateNormal];
+//        [sendToFriend  setImage:[UIImage imageNamed:@"sendToFriendPressed.png"] forState:UIControlStateHighlighted];
+//        [sendToFriend  addTarget:self action:@selector(sendToFriendMail:) forControlEvents:UIControlEventTouchUpInside];
+//        [sendToFriend  setFrame:CGRectMake(40 , viewHeight + lineStart +35 , img.size.width, img.size.height)];
+//        [self addSubview:sendToFriend];
+//
+//        UIButton *wrongPath = [UIButton buttonWithType:UIButtonTypeCustom];
+//        UIImage *img2 = [UIImage imageNamed:@"wrongPath.png"];
+//        [wrongPath  setImage:img2 forState:UIControlStateNormal];
+//        [wrongPath  setImage:[UIImage imageNamed:@"wrongPathPressed.png"] forState:UIControlStateHighlighted];
+//        [wrongPath  addTarget:self action:@selector(wrongPathMail:) forControlEvents:UIControlEventTouchUpInside];
+//        [wrongPath  setFrame:CGRectMake(40 , viewHeight +lineStart+ 71, img2.size.width, img2.size.height)];
+//        [self addSubview:wrongPath];
+//    }
 }
+
+-(IBAction)sendToFriendMail:(id)sender
+{
+    NSString *body = [self generateMessageBodyPath];
+    [self showMailComposer:nil subject:@"Look at this path" body:body];
+}
+
+-(IBAction)wrongPathMail:(id)sender
+{
+    NSString *body = [self generateMessageBodyPath];
+    [self showMailComposer:nil subject:@"Wrong path" body:body];
+}
+
+-(NSString*)generateMessageBodyPath
+{
+    NSArray *stations = [self dsGetStationsArray];
+    
+    NSString *body = @"";
+    
+    for (NSString *station in stations) {
+        body = [body stringByAppendingFormat:@"%@\r",station];
+    }
+    
+    return body;
+}
+
+-(IBAction)showMailComposer:(id)sender subject:(NSString*)subject body:(NSString*)mybody
+{
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
+    if (mailClass != nil) {
+        // Test to ensure that device is configured for sending emails.
+        if ([mailClass canSendMail]) {
+            MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+            picker.mailComposeDelegate = self;
+            [picker setSubject:subject];
+            [picker setMessageBody:mybody isHTML:NO];
+            [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"fusio@yandex.ru"]]];
+            [appDelegate.mainViewController presentModalViewController:picker animated:YES];
+            [picker release];
+        } else {
+            // Device is not configured for sending emails, so notify user.
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Can't send email" message:@"This device not configured to send emails" delegate:self cancelButtonTitle:@"Ok, I will try later" otherButtonTitles:nil];
+            [alertView show];
+            [alertView release];
+        }
+    }
+}
+
+// Dismisses the Mail composer when the user taps Cancel or Send.
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    NSString *resultTitle = nil; NSString *resultMsg = nil;
+    switch (result) {
+        case MFMailComposeResultCancelled:
+            resultTitle = @"Email cancelled";
+            resultMsg = @"You cancelled you email"; break;
+        case MFMailComposeResultSaved:
+            resultTitle = @"Email saved";
+            resultMsg = @"Your draft email was saved"; break;
+        case MFMailComposeResultSent: resultTitle = @"Email sent";
+            resultMsg = @"Your email was sent successfully";
+            break;
+        case MFMailComposeResultFailed:
+            resultTitle = @"Email failed";
+            resultMsg = @"Your email was failed"; break;
+        default:
+            resultTitle = @"Email was not sent";
+            resultMsg = @"Your email was not sent"; break;
+    }
+    // Notifies user of any Mail Composer errors received with an Alert View dialog.
+    UIAlertView *mailAlertView = [[UIAlertView alloc] initWithTitle:resultTitle message:resultMsg delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+    [mailAlertView show];
+    [mailAlertView release];
+    [resultTitle release];
+    [resultMsg release];
+    
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    [appDelegate.mainViewController dismissModalViewControllerAnimated:YES];
+}
+
 
 -(void)dealloc
 {

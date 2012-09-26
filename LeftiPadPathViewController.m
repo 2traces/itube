@@ -159,8 +159,13 @@
 
 -(void)refreshUITextView
 {
-    [self.statusViewController fixTextView];
+    [self.statusViewController fixTextView:self.interfaceOrientation];
 }
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self.statusViewController rotateTextViewFromOrientation:fromInterfaceOrientation];
+}
+
 
 -(void)layoutSubviews
 {

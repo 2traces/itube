@@ -51,6 +51,20 @@
 #pragma mark -
 #pragma mark Download support (NSURLConnectionDelegate)
 
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    if ([response respondsToSelector:@selector(statusCode)])
+    {
+        int statusCode = [((NSHTTPURLResponse *)response) statusCode];        
+        if (statusCode == 404)
+        {
+            [connection cancel];  // stop connecting; no more delegate messages
+            self.activeDownload = nil;
+            self.imageConnection = nil;
+            [delegate connectionFailed:self];
+        }
+    }
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     [self.activeDownload appendData:data];
@@ -60,6 +74,7 @@
 {
     self.activeDownload = nil;
     self.imageConnection = nil;
+    [delegate connectionFailed:self];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -71,5 +86,8 @@
     self.activeDownload = nil;
     self.imageConnection = nil;
 }
+
+
+
 
 @end
