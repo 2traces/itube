@@ -10,14 +10,14 @@
 #import <GLKit/GLKit.h>
 #import "FastAccessTableViewController.h"
 #import "ManagedObjects.h"
-#import "TopTwoStationsView.h"
+#import "TopRasterView.h"
 
 @interface GlViewController : GLKViewController 
 
 @property (nonatomic, assign) int currentSelection;
 @property (nonatomic, retain) MItem *fromStation;
 @property (nonatomic, retain) MItem *toStation;
-@property (nonatomic, retain) TopTwoStationsView *stationsView;
+@property (nonatomic, retain) TopRasterView *stationsView;
 
 -(FastAccessTableViewController*)showTableView;
 -(void)returnFromSelectionFastAccess:(NSArray *)stations;

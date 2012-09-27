@@ -27,6 +27,7 @@
 		4BC1C946142E36CA003651BB /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC1C945142E36CA003651BB /* MapView.m */; };
 		5109C21B1509376600A3142F /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 5109C21A1509376600A3142F /* Schedule.m */; };
 		5121FCBF14C9E23000A9192A /* MyTiledLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5121FCBE14C9E23000A9192A /* MyTiledLayer.m */; };
+		5133EFCE1614499600B7171A /* TopRasterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5133EFCD1614499600B7171A /* TopRasterView.m */; };
 		515B9C2F14EEAE740034BB12 /* mainscreen_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 515B9C2D14EEAE740034BB12 /* mainscreen_shadow.png */; };
 		515B9C3014EEAE740034BB12 /* mainscreen_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 515B9C2E14EEAE740034BB12 /* mainscreen_shadow@2x.png */; };
 		515D75151534BB9700C25074 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 515D75141534BB9700C25074 /* libxml2.dylib */; };
@@ -514,6 +515,8 @@
 		5109C21A1509376600A3142F /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Schedule.m; path = Classes/Schedule.m; sourceTree = "<group>"; };
 		5121FCBD14C9E23000A9192A /* MyTiledLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyTiledLayer.h; path = Classes/MyTiledLayer.h; sourceTree = "<group>"; };
 		5121FCBE14C9E23000A9192A /* MyTiledLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTiledLayer.m; path = Classes/MyTiledLayer.m; sourceTree = "<group>"; };
+		5133EFCC1614499600B7171A /* TopRasterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopRasterView.h; sourceTree = "<group>"; };
+		5133EFCD1614499600B7171A /* TopRasterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopRasterView.m; sourceTree = "<group>"; };
 		515B9C2D14EEAE740034BB12 /* mainscreen_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainscreen_shadow.png; sourceTree = "<group>"; };
 		515B9C2E14EEAE740034BB12 /* mainscreen_shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainscreen_shadow@2x.png"; sourceTree = "<group>"; };
 		515D75141534BB9700C25074 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -1146,6 +1149,8 @@
 				BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */,
 				BC98E47314C9592700F5260D /* TopTwoStationsView.h */,
 				BC98E47414C9592700F5260D /* TopTwoStationsView.m */,
+				5133EFCC1614499600B7171A /* TopRasterView.h */,
+				5133EFCD1614499600B7171A /* TopRasterView.m */,
 				BC3D14E114C338360059A17E /* LineListViewController.h */,
 				BC3D14E214C338360059A17E /* LineListViewController.m */,
 				BC3D14E414C338370059A17E /* SettingsViewController.h */,
@@ -2321,6 +2326,7 @@
 				51D4D930160EF35500C9D02B /* RasterLayer.m in Sources */,
 				51D4D931160EF35500C9D02B /* Shader.fsh in Sources */,
 				51D4D932160EF35500C9D02B /* Shader.vsh in Sources */,
+				5133EFCE1614499600B7171A /* TopRasterView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

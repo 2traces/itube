@@ -30,8 +30,6 @@ GLint uniforms[NUM_UNIFORMS];
     GLKMatrix3 _normalMatrix;
     //float _rotation;
     
-    GLuint _vertexArray;
-    GLuint _vertexBuffer;
     RasterLayer *rasterLayer;
     CGPoint position, prevPosition;
     CGFloat scale, prevScale;
@@ -40,7 +38,7 @@ GLint uniforms[NUM_UNIFORMS];
     int currentSelection;
     MItem *fromStation;
     MItem *toStation;
-    TopTwoStationsView *stationsView;
+    TopRasterView *stationsView;
 }
 @property (strong, nonatomic) EAGLContext *context;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
@@ -127,7 +125,7 @@ GLint uniforms[NUM_UNIFORMS];
     rasterLayer = [[RasterLayer alloc] initWithRect:CGRectMake(0, 0, 256, 256) mapName:@"cuba"];
     //[rasterLayer setSignal:self selector:@selector(redrawRect:)];
     
-    stationsView = [[TopTwoStationsView alloc] initWithFrame:CGRectMake(0,0,320,44)];
+    stationsView = [[TopRasterView alloc] initWithFrame:CGRectMake(0,0,320,44)];
     [view addSubview:stationsView];
     
     int adDelta = 0;
@@ -254,23 +252,11 @@ GLint uniforms[NUM_UNIFORMS];
     //self.effect.light0.diffuseColor = GLKVector4Make(1.0f, 0.4f, 0.4f, 1.0f);
     
     glDisable(GL_DEPTH_TEST);
-    
-    glGenVertexArraysOES(1, &_vertexArray);
-    glBindVertexArrayOES(_vertexArray);
-    
-    glGenBuffers(1, &_vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), gCubeVertexData, GL_STATIC_DRAW);
-    
-    glBindVertexArrayOES(0);
 }
 
 - (void)tearDownGL
 {
     [EAGLContext setCurrentContext:self.context];
-    
-    glDeleteBuffers(1, &_vertexBuffer);
-    glDeleteVertexArraysOES(1, &_vertexArray);
     
     //self.effect = nil;
     
