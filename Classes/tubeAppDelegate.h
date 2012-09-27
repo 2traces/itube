@@ -23,6 +23,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
     UIWindow *window;
     GlViewController *gl;
     MainViewController *mainViewController;
+    UINavigationController *navController;
     CityMap *cityMap;
     NSString *cityName;
     
@@ -50,6 +51,8 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 
 -(BOOL)isIPHONE5;
 
+-(void)showRasterMap;
+-(void)showMetroMap;
 
 @end
 

@@ -783,6 +783,10 @@
     if(dc != nil) {
         [piece vectorLoaded];
         NSString *contents = [NSString stringWithCString:(const char*)([dc->data bytes]) encoding:NSUTF8StringEncoding];
+        if([[contents substringToIndex:2] isEqualToString:@"<!"]) {
+            // html, probably there is an error
+            contents = nil;
+        }
         if(contents != nil) {
             NSMutableArray *a = [[NSMutableArray alloc] init];
             [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {

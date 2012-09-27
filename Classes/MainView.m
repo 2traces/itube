@@ -376,7 +376,8 @@ NSInteger const toolbarWidth=320;
 -(void) changeZones
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [self.vcontroller presentModalViewController:appDelegate.glViewController animated:YES];
+    [appDelegate showRasterMap];
+    //[self.vcontroller presentModalViewController:appDelegate.glViewController animated:YES];
 }
 
 -(void)changeShadowFrameToRect:(CGRect)rect

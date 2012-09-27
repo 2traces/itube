@@ -60,9 +60,11 @@ void uncaughtExceptionHandler(NSException *exception) {
         [splitController release];
         [window makeKeyAndVisible];
     } else {
+        navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+        navController.navigationBarHidden = YES;
         mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
         [window addSubview:[mainViewController view]];
-        [window setRootViewController:mainViewController];
+        [window setRootViewController:navController];
         [window makeKeyAndVisible];
     }
 }
@@ -354,6 +356,17 @@ void uncaughtExceptionHandler(NSException *exception) {
     return mapUrl;
 }
 
+#pragma mark - manage maps
+
+-(void)showRasterMap
+{
+    [navController pushViewController:gl animated:YES];
+}
+
+-(void)showMetroMap
+{
+    [navController popToRootViewControllerAnimated:YES];
+}
 
 #pragma mark - Mail methods
 

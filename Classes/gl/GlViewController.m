@@ -427,7 +427,9 @@ GLfloat gCubeVertexData[216] =
 
 -(void) changeZones
 {
-    [self dismissModalViewControllerAnimated:YES];
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate showMetroMap];
+    //[self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
