@@ -16,6 +16,8 @@
 		<string>london.png</string>
 		<key>zip_donwload</key>
 		<string>/maps/london/london1.zip</string>
+		<key>statusURL</key>
+		<string>http://metro.dim0xff.com/london/lines.txt</string>
 	</dict>
 	<key>com.zuev.itube.paris.paris</key>
 	<dict>
@@ -31,8 +33,6 @@
 		<string>paris.png</string>
 		<key>zip_download</key>
 		<string>/maps/paris/paris1.zip</string>
-		<key>statusURL</key>
-		<string>http://metro.dim0xff.com/paris/data.txt</string>
 	</dict>
 	<key>com.zuev.itube.paris.berlin</key>
 	<dict>
@@ -48,6 +48,8 @@
 		<string>berlin.png</string>
 		<key>zip_download</key>
 		<string>/maps/berlin/berlin1.zip</string>
+		<key>statusURL</key>
+		<string>   </string>
 	</dict>
 	<key>com.zuev.itube.paris.hamburg</key>
 	<dict>
@@ -82,6 +84,8 @@
 		<string>venice.png</string>
 		<key>zip_download</key>
 		<string>/maps/venice/venice1.zip</string>
+		<key>statusURL</key>
+		<string>http://metro.dim0xff.com/paris/data_RU.txt</string>
 	</dict>
 	<key>com.zuev.itube.paris.peterburg</key>
 	<dict>
@@ -105,15 +109,13 @@
 		<key>name</key>
 		<string>Shanghai</string>
 		<key>filename</key>
-		<string>paris</string>
+		<string>shanghai</string>
 		<key>description</key>
 		<string>shanghai.txt</string>
 		<key>picture</key>
 		<string>shanghai.png</string>
 		<key>zip_download</key>
 		<string>/maps/shanghai/shanghai1.zip</string>
-		<key>statusURL</key>
-		<string>http://metro.dim0xff.com/paris/data.txt</string>
 	</dict>
 </dict>
 </plist>

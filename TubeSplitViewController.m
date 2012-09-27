@@ -128,7 +128,7 @@ static float koefficient = 0.0f;
 {
     CGSize size = [self sizeRotated];
     
-    [self.leftPathController.pathScrollView setFrame:CGRectMake(0.0, 84.0, 320.0, size.height-84.0)];
+    [self.leftPathController.pathScrollView setFrame:CGRectMake(0.0, 44.0, 320.0, size.height-44.0)];
 }
 
 -(void)showLeftView
@@ -146,6 +146,7 @@ static float koefficient = 0.0f;
                 [self layoutSubviews];
             } completion:^(BOOL finished) {
                 //           [self adjustMapView]; //выключили изза производительности
+                [leftPathController refreshUITextView]; //fixing ios bug 
             }];
         }
     }
@@ -202,6 +203,11 @@ static float koefficient = 0.0f;
 -(void)refreshStatusInfo
 {
     [leftPathController refreshStatusInfo];
+}
+
+-(void)changeStatusView
+{
+    [leftPathController changeStatusView];
 }
 
 - (void) viewWillAppear:(BOOL)animated {

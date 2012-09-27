@@ -172,9 +172,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-        NSLog(@"qqq");
-    }
 }
 
 // --- status lines
@@ -182,6 +179,8 @@
 -(NSString*)getStatusInfoURL
 {
     NSString *url;
+    
+    url=nil;
     
     NSString *currentMap = [[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] thisMapName];
     NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -205,8 +204,14 @@
 -(void)addStatusView:(NSString*)url
 {
     StatusViewController *statusView = [[StatusViewController alloc] init];
-    [(MainView*)self.view addSubview:statusView.view];
-    self.statusViewController =statusView;
+
+    if (self.stationsView) {
+        [(MainView*)self.view insertSubview:statusView.view belowSubview:self.stationsView];
+    } else {
+        [(MainView*)self.view addSubview:statusView.view];
+    }
+    
+    self.statusViewController=statusView;
     self.statusViewController.infoURL=url;
     [self.statusViewController recieveStatusInfo];
     [statusView release];
@@ -257,9 +262,14 @@
     [defaults synchronize];
     
     if (IS_IPAD) {
-        [self.spltViewController refreshStatusInfo];
+        [self.spltViewController changeStatusView];
     } else {
-        [self.statusViewController checkNewMaps];
+        [self.statusViewController.view removeFromSuperview];
+        NSString *url=[self getStatusInfoURL];
+        if (url) {
+            [self addStatusView:url];            
+        }
+        
     }
 }
 
@@ -329,7 +339,10 @@
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     
     if (IS_IPAD) {
-        if (popover) [popover dismissPopoverAnimated:YES];
+        if (popover) {
+            [popover dismissPopoverAnimated:YES];
+            [popover.delegate popoverControllerDidDismissPopover:popover];
+        }
     } else {
         
         if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
@@ -597,7 +610,6 @@
         [(MainView*)self.view bringSubviewToFront:pathScrollView];
         [(MainView*)self.view bringSubviewToFront:self.stationsView];
         [(MainView*)self.view bringSubviewToFront:self.horizontalPathesScrollView];
-        [(MainView*)self.view bringSubviewToFront:self.changeViewButton];
         
         UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
         shadow.frame = CGRectMake(0,66, 320, 61);
@@ -605,8 +617,10 @@
         shadow.tag = 2321;
         [(MainView*)self.view addSubview:shadow];
         
-        [self.changeViewButton setImage:[UIImage imageNamed:@"switch_to_map.png"] forState:UIControlStateNormal];
-        [self.changeViewButton setImage:[UIImage imageNamed:@"switch_to_map_high.png"] forState:UIControlStateHighlighted];
+        [self.changeViewButton setImage:[UIImage imageNamed:@"pathButton.png"] forState:UIControlStateNormal];
+        [self.changeViewButton setImage:[UIImage imageNamed:@"pathButtonPressed.png"] forState:UIControlStateHighlighted];
+
+        [(MainView*)self.view bringSubviewToFront:self.changeViewButton];
         
     } else {
         
@@ -727,6 +741,8 @@
 
 -(void)showiPadSettingsModalView
 {
+    if (popover) [popover dismissPopoverAnimated:YES];
+
     SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
     controller.delegate=self;
     UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:controller];

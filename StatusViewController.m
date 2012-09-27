@@ -102,6 +102,7 @@
         
         self.view.frame = CGRectMake(0.0, 0.0, 320.0, 600.0);
         textView.frame = CGRectMake(10.0, 10.0, 300.0, 600.0);
+        textView.scrollEnabled=YES;
         
     } else {
         
@@ -109,15 +110,16 @@
         [self.swipeRecognizerD setDirection:UISwipeGestureRecognizerDirectionDown];
         [self.view addGestureRecognizer:self.swipeRecognizerD];
         
-        self.swipeRecognizerU = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)] autorelease];
-        [self.swipeRecognizerU setDirection:UISwipeGestureRecognizerDirectionUp];
-        [self.view addGestureRecognizer:self.swipeRecognizerU];
+//        self.swipeRecognizerU = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)] autorelease];
+//        [self.swipeRecognizerU setDirection:UISwipeGestureRecognizerDirectionUp];
+//        [self.view addGestureRecognizer:self.swipeRecognizerU];
         
         self.tapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)] autorelease];
         [self.tapRecognizer setNumberOfTapsRequired:1];
         [self.view addGestureRecognizer:self.tapRecognizer];
         
         textView.frame = CGRectMake(10.0, 322.0, 300.0, 25.0);
+        
     }
     
     [self.view addSubview:updateTextView];
@@ -134,8 +136,14 @@
         isStatusRecieved=YES;
         
         if (IS_IPAD) {
-            [[self textView] setText:[statusInfo substringToIndex:600]];
-            NSLog(@"%@",textView);
+            if ([statusInfo length]>26600) {
+                [textView setText:[statusInfo substringToIndex:600]];
+            } else {
+                [textView setText:statusInfo];
+                CGRect frame = textView.frame;
+                frame.size.height += 1;
+                textView.frame = frame;
+            }
         } else {
             if (!isShown) {
                 [self  performSelector:@selector(showInitialSizeView) withObject:nil afterDelay:3];
@@ -205,6 +213,9 @@
         
         newY = -280.0;
         
+        textView.scrollEnabled=NO;
+        [textView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
+        
         self.shadowView.frame=CGRectMake(0, 324, 320, 20);
         
         [UIView animateWithDuration:0.55 animations:^{
@@ -235,6 +246,9 @@
 {
     isShown=YES;
     
+    textView.scrollEnabled=YES;
+    [textView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
+    
     [UIView animateWithDuration:0.55 animations:^{
         [self layoutSubviews];
     }];
@@ -244,6 +258,7 @@
 {
     isShown=NO;
     
+    textView.scrollEnabled=NO;
     [UIView animateWithDuration:0.55 animations:^{
         [self layoutSubviews];
     }];
@@ -252,7 +267,7 @@
 -(void)layoutSubviews
 {
     if (IS_IPAD) {
-        self.view.frame = CGRectMake(0.0, 44.0, 320.0, 1004.0-84.0);
+        self.view.frame = CGRectMake(0.0, 44.0, 320.0, 1004.0-44.0);
         if (isNewMapAvailable) {
             updateTextView.hidden=NO;
             yellowView.hidden=NO;
@@ -369,6 +384,53 @@
 {
     
 }
+
+-(void)connectionFailed:(StatusDownloader*)server
+{
+    [servers removeObject:server];
+    NSLog(@"%@",servers);
+}
+
+-(void)fixTextView:(UIInterfaceOrientation)orientation
+{
+    if (IS_IPAD) {
+        if (isNewMapAvailable) {
+            if (UIInterfaceOrientationIsLandscape(orientation)) {
+                textView.frame = CGRectMake(10.0, 68+40, 300.0, 748-68-40);
+            } else {
+                textView.frame = CGRectMake(10.0, 68+40, 300.0, 1004-68-44);
+            }
+        } else {
+            if (UIInterfaceOrientationIsLandscape(orientation)) {
+                textView.frame = CGRectMake(10.0, 44, 300.0, 748-44);
+            } else {
+                textView.frame = CGRectMake(10.0, 44, 300.0, 1004-44);
+            }
+        }
+        [textView setNeedsDisplay];
+    }
+}
+
+-(void)rotateTextViewFromOrientation:(UIInterfaceOrientation)orientation
+{
+    if (IS_IPAD) {
+        if (isNewMapAvailable) {
+            if (UIInterfaceOrientationIsPortrait(orientation)) {
+                textView.frame = CGRectMake(10.0, 68+40, 300.0, 748-68-40);
+            } else {
+                textView.frame = CGRectMake(10.0, 68+40, 300.0, 1004-68-44);
+            }
+        } else {
+            if (UIInterfaceOrientationIsPortrait(orientation)) {
+                textView.frame = CGRectMake(10.0, 44, 300.0, 748-44);
+            } else {
+                textView.frame = CGRectMake(10.0, 44, 300.0, 1004-44);
+            }
+        }
+        [textView setNeedsDisplay];
+    }
+}
+
 
 -(void)dealloc
 {
