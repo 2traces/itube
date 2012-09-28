@@ -100,6 +100,9 @@
     
     url = nil;
     
+    NSString *mainURL=nil;
+    NSString *altURL=nil;
+    
     NSString *currentMap = [[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] thisMapName];
     NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
@@ -110,12 +113,29 @@
         NSDictionary *map = [dict objectForKey:mapID];
         if ([[map objectForKey:@"filename"] isEqual:currentMap]) {
             if ([map objectForKey:@"statusURL"]) {
-                url = [NSString stringWithString:[map objectForKey:@"statusURL"]];
+                mainURL = [NSString stringWithString:[map objectForKey:@"statusURL"]];
             }
+            if ([map objectForKey:@"altStatusURL"]) {
+                altURL = [NSString stringWithString:[map objectForKey:@"altStatusURL"]];
+            }
+
         }
     }
     
     [dict release];
+    
+    if (!altURL) {
+        url=mainURL;
+    } else {
+        NSString *composedLocalURL = [NSString stringWithFormat:@"http://metro.dim0xff.com/%@/data_%@.txt",[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] thisMapName],[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]];
+//        NSLog(@"%@",composedLocalURL);
+        if ([mainURL isEqualToString:composedLocalURL]) {
+            url = mainURL;
+        } else {
+            url = altURL;
+        }
+    }
+    
     return url;
 }
 
