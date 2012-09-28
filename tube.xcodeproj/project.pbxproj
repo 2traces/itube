@@ -79,6 +79,7 @@
 		BC21853F1611B47300B59A59 /* pathButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC2185371611B47300B59A59 /* pathButton@2x.png */; };
 		BC2279491604881C00414693 /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = BC2279451604881C00414693 /* Default-568h.png */; };
 		BC22794A1604881C00414693 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC2279471604881C00414693 /* Default-568h@2x.png */; };
+		BC234C4D16145AE600F3D35B /* InitialDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC234C4C16145AE600F3D35B /* InitialDefaults.plist */; };
 		BC24E8E51612F8B4006C3C12 /* sendToFriendPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = BC24E8DD1612F8B4006C3C12 /* sendToFriendPressed.png */; };
 		BC24E8E61612F8B4006C3C12 /* wrongPath.png in Resources */ = {isa = PBXBuildFile; fileRef = BC24E8DE1612F8B4006C3C12 /* wrongPath.png */; };
 		BC24E8E71612F8B4006C3C12 /* wrongPathPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = BC24E8DF1612F8B4006C3C12 /* wrongPathPressed.png */; };
@@ -575,6 +576,7 @@
 		BC22794E1604885100414693 /* it */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = it; path = "it.lproj/Default-568h.png"; sourceTree = "<group>"; };
 		BC22794F1604885400414693 /* de */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = de; path = "de.lproj/Default-568h@2x.png"; sourceTree = "<group>"; };
 		BC2279501604885500414693 /* fr */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fr; path = "fr.lproj/Default-568h@2x.png"; sourceTree = "<group>"; };
+		BC234C4C16145AE600F3D35B /* InitialDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InitialDefaults.plist; sourceTree = "<group>"; };
 		BC24E8DD1612F8B4006C3C12 /* sendToFriendPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sendToFriendPressed.png; path = images/sendToFriendPressed.png; sourceTree = "<group>"; };
 		BC24E8DE1612F8B4006C3C12 /* wrongPath.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wrongPath.png; path = images/wrongPath.png; sourceTree = "<group>"; };
 		BC24E8DF1612F8B4006C3C12 /* wrongPathPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wrongPathPressed.png; path = images/wrongPathPressed.png; sourceTree = "<group>"; };
@@ -1260,6 +1262,7 @@
 				BC3D150E14C339140059A17E /* Settings */,
 				CE81FA6D146BDC91008BF969 /* Icon-72.png */,
 				BC3D150B14C338EE0059A17E /* maps.plist */,
+				BC234C4C16145AE600F3D35B /* InitialDefaults.plist */,
 				CE81FA6E146BDC91008BF969 /* Icon.png */,
 				BC0FD7041601E05D00C048FF /* Paris.geojson */,
 				CE81FA6F146BDC91008BF969 /* Icon@2x.png */,
@@ -2195,6 +2198,7 @@
 				BC24E8EA1612F8B4006C3C12 /* sendToFriendPressed@2x.png in Resources */,
 				BC24E8EB1612F8B4006C3C12 /* wrongPath@2x.png in Resources */,
 				BC24E8EC1612F8B4006C3C12 /* sendToFriend@2x.png in Resources */,
+				BC234C4D16145AE600F3D35B /* InitialDefaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
