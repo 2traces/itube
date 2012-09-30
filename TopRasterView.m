@@ -35,12 +35,12 @@
 -(void)drawInitialState
 {
     toolbar = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, self.frame.size.width,self.frame.size.height)];
-    [toolbar setImage:[UIImage imageNamed:@"toolbar_bg1.png"]];
+    [toolbar setImage:[UIImage imageNamed:@"toolbar_bg2.png"]];
     [toolbar setUserInteractionEnabled:YES];
 	[self addSubview:toolbar];
 
-	UIImage *imageOpenList = [UIImage imageNamed:@"openlist.png"];
-    UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist.png"];
+	UIImage *imageOpenList = [UIImage imageNamed:@"openlist2.png"];
+    UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist2.png"];
 	
 	UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [refreshButton setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
@@ -51,7 +51,7 @@
 	firstStation.delegate = self;
 	firstStation.borderStyle = UITextBorderStyleNone;
 	firstStation.rightView = refreshButton;
-	firstStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
+	firstStation.background = [UIImage imageNamed:@"toolbar_text_bg2.png"];
     firstStation.backgroundColor = [UIColor clearColor];
 	firstStation.textAlignment = UITextAlignmentLeft;
 	firstStation.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -358,7 +358,7 @@
     firstStation.rightViewMode = UITextFieldViewModeAlways;
     [firstStation setLeftView:nil];
     [firstStation setLeftViewMode: UITextFieldViewModeNever];
-    firstStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
+    firstStation.background = [UIImage imageNamed:@"toolbar_text_bg2.png"];
 
 }
 
@@ -368,7 +368,7 @@
     secondStation.rightViewMode = UITextFieldViewModeAlways;
     [secondStation setLeftView:nil];
     [secondStation setLeftViewMode: UITextFieldViewModeNever];
-    secondStation.background = [UIImage imageNamed:@"toolbar_text_bg.png"];
+    secondStation.background = [UIImage imageNamed:@"toolbar_text_bg2.png"];
 
 }
 
@@ -401,7 +401,7 @@
 //        [lineColor release];
         
         [firstStation setLeftViewMode: UITextFieldViewModeAlways];
-        firstStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];
+        firstStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted2.png"];
 
     } else {
         [self clearFromStation];
@@ -432,7 +432,7 @@
         //[lineColor release];
         
         [secondStation setLeftViewMode: UITextFieldViewModeAlways];
-        secondStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];
+        secondStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted2.png"];
 
     } else {
         [self clearToStation];
