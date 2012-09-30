@@ -86,6 +86,8 @@
 		<string>/maps/venice/venice1.zip</string>
 		<key>statusURL</key>
 		<string>http://metro.dim0xff.com/paris/data_RU.txt</string>
+		<key>altStatusURL</key>
+		<string>http://metro.dim0xff.com/paris/data.txt</string>
 	</dict>
 	<key>com.zuev.itube.paris.peterburg</key>
 	<dict>

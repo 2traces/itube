@@ -71,6 +71,13 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)awakeFromNib
 {
+    NSString *      initialDefaultsPath;
+    NSDictionary *  initialDefaults;
+
+    initialDefaultsPath = [[NSBundle mainBundle] pathForResource:@"InitialDefaults" ofType:@"plist"];
+    initialDefaults = [NSDictionary dictionaryWithContentsOfFile:initialDefaultsPath];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:initialDefaults];
+    
 	if ([[NSUserDefaults standardUserDefaults] integerForKey:@"launches"])
 	{
         if ([[NSUserDefaults standardUserDefaults] integerForKey:@"launches"]==10) {

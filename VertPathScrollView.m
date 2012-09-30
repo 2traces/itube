@@ -628,9 +628,9 @@
     }
     
 //    if (IS_IPAD) {
-//        self.contentSize=CGSizeMake(320.0f, viewHeight+200.0);
+        self.contentSize=CGSizeMake(320.0f, viewHeight+200.0);
 //    } else {
-        self.contentSize=CGSizeMake(320.0f, viewHeight+100.0);
+//        self.contentSize=CGSizeMake(320.0f, viewHeight+100.0);
 //    }
     
     self.bounces=YES;
@@ -885,21 +885,21 @@
     [drawView release];
     
 //    if (IS_IPAD) {
-//        UIButton *sendToFriend = [UIButton buttonWithType:UIButtonTypeCustom];
-//        UIImage *img = [UIImage imageNamed:@"sendToFriend.png"];
-//        [sendToFriend  setImage:img forState:UIControlStateNormal];
-//        [sendToFriend  setImage:[UIImage imageNamed:@"sendToFriendPressed.png"] forState:UIControlStateHighlighted];
-//        [sendToFriend  addTarget:self action:@selector(sendToFriendMail:) forControlEvents:UIControlEventTouchUpInside];
-//        [sendToFriend  setFrame:CGRectMake(40 , viewHeight + lineStart +35 , img.size.width, img.size.height)];
-//        [self addSubview:sendToFriend];
-//
-//        UIButton *wrongPath = [UIButton buttonWithType:UIButtonTypeCustom];
-//        UIImage *img2 = [UIImage imageNamed:@"wrongPath.png"];
-//        [wrongPath  setImage:img2 forState:UIControlStateNormal];
-//        [wrongPath  setImage:[UIImage imageNamed:@"wrongPathPressed.png"] forState:UIControlStateHighlighted];
-//        [wrongPath  addTarget:self action:@selector(wrongPathMail:) forControlEvents:UIControlEventTouchUpInside];
-//        [wrongPath  setFrame:CGRectMake(40 , viewHeight +lineStart+ 71, img2.size.width, img2.size.height)];
-//        [self addSubview:wrongPath];
+        UIButton *sendToFriend = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *img = [UIImage imageNamed:@"sendToFriend.png"];
+        [sendToFriend  setImage:img forState:UIControlStateNormal];
+        [sendToFriend  setImage:[UIImage imageNamed:@"sendToFriendPressed.png"] forState:UIControlStateHighlighted];
+        [sendToFriend  addTarget:self action:@selector(sendToFriendMail:) forControlEvents:UIControlEventTouchUpInside];
+        [sendToFriend  setFrame:CGRectMake(40 , viewHeight + lineStart +35 , img.size.width, img.size.height)];
+        [self addSubview:sendToFriend];
+
+        UIButton *wrongPath = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *img2 = [UIImage imageNamed:@"wrongPath.png"];
+        [wrongPath  setImage:img2 forState:UIControlStateNormal];
+        [wrongPath  setImage:[UIImage imageNamed:@"wrongPathPressed.png"] forState:UIControlStateHighlighted];
+        [wrongPath  addTarget:self action:@selector(wrongPathMail:) forControlEvents:UIControlEventTouchUpInside];
+        [wrongPath  setFrame:CGRectMake(40 , viewHeight +lineStart+ 71, img2.size.width, img2.size.height)];
+        [self addSubview:wrongPath];
 //    }
 }
 
@@ -917,13 +917,98 @@
 
 -(NSString*)generateMessageBodyPath
 {
-    NSArray *stations = [self dsGetStationsArray];
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    NSString *body = @"";
+    // получаем все стартовые данные для начала рисования
+    NSMutableArray *stations = [[[NSMutableArray alloc] initWithArray:[self dsGetStationsArray]] autorelease];  // список станций - массив массивов
+    NSMutableArray *exits = [self dsGetExitForStations];  // выходы со станций - массив
+    NSMutableArray *directions = [self dsGetDirectionNames]; // направления движения
     
-    for (NSString *station in stations) {
-        body = [body stringByAppendingFormat:@"%@\r",station];
+    NSMutableArray *stationsTime;
+    
+    if ([appDelegate.cityMap.pathTimesList count] > 0) {
+        stationsTime = [NSMutableArray arrayWithArray:[self dsGetEveryStationTimeScheduled]]; // времена прохода станций при условии наличия расписания - массив массивов
+    } else {
+        stationsTime = [NSMutableArray arrayWithArray:[self dsGetEveryStationTime]]; // времена прохода станций при условии отсутствия расписания - массив массивов
     }
+    
+    NSMutableArray *exitsVenice;
+    
+    if ([[appDelegate nameCurrentMap] isEqual:@"venice"]) {
+        exitsVenice = [self dsGetVeniceExitForStations];
+    }
+    
+    if ([self dsIsStartingTransfer]) {
+        [stations removeObjectAtIndex:0];
+        [stationsTime removeObjectAtIndex:0];
+    }
+    
+    if ([self dsIsEndingTransfer]) {
+        [stations removeLastObject];
+        [stationsTime removeObjectAtIndex:0];
+    }
+    
+    int segmentsCount = [stations count];
+    int endCount=segmentsCount;
+    int start = 0;
+    
+    NSString *body;
+    
+    body = @"<html><table width=\"350\">";
+    
+    NSString *lastStation = nil;
+    
+    for (int j=start;j<endCount;j++) {
+        
+        // print station name, if something before - check for identical station before
+        NSString *stationNameFirst = [[stations objectAtIndex:j] firstObject];
+        NSString *dateStringFirst = [[stationsTime objectAtIndex:j-start] firstObject];
+        if (![stationNameFirst isEqualToString:lastStation]) {
+            body = [body stringByAppendingFormat:@"<TR><TD width=\"70%%\"><b>%@</b></TD><TD><b>%@</b></TD></TR>",stationNameFirst,dateStringFirst];
+//            NSLog(@"Start Station %@ - %@",stationNameFirst, dateStringFirst);
+        }
+        
+        // print train
+        int exitNumb = [[exits objectAtIndex:j-start] intValue];
+        if (exitNumb!=0) {
+            NSString *trainName = [NSString stringWithFormat:@"http:/findmystation.info/maps/%@/train%d.png",appDelegate.cityMap.thisMapName,exitNumb];
+            NSString *kk = @"\"";
+            body = [body stringByAppendingFormat:@"<TR><TD colspan=\"2\"><img src=%@%@%@ alt=%@%@%@></TD></TR>",kk,trainName,kk,kk,@"train",kk];
+//            NSLog(@"%@",trainName);
+        } else {
+            
+        }
+
+        // print direction
+        NSString *directionName = [directions objectAtIndex:j];
+        body = [body stringByAppendingFormat:@"<TR><TD colspan=\"2\"><i>%@</i></TD></TR>",directionName];
+//        NSLog(@"%@",directionName);
+        
+        
+        // print stations
+        for (int jj=1;jj<[[stations objectAtIndex:j] count]-1;jj++) {
+            NSString *stationName = [[stations objectAtIndex:j] objectAtIndex:jj];
+            NSString *dateString = [[stationsTime objectAtIndex:j-start] objectAtIndex:jj];
+            body = [body stringByAppendingFormat:@"<TR><TD>%@</TD><TD>%@</TD></TR>",stationName,dateString];
+//            NSLog(@"%@ - %@",stationName, dateString);
+        }
+        
+        // if last in segment - bold it
+        
+        NSString *stationNameLast = [[stations objectAtIndex:j] lastObject];
+        NSString *dateStringLast = [[stationsTime objectAtIndex:j-start] lastObject];
+        body = [body stringByAppendingFormat:@"<TR><TD><b>%@</b></TD><TD><b>%@</b></TD></TR>",stationNameLast,dateStringLast];
+//        NSLog(@"Last Station %@ - %@",stationNameLast, dateStringLast);
+        lastStation=stationNameLast;
+        
+    }
+    
+    NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+    NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    NSString *appURL = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppStoreURL"];
+    NSString *iconURLString = [NSString stringWithFormat:@"<img src=\"%@\" alt=\"appIcon\">",[NSString stringWithFormat:@"http:/findmystation.info/maps/%@/icon.png",appDelegate.cityMap.thisMapName]];
+    
+    body = [body stringByAppendingFormat:@"</table><p>Sent from <a href=\"%@\">%@ ver. %@</a><p>%@<p></html>",appURL,appName,appVersion,iconURLString];
     
     return body;
 }
@@ -939,7 +1024,7 @@
             MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
             picker.mailComposeDelegate = self;
             [picker setSubject:subject];
-            [picker setMessageBody:mybody isHTML:NO];
+            [picker setMessageBody:mybody isHTML:YES];
             [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"fusio@yandex.ru"]]];
             [appDelegate.mainViewController presentModalViewController:picker animated:YES];
             [picker release];
