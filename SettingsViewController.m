@@ -200,11 +200,11 @@
     [self adjustViewHeight];
 
     //for testing multi-charts
-//    [self markProductAsPurchased:@"com.zuev.itube.paris.berlin"];
+    [self markProductAsPurchased:@"com.zuev.itube.paris.shanghai"];
 //    [self markProductAsPurchased:@"com.zuev.itube.paris.london"];
 //    [self markProductAsPurchased:@"com.zuev.itube.paris.hamburg"];
-//    [self resortMapArray];
-//    [cityTableView reloadData];
+    [self resortMapArray];
+    [cityTableView reloadData];
     
 }
 
@@ -242,6 +242,9 @@
     updateButton.frame = CGRectMake(updateButton.frame.origin.x+addX, updateButton.frame.origin.y, updateButton.frame.size.width, updateButton.frame.size.height);
     updateImageView.frame = CGRectMake(updateImageView.frame.origin.x+addX, updateImageView.frame.origin.y, updateImageView.frame.size.width, updateImageView.frame.size.height);
     textLabel2.frame = CGRectMake(textLabel2.frame.origin.x+addX, textLabel2.frame.origin.y, textLabel2.frame.size.width, textLabel2.frame.size.height);
+    langTableView.frame=CGRectMake(langTableView.frame.origin.x+addX, langTableView.frame.origin.y, langTableView.frame.size.width, langTableHeight);
+    textLabel3.frame=CGRectMake(textLabel3.frame.origin.x+addX, langTableView.frame.origin.y, textLabel3.frame.size.width, textLabel3.frame.size.height);
+
     
     if ([languages count]<2) {
         textLabel2.hidden=YES;
@@ -251,8 +254,8 @@
         textLabel2.hidden=NO;
         langTableView.hidden=NO;
         langTableHeight = [languages count]*45.0f+2.0;
-        langTableView.frame=CGRectMake(langTableView.frame.origin.x+addX, langTableView.frame.origin.y, langTableView.frame.size.width, langTableHeight);
-        textLabel3.frame=CGRectMake(textLabel3.frame.origin.x+addX, langTableView.frame.origin.y+langTableHeight+17, textLabel3.frame.size.width, textLabel3.frame.size.height);
+        langTableView.frame=CGRectMake(langTableView.frame.origin.x, langTableView.frame.origin.y, langTableView.frame.size.width, langTableHeight);
+        textLabel3.frame=CGRectMake(textLabel3.frame.origin.x, langTableView.frame.origin.y+langTableHeight+17, textLabel3.frame.size.width, textLabel3.frame.size.height);
     }
     
     CGFloat cityTableHeight = [maps count]*45.0f+2.0;
