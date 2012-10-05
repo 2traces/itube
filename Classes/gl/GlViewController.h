@@ -14,7 +14,7 @@
 
 @interface GlViewController : GLKViewController 
 
-@property (nonatomic, assign) int currentSelection;
+@property (nonatomic, assign) MItem *currentSelection;
 @property (nonatomic, retain) MItem *fromStation;
 @property (nonatomic, retain) MItem *toStation;
 @property (nonatomic, retain) TopRasterView *stationsView;

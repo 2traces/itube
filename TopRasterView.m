@@ -112,7 +112,7 @@
     
     firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
     
-    appDelegate.glViewController.currentSelection=0;
+    appDelegate.glViewController.currentSelection=nil;
     self.tableView=controller;
     firstStation.delegate = self.tableView;
     [firstStation becomeFirstResponder];

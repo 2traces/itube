@@ -10,6 +10,7 @@
 #import "RasterLayer.h"
 #import "SettingsNavController.h"
 #import "tubeAppDelegate.h"
+#import "SelectingTabBarViewController.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -35,7 +36,7 @@ GLint uniforms[NUM_UNIFORMS];
     CGFloat scale, prevScale;
     UIButton *sourceData, *settings;
     
-    int currentSelection;
+    MItem *currentSelection;
     MItem *fromStation;
     MItem *toStation;
     TopRasterView *stationsView;
@@ -338,7 +339,7 @@ GLint uniforms[NUM_UNIFORMS];
 {
     [self removeTableView];
     if (stations) {
-        if (currentSelection==0) {
+        if (currentSelection==nil) {
             if ([stations objectAtIndex:0]==self.toStation) {
                 self.fromStation=nil;
                 [stationsView resetFromStation];
@@ -356,7 +357,7 @@ GLint uniforms[NUM_UNIFORMS];
         
         //      [self returnFromSelection:stations];
     } else {
-        if (currentSelection==0) {
+        if (currentSelection==nil) {
             [stationsView setFromStation:self.fromStation];
         } else {
             [stationsView setToStation:self.toStation];
@@ -364,11 +365,76 @@ GLint uniforms[NUM_UNIFORMS];
     }
 }
 
+-(void)showTabBarViewController
+{
+    SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
+    controller.delegate = self;
+    
+    CGRect frame = controller.view.frame;
+    frame.origin.y = self.view.frame.size.height;
+    controller.view.frame = frame;
+    
+    [self.view addSubview:controller.view];
+    frame.origin.y = 0;
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.3f];
+    controller.view.frame = frame;
+    
+    [UIView commitAnimations];
+    
+    //(self.view).shouldNotDropPins = YES;
+    
+    [controller autorelease];
+}
+
 -(void) changeZones
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate showMetroMap];
     //[self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)pressedSelectFromStation
+{
+    currentSelection=fromStation;
+    [self showTabBarViewController];
+}
+
+-(void)pressedSelectToStation
+{
+    currentSelection=toStation;
+    [self showTabBarViewController];
+}
+
+-(void)resetFromStation
+{
+    currentSelection=fromStation;
+    [stationsView setToStation:self.toStation];
+    [self returnFromSelection:[NSArray array]];
+}
+
+-(void)resetToStation
+{
+    currentSelection=toStation;
+    [stationsView setFromStation:self.fromStation];
+    [self returnFromSelection:[NSArray array]];
+}
+
+-(void)resetBothStations
+{
+    MItem *tempSelection = currentSelection;
+    
+    currentSelection=fromStation;
+    [stationsView setToStation:nil];
+    [stationsView setFromStation:nil];
+    
+    self.fromStation=nil;
+    self.toStation=nil;
+    
+    [self returnFromSelection2:[NSArray array]];
+    
+    currentSelection=tempSelection;
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
