@@ -386,4 +386,12 @@ NSInteger const toolbarWidth=320;
     shadow.frame = rect;
 }
 
+-(CGRect)getMapVisibleRect
+{
+    CGRect rect = containerView.bounds;
+    rect = [self convertRect:rect fromView:containerView];
+    rect = [self convertRect:rect toView:mapView];
+    return rect;
+}
+
 @end

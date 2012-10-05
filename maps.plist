@@ -4,6 +4,10 @@
 <dict>
 	<key>com.zuev.itube.paris.london</key>
 	<dict>
+		<key>url1</key>
+		<string>http://www.x-provocation.com/maps/cuba/OSM</string>
+		<key>url2</key>
+		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>
@@ -19,8 +23,12 @@
 		<key>statusURL</key>
 		<string>http://metro.dim0xff.com/london/lines.txt</string>
 	</dict>
-	<key>com.zuev.itube.paris.paris</key>
+	<key>default</key>
 	<dict>
+		<key>url1</key>
+		<string>http://www.x-provocation.com/maps/paris/osm</string>
+		<key>url2</key>
+		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>
@@ -36,6 +44,10 @@
 	</dict>
 	<key>com.zuev.itube.paris.berlin</key>
 	<dict>
+		<key>url1</key>
+		<string>http://www.x-provocation.com/maps/cuba/OSM</string>
+		<key>url2</key>
+		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>
@@ -53,6 +65,10 @@
 	</dict>
 	<key>com.zuev.itube.paris.hamburg</key>
 	<dict>
+		<key>url1</key>
+		<string>http://www.x-provocation.com/maps/cuba/OSM</string>
+		<key>url2</key>
+		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>
@@ -66,7 +82,7 @@
 		<key>zip_download</key>
 		<string>/maps/hamburg/hamburg1.zip</string>
 	</dict>
-	<key>default</key>
+	<key>com.zuev.itube.paris.venice</key>
 	<dict>
 		<key>url1</key>
 		<string>http://www.x-provocation.com/maps/cuba/OSM</string>
@@ -91,6 +107,10 @@
 	</dict>
 	<key>com.zuev.itube.paris.peterburg</key>
 	<dict>
+		<key>url1</key>
+		<string>http://www.x-provocation.com/maps/cuba/OSM</string>
+		<key>url2</key>
+		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>
@@ -106,6 +126,10 @@
 	</dict>
 	<key>com.zuev.itube.paris.shanghai</key>
 	<dict>
+		<key>url1</key>
+		<string>http://www.x-provocation.com/maps/cuba/OSM</string>
+		<key>url2</key>
+		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>

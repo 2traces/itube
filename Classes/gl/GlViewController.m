@@ -689,4 +689,16 @@ GLint uniforms[NUM_UNIFORMS];
     return YES;
 }
 
+-(void)setGeoPosition:(CGRect)rect
+{
+    CGRect r;
+    r.origin.y = rect.origin.y / 360.f * 256;
+    r.origin.x = rect.origin.x / 360.f * 256;
+    r.size.height = rect.size.height / 360.f * 256;
+    r.size.width = rect.size.width / 360.f * 256;
+    position.x = r.origin.y + r.size.height;
+    position.y = r.origin.x + r.size.width;
+    scale = 256.f / rect.size.width;
+}
+
 @end

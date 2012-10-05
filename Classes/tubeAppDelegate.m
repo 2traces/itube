@@ -14,6 +14,7 @@
 #import "StatusViewController.h"
 #import <MapKit/MapKit.h>
 #import "ManagedObjects.h"
+#import "MainView.h"
 
 @implementation tubeAppDelegate
 
@@ -367,7 +368,12 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 -(void)showRasterMap
 {
+    CGRect pos;
+    MainView *mv = (MainView*)mainViewController.view;
+    pos = [mv getMapVisibleRect];
+    pos = [cityMap getGeoCoordsForRect:pos];
     [navController pushViewController:gl animated:YES];
+    [gl setGeoPosition:pos];
 }
 
 -(void)showMetroMap

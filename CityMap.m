@@ -2890,6 +2890,19 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     return nearest;
 }
 
+-(CGRect)getGeoCoordsForRect:(CGRect)rect
+{
+    CGRect geo = CGRectZero;
+    for(Line *l in mapLines) {
+        for (Station *s in l.stations) {
+            if(CGRectIntersectsRect(s.boundingBox, rect)) {
+                if(geo.origin.x == 0 || geo.origin.y == 0) geo = CGRectMake(s.gpsCoords.x, s.gpsCoords.y, 0, 0);
+                else geo = CGRectUnion(geo, CGRectMake(s.gpsCoords.x, s.gpsCoords.y, 0, 0));
+            }
+        }
+    }
+    return geo;
+}
 
 
 -(NSMutableArray*) describePath:(NSArray*)pathMap {
