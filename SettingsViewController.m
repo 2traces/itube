@@ -199,12 +199,12 @@
         
     [self adjustViewHeight];
 
-    //for testing multi-charts
-    [self markProductAsPurchased:@"com.zuev.itube.paris.shanghai"];
+//    for testing multi-charts
+//    [self markProductAsPurchased:@"com.zuev.itube.paris.shanghai"];
 //    [self markProductAsPurchased:@"com.zuev.itube.paris.london"];
 //    [self markProductAsPurchased:@"com.zuev.itube.paris.hamburg"];
-    [self resortMapArray];
-    [cityTableView reloadData];
+//    [self resortMapArray];
+//    [cityTableView reloadData];
     
 }
 
@@ -660,8 +660,11 @@
     } else {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         if (indexPath.row==0) {
-            NSURL *url = [NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=513581498"];             
-            [[UIApplication sharedApplication] openURL:url];
+            NSString *address = [[NSUserDefaults standardUserDefaults] objectForKey:@"RateMeURL"];
+            if (address) {
+                NSURL *url = [NSURL URLWithString:address];
+                [[UIApplication sharedApplication] openURL:url];
+            }
         } else if (indexPath.row==1) {
             tubeAppDelegate *appDelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
             [self showMailComposer:[NSArray arrayWithObject:[NSString stringWithFormat:@"fusio@yandex.ru"]] subject:[NSString stringWithFormat:@"%@ map",[appDelegate getDefaultCityName]] body:nil];

@@ -108,9 +108,11 @@ void uncaughtExceptionHandler(NSException *exception) {
             [prefs setInteger:40 forKey:@"launches"];
             [prefs synchronize];
             
-            NSURL *url = [NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=513581498"]; 
-            
-            [[UIApplication sharedApplication] openURL:url];
+            NSString *address = [[NSUserDefaults standardUserDefaults] objectForKey:@"RateMeURL"];
+            if (address) {
+                NSURL *url = [NSURL URLWithString:address];
+                [[UIApplication sharedApplication] openURL:url];
+            }
             
         } else if (buttonIndex == 2) {
             
