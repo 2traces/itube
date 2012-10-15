@@ -691,14 +691,17 @@ GLint uniforms[NUM_UNIFORMS];
 
 -(void)setGeoPosition:(CGRect)rect
 {
+    const static double mult = 256.0 / 360.0;
+    float y1 = atanhf(sinf(rect.origin.x * M_PI / 180.f));
+    y1 = y1 * 256.f / (M_PI*2.f);
+    float y2 = atanhf(sinf((rect.origin.x+rect.size.width) * M_PI / 180.f));
+    y2 = y2 * 256.f / (M_PI*2.f);
     CGRect r;
-    r.origin.y = rect.origin.y / 360.f * 256;
-    r.origin.x = rect.origin.x / 360.f * 256;
-    r.size.height = rect.size.height / 360.f * 256;
-    r.size.width = rect.size.width / 360.f * 256;
-    position.x = r.origin.y + r.size.height;
-    position.y = r.origin.x + r.size.width;
-    scale = 256.f / rect.size.width;
+    r.origin.y = rect.origin.y * mult;
+    r.size.height = rect.size.height * mult;
+    position.x = -(r.origin.y + r.size.height * 0.5f);
+    position.y = (y1 + y2) * 0.5f;
+    scale = 256.f / r.size.height;
 }
 
 @end

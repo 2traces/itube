@@ -23,7 +23,7 @@
 		<key>statusURL</key>
 		<string>http://metro.dim0xff.com/london/lines.txt</string>
 	</dict>
-	<key>default</key>
+	<key>com.zuev.itube.paris.paris</key>
 	<dict>
 		<key>url1</key>
 		<string>http://www.x-provocation.com/maps/paris/osm</string>
@@ -42,10 +42,10 @@
 		<key>zip_download</key>
 		<string>/maps/paris/paris1.zip</string>
 	</dict>
-	<key>com.zuev.itube.paris.berlin</key>
+	<key>default</key>
 	<dict>
 		<key>url1</key>
-		<string>http://www.x-provocation.com/maps/cuba/OSM</string>
+		<string>http://www.x-provocation.com/maps/berlin/osm/</string>
 		<key>url2</key>
 		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
 		<key>ver</key>
