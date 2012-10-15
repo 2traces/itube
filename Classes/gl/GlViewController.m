@@ -643,4 +643,19 @@ GLfloat gCubeVertexData[216] =
     return YES;
 }
 
+-(void)setGeoPosition:(CGRect)rect
+{
+    const static double mult = 256.0 / 360.0;
+    float y1 = atanhf(sinf(rect.origin.x * M_PI / 180.f));
+    y1 = y1 * 256.f / (M_PI*2.f);
+    float y2 = atanhf(sinf((rect.origin.x+rect.size.width) * M_PI / 180.f));
+    y2 = y2 * 256.f / (M_PI*2.f);
+    CGRect r;
+    r.origin.y = rect.origin.y * mult;
+    r.size.height = rect.size.height * mult;
+    position.x = -(r.origin.y + r.size.height * 0.5f);
+    position.y = (y1 + y2) * 0.5f;
+    scale = 256.f / r.size.height;
+}
+
 @end
