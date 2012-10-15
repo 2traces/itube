@@ -40,6 +40,9 @@ GLint uniforms[NUM_UNIFORMS];
     MItem *fromStation;
     MItem *toStation;
     TopRasterView *stationsView;
+    
+    CGPoint panVelocity;
+    CGFloat panTime;
 }
 @property (strong, nonatomic) EAGLContext *context;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
@@ -172,11 +175,22 @@ GLint uniforms[NUM_UNIFORMS];
     switch (recognizer.state) {
         case UIGestureRecognizerStateBegan:
             prevPosition = position;
+            panTime = 0.f;
+            panVelocity = CGPointZero;
             break;
         case UIGestureRecognizerStateChanged:
+            panTime += self.timeSinceLastUpdate;
+            panVelocity.x = p.x/scale;
+            panVelocity.y = p.y/scale;
+            position.x = panVelocity.x + prevPosition.x;
+            position.y = panVelocity.y + prevPosition.y;
+            break;
         case UIGestureRecognizerStateEnded:
             position.x = p.x/scale + prevPosition.x;
             position.y = p.y/scale + prevPosition.y;
+            panVelocity.x /= panTime;
+            panVelocity.y /= panTime;
+            panTime = 0.f;
             break;
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateFailed:
@@ -189,10 +203,12 @@ GLint uniforms[NUM_UNIFORMS];
 -(void)handleDoubleTap:(UITapGestureRecognizer*)recognizer
 {
     scale *= 1.5f;
+    panVelocity = CGPointZero;
 }
 
 -(void)handlePinch:(UIPinchGestureRecognizer*)recognizer
 {
+    panVelocity = CGPointZero;
     static CGFloat prevRecScale = 0.f;
     switch (recognizer.state) {
         case UIGestureRecognizerStateBegan:
@@ -441,6 +457,24 @@ GLint uniforms[NUM_UNIFORMS];
 
 - (void)update
 {
+    if(panTime == 0.f && (panVelocity.x != 0.f || panVelocity.y != 0.f)) {
+        position.x += panVelocity.x * self.timeSinceLastUpdate;
+        position.y += panVelocity.y * self.timeSinceLastUpdate;
+        CGPoint dv;
+        dv.x = 1000.f / scale * self.timeSinceLastUpdate;
+        dv.y = 1000.f / scale * self.timeSinceLastUpdate;
+        if(fabs(panVelocity.x) < dv.x) panVelocity.x = 0.f;
+        else {
+            if(panVelocity.x > 0.f) panVelocity.x -= dv.x;
+            else panVelocity.x += dv.x;
+        }
+        if(fabs(panVelocity.y) < dv.y) panVelocity.y = 0.f;
+        else {
+            if(panVelocity.y > 0.f) panVelocity.y -= dv.y;
+            else panVelocity.y += dv.y;
+        }
+    }
+    
     float W2 = self.view.bounds.size.width*0.5f, H2 = self.view.bounds.size.height*0.5f;
     //float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
     //GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 1000.0f);
