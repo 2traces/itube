@@ -11,6 +11,7 @@
 #import "SettingsNavController.h"
 #import "tubeAppDelegate.h"
 #import "SelectingTabBarViewController.h"
+#import "GlSprite.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -23,6 +24,19 @@ enum
     NUM_UNIFORMS
 };
 GLint uniforms[NUM_UNIFORMS];
+
+@interface Pin : NSObject {
+    int Id;
+    CGPoint pos;
+    GlSprite *sprite;
+}
+
+-(id)initWithId:(int)pinId andColor:(int)color;
+-(void)setPosition:(CGPoint)point;
+-(void)draw;
+
+@end
+
 
 @interface GlViewController () {
     GLuint _program;
@@ -43,6 +57,7 @@ GLint uniforms[NUM_UNIFORMS];
     
     CGPoint panVelocity;
     CGFloat panTime;
+    NSMutableArray *pinsArray;
 }
 @property (strong, nonatomic) EAGLContext *context;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
@@ -54,6 +69,38 @@ GLint uniforms[NUM_UNIFORMS];
 - (BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file;
 - (BOOL)linkProgram:(GLuint)prog;
 - (BOOL)validateProgram:(GLuint)prog;
+
+-(CGPoint)translateFromGeoToMap:(CGPoint)pm;
+-(void)drawPins;
+@end
+
+@implementation Pin
+
+-(id)initWithId:(int)pinId andColor:(int)color
+{
+    if((self = [super init])) {
+        Id = pinId;
+        sprite = [[GlSprite alloc] initWithPicture:@"pin_blue"];
+    }
+    return self;
+}
+
+-(void)setPosition:(CGPoint)point
+{
+    [sprite setRect:CGRectMake(point.x, point.y, 16, 16)];
+}
+
+-(void)draw
+{
+    [sprite draw];
+}
+
+-(void)dealloc
+{
+    [sprite release];
+    [super dealloc];
+}
+
 @end
 
 @implementation GlViewController
@@ -67,6 +114,7 @@ GLint uniforms[NUM_UNIFORMS];
 
 - (void)dealloc
 {
+    [pinsArray release];
     [stationsView release];
     [_context release];
     //[_effect release];
@@ -77,6 +125,7 @@ GLint uniforms[NUM_UNIFORMS];
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    pinsArray = [[NSMutableArray alloc] init];
 
     CGRect scrollSize,settingsRect,shadowRect,zonesRect;
     
@@ -154,6 +203,10 @@ GLint uniforms[NUM_UNIFORMS];
     zones.frame = zonesRect;
     [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:zones];
+    
+    Pin *p = [[Pin alloc] initWithId:1 andColor:0];
+    [pinsArray addObject:p];
+    [p setPosition:CGPointMake(0, 0)];
 }
 
 -(void) changeSource
@@ -453,6 +506,21 @@ GLint uniforms[NUM_UNIFORMS];
     currentSelection=tempSelection;
 }
 
+-(int)newPin:(CGPoint)coordinate color:(int)color
+{
+    
+}
+
+-(void)removePin:(int)pinId
+{
+    
+}
+
+-(void)removeAllPins
+{
+    
+}
+
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)update
@@ -567,6 +635,15 @@ GLint uniforms[NUM_UNIFORMS];
     if(sc > 2000.f) sc = 2000.f;
     float W = self.view.bounds.size.width, W2 = W*0.5f, H = self.view.bounds.size.height, H2 = H*0.5f;
     [rasterLayer drawGlInRect:CGRectMake(128 - position.x - W2/scale, 128 - position.y - H2/scale, W/scale, H/scale) withScale:sc];
+    
+    [self drawPins];
+}
+
+-(void)drawPins
+{
+    for (Pin *p in pinsArray) {
+        [p draw];
+    }
 }
 
 #pragma mark -  OpenGL ES 2 shader compilation
@@ -721,6 +798,17 @@ GLint uniforms[NUM_UNIFORMS];
     }
     
     return YES;
+}
+
+-(CGPoint)translateFromGeoToMap:(CGPoint)pm
+{
+    const static double mult = 256.0 / 360.0;
+    float y = atanhf(sinf(pm.x * M_PI / 180.f));
+    y = y * 256.f / (M_PI*2.f);
+    CGPoint p;
+    p.x = pm.y * mult;
+    p.y = y;
+    return p;
 }
 
 -(void)setGeoPosition:(CGRect)rect
