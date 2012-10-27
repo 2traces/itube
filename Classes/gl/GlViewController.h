@@ -21,5 +21,7 @@
 
 -(FastAccessTableViewController*)showTableView;
 -(void)returnFromSelectionFastAccess:(NSArray *)stations;
+-(void)setGeoPosition:(CGRect)rect;
+-(void)setUserGeoPosition:(CGPoint)point;
 
 @end

@@ -9,12 +9,9 @@
 #import "GlViewController.h"
 #import "RasterLayer.h"
 #import "SettingsNavController.h"
-<<<<<<< HEAD
-=======
 #import "tubeAppDelegate.h"
 #import "SelectingTabBarViewController.h"
 #import "GlSprite.h"
->>>>>>> a8e683b... colored pins
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -28,67 +25,19 @@ enum
 };
 GLint uniforms[NUM_UNIFORMS];
 
-<<<<<<< HEAD
-GLfloat gCubeVertexData[216] = 
-{
-    // Data layout for each line below is:
-    // positionX, positionY, positionZ,     normalX, normalY, normalZ,
-    0.5f, -0.5f, -0.5f,        1.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, -0.5f,         1.0f, 0.0f, 0.0f,
-    0.5f, -0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
-    0.5f, -0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, -0.5f,          1.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
-    
-    0.5f, 0.5f, -0.5f,         0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, -0.5f,        0.0f, 1.0f, 0.0f,
-    0.5f, 0.5f, 0.5f,          0.0f, 1.0f, 0.0f,
-    0.5f, 0.5f, 0.5f,          0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, -0.5f,        0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f,         0.0f, 1.0f, 0.0f,
-    
-    -0.5f, 0.5f, -0.5f,        -1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,       -1.0f, 0.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f,         -1.0f, 0.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f,         -1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,       -1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f,        -1.0f, 0.0f, 0.0f,
-    
-    -0.5f, -0.5f, -0.5f,       0.0f, -1.0f, 0.0f,
-    0.5f, -0.5f, -0.5f,        0.0f, -1.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f,        0.0f, -1.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f,        0.0f, -1.0f, 0.0f,
-    0.5f, -0.5f, -0.5f,        0.0f, -1.0f, 0.0f,
-    0.5f, -0.5f, 0.5f,         0.0f, -1.0f, 0.0f,
-    
-    0.5f, 0.5f, 0.5f,          0.0f, 0.0f, 1.0f,
-    -0.5f, 0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    0.5f, -0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    0.5f, -0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    -0.5f, 0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f, 0.5f,        0.0f, 0.0f, 1.0f,
-    
-    0.5f, -0.5f, -0.5f,        0.0f, 0.0f, -1.0f,
-    -0.5f, -0.5f, -0.5f,       0.0f, 0.0f, -1.0f,
-    0.5f, 0.5f, -0.5f,         0.0f, 0.0f, -1.0f,
-    0.5f, 0.5f, -0.5f,         0.0f, 0.0f, -1.0f,
-    -0.5f, -0.5f, -0.5f,       0.0f, 0.0f, -1.0f,
-    -0.5f, 0.5f, -0.5f,        0.0f, 0.0f, -1.0f
-};
-=======
 @interface Pin : NSObject {
     int Id;
     CGPoint pos;
     GlSprite *sprite;
+    CGFloat size;
 }
 
 -(id)initWithId:(int)pinId andColor:(int)color;
 -(void)setPosition:(CGPoint)point;
 -(void)draw;
+-(void)drawWithScale:(CGFloat)scale;
 
 @end
-
->>>>>>> a8e683b... colored pins
 
 @interface GlViewController () {
     GLuint _program;
@@ -112,6 +61,8 @@ GLfloat gCubeVertexData[216] =
     CGPoint panVelocity;
     CGFloat panTime;
     NSMutableArray *pinsArray;
+    
+    CGPoint userPosition;
 }
 @property (strong, nonatomic) EAGLContext *context;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
@@ -135,17 +86,28 @@ GLfloat gCubeVertexData[216] =
     if((self = [super init])) {
         Id = pinId;
         sprite = [[GlSprite alloc] initWithPicture:@"pin_blue"];
+        size = 32;
     }
     return self;
 }
 
 -(void)setPosition:(CGPoint)point
 {
-    [sprite setRect:CGRectMake(point.x, point.y, 16, 16)];
+    pos = point;
 }
 
 -(void)draw
 {
+    const CGFloat s2 = size * 0.5f;
+    [sprite setRect:CGRectMake(pos.x-s2, pos.y-s2, size, size)];
+    [sprite draw];
+}
+
+-(void)drawWithScale:(CGFloat)scale
+{
+    size = 32.f / scale;
+    const CGFloat s2 = size * 0.5f;
+    [sprite setRect:CGRectMake(pos.x-s2, pos.y-s2, size, size)];
     [sprite draw];
 }
 
@@ -179,37 +141,6 @@ GLfloat gCubeVertexData[216] =
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-<<<<<<< HEAD
-=======
-    pinsArray = [[NSMutableArray alloc] init];
-
-    CGRect scrollSize,settingsRect,shadowRect,zonesRect;
-    
-    //scrollSize = CGRectMake(0, 44,(320),(480-64));
-    //settingsRect=CGRectMake(285, 420, 27, 27);
-    //shadowRect = CGRectMake(0, 44, 480, 61);
-    zonesRect=CGRectMake(55, 420, 27, 27);
-    
-    if (IS_IPAD) {
-        //scrollSize = CGRectMake(0, 44, 768, (1024-74));
-        //settingsRect=CGRectMake(-285, -420, 27, 27);
-        //shadowRect = CGRectMake(0, 44, 1024, 61);
-        zonesRect=CGRectMake(-55, -420, 27, 27);
-    } else {
-        if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
-            CGSize result = [[UIScreen mainScreen] bounds].size;
-            CGFloat scale = [UIScreen mainScreen].scale;
-            result = CGSizeMake(result.width * scale, result.height * scale);
-            
-            if(result.height == 1136){
-                //scrollSize = CGRectMake(0,44,(320),(568-64));
-                //settingsRect=CGRectMake(285, 508, 27, 27);
-                //shadowRect = CGRectMake(0, 44, 568, 61);
-                settingsRect=CGRectMake(55, 508, 27, 27);
-            }
-        }
-    }
->>>>>>> a8e683b... colored pins
     
     self.context = [[[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2] autorelease];
 
@@ -254,19 +185,10 @@ GLfloat gCubeVertexData[216] =
     [sourceData addTarget:self action:@selector(changeSource) forControlEvents:UIControlStateHighlighted];
     [view addSubview:sourceData];
 
-<<<<<<< HEAD
-=======
-    UIButton *zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    [zones setImage:[UIImage imageNamed:@"zones_btn_normal"] forState:UIControlStateNormal];
-    [zones setImage:[UIImage imageNamed:@"zones_btn"] forState:UIControlStateHighlighted];
-    zones.frame = zonesRect;
-    [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:zones];
-    
+    // user geo position
     Pin *p = [[Pin alloc] initWithId:1 andColor:0];
     [pinsArray addObject:p];
-    [p setPosition:CGPointMake(0, 0)];
->>>>>>> a8e683b... colored pins
+    [p setPosition:userPosition];
 }
 
 -(void) changeSource
@@ -382,15 +304,8 @@ GLfloat gCubeVertexData[216] =
     //self.effect.light0.diffuseColor = GLKVector4Make(1.0f, 0.4f, 0.4f, 1.0f);
     
     glDisable(GL_DEPTH_TEST);
-    
-    glGenVertexArraysOES(1, &_vertexArray);
-    glBindVertexArrayOES(_vertexArray);
-    
-    glGenBuffers(1, &_vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), gCubeVertexData, GL_STATIC_DRAW);
-    
-    glBindVertexArrayOES(0);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 - (void)tearDownGL
@@ -506,80 +421,6 @@ GLfloat gCubeVertexData[216] =
     }
 }
 
-<<<<<<< HEAD
-=======
--(void)showTabBarViewController
-{
-    SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
-    controller.delegate = self;
-    
-    CGRect frame = controller.view.frame;
-    frame.origin.y = self.view.frame.size.height;
-    controller.view.frame = frame;
-    
-    [self.view addSubview:controller.view];
-    frame.origin.y = 0;
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.3f];
-    controller.view.frame = frame;
-    
-    [UIView commitAnimations];
-    
-    //(self.view).shouldNotDropPins = YES;
-    
-    [controller autorelease];
-}
-
--(void) changeZones
-{
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate showMetroMap];
-    //[self dismissModalViewControllerAnimated:YES];
-}
-
--(void)pressedSelectFromStation
-{
-    currentSelection=fromStation;
-    [self showTabBarViewController];
-}
-
--(void)pressedSelectToStation
-{
-    currentSelection=toStation;
-    [self showTabBarViewController];
-}
-
--(void)resetFromStation
-{
-    currentSelection=fromStation;
-    [stationsView setToStation:self.toStation];
-    [self returnFromSelection:[NSArray array]];
-}
-
--(void)resetToStation
-{
-    currentSelection=toStation;
-    [stationsView setFromStation:self.fromStation];
-    [self returnFromSelection:[NSArray array]];
-}
-
--(void)resetBothStations
-{
-    MItem *tempSelection = currentSelection;
-    
-    currentSelection=fromStation;
-    [stationsView setToStation:nil];
-    [stationsView setFromStation:nil];
-    
-    self.fromStation=nil;
-    self.toStation=nil;
-    
-    [self returnFromSelection2:[NSArray array]];
-    
-    currentSelection=tempSelection;
-}
-
 -(int)newPin:(CGPoint)coordinate color:(int)color
 {
     
@@ -595,7 +436,6 @@ GLfloat gCubeVertexData[216] =
     
 }
 
->>>>>>> a8e683b... colored pins
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)update
@@ -717,7 +557,7 @@ GLfloat gCubeVertexData[216] =
 -(void)drawPins
 {
     for (Pin *p in pinsArray) {
-        [p draw];
+        [p drawWithScale:scale];
     }
 }
 
@@ -881,8 +721,8 @@ GLfloat gCubeVertexData[216] =
     float y = atanhf(sinf(pm.x * M_PI / 180.f));
     y = y * 256.f / (M_PI*2.f);
     CGPoint p;
-    p.x = pm.y * mult;
-    p.y = y;
+    p.x = 128.f + pm.y * mult;
+    p.y = 128.f - y;
     return p;
 }
 
@@ -899,6 +739,14 @@ GLfloat gCubeVertexData[216] =
     position.x = -(r.origin.y + r.size.height * 0.5f);
     position.y = (y1 + y2) * 0.5f;
     scale = 256.f / r.size.height;
+}
+
+-(void)setUserGeoPosition:(CGPoint)point
+{
+    CGPoint up = [self translateFromGeoToMap:point];
+    userPosition = up;
+    Pin *p = [pinsArray objectAtIndex:0];
+    if(p != nil) [p setPosition:up];
 }
 
 @end

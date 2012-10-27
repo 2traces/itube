@@ -21,7 +21,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
     GlViewController *mainViewController;
     CityMap *cityMap;
     NSString *cityName;
-    
+    CGPoint userGeoP;
     NSOperationQueue    *parseQueue;
     
     //soj
@@ -37,6 +37,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 @property (nonatomic, retain) NSString *cityName;
 @property (nonatomic, retain) NSOperationQueue *parseQueue; 
 @property (nonatomic, assign) BOOL shouldShowAd;
+@property (nonatomic, assign) CGPoint userGeoPosition;
 
 -(NSString*)nameCurrentMap;
 -(NSString*)nameCurrentCity;
