@@ -26,7 +26,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
     UINavigationController *navController;
     CityMap *cityMap;
     NSString *cityName;
-    
+    CGPoint userGeoP;
     NSOperationQueue    *parseQueue;
     
     //soj
@@ -40,7 +40,8 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 @property (nonatomic, readonly) GlViewController *glViewController;
 @property (nonatomic, retain) CityMap *cityMap;
 @property (nonatomic, retain) NSString *cityName;
-@property (nonatomic, retain) NSOperationQueue *parseQueue; 
+@property (nonatomic, retain) NSOperationQueue *parseQueue;
+@property (nonatomic, assign) CGPoint userGeoPosition;
 
 -(NSString*)nameCurrentMap;
 -(NSString*)nameCurrentCity;

@@ -88,7 +88,9 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-	Station *st = [cityMap findNearestStationTo:CGPointMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude)];
+    CGPoint curPos = CGPointMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+    [(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] setUserGeoPosition:curPos];
+    Station *st = [cityMap findNearestStationTo:curPos];
 	
 	if (![st.name isEqualToString:nearestStationName])
 	{

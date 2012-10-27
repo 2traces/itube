@@ -31,6 +31,17 @@ void uncaughtExceptionHandler(NSException *exception) {
     // Internal error reporting
 }
 
+-(void)setUserGeoPosition:(CGPoint)userGeoPosition
+{
+    userGeoP = userGeoPosition;
+    [gl setUserGeoPosition:userGeoP];
+}
+
+-(CGPoint)userGeoPosition
+{
+    return userGeoP;
+}
+
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);

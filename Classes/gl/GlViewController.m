@@ -29,11 +29,13 @@ GLint uniforms[NUM_UNIFORMS];
     int Id;
     CGPoint pos;
     GlSprite *sprite;
+    CGFloat size;
 }
 
 -(id)initWithId:(int)pinId andColor:(int)color;
 -(void)setPosition:(CGPoint)point;
 -(void)draw;
+-(void)drawWithScale:(CGFloat)scale;
 
 @end
 
@@ -58,6 +60,8 @@ GLint uniforms[NUM_UNIFORMS];
     CGPoint panVelocity;
     CGFloat panTime;
     NSMutableArray *pinsArray;
+    
+    CGPoint userPosition;
 }
 @property (strong, nonatomic) EAGLContext *context;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
@@ -81,17 +85,28 @@ GLint uniforms[NUM_UNIFORMS];
     if((self = [super init])) {
         Id = pinId;
         sprite = [[GlSprite alloc] initWithPicture:@"pin_blue"];
+        size = 32;
     }
     return self;
 }
 
 -(void)setPosition:(CGPoint)point
 {
-    [sprite setRect:CGRectMake(point.x, point.y, 16, 16)];
+    pos = point;
 }
 
 -(void)draw
 {
+    const CGFloat s2 = size * 0.5f;
+    [sprite setRect:CGRectMake(pos.x-s2, pos.y-s2, size, size)];
+    [sprite draw];
+}
+
+-(void)drawWithScale:(CGFloat)scale
+{
+    size = 32.f / scale;
+    const CGFloat s2 = size * 0.5f;
+    [sprite setRect:CGRectMake(pos.x-s2, pos.y-s2, size, size)];
     [sprite draw];
 }
 
@@ -203,10 +218,11 @@ GLint uniforms[NUM_UNIFORMS];
     zones.frame = zonesRect;
     [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:zones];
-    
+
+    // user geo position
     Pin *p = [[Pin alloc] initWithId:1 andColor:0];
     [pinsArray addObject:p];
-    [p setPosition:CGPointMake(0, 0)];
+    [p setPosition:userPosition];
 }
 
 -(void) changeSource
@@ -322,6 +338,8 @@ GLint uniforms[NUM_UNIFORMS];
     //self.effect.light0.diffuseColor = GLKVector4Make(1.0f, 0.4f, 0.4f, 1.0f);
     
     glDisable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 - (void)tearDownGL
@@ -642,7 +660,7 @@ GLint uniforms[NUM_UNIFORMS];
 -(void)drawPins
 {
     for (Pin *p in pinsArray) {
-        [p draw];
+        [p drawWithScale:scale];
     }
 }
 
@@ -806,8 +824,8 @@ GLint uniforms[NUM_UNIFORMS];
     float y = atanhf(sinf(pm.x * M_PI / 180.f));
     y = y * 256.f / (M_PI*2.f);
     CGPoint p;
-    p.x = pm.y * mult;
-    p.y = y;
+    p.x = 128.f + pm.y * mult;
+    p.y = 128.f - y;
     return p;
 }
 
@@ -824,6 +842,14 @@ GLint uniforms[NUM_UNIFORMS];
     position.x = -(r.origin.y + r.size.height * 0.5f);
     position.y = (y1 + y2) * 0.5f;
     scale = 256.f / r.size.height;
+}
+
+-(void)setUserGeoPosition:(CGPoint)point
+{
+    CGPoint up = [self translateFromGeoToMap:point];
+    userPosition = up;
+    Pin *p = [pinsArray objectAtIndex:0];
+    if(p != nil) [p setPosition:up];
 }
 
 @end
