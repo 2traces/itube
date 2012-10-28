@@ -26,12 +26,13 @@ enum
 GLint uniforms[NUM_UNIFORMS];
 
 @interface Pin : NSObject {
-    int Id;
+    int _id;
     CGPoint pos;
     GlSprite *sprite;
     CGFloat size;
 }
 
+@property (nonatomic, readonly) int Id;
 -(id)initWithId:(int)pinId andColor:(int)color;
 -(void)setPosition:(CGPoint)point;
 -(void)draw;
@@ -60,6 +61,7 @@ GLint uniforms[NUM_UNIFORMS];
     CGPoint panVelocity;
     CGFloat panTime;
     NSMutableArray *pinsArray;
+    int newPinId;
     
     CGPoint userPosition;
 }
@@ -79,12 +81,42 @@ GLint uniforms[NUM_UNIFORMS];
 @end
 
 @implementation Pin
+@synthesize Id = _id;
 
 -(id)initWithId:(int)pinId andColor:(int)color
 {
     if((self = [super init])) {
-        Id = pinId;
-        sprite = [[GlSprite alloc] initWithPicture:@"pin_blue"];
+        _id = pinId;
+        switch (color) {
+            case 0:
+            default:
+                sprite = [[GlSprite alloc] initWithPicture:@"user_pos"];
+                break;
+            case 1:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_aqua"];  // .GB
+                break;
+            case 2:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_brown"]; // rg.
+                break;
+            case 3:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_lightblue"];// .gB
+                break;
+            case 4:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_pink"];  // RgB
+                break;
+            case 5:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_red"];   // R..
+                break;
+            case 6:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_blue"];  // ..B
+                break;
+            case 7:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_green"]; // .G.
+                break;
+            case 8:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_yellow"];// RG.
+                break;
+        }
         size = 32;
     }
     return self;
@@ -220,9 +252,10 @@ GLint uniforms[NUM_UNIFORMS];
     [view addSubview:zones];
 
     // user geo position
-    Pin *p = [[Pin alloc] initWithId:1 andColor:0];
+    Pin *p = [[Pin alloc] initWithId:0 andColor:0];
     [pinsArray addObject:p];
     [p setPosition:userPosition];
+    newPinId = 1;
 }
 
 -(void) changeSource
@@ -526,17 +559,35 @@ GLint uniforms[NUM_UNIFORMS];
 
 -(int)newPin:(CGPoint)coordinate color:(int)color
 {
-    
+    int newId = newPinId;
+    newPinId ++;
+    Pin *p = [[Pin alloc] initWithId:newId andColor:color];
+    [pinsArray addObject:p];
+    [p setPosition:[self translateFromGeoToMap:coordinate]];
+    return newId;
 }
 
 -(void)removePin:(int)pinId
 {
-    
+    Pin *found = nil;
+    for (Pin *p in pinsArray) {
+        if(p.Id == pinId) {
+            found = p;
+            break;
+        }
+    }
+    if(found) [pinsArray removeObject:found];
 }
 
 -(void)removeAllPins
 {
-    
+    Pin *usrPin = nil;
+    for (Pin *p in pinsArray) {
+        if(p.Id == 0) usrPin = [p retain];
+    }
+    [pinsArray removeAllObjects];
+    [pinsArray addObject:usrPin];
+    [usrPin release];
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
@@ -850,6 +901,15 @@ GLint uniforms[NUM_UNIFORMS];
     userPosition = up;
     Pin *p = [pinsArray objectAtIndex:0];
     if(p != nil) [p setPosition:up];
+}
+
+-(void)setStationsPosition:(NSArray *)coords
+{
+    [self removeAllPins];
+    for (NSValue *v in coords) {
+        CGRect r = [v CGRectValue];
+        [self newPin:r.origin color:r.size.width];
+    }
 }
 
 @end

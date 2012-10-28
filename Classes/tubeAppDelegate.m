@@ -382,11 +382,13 @@ void uncaughtExceptionHandler(NSException *exception) {
 -(void)showRasterMap
 {
     CGRect pos;
+    NSMutableArray *coords = [NSMutableArray array];
     MainView *mv = (MainView*)mainViewController.view;
     pos = [mv getMapVisibleRect];
-    pos = [cityMap getGeoCoordsForRect:pos];
+    pos = [cityMap getGeoCoordsForRect:pos coordinates:coords];
     [navController pushViewController:gl animated:YES];
     [gl setGeoPosition:pos];
+    [gl setStationsPosition:coords];
 }
 
 -(void)showMetroMap

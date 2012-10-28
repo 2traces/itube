@@ -1382,6 +1382,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize stationLayer;
 @synthesize disabledStationLayer;
 @synthesize hasAltNames;
+@synthesize shortColorCode = scc;
 
 -(UIColor*) color {
     return _color;
@@ -1397,6 +1398,35 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     r = rgba[0];
     g = rgba[1];
     b = rgba[2];
+    
+    //short color code
+    if(r > 0.66f) {
+        if(b > 0.66f) {
+            scc = 4;
+        } else {
+            if(g > 0.66f) {
+                scc = 8;
+            } else {
+                scc = 5;
+            }
+        }
+    } else {
+        if(b > 0.66f) {
+            if(g > 0.66f) {
+                scc = 1;
+            } else if(g > 0.33f) {
+                scc = 3;
+            } else {
+                scc = 6;
+            }
+        } else {
+            if(g > 0.66f) {
+                scc = 7;
+            } else {
+                scc = 2;
+            }
+        }
+    }
 
     // set brightness to 90%
     M = MAX(r, MAX(g, b));
@@ -2890,14 +2920,18 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     return nearest;
 }
 
--(CGRect)getGeoCoordsForRect:(CGRect)rect
+-(CGRect)getGeoCoordsForRect:(CGRect)rect coordinates:(NSMutableArray*)coordinates
 {
+    [coordinates removeAllObjects];
     CGRect geo = CGRectZero;
     for(Line *l in mapLines) {
         for (Station *s in l.stations) {
             if(CGRectIntersectsRect(s.boundingBox, rect)) {
-                if(geo.origin.x == 0 || geo.origin.y == 0) geo = CGRectMake(s.gpsCoords.x, s.gpsCoords.y, 0, 0);
-                else geo = CGRectUnion(geo, CGRectMake(s.gpsCoords.x, s.gpsCoords.y, 0, 0));
+                CGRect r = CGRectMake(s.gpsCoords.x, s.gpsCoords.y, 0, 0);
+                if(geo.origin.x == 0 || geo.origin.y == 0) geo = r;
+                else geo = CGRectUnion(geo, r);
+                r.size.width = r.size.height = l.shortColorCode;
+                [coordinates addObject:[NSValue valueWithCGRect:r]];
             }
         }
     }
