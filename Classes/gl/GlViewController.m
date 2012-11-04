@@ -30,6 +30,7 @@ GLint uniforms[NUM_UNIFORMS];
     CGPoint pos;
     GlSprite *sprite;
     CGFloat size;
+    CGFloat offset, speed;
 }
 
 @property (nonatomic, readonly) int Id;
@@ -37,7 +38,7 @@ GLint uniforms[NUM_UNIFORMS];
 -(void)setPosition:(CGPoint)point;
 -(void)draw;
 -(void)drawWithScale:(CGFloat)scale;
-
+-(void)fallFrom:(CGFloat)distance at:(CGFloat)speed;
 @end
 
 
@@ -130,7 +131,7 @@ GLint uniforms[NUM_UNIFORMS];
 -(void)draw
 {
     const CGFloat s2 = size * 0.5f;
-    [sprite setRect:CGRectMake(pos.x-s2, pos.y-s2, size, size)];
+    [sprite setRect:CGRectMake(pos.x-s2, pos.y-s2-offset, size, size)];
     [sprite draw];
 }
 
@@ -138,8 +139,22 @@ GLint uniforms[NUM_UNIFORMS];
 {
     size = 32.f / scale;
     const CGFloat s2 = size * 0.5f;
-    [sprite setRect:CGRectMake(pos.x-s2, pos.y-s2, size, size)];
+    [sprite setRect:CGRectMake(pos.x-s2, pos.y-s2-offset, size, size)];
     [sprite draw];
+}
+
+-(void)update:(CGFloat)dTime
+{
+    if(offset > 0.f) {
+        offset -= dTime * speed;
+        if(offset < 0.f) offset = 0.f;
+    }
+}
+
+-(void)fallFrom:(CGFloat)distance at:(CGFloat)sp
+{
+    offset = distance;
+    speed = sp;
 }
 
 -(void)dealloc
@@ -562,6 +577,8 @@ GLint uniforms[NUM_UNIFORMS];
     int newId = newPinId;
     newPinId ++;
     Pin *p = [[Pin alloc] initWithId:newId andColor:color];
+    float dist = 256.f/scale;
+    [p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
     [pinsArray addObject:p];
     [p setPosition:[self translateFromGeoToMap:coordinate]];
     return newId;
@@ -641,6 +658,9 @@ GLint uniforms[NUM_UNIFORMS];
     _modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
     
     //_rotation += self.timeSinceLastUpdate * 0.5f;
+    for (Pin *p in pinsArray) {
+        [p update:self.timeSinceLastUpdate];
+    }
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect

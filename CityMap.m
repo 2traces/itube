@@ -2931,7 +2931,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 if(geo.origin.x == 0 || geo.origin.y == 0) geo = r;
                 else geo = CGRectUnion(geo, r);
                 r.size.width = r.size.height = l.shortColorCode;
-                [coordinates addObject:[NSValue valueWithCGRect:r]];
+                if(s.active) [coordinates addObject:[NSValue valueWithCGRect:r]];
             }
         }
     }
