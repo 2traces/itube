@@ -4,3 +4,11 @@ tube.xcodeproj/project.xcworkspace/xcuserdata/s.sojik.xcuserdatad/WorkspaceSetti
 tube.xcodeproj/project.xcworkspace/xcuserdata/s.sojik.xcuserdatad/UserInterfaceState.xcuserstate
 
 tube.xcodeproj/project.xcworkspace/xcuserdata/s.sojik.xcuserdatad/UserInterfaceState.xcuserstate
+
+*.xcuserstate
+
+*.xcbkptlist
+
+*.xcscheme
+
+*.plist
