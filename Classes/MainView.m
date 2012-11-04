@@ -60,13 +60,13 @@ NSInteger const toolbarWidth=320;
     scrollSize = CGRectMake(0, 44,(320),(480-64));
     settingsRect=CGRectMake(285, 420, 27, 27);
     shadowRect = CGRectMake(0, 44, 480, 61);
-    zonesRect=CGRectMake(55, 420, 27, 27);
+    zonesRect=CGRectMake(25, 420, 43, 25);
     
     if (IS_IPAD) {
         scrollSize = CGRectMake(0, 44, 768, (1024-74));
         settingsRect=CGRectMake(-285, -420, 27, 27);
         shadowRect = CGRectMake(0, 44, 1024, 61);
-        zonesRect=CGRectMake(-55, -420, 27, 27);
+        zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 43, 25);
     } else {
         if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
             CGSize result = [[UIScreen mainScreen] bounds].size;
@@ -175,9 +175,9 @@ NSInteger const toolbarWidth=320;
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:settings];
 
-    UIButton *zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    [zones setImage:[UIImage imageNamed:@"zones_btn_normal"] forState:UIControlStateNormal];
-    [zones setImage:[UIImage imageNamed:@"zones_btn"] forState:UIControlStateHighlighted];
+    zones = [UIButton buttonWithType:UIButtonTypeCustom];
+    [zones setImage:[UIImage imageNamed:@"maps_button"] forState:UIControlStateNormal];
+    //[zones setImage:[UIImage imageNamed:@"zones_btn"] forState:UIControlStateHighlighted];
     zones.frame = zonesRect;
     [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:zones];
@@ -190,6 +190,14 @@ NSInteger const toolbarWidth=320;
     NSTimer *timer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(supervisor) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     [self bringSubviewToFront:commonActivityIndicator];
+}
+
+-(void)layoutSubviews
+{
+    if (IS_IPAD) {
+        CGRect zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 43, 25);
+        [zones setFrame:zonesRect];
+    }
 }
 
 -(void)setCityMap:(CityMap*)cm
@@ -377,7 +385,6 @@ NSInteger const toolbarWidth=320;
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate showRasterMap];
-    //[self.vcontroller presentModalViewController:appDelegate.glViewController animated:YES];
 }
 
 -(void)changeShadowFrameToRect:(CGRect)rect

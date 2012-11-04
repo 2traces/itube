@@ -52,7 +52,7 @@ GLint uniforms[NUM_UNIFORMS];
     RasterLayer *rasterLayer;
     CGPoint position, prevPosition;
     CGFloat scale, prevScale;
-    UIButton *sourceData, *settings;
+    UIButton *sourceData, *settings, *zones;
     
     MItem *currentSelection;
     MItem *fromStation;
@@ -194,13 +194,13 @@ GLint uniforms[NUM_UNIFORMS];
     //scrollSize = CGRectMake(0, 44,(320),(480-64));
     //settingsRect=CGRectMake(285, 420, 27, 27);
     //shadowRect = CGRectMake(0, 44, 480, 61);
-    zonesRect=CGRectMake(55, 420, 27, 27);
+    zonesRect=CGRectMake(25, 420, 43, 25);
     
     if (IS_IPAD) {
         //scrollSize = CGRectMake(0, 44, 768, (1024-74));
         //settingsRect=CGRectMake(-285, -420, 27, 27);
         //shadowRect = CGRectMake(0, 44, 1024, 61);
-        zonesRect=CGRectMake(-55, -420, 27, 27);
+        zonesRect=CGRectMake(self.view.bounds.size.width-70, self.view.bounds.size.height-50, 43, 25);
     } else {
         if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
             CGSize result = [[UIScreen mainScreen] bounds].size;
@@ -259,9 +259,9 @@ GLint uniforms[NUM_UNIFORMS];
     [sourceData addTarget:self action:@selector(changeSource) forControlEvents:UIControlStateHighlighted];
     [view addSubview:sourceData];
 
-    UIButton *zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    [zones setImage:[UIImage imageNamed:@"zones_btn_normal"] forState:UIControlStateNormal];
-    [zones setImage:[UIImage imageNamed:@"zones_btn"] forState:UIControlStateHighlighted];
+    zones = [UIButton buttonWithType:UIButtonTypeCustom];
+    [zones setImage:[UIImage imageNamed:@"metro_button"] forState:UIControlStateNormal];
+    //[zones setImage:[UIImage imageNamed:@"zones_btn"] forState:UIControlStateHighlighted];
     zones.frame = zonesRect;
     [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:zones];
@@ -271,6 +271,14 @@ GLint uniforms[NUM_UNIFORMS];
     [pinsArray addObject:p];
     [p setPosition:userPosition];
     newPinId = 1;
+}
+
+-(void) layoutSublayersOfLayer:(CALayer *)layer
+{
+    if (IS_IPAD) {
+        CGRect zonesRect=CGRectMake(self.view.bounds.size.width-70, self.view.bounds.size.height-50, 43, 25);
+        [zones setFrame:zonesRect];
+    }
 }
 
 -(void) changeSource

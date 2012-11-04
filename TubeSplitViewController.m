@@ -27,6 +27,7 @@ static float koefficient = 0.0f;
 @synthesize mapView;
 @synthesize mainViewController;
 @synthesize leftPathController;
+@synthesize navigationController = navController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,10 +48,16 @@ static float koefficient = 0.0f;
     tubeAppDelegate *delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
     MainView *mainView = (MainView*)[delegate.mainViewController view];
     delegate.mainViewController.spltViewController=self;
+    mainViewController = delegate.mainViewController;
+    
+    navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+    navController.navigationBarHidden = YES;
+    [self addChildViewController:navController];
+
     mainView.frame = CGRectMake(0.0, 0.0, 768.0, 1004.0-44.0);
     [[mainView containerView] setFrame:CGRectMake(0.0, 44.0, 768.0, 1004-44.0)];
     self.mapView = mainView;
-    [self.view addSubview:mainView];
+    [self.view addSubview:[navController view]];
     
     LeftiPadPathViewController *controller = [[LeftiPadPathViewController alloc] init];
     controller.view.frame=CGRectMake(-320.0, 0.0, 320.0, 1004.0);
@@ -60,6 +67,12 @@ static float koefficient = 0.0f;
     [controller release];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pathCleared:) name:@"kPathCleared" object:nil];
+}
+
+-(void) dealloc
+{
+    [navController release];
+    [super dealloc];
 }
 
 - (CGSize) sizeRotated {

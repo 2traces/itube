@@ -18,6 +18,7 @@
     UIView *mapView;
     MainViewController *mainViewController;
     LeftiPadPathViewController *leftPathController;
+    UINavigationController * navController;
     BOOL isLeftShown;
 }
 
@@ -25,6 +26,7 @@
 @property (nonatomic,retain) UIView *mapView;
 @property (nonatomic,retain) MainViewController *mainViewController;
 @property (nonatomic,retain) LeftiPadPathViewController *leftPathController;
+@property (nonatomic, readonly) UINavigationController *navigationController;
 
 -(void)refreshPath;
 -(void)showLeftView;

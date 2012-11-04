@@ -69,6 +69,7 @@ void uncaughtExceptionHandler(NSException *exception) {
         splitController.mainViewController = self.mainViewController;
         [window addSubview:[splitController view]];
         [window setRootViewController:splitController];
+        navController = splitController.navigationController;
         [splitController release];
         [window makeKeyAndVisible];
     } else {
