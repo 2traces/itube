@@ -49,6 +49,7 @@
 		5198F7C2163A71F500A045DE /* pin_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5198F7B9163A71F500A045DE /* pin_green@2x.png */; };
 		5198F7C5163A71F500A045DE /* pin_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5198F7BC163A71F500A045DE /* pin_yellow.png */; };
 		5198F7C6163A71F500A045DE /* pin_yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5198F7BD163A71F500A045DE /* pin_yellow@2x.png */; };
+		51AFA7391647CAB80086E1BA /* GlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51AFA7381647CAB80086E1BA /* GlView.m */; };
 		51CC6034163CE9EA00265748 /* pin_aqua.png in Resources */ = {isa = PBXBuildFile; fileRef = 51CC602A163CE9EA00265748 /* pin_aqua.png */; };
 		51CC6035163CE9EA00265748 /* pin_aqua@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51CC602B163CE9EA00265748 /* pin_aqua@2x.png */; };
 		51CC6036163CE9EA00265748 /* pin_brown.png in Resources */ = {isa = PBXBuildFile; fileRef = 51CC602C163CE9EA00265748 /* pin_brown.png */; };
@@ -570,6 +571,8 @@
 		5198F7B9163A71F500A045DE /* pin_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin_green@2x.png"; sourceTree = "<group>"; };
 		5198F7BC163A71F500A045DE /* pin_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin_yellow.png; sourceTree = "<group>"; };
 		5198F7BD163A71F500A045DE /* pin_yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin_yellow@2x.png"; sourceTree = "<group>"; };
+		51AFA7371647CAB80086E1BA /* GlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlView.h; sourceTree = "<group>"; };
+		51AFA7381647CAB80086E1BA /* GlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlView.m; sourceTree = "<group>"; };
 		51CC602A163CE9EA00265748 /* pin_aqua.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin_aqua.png; sourceTree = "<group>"; };
 		51CC602B163CE9EA00265748 /* pin_aqua@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin_aqua@2x.png"; sourceTree = "<group>"; };
 		51CC602C163CE9EA00265748 /* pin_brown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin_brown.png; sourceTree = "<group>"; };
@@ -1418,6 +1421,8 @@
 				51D4D927160EF35500C9D02B /* GlViewController.h */,
 				51D4D928160EF35500C9D02B /* GlViewController.m */,
 				51D4D929160EF35500C9D02B /* GlViewController.xib */,
+				51AFA7371647CAB80086E1BA /* GlView.h */,
+				51AFA7381647CAB80086E1BA /* GlView.m */,
 				51D4D92A160EF35500C9D02B /* RasterLayer.h */,
 				51D4D92B160EF35500C9D02B /* RasterLayer.m */,
 				514EFC02163B0E44000F1A3E /* GlSprite.h */,
@@ -2457,6 +2462,7 @@
 				51D4D932160EF35500C9D02B /* Shader.vsh in Sources */,
 				5133EFCE1614499600B7171A /* TopRasterView.m in Sources */,
 				514EFC04163B0E44000F1A3E /* GlSprite.m in Sources */,
+				51AFA7391647CAB80086E1BA /* GlView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

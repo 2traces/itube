@@ -12,6 +12,7 @@
 #import "tubeAppDelegate.h"
 #import "SelectingTabBarViewController.h"
 #import "GlSprite.h"
+#import "GlView.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -224,7 +225,7 @@ GLint uniforms[NUM_UNIFORMS];
     position = CGPointZero;
     scale = 1.f;
     
-    GLKView *view = (GLKView *)self.view;
+    GlView *view = (GlView *)self.view;
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     UIPanGestureRecognizer *rec = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
@@ -265,20 +266,13 @@ GLint uniforms[NUM_UNIFORMS];
     zones.frame = zonesRect;
     [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:zones];
+    view.zonesButton = zones;
 
     // user geo position
     Pin *p = [[Pin alloc] initWithId:0 andColor:0];
     [pinsArray addObject:p];
     [p setPosition:userPosition];
     newPinId = 1;
-}
-
--(void) layoutSublayersOfLayer:(CALayer *)layer
-{
-    if (IS_IPAD) {
-        CGRect zonesRect=CGRectMake(self.view.bounds.size.width-70, self.view.bounds.size.height-50, 43, 25);
-        [zones setFrame:zonesRect];
-    }
 }
 
 -(void) changeSource
