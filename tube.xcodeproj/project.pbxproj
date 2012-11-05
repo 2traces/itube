@@ -75,6 +75,12 @@
 		51D4D947160EF88300C9D02B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D4D946160EF88300C9D02B /* OpenGLES.framework */; };
 		51D4D94A160EF8AF00C9D02B /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D4D949160EF8AF00C9D02B /* GLKit.framework */; };
 		51F15F7714D99A3800D11B79 /* VectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F15F7614D99A3800D11B79 /* VectorLayer.m */; };
+		579D28D416480E990061B8F6 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579D28D216480E990061B8F6 /* NavigationViewController.m */; };
+		579D28D516480E990061B8F6 /* NavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 579D28D316480E990061B8F6 /* NavigationViewController.xib */; };
+		579D28D9164815DC0061B8F6 /* CategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579D28D7164815DC0061B8F6 /* CategoriesViewController.m */; };
+		579D28DA164815DC0061B8F6 /* CategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 579D28D8164815DC0061B8F6 /* CategoriesViewController.xib */; };
+		579D28DE164815F70061B8F6 /* PhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579D28DC164815F70061B8F6 /* PhotosViewController.m */; };
+		579D28DF164815F70061B8F6 /* PhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 579D28DD164815F70061B8F6 /* PhotosViewController.xib */; };
 		9F39FDAD14CD345800A8043C /* dst_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F39FDA314CD345800A8043C /* dst_button_normal.png */; };
 		9F39FDAE14CD345800A8043C /* dst_button_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F39FDA414CD345800A8043C /* dst_button_normal@2x.png */; };
 		9F39FDAF14CD345800A8043C /* dst_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F39FDA514CD345800A8043C /* dst_button_pressed.png */; };
@@ -600,6 +606,15 @@
 		51D4D949160EF8AF00C9D02B /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		51F15F7514D99A3800D11B79 /* VectorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VectorLayer.h; path = Classes/VectorLayer.h; sourceTree = "<group>"; };
 		51F15F7614D99A3800D11B79 /* VectorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VectorLayer.m; path = Classes/VectorLayer.m; sourceTree = "<group>"; };
+		579D28D116480E990061B8F6 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
+		579D28D216480E990061B8F6 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
+		579D28D316480E990061B8F6 /* NavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationViewController.xib; sourceTree = "<group>"; };
+		579D28D6164815DB0061B8F6 /* CategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesViewController.h; sourceTree = "<group>"; };
+		579D28D7164815DC0061B8F6 /* CategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesViewController.m; sourceTree = "<group>"; };
+		579D28D8164815DC0061B8F6 /* CategoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoriesViewController.xib; sourceTree = "<group>"; };
+		579D28DB164815F70061B8F6 /* PhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosViewController.h; sourceTree = "<group>"; };
+		579D28DC164815F70061B8F6 /* PhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosViewController.m; sourceTree = "<group>"; };
+		579D28DD164815F70061B8F6 /* PhotosViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* tube-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "tube-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9F39FDA314CD345800A8043C /* dst_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dst_button_normal.png; sourceTree = "<group>"; };
 		9F39FDA414CD345800A8043C /* dst_button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dst_button_normal@2x.png"; sourceTree = "<group>"; };
@@ -1169,109 +1184,14 @@
 		289233A00DB2D0730083E9F9 /* Main View */ = {
 			isa = PBXGroup;
 			children = (
+				579D28D0164809110061B8F6 /* Data */,
+				570944461648072000468F77 /* Views */,
+				570944451648071700468F77 /* Controllers */,
 				51D4D926160EF35500C9D02B /* gl */,
 				BCCC309D14E4F0F000102064 /* Cells */,
-				BCCC309A14E4DB4600102064 /* MyNavigationBar.h */,
-				BCCC309B14E4DB4600102064 /* MyNavigationBar.m */,
-				BC1898C415F5E98800921F5F /* StatusViewController.h */,
-				BC1898C515F5E98800921F5F /* StatusViewController.m */,
-				BC76ACEE151B1A60009BDABC /* SSZipArchive.m */,
-				BC76ACEF151B1A60009BDABC /* SSZipArchive.h */,
-				BC3D14C714C3382A0059A17E /* SelectingTabBarViewController.h */,
-				BC3D14C814C3382A0059A17E /* SelectingTabBarViewController.m */,
-				BC88A2BD151A3C5C0060F860 /* DemoMapViewController.h */,
-				BC88A2BE151A3C5D0060F860 /* DemoMapViewController.m */,
-				BC4DA4161537F03600B941F1 /* ImageDownloader.h */,
-				BC4DA4171537F03700B941F1 /* ImageDownloader.m */,
-				BC3D14CA14C3382B0059A17E /* CustomTabBar.h */,
-				BC3D14CB14C3382C0059A17E /* CustomTabBar.m */,
-				BC3D14CC14C3382C0059A17E /* HistoryViewController.h */,
-				BC3D14CD14C3382C0059A17E /* HistoryViewController.m */,
-				BC3D14CF14C3382D0059A17E /* SectionInfo.h */,
-				BC3D14D014C3382D0059A17E /* SectionInfo.m */,
-				BC3D14D114C3382E0059A17E /* SectionHeaderView.h */,
-				BC3D14D214C3382F0059A17E /* SectionHeaderView.m */,
-				BC3D14D314C3382F0059A17E /* MBProgressHUD.h */,
-				BC3D14D414C3382F0059A17E /* MBProgressHUD.m */,
-				BC3D14D514C338300059A17E /* Reachability.h */,
-				BC3D14D614C338300059A17E /* Reachability.m */,
-				BC3D14D714C338300059A17E /* IAPHelper.h */,
-				BC3D14D814C338300059A17E /* IAPHelper.m */,
-				BC3D150014C338570059A17E /* Server.h */,
-				BC3D150114C338580059A17E /* Server.m */,
-				BCE0B07814FCD47500CCE704 /* DownloadServer.h */,
-				BCE0B07914FCD47500CCE704 /* DownloadServer.m */,
-				BC3D150214C338590059A17E /* XMLParser.h */,
-				BC3D150314C3385B0059A17E /* XMLParser.m */,
-				BC3D14D914C338310059A17E /* TubeAppIAPHelper.h */,
-				BC3D14DA14C338310059A17E /* TubeAppIAPHelper.m */,
-				BC3D14DB14C338310059A17E /* StationListViewController.h */,
-				BC3D14DC14C338340059A17E /* StationListViewController.m */,
-				BC3D14DD14C338350059A17E /* BookmarkViewController.h */,
-				BC3D14DE14C338350059A17E /* BookmarkViewController.m */,
-				BCF52DCB14CAD69400D76E0F /* FastAccessTableViewController.h */,
-				BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */,
-				BC98E47314C9592700F5260D /* TopTwoStationsView.h */,
-				BC98E47414C9592700F5260D /* TopTwoStationsView.m */,
-				5133EFCC1614499600B7171A /* TopRasterView.h */,
-				5133EFCD1614499600B7171A /* TopRasterView.m */,
-				BC3D14E114C338360059A17E /* LineListViewController.h */,
-				BC3D14E214C338360059A17E /* LineListViewController.m */,
-				BC3D14E414C338370059A17E /* SettingsViewController.h */,
-				BC3D14E514C338370059A17E /* SettingsViewController.m */,
 				51D20F3714B85185007AC4BD /* tubee.xcdatamodeld */,
 				51D20F3314B849A3007AC4BD /* ManagedObjects.h */,
 				51D20F3414B849A3007AC4BD /* ManagedObjects.m */,
-				289233A40DB2D0840083E9F9 /* MainView.h */,
-				289233A50DB2D0840083E9F9 /* MainView.m */,
-				289233A80DB2D0DB0083E9F9 /* MainViewController.h */,
-				289233A90DB2D0DB0083E9F9 /* MainViewController.m */,
-				BCB33A5B15F77F8F00692789 /* StatusDownloader.h */,
-				BCB33A5C15F77F8F00692789 /* StatusDownloader.m */,
-				BC108FF015D8F38E00B81989 /* LeftiPadPathViewController.h */,
-				BC108FF115D8F38E00B81989 /* LeftiPadPathViewController.m */,
-				BC8C71EC14D98F810038EE0F /* PathScrollView.h */,
-				BC8C71ED14D98F810038EE0F /* PathScrollView.m */,
-				BCAEF46B15C8F07A008A8014 /* VertPathScrollView.h */,
-				BCAEF46C15C8F07A008A8014 /* VertPathScrollView.m */,
-				BC10618D14D7D29500B08E63 /* PathBarView.h */,
-				BC10618E14D7D29600B08E63 /* PathBarView.m */,
-				BCB362DE14E6C31C0066FB3A /* StationTextField.h */,
-				BCB362DF14E6C31C0066FB3A /* StationTextField.m */,
-				BC1061A014D7DCDA00B08E63 /* PathDrawView.h */,
-				BC1061A114D7DCDB00B08E63 /* PathDrawView.m */,
-				BC8DF97D14DAD8DE00294B61 /* PathDrawVertView.h */,
-				BC8DF97E14DAD8DE00294B61 /* PathDrawVertView.m */,
-				4BC1C944142E36CA003651BB /* MapView.h */,
-				4BC1C945142E36CA003651BB /* MapView.m */,
-				9FFA6EBA14EE17920086199F /* ActiveView.h */,
-				9FFA6EBB14EE17920086199F /* ActiveView.m */,
-				4BC043DF142FC30F00A643B8 /* Utils.h */,
-				4BC043E0142FC30F00A643B8 /* Utils.m */,
-				51F15F7514D99A3800D11B79 /* VectorLayer.h */,
-				BCDFF0F215CCDE1600E004E6 /* TubeSplitViewController.h */,
-				BCDFF0F315CCDE1600E004E6 /* TubeSplitViewController.m */,
-				51F15F7614D99A3800D11B79 /* VectorLayer.m */,
-				BCD3538814E138BC00D4278A /* UIColor-enhanced.h */,
-				BCD3538914E138BC00D4278A /* UIColor-enhanced.m */,
-				4BC043E2142FC42F00A643B8 /* CityMap.h */,
-				4BC043E3142FC42F00A643B8 /* CityMap.m */,
-				5109C2191509376600A3142F /* Schedule.h */,
-				5109C21A1509376600A3142F /* Schedule.m */,
-				5121FCBD14C9E23000A9192A /* MyTiledLayer.h */,
-				5121FCBE14C9E23000A9192A /* MyTiledLayer.m */,
-				4B234757144C9099005BC336 /* MyScrollView.h */,
-				4B234758144C9099005BC336 /* MyScrollView.m */,
-				4B985D20145B0F5A00F32066 /* SelectedPathMap.h */,
-				4B985D21145B0F5A00F32066 /* SelectedPathMap.m */,
-				4B216D8714606B9D005B6F38 /* StationList.h */,
-				4B216D8814606B9D005B6F38 /* StationList.m */,
-				BC88A2A8151A328E0060F860 /* SettingsNavController.h */,
-				BC88A2A9151A328E0060F860 /* SettingsNavController.m */,
-				BC7D9C8515EB4C60005684E4 /* CustomPopoverBackgroundView.h */,
-				BC7D9C8615EB4C60005684E4 /* CustomPopoverBackgroundView.m */,
-				CE96C6F9146830A8005A56F3 /* Resource.h */,
-				CE96C6FA146830A8005A56F3 /* Resource.m */,
 			);
 			name = "Main View";
 			sourceTree = "<group>";
@@ -1323,6 +1243,9 @@
 				BC8E2EB31522043E00F30619 /* DemoMapViewController.xib */,
 				BC2279451604881C00414693 /* Default-568h.png */,
 				BC2279471604881C00414693 /* Default-568h@2x.png */,
+				579D28DD164815F70061B8F6 /* PhotosViewController.xib */,
+				579D28D8164815DC0061B8F6 /* CategoriesViewController.xib */,
+				579D28D316480E990061B8F6 /* NavigationViewController.xib */,
 				BC88F91A15205B6A00BC7FAA /* LanguageViewController.xib */,
 				BCD7E24D151AF85C007C658A /* SettingsNavController.xib */,
 				BCCC30A114E4F19900102064 /* LanguageCell.xib */,
@@ -1432,6 +1355,131 @@
 			);
 			name = gl;
 			path = Classes/gl;
+			sourceTree = "<group>";
+		};
+		570944451648071700468F77 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BC1898C415F5E98800921F5F /* StatusViewController.h */,
+				BC1898C515F5E98800921F5F /* StatusViewController.m */,
+				BC3D14C714C3382A0059A17E /* SelectingTabBarViewController.h */,
+				BC3D14C814C3382A0059A17E /* SelectingTabBarViewController.m */,
+				BC88A2BD151A3C5C0060F860 /* DemoMapViewController.h */,
+				BC88A2BE151A3C5D0060F860 /* DemoMapViewController.m */,
+				BC3D14CC14C3382C0059A17E /* HistoryViewController.h */,
+				BC3D14CD14C3382C0059A17E /* HistoryViewController.m */,
+				BC3D14DB14C338310059A17E /* StationListViewController.h */,
+				BC3D14DC14C338340059A17E /* StationListViewController.m */,
+				BC3D14DD14C338350059A17E /* BookmarkViewController.h */,
+				BC3D14DE14C338350059A17E /* BookmarkViewController.m */,
+				BCF52DCB14CAD69400D76E0F /* FastAccessTableViewController.h */,
+				BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */,
+				BC3D14E114C338360059A17E /* LineListViewController.h */,
+				BC3D14E214C338360059A17E /* LineListViewController.m */,
+				BC3D14E414C338370059A17E /* SettingsViewController.h */,
+				BC3D14E514C338370059A17E /* SettingsViewController.m */,
+				289233A80DB2D0DB0083E9F9 /* MainViewController.h */,
+				289233A90DB2D0DB0083E9F9 /* MainViewController.m */,
+				BC108FF015D8F38E00B81989 /* LeftiPadPathViewController.h */,
+				BC108FF115D8F38E00B81989 /* LeftiPadPathViewController.m */,
+				BCDFF0F215CCDE1600E004E6 /* TubeSplitViewController.h */,
+				BCDFF0F315CCDE1600E004E6 /* TubeSplitViewController.m */,
+				BC88A2A8151A328E0060F860 /* SettingsNavController.h */,
+				BC88A2A9151A328E0060F860 /* SettingsNavController.m */,
+				579D28D116480E990061B8F6 /* NavigationViewController.h */,
+				579D28D216480E990061B8F6 /* NavigationViewController.m */,
+				579D28D6164815DB0061B8F6 /* CategoriesViewController.h */,
+				579D28D7164815DC0061B8F6 /* CategoriesViewController.m */,
+				579D28DB164815F70061B8F6 /* PhotosViewController.h */,
+				579D28DC164815F70061B8F6 /* PhotosViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		570944461648072000468F77 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				51F15F7514D99A3800D11B79 /* VectorLayer.h */,
+				51F15F7614D99A3800D11B79 /* VectorLayer.m */,
+				BC3D14D314C3382F0059A17E /* MBProgressHUD.h */,
+				BC3D14D414C3382F0059A17E /* MBProgressHUD.m */,
+				5121FCBD14C9E23000A9192A /* MyTiledLayer.h */,
+				5121FCBE14C9E23000A9192A /* MyTiledLayer.m */,
+				4B234757144C9099005BC336 /* MyScrollView.h */,
+				4B234758144C9099005BC336 /* MyScrollView.m */,
+				BC7D9C8515EB4C60005684E4 /* CustomPopoverBackgroundView.h */,
+				BC7D9C8615EB4C60005684E4 /* CustomPopoverBackgroundView.m */,
+				BCCC309A14E4DB4600102064 /* MyNavigationBar.h */,
+				BCCC309B14E4DB4600102064 /* MyNavigationBar.m */,
+				BC3D14CA14C3382B0059A17E /* CustomTabBar.h */,
+				BC3D14CB14C3382C0059A17E /* CustomTabBar.m */,
+				BC3D14D114C3382E0059A17E /* SectionHeaderView.h */,
+				BC3D14D214C3382F0059A17E /* SectionHeaderView.m */,
+				BC98E47314C9592700F5260D /* TopTwoStationsView.h */,
+				BC98E47414C9592700F5260D /* TopTwoStationsView.m */,
+				5133EFCC1614499600B7171A /* TopRasterView.h */,
+				5133EFCD1614499600B7171A /* TopRasterView.m */,
+				289233A40DB2D0840083E9F9 /* MainView.h */,
+				289233A50DB2D0840083E9F9 /* MainView.m */,
+				BC8C71EC14D98F810038EE0F /* PathScrollView.h */,
+				BC8C71ED14D98F810038EE0F /* PathScrollView.m */,
+				BCAEF46B15C8F07A008A8014 /* VertPathScrollView.h */,
+				BCAEF46C15C8F07A008A8014 /* VertPathScrollView.m */,
+				BC10618D14D7D29500B08E63 /* PathBarView.h */,
+				BC10618E14D7D29600B08E63 /* PathBarView.m */,
+				BCB362DE14E6C31C0066FB3A /* StationTextField.h */,
+				BCB362DF14E6C31C0066FB3A /* StationTextField.m */,
+				BC1061A014D7DCDA00B08E63 /* PathDrawView.h */,
+				BC1061A114D7DCDB00B08E63 /* PathDrawView.m */,
+				BC8DF97D14DAD8DE00294B61 /* PathDrawVertView.h */,
+				BC8DF97E14DAD8DE00294B61 /* PathDrawVertView.m */,
+				4BC1C944142E36CA003651BB /* MapView.h */,
+				4BC1C945142E36CA003651BB /* MapView.m */,
+				9FFA6EBA14EE17920086199F /* ActiveView.h */,
+				9FFA6EBB14EE17920086199F /* ActiveView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		579D28D0164809110061B8F6 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				BCB33A5B15F77F8F00692789 /* StatusDownloader.h */,
+				BCB33A5C15F77F8F00692789 /* StatusDownloader.m */,
+				BC76ACEE151B1A60009BDABC /* SSZipArchive.m */,
+				BC76ACEF151B1A60009BDABC /* SSZipArchive.h */,
+				BC4DA4161537F03600B941F1 /* ImageDownloader.h */,
+				BC4DA4171537F03700B941F1 /* ImageDownloader.m */,
+				BC3D14CF14C3382D0059A17E /* SectionInfo.h */,
+				BC3D14D014C3382D0059A17E /* SectionInfo.m */,
+				BC3D14D514C338300059A17E /* Reachability.h */,
+				BC3D14D614C338300059A17E /* Reachability.m */,
+				BC3D14D714C338300059A17E /* IAPHelper.h */,
+				BC3D14D814C338300059A17E /* IAPHelper.m */,
+				BC3D150014C338570059A17E /* Server.h */,
+				BC3D150114C338580059A17E /* Server.m */,
+				BCE0B07814FCD47500CCE704 /* DownloadServer.h */,
+				BCE0B07914FCD47500CCE704 /* DownloadServer.m */,
+				4BC043DF142FC30F00A643B8 /* Utils.h */,
+				4BC043E0142FC30F00A643B8 /* Utils.m */,
+				BCD3538814E138BC00D4278A /* UIColor-enhanced.h */,
+				BCD3538914E138BC00D4278A /* UIColor-enhanced.m */,
+				4BC043E2142FC42F00A643B8 /* CityMap.h */,
+				4BC043E3142FC42F00A643B8 /* CityMap.m */,
+				5109C2191509376600A3142F /* Schedule.h */,
+				5109C21A1509376600A3142F /* Schedule.m */,
+				4B985D20145B0F5A00F32066 /* SelectedPathMap.h */,
+				4B985D21145B0F5A00F32066 /* SelectedPathMap.m */,
+				4B216D8714606B9D005B6F38 /* StationList.h */,
+				4B216D8814606B9D005B6F38 /* StationList.m */,
+				CE96C6F9146830A8005A56F3 /* Resource.h */,
+				CE96C6FA146830A8005A56F3 /* Resource.m */,
+				BC3D150214C338590059A17E /* XMLParser.h */,
+				BC3D150314C3385B0059A17E /* XMLParser.m */,
+				BC3D14D914C338310059A17E /* TubeAppIAPHelper.h */,
+				BC3D14DA14C338310059A17E /* TubeAppIAPHelper.m */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 		9F5E306F14A457F600D549E4 /* ini */ = {
@@ -2375,6 +2423,9 @@
 				51CC6041163CEDBD00265748 /* user_pos@2x.png in Resources */,
 				517A1F701646AC3300A2D00F /* maps_button.png in Resources */,
 				517A1F711646AC3300A2D00F /* metro_button.png in Resources */,
+				579D28D516480E990061B8F6 /* NavigationViewController.xib in Resources */,
+				579D28DA164815DC0061B8F6 /* CategoriesViewController.xib in Resources */,
+				579D28DF164815F70061B8F6 /* PhotosViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2463,6 +2514,9 @@
 				5133EFCE1614499600B7171A /* TopRasterView.m in Sources */,
 				514EFC04163B0E44000F1A3E /* GlSprite.m in Sources */,
 				51AFA7391647CAB80086E1BA /* GlView.m in Sources */,
+				579D28D416480E990061B8F6 /* NavigationViewController.m in Sources */,
+				579D28D9164815DC0061B8F6 /* CategoriesViewController.m in Sources */,
+				579D28DE164815F70061B8F6 /* PhotosViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2587,7 +2641,7 @@
 				INFOPLIST_FILE = "tube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = tube;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -2602,7 +2656,7 @@
 				INFOPLIST_FILE = "tube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = tube;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
