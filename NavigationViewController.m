@@ -57,9 +57,12 @@
         CGRect photosViewFrame = self.photosController.view.frame;
         if (mainViewFrame.origin.x == 0) {
             mainViewFrame.origin.x = photosViewFrame.origin.x = 250;
+            [self.photosController.buttonCategories setTitle:@"HIDE" forState:UIControlStateNormal];
         }
         else {
             mainViewFrame.origin.x = photosViewFrame.origin.x = 0;
+            [self.photosController.buttonCategories setTitle:@"SHOW" forState:UIControlStateNormal];
+
         }
         self.mainController.view.frame = mainViewFrame;
         self.photosController.view.frame = photosViewFrame;
