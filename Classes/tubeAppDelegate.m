@@ -15,6 +15,7 @@
 #import <MapKit/MapKit.h>
 #import "ManagedObjects.h"
 #import "MainView.h"
+#import "NavigationViewController.h"
 
 @implementation tubeAppDelegate
 
@@ -24,6 +25,7 @@
 @synthesize cityMap;
 @synthesize cityName;
 @synthesize parseQueue;
+@synthesize navigationViewController;
 
 void uncaughtExceptionHandler(NSException *exception) {
     NSLog(@"CRASH: %@", exception);
@@ -47,9 +49,10 @@ void uncaughtExceptionHandler(NSException *exception) {
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     gl = [[GlViewController alloc] initWithNibName:@"GlViewController" bundle:[NSBundle mainBundle]];
 	MainViewController *aController = [[MainViewController alloc] init];
+
 	self.mainViewController = aController;
+    self.navigationViewController = [[[NavigationViewController alloc] initWithNibName:@"NavigationViewController" bundle:[NSBundle mainBundle] mainViewController:self.mainViewController] autorelease];
 	[aController release];
-    
     CityMap *cm = [[CityMap alloc] init];
     NSString *mapName =[self nameCurrentMap];
     [cm loadMap:mapName];
@@ -65,18 +68,18 @@ void uncaughtExceptionHandler(NSException *exception) {
     self.window.frame = [[UIScreen mainScreen] bounds];
     
     if (IS_IPAD) {
-        TubeSplitViewController *splitController = [[TubeSplitViewController alloc] init];
-        splitController.mainViewController = self.mainViewController;
-        [window addSubview:[splitController view]];
-        [window setRootViewController:splitController];
-        navController = splitController.navigationController;
-        [splitController release];
-        [window makeKeyAndVisible];
+//        TubeSplitViewController *splitController = [[TubeSplitViewController alloc] init];
+//        splitController.mainViewController = self.mainViewController;
+//        [window addSubview:[splitController view]];
+//        [window setRootViewController:splitController];
+//        navController = splitController.navigationController;
+//        [splitController release];
+//        [window makeKeyAndVisible];
     } else {
-        navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+        navController = [[UINavigationController alloc] initWithRootViewController:self.navigationViewController];
         navController.navigationBarHidden = YES;
-        mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
-        [window addSubview:[mainViewController view]];
+        mainViewController.view.frame = self.navigationViewController.view.frame = [UIScreen mainScreen].applicationFrame;
+        [window addSubview:[self.navigationViewController view]];
         [window setRootViewController:navController];
         [window makeKeyAndVisible];
     }

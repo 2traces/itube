@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NavigationViewController.h"
 
-@interface PhotosViewController : UIViewController
+@interface PhotosViewController : UIViewController {
+    UIScrollView *scrollPhotos;
+    UIButton *buttonCategories;
+}
+
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollPhotos;
+@property (nonatomic, retain) IBOutlet UIButton *buttonCategories;
+@property (nonatomic, assign) id<NavigationDelegate> navigationDelegate;
+
+- (IBAction)showCategories:(id)sender;
 
 @end

@@ -12,11 +12,20 @@
 @class PhotosViewController;
 @class MainViewController;
 
-@interface NavigationViewController : UIViewController {
+@protocol NavigationDelegate <NSObject>
+
+- (void) showCategories:(id)sender;
+
+@end
+
+@interface NavigationViewController : UIViewController <NavigationDelegate> {
     CategoriesViewController *categoriesController;
     PhotosViewController *photosController;
     MainViewController *mainController;
 }
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController;
+
 
 @property (nonatomic, retain) CategoriesViewController *categoriesController;
 @property (nonatomic, retain) PhotosViewController *photosController;
