@@ -1638,7 +1638,6 @@
 		CE96C6F41468307C005A56F3 /* images */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				57B7421315D169DC00FE0D72 /* pins */,
 				57A73F5C15CC22B50090969A /* gallery_bookmark.png */,
 				57A73F5D15CC22B50090969A /* gallery_bookmark@2x.png */,
@@ -1667,7 +1666,6 @@
 				570BB1D41590C59300CE1AA5 /* vector@2x.png */,
 				9F6EE30F1588AE5B009F72E9 /* terrain.png */,
 				9F6EE3101588AE5B009F72E9 /* vector.png */,
-=======
 				513C87601618C6B300D1F431 /* openlist2.png */,
 				5198F7B4163A71F500A045DE /* pins */,
 				513C87611618C6B300D1F431 /* openlist2@2x.png */,
@@ -1690,7 +1688,6 @@
 				BC7D9C8B15EB5084005684E4 /* popover-bg.png */,
 				BC7D9C8D15EB5871005684E4 /* popover-bg@2x.png */,
 				BC7D9C8E15EB5871005684E4 /* arrow@2x.png */,
->>>>>>> a8e683b... colored pins
 				BC5AF6F414F5180400C8463F /* splash.png */,
 				BC5AF6F514F5180400C8463F /* splash@2x.png */,
 				9F4997E814E245EA0058AA96 /* settings_btn.png */,
@@ -2034,7 +2031,6 @@
 				BC7AF891153D5E7200BD1838 /* demo_back@2x.png in Resources */,
 				BC3AAD9F153DB0C6009AF367 /* checkmark.png in Resources */,
 				BC3AADA0153DB0C6009AF367 /* checkmark@2x.png in Resources */,
-<<<<<<< HEAD
 				9F1EA31715748F240076B2E0 /* box.png in Resources */,
 				9F1EA31815748F240076B2E0 /* box@2x.png in Resources */,
 				9F1EA31C157490420076B2E0 /* pin.png in Resources */,
@@ -2108,7 +2104,6 @@
 				57B7423F15D16A1900FE0D72 /* pin_16@2x.png in Resources */,
 				57B7424015D16A1900FE0D72 /* pin_17.png in Resources */,
 				57B7424115D16A1900FE0D72 /* pin_17@2x.png in Resources */,
-=======
 				BC102A2B1570F44B009390A6 /* Default.png in Resources */,
 				BC102A2F1570F458009390A6 /* Default@2x.png in Resources */,
 				BC102A271570F42E009390A6 /* Localizable.strings in Resources */,
@@ -2247,7 +2242,6 @@
 				5198F7C4163A71F500A045DE /* pin_rose@2x.png in Resources */,
 				5198F7C5163A71F500A045DE /* pin_yellow.png in Resources */,
 				5198F7C6163A71F500A045DE /* pin_yellow@2x.png in Resources */,
->>>>>>> a8e683b... colored pins
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2325,7 +2319,6 @@
 				BC88F919152058D600BC7FAA /* LanguageCell2.m in Sources */,
 				51839DE115360BE5003A8E23 /* TBXML.m in Sources */,
 				BC4DA4181537F03700B941F1 /* ImageDownloader.m in Sources */,
-<<<<<<< HEAD
 				51E9C614154E9A02000D3950 /* RasterLayer.m in Sources */,
 				576A061315923E9D0001E95D /* offlinemaps.xcdatamodeld in Sources */,
 				573AF99615989A34001F09B7 /* GalleryViewController.m in Sources */,
@@ -2338,7 +2331,6 @@
 				51A4A44E15BBBC9500A97AAF /* Shader.vsh in Sources */,
 				574B557115C9414C00A95612 /* GalleryView.m in Sources */,
 				57B7421115D1221C00FE0D72 /* UIColor+CategoriesColors.m in Sources */,
-=======
 				BCAEF46D15C8F07A008A8014 /* VertPathScrollView.m in Sources */,
 				BCDFF0F415CCDE1600E004E6 /* TubeSplitViewController.m in Sources */,
 				BC108FF215D8F38E00B81989 /* LeftiPadPathViewController.m in Sources */,
@@ -2351,7 +2343,6 @@
 				51D4D932160EF35500C9D02B /* Shader.vsh in Sources */,
 				5133EFCE1614499600B7171A /* TopRasterView.m in Sources */,
 				514EFC04163B0E44000F1A3E /* GlSprite.m in Sources */,
->>>>>>> a8e683b... colored pins
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
