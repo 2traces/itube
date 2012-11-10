@@ -68,7 +68,7 @@
     
 	UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
 	[button1 addTarget:self action:@selector(transitFirstToBigField) forControlEvents:UIControlEventTouchUpInside];
-	button1.frame = CGRectMake(0, 6, 320, 44);
+	button1.frame = CGRectMake(0, 6, 320 - firstStation.rightView.frame.size.width, 44);
     self.firstButton=button1;
     
     [toolbar addSubview:button1];
@@ -401,7 +401,7 @@
 //        [lineColor release];
         
         [firstStation setLeftViewMode: UITextFieldViewModeAlways];
-        firstStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];
+        //firstStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];
 
     } else {
         [self clearFromStation];
@@ -432,7 +432,7 @@
         //[lineColor release];
         
         [secondStation setLeftViewMode: UITextFieldViewModeAlways];
-        secondStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];
+        //secondStation.background = [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];
 
     } else {
         [self clearToStation];

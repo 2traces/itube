@@ -18,6 +18,7 @@
 #import "PathDrawVertView.h"
 #import "TubeAppIAPHelper.h"
 #import "UIColor-enhanced.h"
+#import "UIColor+CategoriesColors.h"
 
 #define FromStation 0
 #define ToStation 1
@@ -47,6 +48,8 @@
     
     [(MainView*)self.view viewInit:self];
     
+    [self initSelectingTabBarController];
+    
     TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] initWithFrame:CGRectMake(0,0,320,44)];
     self.stationsView = twoStationsView;
     
@@ -54,6 +57,7 @@
     [twoStationsView release];
     
     [self performSelector:@selector(refreshInApp) withObject:nil afterDelay:0.2];
+    [self updateBookmarkPins];
 }
 
 -(void)refreshInApp
@@ -572,7 +576,8 @@
         
         [(MainView*)self.view addSubview:scrollView];
         [(MainView*)self.view bringSubviewToFront:scrollView];
-        
+        [(MainView*)self.view updateDirectionDistances];
+
         UIButton *changeViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *img = [UIImage imageNamed:@"switch_to_path.png"];
         UIImage *imgh = [UIImage imageNamed:@"switch_to_path_high.png"];
@@ -1051,6 +1056,9 @@
         [(MainView*)self.view bringSubviewToFront:self.scrollView]; 
         [(MainView*)self.view bringSubviewToFront:[(MainView*)self.view viewWithTag:333]]; 
         
+        [(MainView*)self.view updateDirectionDistances];
+
+        
         UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
         shadow.frame = CGRectMake(0,66, 320, 61);
         [shadow setIsAccessibilityElement:YES];
@@ -1106,7 +1114,8 @@
     
     [(MainView*)self.view addSubview:tableViewC.tableView];
     [(MainView*)self.view bringSubviewToFront:tableViewC.tableView];
-    
+    [(MainView*)self.view updateDirectionDistances];
+
     return tableViewC;
 }
 
@@ -1129,6 +1138,26 @@
 	[self dismissModalViewControllerAnimated:YES];
 }
 
+- (void)updateBookmarkPins {
+    if (!bookmarkPins) {
+        bookmarkPins = [[NSMutableArray alloc] initWithCapacity:10];
+    }
+    
+    for (NSNumber *pin in bookmarkPins) {
+        MainView *view = ((MainView*)self.view);
+        [view removePin:[pin integerValue]];
+    }
+    
+    [bookmarkPins removeAllObjects];
+    
+    MHelper *helper = [MHelper sharedHelper];
+    NSArray *favorites = [helper getFavoriteItemList];
+    for (MItem *fav in favorites) {
+        NSInteger pinID = [self setPinForItem:[fav.index integerValue]];
+        [bookmarkPins addObject:[NSNumber numberWithInteger:pinID]];
+    }
+}
+
 
 - (IBAction)showInfo {    
 	
@@ -1141,9 +1170,13 @@
 	[controller release];
 }
 
+- (void)initSelectingTabBarController {
+    tabBarViewController = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
+}
+
 -(void)showTabBarViewController
 {
-    SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
+    SelectingTabBarViewController *controller = tabBarViewController;
     controller.delegate = self;
     
     CGRect frame = controller.view.frame;
@@ -1162,7 +1195,6 @@
     ((MainView*)self.view).shouldNotDropPins = YES;
     
 //    [self presentModalViewController:controller animated:YES];
-    [controller autorelease];
 }
 
 -(void)transitToRouteState
@@ -1173,10 +1205,16 @@
 #pragma mark - choosing stations etc
 
 - (NSInteger)setPinForItem:(NSInteger)index {
+    //We'll find out the color of this item (its category color)
+    MItem *it = [[MHelper sharedHelper] getItemWithIndex:index];
+    UIColor *catColor = [[[it categories] anyObject] color];
+    
+    NSString *colorID = [catColor categoryID];
+    
     MainView *mainView = (MainView*)self.view;
 
     CGPoint point = [mainView.mapView pointOnMapViewForItemWithID:index];
-    return [mainView setPin:[mainView convertPoint:point fromView:mainView.mapView]];    
+    return [mainView setPin:[mainView convertPoint:point fromView:mainView.mapView] withColorID:colorID];
 }
 
 -(void)returnFromSelection2:(NSArray*)items
@@ -1184,7 +1222,18 @@
     MainView *mainView = (MainView*)self.view;
     if ([items count]) {
         self.fromStation = [items objectAtIndex:0];
+        MHelper *helper = [MHelper sharedHelper];
+
+        if ([items count] > 1 && [[items objectAtIndex:1] isKindOfClass:[NSDate class]]) {
+            //We've returned from history, DO NOT ADD THIS ITEM TO HISTORY!
+        }
+        else {
+            [helper addHistory:[NSDate date] item:self.fromStation];
+        }
+        
         [stationsView setFromStation:self.fromStation];
+        
+        
         if(![mainView centerMapOnUserAndItemWithID:[self.fromStation.index integerValue]]) {
 #ifdef DEBUG
             NSLog(@"object %@ not found!", self.fromStation.index);
@@ -1193,6 +1242,9 @@
         else {
             [self setPinForItem:[self.fromStation.index integerValue]];
         }
+        
+        [helper saveHistoryFile];
+
     }
     else {
         self.fromStation=nil;
@@ -1202,9 +1254,7 @@
     
 	mainView.mapView.stationSelected=false;
     
-    //    MHelper *helper = [MHelper sharedHelper];
     //    [helper saveBookmarkFile];
-    //    [helper saveHistoryFile];
     //    [self dismissModalViewControllerAnimated:YES];
 }
 

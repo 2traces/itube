@@ -184,6 +184,10 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"StationListCell" owner:self options:nil] lastObject];
         [[cell mybutton] addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        UIView *bgColorView = [[UIView alloc] init];
+        [bgColorView setBackgroundColor:[UIColor brownColor]];
+        [cell setSelectedBackgroundView:bgColorView];
+        [bgColorView release];
     }
  
     if ([[[self.stationsList objectAtIndex:indexPath.row] isFavorite] intValue]==1) {
@@ -340,6 +344,9 @@
     } else {
         [station setIsFavorite:[NSNumber numberWithInt:1]];
     }
+    
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate.mainViewController updateBookmarkPins];
     
     [self.mytableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationNone];
 }

@@ -9,6 +9,7 @@
 #import "RasterLayer.h"
 #import "ManagedObjects.h"
 #import "tubeAppDelegate.h"
+#import "UIColor+CategoriesColors.h"
 
 #define MAX_QUEUE 10
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
@@ -1148,11 +1149,13 @@
                     colors = [words objectAtIndex:2];
                 }
                 if (colors) {
-                    NSArray *colorValues = [colors componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
-                    CGFloat red = [[colorValues objectAtIndex:0] floatValue];
-                    CGFloat green = [[colorValues objectAtIndex:1] floatValue];
-                    CGFloat blue = [[colorValues objectAtIndex:2] floatValue];
-                    UIColor *color = [UIColor colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:1.0f];
+                    //Reading categories colors
+//                    NSArray *colorValues = [colors componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
+//                    CGFloat red = [[colorValues objectAtIndex:0] floatValue];
+//                    CGFloat green = [[colorValues objectAtIndex:1] floatValue];
+//                    CGFloat blue = [[colorValues objectAtIndex:2] floatValue];
+//                    UIColor *color = [UIColor colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:1.0f];
+                    UIColor *color = [UIColor colorWithCategoryID:colors];
                     category.color = color;
                 }
             } 

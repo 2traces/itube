@@ -7,7 +7,7 @@
 //
 
 #import "MyScrollView.h"
-
+#import "MapView.h"
 
 @implementation MyScrollView
 
@@ -19,14 +19,22 @@
         tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
         tgr.numberOfTouchesRequired = 1;
         tgr.numberOfTapsRequired = 1;
+        tgr.delegate = self;
+        tgr.cancelsTouchesInView = NO;
         [self addGestureRecognizer:tgr];
         tgr2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
         tgr2.numberOfTouchesRequired = 1;
         tgr2.numberOfTapsRequired = 2;
+        tgr2.delegate = self;
+        tgr2.cancelsTouchesInView = NO;
+
         [self addGestureRecognizer:tgr2];
         tgr22 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDebugTap:)];
         tgr22.numberOfTouchesRequired = 2;
         tgr22.numberOfTapsRequired = 2;
+        tgr22.delegate = self;
+        tgr22.cancelsTouchesInView = NO;
+
         [self addGestureRecognizer:tgr22];
     }
 	return self;
@@ -40,6 +48,26 @@
 
 -(void)handleTap:(UITapGestureRecognizer*) sender
 {
+    
+    
+    const CGFloat kTapMargin = 180;
+    
+    // Get the position of the point tapped in the window co-ordinate system
+//    CGPoint tapPoint = [sender locationInView:nil];
+    
+//    // If there are no buttons beneath this tap then move to the next page if near the page edge
+//    UIView *viewAtBottomOfHeirachy = [self.window hitTest:tapPoint withEvent:nil];
+//    if (![viewAtBottomOfHeirachy isKindOfClass:[UIButton class]]) {
+//
+//    } else {
+//        [sender ];
+//    }
+    
+    
+    
+    
+    
+    
     if(sender.state == UIGestureRecognizerStateEnded) {
         CGPoint p1;// = [sender locationInView:self.superview];
         CGPoint p2 = [sender locationInView:scrolledView];

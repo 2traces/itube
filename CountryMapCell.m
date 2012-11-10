@@ -12,6 +12,7 @@
 
 @synthesize mapName;
 @synthesize mapStatus;
+@synthesize mapDownloaded;
 @synthesize cellButton;
 @synthesize progress;
 @synthesize mapImage;

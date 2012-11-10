@@ -35,6 +35,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self initGallery];
     }
     return self;
 }
@@ -53,6 +54,10 @@
     return NO;
 }
 
+- (void)initGallery {
+    galleryViewController = [[GalleryViewController alloc] initWithNibName:@"GalleryViewController" bundle:nil];
+    [galleryViewController view];
+}
 
 - (void)viewDidLoad
 {
@@ -61,7 +66,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapChanged:) name:kMapChanged object:nil];
     
     LineListViewController *viewController1 = [[[LineListViewController alloc] initWithNibName:@"LineListViewController" bundle:nil] autorelease];
-    GalleryViewController *viewController2 = [[[GalleryViewController alloc] initWithNibName:@"GalleryViewController" bundle:nil] autorelease];
+    GalleryViewController *viewController2 = galleryViewController;
     BookmarkViewController *viewController3 = [[[BookmarkViewController alloc] initWithNibName:@"BookmarkViewController" bundle:nil] autorelease];
     HistoryViewController *viewController4 = [[[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil] autorelease];
     
@@ -79,13 +84,14 @@
     //to perform [self retain] and [self autorelease] (further in the code), as an exceptional way to
     //manage memory of this controller. I am aware that this is not a good practice, however, this was the easiest 
     //way to replace presentModalViewController with addSubview to be able to show the view half-screen.
-    [self retain];
+    //[self retain];
 }
 
 -(void)mapChanged:(NSNotification*)note
 {
     LineListViewController *viewController1 = [[[LineListViewController alloc] initWithNibName:@"LineListViewController" bundle:nil] autorelease];
-    GalleryViewController *viewController2 = [[[GalleryViewController alloc] initWithNibName:@"GalleryViewController" bundle:nil] autorelease];
+    [self initGallery];
+    GalleryViewController *viewController2 = galleryViewController;
     BookmarkViewController *viewController3 = [[[BookmarkViewController alloc] initWithNibName:@"BookmarkViewController" bundle:nil] autorelease];
     HistoryViewController *viewController4 = [[[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil] autorelease];
     
@@ -111,8 +117,11 @@
     linesButton.selected=NO;
     bookmarkButton.selected=NO;
     historyButton.selected=NO;
+    CGRect frame = galleryViewController.lowerShadowImage.frame;
+    frame.origin.y = 299;
+    galleryViewController.lowerShadowImage.frame = frame;
     [UIView animateWithDuration:0.5f animations:^(void){
-        [self.view setFrame:CGRectMake(0,0,320,460)]; 
+        [self.view setFrame:CGRectMake(0,0,320,522)];
     }];
 }
 
@@ -125,14 +134,16 @@
 
 -(IBAction)linesPresses:(id)sender
 {
-            [self.tabBarController setSelectedIndex:1];
+    [self.tabBarController setSelectedIndex:1];
     [self setAllButtonsUnselected];
     linesButton.selected=YES;
 
     
     [UIView animateWithDuration:0.5f animations:^(void){
-        [self.view setFrame:CGRectMake(0,0,320,291)]; 
-
+        [self.view setFrame:CGRectMake(0,0,320,353)];
+        CGRect frame = galleryViewController.lowerShadowImage.frame;
+        frame.origin.y = 130;
+        galleryViewController.lowerShadowImage.frame = frame;
 
     } completion:^(BOOL finished){
         if (finished) {
@@ -141,6 +152,16 @@
     
 
 
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if ([self.tabBarController selectedIndex] == 1) {
+        [self.view setFrame:CGRectMake(0,0,320,353)];
+    }
+    else {
+        [self.view setFrame:CGRectMake(0,0,320,522)];
+    }
 }
 
 -(IBAction)bookmarkPressed:(id)sender
@@ -188,7 +209,7 @@
 - (void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
     [self.view removeFromSuperview];
     //we did call [self retain] previously, so are eligible to autorelease self
-    [self autorelease];
+    //[self autorelease];
 }
 
 -(void) dealloc {

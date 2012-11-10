@@ -25,21 +25,22 @@
 @synthesize label;
 @synthesize scrollView;
 @synthesize loadingView;
+@synthesize lowerShadowImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self initPhotos];
     }
     return self;
 }
 
-- (void)setupScrollView {
+- (void)initPhotos {
+    NSMutableArray *tempItems = [NSMutableArray arrayWithCapacity:15];
     images = [[[MHelper sharedHelper] getPhotoList] retain];
-    self.scrollView.delegate = self;
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [images count], self.scrollView.frame.size.height-2.0f);
-    self.scrollView.pagingEnabled = YES;
+
     CGFloat offset = 0;
     NSInteger index = 0;
     for (MPhoto *photo in images) {
@@ -55,8 +56,8 @@
         
         view.imageView = [[UIImageView alloc] initWithImage:image];
         
-        //The easiest way to set a border is to do that with UIImageView, but in 
-        //this case we will need to adjust its height/width manually, to fit in 
+        //The easiest way to set a border is to do that with UIImageView, but in
+        //this case we will need to adjust its height/width manually, to fit in
         //gallery item view
         [view.imageView.layer setBorderColor: [[UIColor grayColor] CGColor]];
         [view.imageView.layer setBorderWidth: 3.0];
@@ -65,14 +66,14 @@
         view.delegate = self;
         
         CGRect frame = view.frame;
-        frame.origin.x = offset + 5.0f;
+        frame.origin.x = offset;
         frame.origin.y = 3.0f;
         frame.size.width = 170.0f;
         frame.size.height = 140.0f;
         view.frame = frame;
         
         frame = view.imageView.frame;
-        CGFloat aspectToFit = (frame.size.height > frame.size.width) ? 
+        CGFloat aspectToFit = (frame.size.height > frame.size.width) ?
         frame.size.height / view.frame.size.height : frame.size.width / view.frame.size.width;
         
         frame.size.height = frame.size.height / aspectToFit;
@@ -83,7 +84,7 @@
         [view setOriginalImageSize:view.imageView.frame.size];
         [view centerImage];
         [view addSubview:view.imageView];
-
+        
         offset += self.scrollView.frame.size.width;
         index++;
         
@@ -97,13 +98,49 @@
         view.shadowView.frame = shadowFrame;
         [view addSubview:view.shadowView];
         
-        [self.scrollView addSubview:view];
         [view.imageView autorelease];
+        [tempItems addObject:view];
         [view autorelease];
     }
+    
+    galleryItems = [[NSArray arrayWithArray:tempItems] retain];
+}
+
+- (void)setupScrollView {
+    self.scrollView.delegate = self;
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [images count], self.scrollView.frame.size.height-2.0f);
+    self.scrollView.pagingEnabled = YES;
+    CGFloat offset = 0;
+
+    for (GalleryItemView *view in galleryItems) {
+        CGRect frame = view.frame;
+        frame.origin.x = offset;
+        frame.origin.y = 3.0f;
+        frame.size.width = 170.0f;
+        frame.size.height = 140.0f;
+        view.frame = frame;
+        
+        offset += self.scrollView.frame.size.width;
+
+        [self.scrollView addSubview:view];
+
+    }
+
+    self.loadingView.hidden = YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self scrollViewDidScroll:self.scrollView];
     [self scrollViewDidEndDecelerating:self.scrollView];
-    self.loadingView.hidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    MainView* mainView = (MainView*)appDelegate.mainViewController.view;
+    
+    [mainView removePin:activePin];
 }
 
 - (void)viewDidLoad
@@ -114,9 +151,10 @@
     self.label.text = @"";
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.5f];
-    self.loadingView.hidden = NO;
+    //self.loadingView.hidden = NO;
     [UIView commitAnimations];
-    [self performSelectorInBackground:@selector(setupScrollView) withObject:nil];
+    [self setupScrollView];
+    //[self performSelectorInBackground:@selector(setupScrollView) withObject:nil];
 }
 
 - (void)viewDidUnload
@@ -181,6 +219,21 @@
     //[mainView shiftMapForGalleryView];
     
     self.label.text = [NSString stringWithFormat:@"%@, ~ %i km", photo.theItem.name, (int)distance];
+}
+
+- (void)bookmarkItemWithID:(NSInteger)itemID {
+    MPhoto *photo = [images objectAtIndex:itemID];
+    MItem *item = photo.theItem;
+    [item setIsFavorite:[NSNumber numberWithInt:1]];
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate.mainViewController updateBookmarkPins];
+    
+    for (GalleryItemView *view in galleryItems) {
+        if (view.itemID == itemID) {
+            [view showBookmarkImage];
+        }
+    }
+    
 }
 
 - (void)showFullscreenItemWithID:(NSInteger)itemID {

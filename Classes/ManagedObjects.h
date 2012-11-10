@@ -85,6 +85,7 @@
 -(NSArray*)getItemForCategoryIndex:(int)lineIndex;
 
 -(void)addHistory:(NSDate*)date item:(NSString*)item categories:(NSArray*) categories;
+-(void)addHistory:(NSDate*)date item:(MItem*)item;
 
 -(void)saveBookmarkFile;
 -(void)readBookmarkFile:(NSString*)mapName;

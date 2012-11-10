@@ -134,6 +134,10 @@
     HistoryListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"HistoryListCell" owner:self options:nil] lastObject];
+        UIView *bgColorView = [[UIView alloc] init];
+        [bgColorView setBackgroundColor:[UIColor brownColor]];
+        [cell setSelectedBackgroundView:bgColorView];
+        [bgColorView release];
     }
  
     MHistory *history = [self.historyList objectAtIndex:indexPath.row];
@@ -159,13 +163,13 @@
     
     MHistory *history = [self.historyList objectAtIndex:indexPath.row];
 
-    [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObjects:history.theItem,nil]];
+    [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObjects:history.theItem, [NSDate date], nil]];
 
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    return 60.0;
+    return 41.0;
 }
 
 

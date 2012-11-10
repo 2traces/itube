@@ -20,8 +20,43 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        UIGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(handleLongPress:)];
+        [self addGestureRecognizer:[longPress autorelease]];
+        UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(handleTap:)];
+        [self addGestureRecognizer:[tap autorelease]];
     }
     return self;
+}
+
+- (void)handleTap:(UILongPressGestureRecognizer *)recognizer {
+    NSLog(@"Tap...");
+    [delegate showFullscreenItemWithID:itemID];
+
+}
+
+- (void)handleLongPress:(UILongPressGestureRecognizer *)recognizer {
+    NSLog(@"Long press...");
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        [delegate bookmarkItemWithID:itemID];
+    }
+}
+
+- (void)showBookmarkImage {
+    
+    UIImageView *bookmarkView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gallery_bookmark.png"]];
+    
+    [self addSubview:bookmarkView];
+    bookmarkView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+    
+    [UIView animateWithDuration:1.0f animations:^(void){
+        bookmarkView.alpha = 0;
+    } completion:^(BOOL finished){
+        [bookmarkView removeFromSuperview];
+        [bookmarkView release];
+    }];
+    
 }
 
 - (void)centerImage {
@@ -42,7 +77,6 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [delegate showFullscreenItemWithID:itemID];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
