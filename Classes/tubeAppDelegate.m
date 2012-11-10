@@ -30,7 +30,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 -(void)setUserGeoPosition:(CGPoint)userGeoPosition
 {
     userGeoP = userGeoPosition;
-    [gl setUserGeoPosition:userGeoP];
+    [mainViewController setUserGeoPosition:userGeoP];
 }
 
 -(CGPoint)userGeoPosition
