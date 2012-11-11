@@ -15,6 +15,7 @@
 #import "VertPathScrollView.h"
 #import "TubeSplitViewController.h"
 #import "SettingsViewController.h"
+#import "NavigationViewController.h"
 
 @class TopTwoStationsView;
 @class VertPathScrollView;
@@ -52,6 +53,7 @@
 @property (nonatomic, retain) TubeSplitViewController *spltViewController;
 @property (nonatomic, retain) StatusViewController *statusViewController;
 @property (nonatomic, retain) UIButton *changeViewButton;
+@property (nonatomic, retain) NavigationViewController *navigationViewController;
 
 //- (IBAction)showInfo;
 -(void)pressedSelectFromStation;

@@ -174,6 +174,7 @@ GLint uniforms[NUM_UNIFORMS];
 @synthesize toStation;
 @synthesize fromStation;
 @synthesize stationsView;
+@synthesize navigationViewController;
 
 - (void)dealloc
 {
@@ -284,7 +285,7 @@ GLint uniforms[NUM_UNIFORMS];
 -(void) showSettings
 {
     SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];
-    [self presentModalViewController:controller animated:YES];
+    [self.navigationViewController presentModalViewController:controller animated:YES];
     [controller release];
 }
 

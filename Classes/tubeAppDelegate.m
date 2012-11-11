@@ -51,7 +51,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 	MainViewController *aController = [[MainViewController alloc] init];
 
 	self.mainViewController = aController;
-    self.navigationViewController = [[[NavigationViewController alloc] initWithNibName:@"NavigationViewController" bundle:[NSBundle mainBundle] mainViewController:self.mainViewController] autorelease];
+    self.navigationViewController = [[[NavigationViewController alloc] initWithNibName:@"NavigationViewController" bundle:[NSBundle mainBundle] mainViewController:self.mainViewController glViewController:gl] autorelease];
 	[aController release];
     CityMap *cm = [[CityMap alloc] init];
     NSString *mapName =[self nameCurrentMap];
@@ -390,14 +390,15 @@ void uncaughtExceptionHandler(NSException *exception) {
     MainView *mv = (MainView*)mainViewController.view;
     pos = [mv getMapVisibleRect];
     pos = [cityMap getGeoCoordsForRect:pos coordinates:coords];
-    [navController pushViewController:gl animated:YES];
+    [self.navigationViewController showRasterMap];
+
     [gl setGeoPosition:pos];
     [gl setStationsPosition:coords];
 }
 
 -(void)showMetroMap
 {
-    [navController popToRootViewControllerAnimated:YES];
+    [self.navigationViewController showMetroMap];
 }
 
 #pragma mark - Mail methods

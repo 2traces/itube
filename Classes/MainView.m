@@ -155,7 +155,8 @@ NSInteger const toolbarWidth=320;
     [sourceButton setImage:[UIImage imageNamed:@"src_button_pressed"] forState:UIControlStateHighlighted];
     [sourceButton addTarget:self action:@selector(selectFromStationByButton) forControlEvents:UIControlEventTouchUpInside];
     [sourceButton setFrame:CGRectMake(-90, 190, 96, 96)];
-    
+    sourceButton.hidden = YES;
+
     destinationButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [destinationButton setImage:[UIImage imageNamed:@"dst_button_normal"] forState:UIControlStateNormal];
     [destinationButton setImage:[UIImage imageNamed:@"dst_button_pressed"] forState:UIControlStateHighlighted];
@@ -280,7 +281,8 @@ NSInteger const toolbarWidth=320;
     if(pos.x > 200) pos.x = 200;
     if(pos.y < 130) pos.y += 200;
     if(pos.y > 380) pos.y = 380;
-    
+    sourceButton.hidden = NO;
+
     [UIView animateWithDuration:0.25f animations:^{ sourceButton.center = CGPointMake(pos.x-60, pos.y+20); }];
     [UIView animateWithDuration:0.25f animations:^{ destinationButton.center = CGPointMake(pos.x+60, pos.y+20); }];
     
@@ -301,7 +303,10 @@ NSInteger const toolbarWidth=320;
     [UIView animateWithDuration:0.125f animations:^{ mapView.labelView.alpha = 0.f; } completion:^(BOOL finished){ if(finished) {mapView.labelView.hidden = YES; } }];
     CGPoint p = sourceButton.center;
     p.x = -40;
-    [UIView animateWithDuration:0.125f animations:^{ sourceButton.center = p; } ];
+    [UIView animateWithDuration:0.125f animations:^{ sourceButton.center = p; } completion:^(BOOL finished) {
+        sourceButton.hidden = YES;
+    
+    }];
     p = destinationButton.center;
     if (IS_IPAD) {
         p.x = 1064;
@@ -377,7 +382,7 @@ NSInteger const toolbarWidth=320;
 -(void) showSettings
 {
     SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];
-    [self.vcontroller presentModalViewController:controller animated:YES];
+    [self.vcontroller.navigationViewController presentModalViewController:controller animated:YES];
     [controller release];
 }
 

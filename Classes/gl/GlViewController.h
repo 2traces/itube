@@ -11,6 +11,9 @@
 #import "FastAccessTableViewController.h"
 #import "ManagedObjects.h"
 #import "TopRasterView.h"
+#import "NavigationViewController.h"
+
+@class NavigationViewController;
 
 @interface GlViewController : GLKViewController 
 
@@ -18,6 +21,7 @@
 @property (nonatomic, retain) MItem *fromStation;
 @property (nonatomic, retain) MItem *toStation;
 @property (nonatomic, retain) TopRasterView *stationsView;
+@property (nonatomic, retain) NavigationViewController *navigationViewController;
 
 -(FastAccessTableViewController*)showTableView;
 -(void)returnFromSelectionFastAccess:(NSArray *)stations;

@@ -7,14 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GlViewController.h"
 
 @class CategoriesViewController;
 @class PhotosViewController;
 @class MainViewController;
+@class GlViewController;
 
 @protocol NavigationDelegate <NSObject>
 
 - (void) showCategories:(id)sender;
+- (void) showRasterMap;
+- (void) showMetroMap;
 
 @end
 
@@ -22,13 +26,14 @@
     CategoriesViewController *categoriesController;
     PhotosViewController *photosController;
     MainViewController *mainController;
+    GlViewController *glController;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController;
-
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController;
 
 @property (nonatomic, retain) CategoriesViewController *categoriesController;
 @property (nonatomic, retain) PhotosViewController *photosController;
 @property (nonatomic, retain) MainViewController *mainController;
+@property (nonatomic, retain) GlViewController *glController;
 
 @end

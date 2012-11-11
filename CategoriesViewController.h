@@ -13,6 +13,9 @@
     UITableView *tableView;
     UIScrollView *scrollView;
     UIButton *buttonSettings;
+    NSArray *itemsNames;
+    NSArray *itemsImages;
+    NSArray *itemsImagesHighlighted;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;

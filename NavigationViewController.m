@@ -10,6 +10,7 @@
 #import "CategoriesViewController.h"
 #import "PhotosViewController.h"
 #import "MainViewController.h"
+#import "MainView.h"
 
 @interface NavigationViewController ()
 
@@ -20,13 +21,18 @@
 @synthesize categoriesController;
 @synthesize photosController;
 @synthesize mainController;
+@synthesize glController;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
         self.mainController = mainViewController;
+        self.mainController.navigationViewController = self;
+
+        self.glController = glViewController;
+        self.glController.navigationViewController = self;
     }
     return self;
 }
@@ -56,7 +62,7 @@
         CGRect mainViewFrame = self.mainController.view.frame;
         CGRect photosViewFrame = self.photosController.view.frame;
         if (mainViewFrame.origin.x == 0) {
-            mainViewFrame.origin.x = photosViewFrame.origin.x = 250;
+            mainViewFrame.origin.x = photosViewFrame.origin.x = 227;
             [self.photosController.buttonCategories setTitle:@"HIDE" forState:UIControlStateNormal];
         }
         else {
@@ -64,10 +70,20 @@
             [self.photosController.buttonCategories setTitle:@"SHOW" forState:UIControlStateNormal];
 
         }
-        self.mainController.view.frame = mainViewFrame;
+        self.mainController.view.frame = self.glController.view.frame = mainViewFrame;
         self.photosController.view.frame = photosViewFrame;
     }];
 }
 
+- (void) showRasterMap {
+    [self.view insertSubview:self.glController.view belowSubview:self.mainController.view];
+    [self.mainController.view removeFromSuperview];
+}
+
+- (void) showMetroMap {
+    [self.view insertSubview:self.mainController.view belowSubview:self.glController.view];
+
+    [self.glController.view removeFromSuperview];
+}
 
 @end

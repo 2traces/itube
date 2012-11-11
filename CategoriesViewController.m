@@ -7,6 +7,7 @@
 //
 
 #import "CategoriesViewController.h"
+#import "CategoryCell.h"
 
 @interface CategoriesViewController ()
 
@@ -32,6 +33,21 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    itemsNames = [[NSArray arrayWithObjects:@"What to see",
+                                           @"Off the beaten track",
+                                           @"Wifi spots",
+                                           @"Recommended cafes", nil] retain];
+    
+    itemsImages = [[NSArray arrayWithObjects:[UIImage imageNamed:@"what_to_see_normal"],
+                                            [UIImage imageNamed:@"off_beaten_track_normal"],
+                                            [UIImage imageNamed:@"wifi_spots_normal"],
+                                            [UIImage imageNamed:@"recommended_cafes_normal"], nil] retain];
+    
+    itemsImagesHighlighted = [[NSArray arrayWithObjects:[UIImage imageNamed:@"what_to_see_pressed"],
+                                            [UIImage imageNamed:@"off_beaten_track_pressed"],
+                                            [UIImage imageNamed:@"wifi_spots_pressed"],
+                                            [UIImage imageNamed:@"recommended_cafes_pressed"], nil] retain];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,14 +72,20 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return [itemsNames count];
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+- (UITableViewCell *)tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CategoryCell *cell = [[CategoryCell alloc] initwithTitle:itemsNames[indexPath.row] image:itemsImages[indexPath.row] highlightedImage:itemsImagesHighlighted[indexPath.row]];
+    return [cell autorelease];
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)] autorelease];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
+}
 
 
 @end
