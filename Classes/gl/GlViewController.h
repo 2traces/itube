@@ -11,10 +11,12 @@
 #import "FastAccessTableViewController.h"
 #import "ManagedObjects.h"
 #import "TopTwoStationsView.h"
+#import "SelectingTabBarViewController.h"
+#import "CoreLocationController.h"
 
-@interface GlViewController : GLKViewController 
+@interface GlViewController : GLKViewController <SelectingTabBarProtocol, CoreLocationControllerDelegate>
 
-@property (nonatomic, assign) int currentSelection;
+@property (nonatomic, assign) MItem *currentSelection;
 @property (nonatomic, retain) MItem *fromStation;
 @property (nonatomic, retain) MItem *toStation;
 @property (nonatomic, retain) TopTwoStationsView *stationsView;

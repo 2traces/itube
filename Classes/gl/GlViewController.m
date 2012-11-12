@@ -10,7 +10,6 @@
 #import "RasterLayer.h"
 #import "SettingsNavController.h"
 #import "tubeAppDelegate.h"
-#import "SelectingTabBarViewController.h"
 #import "GlSprite.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
@@ -26,17 +25,19 @@ enum
 GLint uniforms[NUM_UNIFORMS];
 
 @interface Pin : NSObject {
-    int Id;
+    int _id;
     CGPoint pos;
     GlSprite *sprite;
     CGFloat size;
+    CGFloat offset, speed;
 }
 
+@property (nonatomic, readonly) int Id;
 -(id)initWithId:(int)pinId andColor:(int)color;
 -(void)setPosition:(CGPoint)point;
 -(void)draw;
 -(void)drawWithScale:(CGFloat)scale;
-
+-(void)fallFrom:(CGFloat)distance at:(CGFloat)speed;
 @end
 
 @interface GlViewController () {
@@ -53,15 +54,18 @@ GLint uniforms[NUM_UNIFORMS];
     CGFloat scale, prevScale;
     UIButton *sourceData, *settings;
     
-    int currentSelection;
+    MItem *currentSelection;
     MItem *fromStation;
     MItem *toStation;
     TopTwoStationsView *stationsView;
+    SelectingTabBarViewController *tabBarViewController;
     
     CGPoint panVelocity;
     CGFloat panTime;
     NSMutableArray *pinsArray;
+    int newPinId;
     
+    CoreLocationController *CLController;
     CGPoint userPosition;
 }
 @property (strong, nonatomic) EAGLContext *context;
@@ -80,12 +84,42 @@ GLint uniforms[NUM_UNIFORMS];
 @end
 
 @implementation Pin
+@synthesize Id = _id;
 
 -(id)initWithId:(int)pinId andColor:(int)color
 {
     if((self = [super init])) {
-        Id = pinId;
-        sprite = [[GlSprite alloc] initWithPicture:@"pin_blue"];
+        _id = pinId;
+        switch (color) {
+            case 0:
+            default:
+                sprite = [[GlSprite alloc] initWithPicture:@"user_pos"];
+                break;
+            case 1:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_aqua"];  // .GB
+                break;
+            case 2:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_brown"]; // rg.
+                break;
+            case 3:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_lightblue"];// .gB
+                break;
+            case 4:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_pink"];  // RgB
+                break;
+            case 5:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_red"];   // R..
+                break;
+            case 6:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_blue"];  // ..B
+                break;
+            case 7:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_green"]; // .G.
+                break;
+            case 8:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_yellow"];// RG.
+                break;
+        }
         size = 32;
     }
     return self;
@@ -99,7 +133,7 @@ GLint uniforms[NUM_UNIFORMS];
 -(void)draw
 {
     const CGFloat s2 = size * 0.5f;
-    [sprite setRect:CGRectMake(pos.x-s2, pos.y-s2, size, size)];
+    [sprite setRect:CGRectMake(pos.x-s2, pos.y-s2-offset, size, size)];
     [sprite draw];
 }
 
@@ -107,8 +141,22 @@ GLint uniforms[NUM_UNIFORMS];
 {
     size = 32.f / scale;
     const CGFloat s2 = size * 0.5f;
-    [sprite setRect:CGRectMake(pos.x-s2, pos.y-s2, size, size)];
+    [sprite setRect:CGRectMake(pos.x-s2, pos.y-s2-offset, size, size)];
     [sprite draw];
+}
+
+-(void)update:(CGFloat)dTime
+{
+    if(offset > 0.f) {
+        offset -= dTime * speed;
+        if(offset < 0.f) offset = 0.f;
+    }
+}
+
+-(void)fallFrom:(CGFloat)distance at:(CGFloat)sp
+{
+    offset = distance;
+    speed = sp;
 }
 
 -(void)dealloc
@@ -130,6 +178,7 @@ GLint uniforms[NUM_UNIFORMS];
 
 - (void)dealloc
 {
+	[CLController release];
     [pinsArray release];
     [stationsView release];
     [_context release];
@@ -141,6 +190,8 @@ GLint uniforms[NUM_UNIFORMS];
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    pinsArray = [[NSMutableArray alloc] init];
+    [self initSelectingTabBarController];
     
     self.context = [[[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2] autorelease];
 
@@ -149,6 +200,10 @@ GLint uniforms[NUM_UNIFORMS];
     }
     position = CGPointZero;
     scale = 1.f;
+
+	CLController = [[CoreLocationController alloc] init];
+	CLController.delegate = self;
+	[CLController.locMgr startUpdatingLocation];
     
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
@@ -186,9 +241,10 @@ GLint uniforms[NUM_UNIFORMS];
     [view addSubview:sourceData];
 
     // user geo position
-    Pin *p = [[Pin alloc] initWithId:1 andColor:0];
+    Pin *p = [[Pin alloc] initWithId:0 andColor:0];
     [pinsArray addObject:p];
     [p setPosition:userPosition];
+    newPinId = 1;
 }
 
 -(void) changeSource
@@ -369,25 +425,37 @@ GLint uniforms[NUM_UNIFORMS];
 
 -(void)returnFromSelection2:(NSArray*)items
 {
-    /*MainView *mainView = (MainView*)self.view;
     if ([items count]) {
         self.fromStation = [items objectAtIndex:0];
+        MHelper *helper = [MHelper sharedHelper];
+        
+        if ([items count] > 1 && [[items objectAtIndex:1] isKindOfClass:[NSDate class]]) {
+            //We've returned from history, DO NOT ADD THIS ITEM TO HISTORY!
+        }
+        else {
+            [helper addHistory:[NSDate date] item:self.fromStation];
+        }
+        
         [stationsView setFromStation:self.fromStation];
-        if(![mainView centerMapOnUserAndItemWithID:[self.fromStation.index integerValue]]) {
+        
+        
+        if(![self centerMapOnUserAndItemWithID:[self.fromStation.index integerValue]]) {
 #ifdef DEBUG
             NSLog(@"object %@ not found!", self.fromStation.index);
 #endif
-        }
-        else {
+        } else {
             [self setPinForItem:[self.fromStation.index integerValue]];
         }
+        
+        [helper saveHistoryFile];
+        
     }
     else {
         self.fromStation=nil;
     }
     
-	mainView.mapView.stationSelected=false;
-     */
+    
+	//mainView.mapView.stationSelected=false;
 }
 
 
@@ -395,7 +463,7 @@ GLint uniforms[NUM_UNIFORMS];
 {
     [self removeTableView];
     if (stations) {
-        if (currentSelection==0) {
+        if (currentSelection==nil) {
             if ([stations objectAtIndex:0]==self.toStation) {
                 self.fromStation=nil;
                 [stationsView resetFromStation];
@@ -413,7 +481,7 @@ GLint uniforms[NUM_UNIFORMS];
         
         //      [self returnFromSelection:stations];
     } else {
-        if (currentSelection==0) {
+        if (currentSelection==nil) {
             [stationsView setFromStation:self.fromStation];
         } else {
             [stationsView setToStation:self.toStation];
@@ -421,21 +489,41 @@ GLint uniforms[NUM_UNIFORMS];
     }
 }
 
+
 -(int)newPin:(CGPoint)coordinate color:(int)color
 {
-    
+    int newId = newPinId;
+    newPinId ++;
+    Pin *p = [[Pin alloc] initWithId:newId andColor:color];
+    float dist = 256.f/scale;
+    [p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
+    [pinsArray addObject:p];
+    [p setPosition:[self translateFromGeoToMap:coordinate]];
+    return newId;
 }
 
 -(void)removePin:(int)pinId
 {
-    
+    Pin *found = nil;
+    for (Pin *p in pinsArray) {
+        if(p.Id == pinId) {
+            found = p;
+            break;
+        }
+    }
+    if(found) [pinsArray removeObject:found];
 }
 
 -(void)removeAllPins
 {
-    
+    Pin *usrPin = nil;
+    for (Pin *p in pinsArray) {
+        if(p.Id == 0) usrPin = [p retain];
+    }
+    [pinsArray removeAllObjects];
+    [pinsArray addObject:usrPin];
+    [usrPin release];
 }
-
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)update
@@ -715,6 +803,9 @@ GLint uniforms[NUM_UNIFORMS];
     return YES;
 }
 
+#pragma mark -  Geo translations
+
+
 -(CGPoint)translateFromGeoToMap:(CGPoint)pm
 {
     const static double mult = 256.0 / 360.0;
@@ -748,5 +839,133 @@ GLint uniforms[NUM_UNIFORMS];
     Pin *p = [pinsArray objectAtIndex:0];
     if(p != nil) [p setPosition:up];
 }
+
+
+- (BOOL) centerMapOnItemWithID:(NSInteger)itemID
+{
+    CGPoint p = [rasterLayer pointOnMapViewForItemWithID:itemID];
+    CGPoint p2 = userPosition;
+    if(p.x != 0 || p.y != 0) {
+        CGRect rect;
+        rect.size.width = fabsf(p.x - p2.x) * 2.2f;
+        rect.size.height = fabsf(p.y - p2.y) * 2.2f;
+        rect.origin.x = p.x - rect.size.width * 0.5f;
+        rect.origin.y = p.y - rect.size.height * 0.5f;
+        position.x = -(rect.origin.x + rect.size.width * 0.5f);
+        position.y = rect.origin.y + rect.size.height * 0.5f;
+        scale = 256.f / rect.size.height;
+        return YES;
+    } else return NO;
+}
+
+- (BOOL) centerMapOnUserAndItemWithID:(NSInteger)itemID
+{
+    CGPoint p = [rasterLayer pointOnMapViewForItemWithID:itemID];
+    CGPoint p2 = userPosition;
+    if(p.x != 0 || p.y != 0) {
+        CGRect rect;
+        rect.size.width = fabsf(p.x - p2.x) * 1.2f;
+        rect.size.height = fabsf(p.y - p2.y) * 1.2f;
+        rect.origin.x = (p.x + p2.x - rect.size.width) * 0.5f;
+        rect.origin.y = (p.y + p2.y - rect.size.height) * 0.5f;
+        position.x = -(rect.origin.x + rect.size.width * 0.5f);
+        position.y = rect.origin.y + rect.size.height * 0.5f;
+        scale = 256.f / rect.size.height;
+        return YES;
+    } else return NO;
+}
+
+- (void)locationUpdate:(CLLocation *)location
+{
+    [self setUserGeoPosition:CGPointMake(location.coordinate.latitude, location.coordinate.longitude)];
+}
+
+- (void)locationError:(NSError *)error
+{
+	NSLog(@" error %@ ",[error description]);
+}
+
+#pragma mark -  Interface's methods
+
+- (void)initSelectingTabBarController {
+    tabBarViewController = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
+}
+
+-(void)showTabBarViewController
+{
+    SelectingTabBarViewController *controller = tabBarViewController;
+    controller.delegate = self;
+    
+    CGRect frame = controller.view.frame;
+    frame.origin.y = self.view.frame.size.height;
+    controller.view.frame = frame;
+    
+    [self.view addSubview:controller.view];
+    frame.origin.y = 0;
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.3f];
+    controller.view.frame = frame;
+    
+    [UIView commitAnimations];
+    
+    //((MainView*)self.view).shouldNotDropPins = YES;
+    
+    //[self presentModalViewController:controller animated:YES];
+}
+
+-(void)pressedSelectFromStation
+{
+    currentSelection=fromStation;
+    [self showTabBarViewController];
+}
+
+-(void)pressedSelectToStation
+{
+    currentSelection=toStation;
+    [self showTabBarViewController];
+}
+
+-(void)resetFromStation
+{
+    currentSelection=fromStation;
+    [stationsView setToStation:self.toStation];
+    [self returnFromSelection:[NSArray array]];
+}
+
+-(void)resetToStation
+{
+    currentSelection=toStation;
+    [stationsView setFromStation:self.fromStation];
+    [self returnFromSelection:[NSArray array]];
+}
+
+-(void)resetBothStations
+{
+    MItem *tempSelection = currentSelection;
+    
+    currentSelection=fromStation;
+    [stationsView setToStation:nil];
+    [stationsView setFromStation:nil];
+    
+    self.fromStation=nil;
+    self.toStation=nil;
+    
+    [self returnFromSelection2:[NSArray array]];
+    
+    currentSelection=tempSelection;
+}
+
+- (NSInteger)setPinForItem:(NSInteger)index {
+    //We'll find out the color of this item (its category color)
+    MItem *it = [[MHelper sharedHelper] getItemWithIndex:index];
+    UIColor *catColor = [[[it categories] anyObject] color];
+    
+    NSString *colorID = [catColor categoryID];
+    
+    CGPoint point = [rasterLayer pointOnMapViewForItemWithID:index];
+    return [self newPin:[self translateFromGeoToMap:point] color:[colorID intValue]];
+}
+
 
 @end
