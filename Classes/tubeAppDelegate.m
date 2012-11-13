@@ -76,11 +76,14 @@ void uncaughtExceptionHandler(NSException *exception) {
 //        [splitController release];
 //        [window makeKeyAndVisible];
     } else {
-        navController = [[UINavigationController alloc] initWithRootViewController:self.navigationViewController];
+        //navController = [[UINavigationController alloc] initWithRootViewController:self.navigationViewController];
         navController.navigationBarHidden = YES;
         mainViewController.view.frame = self.navigationViewController.view.frame = [UIScreen mainScreen].applicationFrame;
+        CGRect mainViewFrame = mainViewController.view.frame;
+        mainViewFrame.origin.y = 0;
+        mainViewController.view.frame = mainViewFrame;
         [window addSubview:[self.navigationViewController view]];
-        [window setRootViewController:navController];
+        [window setRootViewController:self.navigationViewController];
         [window makeKeyAndVisible];
     }
 }

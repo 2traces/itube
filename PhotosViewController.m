@@ -17,9 +17,15 @@
 @synthesize scrollPhotos;
 @synthesize buttonCategories;
 @synthesize navigationDelegate;
+@synthesize disappearingView;
+@synthesize panelView;
 
 - (IBAction)showCategories:(id)sender {
     [self.navigationDelegate showCategories:self];
+}
+
+- (IBAction)showHidePhotos:(id)sender {
+    [self.navigationDelegate showHidePhotos:self];
 }
 
 

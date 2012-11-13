@@ -17,6 +17,7 @@
 @protocol NavigationDelegate <NSObject>
 
 - (void) showCategories:(id)sender;
+- (void) showHidePhotos:(id)sender;
 - (void) showRasterMap;
 - (void) showMetroMap;
 
@@ -27,6 +28,7 @@
     PhotosViewController *photosController;
     MainViewController *mainController;
     GlViewController *glController;
+    BOOL categoriesOpen;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController;

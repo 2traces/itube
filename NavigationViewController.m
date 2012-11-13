@@ -11,6 +11,7 @@
 #import "PhotosViewController.h"
 #import "MainViewController.h"
 #import "MainView.h"
+#import "TopTwoStationsView.h"
 
 @interface NavigationViewController ()
 
@@ -45,10 +46,12 @@
     self.categoriesController.navigationDelegate = self;
     self.photosController = [[[PhotosViewController alloc] initWithNibName:@"PhotosViewController" bundle:[NSBundle mainBundle]]  autorelease];
     self.photosController.navigationDelegate = self;
+    self.mainController.view.layer.cornerRadius = self.photosController.view.layer.cornerRadius = 5;
+    self.mainController.view.layer.masksToBounds = self.photosController.view.layer.masksToBounds = YES;
     [self.view addSubview:[self.categoriesController view]];
     [self.view addSubview:[self.mainController view]];
     [self.view addSubview:[self.photosController view]];
-    
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,19 +61,64 @@
 }
 
 - (void) showCategories:(id)sender {
+
     [UIView animateWithDuration:0.5f animations:^{
         CGRect mainViewFrame = self.mainController.view.frame;
         CGRect photosViewFrame = self.photosController.view.frame;
         if (mainViewFrame.origin.x == 0) {
             mainViewFrame.origin.x = photosViewFrame.origin.x = 227;
-            [self.photosController.buttonCategories setTitle:@"HIDE" forState:UIControlStateNormal];
+            categoriesOpen = YES;
         }
         else {
             mainViewFrame.origin.x = photosViewFrame.origin.x = 0;
-            [self.photosController.buttonCategories setTitle:@"SHOW" forState:UIControlStateNormal];
+            categoriesOpen = NO;
 
         }
         self.mainController.view.frame = self.glController.view.frame = mainViewFrame;
+        self.photosController.view.frame = photosViewFrame;
+    }];
+}
+
+- (void) showHidePhotos:(id)sender {
+    if (categoriesOpen) {
+        return;
+    }
+    CGRect photosViewFrame = self.photosController.view.frame;
+    CGRect panelFrame = self.photosController.panelView.frame;
+    if (photosViewFrame.origin.y != 0) {
+        photosViewFrame.origin.x = 0;
+        panelFrame.origin = CGPointMake(0, 216);
+        [self.photosController.view addSubview:self.photosController.panelView];
+    }
+    self.photosController.panelView.frame = panelFrame;
+    self.photosController.view.frame = photosViewFrame;
+    [UIView animateWithDuration:0.5f animations:^{
+        CGRect photosViewFrame = self.photosController.view.frame;
+
+        if (photosViewFrame.origin.y == 0) {
+            photosViewFrame.origin.y = -176;
+            self.photosController.disappearingView.alpha = 0;
+
+        }
+        else {
+            photosViewFrame.origin.y = 0;
+            self.photosController.disappearingView.alpha = 1.0f;
+
+        }
+        self.photosController.view.frame = photosViewFrame;
+    } completion:^(BOOL finished) {
+        CGRect photosViewFrame = self.photosController.view.frame;
+        CGRect panelFrame = self.photosController.panelView.frame;
+        if (photosViewFrame.origin.y == 0) {
+
+        }
+        else {
+            photosViewFrame.origin.x = 320;
+
+            panelFrame.origin = CGPointMake(0, 216 - 176);
+            [self.mainController.view insertSubview:self.photosController.panelView aboveSubview:self.mainController.stationsView];
+        }
+        self.photosController.panelView.frame = panelFrame;
         self.photosController.view.frame = photosViewFrame;
     }];
 }
