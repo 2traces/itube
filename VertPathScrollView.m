@@ -458,7 +458,7 @@
     return stationsArray;
 }
 
--(NSMutableArray*)dsGetDirectionNames
+-(NSArray*)dsGetDirectionNames
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSArray *pathX = appDelegate.cityMap.activePath;
@@ -470,7 +470,7 @@
     
     NSString *directionName;
     
-    for (int i=0; i<objectNum; i++) {
+    for (int i=objectNum-1; i>=0; i--) {
         if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
             
             Segment *segment = (Segment*)[path objectAtIndex:i];
@@ -480,7 +480,7 @@
                 NSMutableString *finalStation = [NSMutableString stringWithString:@""];
                 
                 if([[segment start] checkForwardWay:[segment end]]) {
-                    for (Station *station in [[segment start] lastStations]) {
+                    for (Station *station in [[segment end] lastStations]) {
                         if ([finalStation isEqual:@""]) {
                             [finalStation appendFormat:@"%@",[station name]];
                         } else {
@@ -504,7 +504,7 @@
         }
     }
     
-    return directionsArray;
+    return [[directionsArray reverseObjectEnumerator] allObjects];
 }
 
 -(BOOL)dsIsStartingTransfer
@@ -548,7 +548,7 @@
     // получаем все стартовые данные для начала рисования
     NSMutableArray *stations = [[[NSMutableArray alloc] initWithArray:[self dsGetStationsArray]] autorelease];  // список станций - массив массивов
     NSMutableArray *exits = [self dsGetExitForStations];  // выходы со станций - массив
-    NSMutableArray *directions = [self dsGetDirectionNames]; // направления движения
+    NSArray *directions = [self dsGetDirectionNames]; // направления движения
     
     NSArray *stationsTime;
     
@@ -922,7 +922,7 @@
     // получаем все стартовые данные для начала рисования
     NSMutableArray *stations = [[[NSMutableArray alloc] initWithArray:[self dsGetStationsArray]] autorelease];  // список станций - массив массивов
     NSMutableArray *exits = [self dsGetExitForStations];  // выходы со станций - массив
-    NSMutableArray *directions = [self dsGetDirectionNames]; // направления движения
+    NSArray *directions = [self dsGetDirectionNames]; // направления движения
     
     NSMutableArray *stationsTime;
     
