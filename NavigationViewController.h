@@ -13,10 +13,12 @@
 @class PhotosViewController;
 @class MainViewController;
 @class GlViewController;
+@class HCBookmarksViewController;
 
 @protocol NavigationDelegate <NSObject>
 
 - (void) showCategories:(id)sender;
+- (void) showBookmarks:(id)sender;
 - (void) showHidePhotos:(id)sender;
 - (void) showRasterMap;
 - (void) showMetroMap;
@@ -26,6 +28,7 @@
 @interface NavigationViewController : UIViewController <NavigationDelegate> {
     CategoriesViewController *categoriesController;
     PhotosViewController *photosController;
+    HCBookmarksViewController *bookmarksController;
     MainViewController *mainController;
     GlViewController *glController;
     BOOL categoriesOpen;
@@ -35,6 +38,7 @@
 
 @property (nonatomic, retain) CategoriesViewController *categoriesController;
 @property (nonatomic, retain) PhotosViewController *photosController;
+@property (nonatomic, retain) HCBookmarksViewController *bookmarksController;
 @property (nonatomic, retain) MainViewController *mainController;
 @property (nonatomic, retain) GlViewController *glController;
 

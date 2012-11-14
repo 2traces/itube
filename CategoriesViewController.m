@@ -47,7 +47,7 @@
                                             [UIImage imageNamed:@"off_beaten_track_pressed"],
                                             [UIImage imageNamed:@"wifi_spots_pressed"],
                                             [UIImage imageNamed:@"recommended_cafes_pressed"], nil] retain];
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
 }
 
 - (void)didReceiveMemoryWarning

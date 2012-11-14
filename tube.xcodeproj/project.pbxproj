@@ -75,6 +75,14 @@
 		51D4D947160EF88300C9D02B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D4D946160EF88300C9D02B /* OpenGLES.framework */; };
 		51D4D94A160EF8AF00C9D02B /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D4D949160EF8AF00C9D02B /* GLKit.framework */; };
 		51F15F7714D99A3800D11B79 /* VectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F15F7614D99A3800D11B79 /* VectorLayer.m */; };
+		572B62B41653F34500B415DC /* HCBookmarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 572B62B21653F34500B415DC /* HCBookmarksViewController.m */; };
+		572B62B51653F34500B415DC /* HCBookmarksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 572B62B31653F34500B415DC /* HCBookmarksViewController.xib */; };
+		572B62B71653F4BA00B415DC /* bookmarks_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B62B61653F4BA00B415DC /* bookmarks_bg@2x.png */; };
+		572B62B91653F7F100B415DC /* bt_bookmarks_map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B62B81653F7F100B415DC /* bt_bookmarks_map@2x.png */; };
+		572B62BC1653FA0600B415DC /* HCBookmarkItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 572B62BB1653FA0600B415DC /* HCBookmarkItemView.m */; };
+		572B62BE1653FA2600B415DC /* HCBookmarkItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 572B62BD1653FA2500B415DC /* HCBookmarkItemView.xib */; };
+		572B62D216540DB100B415DC /* bookmark_item_info_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B62D116540DB100B415DC /* bookmark_item_info_bg@2x.png */; };
+		572B62D41654176C00B415DC /* bt_bookmarks_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B62D31654176C00B415DC /* bt_bookmarks_star@2x.png */; };
 		5771A32E1652ABA500332A7D /* panel_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5771A32D1652ABA500332A7D /* panel_bg@2x.png */; };
 		5771A3311652AD1200332A7D /* sample_photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5771A3301652AD1200332A7D /* sample_photo@2x.png */; };
 		5771A3341652AE1B00332A7D /* bt_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5771A3321652AE1B00332A7D /* bt_star@2x.png */; };
@@ -621,6 +629,16 @@
 		51D4D949160EF8AF00C9D02B /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		51F15F7514D99A3800D11B79 /* VectorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VectorLayer.h; path = Classes/VectorLayer.h; sourceTree = "<group>"; };
 		51F15F7614D99A3800D11B79 /* VectorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VectorLayer.m; path = Classes/VectorLayer.m; sourceTree = "<group>"; };
+		572B62B11653F34500B415DC /* HCBookmarksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCBookmarksViewController.h; sourceTree = "<group>"; };
+		572B62B21653F34500B415DC /* HCBookmarksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCBookmarksViewController.m; sourceTree = "<group>"; };
+		572B62B31653F34500B415DC /* HCBookmarksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCBookmarksViewController.xib; sourceTree = "<group>"; };
+		572B62B61653F4BA00B415DC /* bookmarks_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bookmarks_bg@2x.png"; path = "images/hidden_cities/bookmarks_bg@2x.png"; sourceTree = "<group>"; };
+		572B62B81653F7F100B415DC /* bt_bookmarks_map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bt_bookmarks_map@2x.png"; path = "images/hidden_cities/bt_bookmarks_map@2x.png"; sourceTree = "<group>"; };
+		572B62BA1653FA0600B415DC /* HCBookmarkItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCBookmarkItemView.h; sourceTree = "<group>"; };
+		572B62BB1653FA0600B415DC /* HCBookmarkItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCBookmarkItemView.m; sourceTree = "<group>"; };
+		572B62BD1653FA2500B415DC /* HCBookmarkItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCBookmarkItemView.xib; sourceTree = "<group>"; };
+		572B62D116540DB100B415DC /* bookmark_item_info_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bookmark_item_info_bg@2x.png"; path = "images/hidden_cities/bookmark_item_info_bg@2x.png"; sourceTree = "<group>"; };
+		572B62D31654176C00B415DC /* bt_bookmarks_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bt_bookmarks_star@2x.png"; path = "images/hidden_cities/bt_bookmarks_star@2x.png"; sourceTree = "<group>"; };
 		5771A32D1652ABA500332A7D /* panel_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "panel_bg@2x.png"; path = "images/hidden_cities/panel_bg@2x.png"; sourceTree = "<group>"; };
 		5771A3301652AD1200332A7D /* sample_photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sample_photo@2x.png"; path = "images/hidden_cities/sample_photo@2x.png"; sourceTree = "<group>"; };
 		5771A3321652AE1B00332A7D /* bt_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bt_star@2x.png"; path = "images/hidden_cities/bt_star@2x.png"; sourceTree = "<group>"; };
@@ -1275,6 +1293,8 @@
 				BC8E2EB31522043E00F30619 /* DemoMapViewController.xib */,
 				BC2279451604881C00414693 /* Default-568h.png */,
 				BC2279471604881C00414693 /* Default-568h@2x.png */,
+				572B62BD1653FA2500B415DC /* HCBookmarkItemView.xib */,
+				572B62B31653F34500B415DC /* HCBookmarksViewController.xib */,
 				579D28DD164815F70061B8F6 /* PhotosViewController.xib */,
 				579D28D8164815DC0061B8F6 /* CategoriesViewController.xib */,
 				579D28D316480E990061B8F6 /* NavigationViewController.xib */,
@@ -1424,6 +1444,8 @@
 				579D28D7164815DC0061B8F6 /* CategoriesViewController.m */,
 				579D28DB164815F70061B8F6 /* PhotosViewController.h */,
 				579D28DC164815F70061B8F6 /* PhotosViewController.m */,
+				572B62B11653F34500B415DC /* HCBookmarksViewController.h */,
+				572B62B21653F34500B415DC /* HCBookmarksViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1471,6 +1493,8 @@
 				9FFA6EBB14EE17920086199F /* ActiveView.m */,
 				57D09816165051A900467C1D /* CategoryCell.h */,
 				57D09817165051A900467C1D /* CategoryCell.m */,
+				572B62BA1653FA0600B415DC /* HCBookmarkItemView.h */,
+				572B62BB1653FA0600B415DC /* HCBookmarkItemView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1519,6 +1543,10 @@
 		57D097FE1650430B00467C1D /* Hidden Cities */ = {
 			isa = PBXGroup;
 			children = (
+				572B62D31654176C00B415DC /* bt_bookmarks_star@2x.png */,
+				572B62D116540DB100B415DC /* bookmark_item_info_bg@2x.png */,
+				572B62B81653F7F100B415DC /* bt_bookmarks_map@2x.png */,
+				572B62B61653F4BA00B415DC /* bookmarks_bg@2x.png */,
 				5771A3361652B0DB00332A7D /* bt_photo_like@2x.png */,
 				5771A3321652AE1B00332A7D /* bt_star@2x.png */,
 				5771A3331652AE1B00332A7D /* bt_stripes@2x.png */,
@@ -2495,6 +2523,12 @@
 				5771A3341652AE1B00332A7D /* bt_star@2x.png in Resources */,
 				5771A3351652AE1B00332A7D /* bt_stripes@2x.png in Resources */,
 				5771A3371652B0DB00332A7D /* bt_photo_like@2x.png in Resources */,
+				572B62B51653F34500B415DC /* HCBookmarksViewController.xib in Resources */,
+				572B62B71653F4BA00B415DC /* bookmarks_bg@2x.png in Resources */,
+				572B62B91653F7F100B415DC /* bt_bookmarks_map@2x.png in Resources */,
+				572B62BE1653FA2600B415DC /* HCBookmarkItemView.xib in Resources */,
+				572B62D216540DB100B415DC /* bookmark_item_info_bg@2x.png in Resources */,
+				572B62D41654176C00B415DC /* bt_bookmarks_star@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2587,6 +2621,8 @@
 				579D28D9164815DC0061B8F6 /* CategoriesViewController.m in Sources */,
 				579D28DE164815F70061B8F6 /* PhotosViewController.m in Sources */,
 				57D09818165051A900467C1D /* CategoryCell.m in Sources */,
+				572B62B41653F34500B415DC /* HCBookmarksViewController.m in Sources */,
+				572B62BC1653FA0600B415DC /* HCBookmarkItemView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2737,14 +2773,14 @@
 					armv6,
 					armv7,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alexey Starovoitov (NN49CP5774)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "68A30648-4F38-4485-B3D3-9260E0173230";
+				PROVISIONING_PROFILE = "02C304F0-022E-4BDA-891C-E41D26A57357";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2756,13 +2792,13 @@
 					armv6,
 					armv7,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alexey Starovoitov (NN49CP5774)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "68A30648-4F38-4485-B3D3-9260E0173230";
+				PROVISIONING_PROFILE = "02C304F0-022E-4BDA-891C-E41D26A57357";
 				SDKROOT = iphoneos;
 			};
 			name = Release;

@@ -24,5 +24,6 @@
 
 - (IBAction)showCategories:(id)sender;
 - (IBAction)showHidePhotos:(id)sender;
+- (IBAction)showBookmarks:(id)sender;
 
 @end

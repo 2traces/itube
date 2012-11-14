@@ -24,6 +24,13 @@
     [self.navigationDelegate showCategories:self];
 }
 
+- (IBAction)showBookmarks:(id)sender {
+    [self.navigationDelegate showBookmarks:self];
+
+}
+
+
+
 - (IBAction)showHidePhotos:(id)sender {
     [self.navigationDelegate showHidePhotos:self];
 }

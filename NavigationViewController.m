@@ -12,6 +12,7 @@
 #import "MainViewController.h"
 #import "MainView.h"
 #import "TopTwoStationsView.h"
+#import "HCBookmarksViewController.h"
 
 @interface NavigationViewController ()
 
@@ -23,6 +24,7 @@
 @synthesize photosController;
 @synthesize mainController;
 @synthesize glController;
+@synthesize bookmarksController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController
 {
@@ -78,6 +80,15 @@
         self.photosController.view.frame = photosViewFrame;
     }];
 }
+
+- (void) showBookmarks:(id)sender {
+    if (!self.bookmarksController) {
+        self.bookmarksController = [[[HCBookmarksViewController alloc] initWithNibName:@"HCBookmarksViewController" bundle:[NSBundle mainBundle]] autorelease];
+    }
+    [self presentModalViewController:self.bookmarksController animated:YES];
+
+}
+
 
 - (void) showHidePhotos:(id)sender {
     if (categoriesOpen) {
