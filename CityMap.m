@@ -2092,8 +2092,16 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         index ++;
 	}
     [[MHelper sharedHelper] saveContext];
-    _w = boundingBox.origin.x * 2 + boundingBox.size.width;
-    _h = boundingBox.origin.y * 2 + boundingBox.size.height;
+    if(boundingBox.origin.x > 0) {
+        _w = boundingBox.origin.x * 2 + boundingBox.size.width;
+    } else {
+        _w = boundingBox.size.width;
+    }
+    if(boundingBox.origin.y > 0) {
+        _h = boundingBox.origin.y * 2 + boundingBox.size.height;
+    } else {
+        _h = boundingBox.size.height;
+    }
 		
 	INISection *section = [parserMap getSection:@"AdditionalNodes"];
 	for (NSString* key in section.allKeys) {
@@ -2364,8 +2372,16 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         index ++;
 	}
     [[MHelper sharedHelper] saveContext];
-    _w = boundingBox.origin.x * 2 + boundingBox.size.width;
-    _h = boundingBox.origin.y * 2 + boundingBox.size.height;
+    if(boundingBox.origin.x > 0) {
+        _w = boundingBox.origin.x * 2 + boundingBox.size.width;
+    } else {
+        _w = boundingBox.size.width;
+    }
+    if(boundingBox.origin.y > 0) {
+        _h = boundingBox.origin.y * 2 + boundingBox.size.height;
+    } else {
+        _h = boundingBox.size.height;
+    }
     
 	INISection *section = [parserMap getSection:@"AdditionalNodes"];
 	for (NSString* key in section.allKeys) {

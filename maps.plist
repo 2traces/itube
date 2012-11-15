@@ -2,6 +2,27 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>default</key>
+	<dict>
+		<key>url1</key>
+		<string></string>
+		<key>url2</key>
+		<string></string>
+		<key>ver</key>
+		<string>1</string>
+		<key>name</key>
+		<string>New York</string>
+		<key>filename</key>
+		<string>newyork</string>
+		<key>description</key>
+		<string>newyork.txt</string>
+		<key>picture</key>
+		<string>newyork.png</string>
+		<key>zip_download</key>
+		<string>/maps/newyork/newyork1.zip</string>
+		<key>statusURL</key>
+		<string></string>
+	</dict>
 	<key>com.zuev.itube.paris.london</key>
 	<dict>
 		<key>url1</key>
@@ -42,7 +63,7 @@
 		<key>zip_download</key>
 		<string>/maps/paris/paris1.zip</string>
 	</dict>
-	<key>default</key>
+	<key>com.zuev.itube.paris.berlin</key>
 	<dict>
 		<key>url1</key>
 		<string>http://www.x-provocation.com/maps/berlin/osm/</string>
