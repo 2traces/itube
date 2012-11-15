@@ -7,7 +7,7 @@
 5	Run, Forest, run!	16
 6	Hospital	17
 [list]
-0	Isla de la Juventud	0,1,2,3
+0	Isla de la Juventud	0,1,2,3	52.1234,13.4324
 1	Peninsula de Guanahacabibes	00.jpeg,01.jpeg,02.jpeg
 2	Cayo Largo
 10	Nueva Gerona	03.jpeg,04.jpeg,05.jpeg

@@ -119,6 +119,30 @@ GLint uniforms[NUM_UNIFORMS];
             case 8:
                 sprite = [[GlSprite alloc] initWithPicture:@"pin_yellow"];// RG.
                 break;
+            case 9:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_aqua"];  // .GB
+                break;
+            case 10:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_brown"]; // rg.
+                break;
+            case 11:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_lightblue"];// .gB
+                break;
+            case 12:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_pink"];  // RgB
+                break;
+            case 13:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_red"];   // R..
+                break;
+            case 14:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_blue"];  // ..B
+                break;
+            case 15:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_green"]; // .G.
+                break;
+            case 16:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_yellow"];// RG.
+                break;
         }
         size = 32;
     }
@@ -575,6 +599,9 @@ GLint uniforms[NUM_UNIFORMS];
     _modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
     
     //_rotation += self.timeSinceLastUpdate * 0.5f;
+    for (Pin *p in pinsArray) {
+        [p update:self.timeSinceLastUpdate];
+    }
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
@@ -843,34 +870,34 @@ GLint uniforms[NUM_UNIFORMS];
 
 - (BOOL) centerMapOnItemWithID:(NSInteger)itemID
 {
-    CGPoint p = [rasterLayer pointOnMapViewForItemWithID:itemID];
+    CGPoint p = [self translateFromGeoToMap:[rasterLayer pointOnMapViewForItemWithID:itemID]];
     CGPoint p2 = userPosition;
     if(p.x != 0 || p.y != 0) {
         CGRect rect;
         rect.size.width = fabsf(p.x - p2.x) * 2.2f;
         rect.size.height = fabsf(p.y - p2.y) * 2.2f;
-        rect.origin.x = p.x - rect.size.width * 0.5f;
-        rect.origin.y = p.y - rect.size.height * 0.5f;
+        rect.origin.x = p.x - rect.size.width * 0.5f - 128.f;
+        rect.origin.y = 128.f - (p.y - rect.size.height * 0.5f);
         position.x = -(rect.origin.x + rect.size.width * 0.5f);
         position.y = rect.origin.y + rect.size.height * 0.5f;
-        scale = 256.f / rect.size.height;
+        scale = 256.f / MAX(rect.size.height, rect.size.width);
         return YES;
     } else return NO;
 }
 
 - (BOOL) centerMapOnUserAndItemWithID:(NSInteger)itemID
 {
-    CGPoint p = [rasterLayer pointOnMapViewForItemWithID:itemID];
+    CGPoint p = [self translateFromGeoToMap:[rasterLayer pointOnMapViewForItemWithID:itemID]];
     CGPoint p2 = userPosition;
     if(p.x != 0 || p.y != 0) {
         CGRect rect;
         rect.size.width = fabsf(p.x - p2.x) * 1.2f;
         rect.size.height = fabsf(p.y - p2.y) * 1.2f;
-        rect.origin.x = (p.x + p2.x - rect.size.width) * 0.5f;
-        rect.origin.y = (p.y + p2.y - rect.size.height) * 0.5f;
+        rect.origin.x = (p.x + p2.x - rect.size.width) * 0.5f - 128.f;
+        rect.origin.y = 128.f - (p.y + p2.y - rect.size.height) * 0.5f;
         position.x = -(rect.origin.x + rect.size.width * 0.5f);
         position.y = rect.origin.y + rect.size.height * 0.5f;
-        scale = 256.f / rect.size.height;
+        scale = 256.f / MAX(rect.size.height, rect.size.width);
         return YES;
     } else return NO;
 }
@@ -964,7 +991,7 @@ GLint uniforms[NUM_UNIFORMS];
     NSString *colorID = [catColor categoryID];
     
     CGPoint point = [rasterLayer pointOnMapViewForItemWithID:index];
-    return [self newPin:[self translateFromGeoToMap:point] color:[colorID intValue]];
+    return [self newPin:point color:[colorID intValue]];
 }
 
 
