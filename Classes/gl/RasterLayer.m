@@ -1167,11 +1167,28 @@
                 item.index = [NSNumber numberWithInt:_id];
                 NSString *categories = nil;
                 NSString *images = nil;
+                NSString *coordinates = nil;
+                
+                for (int i=2; i<[words count]; i++) {
+                    NSString *s = [words objectAtIndex:i];
+                    NSRange range;
+                    range = [s rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]];
+                    if(range.location != NSNotFound) {
+                        images = s;
+                        continue;
+                    }
+                    range = [s rangeOfString:@"."];
+                    if(range.location != NSNotFound) {
+                        coordinates = s;
+                        continue;
+                    }
+                    categories = s;
+                }
                 
                 //Try reading categories
-                if ([words count] > 2) {
-                    categories = [words objectAtIndex:2];   
-                }
+//                if ([words count] > 2) {
+//                    categories = [words objectAtIndex:2];   
+//                }
                 if (categories) {
                     NSArray *catIds = [categories componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
                     NSMutableSet *set = [item mutableSetValueForKey:@"categories"];
@@ -1180,18 +1197,18 @@
                         if (cat) {
                             [set addObject:cat];
                         }
-                        else {
-                            //OMG, it's not a category, it's an... image!
-                            [words addObject:categories]; //let images be on index 3, as expected
-                            break;
-                        }
+//                        else {
+//                            //OMG, it's not a category, it's an... image!
+//                            [words addObject:categories]; //let images be on index 3, as expected
+//                            break;
+//                        }
                     }
                 }
                 
                 //Try reading images
-                if ([words count] > 3) {
-                    images = [words objectAtIndex:3];
-                }
+//                if ([words count] > 3) {
+//                    images = [words objectAtIndex:3];
+//                }
                 if (images) {
                     NSArray *imageNames = [images componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
                     NSMutableSet *set = [item mutableSetValueForKey:@"photos"];
@@ -1204,6 +1221,14 @@
                             }
                             [[MHelper sharedHelper] saveContext];
                         }
+                    }
+                }
+                
+                if(coordinates) {
+                    NSArray *gps = [coordinates componentsSeparatedByString:@","];
+                    if([gps count] >= 2) {
+                        item.posX = [NSNumber numberWithFloat:[[gps objectAtIndex:0] floatValue]];
+                        item.posY = [NSNumber numberWithFloat:[[gps objectAtIndex:1] floatValue]];
                     }
                 }
             }

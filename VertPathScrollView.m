@@ -32,13 +32,14 @@
     
     // determing first Station
     
-    Station *firstStation;
-    
+    Station *firstStation = nil;
+
     if (count>0) {
         if ([[path objectAtIndex:0] isKindOfClass:[Segment class]]) {
             Segment *firstSegment = (Segment*)[path objectAtIndex:0];
             Station *someStation = [firstSegment start];
-            if ([someStation.name isEqual:[mainController.fromStation name]] && someStation.line.index == [mainController.fromStation.lines.index intValue]) {
+            if ([someStation.name isEqual:[mainController.fromStation name]] &&
+                (someStation.line.index == [mainController.fromStation.lines.index intValue] || firstStation == nil)) {
                 firstStation = someStation;
             } else {
                 firstStation = [firstSegment end];
@@ -58,6 +59,7 @@
     NSMutableArray *normalPath = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     
     Station *threadStart = firstStation;
+    NSArray *threadStartArray = nil;
     
     for (int i=0; i<count; i++) {
         
@@ -65,34 +67,32 @@
             
             Segment *tempSegment = (Segment*)[path objectAtIndex:i];
             
-            if ([tempSegment start] != threadStart) {
+            if ([tempSegment start] == threadStart || [threadStartArray containsObject:[tempSegment start]]) {
+                
+                [normalPath addObject:tempSegment];
+                threadStart = [tempSegment end];
+                
+            } else {
                 
                 Segment *newSegment = [[[Segment alloc] initFromStation:[tempSegment end] toStation:[tempSegment start] withDriving:[tempSegment driving]] autorelease];
                 [normalPath addObject:newSegment];
                 threadStart=[tempSegment start];
                 
-            } else {
-                
-                [normalPath addObject:tempSegment];
-                threadStart =[tempSegment end];
-                
             }
+            [threadStartArray release];
+            threadStartArray = nil;
             
         } else {
             
             Transfer *transfer = (Transfer*)[path objectAtIndex:i];
             
-            NSArray *array = [[transfer stations] allObjects];
-            
-            if ([array objectAtIndex:0]==threadStart && [array count] > 1) {
-                threadStart = [array objectAtIndex:1];
-            } else {
-                threadStart = [array objectAtIndex:0];
-            }
+            threadStartArray = [[[transfer stations] allObjects] retain];
+            threadStart = nil;
             
             [normalPath addObject:transfer];
         }
     }
+    [threadStartArray release];
     
     return normalPath;
 }
@@ -458,7 +458,7 @@
     return stationsArray;
 }
 
--(NSMutableArray*)dsGetDirectionNames
+-(NSArray*)dsGetDirectionNames
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSArray *pathX = appDelegate.cityMap.activePath;
@@ -470,7 +470,7 @@
     
     NSString *directionName;
     
-    for (int i=0; i<objectNum; i++) {
+    for (int i=objectNum-1; i>=0; i--) {
         if ([[path objectAtIndex:i] isKindOfClass:[Segment class]]) {
             
             Segment *segment = (Segment*)[path objectAtIndex:i];
@@ -480,7 +480,7 @@
                 NSMutableString *finalStation = [NSMutableString stringWithString:@""];
                 
                 if([[segment start] checkForwardWay:[segment end]]) {
-                    for (Station *station in [[segment start] lastStations]) {
+                    for (Station *station in [[segment end] lastStations]) {
                         if ([finalStation isEqual:@""]) {
                             [finalStation appendFormat:@"%@",[station name]];
                         } else {
@@ -504,7 +504,7 @@
         }
     }
     
-    return directionsArray;
+    return [[directionsArray reverseObjectEnumerator] allObjects];
 }
 
 -(BOOL)dsIsStartingTransfer
@@ -548,7 +548,7 @@
     // получаем все стартовые данные для начала рисования
     NSMutableArray *stations = [[[NSMutableArray alloc] initWithArray:[self dsGetStationsArray]] autorelease];  // список станций - массив массивов
     NSMutableArray *exits = [self dsGetExitForStations];  // выходы со станций - массив
-    NSMutableArray *directions = [self dsGetDirectionNames]; // направления движения
+    NSArray *directions = [self dsGetDirectionNames]; // направления движения
     
     NSArray *stationsTime;
     
@@ -922,7 +922,7 @@
     // получаем все стартовые данные для начала рисования
     NSMutableArray *stations = [[[NSMutableArray alloc] initWithArray:[self dsGetStationsArray]] autorelease];  // список станций - массив массивов
     NSMutableArray *exits = [self dsGetExitForStations];  // выходы со станций - массив
-    NSMutableArray *directions = [self dsGetDirectionNames]; // направления движения
+    NSArray *directions = [self dsGetDirectionNames]; // направления движения
     
     NSMutableArray *stationsTime;
     
