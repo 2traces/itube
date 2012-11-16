@@ -148,6 +148,9 @@
 }
 
 - (void) showReaderWithItems:(NSArray*)items activePage:(NSInteger)activePage {
+    if (categoriesOpen) {
+        return;
+    }
     self.readerController = [[[ReaderViewController alloc] initWithReaderItems:items] autorelease];
     [self.navigationController pushViewController:self.readerController animated:YES];
 }
