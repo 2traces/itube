@@ -13,6 +13,7 @@
 #import "MainView.h"
 #import "TopTwoStationsView.h"
 #import "HCBookmarksViewController.h"
+#import "ReaderViewController.h"
 
 @interface NavigationViewController ()
 
@@ -25,6 +26,7 @@
 @synthesize mainController;
 @synthesize glController;
 @synthesize bookmarksController;
+@synthesize readerController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController
 {
@@ -144,5 +146,11 @@
 
     [self.glController.view removeFromSuperview];
 }
+
+- (void) showReaderWithItems:(NSArray*)items activePage:(NSInteger)activePage {
+    self.readerController = [[[ReaderViewController alloc] initWithReaderItems:items] autorelease];
+    [self.navigationController pushViewController:self.readerController animated:YES];
+}
+
 
 @end

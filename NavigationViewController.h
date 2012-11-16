@@ -14,6 +14,7 @@
 @class MainViewController;
 @class GlViewController;
 @class HCBookmarksViewController;
+@class ReaderViewController;
 
 @protocol NavigationDelegate <NSObject>
 
@@ -22,6 +23,7 @@
 - (void) showHidePhotos:(id)sender;
 - (void) showRasterMap;
 - (void) showMetroMap;
+- (void) showReaderWithItems:(NSArray*)items activePage:(NSInteger)activePage;
 
 @end
 
@@ -29,6 +31,7 @@
     CategoriesViewController *categoriesController;
     PhotosViewController *photosController;
     HCBookmarksViewController *bookmarksController;
+    ReaderViewController *readerController;
     MainViewController *mainController;
     GlViewController *glController;
     BOOL categoriesOpen;
@@ -38,6 +41,7 @@
 
 @property (nonatomic, retain) CategoriesViewController *categoriesController;
 @property (nonatomic, retain) PhotosViewController *photosController;
+@property (nonatomic, retain) ReaderViewController *readerController;
 @property (nonatomic, retain) HCBookmarksViewController *bookmarksController;
 @property (nonatomic, retain) MainViewController *mainController;
 @property (nonatomic, retain) GlViewController *glController;
