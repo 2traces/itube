@@ -1976,6 +1976,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
     }   
     
+    [self loadPlacesForMap:mapFile];
+    
     self.pathToMap = [mapFile stringByDeletingLastPathComponent];
     
     [[MHelper sharedHelper] readHistoryFile:mapName];
@@ -2160,7 +2162,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if (path) {
         NSData *jsonData = [NSData dataWithContentsOfFile:path];
         if (jsonData) {
-            placesData = [NSJSONSerialization JSONObjectWithData:jsonData options:nil error:nil];
+            placesData = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
         }
     }
     if (placesData) {
@@ -2176,10 +2178,32 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
         NSArray *places = [placesData objectForKey:@"places"];
         for (NSDictionary *place in places) {
-             MPlace *newPlace = [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
-             newPlace.name=[place objectForKey:@"name"];
-             newPlace.index = [NSNumber numberWithInt:[[place objectForKey:@"index"] integerValue]];
-            
+            MPlace *newPlace = [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+            newPlace.name = [place objectForKey:@"name"];
+            newPlace.index = [NSNumber numberWithInt:[[place objectForKey:@"index"] integerValue]];
+            newPlace.text = [place objectForKey:@"text"];
+            NSMutableSet *setCategories = [newPlace mutableSetValueForKey:@"categories"];
+            //Read categories for this place
+            for (NSNumber *catId in [place objectForKey:@"categories"]) {
+                MCategory *cat = [[MHelper sharedHelper] categoryByIndex:[catId intValue]];
+                if (cat) {
+                    [setCategories addObject:cat];
+                }
+                else {
+                    //OMG, it's not a category...
+                    continue;
+                }
+            }
+            //Read photos for this place
+            NSMutableSet *setPhotos = [newPlace mutableSetValueForKey:@"photos"];
+            for (NSString *filename in [place objectForKey:@"photos"]) {
+                MPhoto *photo = [[MHelper sharedHelper] photoByFilename:filename];
+                if (!photo) {
+                    photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+                    photo.filename = filename;
+                }
+                [setPhotos addObject:photo];
+            }
         }
         
         

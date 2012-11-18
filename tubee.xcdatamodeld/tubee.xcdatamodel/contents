@@ -21,6 +21,7 @@
     </entity>
     <entity name="Photo" representedClassName="MPhoto" syncable="YES">
         <attribute name="filename" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Place" representedClassName="MPlace" syncable="YES">
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -38,11 +39,11 @@
         <relationship name="lines" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Line" inverseName="stations" inverseEntity="Line" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Category" positionX="160" positionY="192" width="128" height="135"/>
         <element name="History" positionX="-630" positionY="-450" width="128" height="90"/>
         <element name="Line" positionX="-549" positionY="-171" width="128" height="105"/>
-        <element name="Station" positionX="-279" positionY="-324" width="128" height="120"/>
-        <element name="Category" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="Photo" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Place" positionX="160" positionY="192" width="128" height="135"/>
-        <element name="Photo" positionX="160" positionY="192" width="128" height="60"/>
+        <element name="Station" positionX="-279" positionY="-324" width="128" height="120"/>
     </elements>
 </model>

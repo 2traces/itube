@@ -1215,7 +1215,7 @@
                     for (NSString *imageName in imageNames) {
                         if (![imageName isEqualToString:@""]) {
                             MPhoto *photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
-                            photo.fileName = imageName;
+                            photo.filename = imageName;
                             if (photo) {
                                 [set addObject:photo];
                             }

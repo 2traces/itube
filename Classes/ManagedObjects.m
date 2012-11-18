@@ -35,6 +35,7 @@
 @dynamic index;
 @dynamic isFavorite;
 @dynamic name;
+@dynamic text;
 @dynamic categories;
 @dynamic photos;
 @end
@@ -51,8 +52,9 @@
 
 @implementation MPhoto
 
+@dynamic index;
 @dynamic isFavorite;
-@dynamic fileName;
+@dynamic filename;
 @dynamic theItem;
 @end
 
@@ -291,6 +293,30 @@ static MHelper * _sharedHelper;
         return nil;
     }
 }
+
+-(MPhoto*)photoByFilename:(NSString*)filename {
+    NSError *error =nil;
+    
+    NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:20];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"filename like[c] %@",filename];
+    [fetchRequest setPredicate:predicate];
+    
+    NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if(![fetchedItems count]) NSLog(@"photo not found %@", filename);
+    
+    if ([fetchedItems count]>0) {
+        return [fetchedItems objectAtIndex:0];
+    } else {
+        return nil;
+    }
+}
+
 
 -(NSArray*)getStationList
 {

@@ -40,6 +40,7 @@
 @property (nonatomic, retain) NSNumber* index;
 @property (nonatomic, retain) NSNumber * isFavorite;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSSet *categories;
 @property (nonatomic, retain) NSSet *photos;
 @property (nonatomic, retain) NSNumber* posX;
@@ -60,8 +61,10 @@
 @interface MPhoto : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * isFavorite;
-@property (nonatomic, retain) NSString * fileName;
+@property (nonatomic, retain) NSString * filename;
 @property (nonatomic, retain) MItem* theItem;
+@property (nonatomic, assign) NSNumber* index;
+
 
 @end
 
@@ -109,6 +112,7 @@
 -(NSArray*)getStationList;
 -(NSArray*)getTransferList;
 -(MLine*)lineByName:(NSString*)name;
+-(MPhoto*)photoByFilename:(NSString*)filename;
 -(MLine*)lineByIndex:(int)index;
 -(MCategory*)categoryByIndex:(int)index;
 -(MStation*)getStationWithName:(NSString*)station forLine:(NSString*)lineName;
