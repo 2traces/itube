@@ -27,12 +27,26 @@
 @dynamic transfer;
 @end
 
+
+@implementation MPlace
+
+@dynamic posX;
+@dynamic posY;
+@dynamic index;
+@dynamic isFavorite;
+@dynamic name;
+@dynamic categories;
+@dynamic photos;
+@end
+
 @implementation MCategory
 
 @dynamic index;
 @dynamic color;
 @dynamic name;
 @dynamic items;
+@dynamic image_highlighted;
+@dynamic image_normal;
 @end
 
 @implementation MPhoto
@@ -230,6 +244,29 @@ static MHelper * _sharedHelper;
         return nil;
     }
 }
+
+-(MCategory*)categoryByIndex:(int)index {
+    NSError *error =nil;
+    
+    NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:20];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"index=%@",[NSNumber numberWithInt:index]];
+    [fetchRequest setPredicate:predicate];
+    
+    NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if ([fetchedItems count]>0) {
+        return [fetchedItems objectAtIndex:0];
+    } else {
+        return nil;
+    }
+}
+
 
 -(MLine*)lineByName:(NSString *)name
 {

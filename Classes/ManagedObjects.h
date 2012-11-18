@@ -19,6 +19,7 @@
 
 @class MLine;
 @class MTransfer;
+@class MCategory;
 
 @interface MItem : NSManagedObject
 
@@ -33,11 +34,26 @@
 
 @end
 
+
+@interface MPlace : NSManagedObject
+
+@property (nonatomic, retain) NSNumber* index;
+@property (nonatomic, retain) NSNumber * isFavorite;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSSet *categories;
+@property (nonatomic, retain) NSSet *photos;
+@property (nonatomic, retain) NSNumber* posX;
+@property (nonatomic, retain) NSNumber* posY;
+
+@end
+
 @interface MCategory : NSManagedObject
 
 @property (nonatomic, assign) NSNumber* index;
 @property (nonatomic, retain) id color;
-@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *image_normal;
+@property (nonatomic, retain) NSString *image_highlighted;
 @property (nonatomic, retain) NSSet *items;
 @end
 
@@ -94,6 +110,7 @@
 -(NSArray*)getTransferList;
 -(MLine*)lineByName:(NSString*)name;
 -(MLine*)lineByIndex:(int)index;
+-(MCategory*)categoryByIndex:(int)index;
 -(MStation*)getStationWithName:(NSString*)station forLine:(NSString*)lineName;
 -(MStation*)getStationWithIndex:(int)index andLineIndex:(int)lineIndex;
 // возвращает станции для линии

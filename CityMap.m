@@ -2154,6 +2154,39 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [self predraw];
 }
 
+- (void) loadPlacesForMap:(NSString*)mapName {
+    NSString *path = [NSString stringWithFormat:@"%@/places.json",[mapName stringByDeletingLastPathComponent]];
+    NSDictionary *placesData = nil;
+    if (path) {
+        NSData *jsonData = [NSData dataWithContentsOfFile:path];
+        if (jsonData) {
+            placesData = [NSJSONSerialization JSONObjectWithData:jsonData options:nil error:nil];
+        }
+    }
+    if (placesData) {
+        //Read categories
+        NSArray *categories = [placesData objectForKey:@"categories"];
+        for (NSDictionary *category in categories) {
+            MCategory *newCat = [NSEntityDescription insertNewObjectForEntityForName:@"Category" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+            newCat.name=[category objectForKey:@"name"];
+            newCat.index = [NSNumber numberWithInt:[[category objectForKey:@"index"] integerValue]];
+            newCat.color = [self colorForHex:[category objectForKey:@"color"]];
+            newCat.image_normal = [category objectForKey:@"image_normal"];
+            newCat.image_highlighted = [category objectForKey:@"image_highlighted"];
+        }
+        NSArray *places = [placesData objectForKey:@"places"];
+        for (NSDictionary *place in places) {
+             MPlace *newPlace = [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+             newPlace.name=[place objectForKey:@"name"];
+             newPlace.index = [NSNumber numberWithInt:[[place objectForKey:@"index"] integerValue]];
+            
+        }
+        
+        
+        [[MHelper sharedHelper] saveContext];
+    }
+}
+
 -(void) loadNewMap:(NSString *)mapFile trp:(NSString *)trpFile {
 
 	INIParser* parserTrp, *parserMap;

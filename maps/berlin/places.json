@@ -3,30 +3,30 @@
         {
             "name": "What to see",
             "image_normal": "cat_wts_normal",
-            "image_highighted": "cat_wts_pressed",
+            "image_highlighted": "cat_wts_pressed",
             "color": "dc79b0",
-            "category_id": "category_1"
+            "index": 1
         },
         {
             "name": "Off the beaten track",
             "image_normal": "cat_otbt_normal",
-            "image_highighted": "cat_otb_pressed",
+            "image_highlighted": "cat_otb_pressed",
             "color": "dc79b0",
-            "category_id": "category_2"
+            "index": 2
         },
         {
             "name": "Wifi spots",
             "image_normal": "cat_ws_normal",
-            "image_highighted": "cat_ws_pressed",
+            "image_highlighted": "cat_ws_pressed",
             "color": "dc79b0",
-            "category_id": "category_3"
+            "index": 3
         },
         {
             "name": "Recommended cafes",
             "image_normal": "cat_rc_normal",
-            "image_highighted": "cat_rc_pressed",
+            "image_highlighted": "cat_rc_pressed",
             "color": "dc79b0",
-            "category_id": "category_4"
+            "index": 4
         }
     ],
     "items": [
@@ -40,8 +40,8 @@
                 "02"
             ],
             "categories": [
-                "category_1",
-                "category_2"
+                1,
+                2
             ]
         },
         {
@@ -54,8 +54,8 @@
                 "04"
             ],
             "categories": [
-                "category_2",
-                "category_3"
+                2,
+                3
             ]
         },
         {
@@ -68,8 +68,8 @@
                 "06"
             ],
             "categories": [
-                "category_1",
-                "category_3"
+                1,
+                3
             ]
         },
         {
@@ -82,8 +82,8 @@
                 "08"
             ],
             "categories": [
-                "category_3",
-                "category_4"
+                3,
+                4
             ]
         },
         {
@@ -96,8 +96,8 @@
                 "10"
             ],
             "categories": [
-                "category_1",
-                "category_4"
+                1,
+                4
             ]
         },
         {
@@ -110,8 +110,8 @@
                 "12"
             ],
             "categories": [
-                "category_2",
-                "category_4"
+                2,
+                4
             ]
         },
         {
@@ -124,8 +124,8 @@
                 "14"
             ],
             "categories": [
-                "category_2",
-                "category_3"
+                2,
+                3
             ]
         },
     ]
