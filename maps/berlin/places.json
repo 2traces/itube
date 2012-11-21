@@ -2,29 +2,29 @@
     "categories": [
         {
             "name": "What to see",
-            "image_normal": "cat_wts_normal",
-            "image_highlighted": "cat_wts_pressed",
+            "image_normal": "cat_wts_normal.png",
+            "image_highlighted": "cat_wts_pressed.png",
             "color": "dc79b0",
             "index": 1
         },
         {
             "name": "Off the beaten track",
-            "image_normal": "cat_otbt_normal",
-            "image_highlighted": "cat_otb_pressed",
+            "image_normal": "cat_otbt_normal.png",
+            "image_highlighted": "cat_otbt_pressed.png",
             "color": "dc79b0",
             "index": 2
         },
         {
             "name": "Wifi spots",
-            "image_normal": "cat_ws_normal",
-            "image_highlighted": "cat_ws_pressed",
+            "image_normal": "cat_ws_normal.png",
+            "image_highlighted": "cat_ws_pressed.png",
             "color": "dc79b0",
             "index": 3
         },
         {
             "name": "Recommended cafes",
-            "image_normal": "cat_rc_normal",
-            "image_highlighted": "cat_rc_pressed",
+            "image_normal": "cat_rc_normal.png",
+            "image_highlighted": "cat_rc_pressed.png",
             "color": "dc79b0",
             "index": 4
         }

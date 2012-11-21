@@ -9,6 +9,7 @@
 #import "CategoriesViewController.h"
 #import "CategoryCell.h"
 #import "ManagedObjects.h"
+#import "tubeAppDelegate.h"
 
 @interface CategoriesViewController ()
 
@@ -38,6 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initializeCategories];
     // Do any additional setup after loading the view from its nib.
 //    itemsNames = [[NSArray arrayWithObjects:@"What to see",
 //                                           @"Off the beaten track",
@@ -84,8 +86,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MCategory *category = self.categories[indexPath.row];
-    UIImage *imageNormal = nil;
-    UIImage *imageHighlighted = nil;
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    NSString *imagePath = [NSString stringWithFormat:@"%@/categories/%@", appDelegate.mapDirectoryPath, category.image_normal];
+    UIImage *imageNormal = [UIImage imageWithContentsOfFile:imagePath];
+    
+    imagePath = [NSString stringWithFormat:@"%@/categories/%@", appDelegate.mapDirectoryPath, category.image_highlighted];
+    UIImage *imageHighlighted = [UIImage imageWithContentsOfFile:imagePath];
     CategoryCell *cell = [[CategoryCell alloc] initwithTitle:category.name image:imageNormal highlightedImage:imageHighlighted];
     return [cell autorelease];
 }

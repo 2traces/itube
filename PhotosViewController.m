@@ -50,6 +50,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoTapped:)];
+    tapGR.delegate = self;
     [self.scrollPhotos addGestureRecognizer:tapGR];
     [tapGR autorelease];
 }
@@ -66,6 +67,13 @@
     [self.navigationDelegate showReaderWithItems:array activePage:0];
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if ([touch.view isKindOfClass:[UIControl class]]) {
+        // we touched a button, slider, or other UIControl
+        return NO; // ignore the touch
+    }
+    return YES; // handle the touch
+}
 
 - (void)didReceiveMemoryWarning
 {

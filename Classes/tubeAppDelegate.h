@@ -34,7 +34,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
     //soj
     NSDictionary *mapsInfo;
     NSMutableArray *purchasedMaps;
-
+    NSString *mapDirectoryPath;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -45,6 +45,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 @property (nonatomic, retain) NSString *cityName;
 @property (nonatomic, retain) NSOperationQueue *parseQueue;
 @property (nonatomic, assign) CGPoint userGeoPosition;
+@property (nonatomic, retain) NSString *mapDirectoryPath;
 
 -(NSString*)nameCurrentMap;
 -(NSString*)nameCurrentCity;

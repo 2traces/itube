@@ -2158,6 +2158,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 - (void) loadPlacesForMap:(NSString*)mapName {
     NSString *path = [NSString stringWithFormat:@"%@/places.json",[mapName stringByDeletingLastPathComponent]];
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.mapDirectoryPath = [mapName stringByDeletingLastPathComponent];
     NSDictionary *placesData = nil;
     if (path) {
         NSData *jsonData = [NSData dataWithContentsOfFile:path];

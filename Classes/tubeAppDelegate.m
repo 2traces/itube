@@ -26,6 +26,7 @@
 @synthesize cityName;
 @synthesize parseQueue;
 @synthesize navigationViewController;
+@synthesize mapDirectoryPath;
 
 void uncaughtExceptionHandler(NSException *exception) {
     NSLog(@"CRASH: %@", exception);
@@ -80,6 +81,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     } else {
         navController = [[UINavigationController alloc] initWithRootViewController:self.navigationViewController];
         navController.navigationBarHidden = YES;
+        CGRect main = [UIScreen mainScreen].applicationFrame;
         mainViewController.view.frame = self.navigationViewController.view.frame = [UIScreen mainScreen].applicationFrame;
         CGRect mainViewFrame = mainViewController.view.frame;
         mainViewFrame.origin.y = 0;
