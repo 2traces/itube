@@ -373,6 +373,29 @@ static MHelper * _sharedHelper;
     return fetchedItems; 
 }
 
+-(NSArray*)getCategoriesList {
+    NSError *error =nil;
+    
+    NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:20];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES] autorelease];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    return fetchedItems;
+}
+
+
 -(NSArray*)getTransferList
 {
     NSError *error = nil;

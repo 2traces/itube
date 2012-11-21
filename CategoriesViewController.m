@@ -8,6 +8,7 @@
 
 #import "CategoriesViewController.h"
 #import "CategoryCell.h"
+#import "ManagedObjects.h"
 
 @interface CategoriesViewController ()
 
@@ -19,6 +20,7 @@
 @synthesize scrollView;
 @synthesize buttonSettings;
 @synthesize navigationDelegate;
+@synthesize categories;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,24 +31,28 @@
     return self;
 }
 
+- (void) initializeCategories {
+    self.categories = [[MHelper sharedHelper] getCategoriesList];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    itemsNames = [[NSArray arrayWithObjects:@"What to see",
-                                           @"Off the beaten track",
-                                           @"Wifi spots",
-                                           @"Recommended cafes", nil] retain];
-    
-    itemsImages = [[NSArray arrayWithObjects:[UIImage imageNamed:@"what_to_see_normal"],
-                                            [UIImage imageNamed:@"off_beaten_track_normal"],
-                                            [UIImage imageNamed:@"wifi_spots_normal"],
-                                            [UIImage imageNamed:@"recommended_cafes_normal"], nil] retain];
-    
-    itemsImagesHighlighted = [[NSArray arrayWithObjects:[UIImage imageNamed:@"what_to_see_pressed"],
-                                            [UIImage imageNamed:@"off_beaten_track_pressed"],
-                                            [UIImage imageNamed:@"wifi_spots_pressed"],
-                                            [UIImage imageNamed:@"recommended_cafes_pressed"], nil] retain];
+//    itemsNames = [[NSArray arrayWithObjects:@"What to see",
+//                                           @"Off the beaten track",
+//                                           @"Wifi spots",
+//                                           @"Recommended cafes", nil] retain];
+//    
+//    itemsImages = [[NSArray arrayWithObjects:[UIImage imageNamed:@"what_to_see_normal"],
+//                                            [UIImage imageNamed:@"off_beaten_track_normal"],
+//                                            [UIImage imageNamed:@"wifi_spots_normal"],
+//                                            [UIImage imageNamed:@"recommended_cafes_normal"], nil] retain];
+//    
+//    itemsImagesHighlighted = [[NSArray arrayWithObjects:[UIImage imageNamed:@"what_to_see_pressed"],
+//                                            [UIImage imageNamed:@"off_beaten_track_pressed"],
+//                                            [UIImage imageNamed:@"wifi_spots_pressed"],
+//                                            [UIImage imageNamed:@"recommended_cafes_pressed"], nil] retain];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
 }
 
@@ -72,12 +78,15 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [itemsNames count];
+    return [self.categories count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CategoryCell *cell = [[CategoryCell alloc] initwithTitle:itemsNames[indexPath.row] image:itemsImages[indexPath.row] highlightedImage:itemsImagesHighlighted[indexPath.row]];
+    MCategory *category = self.categories[indexPath.row];
+    UIImage *imageNormal = nil;
+    UIImage *imageHighlighted = nil;
+    CategoryCell *cell = [[CategoryCell alloc] initwithTitle:category.name image:imageNormal highlightedImage:imageHighlighted];
     return [cell autorelease];
 }
 

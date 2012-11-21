@@ -13,11 +13,13 @@
     UITableView *tableView;
     UIScrollView *scrollView;
     UIButton *buttonSettings;
+    NSArray *categories;
     NSArray *itemsNames;
     NSArray *itemsImages;
     NSArray *itemsImagesHighlighted;
 }
 
+@property (nonatomic, retain) NSArray *categories;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UIButton *buttonSettings;

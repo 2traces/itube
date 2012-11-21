@@ -111,6 +111,10 @@
 -(NSArray*)getLineList;
 -(NSArray*)getStationList;
 -(NSArray*)getTransferList;
+
+-(NSArray*)getCategoriesList;
+
+
 -(MLine*)lineByName:(NSString*)name;
 -(MPhoto*)photoByFilename:(NSString*)filename;
 -(MLine*)lineByIndex:(int)index;
