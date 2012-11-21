@@ -62,7 +62,7 @@
 
 @property (nonatomic, retain) NSNumber * isFavorite;
 @property (nonatomic, retain) NSString * filename;
-@property (nonatomic, retain) MItem* theItem;
+@property (nonatomic, retain) MPlace* place;
 @property (nonatomic, assign) NSNumber* index;
 
 

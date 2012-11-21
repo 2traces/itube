@@ -14,6 +14,7 @@
 #import "TopTwoStationsView.h"
 #import "HCBookmarksViewController.h"
 #import "ReaderViewController.h"
+#import "ManagedObjects.h"
 
 @interface NavigationViewController ()
 
@@ -27,6 +28,7 @@
 @synthesize glController;
 @synthesize bookmarksController;
 @synthesize readerController;
+@synthesize currentPlaces;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController
 {
@@ -156,7 +158,8 @@
 }
 
 - (void) selectCategoryWithIndex:(NSInteger)index {
-    
+    self.currentPlaces = [[MHelper sharedHelper] getPlacesForCategoryIndex:index];
+    [photosController loadPlaces:self.currentPlaces];
 }
 
 

@@ -36,8 +36,8 @@
             "lat": 13.232732,
             "text": "Lorem ipsum...",
             "photos": [
-                "01",
-                "02"
+                "01.jpg",
+                "02.jpg"
             ],
             "categories": [
                 1,
@@ -50,8 +50,8 @@
             "lat": 13.232732,
             "text": "Lorem ipsum...",
             "photos": [
-                "03",
-                "04"
+                "03.jpg",
+                "04.jpg"
             ],
             "categories": [
                 2,
@@ -64,8 +64,8 @@
             "lat": 13.232732,
             "text": "Lorem ipsum...",
             "photos": [
-                "05",
-                "06"
+                "05.jpg",
+                "06.jpg"
             ],
             "categories": [
                 1,
@@ -78,8 +78,8 @@
             "lat": 13.232732,
             "text": "Lorem ipsum...",
             "photos": [
-                "07",
-                "08"
+                "07.jpg",
+                "08.jpg"
             ],
             "categories": [
                 3,
@@ -92,8 +92,8 @@
             "lat": 13.232732,
             "text": "Lorem ipsum...",
             "photos": [
-                "09",
-                "10"
+                "09.jpg",
+                "10.jpg"
             ],
             "categories": [
                 1,
@@ -106,8 +106,8 @@
             "lat": 13.232732,
             "text": "Lorem ipsum...",
             "photos": [
-                "11",
-                "12"
+                "11.jpg",
+                "12.jpg"
             ],
             "categories": [
                 2,
@@ -120,8 +120,8 @@
             "lat": 13.232732,
             "text": "Lorem ipsum...",
             "photos": [
-                "13",
-                "14"
+                "13.jpg",
+                "14.jpg"
             ],
             "categories": [
                 2,

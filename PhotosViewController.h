@@ -21,9 +21,13 @@
 @property (nonatomic, retain) IBOutlet UIView *disappearingView;
 @property (nonatomic, retain) IBOutlet UIView *panelView;
 @property (nonatomic, assign) id<NavigationDelegate> navigationDelegate;
+@property (nonatomic, retain) NSArray *currentPlaces;
+@property (nonatomic, retain) NSArray *currentPhotos;
 
 - (IBAction)showCategories:(id)sender;
 - (IBAction)showHidePhotos:(id)sender;
 - (IBAction)showBookmarks:(id)sender;
+
+- (void) loadPlaces:(NSArray*)places;
 
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "PhotosViewController.h"
+#import "ManagedObjects.h"
+#import "tubeAppDelegate.h"
 
 @interface PhotosViewController ()
 
@@ -19,6 +21,8 @@
 @synthesize navigationDelegate;
 @synthesize disappearingView;
 @synthesize panelView;
+@synthesize currentPlaces;
+@synthesize currentPhotos;
 
 - (IBAction)showCategories:(id)sender {
     [self.navigationDelegate showCategories:self];
@@ -27,6 +31,46 @@
 - (IBAction)showBookmarks:(id)sender {
     [self.navigationDelegate showBookmarks:self];
 
+}
+
+- (UIImage*)imageForPhotoObject:(MPhoto*)photo {
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    NSString *imagePath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
+    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+    return image;
+}
+
+- (void)reloadScrollView {
+    for (UIView *subview in self.scrollPhotos.subviews) {
+        [subview removeFromSuperview];
+    }
+    self.scrollPhotos.contentOffset = CGPointZero;
+    self.currentPhotos = nil;
+    NSMutableArray *mutablePhotos = [NSMutableArray arrayWithCapacity:10];
+    NSInteger index = 0;
+    for (MPlace *place in self.currentPlaces) {
+        for (MPhoto *photo in place.photos) {
+            [mutablePhotos addObject:photo];
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:[self imageForPhotoObject:photo]];
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageView.frame = self.scrollPhotos.frame;
+            CGRect imageFrame = imageView.frame;
+            imageFrame.origin.x = self.scrollPhotos.frame.size.width * index;
+            imageFrame.origin.y = 0;
+            imageView.frame = imageFrame;
+            [self.scrollPhotos addSubview:[imageView autorelease]];
+            index++;
+        }
+    }
+    self.currentPhotos = [NSArray arrayWithArray:mutablePhotos];
+    self.scrollPhotos.contentSize = CGSizeMake(self.scrollPhotos.frame.size.width * index, self.scrollPhotos.frame.size.height);
+    self.scrollPhotos.pagingEnabled = YES;
+}
+
+- (void) loadPlaces:(NSArray*)places {
+    self.currentPlaces = places;
+    [self reloadScrollView];
 }
 
 

@@ -40,6 +40,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController;
 
+@property (nonatomic, retain) NSArray *currentPlaces;
 @property (nonatomic, retain) CategoriesViewController *categoriesController;
 @property (nonatomic, retain) PhotosViewController *photosController;
 @property (nonatomic, retain) ReaderViewController *readerController;

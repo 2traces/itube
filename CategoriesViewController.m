@@ -55,7 +55,10 @@
 //                                            [UIImage imageNamed:@"off_beaten_track_pressed"],
 //                                            [UIImage imageNamed:@"wifi_spots_pressed"],
 //                                            [UIImage imageNamed:@"recommended_cafes_pressed"], nil] retain];
+    [self.tableView reloadData];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+    MCategory *category = self.categories[0];
+    [self.navigationDelegate selectCategoryWithIndex:[category.index integerValue]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,7 +82,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    MCategory *category = self.categories[indexPath.row];
+    [self.navigationDelegate selectCategoryWithIndex:[category.index integerValue]];
 }
 
 

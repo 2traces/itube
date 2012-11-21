@@ -55,7 +55,7 @@
 @dynamic index;
 @dynamic isFavorite;
 @dynamic filename;
-@dynamic theItem;
+@dynamic place;
 @end
 
 @implementation MStation
@@ -474,7 +474,8 @@ static MHelper * _sharedHelper;
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"category.index=%@",[NSNumber numberWithInt:catIndex]];
+    ///!!!
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"any categories.index=%@",[NSNumber numberWithInt:catIndex]];
     [fetchRequest setPredicate:predicate];
     
     // Edit the sort key as appropriate.
