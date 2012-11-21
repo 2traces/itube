@@ -294,6 +294,30 @@ static MHelper * _sharedHelper;
     }
 }
 
+-(MCategory*)categoryByName:(NSString*)name {
+    NSError *error =nil;
+    
+    NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:20];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name like[c] %@",name];
+    [fetchRequest setPredicate:predicate];
+    
+    NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if(![fetchedItems count]) NSLog(@"category not found %@", name);
+    
+    if ([fetchedItems count]>0) {
+        return [fetchedItems objectAtIndex:0];
+    } else {
+        return nil;
+    }
+}
+
+
 -(MPhoto*)photoByFilename:(NSString*)filename {
     NSError *error =nil;
     
@@ -438,6 +462,32 @@ static MHelper * _sharedHelper;
     
     return fetchedItems; 
 }
+
+-(NSArray*)getPlacesForCategoryIndex:(int)catIndex {
+    NSError *error =nil;
+    
+    NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:20];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"category.index=%@",[NSNumber numberWithInt:catIndex]];
+    [fetchRequest setPredicate:predicate];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES] autorelease];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    return fetchedItems;
+}
+
 
 /// сортировка по имени
 -(NSArray*)getStationsForLine:(MLine*)line

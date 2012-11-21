@@ -155,5 +155,9 @@
     [self.navigationController pushViewController:self.readerController animated:YES];
 }
 
+- (void) selectCategoryWithIndex:(NSInteger)index {
+    
+}
+
 
 @end

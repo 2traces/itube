@@ -113,6 +113,8 @@
 -(NSArray*)getTransferList;
 
 -(NSArray*)getCategoriesList;
+-(MCategory*)categoryByName:(NSString*)name;
+-(NSArray*)getPlacesForCategoryIndex:(int)catIndex;
 
 
 -(MLine*)lineByName:(NSString*)name;

@@ -24,6 +24,7 @@
 - (void) showRasterMap;
 - (void) showMetroMap;
 - (void) showReaderWithItems:(NSArray*)items activePage:(NSInteger)activePage;
+- (void) selectCategoryWithIndex:(NSInteger)index;
 
 @end
 
