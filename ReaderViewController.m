@@ -47,16 +47,6 @@
 }
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-
 - (void)updateInfoForCurrentPage {
     MPlace *place = self.items[currentPage];
     self.lbHeader.text = place.name;
