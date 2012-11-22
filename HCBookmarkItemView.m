@@ -17,6 +17,7 @@
 @synthesize buttonRemoveFromBookmarks;
 @synthesize infoContainer;
 @synthesize imageInfoBg;
+@synthesize bookmarkDelegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -35,6 +36,11 @@
     self.labelPlaceName.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15.0f];
     self.labelPlaceDistance.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12.0f];
 }
+
+- (IBAction)removeItemFromFavorites:(id)sender {
+    [self.bookmarkDelegate removeFromFavoritesItemWithIndex:self.tag];
+}
+
 
 - (void) setImage:(UIImage*)image text:(NSString*)text placeName:(NSString*)name placeDistance:(NSString*)distance {
     self.imageView.image = image;

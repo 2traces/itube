@@ -8,6 +8,8 @@
 
 #import "HCBookmarksViewController.h"
 #import "HCBookmarkItemView.h"
+#import "ManagedObjects.h"
+#import "tubeAppDelegate.h"
 
 @interface HCBookmarksViewController ()
 
@@ -17,6 +19,7 @@
 
 @synthesize items;
 @synthesize scrollView;
+@synthesize places;
 
 - (IBAction)close:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
@@ -31,15 +34,34 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+- (UIImage*)imageForPhotoObject:(MPhoto*)photo {
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    NSString *imagePath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
+    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+    return image;
+}
+
+
+- (void) reloadScrollView {
+    self.places = [[MHelper sharedHelper] getFavoritePlacesList];
+    for (UIView *subview in self.scrollView.subviews) {
+        [subview removeFromSuperview];
+    }
+    [self.items removeAllObjects];
+    
     CGFloat offset = 50;
-    for (int i = 0; i < 10; i ++) {
+    for (MPlace *place in self.places) {
         NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"HCBookmarkItemView" owner:self options:nil];
         HCBookmarkItemView *itemView = (HCBookmarkItemView*)[nibObjects objectAtIndex:0];
-        [itemView setImage:[UIImage imageNamed:@"sample_photo"] text:@"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." placeName:[NSString stringWithFormat:@"Place %i", i+1] placeDistance:@"Some really long address, or distance."];
+        MPhoto *firstPhoto = nil;
+        itemView.bookmarkDelegate = self;
+        if ([place.photos count]) {
+            firstPhoto = [place.photos anyObject];
+        }
+        [itemView setImage:[self imageForPhotoObject:firstPhoto] text:place.text placeName:place.name placeDistance:@"Some really long address, or distance."];
+        itemView.tag = [place.index integerValue];
         [self.items addObject:itemView];
         [self.scrollView addSubview:itemView];
         CGRect frame = itemView.frame;
@@ -51,10 +73,54 @@
 
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    self.items = [NSMutableArray arrayWithCapacity:5];
+    [self reloadScrollView];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self reloadScrollView];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (HCBookmarkItemView*)viewForPlaceIndex:(NSInteger)index {
+    for (UIView *view in self.items) {
+        if (view.tag == index && [view isKindOfClass:[HCBookmarkItemView class]]) {
+            return (HCBookmarkItemView*)view;
+        }
+    }
+    return nil;
+}
+
+- (void) removeFromFavoritesItemWithIndex:(NSInteger)index {
+    HCBookmarkItemView *view = [self viewForPlaceIndex:index];
+    [UIView animateWithDuration:1.0f animations:^{
+        view.alpha = 0.0f;
+        NSInteger indexOfRemovedItem = [self.items indexOfObject:view];
+        for (int i = indexOfRemovedItem + 1; i < [self.items count]; i++) {
+            HCBookmarkItemView *movedView = self.items[i];
+            CGRect frame = movedView.frame;
+            frame.origin.y -= view.frame.size.height;
+            movedView.frame = frame;
+        }
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height - view.frame.size.height);
+    } completion:^(BOOL finished) {
+        [self.items removeObject:view];
+        [view removeFromSuperview];
+        MPlace *place = [[MHelper sharedHelper] getPlaceWithIndex:view.tag];
+        place.isFavorite = [NSNumber numberWithBool:NO];
+    }];
+}
+
 
 @end

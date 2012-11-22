@@ -63,6 +63,11 @@
     [self.btAddToFavorites setImage:btImage forState:UIControlStateNormal];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self updateInfoForCurrentPage];
+}
+
 - (void)reloadScrollView {
     for (UIView *subview in self.scrollPhotos.subviews) {
         [subview removeFromSuperview];

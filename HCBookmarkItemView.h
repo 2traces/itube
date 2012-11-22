@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HCBookmarksViewController.h"
 
 @interface HCBookmarkItemView : UIView {
     UIImageView *imageView;
@@ -16,10 +17,13 @@
     UILabel *labelPlaceDistance;
     UIButton *buttonRemoveFromBookmarks;
     UIView *infoContainer;
+    id<BookmarkDelegate> bookmarkDelegate;
 }
 
 - (void) setImage:(UIImage*)image text:(NSString*)text placeName:(NSString*)name placeDistance:(NSString*)distance;
+- (IBAction)removeItemFromFavorites:(id)sender;
 
+@property (nonatomic, retain) id<BookmarkDelegate> bookmarkDelegate;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
 @property (nonatomic, retain) IBOutlet UIImageView *imageInfoBg;
 @property (nonatomic, retain) IBOutlet UITextView *textView;

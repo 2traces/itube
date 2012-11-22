@@ -116,6 +116,7 @@
 -(MCategory*)categoryByName:(NSString*)name;
 -(NSArray*)getPlacesForCategoryIndex:(int)catIndex;
 -(MPlace*)getPlaceWithIndex:(int)index;
+-(NSArray*)getFavoritePlacesList;
 
 
 -(MLine*)lineByName:(NSString*)name;
