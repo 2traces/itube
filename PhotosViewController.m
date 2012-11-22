@@ -23,6 +23,9 @@
 @synthesize panelView;
 @synthesize currentPlaces;
 @synthesize currentPhotos;
+@synthesize placeDescription;
+@synthesize placeNameHeader;
+@synthesize placeNamePanel;
 
 - (IBAction)showCategories:(id)sender {
     [self.navigationDelegate showCategories:self];
@@ -39,6 +42,13 @@
     NSString *imagePath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
     UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
     return image;
+}
+
+- (void)updateInfoForCurrentPage {
+    MPlace *place = [(MPhoto*)(self.currentPhotos[currentPage]) place];
+    self.placeNameHeader.text = place.name;
+    self.placeNamePanel.text = place.name;
+    self.placeDescription.text = [NSString stringWithFormat:@"\"%@\"", place.text];
 }
 
 - (void)reloadScrollView {
@@ -66,6 +76,8 @@
     self.currentPhotos = [NSArray arrayWithArray:mutablePhotos];
     self.scrollPhotos.contentSize = CGSizeMake(self.scrollPhotos.frame.size.width * index, self.scrollPhotos.frame.size.height);
     self.scrollPhotos.pagingEnabled = YES;
+    currentPage = 0;
+    [self updateInfoForCurrentPage];
 }
 
 - (void) loadPlaces:(NSArray*)places {
@@ -95,6 +107,9 @@
     // Do any additional setup after loading the view from its nib.
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoTapped:)];
     tapGR.delegate = self;
+    self.placeNameHeader.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18.0f];
+    self.placeNamePanel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0f];
+    self.placeDescription.font = [UIFont fontWithName:@"MyriadPr-Italic" size:16.0f];
     [self.scrollPhotos addGestureRecognizer:tapGR];
     [tapGR autorelease];
 }
@@ -108,7 +123,9 @@
         [array addObject:dict];
     }
     
-    [self.navigationDelegate showReaderWithItems:array activePage:0];
+    MPlace* place = [((MPhoto*)self.currentPhotos[currentPage]) place];
+    
+    [self.navigationDelegate showReaderWithItems:self.currentPlaces activePage:[self.currentPlaces indexOfObject:place]];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
@@ -124,5 +141,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSInteger page = (self.scrollPhotos.contentOffset.x + self.scrollPhotos.frame.size.width/2 - 1) / self.scrollPhotos.frame.size.width;
+    if (page != currentPage) {
+        currentPage = page;
+        [self updateInfoForCurrentPage];
+    }
+}
+
 
 @end

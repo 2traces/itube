@@ -153,7 +153,7 @@
     if (categoriesOpen) {
         return;
     }
-    self.readerController = [[[ReaderViewController alloc] initWithReaderItems:items] autorelease];
+    self.readerController = [[[ReaderViewController alloc] initWithReaderItems:items currentItemIndex:activePage] autorelease];
     [self.navigationController pushViewController:self.readerController animated:YES];
 }
 

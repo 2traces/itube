@@ -7,12 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ManagedObjects.h"
 
 @interface ReaderItemViewController : UIViewController {
-    UIScrollView *scrollView;
+    UIScrollView *scrollPhotos;
     UITextView *textView;
+    MPlace *place;
 }
 
-@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+- (id)initWithPlaceObject:(MPlace*)_place;
+
+@property (nonatomic, retain) MPlace *place;
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollPhotos;
 @property (nonatomic, retain) IBOutlet UITextView *textView;
 @end

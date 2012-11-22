@@ -9,13 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "NavigationViewController.h"
 
-@interface PhotosViewController : UIViewController {
+@interface PhotosViewController : UIViewController <UIScrollViewDelegate, UIGestureRecognizerDelegate> {
     UIScrollView *scrollPhotos;
     UIButton *buttonCategories;
     UIView *disappearingView;
     UIView *panelView;
+    NSInteger currentPage;
+    UILabel *placeNameHeader;
+    UILabel *placeNamePanel;
+    UILabel *placeDescription;
 }
 
+@property (nonatomic, retain) IBOutlet UILabel *placeNameHeader;
+@property (nonatomic, retain) IBOutlet UILabel *placeNamePanel;
+@property (nonatomic, retain) IBOutlet UILabel *placeDescription;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollPhotos;
 @property (nonatomic, retain) IBOutlet UIButton *buttonCategories;
 @property (nonatomic, retain) IBOutlet UIView *disappearingView;

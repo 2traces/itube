@@ -18,7 +18,7 @@
     
 }
 
-- (id) initWithReaderItems:(NSArray*)items;
+- (id) initWithReaderItems:(NSArray*)_items currentItemIndex:(NSInteger)currentItemIndex;
 
 @property (nonatomic, retain) NSArray *items;
 @property (nonatomic, retain) NSMutableArray *itemViews;
