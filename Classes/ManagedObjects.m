@@ -526,6 +526,43 @@ static MHelper * _sharedHelper;
     return fetchedItems; 
 }
 
+
+-(NSArray*)getFavoritePlacesList
+{
+    NSError *error =nil;
+    
+    NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isFavorite=%@",[NSNumber numberWithInt:1]];
+    [fetchRequest setPredicate:predicate];
+    
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:20];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor;
+    if (languageIndex%2) {
+        //        sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"altname" ascending:YES] autorelease];
+        sortDescriptor = [[[NSSortDescriptor alloc]
+                           initWithKey:@"altname"
+                           ascending:YES
+                           selector:@selector(localizedCompare:)] autorelease];
+    } else {
+        sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
+    }
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    return fetchedItems;
+}
+
+
 -(NSArray*)getFavoriteStationList
 {
     NSError *error =nil;
@@ -560,6 +597,28 @@ static MHelper * _sharedHelper;
     
     return fetchedItems;    
 }
+
+-(MPlace*)getPlaceWithIndex:(int)index {
+    NSError *error =nil;
+    
+    NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"index=%@", [NSNumber numberWithInt:index]];
+    [fetchRequest setPredicate:predicate];
+    
+    NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if ([fetchedItems count]>0) {
+        return [fetchedItems objectAtIndex:0];
+    } else {
+        return nil;
+    }
+
+}
+
 
 -(MStation*)getStationWithIndex:(int)index andLineIndex:(int)lineIndex
 {
@@ -616,6 +675,7 @@ static MHelper * _sharedHelper;
      
 }
 
+
 -(NSArray*)getHistoryList
 {
     NSError *error =nil;
@@ -651,20 +711,21 @@ static MHelper * _sharedHelper;
         NSPropertyListFormat format;
         
         NSDictionary *temp = (NSDictionary *)[NSPropertyListSerialization propertyListFromData:plistXML mutabilityOption:NSPropertyListMutableContainersAndLeaves format:&format errorDescription:&errorDesc];
-        
-        if (!temp)
+        NSArray *favIndexes = [temp objectForKey:@"favoritePlacesIndexes"];
+
+        if (!temp || !favIndexes)
         {
             NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+            return;
         }
         
-        NSEnumerator *enumerator = [temp keyEnumerator];
-        
-        for(NSString *aKey in enumerator){
+                
+        for(NSNumber *index in favIndexes){
             
-            MStation *station = [self getStationWithName:[[temp objectForKey:aKey] objectAtIndex:0] forLine:[[temp objectForKey:aKey] objectAtIndex:1]];
+            MPlace *place = [self getPlaceWithIndex:[index integerValue]];
             
-            if (station) {
-                [station setIsFavorite:[NSNumber numberWithInt:1]];
+            if (place) {
+                [place setIsFavorite:[NSNumber numberWithInt:1]];
             }
         }
     }
@@ -679,20 +740,15 @@ static MHelper * _sharedHelper;
     NSString *fileName = [NSString stringWithFormat:@"%@_bookmarks.plist",[delegate nameCurrentMap]];
     NSString *plistPath = [documentsPath stringByAppendingPathComponent:fileName];
     
-    NSArray *favStations = [self getFavoriteStationList];
-    NSMutableDictionary *temp = [[NSMutableDictionary alloc] initWithCapacity:[favStations count]];
+    NSArray *favPlaces = [self getFavoritePlacesList];
+    NSMutableArray *temp = [[NSMutableArray alloc] initWithCapacity:[favPlaces count]];
     
-    for (MStation *station in favStations) {
-        NSString *lineName = [station.lines name];
-        NSString *stationName = [station name];
-        NSString *aKey = [NSString stringWithFormat:@"%@_%@",lineName,stationName];
-        
-        NSArray *forkeyArray = [NSArray arrayWithObjects:stationName,lineName, nil];
-        [temp setObject:forkeyArray forKey:aKey];
+    for (MPlace *place in favPlaces) {
+        [temp addObject:place.index];
     }
     
     // create dictionary with values in UITextFields
-    NSDictionary *plistDict = [NSDictionary dictionaryWithDictionary:temp];
+    NSDictionary *plistDict = [NSDictionary dictionaryWithObject:temp forKey:@"favoritePlacesIndexes"];
     
     [temp release];
     

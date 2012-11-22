@@ -416,6 +416,14 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btAddToFavorites</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1072315091"/>
+					</object>
+					<int key="connectionID">55</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="814361227"/>
 						<reference key="destination" ref="372490531"/>
@@ -439,6 +447,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">42</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">addToFavorites:</string>
+						<reference key="source" ref="1072315091"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">56</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -579,7 +596,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">54</int>
+			<int key="maxID">56</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -587,11 +604,16 @@
 					<string key="className">PhotosViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="addToFavorites:">id</string>
 						<string key="showBookmarks:">id</string>
 						<string key="showCategories:">id</string>
 						<string key="showHidePhotos:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="addToFavorites:">
+							<string key="name">addToFavorites:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="showBookmarks:">
 							<string key="name">showBookmarks:</string>
 							<string key="candidateClassName">id</string>
@@ -606,6 +628,7 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="btAddToFavorites">UIButton</string>
 						<string key="buttonCategories">UIButton</string>
 						<string key="disappearingView">UIView</string>
 						<string key="panelView">UIView</string>
@@ -615,6 +638,10 @@
 						<string key="scrollPhotos">UIScrollView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="btAddToFavorites">
+							<string key="name">btAddToFavorites</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="buttonCategories">
 							<string key="name">buttonCategories</string>
 							<string key="candidateClassName">UIButton</string>

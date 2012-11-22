@@ -89,7 +89,7 @@
 		572B632A16567EF600B415DC /* ReaderItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 572B632816567EF600B415DC /* ReaderItemViewController.m */; };
 		572B632B16567EF600B415DC /* ReaderItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 572B632916567EF600B415DC /* ReaderItemViewController.xib */; };
 		572B63301656830800B415DC /* bt_reader_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B632C1656830800B415DC /* bt_reader_back@2x.png */; };
-		572B63311656830800B415DC /* bt_reader_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B632D1656830800B415DC /* bt_reader_star@2x.png */; };
+		572B63311656830800B415DC /* bt_star_solid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B632D1656830800B415DC /* bt_star_solid@2x.png */; };
 		572B63321656830800B415DC /* reader_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B632E1656830800B415DC /* reader_bg@2x.png */; };
 		572B63331656830800B415DC /* sample_pic_reader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B632F1656830800B415DC /* sample_pic_reader@2x.png */; };
 		5771A32E1652ABA500332A7D /* panel_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5771A32D1652ABA500332A7D /* panel_bg@2x.png */; };
@@ -648,7 +648,7 @@
 		572B632816567EF600B415DC /* ReaderItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderItemViewController.m; sourceTree = "<group>"; };
 		572B632916567EF600B415DC /* ReaderItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReaderItemViewController.xib; sourceTree = "<group>"; };
 		572B632C1656830800B415DC /* bt_reader_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bt_reader_back@2x.png"; path = "images/hidden_cities/bt_reader_back@2x.png"; sourceTree = "<group>"; };
-		572B632D1656830800B415DC /* bt_reader_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bt_reader_star@2x.png"; path = "images/hidden_cities/bt_reader_star@2x.png"; sourceTree = "<group>"; };
+		572B632D1656830800B415DC /* bt_star_solid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bt_star_solid@2x.png"; path = "images/hidden_cities/bt_star_solid@2x.png"; sourceTree = "<group>"; };
 		572B632E1656830800B415DC /* reader_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reader_bg@2x.png"; path = "images/hidden_cities/reader_bg@2x.png"; sourceTree = "<group>"; };
 		572B632F1656830800B415DC /* sample_pic_reader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sample_pic_reader@2x.png"; path = "images/hidden_cities/sample_pic_reader@2x.png"; sourceTree = "<group>"; };
 		5771A32D1652ABA500332A7D /* panel_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "panel_bg@2x.png"; path = "images/hidden_cities/panel_bg@2x.png"; sourceTree = "<group>"; };
@@ -1555,7 +1555,8 @@
 			children = (
 				57047DAE16569C1400DED155 /* reader_separator@2x.png */,
 				572B632C1656830800B415DC /* bt_reader_back@2x.png */,
-				572B632D1656830800B415DC /* bt_reader_star@2x.png */,
+				5771A3321652AE1B00332A7D /* bt_star@2x.png */,
+				572B632D1656830800B415DC /* bt_star_solid@2x.png */,
 				572B632E1656830800B415DC /* reader_bg@2x.png */,
 				572B632F1656830800B415DC /* sample_pic_reader@2x.png */,
 				572B62D31654176C00B415DC /* bt_bookmarks_star@2x.png */,
@@ -1563,7 +1564,6 @@
 				572B62B81653F7F100B415DC /* bt_bookmarks_map@2x.png */,
 				572B62B61653F4BA00B415DC /* bookmarks_bg@2x.png */,
 				5771A3361652B0DB00332A7D /* bt_photo_like@2x.png */,
-				5771A3321652AE1B00332A7D /* bt_star@2x.png */,
 				5771A3331652AE1B00332A7D /* bt_stripes@2x.png */,
 				5771A3301652AD1200332A7D /* sample_photo@2x.png */,
 				5771A32D1652ABA500332A7D /* panel_bg@2x.png */,
@@ -2531,7 +2531,7 @@
 				572B6325165677D500B415DC /* ReaderViewController.xib in Resources */,
 				572B632B16567EF600B415DC /* ReaderItemViewController.xib in Resources */,
 				572B63301656830800B415DC /* bt_reader_back@2x.png in Resources */,
-				572B63311656830800B415DC /* bt_reader_star@2x.png in Resources */,
+				572B63311656830800B415DC /* bt_star_solid@2x.png in Resources */,
 				572B63321656830800B415DC /* reader_bg@2x.png in Resources */,
 				572B63331656830800B415DC /* sample_pic_reader@2x.png in Resources */,
 				57047DAF16569C1400DED155 /* reader_separator@2x.png in Resources */,

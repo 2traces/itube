@@ -29,6 +29,7 @@
 @property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
 
 - (IBAction)back:(id)sender;
-- (IBAction)star:(id)sender;
+
+- (IBAction)addToFavorites:(id)sender;
 
 @end

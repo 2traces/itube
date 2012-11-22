@@ -28,9 +28,13 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-- (IBAction)star:(id)sender {
 
+- (IBAction)addToFavorites:(id)sender {
+    MPlace *place = self.items[currentPage];
+    place.isFavorite = [place.isFavorite boolValue] ? [NSNumber numberWithBool:NO] : [NSNumber numberWithBool:YES];
+    [self updateInfoForCurrentPage];
 }
+
 
 - (id) initWithReaderItems:(NSArray*)_items currentItemIndex:(NSInteger)currentItemIndex {
     self = [super initWithNibName:@"ReaderViewController" bundle:[NSBundle mainBundle]];
@@ -56,6 +60,10 @@
 - (void)updateInfoForCurrentPage {
     MPlace *place = self.items[currentPage];
     self.lbHeader.text = place.name;
+    UIImage *btImage = [place.isFavorite boolValue] ?
+    [UIImage imageNamed:@"bt_star_solid"] :
+    [UIImage imageNamed:@"bt_star"];
+    [self.btStar setImage:btImage forState:UIControlStateNormal];
 }
 
 

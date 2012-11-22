@@ -115,6 +115,7 @@
 -(NSArray*)getCategoriesList;
 -(MCategory*)categoryByName:(NSString*)name;
 -(NSArray*)getPlacesForCategoryIndex:(int)catIndex;
+-(MPlace*)getPlaceWithIndex:(int)index;
 
 
 -(MLine*)lineByName:(NSString*)name;

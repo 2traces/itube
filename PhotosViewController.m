@@ -26,6 +26,7 @@
 @synthesize placeDescription;
 @synthesize placeNameHeader;
 @synthesize placeNamePanel;
+@synthesize btAddToFavorites;
 
 - (IBAction)showCategories:(id)sender {
     [self.navigationDelegate showCategories:self];
@@ -35,6 +36,13 @@
     [self.navigationDelegate showBookmarks:self];
 
 }
+
+- (IBAction)addToFavorites:(id)sender {
+    MPlace *place = [(MPhoto*)(self.currentPhotos[currentPage]) place];
+    place.isFavorite = [place.isFavorite boolValue] ? [NSNumber numberWithBool:NO] : [NSNumber numberWithBool:YES];
+    [self updateInfoForCurrentPage];
+}
+
 
 - (UIImage*)imageForPhotoObject:(MPhoto*)photo {
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -49,6 +57,10 @@
     self.placeNameHeader.text = place.name;
     self.placeNamePanel.text = place.name;
     self.placeDescription.text = [NSString stringWithFormat:@"\"%@\"", place.text];
+    UIImage *btImage = [place.isFavorite boolValue] ?
+                [UIImage imageNamed:@"bt_star_solid"] :
+                [UIImage imageNamed:@"bt_star"];
+    [self.btAddToFavorites setImage:btImage forState:UIControlStateNormal];
 }
 
 - (void)reloadScrollView {

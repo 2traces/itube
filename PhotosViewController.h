@@ -18,12 +18,14 @@
     UILabel *placeNameHeader;
     UILabel *placeNamePanel;
     UILabel *placeDescription;
+    UIButton *btAddToFavorites;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *placeNameHeader;
 @property (nonatomic, retain) IBOutlet UILabel *placeNamePanel;
 @property (nonatomic, retain) IBOutlet UILabel *placeDescription;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollPhotos;
+@property (nonatomic, retain) IBOutlet UIButton *btAddToFavorites;
 @property (nonatomic, retain) IBOutlet UIButton *buttonCategories;
 @property (nonatomic, retain) IBOutlet UIView *disappearingView;
 @property (nonatomic, retain) IBOutlet UIView *panelView;
@@ -34,6 +36,8 @@
 - (IBAction)showCategories:(id)sender;
 - (IBAction)showHidePhotos:(id)sender;
 - (IBAction)showBookmarks:(id)sender;
+- (IBAction)addToFavorites:(id)sender;
+
 
 - (void) loadPlaces:(NSArray*)places;
 
