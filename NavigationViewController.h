@@ -35,11 +35,14 @@
     ReaderViewController *readerController;
     MainViewController *mainController;
     GlViewController *glController;
+    UIView *separatingView;
     BOOL categoriesOpen;
+    BOOL fMetroMode;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController;
 
+@property (nonatomic, retain) IBOutlet UIView *separatingView;
 @property (nonatomic, retain) NSArray *currentPlaces;
 @property (nonatomic, retain) CategoriesViewController *categoriesController;
 @property (nonatomic, retain) PhotosViewController *photosController;

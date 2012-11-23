@@ -29,6 +29,7 @@
 @synthesize bookmarksController;
 @synthesize readerController;
 @synthesize currentPlaces;
+@synthesize separatingView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController
 {
@@ -54,10 +55,10 @@
     self.photosController.navigationDelegate = self;
     self.mainController.view.layer.cornerRadius = self.photosController.view.layer.cornerRadius = 5;
     self.mainController.view.layer.masksToBounds = self.photosController.view.layer.masksToBounds = YES;
-    [self.view addSubview:[self.categoriesController view]];
-    [self.view addSubview:[self.mainController view]];
-    [self.view addSubview:[self.photosController view]];
-
+    [self.view insertSubview:[self.categoriesController view] belowSubview:self.separatingView];
+    [self.view insertSubview:[self.mainController view] aboveSubview:self.separatingView];
+    [self.view insertSubview:[self.photosController view] aboveSubview:self.mainController.view];
+    fMetroMode = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,7 +81,7 @@
             categoriesOpen = NO;
 
         }
-        self.mainController.view.frame = self.glController.view.frame = mainViewFrame;
+        self.mainController.view.frame = self.glController.view.frame = self.separatingView.frame = mainViewFrame;
         self.photosController.view.frame = photosViewFrame;
     }];
 }
@@ -131,7 +132,13 @@
             photosViewFrame.origin.x = 320;
 
             panelFrame.origin = CGPointMake(0, 216 - 176);
-            [self.mainController.view insertSubview:self.photosController.panelView aboveSubview:self.mainController.stationsView];
+            if (fMetroMode) {
+                [self.mainController.view insertSubview:self.photosController.panelView aboveSubview:self.mainController.stationsView];
+            }
+            else {
+                [self.glController.view insertSubview:self.photosController.panelView aboveSubview:self.glController.stationsView];
+            }
+
         }
         self.photosController.panelView.frame = panelFrame;
         self.photosController.view.frame = photosViewFrame;
@@ -141,12 +148,14 @@
 - (void) showRasterMap {
     [self.view insertSubview:self.glController.view belowSubview:self.mainController.view];
     [self.mainController.view removeFromSuperview];
+    fMetroMode =  NO;
 }
 
 - (void) showMetroMap {
     [self.view insertSubview:self.mainController.view belowSubview:self.glController.view];
 
     [self.glController.view removeFromSuperview];
+    fMetroMode = YES;
 }
 
 - (void) showReaderWithItems:(NSArray*)items activePage:(NSInteger)activePage {
