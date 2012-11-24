@@ -54,6 +54,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 
 -(void)showRasterMap;
 -(void)showMetroMap;
+-(void)errorWithGeoLocation;
 
 @end
 

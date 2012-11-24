@@ -80,6 +80,9 @@
 		51D4D935160EF39400C9D02B /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 51D4D92D160EF35500C9D02B /* Shader.vsh */; };
 		51D4D947160EF88300C9D02B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D4D946160EF88300C9D02B /* OpenGLES.framework */; };
 		51D4D94A160EF8AF00C9D02B /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D4D949160EF8AF00C9D02B /* GLKit.framework */; };
+		51DA320316611F4200424D3E /* select_near_station_bw.png in Resources */ = {isa = PBXBuildFile; fileRef = 51DA320016611F4000424D3E /* select_near_station_bw.png */; };
+		51DA320416611F4200424D3E /* select_near_station_bw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51DA320116611F4000424D3E /* select_near_station_bw@2x.png */; };
+		51DA320516611F4200424D3E /* select_near_station@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51DA320216611F4100424D3E /* select_near_station@2x.png */; };
 		51F15F7714D99A3800D11B79 /* VectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F15F7614D99A3800D11B79 /* VectorLayer.m */; };
 		9F39FDAD14CD345800A8043C /* dst_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F39FDA314CD345800A8043C /* dst_button_normal.png */; };
 		9F39FDAE14CD345800A8043C /* dst_button_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F39FDA414CD345800A8043C /* dst_button_normal@2x.png */; };
@@ -612,6 +615,9 @@
 		51D4D92D160EF35500C9D02B /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		51D4D946160EF88300C9D02B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		51D4D949160EF8AF00C9D02B /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		51DA320016611F4000424D3E /* select_near_station_bw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = select_near_station_bw.png; sourceTree = "<group>"; };
+		51DA320116611F4000424D3E /* select_near_station_bw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select_near_station_bw@2x.png"; sourceTree = "<group>"; };
+		51DA320216611F4100424D3E /* select_near_station@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select_near_station@2x.png"; sourceTree = "<group>"; };
 		51F15F7514D99A3800D11B79 /* VectorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VectorLayer.h; path = Classes/VectorLayer.h; sourceTree = "<group>"; };
 		51F15F7614D99A3800D11B79 /* VectorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VectorLayer.m; path = Classes/VectorLayer.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* tube-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "tube-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -1921,6 +1927,9 @@
 				BC95C8321605BBEC00806BF1 /* statViewYellowBG.png */,
 				BC95C8331605BBEC00806BF1 /* statViewYellowBG@2x.png */,
 				CE96C6F61468307C005A56F3 /* select_near_station.png */,
+				51DA320016611F4000424D3E /* select_near_station_bw.png */,
+				51DA320116611F4000424D3E /* select_near_station_bw@2x.png */,
+				51DA320216611F4100424D3E /* select_near_station@2x.png */,
 				9F39FDA314CD345800A8043C /* dst_button_normal.png */,
 				9F39FDA414CD345800A8043C /* dst_button_normal@2x.png */,
 				9F39FDA514CD345800A8043C /* dst_button_pressed.png */,
@@ -2401,6 +2410,9 @@
 				51478D06165FDBAA00BB86FD /* big-frame-with-shadow@2x.png in Resources */,
 				51478D07165FDBAA00BB86FD /* small-frame-with-shadow.png in Resources */,
 				51478D08165FDBAA00BB86FD /* small-frame-with-shadow@2x.png in Resources */,
+				51DA320316611F4200424D3E /* select_near_station_bw.png in Resources */,
+				51DA320416611F4200424D3E /* select_near_station_bw@2x.png in Resources */,
+				51DA320516611F4200424D3E /* select_near_station@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

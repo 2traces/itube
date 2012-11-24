@@ -90,6 +90,7 @@
 {
     CGPoint curPos = CGPointMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
     [(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] setUserGeoPosition:curPos];
+    selectedStationLayer.contents=(id)[nearestStationImage CGImage];
     Station *st = [cityMap findNearestStationTo:curPos];
 	
 	if (![st.name isEqualToString:nearestStationName])
@@ -99,6 +100,13 @@
         
         [self setNeedsDisplay];
 	};
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    [(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] errorWithGeoLocation];
+    selectedStationLayer.contents=(id)[nearestStationImageBw CGImage];
+    NSLog(@"%@", error);
 }
 
 -(void) makePreview {
@@ -286,6 +294,7 @@
     [labelBg release];
 	[cityMap release];
 	[nearestStationImage release];
+    [nearestStationImageBw release];
     for(int i=0; i<MAXCACHE; i++) CGLayerRelease(cacheLayer[i]);
     [midground1 release];
     [midground2 release];
@@ -338,6 +347,8 @@
 -(void) initData {
 	nearestStationImage = [[UIImage imageWithContentsOfFile: 
 						   [[NSBundle mainBundle] pathForResource:@"select_near_station" ofType:@"png"]]retain];
+	nearestStationImageBw = [[UIImage imageWithContentsOfFile:
+                            [[NSBundle mainBundle] pathForResource:@"select_near_station_bw" ofType:@"png"]]retain];
 
 }
 

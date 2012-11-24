@@ -42,6 +42,11 @@ void uncaughtExceptionHandler(NSException *exception) {
     return userGeoP;
 }
 
+-(void)errorWithGeoLocation
+{
+    [gl errorWithGeoLocation];
+}
+
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);

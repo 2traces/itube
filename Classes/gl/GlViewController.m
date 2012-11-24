@@ -1056,6 +1056,11 @@ GLint uniforms[NUM_UNIFORMS];
     }
 }
 
+-(void)errorWithGeoLocation
+{
+    
+}
+
 @end
 
 void SetColor(float r, float g, float b, float a) {
