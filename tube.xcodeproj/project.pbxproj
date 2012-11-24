@@ -36,6 +36,12 @@
 		513C876D1618C6B300D1F431 /* toolbar_text_bg_lighted2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 513C87651618C6B300D1F431 /* toolbar_text_bg_lighted2@2x.png */; };
 		513C876E1618C6B300D1F431 /* toolbar_text_bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 513C87661618C6B300D1F431 /* toolbar_text_bg2.png */; };
 		513C876F1618C6B300D1F431 /* toolbar_text_bg2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 513C87671618C6B300D1F431 /* toolbar_text_bg2@2x.png */; };
+		51478CFF165FB98A00BB86FD /* GlPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51478CFE165FB98A00BB86FD /* GlPanel.m */; };
+		51478D05165FDBAA00BB86FD /* big-frame-with-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 51478D01165FDBAA00BB86FD /* big-frame-with-shadow.png */; };
+		51478D06165FDBAA00BB86FD /* big-frame-with-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51478D02165FDBAA00BB86FD /* big-frame-with-shadow@2x.png */; };
+		51478D07165FDBAA00BB86FD /* small-frame-with-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 51478D03165FDBAA00BB86FD /* small-frame-with-shadow.png */; };
+		51478D08165FDBAA00BB86FD /* small-frame-with-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51478D04165FDBAA00BB86FD /* small-frame-with-shadow@2x.png */; };
+		51478D0B165FDEFB00BB86FD /* GlText.m in Sources */ = {isa = PBXBuildFile; fileRef = 51478D0A165FDEFB00BB86FD /* GlText.m */; };
 		514EFC04163B0E44000F1A3E /* GlSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 514EFC03163B0E44000F1A3E /* GlSprite.m */; };
 		515B9C2F14EEAE740034BB12 /* mainscreen_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 515B9C2D14EEAE740034BB12 /* mainscreen_shadow.png */; };
 		515B9C3014EEAE740034BB12 /* mainscreen_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 515B9C2E14EEAE740034BB12 /* mainscreen_shadow@2x.png */; };
@@ -556,6 +562,14 @@
 		513C87651618C6B300D1F431 /* toolbar_text_bg_lighted2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_text_bg_lighted2@2x.png"; sourceTree = "<group>"; };
 		513C87661618C6B300D1F431 /* toolbar_text_bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_text_bg2.png; sourceTree = "<group>"; };
 		513C87671618C6B300D1F431 /* toolbar_text_bg2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_text_bg2@2x.png"; sourceTree = "<group>"; };
+		51478CFD165FB98A00BB86FD /* GlPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlPanel.h; sourceTree = "<group>"; };
+		51478CFE165FB98A00BB86FD /* GlPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlPanel.m; sourceTree = "<group>"; };
+		51478D01165FDBAA00BB86FD /* big-frame-with-shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "big-frame-with-shadow.png"; sourceTree = "<group>"; };
+		51478D02165FDBAA00BB86FD /* big-frame-with-shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "big-frame-with-shadow@2x.png"; sourceTree = "<group>"; };
+		51478D03165FDBAA00BB86FD /* small-frame-with-shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small-frame-with-shadow.png"; sourceTree = "<group>"; };
+		51478D04165FDBAA00BB86FD /* small-frame-with-shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small-frame-with-shadow@2x.png"; sourceTree = "<group>"; };
+		51478D09165FDEFB00BB86FD /* GlText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlText.h; sourceTree = "<group>"; };
+		51478D0A165FDEFB00BB86FD /* GlText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlText.m; sourceTree = "<group>"; };
 		514EFC02163B0E44000F1A3E /* GlSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlSprite.h; sourceTree = "<group>"; };
 		514EFC03163B0E44000F1A3E /* GlSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlSprite.m; sourceTree = "<group>"; };
 		515B9C2D14EEAE740034BB12 /* mainscreen_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainscreen_shadow.png; sourceTree = "<group>"; };
@@ -1429,6 +1443,10 @@
 				514EFC03163B0E44000F1A3E /* GlSprite.m */,
 				51D4D92C160EF35500C9D02B /* Shader.fsh */,
 				51D4D92D160EF35500C9D02B /* Shader.vsh */,
+				51478CFD165FB98A00BB86FD /* GlPanel.h */,
+				51478CFE165FB98A00BB86FD /* GlPanel.m */,
+				51478D09165FDEFB00BB86FD /* GlText.h */,
+				51478D0A165FDEFB00BB86FD /* GlText.m */,
 			);
 			name = gl;
 			path = Classes/gl;
@@ -1874,6 +1892,10 @@
 				BC7D9C8B15EB5084005684E4 /* popover-bg.png */,
 				BC7D9C8D15EB5871005684E4 /* popover-bg@2x.png */,
 				BC7D9C8E15EB5871005684E4 /* arrow@2x.png */,
+				51478D01165FDBAA00BB86FD /* big-frame-with-shadow.png */,
+				51478D02165FDBAA00BB86FD /* big-frame-with-shadow@2x.png */,
+				51478D03165FDBAA00BB86FD /* small-frame-with-shadow.png */,
+				51478D04165FDBAA00BB86FD /* small-frame-with-shadow@2x.png */,
 				BC5AF6F414F5180400C8463F /* splash.png */,
 				BC5AF6F514F5180400C8463F /* splash@2x.png */,
 				9F4997E814E245EA0058AA96 /* settings_btn.png */,
@@ -2375,6 +2397,10 @@
 				51CC6041163CEDBD00265748 /* user_pos@2x.png in Resources */,
 				517A1F701646AC3300A2D00F /* maps_button.png in Resources */,
 				517A1F711646AC3300A2D00F /* metro_button.png in Resources */,
+				51478D05165FDBAA00BB86FD /* big-frame-with-shadow.png in Resources */,
+				51478D06165FDBAA00BB86FD /* big-frame-with-shadow@2x.png in Resources */,
+				51478D07165FDBAA00BB86FD /* small-frame-with-shadow.png in Resources */,
+				51478D08165FDBAA00BB86FD /* small-frame-with-shadow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2463,6 +2489,8 @@
 				5133EFCE1614499600B7171A /* TopRasterView.m in Sources */,
 				514EFC04163B0E44000F1A3E /* GlSprite.m in Sources */,
 				51AFA7391647CAB80086E1BA /* GlView.m in Sources */,
+				51478CFF165FB98A00BB86FD /* GlPanel.m in Sources */,
+				51478D0B165FDEFB00BB86FD /* GlText.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
