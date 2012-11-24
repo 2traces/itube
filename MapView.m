@@ -95,6 +95,8 @@
 	
 	if (![st.name isEqualToString:nearestStationName])
 	{
+        [self.superview setContentOffset:CGPointMake(st.pos.x * self.Scale - self.superview.frame.size.width*0.5f, st.pos.y * self.Scale - self.superview.frame.size.height*0.5f) animated:YES];
+
 		nearestStationName=st.name;
         selectedStationLayer.position = st.pos;
         
