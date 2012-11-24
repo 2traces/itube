@@ -41,6 +41,12 @@
 		51313BCB1650E73600F7A4E6 /* pin_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51313BC11650E73500F7A4E6 /* pin_red@2x.png */; };
 		51313BCF1650E85500F7A4E6 /* user_pos.png in Resources */ = {isa = PBXBuildFile; fileRef = 51313BCD1650E85400F7A4E6 /* user_pos.png */; };
 		51313BD01650E85500F7A4E6 /* user_pos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51313BCE1650E85400F7A4E6 /* user_pos@2x.png */; };
+		51478CFF165FB98A00BB86FD /* GlPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51478CFE165FB98A00BB86FD /* GlPanel.m */; };
+		51478D05165FDBAA00BB86FD /* big-frame-with-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 51478D01165FDBAA00BB86FD /* big-frame-with-shadow.png */; };
+		51478D06165FDBAA00BB86FD /* big-frame-with-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51478D02165FDBAA00BB86FD /* big-frame-with-shadow@2x.png */; };
+		51478D07165FDBAA00BB86FD /* small-frame-with-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 51478D03165FDBAA00BB86FD /* small-frame-with-shadow.png */; };
+		51478D08165FDBAA00BB86FD /* small-frame-with-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51478D04165FDBAA00BB86FD /* small-frame-with-shadow@2x.png */; };
+		51478D0B165FDEFB00BB86FD /* GlText.m in Sources */ = {isa = PBXBuildFile; fileRef = 51478D0A165FDEFB00BB86FD /* GlText.m */; };
 		514EFC04163B0E44000F1A3E /* GlSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 514EFC03163B0E44000F1A3E /* GlSprite.m */; };
 		515B9C2F14EEAE740034BB12 /* mainscreen_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 515B9C2D14EEAE740034BB12 /* mainscreen_shadow.png */; };
 		515B9C3014EEAE740034BB12 /* mainscreen_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 515B9C2E14EEAE740034BB12 /* mainscreen_shadow@2x.png */; };
@@ -503,6 +509,14 @@
 		51313BC11650E73500F7A4E6 /* pin_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pin_red@2x.png"; path = "pins/pin_red@2x.png"; sourceTree = "<group>"; };
 		51313BCD1650E85400F7A4E6 /* user_pos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = user_pos.png; path = pins/user_pos.png; sourceTree = "<group>"; };
 		51313BCE1650E85400F7A4E6 /* user_pos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "user_pos@2x.png"; path = "pins/user_pos@2x.png"; sourceTree = "<group>"; };
+		51478CFD165FB98A00BB86FD /* GlPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlPanel.h; sourceTree = "<group>"; };
+		51478CFE165FB98A00BB86FD /* GlPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlPanel.m; sourceTree = "<group>"; };
+		51478D01165FDBAA00BB86FD /* big-frame-with-shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "big-frame-with-shadow.png"; sourceTree = "<group>"; };
+		51478D02165FDBAA00BB86FD /* big-frame-with-shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "big-frame-with-shadow@2x.png"; sourceTree = "<group>"; };
+		51478D03165FDBAA00BB86FD /* small-frame-with-shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small-frame-with-shadow.png"; sourceTree = "<group>"; };
+		51478D04165FDBAA00BB86FD /* small-frame-with-shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small-frame-with-shadow@2x.png"; sourceTree = "<group>"; };
+		51478D09165FDEFB00BB86FD /* GlText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlText.h; sourceTree = "<group>"; };
+		51478D0A165FDEFB00BB86FD /* GlText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlText.m; sourceTree = "<group>"; };
 		514EFC02163B0E44000F1A3E /* GlSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlSprite.h; sourceTree = "<group>"; };
 		514EFC03163B0E44000F1A3E /* GlSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlSprite.m; sourceTree = "<group>"; };
 		515B9C2D14EEAE740034BB12 /* mainscreen_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainscreen_shadow.png; sourceTree = "<group>"; };
@@ -1276,6 +1290,10 @@
 				51A4A44815BBBC9500A97AAF /* GlViewController.xib */,
 				514EFC02163B0E44000F1A3E /* GlSprite.h */,
 				514EFC03163B0E44000F1A3E /* GlSprite.m */,
+				51478CFD165FB98A00BB86FD /* GlPanel.h */,
+				51478CFE165FB98A00BB86FD /* GlPanel.m */,
+				51478D09165FDEFB00BB86FD /* GlText.h */,
+				51478D0A165FDEFB00BB86FD /* GlText.m */,
 				51A4A44915BBBC9500A97AAF /* Shader.fsh */,
 				51A4A44A15BBBC9500A97AAF /* Shader.vsh */,
 			);
@@ -1648,6 +1666,10 @@
 				57B7421315D169DC00FE0D72 /* pins */,
 				57A73F5C15CC22B50090969A /* gallery_bookmark.png */,
 				57A73F5D15CC22B50090969A /* gallery_bookmark@2x.png */,
+				51478D01165FDBAA00BB86FD /* big-frame-with-shadow.png */,
+				51478D02165FDBAA00BB86FD /* big-frame-with-shadow@2x.png */,
+				51478D03165FDBAA00BB86FD /* small-frame-with-shadow.png */,
+				51478D04165FDBAA00BB86FD /* small-frame-with-shadow@2x.png */,
 				573A6FB615CBB9A70006ED96 /* default_map_image.png */,
 				57DD589415C7CC370003E57A /* gallery_shadow_map.png */,
 				57DD589515C7CC370003E57A /* gallery_shadow_map@2x.png */,
@@ -2109,6 +2131,10 @@
 				51313BCB1650E73600F7A4E6 /* pin_red@2x.png in Resources */,
 				51313BCF1650E85500F7A4E6 /* user_pos.png in Resources */,
 				51313BD01650E85500F7A4E6 /* user_pos@2x.png in Resources */,
+				51478D05165FDBAA00BB86FD /* big-frame-with-shadow.png in Resources */,
+				51478D06165FDBAA00BB86FD /* big-frame-with-shadow@2x.png in Resources */,
+				51478D07165FDBAA00BB86FD /* small-frame-with-shadow.png in Resources */,
+				51478D08165FDBAA00BB86FD /* small-frame-with-shadow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2199,6 +2225,8 @@
 				574B557115C9414C00A95612 /* GalleryView.m in Sources */,
 				57B7421115D1221C00FE0D72 /* UIColor+CategoriesColors.m in Sources */,
 				514EFC04163B0E44000F1A3E /* GlSprite.m in Sources */,
+				51478CFF165FB98A00BB86FD /* GlPanel.m in Sources */,
+				51478D0B165FDEFB00BB86FD /* GlText.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
