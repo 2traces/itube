@@ -65,6 +65,13 @@
     for (MPhoto *photo in self.place.photos) {
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[self imageForPhotoObject:photo]];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
+
+        if (imageView.frame.size.width < self.scrollPhotos.frame.size.width ||
+            imageView.frame.size.height < self.scrollPhotos.frame.size.height ) {
+            imageView.contentMode = UIViewContentModeCenter;
+            
+        }
         imageView.frame = self.scrollPhotos.frame;
         CGRect imageFrame = imageView.frame;
         imageFrame.origin.x = self.scrollPhotos.frame.size.width * index;

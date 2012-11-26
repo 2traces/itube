@@ -1,0 +1,283 @@
+{
+    "categories": [
+        {
+            "name": "What to see",
+            "image_normal": "cat_wts_normal.png",
+            "image_highlighted": "cat_wts_pressed.png",
+            "color": "dc79b0",
+            "index": 1
+        },
+        {
+            "name": "Off the beaten track",
+            "image_normal": "cat_otbt_normal.png",
+            "image_highlighted": "cat_otbt_pressed.png",
+            "color": "dc79b0",
+            "index": 2
+        },
+        {
+            "name": "Wifi spots",
+            "image_normal": "cat_ws_normal.png",
+            "image_highlighted": "cat_ws_pressed.png",
+            "color": "dc79b0",
+            "index": 3
+        },
+        {
+            "name": "Recommended cafes",
+            "image_normal": "cat_rc_normal.png",
+            "image_highlighted": "cat_rc_pressed.png",
+            "color": "dc79b0",
+            "index": 4
+        }
+    ],
+    "places": [
+        {
+            "name": "Observatoire de Paris",
+            "long": 48.805089,
+            "lat": 2.231003,
+            "index": 1,
+            "text": "The Paris Observatory (in French, Observatoire de Paris or Observatoire de Paris-Meudon) is the foremost astronomical observatory of France, and one of the largest astronomical centres in the world. Its historic main building is to be found on the Left Bank of the Seine in central Paris. The Meudon great refractor (Meudon 33-inch) was a 83 centimetres (33 in) aperture refractor, which with September 20, 1909 observations by E.M. Antoniadi helped disprove the Mars canals theory. It was a double telescope completed in 1891, with secondary having 62 centimetres (24 in) aperture lens for photography. It was one of the largest active telescopes in Europe.",
+            "photos": [
+                "01.jpg",
+                "02.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+        {
+            "name": "Parc de Bercy",
+            "long": 48.805083,
+            "lat": 2.230844,
+            "index": 2,
+            "text": "Parc de Bercy is a group of three connected gardens in the 12th arrondissement of Paris. With a combined area of some 14 hectares, it is one of the most important parks in the city. The park is serviced by Bercy and Cour Saint-Emilion Metro stations. The three gardens The park is made up of three gardens designed by architects Bernard Huet, Madeleine Ferrand, Jean-Pierre Feugas, Bernard Leroy, and by landscapers Ian Le Caisne and Philippe Raguin between 1993 and 1997: The \"Romantic Garden\", which includes fishponds and dunes; The \"Flowerbeds\", dedicated to plant life; \"The Meadows\", an area of open lawns shaded by tall trees. In the north-east of the park stands the Cinematheque Francaise (the former American Center) designed by Frank Gehry, and on the raised terraces are the 21 sculptures of Rachid Khimoune's \"Children of the World\" installation, created in 2001 to honour children's rights. The park is linked directly to the National Library of France by the Simone de Beauvoir footbridge over the Seine. The area used to be an important location for Paris wine warehouses, and some remains of the industry can still be seen in the park. The Musee des Arts Forains is also located here.",
+            "photos": [
+                "03.jpg",
+                "04.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+        {
+            "name": "Rue Mouffetard",
+            "long": 48.842195,
+            "lat": 2.349738,
+            "index": 3,
+            "text": "Rue Mouffetard (French pronunciation: ?[ry muf.ta?]) is a street in the 5th arrondissement of Paris, France. Situated in the fifth (cinquieme) arrondissement of Paris, Rue Mouffetard is one of Paris's oldest and liveliest neighbourhoods. These days the area has many restaurants, shops, and cafes, and a regular open market. It is centered on the Place de la Contrescarpe, at the junction of the rue Mouffetard and the rue de Lacepede. Its southern terminus is at the Square Saint-Medard where there is a permanent open-air market. At its northern terminus, it becomes the rue Descartes at the crossing of the rue Thouin. It is closed to normal motor traffic much of the week, and is predominantly a pedestrian avenue. ",
+            "photos": [
+                "11.jpg",
+                "12.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+        {
+            "name": "The Trocadero aquarium",
+            "long": 48.862574,
+               "lat": 2.291381,
+               "index": 4,
+            "text": "After almost 20 years of absence, the Trocadero aquarium is back since 2006 under the new name : Aquarium of Paris ñ Cineaqua. Strengthened by its great experience since it first opened for the 1878 World Expo, year when it was Europeís largest aquatic complex, the place has become more modern and is today attempting to achieve the unlikely mix between aquarium and cinematography.  The 3500m? trail gives you the opportunity to meet some of the 9000 specimens of fish and invertebrates divided into 43 tanks. Its locations is as good as it gets : on the capitalís podium, just opposite the Eiffel tower and its figures speak for themselves. In addition to the 500 corals, the 2 cinema rooms and the 20 tons of salt necessary to supply the sea-water tanks, here, you will also find Franceís biggest tank. With 3 000 000 litres of water, the sharks tank is unequalled throughout the country. 9,60m high and 33m wide, it contains 4 different species of sharks. The Aquarium of Paris- Cineaqua offers its visitors to discover the French littoral with a trip around the metropolitan and overseas coasts. You will be stunned by a panel of fish representing some 450 regional species. Starting point : the Trocadero gardens. There, you will plunge head first under the huge glass wave into the depths of the aquarium which is entirely underground.",
+            "photos": [
+                "09.jpg",
+                "10.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+        {
+            "name": "Musee de Cluny",
+            "long": 48.850556,
+               "lat": 2.343333,
+               "index": 5,
+            "text": "The Musee de Cluny houses a variety of important medieval artifacts, in particular its tapestry collection, which includes the fifteenth century tapestry cycle La Dame a la Licorne (The Lady and the Unicorn). Other notable works stored there include early Medieval sculptures from the seventh and eighth centuries. There are also works of gold, ivory, antique furnishings, and illuminated manuscripts.",
+            "photos": [
+                "13.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+        {
+            "name": "Les Puces (The Fleas)",
+            "long": 52.436902,
+               "lat": 13.232732,
+               "index": 6,
+            "text": "The most famous flea market in Paris is the one at Porte de Clignancourt, officially called Les Puces de Saint-Ouen, but known to everyone as Les Puces (The Fleas).  It covers seven hectares and is the largest antique market in the world, receiving between 120,000 to 180,000 visitors each weekend. If you get there early, plan on having a leisurely Cafe Creme and watching the antiques world start up for the day. If you're a serious shopper, watch out as it becomes very crowded after lunch!! We strongly recommend going to the Puces on Saturday or Sunday because many dealers aren't open on Monday, or only open by appointment.  If you can only shop on Monday, arrive in the morning when you stand a better chance of dealers being open, cleaning up after the weekend. Important Note: Be careful to hide wallets and purses; as in any city, big crowds are a great place for pickpockets to work - and the Flea Market is no exception. When guests reserve our apartments in Paris we repeatedly advise them to hide their wallets in a fanny pack and to leave their passports in our apartment safes, but every few months we get a phone call from them, telling us they have lost their passports and credit cards. Do be careful.",
+            "photos": [
+                "14.jpg",
+				"15.jpg",
+                "16.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+		        {
+            "name": "Cite des Sciences et de l'Industrie",
+            "long": 52.436902,
+               "lat": 13.232732,
+               "index": 7,
+            "text": "The Cite des Sciences et de l'Industrie is the biggest science museum in Europe.[1] Located in Parc de la Villette in Paris, France, it is at the heart of the Cultural Center of Science, Technology and Industry (CCSTI), a center promoting science and science culture. About five million people visit the Cite each year. Attractions include a planetarium, a submarine (the Argonaute (S636)), an IMAX theatre (La Geode) and special areas for children and teenagers. The Cite is classified as a public establishment of an industrial and commercial character, an establishment specializing in the fostering of scientific and technical culture. Created on the initiative of President Giscard d'Estaing, the goal of the Cite is to spread scientific and technical knowledge among the public, particularly for youth, and to promote public interest in science, research and industry. The most notable features of the \"bioclimatic facade\" facing the park are Les Serres - three greenhouse spaces each 32 metres high, 32 metres wide and 8 metres deep. The facades of Les Serres were the first structural glass walls to be constructed without framing or supporting fins.",
+            "photos": [
+                "17.jpg",
+				"18.jpg",
+				"19.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+		        {
+            "name": "Viaduc des Arts",
+            "long": 48.894462,
+            "lat": 2.370987,
+            "index": 8,
+            "text": "Le viaduc des Arts est aujourdíhui un ensemble díateliers des metiers díart regroupes dans une construction unique a Paris (dans le 12e arrondissement) quíetait líancien viaduc de Paris construit en 1859, par les concepteurs Emile Vuigner et Albert Bassompierre-Sewrin, pour soutenir la voie de chemin de fer de la ligne de Vincennes, reliant l'ancienne gare de Paris-Bastille situee place de la Bastille a Vincennes, le long de líactuelle avenue Daumesnil.",
+            "photos": [
+                "20.jpg",
+				"21.jpg",
+                "22.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+		        {
+            "name": "Suicide bridge",
+            "long": 48.880278,
+               "lat": 2.382778,
+               "index": 9,
+            "text": "A 63 meter long suspension bridge, renovated in 2009, crosses the lake and allows access to the island. A 22 meter high bridge, known as the \"suicide bridge\", allows access to the belvedere from the south side of the park. The Parc des Buttes Chaumont (pronounced: [pa?k d? byt ?om??]) is a public garden situated in the 19th arrondissement of Paris, France. The name of the park is composed of two words, buttes (hills or heights), and Chaumont, which is probably a contraction of chauve (bald) and mont (mount). The park is the third largest of its kind in Paris encompassing over 5 kilometres of trails and paths. The main feature of the park is the Belvedere (or Temple) of Sybil which sits at the top of an island in the middle of a lake.",
+            "photos": [
+                "23.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+        {
+            "name": "Musee des Arts et Metiers",
+            "long": 48.866111,
+               "lat": 2.355278,
+               "index": 10,
+            "text": "The Musee des Arts et Metiers (French pronunciation: ?[myze dez?a? e metje], Museum of Arts and Crafts) is a museum in Paris that houses the collection of the Conservatoire National des Arts et Metiers (National Conservatory of Arts and Industry), which was founded in 1794 as a repository for the preservation of scientific instruments and inventions. Since its foundation, the museum has been housed in the deserted priory of Saint-Martin-des-Champs, in the rue Reaumur in the 3rd arrondissement of Paris. Today the museum, which underwent major renovation in 1990, includes an additional building adjacent to the abbey, with larger objects remaining in the abbey itself. The museum has over 80,000 objects and 15,000 drawings in its collection, with 40,000 at the Paris site. Among its collection is an original version of the Foucault pendulum.",
+            "photos": [
+                "30.jpg",
+                "27.jpg",
+				"28.jpg",
+                "29.jpg",
+				"24.jpg"
+            ],
+            "categories": [
+                2,
+                3
+            ]
+        },
+		{
+            "name": "National Museum of Natural History",
+            "long": 48.842109,
+               "lat": 2.356286,
+               "index": 11,
+            "text": "The Parc de la Villette is one of the largest parks in Paris, located at the northeastern edge of the 19th arrondissement. The park houses one of the largest concentration of cultural venues in Paris, including the Cite des Sciences et de l'Industrie (City of Science and Industry), Europe's largest science museum, three major concert venues and the prestigious Conservatoire de Paris. Parc de la Villette is served by Paris Metro stations Corentin Cariou on Line 7 and Porte de Pantin on Line 5.",
+            "photos": [
+                "31.jpg",
+				"32.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+				{
+            "name": "I love you : the wall",
+            "long": 48.884699,
+               "lat": 2.338543,
+               "index": 12,
+            "text": "I love you : the wall is a monument dedicated to love erected in the romantic garden of the Square Jehan Rictus Place des Abbesses in Paris Montmartre. The work of art, created by Frederic Baron and Claire Kito has become a meeting place for lovers of Love. For a lovely walk or a hike, an unusual step for your honeymoon, the discovery of a missed spot, for saying I love you in different languages, to stroll in the most romantic place in Paris, we invite you to discover the The wall of love in music and images. ",
+            "photos": [
+                "33.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+				{
+            "name": "Deyrolle",
+            "long": 48.856499,
+               "lat": 2.32657,
+               "index": 13,
+            "text": "Since 1831, Deyrolle offers to Nature lovers and professionals, schools, universities, museums, scientific or medical centers, materials for natural science such as zoology, botanic, mineralogy, conchiliology, teaching apparatus of many sorts as well as insects and shells collections, mounted animals of many kind, natural wonders and collection pieces. The principle of Deyrolle was always to bring to human nature the sence of observation and description : ëan image is worth a thousand wordsí, so If one want to protect nature, one has to know it, understand it and overcome the cycles of reproduction of species as well. In february 2008, a terrible fire severely damaged the Cabinets of Curiosities (also known as Wunderkammer or wonder-rooms) as well as the entomology room and a large part of the historical collections. Deyrolle was saved because of the extraordinary enthusiasm of so many of its fan including Hermes, numerous artists that worldwide contributed to realise piece artwork for an auction done by Christieís last November. As a result, the entomology room has been opened during the fall 2009. Today, the store is as beautiful as ever, with still collection of large mammals, magnificent mounted birds and other beautiful and astonishing natural wonders.",
+            "photos": [
+                "34.jpg",
+				"35.jpg",
+				"36.jpg",
+				"37.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+				{
+            "name": "Berthillon",
+            "long": 48.851783,
+               "lat": 2.356911,
+               "index": 14,
+            "text": "Many consider Berthillon to be the best ice cream of Paris and maybe of France. It is annually visited by Parisians, and by tourists from France and all over the world. Berthillon is a French manufacturer and retailer of luxury ice cream and sorbet, with its primary store on the Ile Saint-Louis in Paris, France. The company is owned and operated by the Chauvin family, descendants of the eponymous Monsieur Berthillon, who opened the first store in 1954. Berthillon sells its ice cream in bulk and by the scoop from its shop on the island, but many other retailers in Paris sell its ice cream in cones and cups, and some grocers sell larger amounts. Berthillon's fame derives in part from its use of natural ingredients, with no chemical preservatives, artificial sweeteners or stabilizers. Its ice creams are made from only milk, sugar, cream and eggs. Flavourings derive from natural sources (cocoa, vanilla bean, fruit, etc.). Fifteen flavors are produced everyday by the chefs depending on the season, the availability at the market and the customer's demand. In total about sixty different flavors are produced by the Maison Berthillon throughout the year.",
+            "photos": [
+                "38.jpg",
+				"39.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+				{
+            "name": "France Miniature",
+            "long": 48.776485,
+               "lat": 1.962078,
+               "index": 15,
+            "text": "France Miniature is a miniature park tourist attraction in Elancourt, France featuring scale models of major French landmarks and monuments in an outdoor park. France Miniature is a 5-hectare (12-acre) outdoor park in the shape of France that contains about 160 outdoor 1/30-scale models of major French monuments and landmarks. Monuments are placed in the park to correlate approximately with their real-world locations in France. Many of the models are animated, and all of the country's best known landmarks are represented (the Eiffel Tower, Versailles, Lourdes, etc.). A system of model trains runs through the park, and animated boats ply the ìAtlantic Oceanî and the ìMediterranean Seaî (lagoons positioned appropriately around the perimeter of the park). Visitors walk along paved paths to visit the various models. An indoor exhibition features extremely detailed models of several indoor scenes. The park is closed during the winter.",
+            "photos": [
+                "40.jpg",
+				"41.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+				{
+            "name": "Rue du Chat-qui-Peche",
+            "long": 48.853056,
+               "lat": 2.346111,
+               "index": 16,
+            "text": "Rue du Chat-qui-Peche is considered the narrowest street in Paris. It is only 1.80m wide for the whole of its 29m length. It is located in the 5th arrondissement, on the Rive Gauche of the Seine, and runs from Quai Saint-Michel to Rue de la Huchette, Built in 1540, it then ended on the bank of the river Seine. The status of \"narrowest\" street in Paris is also conferred on the sentier des Merisiers in the 12e arrondissement and the passage de la Duee in the 20e arrondissement. In English the name means \"Street of the Fishing Cat\". It was named after the picture on a shop sign. The original name was Rue des Etuves, and at various times it has also been known as Rue du Renard (not to be confused with the current Rue du Renard, in the 4e arr.) and Rue des Bouticles. ",
+            "photos": [
+                "42.jpg",
+				"43.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+				{
+            "name": "Aleosse",
+            "long": 48.888734,
+               "lat": 2.320433,
+               "index": 17,
+            "text": "fromage-alleosse",
+            "photos": [
+                "44.jpg",
+				"45.jpg",
+				"46.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+    ]
+}
+
+
+
+

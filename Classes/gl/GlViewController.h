@@ -28,5 +28,6 @@
 -(void)setGeoPosition:(CGRect)rect;
 -(void)setUserGeoPosition:(CGPoint)point;
 -(void)setStationsPosition:(NSArray*)coords;
+-(CGPoint)translateFromGeoToMap:(CGPoint)pm;
 
 @end

@@ -2164,7 +2164,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if (path) {
         NSData *jsonData = [NSData dataWithContentsOfFile:path];
         if (jsonData) {
-            placesData = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+            NSError *error = nil;
+            placesData = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+            if (error) {
+                NSLog(@"Error reading JSON: %@, %@", [error localizedFailureReason], [error localizedDescription]);
+            }
         }
     }
     if (placesData) {
@@ -2184,6 +2188,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             newPlace.name = [place objectForKey:@"name"];
             newPlace.index = [NSNumber numberWithInt:[[place objectForKey:@"index"] integerValue]];
             newPlace.text = [place objectForKey:@"text"];
+            newPlace.posX = [NSNumber numberWithFloat:[[place objectForKey:@"long"] floatValue]];
+            newPlace.posY = [NSNumber numberWithFloat:[[place objectForKey:@"lat"] floatValue]];
             NSMutableSet *setCategories = [newPlace mutableSetValueForKey:@"categories"];
             //Read categories for this place
             for (NSNumber *catId in [place objectForKey:@"categories"]) {

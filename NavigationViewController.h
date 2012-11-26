@@ -25,6 +25,7 @@
 - (void) showMetroMap;
 - (void) showReaderWithItems:(NSArray*)items activePage:(NSInteger)activePage;
 - (void) selectCategoryWithIndex:(NSInteger)index;
+- (void) selectPlaceWithIndex:(NSInteger)index;
 
 @end
 

@@ -97,6 +97,8 @@ extern int const imagesCount;
 -(void) initData ;
 // adjust map after resizing parent views
 -(void)adjustMap;
+//highlighting station nearest to the point
+- (void)highlightStationNearPoint:(CGPoint)point;
 
 
 @end

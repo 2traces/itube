@@ -86,6 +86,18 @@
     } else return NO;
 }
 
+- (void)highlightStationNearPoint:(CGPoint)point {
+    Station *st = [cityMap findNearestStationTo:point];
+	
+	if (![st.name isEqualToString:nearestStationName])
+	{
+		nearestStationName=st.name;
+        selectedStationLayer.position = st.pos;
+        
+        [self setNeedsDisplay];
+	};
+}
+
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     CGPoint curPos = CGPointMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);

@@ -41,23 +41,10 @@
     [super viewDidLoad];
     [self initializeCategories];
     // Do any additional setup after loading the view from its nib.
-//    itemsNames = [[NSArray arrayWithObjects:@"What to see",
-//                                           @"Off the beaten track",
-//                                           @"Wifi spots",
-//                                           @"Recommended cafes", nil] retain];
-//    
-//    itemsImages = [[NSArray arrayWithObjects:[UIImage imageNamed:@"what_to_see_normal"],
-//                                            [UIImage imageNamed:@"off_beaten_track_normal"],
-//                                            [UIImage imageNamed:@"wifi_spots_normal"],
-//                                            [UIImage imageNamed:@"recommended_cafes_normal"], nil] retain];
-//    
-//    itemsImagesHighlighted = [[NSArray arrayWithObjects:[UIImage imageNamed:@"what_to_see_pressed"],
-//                                            [UIImage imageNamed:@"off_beaten_track_pressed"],
-//                                            [UIImage imageNamed:@"wifi_spots_pressed"],
-//                                            [UIImage imageNamed:@"recommended_cafes_pressed"], nil] retain];
+
     [self.tableView reloadData];
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
-    MCategory *category = self.categories[0];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+    MCategory *category = self.categories[1];
     [self.navigationDelegate selectCategoryWithIndex:[category.index integerValue]];
 }
 

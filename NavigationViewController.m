@@ -58,6 +58,10 @@
     [self.view insertSubview:[self.categoriesController view] belowSubview:self.separatingView];
     [self.view insertSubview:[self.mainController view] aboveSubview:self.separatingView];
     [self.view insertSubview:[self.photosController view] aboveSubview:self.mainController.view];
+    
+    CGRect mainViewFrame = self.mainController.view.frame;
+    self.mainController.view.frame = self.glController.view.frame = self.separatingView.frame = mainViewFrame;
+    
     fMetroMode = YES;
 }
 
@@ -169,6 +173,15 @@
 - (void) selectCategoryWithIndex:(NSInteger)index {
     self.currentPlaces = [[MHelper sharedHelper] getPlacesForCategoryIndex:index];
     [photosController loadPlaces:self.currentPlaces];
+}
+
+- (void) selectPlaceWithIndex:(NSInteger)index {
+    MPlace *place = [[MHelper sharedHelper] getPlaceWithIndex:index];
+    CGPoint placePosition = CGPointMake([place.posX floatValue], [place.posY floatValue]);
+    placePosition = [self.glController translateFromGeoToMap:placePosition];
+    
+    
+    //[(MainView*)(self.mainController.view) selectStationAt:placePosition];
 }
 
 

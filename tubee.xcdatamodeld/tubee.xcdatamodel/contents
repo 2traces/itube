@@ -28,6 +28,8 @@
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="posX" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="posY" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="categories" optional="YES" toMany="YES" minCount="1" deletionRule="No Action" destinationEntity="Category" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Photo" inverseName="place" inverseEntity="Photo" syncable="YES"/>
@@ -44,7 +46,7 @@
         <element name="History" positionX="-630" positionY="-450" width="128" height="90"/>
         <element name="Line" positionX="-549" positionY="-171" width="128" height="105"/>
         <element name="Photo" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="Place" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="Place" positionX="160" positionY="192" width="128" height="165"/>
         <element name="Station" positionX="-279" positionY="-324" width="128" height="120"/>
     </elements>
 </model>

@@ -61,6 +61,7 @@
                 [UIImage imageNamed:@"bt_star_solid"] :
                 [UIImage imageNamed:@"bt_star"];
     [self.btAddToFavorites setImage:btImage forState:UIControlStateNormal];
+    [self.navigationDelegate selectPlaceWithIndex:[place.index integerValue]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -81,6 +82,12 @@
             [mutablePhotos addObject:photo];
             UIImageView *imageView = [[UIImageView alloc] initWithImage:[self imageForPhotoObject:photo]];
             imageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageView.clipsToBounds = YES;
+            if (imageView.frame.size.width < self.scrollPhotos.frame.size.width ||
+                imageView.frame.size.height < self.scrollPhotos.frame.size.height ) {
+                imageView.contentMode = UIViewContentModeCenter;
+
+            }
             imageView.frame = self.scrollPhotos.frame;
             CGRect imageFrame = imageView.frame;
             imageFrame.origin.x = self.scrollPhotos.frame.size.width * index;
@@ -94,7 +101,9 @@
     self.scrollPhotos.contentSize = CGSizeMake(self.scrollPhotos.frame.size.width * index, self.scrollPhotos.frame.size.height);
     self.scrollPhotos.pagingEnabled = YES;
     currentPage = 0;
-    [self updateInfoForCurrentPage];
+    if ([self.currentPhotos count]) {
+        [self updateInfoForCurrentPage];
+    }
 }
 
 - (void) loadPlaces:(NSArray*)places {

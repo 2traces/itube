@@ -61,5 +61,6 @@ MBProgressHUD *commonActivityIndicator;
 -(void)setCityMap:(CityMap*)cm;
 -(void)changeShadowFrameToRect:(CGRect)rect;
 -(CGRect)getMapVisibleRect;
+-(void)selectStationAt:(CGPoint)currentPosition;
 
 @end
