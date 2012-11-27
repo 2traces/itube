@@ -275,7 +275,174 @@
                 2
             ]
         },
-    ]
+				{
+            "name": "Arc de Triomphe",
+            "long": 48.873829,
+               "lat": 2.295021,
+               "index": 18,
+            "text": "The Arc de Triomphe (Arc de Triomphe de l'Étoile) is one of the most famous monuments in Paris. It stands in the centre of the Place Charles de Gaulle (originally named Place de l'Étoile), at the western end of the Champs-Élysées. There is a smaller arch, the Arc de Triomphe du Carrousel, which stands west of the Louvre. The Arc de Triomphe (in English: \"Triumphal Arch\") honours those who fought and died for France in the French Revolutionary and the Napoleonic Wars, with the names of all French victories and generals inscribed on its inner and outer surfaces. Beneath its vault lies the Tomb of the Unknown Soldier from World War I. The Arc de Triomphe is the linchpin of the historic axis (Axe historique) – a sequence of monuments and grand thoroughfares on a route which goes from the courtyard of the Louvre, to the Grande Arche de la Défense. The monument was designed by Jean Chalgrin in 1806, and its iconographic program pitted heroically nude French youths against bearded Germanic warriors in chain mail. It set the tone for public monuments, with triumphant patriotic messages.",
+            "photos": [
+                "50.jpg",
+				"51.jpg",
+                "52.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Centre Georges Pompidou",
+            "long": 48.860755,
+               "lat": 2.352424,
+               "index": 19,
+            "text": "Centre Georges Pompidou (also known as the Pompidou Centre in English) is a complex in the Beaubourg area of the 4th arrondissement of Paris, near Les Halles, rue Montorgueil and the Marais. It was designed in the style of high-tech architecture. The idea for a multicultural complex sprouted from André Malraux, the first minister of cultural affairs, was the western prophet of art and culture as centralized political power. The idea for the Centre Pompidou as a nerve centre of the French art and culture, bringing together in one place the different forms of expression, can be traced back in a way to Malraux’ ideas. In the 1960s the city planners decided to move the foodmarkets of Les Halles, the historical structures were greatly prized and it was proposed that some of the cultural institutes would be appropriate occupants. Paris as a city of culture and art needed a boost and voices were raised to move the Musée d’Art Moderne to this more appropriate location. Another demand existed in Paris at the time, that for a decent public library, Paris at the time lacked any large, free, general-purpose library. At first the debate concerned Les Halles, but as the controversy settled, in 1968, President Charles de Gaulle announced the Plateau Beaubourg as the new site for the library. A year later in 1969, the new president adopted the Beaubourg project and decided it to be the location of both the new library and a center for the contemporary arts. In the process of developing the project, the IRCAM (Institut de recherche et coordination acoustique/musique) was also housed in the complex. By 1992, the Centre de Creation Industrielle was incorporated into the Centre Pompidou.",
+            "photos": [
+                "53.jpg",
+				"54.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Conciergerie",
+            "long": 48.855518,
+               "lat": 2.345734,
+               "index": 20,
+            "text": "La Conciergerie is a former royal palace and prison in Paris, France, located on the west of the Île de la Cité, near the Cathedral of Notre-Dame. It is part of the larger complex known as the Palais de Justice, which is still used for judicial purposes. Hundreds of prisoners during the French Revolution were taken from La Conciergerie to be executed on the guillotine at a number of locations around Paris.",
+            "photos": [
+                "55.jpg",
+				"56.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Eiffel Tower",
+            "long": 48.858525,
+               "lat": 2.294581,
+               "index": 21,
+            "text": "The Eiffel Tower is an iron lattice tower located on the Champ de Mars in Paris, named after the engineer Gustave Eiffel, whose company designed and built the tower. Erected in 1889 as the entrance arch to the 1889 World's Fair, it has become both a global cultural icon of France and one of the most recognizable structures in the world. The tower is the tallest structure in Paris and the most-visited paid monument in the world; 7.1 million people ascended it in 2011. The third level observatory's upper platform is at 279.11 m the highest accessible to public in the European Union and the highest in Europe as long as the platform of the Ostankino Tower, at 360 m, remains closed as a result of the fire of August 2000. The tower received its 250 millionth visitor in 2010. The tower stands 320 metres tall, about the same height as an 81-storey building. During its construction, the Eiffel Tower surpassed the Washington Monument to assume the title of the tallest man-made structure in the world, a title it held for 41 years, until the Chrysler Building in New York City was built in 1930. However, because of the addition, in 1957, of the antenna atop the Eiffel Tower, it is now taller than the Chrysler Building. Not including broadcast antennas, it is the second-tallest structure in France, after the Millau Viaduct. The tower has three levels for visitors. Tickets can be purchased to ascend, by stairs or lift (elevator), to the first and second levels. The walk from ground level to the first level is over 300 steps, as is the walk from the first to the second level. The third and highest level is accessible only by lift - stairs exist but they are not usually open for public use. Both the first and second levels feature restaurants. The tower has become the most prominent symbol of both Paris and France, often in the establishing shot of films set in the city.",
+            "photos": [
+                "57.jpg",
+				"58.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Les Invalides",
+            "long": 48.855119,
+               "lat": 2.312562,
+               "index": 22,
+            "text": "Les Invalides, officially known as L'Hôtel national des Invalides (The National Residence of the Invalids), is a complex of buildings in the 7th arrondissement of Paris, France, containing museums and monuments, all relating to the military history of France, as well as a hospital and a retirement home for war veterans, the building's original purpose. The buildings house the Musée de l'Armée, the military museum of the Army of France, the Musée des Plans-Reliefs, and the Musée d'Histoire Contemporaine, as well as the burial site for some of France's war heroes, notably Napoleon Bonaparte (lists below).",
+            "photos": [
+                "59.jpg",
+				"60.jpg",
+                "61.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Musée du Louvre",
+            "long": 48.860614,
+               "lat": 2.33756,
+               "index": 23,
+            "text": "The Musée du Louvre (in English, the Louvre Museum or simply The Louvre—is one of the world's largest museums, and a historic monument. A central landmark of Paris, France, it is located on the Right Bank of the Seine in the 1st arrondissement (district). Nearly 35,000 objects from prehistory to the 19th century are exhibited over an area of 60,600 square metres (652,300 square feet). With more than 8 million visitors each year, the Louvre is the world's most visited museum. The museum is housed in the Louvre Palace (Palais du Louvre) which began as a fortress built in the late 12th century under Philip II. Remnants of the fortress are visible in the basement of the museum. The building was extended many times to form the present Louvre Palace. In 1682, Louis XIV chose the Palace of Versailles for his household, leaving the Louvre primarily as a place to display the royal collection, including, from 1692, a collection of antique sculpture. In 1692, the building was occupied by the Académie des Inscriptions et Belles Lettres and the Académie Royale de Peinture et de Sculpture, which in 1699 held the first of a series of salons. The Académie remained at the Louvre for 100 years. During the French Revolution, the National Assembly decreed that the Louvre should be used as a museum, to display the nation's masterpieces. The museum opened on 10 August 1793 with an exhibition of 537 paintings, the majority of the works being royal and confiscated church property. Because of structural problems with the building, the museum was closed in 1796 until 1801. The size of the collection increased under Napoleon and the museum was renamed the Musée Napoléon. After the defeat of Napoleon at Waterloo, many works seized by his armies were returned to their original owners. The collection was further increased during the reigns of Louis XVIII and Charles X, and during the Second French Empire the museum gained 20,000 pieces. Holdings have grown steadily through donations and gifts since the Third Republic. As of 2008, the collection is divided among eight curatorial departments: Egyptian Antiquities; Near Eastern Antiquities; Greek, Etruscan, and Roman Antiquities; Islamic Art; Sculpture; Decorative Arts; Paintings; Prints and Drawings.",
+            "photos": [
+                "62.jpg",
+				"63.jpg",
+                "64.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Musée d'Orsay",
+            "long": 48.860388,
+               "lat": 2.325334,
+               "index": 24,
+            "text": "The Musée d'Orsay is a museum in Paris, France, on the left bank of the Seine. It is housed in the former Gare d'Orsay, an impressive Beaux-Arts railway station built between 1898 and 1900. The museum holds mainly French art dating from 1848 to 1915, including paintings, sculptures, furniture, and photography. It is probably best known for its extensive collection of impressionist and post-impressionist masterpieces (the largest in the world) by such painters such as Monet, Manet, Degas, Renoir, Cézanne, Seurat, Sisley, Gauguin and Van Gogh. Many of these works were held at the Galerie nationale du Jeu de Paume prior to the museum's opening in 1986. The museum building was originally a railway station, Gare d'Orsay, constructed for the Chemin de Fer de Paris à Orléans and finished in time for the 1900 Exposition Universelle to the design of three architects: Lucien Magne, Émile Bénard and Victor Laloux. It was the terminus for the railways of southwestern France until 1939. By 1939 the station's short platforms had become unsuitable for the longer trains that had come to be used for mainline services. After 1939 it was used for suburban services and part of it became a mailing centre during World War II. It was then used as a set for several films, such as Kafka's The Trial adapted by Orson Welles, and as a haven for the Renaud–Barrault Theatre Company and for auctioneers, while the Hôtel Drouot was being rebuilt.",
+            "photos": [
+                "65.jpg",
+				"66.jpg",
+				"67.jpg",
+                "68.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Montmartre",
+            "long": 48.886265,
+               "lat": 2.34308,
+               "index": 25,
+            "text": "Montmartre is a hill in the north of Paris, France. It is 130 metres high and gives its name to the surrounding district, in the 18th arrondissement, a part of the Right Bank. Montmartre is primarily known for the white-domed Basilica of the Sacré Cœur on its summit and as a nightclub district. The other, older, church on the hill is Saint Pierre de Montmartre, which claims to be the location at which the Jesuit order of priests was founded. Many artists had studios or worked around the community of Montmartre such as Salvador Dalí, Amedeo Modigliani, Claude Monet, Piet Mondrian, Pablo Picasso and Vincent van Gogh. Montmartre is also the setting for several hit films. This site is served by metro line 2 stations of Anvers, Pigalle and Blanche and the line 12 stations of Pigalle, Abbesses, Lamarck - Caulaincourt and Jules Joffrin. Since Montmartre was outside the city limits, free of Paris taxes and no doubt also due to the fact that the local nuns made wine, the hill quickly became a popular drinking area. The area developed into a centre of free-wheeling and decadent entertainment at the end of the 19th and the beginning of the 20th centuries. In the popular cabaret the Moulin Rouge, and at Le Chat Noir, artists, singers and performers regularly appeared including Yvette Guilbert, Marcelle Lender, Aristide Bruant, La Goulue, Georges Guibourg, Mistinguett, Fréhel, Jane Avril, Damia and others. When Napoleon III and his city planner Baron Haussmann planned to make Paris the most beautiful city in Europe, a first step was to grant large sweeps of land near the centre of the city to Haussmann's friends and financial supporters. This drove the original inhabitants to the edges of the city — to the districts of Clichy, La Villette, and the hill with a view of the city, Montmartre. The Basilica of the Sacré Cœur was built on Montmartre from 1876 to 1912 by public subscription as a gesture of expiation of the \"crimes of the communards\", after the Paris Commune events, and to honour the French victims of the 1871 Franco-Prussian War. Its white dome is a highly visible landmark in the city, and just below it artists still set up their easels each day amidst the tables and colourful umbrellas of Place du Tertre. At the beginning of his political career, the future French statesman Georges Clemenceau was mayor of Montmartre",
+            "photos": [
+				"69.jpg",
+                "70.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Sainte-Chapelle",
+            "long": 48.855383,
+               "lat": 2.344914,
+               "index": 26,
+            "text": "La Sainte-Chapelle is one of the only surviving buildings of the Capetian royal palace on the Île de la Cité in the heart of Paris, France (the others being those of the Conciergerie). It was commissioned by King Louis IX of France to house his collection of Passion Relics, including the Crown of Thorns - one of the most important relics in medieval Christendom. Begun some time after 1239 and consecrated on the 26th of April 1248, the Sainte-Chapelle is considered among the highest achievements of the Rayonnant period of Gothic architecture. Although damaged during the French revolution and heavily restored in the 19th century, it retains one of the most extensive in-situ collections of 13th century stained glass anywhere in the world.",
+            "photos": [
+				"71.jpg",
+                "72.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Notre Dame de Paris",
+            "long": 48.85293,
+               "lat": 2.350194,
+               "index": 27,
+            "text": "Notre Dame de Paris, also known as Notre Dame Cathedral or simply Notre Dame, is a historic Roman Catholic Marian cathedral on the eastern half of the Île de la Cité in the fourth arrondissement of Paris, France. Widely considered one of the finest examples of French Gothic architecture and among the largest and most well-known churches in the world ever built, Notre Dame is the cathedral of the Catholic Archdiocese of Paris; that is, it is the church that contains the cathedra (official chair) of the Archbishop of Paris, currently André Vingt-Trois. The cathedral treasury is notable for its reliquary, which houses the purported crown of thorns, a fragment of the True Cross and one of the Holy Nails – all instruments of the Passion and a few of the most important first-class relics. Notre Dame de Paris is often reputed to be one of the most prominent examples of Gothic architecture in both France and in Europe as a whole, and the naturalism of its sculptures and stained glass are in contrast with earlier Romanesque architecture. The first period of construction from 1163 into 1240s coincided with the musical experiments of the Notre Dame school. The cathedral suffered desecration during the radical phase of the French Revolution in the 1790s, when much of its religious imagery was damaged or destroyed. An extensive restoration supervised by Eugène Viollet-le-Duc removed remaining decoration, returning the cathedral to an 'original' gothic state.",
+            "photos": [
+				"73.jpg",
+				"74.jpg",
+                "75.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Palais Garnier",
+            "long": 48.872033,
+               "lat": 2.33174,
+               "index": 28,
+            "text": "The Palais Garnier is a 1,979-seat opera house, which was built from 1861 to 1875 for the Paris Opera. It was originally called \"Salle des Capucines\" because of its location on the Boulevard des Capucines in the 9th arrondissement of Paris, but soon became known as the \"Palais Garnier\" in recognition of its opulence and its architect, Charles Garnier. The theatre was also often referred to as \"Opéra Garnier\", \"Opéra de Paris\" or simply \"Opéra\". It was the primary home of the Paris Opera and its associated Paris Opera Ballet until 1989, when a new 2,700-seat house, the Opéra Bastille, with elaborate facilities for set and production changes, opened at the Place de la Bastille. The Paris Opera now mainly uses the Palais Garnier for ballet. The Palais Garnier is \"probably the most famous opera house in the world, a symbol of Paris like Notre Dame cathedral, the Louvre, or the Sacré Coeur basilica.\" This is at least partly due to its use as the setting for Gaston Leroux's 1911 novel The Phantom of the Opera and the novel's subsequent adaptations in films and Andrew Lloyd Webber's popular 1986 musical. Another contributing factor is that among the buildings constructed in Paris during the Second Empire, besides being the most expensive, it has been described as the only one that is \"unquestionably a masterpiece of the first rank.\" The Palais Garnier also houses the Bibliothèque-Musée de l'Opéra de Paris (Paris Opera Library-Museum). Although the Library-Museum is no longer managed by the Opera and is part of the Bibliothèque nationale de France, the museum is included in unaccompanied tours of the Palais Garnier.",
+            "photos": [
+				"76.jpg",
+				"77.jpg",
+				"78.jpg",
+                "79.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+		
+		
+		
+		
+		
+		]
 }
 
 

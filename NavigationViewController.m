@@ -90,6 +90,18 @@
     }];
 }
 
+- (void) hideCategoriesAnimated:(BOOL)animated {
+    CGFloat duration = animated ? 0.5f : 0;
+    //[UIView animateWithDuration:duration animations:^{
+        CGRect mainViewFrame = self.mainController.view.frame;
+        CGRect photosViewFrame = self.photosController.view.frame;
+        mainViewFrame.origin.x = photosViewFrame.origin.x = 0;
+        categoriesOpen = NO;
+        self.mainController.view.frame = self.glController.view.frame = self.separatingView.frame = mainViewFrame;
+        self.photosController.view.frame = photosViewFrame;
+    //}];
+}
+
 - (void) showBookmarks:(id)sender {
     if (!self.bookmarksController) {
         self.bookmarksController = [[[HCBookmarksViewController alloc] initWithNibName:@"HCBookmarksViewController" bundle:[NSBundle mainBundle]] autorelease];
@@ -183,6 +195,37 @@
     
     //[(MainView*)(self.mainController.view) selectStationAt:placePosition];
 }
+
+
+// Override to allow orientations other than the default portrait orientation.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+}
+
+//- (BOOL)shouldAutorotate {
+//        return YES;
+//}
+//
+//-(NSUInteger)supportedInterfaceOrientations{
+//    return UIInterfaceOrientationMaskAll;
+//}
+
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+
+    if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+        self.photosController.view.hidden = self.categoriesController.view.hidden = self.photosController.panelView.hidden = NO;
+    } else {
+
+        [self hideCategoriesAnimated:NO];
+        self.photosController.view.hidden = self.categoriesController.view.hidden = self.photosController.panelView.hidden = YES;
+
+        
+    }
+}
+
 
 
 @end
