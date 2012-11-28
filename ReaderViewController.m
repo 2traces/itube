@@ -89,8 +89,9 @@
 - (void)photoTapped:(UITapGestureRecognizer *)recognizer {
     MPlace* place = self.items[currentPage];
     PhotoViewerViewController *viewer = [[PhotoViewerViewController alloc] initWithPlace:place];
+    viewer.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     
-    [self presentModalViewController:viewer animated:YES];
+    [self presentModalViewController:[viewer autorelease] animated:YES];
 }
 
 
