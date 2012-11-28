@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ReaderViewController : UIViewController <UIScrollViewDelegate> {
+@interface ReaderViewController : UIViewController <UIScrollViewDelegate, UIGestureRecognizerDelegate> {
     UIButton *btBack;
     UIButton *btStar;
     UILabel *lbHeader;

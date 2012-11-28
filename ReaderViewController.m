@@ -9,6 +9,7 @@
 #import "ReaderViewController.h"
 #import "ReaderItemViewController.h"
 #import "ManagedObjects.h"
+#import "PhotoViewerViewController.h"
 
 @interface ReaderViewController ()
 
@@ -79,6 +80,26 @@
     self.lbHeader.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18.0f];
     self.btBack.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:13.0f];
     [self updateInfoForCurrentPage];
+    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoTapped:)];
+    tapGR.delegate = self;
+    [self.scrollView addGestureRecognizer:tapGR];
+    [tapGR autorelease];
+}
+
+- (void)photoTapped:(UITapGestureRecognizer *)recognizer {
+    MPlace* place = self.items[currentPage];
+    PhotoViewerViewController *viewer = [[PhotoViewerViewController alloc] initWithPlace:place];
+    
+    [self presentModalViewController:viewer animated:YES];
+}
+
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if ([touch.view isKindOfClass:[UIControl class]]) {
+        // we touched a button, slider, or other UIControl
+        return NO; // ignore the touch
+    }
+    return YES; // handle the touch
 }
 
 
