@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ManagedObjects.h"
 
-@interface PhotoViewerViewController : UIViewController <UIScrollViewDelegate> {
+@interface PhotoViewerViewController : UIViewController <UIScrollViewDelegate, UIGestureRecognizerDelegate> {
     UIScrollView *scrollView;
     NSArray *photos;
     NSInteger currentPage;

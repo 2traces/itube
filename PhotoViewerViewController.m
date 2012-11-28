@@ -59,20 +59,43 @@
 {
     [super viewDidLoad];
     CGFloat offset = 0;
+    NSInteger index = 0;
     // Do any additional setup after loading the view from its nib.
     for (UIImageView *image in self.photos) {
         UIScrollView *zoomView = [[UIScrollView alloc] initWithFrame:self.scrollView.frame];
         zoomView.contentSize = image.frame.size;
         [zoomView addSubview:image];
         zoomView.delegate = self;
+        zoomView.tag = index;
         zoomView.maximumZoomScale = 2.0f;
+        zoomView.minimumZoomScale = zoomView.frame.size.width / image.frame.size.width;
         CGRect frame = zoomView.frame;
         frame.origin = CGPointMake(offset, 0);
         zoomView.frame = frame;
+        [zoomView setZoomScale:zoomView.minimumZoomScale];
+        zoomView.contentMode = (UIViewContentModeScaleAspectFit);
         offset += self.scrollView.frame.size.width;
+        index++;
         [self.scrollView addSubview:[zoomView autorelease]];
     }
     self.scrollView.contentSize = CGSizeMake(offset, self.scrollView.frame.size.height);
+    // Do any additional setup after loading the view from its nib.
+    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoTapped:)];
+    tapGR.delegate = self;
+    [self.scrollView addGestureRecognizer:tapGR];
+    [tapGR autorelease];
+}
+
+- (void)photoTapped:(UITapGestureRecognizer *)recognizer {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if ([touch.view isKindOfClass:[UIControl class]]) {
+        // we touched a button, slider, or other UIControl
+        return NO; // ignore the touch
+    }
+    return YES; // handle the touch
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,7 +106,11 @@
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)_scrollView {
     if (_scrollView != self.scrollView) {
-        return self.photos[currentPage];
+        for (UIView *subview in _scrollView.subviews) {
+            if ([subview isKindOfClass:[UIImageView class]]) {
+                return subview;
+            }
+        }
     }
     return nil;
 }
@@ -99,6 +126,57 @@
 
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self resetZoomForAllImages];
+}
+
+- (void)resetZoomForAllImages {
+    for (UIView *subview in self.scrollView.subviews) {
+        UIScrollView *_scrollView = nil;
+        if ([subview isKindOfClass:[UIScrollView class]]) {
+            _scrollView = (UIScrollView*)subview;
+        }
+        if (_scrollView && _scrollView.tag != currentPage) {
+            _scrollView.zoomScale = _scrollView.minimumZoomScale;
+        }
+    }
+}
+
+- (CGRect)centeredFrameForScrollView:(UIScrollView *)scroll andUIView:(UIView *)rView {
+    CGSize boundsSize = scroll.bounds.size;
+    CGRect frameToCenter = rView.frame;
+    // center horizontally
+    if (frameToCenter.size.width < boundsSize.width) {
+        frameToCenter.origin.x = (boundsSize.width - frameToCenter.size.width) / 2;
+    }
+    else {
+        frameToCenter.origin.x = 0;
+    }
+    // center vertically
+    if (frameToCenter.size.height < boundsSize.height) {
+        frameToCenter.origin.y = (boundsSize.height - frameToCenter.size.height) / 2;
+    }
+    else {
+        frameToCenter.origin.y = 0;
+    }
+    return frameToCenter;
+}
+
+-(void)scrollViewDidZoom:(UIScrollView *)_scrollView
+{
+    if (_scrollView != self.scrollView) {
+        UIImageView *imageView = nil;
+        for (UIView *subview in _scrollView.subviews) {
+            if ([subview isKindOfClass:[UIImageView class]]) {
+                imageView = (UIImageView*)subview;
+                break;
+            }
+        }
+        if (imageView) {
+            imageView.frame = [self centeredFrameForScrollView:_scrollView andUIView:imageView];
+        }
+    }
+}
 
 
 @end
