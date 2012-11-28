@@ -11,6 +11,7 @@
 @class MStation;
 @class FastAccessTableViewController;
 @class StationTextField;
+@class NavigationViewController;
 
 @interface TopTwoStationsView : UIView <UITextFieldDelegate>
 {
@@ -32,6 +33,7 @@
 @property (nonatomic, retain) FastAccessTableViewController *tableView;
 @property (nonatomic, retain) UIImageView *arrowView;
 @property (nonatomic, retain) UIButton *leftButton;
+@property (nonatomic, retain) NavigationViewController *navigationViewController;
 
 -(void)drawInitialState;
 -(void)adjustSubviews:(UIInterfaceOrientation)interfaceOrientation;

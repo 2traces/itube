@@ -175,7 +175,7 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    CGFloat overallLineWidth = 261.0f;
+    CGFloat overallLineWidth = 201.0f;
     CGFloat lineStart = 44.0f;
     CGFloat y = 29.0f+rect.origin.y;
     CGFloat lineH=6.0;

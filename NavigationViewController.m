@@ -110,6 +110,19 @@
 
 }
 
+- (void)transitToPathMode{
+    self.photosController.placeNamePanel.hidden = YES;
+    CGRect panelFrame = self.photosController.panelView.frame;
+    panelFrame.origin = CGPointMake(0, 216 - 176 - (44 - 28));
+    self.photosController.panelView.frame = panelFrame;
+}
+
+- (void)transitToNormalMode {
+    self.photosController.placeNamePanel.hidden = NO;
+    CGRect panelFrame = self.photosController.panelView.frame;
+    panelFrame.origin = CGPointMake(0, 216 - 176);
+    self.photosController.panelView.frame = panelFrame;
+}
 
 - (void) showHidePhotos:(id)sender {
     if (categoriesOpen) {
@@ -121,6 +134,7 @@
         photosViewFrame.origin.x = 0;
         panelFrame.origin = CGPointMake(0, 216);
         [self.photosController.view addSubview:self.photosController.panelView];
+        [self.mainController.stationsView resetBothStations];
     }
     self.photosController.panelView.frame = panelFrame;
     self.photosController.view.frame = photosViewFrame;

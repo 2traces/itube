@@ -43,6 +43,11 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController;
 
+- (void)transitToPathMode;
+- (void)transitToNormalMode;
+
+
+
 @property (nonatomic, retain) IBOutlet UIView *separatingView;
 @property (nonatomic, retain) NSArray *currentPlaces;
 @property (nonatomic, retain) CategoriesViewController *categoriesController;

@@ -36,13 +36,13 @@
         
         CGFloat viewStartX = 0.0f;
         CGFloat viewStartY = 0.0f;
-        CGFloat viewWidth = 320.0f;
+        CGFloat viewWidth = 260.0f;
         CGFloat viewHeight = 40.0f;
         
         if (IS_IPAD) {
             viewStartX = 0.0f;
             viewStartY = 0.0f;
-            viewWidth = 320.0f;
+            viewWidth = 260.0f;
             viewHeight = 40.0f;
         }
         
@@ -94,13 +94,13 @@
     
     CGFloat viewStartX = 0.0f;
     CGFloat viewStartY = 26.0f;
-    CGFloat viewWidth = 320.0f;
+    CGFloat viewWidth = 260.0f;
     CGFloat viewHeight = 40.0f;
     
     if (UI_USER_INTERFACE_IDIOM()== UIUserInterfaceIdiomPad) {
         viewStartX = 0.0f;
         viewStartY = 0.0f;
-        viewWidth = 320.0f;
+        viewWidth = 260.0f;
         viewHeight = 40.0f;
     }
 
@@ -123,14 +123,14 @@
     
     if (ascrollView==self.scrollView) {
         
-        int pathNumb = floor(ascrollView.contentOffset.x/320.0);
+        int pathNumb = floor(ascrollView.contentOffset.x/260.0f);
         [delegate requestChangeActivePath:[NSNumber numberWithInt:pathNumb]];
     }
 }
 
 - (void)animateScrollView
 {
-    if (self.scrollView && self.scrollView.contentSize.width>320.0f && self.scrollView.contentOffset.x==0.0f) {
+    if (self.scrollView && self.scrollView.contentSize.width>260.0f && self.scrollView.contentOffset.x==0.0f) {
         
         [UIView animateWithDuration:1 delay:0 options:(UIViewAnimationCurveEaseInOut) animations:^{
             [self.scrollView setContentOffset:CGPointMake(38.0, 0.0)];

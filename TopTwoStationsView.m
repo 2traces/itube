@@ -11,6 +11,7 @@
 #import "MainViewController.h"
 #import "FastAccessTableViewController.h"
 #import "StationTextField.h"
+#import "NavigationViewController.h"
 
 #define iPadWidth 768.0
 #define iPadHeight 1024.0
@@ -34,6 +35,7 @@
 @synthesize tableView;
 @synthesize arrowView;
 @synthesize leftButton;
+@synthesize navigationViewController;
 
 -(id)init{
     if (IS_IPAD) {
@@ -441,7 +443,8 @@
 -(void)transitToPathView
 {
     NSTimeInterval duration = 0.2f;
-    
+    [self.navigationViewController transitToPathMode];
+
     [UIView animateWithDuration:duration animations:^{
         isEditing=NO;
         
@@ -593,7 +596,8 @@
 -(void)transitToInitialSize
 {
     NSTimeInterval duration = 0.2f;
-    
+    [self.navigationViewController transitToNormalMode];
+
     [UIView animateWithDuration:duration animations:^{
         isEditing=NO;
         

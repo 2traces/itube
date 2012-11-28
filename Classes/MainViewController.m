@@ -156,6 +156,7 @@
     
     TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] init];
     self.stationsView = twoStationsView;
+    self.stationsView.navigationViewController = self.navigationViewController;
     [(MainView*)self.view addSubview:twoStationsView];
     [twoStationsView release];
     
@@ -327,6 +328,7 @@
             if ([[[delegate cityMap] activePath] count]>0) {
                 if (!([[[delegate cityMap] activePath] count]==1 && [[[[delegate cityMap] activePath] objectAtIndex:0] isKindOfClass:[Transfer class]])) {
                     [stationsView transitToPathView];
+
                     [self showHorizontalPathesScrollView];
                 }
             }
@@ -423,6 +425,7 @@
         if ([[[delegate cityMap] activePath] count]>0) {
             if (!([[[delegate cityMap] activePath] count]==1 && [[[[delegate cityMap] activePath] objectAtIndex:0] isKindOfClass:[Transfer class]])) {
                 [stationsView transitToPathView];
+
                 [self showHorizontalPathesScrollView];
             }
         }
@@ -495,7 +498,7 @@
     
     if (!self.horizontalPathesScrollView) {
         
-        PathScrollView *pathView = [[PathScrollView alloc] initWithFrame:CGRectMake(0.0, 26.0, 320.0, 40.0)];
+        PathScrollView *pathView = [[PathScrollView alloc] initWithFrame:CGRectMake(0.0, 22.0, 260, 40.0)];
         self.horizontalPathesScrollView = pathView;
         self.horizontalPathesScrollView.delegate = self;
         [pathView release];
@@ -506,7 +509,7 @@
         if (IS_IPAD) {
             
         } else {
-            self.changeViewButton = [self createChangeButton];
+            //self.changeViewButton = [self createChangeButton];
             [(MainView*)self.view addSubview:self.changeViewButton];
         }
         
@@ -877,6 +880,7 @@
         if (!([[[delegate cityMap] activePath] count]==1 && [[[[delegate cityMap] activePath] objectAtIndex:0] isKindOfClass:[Transfer class]])) {
             if (IS_IPAD) {
                 [stationsView transitToPathView];
+
                 [spltViewController refreshPath];
             } else {
                 if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
