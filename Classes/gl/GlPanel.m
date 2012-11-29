@@ -131,8 +131,8 @@
 -(id)initWithText:(NSString *)str
 {
     if((self = [super init])) {
-        panel = [[GlPanel alloc] initWithBackground:@"small-frame-with-shadow" position:CGPointZero andRect:CGRectMake(-100, -100, 200, 100)];
-        text = [[GlText alloc] initWithText:str font:@"Arial" fontSize:16.f andRect:CGRectMake(-70, -90, 140, 60)];
+        panel = [[GlPanel alloc] initWithBackground:@"small-frame-with-shadow" position:CGPointZero andRect:CGRectMake(-54, -83, 109, 83)];
+        text = [[GlText alloc] initWithText:str font:@"Arial" fontSize:12.f andRect:CGRectMake(-41, -77, 82, 50)];
         //[self show];
     }
     return self;
@@ -146,7 +146,7 @@
 {
     if((self = [super init])) {
         panel = [[GlPanel alloc] initWithBackground:@"big-frame-with-shadow" position:CGPointZero andRect:CGRectMake(-120, -110, 240, 120)];
-        text = [[GlText alloc] initWithText:str font:@"Arial" fontSize:16.f andRect:CGRectMake(-70, -90, 140, 60)];
+        text = [[GlText alloc] initWithText:str font:@"Arial" fontSize:12.f andRect:CGRectMake(-70, -90, 140, 60)];
         //[self show];
     }
     return self;

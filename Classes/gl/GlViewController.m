@@ -45,6 +45,7 @@ GLint uniforms[NUM_UNIFORMS];
 -(id)initWithId:(int)pinId andColor:(int)color;
 -(void)draw;
 -(void)drawWithScale:(CGFloat)scale;
+-(void)drawPanelWithScale:(CGFloat)scale;
 -(void)fallFrom:(CGFloat)distance at:(CGFloat)speed;
 -(CGRect)bounds;
 @end
@@ -236,6 +237,10 @@ GLint uniforms[NUM_UNIFORMS];
     const CGFloat s2 = size * 0.5f;
     [sprite setRect:CGRectMake(pos.x-s2, pos.y-s2-offset, size, size)];
     [sprite draw];
+}
+
+-(void)drawPanelWithScale:(CGFloat)scale
+{
     [sp drawWithScale:scale];
 }
 
@@ -340,7 +345,7 @@ GLint uniforms[NUM_UNIFORMS];
     [view addGestureRecognizer:rec2];
     UIPinchGestureRecognizer *rec3 = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
     [view addGestureRecognizer:rec3];
-    UITapGestureRecognizer *rec4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    UILongPressGestureRecognizer *rec4 = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     [view addGestureRecognizer:rec4];
     [self setupGL];
     
@@ -436,13 +441,21 @@ GLint uniforms[NUM_UNIFORMS];
     if(recognizer.state != UIGestureRecognizerStateEnded) return;
     CGPoint p = [recognizer locationInView:self.view];
     float x = (p.x - self.view.bounds.size.width*0.5f)/scale + 128 - position.x, y = (p.y - self.view.bounds.size.height*0.5f)/scale + 128 - position.y;
+    NSMutableArray *selected = [NSMutableArray array];
     for (Pin *pin in pinsArray) {
         CGRect r = [pin bounds];
         if(CGRectContainsPoint(r, CGPointMake(x, y))) {
-            pin.active = YES;
+            [selected addObject: pin];
         } else if(pin.active) {
             pin.active = NO;
         }
+    }
+    if([selected count] > 0) {
+        for (Pin *pin in selected) {
+            pin.active = NO;
+        }
+        // select one lucky pin
+        [[selected objectAtIndex:0] setActive:YES];
     }
 }
 
@@ -695,11 +708,15 @@ GLint uniforms[NUM_UNIFORMS];
     currentSelection=tempSelection;
 }
 
--(int)newPin:(CGPoint)coordinate color:(int)color
+-(int)newPin:(CGPoint)coordinate color:(int)color name:(NSString*)name
 {
     int newId = newPinId;
     newPinId ++;
-    Pin *p = [[Pin alloc] initWithId:newId andColor:color];
+    Pin *p = nil;
+    if(name != nil)
+        p = [[Pin alloc] initWithId:newId color:color andText:name];
+    else
+        p = [[Pin alloc] initWithId:newId andColor:color];
     float dist = 256.f/scale;
     [p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
     [pinsArray addObject:p];
@@ -855,6 +872,9 @@ GLint uniforms[NUM_UNIFORMS];
 {
     for (Pin *p in pinsArray) {
         [p drawWithScale:scale];
+    }
+    for (Pin *p in pinsArray) if(p.active) {
+        [p drawPanelWithScale:scale];
     }
 }
 
@@ -1047,12 +1067,19 @@ GLint uniforms[NUM_UNIFORMS];
     if(p != nil) [p setPosition:up];
 }
 
--(void)setStationsPosition:(NSArray *)coords
+-(void)setStationsPosition:(NSArray *)coords withNames:(NSArray*)names andMarks:(BOOL)marks
 {
     [self removeAllPins];
-    for (NSValue *v in coords) {
-        CGRect r = [v CGRectValue];
-        [self newPin:r.origin color:r.size.width];
+    for (int i=0; i<[coords count]; i++) {
+        CGRect r = [[coords objectAtIndex:i] CGRectValue];
+        if(i < [names count]) {
+            [self newPin:r.origin color:r.size.width name:[names objectAtIndex:i]];
+        } else {
+            [self newPin:r.origin color:r.size.width name:nil];
+        }
+        if(marks && (i == 0 || i == [coords count]-1)) {
+            [[pinsArray lastObject] setActive:YES];
+        }
     }
 }
 

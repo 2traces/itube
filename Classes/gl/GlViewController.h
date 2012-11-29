@@ -23,7 +23,7 @@
 -(void)returnFromSelectionFastAccess:(NSArray *)stations;
 -(void)setGeoPosition:(CGRect)rect;
 -(void)setUserGeoPosition:(CGPoint)point;
--(void)setStationsPosition:(NSArray*)coords;
+-(void)setStationsPosition:(NSArray*)coords withNames:(NSArray*)names andMarks:(BOOL)marks;
 -(void)errorWithGeoLocation;
 
 @end

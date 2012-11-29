@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>default</key>
+	<key>com.zuev.itube.paris.newyork</key>
 	<dict>
 		<key>url1</key>
 		<string></string>
@@ -63,7 +63,7 @@
 		<key>zip_download</key>
 		<string>/maps/paris/paris1.zip</string>
 	</dict>
-	<key>com.zuev.itube.paris.berlin</key>
+	<key>default</key>
 	<dict>
 		<key>url1</key>
 		<string>http://www.x-provocation.com/maps/berlin/osm/</string>
