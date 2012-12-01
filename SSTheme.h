@@ -45,29 +45,17 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 - (UIImage *)onSwitchImage;
 - (UIImage *)offSwitchImage;
 
-- (UIImage *)sliderThumbForState:(UIControlState)state;
-- (UIImage *)sliderMinTrack;
-- (UIImage *)sliderMaxTrack;
-- (UIImage *)speedSliderMinImage;
-- (UIImage *)speedSliderMaxImage;
-
 - (UIImage *)progressTrackImage;
 - (UIImage *)progressProgressImage;
-
-- (UIImage *)stepperBackgroundForState:(UIControlState)state;
-- (UIImage *)stepperDividerForState:(UIControlState)state;
-- (UIImage *)stepperIncrementImage;
-- (UIImage *)stepperDecrementImage;
 
 - (UIImage *)buttonBackgroundForState:(UIControlState)state;
 
 - (UIImage *)tabBarBackground;
 - (UIImage *)tabBarSelectionIndicator;
+
 // One of these must return a non-nil image for each tab:
 - (UIImage *)imageForTab:(SSThemeTab)tab;
 - (UIImage *)finishedImageForTab:(SSThemeTab)tab selected:(BOOL)selected;
-
-- (UIImage *)doorImageForState:(UIControlState)state;
 
 @end
 
@@ -79,6 +67,5 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 + (void)customizeView:(UIView *)view;
 + (void)customizeTableView:(UITableView *)tableView;
 + (void)customizeTabBarItem:(UITabBarItem *)item forTab:(SSThemeTab)tab;
-+ (void)customizeDoorButton:(UIButton *)button;
 
 @end
