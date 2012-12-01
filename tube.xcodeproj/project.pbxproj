@@ -1276,7 +1276,7 @@
 		BC52036B166A1A1800B1E0A0 /* SSTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSTheme.h; sourceTree = "<group>"; };
 		BC52036C166A1A1800B1E0A0 /* SSTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSTheme.m; sourceTree = "<group>"; };
 		BC52056F166A1A5600B1E0A0 /* tube copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tube copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC520571166A1A5700B1E0A0 /* tube copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "tube copy-Info.plist"; path = "/Users/s.sojik/Documents/WORK/Zuev/github/itube/tube copy-Info.plist"; sourceTree = "<absolute>"; };
+		BC520571166A1A5700B1E0A0 /* newtube-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "newtube-Info.plist"; path = "/Users/s.sojik/Documents/WORK/Zuev/github/itube/newtube-Info.plist"; sourceTree = "<absolute>"; };
 		BC5AF6F414F5180400C8463F /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		BC5AF6F514F5180400C8463F /* splash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash@2x.png"; sourceTree = "<group>"; };
 		BC6015CE15FDF522008910C9 /* statusViewBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statusViewBG.png; sourceTree = "<group>"; };
@@ -1853,7 +1853,6 @@
 				BCDFF0EF15CCDCE900E004E6 /* iPad */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
-				BC520571166A1A5700B1E0A0 /* tube copy-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1921,6 +1920,7 @@
 				CE81FA6F146BDC91008BF969 /* Icon@2x.png */,
 				CE96C6F41468307C005A56F3 /* images */,
 				8D1107310486CEB800E47090 /* tube-Info.plist */,
+				BC520571166A1A5700B1E0A0 /* newtube-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -3765,7 +3765,7 @@
 					"NEW_THEME=1",
 				);
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				INFOPLIST_FILE = "tube copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/newtube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "tube copy";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3781,7 +3781,7 @@
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "NEW_THEME=1";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				INFOPLIST_FILE = "tube copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/newtube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "tube copy";
 				TARGETED_DEVICE_FAMILY = "1,2";
