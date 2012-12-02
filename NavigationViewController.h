@@ -23,6 +23,8 @@
 - (void) showHidePhotos:(id)sender;
 - (void) showRasterMap;
 - (void) showMetroMap;
+- (void) showBookmarksLayer;
+- (void) hideBookmarksLayer;
 - (void) showReaderWithItems:(NSArray*)items activePage:(NSInteger)activePage;
 - (void) selectCategoryWithIndex:(NSInteger)index;
 - (void) selectPlaceWithIndex:(NSInteger)index;
@@ -39,6 +41,8 @@
     UIView *separatingView;
     BOOL categoriesOpen;
     BOOL fMetroMode;
+    BOOL fBookmarksOpen;
+    BOOL fPhotosOpen;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController;

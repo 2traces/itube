@@ -99,6 +99,11 @@
 		5771A3371652B0DB00332A7D /* bt_photo_like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5771A3361652B0DB00332A7D /* bt_photo_like@2x.png */; };
 		5772FBD316668D84007B7661 /* PhotoViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5772FBD116668D83007B7661 /* PhotoViewerViewController.m */; };
 		5772FBD416668D84007B7661 /* PhotoViewerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5772FBD216668D83007B7661 /* PhotoViewerViewController.xib */; };
+		5775557B166BAE7500072AFE /* navigation_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5775557A166BAE7500072AFE /* navigation_shadow@2x.png */; };
+		57755582166BC7D900072AFE /* bg_teasers@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5775557D166BC7D900072AFE /* bg_teasers@2x.png */; };
+		57755583166BC7D900072AFE /* tr_berlin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5775557F166BC7D900072AFE /* tr_berlin@2x.png */; };
+		57755584166BC7D900072AFE /* tr_paris@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57755580166BC7D900072AFE /* tr_paris@2x.png */; };
+		57755585166BC7D900072AFE /* tr_venice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57755581166BC7D900072AFE /* tr_venice@2x.png */; };
 		579D28D416480E990061B8F6 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579D28D216480E990061B8F6 /* NavigationViewController.m */; };
 		579D28D516480E990061B8F6 /* NavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 579D28D316480E990061B8F6 /* NavigationViewController.xib */; };
 		579D28D9164815DC0061B8F6 /* CategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579D28D7164815DC0061B8F6 /* CategoriesViewController.m */; };
@@ -661,6 +666,11 @@
 		5772FBD016668D83007B7661 /* PhotoViewerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewerViewController.h; sourceTree = "<group>"; };
 		5772FBD116668D83007B7661 /* PhotoViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewerViewController.m; sourceTree = "<group>"; };
 		5772FBD216668D83007B7661 /* PhotoViewerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewerViewController.xib; sourceTree = "<group>"; };
+		5775557A166BAE7500072AFE /* navigation_shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navigation_shadow@2x.png"; path = "images/hidden_cities/navigation_shadow@2x.png"; sourceTree = "<group>"; };
+		5775557D166BC7D900072AFE /* bg_teasers@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg_teasers@2x.png"; path = "images/hidden_cities/bg_teasers@2x.png"; sourceTree = "<group>"; };
+		5775557F166BC7D900072AFE /* tr_berlin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tr_berlin@2x.png"; sourceTree = "<group>"; };
+		57755580166BC7D900072AFE /* tr_paris@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tr_paris@2x.png"; sourceTree = "<group>"; };
+		57755581166BC7D900072AFE /* tr_venice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tr_venice@2x.png"; sourceTree = "<group>"; };
 		579D28D116480E990061B8F6 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
 		579D28D216480E990061B8F6 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
 		579D28D316480E990061B8F6 /* NavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationViewController.xib; sourceTree = "<group>"; };
@@ -1517,6 +1527,17 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		5775557E166BC7D900072AFE /* teasers */ = {
+			isa = PBXGroup;
+			children = (
+				5775557F166BC7D900072AFE /* tr_berlin@2x.png */,
+				57755580166BC7D900072AFE /* tr_paris@2x.png */,
+				57755581166BC7D900072AFE /* tr_venice@2x.png */,
+			);
+			name = teasers;
+			path = images/hidden_cities/teasers;
+			sourceTree = "<group>";
+		};
 		579D28D0164809110061B8F6 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -1561,6 +1582,9 @@
 		57D097FE1650430B00467C1D /* Hidden Cities */ = {
 			isa = PBXGroup;
 			children = (
+				5775557E166BC7D900072AFE /* teasers */,
+				5775557D166BC7D900072AFE /* bg_teasers@2x.png */,
+				5775557A166BAE7500072AFE /* navigation_shadow@2x.png */,
 				57047DAE16569C1400DED155 /* reader_separator@2x.png */,
 				572B632C1656830800B415DC /* bt_reader_back@2x.png */,
 				5771A3321652AE1B00332A7D /* bt_star@2x.png */,
@@ -2544,6 +2568,11 @@
 				572B63331656830800B415DC /* sample_pic_reader@2x.png in Resources */,
 				57047DAF16569C1400DED155 /* reader_separator@2x.png in Resources */,
 				5772FBD416668D84007B7661 /* PhotoViewerViewController.xib in Resources */,
+				5775557B166BAE7500072AFE /* navigation_shadow@2x.png in Resources */,
+				57755582166BC7D900072AFE /* bg_teasers@2x.png in Resources */,
+				57755583166BC7D900072AFE /* tr_berlin@2x.png in Resources */,
+				57755584166BC7D900072AFE /* tr_paris@2x.png in Resources */,
+				57755585166BC7D900072AFE /* tr_venice@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2798,7 +2827,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "02C304F0-022E-4BDA-891C-E41D26A57357";
+				PROVISIONING_PROFILE = "EF3E94F9-0DB8-4BF5-9241-C5BB9A3EFD3D";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2816,7 +2845,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "02C304F0-022E-4BDA-891C-E41D26A57357";
+				PROVISIONING_PROFILE = "EF3E94F9-0DB8-4BF5-9241-C5BB9A3EFD3D";
 				SDKROOT = iphoneos;
 			};
 			name = Release;

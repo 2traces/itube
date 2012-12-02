@@ -63,6 +63,7 @@
     self.mainController.view.frame = self.glController.view.frame = self.separatingView.frame = mainViewFrame;
     
     fMetroMode = YES;
+    fPhotosOpen = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,7 +86,7 @@
             categoriesOpen = NO;
 
         }
-        self.mainController.view.frame = self.glController.view.frame = self.separatingView.frame = mainViewFrame;
+        self.mainController.view.frame = self.glController.view.frame = self.separatingView.frame = self.bookmarksController.view.frame = mainViewFrame;
         self.photosController.view.frame = photosViewFrame;
     }];
 }
@@ -103,11 +104,20 @@
 }
 
 - (void) showBookmarks:(id)sender {
-    if (!self.bookmarksController) {
-        self.bookmarksController = [[[HCBookmarksViewController alloc] initWithNibName:@"HCBookmarksViewController" bundle:[NSBundle mainBundle]] autorelease];
+    if (fBookmarksOpen) {
+        [self hideBookmarksLayer];
+        if (!fPhotosOpen) {
+            [self showPhotos];
+        }
     }
-    [self presentModalViewController:self.bookmarksController animated:YES];
-
+    else {
+        if (!fPhotosOpen) {
+            //Oops!
+            
+        }
+        [self showBookmarksLayer];
+        [self hidePhotos];
+    }
 }
 
 - (void)transitToPathMode{
@@ -124,68 +134,148 @@
     self.photosController.panelView.frame = panelFrame;
 }
 
-- (void) showHidePhotos:(id)sender {
-    if (categoriesOpen) {
-        return;
-    }
+- (void)showPhotos {
+    
     CGRect photosViewFrame = self.photosController.view.frame;
     CGRect panelFrame = self.photosController.panelView.frame;
-    if (photosViewFrame.origin.y != 0) {
+    
+    if (!fBookmarksOpen) {
         photosViewFrame.origin.x = 0;
         panelFrame.origin = CGPointMake(0, 216);
         [self.photosController.view addSubview:self.photosController.panelView];
-        [self.mainController.stationsView resetBothStations];
     }
+    else {
+        //For now we don't allow to show photos while browsing bookmarks
+        return;
+    }
+    
+    [self.mainController.stationsView resetBothStations];
     self.photosController.panelView.frame = panelFrame;
     self.photosController.view.frame = photosViewFrame;
+    
     [UIView animateWithDuration:0.5f animations:^{
         CGRect photosViewFrame = self.photosController.view.frame;
+        photosViewFrame.origin.y = 0;
+        self.photosController.disappearingView.alpha = 1.0f;
+        self.photosController.view.frame = photosViewFrame;
+    } completion:^(BOOL finished) {
 
-        if (photosViewFrame.origin.y == 0) {
-            photosViewFrame.origin.y = -176;
-            self.photosController.disappearingView.alpha = 0;
+    }];
+ 
+    fPhotosOpen = YES;
+}
 
+- (void)hidePhotos {
+    __block BOOL fBookmarksWereOpen = fBookmarksOpen;
+    [UIView animateWithDuration:0.5f animations:^{
+        CGRect photosViewFrame = self.photosController.view.frame;
+        if (fBookmarksWereOpen) {
+            photosViewFrame.origin.y = -216;
         }
         else {
-            photosViewFrame.origin.y = 0;
-            self.photosController.disappearingView.alpha = 1.0f;
-
+            photosViewFrame.origin.y = -176;
+            self.photosController.disappearingView.alpha = 0;
         }
         self.photosController.view.frame = photosViewFrame;
     } completion:^(BOOL finished) {
-        CGRect photosViewFrame = self.photosController.view.frame;
-        CGRect panelFrame = self.photosController.panelView.frame;
-        if (photosViewFrame.origin.y == 0) {
-
-        }
-        else {
+        if (!fBookmarksWereOpen) {
+            CGRect photosViewFrame = self.photosController.view.frame;
+            CGRect panelFrame = self.photosController.panelView.frame;
             photosViewFrame.origin.x = 320;
-
             panelFrame.origin = CGPointMake(0, 216 - 176);
+
             if (fMetroMode) {
                 [self.mainController.view insertSubview:self.photosController.panelView aboveSubview:self.mainController.stationsView];
             }
             else {
                 [self.glController.view insertSubview:self.photosController.panelView aboveSubview:self.glController.stationsView];
             }
-
+            
+            self.photosController.panelView.frame = panelFrame;
+            self.photosController.view.frame = photosViewFrame;
         }
-        self.photosController.panelView.frame = panelFrame;
-        self.photosController.view.frame = photosViewFrame;
     }];
+
+    
+    fPhotosOpen = NO;
 }
 
+- (void) showHidePhotos:(id)sender {
+    if (categoriesOpen) {
+        return;
+    }
+    
+    if (fPhotosOpen) {
+        [self hidePhotos];
+    }
+    else {
+        [self showPhotos];
+    }
+ }
+
 - (void) showRasterMap {
-    [self.view insertSubview:self.glController.view belowSubview:self.mainController.view];
-    [self.mainController.view removeFromSuperview];
-    fMetroMode =  NO;
+    [self hideBookmarksLayer];
+    if (fMetroMode) {
+        [self.view insertSubview:self.glController.view belowSubview:self.mainController.view];
+        [self.mainController.view removeFromSuperview];
+        fMetroMode =  NO;
+    }
 }
 
 - (void) showMetroMap {
-    [self.view insertSubview:self.mainController.view belowSubview:self.glController.view];
+    [self hideBookmarksLayer];
+    if (!fMetroMode) {
+        [self.view insertSubview:self.mainController.view belowSubview:self.glController.view];
+        [self.glController.view removeFromSuperview];
+        fMetroMode = YES;
+    }
+}
 
-    [self.glController.view removeFromSuperview];
-    fMetroMode = YES;
+- (void) showBookmarksLayer {
+    if (fBookmarksOpen) {
+        return;
+    }
+    if (!self.bookmarksController) {
+        self.bookmarksController = [[[HCBookmarksViewController alloc] initWithNibName:@"HCBookmarksViewController" bundle:[NSBundle mainBundle]] autorelease];
+    }
+    [self.photosController.btShowHideBookmarks setImage:[UIImage imageNamed:@"bt_bookmarks_map"] forState:UIControlStateNormal];
+    if (fMetroMode) {
+        [self.view insertSubview:self.bookmarksController.view aboveSubview:self.mainController.view];
+    }
+    else {
+        [self.view insertSubview:self.bookmarksController.view aboveSubview:self.glController.view];
+    }
+    
+    if (!fPhotosOpen) {
+        CGRect photosViewFrame = self.photosController.view.frame;
+        CGRect panelFrame = self.photosController.panelView.frame;
+        
+        photosViewFrame.origin.x = 0;
+        panelFrame.origin = CGPointMake(0, 216);
+        [self.photosController.view addSubview:self.photosController.panelView];
+        self.photosController.panelView.frame = panelFrame;
+        self.photosController.view.frame = photosViewFrame;
+        photosViewFrame.origin.y = -216;
+        [UIView animateWithDuration:0.2f animations:^{
+            self.photosController.disappearingView.alpha = 1;
+
+            self.photosController.view.frame = photosViewFrame;
+        }];
+    }
+    
+    self.photosController.placeNamePanel.hidden = YES;
+    
+    fBookmarksOpen = YES;
+}
+
+- (void) hideBookmarksLayer {
+    if (fBookmarksOpen) {
+        [self.bookmarksController.view removeFromSuperview];
+        [self.photosController.btShowHideBookmarks setImage:[UIImage imageNamed:@"bt_photo_like"] forState:UIControlStateNormal];
+        self.photosController.placeNamePanel.hidden = NO;
+
+        fBookmarksOpen = NO;
+    }
 }
 
 - (void) showReaderWithItems:(NSArray*)items activePage:(NSInteger)activePage {

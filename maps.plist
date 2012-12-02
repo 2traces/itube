@@ -11,15 +11,15 @@
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>
-		<string>Paris</string>
+		<string>Berlin</string>
 		<key>filename</key>
-		<string>paris</string>
+		<string>berlin</string>
 		<key>description</key>
-		<string>paris.txt</string>
+		<string>berlin.txt</string>
 		<key>picture</key>
-		<string>paris.png</string>
+		<string>berlin.png</string>
 		<key>zip_download</key>
-		<string>/maps/paris/paris1.zip</string>
+		<string>/maps/berlin/berlin1.zip</string>
 		<key>statusURL</key>
 		<string></string>
 	</dict>

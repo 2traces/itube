@@ -27,6 +27,7 @@
 @synthesize placeNameHeader;
 @synthesize placeNamePanel;
 @synthesize btAddToFavorites;
+@synthesize btShowHideBookmarks;
 
 - (IBAction)showCategories:(id)sender {
     [self.navigationDelegate showCategories:self];

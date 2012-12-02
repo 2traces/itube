@@ -408,6 +408,16 @@ void uncaughtExceptionHandler(NSException *exception) {
     [self.navigationViewController showMetroMap];
 }
 
+
+-(void)showBookmarks
+{
+    [self.navigationViewController showBookmarksLayer];
+}
+
+-(void)hideBookmarks {
+    [self.navigationViewController hideBookmarksLayer];
+}
+
 #pragma mark - Mail methods
 
 // Displays an email composition interface inside the app // and populates all the Mail fields.

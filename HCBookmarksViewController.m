@@ -22,7 +22,8 @@
 @synthesize places;
 
 - (IBAction)close:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate hideBookmarks];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
