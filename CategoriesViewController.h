@@ -36,4 +36,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *buttonSettings;
 @property (nonatomic, assign) id<NavigationDelegate> navigationDelegate;
 
+- (IBAction)showSettings:(id)sender;
+
+
 @end

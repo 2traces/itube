@@ -68,5 +68,6 @@
 -(StationListViewController*)showiPadLiveSearchView;
 -(void)showiPadSettingsModalView;
 -(void)showiPadLeftPathView;
+-(void)toggleTap;
 
 @end

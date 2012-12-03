@@ -196,7 +196,7 @@ GLint uniforms[NUM_UNIFORMS];
     //scrollSize = CGRectMake(0, 44,(320),(480-64));
     //settingsRect=CGRectMake(285, 420, 27, 27);
     //shadowRect = CGRectMake(0, 44, 480, 61);
-    zonesRect=CGRectMake(25, 420, 43, 25);
+    zonesRect=CGRectMake(250, 410, 71, 43);
     
     if (IS_IPAD) {
         //scrollSize = CGRectMake(0, 44, 768, (1024-74));
@@ -252,7 +252,7 @@ GLint uniforms[NUM_UNIFORMS];
     [settings setImage:[UIImage imageNamed:@"settings_btn"] forState:UIControlStateHighlighted];
     settings.frame = CGRectMake(285, 420 - adDelta, 27, 27);
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:settings];
+    //[view addSubview:settings];
     
     sourceData = [UIButton buttonWithType:UIButtonTypeCustom];
     [sourceData setImage:[UIImage imageNamed:@"vector"] forState:UIControlStateNormal];
@@ -262,7 +262,7 @@ GLint uniforms[NUM_UNIFORMS];
     [view addSubview:sourceData];
 
     zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    [zones setImage:[UIImage imageNamed:@"metro_button"] forState:UIControlStateNormal];
+    [zones setImage:[UIImage imageNamed:@"bt_mode_metro"] forState:UIControlStateNormal];
     //[zones setImage:[UIImage imageNamed:@"zones_btn"] forState:UIControlStateHighlighted];
     zones.frame = zonesRect;
     [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];

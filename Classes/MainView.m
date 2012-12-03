@@ -60,7 +60,7 @@ NSInteger const toolbarWidth=320;
     scrollSize = CGRectMake(0, 44,(320),(480-64));
     settingsRect=CGRectMake(285, 420, 27, 27);
     shadowRect = CGRectMake(0, 44, 480, 61);
-    zonesRect=CGRectMake(25, 420, 43, 25);
+    zonesRect=CGRectMake(250, 410, 71, 43);
     
     if (IS_IPAD) {
         scrollSize = CGRectMake(0, 44, 768, (1024-74));
@@ -174,10 +174,10 @@ NSInteger const toolbarWidth=320;
     [settings setImage:[UIImage imageNamed:@"settings_btn"] forState:UIControlStateHighlighted];
     settings.frame = settingsRect;
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:settings];
+    //[self addSubview:settings];
 
     zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    [zones setImage:[UIImage imageNamed:@"maps_button"] forState:UIControlStateNormal];
+    [zones setImage:[UIImage imageNamed:@"bt_mode_maps"] forState:UIControlStateNormal];
     //[zones setImage:[UIImage imageNamed:@"zones_btn"] forState:UIControlStateHighlighted];
     zones.frame = zonesRect;
     [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];

@@ -104,6 +104,8 @@
 		57755583166BC7D900072AFE /* tr_berlin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5775557F166BC7D900072AFE /* tr_berlin@2x.png */; };
 		57755584166BC7D900072AFE /* tr_paris@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57755580166BC7D900072AFE /* tr_paris@2x.png */; };
 		57755585166BC7D900072AFE /* tr_venice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57755581166BC7D900072AFE /* tr_venice@2x.png */; };
+		5778E2CB166D1065009716BC /* bt_mode_maps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5778E2C9166D1065009716BC /* bt_mode_maps@2x.png */; };
+		5778E2CC166D1065009716BC /* bt_mode_metro@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5778E2CA166D1065009716BC /* bt_mode_metro@2x.png */; };
 		579D28D416480E990061B8F6 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579D28D216480E990061B8F6 /* NavigationViewController.m */; };
 		579D28D516480E990061B8F6 /* NavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 579D28D316480E990061B8F6 /* NavigationViewController.xib */; };
 		579D28D9164815DC0061B8F6 /* CategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579D28D7164815DC0061B8F6 /* CategoriesViewController.m */; };
@@ -671,6 +673,8 @@
 		5775557F166BC7D900072AFE /* tr_berlin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tr_berlin@2x.png"; sourceTree = "<group>"; };
 		57755580166BC7D900072AFE /* tr_paris@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tr_paris@2x.png"; sourceTree = "<group>"; };
 		57755581166BC7D900072AFE /* tr_venice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tr_venice@2x.png"; sourceTree = "<group>"; };
+		5778E2C9166D1065009716BC /* bt_mode_maps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bt_mode_maps@2x.png"; path = "images/hidden_cities/bt_mode_maps@2x.png"; sourceTree = "<group>"; };
+		5778E2CA166D1065009716BC /* bt_mode_metro@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bt_mode_metro@2x.png"; path = "images/hidden_cities/bt_mode_metro@2x.png"; sourceTree = "<group>"; };
 		579D28D116480E990061B8F6 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
 		579D28D216480E990061B8F6 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
 		579D28D316480E990061B8F6 /* NavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationViewController.xib; sourceTree = "<group>"; };
@@ -1584,6 +1588,8 @@
 			children = (
 				5775557E166BC7D900072AFE /* teasers */,
 				5775557D166BC7D900072AFE /* bg_teasers@2x.png */,
+				5778E2C9166D1065009716BC /* bt_mode_maps@2x.png */,
+				5778E2CA166D1065009716BC /* bt_mode_metro@2x.png */,
 				5775557A166BAE7500072AFE /* navigation_shadow@2x.png */,
 				57047DAE16569C1400DED155 /* reader_separator@2x.png */,
 				572B632C1656830800B415DC /* bt_reader_back@2x.png */,
@@ -2573,6 +2579,8 @@
 				57755583166BC7D900072AFE /* tr_berlin@2x.png in Resources */,
 				57755584166BC7D900072AFE /* tr_paris@2x.png in Resources */,
 				57755585166BC7D900072AFE /* tr_venice@2x.png in Resources */,
+				5778E2CB166D1065009716BC /* bt_mode_maps@2x.png in Resources */,
+				5778E2CC166D1065009716BC /* bt_mode_metro@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

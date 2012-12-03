@@ -15,6 +15,7 @@
 #import "HCBookmarksViewController.h"
 #import "ReaderViewController.h"
 #import "ManagedObjects.h"
+#import "SettingsNavController.h"
 
 @interface NavigationViewController ()
 
@@ -30,6 +31,13 @@
 @synthesize readerController;
 @synthesize currentPlaces;
 @synthesize separatingView;
+
+- (void) showSettings {
+    SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];
+    [self presentModalViewController:controller animated:YES];
+    [controller release];
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController
 {
@@ -113,7 +121,7 @@
     else {
         if (!fPhotosOpen) {
             //Oops!
-            
+            [self.mainController toggleTap];
         }
         [self showBookmarksLayer];
         [self hidePhotos];
@@ -121,17 +129,23 @@
 }
 
 - (void)transitToPathMode{
-    self.photosController.placeNamePanel.hidden = YES;
-    CGRect panelFrame = self.photosController.panelView.frame;
-    panelFrame.origin = CGPointMake(0, 216 - 176 - (44 - 28));
-    self.photosController.panelView.frame = panelFrame;
+    if (!fPhotosOpen) {
+        self.photosController.placeNamePanel.hidden = YES;
+        CGRect panelFrame = self.photosController.panelView.frame;
+        panelFrame.origin = CGPointMake(0, 216 - 176 - (44 - 28));
+        self.photosController.panelView.frame = panelFrame;
+    }
+
 }
 
 - (void)transitToNormalMode {
-    self.photosController.placeNamePanel.hidden = NO;
-    CGRect panelFrame = self.photosController.panelView.frame;
-    panelFrame.origin = CGPointMake(0, 216 - 176);
-    self.photosController.panelView.frame = panelFrame;
+    if (!fPhotosOpen) {
+        self.photosController.placeNamePanel.hidden = NO;
+        CGRect panelFrame = self.photosController.panelView.frame;
+        panelFrame.origin = CGPointMake(0, 216 - 176);
+        self.photosController.panelView.frame = panelFrame;
+    }
+
 }
 
 - (void)showPhotos {
@@ -143,13 +157,13 @@
         photosViewFrame.origin.x = 0;
         panelFrame.origin = CGPointMake(0, 216);
         [self.photosController.view addSubview:self.photosController.panelView];
+        [self.mainController toggleTap];
     }
     else {
         //For now we don't allow to show photos while browsing bookmarks
         return;
     }
     
-    [self.mainController.stationsView resetBothStations];
     self.photosController.panelView.frame = panelFrame;
     self.photosController.view.frame = photosViewFrame;
     
@@ -159,7 +173,7 @@
         self.photosController.disappearingView.alpha = 1.0f;
         self.photosController.view.frame = photosViewFrame;
     } completion:^(BOOL finished) {
-
+        [self.mainController.stationsView resetBothStations];
     }];
  
     fPhotosOpen = YES;

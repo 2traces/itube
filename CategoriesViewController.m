@@ -9,6 +9,7 @@
 #import "CategoriesViewController.h"
 #import "CategoryCell.h"
 #import "ManagedObjects.h"
+#import "SettingsNavController.h"
 #import "tubeAppDelegate.h"
 
 @interface CategoriesViewController ()
@@ -40,6 +41,10 @@
 @synthesize navigationDelegate;
 @synthesize categories;
 @synthesize teasers;
+
+- (IBAction)showSettings:(id)sender {
+    [self.navigationDelegate showSettings];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

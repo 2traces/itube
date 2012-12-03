@@ -696,7 +696,7 @@
     [blackView addGestureRecognizer:tapGesture];
     [tapGesture release];
     
-    [(MainView*)self.view addSubview:blackView];
+    [(MainView*)self.view insertSubview:blackView belowSubview:stationsView];
     [blackView release];
     
     FastAccessTableViewController *tableViewC=[[[FastAccessTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
