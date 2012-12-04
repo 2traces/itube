@@ -48,14 +48,36 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 - (UIImage *)progressTrackImage;
 - (UIImage *)progressProgressImage;
 
-- (UIImage *)buttonBackgroundForState:(UIControlState)state;
-
 - (UIImage *)tabBarBackground;
 - (UIImage *)tabBarSelectionIndicator;
 
 // One of these must return a non-nil image for each tab:
 - (UIImage *)imageForTab:(SSThemeTab)tab;
 - (UIImage *)finishedImageForTab:(SSThemeTab)tab selected:(BOOL)selected;
+
+//Soj
+
+-(UIFont *)fontForDemoMapView;
+-(UIImage *)demoMapViewBackgroundImage;
+-(UIColor *)demoMapViewBackgroundColor;
+-(UIFont *)navigationTitleFont;
+-(UIFont *)backbuttonTitleFont;
+-(UIFont*)settingsTableViewFont;
+- (UIColor *)backButtonTitleColor;
+- (UIColor *)backButtonPressedTitleColor;
+- (UIImage *)buttonBackgroundForState:(UIControlState)state;
+-(UIFont*)fontForDemoBuyButton;
+
+- (UIImage *)firstAndLastCellSettingsTableImageNormal;
+- (UIImage *)firstAndLastCellSettingsTableImageHighlighted;
+- (UIImage *)firstCellSettingsTableImageNormal;
+- (UIImage *)firstCellSettingsTableImageHighlighted;
+- (UIImage *)lastCellSettingsTableImageNormal;
+- (UIImage *)lastCellSettingsTableImageHighlighted;
+- (UIImage *)middleCellSettingsTableImageNormal;
+- (UIImage *)middleCellSettingsTableImageHighlighted;
+
+- (CGFloat)widthSettingsCellTableView;
 
 @end
 

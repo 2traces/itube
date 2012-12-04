@@ -2,7 +2,7 @@
 //  StatusViewController.m
 //  tube
 //
-//  Created by sergey on 04.09.12.
+//  Created by Sergey Mingalev on 04.09.12.
 //
 //
 

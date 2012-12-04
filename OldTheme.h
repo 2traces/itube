@@ -2,7 +2,7 @@
 //  OldTheme.h
 //  tube
 //
-//  Created by sergey on 30.11.12.
+//  Created by Sergey Mingalev on 30.11.12.
 //
 //
 

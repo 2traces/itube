@@ -2,23 +2,13 @@
 //  NewTheme.m
 //  tube
 //
-//  Created by sergey on 30.11.12.
+//  Created by Sergey Mingalev on 30.11.12.
 //
 //
 
 #import "NewTheme.h"
 
 @implementation NewTheme
-
-- (UIColor *)mainColor
-{
-    return nil;
-}
-
-- (UIColor *)highlightColor
-{
-    return nil;
-}
 
 - (UIColor *)shadowColor
 {
@@ -66,21 +56,6 @@
 }
 
 - (UIImage *)bottomShadow
-{
-    return nil;
-}
-
-- (UIImage *)navigationBackgroundForBarMetrics:(UIBarMetrics)metrics
-{
-    return nil;
-}
-
-- (UIImage *)barButtonBackgroundForState:(UIControlState)state style:(UIBarButtonItemStyle)style barMetrics:(UIBarMetrics)barMetrics
-{
-    return nil;
-}
-
-- (UIImage *)backBackgroundForState:(UIControlState)state barMetrics:(UIBarMetrics)barMetrics
 {
     return nil;
 }
@@ -195,11 +170,6 @@
     return nil;
 }
 
-- (UIImage *)buttonBackgroundForState:(UIControlState)state
-{
-    return nil;
-}
-
 - (UIImage *)tabBarBackground
 {
     return nil;
@@ -220,9 +190,154 @@
     return nil;
 }
 
-- (UIImage *)doorImageForState:(UIControlState)state
+#pragma mark --- Soj
+
+-(UIFont *)fontForDemoMapView
+{
+    return [UIFont fontWithName:@"MyriadPro-Semibold" size:13.0];
+}
+
+- (UIColor *)mainColor
+{
+    return [UIColor colorWithRed:0.42 green:0.42 blue:0.42 alpha:1.0];
+}
+
+- (UIColor *)highlightColor
+{
+    return [UIColor colorWithRed:115.0/255.0 green:46.0/255.0 blue:22.0/255.0 alpha:1.0];
+//    return [UIColor colorWithRed:99.0/255.0 green:37.0/255.0 blue:17.0/255.0 alpha:1.0];
+}
+
+- (UIColor *)titleShadowColor
+{
+    return [UIColor colorWithRed:215.0/255.0 green:158.0/255.0 blue:120.0/255.0 alpha:1.0];
+}
+
+- (UIColor *)backButtonTitleColor
+{
+    return [self highlightColor];
+}
+
+- (UIColor *)backButtonPressedTitleColor
+{
+    return [self titleShadowColor];
+}
+
+-(UIImage *)demoMapViewBackgroundImage
 {
     return nil;
+}
+
+-(UIColor *)demoMapViewBackgroundColor
+{
+    UIColor *color = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"newdesBackground.png"]];
+    return [color autorelease];
+}
+
+-(UIFont*)navigationTitleFont
+{
+    return [UIFont fontWithName:@"MyriadPro-Semibold" size:20.0];
+}
+
+-(UIFont*)settingsTableViewFont
+{
+    return [UIFont fontWithName:@"MyriadPro-Semibold" size:18.0];
+}
+
+- (UIImage *)navigationBackgroundForBarMetrics:(UIBarMetrics)metrics
+{
+    UIImage *image = [[UIImage imageNamed: @"newdesNavbarSettingsBG.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 15.0, 0.0, 15.0)];
+    return image;
+}
+
+-(UIFont *)backbuttonTitleFont
+{
+    return [UIFont fontWithName:@"MyriadPro-Semibold" size:13.0];
+}
+
+- (UIImage *)barButtonBackgroundForState:(UIControlState)state style:(UIBarButtonItemStyle)style barMetrics:(UIBarMetrics)barMetrics
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"newdes_back_button.png";
+    } else if (state == UIControlStateHighlighted) {
+        name = @"newdes_back_button_pressed.png";
+    }
+   UIImage *image = [UIImage imageNamed:name];
+    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 18.0, 0.0, 10.0)];
+    return image;
+}
+
+- (UIImage *)backBackgroundForState:(UIControlState)state barMetrics:(UIBarMetrics)barMetrics
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"newdes_back_button.png";
+    } else if (state == UIControlStateHighlighted) {
+        name = @"newdes_back_button_pressed.png";
+    }
+    UIImage *image = [UIImage imageNamed:name];
+    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 18.0, 0.0, 10.0)];
+    return image;
+}
+
+- (UIImage *)buttonBackgroundForState:(UIControlState)state
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"newdes_demo_buy.png";
+        //        name = @"newdesBuyMapButtonPattern.png";
+    } else if (state == UIControlStateHighlighted) {
+        name = @"newdes_demo_buy_pressed.png";
+    }
+    UIImage *image = [UIImage imageNamed:name];
+//    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(10.0, 16.0, 10.0, 16.0)];
+    return image;
+}
+
+- (UIImage *)firstAndLastCellSettingsTableImageNormal
+{
+    return [UIImage imageNamed:@"newdes_settings_cell_bg.png"];
+}
+
+- (UIImage *)firstAndLastCellSettingsTableImageHighlighted
+{
+    return [UIImage imageNamed:@"newdes_settings_cell_bg_high.png"];
+}
+
+- (UIImage *)firstCellSettingsTableImageNormal
+{
+    return [UIImage imageNamed:@"newdes_settings_cell_bg.png"];
+}
+
+- (UIImage *)firstCellSettingsTableImageHighlighted
+{
+    return [UIImage imageNamed:@"newdes_settings_cell_bg_high.png"];
+}
+
+- (UIImage *)lastCellSettingsTableImageNormal
+{
+    return [UIImage imageNamed:@"newdes_settings_cell_bg.png"];
+}
+
+- (UIImage *)lastCellSettingsTableImageHighlighted
+{
+    return [UIImage imageNamed:@"newdes_settings_cell_bg_high.png"];
+}
+
+- (UIImage *)middleCellSettingsTableImageNormal
+{
+    return [UIImage imageNamed:@"newdes_settings_cell_bg.png"];
+}
+
+- (UIImage *)middleCellSettingsTableImageHighlighted
+{
+    return [UIImage imageNamed:@"newdes_settings_cell_bg_high.png"];
+}
+
+- (CGFloat)widthSettingsCellTableView
+{
+    return 320.0;
 }
 
 @end

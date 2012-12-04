@@ -2,13 +2,12 @@
 //  SettingsViewController.m
 //  tube
 //
-//  Created by sergey on 01.12.11.
+//  Created by Sergey Mingalev on 01.12.11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "SettingsViewController.h"
 #import "CityCell.h"
-#import "MyNavigationBar.h"
 #import "CityMap.h"
 #import "tubeAppDelegate.h"
 #import "MainViewController.h"
@@ -152,7 +151,7 @@
 {
     [super viewDidLoad];
     
-    SSThemeManager *theme = [SSThemeManager sharedTheme];
+    id <SSTheme> theme = [SSThemeManager sharedTheme];
         
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
@@ -161,42 +160,45 @@
     
 	langTableView.backgroundColor = [UIColor clearColor];
     langTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    langTableView.frame = CGRectMake((320.0-[theme widthSettingsCellTableView])/2, cityTableView.frame.origin.y, [theme widthSettingsCellTableView],cityTableView.frame.size.height);
     
-    textLabel1.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
-    textLabel2.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
-    textLabel3.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
-    textLabel4.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+    textLabel1.font = [theme settingsTableViewFont];
+    textLabel2.font = [theme settingsTableViewFont];
+    textLabel3.font = [theme settingsTableViewFont];
+    textLabel4.font = [theme settingsTableViewFont];
+    
+    textLabel1.textColor = [theme mainColor];
+    textLabel2.textColor = [theme mainColor];
+    textLabel3.textColor = [theme mainColor];
+    textLabel4.textColor = [theme mainColor];
+    
+    scrollView.backgroundColor = [theme demoMapViewBackgroundColor];
     
 	cityTableView.backgroundColor = [UIColor clearColor];
     cityTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    cityTableView.frame = CGRectMake((320.0-[theme widthSettingsCellTableView])/2, cityTableView.frame.origin.y, [theme widthSettingsCellTableView],cityTableView.frame.size.height);
 
 	feedbackTableView.backgroundColor = [UIColor clearColor];
     feedbackTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    feedbackTableView.frame = CGRectMake((320.0-[theme widthSettingsCellTableView])/2, cityTableView.frame.origin.y, [theme widthSettingsCellTableView],cityTableView.frame.size.height);
     
-    UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,180,44)];
-    CGRect frame = CGRectMake(0, 3, 180, 44);
-	UILabel *label = [[[UILabel alloc] initWithFrame:frame] autorelease];
-	label.backgroundColor = [UIColor clearColor];
-	label.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:20.0];
-    //	label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-	label.textAlignment = UITextAlignmentCenter;
-	label.textColor = [UIColor darkGrayColor];
-    label.text = NSLocalizedString(@"Settings",@"Settings");
-    [iv addSubview:label];
-    self.navigationItem.titleView=iv;
-    [iv release];
-	
-    UIImage *back_image=[UIImage imageNamed:NSLocalizedString(@"backstation", @"backstation")];
-    UIImage *back_image_high=[UIImage imageNamed:NSLocalizedString(@"pr_backstation", @"pr_backstation")];
-	UIButton *back_button = [UIButton buttonWithType:UIButtonTypeCustom];
-	back_button.bounds = CGRectMake( 0, 0, back_image.size.width, back_image.size.height );    
-	[back_button setBackgroundImage:back_image forState:UIControlStateNormal];
-	[back_button setBackgroundImage:back_image_high forState:UIControlStateHighlighted];
-	[back_button addTarget:self action:@selector(donePressed:) forControlEvents:UIControlEventTouchUpInside];    
-	UIBarButtonItem *barButtonItem_back = [[UIBarButtonItem alloc] initWithCustomView:back_button];
-    self.navigationItem.leftBarButtonItem = barButtonItem_back;
-    self.navigationItem.hidesBackButton=YES;
-	[barButtonItem_back release];
+	self.navigationItem.title=NSLocalizedString(@"Settings",@"Settings");
+    
+    UIBarButtonItem *barButtonItem_back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(donePressed:)];
+    
+    [barButtonItem_back setBackgroundImage:[theme backBackgroundForState:UIControlStateNormal barMetrics:UIBarMetricsDefault] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [barButtonItem_back setBackgroundImage:[theme backBackgroundForState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+
+#if defined(NEW_THEME)
+    [barButtonItem_back setBackgroundVerticalPositionAdjustment:-2.0f forBarMetrics:UIBarMetricsDefault];
+    [barButtonItem_back setTitlePositionAdjustment:UIOffsetMake(5.0, 3.0f) forBarMetrics:UIBarMetricsDefault];
+#else
+    [barButtonItem_back setTitlePositionAdjustment:UIOffsetMake(2.0, 3.0f) forBarMetrics:UIBarMetricsDefault];
+#endif
+
+    
+
+    self.navigationItem.leftBarButtonItem=barButtonItem_back;
     
     [TubeAppIAPHelper sharedHelper];
         
@@ -364,6 +366,8 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    id <SSTheme> theme = [SSThemeManager sharedTheme];
+    
     if (tableView==cityTableView) {
         static NSString *cellIdentifier = @"CityCell";
         
@@ -379,6 +383,7 @@
         
         [[(CityCell*)cell cityName] setText:mapName];
         [[(CityCell*)cell cityName] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
+        [[(CityCell*)cell cityName] setTextColor:[theme mainColor]];
         [[(CityCell*)cell cityName] setHighlightedTextColor:[UIColor whiteColor]];
         
         cell.backgroundColor = [UIColor clearColor];
@@ -448,26 +453,48 @@
         NSInteger sectionRows = [tableView numberOfRowsInSection:[indexPath section]];
         NSInteger crow = [indexPath row];
         
+//        if (crow == 0 && crow == sectionRows - 1)
+//        {
+//            rowBackground = [UIImage imageNamed:@"first_and_last_cell_bg.png"];
+//            selectionBackground = [UIImage imageNamed:@"high_first_and_last_cell_bg.png"];
+//        }
+//        else if (crow == 0)
+//        {
+//            rowBackground = [UIImage imageNamed:@"first_cell_bg.png"];
+//            selectionBackground = [UIImage imageNamed:@"high_first_cell_bg.png"];
+//        }
+//        else if (crow == sectionRows - 1)
+//        {
+//            rowBackground = [UIImage imageNamed:@"last_cell_bg.png"];
+//            selectionBackground = [UIImage imageNamed:@"high_last_cell_bg.png"];
+//        }
+//        else
+//        {
+//            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
+//            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+//        }
+
         if (crow == 0 && crow == sectionRows - 1)
         {
-            rowBackground = [UIImage imageNamed:@"first_and_last_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_first_and_last_cell_bg.png"];
+            rowBackground = [theme firstAndLastCellSettingsTableImageNormal];
+            selectionBackground = [theme firstAndLastCellSettingsTableImageHighlighted];
         }
         else if (crow == 0)
         {
-            rowBackground = [UIImage imageNamed:@"first_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_first_cell_bg.png"];
+            rowBackground = [theme firstCellSettingsTableImageNormal];
+            selectionBackground = [theme firstCellSettingsTableImageHighlighted];
         }
         else if (crow == sectionRows - 1)
         {
-            rowBackground = [UIImage imageNamed:@"last_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_last_cell_bg.png"];
+            rowBackground = [theme lastCellSettingsTableImageNormal];
+            selectionBackground = [theme lastCellSettingsTableImageHighlighted];
         }
         else
         {
-            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+            rowBackground = [theme middleCellSettingsTableImageNormal];
+            selectionBackground = [theme middleCellSettingsTableImageHighlighted];
         }
+
         
         cell.backgroundView  = [[[UIImageView alloc] initWithImage:rowBackground] autorelease];
         cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:selectionBackground] autorelease];
@@ -490,6 +517,7 @@
         
         [[(CityCell*)cell cityName] setText:[languages objectAtIndex:indexPath.row]];
         [[(CityCell*)cell cityName] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
+        [[(CityCell*)cell cityName] setTextColor:[theme mainColor]];
         [[(CityCell*)cell cityName] setHighlightedTextColor:[UIColor whiteColor]];
         
         cell.backgroundColor = [UIColor clearColor];        
@@ -511,27 +539,48 @@
         NSInteger sectionRows = [tableView numberOfRowsInSection:[indexPath section]];
         NSInteger crow = [indexPath row];
         
+//        if (crow == 0 && crow == sectionRows - 1)
+//        {
+//            rowBackground = [UIImage imageNamed:@"first_and_last_cell_bg.png"];
+//            selectionBackground = [UIImage imageNamed:@"high_first_and_last_cell_bg.png"];
+//        }
+//        else if (crow == 0)
+//        {
+//            rowBackground = [UIImage imageNamed:@"first_cell_bg.png"];
+//            selectionBackground = [UIImage imageNamed:@"high_first_cell_bg.png"];
+//        }
+//        else if (crow == sectionRows - 1)
+//        {
+//            rowBackground = [UIImage imageNamed:@"last_cell_bg.png"];
+//            selectionBackground = [UIImage imageNamed:@"high_last_cell_bg.png"];
+//        }
+//        else
+//        {
+//            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
+//            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+//        }
+
         if (crow == 0 && crow == sectionRows - 1)
         {
-            rowBackground = [UIImage imageNamed:@"first_and_last_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_first_and_last_cell_bg.png"];
+            rowBackground = [theme firstAndLastCellSettingsTableImageNormal];
+            selectionBackground = [theme firstAndLastCellSettingsTableImageHighlighted];
         }
         else if (crow == 0)
         {
-            rowBackground = [UIImage imageNamed:@"first_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_first_cell_bg.png"];
+            rowBackground = [theme firstCellSettingsTableImageNormal];
+            selectionBackground = [theme firstCellSettingsTableImageHighlighted];
         }
         else if (crow == sectionRows - 1)
         {
-            rowBackground = [UIImage imageNamed:@"last_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_last_cell_bg.png"];
+            rowBackground = [theme lastCellSettingsTableImageNormal];
+            selectionBackground = [theme lastCellSettingsTableImageHighlighted];
         }
         else
         {
-            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+            rowBackground = [theme middleCellSettingsTableImageNormal];
+            selectionBackground = [theme middleCellSettingsTableImageHighlighted];
         }
-        
+
         cell.backgroundView  = [[[UIImageView alloc] initWithImage:rowBackground] autorelease];
         cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:selectionBackground] autorelease];
         
@@ -550,6 +599,7 @@
         
         [[(CityCell*)cell cityName] setText:[feedback objectAtIndex:indexPath.row]];
         [[(CityCell*)cell cityName] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
+        [[(CityCell*)cell cityName] setTextColor:[theme mainColor]];
         [[(CityCell*)cell cityName] setHighlightedTextColor:[UIColor whiteColor]];
         [[(CityCell*)cell cityName] setFrame:CGRectMake(20, 16, 240, 21)];
         
@@ -567,28 +617,49 @@
         NSInteger sectionRows = [tableView numberOfRowsInSection:[indexPath section]];
         NSInteger crow = [indexPath row];
         
+//        if (crow == 0 && crow == sectionRows - 1)
+//        {
+//            // у нас таких быть не должно вообще но 
+//            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
+//            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+//        }
+//        else if (crow == 0)
+//        {
+//            rowBackground = [UIImage imageNamed:@"first_cell_bg.png"];
+//            selectionBackground = [UIImage imageNamed:@"high_first_cell_bg.png"];
+//        }
+//        else if (crow == sectionRows - 1)
+//        {
+//            rowBackground = [UIImage imageNamed:@"last_cell_bg.png"];
+//            selectionBackground = [UIImage imageNamed:@"high_last_cell_bg.png"];
+//        }
+//        else
+//        {
+//            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
+//            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+//        }
+
         if (crow == 0 && crow == sectionRows - 1)
         {
-            // у нас таких быть не должно вообще но 
-            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+            rowBackground = [theme middleCellSettingsTableImageNormal];
+            selectionBackground = [theme middleCellSettingsTableImageHighlighted];
         }
         else if (crow == 0)
         {
-            rowBackground = [UIImage imageNamed:@"first_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_first_cell_bg.png"];
+            rowBackground = [theme firstCellSettingsTableImageNormal];
+            selectionBackground = [theme firstCellSettingsTableImageHighlighted];
         }
         else if (crow == sectionRows - 1)
         {
-            rowBackground = [UIImage imageNamed:@"last_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_last_cell_bg.png"];
+            rowBackground = [theme lastCellSettingsTableImageNormal];
+            selectionBackground = [theme lastCellSettingsTableImageHighlighted];
         }
         else
         {
-            rowBackground = [UIImage imageNamed:@"middle_cell_bg.png"];
-            selectionBackground = [UIImage imageNamed:@"high_middle_cell_bg.png"];
+            rowBackground = [theme middleCellSettingsTableImageNormal];
+            selectionBackground = [theme middleCellSettingsTableImageHighlighted];
         }
-        
+
         cell.backgroundView  = [[[UIImageView alloc] initWithImage:rowBackground] autorelease];
         cell.selectedBackgroundView = [[[UIImageView alloc] initWithImage:selectionBackground] autorelease];
         

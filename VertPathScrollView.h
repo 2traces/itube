@@ -2,7 +2,7 @@
 //  VertPathScrollView.h
 //  tube
 //
-//  Created by sergey on 01.08.12.
+//  Created by Sergey Mingalev on 01.08.12.
 //
 //
 

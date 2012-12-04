@@ -2,7 +2,7 @@
 //  CustomPopoverBackgroundView.m
 //  tube
 //
-//  Created by sergey on 27.08.12.
+//  Created by Sergey Mingalev on 27.08.12.
 //
 //
 

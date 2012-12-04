@@ -2,7 +2,7 @@
 //  LineListViewController.m
 //  tube
 //
-//  Created by sergey on 06.12.11.
+//  Created by Sergey Mingalev on 06.12.11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 

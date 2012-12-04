@@ -2,7 +2,7 @@
 //  ImageDownloader.h
 //  tube
 //
-//  Created by sergey on 13.04.12.
+//  Created by Sergey Mingalev on 13.04.12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 

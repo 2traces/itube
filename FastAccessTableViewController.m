@@ -2,7 +2,7 @@
 //  FastAccessTableViewController.m
 //  tube
 //
-//  Created by sergey on 21.01.12.
+//  Created by Sergey Mingalev on 21.01.12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 

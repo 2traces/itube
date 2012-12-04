@@ -2,7 +2,7 @@
 //  LeftiPadPathViewController.m
 //  tube
 //
-//  Created by sergey on 13.08.12.
+//  Created by Sergey Mingalev on 13.08.12.
 //
 //
 

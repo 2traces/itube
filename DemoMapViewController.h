@@ -2,7 +2,7 @@
 //  DemoMapViewController.h
 //  tube
 //
-//  Created by sergey on 21.03.12.
+//  Created by Sergey Mingalev on 21.03.12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -19,11 +19,9 @@
     IBOutlet UITextView *text1;
     IBOutlet UITextView *text2;
     IBOutlet UITextView *text3;
-    
     IBOutlet UIImageView *image1;
     IBOutlet UIImageView *image2;
     IBOutlet UIImageView *image3;
-    
     IBOutlet UIButton *buyButton;
     
     NSString *filename;
@@ -43,7 +41,6 @@
 @property (nonatomic, retain) IBOutlet UIImageView *image2;
 @property (nonatomic, retain) IBOutlet UIImageView *image3;
 @property (nonatomic, retain) IBOutlet UIButton *buyButton;
-
 @property (nonatomic, retain) NSString *prodID;
 @property (nonatomic, retain) NSString *filename;
 @property (nonatomic, retain) NSString *cityName;

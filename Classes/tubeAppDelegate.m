@@ -15,6 +15,7 @@
 #import <MapKit/MapKit.h>
 #import "ManagedObjects.h"
 #import "MainView.h"
+#import "SSTheme.h"
 
 @implementation tubeAppDelegate
 
@@ -48,6 +49,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
+    
+    [SSThemeManager customizeAppAppearance];
     
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     gl = [[GlViewController alloc] initWithNibName:@"GlViewController" bundle:[NSBundle mainBundle]];
