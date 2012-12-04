@@ -1942,7 +1942,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     // если не получается взять файлы из директории cache - то пытаемся найти их в бандле
     if ([mapFile isEqual:@""] || [trpFile isEqual:@""]) {
         
-        files = [[NSBundle mainBundle] pathsForResourcesOfType:@"map" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+        files = [[NSBundle mainBundle] pathsForResourcesOfType:@"map" inDirectory:[NSString stringWithFormat:@"%@", mapName]];
         if([files count] <= 0) {
 #ifdef DEBUG
             NSLog(@"map file not found: %@", mapName);
@@ -1951,9 +1951,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         }
         mapFile = [files objectAtIndex:0];
         
-        files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trpnew" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+        files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trpnew" inDirectory:[NSString stringWithFormat:@"%@", mapName]];
         if([files count] <= 0) {
-            files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trp" inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+            files = [[NSBundle mainBundle] pathsForResourcesOfType:@"trp" inDirectory:[NSString stringWithFormat:@"%@", mapName]];
             if([files count] <= 0) {
 #ifdef DEBUG
                 NSLog(@"trp file not found: %@", mapName);

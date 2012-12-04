@@ -1128,7 +1128,7 @@
 
 - (void)readItemNamesForMap:(NSString*)mapName {
 //    [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
-    NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+    NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:nil inDirectory:[NSString stringWithFormat:@"%@", mapName]];
     NSString *fn = [NSString stringWithFormat:@"%@/en-names.txt", rasterPath];
     NSString *contents = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
     __block BOOL areWeReadingCategories = YES;

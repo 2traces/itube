@@ -37,7 +37,7 @@
     toolbar = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, self.frame.size.width,self.frame.size.height)];
     [toolbar setImage:[UIImage imageNamed:@"toolbar_bg2.png"]];
     [toolbar setUserInteractionEnabled:YES];
-	[self addSubview:toolbar];
+	//[self addSubview:toolbar];
 
 	UIImage *imageOpenList = [UIImage imageNamed:@"openlist2.png"];
     UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist2.png"];

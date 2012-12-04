@@ -1,0 +1,1846 @@
+[Line1]
+Name=5
+203	<Eastchester Dyre Av 40.88905,73.83061,	S	E  
+204	<Baychester Av 40.87864,73.83863,	E	S
+205	<Gun Hill Road. 40.87017,73.84580,	E	S
+206	<Pelham Parkway 40.85813,73.85606,	M	M
+207	<Morris Park 40.85442,73.86039,	M	M
+208	>East 180th St 40.841,73.874,	S	E  
+209	>West Farms Square East Tremont Av 40.840,73.880  
+210	>174th St 40.837,73.888,	E	S
+211	>Freeman St 40.830,73.892,	M	M
+212	>Simpson St 40.824,73.893,	M	M  
+213	>Intervale Av 40.822,73.897,	ME	MS
+214	>Prospect Av 40.819,73.901,	SME	EMS
+215	>Jackson Av 40.816,73.908,	ME	MS
+216	>Third Av 149th St 40.81609,73.91767,	M	M
+217	>149th St Grand Concourse 40.818,73.927,	S	E
+218	>138th St Grand Concourse 40.81303,73.92996,	M	M
+219	<125th St 40.80425,73.93747,	ME	SM
+220	<86th St 40.77946,73.95562,	M	M
+221	<59th St 40.76247,73.9679,	M	M
+222	<Grand Central 42nd St  40.7522,73.9775,	M	M
+223	>14th St Union Square  40.7347,73.9902,	SM	EM
+224	<Brooklyn Bridge City Hall 40.7127,74.0047,	ME	SM
+225	<Fulton St  40.7102,74.0077,	SME	EMS
+226	>Wall St 40.70771,74.01171,	SME	EMS,
+227	<Bowling Green 40.70410,74.01452,	SM	EM
+228	<Borough Hall 40.69365,73.99021,	ME	SM
+229	<Nevins St 40.68870,73.98090,	M	M
+230	<Atlantic Av Barclays Center 40.68446,73.97875,	M	M
+231	<Franklin Av 40.67071,73.95854,	M	M
+232	<President St 40.66800,73.95069,	M	M 
+233	<Sterling St 40.66306,73.95086,	SE	ES 
+234	<Winthrop St 40.65703,73.95026,	SME	EMS  
+235	<Church Av 40.65075,73.95000,	SE	ES 
+236	<Beverly Road 40.64512,73.94906,	SE	ES 
+237	<Newkirk Av 40.63991,73.94846,	M	M
+238	<Flatbush Av Brooklyn College 40.6323,73.9474
+
+branch01 = <>203...238
+driving01 = 3,3,3,3,3,2,2,2,2,2,2,2,2,3,2,2,4,3,3,5,4,2,1,1,2,2,3,3,2,1,2,2,1,2,2
+
+[Line2]
+Name=6
+248	<Pelham Bay Park 40.85287,73.82713,	E	S
+249	<Buhre Av 40.84699,73.83233,	ME	MS
+250	<Middletown Road 40.84342,73.83675,	M	M
+251	<Westchester Square East Tremont Av 40.84056,73.84207,	M	M
+252	<Zerega Av 40.83676,73.84679,	ME	MS
+253	<Castle Hill Av 40.83413,73.85168,	M	M
+254	<Parkchester 40.83293,73.86275,	M	M
+255	<St. Lawrence Av 40.83157,73.86730,	E	S
+256	<Morrison Av Soundview 40.82949,73.87447,	M	M
+257	<Elder Av 40.82855,73.87919,	M	M
+258	<Whitlock Av 40.82751,73.88614,	E	S
+259	<Hunts Point Av 40.82056,73.89164,	M	M
+260	<Longwood Av 40.81627,73.89623,	M	M
+261	<East 149th St 40.81208,73.90417,	M	M
+262	<East 143rd St St. Mary's St 40.80812,73.90786,	S	E
+263	Cypress Av 40.80552,73.91451,	E	S
+264	Brook Av 40.80754,73.91932,	M	M
+265	<Third Av 138th 40.81098,73.92721,	SE	ES 
+266	<125th St 40.80425,73.93747,	ME	SM
+267	<116th St 40.79860,73.94202,	M	M
+268	<110th St 40.79477,73.94442,	M	M
+269	<103rd St 40.79029,73.94768,	M	M
+270	<96th St 40.78577,73.95094,	M	M
+271	<86th St 40.77946,73.95562,	M	M
+272	<77th St 40.77358,73.95987,	M	M
+273	>68th St Hunter College 40.76783,73.96412,	M	M
+274	<59th St 40.76247,73.9679,	M	M
+275	<51st St 40.75707,73.97197,	ME	SM
+276	<Grand Central 42nd St  40.7522,73.9775,	M	M
+277	<33rd St  40.7463,73.9819,	M	M
+278	<28th St 40.74329,73.98416,	M	M
+279	<23rd St 40.74016,73.98644,	M	M
+280	<14th St Union Square  40.7347,73.9902,	SM	EM
+281	<Astor Place  40.7297,73.9916,	M	M
+282	<Bleecker St  40.7258,73.9947,	SM	EM
+283	<Spring St  40.7222,73.9972,	M	M
+284	>Canal St  40.7180,74,	M	M
+285	<Brooklyn Bridge City Hall 40.7127,74.0047,	ME	SM
+
+branch01 = <>248...285
+driving01 = 1,2,1,2,1,1,1,2,1,2,1,1,2,1,2,1,1,3,1,2,1,2,1,2,1,2,1,2,1,2,1,1,1,1,2,1,2
+
+[Line3]
+Name=5p
+239	Nereid Av 40.898,73.854,	M	M
+240	233rd St 40.893,73.857,	M	E
+241	225th St 40.888,73.860,	M	M
+242	219th St 40.883,73.863,	SM	ME
+243	Gun Hill Road 40.877,73.867,	M	M
+244	Burke Av 40.871,73.867,	M	M
+245	Allerton Av 40.865,73.867,	SM	ME
+246	Pelham Parkway. 40.857,73.868,	SE	ES  
+247	Bronx Park East 40.849,73.868,	M	M
+493	East 180th St 40.841882,73.873482,	S	E  
+
+branch01 = <>239...247,493
+driving01 = 2,2,2,1,2,1,2,1,2,2
+   
+[Line4]
+Name=Q
+556	<Astoria Ditmars Boulevard 40.77608,73.91073,	M	M
+557	>Astoria Boulevard 40.76997,73.91816,	M	M
+558	>30th Av 40.76685,73.92142,	M	M
+559	>Broadway 40.76195,73.92541,	M	M
+560	>36th Av 40.75655,73.92979,	M	M
+561	>39th Av 40.75268,73.93292,	M	M
+562	>Queensboro Plaza  40.7506,73.9403,	M	M
+563	<Lexington Av59th St 40.76247,73.9679,	ME	SM
+564	<Fifth Av59th St 40.76477,73.97262,	SE	ES  
+565	<57th St Seventh Av 40.76546,73.98008,	ME	SM
+566	<49th St 40.76042,73.98377,	SME	EMS,
+567	>Times Square 42nd St 40.756,73.987,	ME	SM
+568	>34th St Herald Square 40.74933,73.98798,	SME	EMS
+569	<28th St_ 40.74524,73.98875,	M	M
+570	<23rd St_ 40.74133,73.98927,	SME	EMS
+571	>14th St Union Square  40.7347,73.9902,	SM	EM
+572	>Canal St  40.7180,74,	ME	SM
+573	>DeKalb Av 40.69025,73.98227,	SME	EMS
+574	<Atlantic Av Barclays Center 40.68446,73.97875,	ME	SM
+575	>Seventh Av_ 40.67935,73.97369,	M	M
+576	<Prospect Park 40.66150,73.96246,	M	M
+577	<Parkside Av 40.65535,73.96165,	M	M 
+578	<Church Av. 40.64966,73.96364,	S	E
+579	<Beverley Road 40.64462,73.96447,	S	E  
+580	<Cortelyou Road 40.64159,73.9643,	M	M
+581	<Newkirk Plaza 40.6357,73.963,	M	M
+582	<Av H 40.63000,73.96201,	E	S
+583	<Av J 40.62527,73.96137,	M	M
+584	<Av M 40.61828,73.95961,	M	M
+585	<Kings Highway 40.60922,73.95884,	M	M
+586	<Av U 40.59887,73.95584,	M	M
+587	<Neck Road 40.59512,73.95528,	E	S
+588	<Sheepshead Bay 40.58716,73.95326,	S	E 
+589	<Brighton Beach 40.57759,73.96156,	SE	ES 
+590	<Ocean Parkway 40.57625,73.96858,	SE	SE
+591	<West Eighth St New York Aquarium  40.5761,73.9758,	M	M
+592	<Coney Island Stillwell Av 40.5773,73.9811,	M	M
+
+branch01 = <>556...592
+driving01 = 2,2,1,2,1,1,2,3,3,1,2,1,2,1,2,1,2,1,21,6,7,2,2,2,2,2,1,2,2,3,2,2,2,2
+   
+[Line5]
+Name=7
+286	>Flushing Main St  40.7595,73.8303,	SME	EMS
+287	>Mets Willets Point  40.7545,73.8455,	M	M
+288	>111th St  40.7517,73.8556,	ME	MS
+289	>103rd St Corona Plaza  40.7498,73.8627,	M	M
+290	>Junction Boulevard  40.7491,73.8690,	M	M
+291	>90th St Elmhurst Av  40.7483,73.8763,	E	S
+292	>82nd St Jackson Heights  40.7476,73.8838,	M	M
+293	>74th St Broadway  40.7467,73.8915,	E	S
+294	>69th St  40.7462,73.8968,	ME	SM
+295	>Woodside 61st St  40.7456,73.9029,	M	M
+296	>52nd St  40.7440,73.9128,	SE	ES 
+297	46th St Bliss St  40.7431,73.9184,	ME	SM
+298	40th St Lowery St  40.7438,73.9241,	M	M
+299	33rd St Rawson St  40.7446,73.9313,	SME	EMS
+300	<Queensboro Plaza  40.7506,73.9403,	M	M
+301	<Court Square 40.74761,73.94506,	SE	ES 
+302	<Hunters Point Av  40.7423,73.9492,	M	M
+303	Vernon Boulevard Jackson Av 40.74264,73.95391,	ME	SM
+304	<Grand Central  40.7522,73.9775,	SME	EMS,
+305	Fifth Av Bryant Park 40.75479,73.98420,	SM	EM
+306	>Times Square 40.756,73.987,	M	M
+
+branch01 = <>286...306
+driving01 =2,2,1,1,1,1,1,1,2,1,2,1,2,1,2,1,2,2,2,2 
+   
+[Line6]
+Name=M
+638	Forest Hills 71st Av 40.72140,73.84400,	SME	EMS
+639	67th Av 40.72696,73.85370,	SE	ES 
+640	63rd Drive Rego Park 40.730,73.862,	ME	SM
+641	>Woodhaven Boulevard 40.73347,73.87039,	ME	SM
+642	Grand Av Newtown 40.73695,73.87752,	M	M
+643	<Elmhurst Av 40.74179,73.88104,	SME	EMS,
+644	Jackson Heights Roosevelt Av  40.7467,73.8915,	SM	EM
+645	65th St 40.7494,73.8973,	E	S,
+646	Northern Boulevard 40.75323,73.90691,	S	E
+647	>46th St 40.75668,73.91425,	SE	ES 
+648	>Steinway St 40.75866,73.91893,	ME	SM
+649	<36th St 40.75203,73.92790,	S	E
+650	<Queens Plaza 40.74891,73.93738,	SME	EMS,
+651	<Court Square 23rd St 40.74761,73.94506,	ME	SM
+652	<Lexington Av 53rd St 40.75707,73.97197,	SM	EM 
+653	<Fifth Av | 53rd St 40.76032,73.97575,	SM	EM
+654	<47th 50th Sts Rockefeller Center 40.75860,73.98137,	SME	EMS
+655	>42nd St Bryant Park 40.75479,73.98420,	SME	EMS,
+656	>34th St Herald Square 40.74933,73.98798,	SME	EMS
+657	<23rd St 40.74293,73.99287,	SME	EMS,
+658	<14th St 40.73732,73.99679,	SE	ES 
+659	>West Fourth St Washington Sq 40.73168,74.00094,	SME	EMS
+660	<Broadway Lafayette St 40.72511,73.99566,	SM	EM
+661	<Essex St 40.71851,73.98819,	SM	EM
+662	Marcy Av 40.70836,73.95794,	SM	EM
+663	>Hewes St 40.70666,73.95300,	S	E
+664	Lorimer St 40.70409,73.94790,	ME	SM
+665	Flushing Av 40.70068,73.94197,	S	E
+666	Myrtle Av 40.69694,73.93528,	M	M
+667	>Central Av 40.69801,73.9252,	S	E
+668	>Knickerbocker Av 40.69873,73.91837,	S	E 
+669	>Myrtle Wyckoff Avs 40.69951,73.91116,	M	M,
+670	>Seneca Av 40.70276,73.90773,	M	M,
+671	<Forest Av 40.70461,73.90198,	M	M, 
+672	<Fresh Pond Road 40.70595,73.89670,	M	M, 
+673	>Middle Village Metropolitan Av 40.71223,73.88919,	M	M
+
+branch01 = <>638...673
+driving01 = 2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+
+[Line7]
+Name=R
+511	Forest Hills 71st Av 40.72140,73.84400,	SME	EMS
+512	67th Av 40.72696,73.85370,	SE	ES 
+513	63rd Drive Rego Park 40.730,73.862,	ME	SM 
+514	>Woodhaven Boulevard 40.73347,73.87039,	ME	SM
+515	Grand Av Newtown 40.73695,73.87752,	M	M
+516	<Elmhurst Av 40.74179,73.88104,	SME	EMS
+517	Jackson Heights Roosevelt Av 40.7467,73.8915,	SM	EM
+518	65th St 40.7494,73.8973,	E	S,
+519	Northern Boulevard 40.75323,73.90691,	S	E
+520	>46th St 40.75668,73.91425,	SE	ES 
+521	>Steinway St 40.75866,73.91893,	ME	SM
+522	>36th St 40.75203,73.92790,	S	E
+523	<Queens Plaza 40.74891,73.93738,	SME	EMS
+524	<Lexington Av | 59th St 40.76247,73.9679,	ME	SM
+525	<Fifth Av | 59th St 40.76477,73.97262,	M	M
+526	<57th St Seventh Av 40.76546,73.98008,	ME	SM
+527	<49th St 40.76042,73.98377,	SME	EMS
+528	>Times Square 42nd St 40.756,73.987,	ME	SM
+529	>34th St Herald Square 40.74933,73.98798,	SME	EMS
+530	<28th St_ 40.74524,73.98875,	M	M
+531	<23rd St_ 40.74133,73.98927,	M	M
+532	>14th St Union Square  40.7347,73.9902,	SM	EM
+533	>Eighth St New York University 40.73054,73.99244,	M	M
+534	>Prince St 40.72420,73.99781,	M	M
+535	>Canal St  40.7180,74,	M	M
+536	>City Hall 40.71324,74.00708,	M	M
+537	>Cortlandt St 40.71073,74.01124,	SME	EMS
+538	>Rector St 40.70771,74.01300,	ME	MS
+539	<Whitehall St South Ferry 40.70247,74.01283,	SE	ES
+540	<Court St 40.69365,73.99021,	M	M
+541	>Jay St MetroTech 40.6936,73.9872,	M	M
+542	>DeKalb Av 40.69025,73.98227,	SME	EMS
+543	<Pacific St. 40.68446,73.97875,	SME	EMS
+544	>Union St 40.67810,73.98391,	M	M
+545	>Ninth St  40.6709,73.9913,	SM	EM
+546	>Prospect Av. 40.66678,73.99407,	M	M
+547	>25th St 40.66116,73.99877,	M	M
+548	>36th St. 40.75203,73.92790,	ME	SM
+549	>45th St  40.6494,74.0093,	SME	EMS
+550	>53rd St  40.6436,74.0155,	SME	EMS
+551	>59th St  40.6410,74.0181,	SME	EMS
+552	>Bay Ridge Av  40.6336,74.0238,	M	M
+553	>77th St.  40.6284,74.0259,	S	E 
+554	>86th St  40.6226,74.0283,	S	E  
+555	>Bay Ridge 95th St  40.6156,74.0313,	M	M
+
+
+branch01 = <>511...555
+driving01 = 1,2,1,2,2,2,2,3,2,3,2,2,2,2,2,1,2,1,2,1,2,1,2,1,2,1,2,2,2,3,2,3,2,1,2,2,2,2,1,2,2,1,2,2
+
+   
+[Line8]
+Name=F
+719	>Jamaica 179th St 40.71245,73.78448,	SME	EMS
+720	>169th St 40.71063,73.79306,	SME	EMS
+721	>Parsons Boulevard 40.70771,73.80276,	SME	EMS
+722	<Sutphin Boulevard 40.70572,73.80971,	SME	EMS
+723	Briarwood Van Wyck Boulevard 40.70969,73.81960,	SME	EMS
+724	Kew Gardens Union Turnpike 40.71415,73.83078,	SME	EMS
+725	75th Av 40.71864,73.83773,	SE	ES 
+726	Forest Hills 71st Av 40.72140,73.84400,	SME	EMS
+727	Jackson Heights Roosevelt Av  40.7467,73.8915,	M	M
+728	21st St Queensbridge 40.75395,73.94245,	M	M
+729	Roosevelt Island 40.75918,73.95343,	M	M
+730	<Lexington Av 63rd St 40.76464,73.96639,	S	E
+731	>57th St 40.76425,73.97721,	M	M
+732	<47th 50th Sts Rockefeller Center 40.75860,73.98137,	ME	SM
+733	>42nd St Bryant Park 40.75479,73.98420,	ME	SM
+734	>34th St Herald Square 40.74933,73.98798,	SME	EMS
+735	>23rd St 40.74293,73.99287,	M	M
+736	<14th St 40.73732,73.99679,	SM	EM
+737	>West Fourth St Washington Sq 40.73168,74.00094,	SME	EMS
+738	<Broadway Lafayette St 40.72511,73.99566,	M	M
+739	<Second Av 40.72361,73.99111,	SE	ES 
+740	<Delancey St 40.71851,73.98819,	M	M
+741	<East Broadway 40.71421,73.99025,	SM	EM
+742	<York St 40.70152,73.98678,	E	S,
+743	>Jay St MetroTech 40.6936,73.9872,	M	M
+744	>Bergen St  40.6872,73.9900,EM,MS,
+745	>Carroll St 40.6802,73.9948,	M	M
+746	Smith-Ninth Sts  40.6742,73.9968,	E	S,
+747	>Fourth Av  40.6709,73.9913,	M	M
+748	<Seventh Av.  40.6668,73.9816  
+749	<15th St Prospect Park 40.6605,73.9799,	SME	EMS
+750	>Fort Hamilton Parkway 40.6514,73.9758,	S	E 
+751	<Church Av 40.6427,73.9794,	SE	ES
+752	<Ditmas Av 40.6362,73.9781,	SE	ES
+753	<18th Av  40.6296,73.9769,	SME	EMS  
+754	<Av I  40.6259,73.9762,	SE	ES 
+755	<Bay Parkway  40.6208,73.9752,	E	S
+756	<Av N  40.6150,73.9742,	SE	ES
+757	<Av P  40.6087,73.9730,	M	M
+758	<Kings Highway.  40.6031,73.9723,	SE	ES 
+759	<Av U.  40.5961,73.9733,	SE	ES 
+760	<Av X  40.5901,73.9741,	M	M
+761	>Neptune Av  40.5803,73.9745,	M	M
+762	<West Eighth St New York Aquarium 40.5761,73.9758,	M	M
+763	<Coney Island Stillwell Av 40.5773,73.9811,	M	M
+   
+branch01 = <>719...763
+driving01 = 1,2,1,2,2,2,3,7,2,2,3,2,2,1,2,1,1,1,3,2,2,2,1,2,2,3,2,1,2,1,2,1,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2
+
+[Line9]
+Name=G
+Driving=2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+698	<Court Square 40.74761,73.94506,	SME	EMS
+699	>21st St 40.74459,73.94867,	E	S
+700	<Greenpoint Av 40.73015,73.95429,	SE	ES 
+701	<Nassau Av 40.72381,73.95082,	SE	ES  
+702	>Metropolitan Av 40.71275,73.95146,	E	S
+703	<Broadway. 40.70543,73.95021,	S	E
+704	<Flushing Av. 40.69973,73.95017,	S	E
+705	<Myrtle-Willoughby Avs 40.69463,73.94910,	E	S
+706	>Bedford Nostrand Avs 40.68958,73.95356,	SE	ES 
+707	>Classon Av 40.68883,73.96004,	M	M
+708	>Clinton Washington Avs 40.68805,73.96687,	M	M
+709	>Fulton St 40.68698,73.97626,	SE	ES 
+710	<Hoyt Schermerhorn Sts  40.6890,73.9861,	ME	SM
+711	<Bergen St  40.6872,73.9900,	ME	SM
+712	>Carroll St 40.6802,73.9948,	M	M
+713	Smith-Ninth Sts  40.6742,73.9968,	E	S 
+714	>Fourth Av  40.6709,73.9913,	M	M
+715	<Seventh Av.  40.6668,73.9816,	E	S
+716	<15th St Prospect Park 40.6605,73.9799,	SME	EMS
+717	>Fort Hamilton Parkway 40.6514,73.9758,	E	S
+718	<Church Av 40.6427,73.9794,	SE	ES 
+
+branch01 = <>698...718
+driving01 = 1,2,2,2,2,1,2,1,2,1,1,1,2,1,2,1,2,1,2,2
+
+   
+[Line10]
+Name=JZ
+481	<Jamaica Center Parsons Blvd 40.70240,73.79997,	SME	EMS 
+482	<Sutphin Boulevard Archer Av JFK Airport 40.70048,73.80774,	M	M
+483	>121 St 40.70035,73.82894,	SE	ES 
+484	>111th St. 40.69687,73.83722,	SE	ES 
+485	>104th St 40.69518,73.84323,	E	S
+486	>Woodhaven Boulevard. 40.69362,73.85215,	SM	MS
+487	>85th St Forest Parkway 40.69241,73.86014,	SE	ES
+488	>75th St Elderts Lane 40.69137,73.86653,	SE	ES
+489	>Cypress Hills 40.68922,73.87391,	SE	ES   
+490	>Crescent St 40.68366,73.87241,	E	S
+491	>Norwood Av 40.68158,73.87915	, 	E	S
+492	>Cleveland St 40.67962,73.88558,	S	E
+493	>Van Siclen_Av 40.67800,73.89172,	M	M
+494	>Alabama Av 40.67683,73.90000,	S	E 
+495	Broadway Junction 40.6789,73.9034,	SME	EMS
+496	Chauncey St 40.68262,73.91013,	S	E 
+497	Halsey St 40.68568,73.91545,	E	S,  
+498	Gates Av 40.68949,73.92206,	S	E 
+499	Kosciuszko St 40.69316,73.92863,	E	S
+500	Myrtle Av 40.69694,73.93528,	M	M
+501	Flushing Av 40.70068,73.94197,	S	E
+502	Lorimer St 40.70409,73.94790,	ME	SM
+503	>Hewes St 40.70666,73.95300,	S	E
+504	Marcy Av 40.70836,73.95794,	SM	EM
+505	<Essex St 40.71851,73.98819,	SM	EM
+506	<Bowery 40.72029,73.99407,	M	M
+507	Canal St  40.7180,74,	M	M
+508	Chambers St  40.7127,74.0047,	M	M
+509	Fulton St  40.7102,74.0077,	SM	EM
+510	Broad St 40.70705,74.01073,	ME	SM
+
+branch01 = <>481...510
+driving01 = 5,6,5,2,2,2,2,1,2,1,2,2,2,2,1,2,1,2,1,3,2,3,2,3,2,2,1,1,1
+   
+[Line11]
+Name=L
+674	>Eighth Av 40.73977,74.00253,	M	M
+675	>Sixth Av 40.73732,73.99679,	M	M
+676	<Union Square  40.7347,73.9902,	SME	EMS
+677	<Third Av 40.73324,73.98721,	S	E
+678	<First Av 40.73132,73.98257,	S	E
+679	Bedford Av 40.71772,73.95756,	SM	EM
+680	<Lorimer St 40.71275,73.95146,	SM	EM
+681	<Graham Av 40.71450,73.94442,	M	M
+682	<Grand St 40.71190,73.94073,	M	M
+683	>Montrose Av 40.70761,73.93987,	M	M
+684	<Morgan Av 40.70627,73.93198,	S	E
+685	<Jefferson St 40.70699,73.92356,	SME	EMS
+686	DeKalb Av 40.70429,73.91927,	SME	EMS
+687	>Myrtle Wyckoff Avs 40.69951,73.91116,	SM	EM
+688	<Halsey St. 40.69609,73.90502,	SME	EMS
+689	>Wilson Av 40.68841,73.90425,	M	M
+690	>Bushwick Av Aberdeen St 40.68285,73.90515,	M	M
+691	>Broadway Junction 40.6789,73.9034,	M	M
+692	>Atlantic Av 40.67572,73.90296,	M	M
+693	>Sutter Av 40.66836,73.90176,	SE	ES
+694	>Livonia Av 40.66374,73.90048,	SM	EM
+695	<New Lots Av 40.65902,73.89936,	M	M,
+696	<East 105th St 40.65130,73.89902,	E	S
+697	<Canarsie Rockaway Parkway 40.64538,73.90262  
+
+branch01 = <>674...697
+driving01 = 1,2,1,1,3,4,1,2,1,1,1,1,1,2,1,2,2,1,1,2,1,2,2
+   
+[Line12]
+Name=E
+410	<Jamaica Center Parsons Blvd 40.70240,73.79997,	SME	EMS
+411	<Sutphin Boulevard Archer Av JFK Airport 40.70048,73.80774,	M	M
+412	>Jamaica Van Wyck 40.70190,73.81656,	M	E
+413	Briarwood Van Wyck Boulevard 40.70969,73.81960,	S	E
+414	Kew Gardens Union Turnpike 40.71415,73.83078,	SME	EMS
+415	75th Av 40.71864,73.83773,	SE	ES 
+416	Forest Hills 71st Av 40.72140,73.84400,	SME	EMS
+422	Jackson Heights Roosevelt Av  40.7467,73.8915,	M	M
+428	<Queens Plaza 40.74891,73.93738,	SME	EMS
+429	<Court Square 23rd St 40.74761,73.94506,	SE	ES
+430	<Lexington Av 53rd St 40.75707,73.97197,	SM	EM
+431	<Fifth Av | 53rd St 40.76032,73.97575,	ME	SM
+432	<Seventh Av 40.76295,73.98189,	M	M
+433	>50th St 40.76227,73.98613,	SM	EM
+434	>42nd St Port Authority Bus Terminal 40.75720,73.98983,	SME	EMS,
+435	>34th St Penn Station 40.75216,73.99352,	SME	EMS,
+436	>23rd St. 40.74527,73.99849,	SME	EMS,
+437	>14th St 40.73977,74.00253,	SM	EM
+438	>West Fourth St Washington Sq 40.73168,74.00094,	SME	EMS
+439	>Spring St 40.72550,74.00403,	SM	EM
+440	>Canal St 40.72186,74.00536,	SME	EMS
+441	<World Trade Center 40.71265,74.00965,	SME	EMS
+
+branch01 = <>410...416,422,428...441
+driving01 = 2,2,2,1,1,2,9,10,2,3,1,2,1,2,1,2,1,2,2,2,1
+
+[Line13]
+Name=4
+156	>Woodlawn 40.88600,73.87880,	E	S 
+157	>Mosholu Parkway 40.87971,73.88468,	E	S 
+158	>Bedford Park Boulevard Lehman College 40.87354,73.88983,	M	M
+159	>Kingsbridge Road 40.86744,73.89743,	M	M
+160	>Fordham Road 40.86270,73.90112,	ME	SM 
+161	>183rd St 40.85832,73.90399,	M	M
+162	>Burnside Av 40.85374,73.90739,	M	M
+163	>176th St 40.84861,73.91176,	M	M
+164	>Mount Eden Av 40.84426,73.91481,	ME	SM
+165	>170th St. 40.84017,73.91773,	M	M
+166	>167th St. 40.83566,73.92133,	M	M
+167	<161 St Yankee Stadium 40.82793,73.92588,	M	M
+168	<149th St Grand Concourse 40.818,73.927,	M	M
+169	>138th St Grand Concourse 40.81303,73.92996,	M	M
+170	<125th St 40.80425,73.93747,	ME	SM
+171	>116th St 40.79860,73.94202,	M	M
+172	>110th St 40.79477,73.94442,	M	M
+173	>103rd St 40.79029,73.94768,	M	M
+174	>96th St 40.78577,73.95094,	M	M
+175	<86th St 40.77946,73.95562,	M	M
+176	>77th St 40.77358,73.95987,	M	M
+177	>68th St Hunter College 40.76783,73.96412,	M	M
+178	<59th St 40.76247,73.9679,	M	M
+179	<51st St 40.75707,73.97197,	ME	SM
+180	<Grand Central 42nd St  40.7522,73.9775,	M	M
+181	<33rd St  40.7463,73.9819,	M	M
+182	<28th St 40.74329,73.98416,	M	M
+183	<23rd St 40.74016,73.98644,	M	M
+184	>14th St Union Square  40.7347,73.9902,	SM	EM
+185	<Astor Place  40.7297,73.9916,	M	M
+186	<Bleecker St  40.7258,73.9947,	SM	EM
+187	<Spring St  40.7222,73.9972,	M	M
+188	>Canal St  40.7180,74,	M	M
+189	<Brooklyn Bridge City Hall 40.7127,74.0047,	ME	SM
+190	<Fulton St  40.7102,74.0077,	SME	EMS
+191	>Wall St 40.70771,74.01171,	SME	EMS
+192	<Bowling Green 40.70410,74.01452,	SM	EM
+193	Borough Hall 40.69365,73.99021,	ME	SM
+194	Nevins St 40.68870,73.98090,	M	M
+195	<Atlantic Av Barclays Center 40.68446,73.97875,	M	M
+196	<Bergen St 40.68083,73.97511,	M	M
+197	<Grand Army Plaza 40.67458,73.97051,	M	M
+198	<Eastern Parkway Brooklyn Museum 40.67162,73.96275,	M	M
+199	<Franklin Av 40.67071,73.95854,	M	M
+200	>Nostrand Av 40.6698,73.95052,	M	M
+201	>Kingston Av 40.66937,73.94215,	M	M
+202	>Crown Heights Utica Av 40.66875,73.93120,	SE	ES 
+
+branch01 = <>156...202
+driving01 = 1,2,1,2,1,2,1,2,1,2,1,3,2,2,1,2,1,2,1,2,1,2,1,2,1,1,2,1,2,1,2,1,2,1,2,1,3,3,1,2,1,2,1,2,1,2
+
+[Line14]
+Name=C
+370	>168th St 40.84102,73.93979,	ME	SM
+371	<163rd St Amsterdam Av 40.83686,73.94013,	SM	EM
+372	<155th St 40.83085,73.9414,	ME	SM
+373	<145th St 40.82404,73.94476,	SE	ES
+374	<135th St 40.81709,73.94803,	SE	ES
+375	<125th St 40.81075,73.95266,	ME	SM
+376	<116th St. 40.80438,73.95541,	S	E
+377	<Cathedral Parkway 110th St 40.80052,73.95824,	SM	EM
+378	<103rd St. 40.79604,73.96142,	M	M
+379	<96th St. 40.79162,73.96472,	ME	SM
+380	<86th St. 40.78528,73.96931,	SME	EMS,
+381	<81st St Museum of Natural History 40.78197,73.97176,	E	S
+382	<72nd St 40.77615,73.97601,	ME	SM
+383	<59th St Columbus Circle 40.7680,73.9819,	SM	EM
+384	>50th St 40.76227,73.98613,	SM	EM
+385	>42nd St Port Authority Bus Terminal 40.75720,73.98983,	SME	EMS
+386	>34th St Penn Station 40.75216,73.99352,	SME	EMS
+387	>23rd St. 40.74527,73.99849,	SME	EMS
+388	>14th St 40.73977,74.00253,	SM	EM
+389	>West Fourth St Washington Sq 40.73168,74.00094,	SME	EMS
+390	>Spring St 40.72550,74.00403,	SM	EM
+391	>Canal St 40.72186,74.00536,	SME	EMS,
+392	>Chambers St 40.71265,74.00965,	SME	EMS,
+393	<Fulton St  40.7102,74.0077,	SME	EMS,
+394	>High St Brooklyn Bridge 40.69912,73.98986,	SM	EM
+395	>Jay St MetroTech 40.6936,73.9872,	SME	EMS
+396	<Hoyt Schermerhorn Sts  40.6890,73.9861,	M	M
+397	<Lafayette Av 40.68626,73.97446,	SM	EM
+398	>Clinton Washington Avs 40.68317,73.96588,	SE	ES
+399	>Franklin Av 40.68112,73.95571,	S	E
+400	>Nostrand Av. 40.68034,73.94957,	S	E
+401	>Kingston Throop Avs 40.67985,73.94060,	SM	ME
+402	>Utica Av 40.67923,73.92906,	S	E 
+403	>Ralph Av 40.67881,73.92168,	SE	ES
+404	>Rockaway Av 40.67823,73.91082,	SE	ES
+405	>Broadway Junction 40.6789,73.9034,	S	E
+406	<Liberty Av 40.67435,73.89648,	M	M
+407	<Van Siclen Av 40.67269,73.89026,	M	M
+408	<Shepherd Av 40.67406,73.88082,	M	M
+409	<Euclid Av 40.67536,73.87189,	M	M
+
+branch01 = <>370...409
+driving01 = 2,1,1,2,1,1,2,1,2,1,1,2,2,2,2,2,2,1,2,1,2,1,2,3,2,1,1,2,1,2,2,2,1,2,2,2,1,2,2
+
+[Line15]
+Name=1
+35	>Van Cortlandt Park 242nd St 40.88934,73.8985,	E	S
+36	>238th St  40.8850,73.9006,	E	S,
+37	>231st St 40.879,73.905,	M	M
+38	>Marble Hill 225th St 40.874,73.910,	S	E
+39	<215th St 40.86947,73.91507,	M	M
+40	<207th St 40.8644,73.9189,	M	M
+41	<Dyckman St 40.861,73.925,	M	M
+42	<191st St 40.855,73.929,	M	M
+43	<181st St 40.849,73.933,	M	M
+44	>168th St 40.84102,73.93979,	M	M
+45	>157th St 40.834,73.944,	M	M
+46	>145th St 40.826,73.950,	M	M
+47	>137th St City College 40.821,73.954,	M	M
+48	>125th St 40.815,73.958,	M	M
+49	>116th St Columbia University 40.808,73.964,	M	M
+50	>Cathedral Parkway 110th St 40.804,73.967,	M	M
+51	>103rd St_ 40.79941,73.96815,	M	M
+52	>96th St 40.794,73.972,	SE	ES
+53	>86th St_ 40.7883,73.9764,	M	M
+54	>79th St 40.784,73.980,	M	M
+55	>72nd St. 40.779,73.982,	M	M
+56	>66th St Lincoln Center 40.774,73.982,	M	M
+57	>59th St Columbus Circle  40.7680,73.9819,	ME	SM
+58	>50th St 40.761,73.984,	M	M
+59	>Times Square 42nd St 40.756,73.987,	ME	SM
+60	>34th St Penn Station 40.751,73.991,	SME	EMS
+61	>28th St.. 40.747,73.993,	SM	EM
+62	>23rd St.. 40.744,73.996,	M	M
+63	>18th St 40.741,73.998,	ME	SM
+64	>14th St 40.738,73.999,	M	M
+65	>Christopher St Sheridan Square 40.733,74.003,	M	M
+66	>Houston St 40.72859,74.00532,	M	M
+67	>Canal St. 40.722,74.006,	M	M
+68	>Franklin St 40.719,74.007,	M	M
+69	>Chambers St 40.71551,74.00923,	M	M
+70	>Cortlandt St. 40.710,74.012,	SME	EMS
+71	>Rector St. 40.708,74.013,	SME	EMS,
+72	>South Ferry 40.70247,74.01283,	SM	EM
+
+branch01 = <>35...72
+driving01 = 1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,1,1,1,1,2,1,2,1,2,1,1,1
+
+[Line16]
+Name=A
+307	>Inwood 207th St 40.86767,73.92116,	SM	EM
+308	>Dyckman St. 40.86546,73.92734,	M	M
+309	>190th St 40.85898,73.93404,	M	M
+310	>181st St. 40.85089,73.93828,	M	M 
+311	>175th St 40.84654,73.94009,	SM	EM
+312	>168th St 40.84102,73.93979,	ME	SM
+313	>163rd St Amsterdam Av 40.83686,73.94013,	SM	EM
+314	>155th St 40.83085,73.9414,	ME	SM
+315	<145th St 40.82404,73.94476,	SE	ES
+316	<135th St 40.81709,73.94803,	S	E
+317	<125th St 40.81075,73.95266,	ME	SM
+318	<116th St. 40.80438,73.95541,	S	E
+319	<Cathedral Parkway 110th St 40.80052,73.95824,	SM	EM
+320	<103rd St. 40.79604,73.96142,	M	M
+321	<96th St. 40.79162,73.96472,	ME	SM
+322	<86th St. 40.78528,73.96931,	SME	EMS,
+323	<81st St Museum of Natural History 40.78197,73.97176,	E	S
+324	<72nd St 40.77615,73.97601,	ME	SM
+325	<59th St Columbus Circle  40.7680,73.9819,	SM	EM
+326	<50th St 40.76227,73.98613,	SM	EM
+327	>42nd St Port Authority Bus Terminal 40.75720,73.98983,	SME	EMS
+328	>34th St Penn Station 40.75216,73.99352,	SM	EM
+329	<23rd St. 40.74527,73.99849,	SME	EMS
+330	>14th St 40.73977,74.00253,	SM	EM
+331	>West Fourth St Washington Sq 40.73168,74.00094,	SME	EMS
+332	<Spring St 40.72550,74.00403,	SM	EM
+333	<Canal St 40.72186,74.00536,	SME	EMS
+334	>Chambers St 40.71265,74.00965,	SME	EMS
+335	<Fulton St  40.7102,74.0077,	SME	EMS
+336	>High St Brooklyn Bridge 40.69912,73.98986,	SM	EM
+337	>Jay St MetroTech 40.6936,73.9872,	SME	EMS
+338	<Hoyt Schermerhorn Sts  40.6890,73.9861,	M	M
+339	<Lafayette Av 40.68626,73.97446,	SM	EM
+340	>Clinton Washington Avs 40.68317,73.96588,	M	M
+341	>Franklin Av 40.68112,73.95571,	S	E
+342	>Nostrand Av. 40.68034,73.94957,	S	E
+343	>Kingston Throop Avs 40.67985,73.94060,	S	E  
+344	>Utica Av 40.67923,73.92906,	S	E  
+345	>Ralph Av 40.67881,73.92168,	SE	ES 
+346	>Rockaway Av 40.67823,73.91082,	SE	ES   
+347	>Broadway Junction 40.6789,73.9034,	S	E
+348	<Liberty Av 40.67435,73.89648,	M	M
+349	<Van Siclen Av 40.67269,73.89026,	M	M
+350	<Shepherd Av 40.67406,73.88082,	M	M
+351	<Euclid Av 40.67536,73.87189,	M	M
+352	<Grant Av 40.67663,73.86559,	E	S
+353	>80th St 40.67943,73.85782,	SE	ES 
+354	>88th St 40.67985,73.85069,	S	E 
+355	>Rockaway Boulevard 40.68045,73.84370,	SE	ES 
+356	<Aqueduct Racetrack 40.67208,73.83591,	M	M,
+357	>Aqueduct North Conduit Av 40.66832,73.83403,	SE	ES
+358	>Howard Beach JFK Airport 40.66044,73.83031,	M	M
+359	>Broad Channel 40.60861,73.81600,	M	M
+360	<Beach 67th St 40.59092,73.79681,	M	M
+361	<Beach 60th St 40.59239,73.78853,	E	S
+362	<Beach 44th St 40.59292,73.77598,	S	E  
+363	<Beach 36th St 40.59541,73.76807,	M	M
+364	<Beach 25th St 40.60006,73.76142,	M	M
+365	Far Rockaway Mott Av  40.6038,73.7555,	S	E  
+
+branch01 = <>307...365
+driving01 = 1,2,2,1,2,1,2,2,1,2,2,1,2,1,2,1,2,1,1,2,1,2,2,1,1,2,2,2,2,3,1,2,2,2,1,2,1,2,1,2,2,2,1,2,1,2,1,2,2,2,2,4,5,3,3,3,3,3
+
+[Line17]
+Name=Ak
+366	>Rockaway Boulevard 40.68045,73.84370,	SE	ES 
+367	>104th St. 40.68223,73.83735,	S	E 
+368	>111 St. 40.68467,73.83112,	SE	ES 
+369	Ozone Park Lefferts Boulevard 40.68620,73.82422,	SE	ES 
+
+branch01 = <>366...369
+driving01 = 2,2,2
+
+[Line18]
+Name=3
+122	>Harlem 148th St 40.824,73.937,	E	S
+123	>145th St_ 40.820,73.936,	M	M
+124	<135th St. 40.814,73.941,	M	M
+125	<125th St. 40.807,73.945,	M	M
+126	<116th St_ 40.802,73.950,	M	M
+127	>Central Park North   110th St 40.798,73.953,	SM	EM
+128	>96th St 40.794,73.972,	SE	ES  
+129	>72nd St. 40.779,73.982,	M	M
+130	>Times Square 42nd St 40.756,73.987,	ME	SM
+131	>34th St Penn Station 40.751,73.991,	ME	SM
+132	<14th St 40.738,73.999,	M	M
+133	>Chambers St 40.71551,74.00923,	M	M
+134	<Park Place 40.71249,74.00768,	SM	EM
+135	<Fulton St  40.7102,74.0077,	SM	EM
+136	<Wall St. 40.70631,74.00952,	SM	EM
+137	>Clark St 40.69739,73.99304,	M	M
+138	Borough Hall 40.69365,73.99021,	M	M
+139	Hoyt St 40.69053,73.98510,	SM	EM
+140	Nevins St 40.68870,73.98090,	M	M
+141	<Atlantic Av Barclays Center 40.68446,73.97875,	M	M
+142	<Bergen St_ 40.68083,73.97511,	M	M
+143	<Grand Army Plaza 40.67458,73.97051,	M	M
+144	Eastern Parkway Brooklyn Museum 40.67162,73.96275,	M	M
+145	<Franklin Av 40.67071,73.95854,	M	M
+146	>Nostrand Av 40.6698,73.95052,	M	M
+147	>Kingston Av 40.6698,73.95052,	M	M
+148	>Crown Heights Utica Av 40.66875,73.93120,	SE	ES   
+149	Sutter Av Rutland Road 40.66488,73.92288,	ME	SM
+150	<Saratoga Av 40.66153,73.91558,SM,EM,
+151	>Rockaway Av. 40.66254,73.90889,	M	M,
+152	>Junius St 40.66361,73.90151,	S	E
+153	<Pennsylvania Av 40.66472,73.89412,	S	E 
+154	<Van Siclen Av. 40.66553,73.88859,	S	E 
+155	<New Lots Av. 40.66638,73.88258,	S	E
+
+branch01 = <>122...155
+driving01 = 1,2,2,2,2,2,2,7,2,2,4,2,1,2,1,2,1,2,1,2,1,2,1,2,2,1,3,2,2,1,1,1,1
+
+[Line19]
+Name=2
+73	>Wakefield 241st St 40.903,73.850,	M	M
+74	<Nereid Av 40.898,73.854,	M	M
+75	<233rd St 40.893,73.857,	M	E
+76	<225th St 40.888,73.860,	M	M
+77	<219th St 40.883,73.863,	S	M
+78	>Gun Hill Road 40.877,73.867,	S	E 
+79	>Burke Av 40.871,73.867,	M	M
+80	>Allerton Av 40.865,73.867,	M	M
+81	>Pelham Parkway 40.857,73.868,	SE	ES 
+82	>Bronx Park East 40.849,73.868,	M	M
+83	>East 180th St 40.841,73.874,	S	E 
+84	>West Farms Square East Tremont Av 40.840,73.880,	E	S 
+85	>174th St 40.837,73.888,	M	M
+86	>Freeman St 40.830,73.892,SM,ME  
+87	>Simpson St 40.824,73.893,	M	M
+88	>Intervale Av 40.822,73.897,	ME	MS
+89	>Prospect Av 40.819,73.901,	SME	EMS
+90	>Jackson Av 40.816,73.908,	ME	MS
+91	<Third Av 149th St 40.81609,73.91767,	M	M,
+92	149th St Grand Concourse 40.818,73.927,	M	M 
+93	<135th St. 40.814,73.941,	M	M
+94	<125th St. 40.807,73.945,	M	M
+95	<116th St_ 40.802,73.950,	M	M
+96	>Central Park North 110th St 40.798,73.953,	SM	EM
+97	>96th St 40.794,73.972,	SE	ES
+98	>72nd St. 40.779,73.982,	M	M
+99	>Times Square 42nd St 40.756,73.987,	ME	SM
+100	>34th St Penn Station 40.751,73.991,	ME	SM
+101	<14th St 40.738,73.999,	ME	SM
+102	>Chambers St 40.71551,74.00923,	M	M
+103	<Park Place 40.71249,74.00768,	SM	EM
+104	<Fulton St 40.1020,74.00774,	SM	EM
+105	<Wall St 40.70631,74.00952,	SM	EM
+106	>Clark St 40.69739,73.99304,	M	M
+107	Borough Hall 40.69365,73.99021,	M	M
+108	Hoyt St 40.69053,73.98510,	SM	EM
+109	Nevins St 40.68870,73.98090,	M	M
+110	<Atlantic Av Barclays Center 40.68446,73.97875,	M	M
+111	<Bergen St_ 40.68083,73.97511,	M	M
+112	<Grand Army Plaza 40.67458,73.97051,	M	M
+113	Eastern Parkway Brooklyn Museum 40.67162,73.96275,	M	M
+114	<Franklin Av 40.67071,73.95854,	M	M
+115	<President St 40.66800,73.95069,	M	M 
+116	<Sterling St 40.66306,73.95086,	E	S
+117	<Winthrop St 40.65703,73.95026,	SME	EMS
+118	<Church Av 40.65075,73.95000,	M	M
+119	<Beverly Road 40.64512,73.94906,	M	M
+120	<Newkirk Av 40.63991,73.94846,	M	M
+121	<Flatbush Av Brooklyn College 40.63235,73.94748,	S	E 
+
+branch01 = <>73...121
+driving01 = 1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,2,3,2,2,2,2,2,8,3,3,6,2,2,2,2,2,2,2,2,1,2,1,1,1,1,2,1,1,2,2
+
+[Line20]
+Name=D
+910	Norwood 205 St 40.87251,73.88791,	SE	ES
+764	<Bedford Park Boulevard 40.87250,73.88790,	SE	ES
+765	<Kingsbridge Road 40.86614,73.89434,	SME	EMS  
+766	<Fordham Road 40.86241,73.89713,	ME	MS
+767	<182nd 183rd Sts 40.85676,73.90030,	SE	ES  
+768	<Tremont Av 40.84946,73.90597,	SE	ES
+769	<174th 175th Sts 40.84589,73.91017,	SME	EMS
+770	<170th St 40.83881,73.91374,	SME	EMS
+771	<167th St 40.8345,73.9177,	SE	ES  
+772	<161 St Yankee Stadium 40.82793,73.92588,	ME	SM
+773	<155th St 40.82991,73.93910,	E	S
+774	<145th St 40.82404,73.94476,	SM	EM
+775	<125th St 40.81075,73.95266,	ME	SM
+776	<59th St Columbus Circle  40.7680,73.9819,	SM	EM
+777	<Seventh Av 40.76295,73.98189,	M	M
+778	<47th 50th Sts Rockefeller Center 40.75860,73.98137,	ME	SM
+779	>42nd St Bryant Park 40.75479,73.98420,	ME	SM
+780	>34th St Herald Square 40.74933,73.98798,	SME	EMS
+781	>West Fourth St Washington Sq 40.73168,74.00094,	SME	EMS
+782	<Broadway Lafayette St 40.72511,73.99566,	M	M
+783	>Grand St. 40.71811,73.99386,	M	M
+784	>DeKalb Av 40.69025,73.98227,	SE	ES
+785	<Pacific St. 40.68446,73.97875,	M	M
+786	>Union St 40.67810,73.98391,	ME	SM
+787	>Ninth St  40.6709,73.9913,	M	M
+788	>Prospect Av. 40.66678,73.99407,	E	S 
+789	>25th St 40.66116,73.99877,	SME	EMS,
+790	>36th St. 40.65445,74.00455,	SME	EMS,
+791	Ninth Av 40.64657,73.99467,	M	M
+792	<Fort Hamilton Parkway. 40.64072,73.99448,	SE	ES 
+793	<50th St. 40.63611,73.99498,	M	M
+794	<55th St 40.63189,73.99570,	ME	SM
+795	<62nd St 40.62608,73.99788,	SME	EMS
+796	<71st St 40.61916,73.99899,	SME	EMS
+797	>79th St. 40.61339,74.00151,	SME	EMS
+798	>18th Av. 40.60866,74.00211,	M	M
+799	>20th Av 40.60462,73.99860,	M	M
+800	>Bay Parkway 40.60265,73.99429,	M	M  
+801	<25th Av 40.59860,73.98735,	M	M
+802	>Bay 50th St 40.58927,73.98412,	SE	ES 
+803	<Coney Island Stillwell Av 40.5773,73.9811,	M	M
+
+branch01 = <>910,764...803
+driving01 = 2,2,2,2,2,2,2,2,2,2,2,3,8,1,2,1,2,3,4,8,3,2,2,2,2,1,2,2,2,2,2,2,2,2,2,1,2,3,2,2
+
+[Line21]
+Name=B
+444	<Bedford Park Boulevard 40.87250,73.88790,	SE	ES  
+445	<Kingsbridge Road 40.86614,73.89434,	SME	EMS
+446	<Fordham Road 40.86241,73.89713,	ME	SM
+447	<182nd 183rd Sts 440.85676,73.90030,	SE	ES  
+448	<Tremont Av 40.84946,73.90597,	SE	ES  
+449	<174th 175th Sts 40.84589,73.91017,	SME	EMS
+450	<170th St 40.83881,73.91374,	SME	EMS
+451	<167th St 40.8345,73.9177,	SE	ES  
+452	<161 St Yankee Stadium 40.82793,73.92588,	ME	SM
+453	<155th St 40.82991,73.93910,	E	S 
+454	<145th St 40.82404,73.94476,	SM	EM
+455	<135th St 40.81709,73.94803,	S	E
+456	<125th St 40.81075,73.95266,	ME	SM
+457	<116th St. 40.80438,73.95541,	S	E
+458	<Cathedral Parkway 110th St 40.80052,73.95824,	SM	EM
+459	<103rd St. 40.79604,73.96142,	M	M
+460	<96th St. 40.79162,73.96472,	ME	SM
+461	<86th St. 40.78528,73.96931,	SME	EMS
+462	<81st St Museum of Natural History 40.78197,73.97176,	E	S 
+463	<72nd St 40.77615,73.97601,	ME	SM
+464	<59th St Columbus Circle  40.7680,73.9819,	SM	EM
+465	<Seventh Av_ 40.67935,73.97369,	M	M
+466	<47th 50th Sts Rockefeller Center 40.75860,73.98137,	ME	SM
+467	>42nd St Bryant Park 40.75479,73.98420,	ME	SM
+468	>34th St Herald Square 40.74933,73.98798,	SME	EMS
+469	>West Fourth St Washington Sq 40.73168,74.00094,	SME	EMS
+470	<Broadway Lafayette St 40.72511,73.99566,	M	M
+471	>Grand St 40.71811,73.99386,	M	M
+472	>DeKalb Av 40.69025,73.98227,	SE	ES 
+473	<Atlantic Av Barclays Center 40.68446,73.97875,	ME	SM
+474	>Seventh Av 40.67935,73.97369,	M	M
+475	<Prospect Park 40.66150,73.96246,	M	M
+476	<Church Av. 40.64966,73.96364,	S	E  
+477	<Newkirk Plaza 40.6357,73.963,	M	M
+478	<Kings Highway 40.60922,73.95884,	M	M
+479	<Sheepshead Bay 40.58716,73.95326	S	E 
+480	<Brighton Beach 40.57759,73.96156,	SE	ES 
+
+branch01 = <>444...480
+driving01 = 2,2,2,2,2,2,1,2,1,2,2,2,1,1,2,1,2,1,2,1,1,2,1,2,3,4,8,3,3,3,3,2,3,3,3,2
+
+[Line22]
+Name=S1
+807	<Prospect Park 40.66150,73.96246,	SE	ES
+808	<Botanic Garden 40.670361,73.959255,	M	M
+809	<Park Pl 40.674731,73.957624,	E	S
+810	>Franklin Av 40.680597,73.955821,	S	E
+
+branch01 = <>807...810
+driving01 = 2,2,2
+
+[Line23]
+Name=S2
+442	>Times Square 40.756,73.987,	E	S
+443	<Grand Central 40.7522,73.9775,	SME	EMS  
+
+branch01 = <>442,443
+driving01 = 2
+
+[Line24]
+Name=S3
+811	>Broad Channel  40.60861,73.81600,	M	M
+960	>Beach 98St  40.608381,73.815939
+812	>Beach 90St  40.588016,73.813643,	M	M
+813	>Beach 105St 40.583176,73.827612,	M	M
+814	>Rockway Park Beach 116St  40.580911,73.835605
+
+branch01 = <>811,960,812...814
+driving01 = 2,2,2,2,2
+
+[Line25]
+Name=Ar
+815	<Howard Beach 40.661002,73.829618
+816	Leffert Blvd 40.661743,73.824554
+817	Federal Cir 40.65957,73.803536
+818	>Terminal 1 40.643364,73.789235
+819	Terminals 2 3 40.641996,73.787132
+820	<Terminal 4 40.644007,73.782443
+821	<Terminals 5 6 40.646783,73.779858
+822	<Terminal 7 40.648215,73.783162
+823	>Terminals 8 9 40.646742,73.788795
+824	Federal Cir. 40.65957,73.803536
+825	<Jamaica 40.698763,73.808835
+
+branch01 = <>815...825
+driving01 =2,2,2,2,2,2,2,2,2,2
+
+[Line26]
+Name=Os
+826	>St George 40.643689,74.073694 
+827	<Tompkinsville 40.636753,74.07459
+828	<Stapleton 40.627894,74.075169
+829	<Clifton 40.621412,74.071392
+830	<Grasmere 40.603111,74.084106
+831	<Old Town 40.596643,74.087368
+832	<Dongan Hills 40.588739,74.095947
+833	<Jefferson Av 40.583681,74.103342
+834	<Grant Av. 40.578735,74.109994
+835	<New Dorp 40.573483,74.117204
+836	<Oakwood Heights 40.565341,74.126323
+837	<Bay Terrace 40.556375,74.136907
+838	<Great Kills 40.551227,74.151402
+839	<Eltingville 40.544604,74.164571
+840	<Annadale 40.540466,74.178251
+841	<Huguenot 40.533682,74.191807
+842	<Princes Bay 40.525503,74.200068
+843	<Pleasant Plains 40.522408,74.217845
+844	<Richmond Valley 40.519647,74.229148
+845	<Nassau 40.517816,74.238359
+846	<Arthur Kill Rd 40.517169,74.240709
+847	<Atlantic 40.51539,74.245692
+848	<Tottenville 40.512757,74.251957
+
+branch01 = <>826...848
+driving01 =2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+
+[Line27]
+Name=Ferry
+849	<Whitehall Ferry Terminal 40.701224,74.013231
+850	>St George Ferry Terminal 40.644121,74.072126
+
+branch01 = <>849,850
+Driving=25
+
+[Line28]
+Name=N
+593	<Astoria Ditmars Boulevard 40.77608,73.91073,	M	M
+594	>Astoria Boulevard 40.76997,73.91816,	M	M
+595	>30th Av 40.76685,73.92142,	M	M
+596	>Broadway 40.76195,73.92541,	M	M
+597	>36th Av 40.75655,73.92979,	M	M
+598	>39th Av 40.75268,73.93292,	M	M
+599	>Queensboro Plaza 40.7506,73.9403,	M	M
+600	<Lexington Av 59th St 40.76247,73.9679,	ME	SM
+601	<Fifth Av 59th St 40.76477,73.97262,	SE	ES 
+602	<57th St Seventh Av 40.76546,73.98008,	ME	SM
+603	<49th St 40.76042,73.98377,	SME	EMS,
+604	>Times Square 42nd St 40.756,73.987,	ME	SM
+605	>34th St Herald Square 40.74933,73.98798,	SME	EMS
+606	<28th St_ 40.74524,73.98875,	M	M,
+607	<23rd St_ 40.74133,73.98927,	SME	EMS
+608	>14th St Union Square 40.7347,73.9902,	SM	EM
+609	>Eighth St New York University 40.73054,73.99244,	M	M
+610	>Prince St 40.72420,73.99781,	M	M
+611	>Canal St 40.7180,74,00536	ME	SM
+619	<Pacific St. 40.68446,73.97875,	E	S
+624	>36th St. 40.65445,74.00455,	S	E
+627	>59th St 40.6410,74.0181,	M	M
+628	Eighth Av 40.6345,74.0106,	S	E 
+629	Fort Hamilton Parkway. 40.6321,74.0065,	E	S 
+630	New Utrecht Av 40.62608,73.99788	, 	E	S
+631	18th Av_ 40.6200,73.9894,	M	M
+632	<20th Av_ 40.6171,73.9848,	M	M
+633	<Bay Parkway_ 40.6128,73.9819,	M	M
+634	<Kings Highway_ 40.6031,73.9802,	E	S
+635	<Av U_ 40.5964,73.9789,	S	E
+636	>86th St_ 40.5926,73.9782,	M	M
+637	<Coney Island Stillwell Av 40.5773,73.9811,	SE	ES 
+
+branch01 = <>593...611,619,624,627...637
+Driving=2,2,1,2,1,1,2,3,3,1,2,1,2,1,2,1,2,1,21,6,7,2,2,2,2,2,1,2,2,3,2
+
+[Transfers]
+1=1,168th St,A,168th St, 5, M, M, M, M
+2=A,168th St,1,168th St, 5, M, M, M, M
+3=1,168th St,C,168th St, 5, M, M, M, M
+4=C,168th St,1,168th St, 5, M, M, M, M
+5=A,168th St,C,168th St, 5, M, M, M, M
+6=C,168th St,A,168th St, 5, M, M, M, M
+7=A,145th St,B,145th St, 5, S, S, E, E
+8=B,145th St,A,145th St, 5, SME, SME, SME, SME
+9=A,145th St,C,145th St, 5, SME, SME, SME, SME
+10=C,145th St,A,145th St, 5, SME, SME, SME, SME
+11=A,145th St,D,145th St, 5, SME, SME, SME, SME
+12=D,145th St,A,145th St, 5, SME, SME, SME, SME
+13=B,145th St,C,145th St, 5, SME, SME, SME, SME
+14=C,145th St,B,145th St, 5, SME, SME, SME, SME
+15=B,145th St,D,145th St, 5, SME, SME, SME, SME
+16=D,145th St,B,145th St, 5, SME, SME, SME, SME
+17=C,145th St,D,145th St, 5, SME, SME, SME, SME
+18=D,145th St,C,145th St, 5, SME, SME, SME, SME
+19=A,125th St,C,125th St, 5, SME, SME, SME, SME
+20=C,125th St,A,125th St, 5, SME, SME, SME, SME
+21=A,125th St,B,125th St, 5, SME, SME, SME, SME
+22=B,125th St,A,125th St, 5, SME, SME, SME, SME
+23=A,125th St,D,125th St, 5, SME, SME, SME, SME
+24=D,125th St,A,125th St, 5, SME, SME, SME, SME
+25=C,125th St,B,125th St, 5, SME, SME, SME, SME
+26=B,125th St,C,125th St, 5, SME, SME, SME, SME
+27=C,125th St,D,125th St, 5, SME, SME, SME, SME
+28=D,125th St,C,125th St, 5, SME, SME, SME, SME
+29=B,125th St,D,125th St, 5, SME, SME, SME, SME
+30=D,125th St,B,125th St, 5, SME, SME, SME, SME
+31=1,96th St,2,96th St, 5, SME, SME, SME, SME
+32=2,96th St,1,96th St, 5, SME, SME, SME, SME
+33=1,96th St,3,96th St, 5, SME, SME, SME, SME
+34=3,96th St,1,96th St, 5, SME, SME, SME, SME
+35=2,96th St,3,96th St, 5, SME, SME, SME, SME
+36=3,96th St,2,96th St, 5, SME, SME, SME, SME
+37=B,Bedford Park Boulevard,D,Bedford Park Boulevard, 5, SME, SME, SME, SME
+38=D,Bedford Park Boulevard,B,Bedford Park Boulevard, 5, SME, SME, SME, SME
+39=B,Kingsbridge Road,D,Kingsbridge Road, 5, SME, SME, SME, SME
+40=D,Kingsbridge Road,B,Kingsbridge Road, 5, SME, SME, SME, SME
+41=B,Fordham Road,D,Fordham Road, 5, SME, SME, SME, SME
+42=D,Fordham Road,B,Fordham Road, 5, SME, SME, SME, SME
+43=B,Tremont Av,D,Tremont Av, 5, SME, SME, SME, SME
+44=D,Tremont Av,B,Tremont Av, 5, SME, SME, SME, SME
+45=4,161 St Yankee Stadium ,D,161 St Yankee Stadium, 5, M, M, M, M
+46=D,161 St Yankee Stadium ,4,161 St Yankee Stadium, 5, S, S, E, E
+47=4,161 St Yankee Stadium ,B,161 St Yankee Stadium, 5, M, M, M, M
+48=B,161 St Yankee Stadium ,4,161 St Yankee Stadium, 5, S, S, E, E
+49=D,161 St Yankee Stadium ,B,161 St Yankee Stadium, 5, S, S, E, E
+50=B,161 St Yankee Stadium ,D,161 St Yankee Stadium, 5, S, S, E, E
+51=2,149th St Grand Concourse,4,149th St Grand Concourse, 5, S, S, E, E
+52=4,149th St Grand Concourse,2,149th St Grand Concourse, 5, M, M, M, M
+53=2,149th St Grand Concourse,5,149th St Grand Concourse, 5, S, S, E, E
+54=5,149th St Grand Concourse,2,149th St Grand Concourse, 5, S, S, E, E
+55=4,149th St Grand Concourse,5,149th St Grand Concourse, 5, M, M, M, M
+56=5,149th St Grand Concourse,4,149th St Grand Concourse, 5, S, S, E, E
+57=4,138th St Grand Concourse,5,138th St Grand Concourse, 5, M, M, M, M
+58=5,138th St Grand Concourse,4,138th St Grand Concourse, 5, S, S, E, E
+59=4,125th St,5,125th St, 12, SME, SME, SME, SME
+60=5,125th St,4,125th St, 12, SME, SME, SME, SME
+61=4,125th St,6,125th St, 12, SME, SME, SME, SME
+62=6,125th St,4,125th St, 12, SME, SME, SME, SME
+63=5,125th St,6,125th St, 12, SME, SME, SME, SME
+64=6,125th St,5,125th St, 12, SME, SME, SME, SME
+65=4,86th St,5,86th St, 12, M, M, M, M
+66=5,86th St,4,86th St, 12, M, M, M, M
+67=4,86th St,6,86th St, 12, M, M, M, M
+68=6,86th St,4,86th St, 12, M, M, M, M
+69=5,86th St,6,86th St, 12, M, M, M, M
+70=6,86th St,5,86th St, 12, M, M, M, M
+73=1,59th St Columbus Circle,A,59th St Columbus Circle, 5, M, M, M, M
+74=A,59th St Columbus Circle,1,59th St Columbus Circle,,5, SM, SM, EM, EM
+75=1,59th St Columbus Circle,B,59th St Columbus Circle, 5, M, M, M, M
+76=B,59th St Columbus Circle,1,59th St Columbus Circle,,5, SM, SM, EM, EM
+77=1,59th St Columbus Circle,C,59th St Columbus Circle, 5, M, M, M, M
+78=C,59th St Columbus Circle,1,59th St Columbus Circle, 5, M, M, M, M
+79=1,59th St Columbus Circle,D,59th St Columbus Circle, 5, M, M, M, M
+80=D,59th St Columbus Circle,1,59th St Columbus Circle, 5, M, M, M, M
+81=A,59th St Columbus Circle,B,59th St Columbus Circle,,5, SM, SM, EM, EM
+82=B,59th St Columbus Circle,A,59th St Columbus Circle,,5, SM, SM, EM, EM
+83=A,59th St Columbus Circle,C,59th St Columbus Circle,,5, SM, SM, EM, EM
+84=C,59th St Columbus Circle,A,59th St Columbus Circle, 5, M, M, M, M
+85=A,59th St Columbus Circle,D,59th St Columbus Circle,,5, SM, SM, EM, EM
+86=D,59th St Columbus Circle,A,59th St Columbus Circle, 5, M, M, M, M
+87=B,59th St Columbus Circle,C,59th St Columbus Circle,,5, SM, SM, EM, EM
+88=C,59th St Columbus Circle,B,59th St Columbus Circle, 5, M, M, M, M
+89=B,59th St Columbus Circle,D,59th St Columbus Circle,,5, SM, SM, EM, EM
+90=D,59th St Columbus Circle,B,59th St Columbus Circle, 5, M, M, M, M
+91=C,59th St Columbus Circle,D,59th St Columbus Circle, 5, M, M, M, M
+92=D,59th St Columbus Circle,C,59th St Columbus Circle, 5, M, M, M, M
+93=C,50th St,E,50th St, 5, M, M, M, M
+94=E,50th St,C,50th St, 5, M, M, M, M
+95=A,42nd St Port Authority Bus Terminal,C,42nd St Port Authority Bus Terminal, 5, M, M, M, M
+96=C,42nd St Port Authority Bus Terminal,A,42nd St Port Authority Bus Terminal, 5, M, M, M, M
+97=A,42nd St Port Authority Bus Terminal,E,42nd St Port Authority Bus Terminal, 5, M, M, M, M
+98=E,42nd St Port Authority Bus Terminal,A,42nd St Port Authority Bus Terminal, 5, M, M, M, M
+99=C,42nd St Port Authority Bus Terminal,E,42nd St Port Authority Bus Terminal, 5, M, M, M, M
+100=E,42nd St Port Authority Bus Terminal,C,42nd St Port Authority Bus Terminal, 5, M, M, M, M
+101=A,34th St Penn Station,C,34th St Penn Station, 5, SME, SME, SME, SME
+102=C,34th St Penn Station,A,34th St Penn Station, 5, SME, SME, SME, SME
+103=A,34th St Penn Station,E,34th St Penn Station, 5, SME, SME, SME, SME
+104=E,34th St Penn Station,A,34th St Penn Station, 5, SME, SME, SME, SME
+105=C,34th St Penn Station,E,34th St Penn Station, 5, SME, SME, SME, SME
+106=E,34th St Penn Station,C,34th St Penn Station, 5, SME, SME, SME, SME
+107=A,14th St,C,14th St, 5, S, S, E, E
+108=C,14th St,A,14th St, 5, S, S, E, E
+109=A,14th St,E,14th St, 5, S, S, E, E
+110=E,14th St,A,14th St, 5, S, S, E, E
+111=C,14th St,E,14th St, 5, S, S, E, E
+112=E,14th St,C,14th St, 5, S, S, E, E
+113=1,Chambers St,2,Chambers St,5, SME, SME, SME, SME
+114=2,Chambers St,1,Chambers St,5, SME, SME, SME, SME
+115=1,Chambers St,3,Chambers St,5, SME, SME, SME, SME
+116=3,Chambers St,1,Chambers St,5, SME, SME, SME, SME
+117=2,Chambers St,3,Chambers St,5, SME, SME, SME, SME
+118=3,Chambers St,2,Chambers St,5, SME, SME, SME, SME
+119=1,Times Square 42nd St,2,Times Square 42nd St,5, EM, EM, SM, SM
+120=2,Times Square 42nd St,1,Times Square 42nd St,5, EM, EM, SM, SM
+121=1,Times Square 42nd St,3,Times Square 42nd St,5, EM, EM, SM, SM
+122=3,Times Square 42nd St,1,Times Square 42nd St,5, E, E, S, S
+123=1,Times Square 42nd St,7,Times Square,5, EM, EM, SM, SM
+124=7,Times Square,1,Times Square 42nd St, 5, M, M, M, M
+125=1,Times Square 42nd St,N,Times Square 42nd St,5, EM, EM, SM, SM
+126=N,Times Square 42nd St,1,Times Square 42nd St,5, E, E, S, S
+127=1,Times Square 42nd St,Q,Times Square 42nd St,5, EM, EM, SM, SM
+128=Q,Times Square 42nd St,1,Times Square 42nd St,5, E, E, S, S
+129=1,Times Square 42nd St,R,Times Square 42nd St,5, EM, EM, SM, SM
+130=R,Times Square 42nd St,1,Times Square 42nd St,5, E, E, S, S
+131=1,Times Square 42nd St,S2,Times Square,5, EM, EM, SM, SM
+132=S2,Times Square,1,Times Square 42nd St,5, E, E, S, S
+133=2,Times Square 42nd St,3,Times Square 42nd St,5, EM, EM, SM, SM
+134=3,Times Square 42nd St,2,Times Square 42nd St,5, E, E, S, S
+135=2,Times Square 42nd St,7,Times Square,5, EM, EM, SM, SM
+136=7,Times Square,2,Times Square 42nd St, 5, M, M, M, M
+137=2,Times Square 42nd St,N,Times Square 42nd St,5, EM, EM, SM, SM
+138=N,Times Square 42nd St,2,Times Square 42nd St,5, E, E, S, S
+139=2,Times Square 42nd St,Q,Times Square 42nd St,5, EM, EM, SM, SM
+140=Q,Times Square 42nd St,2,Times Square 42nd St,5, E, E, S, S
+141=2,Times Square 42nd St,R,Times Square 42nd St,5, EM, EM, SM, SM
+142=R,Times Square 42nd St,2,Times Square 42nd St,5, E, E, S, S
+143=2,Times Square 42nd St,S2,Times Square,5, EM, EM, SM, SM
+144=S2,Times Square,2,Times Square 42nd St,5, E, E, S, S
+145=3,Times Square 42nd St,7,Times Square,5, E, E, S, S
+146=7,Times Square,3,Times Square 42nd St, 5, M, M, M, M
+147=3,Times Square 42nd St,N,Times Square 42nd St,5, E, E, S, S
+148=N,Times Square 42nd St,3,Times Square 42nd St,5, E, E, S, S
+149=3,Times Square 42nd St,Q,Times Square 42nd St,5, E, E, S, S
+150=Q,Times Square 42nd St,3,Times Square 42nd St,5, E, E, S, S
+151=3,Times Square 42nd St,R,Times Square 42nd St,5, E, E, S, S
+152=R,Times Square 42nd St,3,Times Square 42nd St,5, E, E, S, S
+153=3,Times Square 42nd St,S2,Times Square,5, E, E, S, S
+154=S2,Times Square,3,Times Square 42nd St,5, E, E, S, S
+155=7,Times Square,N,Times Square 42nd St, 5, M, M, M, M
+156=N,Times Square 42nd St,7,Times Square,5, E, E, S, S
+157=7,Times Square,Q,Times Square 42nd St, 5, M, M, M, M
+158=Q,Times Square 42nd St,7,Times Square,5, E, E, S, S
+159=7,Times Square,R,Times Square 42nd St, 5, M, M, M, M
+160=R,Times Square 42nd St,7,Times Square,5, E, E, S, S
+161=7,Times Square,S2,Times Square, 5, M, M, M, M
+162=S2,Times Square,7,Times Square,5, E, E, S, S
+163=N,Times Square 42nd St,Q,Times Square 42nd St,5, E, E, S, S
+164=Q,Times Square 42nd St,N,Times Square 42nd St,5, E, E, S, S
+165=N,Times Square 42nd St,R,Times Square 42nd St,5, E, E, S, S
+166=R,Times Square 42nd St,N,Times Square 42nd St,5, E, E, S, S
+167=N,Times Square 42nd St,S2,Times Square,5, E, E, S, S
+168=S2,Times Square,N,Times Square 42nd St,5, E, E, S, S
+169=Q,Times Square 42nd St,R,Times Square 42nd St,5, E, E, S, S
+170=R,Times Square 42nd St,Q,Times Square 42nd St,5, E, E, S, S
+171=Q,Times Square 42nd St,S2,Times Square,5, E, E, S, S
+172=S2,Times Square,Q,Times Square 42nd St,5, E, E, S, S 
+173=R,Times Square 42nd St,S2,Times Square,5, E, E, S, S
+174=S2,Times Square,R,Times Square 42nd St,5, E, E, S, S 
+175=1,14th St,2,14th St, 5, M, M, M, M
+176=2,14th St,1,14th St,5, E, E, S, S
+177=1,14th St,3,14th St, 5, M, M, M, M
+178=3,14th St,1,14th St, 5, M, M, M, M
+179=2,14th St,3,14th St,5, E, E, S, S
+180=3,14th St,2,14th St, 5, M, M, M, M
+181=N,Lexington Av 59th St,Q,Lexington Av59th St, 5, M, M, M, M
+182=Q,Lexington Av59th St,N,Lexington Av 59th St, 5, SME, SME, SME, SME
+183=N,Lexington Av 59th St,R,Lexington Av | 59th St, 5, M, M, M, M
+184=R,Lexington Av | 59th St,N,Lexington Av 59th St, 5, SME, SME, SME, SME
+185=N,Lexington Av 59th St,F,Lexington Av 63rd St, 5, M, M, M, M
+186=F,Lexington Av 63rd St,N,Lexington Av 59th St, 5, M, M, M, M
+187=N,Lexington Av 59th St,4,59th St, 5, M, M, M, M
+188=4,59th St,N,Lexington Av 59th St, 5, M, M, M, M
+189=N,Lexington Av 59th St,5,59th St, 5, M, M, M, M
+190=5,59th St,N,Lexington Av 59th St, 5, M, M, M, M
+191=N,Lexington Av 59th St,6,59th St, 5, M, M, M, M
+192=6,59th St,N,Lexington Av 59th St, 5, M, M, M, M
+193=Q,Lexington Av59th St,R,Lexington Av | 59th St, 5, SME, SME, SME, SME
+194=R,Lexington Av | 59th St,Q,Lexington Av59th St, 5, SME, SME, SME, SME
+195=Q,Lexington Av59th St,F,Lexington Av 63rd St, 5, S, S, E, E
+196=F,Lexington Av 63rd St,Q,Lexington Av59th St, 5, M, M, M, M
+197=Q,Lexington Av59th St,4,59th St, 5, S, S, E, E
+198=4,59th St,Q,Lexington Av59th St, 5, M, M, M, M
+199=Q,Lexington Av59th St,5,59th St, 5, S, S, E, E
+200=5,59th St,Q,Lexington Av59th St, 5, M, M, M, M
+201=Q,Lexington Av59th St,6,59th St, 5, S, S, E, E
+202=6,59th St,Q,Lexington Av59th St, 5, M, M, M, M
+203=R,Lexington Av | 59th St,F,Lexington Av 63rd St, 5, M, M, M, M
+204=F,Lexington Av 63rd St,R,Lexington Av | 59th St, 5, M, M, M, M
+205=R,Lexington Av | 59th St,4,59th St, 5, S, S, E, E
+206=4,59th St,R,Lexington Av | 59th St, 5, M, M, M, M
+207=R,Lexington Av | 59th St,5,59th St, 5, S, S, E, E
+208=5,59th St,R,Lexington Av | 59th St, 5, M, M, M, M
+209=R,Lexington Av | 59th St,6,59th St, 5, S, S, E, E
+210=6,59th St,R,Lexington Av | 59th St, 5, M, M, M, M
+211=F,Lexington Av 63rd St,4,59th St, 5, M, M, M, M
+212=4,59th St,F,Lexington Av 63rd St, 5, M, M, M, M
+213=F,Lexington Av 63rd St,5,59th St, 5, M, M, M, M
+214=5,59th St,F,Lexington Av 63rd St, 5, M, M, M, M
+215=F,Lexington Av 63rd St,6,59th St, 5, M, M, M, M
+216=6,59th St,F,Lexington Av 63rd St, 5, M, M, M, M
+217=4,59th St,5,59th St, 5, M, M, M, M
+218=5,59th St,4,59th St, 5, M, M, M, M
+219=4,59th St,6,59th St, 5, M, M, M, M
+220=6,59th St,4,59th St, 5, M, M, M, M
+221=5,59th St,6,59th St, 5, M, M, M, M
+222=6,59th St,5,59th St, 5, M, M, M, M
+223=E,Lexington Av 53rd St,M,Lexington Av 53rd St, 5, SME, SME, SME, SME
+224=M,Lexington Av 53rd St,E,Lexington Av 53rd St, 5, SME, SME, SME, SME
+225=E,Lexington Av 53rd St,6,51st St, 5, S, S, E, E
+226=6,51st St,E,Lexington Av 53rd St, 5, E, E, S, S
+227=M,Lexington Av 53rd St,6,51st St, 5, S, S, E, E
+228=6,51st St,M,Lexington Av 53rd St, 5, E, E, S, S
+229=7,Grand Central,4,Grand Central 42nd St,,5, SM, SM, EM, EM
+230=4,Grand Central 42nd St,7,Grand Central, 5, M, M, M, M
+231=7,Grand Central,5,Grand Central 42nd St,,5, SM, SM, EM, EM
+232=5,Grand Central 42nd St,7,Grand Central, 5, M, M, M, M
+233=7,Grand Central,6,Grand Central 42nd St,,5, SM, SM, EM, EM
+234=6,Grand Central 42nd St,7,Grand Central, 5, M, M, M, M
+235=7,Grand Central,S2,Grand Central,,5, SM, SM, EM, EM
+236=S2,Grand Central,7,Grand Central,5, S, S, E, E
+237=4,Grand Central 42nd St,5,Grand Central 42nd St, 5, M, M, M, M
+238=5,Grand Central 42nd St,4,Grand Central 42nd St, 5, M, M, M, M
+239=4,Grand Central 42nd St,6,Grand Central 42nd St, 5, M, M, M, M
+240=6,Grand Central 42nd St,4,Grand Central 42nd St, 5, M, M, M, M
+241=4,Grand Central 42nd St,S2,Grand Central, 5, M, M, M, M
+242=S2,Grand Central,4,Grand Central 42nd St,5, S, S, E, E
+243=5,Grand Central 42nd St,6,Grand Central 42nd St, 5, M, M, M, M
+244=6,Grand Central 42nd St,5,Grand Central 42nd St, 5, M, M, M, M
+245=5,Grand Central 42nd St,S2,Grand Central, 5, M, M, M, M
+246=S2,Grand Central,5,Grand Central 42nd St,5, S, S, E, E
+247=6,Grand Central 42nd St,S2,Grand Central, 5, M, M, M, M
+248=S2,Grand Central,6,Grand Central 42nd St,5, S, S, E, E
+249=B,34th St Herald Square,D,34th St Herald Square,,5, SM, SM, EM, EM
+250=D,34th St Herald Square,B,34th St Herald Square,,5, SM, SM, EM, EM
+251=B,34th St Herald Square,F,34th St Herald Square,,5, SM, SM, EM, EM
+252=F,34th St Herald Square,B,34th St Herald Square,,5, SM, SM, EM, EM
+253=B,34th St Herald Square,M,34th St Herald Square,,5, SM, SM, EM, EM
+254=M,34th St Herald Square,B,34th St Herald Square,5, M, M, M, M
+255=B,34th St Herald Square,N,34th St Herald Square,,5, SM, SM, EM, EM
+256=N,34th St Herald Square,B,34th St Herald Square,5, SE, SE, SE, SE
+257=B,34th St Herald Square,Q,34th St Herald Square,,5, SM, SM, EM, EM
+258=Q,34th St Herald Square,B,34th St Herald Square,5, SE, SE, SE, SE
+259=B,34th St Herald Square,R,34th St Herald Square,,5, SM, SM, EM, EM
+260=R,34th St Herald Square,B,34th St Herald Square,5, SE, SE, SE, SE
+261=D,34th St Herald Square,F,34th St Herald Square,,5, SM, SM, EM, EM
+262=F,34th St Herald Square,D,34th St Herald Square,,5, SM, SM, EM, EM
+263=D,34th St Herald Square,M,34th St Herald Square,,5, SM, SM, EM, EM
+264=M,34th St Herald Square,D,34th St Herald Square,5, M, M, M, M
+265=D,34th St Herald Square,N,34th St Herald Square,,5, SM, SM, EM, EM
+266=N,34th St Herald Square,D,34th St Herald Square,5, SE, SE, SE, SE
+267=D,34th St Herald Square,Q,34th St Herald Square,,5, SM, SM, EM, EM
+268=Q,34th St Herald Square,D,34th St Herald Square,5, SE, SE, SE, SE
+269=D,34th St Herald Square,R,34th St Herald Square,,5, SM, SM, EM, EM
+270=R,34th St Herald Square,D,34th St Herald Square,5, SE, SE, SE, SE
+271=F,34th St Herald Square,M,34th St Herald Square,,5, SM, SM, EM, EM
+272=M,34th St Herald Square,F,34th St Herald Square,5, M, M, M, M
+273=F,34th St Herald Square,N,34th St Herald Square,,5, SM, SM, EM, EM
+274=N,34th St Herald Square,F,34th St Herald Square,5, SE, SE, SE, SE
+275=F,34th St Herald Square,Q,34th St Herald Square,,5, SM, SM, EM, EM
+276=Q,34th St Herald Square,F,34th St Herald Square,5, SE, SE, SE, SE
+277=F,34th St Herald Square,R,34th St Herald Square,,5, SM, SM, EM, EM
+278=R,34th St Herald Square,F,34th St Herald Square,5, SE, SE, SE, SE
+279=M,34th St Herald Square,N,34th St Herald Square,5, M, M, M, M
+280=N,34th St Herald Square,M,34th St Herald Square,5, SE, SE, SE, SE
+281=M,34th St Herald Square,Q,34th St Herald Square,5, M, M, M, M
+282=Q,34th St Herald Square,M,34th St Herald Square,5, SE, SE, SE, SE
+283=M,34th St Herald Square,R,34th St Herald Square,5, M, M, M, M
+284=R,34th St Herald Square,M,34th St Herald Square,5, SE, SE, SE, SE
+285=N,34th St Herald Square,Q,34th St Herald Square,5, SE, SE, SE, SE
+286=Q,34th St Herald Square,N,34th St Herald Square,5, SE, SE, SE, SE
+287=N,34th St Herald Square,R,34th St Herald Square,5, SE, SE, SE, SE
+288=R,34th St Herald Square,N,34th St Herald Square,5, SE, SE, SE, SE
+289=Q,34th St Herald Square,R,34th St Herald Square,5, SE, SE, SE, SE
+290=R,34th St Herald Square,Q,34th St Herald Square,5, SE, SE, SE, SE
+291=N,14th St Union Square,Q,14th St Union Square,,5, SM, SM, EM, EM
+292=Q,14th St Union Square,N,14th St Union Square,,5, SM, SM, EM, EM
+293=N,14th St Union Square,R,14th St Union Square,,5, SM, SM, EM, EM
+294=R,14th St Union Square,N,14th St Union Square,,5, SM, SM, EM, EM
+295=N,14th St Union Square,4,14th St Union Square,,5, SM, SM, EM, EM
+296=4,14th St Union Square,N,14th St Union Square,,5, SM, SM, EM, EM
+297=N,14th St Union Square,5,14th St Union Square,,5, SM, SM, EM, EM
+298=5,14th St Union Square,N,14th St Union Square,,5, SM, SM, EM, EM
+299=N,14th St Union Square,6,14th St Union Square,,5, SM, SM, EM, EM
+300=6,14th St Union Square,N,14th St Union Square,,5, SM, SM, EM, EM
+301=N,14th St Union Square,L,Union Square,,5, SM, SM, EM, EM
+302=L,Union Square,N,14th St Union Square, 5, M, M, M, M
+303=Q,14th St Union Square,R,14th St Union Square,,5, SM, SM, EM, EM
+304=R,14th St Union Square,Q,14th St Union Square,,5, SM, SM, EM, EM
+305=Q,14th St Union Square,4,14th St Union Square,,5, SM, SM, EM, EM
+306=4,14th St Union Square,Q,14th St Union Square,,5, SM, SM, EM, EM
+307=Q,14th St Union Square,5,14th St Union Square,,5, SM, SM, EM, EM
+308=5,14th St Union Square,Q,14th St Union Square,,5, SM, SM, EM, EM
+309=Q,14th St Union Square,6,14th St Union Square,,5, SM, SM, EM, EM
+310=6,14th St Union Square,Q,14th St Union Square,,5, SM, SM, EM, EM
+311=Q,14th St Union Square,L,Union Square,,5, SM, SM, EM, EM
+312=L,Union Square,Q,14th St Union Square, 5, M, M, M, M
+313=R,14th St Union Square,4,14th St Union Square,,5, SM, SM, EM, EM
+314=4,14th St Union Square,R,14th St Union Square,,5, SM, SM, EM, EM
+315=R,14th St Union Square,5,14th St Union Square,,5, SM, SM, EM, EM
+316=5,14th St Union Square,R,14th St Union Square,,5, SM, SM, EM, EM
+317=R,14th St Union Square,6,14th St Union Square,,5, SM, SM, EM, EM
+318=6,14th St Union Square,R,14th St Union Square,,5, SM, SM, EM, EM
+319=R,14th St Union Square,L,Union Square,,5, SM, SM, EM, EM
+320=L,Union Square,R,14th St Union Square, 5, M, M, M, M
+321=4,14th St Union Square,5,14th St Union Square,,5, SM, SM, EM, EM
+322=5,14th St Union Square,4,14th St Union Square,,5, SM, SM, EM, EM
+323=4,14th St Union Square,6,14th St Union Square,,5, SM, SM, EM, EM
+324=6,14th St Union Square,4,14th St Union Square,,5, SM, SM, EM, EM
+325=4,14th St Union Square,L,Union Square,,5, SM, SM, EM, EM
+326=L,Union Square,4,14th St Union Square, 5, M, M, M, M
+327=5,14th St Union Square,6,14th St Union Square,,5, SM, SM, EM, EM
+328=6,14th St Union Square,5,14th St Union Square,,5, SM, SM, EM, EM
+329=5,14th St Union Square,L,Union Square,,5, SM, SM, EM, EM
+330=L,Union Square,5,14th St Union Square, 5, M, M, M, M
+331=6,14th St Union Square,L,Union Square,,5, SM, SM, EM, EM
+332=L,Union Square,6,14th St Union Square, 5, M, M, M, M
+333=B,Broadway Lafayette St,D,Broadway Lafayette St, 5, M, M, M, M
+334=D,Broadway Lafayette St,B,Broadway Lafayette St, 5, M, M, M, M
+335=B,Broadway Lafayette St,F,Broadway Lafayette St, 5, M, M, M, M
+336=F,Broadway Lafayette St,B,Broadway Lafayette St, 5, M, M, M, M
+337=B,Broadway Lafayette St,M,Broadway Lafayette St, 5, M, M, M, M
+338=M,Broadway Lafayette St,B,Broadway Lafayette St, 5, M, M, M, M
+339=B,Broadway Lafayette St,6,Bleecker St, 5, M, M, M, M
+340=6,Bleecker St,B,Broadway Lafayette St, 5, S, S, E, E
+341=D,Broadway Lafayette St,F,Broadway Lafayette St, 5, M, M, M, M
+342=F,Broadway Lafayette St,D,Broadway Lafayette St, 5, M, M, M, M
+343=D,Broadway Lafayette St,M,Broadway Lafayette St, 5, M, M, M, M
+344=M,Broadway Lafayette St,D,Broadway Lafayette St, 5, M, M, M, M
+345=D,Broadway Lafayette St,6,Bleecker St, 5, M, M, M, M
+346=6,Bleecker St,D,Broadway Lafayette St, 5, S, S, E, E
+347=F,Broadway Lafayette St,M,Broadway Lafayette St, 5, M, M, M, M
+348=M,Broadway Lafayette St,F,Broadway Lafayette St, 5, M, M, M, M
+349=F,Broadway Lafayette St,6,Bleecker St, 5, M, M, M, M
+350=6,Bleecker St,F,Broadway Lafayette St, 5, S, S, E, E
+351=M,Broadway Lafayette St,6,Bleecker St, 5, M, M, M, M
+352=6,Bleecker St,M,Broadway Lafayette St, 5, S, S, E, E
+353=6,Canal St,N,Canal St, 5, M, M, M, M
+354=N,Canal St,6,Canal St,5, EM, EM, SM, SM
+355=6,Canal St,Q,Canal St, 5, M, M, M, M
+356=Q,Canal St,6,Canal St,5, EM, EM, SM, SM
+357=6,Canal St,R,Canal St, 5, M, M, M, M
+358=R,Canal St,6,Canal St, 5, M, M, M, M
+359=6,Canal St,JZ,Canal St, 5, M, M, M, M
+360=JZ,Canal St,6,Canal St,5, M, M, M, M
+361=N,Canal St,Q,Canal St,5, EM, EM, SM, SM
+362=Q,Canal St,N,Canal St,5, EM, EM, SM, SM
+363=N,Canal St,R,Canal St,5, EM, EM, SM, SM
+364=R,Canal St,N,Canal St, 5, M, M, M, M
+365=N,Canal St,JZ,Canal St,5, EM, EM, SM, SM
+366=JZ,Canal St,N,Canal St,5, M, M, M, M
+367=Q,Canal St,R,Canal St,5, EM, EM, SM, SM
+368=R,Canal St,Q,Canal St, 5, M, M, M, M
+369=Q,Canal St,JZ,Canal St,5, EM, EM, SM, SM
+370=JZ,Canal St,Q,Canal St,5, M, M, M, M
+371=R,Canal St,JZ,Canal St, 5, M, M, M, M
+372=JZ,Canal St,R,Canal St,5, M, M, M, M
+373=A,Chambers St,C,Chambers St, 5, S, S, E, E
+374=C,Chambers St,A,Chambers St, 5, S, S, E, E
+375=A,Chambers St,2,Park Place, 5, S, S, E, E
+376=2,Park Place,A,Chambers St, 5, M, M, M, M
+377=A,Chambers St,3,Park Place, 5, S, S, E, E
+378=3,Park Place,A,Chambers St, 5, M, M, M, M
+379=A,Chambers St,E,World Trade Center, 5, S, S, E, E
+380=E,World Trade Center,A,Chambers St,5, E, E, S, S
+381=C,Chambers St,2,Park Place, 5, S, S, E, E
+382=2,Park Place,C,Chambers St, 5, M, M, M, M
+383=C,Chambers St,3,Park Place, 5, S, S, E, E
+384=3,Park Place,C,Chambers St, 5, M, M, M, M
+385=C,Chambers St,E,World Trade Center, 5, S, S, E, E
+386=E,World Trade Center,C,Chambers St,5, E, E, S, S
+387=2,Park Place,3,Park Place, 5, M, M, M, M
+388=3,Park Place,2,Park Place, 5, M, M, M, M
+389=2,Park Place,E,World Trade Center, 5, M, M, M, M
+390=E,World Trade Center,2,Park Place,5, E, E, S, S
+391=3,Park Place,E,World Trade Center, 5, M, M, M, M
+392=E,World Trade Center,3,Park Place,E , S
+393=2,Fulton St,3,Fulton St, 5, M, M, M, M
+394=3,Fulton St,2,Fulton St, 5, M, M, M, M
+395=2,Fulton St,4,Fulton St, 5, M, M, M, M
+396=4,Fulton St,2,Fulton St,5, E, E, S, S
+397=2,Fulton St,5,Fulton St, 5, M, M, M, M
+398=5,Fulton St,2,Fulton St,5, E, E, S, S
+399=2,Fulton St,A,Fulton St, 5, M, M, M, M
+400=A,Fulton St,2,Fulton St,5, SME, SME, SME, SME
+401=2,Fulton St,C,Fulton St, 5, M, M, M, M
+402=C,Fulton St,2,Fulton St,5, SME, SME, SME, SME
+403=2,Fulton St,JZ,Fulton St, 5, M, M, M, M
+404=JZ,Fulton St,2,Fulton St, 5, M, M, M, M
+405=3,Fulton St,4,Fulton St, 5, M, M, M, M
+406=4,Fulton St,3,Fulton St,5, E, E, S, S
+407=3,Fulton St,5,Fulton St, 5, M, M, M, M
+408=5,Fulton St,3,Fulton St,5, E, E, S, S
+409=3,Fulton St,A,Fulton St, 5, M, M, M, M
+410=A,Fulton St,3,Fulton St,5, SME, SME, SME, SME
+411=3,Fulton St,C,Fulton St, 5, M, M, M, M
+412=C,Fulton St,3,Fulton St,5, SME, SME, SME, SME
+413=3,Fulton St,JZ,Fulton St, 5, M, M, M, M
+414=JZ,Fulton St,3,Fulton St, 5, M, M, M, M
+415=4,Fulton St,5,Fulton St,5, E, E, S, S
+416=5,Fulton St,4,Fulton St,5, E, E, S, S
+417=4,Fulton St,A,Fulton St,5, E, E, S, S
+418=A,Fulton St,4,Fulton St,5, SME, SME, SME, SME
+419=4,Fulton St,C,Fulton St,5, E, E, S, S
+420=C,Fulton St,4,Fulton St,5, SME, SME, SME, SME
+421=4,Fulton St,JZ,Fulton St,5, E, E, S, S
+422=JZ,Fulton St,4,Fulton St, 5, M, M, M, M
+423=5,Fulton St,A,Fulton St,5, E, E, S, S
+424=A,Fulton St,5,Fulton St,5, SME, SME, SME, SME
+425=5,Fulton St,C,Fulton St,5, E, E, S, S
+426=C,Fulton St,5,Fulton St,5, SME, SME, SME, SME
+427=5,Fulton St,JZ,Fulton St,5, E, E, S, S
+428=JZ,Fulton St,5,Fulton St, 5, M, M, M, M
+429=A,Fulton St,C,Fulton St,5, SME, SME, SME, SME
+430=C,Fulton St,A,Fulton St,5, SME, SME, SME, SME
+431=A,Fulton St,JZ,Fulton St,5, SME, SME, SME, SME
+432=JZ,Fulton St,A,Fulton St, 5, M, M, M, M
+433=C,Fulton St,JZ,Fulton St,5, SME, SME, SME, SME
+434=JZ,Fulton St,C,Fulton St, 5, M, M, M, M
+435=E,Queens Plaza,M,Queens Plaza, 5, SME, SME, SME, SME
+436=M,Queens Plaza,E,Queens Plaza, 5, SME, SME, SME, SME
+437=E,Queens Plaza,R,Queens Plaza, 5, SME, SME, SME, SME
+438=R,Queens Plaza,E,Queens Plaza, 5, SME, SME, SME, SME
+439=M,Queens Plaza,R,Queens Plaza, 5, SME, SME, SME, SME
+440=R,Queens Plaza,M,Queens Plaza, 5, SME, SME, SME, SME
+441=N,Queensboro Plaza,Q,Queensboro Plaza, 5, M, M, M, M
+442=Q,Queensboro Plaza,N,Queensboro Plaza, 5, M, M, M, M
+443=N,Queensboro Plaza,7,Queensboro Plaza, 5, M, M, M, M
+444=7,Queensboro Plaza,N,Queensboro Plaza, 5, M, M, M, M
+445=Q,Queensboro Plaza,7,Queensboro Plaza, 5, M, M, M, M
+446=7,Queensboro Plaza,Q,Queensboro Plaza, 5, M, M, M, M
+447=E,Court Square 23rd St,M,Court Square 23rd St,5, E, E, S, S
+448=M,Court Square 23rd St,E,Court Square 23rd St, 5, M, M, M, M
+449=E,Court Square 23rd St,7,Court Square,5, E, E, S, S
+450=7,Court Square,E,Court Square 23rd St,5, E, E, S, S
+451=E,Court Square 23rd St,G,Court Square,5, E, E, S, S
+452=G,Court Square,E,Court Square 23rd St, 5, SM, SM, EM, EM
+453=M,Court Square 23rd St,7,Court Square, 5, M, M, M, M
+454=7,Court Square,M,Court Square 23rd St, 5, E, E, S, S
+455=M,Court Square 23rd St,G,Court Square, 5, M, M, M, M
+456=G,Court Square,M,Court Square 23rd St, 5, SM, SM, EM, EM
+457=7,Court Square,G,Court Square, 5, S, S, E, E
+458=G,Court Square,7,Court Square, 5, S, S, E, E
+459=E,Jackson Heights Roosevelt Av,F,Jackson Heights Roosevelt Av, 5, M, M, M, M
+460=F,Jackson Heights Roosevelt Av,E,Jackson Heights Roosevelt Av, 5, M, M, M, M
+461=E,Jackson Heights Roosevelt Av,M,Jackson Heights Roosevelt Av, 5, M, M, M, M
+462=M,Jackson Heights Roosevelt Av,E,Jackson Heights Roosevelt Av, 5, M, M, M, M
+463=E,Jackson Heights Roosevelt Av,R,Jackson Heights Roosevelt Av, 5, M, M, M, M
+464=R,Jackson Heights Roosevelt Av,E,Jackson Heights Roosevelt Av, 5, M, M, M, M
+465=E,Jackson Heights Roosevelt Av,7,74th St Broadway, 5, M, M, M, M
+466=7,74th St Broadway,E,Jackson Heights Roosevelt Av,5
+467=F,Jackson Heights Roosevelt Av,M,Jackson Heights Roosevelt Av, 5, M, M, M, M
+468=M,Jackson Heights Roosevelt Av,F,Jackson Heights Roosevelt Av, 5, M, M, M, M
+469=F,Jackson Heights Roosevelt Av,R,Jackson Heights Roosevelt Av, 5, M, M, M, M
+470=R,Jackson Heights Roosevelt Av,F,Jackson Heights Roosevelt Av, 5, M, M, M, M
+471=F,Jackson Heights Roosevelt Av,7,74th St Broadway, 5, M, M, M, M
+472=7,74th St Broadway,F,Jackson Heights Roosevelt Av,5
+473=M,Jackson Heights Roosevelt Av,R,Jackson Heights Roosevelt Av, 5, M, M, M, M
+474=R,Jackson Heights Roosevelt Av,M,Jackson Heights Roosevelt Av, 5, M, M, M, M
+475=M,Jackson Heights Roosevelt Av,7,74th St Broadway, 5, M, M, M, M
+476=7,74th St Broadway,M,Jackson Heights Roosevelt Av,5
+477=R,Jackson Heights Roosevelt Av,7,74th St Broadway, 5, M, M, M, M
+478=7,74th St Broadway,R,Jackson Heights Roosevelt Av, 5, M, M, M, M
+479=E,Forest Hills 71st Av,F,Forest Hills 71st Av, 5, SME, SME, SME, SME
+480=F,Forest Hills 71st Av,E,Forest Hills 71st Av, 5, SME, SME, SME, SME
+481=E,Forest Hills 71st Av,M,Forest Hills 71st Av, 5, SME, SME, SME, SME
+482=M,Forest Hills 71st Av,E,Forest Hills 71st Av, 5, SME, SME, SME, SME
+483=E,Forest Hills 71st Av,R,Forest Hills 71st Av, 5, SME, SME, SME, SME
+484=R,Forest Hills 71st Av,E,Forest Hills 71st Av, 5, SME, SME, SME, SME
+485=F,Forest Hills 71st Av,M,Forest Hills 71st Av, 5, SME, SME, SME, SME
+486=M,Forest Hills 71st Av,F,Forest Hills 71st Av, 5, SME, SME, SME, SME
+487=F,Forest Hills 71st Av,R,Forest Hills 71st Av, 5, SME, SME, SME, SME
+488=R,Forest Hills 71st Av,F,Forest Hills 71st Av, 5, SME, SME, SME, SME
+489=M,Forest Hills 71st Av,R,Forest Hills 71st Av, 5, SME, SME, SME, SME
+490=R,Forest Hills 71st Av,M,Forest Hills 71st Av, 5, SME, SME, SME, SME
+491=A,Broadway Junction,C,Broadway Junction,5, E, E, S, S
+492=C,Broadway Junction,A,Broadway Junction,5, E, E, S, S
+493=A,Broadway Junction,JZ,Broadway Junction,5, E, E, S, S
+494=JZ,Broadway Junction,A,Broadway Junction,5, S, S, E, E
+495=A,Broadway Junction,L,Broadway Junction,5, E, E, S, S
+496=L,Broadway Junction,A,Broadway Junction,5, E, E, S, S
+497=C,Broadway Junction,JZ,Broadway Junction,5, E, E, S, S
+498=JZ,Broadway Junction,C,Broadway Junction,5, S, S, E, E
+499=C,Broadway Junction,L,Broadway Junction,5, E, E, S, S
+500=L,Broadway Junction,C,Broadway Junction,5, E, E, S, S
+501=JZ,Broadway Junction,L,Broadway Junction,5, S, S, E, E
+502=L,Broadway Junction,JZ,Broadway Junction,5, E, E, S, S
+503=L,Myrtle Wyckoff Avs,M,Myrtle Wyckoff Avs, 5, M, M, M, M
+504=M,Myrtle Wyckoff Avs,L,Myrtle Wyckoff Avs, 5, S, S, E, E
+505=F,Delancey St,JZ,Essex St, 5, M, M, M, M
+506=JZ,Essex St,F,Delancey St, 5, SM, SM, EM, EM
+507=F,Delancey St,M,Essex St, 5, M, M, M, M
+508=M,Essex St,F,Delancey St, 5, E, E, S, S
+509=JZ,Essex St,M,Essex St,5, SM, SM, EM, EM
+510=M,Essex St,JZ,Essex St,5, SME, SME, SME, SME
+511=C,Franklin Av,S1,Franklin Av,5, SE, SE, SE, SE
+512=S1,Franklin Av,C,Franklin Av, 5, S, S, E, E 
+513=B,Prospect Park,Q,Prospect Park,5, SME, SME, SME, SME
+514=Q,Prospect Park,B,Prospect Park,5, SME, SME, SME, SME
+515=B,Prospect Park,S1,Prospect Park,5, E, E, S, S
+516=S1,Prospect Park,B,Prospect Park,5, SME, SME, SME, SME
+517=Q,Prospect Park,S1,Prospect Park,5, E, E, S, S
+518=S1,Prospect Park,Q,Prospect Park,5, SME, SME, SME, SME
+519=2,Franklin Av,3,Franklin Av, 12, M, M, M, M
+520=3,Franklin Av,2,Franklin Av, 12, M, M, M, M
+521=2,Franklin Av,4,Franklin Av, 12, M, M, M, M
+522=4,Franklin Av,2,Franklin Av, 12, M, M, M, M
+523=2,Franklin Av,5,Franklin Av, 12, M, M, M, M
+524=5,Franklin Av,2,Franklin Av, 12, M, M, M, M
+525=2,Franklin Av,S1,Botanic Garden, 12, M, M, M, M
+526=S1,Botanic Garden,2,Franklin Av, 5, S, S, E, E 
+527=3,Franklin Av,4,Franklin Av, 12, M, M, M, M
+528=4,Franklin Av,3,Franklin Av, 12, M, M, M, M
+529=3,Franklin Av,5,Franklin Av, 12, M, M, M, M
+530=5,Franklin Av,3,Franklin Av, 12, M, M, M, M
+531=3,Franklin Av,S1,Botanic Garden, 5, M, M, M, M
+532=S1,Botanic Garden,3,Franklin Av, 5, S, S, E, E 
+533=4,Franklin Av,5,Franklin Av, 12, M, M, M, M
+534=5,Franklin Av,4,Franklin Av, 12, M, M, M, M
+535=4,Franklin Av,S1,Botanic Garden, 12, M, M, M, M
+536=S1,Botanic Garden,4,Franklin Av, 5, S, S, E, E 
+537=5,Franklin Av,S1,Botanic Garden, 12, M, M, M, M
+538=S1,Botanic Garden,5,Franklin Av, 5, S, S, E, E 
+539=B,Atlantic Av Barclays Center,Q,Atlantic Av Barclays Center, 5, M, M, M, M
+540=Q,Atlantic Av Barclays Center,B,Atlantic Av Barclays Center, 5, M, M, M, M
+541=B,Atlantic Av Barclays Center,2,Atlantic Av Barclays Center, 5, M, M, M, M
+542=2,Atlantic Av Barclays Center,B,Atlantic Av Barclays Center, 5, M, M, M, M
+543=B,Atlantic Av Barclays Center,3,Atlantic Av Barclays Center, 5, M, M, M, M
+544=3,Atlantic Av Barclays Center,B,Atlantic Av Barclays Center, 5, M, M, M, M
+545=B,Atlantic Av Barclays Center,4,Atlantic Av Barclays Center, 5, M, M, M, M
+546=4,Atlantic Av Barclays Center,B,Atlantic Av Barclays Center, 5, M, M, M, M
+547=B,Atlantic Av Barclays Center,5,Atlantic Av Barclays Center, 5, M, M, M, M
+548=5,Atlantic Av Barclays Center,B,Atlantic Av Barclays Center, 5, M, M, M, M
+549=B,Atlantic Av Barclays Center,D,Pacific St., 5, M, M, M, M
+550=D,Pacific St.,B,Atlantic Av Barclays Center, 5, M, M, M, M
+551=B,Atlantic Av Barclays Center,N,Pacific St., 5, M, M, M, M
+552=N,Pacific St.,B,Atlantic Av Barclays Center, 5, S, S, E, E
+553=B,Atlantic Av Barclays Center,R,Pacific St., 5, M, M, M, M
+554=R,Pacific St.,B,Atlantic Av Barclays Center, 5, E, E, S, S
+555=Q,Atlantic Av Barclays Center,2,Atlantic Av Barclays Center, 5, M, M, M, M
+556=2,Atlantic Av Barclays Center,Q,Atlantic Av Barclays Center, 5, M, M, M, M
+557=Q,Atlantic Av Barclays Center,3,Atlantic Av Barclays Center, 5, M, M, M, M
+558=3,Atlantic Av Barclays Center,Q,Atlantic Av Barclays Center, 5, M, M, M, M
+559=Q,Atlantic Av Barclays Center,4,Atlantic Av Barclays Center, 5, M, M, M, M
+560=4,Atlantic Av Barclays Center,Q,Atlantic Av Barclays Center, 5, M, M, M, M
+561=Q,Atlantic Av Barclays Center,5,Atlantic Av Barclays Center, 5, M, M, M, M
+562=5,Atlantic Av Barclays Center,Q,Atlantic Av Barclays Center, 5, M, M, M, M
+563=Q,Atlantic Av Barclays Center,D,Pacific St., 5, M, M, M, M
+564=D,Pacific St.,Q,Atlantic Av Barclays Center, 5, M, M, M, M
+565=Q,Atlantic Av Barclays Center,N,Pacific St., 5, M, M, M, M
+566=N,Pacific St.,Q,Atlantic Av Barclays Center, 5, S, S, E, E
+567=Q,Atlantic Av Barclays Center,R,Pacific St., 5, M, M, M, M
+568=R,Pacific St.,Q,Atlantic Av Barclays Center, 5, E, E, S, S
+569=2,Atlantic Av Barclays Center,3,Atlantic Av Barclays Center, 5, M, M, M, M
+570=3,Atlantic Av Barclays Center,2,Atlantic Av Barclays Center, 5, M, M, M, M
+571=2,Atlantic Av Barclays Center,4,Atlantic Av Barclays Center, 5, M, M, M, M
+572=4,Atlantic Av Barclays Center,2,Atlantic Av Barclays Center, 5, M, M, M, M
+573=2,Atlantic Av Barclays Center,5,Atlantic Av Barclays Center, 5, M, M, M, M
+574=5,Atlantic Av Barclays Center,2,Atlantic Av Barclays Center, 5, M, M, M, M
+575=2,Atlantic Av Barclays Center,D,Pacific St., 5, M, M, M, M
+576=D,Pacific St.,2,Atlantic Av Barclays Center, 5, M, M, M, M
+577=2,Atlantic Av Barclays Center,N,Pacific St., 5, M, M, M, M
+578=N,Pacific St.,2,Atlantic Av Barclays Center, 5, E, E, S, S
+579=2,Atlantic Av Barclays Center,R,Pacific St., 5, M, M, M, M
+580=R,Pacific St.,2,Atlantic Av Barclays Center, 5, E, E, S, S
+581=3,Atlantic Av Barclays Center,4,Atlantic Av Barclays Center, 5, M, M, M, M
+582=4,Atlantic Av Barclays Center,3,Atlantic Av Barclays Center, 5, M, M, M, M
+583=3,Atlantic Av Barclays Center,5,Atlantic Av Barclays Center, 5, M, M, M, M
+584=5,Atlantic Av Barclays Center,3,Atlantic Av Barclays Center, 5, M, M, M, M
+585=3,Atlantic Av Barclays Center,D,Pacific St., 5, M, M, M, M
+586=D,Pacific St.,3,Atlantic Av Barclays Center, 5, M, M, M, M
+587=3,Atlantic Av Barclays Center,N,Pacific St., 5, M, M, M, M
+588=N,Pacific St.,3,Atlantic Av Barclays Center, 5, E, E, S, S
+589=3,Atlantic Av Barclays Center,R,Pacific St., 5, M, M, M, M
+590=R,Pacific St.,3,Atlantic Av Barclays Center, 5, E, E, S, S
+591=4,Atlantic Av Barclays Center,5,Atlantic Av Barclays Center, 5, M, M, M, M
+592=5,Atlantic Av Barclays Center,4,Atlantic Av Barclays Center, 5, M, M, M, M
+593=4,Atlantic Av Barclays Center,D,Pacific St., 5, M, M, M, M
+594=D,Pacific St.,4,Atlantic Av Barclays Center, 5, M, M, M, M
+595=4,Atlantic Av Barclays Center,N,Pacific St., 5, M, M, M, M
+596=N,Pacific St.,4,Atlantic Av Barclays Center, 5, E, E, S, S
+597=4,Atlantic Av Barclays Center,R,Pacific St., 5, M, M, M, M
+598=R,Pacific St.,4,Atlantic Av Barclays Center, 5, E, E, S, S
+599=5,Atlantic Av Barclays Center,D,Pacific St., 5, M, M, M, M
+600=D,Pacific St.,5,Atlantic Av Barclays Center, 5, M, M, M, M
+601=5,Atlantic Av Barclays Center,N,Pacific St., 5, M, M, M, M
+602=N,Pacific St.,5,Atlantic Av Barclays Center, 5, E, E, S, S
+603=5,Atlantic Av Barclays Center,R,Pacific St., 5, M, M, M, M
+604=R,Pacific St.,5,Atlantic Av Barclays Center, 5, E, E, S, S
+605=D,Pacific St.,N,Pacific St., 5, M, M, M, M
+606=N,Pacific St.,D,Pacific St., 5, SME, SME, SME, SME
+607=D,Pacific St.,R,Pacific St., 5, M, M, M, M
+608=R,Pacific St.,D,Pacific St., 5, SME, SME, SME, SME
+609=N,Pacific St.,R,Pacific St., 5, SME, SME, SME, SME
+610=R,Pacific St.,N,Pacific St., 5, SME, SME, SME, SME
+611=R,Court St,2,Borough Hall, 5, M, M, M, M
+612=2,Borough Hall,R,Court St, 5, M, M, M, M
+613=R,Court St,3,Borough Hall, 5, M, M, M, M
+614=3,Borough Hall,R,Court St, 5, M, M, M, M
+615=R,Court St,4,Borough Hall, 5, M, M, M, M
+616=4,Borough Hall,R,Court St,5, E, E, S, S
+617=R,Court St,5,Borough Hall, 5, M, M, M, M
+618=5,Borough Hall,R,Court St,5, E, E, S, S
+619=2,Borough Hall,3,Borough Hall, 5, M, M, M, M
+620=3,Borough Hall,2,Borough Hall, 5, M, M, M, M
+621=2,Borough Hall,4,Borough Hall, 5, M, M, M, M
+622=4,Borough Hall,2,Borough Hall,5, E, E, S, S
+623=2,Borough Hall,5,Borough Hall, 5, M, M, M, M
+624=5,Borough Hall,2,Borough Hall,5, E, E, S, S
+625=3,Borough Hall,4,Borough Hall, 5, M, M, M, M
+626=4,Borough Hall,3,Borough Hall,5, E, E, S, S
+627=3,Borough Hall,5,Borough Hall, 5, M, M, M, M
+628=5,Borough Hall,3,Borough Hall,5, E, E, S, S
+629=4,Borough Hall,5,Borough Hall,5, E, E, S, S
+630=5,Borough Hall,4,Borough Hall,5, E, E, S, S
+631=B,DeKalb Av,Q,DeKalb Av, 5, SME, SME, SME, SME
+632=Q,DeKalb Av,B,DeKalb Av, 5, SME, SME, SME, SME
+633=B,DeKalb Av,R,DeKalb Av, 5, SME, SME, SME, SME
+634=R,DeKalb Av,B,DeKalb Av, 5, SME, SME, SME, SME
+635=Q,DeKalb Av,R,DeKalb Av, 5, SME, SME, SME, SME
+636=R,DeKalb Av,Q,DeKalb Av, 5, SME, SME, SME, SME
+637=A,Jay St MetroTech,C,Jay St MetroTech, 5, SME, SME, SME, SME
+638=C,Jay St MetroTech,A,Jay St MetroTech, 5, SME, SME, SME, SME
+639=A,Jay St MetroTech,F,Jay St MetroTech, 5, SME, SME, SME, SME
+640=F,Jay St MetroTech,A,Jay St MetroTech, 5, SME, SME, SME, SME
+641=A,Jay St MetroTech,R,Jay St MetroTech, 5, M, M, M, M
+642=R,Jay St MetroTech,A,Jay St MetroTech, 5, E, E, S, S
+643=C,Jay St MetroTech,F,Jay St MetroTech, 5, SME, SME, SME, SME
+644=F,Jay St MetroTech,C,Jay St MetroTech, 5, SME, SME, SME, SME
+645=C,Jay St MetroTech,R,Jay St MetroTech, 5, M, M, M, M
+646=R,Jay St MetroTech,C,Jay St MetroTech, 5, E, E, S, S
+647=F,Jay St MetroTech,R,Jay St MetroTech, 5, M, M, M, M
+648=R,Jay St MetroTech,F,Jay St MetroTech, 5, E, E, S, S
+655=N,New Utrecht Av,D,62nd St, 5, E, E, S, S
+656=D,62nd St,N,New Utrecht Av, 5, S, S, E, E
+657=D,Coney Island Stillwell Av,F,Coney Island Stillwell Av, 5, SME, SME, SME, SME
+658=F,Coney Island Stillwell Av,D,Coney Island Stillwell Av, 5, SME, SME, SME, SME
+659=D,Coney Island Stillwell Av,N,Coney Island Stillwell Av, 5, SME, SME, SME, SME
+660=N,Coney Island Stillwell Av,D,Coney Island Stillwell Av, 5, SME, SME, SME, SME
+661=D,Coney Island Stillwell Av,Q,Coney Island Stillwell Av, 5, SME, SME, SME, SME
+662=Q,Coney Island Stillwell Av,D,Coney Island Stillwell Av, 5, SME, SME, SME, SME
+663=F,Coney Island Stillwell Av,N,Coney Island Stillwell Av, 5, SME, SME, SME, SME
+664=N,Coney Island Stillwell Av,F,Coney Island Stillwell Av, 5, SME, SME, SME, SME
+665=F,Coney Island Stillwell Av,Q,Coney Island Stillwell Av, 5, SME, SME, SME, SME
+666=Q,Coney Island Stillwell Av,F,Coney Island Stillwell Av, 5, SME, SME, SME, SME
+667=N,Coney Island Stillwell Av,Q,Coney Island Stillwell Av, 5, SME, SME, SME, SME
+668=Q,Coney Island Stillwell Av,N,Coney Island Stillwell Av, 5, SME, SME, SME, SME
+669=B,Brighton Beach,Q,Brighton Beach, 5, SME, SME, SME, SME
+670=Q,Brighton Beach,B,Brighton Beach, 5, SME, SME, SME, SME
+671=2,Flatbush Av Brooklyn College,5,Flatbush Av Brooklyn College, 5, SME, SME, SME, SME
+672=5,Flatbush Av Brooklyn College,2,Flatbush Av Brooklyn College, 5, SME, SME, SME, SME
+673=F,Church Av,G,Church Av, 5, SE, SE, SE, SE
+674=G,Church Av,F,Church Av, 5, SE, SE, SE, SE
+675=A,Euclid Av,C,Euclid Av,5
+676=C,Euclid Av,A,Euclid Av,5
+677=E,Sutphin Boulevard Archer Av JFK Airport,JZ,Sutphin Boulevard Archer Av JFK Airport,5, M, M, M, M
+678=JZ,Sutphin Boulevard Archer Av JFK Airport,E,Sutphin Boulevard Archer Av JFK Airport,5, M, M, M, M
+679=E,Briarwood Van Wyck Boulevard,F,Briarwood Van Wyck Boulevard, 5, SME, SME, SME, SME
+680=F,Briarwood Van Wyck Boulevard,E,Briarwood Van Wyck Boulevard, 5, SME, SME, SME, SME
+681=C,14th St,L,Eighth Av, 5, S, S, E, E
+682=L,Eighth Av,E,14th St, 5, M, M, M, M
+683=L,Eighth Av,A,14th St, 5, M, M, M, M
+684=A,14th St,L,Eighth Av, 5, S, S, E, E
+685=E,14th St,L,Eighth Av, 5, S, S, E, E
+686=C,14th St,L,Eighth Av, 5, S, S, E, E
+687=1,South Ferry,R,Whitehall St South Ferry,5, S, S, E, E
+688=R,Whitehall St South Ferry,1,South Ferry,5, S, S, E, E
+689=JZ,Chambers St,6,Brooklyn Bridge City Hall, 5, SE, SE, SE, SE
+690=6,Brooklyn Bridge City Hall,JZ,Chambers St, 5, ME, ME, SM, SM
+691=JZ,Chambers St,4,Brooklyn Bridge City Hall, 5, SE, SE, SE, SE
+692=4,Brooklyn Bridge City Hall,JZ,Chambers St, 5, ME, ME, SM, SM
+693=6,Canal St,JZ,Chambers St,5, E, E, S, S
+694=JZ,Chambers St,6,Canal St,5, M, M, M, M
+695=Os,St George,Ferry,St George Ferry Terminal, 5
+696=Ferry,St George Ferry Terminal,Os,St George, 5, SME, SME, SME, SME
+697=Ferry,Whitehall Ferry Terminal,1,South Ferry, 5, SME, SME, SME, SME
+698=1,South Ferry,Ferry,Whitehall Ferry Terminal, 5
+699=Ferry,Whitehall Ferry Terminal,R,Whitehall St South Ferry, 5, SME, SME, SME, SME
+700=R,Whitehall St South Ferry,Ferry,Whitehall Ferry Terminal, 5
+701=Ar,Howard Beach,A,Howard Beach JFK Airport, 5, M, M, M, M
+702=A,Howard Beach JFK Airport,Ar,Howard Beach, 5, E, E, S, S
+703=Ar,Jamaica,JZ,Sutphin Boulevard Archer Av JFK Airport, 5, M, M, M, M
+704=JZ,Sutphin Boulevard Archer Av JFK Airport,Ar,Jamaica, 5, M, M, M, M
+705=Ar,Jamaica,E,Sutphin Boulevard Archer Av JFK Airport, 5, M, M, M, M
+706=E,Sutphin Boulevard Archer Av JFK Airport,Ar,Jamaica, 5, M, M, M, M
+707=Ar,Federal Cir.,Ar,Federal Cir, 5, SME, SME, SME, SME
+708=Ar,Federal Cir,Ar,Federal Cir., 5, SME, SME, SME, SME
+709=R,Ninth St,F,Fourth Av, 5, S, S, E, E
+710=D,Ninth St,F,Fourth Av, 5, S, S, E, E
+711=F,Fourth Av,R,Ninth St, 5, S, S, E, E
+712=F,Fourth Av,D,Ninth St, 5, S, S, E, E
+713=A,Franklin Av,S1,Franklin Av, 5, S, S, E, E
+714=C,Franklin Av,S1,Franklin Av, 5, S, S, E, E
+715=S1,Franklin Av,A,Franklin Av, 5, S, S, E, E
+716=S1,Franklin Av,C,Franklin Av, 5, S, S, E, E
+717=A,Franklin Av,C,Franklin Av,5, SME, SME, SME, SME
+718=C,Franklin Av,A,Franklin Av,5, SME, SME, SME, SME
+719=G,Metropolitan Av,L,Lorimer St,5, E, E, S, S
+720=L,Lorimer St,G,Metropolitan Av,5, E, E, S, S
+721=S1,Botanic Garden,2,Franklin Av, 5, S, S, E, E
+722=S1,Botanic Garden,3,Franklin Av, 5, S, S, E, E
+723=S1,Botanic Garden,4,Franklin Av, 5, S, S, E, E
+724=S1,Botanic Garden,5,Franklin Av, 5, S, S, E, E
+725=2,Franklin Av,S1,Botanic Garden,5, E, E, S, S
+726=3,Franklin Av,S1,Botanic Garden,5, E, E, S, S
+727=4,Franklin Av,S1,Botanic Garden,5, E, E, S, S
+728=5,Franklin Av,S1,Botanic Garden,5, E, E, S, S
+729=A,42nd St Port Authority Bus Terminal,1,Times Square 42nd St, 5, M, M, M, M
+730=A,42nd St Port Authority Bus Terminal,2,Times Square 42nd St, 5, M, M, M, M
+731=A,42nd St Port Authority Bus Terminal,3,Times Square 42nd St, 5, M, M, M, M
+732=A,42nd St Port Authority Bus Terminal,N,Times Square 42nd St, 5, M, M, M, M
+733=A,42nd St Port Authority Bus Terminal,Q,Times Square 42nd St, 5, M, M, M, M
+734=A,42nd St Port Authority Bus Terminal,R,Times Square 42nd St, 5, M, M, M, M
+735=A,42nd St Port Authority Bus Terminal,S2,Times Square, 5, M, M, M, M
+736=C,42nd St Port Authority Bus Terminal,1,Times Square 42nd St, 5, M, M, M, M
+737=C,42nd St Port Authority Bus Terminal,2,Times Square 42nd St, 5, M, M, M, M
+738=C,42nd St Port Authority Bus Terminal,3,Times Square 42nd St, 5, M, M, M, M
+739=C,42nd St Port Authority Bus Terminal,N,Times Square 42nd St, 5, M, M, M, M
+740=C,42nd St Port Authority Bus Terminal,Q,Times Square 42nd St, 5, M, M, M, M
+741=C,42nd St Port Authority Bus Terminal,R,Times Square 42nd St, 5, M, M, M, M
+742=C,42nd St Port Authority Bus Terminal,S2,Times Square, 5, M, M, M, M
+743=E,42nd St Port Authority Bus Terminal,1,Times Square 42nd St, 5, M, M, M, M
+744=E,42nd St Port Authority Bus Terminal,2,Times Square 42nd St, 5, M, M, M, M
+745=E,42nd St Port Authority Bus Terminal,3,Times Square 42nd St, 5, M, M, M, M
+746=E,42nd St Port Authority Bus Terminal,N,Times Square 42nd St, 5, M, M, M, M
+747=E,42nd St Port Authority Bus Terminal,Q,Times Square 42nd St, 5, M, M, M, M
+748=E,42nd St Port Authority Bus Terminal,R,Times Square 42nd St, 5, M, M, M, M
+755=E,42nd St Port Authority Bus Terminal,S2,Times Square, 5, M, M, M, M
+756=7,Fifth Av Bryant Park,B,42nd St Bryant Park, 5, S, S, E, E
+757=7,Fifth Av Bryant Park,F,42nd St Bryant Park, 5, S, S, E, E
+758=7,Fifth Av Bryant Park,D,42nd St Bryant Park, 5, S, S, E, E
+759=B,42nd St Bryant Park,7,Fifth Av Bryant Park, 5, M, M, M, M
+760=F,42nd St Bryant Park,7,Fifth Av Bryant Park, 5, M, M, M, M
+761=D,42nd St Bryant Park,7,Fifth Av Bryant Park, 5, M, M, M, M
+762=R,36th St.,N,36th St., 5, S, S, E, E
+764=N,36th St.,R,36th St., 5, S, S, E, E
+765=N,36th St.,D,36th St.,5, E, E, S, S
+766=D,36th St.,N,36th St., 5, S, S, E, E
+768=S3,Broad Channel,A,Broad Channel, 5, SME, SME, SME, SME
+769=A,Broad Channel,S3,Broad Channel, 5, SME, SME, SME, SME
+770=R,59th St,N,59th St,5, SE, SE, SE, SE
+771=N,59th St,R,59th St,5, SE, SE, SE, SE
+772=M,Myrtle Av,JZ,Myrtle Av, 5, SME, SME, SME, SME
+773=JZ,Myrtle Av,M,Myrtle Av, 5, SME, SME, SME, SME
+774=R,Ninth St,G,Fourth Av, 5, S, S, E, E
+775=G,Fourth Av,R,Ninth St, 5, S, S, E, E
+776=F,Fourth Av,G,Fourth Av, 5, S, S, E, E
+777=G,Fourth Av,F,Fourth Av, 5, SME, SME, SME, SME
+793=A,West Fourth St Washington Sq,E,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+794=A,West Fourth St Washington Sq,B,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+795=A,West Fourth St Washington Sq,D,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+796=A,West Fourth St Washington Sq,F,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+797=A,West Fourth St Washington Sq,M,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+798=A,West Fourth St Washington Sq,C,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+799=E,West Fourth St Washington Sq,B,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+800=E,West Fourth St Washington Sq,D,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+801=E,West Fourth St Washington Sq,F,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+802=E,West Fourth St Washington Sq,M,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+803=E,West Fourth St Washington Sq,C,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+804=E,West Fourth St Washington Sq,A,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+805=B,West Fourth St Washington Sq,D,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+806=B,West Fourth St Washington Sq,F,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+807=B,West Fourth St Washington Sq,M,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+808=B,West Fourth St Washington Sq,C,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+809=B,West Fourth St Washington Sq,A,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+810=B,West Fourth St Washington Sq,E,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+811=D,West Fourth St Washington Sq,F,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+812=D,West Fourth St Washington Sq,M,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+813=D,West Fourth St Washington Sq,C,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+814=D,West Fourth St Washington Sq,A,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+815=D,West Fourth St Washington Sq,E,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+816=D,West Fourth St Washington Sq,B,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+817=F,West Fourth St Washington Sq,M,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+818=F,West Fourth St Washington Sq,C,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+819=F,West Fourth St Washington Sq,A,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+820=F,West Fourth St Washington Sq,E,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+821=F,West Fourth St Washington Sq,B,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+822=F,West Fourth St Washington Sq,D,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+823=F,West Fourth St Washington Sq,M,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+824=F,West Fourth St Washington Sq,C,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+825=F,West Fourth St Washington Sq,A,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+826=F,West Fourth St Washington Sq,E,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+827=F,West Fourth St Washington Sq,B,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+828=F,West Fourth St Washington Sq,D,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+829=M,West Fourth St Washington Sq,C,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+830=M,West Fourth St Washington Sq,A,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+831=M,West Fourth St Washington Sq,E,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+832=M,West Fourth St Washington Sq,B,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+833=M,West Fourth St Washington Sq,D,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+834=M,West Fourth St Washington Sq,F,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+835=C,West Fourth St Washington Sq,A,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+836=C,West Fourth St Washington Sq,E,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+837=C,West Fourth St Washington Sq,B,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+838=C,West Fourth St Washington Sq,D,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+839=C,West Fourth St Washington Sq,F,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+840=C,West Fourth St Washington Sq,M,West Fourth St Washington Sq, 5, SME, SME, SME, SME
+841=M,42nd St Bryant Park,B,42nd St Bryant Park, 5, SME, SME, SME, SME
+842=M,42nd St Bryant Park,D,42nd St Bryant Park, 5, SME, SME, SME, SME
+843=M,42nd St Bryant Park,7,Fifth Av Bryant Park, 5, M, M, M, M
+844=M,42nd St Bryant Park,F,42nd St Bryant Park, 5, SME, SME, SME, SME
+845=D,42nd St Bryant Park,M,42nd St Bryant Park, 5, SME, SME, SME, SME
+846=B,42nd St Bryant Park,M,42nd St Bryant Park, 5, SME, SME, SME, SME
+847=F,42nd St Bryant Park,M,42nd St Bryant Park, 5, SME, SME, SME, SME
+848=7,Fifth Av Bryant Park,M,42nd St Bryant Park, 5, S, S, E, E
+855=D,47th 50th Sts Rockefeller Center,B,47th 50th Sts Rockefeller Center, 5, SME, SME, SME, SME
+856=D,47th 50th Sts Rockefeller Center,F,47th 50th Sts Rockefeller Center, 5, SME, SME, SME, SME
+857=D,47th 50th Sts Rockefeller Center,M,47th 50th Sts Rockefeller Center, 5, SME, SME, SME, SME
+858=B,47th 50th Sts Rockefeller Center,D,47th 50th Sts Rockefeller Center, 5, SME, SME, SME, SME
+859=B,47th 50th Sts Rockefeller Center,F,47th 50th Sts Rockefeller Center, 5, SME, SME, SME, SME
+860=B,47th 50th Sts Rockefeller Center,M,47th 50th Sts Rockefeller Center, 5, SME, SME, SME, SME
+861=F,47th 50th Sts Rockefeller Center,D,47th 50th Sts Rockefeller Center, 5, SME, SME, SME, SME
+862=F,47th 50th Sts Rockefeller Center,B,47th 50th Sts Rockefeller Center, 5, SME, SME, SME, SME
+863=F,47th 50th Sts Rockefeller Center,M,47th 50th Sts Rockefeller Center, 5, SME, SME, SME, SME
+864=M,47th 50th Sts Rockefeller Center,D,47th 50th Sts Rockefeller Center, 5, SME, SME, SME, SME
+865=M,47th 50th Sts Rockefeller Center,B,47th 50th Sts Rockefeller Center, 5, SME, SME, SME, SME
+866=M,47th 50th Sts Rockefeller Center,F,47th 50th Sts Rockefeller Center, 5, SME, SME, SME, SME
+867=JZ,Chambers St,R,Canal St, 5, M, M, M, M
+868=R,Canal St,JZ,Chambers St, 5, M, M, M, M
+869=JZ,Chambers St,Q,Canal St, 5, M, M, M, M
+870=Q,Canal St,JZ,Chambers St, 5, M, M, M, M
+871=JZ,Chambers St,N,Canal St, 5, M, M, M, M
+872=N,Canal St,JZ,Chambers St, 5, M, M, M, M
+874=3,135th St.,2,135th St., 5, M, M, M, M
+875=2,135th St.,3,135th St., 5, M, M, M, M
+876=L,Myrtle Wyckoff Avs,M,Myrtle Wyckoff Avs,5
+877=M,Myrtle Wyckoff Avs,L,Myrtle Wyckoff Avs,5
+878=A,Hoyt Schermerhorn Sts,G,Hoyt Schermerhorn Sts, 5, SME, SME, SME, SME
+879=A,Hoyt Schermerhorn Sts,C,Hoyt Schermerhorn Sts, 5, SME, SME, SME, SME
+880=C,Hoyt Schermerhorn Sts,G,Hoyt Schermerhorn Sts, 5, SME, SME, SME, SME
+881=C,Hoyt Schermerhorn Sts,A,Hoyt Schermerhorn Sts, 5, SME, SME, SME, SME
+882=G,Hoyt Schermerhorn Sts,C,Hoyt Schermerhorn Sts, 5, SME, SME, SME, SME
+883=G,Hoyt Schermerhorn Sts,A,Hoyt Schermerhorn Sts, 5, SME, SME, SME, SME
+884=A,Rockaway Boulevard,Ak,Rockaway Boulevard,5
+885=Ak,Rockaway Boulevard,A,Rockaway Boulevard,5
+886=2,East 180th St,5,East 180th St,5
+887=2,East 180th St,5p,East 180th St,5
+888=5,East 180th St,5p,East 180th St,5
+889=5,East 180th St,2,East 180th St,5
+890=5p,East 180th St,5,East 180th St,5
+891=5p,East 180th St,2,East 180th St,5
+892=4,Brooklyn Bridge City Hall,6,Brooklyn Bridge City Hall, 5, SME, SME, SME, SME
+893=4,Brooklyn Bridge City Hall,5,Brooklyn Bridge City Hall, 5, SME, SME, SME, SME
+894=6,Brooklyn Bridge City Hall,4,Brooklyn Bridge City Hall, 5, SME, SME, SME, SME
+895=6,Brooklyn Bridge City Hall,5,Brooklyn Bridge City Hall, 5, SME, SME, SME, SME
+896=5,Brooklyn Bridge City Hall,6,Brooklyn Bridge City Hall, 5, SME, SME, SME, SME
+897=5,Brooklyn Bridge City Hall,4,Brooklyn Bridge City Hall, 5, SME, SME, SME, SME
+898=5,Brooklyn Bridge City Hall,JZ,Chambers St, 5, ME, ME, SM, SM
+899=D,Ninth St,R,Ninth St, 5, SME, SME, SME, SME
+900=D,Ninth St,G,Fourth Av, 5, S, S, E, E
+901=4,51st St,6,51st St, 5, SME, SME, SME, SME
+902=4,51st St,E,Lexington Av 53rd St, 5, E, E, S, S 
+903=4,51st St,M,Lexington Av 53rd St, 5, E, E, S, S
+904=6,51st St,4,51st St, 5, SME, SME, SME, SME
+905=E,Lexington Av 53rd St,4,51st St, 5, S, S, E, E
+906=M,Lexington Av 53rd St,4,51st St, 5, S, S, E, E
+907=R,36th St.,D,36th St., 5, E, E, S, S
+908=D,36th St.,R,36th St., 5, E, E, S, S
+909=E,Seventh Av,D,Seventh Av,5
+910=E,Seventh Av,B,Seventh Av_,5
+911=B,Seventh Av_,D,Seventh Av,5
+912=B,Seventh Av_,E,Seventh Av,5
+913=E,Seventh Av,D,Seventh Av,5
+914=E,Seventh Av,B,Seventh Av_,5
+915=E,Fifth Av | 53rd St,M,Fifth Av | 53rd St,5
+916=M,Fifth Av | 53rd St,E,Fifth Av | 53rd St,5
+
+

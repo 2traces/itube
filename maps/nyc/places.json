@@ -1,0 +1,499 @@
+{
+    "categories": [
+        {
+            "name": "What to see",
+            "image_normal": "cat_wts_normal.png",
+            "image_highlighted": "cat_wts_pressed.png",
+            "color": "dc79b0",
+            "index": 1
+        },
+        {
+            "name": "Off the beaten track",
+            "image_normal": "cat_otbt_normal.png",
+            "image_highlighted": "cat_otbt_pressed.png",
+            "color": "dc79b0",
+            "index": 2
+        },
+        {
+            "name": "Wifi spots",
+            "image_normal": "cat_ws_normal.png",
+            "image_highlighted": "cat_ws_pressed.png",
+            "color": "dc79b0",
+            "index": 3
+        },
+        {
+            "name": "Recommended cafes",
+            "image_normal": "cat_rc_normal.png",
+            "image_highlighted": "cat_rc_pressed.png",
+            "color": "dc79b0",
+            "index": 4
+        }
+    ],
+    "places": [
+        {
+            "name": "Brooklyn Brewery",
+            "long": 40.721636,
+            "lat": -73.957461,
+            "index": 2,
+            "text": "Brooklyn Brewery was started in 1987 by Steve Hindy and Tom Potter.\nHindy learned to brew beer during a six-year stay in various Middle Eastern nations such as Saudi Arabia and Syria. Upon his return to his home in Brooklyn in 1984, he and Potter, his downstairs neighbor from Park Slope, quit their jobs and founded the brewery. The pair hired graphic designer Milton Glaser, best known as the creator of the logo for the I Love New York campaign, to create the company logo and identity. Company logo at Brooklyn Brewery's Williamsburg headquarters\nOriginally all their beer was brewed by contract by Matt Brewing Company, and the pair started their own distribution company and personally transported and marketed their beer to bars and retailers around New York City. In 1996, they acquired a former matzo factory in Williamsburg, Brooklyn, and converted it into a functional brewery.\nAlthough the brewery looked to expand its brewing capacity in the City, originally most of the production, including all Brooklyn Lager and all bottled products, were brewed by contract in the upstate New York city of Utica, due to the limited ability to meet demand at the Williamsburg brewery, its lack of a bottling line, and the cost benefits of contract brewing. The company later sought to expand its facilities in Brooklyn, but had difficulty finding a suitable site within the borough. However, an economic recession allowed them to remain in Williamsburg and undertake a $6.5 million expansion of the brewery in 2009.\nSince 1994, Garrett Oliver has been the Brooklyn Brewery brewmaster. He had first been appointed brewmaster at the Manhattan Brewing Company of New York in 1993 where he began brewing professionally as an apprentice in 1989. In 2003 he published the book The Brewmaster's Table: Discovering the Pleasures of Real Beer with Real Food. Garrett has also been a judge at the Great American Beer Festival for eleven years. In 2005 Hindy and Potter published Beer School: Bottling Success At The Brooklyn Brewery through John Wiley & Sons. The book is both a guide to entrepreneurship and beer brewing as well as a memoir of the authors' time together while building the Brooklyn Brewery. Beer School goes over topics such as building teams as well as guerilla marketing and publicity, with each chapter being written around a theme in the brewery's history. The book is told through the perspectives of both Hindy and Potter, and received mostly positive reviews from critics.",
+            "photos": [
+                "01.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+        {
+            "name": "High Line",
+            "long": 40.747342,
+            "lat": -74.005226,
+            "index": 2,
+            "text": "The High Line is a 1-mile (1.6 km) New York City linear park built on a 1.45-mile (2.33 km)[2] section of the former elevated New York Central Railroad spur called the West Side Line, which runs along the lower west side of Manhattan; it has been redesigned and planted as an aerial greenway. The High Line Park currently runs from Gansevoort Street, three blocks below West 14th Street, in the Meatpacking District, up to 30th Street, through the neighborhood of Chelsea to the West Side Yard, near the Javits Convention Center. The recycling of the railway into an urban park has spurred real estate development in the neighborhoods which lie along the line. For years now, the big buzz in Chelsea and Hell’s Kitchen has been all about the coming of the High Line, the first section of which finally and officially opened to the public in the summer of 2009. Now you can stroll, sit and picnic 30ft above the city below on what was, since the 1960s, an abandoned stretch of elevated railroad track. The perks thus far are numerous, and include stunning vistas of the Hudson River, public art installations, fat lounge chairs for soaking up some sun, willowy stretches of native-inspired landscaping (including a mini-forest of trees), a cupcake vendor and a thoroughly unique perspective on the neighborhood streets below – especially at the cool Gansevoort Overlook, where bleacher-like seating faces a huge pane of glass that allows you to view the traffic, buildings and pedestrians below as living works of urban art. There’s also Andre Balazs’ luxury hotel, the Standard (similar to his others in LA and Miami), which straddles the park, as well as a still-to-come branch of the Whitney Museum, which will reside at the southern end. The High Line is an especially romantic place to stroll on a balmy night, when you can see the lit-up city (and maybe even a star or two) sparkling all around you.",
+            "photos": [
+                "05.jpg",
+				"04.jpg",
+				"03.jpg",
+                "02.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+        {
+            "name": "Ground zero Memorial & Museum",
+            "long": 40.711707,
+            "lat": -74.013633,
+            "index": 3,
+            "text": "The National September 11 Memorial & Museum (branded as 9/11 Memorial and 9/11 Memorial Museum) is the principal memorial and museum commemorating the September 11 attacks of 2001, which killed approximately 3,000 people, and the World Trade Center bombing of 1993, which killed six.[3] The memorial is located at the World Trade Center site, on the former location of the Twin Towers destroyed during the attacks. The World Trade Center Memorial Foundation was renamed the National September 11 Memorial & Museum at the World Trade Center in 2007.\nThe winner of the World Trade Center Site Memorial Competition was American architect Michael Arad of Handel Architects, a New York- and San Francisco-based firm. Arad worked with landscape architecture firm Peter Walker and Partners on the design which calls for a forest of trees with two square pools in the center, where the Twin Towers once stood.\nIn August 2006, the World Trade Center Memorial Foundation and the Port Authority of New York and New Jersey began heavy construction on the memorial and museum. The design is consistent with the original Daniel Libeskind master plan that called for the memorial to be 30 feet below street level (originally 70 feet) in a piazza. The design was the only finalist to throw out Libeskind's requirement that buildings overhang the footprints.\nA memorial was planned in the immediate aftermath of the attacks and destruction of the World Trade Center to remember both the victims and those involved in rescue. The National September 11 Memorial & Museum at the World Trade Center is a non-profit corporation with the mission to raise funds for, program, own and operate the memorial and museum at the World Trade Center site. On September 11, 2011, a dedication ceremony was held at the memorial, commemorating the tenth anniversary of the attacks. The memorial officially opened to the public on September 12, 2011, while the museum will open one year later, on or around September 11, 2012. Three months after opening, the memorial had been seen by over 1 million visitors. In 2012, Tuesday's Children, a non-profit family service organization that has made a commitment to individuals directly impacted by 9/11 and to those who have lost loved ones to terrorism around the globe, has partnered with the 9/11 Memorial to offer private tours to family members of 9/11 victims and First Responders.",
+            "photos": [
+				"06.jpg",
+                "07.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+        {
+            "name": "Rockefeller Centre",
+            "long": 40.759131,
+               "lat": -73.978661,
+               "index": 4,
+            "text": "Built during the height of the Great Depression in the 1930s, the 22-acre Rockefeller Center, named after developer John D Rockefeller, Jr, was the first project to combine retail, entertainment and office space in what is often referred to as a ‘city within a city.’ Built over nine years by 70,000 workers, this complex features several outdoor plazas and 19 buildings (14 of which are the original art-deco structures), and spans from 48th to 51st Sts and Fifth to Seventh Aves. In 1987 it was declared a National Landmark, recognized for its unique combination of modernist architecture with a concentration of commercial and business enterprises. Most popular highlights include Radio City Music Hall, the GE Building (30 Rockefeller Plaza at 49th St), the ice-skating plaza and the Top of the Rock observation deck.\nPerhaps most impressive, though, is the slew of public artwork – commissioned around the theme ‘Man at the Crossroads Looks Uncertainly But Hopefully at the Future’ – created by 30 great artists of the day. Mexican muralist Diego Rivera was looking skeptically at the future, though, and after he was persuaded to paint the lobby of the 70-story RCA Building (now the GE Building), became outraged, along with the rest of the art world, when the Rockefeller family rejected his painting for containing ‘Communist imagery’ – namely, the face of Lenin. The fresco was destroyed and replaced with a Jose Maria Sert work depicting the more ‘acceptable’ faces of Abraham Lincoln and Ralph Waldo Emerson.\nOriginal creations still in existence, though, include Prometheus overlooking the ice-skating rink, Atlas doing his thing in front of the International Building (630 Fifth Ave), and News by Isamu Noguchi above the entrance to the Associated Press Building (50 Rockefeller Plaza). Anyone interested in artworks within the complex should pick up the Rockefeller Center Visitors Guide in the GE Building lobby, which describes many of them in detail.\nPerhaps the best-known feature of Rockefeller Center, though, is its gigantic Christmas tree, which overlooks the skating rink during the holidays. It’s a tradition that dates back to the 1930s, when construction workers set up a small Christmas tree on the site. Today the annual lighting of the tree, held after Thanksgiving, attracts thousands of visitors to the area to cram around the felled spruce, selected each year with fanfare from an unlucky upstate forest. The scene is too crowded to be believed, but skating at the Rink at Rockefeller Center under the gaze of Prometheus is quite an experience (thought it’s crowded, too). Opening hours change weekly, so call for the schedule.",
+            "photos": [
+				"50.jpg",
+                "51.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+        {
+            "name": "Socrates Sculpture Park",
+            "long": 40.768549,
+               "lat": -73.936588,
+               "index": 5,
+            "text": "Transformed from an illegal dumping site in 1986, this open-air, 4.5-acre public space near the Noguchi museum displays sculptures, installations and superb light shows illuminating its waterfront location on the East River. Try to time a visit around free events – like yoga and capoeira on summer Saturdays and movie screenings on Wednesdays from mid-July to mid-August; pre-screening performances start at 7pm; films begin at sunset.",
+            "photos": [
+				"08.jpg",
+                "09.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+        {
+            "name": "Graffity Hall of Fame",
+            "long": 40.793027,
+               "lat": -73.948095,
+               "index": 6,
+            "text": "A schoolyard that celebrates all sorts of taggers, this art gallery of the street was founded in 1980 by graffiti artist Ray Rodriguez (aka Sting Ray) and a group of community-minded supporters who saw the lasting value in an art that some politicians and business-owners tend to view as vandalism. You can visit the colorful murals at any time, though the actual Graffiti Hall of Fame event, which is when ‘writers’ come from all over the globe to add their art to the walls, is held in late June. For updates check the website Streets Are Saying Things (www.streetsaresayingthings.com), run by a Hall of Fame organizer and a good source of graffiti-related news.",
+            "photos": [
+                "10.jpg",
+                "11.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+		        {
+            "name": "Bodies the exhibition",
+            "long": 40.70662,
+               "lat": -74.003359,
+               "index": 7,
+            "text": "Bodies… The Exhibition is an exhibition showcasing preserved human bodies dissected to display bodily systems. The museum has more than 200 real human bodies and specimens that have been dissected and put on display to give visitors an intimate view of what the human body actually looks like and how it works. This exhibition is definitely not for the faint of heart. ",
+            "photos": [
+				"12.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+		        {
+            "name": "Cloisters",
+            "long": 40.865043,
+            "lat": -73.931896,
+            "index": 8,
+            "text": "This unique home for the Metropolitan Museum of Art’s vast medieval holdings, built in the mid-1930s atop one of Washington Heights’ many hills, seems more a sanctuary on the mountaintop than a museum. For the Cloisters indeed recreate the experience of a Gothic monastery, incorporating architectural features of a French cloister, replete with tapestries, stained glass, sculpture, illuminated manuscripts and intricate gardens. Enjoy the spectacular views of the Hudson River and the Palisades, have a picnic outdoors or in the nearby Fort Tryon Park.\nThe Cloisters is the branch of the Metropolitan Museum devoted to the art and architecture of medieval Europe. Located on four acres overlooking the Hudson River in northern Manhattan's Fort Tryon Park, the building incorporates elements from five medieval French cloisters—quadrangles enclosed by a roofed or vaulted passageway, or arcade—and from other monastic sites in southern France. Three of the cloisters reconstructed at the branch museum feature gardens planted according to horticultural information found in medieval treatises and poetry, garden documents and herbals, and medieval works of art, such as tapestries, stained-glass windows, and column capitals. Approximately five thousand works of art from medieval Europe, dating from about A.D. 800 with particular emphasis on the twelfth through fifteenth century, are exhibited in this unique and sympathetic context.\nThe collection at The Cloisters is complemented by more than six thousand objects exhibited in several galleries on the first floor of the Museum's main building on Fifth Avenue. A single curatorial department oversees medieval holdings at both locations. The collection at the main building displays a somewhat broader geographical and temporal range, while the focus at The Cloisters is on the Romanesque and Gothic periods. Renowned for its architectural sculpture, The Cloisters also rewards visitors with exquisite illuminated manuscripts, stained glass, metalwork, enamels, ivories, and tapestries.\nThe noted philanthropist John D. Rockefeller Jr., who in addition to funding the Cloisters and purchasing land across the Hudson River in the Palisades area so that the views would not be obstructed, donated the Cloisters’ most famous piece, the Unicorn Tapestries. Although their origins are obscure, these magnificent tapestries depict a vivid tableaux of medieval life in brilliant hues. They alone are worth a visit!",
+            "photos": [
+                "13.jpg",
+				"14.jpg",
+                "15.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+		        {
+            "name": "Bronx Botanical Gardens",
+            "long": 40.867258,
+               "lat": -73.880407,
+               "index": 9,
+            "text": "The New York Botanical Garden (NYBG) is one of the premier botanical gardens in the United States, located in the Bronx in New York City. It spans some 250 acres (100 ha) of Bronx Park and is home to some of the world's leading plant laboratories. It offers major exhibitions and flower shows throughout the year, drawing over 800,000 visitors annually.The New York Botanical Garden is an advocate for the plant kingdom. The Garden pursues its mission through its role as a museum of living plant collections arranged in gardens and landscapes across its National Historic Landmark site; through its comprehensive education programs in horticulture and plant science; and through the wide-ranging research programs of the International Plant Science Center. ",
+            "photos": [
+				"16.jpg",
+                "17.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+        {
+            "name": "Union Square Market",
+            "long": 40.735495,
+               "lat": -73.991665,
+               "index": 10,
+            "text": "The Union Square Greenmarket is a farmers' market in Union Square in Manhattan, New York. It is held every Monday, Wednesday, Friday and Saturday from 8 AM to 6 PM. Saturdays are the busiest day of the four. The market is served by a number of local farmers (the median distance between farmer and market is 90 miles). During peak seasons, the Greenmarket serves more than 250,000 customers per week.More than 1,000 varieties of fruits and vegetables can be found at the Greenmarket. Heaven comes in the form of well-stocked farmers' markets, full of plump produce, freshly baked goods, blooming flowers and herbs, and other miscellaneous items from the earth.  Sure, the word artisan may be overused, but you won't be lacking for much at the Union Square Greenmarket -- whether you're looking for steak, seafood, or even sachets of lavender to line your clothes with. Definitely an amazing place if you want to start buying local, or for fresh seasonal veggies if you want to avoid the crowded organic supermarket across the street, or even if you're just stuck on dinner ideas and want to peruse the aisles looking for inspiration.",
+            "photos": [
+                "19.jpg",
+                "18.jpg",
+				"20.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+		{
+            "name": "Downtown Boathouse",
+            "long": 40.770922,
+               "lat": -73.995742,
+               "index": 11,
+            "text": "The Downtown Boathouse is an all-volunteer organization that is dedicated to providing access to the Hudson River for everyone. The Boathouse is located in the Hudson River Park, and has a permit from the Hudson River Park Trust to operate in the park.\nThey run the following free programs: public kayaking, kayak trips on the harbor, kayak polo, evening classes, and a youth sailing program. They also make their facilities available to the general public for the launching of small hand powered boats.\nThis is a perfect way to start a Sunday morning.  Perfect way to get away from the city while at the same time enjoy the urban flow.  Its free but definitely worth a $10 donation (and even that is a steal).  Kayaking in the Hudson, even in the enclosure between two piers you still feel pretty free to roam.  There were a couple times we came pretty close to bumping into other kayakers, but no problem with some good coordination and team work to turn away from disaster!\nThe volunteers are amazing and super friendly, even if it is your first time they make you feel pretty safe.  You are allowed to stay out as long as you want but the limiting factor is that its really tiring!  Even the 20 minutes we were out felt like a long time!  Great views of Jersey, the water is green, but clean.  Sometimes the boats that speed down the river create some waves so can catch you by surprise and rock your kayak.\nParking on the streets nearby in the morning is easy, but there is also a nearby garage.  Or you can take the subway.\nFree lockers to store your stuff.  Free sunscreen in case you forgot.  You can leave your shoes at the pier, i think they are pretty safe there.  Can get water, snacks from the nearby snack/drink/hot dog cart.\nAlso super close to the West Village, so if you want to eat delicious things after working up an appetite, can make a day out of it!  Also walking along the Hudson River park is a gorgeous stroll.",
+            "photos": [
+                "21.jpg",
+				"22.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+				{
+            "name": "Bryant Park",
+            "long": 40.753727,
+               "lat": -73.982985,
+               "index": 12,
+            "text": "Bryant Park is one of the signature examples of New York City's revival in the 1990s. With a minimum of crime, the park is filled with office workers on sunny weekdays, city visitors on the weekends, and revelers during the holidays. Daily attendance counts often exceed 800 people per acre, making it the most densely occupied urban park in the world.[citation needed] In 1995, an article about midtown office workers who had found the newly reopened park a good place to go to after work bore the headline Town Square of Midtown. In the early 2000s, BPRC added a custom-built carousel and revived the tradition of an open-air library, The Reading Room, which also hosts literary events. The Bryant Park Grill and Bryant Park Cafe have become popular after-work spots, and 'wichcraft, the sandwich chain owned by Tom Colicchio, operates four kiosks on the park's west end. With security largely in the hands of the Business Improvement District, corporate control of the park has meant that amenities catering to white-collar professionals have been encouraged, while those that might cater to a broader urban public have been notably absent.\nIn the summer of 2002, the park launched the free Bryant Park Wireless Network, making the park the first in New York City to offer free Wi-Fi access to visitors. Improvements in 2008 significantly increased the number of users who could log-on at a given time.\nLawn\nOne of the park's most impressive features is a large lawn that is the longest expanse of grass in Manhattan south of Central Park. Besides serving as a lunchroom for midtown office workers and a place of respite for tired pedestrians, the lawn also serves as the seating area for some of the park's major events, such as the HBO/Bryant Park Summer Film Festival. The lawn's season since 2005 has lasted from shortly after the fall fashion shows in February until October, when it is closed to make way for Citi Pond, the park's ice skating rink. During the lawn's season, it is open on most days, closing only for regular maintenance, to drain after a heavy rain, or to recover after high-impact events. From 1992 through 2009, the lawn's season was interrupted for three weeks in September by the spring fashion shows. In September 2010, the fashion shows moved to a new home at Lincoln Center, and the lawn reclaimed these three warm-weather weeks.\nProgramming\nNumerous events are hosted on the Great Lawn at Bryant Park. The Bryant Park Summer Film Festival, begun in the early nineties and now sponsored by HBO, brings a very large crowd into the park on Monday evenings during the summer. Various free musical performances are sponsored by corporations during the warm weather months, including Broadway in Bryant Park, sponsored by Clear Channel Communications and featuring performers from current Broadway musicals, the Music at 5 series, and, starting in 2008, Bank of America Presents New York Now, a series featuring concerts by five of New York's classical music organizations.\nThe fountain\nSince 2005, the Great Lawn has also hosted Pinstripes in the Park, sponsored by the New York Yankees, an event featuring a live broadcast of a NY Yankee game, stadium concessions, and former Yankee greats greeting the crowd and signing autographs. The park has a chess concession at the west end that offers chess boards and lessons. There is also a court for practitioners of Petanque, the French game of boules. Also popular are free classes in juggling, yoga, tai chi and knitting. In the summer of 2009, the Bryant Park corporation added two ping pong tables to the North West corner of the park.",
+            "photos": [
+                "23.jpg",
+				"24.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+				{
+            "name": "Roosevelt Island Tramway",
+            "long": 40.763788,
+               "lat": -73.948674,
+               "index": 13,
+            "text": "If you’ve already seen the skyline of Manhattan from the water, then why not to get a view of the city from the sky? The Roosevelt Island Tramway will quickly bring you from Manhattan to Roosevelt Island and on a way you can enjoy breathtaking views of East Side of Midtown Manhattan, East River and The Queensboro Bridge. Great fun and very cost efficient – the ride costs the same as the subway ride.\nThis is a super-fun, low cost, low stress activity that children and adults alike enjoy!  For the cost of a metro ticket you get a ride through the Upper East Side sky (Is that George Jefferson's apartment?).  The gondola-- or tram-- is clean, large, and a smooth ride.  This ride offers wonderful views and at night is almost magical with all the lights... and for the voyeur in you, you can see inside many of the apartments!",
+            "photos": [
+                "25.jpg",
+                "26.jpg",
+				"27.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+				{
+            "name": "Hells Kitchen Flea Market",
+            "long": 40.756451,
+               "lat": -73.994095,
+               "index": 14,
+            "text": "Named one of the Top Ten Shopping Streets in the World by National Geographic, Hell’s Kitchen Flea Market sets the standard for distinctive vendors, where collectors and top-notch hagglers including the fashion eclat, artists, celebrities, tourists, and residents shop the market for antiques, collectibles, vintage clothing, mid-century modern items–including home decorations and furniture–jewelry, and more.\nLocated on West 39th Street between 9th & 10th Avenues and open 9 AM – 5 PM every Saturday and Sunday all year long (weather pending), Hell’s Kitchen Flea Market includes vendors from The Annex, formerly located in Chelsea.  The market’s Hell’s Kitchen South location is near the Port Authority Bus Terminal and Times Square.",
+            "photos": [
+                "28.jpg",
+				"30.jpg",
+				"29.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+				{
+            "name": "Grand Central Terminal",
+            "long": 40.752987,
+               "lat": -73.977073,
+               "index": 15,
+            "text": "Completed in 1913, Grand Central Terminal – more commonly, if technically incorrectly, called Grand Central Station – is another of New York’s stunning Beaux Arts buildings, boasting 75ft-high, glass-encased catwalks and a vaulted ceiling bearing a mural of the constellations streaming across it – backwards (the designer must’ve been dyslexic). The balconies overlooking the main concourse afford an expansive view; perch yourself on one of these at around 5pm on a weekday to get a glimpse of the grace that this terminal commands under pressure. It’s quite amazing how this dramatic space evokes the romance of train travel at the turn of the 20th century while also enduring the bustle of present-day New York.\nThere are no teary good-byes for people traveling across the country from here today, though, as Grand Central’s underground electric tracks serve only commuter trains en route to northern suburbs and Connecticut. But whether you’re traveling somewhere or not, the station merits a special trip for the architecture alone – not to mention for the fine-dining restaurants and gourmet food court, cool bars, funky shops (including a gift shop of the Brooklyn-based Transit Museum), holiday craft fairs and occasional music performances.",
+            "photos": [
+                "33.jpg",
+                "32.jpg",
+				"31.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+				{
+            "name": "Evolution store",
+            "long": 40.723884,
+               "lat": -74.000162,
+               "index": 16,
+            "text": "A great cabinet of curiosities, this old-fashioned storefront sells natural-history collectibles of the sort usually seen in museums. This is the place to buy – or just gawk at – framed beetles and butterflies, bugs frozen in amber-resin cubes, stuffed parrots, zebra hides and shark teeth, as well as stony wonders, including meteorites, fragments from Mars and 100-million-year-old fossils. Inside, you will find anything from preserved bugs to taxidermy of all kinds, fossils and all the manner of quirky gifts. Of course, all of this comes at a steep price tag as it is all genuine (even the fossils!). This place is like a science and natural history museum in its own right, and you can tell that it has been lovingly curated by people with great taste. ",
+            "photos": [
+                "35.jpg",
+				"34.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+				{
+            "name": "Brooklyn Academy of Music",
+            "long": 40.686781,
+               "lat": -73.977782,
+               "index": 17,
+            "text": "The oldest concert center in the USA, the Brooklyn Academy of Music is known for edgier, more modern dance and music shows than its Manhattan counterparts, particularly during the autumn Next Wave festival. (Folks like Ingmar Bergman and Sufjan Stevens have staged shows here.) The complex contains a 2109-seat opera house, an 874-seat theatre and the four-screen Rose Cinemas, which screen indie and foreign films. At 8pm on weekend nights, the upstairs BAMCafe stages an interesting lineup of free live shows.",
+            "photos": [
+                "37.jpg",
+				"36.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+				{
+            "name": "Great Lawn",
+            "long": 40.783531,
+               "lat": -73.966677,
+               "index": 18,
+            "text": "Located between 79th and 86th Sts, this massive emerald carpet was created in 1931 by filling in a former reservoir. It hosts outdoor concerts – this is where Paul Simon played his famous comeback show, and also where you can catch the New York Philharmonic Orchestra each summer – and there are eight softball fields, basketball courts and a canopy of London plane trees. Not far from the actual lawn are several other big sites: the Delacorte Theater, which is home to the annual Shakespeare in the Park festival, and its lush Shakespeare Garden; the panoramic Belvedere Castle(the leafy Ramble(the epicenter of both birding and gay-male cruising); and the Loeb Boathouse, where you can rent rowboats for a romantic float in the middle of this urban paradise.",
+            "photos": [
+                "38.jpg",
+                "39.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+						{
+            "name": "USS Intrepid (CV-11)",
+            "long": 40.764876,
+               "lat": -74.000816,
+               "index": 19,
+            "text": "USS Intrepid (CV/CVA/CVS-11), also known as The Fighting I, is one of 24 Essex-class aircraft carriers built during World War II for the United States Navy. She is the fourth US Navy ship to bear the name. Commissioned in August 1943, Intrepid participated in several campaigns in the Pacific Theater of Operations, most notably the Battle of Leyte Gulf. Decommissioned shortly after the end of the war, she was modernized and recommissioned in the early 1950s as an attack carrier (CVA), and then eventually became an antisubmarine carrier (CVS). In her second career, she served mainly in the Atlantic, but also participated in the Vietnam War. Her notable achievements include being the recovery ship for a Mercury and a Gemini space mission. Because of her prominent role in battle, she was nicknamed the Fighting I, while her often ill-luck and the time spent in dry dock for repairs earned her the nickname the Dry I.\nDecommissioned in 1974, in 1982 Intrepid became the foundation of the Intrepid Sea, Air & Space Museum in New York City.",
+            "photos": [
+                "40.jpg",
+				"41.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+						{
+            "name": "Metropolitan Museum of Art",
+            "long": 40.779331,
+               "lat": -73.963074,
+               "index": 20,
+            "text": "The Metropolitan Museum of Art (colloquially The Met), located in New York City, is the largest art museum in the United States with among the most significant art collections. Its permanent collection contains more than two million works, divided among seventeen curatorial departments. The main building, located on the eastern edge of Central Park along Manhattan's Museum Mile, is by area one of the world's largest art galleries. There is also a much smaller second location at The Cloisters in Upper Manhattan that features medieval art.\nRepresented in the permanent collection are works of art from classical antiquity and Ancient Egypt, paintings and sculptures from nearly all the European masters, and an extensive collection of American and modern art. The Met also maintains extensive holdings of African, Asian, Oceanic, Byzantine, and Islamic art. The museum is also home to encyclopedic collections of musical instruments, costumes and accessories, and antique weapons and armor from around the world. Several notable interiors, ranging from 1st-century Rome through modern American design, are permanently installed in the Met's galleries.\nThe Metropolitan Museum of Art was founded in 1870 by a group of American citizens. The founders included businessmen and financiers, as well as leading artists and thinkers of the day, who wanted to open a museum to bring art and art education to the American people. It opened on February 20, 1872, and was originally located at 681 Fifth Avenue. As of 2007, the Met measures almost 1?4-mile (400 m) long and occupies more than 2,000,000 square feet (190,000 m2).",
+            "photos": [
+                "43.jpg",
+				"44.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Metropolitan Opera",
+            "long": 40.773043,
+               "lat": -73.985004,
+               "index": 21,
+            "text": "The Metropolitan Opera (the Met) is an opera company based in New York City, resident at the Metropolitan Opera House, located at the Lincoln Center for the Performing Arts. The company is operated by the non-profit Metropolitan Opera Association, with Peter Gelb as general manager. The music director is James Levine. The company's origins were in the late 19th century as an alternative to the previously established Academy of Music opera house.\nThe Metropolitan Opera is the largest classical music organization in North America. It presents about 27 different operas each year in a season which lasts from late September through May. The operas are presented in a rotating repertory schedule with up to seven performances of four different works staged each week. Performances are given in the evening Monday through Saturday with a matinee on Saturday. Several operas are presented in new productions each season. Sometimes these are borrowed from or shared with other opera houses. The rest of the year's operas are given in revivals of productions from previous seasons. The 2012/13 season comprises 209 performances of 28 operas.\nThe operas in the Met's repertoire consist of a wide range of works, from 18th Century Baroque and 19th Century Bel canto to the Minimalism of the late 20th Century. These operas are presented in staged productions that range in style from those with elaborate traditional decors to others that feature modern conceptual designs.\nThe Met's performing company consists of a large symphony-sized orchestra, a chorus, children's choir, ballet company, and many supporting and leading solo singers. The Met's roster of singers includes both international and American artists, some of whose careers have been developed through the Met's young artists programs. While many singers appear as guests with the company, others, such as Renee Fleming and Placido Domingo, have long maintained a close association with the Met, appearing many times each season.\nThe company's annual operating budget for the 2011/12 season was $325 million, of which $182 million (43%) comes from private donations. The total potential audience across a season is 800,000 seats, but average audience rates for the 3800-seat theater in 2011 were just 79.2%, down from a peak of 88% in 2009.[1] Beyond performing in the opera house in New York, the Met has gradually expanded its audience through technology. It has broadcast regularly on radio since 1931 and on television since 1977. In 2006, the Met began live satellite radio and internet broadcasts as well as live high-definition video transmissions presented in cinemas throughout the world. In 2011, the total HD audience reached 3 million through 1600 theaters worldwide.",
+            "photos": [
+				"46.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "New York Stock Exchange",
+            "long": 40.70696,
+               "lat": -74.011041,
+               "index": 22,
+            "text": "The New York Stock Exchange, commonly referred to as the NYSE and occasionally as the Big Board, is a stock exchange located at 11 Wall Street, Lower Manhattan, New York City, New York, United States. It is by far the world's largest stock exchange by market capitalization of its listed companies at US$14.242 trillion as of Dec 2011. Average daily trading value was approximately US$153 billion in 2008.\nThe NYSE is operated by NYSE Euronext (NYSE: NYX), which was formed by the NYSE's 2007 merger with the fully electronic stock exchange Euronext. The NYSE trading floor is located at 11 Wall Street and is composed of four rooms used for the facilitation of trading. A fifth trading room, located at 30 Broad Street, was closed in February 2007. The main building, located at 18 Broad Street, between the corners of Wall Street and Exchange Place, was designated a National Historic Landmark in 1978, as was the 11 Wall Street building.",
+            "photos": [
+                "48.jpg",
+                "47.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Statue of Liberty",
+            "long": 40.689783,
+               "lat": -74.045326,
+               "index": 23,
+            "text": "The Statue of Liberty is a world famous symbol of freedom, given by France to the United States in celebration of friendship. Nearby Ellis Island was the first stop for millions of immigrants to the U.S. in the late 19th and early 20th centuries. The national monument recalls this period of massive immigration to the United States.\nLocation and access\nThe national monument is located in Upper New York Bay east of Liberty State Park in Jersey City, New Jersey and southwest of Battery Park at the tip of Manhattan in New York City. Entrance is free, but there is a charge for the ferry service that all visitors must use.\nIn 2007, a concession was granted to Statue Cruises to operate the transportation and ticketing facilities, replacing the Circle Line which had operated the service since 1953. The waters are patrolled by the US Park Police to enforce the restriction on private boat landings. Ferries depart from both parks and all boats stop at both islands, enabling passengers to visit both islands and choose either destination on the return trip.\nTickets can be purchased at Castle Clinton in Battery Park or at the Communipaw Terminal in Liberty State Park. Along with the ferry ticket, visitors intending to enter the statue's pedestal must also obtain a complimentary ticket Those wishing to climb the 154 stairs to the crown within the statue must obtain a special ticket, which may be reserved up to a year in advance. Ten people per group, three groups per hour, are permitted to ascend, allowing for a total of 240 per day. After an obligatory second security screening, they may bring only medication and cameras, leaving all other items in lockers provided.",
+            "photos": [
+                "52.jpg",
+                "49.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Solomon R. Guggenheim Museum",
+            "long": 40.783007,
+               "lat": -73.958996,
+               "index": 24,
+            "text": "The Solomon R. Guggenheim Museum (often referred to as The Guggenheim) is a well-known art museum located on the Upper East Side of Manhattan in New York City, in the U.S. state of New York. It is the permanent home of a renowned and continuously expanding collection of Impressionist, Post-Impressionist, early Modern and contemporary art and also features special exhibitions throughout the year. The museum was established by the Solomon R. Guggenheim Foundation in 1939 as the Museum of Non-Objective Painting, under the guidance of its first director, the artist Hilla von Rebay. It adopted its current name after the death of its founder, Solomon R. Guggenheim, in 1952.\nDesigned by Frank Lloyd Wright, the cylindrical museum building, wider at the top than the bottom, was conceived as a temple of the spirit and is one of the 20th century's most important architectural landmarks. The building opened on October 21, 1959, replacing rented spaces used by the museum since its founding. Its unique ramp gallery extends from just under the skylight in the ceiling in a long, continuous spiral along the outer edges of the building until it reaches the ground level. The building underwent extensive expansion and renovations from 1992 to 1993 (when an adjoining tower was built) and from 2005 to 2008. The museum's collection has grown organically, over eight decades, and is founded upon several important private collections, beginning with Solomon R. Guggenheim's original collection. The collection is shared with the museum's sister museums in Bilbao, Spain, and elsewhere. ",
+            "photos": [
+                "53.jpg",
+                "54.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Empire State Building",
+            "long": 40.748909,
+               "lat": -73.985662,
+               "index": 25,
+            "text": "The Empire State Building is a 102-story skyscraper located in Midtown Manhattan, New York City, at the intersection of Fifth Avenue and West 34th Street. It has a roof height of 1,250 feet (381 meters), and with its antenna spire included, it stands a total of 1,454 ft (443.2 m) high. Its name is derived from the nickname for New York, the Empire State. It stood as the world's tallest building for 40 years, from its completion in 1931 until construction of the World Trade Center's North Tower was completed in 1972. Following the September 11 attacks in 2001, the Empire State Building was again the tallest building in New York (although it was no longer the tallest in the US or the world). The Empire State Building was once again demoted to second-tallest building in New York on April 30, 2012, when the new One World Trade Center reached a greater height. The Empire State Building is currently the third-tallest completed skyscraper in the United States (after the Willis Tower and Trump International Hotel and Tower, both in Chicago), and the 22nd-tallest in the world (the tallest now is Burj Khalifa, located in Dubai). It is also the fourth-tallest freestanding structure in the Americas.\nThe Empire State Building is generally thought of as an American cultural icon. It is designed in the distinctive Art Deco style and has been named as one of the Seven Wonders of the Modern World by the American Society of Civil Engineers. The building and its street floor interior are designated landmarks of the New York City Landmarks Preservation Commission, and confirmed by the New York City Board of Estimate. It was designated as a National Historic Landmark in 1986. In 2007, it was ranked number one on the List of America's Favorite Architecture according to the AIA.\nThe building is owned and managed by W&H Properties. The Empire State Building is currently undergoing a $550 million renovation, with $120 million spent in an effort to transform the building into a more energy efficient and eco-friendly structure. Receiving a gold Leadership in Energy and Environmental Design (LEED) rating in September 2011, the Empire State Building is the tallest LEED certified building in the United States.",
+            "photos": [
+                "55.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Chrysler Building",
+            "long": 40.751839,
+               "lat": -73.975333,
+               "index": 26,
+            "text": "The Chrysler Building is an Art Deco style skyscraper in New York City, located on the east side of Manhattan in the Turtle Bay area at the intersection of 42nd Street and Lexington Avenue. At 1,046 feet (319 m), the structure was the world's tallest building for 11 months before it was surpassed by the Empire State Building in 1931. It is still the tallest brick building in the world, albeit with an internal steel skeleton. After the destruction of the World Trade Center, it was again the second-tallest building in New York City until December 2007, when the spire was raised on the 1,200-foot (365.8 m) Bank of America Tower, pushing the Chrysler Building into third position. In addition, The New York Times Building, which opened in 2007, is exactly level with the Chrysler Building in height. Both buildings were then pushed into 4th position, when the under construction One World Trade Center surpassed their height.\nThe Chrysler Building is a classic example of Art Deco architecture and considered by many contemporary architects to be one of the finest buildings in New York City. In 2007, it was ranked ninth on the List of America's Favorite Architecture by the American Institute of Architects. It was the headquarters of the Chrysler Corporation from 1930 until the mid-1950s, but, although the building was built and designed specifically for the car manufacturer, the corporation did not pay for the construction of it and never owned it, as Walter P. Chrysler decided to pay for it himself, so that his children could inherit it.",
+            "photos": [
+				"56.jpg",
+                "57.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Fifth Avenue",
+            "long": 40.74229,
+               "lat": -73.988973,
+               "index": 27,
+            "text": "Fifth Avenue is a major thoroughfare in the center of the borough of Manhattan in New York City, New York, United States. The section of Fifth Avenue that crosses Midtown Manhattan, especially that between 49th Street and 60th Street, is lined with prestigious shops and is consistently ranked among the most expensive shopping streets in the world. The most expensive street in the world moniker changes depending on currency fluctuations and local economic conditions from year to year. For several years starting in the mid-1990s, the shopping district between 49th and 57th Streets was ranked as having the world's most expensive retail spaces on a cost per square foot basis. In 2008, Forbes magazine ranked Fifth Avenue as being the most expensive street in the world. Some of the most coveted real estate on Fifth Avenue are the penthouses perched atop the buildings.",
+            "photos": [
+				"58.jpg",
+                "59.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Brooklyn Bridge",
+            "long": 40.705872,
+               "lat": -73.996644,
+               "index": 28,
+            "text": "The Brooklyn Bridge is a bridge in New York City and is one of the oldest suspension bridges in the United States. Completed in 1883, it connects the boroughs of Manhattan and Brooklyn by spanning the East River. With a main span of 1,595.5 feet (486.3 m), it was the longest suspension bridge in the world from its opening until 1903, and the first steel-wire suspension bridge.\nOriginally referred to as the New York and Brooklyn Bridge and as the East River Bridge, it was dubbed the Brooklyn Bridge, a name from an earlier January 25, 1867, letter to the editor of the Brooklyn Daily Eagle, and formally so named by the city government in 1915. Since its opening, it has become an icon of New York City, and was designated a National Historic Landmark in 1964 and a National Historic Civil Engineering Landmark in 1972.\nContemporaries marveled at what technology was capable of and the bridge became a symbol of the optimism of the time. John Perry Barlow wrote in the late 20th century of the literal and genuinely religious leap of faith embodied in the Brooklyn Bridge ... the Brooklyn Bridge required of its builders faith in their ability to control technology.\nThe Cuban poet Jose Marti wrote an article named The Bridge of Brooklyn for the magazine La America, published in June 1883, shortly after the bridge opened to the public. The article was published in his book Escenas norteamericanas. In the article, Marti made comparisons between certain animals (like snakes) and the structure of the bridge.\nReferences to selling the Brooklyn Bridge abound in American culture, sometimes as examples of rural gullibility but more often in connection with an idea that strains credulity. For example, If you believe that, I've got a bridge to sell you. George C. Parker and William McCloundy are two early 20th-century con-men who had (allegedly) successfully perpetrated this scam on unwitting tourists. The 1949 Bugs Bunny cartoon Bowery Bugs is a joking reference to Bugs selling a story of the Brooklyn Bridge to a naive tourist.\nThe Modernist American poet Hart Crane used the Brooklyn Bridge as a central metaphor and organizing structure for his second and most important book of poetry, The Bridge. This book takes the form of a long poem spanning eight parts, beginning with an ode (Proem: To Brooklyn Bridge) and ending with a transfigured vision of the bridge as the unifying symbol of America (Atlantis). Crane briefly lived in an apartment overlooking the bridge that, he later learned, once housed Washington Roebling, the Brooklyn Bridge's builder and son of its architect, John A. Roebling.",
+            "photos": [
+				"60.jpg",
+                "61.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Trinity Church (Manhattan)",
+            "long": 40.707997,
+               "lat": -74.011951,
+               "index": 29,
+            "text": "Trinity Church at 79 Broadway, Lower Manhattan, is a historic, active parish church in the Episcopal Diocese of New York.",
+            "photos": [
+                "62.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Times Square",
+            "long": 40.759009,
+               "lat": -73.984997,
+               "index": 30,
+            "text": "Times Square is a major commercial intersection in Midtown Manhattan, New York City, at the junction of Broadway and Seventh Avenue and stretching from West 42nd to West 47th Streets. Times Square – iconified as The Crossroads of the World and the The Great White Way – is the brightly illuminated hub of the Broadway theater district, one of the world's busiest pedestrian intersections, and a major center of the world's entertainment industry. According to Travel + Leisure magazine's October 2011 survey, Times Square is the world's most visited tourist attraction, bringing in over 39 million visitors annually.\nFormerly Longacre Square, Times Square was renamed in April 1904 after The New York Times moved its headquarters to the newly erected Times Building – now called One Times Square – site of the annual ball drop on New Year's Eve.\nThe northern triangle of Times Square is technically Duffy Square, dedicated in 1937 to Chaplain Francis P. Duffy of New York City's Fighting 69th Infantry Regiment; a memorial to Duffy is located there, along with a statue of George M. Cohan, and the TKTS discount theatre tickets booth. The stepped red roof of the TKTS booth also provides seating for various events. The theaters of Broadway and the huge number of animated neon and LED signs have long made them one of New York's iconic images, and a symbol of the intensely urban aspects of Manhattan. Times Square is the only neighborhood with zoning ordinances requiring building owners to display illuminated signs. The density of illuminated signs in Times Square now rivals that of Las Vegas. Officially, signs in Times Square are called spectaculars, and the largest of them are called jumbotrons.\nNotable signage includes the Toshiba billboard directly under the NYE ball drop and the curved seven-story NASDAQ sign at the NASDAQ MarketSite at 4 Times Square on 43rd Street and the curved Coca-Cola sign located underneath another large LED display owned and operated by Samsung. Both the Coca-Cola sign and Samsung LED displays were built by LED display manufacturer Daktronics.",
+            "photos": [
+				"63.jpg",
+				"64.jpg",
+                "65.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "American Museum of Natural History",
+            "long": 40.78124,
+               "lat": -73.973588,
+               "index": 31,
+            "text": "The American Museum of Natural History (abbreviated as AMNH), located on the Upper West Side of Manhattan in New York City is one of the largest and most celebrated museums in the world. Located in park-like grounds across the street from Central Park, the Museum comprises 25 interconnected buildings that house 46 permanent exhibition halls, research laboratories, and its renowned library.\nThe collections contain over 32 million specimens, of which only a small fraction can be displayed at any given time. The Museum has a scientific staff of more than 200, sponsors over 100 special field expeditions each year, and averages about five million visits annually.",
+            "photos": [
+				"66.jpg",
+				"67.jpg",
+                "68.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "New York Public Library",
+            "long": 40.753418,
+               "lat": -73.982353,
+               "index": 32,
+            "text": "The New York Public Library (NYPL) is a public library system in New York City. With nearly 53 million items, the New York Public Library is the second largest public library in the United States, behind only the Library of Congress. It is an independently managed, nonprofit corporation operating with both private and public financing. The library has branches in the boroughs of Manhattan, The Bronx and Staten Island and it has affiliations with academic and professional libraries in the metropolitan area of New York State. The City of New York's other two boroughs, Brooklyn and Queens, are served by the Brooklyn Public Library and the Queens Borough Public Library, respectively. The branch libraries are open to the general public and consist of research libraries and circulating libraries.\nThe library originated in the 19th century, and its founding and roots are the amalgamation of grass-roots libraries, social libraries of bibliophiles and the wealthy, and from philanthropy of the wealthiest Americans of their age.",
+            "photos": [
+                "69.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+						{
+            "name": "Columbus Circle",
+            "long": 40.768135,
+               "lat": -73.981978,
+               "index": 33,
+            "text": "Columbus Circle, named for Christopher Columbus, is a major landmark and point of attraction in the New York City borough of Manhattan, located at the intersection of Eighth Avenue, Broadway, Central Park South (West 59th Street), and Central Park West, at the southwest corner of Central Park. It is the point from which all official distances from New York City are measured. The name is also used for the neighborhood a few blocks around the circle in each direction. To the south of the circle lies Hell's Kitchen, also known as Clinton, and the Theatre District, and to the north is the Upper West Side.\nCompleted in 1905 and renovated a century later, the circle was designed by William P. Eno – a businessman who pioneered many early innovations in road safety and traffic control – as part of Frederick Law Olmsted's vision for Central Park, which included a Grand Circle at the Merchants' Gate, its most important Eighth Avenue entrance.\nThe monument at the center of Columbus Circle, created by Italian sculptor Gaetano Russo, was erected as part of New York's 1892 commemoration of the 400th anniversary of Columbus' landing in the Americas. Constructed with funds raised by Il Progresso, a New York City-based Italian-language newspaper, the monument consists of a marble statue of Columbus atop a 70-foot (21 m) granite rostral column decorated with bronze reliefs representing Columbus' ships: the Nina, the Pinta, and the Santa Maria. Its pedestal features an angel holding a globe.\nRenovations to the circle completed in 2005 included new water fountains by WET, of Fountains of Bellagio fame; wooden benches; and plantings encircling the monument. The inner circle measures approximately 36,000 square feet (3,300 m2), and the outer circle is approximately 148,000 square feet (13,700 m2). The redesign, by the Olin Partnership of Philadelphia, Pennsylvania, was the recipient of the 2006 American Society of Landscape Architects’ General Design Award Of Honor.",
+            "photos": [
+				"70.jpg",
+                "71.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       1
+                                                                                       ]
+                                                                        }
+                                                                        ]
+                                                                        }

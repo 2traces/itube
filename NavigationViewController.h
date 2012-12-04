@@ -32,6 +32,19 @@
 
 @end
 
+typedef enum {
+    HCPhotosVisibleFully,
+    HCPhotosHiddenFully,
+    HCPhotosHiddenMetroDefault,
+    HCPhotosHiddenMetroPath
+} HCPhotosPresentationMode;
+
+typedef enum {
+    HCMetroLayer,
+    HCOSMLayer,
+    HCBookmarksLayer,
+} HCLayerMode;
+
 @interface NavigationViewController : UIViewController <NavigationDelegate> {
     CategoriesViewController *categoriesController;
     PhotosViewController *photosController;
@@ -42,8 +55,8 @@
     UIView *separatingView;
     BOOL categoriesOpen;
     BOOL fMetroMode;
-    BOOL fBookmarksOpen;
-    BOOL fPhotosOpen;
+    HCPhotosPresentationMode photosMode;
+    HCLayerMode layerMode;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController;

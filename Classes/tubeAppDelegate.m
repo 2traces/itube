@@ -316,7 +316,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *mapFileName =[NSString stringWithString:[[dict objectForKey:@"default"] objectForKey:@"filename"]];
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+
+    NSString *mapFileName =[NSString stringWithString:[[dict objectForKey:bundleIdentifier] objectForKey:@"filename"]];
     [dict release];
     
     return mapFileName;
@@ -338,7 +340,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *cityFileName =[NSString stringWithString:[[dict objectForKey:@"default"] objectForKey:@"name"]];
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+
+    NSString *cityFileName =[NSString stringWithString:[[dict objectForKey:bundleIdentifier] objectForKey:@"name"]];
     [dict release];
     
     return cityFileName;
@@ -360,7 +364,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *mapUrl =[NSString stringWithString:[[dict objectForKey:@"default"] objectForKey:@"url1"]];
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+
+    NSString *mapUrl =[NSString stringWithString:[[dict objectForKey:bundleIdentifier] objectForKey:@"url1"]];
     [dict release];
     
     return mapUrl;
@@ -382,7 +388,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *mapUrl =[NSString stringWithString:[[dict objectForKey:@"default"] objectForKey:@"url2"]];
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+
+    NSString *mapUrl =[NSString stringWithString:[[dict objectForKey:bundleIdentifier] objectForKey:@"url2"]];
     [dict release];
     
     return mapUrl;

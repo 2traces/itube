@@ -78,12 +78,13 @@
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
     NSArray *mapIDs = [dict allKeys];
     NSMutableArray *mapsInfoArray = [[[NSMutableArray alloc] initWithCapacity:[mapIDs count]] autorelease];
-    
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+
     for (NSString* mapID in mapIDs) {
         NSMutableDictionary *product = [[NSMutableDictionary alloc] initWithDictionary:[dict objectForKey:mapID]];
         [product setObject:mapID forKey:@"prodID"];
         
-        if ([mapID isEqual:@"default"]) {
+        if ([mapID isEqual:bundleIdentifier]) {
             [product setObject:@"D" forKey:@"status"];
         } else if ([self isProductPurchased:mapID]) {
             if ([self isProductInstalled:[product valueForKey:@"filename"]]) {
@@ -598,8 +599,9 @@
     if (tableView==self.cityTableView) {
         NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
         tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-        
-        if ([[map objectForKey:@"prodID"] isEqual:@"default"]) {
+        NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+
+        if ([[map objectForKey:@"prodID"] isEqual:bundleIdentifier]) {
             self.selectedPath=indexPath;
             [tableView reloadData];    
             
@@ -838,7 +840,9 @@
 
 -(BOOL)isProductStatusDefault:(NSString*)prodID
 {
-    if ([prodID isEqual:@"default"]) {
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+
+    if ([prodID isEqual:bundleIdentifier]) {
         return YES;
     } 
     
@@ -869,10 +873,11 @@
         NSString *tempDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *path = [tempDir stringByAppendingPathComponent:[NSString stringWithFormat:@"maps.plist"]];
         [data writeToFile:path atomically:YES];
-        
+        NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+
         
         for (NSDictionary *mmap in self.maps) {
-            if ([self isProductPurchased:[mmap objectForKey:@"prodID"]] || [[mmap objectForKey:@"prodID"] isEqual:@"default"]) {
+            if ([self isProductPurchased:[mmap objectForKey:@"prodID"]] || [[mmap objectForKey:@"prodID"] isEqual:bundleIdentifier]) {
                 for (NSString *prodId in array) {
                     if ([prodId isEqual:[mmap objectForKey:@"prodID"]]) {
                         if ([[mmap objectForKey:@"ver"] integerValue]<[[[dict objectForKey:prodId] objectForKey:@"ver"] integerValue]) {
@@ -902,10 +907,11 @@
     if (!onceRestored) {
         // запрашиваем старые покупки
         [[TubeAppIAPHelper sharedHelper] restoreCompletedTransactions];
-        
+        NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+
         // если вышла новая версия дефолтной карты то ее сразу закачиваем
         for (NSString *prodId in productToDonwload) {
-            if ([prodId isEqual:@"default"]) {
+            if ([prodId isEqual:bundleIdentifier]) {
                 [self downloadProduct:prodId];
             }
         }
@@ -1052,7 +1058,7 @@
     
     NSString *mapName = [self getMapNameForProduct:prodID];   
     
-    NSString *mapFilePath = [NSString stringWithFormat:@"maps/%@/%@.zip",mapName,mapName];
+    NSString *mapFilePath = [NSString stringWithFormat:@"%@/%@.zip",mapName,mapName];
     requested_file_type=zip_;
     [server loadFileAtURL:mapFilePath];
 }

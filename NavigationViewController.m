@@ -71,7 +71,8 @@
     self.mainController.view.frame = self.glController.view.frame = self.separatingView.frame = mainViewFrame;
     
     fMetroMode = YES;
-    fPhotosOpen = YES;
+    layerMode = HCMetroLayer;
+    photosMode = HCPhotosVisibleFully;
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,184 +113,216 @@
 }
 
 - (void) showBookmarks:(id)sender {
-    if (fBookmarksOpen) {
-        [self hideBookmarksLayer];
-        if (!fPhotosOpen) {
-            [self showPhotos];
-        }
+    if (layerMode != HCBookmarksLayer) {
+        [self showBookmarksLayer];
     }
     else {
-        if (!fPhotosOpen) {
-            //Oops!
+        [self hideBookmarksLayer];
+        [self transitPhotosToMode:HCPhotosVisibleFully animated:YES];
+    }
+}
+
+- (void)transitPhotosToMode:(HCPhotosPresentationMode)mode animated:(BOOL)animated {
+    if (photosMode == mode) {
+        return;
+    }
+    photosMode = mode;
+
+    CGRect photosViewFrame = self.photosController.view.frame;
+    CGRect panelFrame = self.photosController.panelView.frame;
+    CGFloat animationDuration = animated ? 0.5 : 0;
+    
+    photosViewFrame.origin.x = 0;
+    panelFrame.origin = CGPointMake(0, 216);
+    [self.photosController.view addSubview:self.photosController.panelView];
+    self.photosController.panelView.frame = panelFrame;
+    self.photosController.view.frame = photosViewFrame;
+    
+    switch (mode) {
+        case HCPhotosVisibleFully:
+            self.photosController.disappearingView.alpha = 0;
             [self.mainController toggleTap];
-        }
-        [self showBookmarksLayer];
-        [self hidePhotos];
+
+            [UIView animateWithDuration:animationDuration animations:^{
+                CGRect photosViewFrame = self.photosController.view.frame;
+                photosViewFrame.origin.y = 0;
+                self.photosController.disappearingView.alpha = 1.0f;
+                self.photosController.view.frame = photosViewFrame;
+                self.photosController.placeNamePanel.hidden = NO;
+            } completion:^(BOOL finished) {
+            }];
+            break;
+        case HCPhotosHiddenFully:
+            self.photosController.disappearingView.alpha = 1;
+            self.photosController.placeNamePanel.hidden = NO;
+
+            [UIView animateWithDuration:animationDuration animations:^{
+                CGRect photosViewFrame = self.photosController.view.frame;
+                photosViewFrame.origin.y = -216;
+                self.photosController.disappearingView.alpha = 0;
+                self.photosController.view.frame = photosViewFrame;
+                self.photosController.placeNamePanel.hidden = YES;
+            } completion:^(BOOL finished) {
+            }];
+            break;
+        case HCPhotosHiddenMetroDefault:
+            [self.mainController.stationsView resetBothStations];
+            self.photosController.disappearingView.alpha = 1;
+            self.photosController.placeNamePanel.hidden = NO;
+
+            [UIView animateWithDuration:animationDuration animations:^{
+                CGRect photosViewFrame = self.photosController.view.frame;
+                photosViewFrame.origin.y = -176;
+                self.photosController.disappearingView.alpha = 0;
+                self.photosController.view.frame = photosViewFrame;
+            } completion:^(BOOL finished) {                
+                CGRect photosViewFrame = self.photosController.view.frame;
+                CGRect panelFrame = self.photosController.panelView.frame;
+                photosViewFrame.origin.x = 320;
+                panelFrame.origin = CGPointMake(0, 216 - 176);
+                [self.mainController.view insertSubview:self.photosController.panelView aboveSubview:self.mainController.stationsView];
+                self.photosController.panelView.frame = panelFrame;
+                self.photosController.view.frame = photosViewFrame;
+            }];
+            break;
+        case HCPhotosHiddenMetroPath:
+            [self.mainController toggleTap];
+            self.photosController.disappearingView.alpha = 1;
+            self.photosController.placeNamePanel.hidden = NO;
+
+            [UIView animateWithDuration:animationDuration animations:^{
+                CGRect photosViewFrame = self.photosController.view.frame;
+                photosViewFrame.origin.y = -176;
+                self.photosController.disappearingView.alpha = 0;
+                self.photosController.view.frame = photosViewFrame;
+            } completion:^(BOOL finished) {
+                self.photosController.placeNamePanel.hidden = YES;
+                CGRect photosViewFrame = self.photosController.view.frame;
+                CGRect panelFrame = self.photosController.panelView.frame;
+                photosViewFrame.origin.x = 320;
+                panelFrame.origin = CGPointMake(0, 216 - 176 - (44 - 28));
+                
+                [self.mainController.view insertSubview:self.photosController.panelView aboveSubview:self.mainController.stationsView];
+                
+                self.photosController.panelView.frame = panelFrame;
+                self.photosController.view.frame = photosViewFrame;
+            }];
+            break;
+            
+        default:
+            break;
     }
 }
 
 - (void)transitToPathMode{
-    if (!fPhotosOpen) {
-        self.photosController.placeNamePanel.hidden = YES;
-        CGRect panelFrame = self.photosController.panelView.frame;
-        panelFrame.origin = CGPointMake(0, 216 - 176 - (44 - 28));
-        self.photosController.panelView.frame = panelFrame;
-    }
-
+    [self transitPhotosToMode:HCPhotosHiddenMetroPath animated:NO];
 }
 
 - (void)transitToNormalMode {
-    if (!fPhotosOpen) {
-        self.photosController.placeNamePanel.hidden = NO;
-        CGRect panelFrame = self.photosController.panelView.frame;
-        panelFrame.origin = CGPointMake(0, 216 - 176);
-        self.photosController.panelView.frame = panelFrame;
-    }
-
-}
-
-- (void)showPhotos {
-    
-    CGRect photosViewFrame = self.photosController.view.frame;
-    CGRect panelFrame = self.photosController.panelView.frame;
-    
-    if (!fBookmarksOpen) {
-        photosViewFrame.origin.x = 0;
-        panelFrame.origin = CGPointMake(0, 216);
-        [self.photosController.view addSubview:self.photosController.panelView];
-        [self.mainController toggleTap];
-    }
-    else {
-        //For now we don't allow to show photos while browsing bookmarks
-        return;
-    }
-    
-    self.photosController.panelView.frame = panelFrame;
-    self.photosController.view.frame = photosViewFrame;
-    
-    [UIView animateWithDuration:0.5f animations:^{
-        CGRect photosViewFrame = self.photosController.view.frame;
-        photosViewFrame.origin.y = 0;
-        self.photosController.disappearingView.alpha = 1.0f;
-        self.photosController.view.frame = photosViewFrame;
-    } completion:^(BOOL finished) {
-        [self.mainController.stationsView resetBothStations];
-    }];
- 
-    fPhotosOpen = YES;
-}
-
-- (void)hidePhotos {
-    __block BOOL fBookmarksWereOpen = fBookmarksOpen;
-    [UIView animateWithDuration:0.5f animations:^{
-        CGRect photosViewFrame = self.photosController.view.frame;
-        if (fBookmarksWereOpen) {
-            photosViewFrame.origin.y = -216;
-        }
-        else {
-            photosViewFrame.origin.y = -176;
-            self.photosController.disappearingView.alpha = 0;
-        }
-        self.photosController.view.frame = photosViewFrame;
-    } completion:^(BOOL finished) {
-        if (!fBookmarksWereOpen) {
-            CGRect photosViewFrame = self.photosController.view.frame;
-            CGRect panelFrame = self.photosController.panelView.frame;
-            photosViewFrame.origin.x = 320;
-            panelFrame.origin = CGPointMake(0, 216 - 176);
-
-            if (fMetroMode) {
-                [self.mainController.view insertSubview:self.photosController.panelView aboveSubview:self.mainController.stationsView];
-            }
-            else {
-                [self.glController.view insertSubview:self.photosController.panelView aboveSubview:self.glController.stationsView];
-            }
-            
-            self.photosController.panelView.frame = panelFrame;
-            self.photosController.view.frame = photosViewFrame;
-        }
-    }];
-
-    
-    fPhotosOpen = NO;
+    [self transitPhotosToMode:HCPhotosHiddenMetroDefault animated:NO];
 }
 
 - (void) showHidePhotos:(id)sender {
-    if (categoriesOpen) {
+    if (categoriesOpen || layerMode == HCBookmarksLayer) {
         return;
     }
-    
-    if (fPhotosOpen) {
-        [self hidePhotos];
+    if (photosMode != HCPhotosVisibleFully) {
+        [self transitPhotosToMode:HCPhotosVisibleFully animated:YES];
     }
     else {
-        [self showPhotos];
+        if (layerMode == HCMetroLayer) {
+            [self transitPhotosToMode:HCPhotosHiddenMetroDefault animated:YES];
+        }
+        else {
+            [self transitPhotosToMode:HCPhotosHiddenFully animated:YES];
+        }
     }
  }
 
-- (void) showRasterMap {
-    [self hideBookmarksLayer];
-    if (fMetroMode) {
-        [self.view insertSubview:self.glController.view belowSubview:self.mainController.view];
-        [self.mainController.view removeFromSuperview];
-        fMetroMode =  NO;
-    }
-}
-
-- (void) showMetroMap {
-    [self hideBookmarksLayer];
-    if (!fMetroMode) {
-        [self.view insertSubview:self.mainController.view belowSubview:self.glController.view];
-        [self.glController.view removeFromSuperview];
-        fMetroMode = YES;
-    }
-}
-
-- (void) showBookmarksLayer {
-    if (fBookmarksOpen) {
+- (void) switchToLayerMode:(HCLayerMode)mode {
+    if (mode == layerMode) {
+        //If we're trying to set same layer, do nothing
         return;
     }
-    if (!self.bookmarksController) {
-        self.bookmarksController = [[[HCBookmarksViewController alloc] initWithNibName:@"HCBookmarksViewController" bundle:[NSBundle mainBundle]] autorelease];
-    }
-    [self.photosController.btShowHideBookmarks setImage:[UIImage imageNamed:@"bt_bookmarks_map"] forState:UIControlStateNormal];
-    if (fMetroMode) {
-        [self.view insertSubview:self.bookmarksController.view aboveSubview:self.mainController.view];
-    }
-    else {
-        [self.view insertSubview:self.bookmarksController.view aboveSubview:self.glController.view];
-    }
-    
-    if (!fPhotosOpen) {
-        CGRect photosViewFrame = self.photosController.view.frame;
-        CGRect panelFrame = self.photosController.panelView.frame;
-        
-        photosViewFrame.origin.x = 0;
-        panelFrame.origin = CGPointMake(0, 216);
-        [self.photosController.view addSubview:self.photosController.panelView];
-        self.photosController.panelView.frame = panelFrame;
-        self.photosController.view.frame = photosViewFrame;
-        photosViewFrame.origin.y = -216;
-        [UIView animateWithDuration:0.2f animations:^{
-            self.photosController.disappearingView.alpha = 1;
-
-            self.photosController.view.frame = photosViewFrame;
-        }];
-    }
-    
-    self.photosController.placeNamePanel.hidden = YES;
-    
-    fBookmarksOpen = YES;
-}
-
-- (void) hideBookmarksLayer {
-    if (fBookmarksOpen) {
+    if (layerMode == HCBookmarksLayer) {
+        //As bookmarks layer is just placed ABOVE map/metro layer, we need to first dismiss it
         [self.bookmarksController.view removeFromSuperview];
         [self.photosController.btShowHideBookmarks setImage:[UIImage imageNamed:@"bt_photo_like"] forState:UIControlStateNormal];
         self.photosController.placeNamePanel.hidden = NO;
-
-        fBookmarksOpen = NO;
+        if (fMetroMode) {
+            layerMode = HCMetroLayer;
+        }
+        else {
+            layerMode = HCOSMLayer;
+        }
     }
+    //As layerMode could have changed after removing bookmarks layer, check once more
+    if (mode != layerMode) {
+        switch (mode) {
+            case HCBookmarksLayer:
+                //Also, as bookmarks layer is simply placed ABOVE any other layer, if we need to show it, we just do
+                if (!self.bookmarksController) {
+                    self.bookmarksController = [[[HCBookmarksViewController alloc] initWithNibName:@"HCBookmarksViewController" bundle:[NSBundle mainBundle]] autorelease];
+                }
+                [self.photosController.btShowHideBookmarks setImage:[UIImage imageNamed:@"bt_bookmarks_map"] forState:UIControlStateNormal];
+                if (fMetroMode) {
+                    [self.view insertSubview:self.bookmarksController.view aboveSubview:self.mainController.view];
+                }
+                else {
+                    [self.view insertSubview:self.bookmarksController.view aboveSubview:self.glController.view];
+                }
+                [self transitPhotosToMode:HCPhotosHiddenFully animated:YES];
+                layerMode = HCBookmarksLayer;
+                break;
+            case HCMetroLayer:
+                [self.view insertSubview:self.mainController.view belowSubview:self.glController.view];
+                [self.glController.view removeFromSuperview];
+                fMetroMode = YES;
+                layerMode = HCMetroLayer;
+                break;
+            case HCOSMLayer:
+                [self.view insertSubview:self.glController.view belowSubview:self.mainController.view];
+                [self.mainController.view removeFromSuperview];
+                fMetroMode = NO;
+                layerMode = HCOSMLayer;
+                break; 
+                
+            default:
+                break;
+        }
+    }
+    //Adjust photos position
+    switch (layerMode) {
+        case HCBookmarksLayer:
+            [self transitPhotosToMode:HCPhotosHiddenFully animated:YES];
+            break;
+        case HCMetroLayer:
+            [self transitPhotosToMode:HCPhotosVisibleFully animated:YES];
+            break;
+        case HCOSMLayer:
+            [self transitPhotosToMode:HCPhotosVisibleFully animated:YES];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void) showRasterMap {
+    [self switchToLayerMode:HCOSMLayer];
+
+}
+
+- (void) showMetroMap {
+    [self switchToLayerMode:HCMetroLayer];
+}
+
+- (void) showBookmarksLayer {
+    [self switchToLayerMode:HCBookmarksLayer];
+}
+
+- (void) hideBookmarksLayer {
+    [self switchToLayerMode:fMetroMode ? HCMetroLayer : HCOSMLayer];
 }
 
 - (void) showReaderWithItems:(NSArray*)items activePage:(NSInteger)activePage {

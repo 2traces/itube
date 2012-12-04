@@ -416,7 +416,7 @@
         }
     } 
     if (fn == nil) {
-        fn = [[NSBundle mainBundle] pathForResource:fileName ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@",dir]];
+        fn = [[NSBundle mainBundle] pathForResource:fileName ofType:nil inDirectory:[NSString stringWithFormat:@"%@",dir]];
     }
     NSString *contents = [NSString stringWithContentsOfFile:fn encoding:NSUTF8StringEncoding error:nil];
     [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
