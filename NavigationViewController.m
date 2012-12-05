@@ -264,6 +264,9 @@
                 if (!self.bookmarksController) {
                     self.bookmarksController = [[[HCBookmarksViewController alloc] initWithNibName:@"HCBookmarksViewController" bundle:[NSBundle mainBundle]] autorelease];
                 }
+                CGRect frame = self.bookmarksController.view.frame;
+                frame.origin = CGPointMake(0, 0);
+                self.bookmarksController.view.frame = frame;
                 [self.photosController.btShowHideBookmarks setImage:[UIImage imageNamed:@"bt_bookmarks_map"] forState:UIControlStateNormal];
                 if (fMetroMode) {
                     [self.view insertSubview:self.bookmarksController.view aboveSubview:self.mainController.view];
@@ -351,6 +354,9 @@
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
+    if (layerMode == HCBookmarksLayer || self.presentedViewController) {
+            return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    }
     return (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
@@ -371,6 +377,7 @@
     } else {
 
         [self hideCategoriesAnimated:NO];
+        [self transitPhotosToMode:HCPhotosVisibleFully animated:NO];
         self.photosController.view.hidden = self.categoriesController.view.hidden = self.photosController.panelView.hidden = YES;
 
         
