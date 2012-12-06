@@ -183,28 +183,28 @@ GLint uniforms[NUM_UNIFORMS];
                 sprite = [[GlSprite alloc] initWithPicture:@"pin_yellow"];// RG.
                 break;
             case 9:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin_aqua"];  // .GB
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_9"];  // .GB
                 break;
             case 10:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin_brown"]; // rg.
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_10"]; // rg.
                 break;
             case 11:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin_lightblue"];// .gB
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_11"];// .gB
                 break;
             case 12:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin_pink"];  // RgB
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_12"];  // RgB
                 break;
             case 13:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin_red"];   // R..
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_13"];   // R..
                 break;
             case 14:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin_blue"];  // ..B
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_14"];  // ..B
                 break;
             case 15:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin_green"]; // .G.
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_15"]; // .G.
                 break;
             case 16:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin_yellow"];// RG.
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_16"];// RG.
                 break;
         }
         size = 32;
