@@ -19,6 +19,7 @@
 @synthesize scrollPhotos;
 @synthesize textView;
 @synthesize place;
+@synthesize currentPhotos;
 
 - (id)initWithPlaceObject:(MPlace*)_place
 {
@@ -55,34 +56,91 @@
 }
 
 
+- (UIImageView*)imageViewWithIndex:(NSInteger)index {
+    MPhoto *photo = self.currentPhotos[index];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[self imageForPhotoObject:photo]];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.clipsToBounds = YES;
+    if (imageView.frame.size.width < self.scrollPhotos.frame.size.width ||
+        imageView.frame.size.height < self.scrollPhotos.frame.size.height ) {
+        imageView.contentMode = UIViewContentModeCenter;
+        
+    }
+    imageView.frame = self.scrollPhotos.frame;
+    CGRect imageFrame = imageView.frame;
+    imageFrame.origin.x = self.scrollPhotos.frame.size.width * index;
+    imageFrame.origin.y = 0;
+    imageView.frame = imageFrame;
+    imageView.tag = index + 1;
+    return [imageView autorelease];
+}
+
+
 
 - (void)reloadScrollView {
     for (UIView *subview in self.scrollPhotos.subviews) {
         [subview removeFromSuperview];
     }
+    self.scrollPhotos.delegate = self;
     self.scrollPhotos.contentOffset = CGPointZero;
     NSInteger index = 0;
+    NSMutableArray *tempPhotos = [NSMutableArray arrayWithCapacity:[self.place.photos count]];
     for (MPhoto *photo in self.place.photos) {
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[self imageForPhotoObject:photo]];
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
-        imageView.clipsToBounds = YES;
-
-        if (imageView.frame.size.width < self.scrollPhotos.frame.size.width ||
-            imageView.frame.size.height < self.scrollPhotos.frame.size.height ) {
-            imageView.contentMode = UIViewContentModeCenter;
-            
-        }
-        imageView.frame = self.scrollPhotos.frame;
-        CGRect imageFrame = imageView.frame;
-        imageFrame.origin.x = self.scrollPhotos.frame.size.width * index;
-        imageFrame.origin.y = 0;
-        imageView.frame = imageFrame;
-        [self.scrollPhotos addSubview:[imageView autorelease]];
+        [tempPhotos addObject:photo];
         index++;
     }
+    self.currentPhotos = tempPhotos;
     self.scrollPhotos.contentSize = CGSizeMake(self.scrollPhotos.frame.size.width * index, self.scrollPhotos.frame.size.height);
     self.scrollPhotos.pagingEnabled = YES;
+    
+    currentPage = 0;
+    
+    //Preload first two images
+    UIImageView *imageView = nil;
+    if (index) {
+        imageView = [self imageViewWithIndex:currentPage];
+        [self.scrollPhotos addSubview:imageView];
+    }
+    if (index > 1) {
+        imageView = [self imageViewWithIndex:currentPage + 1];
+        [self.scrollPhotos addSubview:imageView];
+    }
+
 }
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSInteger page = (self.scrollPhotos.contentOffset.x / self.scrollPhotos.frame.size.width);
+    //NSLog(@"%f, %f", self.scrollPhotos.contentOffset.y, self.scrollPhotos.frame.size.width);
+    //NSInteger visiblePage = (self.scrollPhotos.contentOffset.y / self.scrollPhotos.frame.size.width);
+    // display the image and maybe +/-1 for a smoother scrolling
+	// but be sure to check if the image already exists, you can do this very easily using tags
+    
+    if (page != currentPage) {
+        currentPage = page;
+        
+        for (int i = currentPage - 1; i <= currentPage + 1; i++) {
+            if (i < 0 || i > [self.currentPhotos count] - 1) {
+                continue;
+            }
+            if ( [self.scrollPhotos viewWithTag:(i + 1)] ) {
+                continue;
+            }
+            else {
+                // view is missing, create it and set its tag to currentPage+1
+                UIImageView *imageView = [self imageViewWithIndex:i];
+                [self.scrollPhotos addSubview:imageView];
+            }
+        }
+        
+        for ( int i = 0; i < [self.currentPhotos count]; i++ ) {
+            if ( (i < (currentPage - 1) || i > (currentPage + 1)) && [self.scrollPhotos viewWithTag:(i + 1)] ) {
+                [[self.scrollPhotos viewWithTag:(i + 1)] removeFromSuperview];
+            }
+        }
+    }
+}
+
 
 
 @end

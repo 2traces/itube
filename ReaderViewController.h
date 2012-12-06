@@ -27,6 +27,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *lbHeader;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
+@property (nonatomic, retain) NSMutableDictionary *visibleItems;
 
 - (IBAction)back:(id)sender;
 

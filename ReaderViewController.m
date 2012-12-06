@@ -24,6 +24,7 @@
 @synthesize pageControl;
 @synthesize items;
 @synthesize itemViews;
+@synthesize visibleItems;
 
 - (IBAction)back:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -57,28 +58,50 @@
     [self.btStar setImage:btImage forState:UIControlStateNormal];
 }
 
+//Get item, if there is one
+- (ReaderItemViewController*)itemViewControllerForIndex:(NSInteger)index {
+    ReaderItemViewController *item = [self.visibleItems objectForKey:[NSNumber numberWithInteger:index]];
+    return item;
+}
+
+//Create a NEW item
+- (ReaderItemViewController*)itemViewControllerWithIndex:(NSInteger)index {
+    ReaderItemViewController *itemVC = [[ReaderItemViewController alloc] initWithPlaceObject:self.items[index]];
+    CGRect frame = itemVC.view.frame;
+    frame.origin = CGPointMake(self.scrollView.frame.size.width * index, 0);
+    itemVC.view.frame = frame;
+    return [itemVC autorelease];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.itemViews = [[[NSMutableArray alloc] initWithCapacity:5] autorelease];
-    CGFloat offset = 0;
-    for (MPlace *place in self.items) {
-        ReaderItemViewController *itemVC = [[ReaderItemViewController alloc] initWithPlaceObject:place];
-        CGRect frame = itemVC.view.frame;
-        frame.origin = CGPointMake(offset, 0);
-        offset += 320;
-        itemVC.view.frame = frame;
-        [self.scrollView addSubview:itemVC.view];
-        [self.itemViews addObject:[itemVC autorelease]];
-    }
-    self.scrollView.contentSize = CGSizeMake(offset, 440);
-    self.scrollView.contentOffset = CGPointMake(320 * currentPage, 0);
+    self.visibleItems = [NSMutableDictionary dictionaryWithCapacity:5];
+    self.scrollView.contentSize = CGSizeMake([self.items count] * self.scrollView.frame.size.width, 440);
+    self.scrollView.contentOffset = CGPointMake(self.scrollView.frame.size.width * currentPage, 0);
     [self.pageControl setNumberOfPages:[self.itemViews count]];
     [self.pageControl setCurrentPage:currentPage];
     self.lbHeader.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18.0f];
     self.btBack.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:13.0f];
+    
+    //Preload current item, -1 and +1
+    for (int i = currentPage - 1; i <= currentPage + 1; i++) {
+        if (i < 0 || i > [self.items count] - 1) {
+            continue;
+        }
+        if ( [self itemViewControllerForIndex:i] ) {
+            continue;
+        }
+        else {
+            // view is missing, create it and set its tag to currentPage+1
+            ReaderItemViewController *vc = [self itemViewControllerWithIndex:i];
+            [self.scrollView addSubview:vc.view];
+            [self.visibleItems setObject:vc forKey:[NSNumber numberWithInteger:i]];
+        }
+    }
+
+    
     [self updateInfoForCurrentPage];
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoTapped:)];
     tapGR.delegate = self;
@@ -105,12 +128,44 @@
 
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSInteger page = (self.scrollView.contentOffset.x + self.scrollView.frame.size.width/2 - 1) / self.scrollView.frame.size.width;
-    if (page != currentPage && page >=0 && page < [self.items count]) {
+    NSInteger page = (self.scrollView.contentOffset.x / self.scrollView.frame.size.width);
+    //NSLog(@"%f, %f", self.scrollPhotos.contentOffset.y, self.scrollPhotos.frame.size.width);
+    //NSInteger visiblePage = (self.scrollPhotos.contentOffset.y / self.scrollPhotos.frame.size.width);
+    // display the image and maybe +/-1 for a smoother scrolling
+	// but be sure to check if the image already exists, you can do this very easily using tags
+    
+    if (page != currentPage) {
         currentPage = page;
+        
+        for (int i = currentPage - 1; i <= currentPage + 1; i++) {
+            if (i < 0 || i > [self.items count] - 1) {
+                continue;
+            }
+            if ( [self itemViewControllerForIndex:i] ) {
+                continue;
+            }
+            else {
+                // view is missing, create it and set its tag to currentPage+1
+                ReaderItemViewController *vc = [self itemViewControllerWithIndex:i];
+                [self.scrollView addSubview:vc.view];
+                [self.visibleItems setObject:vc forKey:[NSNumber numberWithInteger:i]];
+            }
+        }
+        
+        for ( int i = 0; i < [self.items count]; i++ ) {
+            if ( (i < (currentPage - 1) || i > (currentPage + 1)) && [self itemViewControllerForIndex:i] ) {
+                ReaderItemViewController *vc = [self itemViewControllerForIndex:i];
+                [vc.view removeFromSuperview];
+                [self.visibleItems removeObjectForKey:[NSNumber numberWithInteger:i]];
+            }
+        }
+        
         [self updateInfoForCurrentPage];
         [self.pageControl setCurrentPage:currentPage];
+
     }
+    
+    
 }
 
 

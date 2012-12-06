@@ -34,17 +34,37 @@
         // Custom initialization
         NSMutableArray *tempArray = [NSMutableArray arrayWithCapacity:5];
         for (MPhoto* photo in place.photos) {
-            UIImage *image = [self imageForPhotoObject:photo];
-            if (image) {
-                UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-                [tempArray addObject:[imageView autorelease]];
-            }
+            [tempArray addObject:photo];
+            
+//            UIImage *image = [self imageForPhotoObject:photo];
+//            if (image) {
+//                UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+//                [tempArray addObject:[imageView autorelease]];
+//            }
         }
         self.photos = [NSArray arrayWithArray:tempArray];
     }
     return self;
 }
 
+- (UIScrollView*)zoomingViewWithIndex:(NSInteger)index {
+    MPhoto *photo = self.photos[index];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[self imageForPhotoObject:photo]];
+
+    UIScrollView *zoomView = [[UIScrollView alloc] initWithFrame:self.scrollView.frame];
+    zoomView.contentSize = imageView.frame.size;
+    [zoomView addSubview:[imageView autorelease]];
+    zoomView.delegate = self;
+    zoomView.tag = index + 1;
+    zoomView.maximumZoomScale = 2.0f;
+    zoomView.minimumZoomScale = zoomView.frame.size.width / imageView.frame.size.width;
+    CGRect frame = zoomView.frame;
+    frame.origin = CGPointMake(self.scrollView.frame.size.width * index, 0);
+    zoomView.frame = frame;
+    [zoomView setZoomScale:zoomView.minimumZoomScale];
+    zoomView.contentMode = (UIViewContentModeScaleAspectFit);
+    return [zoomView autorelease];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -58,27 +78,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    CGFloat offset = 0;
-    NSInteger index = 0;
-    // Do any additional setup after loading the view from its nib.
-    for (UIImageView *image in self.photos) {
-        UIScrollView *zoomView = [[UIScrollView alloc] initWithFrame:self.scrollView.frame];
-        zoomView.contentSize = image.frame.size;
-        [zoomView addSubview:image];
-        zoomView.delegate = self;
-        zoomView.tag = index;
-        zoomView.maximumZoomScale = 2.0f;
-        zoomView.minimumZoomScale = zoomView.frame.size.width / image.frame.size.width;
-        CGRect frame = zoomView.frame;
-        frame.origin = CGPointMake(offset, 0);
-        zoomView.frame = frame;
-        [zoomView setZoomScale:zoomView.minimumZoomScale];
-        zoomView.contentMode = (UIViewContentModeScaleAspectFit);
-        offset += self.scrollView.frame.size.width;
-        index++;
-        [self.scrollView addSubview:[zoomView autorelease]];
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [self.photos count], self.scrollView.frame.size.height);
+    
+    currentPage = 0;
+    //Preload first two images
+    UIScrollView *zoomView = nil;
+    if ([self.photos count]) {
+        zoomView = [self zoomingViewWithIndex:currentPage];
+        [self.scrollView addSubview:zoomView];
     }
-    self.scrollView.contentSize = CGSizeMake(offset, self.scrollView.frame.size.height);
+    if ([self.photos count] > 1) {
+        zoomView = [self zoomingViewWithIndex:currentPage + 1];
+        [self.scrollView addSubview:zoomView];
+    }
+
+    
     // Do any additional setup after loading the view from its nib.
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoTapped:)];
     tapGR.delegate = self;
@@ -118,9 +132,30 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)_scrollView {
     if (_scrollView == self.scrollView) {
-        NSInteger page = (self.scrollView.contentOffset.x + self.scrollView.frame.size.width/2 - 1) / self.scrollView.frame.size.width;
+        NSInteger page = (self.scrollView.contentOffset.x / self.scrollView.frame.size.width);
         if (page != currentPage) {
             currentPage = page;
+            
+            for (int i = currentPage - 1; i <= currentPage + 1; i++) {
+                if (i < 0 || i > [self.photos count] - 1) {
+                    continue;
+                }
+                if ( [self.scrollView viewWithTag:(i + 1)] ) {
+                    continue;
+                }
+                else {
+                    // view is missing, create it and set its tag to currentPage+1
+                    UIScrollView *zoomView = [self zoomingViewWithIndex:i];
+                    [self.scrollView addSubview:zoomView];
+                }
+            }
+            
+            for ( int i = 0; i < [self.photos count]; i++ ) {
+                if ( (i < (currentPage - 1) || i > (currentPage + 1)) && [self.scrollView viewWithTag:(i + 1)] ) {
+                    [[self.scrollView viewWithTag:(i + 1)] removeFromSuperview];
+                }
+            }
+            
         }
     }
 
@@ -136,7 +171,7 @@
         if ([subview isKindOfClass:[UIScrollView class]]) {
             _scrollView = (UIScrollView*)subview;
         }
-        if (_scrollView && _scrollView.tag != currentPage) {
+        if (_scrollView && _scrollView.tag != currentPage + 1) {
             _scrollView.zoomScale = _scrollView.minimumZoomScale;
         }
     }

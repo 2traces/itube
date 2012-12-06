@@ -332,7 +332,10 @@ static MHelper * _sharedHelper;
     [fetchRequest setPredicate:predicate];
     
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if(![fetchedItems count]) NSLog(@"photo not found %@", filename);
+    if(![fetchedItems count]) {
+        //NSLog(@"photo not found %@", filename);
+
+    }
     
     if ([fetchedItems count]>0) {
         return [fetchedItems objectAtIndex:0];

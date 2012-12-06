@@ -146,9 +146,18 @@
     [super dealloc];
 }
 
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath  {
+   // NSLog(@"DID DESELECT");
+}
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //NSLog(@"DID SELECT...");
+
     MCategory *category = self.categories[indexPath.row];
     [self.navigationDelegate selectCategoryWithIndex:[category.index integerValue]];
+   // NSLog(@"DID SELECT!");
+
 }
 
 

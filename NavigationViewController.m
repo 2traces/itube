@@ -337,8 +337,13 @@
 }
 
 - (void) selectCategoryWithIndex:(NSInteger)index {
+   // NSLog(@"getting places...");
     self.currentPlaces = [[MHelper sharedHelper] getPlacesForCategoryIndex:index];
+    //NSLog(@"done getting %i places!", [self.currentPlaces count]);
+   // NSLog(@"loading scroll view...");
     [photosController loadPlaces:self.currentPlaces];
+   // NSLog(@"done loading scroll view!");
+
 }
 
 - (void) selectPlaceWithIndex:(NSInteger)index {
