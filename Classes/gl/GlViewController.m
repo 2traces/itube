@@ -866,8 +866,8 @@ GLint uniforms[NUM_UNIFORMS];
     //glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _normalMatrix.m);
     glUniform1i(uniforms[UNIFORM_SAMPLER], 0);
     float sc = scale;
-    if(sc < 3.f) sc = 3.f;
-    if(sc > 2000.f) sc = 2000.f;
+    //if(sc < 3.f) sc = 3.f;
+    //if(sc > 2000.f) sc = 2000.f;
     float W = self.view.bounds.size.width, W2 = W*0.5f, H = self.view.bounds.size.height, H2 = H*0.5f;
     [rasterLayer drawGlInRect:CGRectMake(128 - position.x - W2/scale, 128 - position.y - H2/scale, W/scale, H/scale) withScale:sc];
     
