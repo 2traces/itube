@@ -61,5 +61,6 @@ MBProgressHUD *commonActivityIndicator;
 -(void)setCityMap:(CityMap*)cm;
 -(void)changeShadowFrameToRect:(CGRect)rect;
 -(CGRect)getMapVisibleRect;
+-(void)setGeoPosition:(CGPoint)geoPosition withZoom:(CGFloat)zoom;
 
 @end

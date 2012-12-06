@@ -36,11 +36,13 @@ GLint uniforms[NUM_UNIFORMS];
     CGFloat size;
     CGFloat offset, speed;
     float lastScale;
+    float distanceToUser;
 }
 
 @property (nonatomic, readonly) int Id;
 @property (nonatomic, readonly) CGPoint position;
 @property (nonatomic, assign) BOOL active;
+@property (nonatomic, assign) CGFloat distanceToUser;
 
 -(id)initWithId:(int)pinId andColor:(int)color;
 -(void)draw;
@@ -73,7 +75,7 @@ GLint uniforms[NUM_UNIFORMS];
     NSMutableArray *pinsArray;
     int newPinId;
     
-    CGPoint userPosition;
+    CGPoint userPosition, userGeoPosition;
 }
 @property (strong, nonatomic) EAGLContext *context;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
@@ -721,6 +723,10 @@ GLint uniforms[NUM_UNIFORMS];
     [p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
     [pinsArray addObject:p];
     [p setPosition:[self translateFromGeoToMap:coordinate]];
+    
+    // distance from user to pin
+    p.distanceToUser = [self calcGeoDistanceFrom:coordinate to:userGeoPosition];
+    
     return newId;
 }
 
@@ -1044,6 +1050,13 @@ GLint uniforms[NUM_UNIFORMS];
     return p;
 }
 
+-(CGFloat)calcGeoDistanceFrom:(CGPoint)p1 to:(CGPoint)p2
+{
+    const float cc = M_PI / 180.f;
+    float dis = 6371.21f * acosf(sinf(p1.x*cc)*sinf(p2.x*cc) + cosf(p1.x*cc)*cosf(p2.x*cc)*cosf(p1.y*cc+p2.y*cc));
+    return dis;
+}
+
 -(void)setGeoPosition:(CGRect)rect
 {
     const static double mult = 256.0 / 360.0;
@@ -1059,8 +1072,19 @@ GLint uniforms[NUM_UNIFORMS];
     scale = 256.f / r.size.height;
 }
 
+-(void)setGeoPosition:(CGPoint)geoCoords withZoom:(CGFloat)zoom
+{
+    const static double mult = 256.0 / 360.0;
+    float y = atanhf(sinf(geoCoords.x * M_PI / 180.f));
+    y = y * 256.f / (M_PI*2.f);
+    position.x = - geoCoords.y * mult;
+    position.y = y;
+    scale = zoom;
+}
+
 -(void)setUserGeoPosition:(CGPoint)point
 {
+    userGeoPosition = point;
     CGPoint up = [self translateFromGeoToMap:point];
     userPosition = up;
     Pin *p = [pinsArray objectAtIndex:0];
