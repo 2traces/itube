@@ -2,7 +2,7 @@
 //  CategoryCell.h
 //  tube
 //
-//  Created by Alexey Starovoitov on 12/11/12.
+//  Created by Alexey on 12/11/12.
 //
 //
 

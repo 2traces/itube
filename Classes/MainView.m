@@ -411,8 +411,13 @@ NSInteger const toolbarWidth=320;
     // будет выбрана не реальная гео позиция, а станция метро с ближайшими координатами
     Station *st = [mapView.cityMap findNearestStationTo:geoPosition];
 	
-    [containerView setContentScaleFactor:zoom];
-    [containerView setContentOffset:CGPointMake(st.pos.x * mapView.Scale, st.pos.y * mapView.Scale ) animated:YES];
+    NSLog(@"Closest station is: %@", st.name);
+    
+    if (zoom != -1) {
+        [containerView setContentScaleFactor:zoom];
+    }
+    
+    [containerView setContentOffset:CGPointMake(st.pos.x * mapView.Scale, st.pos.y * mapView.Scale) animated:YES];
 }
 
 @end

@@ -2,7 +2,7 @@
 //  PhotoViewerViewController.m
 //  tube
 //
-//  Created by Alexey Starovoitov on 28/11/12.
+//  Created by Alexey on 28/11/12.
 //
 //
 

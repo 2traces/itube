@@ -2,7 +2,7 @@
 //  PhotosViewController.h
 //  tube
 //
-//  Created by Alexey Starovoitov on 5/11/12.
+//  Created by Alexey on 5/11/12.
 //
 //
 

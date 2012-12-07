@@ -26,9 +26,17 @@
 -(FastAccessTableViewController*)showTableView;
 -(void)returnFromSelectionFastAccess:(NSArray *)stations;
 -(void)setGeoPosition:(CGRect)rect;
+
+//Center map on point with long/lat
 -(void)setGeoPosition:(CGPoint)geoCoords withZoom:(CGFloat)zoom;
+//Calculate distance
+-(CGFloat)calcGeoDistanceFrom:(CGPoint)p1 to:(CGPoint)p2;
+//Set pin
+-(int)newPin:(CGPoint)coordinate color:(int)color name:(NSString*)name;
+
+
 -(void)setUserGeoPosition:(CGPoint)point;
--(void)setStationsPosition:(NSArray*)coords;
--(CGPoint)translateFromGeoToMap:(CGPoint)pm;
+-(void)setStationsPosition:(NSArray*)coords withNames:(NSArray*)names andMarks:(BOOL)marks;
+-(void)errorWithGeoLocation;
 
 @end

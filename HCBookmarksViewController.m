@@ -2,7 +2,7 @@
 //  HCBookmarksViewController.m
 //  tube
 //
-//  Created by Alexey Starovoitov on 14/11/12.
+//  Created by Alexey on 14/11/12.
 //
 //
 

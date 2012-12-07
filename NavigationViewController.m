@@ -2,7 +2,7 @@
 //  NavigationViewController.m
 //  tube
 //
-//  Created by Alexey Starovoitov on 5/11/12.
+//  Created by Alexey on 5/11/12.
 //
 //
 
@@ -337,22 +337,18 @@
 }
 
 - (void) selectCategoryWithIndex:(NSInteger)index {
-   // NSLog(@"getting places...");
     self.currentPlaces = [[MHelper sharedHelper] getPlacesForCategoryIndex:index];
-    //NSLog(@"done getting %i places!", [self.currentPlaces count]);
-   // NSLog(@"loading scroll view...");
     [photosController loadPlaces:self.currentPlaces];
-   // NSLog(@"done loading scroll view!");
 
 }
 
 - (void) selectPlaceWithIndex:(NSInteger)index {
     MPlace *place = [[MHelper sharedHelper] getPlaceWithIndex:index];
     CGPoint placePosition = CGPointMake([place.posX floatValue], [place.posY floatValue]);
-    placePosition = [self.glController translateFromGeoToMap:placePosition];
     
-    
-    //[(MainView*)(self.mainController.view) selectStationAt:placePosition];
+    [(MainView*)(self.mainController.view) setGeoPosition:placePosition withZoom:-1];
+    [self.glController setGeoPosition:placePosition withZoom:-1];
+    [self.glController newPin:placePosition color:1 name:place.name];
 }
 
 

@@ -61,6 +61,8 @@ MBProgressHUD *commonActivityIndicator;
 -(void)setCityMap:(CityMap*)cm;
 -(void)changeShadowFrameToRect:(CGRect)rect;
 -(CGRect)getMapVisibleRect;
--(void)selectStationAt:(CGPoint)currentPosition;
+
+//Centering map on station
+-(void)setGeoPosition:(CGPoint)geoPosition withZoom:(CGFloat)zoom;
 
 @end

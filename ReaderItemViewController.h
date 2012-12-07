@@ -2,7 +2,7 @@
 //  ReaderItemViewController.h
 //  tube
 //
-//  Created by Alexey Starovoitov on 16/11/12.
+//  Created by Alexey on 16/11/12.
 //
 //
 

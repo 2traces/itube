@@ -1079,8 +1079,10 @@ GLint uniforms[NUM_UNIFORMS];
     float y = atanhf(sinf(geoCoords.x * M_PI / 180.f));
     y = y * 256.f / (M_PI*2.f);
     position.x = - geoCoords.y * mult;
-    position.y = y;
-    scale = zoom;
+    position.y = y + 230;
+    if (zoom != -1) {
+        scale = zoom;
+    }
 }
 
 -(void)setUserGeoPosition:(CGPoint)point
