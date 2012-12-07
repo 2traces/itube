@@ -62,6 +62,7 @@
 		572B63311656830800B415DC /* bt_star_solid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B632D1656830800B415DC /* bt_star_solid@2x.png */; };
 		572B63321656830800B415DC /* reader_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B632E1656830800B415DC /* reader_bg@2x.png */; };
 		572B63331656830800B415DC /* sample_pic_reader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B632F1656830800B415DC /* sample_pic_reader@2x.png */; };
+		5758F1731672902300A12E35 /* paris-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 577DE74F166E2F15006BA43A /* paris-Info.plist */; };
 		5771A32E1652ABA500332A7D /* panel_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5771A32D1652ABA500332A7D /* panel_bg@2x.png */; };
 		5771A3311652AD1200332A7D /* sample_photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5771A3301652AD1200332A7D /* sample_photo@2x.png */; };
 		5771A3341652AE1B00332A7D /* bt_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5771A3321652AE1B00332A7D /* bt_star@2x.png */; };
@@ -3980,6 +3981,7 @@
 				577DEBCF166E3E34006BA43A /* paris-Default@2x.png in Resources */,
 				577DEBD0166E3E34006BA43A /* icon.png in Resources */,
 				577DEBDF166E404C006BA43A /* icon@2x.png in Resources */,
+				5758F1731672902300A12E35 /* paris-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
