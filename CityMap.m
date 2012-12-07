@@ -3001,9 +3001,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     return nearest;
 }
 
--(CGRect)getGeoCoordsForRect:(CGRect)rect coordinates:(NSMutableArray*)coordinates
+-(CGRect)getGeoCoordsForRect:(CGRect)rect coordinates:(NSMutableArray*)coordinates names:(NSMutableArray *)names
 {
     [coordinates removeAllObjects];
+    [names removeAllObjects];
     CGRect geo = CGRectZero;
     for(Line *l in mapLines) {
         for (Station *s in l.stations) {
@@ -3012,7 +3013,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 if(geo.origin.x == 0 || geo.origin.y == 0) geo = r;
                 else geo = CGRectUnion(geo, r);
                 r.size.width = r.size.height = l.shortColorCode;
-                if(s.active) [coordinates addObject:[NSValue valueWithCGRect:r]];
+                if(s.active) {
+                    [coordinates addObject:[NSValue valueWithCGRect:r]];
+                    [names addObject:s.name];
+                }
             }
         }
     }

@@ -26,6 +26,7 @@
 -(FastAccessTableViewController*)showTableView;
 -(void)returnFromSelectionFastAccess:(NSArray *)stations;
 -(void)setGeoPosition:(CGRect)rect;
+-(void)setGeoPosition:(CGPoint)geoCoords withZoom:(CGFloat)zoom;
 -(void)setUserGeoPosition:(CGPoint)point;
 -(void)setStationsPosition:(NSArray*)coords;
 -(CGPoint)translateFromGeoToMap:(CGPoint)pm;

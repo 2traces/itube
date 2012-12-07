@@ -16,6 +16,7 @@
 #import "TubeAppIAPHelper.h"
 #import "DemoMapViewController.h"
 #import "SSZipArchive.h"
+#import "SSTheme.h"
 
 #define plist_ 1
 #define zip_  2
@@ -151,6 +152,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    SSThemeManager *theme = [SSThemeManager sharedTheme];
         
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];

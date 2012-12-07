@@ -13,6 +13,7 @@
 #import "SelectingTabBarViewController.h"
 #import "GlSprite.h"
 #import "GlView.h"
+#import "GlPanel.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -22,6 +23,7 @@ enum
     UNIFORM_MODELVIEWPROJECTION_MATRIX,
     //UNIFORM_NORMAL_MATRIX,
     UNIFORM_SAMPLER,
+    UNIFORM_COLOR,
     NUM_UNIFORMS
 };
 GLint uniforms[NUM_UNIFORMS];
@@ -30,16 +32,24 @@ GLint uniforms[NUM_UNIFORMS];
     int _id;
     CGPoint pos;
     GlSprite *sprite;
+    SmallPanel *sp;
     CGFloat size;
     CGFloat offset, speed;
+    float lastScale;
+    float distanceToUser;
 }
 
 @property (nonatomic, readonly) int Id;
+@property (nonatomic, readonly) CGPoint position;
+@property (nonatomic, assign) BOOL active;
+@property (nonatomic, assign) CGFloat distanceToUser;
+
 -(id)initWithId:(int)pinId andColor:(int)color;
--(void)setPosition:(CGPoint)point;
 -(void)draw;
 -(void)drawWithScale:(CGFloat)scale;
+-(void)drawPanelWithScale:(CGFloat)scale;
 -(void)fallFrom:(CGFloat)distance at:(CGFloat)speed;
+-(CGRect)bounds;
 @end
 
 
@@ -65,7 +75,7 @@ GLint uniforms[NUM_UNIFORMS];
     NSMutableArray *pinsArray;
     int newPinId;
     
-    CGPoint userPosition;
+    CGPoint userPosition, userGeoPosition;
 }
 @property (strong, nonatomic) EAGLContext *context;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
@@ -84,6 +94,20 @@ GLint uniforms[NUM_UNIFORMS];
 
 @implementation Pin
 @synthesize Id = _id;
+
+-(void)setActive:(BOOL)active
+{
+    if(active) {
+        [sp show];
+    } else {
+        [sp hide];
+    }
+}
+
+-(BOOL)active
+{
+    return !sp.closed;
+}
 
 -(id)initWithId:(int)pinId andColor:(int)color
 {
@@ -120,6 +144,71 @@ GLint uniforms[NUM_UNIFORMS];
                 break;
         }
         size = 32;
+        sp = [[SmallPanel alloc] initWithText:@"Hello!"];
+    }
+    return self;
+}
+
+-(id) initWithId:(int)pinId color:(int)color andText:(NSString*)text
+{
+    if((self = [super init])) {
+        _id = pinId;
+        switch (color) {
+            case 0:
+            default:
+                sprite = [[GlSprite alloc] initWithPicture:@"user_pos"];
+                break;
+            case 1:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_aqua"];  // .GB
+                break;
+            case 2:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_brown"]; // rg.
+                break;
+            case 3:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_lightblue"];// .gB
+                break;
+            case 4:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_pink"];  // RgB
+                break;
+            case 5:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_red"];   // R..
+                break;
+            case 6:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_blue"];  // ..B
+                break;
+            case 7:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_green"]; // .G.
+                break;
+            case 8:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_yellow"];// RG.
+                break;
+            case 9:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_9"];  // .GB
+                break;
+            case 10:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_10"]; // rg.
+                break;
+            case 11:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_11"];// .gB
+                break;
+            case 12:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_12"];  // RgB
+                break;
+            case 13:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_13"];   // R..
+                break;
+            case 14:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_14"];  // ..B
+                break;
+            case 15:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_15"]; // .G.
+                break;
+            case 16:
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_16"];// RG.
+                break;
+        }
+        size = 32;
+        sp = [[SmallPanel alloc] initWithText:text];
     }
     return self;
 }
@@ -127,6 +216,12 @@ GLint uniforms[NUM_UNIFORMS];
 -(void)setPosition:(CGPoint)point
 {
     pos = point;
+    sp.position = point;
+}
+
+-(CGPoint)position
+{
+    return pos;
 }
 
 -(void)draw
@@ -134,14 +229,21 @@ GLint uniforms[NUM_UNIFORMS];
     const CGFloat s2 = size * 0.5f;
     [sprite setRect:CGRectMake(pos.x-s2, pos.y-s2-offset, size, size)];
     [sprite draw];
+    [sp drawWithScale:1.f];
 }
 
 -(void)drawWithScale:(CGFloat)scale
 {
+    lastScale = scale;
     size = 32.f / scale;
     const CGFloat s2 = size * 0.5f;
     [sprite setRect:CGRectMake(pos.x-s2, pos.y-s2-offset, size, size)];
     [sprite draw];
+}
+
+-(void)drawPanelWithScale:(CGFloat)scale
+{
+    [sp drawWithScale:scale];
 }
 
 -(void)update:(CGFloat)dTime
@@ -150,16 +252,25 @@ GLint uniforms[NUM_UNIFORMS];
         offset -= dTime * speed;
         if(offset < 0.f) offset = 0.f;
     }
+    [sp update:dTime];
 }
 
--(void)fallFrom:(CGFloat)distance at:(CGFloat)sp
+-(void)fallFrom:(CGFloat)distance at:(CGFloat)spd
 {
     offset = distance;
-    speed = sp;
+    speed = spd;
+}
+
+-(CGRect)bounds
+{
+    size = 32.f / lastScale;
+    const CGFloat s2 = size * 0.5f;
+    return CGRectMake(pos.x-s2, pos.y-s2-offset, size, size);
 }
 
 -(void)dealloc
 {
+    [sp release];
     [sprite release];
     [super dealloc];
 }
@@ -237,6 +348,8 @@ GLint uniforms[NUM_UNIFORMS];
     [view addGestureRecognizer:rec2];
     UIPinchGestureRecognizer *rec3 = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
     [view addGestureRecognizer:rec3];
+    UILongPressGestureRecognizer *rec4 = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    [view addGestureRecognizer:rec4];
     [self setupGL];
     
     rasterLayer = [[RasterLayer alloc] initWithRect:CGRectMake(0, 0, 256, 256) mapName:@"cuba"];
@@ -270,7 +383,7 @@ GLint uniforms[NUM_UNIFORMS];
     view.zonesButton = zones;
 
     // user geo position
-    Pin *p = [[Pin alloc] initWithId:0 andColor:0];
+    Pin *p = [[Pin alloc] initWithId:0 color:0 andText:@"You are here!"];
     [pinsArray addObject:p];
     [p setPosition:userPosition];
     newPinId = 1;
@@ -324,6 +437,29 @@ GLint uniforms[NUM_UNIFORMS];
 {
     scale *= 1.5f;
     panVelocity = CGPointZero;
+}
+
+-(void)handleSingleTap:(UITapGestureRecognizer*)recognizer
+{
+    if(recognizer.state != UIGestureRecognizerStateEnded) return;
+    CGPoint p = [recognizer locationInView:self.view];
+    float x = (p.x - self.view.bounds.size.width*0.5f)/scale + 128 - position.x, y = (p.y - self.view.bounds.size.height*0.5f)/scale + 128 - position.y;
+    NSMutableArray *selected = [NSMutableArray array];
+    for (Pin *pin in pinsArray) {
+        CGRect r = [pin bounds];
+        if(CGRectContainsPoint(r, CGPointMake(x, y))) {
+            [selected addObject: pin];
+        } else if(pin.active) {
+            pin.active = NO;
+        }
+    }
+    if([selected count] > 0) {
+        for (Pin *pin in selected) {
+            pin.active = NO;
+        }
+        // select one lucky pin
+        [[selected objectAtIndex:0] setActive:YES];
+    }
 }
 
 -(void)handlePinch:(UIPinchGestureRecognizer*)recognizer
@@ -575,15 +711,23 @@ GLint uniforms[NUM_UNIFORMS];
     currentSelection=tempSelection;
 }
 
--(int)newPin:(CGPoint)coordinate color:(int)color
+-(int)newPin:(CGPoint)coordinate color:(int)color name:(NSString*)name
 {
     int newId = newPinId;
     newPinId ++;
-    Pin *p = [[Pin alloc] initWithId:newId andColor:color];
+    Pin *p = nil;
+    if(name != nil)
+        p = [[Pin alloc] initWithId:newId color:color andText:name];
+    else
+        p = [[Pin alloc] initWithId:newId andColor:color];
     float dist = 256.f/scale;
     [p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
     [pinsArray addObject:p];
     [p setPosition:[self translateFromGeoToMap:coordinate]];
+    
+    // distance from user to pin
+    p.distanceToUser = [self calcGeoDistanceFrom:coordinate to:userGeoPosition];
+    
     return newId;
 }
 
@@ -723,8 +867,8 @@ GLint uniforms[NUM_UNIFORMS];
     //glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _normalMatrix.m);
     glUniform1i(uniforms[UNIFORM_SAMPLER], 0);
     float sc = scale;
-    if(sc < 3.f) sc = 3.f;
-    if(sc > 2000.f) sc = 2000.f;
+    //if(sc < 3.f) sc = 3.f;
+    //if(sc > 2000.f) sc = 2000.f;
     float W = self.view.bounds.size.width, W2 = W*0.5f, H = self.view.bounds.size.height, H2 = H*0.5f;
     [rasterLayer drawGlInRect:CGRectMake(128 - position.x - W2/scale, 128 - position.y - H2/scale, W/scale, H/scale) withScale:sc];
     
@@ -735,6 +879,9 @@ GLint uniforms[NUM_UNIFORMS];
 {
     for (Pin *p in pinsArray) {
         [p drawWithScale:scale];
+    }
+    for (Pin *p in pinsArray) if(p.active) {
+        [p drawPanelWithScale:scale];
     }
 }
 
@@ -771,7 +918,7 @@ GLint uniforms[NUM_UNIFORMS];
     // Bind attribute locations.
     // This needs to be done prior to linking.
     glBindAttribLocation(_program, GLKVertexAttribPosition, "position");
-    //glBindAttribLocation(_program, GLKVertexAttribNormal, "normal");
+    //glBindAttribLocation(_program, GLKVertexAttribColor, "color");
     glBindAttribLocation(_program, GLKVertexAttribTexCoord0, "uv");
     
     // Link program.
@@ -798,6 +945,7 @@ GLint uniforms[NUM_UNIFORMS];
     uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(_program, "modelViewProjectionMatrix");
     //uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(_program, "normalMatrix");
     uniforms[UNIFORM_SAMPLER] = glGetUniformLocation(_program, "sampler");
+    uniforms[UNIFORM_COLOR] = glGetUniformLocation(_program, "color");
     
     // Release vertex and fragment shaders.
     if (vertShader) {
@@ -903,6 +1051,13 @@ GLint uniforms[NUM_UNIFORMS];
     return p;
 }
 
+-(CGFloat)calcGeoDistanceFrom:(CGPoint)p1 to:(CGPoint)p2
+{
+    const float cc = M_PI / 180.f;
+    float dis = 6371.21f * acosf(sinf(p1.x*cc)*sinf(p2.x*cc) + cosf(p1.x*cc)*cosf(p2.x*cc)*cosf(p1.y*cc+p2.y*cc));
+    return dis;
+}
+
 -(void)setGeoPosition:(CGRect)rect
 {
     const static double mult = 256.0 / 360.0;
@@ -918,21 +1073,52 @@ GLint uniforms[NUM_UNIFORMS];
     scale = 256.f / r.size.height;
 }
 
+-(void)setGeoPosition:(CGPoint)geoCoords withZoom:(CGFloat)zoom
+{
+    const static double mult = 256.0 / 360.0;
+    float y = atanhf(sinf(geoCoords.x * M_PI / 180.f));
+    y = y * 256.f / (M_PI*2.f);
+    position.x = - geoCoords.y * mult;
+    position.y = y;
+    scale = zoom;
+}
+
 -(void)setUserGeoPosition:(CGPoint)point
 {
+    userGeoPosition = point;
     CGPoint up = [self translateFromGeoToMap:point];
     userPosition = up;
     Pin *p = [pinsArray objectAtIndex:0];
     if(p != nil) [p setPosition:up];
 }
 
--(void)setStationsPosition:(NSArray *)coords
+-(void)setStationsPosition:(NSArray *)coords withNames:(NSArray*)names andMarks:(BOOL)marks
 {
     [self removeAllPins];
-    for (NSValue *v in coords) {
-        CGRect r = [v CGRectValue];
-        [self newPin:r.origin color:r.size.width];
+    for (int i=0; i<[coords count]; i++) {
+        CGRect r = [[coords objectAtIndex:i] CGRectValue];
+        if(i < [names count]) {
+            [self newPin:r.origin color:r.size.width name:[names objectAtIndex:i]];
+        } else {
+            [self newPin:r.origin color:r.size.width name:nil];
+        }
+        if(marks && (i == 0 || i == [coords count]-1)) {
+            [[pinsArray lastObject] setActive:YES];
+        }
     }
 }
 
+-(void)errorWithGeoLocation
+{
+    
+}
+
 @end
+
+void SetColor(float r, float g, float b, float a) {
+    glUniform4f(uniforms[UNIFORM_COLOR], r, g, b, a);
+}
+
+void ResetColor() {
+    glUniform4f(uniforms[UNIFORM_COLOR], 1.f, 1.f, 1.f, 1.f);
+}
