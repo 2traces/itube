@@ -252,7 +252,7 @@
 
 -(UIFont *)backbuttonTitleFont
 {
-    return [UIFont fontWithName:@"MyriadPro-Semibold" size:13.0];
+    return [UIFont fontWithName:@"MyriadPro-Semibold" size:14.0];
 }
 
 - (UIImage *)barButtonBackgroundForState:(UIControlState)state style:(UIBarButtonItemStyle)style barMetrics:(UIBarMetrics)barMetrics
@@ -338,6 +338,59 @@
 - (CGFloat)widthSettingsCellTableView
 {
     return 320.0;
+}
+
+- (UIImage *)buybuttonBackgroundForState:(UIControlState)state
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"newdes_buy_button.png";
+    } else if (state == UIControlStateHighlighted) {
+//        name = @"newdes_demo_buy_pressed.png";
+        return nil;
+    }
+    UIImage *image = [UIImage imageNamed:name];
+    return image;
+}
+
+- (UIImage *)greenbuttonBackgroundForState:(UIControlState)state
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"newdes_green_button.png";
+    } else if (state == UIControlStateHighlighted) {
+        //        name = @"newdes_demo_buy_pressed.png";
+        return nil;
+    }
+    UIImage *image = [UIImage imageNamed:name];
+    return image;
+}
+
+- (UIImage *)bluebuttonBackgroundForState:(UIControlState)state
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"newdes_blue_button.png";
+    } else if (state == UIControlStateHighlighted) {
+        name = @"newdes_blue_button.png";
+    }
+    UIImage *image = [UIImage imageNamed:name];
+    return image;
+}
+
+-(UIColor *)buyButtonFontColorInstalled
+{
+    return [UIColor whiteColor];
+}
+
+-(UIColor *)buyButtonFontColorAvailable
+{
+    return [UIColor colorWithRed:81.0/255.0 green:79.0/255.0 blue:78.0/255.0 alpha:1.0];
+}
+
+-(UIFont *)buyButtonFont
+{
+    return [UIFont fontWithName:@"MyriadPro-Semibold" size:15.0];
 }
 
 @end

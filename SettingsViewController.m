@@ -16,6 +16,8 @@
 #import "DemoMapViewController.h"
 #import "SSZipArchive.h"
 #import "SSTheme.h"
+#import <Social/Social.h>
+#import <Twitter/Twitter.h>
 
 #define plist_ 1
 #define zip_  2
@@ -55,7 +57,15 @@
             selectedLanguages = [[NSMutableArray alloc] initWithObjects:[languages objectAtIndex:currentLanguageIndex], nil];
         }
 
-        self.feedback = [NSArray arrayWithObjects:NSLocalizedString(@"FeedbackRate",@"FeedbackRate"),NSLocalizedString(@"FeedbackMail",@"FeedbackMail"),NSLocalizedString(@"FeedbackTell",@"FeedbackTell"), nil];
+        self.feedback = [NSMutableArray arrayWithObjects:NSLocalizedString(@"FeedbackRate",@"FeedbackRate"),NSLocalizedString(@"FeedbackMail",@"FeedbackMail"),NSLocalizedString(@"FeedbackTell",@"FeedbackTell"), nil];
+        
+        if ([self isTwitterAvailable]) {
+            [self.feedback addObject:NSLocalizedString(@"FeedbackTwitter",@"FeedbackTwitter")];
+        }
+             
+        if ([self isFacebookAvailable]) {
+            [self.feedback addObject:NSLocalizedString(@"FeedbackFacebook",@"FeedbackFacebook")];
+        }
         
         isFirstTime=YES;
     }
@@ -188,15 +198,30 @@
     
     [barButtonItem_back setBackgroundImage:[theme backBackgroundForState:UIControlStateNormal barMetrics:UIBarMetricsDefault] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [barButtonItem_back setBackgroundImage:[theme backBackgroundForState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    
+    [barButtonItem_back  setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[theme backButtonTitleColor], UITextAttributeTextColor, [theme backbuttonTitleFont], UITextAttributeFont, [theme titleShadowColor], UITextAttributeTextShadowColor, [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset, nil] forState:UIControlStateNormal];
+    [barButtonItem_back  setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[theme backButtonPressedTitleColor], UITextAttributeTextColor, [theme backbuttonTitleFont], UITextAttributeFont, [theme titleShadowColor], UITextAttributeTextShadowColor, [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset, nil] forState:UIControlStateDisabled];
+    [barButtonItem_back  setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[theme backButtonPressedTitleColor], UITextAttributeTextColor, [theme backbuttonTitleFont], UITextAttributeFont, [theme backButtonTitleColor], UITextAttributeTextShadowColor, [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset, nil] forState:UIControlStateHighlighted];
 
 #if defined(NEW_THEME)
+    [updateButton setFrame:CGRectMake(0, updateButton.frame.origin.y, 320, updateButton.frame.size.height)];
+    [updateButton setImage:nil forState:UIControlStateNormal];
+    [updateButton setImage:nil forState:UIControlStateHighlighted];
+    [updateButton setTitle:@"Update" forState:UIControlStateNormal];
+    [updateButton setTitle:@"Update" forState:UIControlStateHighlighted];
+    [[updateButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
+    [updateButton setTitleColor:[theme mainColor] forState:UIControlStateNormal];
+    [updateButton setBackgroundImage:[theme middleCellSettingsTableImageNormal] forState:UIControlStateNormal];
+    [updateButton setBackgroundImage:[theme middleCellSettingsTableImageHighlighted] forState:UIControlStateHighlighted];
+    [updateButton setTitleEdgeInsets:UIEdgeInsetsMake(7, 15, 0, 0)];
+    
     [barButtonItem_back setBackgroundVerticalPositionAdjustment:-2.0f forBarMetrics:UIBarMetricsDefault];
     [barButtonItem_back setTitlePositionAdjustment:UIOffsetMake(5.0, 3.0f) forBarMetrics:UIBarMetricsDefault];
+    
+    updateImageView.image = [UIImage imageNamed:@"newdes_pregressArrows.png"];
 #else
     [barButtonItem_back setTitlePositionAdjustment:UIOffsetMake(2.0, 3.0f) forBarMetrics:UIBarMetricsDefault];
 #endif
-
-    
 
     self.navigationItem.leftBarButtonItem=barButtonItem_back;
     
@@ -410,30 +435,36 @@
         if ([self isProductStatusDefault:[map objectForKey:@"prodID"]] || [self isProductStatusInstalled:[map objectForKey:@"prodID"]]) {
             [cellButton setTitle:@"Installed" forState:UIControlStateNormal];
             [cellButton setTitle:@"Installed" forState:UIControlStateHighlighted];
-            [cellButton setBackgroundImage:[UIImage imageNamed:@"blue_button.png"] forState:UIControlStateNormal];
-            [cellButton setBackgroundImage:[UIImage imageNamed:@"blue_button.png"] forState:UIControlStateHighlighted];
-            [cellButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
+            [cellButton setBackgroundImage:[theme bluebuttonBackgroundForState:UIControlStateNormal] forState:UIControlStateNormal];
+            [cellButton setBackgroundImage:[theme bluebuttonBackgroundForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+            [cellButton setTitleColor:[theme buyButtonFontColorInstalled] forState:UIControlStateNormal];
+            [[cellButton titleLabel] setFont:[theme buyButtonFont]];
+            
             
         } else if ([self isProductStatusPurchased:[map objectForKey:@"prodID"]])  {
             
             [cellButton setTitle:@"Install" forState:UIControlStateNormal];
             [cellButton setTitle:@"Install" forState:UIControlStateHighlighted];
-            [cellButton setBackgroundImage:[UIImage imageNamed:@"green_button.png"] forState:UIControlStateNormal];
-            [cellButton setBackgroundImage:[UIImage imageNamed:@"high_green_button.png"] forState:UIControlStateHighlighted];
-            [cellButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
+            [cellButton setBackgroundImage:[theme greenbuttonBackgroundForState:UIControlStateNormal] forState:UIControlStateNormal];
+            [cellButton setBackgroundImage:[theme greenbuttonBackgroundForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+            [cellButton setTitleColor:[theme buyButtonFontColorInstalled] forState:UIControlStateNormal];
+            [[cellButton titleLabel] setFont:[theme buyButtonFont]];
             
         } else if ([self isProductStatusAvailable:[map objectForKey:@"prodID"]])  {
             
             [cellButton setTitle:[map valueForKey:@"price"] forState:UIControlStateNormal];
             [cellButton setTitle:[map valueForKey:@"price"] forState:UIControlStateHighlighted];
-            [cellButton setBackgroundImage:[UIImage imageNamed:@"buy_button.png"] forState:UIControlStateNormal];
-            [cellButton setBackgroundImage:[UIImage imageNamed:@"high_buy_button.png"] forState:UIControlStateHighlighted];
-            [cellButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
+            [cellButton setBackgroundImage:[theme buybuttonBackgroundForState:UIControlStateNormal] forState:UIControlStateNormal];
+            [cellButton setBackgroundImage:[theme buybuttonBackgroundForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+            [cellButton setTitleColor:[theme buyButtonFontColorAvailable] forState:UIControlStateNormal];
+            [[cellButton titleLabel] setFont:[theme buyButtonFont]];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            
+
+            [[cellButton titleLabel] setShadowColor:[UIColor whiteColor]];
+            [[cellButton titleLabel] setShadowOffset:CGSizeMake(0, 1)];
+            [cellButton setTitleEdgeInsets:UIEdgeInsetsMake(5, 0, 0, 0)];
+
+
         } else if ([self isProductStatusDownloading:[map objectForKey:@"prodID"]]){
             
             cellButton.hidden=YES;
@@ -742,8 +773,15 @@
         } else if (indexPath.row==1) {
             tubeAppDelegate *appDelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
             [self showMailComposer:[NSArray arrayWithObject:[NSString stringWithFormat:@"fusio@yandex.ru"]] subject:[NSString stringWithFormat:@"%@ map",[appDelegate getDefaultCityName]] body:nil];
-        } else {
+        } else if (indexPath.row==2){
             [self showMailComposer:nil subject:NSLocalizedString(@"FeedbackTellSubject", @"FeedbackTellSubject") body:NSLocalizedString(@"FeedbackTellBody", @"FeedbackTellBody")];
+        } else {
+            CityCell *cell = (CityCell*)[tableView cellForRowAtIndexPath:indexPath];
+            if ([cell.cityName.text isEqual:NSLocalizedString(@"FeedbackTwitter",@"FeedbackTwitter")]) {
+                [self sendTweet];
+            } else if ([cell.cityName.text isEqual:NSLocalizedString(@"FeedbackFacebook",@"FeedbackFacebook")]) {
+                [self postFacebook];
+            }
         }
     }
 }
@@ -1351,6 +1389,68 @@
     [resultTitle release];
     [resultMsg release];
     [self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark  - Social
+
+-(BOOL)isTwitterAvailable
+{
+    Class class = NSClassFromString(@"SLComposeViewController");
+    if (!class) {
+        Class class2 = NSClassFromString(@"TWTweetComposeViewController");
+        if(!class2) {
+            return NO;
+        } else {
+            return [TWTweetComposeViewController canSendTweet];
+        }
+    } else {
+        return [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter];
+    }
+}
+
+-(BOOL)isFacebookAvailable
+{
+    Class class = NSClassFromString(@"SLComposeViewController");
+    if (!class) {
+        return NO;
+    } else {
+        return [SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook];
+    }
+}
+
+-(void)sendTweet
+{
+    Class class = NSClassFromString(@"SLComposeViewController");
+    if (class) {
+        SLComposeViewController *composeController = [SLComposeViewController
+                                                      composeViewControllerForServiceType:SLServiceTypeTwitter];
+        
+        [composeController setInitialText:@"Check this great Metro.Paris app"];
+        NSString *string = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIconFiles"] objectAtIndex:0];
+        [composeController addImage:[UIImage imageNamed:string]];
+        [composeController addURL: [NSURL URLWithString:[[NSUserDefaults standardUserDefaults] objectForKey:@"AppStoreURL"]]];
+        
+        [self presentViewController:composeController animated:YES completion:nil];
+    } else {
+        TWTweetComposeViewController *tweetSheet =
+        [[TWTweetComposeViewController alloc] init];
+        [tweetSheet setInitialText:@"Check this great Metro.Paris app"];
+        [tweetSheet addImage:[UIImage imageNamed: [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIconFiles"] objectAtIndex:0]]];
+        [tweetSheet addURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] objectForKey:@"AppStoreURL"]]];
+        [self presentModalViewController:tweetSheet animated:YES];
+    }
+}
+
+-(void)postFacebook
+{
+    SLComposeViewController *composeController = [SLComposeViewController
+                                                  composeViewControllerForServiceType:SLServiceTypeFacebook];
+    
+    [composeController setInitialText:@"Check this great Metro.Paris app"];
+    [composeController addImage:[UIImage imageNamed: [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIconFiles"] objectAtIndex:0]]];
+    [composeController addURL: [NSURL URLWithString:[[NSUserDefaults standardUserDefaults] objectForKey:@"AppStoreURL"]]];
+    
+    [self presentViewController:composeController animated:YES completion:nil];
 }
 
 @end

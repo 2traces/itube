@@ -46,6 +46,7 @@
     [self.imageConnection cancel];
     self.imageConnection = nil;
     self.activeDownload = nil;
+    self.delegate=nil;
 }
 
 //- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse

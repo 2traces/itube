@@ -66,7 +66,7 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 - (UIColor *)backButtonTitleColor;
 - (UIColor *)backButtonPressedTitleColor;
 - (UIImage *)buttonBackgroundForState:(UIControlState)state;
--(UIFont*)fontForDemoBuyButton;
+//-(UIFont*)fontForDemoBuyButton;
 
 - (UIImage *)firstAndLastCellSettingsTableImageNormal;
 - (UIImage *)firstAndLastCellSettingsTableImageHighlighted;
@@ -78,6 +78,15 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 - (UIImage *)middleCellSettingsTableImageHighlighted;
 
 - (CGFloat)widthSettingsCellTableView;
+- (UIColor*)titleShadowColor;
+
+- (UIImage *)buybuttonBackgroundForState:(UIControlState)state;
+- (UIImage *)greenbuttonBackgroundForState:(UIControlState)state;
+- (UIImage *)bluebuttonBackgroundForState:(UIControlState)state;
+
+-(UIColor *)buyButtonFontColorInstalled;
+-(UIColor *)buyButtonFontColorAvailable;
+-(UIFont *)buyButtonFont;
 
 @end
 

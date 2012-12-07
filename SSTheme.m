@@ -35,6 +35,8 @@
 //        [navigationBarAppearance setShadowImage:[theme topShadow]];
 //    }
     
+    [navigationBarAppearance setBackgroundColor:[UIColor clearColor]];
+    
     NSDictionary *textTitleOptions = [NSDictionary dictionaryWithObjectsAndKeys:[theme highlightColor], UITextAttributeTextColor, [theme navigationTitleFont], UITextAttributeFont, [theme titleShadowColor],UITextAttributeTextShadowColor,[NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset, nil];
     
     [navigationBarAppearance setTitleTextAttributes:textTitleOptions];
@@ -48,10 +50,10 @@
     
 #if defined(NEW_THEME)
     [barButtonItemAppearance setBackButtonBackgroundVerticalPositionAdjustment:-2.0f forBarMetrics:UIBarMetricsDefault];
-//    [navigationBarAppearance setTitleVerticalPositionAdjustment:3.0f forBarMetrics:UIBarMetricsDefault];
+    [navigationBarAppearance setTitleVerticalPositionAdjustment:3.0f forBarMetrics:UIBarMetricsDefault];
     [barButtonItemAppearance setBackButtonTitlePositionAdjustment:UIOffsetMake(0.0f, 1.0f) forBarMetrics:UIBarMetricsDefault];
 #else
-//    [navigationBarAppearance setTitleVerticalPositionAdjustment:4.0f forBarMetrics:UIBarMetricsDefault];
+    [navigationBarAppearance setTitleVerticalPositionAdjustment:4.0f forBarMetrics:UIBarMetricsDefault];
     [barButtonItemAppearance setBackButtonTitlePositionAdjustment:UIOffsetMake(0.0f, 1.0f) forBarMetrics:UIBarMetricsDefault];
 #endif
 
@@ -63,9 +65,10 @@
 //    [barButtonItemAppearance setBackgroundImage:[theme barButtonBackgroundForState:UIControlStateNormal style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsLandscapePhone] forState:UIControlStateNormal style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsLandscapePhone];
 //    [barButtonItemAppearance setBackgroundImage:[theme barButtonBackgroundForState:UIControlStateHighlighted style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsLandscapePhone] forState:UIControlStateHighlighted style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsLandscapePhone];
     
-    [barButtonItemAppearance setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[theme backButtonTitleColor], UITextAttributeTextColor, [theme backbuttonTitleFont], UITextAttributeFont, [UIColor clearColor], UITextAttributeTextShadowColor, nil] forState:UIControlStateNormal];
-    [barButtonItemAppearance setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[theme backButtonPressedTitleColor], UITextAttributeTextColor, [theme backbuttonTitleFont], UITextAttributeFont, [UIColor clearColor], UITextAttributeTextShadowColor, nil] forState:UIControlStateDisabled];
-    [barButtonItemAppearance setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[theme backButtonPressedTitleColor], UITextAttributeTextColor, [theme backbuttonTitleFont], UITextAttributeFont, [UIColor clearColor], UITextAttributeTextShadowColor, nil] forState:UIControlStateHighlighted];
+    [barButtonItemAppearance setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[theme backButtonTitleColor], UITextAttributeTextColor, [theme backbuttonTitleFont], UITextAttributeFont, [theme titleShadowColor], UITextAttributeTextShadowColor, [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset, nil] forState:UIControlStateNormal];
+    [barButtonItemAppearance setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[theme backButtonPressedTitleColor], UITextAttributeTextColor, [theme backbuttonTitleFont], UITextAttributeFont, [theme titleShadowColor], UITextAttributeTextShadowColor, [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset, nil] forState:UIControlStateDisabled];
+    [barButtonItemAppearance setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[theme backButtonPressedTitleColor], UITextAttributeTextColor, [theme backbuttonTitleFont], UITextAttributeFont, [theme backButtonTitleColor], UITextAttributeTextShadowColor, [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset, nil] forState:UIControlStateHighlighted];
+    
 //    [barButtonItemAppearance setTitlePositionAdjustment:UIOffsetMake(0.0, 3.0f) forBarMetrics:UIBarMetricsDefault];
 
 //    [barButtonItemAppearance setBackgroundImage:[theme barButtonBackgroundForState:UIControlStateNormal style:UIBarButtonItemStyleBordered barMetrics:UIBarMetricsDefault] forState:UIControlStateNormal style:UIBarButtonItemStyleBordered barMetrics:UIBarMetricsDefault];

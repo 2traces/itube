@@ -263,14 +263,26 @@
 
 - (UIImage *)barButtonBackgroundForState:(UIControlState)state style:(UIBarButtonItemStyle)style barMetrics:(UIBarMetrics)barMetrics
 {
-    UIImage *image = [UIImage imageNamed:@"backButtonBG.png"];
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"backButtonBG.png";
+    } else if (state == UIControlStateHighlighted) {
+        name = @"backButtonBGPressed.png";
+    }
+    UIImage *image = [UIImage imageNamed:name];
     image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 18.0, 0.0, 10.0)];
     return image;
 }
 
 - (UIImage *)backBackgroundForState:(UIControlState)state barMetrics:(UIBarMetrics)barMetrics
 {
-    UIImage *image = [UIImage imageNamed:@"backButtonBG.png"];
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"backButtonBG.png";
+    } else if (state == UIControlStateHighlighted) {
+        name = @"backButtonBGPressed.png";
+    }
+    UIImage *image = [UIImage imageNamed:name];
     image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 18.0, 0.0, 10.0)];
     return image;
 }
@@ -332,6 +344,57 @@
 - (CGFloat)widthSettingsCellTableView
 {
     return 304.0;
+}
+
+- (UIImage *)buybuttonBackgroundForState:(UIControlState)state
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"buy_button.png";
+    } else if (state == UIControlStateHighlighted) {
+        name = @"high_buy_button.png";
+    }
+    UIImage *image = [UIImage imageNamed:name];
+    return image;
+}
+
+- (UIImage *)greenbuttonBackgroundForState:(UIControlState)state
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"green_button.png";
+    } else if (state == UIControlStateHighlighted) {
+        name = @"high_green_button.png";
+    }
+    UIImage *image = [UIImage imageNamed:name];
+    return image;
+}
+
+- (UIImage *)bluebuttonBackgroundForState:(UIControlState)state
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"blue_button.png";
+    } else if (state == UIControlStateHighlighted) {
+        name = @"blue_button.png";
+    }
+    UIImage *image = [UIImage imageNamed:name];
+    return image;
+}
+
+-(UIColor *)buyButtonFontColorInstalled
+{
+    return [UIColor whiteColor];
+}
+
+-(UIColor *)buyButtonFontColorAvailable
+{
+    return [UIColor blackColor];
+}
+
+-(UIFont *)buyButtonFont
+{
+    return [UIFont fontWithName:@"MyriadPro-Semibold" size:15.0];
 }
 
 @end
