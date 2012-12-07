@@ -63,6 +63,9 @@
 		572B63321656830800B415DC /* reader_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B632E1656830800B415DC /* reader_bg@2x.png */; };
 		572B63331656830800B415DC /* sample_pic_reader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B632F1656830800B415DC /* sample_pic_reader@2x.png */; };
 		5758F1731672902300A12E35 /* paris-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 577DE74F166E2F15006BA43A /* paris-Info.plist */; };
+		5758F1751672913F00A12E35 /* berlin-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107310486CEB800E47090 /* berlin-Info.plist */; };
+		5758F1761672914800A12E35 /* venice-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 577DE973166E2F1E006BA43A /* venice-Info.plist */; };
+		5758F1771672914F00A12E35 /* nyc-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 577DEB96166E2F22006BA43A /* nyc-Info.plist */; };
 		5771A32E1652ABA500332A7D /* panel_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5771A32D1652ABA500332A7D /* panel_bg@2x.png */; };
 		5771A3311652AD1200332A7D /* sample_photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5771A3301652AD1200332A7D /* sample_photo@2x.png */; };
 		5771A3341652AE1B00332A7D /* bt_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5771A3321652AE1B00332A7D /* bt_star@2x.png */; };
@@ -4345,6 +4348,7 @@
 				577DEBD9166E3E42006BA43A /* iTunesArtwork in Resources */,
 				577DEBDC166E403E006BA43A /* icon.png in Resources */,
 				577DEBDD166E403E006BA43A /* icon@2x.png in Resources */,
+				5758F1751672913F00A12E35 /* berlin-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4705,6 +4709,7 @@
 				577DE906166E2F1D006BA43A /* bt_mode_metro@2x.png in Resources */,
 				577DEBA7166E3137006BA43A /* venice in Resources */,
 				577DEBC7166E3E0B006BA43A /* venice-Default@2x.png in Resources */,
+				5758F1761672914800A12E35 /* venice-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5065,6 +5070,7 @@
 				577DEB29166E2F21006BA43A /* bt_mode_metro@2x.png in Resources */,
 				577DEBA9166E37C1006BA43A /* nyc in Resources */,
 				577DEBC9166E3E16006BA43A /* nyc-Default@2x.png in Resources */,
+				5758F1771672914F00A12E35 /* nyc-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
