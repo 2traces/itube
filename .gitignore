@@ -1,9 +1,7 @@
 
-tube.xcodeproj/project.xcworkspace/xcuserdata/s.sojik.xcuserdatad/WorkspaceSettings.xcsettings
+tube.xcodeproj/project.xcworkspace/xcuserdata/
 
-tube.xcodeproj/project.xcworkspace/xcuserdata/s.sojik.xcuserdatad/UserInterfaceState.xcuserstate
-
-tube.xcodeproj/project.xcworkspace/xcuserdata/s.sojik.xcuserdatad/UserInterfaceState.xcuserstate
+tube.xcodeproj/xcuserdata/
 
 *.xcuserstate
 
@@ -11,4 +9,4 @@ tube.xcodeproj/project.xcworkspace/xcuserdata/s.sojik.xcuserdatad/UserInterfaceS
 
 *.xcscheme
 
-*.plist
+*.pbxuser
