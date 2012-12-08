@@ -44,6 +44,7 @@
 		51D4D935160EF39400C9D02B /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 51D4D92D160EF35500C9D02B /* Shader.vsh */; };
 		51D4D947160EF88300C9D02B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D4D946160EF88300C9D02B /* OpenGLES.framework */; };
 		51D4D94A160EF8AF00C9D02B /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D4D949160EF8AF00C9D02B /* GLKit.framework */; };
+		51DCC9E61673F5D7005BAB6C /* paris-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51DCC9E51673F5D7005BAB6C /* paris-Info.plist */; };
 		51F15F7714D99A3800D11B79 /* VectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F15F7614D99A3800D11B79 /* VectorLayer.m */; };
 		57047DAF16569C1400DED155 /* reader_separator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57047DAE16569C1400DED155 /* reader_separator@2x.png */; };
 		572B62B41653F34500B415DC /* HCBookmarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 572B62B21653F34500B415DC /* HCBookmarksViewController.m */; };
@@ -62,7 +63,6 @@
 		572B63311656830800B415DC /* bt_star_solid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B632D1656830800B415DC /* bt_star_solid@2x.png */; };
 		572B63321656830800B415DC /* reader_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B632E1656830800B415DC /* reader_bg@2x.png */; };
 		572B63331656830800B415DC /* sample_pic_reader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 572B632F1656830800B415DC /* sample_pic_reader@2x.png */; };
-		5758F1731672902300A12E35 /* paris-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 577DE74F166E2F15006BA43A /* paris-Info.plist */; };
 		5758F1751672913F00A12E35 /* berlin-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107310486CEB800E47090 /* berlin-Info.plist */; };
 		5758F1761672914800A12E35 /* venice-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 577DE973166E2F1E006BA43A /* venice-Info.plist */; };
 		5758F1771672914F00A12E35 /* nyc-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 577DEB96166E2F22006BA43A /* nyc-Info.plist */; };
@@ -1942,6 +1942,7 @@
 		51DA320016611F4000424D3E /* select_near_station_bw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = select_near_station_bw.png; path = images/select_near_station_bw.png; sourceTree = "<group>"; };
 		51DA320116611F4000424D3E /* select_near_station_bw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "select_near_station_bw@2x.png"; path = "images/select_near_station_bw@2x.png"; sourceTree = "<group>"; };
 		51DA320216611F4100424D3E /* select_near_station@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "select_near_station@2x.png"; path = "images/select_near_station@2x.png"; sourceTree = "<group>"; };
+		51DCC9E51673F5D7005BAB6C /* paris-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "paris-Info.plist"; sourceTree = "<group>"; };
 		51F15F7514D99A3800D11B79 /* VectorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VectorLayer.h; path = Classes/VectorLayer.h; sourceTree = "<group>"; };
 		51F15F7614D99A3800D11B79 /* VectorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VectorLayer.m; path = Classes/VectorLayer.m; sourceTree = "<group>"; };
 		57047DAE16569C1400DED155 /* reader_separator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reader_separator@2x.png"; path = "images/hidden_cities/reader_separator@2x.png"; sourceTree = "<group>"; };
@@ -2652,6 +2653,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				51DCC9E51673F5D7005BAB6C /* paris-Info.plist */,
 				BC76ACF1151B1A74009BDABC /* minizip */,
 				289233A00DB2D0730083E9F9 /* Main View */,
 				281C6CD70DB2D82200F60ACC /* Flipside View */,
@@ -3984,7 +3986,7 @@
 				577DEBCF166E3E34006BA43A /* paris-Default@2x.png in Resources */,
 				577DEBD0166E3E34006BA43A /* icon.png in Resources */,
 				577DEBDF166E404C006BA43A /* icon@2x.png in Resources */,
-				5758F1731672902300A12E35 /* paris-Info.plist in Resources */,
+				51DCC9E61673F5D7005BAB6C /* paris-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

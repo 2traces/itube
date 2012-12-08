@@ -12,6 +12,32 @@
 #import "ManagedObjects.h"
 #import "TopRasterView.h"
 #import "NavigationViewController.h"
+#import "GlSprite.h"
+#import "GlPanel.h"
+
+@interface Pin : NSObject {
+     int _id;
+     CGPoint pos;
+     GlSprite *sprite;
+     SmallPanel *sp;
+     CGFloat size;
+     CGFloat offset, speed;
+     float lastScale;
+     float distanceToUser;
+}
+
+@property (nonatomic, readonly) int Id;
+@property (nonatomic, readonly) CGPoint position;
+@property (nonatomic, assign) BOOL active;
+@property (nonatomic, assign) CGFloat distanceToUser;
+
+-(id)initWithId:(int)pinId andColor:(int)color;
+-(void)draw;
+-(void)drawWithScale:(CGFloat)scale;
+-(void)drawPanelWithScale:(CGFloat)scale;
+-(void)fallFrom:(CGFloat)distance at:(CGFloat)speed;
+-(CGRect)bounds;
+@end
 
 @class NavigationViewController;
 
@@ -38,5 +64,9 @@
 -(void)setUserGeoPosition:(CGPoint)point;
 -(void)setStationsPosition:(NSArray*)coords withNames:(NSArray*)names andMarks:(BOOL)marks;
 -(void)errorWithGeoLocation;
+-(int)newPin:(CGPoint)coordinate color:(int)color name:(NSString*)name;
+-(void)removePin:(int)pinId;
+-(void)removeAllPins;
+-(Pin*)getPin:(int)pinId;
 
 @end
