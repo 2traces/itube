@@ -11,9 +11,7 @@
 #import "SettingsNavController.h"
 #import "tubeAppDelegate.h"
 #import "SelectingTabBarViewController.h"
-#import "GlSprite.h"
 #import "GlView.h"
-#import "GlPanel.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -27,30 +25,6 @@ enum
     NUM_UNIFORMS
 };
 GLint uniforms[NUM_UNIFORMS];
-
-@interface Pin : NSObject {
-    int _id;
-    CGPoint pos;
-    GlSprite *sprite;
-    SmallPanel *sp;
-    CGFloat size;
-    CGFloat offset, speed;
-    float lastScale;
-    float distanceToUser;
-}
-
-@property (nonatomic, readonly) int Id;
-@property (nonatomic, readonly) CGPoint position;
-@property (nonatomic, assign) BOOL active;
-@property (nonatomic, assign) CGFloat distanceToUser;
-
--(id)initWithId:(int)pinId andColor:(int)color;
--(void)draw;
--(void)drawWithScale:(CGFloat)scale;
--(void)drawPanelWithScale:(CGFloat)scale;
--(void)fallFrom:(CGFloat)distance at:(CGFloat)speed;
--(CGRect)bounds;
-@end
 
 
 @interface GlViewController () {
@@ -94,6 +68,7 @@ GLint uniforms[NUM_UNIFORMS];
 
 @implementation Pin
 @synthesize Id = _id;
+@synthesize distanceToUser;
 
 -(void)setActive:(BOOL)active
 {
@@ -753,6 +728,16 @@ GLint uniforms[NUM_UNIFORMS];
     [usrPin release];
 }
 
+-(Pin*)getPin:(int)pinId
+{
+    for (Pin *p in pinsArray) {
+        if(p.Id == pinId) {
+            return p;
+        }
+    }
+    return nil;
+}
+
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)update
@@ -1078,7 +1063,7 @@ GLint uniforms[NUM_UNIFORMS];
     float y = atanhf(sinf(geoCoords.x * M_PI / 180.f));
     y = y * 256.f / (M_PI*2.f);
     position.x = - geoCoords.y * mult;
-    position.y = y;
+    position.y = y + 120.f/zoom;
     scale = zoom;
 }
 

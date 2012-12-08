@@ -407,7 +407,7 @@ NSInteger const toolbarWidth=320;
     Station *st = [mapView.cityMap findNearestStationTo:geoPosition];
 	
     [containerView setContentScaleFactor:zoom];
-    [containerView setContentOffset:CGPointMake(st.pos.x * mapView.Scale, st.pos.y * mapView.Scale ) animated:YES];
+    [containerView setContentOffset:CGPointMake(st.pos.x * mapView.Scale - containerView.bounds.size.width*0.5f, st.pos.y * mapView.Scale - containerView.bounds.size.height*0.75f ) animated:YES];
 }
 
 @end
