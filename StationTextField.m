@@ -36,7 +36,7 @@
     
     CGRect newFrame;
     
-    newFrame.origin.x=bounds.size.width-rightViewFrame.size.width-bounds.size.width*0.0375;
+    newFrame.origin.x=bounds.size.width-rightViewFrame.size.width-bounds.size.width*0.008; //0.375
     newFrame.origin.y=bounds.size.height/2-rightViewFrame.size.height/2;
     newFrame.size.width=rightViewFrame.size.width;
     newFrame.size.height = rightViewFrame.size.height;

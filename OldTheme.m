@@ -397,4 +397,24 @@
     return [UIFont fontWithName:@"MyriadPro-Semibold" size:15.0];
 }
 
+-(UIImage *)stationTextFieldBackgroung
+{
+    return [UIImage imageNamed:@"toolbar_text_bg.png"];
+}
+
+-(UIImage *)stationTextFieldBackgroungHighlighted
+{
+    return [UIImage imageNamed:@"toolbar_text_bg_lighted.png"];
+}
+
+-(UIImage *)stationTextFieldRightImageNormal
+{
+    return [UIImage imageNamed:@"openlist.png"];
+}
+
+-(UIImage *)stationTextFieldRightImageHighlighted
+{
+    return [UIImage imageNamed:@"openlist_highlight.png"];
+}
+
 @end

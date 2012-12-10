@@ -67,7 +67,6 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 - (UIColor *)backButtonPressedTitleColor;
 - (UIImage *)buttonBackgroundForState:(UIControlState)state;
 //-(UIFont*)fontForDemoBuyButton;
-
 - (UIImage *)firstAndLastCellSettingsTableImageNormal;
 - (UIImage *)firstAndLastCellSettingsTableImageHighlighted;
 - (UIImage *)firstCellSettingsTableImageNormal;
@@ -88,7 +87,12 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 -(UIColor *)buyButtonFontColorAvailable;
 -(UIFont *)buyButtonFont;
 
-@end
+-(UIImage *)stationTextFieldBackgroung;
+-(UIImage *)stationTextFieldBackgroungHighlighted;
+-(UIImage *)stationTextFieldRightImageNormal;
+-(UIImage *)stationTextFieldRightImageHighlighted;
+
+@end  
 
 @interface SSThemeManager : NSObject
 

@@ -393,4 +393,26 @@
     return [UIFont fontWithName:@"MyriadPro-Semibold" size:15.0];
 }
 
+-(UIImage *)stationTextFieldBackgroung
+{
+    return [UIImage imageNamed:@"newdes_toolbar_text_bg.png"];
+}
+
+-(UIImage *)stationTextFieldBackgroungHighlighted
+{
+    return [UIImage imageNamed:@"newdes_toolbar_text_bg_lighted.png"];
+}
+
+-(UIImage *)stationTextFieldRightImageNormal
+{
+    return [UIImage imageNamed:@"newdes_openlist.png"];
+}
+
+-(UIImage *)stationTextFieldRightImageHighlighted
+{
+    return [UIImage imageNamed:@"newdes_openlist_highlight.png"];
+}
+
+
 @end
+

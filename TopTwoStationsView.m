@@ -11,6 +11,7 @@
 #import "MainViewController.h"
 #import "FastAccessTableViewController.h"
 #import "StationTextField.h"
+#import "SSTheme.h"
 
 #define iPadWidth 768.0
 #define iPadHeight 1024.0
@@ -20,7 +21,7 @@
 
 #define iPhoneWidth 320.0
 #define iPhoneHeight 480.0
-#define iPhoneTbHeight 44.0
+#define iPhoneTbHeight 40.0
 #define iPhoneFieldWidth 160.0 // 160
 #define iPhoneFldButton 130.0 // 130
 
@@ -72,8 +73,8 @@
         toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [self addSubview:toolbar];
         
-        UIImage *imageOpenList = [UIImage imageNamed:@"openlist.png"];
-        UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist_highlight.png"];
+        UIImage *imageOpenList = [[SSThemeManager sharedTheme] stationTextFieldRightImageNormal];
+        UIImage *imageOpenListHL = [[SSThemeManager sharedTheme] stationTextFieldRightImageHighlighted];
         
         UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [refreshButton setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
@@ -85,7 +86,7 @@
         firstStation.delegate = self;
         firstStation.borderStyle = UITextBorderStyleNone;
         firstStation.rightView = refreshButton;
-        firstStation.background = [[UIImage imageNamed:@"toolbar_text_bg.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
+        firstStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
         firstStation.backgroundColor = [UIColor clearColor];
         firstStation.textAlignment = UITextAlignmentLeft;
         firstStation.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -117,7 +118,7 @@
         secondStation.delegate=self;
         secondStation.borderStyle = UITextBorderStyleNone;
         secondStation.rightView = refreshButton2;
-        secondStation.background = [[UIImage imageNamed:@"toolbar_text_bg.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
+        secondStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
         secondStation.backgroundColor = [UIColor clearColor];
         secondStation.textAlignment = UITextAlignmentLeft;
         secondStation.rightViewMode = UITextFieldViewModeAlways;
@@ -170,8 +171,8 @@
         toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [self addSubview:toolbar];
         
-        UIImage *imageOpenList = [UIImage imageNamed:@"openlist.png"];
-        UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist_highlight.png"];
+        UIImage *imageOpenList = [[SSThemeManager sharedTheme] stationTextFieldRightImageNormal];
+        UIImage *imageOpenListHL = [[SSThemeManager sharedTheme] stationTextFieldRightImageHighlighted];
         
         UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [refreshButton setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
@@ -183,7 +184,7 @@
         firstStation.delegate = self;
         firstStation.borderStyle = UITextBorderStyleNone;
         firstStation.rightView = refreshButton;
-        firstStation.background = [[UIImage imageNamed:@"toolbar_text_bg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
+        firstStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
         firstStation.backgroundColor = [UIColor clearColor];
         firstStation.textAlignment = UITextAlignmentLeft;
         firstStation.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -215,7 +216,7 @@
         secondStation.delegate=self;
         secondStation.borderStyle = UITextBorderStyleNone;
         secondStation.rightView = refreshButton2;
-        secondStation.background = [[UIImage imageNamed:@"toolbar_text_bg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
+        secondStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
         secondStation.backgroundColor = [UIColor clearColor];
         secondStation.textAlignment = UITextAlignmentLeft;
         secondStation.rightViewMode = UITextFieldViewModeAlways;
@@ -297,7 +298,7 @@
             firstStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFieldWidth*2, iPhoneTbHeight);
         }
         
-        firstStation.background = [[UIImage imageNamed:@"toolbar_text_bg_lighted.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
+        firstStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
         
         firstStation.text = @"";
         firstStation.rightViewMode = UITextFieldViewModeAlways;
@@ -378,7 +379,7 @@
             secondStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFieldWidth*2, iPhoneTbHeight);
         }
 
-        secondStation.background = [[UIImage imageNamed:@"toolbar_text_bg_lighted.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
+        secondStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
         
         secondStation.text = @"";
         secondStation.rightViewMode = UITextFieldViewModeAlways;
@@ -606,11 +607,11 @@
         firstButton.hidden=NO;
         secondButton.hidden=NO;
         
-        firstStation.background = [[UIImage imageNamed:@"toolbar_text_bg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
-        secondStation.background = [[UIImage imageNamed:@"toolbar_text_bg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
+        firstStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
+        secondStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
                 
-        UIImage *imageOpenList = [UIImage imageNamed:@"openlist.png"];
-        UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist_highlight.png"];
+        UIImage *imageOpenList = [[SSThemeManager sharedTheme] stationTextFieldRightImageNormal];
+        UIImage *imageOpenListHL = [[SSThemeManager sharedTheme] stationTextFieldRightImageHighlighted];
         
         UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [refreshButton setImage:imageOpenList forState:UIControlStateNormal];
@@ -741,7 +742,7 @@
     firstStation.rightViewMode = UITextFieldViewModeAlways;
     [firstStation setLeftView:nil];
     [firstStation setLeftViewMode: UITextFieldViewModeNever];
-    firstStation.background = [[UIImage imageNamed:@"toolbar_text_bg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
+    firstStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
     
 }
 
@@ -751,7 +752,7 @@
     secondStation.rightViewMode = UITextFieldViewModeAlways;
     [secondStation setLeftView:nil];
     [secondStation setLeftViewMode: UITextFieldViewModeNever];
-    secondStation.background = [[UIImage imageNamed:@"toolbar_text_bg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
+    secondStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
     
 }
 
@@ -792,7 +793,7 @@
         [lineColor release];
         
         [firstStation setLeftViewMode: UITextFieldViewModeAlways];
-        firstStation.background = [[UIImage imageNamed:@"toolbar_text_bg_lighted.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
+        firstStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
         
     } else {
         [self clearFromStation];
@@ -836,7 +837,7 @@
         [lineColor release];
         
         [secondStation setLeftViewMode: UITextFieldViewModeAlways];
-        secondStation.background = [[UIImage imageNamed:@"toolbar_text_bg_lighted.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
+        secondStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
         
     } else {
         [self clearToStation];
