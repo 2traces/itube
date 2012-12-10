@@ -10,6 +10,7 @@
 #import "HCBookmarkItemView.h"
 #import "ManagedObjects.h"
 #import "tubeAppDelegate.h"
+#import "MainView.h"
 
 @interface HCBookmarksViewController ()
 
@@ -54,6 +55,8 @@
         [subview removeFromSuperview];
     }
     [self.items removeAllObjects];
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    MainView* map = (MainView*)[appDelegate.mainViewController view];
     
     CGFloat offset = 50;
     for (MPlace *place in self.places) {
@@ -64,7 +67,10 @@
         if ([place.photos count]) {
             firstPhoto = [place.photos anyObject];
         }
-        [itemView setImage:[self imageForPhotoObject:firstPhoto] text:place.text placeName:place.name placeDistance:@"Some really long address, or distance."];
+        CGPoint placePoint = CGPointMake([place.posX floatValue], [place.posY floatValue]);
+        Station *nearestStation = [map stationNearestToGeoPosition:placePoint];
+        
+        [itemView setImage:[self imageForPhotoObject:firstPhoto] text:place.text placeName:place.name placeDistance:nearestStation.name];
         itemView.tag = [place.index integerValue];
         [self.items addObject:itemView];
         [self.scrollView addSubview:itemView];

@@ -406,6 +406,10 @@ NSInteger const toolbarWidth=320;
     return rect;
 }
 
+- (Station*) stationNearestToGeoPosition:(CGPoint)position {
+    return [mapView.cityMap findNearestStationTo:position];
+}
+
 -(void)setGeoPosition:(CGPoint)geoPosition withZoom:(CGFloat)zoom
 {
     // будет выбрана не реальная гео позиция, а станция метро с ближайшими координатами
