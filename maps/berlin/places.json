@@ -15,18 +15,11 @@
                    "index": 2
                    },
                    {
-                   "name": "Wifi spots",
-                   "image_normal": "cat_ws_normal.png",
-                   "image_highlighted": "cat_ws_pressed.png",
-                   "color": "dc79b0",
-                   "index": 3
-                   },
-                   {
                    "name": "Recommended cafes",
                    "image_normal": "cat_rc_normal.png",
                    "image_highlighted": "cat_rc_pressed.png",
                    "color": "dc79b0",
-                   "index": 4
+                   "index": 3
                    }
                    ],
     "places": [
@@ -610,11 +603,237 @@
                                                                         "categories": [
                                                                                        1
                                                                                        ]
+                                                                        },
+               {
+               "name": "Fassbender-Rausch",
+               "long": 52.511925,
+               "lat": 13.391379,
+               "index": 29,
+               "text": "\"Chocolate Lovers\" Heaven”Handmade chocolate delights: Our walking tour ended nearby and we decided to warm up with a hot chocolate topped with cream and strengthened with amaretto! The home made chocolate cakes are delicious and we thought it very good value. We loved it so much we went back again the next day but had to queue for a while, though it is definitely worth the wait. Though focusing around chocolate thee are some interesting savoury dishes, which we were too full from breakfast to try, but the curry banana soup with chocolate sounded tempting! Of course we bought some chocolate from the shop below and admired the amazing buildings built out of chocolate in the shop window.",
+                                                                        "photos": [
+                                                                                   "139.jpg",
+                                                                                   "140.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       3
+                                                                                       ]
+                                                                        },
+               {
+               "name": "Steakhouse ASADOR",
+               "long": 52.503749,
+               "lat": 13.388058,
+               "index": 30,
+               "text": "\"Good Steaks!\" Service in this Argentinian restaurant was excellent and the food was fabulous. Fantastic quality steaks at reasonable prices, we would definitely recommend to anyone looking for a tasty dinner after a day's sightseeing in Berlin. Price range: $4 - $20 Cuisines: Argentinean, Barbecue, German, Grill",
+                                                                        "photos": [
+                                                                                   "141.jpg",
+                                                                                   "142.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       3
+                                                                                       ]
+                                                                        },
+               {
+               "name": "Belmondo Restaurant",
+               "long": 52.509007,
+               "lat": 13.323237,
+               "index": 31,
+               "text": "One of the best meals out this year, freshest scallops and seafood, amazing steak tartar and sumptuous creme brûlée - very happy and helpful staff with great timing - calm interior with soft lighting and comfortable and well spaced tables, certainly recommend and the beer and wines are excellent as ever! Cuisines: French. Good for: Romance, Doing business, Entertaining clients",
+                                                                        "photos": [
+                                                                                   "143.jpg",
+                                                                                   "144.jpg",
+																				   "145.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       3
+                                                                                       ]
+                                                                        },
+               {
+               "name": "Transit",
+               "long": 52.528616,
+               "lat": 13.402322,
+               "index": 32,
+               "text": "\"Quick, nice dinner in Mitte\" Popped by with a friend to have a quick dinner. Really like the tapas-like concept of asian dishes. Those that I tried tasted very well. Service for us was fine and quick - we didn't wanna stay long anyways. Not a place to have a quiet conversation certainly - but I liked the buzz of the place",
+                                                                        "photos": [
+                                                                                   "146.jpg",
+																				   "147.jpg",
+                                                                                   "148.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       3
+                                                                                       ]
+                                                                        },
+               {
+               "name": "Monsieur Vuong",
+               "long": 52.526594,
+               "lat": 13.407885,
+               "index": 33,
+               "text": "\"A fun and intersting place to eat in Berlin\" Be warned you might have to wait for a table and the atmosphere is noisy and fun and not a place to relax over a leisurley meal but It lives up to the other reviews in terms of great and interesting food and lovely staff. Very rasonably priced too and not a pork knuckle or bratwurst in sight",
+                                                                        "photos": [
+                                                                                   "149.jpg",
+																				   "150.jpg",
+                                                                                   "151.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       3
+                                                                                       ]
+                                                                        },
+               {
+               "name": "Marjellchen",
+               "long": 52.503202,
+               "lat": 13.317749,
+               "index": 34,
+               "text": "\"super for supper\" We were a party of 4 from Britain whose experience of Berlin was very new. We had picked up how good the restaurant was from yourselves but the feeling when you walked in was wonderful sulky,dim lights beautifully laid tables and lots of atmosphere from the guests and staff. We spent several hours there as it was so relaxing, together with great food, beer and wine.Our host Ellie was great fun and we shared some memories on different meanings in lauguages!! You would never find the restaurant unless you knew where you were going, we are so glad we knew",
+                                                                        "photos": [
+                                                                                   "152.jpg",
+																				   "153.jpg",
+                                                                                   "154.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       3
+                                                                                       ]
+                                                                        },
+               {
+               "name": "Catwalk Bar",
+               "long": 52.510895,
+               "lat": 13.37634,
+               "index": 35,
+               "text": "\"Friendly staff & Excellent Cocktails\" This bar is very modern and trendy and the staff were friendly and helpful. Cocktails may be a bit more expensive than some other establishments but they are worth it. None of your pre-mixed stuff here, there is a great range to choose from, with some unusual combinations. Well worth a visit. Try the Cosmopolitan 30ties style made with Sloe Gin, Cointreau, Raspberry puree and lemon juice - amazing!! We didnt try the food as we had already eaten before coming here (though the veggie crisps you get with your drink were lovely)",
+                                                                        "photos": [
+                                                                                   "155.jpg",
+																				   "156.jpg",
+                                                                                   "157.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       3
+                                                                                       ]
+                                                                        },
+               {
+               "name": "Staendige Vertretung",
+               "long": 52.521251,
+               "lat": 13.385368,
+               "index": 36,
+               "text": "\"You come here for the beer and atmosphere!\" The place hasn't changed since Bertolt Brecht used to come around from the theatre to eat here. If you want to find a place that is straight out of the East Berlin of the '30s or '50s, depending on how you look at it, with lots of atmosphere, try this one. Good for: Bar scene, Large groups, Local cuisine, Entertaining clients. Dining options: Lunch, Dinner, Reservations, Late Night, Dessert",
+                                                                        "photos": [
+                                                                                   "158.jpg",
+                                                                                   "159.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       3
+                                                                                       ]
+                                                                        },
+               {
+               "name": "Cafe Bleibtreu",
+               "long": 52.503919,
+               "lat": 13.320048,
+               "index": 37,
+               "text": "\"Fabulous menu and wonderful atmosphere!\" Four of us came back yesterday from Berlin, and after checking out the menus of the local restaurants, we chose here. The staff are extremely friendly and helpful, the menu has something for everyone, ... we all chose something different for 4 nights!! The portions are very generous and beautifully presented....the desserts are something else!! If you are in the area then this place is a must! It is very reasonably priced.",
+                                                                        "photos": [
+                                                                                   "160.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       3
+                                                                                       ]
+                                                                        },
+               {
+               "name": "East Restaurant",
+               "long": 52.507177,
+               "lat": 13.321124,
+               "index": 38,
+               "text": "Defiantly one of the best chinese restaurants I've been to (been to quiet a few) Found it on here while in Berlin for a few days and fancied a chinese. We traveled from prenzlauer berg to eat here. It was worth it! Reasonably priced with large portions and extremely tasty. Dishes seemed more modern and contemporary and cooked to perfection. If I go to berlin again I will defiantly be coming back.. Cuisines: Chinese. Dining options: Reservations",
+                                                                        "photos": [
+                                                                                   "161.jpg",
+                                                                                   "162.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       3
+                                                                                       ]
+                                                                        },
+               {
+               "name": "Sarod's Thai Restaurant",
+               "long": 52.487896,
+               "lat": 13.394689,
+               "index": 39,
+               "text": "\"Tasty Thai Food\" This little gem is smack in the middle of the Bergmannkitz in Western Kreuzberg - the established part of Kreuzberg in Berlin. The food is excellent, fragrant, non-MSG Thai food that is topped only by the service offered by the employees. To describe the latter as 'friendly' would do it a disservice; if you want to experience positively enthusiastic waiters that appear to enjoy hosting you, go to Sarod's!",
+                                                                        "photos": [
+                                                                                   "163.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       3
+                                                                                       ]
+                                                                        },
+               {
+               "name": "12 Apostel",
+               "long": 52.52051,
+               "lat": 13.394221,
+               "index": 40,
+               "text": "\"A nice meal with young children.\" Don't expect a traditional German Gasthaus appearence here. While quite nice, the 12 Apostel is first of all a pizza place in a spacious location just between the Hackesher Markt and Friedrichstraße S-Bahn stations situated in the S-Bahn viaduct. OK food, OK prices and a nice central plase for large group if you don't expect intimacy.",
+                                                                        "photos": [
+                                                                                   "164.jpg",
+																				   "165.jpg",
+                                                                                   "166.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       3
+                                                                                       ]
+                                                                        },
+               {
+               "name": "Hard Rock Cafe Berlin",
+               "long": 52.503168,
+               "lat": 13.329637,
+               "index": 41,
+               "text": "\"Exactly what you'd expect from a Hard Rock Cafe.\" Firstly, the staff are excellent, our German is very limited and so it was great to be greeted by our waitress who spoke perfect English and even understood our Scottish accents. The menu is the usual hard rock type stuff (burgers mainly), though was really prompt and very nice. Cocktails were also very nice. Only criticism is that it's very, very pricey - we had meals in other restaurants for literally half the price. However, it's very central, and very easy to just pop in and relax after a day in Berlin, and you know what you're getting.",
+                                                                        "photos": [
+                                                                                   "67.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       3
+                                                                                       ]
+                                                                        },
+               {
+               "name": "Augustiner am Gendarmenmarkt",
+               "long": 52.513875,
+               "lat": 13.391078,
+               "index": 42,
+               "text": "\"Authentic German beer-pub\" This place was packed, almost entirely with locals, even at 6:30 pm. Our reserved table was waiting and we were shown to it, eventually. Service was spotty, but not unfriendly. We sampled 3 different on tap offerings, all excellent. The Weinerschnitzel was real veal and out of this world. Accompanying salads were good quality as was the bread basket. Terrific selection of mustards. Prices were reasonable portions were large. The kaiser pancake dessert was a hit, but we're not sure why it had to be ordered 20 minutes in advance when it was served 45 minutes after the food.",
+                                                                        "photos": [
+                                                                                   "171.jpg",
+                                                                                   "172.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       3
+                                                                                       ]
+                                                                        },
+               {
+               "name": "Cafe am Neuen See",
+               "long": 52.510405,
+               "lat": 13.344445,
+               "index": 43,
+               "text": "\"Nice spot for pizza and beer in the park.\" We happened upon this spot on a walk through the Tiergarten. It has a large outdoor biergarten which unfortunately for us was closed due to rain that evening. The placed was full and the energy was lively. It was a place for couples, business people and families alike.",
+                                                                        "photos": [
+                                                                                   "173.jpg",
+                                                                                   "174.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       3
+                                                                                       ]
+                                                                        },
+               {
+               "name": "IXTHYS",
+               "long": 52.494582,
+               "lat": 13.354598,
+               "index": 44,
+               "text": "\"Superb korean food\". The restaurant is very small, more like an imbiss but the quality of the food are superb. The food are fresh and cooked in authenthic Korean cuisine. This small restaurant operated by two woman only ! Yes thevwaiter and cooker and seem like mother and daughter. Its so humble restaurant with great food and service in busy Berlin. I try bimbimbap and they are very good, even for me it not so spicy for korean food but maybe they follow the western taste.",
+                                                                        "photos": [
+                                                                                   "175.jpg",
+                                                                                   "176.jpg"
+                                                                                   ],
+ "categories": [
+                                                                                       3
+                                                                                       ]
                                                                         }
                                                                         ]
                                                                         }
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                        
+
+
+
+

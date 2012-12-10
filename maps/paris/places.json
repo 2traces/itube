@@ -15,18 +15,11 @@
             "index": 2
         },
         {
-            "name": "Wifi spots",
-            "image_normal": "cat_ws_normal.png",
-            "image_highlighted": "cat_ws_pressed.png",
-            "color": "dc79b0",
-            "index": 3
-        },
-        {
             "name": "Recommended cafes",
             "image_normal": "cat_rc_normal.png",
             "image_highlighted": "cat_rc_pressed.png",
             "color": "dc79b0",
-            "index": 4
+            "index": 3
         }
     ],
     "places": [
@@ -437,13 +430,227 @@
                 1
             ]
         },
-		
-		
-		
-		
-		
-		]
-}
+						{
+            "name": "Creperie Broceliande",
+            "long": 48.884344,
+               "lat": 2.341123,
+               "index": 29,
+            "text": "\"Great little restaurant!\" I think this place is the perfect one when you want to try a really french crepe. The restaurant is comfortable, has pleasant decor and illumination, the service is very good and the food is perfect. You will realise the differential of this crepe when you taste the dough... It's crispy and soft at the same time. I recommend a flavour: \"chevrette\" (goat cheese with caramelized onion)... I came back there twice because of this one! Still, they offer an excellent cost-benefit and Montmartre is a very charming place in Paris.Price range: $9 - $25 Cuisines: Dessert, Organic, Tea Room, Creperie",
+            "photos": [
+				"101.jpg",
+				"102.jpg",
+                "103.jpg"
+            ],
+            "categories": [
+                3
+            ]
+        },
+						{
+            "name": "Pizza e fichi",
+            "long": 48.853209,
+               "lat": 2.390454,
+               "index": 30,
+            "text": "\"Simply Delicious.\" Delicious pizza, great choice of toppings, helpful staff, cheap prices! Great place for a quick lunch or take-away. Room to sit down if you prefer.Price range: $7 - $27 Cuisines: Italian, Pizza, Dutch",
+            "photos": [
+				"104.jpg",
+                "105.jpg"
+            ],
+            "categories": [
+                3
+            ]
+        },
+						{
+            "name": "Pierre Herme",
+            "long": 48.851441,
+               "lat": 2.332757,
+               "index": 31,
+            "text": "\"Best macarons!\" These macarons are really flavoursome and slightly bigger than others. My favorite was the Passionfruit and my husband's was Creme Brulee. We bought a box and brought it back to Sydney. The office staff had a macaron morning tea 3 days later and they were still good. We carried them in our hand luggage and put them in the fridge when we got home 30 hours later. Thought Laduree's macarons were great but Pierre Herme seemed to have even more flavour. Queues weren't too bad but it was great just to look at the other amazing cakes and pastries they have. A challenge is to try all their flavours whilst in Paris...",
+            "photos": [
+				"109.jpg",
+				"106.jpg",
+				"107.jpg",
+                "108.jpg"
+            ],
+            "categories": [
+                3
+            ]
+        },
+						{
+            "name": "Huiterie Regis",
+            "long": 48.852777,
+               "lat": 2.335981,
+               "index": 32,
+            "text": "\"Very fresh seafood!\" Be sure to arrive early. Huiterie Regis does not take reservations and has only 7 tables. I picked this restaurant from a list provided by guardian.co.uk and decided to visit the restaurant. Boy, was I glad I arrived in time to be seated at the second last table. The service was great - the service staff was kind enough to explain the menu to me in English. No. 2 and 3 oysters were plump and tasted fabulous. So were the prawns. Unfortunately, the restaurant was not serving sea urchins otherwise I would love to have gotten a taste of that. It was so good that I visited the restaurant with a girlfriend for lunch the next day! The restaurant is located near the Mabillon metro station (less than a minute's walk) but be sure to arrive early to get a table! Price range: $20 - $25 Cuisines: French",
+            "photos": [
+				"110.jpg",
+                "111.jpg"
+            ],
+            "categories": [
+                3
+            ]
+        },
+						{
+            "name": "Pasco",
+            "long": 48.856135,
+               "lat": 2.309516,
+               "index": 33,
+            "text": "\"Best fish in a long time !\" It opens for the evening at 19, so do not try to go earlier. We did not book. You can eat really great and I'd have never thought that french cousine is so good till i ate here. Prices are as everywhere, but food is wonderful. Very nice staff and you do not have to wait long time to have your meal (very quick indeed). The restaurant inside is also very nicely arranged.",
+            "photos": [
+                "112.jpg"
+            ],
+            "categories": [
+                3
+            ]
+        },
+						{
+            "name": "Hugo",
+            "long": 48.876265,
+               "lat": 2.347316,
+               "index": 34,
+            "text": "\"Wonderful little find\". This small bistro is not near any major sights in Paris but is just a short walk from the Cadet metro stop. The four of us shared some excellent fish items including fish soup and pan seared shrimp and scallops in a Pernod sauce. The deserts came with a dollop of sorbet that matched Berthillon. Cuisines: French. Good for: Romance, Local cuisine, Entertaining clients, Dining on a budget",
+            "photos": [
+				"113.jpg",
+				"114.jpg",
+                "115.jpg"
+            ],
+            "categories": [
+                3
+            ]
+        },
+						{
+            "name": "L'As du Fallafel",
+            "long": 48.857519,
+               "lat": 2.359077,
+               "index": 35,
+            "text": "This place is practically a hole in a wall, where the ques are always long (sometimes an hour), with prices generally comparable to other similar restaurants in the area and the city. However, the wait is definitely worth it, offering a unique blend of hummus, falafel and eggplants. Now with their claim as the best falafel house in the world, I doubt, but in Paris, most definitely, considering the owners and staff combined the best of the Middle East and Jewish cuisine to whip up a falafel that'll make you come back for seconds.",
+            "photos": [
+				"116.jpg",
+                "117.jpg"
+            ],
+            "categories": [
+                3
+            ]
+        },
+						{
+            "name": "Pozzetto",
+            "long": 48.856739,
+               "lat": 2.356277,
+               "index": 36,
+            "text": "\"Best icecream in Parisю\" They send you to Bertillon as a tourist.. Don't fall for that! Pozzetto offer first grade icecream. The pistachio is good, the fiordilatte and straciatella are exceptional. Price range: $8 - $16 Cuisines: Italian, Ice Cream, Café",
+            "photos": [
+				"118.jpg",
+                "119.jpg"
+            ],
+            "categories": [
+                3
+            ]
+        },
+						{
+            "name": "L'Apibo",
+            "long": 48.864699,
+               "lat": 2.347356,
+               "index": 37,
+            "text": "Looking for refined modern French Food at affordable price for a romantic meal with your partner or a few friends, try l'Apibo! A small typical French bistro decor for this restaurant with a limited number of tables, we were welcomed by Vanessa. The card has a menu for 32 euros with entree main and desert, but we went for the 5 course \"carte Blanche\" meal where the chef picks himself what you will eat. Actually most of these dishes are from the menu itself but it allows you to taste more of their menu items. The portions are just the right size, the mix of flavours is very interesting, presentation is impeccable.",
+            "photos": [
+				"120.jpg",
+				"121.jpg",
+				"122.jpg",
+                "123.jpg"
+            ],
+            "categories": [
+                3
+            ]
+        },
+						{
+            "name": "Berthillon",
+            "long": 48.851702,
+               "lat": 2.356771,
+               "index": 38,
+            "text": "well, the very very best icecreams in town! What parisians say is true! Just natural flavors, but I can't understand how it can taste so perfectly like the thing it is made of... the wild strawberry IS like eating Wild strawberries... I tried the \"chocolat-mendiant\" also, dark chocolate with almonds, raisins, nuts... CRAZY. I'm going back and back, I want to try the \"calisson\".... For you to know: the whole Saint Louis island is selling some, even in the cafés, so you don't have to queue up if there's a line at the main address, they are everywhere around in smaller shops. Price range: $15 - $20 Cuisines: Coffee Shop, Dessert",
+            "photos": [
+				"124.jpg",
+				"125.jpg",
+                "126.jpg"
+            ],
+            "categories": [
+                3
+            ]
+        },
+						{
+            "name": "Boco",
+            "long": 48.867564,
+               "lat": 2.333165,
+               "index": 39,
+            "text": "\"Interesting (bio) concept\" Love this concept: great organic food, nicely served in friendly ambiance. You buy the food in a yar, staff heats it up. New healthy option in the fast service segment. Price range: $13 - $25 Cuisines: Bistro",
+            "photos": [
+				"128.jpg",
+                "127.jpg"
+            ],
+            "categories": [
+                3
+            ]
+        },
+						{
+            "name": "Gustibus",
+            "long": 48.861666,
+               "lat": 2.37034,
+               "index": 40,
+            "text": "\"Wonderful hidden gem, family-run Italian/French\" Having just moved to the neighborhood, at the border of the 3rd and 11th arrondissements, four of us decided to try this very cozy-looking venue on a whim--even though it doesn't appear in any guidebooks. We were very pleasantly suprised. It was just opened in August by a chef (who spent a year in Palm Beach, FL), his wife and daughter, folks who hail from Italy. Most importantly, they know their food. We had, among other superb dishes, a succulent dorade, rolled up (forgot French word for this) around perfectly cooked vegetables; an incredible cepes and tagliatelle, featuring loads of slices from a beautiful gigantic cepe the chef couldn't resist showing to the table; marinated rabbit with super-thin-sliced julienned beets; and pumpkin and leek soup. The desserts included outstanding tiramisu and a heavenly mi cuit chocolate cake with molten center. Service was quick and as warmly welcoming as one could ask. The bread served and the wine list are also first-rate, and the prices are very reasonable; the lunch menu is a stupendous bargain.",
+            "photos": [
+				"127.jpg",
+				"128.jpg",
+                "135.jpg"
+            ],
+            "categories": [
+                3
+            ]
+        },
+						{
+            "name": "Big Fernand",
+            "long": 48.874858,
+               "lat": 2.347864,
+               "index": 41,
+            "text": "\"The Perfect Cheeseburger in Paris!\" Today I went to Big Fernand for lunch with 3 friends to enjoy what we heard was \"a perfect cheeseburger\" from Google. When we got there, there was a good sized line but we ordered within 5 minutes. There are a few great burgers on the menu (about 12 euros without the menu, 15 with the menu), and you can also create your own burger. The Staff are really friendly and are happy to speak English. Highly recommended if you are searching for a good cheeseburger!",
+            "photos": [
+				"129.jpg",
+                "130.jpg"
+            ],
+            "categories": [
+                3
+            ]
+        },
+						{
+            "name": "Le Petit Centre du Monde",
+            "long": 48.870186,
+               "lat": 2.310819,
+               "index": 42,
+            "text": "\"Vietnamese with a French Twist - Fantastic.\" We loved this very tourist friendly, English speaking Vietnamese near the Champs Elysees. A small family owned restaurant, the owner and his wife were gracious hosts, and most importantly the food was consistently outstanding. ",
+            "photos": [
+				"131.jpg",
+				"132.jpg",
+                "133.jpg"
+            ],
+            "categories": [
+                3
+            ]
+        },
+						{
+            "name": "Tien Hiang",
+            "long": 48.870251,
+               "lat": 2.36901,
+               "index": 43,
+            "text": "\"vegetarian with small price.\" An amazing variety of fresh vegetarian food, in an excellent atmosphere which is relaxed and friendly, a rarity in Paris :-). We have been put-off so many times, by the stand-offish attitude and inflexible menus in most restaurants, that we almost did a double-take at the friendly staff in Tien Hiang. The food is very good, and the variety offered is plentiful and tempting. We liked it so much, that we went back in two days, to try some different dishes :-)! We were not disappointed in the least. Warning: book your table in advance, esp on the weekends. They are always going full!",
+            "photos": [
+				"136.jpg",
+				"137.jpg",
+                "138.jpg"
+            ],
+ "categories": [
+                                                                                       3
+                                                                                       ]
+                                                                        }
+                                                                        ]
+                                                                        }
 
 
 

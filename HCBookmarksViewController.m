@@ -41,6 +41,9 @@
     
     NSString *imagePath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
     UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+    if (!image) {
+        image = [UIImage imageNamed:@"no_image.jpeg"];
+    }
     return image;
 }
 

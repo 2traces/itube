@@ -66,6 +66,10 @@
 		5758F1751672913F00A12E35 /* berlin-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107310486CEB800E47090 /* berlin-Info.plist */; };
 		5758F1761672914800A12E35 /* venice-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 577DE973166E2F1E006BA43A /* venice-Info.plist */; };
 		5758F1771672914F00A12E35 /* nyc-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 577DEB96166E2F22006BA43A /* nyc-Info.plist */; };
+		576843231675FA9200FA36AE /* no_image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 576843221675FA9200FA36AE /* no_image.jpeg */; };
+		576843241675FA9200FA36AE /* no_image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 576843221675FA9200FA36AE /* no_image.jpeg */; };
+		576843251675FA9200FA36AE /* no_image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 576843221675FA9200FA36AE /* no_image.jpeg */; };
+		576843261675FA9200FA36AE /* no_image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 576843221675FA9200FA36AE /* no_image.jpeg */; };
 		5771A32E1652ABA500332A7D /* panel_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5771A32D1652ABA500332A7D /* panel_bg@2x.png */; };
 		5771A3311652AD1200332A7D /* sample_photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5771A3301652AD1200332A7D /* sample_photo@2x.png */; };
 		5771A3341652AE1B00332A7D /* bt_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5771A3321652AE1B00332A7D /* bt_star@2x.png */; };
@@ -1966,6 +1970,7 @@
 		572B632D1656830800B415DC /* bt_star_solid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bt_star_solid@2x.png"; path = "images/hidden_cities/bt_star_solid@2x.png"; sourceTree = "<group>"; };
 		572B632E1656830800B415DC /* reader_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reader_bg@2x.png"; path = "images/hidden_cities/reader_bg@2x.png"; sourceTree = "<group>"; };
 		572B632F1656830800B415DC /* sample_pic_reader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sample_pic_reader@2x.png"; path = "images/hidden_cities/sample_pic_reader@2x.png"; sourceTree = "<group>"; };
+		576843221675FA9200FA36AE /* no_image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = no_image.jpeg; path = images/hidden_cities/no_image.jpeg; sourceTree = "<group>"; };
 		5771A32D1652ABA500332A7D /* panel_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "panel_bg@2x.png"; path = "images/hidden_cities/panel_bg@2x.png"; sourceTree = "<group>"; };
 		5771A3301652AD1200332A7D /* sample_photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sample_photo@2x.png"; path = "images/hidden_cities/sample_photo@2x.png"; sourceTree = "<group>"; };
 		5771A3321652AE1B00332A7D /* bt_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bt_star@2x.png"; path = "images/hidden_cities/bt_star@2x.png"; sourceTree = "<group>"; };
@@ -2694,6 +2699,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				576843221675FA9200FA36AE /* no_image.jpeg */,
 				577DEBAB166E3871006BA43A /* Images */,
 				577DEBAA166E385B006BA43A /* NIBs */,
 				577DEB9B166E3099006BA43A /* Cities */,
@@ -3987,6 +3993,7 @@
 				577DEBD0166E3E34006BA43A /* icon.png in Resources */,
 				577DEBDF166E404C006BA43A /* icon@2x.png in Resources */,
 				51DCC9E61673F5D7005BAB6C /* paris-Info.plist in Resources */,
+				576843231675FA9200FA36AE /* no_image.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4351,6 +4358,7 @@
 				577DEBDC166E403E006BA43A /* icon.png in Resources */,
 				577DEBDD166E403E006BA43A /* icon@2x.png in Resources */,
 				5758F1751672913F00A12E35 /* berlin-Info.plist in Resources */,
+				576843241675FA9200FA36AE /* no_image.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4712,6 +4720,7 @@
 				577DEBA7166E3137006BA43A /* venice in Resources */,
 				577DEBC7166E3E0B006BA43A /* venice-Default@2x.png in Resources */,
 				5758F1761672914800A12E35 /* venice-Info.plist in Resources */,
+				576843251675FA9200FA36AE /* no_image.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5073,6 +5082,7 @@
 				577DEBA9166E37C1006BA43A /* nyc in Resources */,
 				577DEBC9166E3E16006BA43A /* nyc-Default@2x.png in Resources */,
 				5758F1771672914F00A12E35 /* nyc-Info.plist in Resources */,
+				576843261675FA9200FA36AE /* no_image.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

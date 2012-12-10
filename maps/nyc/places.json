@@ -15,18 +15,11 @@
             "index": 2
         },
         {
-            "name": "Wifi spots",
-            "image_normal": "cat_ws_normal.png",
-            "image_highlighted": "cat_ws_pressed.png",
-            "color": "dc79b0",
-            "index": 3
-        },
-        {
             "name": "Recommended cafes",
             "image_normal": "cat_rc_normal.png",
             "image_highlighted": "cat_rc_pressed.png",
             "color": "dc79b0",
-            "index": 4
+            "index": 3
         }
     ],
     "places": [
@@ -477,11 +470,11 @@
             "photos": [
                 "69.jpg"
             ],
-            "categories": [
-                1
-            ]
-        },
-						{
+                                                                        "categories": [
+                                                                                       1
+                                                                                       ]
+                                                                        },
+               {
             "name": "Columbus Circle",
             "long": 40.768135,
                "lat": -73.981978,
@@ -493,6 +486,257 @@
                                                                                    ],
                                                                         "categories": [
                                                                                        1
+                                                                                       ]
+                                                                        },
+               {
+            "name": "The MasalaWala",
+            "long": 40.721888,
+               "lat": -73.986585,
+               "index": 34,
+            "text": "\"Delicious Indian street food cuisine\" Looking for something a little different in Indian food, we tried the Masalawala on Essex Street on the Lower East Side. The eating area is an austere little wooden box but is oddly very comfortable, probably because the staff and the owner are so pleasant. We started with the pani puri (little hollow globes with a filling of potatoes and chickpeas served with some tamarind water to moisten it) and the lamb bhuna roll (a wrap stuffed with a generous amount of lamb and a spicy sauce). Both were excellent, with a nice degree of spiciness. Our main courses were the eggplant (baingan bharta) and the Goan fish curry. While both were very good, I thought the eggplant was a little bland and the fish curry a little heavy on the mustard seeds. This is personal taste; although we have enjoyed Indian food all of our adult lives, we claim no expertise in judging authenticity. We also had a garlic naan and some vegetable raita, plus two glasses of zinfandel. A pleasant surprise was a complimentary dessert of rabri ras malai, a light and delicious way to end the meal. The owner told us the restaurant has been open only nine months, but we hope it will become a permanent fixture. A young Indian couple sat next to us. When the owner asked them why they had stopped by, the young woman said they were looking for a particular dish that her boyfriend’s mother cooked and it was on the Masalawala menu. Although there were only a few other customers eating in the restaurant, the takeout business is obviously booming, keeping a fleet of two-wheel delivery vehicles steadily busy. Cuisines: Indian, Pakistani",
+            "photos": [
+				"177.jpg",
+				"178.jpg",
+                "179.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       1
+                                                                                       ]
+                                                                        },
+               {
+            "name": "Hakata Ippudo",
+            "long": 40.730958,
+               "lat": -73.990284,
+               "index": 35,
+            "text": "\"First-rate ramen!\" Quite an unforgettable dining experience! I dream about Ippudo sometimes; wish we had it here in Manila. Ramen was piping hot and flavorful--perfect during the winter. And I highly recommend their Matcha Brulee! That was the most delicious green tea gelato dessert I've ever encountered. Went there for lunch and was lucky not to encounter any long lines.",
+            "photos": [
+				"180.jpg",
+				"181.jpg",
+                "182.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       1
+                                                                                       ]
+                                                                        },
+               {
+            "name": "Capizzi",
+            "long": 40.75741,
+               "lat": -73.99361,
+               "index": 36,
+            "text": "\"Authentic Italian Pizza\" You definetely get what you pay for at this Italian gem! Pure, authentic Italian pizza and desserts made fresh and from scratch by authentic Italians themselves. Amazing food, fabulous service and definitely deserves all the rewards it has received. Not cheap but money well spent. And the staff more than happy for a chat about just about anything. Cuisines: Italian, Pizza",
+            "photos": [
+				"183.jpg",
+				"184.jpg",
+                "185.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       1
+                                                                                       ]
+                                                                        },
+               {
+            "name": "Mogador Cafe",
+            "long": 40.727405,
+               "lat": -73.984372,
+               "index": 37,
+            "text": "\"Delicious Arabic food, great place to eat with kids\" The vibe of this place is best described as being straight out of a Woody Allen movie (well, I guess that's partly because it is...he actually filmed a scene from \"Whatever Works\" here). Loved the jazz in the background and the Moroccan decor. And the lunch special prices were surprisingly low. Charming place to dine in the East Village.",
+            "photos": [
+				"186.jpg",
+				"187.jpg",
+                "188.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       1
+                                                                                       ]
+                                                                        },
+               {
+            "name": "The Meatball Shop",
+            "long": 40.721642,
+               "lat": -73.988685,
+               "index": 38,
+            "text": "\"Nice meatballs and don't forget the dessert!!!\" Very creative food here, an almost overwhelming menu of options, and the bottom line: the food tastes really good. The only downside is that (like many NYC restaurants) the space is small and popular, so be prepared to eat on top of each other or carry out. Several parks nearby with benches, if you don't mind eating out.",
+            "photos": [
+				"191.jpg",
+                "189.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       1
+                                                                                       ]
+                                                                        },
+               {
+            "name": "John's Pizzeria-- Bleeker St.",
+            "long": 40.731655,
+               "lat": -74.003373,
+               "index": 39,
+            "text": "\"Good pizza\" If you want authentic NY pizza, John's is the place to go! And if you want a place where locals go, the location on Bleeker St. is the place to go! They don't do slices but the pizza is so good you'll want an entire pizza. We had half peperonni and half olives and mushrooms and it was great. Super fast (hot overn) and good value if you're sharing.",
+            "photos": [
+				"192.jpg",
+				"193.jpg",
+                "194.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       1
+                                                                                       ]
+                                                                        },
+               {
+            "name": "The Perfect Pint",
+            "long": 40.757351,
+               "lat": -73.983771,
+               "index": 40,
+            "text": "\"Great spot for a beer\". There's a great selection, a nice staff, and friendly people. Even if you arent from the city, they make you feel at home. Typical American bar and a definite must when im in NYC.",
+            "photos": [
+				"195.jpg",
+                "196.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       1
+                                                                                       ]
+                                                                        },
+               {
+            "name": "Shake Shack",
+            "long": 40.741504,
+               "lat": -73.988194,
+               "index": 41,
+            "text": "It's a bit of a wait, so it's not fast food, and getting a table is a full-contact sport. But, the burgers and shakes are absolutely delicious. Relatively cheap too!",
+            "photos": [
+				"197.jpg",
+                "198.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       1
+                                                                                       ]
+                                                                        },
+               {
+            "name": "McSorleys Old Ale House",
+            "long": 40.728771,
+               "lat": -73.989686,
+               "index": 42,
+            "text": "\"Most interesting bar in New York\". McSorley's has been around a long time. It can get packed at night. you always get 2 beers filled halfway so noone has to wait for the foam to dissipate. They only have 2 kinds of beer: light (ale) and dark (porter) they are both great! The famous snack there is cheese and onions, it's from a bygone era. The walls are full of old pictures and memorabilia. It's a friendly place overall.",
+            "photos": [
+				"199.jpg",
+				"200.jpg",
+				"201.jpg",
+                "202.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       1
+                                                                                       ]
+                                                                        },
+               {
+            "name": "Zucker's Bagels & Smoked Fish",
+            "long": 40.715613,
+               "lat": -74.00981,
+               "index": 43,
+            "text": "\"Best bagels and smoked salmon in town!\" Exactly what you hope a genuine New York bagel place would be like. A world of choice, great quality and good value. The long queues are testimony to Zuckers, but these move swiftly thanks to the friendly, hard-working staff. ",
+            "photos": [
+				"203.jpg",
+				"204.jpg",
+                "205.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       1
+                                                                                       ]
+                                                                        },
+               {
+            "name": "Dinosaur Bar-B-Que",
+            "long": 40.818046,
+               "lat": -73.960989,
+               "index": 44,
+            "text": "\"american style\". a perfect bbq style tavern, with a wide choise in the menu and affordable prices. after a nice walk through harlem, it has been a pleasure having lunch here. nice atmosphere, good steaks and good beers !",
+            "photos": [
+				"206.jpg",
+                "207.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       1
+                                                                                       ]
+                                                                        },
+               {
+            "name": "Rubirosa",
+            "long": 40.722699,
+               "lat": -73.996163,
+               "index": 45,
+            "text": "\"Great pizza and much more\". Small Italian restaurant with a great atmosphere. The vodka pizza is delicious and what the restaurant is known for.",
+            "photos": [
+				"208.jpg",
+				"209.jpg",
+                "210.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       1
+                                                                                       ]
+                                                                        },
+               {
+            "name": "Mari Vanna",
+            "long": 40.73885,
+               "lat": -73.988674,
+               "index": 46,
+            "text": "\"almost like being in Russia.....\" If you are looking for a lively atmosphere with excellent food Mari Vanna is the place. Every time I go to Mari Vanna the food is always delicious The wait staff are good looking model type men and woman and all are very friendly and professional. House Infused Vodka is incredible, you must try each one to find your favorite. Try the Vinegret* refreshing beet & vegetable salad with house vinaigrette and Chilean Sea Bass baked in paper with eggplant, oven-dried tomatoes and mint.",
+            "photos": [
+				"211.jpg",
+				"212.jpg",
+                "213.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       1
+                                                                                       ]
+                                                                        },
+               {
+            "name": "Doughnut Plant",
+            "long": 40.716267,
+               "lat": -73.988682,
+               "index": 47,
+            "text": "\"Fabulous donut, delightful décor\". Who knew a doughnut could be sooooo delicious and perfect that it would crush the memory of any other doughnut into oblivion? The PB&J doughnut did just that. Try one- it will seriously change your life.",
+            "photos": [
+				"214.jpg",
+				"215.jpg",
+                "219.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       1
+                                                                                       ]
+                                                                        },
+               {
+            "name": "Five Napkin Burger",
+            "long": 40.760202,
+               "lat": -73.991137,
+               "index": 48,
+            "text": "Don't let the name deceive you. This is no burger joint. The salads are great, and the alternatives to the burger - chicken, lamb, turkey, veggie - were all great. six guests, six different dishes, six happy customers. Great lunch drop in.",
+            "photos": [
+				"216.jpg",
+				"217.jpg",
+                "218.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       1
+                                                                                       ]
+                                                                        },
+               {
+            "name": "Veniero's Pasticceria & Caffe",
+            "long": 40.729509,
+               "lat": -73.984587,
+               "index": 49,
+            "text": "\"Old fashioned and classic Italian specialties\". Veniero's is a classic New York/Italian bakery, where you can chose absolutely anything and know it will be fantastic. They have the best canolis I have ever eaten and their rainbow cookies are so ridiculously yummy we always buy twice what we need- knowing they will disappear in an instant!",
+            "photos": [
+				"219.jpg",
+				"220.jpg",
+                "221.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       1
+                                                                                       ]
+                                                                        },
+               {
+            "name": "Penelope",
+            "long": 40.743676,
+               "lat": -73.981559,
+               "index": 50,
+            "text": "\"Fresh food and a friendly vibe\". This cute little eatery is perfect for breakfast. The servers are friendly and the food is fresh. We ordered 2 Lattes, a side of fruit, Buttermilk Pancakes (fluffy but had a bit of a savory taste), the Penny Egg Sandwich and eggs with bacon. Our order came out to $46 for three people and it was well worth it. There was a wait for at table, so we simply sat and ate at the bar. We were stuffed and ready for a long day of sight seeing and walking after the morning feast. This spot is great for a quick breakfast or a long social breakfast, it's up to you.",
+            "photos": [
+				"223.jpg",
+                "224.jpg"
+                                                                                   ],
+                                                                        "categories": [
+                                                                                       3
                                                                                        ]
                                                                         }
                                                                         ]
