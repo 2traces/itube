@@ -13,18 +13,6 @@
 #import "StationTextField.h"
 #import "SSTheme.h"
 
-#define iPadWidth 768.0
-#define iPadHeight 1024.0
-#define iPadTbHeight 44.0
-#define iPadFieldWidth 189.0
-#define iPadFldButton 159.0
-
-#define iPhoneWidth 320.0
-#define iPhoneHeight 480.0
-#define iPhoneTbHeight 40.0
-#define iPhoneFieldWidth 160.0 // 160
-#define iPhoneFldButton 130.0 // 130
-
 @implementation TopTwoStationsView
 
 @synthesize toolbar;
@@ -35,22 +23,23 @@
 @synthesize tableView;
 @synthesize arrowView;
 @synthesize leftButton;
+@synthesize deviceHeight, deviceWidth;
+@synthesize fieldWidth, viewHeight;
+@synthesize fieldDelta, fieldHeight;
 
--(id)init{
-    if (IS_IPAD) {
+-(id)initWithViewHeight:(CGFloat)vHeight fieldWidth:(CGFloat)fWidth  fieldHeight:(CGFloat)fHeight fieldDelta:(CGFloat)fDelta deviceHeight:(CGFloat)dHeight deviceWidth:(CGFloat)dWidth {
+    self.deviceWidth=dWidth;
+    self.deviceHeight=dHeight;
+    self.fieldWidth=fWidth;
+    self.viewHeight=vHeight;
+    self.fieldHeight=fHeight;
+    self.fieldDelta=fDelta;
+    
         if ([[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeRight) {
-            return [self initWithFrame:CGRectMake(0.0, 0.0, iPadHeight, iPadTbHeight)];
+            return [self initWithFrame:CGRectMake(0.0, 0.0, deviceHeight, viewHeight)];
         } else {
-            return [self initWithFrame:CGRectMake(0.0, 0.0, iPadWidth, iPadTbHeight)];
-            
+            return [self initWithFrame:CGRectMake(0.0, 0.0, deviceWidth, viewHeight)];
         }
-    } else {
-        if ([[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeRight) {
-            return [self initWithFrame:CGRectMake(0.0, 0.0, iPhoneHeight, iPhoneTbHeight)];
-        } else {
-            return [self initWithFrame:CGRectMake(0.0, 0.0, iPhoneWidth, iPhoneTbHeight)];
-        }
-    }
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -82,28 +71,16 @@
         [refreshButton setImage:imageOpenListHL forState:UIControlStateHighlighted];
         [refreshButton addTarget:self action:@selector(selectFromStation) forControlEvents:UIControlEventTouchUpInside];
         
-        firstStation = [[StationTextField alloc] initWithFrame:CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFieldWidth, iPadTbHeight)];
+        firstStation = [[StationTextField alloc] initWithFrame:CGRectMake(self.frame.size.width-fieldWidth*2, fieldDelta, fieldWidth, fieldHeight) andStyle:StationTextFieldStyleDefault];
         firstStation.delegate = self;
-        firstStation.borderStyle = UITextBorderStyleNone;
         firstStation.rightView = refreshButton;
-        firstStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
-        firstStation.backgroundColor = [UIColor clearColor];
-        firstStation.textAlignment = UITextAlignmentLeft;
-        firstStation.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        firstStation.rightViewMode = UITextFieldViewModeAlways;
-        firstStation.autocorrectionType=UITextAutocorrectionTypeNo;
-        firstStation.autocapitalizationType=UITextAutocapitalizationTypeNone;
-        [firstStation setReturnKeyType:UIReturnKeyDone];
-        [firstStation setClearButtonMode:UITextFieldViewModeNever];
-        firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
-        firstStation.tag = 111;
         firstStation.placeholder=NSLocalizedString(@"FromDest", @"From..");
         
         [toolbar addSubview:firstStation];
         
         UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
         [button1 addTarget:self action:@selector(transitFirstToBigField) forControlEvents:UIControlEventTouchUpInside];
-        button1.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFldButton, iPadTbHeight);
+        button1.frame = CGRectMake(self.frame.size.width-fieldWidth*2, fieldDelta, fieldWidth-30.0, fieldHeight);
         self.firstButton=button1;
         
         [toolbar addSubview:button1];
@@ -114,34 +91,22 @@
         [refreshButton2 setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
         [refreshButton2 addTarget:self action:@selector(selectToStation) forControlEvents:UIControlEventTouchUpInside];
         
-        secondStation = [[StationTextField alloc] initWithFrame:CGRectMake(self.frame.size.width-iPadFieldWidth, 0, iPadFieldWidth, iPadTbHeight)];
+        secondStation = [[StationTextField alloc] initWithFrame:CGRectMake(self.frame.size.width-fieldWidth, fieldDelta, fieldWidth, fieldHeight) andStyle:StationTextFieldStyleDefault];
         secondStation.delegate=self;
-        secondStation.borderStyle = UITextBorderStyleNone;
         secondStation.rightView = refreshButton2;
-        secondStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
-        secondStation.backgroundColor = [UIColor clearColor];
-        secondStation.textAlignment = UITextAlignmentLeft;
-        secondStation.rightViewMode = UITextFieldViewModeAlways;
-        secondStation.autocorrectionType=UITextAutocorrectionTypeNo;
-        secondStation.autocapitalizationType=UITextAutocapitalizationTypeNone;
-        [secondStation setReturnKeyType:UIReturnKeyDone];
-        [secondStation setClearButtonMode:UITextFieldViewModeNever];
-        secondStation.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
-        secondStation.tag =222;
         secondStation.placeholder=NSLocalizedString(@"ToDest", @"To..");
         
         [toolbar addSubview:secondStation];
         
         UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
         [button2 addTarget:self action:@selector(transitSecondToBigField) forControlEvents:UIControlEventTouchUpInside];
-        button2.frame = CGRectMake(self.frame.size.width-iPadFieldWidth, 0, iPadFldButton, iPadTbHeight);
+        button2.frame = CGRectMake(self.frame.size.width-fieldWidth, fieldDelta, fieldWidth-30.0, fieldHeight);
         self.secondButton=button2;
         
         [toolbar addSubview:button2];
         
         arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrowIcon.png"]];
-        [arrowView setFrame:CGRectMake(self.frame.size.width-iPadFieldWidth-7, 6, 15, 15)];
+        [arrowView setFrame:CGRectMake(self.frame.size.width-fieldWidth-7, 6+fieldDelta, 15, 15)];
         [toolbar addSubview:arrowView];
         arrowView.hidden=YES;
         [arrowView release];
@@ -153,13 +118,13 @@
         self.leftButton=button3;
         self.leftButton.userInteractionEnabled=YES;
         [toolbar addSubview:button3];
-
+        
         UIButton *button4 = [UIButton buttonWithType:UIButtonTypeCustom];
         [button4 setImage:[UIImage imageNamed:@"settings_ipad_button.png"] forState:UIControlStateNormal];
         [button4 addTarget:self action:@selector(showiPadSettingsModalView) forControlEvents:UIControlEventTouchUpInside];
         button4.frame = CGRectMake(38, 4, 35, 38);
         [toolbar addSubview:button4];
-
+        
         [toolbar release];
         
     } else {
@@ -180,28 +145,16 @@
         [refreshButton setImage:imageOpenListHL forState:UIControlStateHighlighted];
         [refreshButton addTarget:self action:@selector(selectFromStation) forControlEvents:UIControlEventTouchUpInside];
         
-        firstStation = [[StationTextField alloc] initWithFrame:CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFieldWidth, iPhoneTbHeight)];
+        firstStation = [[StationTextField alloc] initWithFrame:CGRectMake(self.frame.size.width-fieldWidth*2, fieldDelta, fieldWidth, fieldHeight) andStyle:StationTextFieldStyleDefault];
         firstStation.delegate = self;
-        firstStation.borderStyle = UITextBorderStyleNone;
         firstStation.rightView = refreshButton;
-        firstStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
-        firstStation.backgroundColor = [UIColor clearColor];
-        firstStation.textAlignment = UITextAlignmentLeft;
-        firstStation.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        firstStation.rightViewMode = UITextFieldViewModeAlways;
-        firstStation.autocorrectionType=UITextAutocorrectionTypeNo;
-        firstStation.autocapitalizationType=UITextAutocapitalizationTypeNone;
-        [firstStation setReturnKeyType:UIReturnKeyDone];
-        [firstStation setClearButtonMode:UITextFieldViewModeNever];
-        firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
-        firstStation.tag = 111;
         firstStation.placeholder=NSLocalizedString(@"FromDest", @"From..");
         
         [toolbar addSubview:firstStation];
         
         UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
         [button1 addTarget:self action:@selector(transitFirstToBigField) forControlEvents:UIControlEventTouchUpInside];
-        button1.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFldButton , iPhoneTbHeight);
+        button1.frame = CGRectMake(self.frame.size.width-fieldWidth*2, fieldDelta, fieldWidth-30.0 , fieldHeight);
         self.firstButton=button1;
         
         [toolbar addSubview:button1];
@@ -212,34 +165,23 @@
         [refreshButton2 setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
         [refreshButton2 addTarget:self action:@selector(selectToStation) forControlEvents:UIControlEventTouchUpInside];
         
-        secondStation = [[StationTextField alloc] initWithFrame:CGRectMake(self.frame.size.width-iPhoneFieldWidth, 0, iPhoneFieldWidth, iPhoneTbHeight)];
+        secondStation = [[StationTextField alloc] initWithFrame:CGRectMake(self.frame.size.width-fieldWidth, fieldDelta, fieldWidth, fieldHeight) andStyle:StationTextFieldStyleDefault];
         secondStation.delegate=self;
         secondStation.borderStyle = UITextBorderStyleNone;
         secondStation.rightView = refreshButton2;
-        secondStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
-        secondStation.backgroundColor = [UIColor clearColor];
-        secondStation.textAlignment = UITextAlignmentLeft;
-        secondStation.rightViewMode = UITextFieldViewModeAlways;
-        secondStation.autocorrectionType=UITextAutocorrectionTypeNo;
-        secondStation.autocapitalizationType=UITextAutocapitalizationTypeNone;
-        [secondStation setReturnKeyType:UIReturnKeyDone];
-        [secondStation setClearButtonMode:UITextFieldViewModeNever];
-        secondStation.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
-        secondStation.tag =222;
         secondStation.placeholder=NSLocalizedString(@"ToDest", @"To..");
         
         [toolbar addSubview:secondStation];
         
         UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
         [button2 addTarget:self action:@selector(transitSecondToBigField) forControlEvents:UIControlEventTouchUpInside];
-        button2.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth, 0, iPhoneFldButton, iPhoneTbHeight);
+        button2.frame = CGRectMake(self.frame.size.width-fieldWidth, fieldDelta, fieldWidth-30.0, fieldHeight);
         self.secondButton=button2;
         
         [toolbar addSubview:button2];
         
         arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrowIcon.png"]];
-        [arrowView setFrame:CGRectMake(self.frame.size.width-iPhoneFieldWidth-7, 6, 15, 15)];
+        [arrowView setFrame:CGRectMake(self.frame.size.width-fieldWidth-7, 6+fieldDelta, 15, 15)];
         [toolbar addSubview:arrowView];
         arrowView.hidden=YES;
         [arrowView release];
@@ -252,25 +194,25 @@
 -(void)adjustSubviews:(UIInterfaceOrientation)interfaceOrientation
 {
     if (IS_IPAD) {
-        firstStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFieldWidth, iPadTbHeight);
-        secondStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth, 0, iPadFieldWidth, iPadTbHeight);
-
-        firstButton.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFldButton, iPadTbHeight);
-        secondButton.frame = CGRectMake(self.frame.size.width-iPadFieldWidth, 0, iPadFldButton, iPadTbHeight);
+        firstStation.frame = CGRectMake(self.frame.size.width-fieldWidth*2, fieldDelta, fieldWidth, fieldHeight);
+        secondStation.frame = CGRectMake(self.frame.size.width-fieldWidth, fieldDelta, fieldWidth, fieldHeight);
         
-        CGFloat desireOrigin = (secondStation.frame.origin.x - firstStation.frame.origin.x - firstStation.frame.size.width)/2.0+7.0;        
+        firstButton.frame = CGRectMake(self.frame.size.width-fieldWidth*2, fieldDelta, fieldWidth-30.0, fieldHeight);
+        secondButton.frame = CGRectMake(self.frame.size.width-fieldWidth, fieldDelta, fieldWidth-30.0, fieldHeight);
+        
+        CGFloat desireOrigin = (secondStation.frame.origin.x - firstStation.frame.origin.x - firstStation.frame.size.width)/2.0+7.0;
         arrowView.frame = CGRectMake(secondStation.frame.origin.x-desireOrigin,15, arrowView.frame.size.width, arrowView.frame.size.height);
         
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
-            if (self.frame.size.width<iPadHeight) {
+            if (self.frame.size.width<deviceHeight) {
                 [self.leftButton setImage:[UIImage imageNamed:@"close_ipad_button.png"] forState:UIControlStateNormal];
             } else {
                 [self.leftButton setImage:[UIImage imageNamed:@"inv_close_ipad_button.png"] forState:UIControlStateNormal];
             }
         } else {
-            if (self.frame.size.width<iPadWidth) {
+            if (self.frame.size.width<deviceWidth) {
                 [self.leftButton setImage:[UIImage imageNamed:@"close_ipad_button.png"] forState:UIControlStateNormal];
-            } else {                
+            } else {
                 [self.leftButton setImage:[UIImage imageNamed:@"inv_close_ipad_button.png"] forState:UIControlStateNormal];
             }
         }
@@ -279,46 +221,32 @@
 
 -(void)transitFirstToBigField
 {
-    NSTimeInterval duration = 0.2f;
+    isEditing=YES;
     
-    [UIView animateWithDuration:duration animations:^{
-        isEditing=YES;
-        
-        secondStation.hidden=YES;
-        
-        firstButton.hidden=YES;
-        secondButton.hidden=YES;
-        
-        firstButton.userInteractionEnabled=NO;
-        secondButton.userInteractionEnabled=NO;
-
-        if (IS_IPAD) { 
-            firstStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFieldWidth*2, iPadTbHeight);
-        } else {
-            firstStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFieldWidth*2, iPhoneTbHeight);
-        }
-        
-        firstStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
-        
-        firstStation.text = @"";
-        firstStation.rightViewMode = UITextFieldViewModeAlways;
-        firstStation.leftView=nil;
-        firstStation.leftViewMode=UITextFieldViewModeAlways;
-        
-    }];
+    secondStation.hidden=YES;
+    
+    firstButton.hidden=YES;
+    secondButton.hidden=YES;
+    
+    firstButton.userInteractionEnabled=NO;
+    secondButton.userInteractionEnabled=NO;
+    
+    CGRect frame;
+    
+        frame = CGRectMake(self.frame.size.width-fieldWidth*2, fieldDelta, fieldWidth*2, fieldHeight);
+    
+    [firstStation changeStyleTo:StationTextFieldStyleSearch withFrame:frame animated:YES];
     
     if (IS_IPAD) {
         tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
         appDelegate.mainViewController.currentSelection=0;
         StationListViewController *controller = [appDelegate.mainViewController showiPadLiveSearchView];
-        firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
         firstStation.delegate = controller;
         controller.isTextFieldInUse=YES;
         [firstStation becomeFirstResponder];
     } else {
         tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
         FastAccessTableViewController *controller = [appDelegate.mainViewController showTableView];
-        firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
         appDelegate.mainViewController.currentSelection=0;
         self.tableView=controller;
         firstStation.delegate = self.tableView;
@@ -328,30 +256,21 @@
 
 -(void)transitFirstToSmallField
 {
-    NSTimeInterval duration = 0.2f;
+    isEditing=NO;
     
-    [UIView animateWithDuration:duration animations:^{
-        isEditing=NO;
-        
-        secondStation.hidden=NO;
-        
-        firstButton.hidden=NO;
-        secondButton.hidden=NO;
-        
-        firstButton.userInteractionEnabled=YES;
-        secondButton.userInteractionEnabled=YES;
-        
-        if (IS_IPAD) {
-            firstStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFieldWidth, iPadTbHeight);
-        } else {
-            firstStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFieldWidth, iPhoneTbHeight);
-        }
-
-        firstStation.background = [[UIImage imageNamed:@"toolbar_bg.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
-        
-    }];
+    secondStation.hidden=NO;
     
-    firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
+    firstButton.hidden=NO;
+    secondButton.hidden=NO;
+    
+    firstButton.userInteractionEnabled=YES;
+    secondButton.userInteractionEnabled=YES;
+    
+    CGRect frame;
+    
+        frame = CGRectMake(self.frame.size.width-fieldWidth*2, fieldDelta, fieldWidth, fieldHeight);
+    
+    [firstStation changeStyleTo:StationTextFieldStyleDefault withFrame:frame animated:YES];
     
     firstStation.delegate=self;
     self.tableView=nil;
@@ -360,46 +279,32 @@
 
 -(void)transitSecondToBigField
 {
-    NSTimeInterval duration = 0.2f;
+    isEditing=YES;
     
-    [UIView animateWithDuration:duration animations:^{
-        isEditing=YES;
-        
-        firstStation.hidden=YES;
-        
-        firstButton.hidden=YES;
-        secondButton.hidden=YES;
-        
-        firstButton.userInteractionEnabled=NO;
-        secondButton.userInteractionEnabled=NO;
-        
-        if (IS_IPAD) {
-            secondStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFieldWidth*2, iPadTbHeight);
-        } else {
-            secondStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFieldWidth*2, iPhoneTbHeight);
-        }
-
-        secondStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
-        
-        secondStation.text = @"";
-        secondStation.rightViewMode = UITextFieldViewModeAlways;
-        secondStation.leftView=nil;
-        secondStation.leftViewMode=UITextFieldViewModeAlways;
-        
-    }];
+    firstStation.hidden=YES;
+    
+    firstButton.hidden=YES;
+    secondButton.hidden=YES;
+    
+    firstButton.userInteractionEnabled=NO;
+    secondButton.userInteractionEnabled=NO;
+    
+    CGRect frame;
+    
+        frame = CGRectMake(self.frame.size.width-fieldWidth*2, fieldDelta, fieldWidth*2, fieldHeight);
+    
+    [secondStation changeStyleTo:StationTextFieldStyleSearch withFrame:frame animated:YES];
     
     if (IS_IPAD) {
         tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
         appDelegate.mainViewController.currentSelection=1;
         StationListViewController *controller = [appDelegate.mainViewController showiPadLiveSearchView];
-        secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
         secondStation.delegate = controller;
         controller.isTextFieldInUse=YES;
         [secondStation becomeFirstResponder];
     } else {
         tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
         FastAccessTableViewController *controller = [appDelegate.mainViewController showTableView];
-        secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
         appDelegate.mainViewController.currentSelection=1;
         self.tableView=controller;
         secondStation.delegate = self.tableView;
@@ -409,30 +314,21 @@
 
 -(void)transitSecondToSmallField
 {
-    NSTimeInterval duration = 0.2f;
+    isEditing=NO;
     
-    [UIView animateWithDuration:duration animations:^{
-        isEditing=NO;
-        
-        firstStation.hidden=NO;
-        
-        firstButton.hidden=NO;
-        secondButton.hidden=NO;
-        
-        firstButton.userInteractionEnabled=YES;
-        secondButton.userInteractionEnabled=YES;
-        
-        secondStation.background = [[UIImage imageNamed:@"toolbar_bg.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
-
-        if (IS_IPAD) {
-            secondStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth, 0, iPadFieldWidth, iPadTbHeight);
-        } else {
-            secondStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth, 0, iPhoneFieldWidth, iPhoneTbHeight);
-        }
-        
-    }];
+    firstStation.hidden=NO;
     
-    secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
+    firstButton.hidden=NO;
+    secondButton.hidden=NO;
+    
+    firstButton.userInteractionEnabled=YES;
+    secondButton.userInteractionEnabled=YES;
+    
+    CGRect frame;
+    
+        frame = CGRectMake(self.frame.size.width-fieldWidth, fieldDelta, fieldWidth, fieldHeight);
+    
+    [secondStation changeStyleTo:StationTextFieldStyleDefault withFrame:frame animated:YES];
     
     secondStation.delegate=self;
     self.tableView=nil;
@@ -527,10 +423,10 @@
                 arrowOrigin = desireOrigin2-(desireOrigin2-desireOrigin1-desireWidth1)/2-8;
             }
             
-            firstStation.frame = CGRectMake(desireOrigin1, 0,desireWidth1, 44);
-            secondStation.frame = CGRectMake(desireOrigin2, 0, desireWidth2, 44);
+            firstStation.frame = CGRectMake(desireOrigin1, fieldDelta,desireWidth1, 44);
+            secondStation.frame = CGRectMake(desireOrigin2, fieldDelta, desireWidth2, 44);
             arrowView.frame =CGRectMake(arrowOrigin, 15, arrowView.frame.size.width, arrowView.frame.size.height);
-
+            
         } else {
             if (textBounds1.width+textBounds2.width+addWidth*2+arrowView.frame.size.width>maxWidth*2) {
                 if (textBounds1.width+addWidth>maxWidth && textBounds2.width+addWidth>maxWidth) {
@@ -560,18 +456,18 @@
                 desireOrigin2=320-desireWidth2;
                 arrowOrigin = desireWidth1+(desireOrigin2-desireWidth1)/2-8;
             }
-        
+            
             self.frame=CGRectMake(0, 0, 320, 26);
             self.toolbar.frame=CGRectMake(0, 0, 320, 26);
-
-            firstStation.frame = CGRectMake(desireOrigin1, 0,desireWidth1, 26);
-            secondStation.frame = CGRectMake(desireOrigin2, 0, desireWidth2, 26);
+            
+            firstStation.frame = CGRectMake(desireOrigin1, fieldDelta,desireWidth1, 26);
+            secondStation.frame = CGRectMake(desireOrigin2, fieldDelta, desireWidth2, 26);
             
             firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
             secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
-
+            
             arrowView.frame =CGRectMake(arrowOrigin, arrowView.frame.origin.y, arrowView.frame.size.width, arrowView.frame.size.height);
-        
+            
             [toolbar setImage:[[UIImage imageNamed:@"upper_path_bg.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0]];
             
         }
@@ -588,7 +484,7 @@
         [secondStation setLeftView:lineColor2];
         [lineColor2 release];
         
-    }];    
+    }];
 }
 
 -(void)transitToInitialSize
@@ -609,7 +505,7 @@
         
         firstStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
         secondStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
-                
+        
         UIImage *imageOpenList = [[SSThemeManager sharedTheme] stationTextFieldRightImageNormal];
         UIImage *imageOpenListHL = [[SSThemeManager sharedTheme] stationTextFieldRightImageHighlighted];
         
@@ -634,27 +530,27 @@
         
         if (IS_IPAD) {
             if ([[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeRight) {
-//                self.frame=CGRectMake(0,0, self., iPadTbHeight);
-//                self.toolbar.frame=CGRectMake(0,0, iPadHeight, iPadTbHeight);
+                //                self.frame=CGRectMake(0,0, self., viewHeight);
+                //                self.toolbar.frame=CGRectMake(0,0, deviceHeight, viewHeight);
             } else {
-//                self.frame=CGRectMake(0,0, iPadWidth, iPadTbHeight);
-//                self.toolbar.frame=CGRectMake(0,0, iPadWidth, iPadTbHeight);
+                //                self.frame=CGRectMake(0,0, deviceWidth, viewHeight);
+                //                self.toolbar.frame=CGRectMake(0,0, deviceWidth, viewHeight);
             }
             
-            firstStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFieldWidth, iPadTbHeight);
-            secondStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth, 0, iPadFieldWidth, iPadTbHeight);
-
+            firstStation.frame = CGRectMake(self.frame.size.width-fieldWidth*2, fieldDelta, fieldWidth, fieldHeight);
+            secondStation.frame = CGRectMake(self.frame.size.width-fieldWidth, fieldDelta, fieldWidth, fieldHeight);
+            
         } else {
             if ([[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeRight) {
-                self.frame=CGRectMake(0,0, iPhoneHeight, iPhoneTbHeight);
-                self.toolbar.frame=CGRectMake(0,0, iPhoneHeight, iPhoneTbHeight);
+                self.frame=CGRectMake(0,0, deviceHeight, viewHeight);
+                self.toolbar.frame=CGRectMake(0,0, deviceHeight, viewHeight);
             } else {
-                self.frame=CGRectMake(0,0, iPhoneWidth, iPhoneTbHeight);
-                self.toolbar.frame=CGRectMake(0,0, iPhoneWidth, iPhoneTbHeight);
+                self.frame=CGRectMake(0,0, deviceWidth, viewHeight);
+                self.toolbar.frame=CGRectMake(0,0, deviceWidth, viewHeight);
             }
-
-            firstStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth*2, 0, iPhoneFieldWidth, iPhoneTbHeight);
-            secondStation.frame = CGRectMake(self.frame.size.width-iPhoneFieldWidth, 0, iPhoneFieldWidth, iPhoneTbHeight);
+            
+            firstStation.frame = CGRectMake(self.frame.size.width-fieldWidth*2, fieldDelta, fieldWidth, fieldHeight);
+            secondStation.frame = CGRectMake(self.frame.size.width-fieldWidth, fieldDelta, fieldWidth, fieldHeight);
         }
         
         [toolbar setImage:[[UIImage imageNamed:@"toolbar_bg1.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0]];
@@ -756,92 +652,105 @@
     
 }
 
+-(void)setStationToField:(StationTextField*)stationField withStation:(MStation*)station
+{
+    switch (stationField.state) {
+        case StationTextFieldStylePath:
+            if ([[MHelper sharedHelper] languageIndex]%2) {
+                stationField.text = station.altname;
+            } else {
+                stationField.text = station.name;
+            }
+            
+            break;
+
+        case StationTextFieldStyleSearch:
+            if (stationField==firstStation) {
+                [self transitFirstToSmallField];
+            } else {
+                [self transitSecondToSmallField];
+            }
+
+        case StationTextFieldStyleDefault:
+            [self transitToInitialSize];
+
+        case StationTextFieldStyleStation:
+            if (station) {
+                if ([[MHelper sharedHelper] languageIndex]%2) {
+                    stationField.text = station.altname;
+                } else {
+                    stationField.text = station.name;
+                }
+                
+                stationField.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
+                
+                stationField.rightViewMode = UITextFieldViewModeNever;
+                
+                UIImageView *lineColor = [[UIImageView alloc] initWithImage:[self imageWithColor:[station lines]]];
+                [stationField setLeftView:lineColor];
+                [lineColor release];
+                
+                [stationField setLeftViewMode: UITextFieldViewModeAlways];
+                stationField.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
+                
+            } else {
+                if (stationField==firstStation) {
+                    [self clearFromStation];
+                } else {
+                    [self clearToStation];
+                }
+            }
+        default:
+            break;
+    }}
+
 -(void)setFromStation:(MStation*)fromStation
 {
-    
-    if ([firstButton isHidden] && [secondButton isHidden] && fromStation && !isEditing) { // мы уже в режиме пути просто меняем текст
-        if ([[MHelper sharedHelper] languageIndex]%2) {
-            firstStation.text = fromStation.altname;
-        } else {
-            firstStation.text = fromStation.name;
-        }
-        return;
-    }
-    
-    if ([firstButton isHidden]) {
-        [self transitFirstToSmallField];
-    }
-    
-    if (shouldEnlarge)
-    {
-        [self transitToInitialSize];
-    }
-    
-    if (fromStation) {
-        if ([[MHelper sharedHelper] languageIndex]%2) {
-            firstStation.text = fromStation.altname;
-        } else {
-            firstStation.text = fromStation.name;
-        }
-        
-        firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
-        
-        firstStation.rightViewMode = UITextFieldViewModeNever;
-        
-        UIImageView *lineColor = [[UIImageView alloc] initWithImage:[self imageWithColor:[fromStation lines]]];
-        [firstStation setLeftView:lineColor];
-        [lineColor release];
-        
-        [firstStation setLeftViewMode: UITextFieldViewModeAlways];
-        firstStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
-        
-    } else {
-        [self clearFromStation];
-    }
+    [self setStationToField:firstStation withStation:fromStation];
 }
 
 -(void)setToStation:(MStation*)toStation
 {
-    
-    if ([firstButton isHidden] && [secondButton isHidden] && toStation && !isEditing) { // мы уже в режиме пути просто меняем текст
-        if ([[MHelper sharedHelper] languageIndex]%2) {
-            secondStation.text = toStation.altname;
-        } else {
-            secondStation.text = toStation.name;
-        }
-        return;
-    }
-    
-    if ([secondButton isHidden]) {
-        [self transitSecondToSmallField];
-    }
-    
-    if (shouldEnlarge)
-    {
-        [self transitToInitialSize];
-    }
-    
-    if (toStation) {
-        if ([[MHelper sharedHelper] languageIndex]%2) {
-            secondStation.text = toStation.altname;
-        } else {
-            secondStation.text = toStation.name;
-        }
-        
-        secondStation.rightViewMode = UITextFieldViewModeNever;
-        
-        secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
-        
-        UIImageView *lineColor = [[UIImageView alloc] initWithImage:[self imageWithColor:[toStation lines]]];
-        [secondStation setLeftView:lineColor];
-        [lineColor release];
-        
-        [secondStation setLeftViewMode: UITextFieldViewModeAlways];
-        secondStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
-        
-    } else {
-        [self clearToStation];
-    }
+    [self setStationToField:secondStation withStation:toStation];
+//    if ([firstButton isHidden] && [secondButton isHidden] && toStation && !isEditing) { // мы уже в режиме пути просто меняем текст
+//        if ([[MHelper sharedHelper] languageIndex]%2) {
+//            secondStation.text = toStation.altname;
+//        } else {
+//            secondStation.text = toStation.name;
+//        }
+//        return;
+//    }
+//    
+//    if ([secondButton isHidden]) {
+//        [self transitSecondToSmallField];
+//    }
+//    
+//    if (shouldEnlarge)
+//    {
+//        [self transitToInitialSize];
+//    }
+//    
+//    if (toStation) {
+//        if ([[MHelper sharedHelper] languageIndex]%2) {
+//            secondStation.text = toStation.altname;
+//        } else {
+//            secondStation.text = toStation.name;
+//        }
+//        
+//        secondStation.rightViewMode = UITextFieldViewModeNever;
+//        
+//        secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
+//        
+//        UIImageView *lineColor = [[UIImageView alloc] initWithImage:[self imageWithColor:[toStation lines]]];
+//        [secondStation setLeftView:lineColor];
+//        [lineColor release];
+//        
+//        [secondStation setLeftViewMode: UITextFieldViewModeAlways];
+//        secondStation.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
+//        
+//    } else {
+//        [self clearToStation];
+//    }
 }
 
 -(UIImage*)drawCircleView:(UIColor*)myColor
@@ -849,16 +758,16 @@
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(10,10), NO, 0.0);
     
     CGRect circleRect = CGRectMake(0.0, 0.0, 9.0, 9.0);
-	
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     const CGFloat* components = CGColorGetComponents(myColor.CGColor);
     
     CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));
     CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));
-	CGContextSetLineWidth(context, 0.0);
-	CGContextFillEllipseInRect(context, circleRect);
-	CGContextStrokeEllipseInRect(context, circleRect);
+    CGContextSetLineWidth(context, 0.0);
+    CGContextFillEllipseInRect(context, circleRect);
+    CGContextStrokeEllipseInRect(context, circleRect);
     
     UIImage *bevelImg = [UIImage imageNamed:@"bevel.png"];
     
@@ -876,16 +785,16 @@
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(12,12), NO, 0.0);
     
     CGRect circleRect = CGRectMake(1.0, 1.0, 10.0, 10.0);
-	
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     const CGFloat* components = CGColorGetComponents(myColor.CGColor);
     
     CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));
     CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));
-	CGContextSetLineWidth(context, 0.0);
-	CGContextFillEllipseInRect(context, circleRect);
-	CGContextStrokeEllipseInRect(context, circleRect);
+    CGContextSetLineWidth(context, 0.0);
+    CGContextFillEllipseInRect(context, circleRect);
+    CGContextStrokeEllipseInRect(context, circleRect);
     
     UIImage *bevelImg = [UIImage imageNamed:@"bevel.png"];
     
@@ -912,10 +821,10 @@
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    [super drawRect:rect];
-}
+//- (void)drawRect:(CGRect)rect
+//{
+//    [super drawRect:rect];
+//}
 
 
 -(void)dealloc

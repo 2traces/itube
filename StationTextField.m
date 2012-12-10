@@ -7,6 +7,7 @@
 //
 
 #import "StationTextField.h"
+#import "SSTheme.h"
 
 @implementation StationTextField
 
@@ -21,14 +22,76 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+#pragma mark - custom init
+- (id)initWithFrame:(CGRect)frame andStyle:(StationTextFieldStyle)style
 {
-    // Drawing code
+    if (style==StationTextFieldStyleDefault) {
+        self = [self initWithFrame:frame];
+        if (self) {
+            self.borderStyle = UITextBorderStyleNone;
+            self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
+            self.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
+            self.backgroundColor = [UIColor clearColor];
+            self.textAlignment = UITextAlignmentLeft;
+            self.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+            self.rightViewMode = UITextFieldViewModeAlways;
+            self.autocorrectionType=UITextAutocorrectionTypeNo;
+            self.autocapitalizationType=UITextAutocapitalizationTypeNone;
+            [self setReturnKeyType:UIReturnKeyDone];
+            [self setClearButtonMode:UITextFieldViewModeNever];
+            self.state=style;
+        }
+        return self;
+    }
+    
+    return nil;
 }
-*/
+
+
+#pragma mark - Style Changes
+
+-(void)changeStyleTo:(StationTextFieldStyle)style withFrame:(CGRect)frame animated:(BOOL)animated
+{
+    switch (style) {
+        case StationTextFieldStyleDefault:
+            if (animated) {
+                [UIView animateWithDuration:0.2f animations:^{
+                    self.frame=frame;
+                    self.background = [[UIImage imageNamed:@"toolbar_bg.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
+                    self.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
+                }];
+            }
+
+            break;
+        case StationTextFieldStyleSearch:
+            if (animated) {
+                [UIView animateWithDuration:0.2f animations:^{
+                    self.frame=frame;
+                    self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
+                    self.text = @"";
+                    self.rightViewMode = UITextFieldViewModeAlways;
+                    self.leftView=nil;
+                    self.leftViewMode=UITextFieldViewModeAlways;
+                    self.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+                    self.state=style;
+                }];
+            }
+            
+            break;
+        case StationTextFieldStyleStation:
+            
+            break;
+        case StationTextFieldStylePath:
+            
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+#pragma mark - TextField override
 
 - (CGRect)rightViewRectForBounds:(CGRect)bounds
 {
@@ -89,13 +152,5 @@
     
     [super drawPlaceholderInRect:newFrame];
 }
-
-
-/*
-- (void) drawPlaceholderInRect:(CGRect)rect {
-    [[UIColor blueColor] setFill];
-    [[self placeholder] drawInRect:rect withFont:[UIFont systemFontOfSize:16]];
-}
-*/
 
 @end

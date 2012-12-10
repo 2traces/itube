@@ -154,7 +154,14 @@
         }
     }
     
-    TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] init];
+    TopTwoStationsView *twoStationsView;
+    
+    if (IS_IPAD) {
+        twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:50.0f fieldWidth:189.0f fieldHeight:40.0f fieldDelta:5.0f deviceHeight:1024.0f deviceWidth:768.0f];
+    } else {
+        twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:50.0f fieldWidth:160.0f  fieldHeight:40.0f fieldDelta:5.0f deviceHeight:480.0f deviceWidth:320.f];
+    }
+    
     self.stationsView = twoStationsView;
     [(MainView*)self.view addSubview:twoStationsView];
     [twoStationsView release];

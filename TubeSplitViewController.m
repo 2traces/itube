@@ -66,6 +66,12 @@ static float koefficient = 0.0f;
     [self.view addSubview:controller.view];
     [controller release];
     
+//    TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] init];
+//    mainViewController.stationsView = twoStationsView;
+//    [self.view addSubview:twoStationsView];
+//    [twoStationsView release];
+
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pathCleared:) name:@"kPathCleared" object:nil];
 }
 

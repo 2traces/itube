@@ -32,7 +32,14 @@
 @property (nonatomic, retain) FastAccessTableViewController *tableView;
 @property (nonatomic, retain) UIImageView *arrowView;
 @property (nonatomic, retain) UIButton *leftButton;
+@property (nonatomic, assign) CGFloat deviceWidth;
+@property (nonatomic, assign) CGFloat deviceHeight;
+@property (nonatomic, assign) CGFloat viewHeight;
+@property (nonatomic, assign) CGFloat fieldWidth;
+@property (nonatomic, assign) CGFloat fieldDelta;
+@property (nonatomic, assign) CGFloat fieldHeight;
 
+-(id)initWithViewHeight:(CGFloat)vHeight fieldWidth:(CGFloat)fWidth  fieldHeight:(CGFloat)fHeight fieldDelta:(CGFloat)fDelta deviceHeight:(CGFloat)dHeight deviceWidth:(CGFloat)dWidth;
 -(void)drawInitialState;
 -(void)adjustSubviews:(UIInterfaceOrientation)interfaceOrientation;
 -(void)setFromStation:(MStation*)fromStation;
