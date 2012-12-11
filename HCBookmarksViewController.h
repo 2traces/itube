@@ -12,6 +12,7 @@
 @protocol BookmarkDelegate <NSObject>
 
 - (void) removeFromFavoritesItemWithIndex:(NSInteger)index;
+- (void) showMapForItemWithIndex:(NSInteger)index;
 
 @end
 

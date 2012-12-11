@@ -10,6 +10,7 @@
 #import "ManagedObjects.h"
 #import "tubeAppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
+#import "MainView.h"
 
 @interface PhotosViewController ()
 
@@ -29,6 +30,8 @@
 @synthesize placeNamePanel;
 @synthesize btAddToFavorites;
 @synthesize btShowHideBookmarks;
+@synthesize distanceContainer;
+@synthesize distanceLabel;
 
 - (IBAction)showCategories:(id)sender {
     [self.navigationDelegate showCategories:self];
@@ -41,6 +44,13 @@
 
 - (IBAction)addToFavorites:(id)sender {
     MPlace *place = [(MPhoto*)(self.currentPhotos[currentPage]) place];
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    if ([place.isFavorite boolValue]) {
+        [appDelegate placeRemovedFromFavorites:place];
+    }
+    else {
+        [appDelegate placeAddedToFavorites:place];
+    }
     place.isFavorite = [place.isFavorite boolValue] ? [NSNumber numberWithBool:NO] : [NSNumber numberWithBool:YES];
     [self updateInfoForCurrentPage];
 }
@@ -57,6 +67,15 @@
     return image;
 }
 
+- (Station*)stationForCurrentPhoto {
+    MPlace *place = [(MPhoto*)(self.currentPhotos[currentPage]) place];
+    CGPoint placePoint = CGPointMake([place.posX floatValue], [place.posY floatValue]);
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    MainView* map = (MainView*)[appDelegate.mainViewController view];
+    Station *nearestStation = [map stationNearestToGeoPosition:placePoint];
+    return nearestStation;
+}
+
 - (void)updateInfoForCurrentPage {
     MPlace *place = [(MPhoto*)(self.currentPhotos[currentPage]) place];
     self.placeNameHeader.text = place.name;
@@ -66,7 +85,14 @@
                 [UIImage imageNamed:@"bt_star_solid"] :
                 [UIImage imageNamed:@"bt_star"];
     [self.btAddToFavorites setImage:btImage forState:UIControlStateNormal];
-    [self.navigationDelegate selectPlaceWithIndex:[place.index integerValue]];
+    CGFloat distance = [self.navigationDelegate selectPlaceWithIndex:[place.index integerValue]];
+    NSLog(@"%f meters", distance);
+    if (distance == 0) {
+        self.distanceLabel.text = @"";
+    }
+    else {
+        self.distanceLabel.text = [NSString stringWithFormat:@"%.1f km", distance/1000.0f];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -161,8 +187,13 @@
     self.placeNamePanel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0f];
     self.placeDescription.layer.cornerRadius = 11;
     self.placeDescription.font = [UIFont fontWithName:@"MyriadPr-Italic" size:16.0f];
+    self.distanceLabel.font = [UIFont fontWithName:@"MyriadPr-Italic" size:10.0f];
+    self.distanceLabel.textColor = [UIColor darkGrayColor];
+    self.distanceLabel.text = @"";
     [self.scrollPhotos addGestureRecognizer:tapGR];
     [tapGR autorelease];
+    currentPage = 0;
+    [self updateInfoForCurrentPage];
 }
 
 - (void)photoTapped:(UITapGestureRecognizer *)recognizer {

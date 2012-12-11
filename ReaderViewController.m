@@ -10,6 +10,7 @@
 #import "ReaderItemViewController.h"
 #import "ManagedObjects.h"
 #import "PhotoViewerViewController.h"
+#import "tubeAppDelegate.h"
 
 @interface ReaderViewController ()
 
@@ -33,6 +34,13 @@
 
 - (IBAction)addToFavorites:(id)sender {
     MPlace *place = self.items[currentPage];
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    if ([place.isFavorite boolValue]) {
+        [appDelegate placeRemovedFromFavorites:place];
+    }
+    else {
+        [appDelegate placeAddedToFavorites:place];
+    }
     place.isFavorite = [place.isFavorite boolValue] ? [NSNumber numberWithBool:NO] : [NSNumber numberWithBool:YES];
     [self updateInfoForCurrentPage];
 }

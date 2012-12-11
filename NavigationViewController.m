@@ -73,6 +73,7 @@
     fMetroMode = YES;
     layerMode = HCMetroLayer;
     photosMode = HCPhotosVisibleFully;
+    currentPlacePin = -1;
 }
 
 - (void)didReceiveMemoryWarning
@@ -149,12 +150,14 @@
                 self.photosController.disappearingView.alpha = 1.0f;
                 self.photosController.view.frame = photosViewFrame;
                 self.photosController.placeNamePanel.hidden = NO;
+                self.photosController.distanceContainer.hidden = NO;
             } completion:^(BOOL finished) {
             }];
             break;
         case HCPhotosHiddenFully:
             self.photosController.disappearingView.alpha = 1;
             self.photosController.placeNamePanel.hidden = NO;
+            self.photosController.distanceContainer.hidden = NO;
 
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
@@ -162,6 +165,7 @@
                 self.photosController.disappearingView.alpha = 0;
                 self.photosController.view.frame = photosViewFrame;
                 self.photosController.placeNamePanel.hidden = YES;
+                self.photosController.distanceContainer.hidden = YES;
             } completion:^(BOOL finished) {
             }];
             break;
@@ -169,7 +173,14 @@
             [self.mainController.stationsView resetBothStations];
             self.photosController.disappearingView.alpha = 1;
             self.photosController.placeNamePanel.hidden = NO;
+            self.photosController.distanceContainer.hidden = NO;
 
+            //Here we should set the destination station
+            Station *station = [self.photosController stationForCurrentPhoto];
+            MStation *stationObject = [[MHelper sharedHelper] getStationWithName:station.name forLine:station.line.name];
+            [self.mainController resetToStation];
+            [self.mainController returnFromSelection:[NSArray arrayWithObject:stationObject]];
+            
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
                 photosViewFrame.origin.y = -176;
@@ -189,6 +200,7 @@
             [self.mainController toggleTap];
             self.photosController.disappearingView.alpha = 1;
             self.photosController.placeNamePanel.hidden = NO;
+            self.photosController.distanceContainer.hidden = NO;
 
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
@@ -197,6 +209,7 @@
                 self.photosController.view.frame = photosViewFrame;
             } completion:^(BOOL finished) {
                 self.photosController.placeNamePanel.hidden = YES;
+                self.photosController.distanceContainer.hidden = YES;
                 CGRect photosViewFrame = self.photosController.view.frame;
                 CGRect panelFrame = self.photosController.panelView.frame;
                 photosViewFrame.origin.x = 320;
@@ -220,6 +233,26 @@
 
 - (void)transitToNormalMode {
     [self transitPhotosToMode:HCPhotosHiddenMetroDefault animated:NO];
+}
+
+
+- (void)placeAddedToFavorites:(MPlace*)place {
+    MainView* map = (MainView*)[self.mainController view];
+    CGPoint placePoint = CGPointMake([place.posX floatValue], [place.posY floatValue]);
+
+    Station *nearestStation = [map stationNearestToGeoPosition:placePoint];
+
+    [self.glController setPinAtPlace:place color:1];
+    [self.mainController setStarAtStation:nearestStation withType:1];
+}
+
+- (void)placeRemovedFromFavorites:(MPlace*)place {
+    MainView* map = (MainView*)[self.mainController view];
+    CGPoint placePoint = CGPointMake([place.posX floatValue], [place.posY floatValue]);
+
+    Station *nearestStation = [map stationNearestToGeoPosition:placePoint];
+    [self.glController removePinAtPlace:place];
+    [self.mainController removeStarFromStation:nearestStation.name];
 }
 
 - (void) showHidePhotos:(id)sender {
@@ -342,13 +375,24 @@
 
 }
 
-- (void) selectPlaceWithIndex:(NSInteger)index {
+- (void) centerMapOnPlace:(MPlace*)place {
+    CGPoint placePosition = CGPointMake([place.posX floatValue], [place.posY floatValue]);
+    [(MainView*)(self.mainController.view) setGeoPosition:placePosition withZoom:-1];
+    [self.glController setGeoPosition:placePosition withZoom:-1];
+}
+
+- (CGFloat) selectPlaceWithIndex:(NSInteger)index {
     MPlace *place = [[MHelper sharedHelper] getPlaceWithIndex:index];
     CGPoint placePosition = CGPointMake([place.posX floatValue], [place.posY floatValue]);
     
     [(MainView*)(self.mainController.view) setGeoPosition:placePosition withZoom:-1];
     [self.glController setGeoPosition:placePosition withZoom:-1];
-    [self.glController newPin:placePosition color:1 name:place.name];
+    if (currentPlacePin != -1) {
+        [self.glController removePin:currentPlacePin];
+    }
+    currentPlacePin = [self.glController newPin:placePosition color:1 name:place.name];
+    Pin *pin = [self.glController getPin:currentPlacePin];
+    return pin.distanceToUser;
 }
 
 

@@ -27,7 +27,7 @@
 - (void) hideBookmarksLayer;
 - (void) showReaderWithItems:(NSArray*)items activePage:(NSInteger)activePage;
 - (void) selectCategoryWithIndex:(NSInteger)index;
-- (void) selectPlaceWithIndex:(NSInteger)index;
+- (CGFloat) selectPlaceWithIndex:(NSInteger)index;
 - (void) showSettings;
 
 @end
@@ -57,6 +57,7 @@ typedef enum {
     BOOL fMetroMode;
     HCPhotosPresentationMode photosMode;
     HCLayerMode layerMode;
+    NSInteger currentPlacePin;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController;
@@ -64,7 +65,10 @@ typedef enum {
 - (void)transitToPathMode;
 - (void)transitToNormalMode;
 
+- (void)placeAddedToFavorites:(MPlace*)place;
+- (void)placeRemovedFromFavorites:(MPlace*)place;
 
+- (void) centerMapOnPlace:(MPlace*)place;
 
 @property (nonatomic, retain) IBOutlet UIView *separatingView;
 @property (nonatomic, retain) NSArray *currentPlaces;

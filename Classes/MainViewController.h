@@ -70,4 +70,7 @@
 -(void)showiPadLeftPathView;
 -(void)toggleTap;
 
+-(void)setStarAtStation:(Station*)station withType:(int)starType;
+-(void)removeStarFromStation:(NSString*)stationName;
+
 @end

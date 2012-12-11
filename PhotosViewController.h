@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "NavigationViewController.h"
 
+@class Station;
+
 @interface PhotosViewController : UIViewController <UIScrollViewDelegate, UIGestureRecognizerDelegate> {
     UIScrollView *scrollPhotos;
     UIButton *buttonCategories;
@@ -20,8 +22,12 @@
     UILabel *placeDescription;
     UIButton *btAddToFavorites;
     UIButton *btShowHideBookmarks;
+    UILabel *distanceLabel;
+    UIView *distanceContainer;
 }
 
+@property (nonatomic, retain) IBOutlet UILabel *distanceLabel;
+@property (nonatomic, retain) IBOutlet UIView *distanceContainer;
 @property (nonatomic, retain) IBOutlet UILabel *placeNameHeader;
 @property (nonatomic, retain) IBOutlet UILabel *placeNamePanel;
 @property (nonatomic, retain) IBOutlet UILabel *placeDescription;
@@ -39,7 +45,8 @@
 - (IBAction)showHidePhotos:(id)sender;
 - (IBAction)showBookmarks:(id)sender;
 - (IBAction)addToFavorites:(id)sender;
-
+- (void)updateInfoForCurrentPage;
+- (Station*)stationForCurrentPhoto;
 
 - (void) loadPlaces:(NSArray*)places;
 

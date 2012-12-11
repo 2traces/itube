@@ -866,6 +866,16 @@
     
 }
 
+-(void)setStarAtStation:(Station*)station withType:(int)starType {
+    MainView *mainView = (MainView*)self.view;
+    [mainView.mapView setStarAtStation:station withType:starType];
+}
+
+-(void)removeStarFromStation:(NSString*)stationName {
+    MainView *mainView = (MainView*)self.view;
+    [mainView.mapView removeStarFromStation:stationName];
+}
+
 -(void)performFindingPath
 {
     MainView *mainView = (MainView*)self.view;

@@ -69,4 +69,8 @@
 -(void)removeAllPins;
 -(Pin*)getPin:(int)pinId;
 
+- (CGFloat) setPinAtPlace:(MPlace*)place color:(int)color;
+- (void) removePinAtPlace:(MPlace*)place;
+
+
 @end

@@ -114,6 +114,8 @@
 
 - (void) removeFromFavoritesItemWithIndex:(NSInteger)index {
     HCBookmarkItemView *view = [self viewForPlaceIndex:index];
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
     [UIView animateWithDuration:1.0f animations:^{
         view.alpha = 0.0f;
         NSInteger indexOfRemovedItem = [self.items indexOfObject:view];
@@ -129,8 +131,18 @@
         [view removeFromSuperview];
         MPlace *place = [[MHelper sharedHelper] getPlaceWithIndex:view.tag];
         place.isFavorite = [NSNumber numberWithBool:NO];
+        [appDelegate placeRemovedFromFavorites:place];
     }];
 }
+
+- (void) showMapForItemWithIndex:(NSInteger)index {
+    HCBookmarkItemView *view = [self viewForPlaceIndex:index];
+    MPlace *place = [[MHelper sharedHelper] getPlaceWithIndex:view.tag];
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate centerMapOnPlace:place];
+    [self close:nil];
+}
+
 
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

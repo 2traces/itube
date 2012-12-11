@@ -16,6 +16,7 @@
 #import "ManagedObjects.h"
 #import "MainView.h"
 #import "NavigationViewController.h"
+#import "PhotosViewController.h"
 
 @implementation tubeAppDelegate
 
@@ -40,6 +41,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     [gl setUserGeoPosition:userGeoP];
     MainView *mv = (MainView*)mainViewController.view;
     [mv setGeoPosition:userGeoPosition withZoom:mv.containerView.zoomScale];
+    [self.navigationViewController.photosController updateInfoForCurrentPage];
 }
 
 -(CGPoint)userGeoPosition
@@ -50,6 +52,18 @@ void uncaughtExceptionHandler(NSException *exception) {
 -(void)errorWithGeoLocation
 {
     [gl errorWithGeoLocation];
+}
+
+- (void)placeAddedToFavorites:(MPlace*)place {
+    [self.navigationViewController placeAddedToFavorites:place];
+}
+
+- (void)placeRemovedFromFavorites:(MPlace*)place {
+    [self.navigationViewController placeRemovedFromFavorites:place];
+}
+
+- (void)centerMapOnPlace:(MPlace*)place {
+    [self.navigationViewController centerMapOnPlace:place];
 }
 
 

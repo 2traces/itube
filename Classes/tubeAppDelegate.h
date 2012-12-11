@@ -62,5 +62,10 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 -(void)hideBookmarks;
 -(void)errorWithGeoLocation;
 
+- (void)placeAddedToFavorites:(MPlace*)place;
+- (void)placeRemovedFromFavorites:(MPlace*)place;
+
+- (void)centerMapOnPlace:(MPlace*)place;
+
 @end
 

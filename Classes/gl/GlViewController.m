@@ -686,6 +686,33 @@ GLint uniforms[NUM_UNIFORMS];
     currentSelection=tempSelection;
 }
 
+- (void) removePinAtPlace:(MPlace*)place {
+    NSInteger pinId = [place.index integerValue] + 1000;
+    [self removePin:pinId];
+}
+
+- (CGFloat) setPinAtPlace:(MPlace*)place color:(int)color {
+    CGPoint coordinate = CGPointMake([place.posX floatValue], [place.posY floatValue]);
+    int newId = [place.index integerValue] + 1000;
+    if ([self getPin:newId]) {
+        return [[self getPin:newId] distanceToUser];
+    }
+    Pin *p = nil;
+    if(place.name != nil)
+        p = [[Pin alloc] initWithId:newId color:color andText:place.name];
+    else
+        p = [[Pin alloc] initWithId:newId andColor:color];
+    float dist = 256.f/scale;
+    [p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
+    [pinsArray addObject:p];
+    [p setPosition:[self translateFromGeoToMap:coordinate]];
+    
+    // distance from user to pin
+    p.distanceToUser = [self calcGeoDistanceFrom:coordinate to:userGeoPosition];
+    
+    return p.distanceToUser;
+}
+
 -(int)newPin:(CGPoint)coordinate color:(int)color name:(NSString*)name
 {
     int newId = newPinId;
