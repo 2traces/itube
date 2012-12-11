@@ -54,6 +54,7 @@ extern int const imagesCount;
     ActiveView *activeLayer;
     NSDictionary *foundPaths;
     CLLocationManager *locationManager;
+    NSMutableDictionary *stationStars;
 }
 
 @property (assign) NSString *nearestStationName;
@@ -101,5 +102,8 @@ extern int const imagesCount;
 //highlighting station nearest to the point
 - (void)highlightStationNearPoint:(CGPoint)point;
 
+-(void)setStarAtStation:(Station*)station withType:(int)starType;
+-(void)removeStarFromStation:(NSString*)stationName;
+-(void)removeAllStars;
 
 @end

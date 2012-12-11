@@ -86,6 +86,77 @@
     } else return NO;
 }
 
+-(void)setStarAtStation:(Station*)station withType:(int)starType
+{
+    NSString *starFile = nil;
+    switch (starType) {
+        case 0:
+            starFile = @"star-aqua";
+            break;
+        case 1:
+            starFile = @"star-blue-aqua";
+            break;
+        case 2:
+            starFile = @"star-blue-pink";
+            break;
+        case 3:
+            starFile = @"star-blue";
+            break;
+        case 4:
+            starFile = @"star-green-yellow";
+            break;
+        case 5:
+            starFile = @"star-green";
+            break;
+        case 6:
+            starFile = @"star-pink";
+            break;
+        case 7:
+            starFile = @"star-red-pink";
+            break;
+        case 8:
+            starFile = @"star-red-yellow";
+            break;
+        case 9:
+            starFile = @"star-red";
+            break;
+        case 10:
+            starFile = @"star-yell";
+            break;
+    }
+	UIImage *imageStar = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:starFile ofType:@"png"]];
+
+    CALayer *starLayer = [[CALayer layer] retain];
+    starLayer.frame = CGRectMake(0, 0, cityMap.gpsCircleScale*imageStar.size.width, cityMap.gpsCircleScale*imageStar.size.height);
+    starLayer.contents=(id)[imageStar CGImage];
+    starLayer.position = station.pos;
+    [self.layer addSublayer:starLayer];
+    
+    if([stationStars.allKeys containsObject:station.name]) {
+        CALayer *l = [stationStars valueForKey:station.name];
+        [l removeFromSuperlayer];
+    }
+    [stationStars setValue:starLayer forKey:station.name];
+}
+
+-(void)removeStarFromStation:(NSString*)stationName
+{
+    if([stationStars valueForKey:stationName]) {
+        CALayer *l = [stationStars valueForKey:stationName];
+        [l removeFromSuperlayer];
+        [stationStars removeObjectForKey:stationName];
+    }
+}
+
+-(void)removeAllStars
+{
+    for (NSString* sn in stationStars.allKeys) {
+        CALayer *l = [stationStars valueForKey:sn];
+        [l removeFromSuperlayer];
+    }
+    [stationStars removeAllObjects];
+}
+
 - (void)highlightStationNearPoint:(CGPoint)point {
     Station *st = [cityMap findNearestStationTo:point];
 	
@@ -167,6 +238,7 @@
         MaxScale = 4.f;
         Scale = 2.f;
         selectedStationName = [[NSMutableString alloc] init];
+        stationStars = [[NSMutableDictionary alloc] init];
 		
 		int scale = 1;
 		if ([self respondsToSelector:@selector(setContentScaleFactor:)])
@@ -314,6 +386,7 @@
     [midground2 release];
     [previewImage release];
     [selectedStationName release];
+    [stationStars release];
     [super dealloc];
 }
 
