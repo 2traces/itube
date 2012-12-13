@@ -90,6 +90,14 @@
 		51D4D94A160EF8AF00C9D02B /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D4D949160EF8AF00C9D02B /* GLKit.framework */; };
 		51DCC9E61673F5D7005BAB6C /* paris-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51DCC9E51673F5D7005BAB6C /* paris-Info.plist */; };
 		51F15F7714D99A3800D11B79 /* VectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F15F7614D99A3800D11B79 /* VectorLayer.m */; };
+		57023177167A3DFB00D849B5 /* settings_item_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57023175167A3DFB00D849B5 /* settings_item_bg@2x.png */; };
+		57023178167A3DFB00D849B5 /* settings_item_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57023175167A3DFB00D849B5 /* settings_item_bg@2x.png */; };
+		57023179167A3DFB00D849B5 /* settings_item_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57023175167A3DFB00D849B5 /* settings_item_bg@2x.png */; };
+		5702317A167A3DFB00D849B5 /* settings_item_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57023175167A3DFB00D849B5 /* settings_item_bg@2x.png */; };
+		5702317B167A3DFB00D849B5 /* settings_item_image_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57023176167A3DFB00D849B5 /* settings_item_image_bg@2x.png */; };
+		5702317C167A3DFB00D849B5 /* settings_item_image_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57023176167A3DFB00D849B5 /* settings_item_image_bg@2x.png */; };
+		5702317D167A3DFB00D849B5 /* settings_item_image_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57023176167A3DFB00D849B5 /* settings_item_image_bg@2x.png */; };
+		5702317E167A3DFB00D849B5 /* settings_item_image_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57023176167A3DFB00D849B5 /* settings_item_image_bg@2x.png */; };
 		57047DAF16569C1400DED155 /* reader_separator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57047DAE16569C1400DED155 /* reader_separator@2x.png */; };
 		572B62B41653F34500B415DC /* HCBookmarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 572B62B21653F34500B415DC /* HCBookmarksViewController.m */; };
 		572B62B51653F34500B415DC /* HCBookmarksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 572B62B31653F34500B415DC /* HCBookmarksViewController.xib */; };
@@ -2268,6 +2276,8 @@
 		51DCC9E51673F5D7005BAB6C /* paris-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "paris-Info.plist"; sourceTree = "<group>"; };
 		51F15F7514D99A3800D11B79 /* VectorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VectorLayer.h; path = Classes/VectorLayer.h; sourceTree = "<group>"; };
 		51F15F7614D99A3800D11B79 /* VectorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VectorLayer.m; path = Classes/VectorLayer.m; sourceTree = "<group>"; };
+		57023175167A3DFB00D849B5 /* settings_item_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings_item_bg@2x.png"; path = "images/hidden_cities/settings_item_bg@2x.png"; sourceTree = "<group>"; };
+		57023176167A3DFB00D849B5 /* settings_item_image_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings_item_image_bg@2x.png"; path = "images/hidden_cities/settings_item_image_bg@2x.png"; sourceTree = "<group>"; };
 		57047DAE16569C1400DED155 /* reader_separator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reader_separator@2x.png"; path = "images/hidden_cities/reader_separator@2x.png"; sourceTree = "<group>"; };
 		572B62B11653F34500B415DC /* HCBookmarksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCBookmarksViewController.h; sourceTree = "<group>"; };
 		572B62B21653F34500B415DC /* HCBookmarksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCBookmarksViewController.m; sourceTree = "<group>"; };
@@ -3461,6 +3471,8 @@
 		57D097FE1650430B00467C1D /* Hidden Cities */ = {
 			isa = PBXGroup;
 			children = (
+				57023175167A3DFB00D849B5 /* settings_item_bg@2x.png */,
+				57023176167A3DFB00D849B5 /* settings_item_image_bg@2x.png */,
 				576844951677821700FA36AE /* distance_icon@2x.png */,
 				5775557E166BC7D900072AFE /* teasers */,
 				5775557D166BC7D900072AFE /* bg_teasers@2x.png */,
@@ -4447,6 +4459,8 @@
 				5126F3EC1677160800CD2677 /* star-red.png in Resources */,
 				5126F3F01677160800CD2677 /* star-yell.png in Resources */,
 				576844961677821700FA36AE /* distance_icon@2x.png in Resources */,
+				57023177167A3DFB00D849B5 /* settings_item_bg@2x.png in Resources */,
+				5702317B167A3DFB00D849B5 /* settings_item_image_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4892,6 +4906,8 @@
 				5126F3ED1677160800CD2677 /* star-red.png in Resources */,
 				5126F3F11677160800CD2677 /* star-yell.png in Resources */,
 				576844971677821700FA36AE /* distance_icon@2x.png in Resources */,
+				57023178167A3DFB00D849B5 /* settings_item_bg@2x.png in Resources */,
+				5702317C167A3DFB00D849B5 /* settings_item_image_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5334,6 +5350,8 @@
 				5126F3EE1677160800CD2677 /* star-red.png in Resources */,
 				5126F3F21677160800CD2677 /* star-yell.png in Resources */,
 				576844981677821700FA36AE /* distance_icon@2x.png in Resources */,
+				57023179167A3DFB00D849B5 /* settings_item_bg@2x.png in Resources */,
+				5702317D167A3DFB00D849B5 /* settings_item_image_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5776,6 +5794,8 @@
 				5126F3EF1677160800CD2677 /* star-red.png in Resources */,
 				5126F3F31677160800CD2677 /* star-yell.png in Resources */,
 				576844991677821700FA36AE /* distance_icon@2x.png in Resources */,
+				5702317A167A3DFB00D849B5 /* settings_item_bg@2x.png in Resources */,
+				5702317E167A3DFB00D849B5 /* settings_item_image_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

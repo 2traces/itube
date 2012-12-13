@@ -11,9 +11,13 @@
 @implementation CityCell
 
 @synthesize cityName;
+@synthesize cityNameAlt;
+@synthesize priceTag;
 @synthesize cellButton;
 @synthesize progress;
 @synthesize checkView;
+@synthesize iconView;
+@synthesize imageView;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
