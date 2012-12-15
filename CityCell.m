@@ -18,7 +18,7 @@
 @synthesize checkView;
 @synthesize iconView;
 @synthesize imageView;
-
+@synthesize priceContainer;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

@@ -425,7 +425,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     NSMutableArray *names = [NSMutableArray array];
     MainView *mv = (MainView*)mainViewController.view;
     pos = [mv getMapVisibleRect];
-    pos = [cityMap getGeoCoordsForRect:pos coordinates:coords names:names];
+    //pos = [cityMap getGeoCoordsForRect:pos coordinates:coords];
     [self.navigationViewController showRasterMap];
 
     [gl setGeoPosition:pos];

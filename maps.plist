@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>com.zuev.hiddencities.paris</key>
+	<key>com.starovoitov.hiddencities.paris</key>
 	<dict>
 		<key>url1</key>
 		<string>http://www.x-provocation.com/maps/paris/osm</string>
@@ -17,7 +17,9 @@
 		<key>description</key>
 		<string>paris.txt</string>
 		<key>picture</key>
-		<string>paris.png</string>
+		<string>preview_paris.png</string>
+		<key>icon</key>
+		<string>tr_paris.png</string>
 		<key>zip_download</key>
 		<string>/maps/paris/paris1.zip</string>
 	</dict>
@@ -36,7 +38,9 @@
 		<key>description</key>
 		<string>berlin.txt</string>
 		<key>picture</key>
-		<string>berlin.png</string>
+		<string>preview_berlin.png</string>
+		<key>icon</key>
+		<string>tr_berlin.png</string>
 		<key>zip_download</key>
 		<string>/maps/berlin/berlin1.zip</string>
 		<key>statusURL</key>
@@ -57,7 +61,9 @@
 		<key>description</key>
 		<string>venice.txt</string>
 		<key>picture</key>
-		<string>venice.png</string>
+		<string>preview_venice.png</string>
+		<key>icon</key>
+		<string>tr_venice.png</string>
 		<key>zip_download</key>
 		<string>/maps/venice/venice1.zip</string>
 		<key>statusURL</key>
@@ -80,7 +86,9 @@
 		<key>description</key>
 		<string>nyc.txt</string>
 		<key>picture</key>
-		<string>nyc.png</string>
+		<string>preview_nyc.png</string>
+		<key>icon</key>
+		<string>tr_nyc.png</string>
 		<key>zip_download</key>
 		<string>/maps/venice/venice1.zip</string>
 		<key>statusURL</key>

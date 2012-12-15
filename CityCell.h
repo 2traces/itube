@@ -18,6 +18,8 @@
     IBOutlet UIImageView *checkView;
     IBOutlet UIImageView *iconView;
     IBOutlet UIImageView *imageView;
+    IBOutlet UIView *priceContainer;
+    
 }
 
 @property (nonatomic, retain) IBOutlet UILabel* cityName;
@@ -28,5 +30,6 @@
 @property (nonatomic, retain) IBOutlet UIImageView *checkView;
 @property (nonatomic, retain) IBOutlet UIImageView *iconView;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
+@property (nonatomic, retain) IBOutlet UIView *priceContainer;
 
 @end

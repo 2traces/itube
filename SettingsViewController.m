@@ -265,7 +265,7 @@
     CGFloat cityTableHeight = [maps count]*199.0f+2.0;
     CGFloat feedbackTableHeight = [feedback count]*45.0f+2.0; 
     
-    cityTableView.frame=CGRectMake(cityTableView.frame.origin.x+addX, textLabel3.frame.origin.y+textLabel3.frame.size.height+10, cityTableView.frame.size.width,  cityTableHeight);
+    cityTableView.frame=CGRectMake(cityTableView.frame.origin.x+addX, textLabel1.frame.origin.y, cityTableView.frame.size.width,  cityTableHeight);
     textLabel4.frame=CGRectMake(textLabel4.frame.origin.x+addX, cityTableView.frame.origin.y+cityTableHeight+17, textLabel4.frame.size.width, textLabel4.frame.size.height);
     feedbackTableView.frame=CGRectMake(feedbackTableView.frame.origin.x+addX, textLabel4.frame.origin.y+textLabel4.frame.size.height+10, feedbackTableView.frame.size.width, feedbackTableHeight);
 
@@ -372,32 +372,40 @@
         
         if (cell == nil) { 
             cell = [[[NSBundle mainBundle] loadNibNamed:@"CityCell" owner:self options:nil] lastObject];
-            [[(CityCell*)cell cellButton] addTarget:self action:@selector(buyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+
         }    
         
         NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
         NSString *mapName = [map objectForKey:@"name"];
         
-        [[(CityCell*)cell cityName] setText:mapName];
+        [[(CityCell*)cell cityName] setText:[NSString stringWithFormat:@"%@ application", mapName]];
         [[(CityCell*)cell cityName] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
-        [[(CityCell*)cell cityName] setHighlightedTextColor:[UIColor whiteColor]];
+        [[(CityCell*)cell cityName] setTextColor:[UIColor darkGrayColor]];
         
         [[(CityCell*)cell cityNameAlt] setText:mapName];
-        [[(CityCell*)cell cityNameAlt] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
-        [[(CityCell*)cell cityNameAlt] setHighlightedTextColor:[UIColor whiteColor]];
+        [[(CityCell*)cell cityNameAlt] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:16.0]];
+        [[(CityCell*)cell cityNameAlt] setTextColor:[UIColor darkGrayColor]];
         
-        [[(CityCell*)cell priceTag] setText:@"0,99 $"];
+        
+        [[(CityCell*)cell priceTag] setText:[map valueForKey:@"price"]];
         [[(CityCell*)cell priceTag] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
         [[(CityCell*)cell priceTag] setHighlightedTextColor:[UIColor whiteColor]];
         
         cell.backgroundColor = [UIColor clearColor];
         
-        if ([indexPath isEqual:self.selectedPath]) {
-            cell.accessoryType=UITableViewCellAccessoryNone;
-            //[[(CityCell*)cell checkView] setImage:[UIImage imageNamed:@"checkmark.png"]];
-        } else {
-            cell.accessoryType=UITableViewCellAccessoryNone;
-            //[[(CityCell*)cell checkView] setImage:nil];
+        [[(CityCell*)cell imageView] setImage:[UIImage imageNamed:[map objectForKey:@"picture"]]];
+        [[(CityCell*)cell iconView] setImage:[UIImage imageNamed:[map objectForKey:@"icon"]]];
+
+        if ([self isProductStatusDefault:[map objectForKey:@"prodID"]]) {
+            CityCell *cityCell = (CityCell*)cell;
+            cityCell.cityNameAlt.hidden = NO;
+            cityCell.cityName.hidden = YES;
+            cityCell.cityNameAlt.text = [NSString stringWithFormat:@"Download offline maps for %@", mapName];
+            [cityCell.cellButton addTarget:self action:@selector(buyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        }
+        else {
+            CityCell *cityCell = (CityCell*)cell;
+            cityCell.priceContainer.hidden = YES;
         }
         
         //
@@ -411,40 +419,41 @@
         progress.hidden=YES;
         progress.tag=123;
         
-        if ([self isProductStatusDefault:[map objectForKey:@"prodID"]] || [self isProductStatusInstalled:[map objectForKey:@"prodID"]]) {
-//            [cellButton setTitle:@"Installed" forState:UIControlStateNormal];
-//            [cellButton setTitle:@"Installed" forState:UIControlStateHighlighted];
-//            [cellButton setBackgroundImage:[UIImage imageNamed:@"blue_button.png"] forState:UIControlStateNormal];
-//            [cellButton setBackgroundImage:[UIImage imageNamed:@"blue_button.png"] forState:UIControlStateHighlighted];
-//            [cellButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
+//        if ([self isProductStatusDefault:[map objectForKey:@"prodID"]] || [self isProductStatusInstalled:[map objectForKey:@"prodID"]]) {
+////            [cellButton setTitle:@"Installed" forState:UIControlStateNormal];
+////            [cellButton setTitle:@"Installed" forState:UIControlStateHighlighted];
+////            [cellButton setBackgroundImage:[UIImage imageNamed:@"blue_button.png"] forState:UIControlStateNormal];
+////            [cellButton setBackgroundImage:[UIImage imageNamed:@"blue_button.png"] forState:UIControlStateHighlighted];
+////            [cellButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+////            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
+//            
+//        } else if ([self isProductStatusPurchased:[map objectForKey:@"prodID"]])  {
+//            
+////            [cellButton setTitle:@"Install" forState:UIControlStateNormal];
+////            [cellButton setTitle:@"Install" forState:UIControlStateHighlighted];
+////            [cellButton setBackgroundImage:[UIImage imageNamed:@"green_button.png"] forState:UIControlStateNormal];
+////            [cellButton setBackgroundImage:[UIImage imageNamed:@"high_green_button.png"] forState:UIControlStateHighlighted];
+////            [cellButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+////            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
+//            
+//        } else if ([self isProductStatusAvailable:[map objectForKey:@"prodID"]])  {
+//            
+////            [cellButton setTitle:[map valueForKey:@"price"] forState:UIControlStateNormal];
+////            [cellButton setTitle:[map valueForKey:@"price"] forState:UIControlStateHighlighted];
+////            [cellButton setBackgroundImage:[UIImage imageNamed:@"buy_button.png"] forState:UIControlStateNormal];
+////            [cellButton setBackgroundImage:[UIImage imageNamed:@"high_buy_button.png"] forState:UIControlStateHighlighted];
+////            [cellButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+////            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
+////            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//            
+//        } else
+        if ([self isProductStatusDownloading:[map objectForKey:@"prodID"]]){
             
-        } else if ([self isProductStatusPurchased:[map objectForKey:@"prodID"]])  {
-            
-//            [cellButton setTitle:@"Install" forState:UIControlStateNormal];
-//            [cellButton setTitle:@"Install" forState:UIControlStateHighlighted];
-//            [cellButton setBackgroundImage:[UIImage imageNamed:@"green_button.png"] forState:UIControlStateNormal];
-//            [cellButton setBackgroundImage:[UIImage imageNamed:@"high_green_button.png"] forState:UIControlStateHighlighted];
-//            [cellButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
-            
-        } else if ([self isProductStatusAvailable:[map objectForKey:@"prodID"]])  {
-            
-//            [cellButton setTitle:[map valueForKey:@"price"] forState:UIControlStateNormal];
-//            [cellButton setTitle:[map valueForKey:@"price"] forState:UIControlStateHighlighted];
-//            [cellButton setBackgroundImage:[UIImage imageNamed:@"buy_button.png"] forState:UIControlStateNormal];
-//            [cellButton setBackgroundImage:[UIImage imageNamed:@"high_buy_button.png"] forState:UIControlStateHighlighted];
-//            [cellButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
-//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            
-        } else if ([self isProductStatusDownloading:[map objectForKey:@"prodID"]]){
-            
-            cellButton.hidden=YES;
+            //cellButton.hidden=YES;
             progress.hidden=NO;
 
         } else {
-            cellButton.hidden=YES;
+            //cellButton.hidden=YES;
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
         
@@ -1115,7 +1124,7 @@
     [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     
     for (NSMutableDictionary *map in self.maps) {
-        if ([[map valueForKey:@"status"] isEqual:@"Z"]) {
+        if ([[map valueForKey:@"status"] isEqual:@"D"]) {
             for (SKProduct *product in [TubeAppIAPHelper sharedHelper].products) {
                 if ([product.productIdentifier isEqual:[map valueForKey:@"prodID"]]) {
                     [map setObject:@"V" forKey:@"status"];

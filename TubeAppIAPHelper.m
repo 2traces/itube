@@ -29,8 +29,9 @@ static TubeAppIAPHelper * _sharedHelper;
     
     NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithContentsOfFile:path] autorelease];
     NSArray *array = [dict allKeys];
-    
-    NSSet *productIdentifiers = [[[NSSet alloc] initWithArray:array] autorelease];    
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+
+    NSSet *productIdentifiers = [[[NSSet alloc] initWithObjects:bundleIdentifier, nil] autorelease];
     
     if ((self = [super initWithProductIdentifiers:productIdentifiers])) {                
         
