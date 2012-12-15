@@ -422,6 +422,10 @@
 		576E3FBD167C8F6C004050B7 /* settings_upper_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 576E3FBB167C8F6C004050B7 /* settings_upper_shadow@2x.png */; };
 		576E3FBE167C8F6C004050B7 /* settings_upper_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 576E3FBB167C8F6C004050B7 /* settings_upper_shadow@2x.png */; };
 		576E3FBF167C8F6C004050B7 /* settings_upper_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 576E3FBB167C8F6C004050B7 /* settings_upper_shadow@2x.png */; };
+		576E3FDB167C9341004050B7 /* CityCellContact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 576E3FDA167C9341004050B7 /* CityCellContact.xib */; };
+		576E3FDC167C9341004050B7 /* CityCellContact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 576E3FDA167C9341004050B7 /* CityCellContact.xib */; };
+		576E3FDD167C9341004050B7 /* CityCellContact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 576E3FDA167C9341004050B7 /* CityCellContact.xib */; };
+		576E3FDE167C9341004050B7 /* CityCellContact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 576E3FDA167C9341004050B7 /* CityCellContact.xib */; };
 		5771A32E1652ABA500332A7D /* panel_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5771A32D1652ABA500332A7D /* panel_bg@2x.png */; };
 		5771A3311652AD1200332A7D /* sample_photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5771A3301652AD1200332A7D /* sample_photo@2x.png */; };
 		5771A3341652AE1B00332A7D /* bt_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5771A3321652AE1B00332A7D /* bt_star@2x.png */; };
@@ -2399,6 +2403,7 @@
 		576844951677821700FA36AE /* distance_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "distance_icon@2x.png"; path = "images/hidden_cities/distance_icon@2x.png"; sourceTree = "<group>"; };
 		576E3FB5167C8B39004050B7 /* bt_buy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bt_buy@2x.png"; path = "images/hidden_cities/bt_buy@2x.png"; sourceTree = "<group>"; };
 		576E3FBB167C8F6C004050B7 /* settings_upper_shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings_upper_shadow@2x.png"; path = "images/hidden_cities/settings_upper_shadow@2x.png"; sourceTree = "<group>"; };
+		576E3FDA167C9341004050B7 /* CityCellContact.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CityCellContact.xib; path = Resources/CityCellContact.xib; sourceTree = "<group>"; };
 		5771A32D1652ABA500332A7D /* panel_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "panel_bg@2x.png"; path = "images/hidden_cities/panel_bg@2x.png"; sourceTree = "<group>"; };
 		5771A3301652AD1200332A7D /* sample_photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sample_photo@2x.png"; path = "images/hidden_cities/sample_photo@2x.png"; sourceTree = "<group>"; };
 		5771A3321652AE1B00332A7D /* bt_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bt_star@2x.png"; path = "images/hidden_cities/bt_star@2x.png"; sourceTree = "<group>"; };
@@ -3340,6 +3345,7 @@
 		577DEBAA166E385B006BA43A /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
+				576E3FDA167C9341004050B7 /* CityCellContact.xib */,
 				BCD7E24B151AF85C007C658A /* CityCell.xib */,
 				BC8E2EB31522043E00F30619 /* DemoMapViewController.xib */,
 				572B632916567EF600B415DC /* ReaderItemViewController.xib */,
@@ -4511,6 +4517,7 @@
 				57156BB9167C677F00C3265E /* preview_venice@2x.png in Resources */,
 				576E3FB6167C8B39004050B7 /* bt_buy@2x.png in Resources */,
 				576E3FBC167C8F6C004050B7 /* settings_upper_shadow@2x.png in Resources */,
+				576E3FDB167C9341004050B7 /* CityCellContact.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4964,6 +4971,7 @@
 				57156BBA167C677F00C3265E /* preview_venice@2x.png in Resources */,
 				576E3FB7167C8B39004050B7 /* bt_buy@2x.png in Resources */,
 				576E3FBD167C8F6C004050B7 /* settings_upper_shadow@2x.png in Resources */,
+				576E3FDC167C9341004050B7 /* CityCellContact.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5414,6 +5422,7 @@
 				57156BBB167C677F00C3265E /* preview_venice@2x.png in Resources */,
 				576E3FB8167C8B39004050B7 /* bt_buy@2x.png in Resources */,
 				576E3FBE167C8F6C004050B7 /* settings_upper_shadow@2x.png in Resources */,
+				576E3FDD167C9341004050B7 /* CityCellContact.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5864,6 +5873,7 @@
 				57156BBC167C677F00C3265E /* preview_venice@2x.png in Resources */,
 				576E3FB9167C8B39004050B7 /* bt_buy@2x.png in Resources */,
 				576E3FBF167C8F6C004050B7 /* settings_upper_shadow@2x.png in Resources */,
+				576E3FDE167C9341004050B7 /* CityCellContact.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

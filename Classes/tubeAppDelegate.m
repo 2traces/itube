@@ -17,6 +17,7 @@
 #import "MainView.h"
 #import "NavigationViewController.h"
 #import "PhotosViewController.h"
+#import "CategoriesViewController.h"
 
 @implementation tubeAppDelegate
 
@@ -319,6 +320,41 @@ void uncaughtExceptionHandler(NSException *exception) {
     return currentCity;
 }
 
+- (NSArray*)getTeasersForMaps {
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+    
+    NSFileManager *manager = [NSFileManager defaultManager];
+    
+    if (![manager fileExistsAtPath:path]) {
+        NSBundle *bundle = [NSBundle mainBundle];
+        NSError *error = nil;
+        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
+        
+        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
+    }
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    
+    NSMutableArray *teasers = [NSMutableArray arrayWithCapacity:3];
+    
+    NSArray *keys = [dict allKeys];
+    for (NSString *key in keys) {
+        if ([key isEqualToString:bundleIdentifier]) {
+            continue;
+        }
+        NSDictionary *city = [dict objectForKey:key];
+        HCTeaserObject *teaser = [HCTeaserObject teaserObjectWithName:[city objectForKey:@"name"]
+                                                                image:[UIImage imageNamed:[city objectForKey:@"icon"]]
+                                                                  url:[city objectForKey:@"appstore_link"]];
+        [teasers addObject:teaser];
+    }
+    
+    [dict release];
+    
+    return teasers;
+}
 
 -(NSString*)getDefaultMapName
 {

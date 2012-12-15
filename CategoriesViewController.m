@@ -60,16 +60,20 @@
 }
 
 - (void) initializeTeasers {
-    self.teasers = [NSArray arrayWithObjects:
-                        [HCTeaserObject teaserObjectWithName:@"Berlin"
-                                                       image:[UIImage imageNamed:@"tr_berlin"]
-                                                         url:@"https://itunes.apple.com/us/app/angry-birds-star-wars/id557137623"],
-                        [HCTeaserObject teaserObjectWithName:@"Paris"
-                                                       image:[UIImage imageNamed:@"tr_paris"]
-                                                         url:@"https://itunes.apple.com/us/app/angry-birds-space/id499511971"],
-                        [HCTeaserObject teaserObjectWithName:@"Venice"
-                                                       image:[UIImage imageNamed:@"tr_venice"]
-                                                         url:@"https://itunes.apple.com/us/app/bad-piggies/id533451786"], nil];
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
+//    self.teasers = [NSArray arrayWithObjects:
+//                        [HCTeaserObject teaserObjectWithName:@"Berlin"
+//                                                       image:[UIImage imageNamed:@"tr_berlin"]
+//                                                         url:@"https://itunes.apple.com/us/app/angry-birds-star-wars/id557137623"],
+//                        [HCTeaserObject teaserObjectWithName:@"Paris"
+//                                                       image:[UIImage imageNamed:@"tr_paris"]
+//                                                         url:@"https://itunes.apple.com/us/app/angry-birds-space/id499511971"],
+//                        [HCTeaserObject teaserObjectWithName:@"Venice"
+//                                                       image:[UIImage imageNamed:@"tr_venice"]
+//                                                         url:@"https://itunes.apple.com/us/app/bad-piggies/id533451786"], nil];
+    
+    self.teasers = [appDelegate getTeasersForMaps];
     
     CGFloat offset = 10;
     

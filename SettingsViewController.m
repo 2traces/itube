@@ -495,12 +495,12 @@
         // ---------------- language ----------------------
         
     } else if (tableView==langTableView) {
-        static NSString *cellIdentifier = @"CityCell";
+        static NSString *cellIdentifier = @"CityCellContact";
         
         UITableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         
         if (cell == nil) { 
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"CityCell" owner:self options:nil] lastObject];
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"CityCellContact" owner:self options:nil] lastObject];
         }    
         
         [[(CityCell*)cell cellButton] setHidden:YES];
@@ -555,12 +555,12 @@
         
         return cell;
     } else {
-        static NSString *cellIdentifier = @"CityCell";
+        static NSString *cellIdentifier = @"CityCellContact";
         
         UITableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         
         if (cell == nil) { 
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"CityCell" owner:self options:nil] lastObject];
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"CityCellContact" owner:self options:nil] lastObject];
         }    
         
         [[(CityCell*)cell cellButton] setHidden:YES];
@@ -697,8 +697,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
-    return 199.0;
+{
+    if (tableView == cityTableView) {
+        return 199.0;
+    }
+    return 44.0;
 }
 
 #pragma mark - Download delegate methods
