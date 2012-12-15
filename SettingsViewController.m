@@ -406,6 +406,7 @@
         else {
             CityCell *cityCell = (CityCell*)cell;
             cityCell.priceContainer.hidden = YES;
+            [cityCell.cellButton addTarget:self action:@selector(openAppStoreLinkPressed:) forControlEvents:UIControlEventTouchUpInside];
         }
         
         //
@@ -1022,6 +1023,13 @@
     } else if ([self isProductStatusPurchased:prodID]) {
         [self downloadProduct:prodID];
     }
+}
+
+-(IBAction)openAppStoreLinkPressed:(id)sender
+{
+    CityCell *cell = (CityCell*)[[sender superview] superview];
+    NSMutableDictionary *map = [maps objectAtIndex:[cityTableView indexPathForCell:cell].row];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[map objectForKey:@"appstore_link"]]];
 }
 
 -(NSString*)getMapNameForProduct:(NSString*)prodID
