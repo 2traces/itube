@@ -31,6 +31,7 @@
 @synthesize readerController;
 @synthesize currentPlaces;
 @synthesize separatingView;
+@synthesize shadow;
 
 - (void) showSettings {
     SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];
@@ -57,6 +58,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+//
+//    CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
+//    self.view.frame = windowBounds;
+    
     self.categoriesController = [[[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:[NSBundle mainBundle]] autorelease];
     self.categoriesController.navigationDelegate = self;
     self.photosController = [[[PhotosViewController alloc] initWithNibName:@"PhotosViewController" bundle:[NSBundle mainBundle]]  autorelease];
@@ -74,6 +79,21 @@
     layerMode = HCMetroLayer;
     photosMode = HCPhotosVisibleFully;
     currentPlacePin = -1;
+    
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
+    //self.view.frame = windowBounds;
+    
+    if (windowBounds.size.height > 480) {
+        self.shadow.image = [UIImage imageNamed:@"navigation_shadow_higher.png"];
+        CGRect frame = self.shadow.frame;
+        frame.size.height = 548;
+        self.shadow.frame = frame;
+    }
 }
 
 - (void)didReceiveMemoryWarning

@@ -84,6 +84,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, windowBounds.size.height);
     // Do any additional setup after loading the view from its nib.
     self.visibleItems = [NSMutableDictionary dictionaryWithCapacity:5];
     self.scrollView.contentSize = CGSizeMake([self.items count] * self.scrollView.frame.size.width, 440);
@@ -104,6 +107,9 @@
         else {
             // view is missing, create it and set its tag to currentPage+1
             ReaderItemViewController *vc = [self itemViewControllerWithIndex:i];
+            CGRect frame = vc.view.frame;
+            frame.size.height = self.scrollView.frame.size.height;
+            vc.view.frame = frame;
             [self.scrollView addSubview:vc.view];
             [self.visibleItems setObject:vc forKey:[NSNumber numberWithInteger:i]];
         }
@@ -119,7 +125,9 @@
 
 - (void)photoTapped:(UITapGestureRecognizer *)recognizer {
     MPlace* place = self.items[currentPage];
-    PhotoViewerViewController *viewer = [[PhotoViewerViewController alloc] initWithPlace:place];
+    ReaderItemViewController *itemVC = [self itemViewControllerForIndex:currentPage];
+    NSInteger currentPhoto = [itemVC currentPage];
+    PhotoViewerViewController *viewer = [[PhotoViewerViewController alloc] initWithPlace:place index:currentPhoto];
     viewer.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     
     [self presentModalViewController:[viewer autorelease] animated:YES];
@@ -155,6 +163,10 @@
             else {
                 // view is missing, create it and set its tag to currentPage+1
                 ReaderItemViewController *vc = [self itemViewControllerWithIndex:i];
+                CGRect frame = vc.view.frame;
+                frame.size.height = self.scrollView.frame.size.height;
+                vc.view.frame = frame;
+                
                 [self.scrollView addSubview:vc.view];
                 [self.visibleItems setObject:vc forKey:[NSNumber numberWithInteger:i]];
             }
@@ -184,5 +196,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc {
+    [super dealloc];
+}
 
 @end

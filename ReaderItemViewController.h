@@ -18,6 +18,7 @@
 }
 
 - (id)initWithPlaceObject:(MPlace*)_place;
+- (NSInteger)currentPage;
 
 @property (nonatomic, retain) MPlace *place;
 @property (nonatomic, retain) NSArray *currentPhotos;

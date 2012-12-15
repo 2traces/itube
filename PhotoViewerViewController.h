@@ -15,7 +15,7 @@
     NSInteger currentPage;
 }
 
-- (id) initWithPlace:(MPlace*)place;
+- (id) initWithPlace:(MPlace*)place index:(NSInteger)index;
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) NSArray *photos;

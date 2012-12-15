@@ -58,6 +58,7 @@ typedef enum {
     HCPhotosPresentationMode photosMode;
     HCLayerMode layerMode;
     NSInteger currentPlacePin;
+    UIImageView *shadow;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController;
@@ -71,6 +72,7 @@ typedef enum {
 - (void) centerMapOnPlace:(MPlace*)place;
 
 @property (nonatomic, retain) IBOutlet UIView *separatingView;
+@property (nonatomic, retain) IBOutlet UIImageView *shadow;
 @property (nonatomic, retain) NSArray *currentPlaces;
 @property (nonatomic, retain) CategoriesViewController *categoriesController;
 @property (nonatomic, retain) PhotosViewController *photosController;

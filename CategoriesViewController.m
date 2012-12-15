@@ -122,6 +122,9 @@
     [self initializeCategories];
     // Do any additional setup after loading the view from its nib.
 
+    CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
+    //self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, windowBounds.size.height);
+    
     [self.tableView reloadData];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
     MCategory *category = self.categories[1];

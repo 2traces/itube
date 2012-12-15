@@ -21,6 +21,11 @@
 @synthesize place;
 @synthesize currentPhotos;
 
+- (NSInteger)currentPage {
+    return currentPage;
+}
+
+
 - (id)initWithPlaceObject:(MPlace*)_place
 {
     self = [super initWithNibName:@"ReaderItemViewController" bundle:[NSBundle mainBundle]];
@@ -34,6 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view from its nib.
     self.textView.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0f];
     [self reloadScrollView];

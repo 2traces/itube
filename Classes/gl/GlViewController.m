@@ -275,6 +275,8 @@ GLint uniforms[NUM_UNIFORMS];
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
     pinsArray = [[NSMutableArray alloc] init];
 
     CGRect scrollSize,settingsRect,shadowRect,zonesRect;
@@ -282,7 +284,12 @@ GLint uniforms[NUM_UNIFORMS];
     //scrollSize = CGRectMake(0, 44,(320),(480-64));
     //settingsRect=CGRectMake(285, 420, 27, 27);
     //shadowRect = CGRectMake(0, 44, 480, 61);
-    zonesRect=CGRectMake(250, 410, 71, 43);
+    if ([appDelegate isIPHONE5]) {
+        zonesRect=CGRectMake(250, 498, 71, 43);
+    }
+    else {
+        zonesRect=CGRectMake(250, 410, 71, 43);
+    }
     
     if (IS_IPAD) {
         //scrollSize = CGRectMake(0, 44, 768, (1024-74));

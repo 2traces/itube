@@ -86,6 +86,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, windowBounds.size.height);
+    
     // Do any additional setup after loading the view from its nib.
     self.items = [NSMutableArray arrayWithCapacity:5];
     [self reloadScrollView];

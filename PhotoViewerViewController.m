@@ -31,7 +31,7 @@
 }
 
 
-- (id) initWithPlace:(MPlace*)place {
+- (id) initWithPlace:(MPlace*)place index:(NSInteger)index {
     self = [super initWithNibName:@"PhotoViewerViewController" bundle:[NSBundle mainBundle]];
     if (self) {
         // Custom initialization
@@ -46,6 +46,7 @@
 //            }
         }
         self.photos = [NSArray arrayWithArray:tempArray];
+        currentPage = index;
     }
     return self;
 }
@@ -82,20 +83,24 @@
 {
     [super viewDidLoad];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [self.photos count], self.scrollView.frame.size.height);
+
+    self.scrollView.contentOffset = CGPointMake(currentPage*self.scrollView.frame.size.width, 0);
     
-    currentPage = 0;
-    //Preload first two images
-    UIScrollView *zoomView = nil;
-    if ([self.photos count]) {
-        zoomView = [self zoomingViewWithIndex:currentPage];
-        [self.scrollView addSubview:zoomView];
-    }
-    if ([self.photos count] > 1) {
-        zoomView = [self zoomingViewWithIndex:currentPage + 1];
-        [self.scrollView addSubview:zoomView];
+    //Preload current item, -1 and +1
+    for (int i = currentPage - 1; i <= currentPage + 1; i++) {
+        if (i < 0 || i > [self.photos count] - 1) {
+            continue;
+        }
+        if ( [self.scrollView viewWithTag:(i + 1)] ) {
+            continue;
+        }
+        else {
+            // view is missing, create it and set its tag to currentPage+1
+            UIScrollView *zoomView = [self zoomingViewWithIndex:i];
+            [self.scrollView addSubview:zoomView];
+        }
     }
 
-    
     // Do any additional setup after loading the view from its nib.
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoTapped:)];
     tapGR.delegate = self;
