@@ -16,15 +16,16 @@
 - (id)initWithFrame:(CGRect)frame path:(NSMutableArray*)thisPath number:(int)number overall:(int)overall
 {
     self = [super initWithFrame:frame];
+
     if (self) {
  
-        int page = frame.origin.x/320.0;
+        int page = frame.origin.x/frame.size.width;
         
-        UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 40.0)];
-        bgView.tag=5000+page;
-        bgView.image = [UIImage imageNamed:@"lower_path_bg.png"]; //lower_path_bg toolbar_bg
-        [self addSubview:bgView];
-        [bgView release];
+//        UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, frame.size.height)];
+//        bgView.tag=5000+page;
+//        bgView.image = [UIImage imageNamed:@"lower_path_bg.png"]; //lower_path_bg toolbar_bg
+//        [self addSubview:bgView];
+//        [bgView release];
         
         NSString *fileName = [NSString stringWithFormat:@"n%d.png",number+1];
         UIImageView *pathNumberView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:fileName]];
@@ -78,7 +79,7 @@
         [self addSubview:arrivalTimeLabel];
         [arrivalTimeLabel release];
         
-        PathDrawView *drawView = [[PathDrawView alloc] initWithFrame:CGRectMake(0, 0, 320, 40) path:(NSMutableArray*)thisPath];
+        PathDrawView *drawView = [[PathDrawView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, frame.size.height) path:(NSMutableArray*)thisPath];
         drawView.tag =10000+page;
         [self addSubview:drawView];
         [drawView release];
@@ -86,7 +87,7 @@
         NSString *arrivalTime = [self getArrivalTimeFromNow:travelTime];
         CGSize atSize = [arrivalTime sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:13.0]];
         CGRect labelRect = [(UILabel*)[self viewWithTag:7000+page] frame];
-        CGFloat labelStart = 310.0-atSize.width-2.0;
+        CGFloat labelStart = frame.size.width-10.0f-atSize.width-2.0;
         [(UILabel*)[self viewWithTag:7000+page] setFrame:CGRectMake(labelStart, labelRect.origin.y, atSize.width+2.0, labelRect.size.height)];
         [(UILabel*)[self viewWithTag:7000+page] setText:[NSString stringWithFormat:@"%@",arrivalTime]];
         

@@ -8,6 +8,7 @@
 
 #import "StationTextField.h"
 #import "SSTheme.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation StationTextField
 
@@ -57,7 +58,7 @@
             if (animated) {
                 [UIView animateWithDuration:0.2f animations:^{
                     self.frame=frame;
-                    self.background = [[UIImage imageNamed:@"toolbar_bg.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
+                    //self.background = [[UIImage imageNamed:@"toolbar_bg.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
                     self.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
                 }];
             }
@@ -67,7 +68,7 @@
             if (animated) {
                 [UIView animateWithDuration:0.2f animations:^{
                     self.frame=frame;
-                    self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
+                    self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 63.0, 0, 93.0)];
                     self.text = @"";
                     self.rightViewMode = UITextFieldViewModeAlways;
                     self.leftView=nil;
@@ -79,10 +80,10 @@
             
             break;
         case StationTextFieldStyleStation:
-            
+            self.state=style;
             break;
         case StationTextFieldStylePath:
-            
+            self.state=style;
             break;
             
         default:
@@ -99,7 +100,7 @@
     
     CGRect newFrame;
     
-    newFrame.origin.x=bounds.size.width-rightViewFrame.size.width-bounds.size.width*0.008; //0.375
+    newFrame.origin.x=bounds.size.width-rightViewFrame.size.width-[[SSThemeManager sharedTheme] stationTextFieldRightAdjust];
     newFrame.origin.y=bounds.size.height/2-rightViewFrame.size.height/2;
     newFrame.size.width=rightViewFrame.size.width;
     newFrame.size.height = rightViewFrame.size.height;
@@ -132,12 +133,33 @@
     CGRect newFrame;
     CGSize textBounds = [self.text sizeWithFont:self.font];
     
-    newFrame.origin.x=3.0;
+    newFrame.origin.x=[[SSThemeManager sharedTheme] stationTextFieldDrawTextInRectAdjust]; //3.0 _original
     newFrame.origin.y=3.0;
     newFrame.size.width=rect.size.width-10.0;
     newFrame.size.height = textBounds.height;
     
-    [super drawTextInRect:newFrame];
+    
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        CGSize myShadowOffset = CGSizeMake(0, 1);
+        float myColorValues[] = {0.84, 0.62, 0.47, 1.0};
+        
+        CGContextRef myContext = UIGraphicsGetCurrentContext();
+        CGContextSaveGState(myContext);
+        
+        CGColorSpaceRef myColorSpace = CGColorSpaceCreateDeviceRGB();
+        CGColorRef myColor = CGColorCreate(myColorSpace, myColorValues);
+        CGContextSetShadowWithColor (myContext, myShadowOffset, 0, myColor);
+        
+        [super drawTextInRect:newFrame];
+        
+        CGColorRelease(myColor);
+        CGColorSpaceRelease(myColorSpace);
+        
+        CGContextRestoreGState(myContext);
+    } else {
+        [super drawTextInRect:newFrame];
+    }
+    
 }
 
 - (void)drawPlaceholderInRect:(CGRect)rect 

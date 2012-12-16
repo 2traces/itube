@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MetalPageControl.h"
 
 @protocol PathScrollViewProtocol;
 
@@ -17,6 +18,7 @@
 @property (nonatomic,retain) UIScrollView *scrollView;
 @property (nonatomic,assign) id <PathScrollViewProtocol> delegate;
 @property (nonatomic,assign) int numberOfPages;
+@property (nonatomic,assign) MetalPageControl *helpPageCon;
 
 -(void)refreshContent;
 

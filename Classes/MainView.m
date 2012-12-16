@@ -16,6 +16,7 @@
 #import "SettingsViewController.h"
 #import "SettingsNavController.h"
 #import "GlViewController.h"
+#import "SSTheme.h"
 
 NSInteger const toolbarHeight=44;
 NSInteger const toolbarWidth=320;
@@ -54,6 +55,8 @@ NSInteger const toolbarWidth=320;
 -(void)viewInit:(MainViewController*)vc
 {
 	[self initVar];
+
+    self.layer.cornerRadius=10;
     
     CGRect scrollSize,settingsRect,shadowRect,zonesRect;
     
@@ -151,14 +154,14 @@ NSInteger const toolbarWidth=320;
     [self addSubview:mapView.labelView];
 	
     sourceButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [sourceButton setImage:[UIImage imageNamed:@"src_button_normal"] forState:UIControlStateNormal];
-    [sourceButton setImage:[UIImage imageNamed:@"src_button_pressed"] forState:UIControlStateHighlighted];
+    [sourceButton setImage:[[SSThemeManager sharedTheme] mapViewEntryButton:UIControlStateNormal] forState:UIControlStateNormal];
+    [sourceButton setImage:[[SSThemeManager sharedTheme] mapViewEntryButton:UIControlStateHighlighted] forState:UIControlStateHighlighted];
     [sourceButton addTarget:self action:@selector(selectFromStationByButton) forControlEvents:UIControlEventTouchUpInside];
     [sourceButton setFrame:CGRectMake(-90, 190, 96, 96)];
     
     destinationButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [destinationButton setImage:[UIImage imageNamed:@"dst_button_normal"] forState:UIControlStateNormal];
-    [destinationButton setImage:[UIImage imageNamed:@"dst_button_pressed"] forState:UIControlStateHighlighted];
+    [destinationButton setImage:[[SSThemeManager sharedTheme] mapViewExitButton:UIControlStateNormal] forState:UIControlStateNormal];
+    [destinationButton setImage:[[SSThemeManager sharedTheme] mapViewExitButton:UIControlStateHighlighted] forState:UIControlStateHighlighted];
     [destinationButton addTarget:self action:@selector(selectToStationByButton) forControlEvents:UIControlEventTouchUpInside];
     if (IS_IPAD) {
         [destinationButton setFrame:CGRectMake(1024, 190, 96, 96)];
@@ -169,8 +172,8 @@ NSInteger const toolbarWidth=320;
     [self addSubview:destinationButton];
     
     UIButton *settings = [UIButton buttonWithType:UIButtonTypeCustom];
-    [settings setImage:[UIImage imageNamed:@"settings_btn_normal"] forState:UIControlStateNormal];
-    [settings setImage:[UIImage imageNamed:@"settings_btn"] forState:UIControlStateHighlighted];
+    [settings setImage:[[SSThemeManager sharedTheme] mapViewSettingsButton:UIControlStateNormal] forState:UIControlStateNormal];
+    [settings setImage:[[SSThemeManager sharedTheme] mapViewSettingsButton:UIControlStateHighlighted] forState:UIControlStateHighlighted];
     settings.frame = settingsRect;
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:settings];
@@ -184,6 +187,7 @@ NSInteger const toolbarWidth=320;
 
     UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
     shadow.frame = shadowRect;
+    [shadow setUserInteractionEnabled:YES];
     [self addSubview:shadow];
     shadow.tag=717;
     

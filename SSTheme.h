@@ -92,7 +92,37 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 -(UIImage *)stationTextFieldRightImageNormal;
 -(UIImage *)stationTextFieldRightImageHighlighted;
 
-@end  
+-(UIImage*)topToolbarBackgroundImage;
+-(UIImage*)topToolbarBackgroundPathImage;
+-(CGFloat)topToolbarHeight:(UIBarMetrics)metrics;
+-(CGFloat)toolbarFieldHeight;
+-(CGFloat)toolbarFieldDelta;
+-(UIImage*)topToolbarCrossImage:(UIControlState)state;
+-(UIImage*)topToolbarArrowPathImage;
+-(CGFloat)pathViewHeight:UIBarMetricsDefault;
+-(CGFloat)topToolbarPathHeight:UIBarMetricsDefault;
+
+-(UIImage*)mapViewSettingsButton:(UIControlState)state;
+-(UIImage*)mapViewEntryButton:(UIControlState)state;
+-(UIImage*)mapViewExitButton:(UIControlState)state;
+-(UIImage*)mapViewLabelView;
+
+-(UIFont*)toolbarPathFont;
+-(UIColor*)toolbarPathFontColor;
+
+-(void)decorMapViewMainLabel:(UILabel*)label;
+-(void)decorMapViewLineLabel:(UILabel*)label;
+-(void)decorMapViewCircleLabel:(UIView*)label;
+
+-(UIImage*)horizontalPathViewBackground;
+-(CGRect)horizontalPathViewRect;
+-(CGFloat)horizontalPathSwitchButtonY;
+
+-(CGFloat)stationTextFieldRightAdjust;
+-(CGFloat)stationTextFieldDrawTextInRectAdjust;
+-(BOOL)isNewTheme;
+
+@end
 
 @interface SSThemeManager : NSObject
 

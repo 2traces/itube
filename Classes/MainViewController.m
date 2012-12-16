@@ -21,6 +21,7 @@
 #import "LeftiPadPathViewController.h"
 #import "CustomPopoverBackgroundView.h"
 #import "StatusViewController.h"
+#import "SSTheme.h"
 
 #define FromStation 0
 #define ToStation 1
@@ -157,9 +158,9 @@
     TopTwoStationsView *twoStationsView;
     
     if (IS_IPAD) {
-        twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:50.0f fieldWidth:189.0f fieldHeight:40.0f fieldDelta:5.0f deviceHeight:1024.0f deviceWidth:768.0f];
+        twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault] fieldWidth:189.0f fieldHeight:[[SSThemeManager sharedTheme] toolbarFieldHeight] fieldDelta:[[SSThemeManager sharedTheme] toolbarFieldDelta] deviceHeight:1024.0f deviceWidth:768.0f];
     } else {
-        twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:50.0f fieldWidth:160.0f  fieldHeight:40.0f fieldDelta:5.0f deviceHeight:480.0f deviceWidth:320.f];
+        twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault] fieldWidth:160.0f  fieldHeight:[[SSThemeManager sharedTheme] toolbarFieldHeight] fieldDelta:[[SSThemeManager sharedTheme] toolbarFieldDelta]  deviceHeight:480.0f deviceWidth:320.f];
     }
     
     self.stationsView = twoStationsView;
@@ -173,8 +174,7 @@
     
     [self performSelector:@selector(refreshInApp) withObject:nil afterDelay:0.2];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(languageChanged:) name:@"kLangChanged" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(languageChanged:) name:@"kLangChanged" object:nil];    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -492,27 +492,28 @@
     CGSize dateSize = [dateString sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
     [formatter release];
     
-    [changeButton setFrame:CGRectMake(320.0-12.0-dateSize.width-img.size.width , 66 , img.size.width, img.size.height)];
+    [changeButton setFrame:CGRectMake(320.0-12.0-dateSize.width-img.size.width , [[SSThemeManager sharedTheme] horizontalPathSwitchButtonY] , img.size.width, img.size.height)];
     
     return changeButton;
 }
 
 -(void)showHorizontalPathesScrollView
 {
+    CGFloat topPathHeight = [[SSThemeManager sharedTheme] topToolbarPathHeight:UIBarMetricsDefault];
+    CGFloat pathViewHeight = [[SSThemeManager sharedTheme] pathViewHeight:UIBarMetricsDefault];
     
     if (!self.horizontalPathesScrollView) {
         
-        PathScrollView *pathView = [[PathScrollView alloc] initWithFrame:CGRectMake(0.0, 26.0, 320.0, 40.0)];
+        CGRect rect = [[SSThemeManager sharedTheme] horizontalPathViewRect];
+        PathScrollView *pathView = [[PathScrollView alloc] initWithFrame:rect]; 
         self.horizontalPathesScrollView = pathView;
         self.horizontalPathesScrollView.delegate = self;
         [pathView release];
         
-        [(MainView*)self.view addSubview:horizontalPathesScrollView];
-        [(MainView*)self.view bringSubviewToFront:horizontalPathesScrollView];
+        [(MainView*)self.view insertSubview:horizontalPathesScrollView belowSubview:self.stationsView];
+//        [(MainView*)self.view bringSubviewToFront:horizontalPathesScrollView];
         
-        if (IS_IPAD) {
-            
-        } else {
+        if (!IS_IPAD) {
             self.changeViewButton = [self createChangeButton];
             [(MainView*)self.view addSubview:self.changeViewButton];
         }
@@ -521,12 +522,13 @@
         
         [self.horizontalPathesScrollView refreshContent];
     }
+    
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     
     if ([appDelegate isIPHONE5]) {
-        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 568-86)];
+        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, topPathHeight+pathViewHeight, 320, 568-topPathHeight-pathViewHeight-20.0)];
     } else {
-        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
+        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, topPathHeight+pathViewHeight, 320, 480-topPathHeight-pathViewHeight-20.0)];
     }
     
     if ([self.horizontalPathesScrollView numberOfPages]>1) {
@@ -700,9 +702,6 @@
     [blackView addGestureRecognizer:tapGesture];
     [tapGesture release];
     
-    [(MainView*)self.view addSubview:blackView];
-    [blackView release];
-    
     FastAccessTableViewController *tableViewC=[[[FastAccessTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
     
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
@@ -719,8 +718,10 @@
     
     tableViewC.tableView.tag=555;
     
-    [(MainView*)self.view addSubview:tableViewC.tableView];
-    [(MainView*)self.view bringSubviewToFront:tableViewC.tableView];
+    [(MainView*)self.view insertSubview:tableViewC.tableView belowSubview:stationsView];
+    [(MainView*)self.view insertSubview:blackView belowSubview:tableViewC.tableView];
+
+    [blackView release];
     
     return tableViewC;
 }

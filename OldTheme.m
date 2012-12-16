@@ -417,4 +417,165 @@
     return [UIImage imageNamed:@"openlist_highlight.png"];
 }
 
+-(UIImage*)topToolbarBackgroundImage
+{
+    return [UIImage imageNamed:@"toolbar_bg1.png"];
+}
+
+-(UIImage*)topToolbarBackgroundPathImage
+{
+    return [UIImage imageNamed:@"upper_path_bg.png"];
+}
+
+
+-(CGFloat)topToolbarHeight:(UIBarMetrics)metrics
+{
+    return 44.0;
+}
+
+-(CGFloat)toolbarFieldHeight
+{
+    return 44.0;
+}
+
+-(CGFloat)toolbarFieldDelta
+{
+    return 0.0;
+}
+
+-(UIImage*)topToolbarCrossImage:(UIControlState)state
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"cross_red";
+    } else if (state == UIControlStateHighlighted) {
+        name = @"cross_opaq";
+    }
+    UIImage *image = [UIImage imageNamed:name];
+    return image;
+}
+
+-(UIImage*)topToolbarArrowPathImage
+{
+    return [UIImage imageNamed:@"arrowIcon.png"];
+}
+
+-(UIImage*)mapViewSettingsButton:(UIControlState)state
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"settings_btn_normal";
+    } else if (state == UIControlStateHighlighted) {
+        name = @"settings_btn";
+    }
+    UIImage *image = [UIImage imageNamed:name];
+    return image;
+}
+
+-(UIImage*)mapViewEntryButton:(UIControlState)state
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"src_button_normal";
+    } else if (state == UIControlStateHighlighted) {
+        name = @"src_button_pressed";
+    }
+    UIImage *image = [UIImage imageNamed:name];
+    return image;
+}
+
+-(UIImage*)mapViewExitButton:(UIControlState)state
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"dst_button_normal";
+    } else if (state == UIControlStateHighlighted) {
+        name = @"dst_button_pressed";
+    }
+    UIImage *image = [UIImage imageNamed:name];
+    return image;
+}
+
+-(UIImage*)mapViewLabelView
+{
+    return [UIImage imageNamed:@"station_label"];    
+}
+
+-(CGFloat)topToolbarPathHeight:UIBarMetricsDefault
+{
+    return 26.0;
+}
+
+-(CGFloat)pathViewHeight:UIBarMetricsDefault
+{
+    return 40.0;
+}
+
+-(UIFont*)toolbarPathFont
+{
+    return [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
+}
+
+-(UIColor*)toolbarPathFontColor
+{
+    return [UIColor blackColor];
+}
+
+-(void)decorMapViewMainLabel:(UILabel*)label
+{
+    label.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:21.0];
+    label.textAlignment = UITextAlignmentCenter;
+    label.backgroundColor = [UIColor clearColor];
+    label.shadowColor = [UIColor whiteColor];
+    label.shadowOffset = CGSizeMake(0.5f, 1.f);
+}
+
+-(void)decorMapViewLineLabel:(UILabel*)label
+{
+    label.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:21.f];
+    label.textAlignment = UITextAlignmentCenter;
+    label.textColor = [UIColor colorWithRed:0.5f green:0.5f blue:0.5f alpha:1.0f];
+    label.text = @"1";
+    label.backgroundColor = [UIColor clearColor];
+    label.shadowColor = [UIColor whiteColor];
+    label.shadowOffset = CGSizeMake(0.5f, 1.f);   
+}
+
+-(void)decorMapViewCircleLabel:(UIView*)label
+{
+    
+}
+
+-(UIImage*)horizontalPathViewBackground
+{
+    return [UIImage imageNamed:@"lower_path_bg.png"];
+}
+
+-(CGRect)horizontalPathViewRect
+{
+    return CGRectMake(0.0, 26.0, 320.0, [self pathViewHeight:UIBarMetricsDefault]);
+}
+
+-(CGFloat)horizontalPathSwitchButtonY
+{
+    return 66.0f;
+}
+
+
+-(CGFloat)stationTextFieldRightAdjust
+{
+    return 7.0f;
+}
+
+-(CGFloat)stationTextFieldDrawTextInRectAdjust
+{
+    return 3.0f;
+}
+
+-(BOOL)isNewTheme
+{
+    return NO;
+}
+
+
 @end
