@@ -866,9 +866,9 @@
     
 }
 
--(void)setStarAtStation:(Station*)station withType:(int)starType {
+-(void)setStarAtStation:(Station*)station {
     MainView *mainView = (MainView*)self.view;
-    [mainView.mapView setStarAtStation:station withType:starType];
+    [mainView.mapView setStarAtStation:station];
 }
 
 -(void)removeStarFromStation:(NSString*)stationName {

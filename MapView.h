@@ -102,6 +102,7 @@ extern int const imagesCount;
 //highlighting station nearest to the point
 - (void)highlightStationNearPoint:(CGPoint)point;
 
+-(void)setStarAtStation:(Station*)station;
 -(void)setStarAtStation:(Station*)station withType:(int)starType;
 -(void)removeStarFromStation:(NSString*)stationName;
 -(void)removeAllStars;

@@ -86,10 +86,15 @@
     } else return NO;
 }
 
+-(void)setStarAtStation:(Station *)station
+{
+    [self setStarAtStation:station withType:station.line.index];
+}
+
 -(void)setStarAtStation:(Station*)station withType:(int)starType
 {
     NSString *starFile = nil;
-    switch (starType) {
+    switch (starType%11) {
         case 0:
             starFile = @"star-aqua";
             break;
@@ -127,7 +132,7 @@
 	UIImage *imageStar = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:starFile ofType:@"png"]];
 
     CALayer *starLayer = [[CALayer layer] retain];
-    starLayer.frame = CGRectMake(0, 0, cityMap.gpsCircleScale*imageStar.size.width, cityMap.gpsCircleScale*imageStar.size.height);
+    starLayer.frame = CGRectMake(0, 0, cityMap.gpsCircleScale*imageStar.size.width*0.5f, cityMap.gpsCircleScale*imageStar.size.height*0.5f);
     starLayer.contents=(id)[imageStar CGImage];
     starLayer.position = station.pos;
     [self.layer addSublayer:starLayer];

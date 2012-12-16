@@ -263,7 +263,7 @@
     Station *nearestStation = [map stationNearestToGeoPosition:placePoint];
 
     [self.glController setPinAtPlace:place color:1];
-    [self.mainController setStarAtStation:nearestStation withType:1];
+    [self.mainController setStarAtStation:nearestStation];
 }
 
 - (void)placeRemovedFromFavorites:(MPlace*)place {
