@@ -405,4 +405,13 @@ NSInteger const toolbarWidth=320;
     return rect;
 }
 
+-(void)setGeoPosition:(CGPoint)geoPosition withZoom:(CGFloat)zoom
+{
+    // будет выбрана не реальная гео позиция, а станция метро с ближайшими координатами
+    Station *st = [mapView.cityMap findNearestStationTo:geoPosition];
+	
+    [containerView setContentScaleFactor:zoom];
+    [containerView setContentOffset:CGPointMake(st.pos.x * mapView.Scale - containerView.bounds.size.width*0.5f, st.pos.y * mapView.Scale - containerView.bounds.size.height*0.75f ) animated:YES];
+}
+
 @end

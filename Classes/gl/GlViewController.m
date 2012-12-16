@@ -11,9 +11,7 @@
 #import "SettingsNavController.h"
 #import "tubeAppDelegate.h"
 #import "SelectingTabBarViewController.h"
-#import "GlSprite.h"
 #import "GlView.h"
-#import "GlPanel.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -27,28 +25,6 @@ enum
     NUM_UNIFORMS
 };
 GLint uniforms[NUM_UNIFORMS];
-
-@interface Pin : NSObject {
-    int _id;
-    CGPoint pos;
-    GlSprite *sprite;
-    SmallPanel *sp;
-    CGFloat size;
-    CGFloat offset, speed;
-    float lastScale;
-}
-
-@property (nonatomic, readonly) int Id;
-@property (nonatomic, readonly) CGPoint position;
-@property (nonatomic, assign) BOOL active;
-
--(id)initWithId:(int)pinId andColor:(int)color;
--(void)draw;
--(void)drawWithScale:(CGFloat)scale;
--(void)drawPanelWithScale:(CGFloat)scale;
--(void)fallFrom:(CGFloat)distance at:(CGFloat)speed;
--(CGRect)bounds;
-@end
 
 
 @interface GlViewController () {
@@ -73,7 +49,7 @@ GLint uniforms[NUM_UNIFORMS];
     NSMutableArray *pinsArray;
     int newPinId;
     
-    CGPoint userPosition;
+    CGPoint userPosition, userGeoPosition;
 }
 @property (strong, nonatomic) EAGLContext *context;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
@@ -92,6 +68,7 @@ GLint uniforms[NUM_UNIFORMS];
 
 @implementation Pin
 @synthesize Id = _id;
+@synthesize distanceToUser;
 
 -(void)setActive:(BOOL)active
 {
@@ -181,28 +158,28 @@ GLint uniforms[NUM_UNIFORMS];
                 sprite = [[GlSprite alloc] initWithPicture:@"pin_yellow"];// RG.
                 break;
             case 9:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin_aqua"];  // .GB
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_9"];  // .GB
                 break;
             case 10:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin_brown"]; // rg.
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_10"]; // rg.
                 break;
             case 11:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin_lightblue"];// .gB
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_11"];// .gB
                 break;
             case 12:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin_pink"];  // RgB
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_12"];  // RgB
                 break;
             case 13:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin_red"];   // R..
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_13"];   // R..
                 break;
             case 14:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin_blue"];  // ..B
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_14"];  // ..B
                 break;
             case 15:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin_green"]; // .G.
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_15"]; // .G.
                 break;
             case 16:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin_yellow"];// RG.
+                sprite = [[GlSprite alloc] initWithPicture:@"pin_16"];// RG.
                 break;
         }
         size = 32;
@@ -721,6 +698,10 @@ GLint uniforms[NUM_UNIFORMS];
     [p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
     [pinsArray addObject:p];
     [p setPosition:[self translateFromGeoToMap:coordinate]];
+    
+    // distance from user to pin
+    p.distanceToUser = [self calcGeoDistanceFrom:coordinate to:userGeoPosition];
+    
     return newId;
 }
 
@@ -745,6 +726,16 @@ GLint uniforms[NUM_UNIFORMS];
     [pinsArray removeAllObjects];
     [pinsArray addObject:usrPin];
     [usrPin release];
+}
+
+-(Pin*)getPin:(int)pinId
+{
+    for (Pin *p in pinsArray) {
+        if(p.Id == pinId) {
+            return p;
+        }
+    }
+    return nil;
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
@@ -860,8 +851,8 @@ GLint uniforms[NUM_UNIFORMS];
     //glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _normalMatrix.m);
     glUniform1i(uniforms[UNIFORM_SAMPLER], 0);
     float sc = scale;
-    if(sc < 3.f) sc = 3.f;
-    if(sc > 2000.f) sc = 2000.f;
+    //if(sc < 3.f) sc = 3.f;
+    //if(sc > 2000.f) sc = 2000.f;
     float W = self.view.bounds.size.width, W2 = W*0.5f, H = self.view.bounds.size.height, H2 = H*0.5f;
     [rasterLayer drawGlInRect:CGRectMake(128 - position.x - W2/scale, 128 - position.y - H2/scale, W/scale, H/scale) withScale:sc];
     
@@ -1044,6 +1035,13 @@ GLint uniforms[NUM_UNIFORMS];
     return p;
 }
 
+-(CGFloat)calcGeoDistanceFrom:(CGPoint)p1 to:(CGPoint)p2
+{
+    const float cc = M_PI / 180.f;
+    float dis = 6371.21f * acosf(sinf(p1.x*cc)*sinf(p2.x*cc) + cosf(p1.x*cc)*cosf(p2.x*cc)*cosf(p1.y*cc+p2.y*cc));
+    return dis;
+}
+
 -(void)setGeoPosition:(CGRect)rect
 {
     const static double mult = 256.0 / 360.0;
@@ -1059,8 +1057,19 @@ GLint uniforms[NUM_UNIFORMS];
     scale = 256.f / r.size.height;
 }
 
+-(void)setGeoPosition:(CGPoint)geoCoords withZoom:(CGFloat)zoom
+{
+    const static double mult = 256.0 / 360.0;
+    float y = atanhf(sinf(geoCoords.x * M_PI / 180.f));
+    y = y * 256.f / (M_PI*2.f);
+    position.x = - geoCoords.y * mult;
+    position.y = y + 120.f/zoom;
+    scale = zoom;
+}
+
 -(void)setUserGeoPosition:(CGPoint)point
 {
+    userGeoPosition = point;
     CGPoint up = [self translateFromGeoToMap:point];
     userPosition = up;
     Pin *p = [pinsArray objectAtIndex:0];
