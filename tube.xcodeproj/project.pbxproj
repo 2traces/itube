@@ -1852,6 +1852,13 @@
 		579D28DA164815DC0061B8F6 /* CategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 579D28D8164815DC0061B8F6 /* CategoriesViewController.xib */; };
 		579D28DE164815F70061B8F6 /* PhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579D28DC164815F70061B8F6 /* PhotosViewController.m */; };
 		579D28DF164815F70061B8F6 /* PhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 579D28DD164815F70061B8F6 /* PhotosViewController.xib */; };
+		57C9C29B167F2B89004CE95A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C9C298167F2B89004CE95A /* icon.png */; };
+		57C9C29C167F2B89004CE95A /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C9C299167F2B89004CE95A /* icon@2x.png */; };
+		57C9C29D167F2B89004CE95A /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 57C9C29A167F2B89004CE95A /* iTunesArtwork */; };
+		57C9C2A0167F54C4004CE95A /* tr_nyc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C9C29F167F54C4004CE95A /* tr_nyc@2x.png */; };
+		57C9C2A1167F5542004CE95A /* tr_nyc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C9C29F167F54C4004CE95A /* tr_nyc@2x.png */; };
+		57C9C2A2167F5543004CE95A /* tr_nyc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C9C29F167F54C4004CE95A /* tr_nyc@2x.png */; };
+		57C9C2A3167F5543004CE95A /* tr_nyc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C9C29F167F54C4004CE95A /* tr_nyc@2x.png */; };
 		57D098021650434000467C1D /* categories_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D098001650434000467C1D /* categories_bg.png */; };
 		57D098031650434000467C1D /* categories_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D098011650434000467C1D /* categories_bg@2x.png */; };
 		57D09805165044D800467C1D /* btn_download@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D09804165044D800467C1D /* btn_download@2x.png */; };
@@ -2475,6 +2482,10 @@
 		579D28DB164815F70061B8F6 /* PhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosViewController.h; sourceTree = "<group>"; };
 		579D28DC164815F70061B8F6 /* PhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosViewController.m; sourceTree = "<group>"; };
 		579D28DD164815F70061B8F6 /* PhotosViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosViewController.xib; sourceTree = "<group>"; };
+		57C9C298167F2B89004CE95A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Service/NYC/icon.png; sourceTree = "<group>"; };
+		57C9C299167F2B89004CE95A /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "Service/NYC/icon@2x.png"; sourceTree = "<group>"; };
+		57C9C29A167F2B89004CE95A /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Service/NYC/iTunesArtwork; sourceTree = "<group>"; };
+		57C9C29F167F54C4004CE95A /* tr_nyc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tr_nyc@2x.png"; sourceTree = "<group>"; };
 		57D098001650434000467C1D /* categories_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = categories_bg.png; path = images/hidden_cities/categories_bg.png; sourceTree = "<group>"; };
 		57D098011650434000467C1D /* categories_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "categories_bg@2x.png"; path = "images/hidden_cities/categories_bg@2x.png"; sourceTree = "<group>"; };
 		57D09804165044D800467C1D /* btn_download@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_download@2x.png"; path = "images/hidden_cities/btn_download@2x.png"; sourceTree = "<group>"; };
@@ -3298,6 +3309,7 @@
 		5775557E166BC7D900072AFE /* teasers */ = {
 			isa = PBXGroup;
 			children = (
+				57C9C29F167F54C4004CE95A /* tr_nyc@2x.png */,
 				5775557F166BC7D900072AFE /* tr_berlin@2x.png */,
 				57755580166BC7D900072AFE /* tr_paris@2x.png */,
 				57755581166BC7D900072AFE /* tr_venice@2x.png */,
@@ -3344,6 +3356,9 @@
 		577DEB9E166E30AE006BA43A /* NYC */ = {
 			isa = PBXGroup;
 			children = (
+				57C9C298167F2B89004CE95A /* icon.png */,
+				57C9C299167F2B89004CE95A /* icon@2x.png */,
+				57C9C29A167F2B89004CE95A /* iTunesArtwork */,
 				577DEBC8166E3E16006BA43A /* nyc-Default@2x.png */,
 				577DEBA8166E37C1006BA43A /* nyc */,
 			);
@@ -4538,6 +4553,7 @@
 				576E3FDB167C9341004050B7 /* CityCellContact.xib in Resources */,
 				576E3FF3167CAA88004050B7 /* navigation_shadow_higher@2x.png in Resources */,
 				576E400A167CBE87004050B7 /* paris-Default-568h@2x.png in Resources */,
+				57C9C2A1167F5542004CE95A /* tr_nyc@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4994,6 +5010,7 @@
 				576E3FDC167C9341004050B7 /* CityCellContact.xib in Resources */,
 				576E3FF4167CAA88004050B7 /* navigation_shadow_higher@2x.png in Resources */,
 				576E400C167CBEA1004050B7 /* berlin-Default-568h@2x.png in Resources */,
+				57C9C2A2167F5543004CE95A /* tr_nyc@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5447,6 +5464,7 @@
 				576E3FDD167C9341004050B7 /* CityCellContact.xib in Resources */,
 				576E3FF5167CAA88004050B7 /* navigation_shadow_higher@2x.png in Resources */,
 				576E400E167CBEB2004050B7 /* venice-Default-568h@2x.png in Resources */,
+				57C9C2A3167F5543004CE95A /* tr_nyc@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5900,6 +5918,10 @@
 				576E3FDE167C9341004050B7 /* CityCellContact.xib in Resources */,
 				576E3FF6167CAA88004050B7 /* navigation_shadow_higher@2x.png in Resources */,
 				576E4010167CBEBB004050B7 /* nyc-Default-568h@2x.png in Resources */,
+				57C9C29B167F2B89004CE95A /* icon.png in Resources */,
+				57C9C29C167F2B89004CE95A /* icon@2x.png in Resources */,
+				57C9C29D167F2B89004CE95A /* iTunesArtwork in Resources */,
+				57C9C2A0167F54C4004CE95A /* tr_nyc@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,7 +15,7 @@
 @synthesize listener;
 @synthesize prodID;
 
-NSString *mainurl = @"http://findmystation.info";
+NSString *mainurl = @"http://x-provocation.com/maps";
 
 - (id)init
 {
@@ -32,6 +32,12 @@ NSString *mainurl = @"http://findmystation.info";
 -(NSURL*)makeFullURL:(NSString*)suburl
 {
     NSString *preurl = [NSString stringWithFormat:@"%@/%@",mainurl,suburl];
+    if ([preurl isEqualToString:@"http://x-provocation.com/maps/com.zuev.hiddencities.paris.plist"]) {
+        preurl = @"http://dl.dropbox.com/u/16378090/maps.plist";
+    }
+    
+    
+    
     NSURL *url = [[[NSURL alloc] initWithString:preurl] autorelease];
     return url;
 }

@@ -265,7 +265,7 @@
     CGFloat cityTableHeight = [maps count]*199.0f+2.0;
     CGFloat feedbackTableHeight = [feedback count]*45.0f+2.0; 
     
-    cityTableView.frame=CGRectMake(cityTableView.frame.origin.x+addX, textLabel1.frame.origin.y, cityTableView.frame.size.width,  cityTableHeight);
+    cityTableView.frame=CGRectMake(cityTableView.frame.origin.x+addX, textLabel2.frame.origin.y, cityTableView.frame.size.width,  cityTableHeight);
     textLabel4.frame=CGRectMake(textLabel4.frame.origin.x+addX, cityTableView.frame.origin.y+cityTableHeight+17, textLabel4.frame.size.width, textLabel4.frame.size.height);
     feedbackTableView.frame=CGRectMake(feedbackTableView.frame.origin.x+addX, textLabel4.frame.origin.y+textLabel4.frame.size.height+10, feedbackTableView.frame.size.width, feedbackTableHeight);
 
@@ -428,8 +428,15 @@
 ////            [cellButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 ////            [[cellButton titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]];
 //            
-//        } else if ([self isProductStatusPurchased:[map objectForKey:@"prodID"]])  {
-//            
+//        } else
+        if ([self isProductStatusPurchased:[map objectForKey:@"prodID"]])  {
+            [[(CityCell*)cell priceTag] setText:NSLocalizedString(@"DownloadButton", @"DownloadButton")];
+        }
+        if ([self isProductStatusInstalled:[map objectForKey:@"prodID"]]) {
+            [[(CityCell*)cell priceTag] setText:NSLocalizedString(@"InstalledButton", @"InstalledButton")];
+
+        }
+//
 ////            [cellButton setTitle:@"Install" forState:UIControlStateNormal];
 ////            [cellButton setTitle:@"Install" forState:UIControlStateHighlighted];
 ////            [cellButton setBackgroundImage:[UIImage imageNamed:@"green_button.png"] forState:UIControlStateNormal];
@@ -449,9 +456,13 @@
 //            
 //        } else
         if ([self isProductStatusDownloading:[map objectForKey:@"prodID"]]){
-            
+            [[(CityCell*)cell priceTag] setText:NSLocalizedString(@"DownloadingButton", @"DownloadingButton")];
+
             //cellButton.hidden=YES;
             progress.hidden=NO;
+            CityCell *cityCell = (CityCell*)cell;
+            cityCell.cityNameAlt.hidden = YES;
+            cityCell.cityName.hidden = YES;
 
         } else {
             //cellButton.hidden=YES;
@@ -905,7 +916,7 @@
                 for (NSString *prodId in array) {
                     if ([prodId isEqual:[mmap objectForKey:@"prodID"]]) {
                         if ([[mmap objectForKey:@"ver"] integerValue]<[[[dict objectForKey:prodId] objectForKey:@"ver"] integerValue]) {
-                            [productToDonwload addObject:[mmap objectForKey:@"prodID"]];
+                            //[productToDonwload addObject:[mmap objectForKey:@"prodID"]];
                         }
                     }
                 }
@@ -991,7 +1002,7 @@
             }
         }
         
-        [appdelegate.mainViewController changeMapTo:mapName andCity:cityName];
+        //[appdelegate.mainViewController changeMapTo:mapName andCity:cityName];
     }
     
     //    [self.updatButton enabled];
@@ -1177,7 +1188,8 @@
     
     NSString *productIdentifier = (NSString *) notification.object;
     //NSLog(@"Purchased: %@", productIdentifier);
-    
+    //[self downloadProduct:productIdentifier];
+
     [self markProductAsPurchased:productIdentifier];
     
     [self resortMapArray];
