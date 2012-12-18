@@ -25,44 +25,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
-        self.zpath=thisPath;
-//        tubeAppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
-//        self.apath = [appdelegate.cityMap describePath:self.zpath];
+//        self.zpath = thisPath;
         self.apath = thisPath;
     }
     return self;
 }
-
-/*
--(void) describePath:(NSArray*)pathMap {
-    [self.apath removeAllObjects];
-	int count_ = [pathMap count];
-    
-    Station *prevStation = nil;
-	for (int i=0; i< count_; i++) {
-        GraphNode *n1 = [pathMap objectAtIndex:i];
-        Line* l = [mapLines objectAtIndex:n1.line-1];
-        Station *s = [l getStation:n1.name];
-        
-        if(i == count_ - 1) {
-
-        } else {
-            GraphNode *n2 = [pathMap objectAtIndex:i+1];
-            
-            if (n1.line==n2.line) {
-                [self.apath addObject:[l activateSegmentFrom:n1.name to:n2.name]];
-            } 
-            
-            if(n1.line != n2.line) {
-                [self.apath addObject:s.transfer];
-            }
-        }
-
-        prevStation = s;
-	
-    }
-}
-*/
 
 #pragma mark - datasource methods
 
@@ -175,12 +142,13 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    CGFloat overallLineWidth = self.frame.size.width-59.0f;
-    CGFloat lineStart = 44.0f;
-    CGFloat y = 29.0f+rect.origin.y;
-    CGFloat lineH=6.0;
     CGFloat firstAndLastR=9.0;
     CGFloat middleR=9.0;
+    CGFloat lineH=6.0;
+
+    CGFloat overallLineWidth = self.frame.size.width-self.frame.origin.x-firstAndLastR;
+    CGFloat lineStart = firstAndLastR/2.0f+2.0f;
+    CGFloat y = 29.0f+rect.origin.y;
     
     CGFloat x, segmentLenght;
     
