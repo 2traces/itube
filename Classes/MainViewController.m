@@ -479,8 +479,8 @@
 -(UIButton*)createChangeButton
 {
     UIButton *changeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *img = [UIImage imageNamed:@"switch_to_path.png"];
-    UIImage *imgh = [UIImage imageNamed:@"switch_to_path_high.png"];
+    UIImage *img = [[SSThemeManager sharedTheme] switchButtonImage:UIControlStateNormal];
+    UIImage *imgh = [[SSThemeManager sharedTheme] switchButtonImage:UIControlStateHighlighted];
     [changeButton setImage:img forState:UIControlStateNormal];
     [changeButton setImage:imgh forState:UIControlStateHighlighted];
     [changeButton addTarget:self action:@selector(changeMapToPathView:) forControlEvents:UIControlEventTouchUpInside];
@@ -492,7 +492,15 @@
     CGSize dateSize = [dateString sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
     [formatter release];
     
-    [changeButton setFrame:CGRectMake(320.0-12.0-dateSize.width-img.size.width , [[SSThemeManager sharedTheme] horizontalPathSwitchButtonY] , img.size.width, img.size.height)];
+    CGFloat buttonX;
+    
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        buttonX = 310.0-img.size.width-20.0;
+    } else {
+        buttonX = 320.0-12.0-dateSize.width-img.size.width;
+    }
+    
+    [changeButton setFrame:CGRectMake(buttonX , [[SSThemeManager sharedTheme] horizontalPathSwitchButtonY] , img.size.width, img.size.height)];
     
     return changeButton;
 }
@@ -638,18 +646,22 @@
         
         [(MainView*)self.view addSubview:self.pathScrollView];
         [(MainView*)self.view bringSubviewToFront:pathScrollView];
-        [(MainView*)self.view bringSubviewToFront:self.stationsView];
         [(MainView*)self.view bringSubviewToFront:self.horizontalPathesScrollView];
-        
-        UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
-        shadow.frame = CGRectMake(0,66, 320, 61);
-        [shadow setIsAccessibilityElement:YES];
-        shadow.tag = 2321;
-        [(MainView*)self.view addSubview:shadow];
-        
-        [self.changeViewButton setImage:[UIImage imageNamed:@"pathButton.png"] forState:UIControlStateNormal];
-        [self.changeViewButton setImage:[UIImage imageNamed:@"pathButtonPressed.png"] forState:UIControlStateHighlighted];
+        [(MainView*)self.view bringSubviewToFront:self.stationsView];
 
+        if (![[SSThemeManager sharedTheme] isNewTheme]) {
+            UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
+            shadow.frame = CGRectMake(0,66, 320, 61);
+            [shadow setIsAccessibilityElement:YES];
+            shadow.tag = 2321;
+            [(MainView*)self.view addSubview:shadow];
+        }
+        
+        [self.changeViewButton setImage:[[SSThemeManager sharedTheme] switchButtonImage:UIControlStateNormal] forState:UIControlStateNormal];
+        [self.changeViewButton setImage:[[SSThemeManager sharedTheme] switchButtonImage:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+
+        //UIImage imageNamed:@"pathButtonPressed.png"
+        
         [(MainView*)self.view bringSubviewToFront:self.changeViewButton];
         
     } else {
@@ -665,8 +677,8 @@
     
     [self.pathScrollView removeFromSuperview];
     self.pathScrollView=nil;
-    [self.changeViewButton setImage:[UIImage imageNamed:@"switch_to_path.png"] forState:UIControlStateNormal];
-    [self.changeViewButton setImage:[UIImage imageNamed:@"switch_to_path_high.png"] forState:UIControlStateHighlighted];
+    [self.changeViewButton setImage:[[SSThemeManager sharedTheme] switchButtonImage:UIControlStateNormal]  forState:UIControlStateNormal];
+    [self.changeViewButton setImage:[[SSThemeManager sharedTheme] switchButtonImage:UIControlStateHighlighted]  forState:UIControlStateHighlighted];
 }
 
 -(void)showiPadLeftPathView

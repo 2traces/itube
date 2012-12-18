@@ -551,12 +551,12 @@
 
 -(CGRect)horizontalPathViewRect
 {
-    return CGRectMake(10.0, 47, 300.0, [self pathViewHeight:UIBarMetricsDefault]);
+    return CGRectMake(10.0, 40, 300.0, [self pathViewHeight:UIBarMetricsDefault]);
 }
 
 -(CGFloat)horizontalPathSwitchButtonY
 {
-    return 86.0f;
+    return 40.0f;
 }
 
 -(CGFloat)stationTextFieldRightAdjust
@@ -572,6 +572,28 @@
 -(BOOL)isNewTheme
 {
     return YES;
+}
+
+-(CGFloat)pathBarViewWidth
+{
+    return 220.0f;
+}
+
+-(UIImage*)pathBarViewDestinationIcon
+{
+    return [UIImage imageNamed:@"newdes_pathbar_destination_icon"];
+}
+
+-(UIImage*)switchButtonImage:(UIControlState)state
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"newdes_switch_button";
+    } else if (state == UIControlStateHighlighted) {
+        name = @"newdes_switch_button_pressed";
+    }
+    UIImage *image = [UIImage imageNamed:name];
+    return image;
 }
 
 @end

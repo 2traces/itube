@@ -577,5 +577,26 @@
     return NO;
 }
 
+-(CGFloat)pathBarViewWidth
+{
+    return 305.0f;
+}
+
+-(UIImage*)pathBarViewDestinationIcon
+{
+    return [UIImage imageNamed:@"flag.png"];
+}
+
+-(UIImage*)switchButtonImage:(UIControlState)state
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"switch_to_path";
+    } else if (state == UIControlStateHighlighted) {
+        name = @"switch_to_path_high";
+    }
+    UIImage *image = [UIImage imageNamed:name];
+    return image;
+}
 
 @end
