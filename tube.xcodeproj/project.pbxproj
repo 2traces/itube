@@ -226,6 +226,7 @@
 		BC3D156314C33E060059A17E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3D156214C33E050059A17E /* MessageUI.framework */; };
 		BC3D156514C33E0E0059A17E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3D156414C33E0C0059A17E /* SystemConfiguration.framework */; };
 		BC3D156714C33E170059A17E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3D156614C33E160059A17E /* StoreKit.framework */; };
+		BC4297AC1680D66500315555 /* newtube-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC4297AB1680D66500315555 /* newtube-Info.plist */; };
 		BC4DA4181537F03700B941F1 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4DA4171537F03700B941F1 /* ImageDownloader.m */; };
 		BC4E5708166B9793001B32FB /* backButtonBG.png in Resources */ = {isa = PBXBuildFile; fileRef = BC4E5706166B9793001B32FB /* backButtonBG.png */; };
 		BC4E5709166B9793001B32FB /* backButtonBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC4E5707166B9793001B32FB /* backButtonBG@2x.png */; };
@@ -1052,7 +1053,6 @@
 		BCAF3A39153B1DE6007B0826 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = BCAF3A38153B1DE6007B0826 /* placeholder.png */; };
 		BCB33A5D15F77F8F00692789 /* StatusDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB33A5C15F77F8F00692789 /* StatusDownloader.m */; };
 		BCB362E014E6C31C0066FB3A /* StationTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB362DF14E6C31C0066FB3A /* StationTextField.m */; };
-		BCC15CF6168025A400273BB6 /* newtube-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BCC15CF5168025A300273BB6 /* newtube-Info.plist */; };
 		BCCC307C14E4DAAB00102064 /* buy_button.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCC306E14E4DAAA00102064 /* buy_button.png */; };
 		BCCC307D14E4DAAB00102064 /* buy_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCC306F14E4DAAA00102064 /* buy_button@2x.png */; };
 		BCCC308014E4DAAB00102064 /* grey_top_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCC307214E4DAAB00102064 /* grey_top_bar.png */; };
@@ -1404,6 +1404,7 @@
 		BC3D156214C33E050059A17E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		BC3D156414C33E0C0059A17E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BC3D156614C33E160059A17E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		BC4297AB1680D66500315555 /* newtube-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "newtube-Info.plist"; sourceTree = "<group>"; };
 		BC4DA4161537F03600B941F1 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDownloader.h; path = Classes/ImageDownloader.h; sourceTree = "<group>"; };
 		BC4DA4171537F03700B941F1 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloader.m; path = Classes/ImageDownloader.m; sourceTree = "<group>"; };
 		BC4E5706166B9793001B32FB /* backButtonBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButtonBG.png; sourceTree = "<group>"; };
@@ -1756,7 +1757,6 @@
 		BCB33A5C15F77F8F00692789 /* StatusDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusDownloader.m; sourceTree = "<group>"; };
 		BCB362DE14E6C31C0066FB3A /* StationTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationTextField.h; sourceTree = "<group>"; };
 		BCB362DF14E6C31C0066FB3A /* StationTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationTextField.m; sourceTree = "<group>"; };
-		BCC15CF5168025A300273BB6 /* newtube-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "newtube-Info.plist"; sourceTree = "<group>"; };
 		BCCC306E14E4DAAA00102064 /* buy_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buy_button.png; path = images/buy_button.png; sourceTree = "<group>"; };
 		BCCC306F14E4DAAA00102064 /* buy_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "buy_button@2x.png"; path = "images/buy_button@2x.png"; sourceTree = "<group>"; };
 		BCCC307214E4DAAB00102064 /* grey_top_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grey_top_bar.png; path = images/grey_top_bar.png; sourceTree = "<group>"; };
@@ -2115,7 +2115,7 @@
 				CE81FA6F146BDC91008BF969 /* Icon@2x.png */,
 				CE96C6F41468307C005A56F3 /* images */,
 				8D1107310486CEB800E47090 /* tube-Info.plist */,
-				BCC15CF5168025A300273BB6 /* newtube-Info.plist */,
+				BC4297AB1680D66500315555 /* newtube-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -3800,13 +3800,13 @@
 				BC5445B4167DE309003FDF81 /* newdes_pagecontrol_dot_selected@2x.png in Resources */,
 				BC5445B5167DE309003FDF81 /* newdes_pagecontrol_dot@2x.png in Resources */,
 				BC5445B6167DE309003FDF81 /* newdes_pathbar_bg@2x.png in Resources */,
-				BCC15CF6168025A400273BB6 /* newtube-Info.plist in Resources */,
 				BCA23C8C1680CE1400BE6AC3 /* newdes_pathbar_destination_icon.png in Resources */,
 				BCA23C8D1680CE1400BE6AC3 /* newdes_switch_button.png in Resources */,
 				BCA23C8E1680CE1400BE6AC3 /* newdes_switch_button_pressed.png in Resources */,
 				BCA23C8F1680CE1400BE6AC3 /* newdes_switch_button_pressed@2x.png in Resources */,
 				BCA23C901680CE1400BE6AC3 /* newdes_pathbar_destination_icon@2x.png in Resources */,
 				BCA23C911680CE1400BE6AC3 /* newdes_switch_button@2x.png in Resources */,
+				BC4297AC1680D66500315555 /* newtube-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
