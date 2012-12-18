@@ -522,6 +522,9 @@
             
             [toolbar setImage:[[[SSThemeManager sharedTheme] topToolbarBackgroundPathImage] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 149.0, 0, 167.0)]];
             
+            firstStation.state=StationTextFieldStylePath;
+            secondStation.state=StationTextFieldStylePath;
+
         }
                 
     }];
@@ -599,12 +602,13 @@
         
     }];
     
+    firstStation.state=StationTextFieldStyleDefault;
+    secondStation.state=StationTextFieldStyleDefault;
     
     firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
     secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
     
     shouldEnlarge =NO;
-    
 }
 
 -(void)showiPadLeftPathView
@@ -656,6 +660,8 @@
     shouldEnlarge = YES;
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate.mainViewController resetBothStations];
+    firstStation.state=StationTextFieldStyleDefault;
+    secondStation.state=StationTextFieldStyleDefault;
 }
 
 -(void)resetFromStation
@@ -663,6 +669,7 @@
     shouldEnlarge = YES;
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate.mainViewController resetFromStation];
+    firstStation.state=StationTextFieldStyleDefault;
 }
 
 -(void)resetToStation
@@ -670,6 +677,7 @@
     shouldEnlarge=YES;
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate.mainViewController resetToStation];
+    secondStation.state=StationTextFieldStyleDefault;
 }
 
 -(void)clearFromStation
@@ -702,7 +710,7 @@
                 stationField.text = station.name;
             }
             
-            break;
+         break;
 
         case StationTextFieldStyleSearch:
             if (stationField==firstStation) {
@@ -726,8 +734,30 @@
                 
                 stationField.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
                 
-                stationField.rightViewMode = UITextFieldViewModeNever;
+                if ([[SSThemeManager sharedTheme] isNewTheme]) {
+
+                    UIImage *crossImage = [[SSThemeManager sharedTheme] topToolbarCrossImage:UIControlStateNormal];
+                    UIImage *crossImageHighlighted = [[SSThemeManager sharedTheme] topToolbarCrossImage:UIControlStateHighlighted];
+                    
+                    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                    [cancelButton setImage:crossImage forState:UIControlStateNormal];
+                    [cancelButton setFrame:CGRectMake(0.0, 0.0, crossImage.size.width, crossImage.size.height)];
+                    [cancelButton setImage:crossImageHighlighted forState:UIControlStateHighlighted];
+                    
+                    if (stationField==firstStation) {
+                        [cancelButton addTarget:self action:@selector(resetFromStation) forControlEvents:UIControlEventTouchUpInside];
+                    } else {
+                        [cancelButton addTarget:self action:@selector(resetToStation) forControlEvents:UIControlEventTouchUpInside];
+                    }
+                    
+                    stationField.rightView= cancelButton;
+                    stationField.rightViewMode = UITextFieldViewModeAlways;
+
+                } else {
                 
+                    stationField.rightViewMode = UITextFieldViewModeNever;
+                
+                }
                 UIImageView *lineColor = [[UIImageView alloc] initWithImage:[self imageWithColor:[station lines]]];
                 [stationField setLeftView:lineColor];
                 [lineColor release];

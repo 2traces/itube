@@ -10,6 +10,7 @@
 #import "PathDrawView.h"
 #import "CityMap.h"
 #import "tubeAppDelegate.h"
+#import "SSTheme.h"
 
 @implementation PathBarView
 
@@ -20,37 +21,41 @@
     if (self) {
  
         int page = frame.origin.x/frame.size.width;
-        
-//        UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, frame.size.height)];
-//        bgView.tag=5000+page;
-//        bgView.image = [UIImage imageNamed:@"lower_path_bg.png"]; //lower_path_bg toolbar_bg
-//        [self addSubview:bgView];
-//        [bgView release];
-        
-        NSString *fileName = [NSString stringWithFormat:@"n%d.png",number+1];
-        UIImageView *pathNumberView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:fileName]];
-        pathNumberView.frame = CGRectMake(8,4,24,32);
-        [self addSubview:pathNumberView];
-        [pathNumberView release];
-        
-        UILabel *over = [[UILabel alloc] init];
-        over.text=[NSString stringWithFormat:@"%d",overall];        
-        over.backgroundColor = [UIColor clearColor];
-        over.font = [UIFont fontWithName:@"MyriadPro-Regular" size:9.0];
-        over.textColor = [UIColor whiteColor];
-        over.frame=CGRectMake(23, 9, 10, 10); 
-        [self addSubview:over];
-        [over release];
 
+        CGFloat start=10.0f;
+
+        if ([[SSThemeManager sharedTheme] isNewTheme]) {
         
+                    
+        } else {
+            NSString *fileName = [NSString stringWithFormat:@"n%d.png",number+1];
+            UIImageView *pathNumberView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:fileName]];
+            pathNumberView.frame = CGRectMake(8,4,24,32);
+            [self addSubview:pathNumberView];
+            [pathNumberView release];
+
+            UILabel *over = [[UILabel alloc] init];
+            over.text=[NSString stringWithFormat:@"%d",overall];
+            over.backgroundColor = [UIColor clearColor];
+            over.font = [UIFont fontWithName:@"MyriadPro-Regular" size:9.0];
+            over.textColor = [UIColor whiteColor];
+            over.frame=CGRectMake(23, 9, 10, 10);
+            [self addSubview:over];
+            [over release];
+            
+            start = 37.0f;
+        }
+        
+
         UIImageView *clockView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"clock.png"]];
-        clockView.frame = CGRectMake(37, 4, 14, 14);
+        clockView.frame = CGRectMake(start, 4, 14, 14);
         clockView.tag=6400+page;
         [self addSubview:clockView];
         [clockView release];
         
-        UIImageView *flagView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"flag.png"]];
-        flagView.frame = CGRectMake(244,5,14,14);
+        UIImage *destinationIcon = [[SSThemeManager sharedTheme] pathBarViewDestinationIcon];
+        UIImageView *flagView = [[UIImageView alloc] initWithImage:destinationIcon];
+        flagView.frame = CGRectMake(244,5,destinationIcon.size.width,destinationIcon.size.height);
         flagView.tag=6500+page;
         [self addSubview:flagView];
         [flagView release];
@@ -63,7 +68,7 @@
         travelTimeLabel.textColor = [UIColor darkGrayColor];
         travelTimeLabel.shadowColor = [UIColor whiteColor];
         travelTimeLabel.shadowOffset = CGSizeMake(0, 1);
-        travelTimeLabel.frame=CGRectMake(52.0, 6, 65, 15); 
+        travelTimeLabel.frame=CGRectMake(start+15.0f, 6, 65, 15);
         travelTimeLabel.tag=6000+page;
         [self addSubview:travelTimeLabel];
         [travelTimeLabel release];
@@ -79,7 +84,7 @@
         [self addSubview:arrivalTimeLabel];
         [arrivalTimeLabel release];
         
-        PathDrawView *drawView = [[PathDrawView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, frame.size.height) path:(NSMutableArray*)thisPath];
+        PathDrawView *drawView = [[PathDrawView alloc] initWithFrame:CGRectMake(start, 0, self.frame.size.width, frame.size.height) path:(NSMutableArray*)thisPath];
         drawView.tag =10000+page;
         [self addSubview:drawView];
         [drawView release];
@@ -87,7 +92,7 @@
         NSString *arrivalTime = [self getArrivalTimeFromNow:travelTime];
         CGSize atSize = [arrivalTime sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:13.0]];
         CGRect labelRect = [(UILabel*)[self viewWithTag:7000+page] frame];
-        CGFloat labelStart = frame.size.width-10.0f-atSize.width-2.0;
+        CGFloat labelStart = frame.size.width-atSize.width;//-10.0f-atSize.width-2.0;
         [(UILabel*)[self viewWithTag:7000+page] setFrame:CGRectMake(labelStart, labelRect.origin.y, atSize.width+2.0, labelRect.size.height)];
         [(UILabel*)[self viewWithTag:7000+page] setText:[NSString stringWithFormat:@"%@",arrivalTime]];
         
@@ -99,10 +104,10 @@
             CGSize dateSize = [arrivalTime sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:16.0]];
             
             [[self viewWithTag:10000+page] removeFromSuperview];
-            [[self viewWithTag:6400+page] setFrame:CGRectMake(37, 10, 18, 18)];
+            [[self viewWithTag:6400+page] setFrame:CGRectMake(start, 10, 18, 18)];
             [[self viewWithTag:6500+page] setFrame:CGRectMake(320.0-10.0-dateSize.width-5-26, 10, 18, 18)];
 
-            [[self viewWithTag:6000+page] setFrame:CGRectMake(63, 12, 90, 20)];
+            [[self viewWithTag:6000+page] setFrame:CGRectMake(start+26.0f, 12, 90, 20)];
             [(UILabel*)[self viewWithTag:6000+page] setFont:[UIFont fontWithName:@"MyriadPro-Regular" size:16.0]];
 
 //            [[self viewWithTag:7000+page] setFrame:CGRectMake(196, 12, 90, 20)];
@@ -171,14 +176,5 @@
     
     return lineTime+transferTime;
 }
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-}
- */
 
 @end

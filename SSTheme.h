@@ -122,6 +122,10 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 -(CGFloat)stationTextFieldDrawTextInRectAdjust;
 -(BOOL)isNewTheme;
 
+-(CGFloat)pathBarViewWidth;
+-(UIImage*)pathBarViewDestinationIcon;
+-(UIImage*)switchButtonImage:(UIControlState)state;
+
 @end
 
 @interface SSThemeManager : NSObject

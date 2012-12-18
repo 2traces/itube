@@ -879,7 +879,7 @@
     
     
     PathDrawVertView *drawView = [[PathDrawVertView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320, viewHeight+100.0)];
-    drawView.tag =20000;
+//    drawView.tag =20000;
     drawView.delegate=self;
     [self addSubview:drawView];
     [drawView release];
