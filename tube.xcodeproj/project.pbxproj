@@ -203,6 +203,7 @@
 		BC28953114F621590054F9EB /* first_cell_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC28951B14F621580054F9EB /* first_cell_bg@2x.png */; };
 		BC28953214F621590054F9EB /* last_cell_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC28951C14F621580054F9EB /* last_cell_bg@2x.png */; };
 		BC28953314F621590054F9EB /* send_mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC28951D14F621590054F9EB /* send_mail@2x.png */; };
+		BC30660A1680D7A700D8F94F /* newtube-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC3066091680D7A700D8F94F /* newtube-Info.plist */; };
 		BC3AAD9F153DB0C6009AF367 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = BC3AAD9D153DB0C6009AF367 /* checkmark.png */; };
 		BC3AADA0153DB0C6009AF367 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC3AAD9E153DB0C6009AF367 /* checkmark@2x.png */; };
 		BC3D14E814C338380059A17E /* HistoryListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3D14C214C338280059A17E /* HistoryListCell.m */; };
@@ -226,7 +227,6 @@
 		BC3D156314C33E060059A17E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3D156214C33E050059A17E /* MessageUI.framework */; };
 		BC3D156514C33E0E0059A17E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3D156414C33E0C0059A17E /* SystemConfiguration.framework */; };
 		BC3D156714C33E170059A17E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3D156614C33E160059A17E /* StoreKit.framework */; };
-		BC4297AC1680D66500315555 /* newtube-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC4297AB1680D66500315555 /* newtube-Info.plist */; };
 		BC4DA4181537F03700B941F1 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4DA4171537F03700B941F1 /* ImageDownloader.m */; };
 		BC4E5708166B9793001B32FB /* backButtonBG.png in Resources */ = {isa = PBXBuildFile; fileRef = BC4E5706166B9793001B32FB /* backButtonBG.png */; };
 		BC4E5709166B9793001B32FB /* backButtonBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC4E5707166B9793001B32FB /* backButtonBG@2x.png */; };
@@ -1364,6 +1364,7 @@
 		BC28951B14F621580054F9EB /* first_cell_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "first_cell_bg@2x.png"; path = "images/first_cell_bg@2x.png"; sourceTree = "<group>"; };
 		BC28951C14F621580054F9EB /* last_cell_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "last_cell_bg@2x.png"; path = "images/last_cell_bg@2x.png"; sourceTree = "<group>"; };
 		BC28951D14F621590054F9EB /* send_mail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "send_mail@2x.png"; path = "images/send_mail@2x.png"; sourceTree = "<group>"; };
+		BC3066091680D7A700D8F94F /* newtube-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "newtube-Info.plist"; sourceTree = "<group>"; };
 		BC3AAD9D153DB0C6009AF367 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkmark.png; path = images/checkmark.png; sourceTree = "<group>"; };
 		BC3AAD9E153DB0C6009AF367 /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkmark@2x.png"; path = "images/checkmark@2x.png"; sourceTree = "<group>"; };
 		BC3D14C114C338270059A17E /* HistoryListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryListCell.h; sourceTree = "<group>"; };
@@ -1404,7 +1405,6 @@
 		BC3D156214C33E050059A17E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		BC3D156414C33E0C0059A17E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BC3D156614C33E160059A17E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		BC4297AB1680D66500315555 /* newtube-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "newtube-Info.plist"; sourceTree = "<group>"; };
 		BC4DA4161537F03600B941F1 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDownloader.h; path = Classes/ImageDownloader.h; sourceTree = "<group>"; };
 		BC4DA4171537F03700B941F1 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloader.m; path = Classes/ImageDownloader.m; sourceTree = "<group>"; };
 		BC4E5706166B9793001B32FB /* backButtonBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButtonBG.png; sourceTree = "<group>"; };
@@ -2115,7 +2115,7 @@
 				CE81FA6F146BDC91008BF969 /* Icon@2x.png */,
 				CE96C6F41468307C005A56F3 /* images */,
 				8D1107310486CEB800E47090 /* tube-Info.plist */,
-				BC4297AB1680D66500315555 /* newtube-Info.plist */,
+				BC3066091680D7A700D8F94F /* newtube-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -3806,7 +3806,7 @@
 				BCA23C8F1680CE1400BE6AC3 /* newdes_switch_button_pressed@2x.png in Resources */,
 				BCA23C901680CE1400BE6AC3 /* newdes_pathbar_destination_icon@2x.png in Resources */,
 				BCA23C911680CE1400BE6AC3 /* newdes_switch_button@2x.png in Resources */,
-				BC4297AC1680D66500315555 /* newtube-Info.plist in Resources */,
+				BC30660A1680D7A700D8F94F /* newtube-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
