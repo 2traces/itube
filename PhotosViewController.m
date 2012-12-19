@@ -28,6 +28,7 @@
 @synthesize placeDescription;
 @synthesize placeNameHeader;
 @synthesize placeNamePanel;
+@synthesize placeDescriptionBg;
 @synthesize btAddToFavorites;
 @synthesize btShowHideBookmarks;
 @synthesize distanceContainer;
@@ -81,6 +82,8 @@
     self.placeNameHeader.text = place.name;
     self.placeNamePanel.text = place.name;
     self.placeDescription.text = [NSString stringWithFormat:@"\"%@\"", place.text];
+    self.placeDescriptionBg.frame = self.placeDescription.frame;
+    self.placeDescriptionBg.center = CGPointMake(self.placeDescription.center.x, self.placeDescription.center.y - 3);
     UIImage *btImage = [place.isFavorite boolValue] ?
                 [UIImage imageNamed:@"bt_star_solid"] :
                 [UIImage imageNamed:@"bt_star"];
@@ -185,7 +188,7 @@
     tapGR.delegate = self;
     self.placeNameHeader.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18.0f];
     self.placeNamePanel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0f];
-    self.placeDescription.layer.cornerRadius = 11;
+    self.placeDescriptionBg.layer.cornerRadius = 11;
     self.placeDescription.font = [UIFont fontWithName:@"MyriadPr-Italic" size:16.0f];
     self.distanceLabel.font = [UIFont fontWithName:@"MyriadPr-Italic" size:10.0f];
     self.distanceLabel.textColor = [UIColor darkGrayColor];

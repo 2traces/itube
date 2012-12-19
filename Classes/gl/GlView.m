@@ -8,6 +8,7 @@
 
 #import "GlView.h"
 #import "tubeAppDelegate.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation GlView
 
@@ -18,6 +19,7 @@
         CGRect zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 43, 25);
         [zones setFrame:zonesRect];
     }
+    self.layer.cornerRadius = 5;
 }
 
 @end

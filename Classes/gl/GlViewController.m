@@ -780,11 +780,15 @@ GLint uniforms[NUM_UNIFORMS];
 {
     Pin *usrPin = nil;
     for (Pin *p in pinsArray) {
-        if(p.Id == 0) usrPin = [p retain];
+        if(p.Id == 0) {
+            usrPin = [p retain];
+        }
     }
     [pinsArray removeAllObjects];
-    [pinsArray addObject:usrPin];
-    [usrPin release];
+    if (usrPin) {
+        [pinsArray addObject:usrPin];
+        [usrPin release];
+    }
 }
 
 -(Pin*)getPin:(int)pinId

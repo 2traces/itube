@@ -66,7 +66,7 @@
     self.categoriesController.navigationDelegate = self;
     self.photosController = [[[PhotosViewController alloc] initWithNibName:@"PhotosViewController" bundle:[NSBundle mainBundle]]  autorelease];
     self.photosController.navigationDelegate = self;
-    self.mainController.view.layer.cornerRadius = self.photosController.view.layer.cornerRadius = 5;
+    self.mainController.view.layer.cornerRadius = self.photosController.view.layer.cornerRadius = self.glController.view.layer.cornerRadius = self.separatingView.layer.cornerRadius = 5;
     self.mainController.view.layer.masksToBounds = self.photosController.view.layer.masksToBounds = YES;
     [self.view insertSubview:[self.categoriesController view] belowSubview:self.separatingView];
     [self.view insertSubview:[self.mainController view] aboveSubview:self.separatingView];
@@ -184,7 +184,7 @@
                 photosViewFrame.origin.y = -216;
                 self.photosController.disappearingView.alpha = 0;
                 self.photosController.view.frame = photosViewFrame;
-                self.photosController.placeNamePanel.hidden = YES;
+                self.photosController.placeNamePanel.hidden = NO;
                 self.photosController.distanceContainer.hidden = YES;
             } completion:^(BOOL finished) {
             }];

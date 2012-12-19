@@ -19,6 +19,7 @@
     NSInteger currentPage;
     UILabel *placeNameHeader;
     UILabel *placeNamePanel;
+    UILabel *placeDescriptionBg;
     UILabel *placeDescription;
     UIButton *btAddToFavorites;
     UIButton *btShowHideBookmarks;
@@ -30,6 +31,7 @@
 @property (nonatomic, retain) IBOutlet UIView *distanceContainer;
 @property (nonatomic, retain) IBOutlet UILabel *placeNameHeader;
 @property (nonatomic, retain) IBOutlet UILabel *placeNamePanel;
+@property (nonatomic, retain) IBOutlet UILabel *placeDescriptionBg;
 @property (nonatomic, retain) IBOutlet UILabel *placeDescription;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollPhotos;
 @property (nonatomic, retain) IBOutlet UIButton *btAddToFavorites;

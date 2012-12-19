@@ -107,6 +107,8 @@ void uncaughtExceptionHandler(NSException *exception) {
         CGRect mainViewFrame = mainViewController.view.frame;
         mainViewFrame.origin.y = 0;
         mainViewController.view.frame = mainViewFrame;
+        navController.view.layer.cornerRadius = 5;
+        window.layer.cornerRadius = 5;
         [window addSubview:[navController view]];
         [window setRootViewController:navController];
         [window makeKeyAndVisible];
