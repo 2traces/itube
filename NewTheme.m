@@ -576,7 +576,7 @@
 
 -(CGFloat)pathBarViewWidth
 {
-    return 220.0f;
+    return 223.0f;
 }
 
 -(UIImage*)pathBarViewDestinationIcon
@@ -595,6 +595,12 @@
     UIImage *image = [UIImage imageNamed:name];
     return image;
 }
+
+-(UIImage*)vertScrollViewBackground
+{
+    return [UIImage imageNamed:@"newdes_vert_path_bg"];
+}
+
 
 @end
 
