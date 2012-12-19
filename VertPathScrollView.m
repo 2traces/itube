@@ -10,6 +10,7 @@
 #import "CityMap.h"
 #import "Classes/tubeAppDelegate.h"
 #import "UIColor-enhanced.h"
+#import "SSTheme.h"
 
 @implementation VertPathScrollView
 
@@ -20,6 +21,12 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        UIImage *image = [[SSThemeManager sharedTheme] vertScrollViewBackground];
+        if (image) {
+            self.backgroundColor = [UIColor colorWithPatternImage:image];
+        } else {
+            self.backgroundColor = [UIColor whiteColor];
+        }
     }
     return self;
 }
@@ -579,6 +586,10 @@
         lineStart=57.0;
     }
     
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        lineStart=60.0f;
+    }
+    
     if ([self dsIsStartingTransfer]) {
         [stations removeObjectAtIndex:0];
         lineStart+=20.0;
@@ -635,7 +646,7 @@
     
     self.bounces=YES;
     self.delegate = self;
-    self.backgroundColor = [UIColor whiteColor];
+//    self.backgroundColor = [UIColor whiteColor];
     
     [self scrollRectToVisible:CGRectMake(0.0, 0.0, 320.0, 300.0) animated:YES];
     

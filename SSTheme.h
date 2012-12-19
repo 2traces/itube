@@ -126,6 +126,8 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 -(UIImage*)pathBarViewDestinationIcon;
 -(UIImage*)switchButtonImage:(UIControlState)state;
 
+-(UIImage*)vertScrollViewBackground;
+
 @end
 
 @interface SSThemeManager : NSObject

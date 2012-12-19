@@ -599,4 +599,9 @@
     return image;
 }
 
+-(UIImage*)vertScrollViewBackground
+{
+    return nil;
+}
+
 @end
