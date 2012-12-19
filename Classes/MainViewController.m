@@ -495,7 +495,7 @@
     CGFloat buttonX;
     
     if ([[SSThemeManager sharedTheme] isNewTheme]) {
-        buttonX = 310.0-img.size.width-20.0;
+        buttonX = 240.0f;
     } else {
         buttonX = 320.0-12.0-dateSize.width-img.size.width;
     }

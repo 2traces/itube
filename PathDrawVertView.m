@@ -9,6 +9,7 @@
 #import "PathDrawVertView.h"
 #import "PathDrawView.h"
 #import "tubeAppDelegate.h"
+#import "SSTheme.h"
 
 @implementation PathDrawVertView
 
@@ -34,6 +35,11 @@
     if (IS_IPAD) {
         ylineStart=60.0f;
     }
+    
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        ylineStart=63.0f;
+    }
+
     
     CGFloat x=20.0f;
     
