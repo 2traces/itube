@@ -400,7 +400,7 @@
 
 -(UIImage *)stationTextFieldBackgroungHighlighted
 {
-    return [UIImage imageNamed:@"newdes_toolbar_text_bg_lighted.png"];
+    return [UIImage imageNamed:@"newdes_toolbar_text_bg_high.png"];
 }
 
 -(UIImage *)stationTextFieldRightImageNormal
@@ -599,6 +599,41 @@
 -(UIImage*)vertScrollViewBackground
 {
     return [UIImage imageNamed:@"newdes_vert_path_bg"];
+}
+
+-(CGFloat)vertScrollViewStartY
+{
+    return 40.0f;
+}
+
+-(CGFloat)statusViewWidth
+{
+    return 300.0f;
+}
+
+-(UIImage*)statusViewBackground
+{
+    return [UIImage imageNamed:@"newdes_status_view_bg.png"];
+}
+
+-(UIColor*)statusViewFontColor
+{
+    return [self mainColor];
+}
+
+-(CGFloat)statusViewStartX
+{
+    return 10.0f;
+}
+
+-(CGFloat)statusViewTextY
+{
+    return 60.0f;
+}
+
+-(CGFloat)statusViewUpdateY
+{
+    return 60.0f;
 }
 
 

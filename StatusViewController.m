@@ -10,6 +10,8 @@
 #import "Classes/tubeAppDelegate.h"
 #import "Reachability.h"
 #import "CityMap.h"
+#import "SSTheme.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation StatusViewController
 
@@ -38,14 +40,20 @@
     self = [super init];
     if (self) {
 
+        CGFloat viewWidth = [[SSThemeManager sharedTheme] statusViewWidth];
+        CGFloat viewStartX = [[SSThemeManager sharedTheme] statusViewStartX];
+        
         UIImageView *imv;
+
         if (!IS_IPAD) {
-            imv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"statusViewBG.png"]];
-            self.view.frame=CGRectMake(0.0, -354, 320, 354);
+            imv = [[UIImageView alloc] initWithImage:[[SSThemeManager sharedTheme] statusViewBackground]];
+            self.view.frame=CGRectMake(viewStartX, -354, viewWidth, 354);
+            imv.frame = CGRectMake(0.0, 0.0, viewWidth, 354);
+            imv.layer.cornerRadius=5.0f;
         } else {
             imv = [[UIImageView alloc] init];
             imv.hidden=YES;
-            self.view.frame=CGRectMake(0.0, 0.0, 320, 1004);
+            self.view.frame=CGRectMake(viewStartX, 0.0, viewWidth, 1004);
             self.view.backgroundColor = [UIColor whiteColor];
         }
 
@@ -54,13 +62,13 @@
         [self.view sendSubviewToBack:imv];
         
         self.shadowView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow.png"]] autorelease];
-        shadowView.frame = CGRectMake(0, 0, 320, 61);
+        shadowView.frame = CGRectMake(0, 0, viewWidth, 61);
         [shadowView setIsAccessibilityElement:YES];
         [shadowView setUserInteractionEnabled:YES];
         [self.view insertSubview:shadowView aboveSubview:imv];
         
         self.yellowView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"statViewYellowBG.png"]] autorelease];
-        yellowView.frame = CGRectMake(0, 44, 320, 63);
+        yellowView.frame = CGRectMake(0, 44, viewWidth, 63);
         [yellowView setUserInteractionEnabled:YES];
         [self.view insertSubview:yellowView aboveSubview:imv];
         [yellowView setHidden:YES];
@@ -86,6 +94,7 @@
     textView.backgroundColor = [UIColor clearColor];
     textView.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
     textView.text=NSLocalizedString(@"NoStatusInfo", @"NoStatusInfo");
+    textView.textColor = [[SSThemeManager sharedTheme] statusViewFontColor];
     
     self.updateTextView = [[[UITextView alloc] init] autorelease];
     updateTextView.editable=NO;
@@ -93,15 +102,34 @@
     updateTextView.backgroundColor = [UIColor clearColor];
     updateTextView.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
     updateTextView.text=NSLocalizedString(@"UpdateMaps", @"UpdateMaps");
+    updateTextView.textColor = [[SSThemeManager sharedTheme] statusViewFontColor];
+    
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        textView.layer.shadowColor = [[UIColor whiteColor] CGColor];
+        textView.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+        textView.layer.shadowOpacity = 1.0f;
+        textView.layer.shadowRadius = 1.0f;
+        textView.backgroundColor = [UIColor clearColor];
+
+        updateTextView.layer.shadowColor = [[UIColor whiteColor] CGColor];
+        updateTextView.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+        updateTextView.layer.shadowOpacity = 1.0f;
+        updateTextView.layer.shadowRadius = 1.0f;
+        updateTextView.backgroundColor = [UIColor clearColor];
+        
+        self.view.layer.cornerRadius=5.0f;
+    }
     
     self.tapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(updateMaps)] autorelease];
     [self.tapRecognizer setNumberOfTapsRequired:1];
     [self.updateTextView addGestureRecognizer:self.tapRecognizer];
     
+    CGFloat viewWidth = [[SSThemeManager sharedTheme] statusViewWidth];
+    
     if (IS_IPAD) {
         
-        self.view.frame = CGRectMake(0.0, 0.0, 320.0, 600.0);
-        textView.frame = CGRectMake(10.0, 10.0, 300.0, 600.0);
+        self.view.frame = CGRectMake(0.0, 0.0, viewWidth, 600.0);
+        textView.frame = CGRectMake(10.0, 10.0, viewWidth-20.0f, 600.0);
         textView.scrollEnabled=YES;
         
     } else {
@@ -118,7 +146,7 @@
         [self.tapRecognizer setNumberOfTapsRequired:1];
         [self.view addGestureRecognizer:self.tapRecognizer];
         
-        textView.frame = CGRectMake(10.0, 322.0, 300.0, 25.0);
+        textView.frame = CGRectMake(10.0, 322.0, viewWidth-20.0f, 25.0);
         
     }
     
@@ -211,15 +239,17 @@
         
         CGFloat newY;
         
-        newY = -280.0;
+        newY = -354.0f + [[SSThemeManager sharedTheme] statusViewTextY] + 30.0f;
         
         textView.scrollEnabled=NO;
         [textView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
         
-        self.shadowView.frame=CGRectMake(0, 324, 320, 20);
+        CGFloat viewWidth = [[SSThemeManager sharedTheme] statusViewWidth];
+        
+        self.shadowView.frame=CGRectMake(0, 324, viewWidth, 20);
         
         [UIView animateWithDuration:0.55 animations:^{
-            self.view.frame = CGRectMake(0, newY, 320, 354);
+            self.view.frame = CGRectMake([[SSThemeManager sharedTheme] statusViewStartX], newY, viewWidth, 354);
         }];
         
         isShown=YES;
@@ -235,8 +265,10 @@
     
     newY = -354.0;
     
+    CGFloat viewWidth = [[SSThemeManager sharedTheme] statusViewWidth];
+    
     [UIView animateWithDuration:0.55 animations:^{
-        self.view.frame = CGRectMake(0, newY, 320, 354);
+        self.view.frame = CGRectMake(0, newY, viewWidth, 354);
     }];
     
     isShown=NO;
@@ -266,36 +298,41 @@
 
 -(void)layoutSubviews
 {
+    CGFloat viewWidth = [[SSThemeManager sharedTheme] statusViewWidth];
+    CGFloat viewStartX = [[SSThemeManager sharedTheme] statusViewStartX];
+    CGFloat viewUpdateY = [[SSThemeManager sharedTheme] statusViewUpdateY];
+    CGFloat viewTextY = [[SSThemeManager sharedTheme] statusViewTextY];
+    
     if (IS_IPAD) {
-        self.view.frame = CGRectMake(0.0, 44.0, 320.0, 1004.0-44.0);
+        self.view.frame = CGRectMake(0.0, 44.0, viewWidth, 1004.0-44.0);
         if (isNewMapAvailable) {
             updateTextView.hidden=NO;
             yellowView.hidden=NO;
-            updateTextView.frame = CGRectMake(10.0, 44.0, 300.0, 60.0);
-            textView.frame = CGRectMake(10.0, 68+40, 300.0, 600.0-10.0-68.0-44);
-            yellowView.frame = CGRectMake(0, 40, 320, 63);
+            updateTextView.frame = CGRectMake(10.0, 44.0, viewWidth-20.0f, 60.0);
+            textView.frame = CGRectMake(10.0, 68+40, viewWidth-20.0f, 600.0-10.0-68.0-44);
+            yellowView.frame = CGRectMake(0, 40, viewWidth, 63);
         } else {
-            textView.frame = CGRectMake(10.0, 44, 300.0, 600.0-10.0-44);
+            textView.frame = CGRectMake(10.0, 44, viewWidth-20.0f, 600.0-10.0-44);
             updateTextView.hidden=YES;
             yellowView.hidden=YES;
         }
     } else {
         if (isShown) {
-            self.view.frame = CGRectMake(0, 0, 320, 354);
-            self.shadowView.frame=CGRectMake(0, 44, 320, 20);
+            self.view.frame = CGRectMake(viewStartX, 0, viewWidth, 354);
+            self.shadowView.frame=CGRectMake(0, 44, viewWidth, 20);
             if (isNewMapAvailable) {
                 updateTextView.hidden=NO;
                 yellowView.hidden=NO;
-                updateTextView.frame = CGRectMake(10.0, 48.0, 300.0, 60.0);
-                textView.frame = CGRectMake(10.0, 44.0+68, 300.0, 354.0-44.0-10.0-68);
+                updateTextView.frame = CGRectMake(10.0, viewUpdateY, viewWidth, 60.0);
+                textView.frame = CGRectMake(10.0, viewUpdateY+60.0f+8.0f, viewWidth-20.0f, 354.0-viewUpdateY-60.0f-8.0f);
             } else {
-                textView.frame = CGRectMake(10.0, 44.0, 300.0, 354.0-44.0-10.0);
+                textView.frame = CGRectMake(10.0, viewTextY, viewWidth-20.0f, 354.0-viewTextY-10.0);
                 updateTextView.hidden=YES;
                 yellowView.hidden=YES;
             }
         } else {
-            self.view.frame = CGRectMake(0, -354, 320, 354);
-            textView.frame = CGRectMake(10.0, 322.0, 300.0, 25.0);
+            self.view.frame = CGRectMake(viewStartX, -354, viewWidth, 354);
+            textView.frame = CGRectMake(10.0, 322.0, viewWidth-20.0f, 25.0);
             
         }
     }
@@ -393,18 +430,20 @@
 
 -(void)fixTextView:(UIInterfaceOrientation)orientation
 {
+    CGFloat viewWidth = [[SSThemeManager sharedTheme] statusViewWidth];
+    
     if (IS_IPAD) {
         if (isNewMapAvailable) {
             if (UIInterfaceOrientationIsLandscape(orientation)) {
-                textView.frame = CGRectMake(10.0, 68+40, 300.0, 748-68-40);
+                textView.frame = CGRectMake(10.0, 68+40, viewWidth-20.0f, 748-68-40);
             } else {
-                textView.frame = CGRectMake(10.0, 68+40, 300.0, 1004-68-44);
+                textView.frame = CGRectMake(10.0, 68+40, viewWidth-20.0f, 1004-68-44);
             }
         } else {
             if (UIInterfaceOrientationIsLandscape(orientation)) {
-                textView.frame = CGRectMake(10.0, 44, 300.0, 748-44);
+                textView.frame = CGRectMake(10.0, 44, viewWidth-20.0f, 748-44);
             } else {
-                textView.frame = CGRectMake(10.0, 44, 300.0, 1004-44);
+                textView.frame = CGRectMake(10.0, 44, viewWidth-20.0, 1004-44);
             }
         }
         [textView setNeedsDisplay];
@@ -413,18 +452,20 @@
 
 -(void)rotateTextViewFromOrientation:(UIInterfaceOrientation)orientation
 {
+    CGFloat viewWidth = [[SSThemeManager sharedTheme] statusViewWidth];
+    
     if (IS_IPAD) {
         if (isNewMapAvailable) {
             if (UIInterfaceOrientationIsPortrait(orientation)) {
-                textView.frame = CGRectMake(10.0, 68+40, 300.0, 748-68-40);
+                textView.frame = CGRectMake(10.0, 68+40, viewWidth-20.0f, 748-68-40);
             } else {
-                textView.frame = CGRectMake(10.0, 68+40, 300.0, 1004-68-44);
+                textView.frame = CGRectMake(10.0, 68+40, viewWidth-20.0f, 1004-68-44);
             }
         } else {
             if (UIInterfaceOrientationIsPortrait(orientation)) {
-                textView.frame = CGRectMake(10.0, 44, 300.0, 748-44);
+                textView.frame = CGRectMake(10.0, 44, viewWidth-20.0f, 748-44);
             } else {
-                textView.frame = CGRectMake(10.0, 44, 300.0, 1004-44);
+                textView.frame = CGRectMake(10.0, 44, viewWidth-20.0f, 1004-44);
             }
         }
         [textView setNeedsDisplay];

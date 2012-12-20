@@ -632,10 +632,12 @@
         
         VertPathScrollView *scview;
         
+        CGFloat viewStartY = [[SSThemeManager sharedTheme] vertScrollViewStartY];
+        
         if ([appDelegate isIPHONE5]) {
-            scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, 66.0, 320.0f, 502.0f)];
+            scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, viewStartY, 320.0f, 568.0f-viewStartY)]; //66
         } else {
-            scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, 66.0, 320.0f, 414.0f)];
+            scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, viewStartY, 320.0f, 480.0f-viewStartY)];  // original
         }
         
         self.pathScrollView = scview;
@@ -1013,8 +1015,8 @@
 -(void)resetFromStation
 {
     currentSelection=FromStation;
-    [stationsView setToStation:self.toStation];
     [self returnFromSelection:[NSArray array]];
+    [stationsView setToStation:self.toStation];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kPathCleared" object:nil];
 }

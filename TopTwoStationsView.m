@@ -602,8 +602,8 @@
         
     }];
     
-    firstStation.state=StationTextFieldStyleDefault;
-    secondStation.state=StationTextFieldStyleDefault;
+//    firstStation.state=StationTextFieldStyleDefault;
+//    secondStation.state=StationTextFieldStyleDefault;
     
     firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
     secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
@@ -668,16 +668,18 @@
 {
     shouldEnlarge = YES;
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate.mainViewController resetFromStation];
     firstStation.state=StationTextFieldStyleDefault;
+    secondStation.state=StationTextFieldStyleStation;
+    [appDelegate.mainViewController resetFromStation];
 }
 
 -(void)resetToStation
 {
     shouldEnlarge=YES;
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate.mainViewController resetToStation];
+    firstStation.state=StationTextFieldStyleStation;
     secondStation.state=StationTextFieldStyleDefault;
+    [appDelegate.mainViewController resetToStation];
 }
 
 -(void)clearFromStation
@@ -765,6 +767,8 @@
                 [stationField setLeftViewMode: UITextFieldViewModeAlways];
                 stationField.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
                 
+  //              stationField.state=StationTextFieldStyleStation;
+                
             } else {
                 if (stationField==firstStation) {
                     [self clearFromStation];
@@ -778,11 +782,23 @@
 
 -(void)setFromStation:(MStation*)fromStation
 {
+//    if (fromStation) {
+//        firstStation.state=StationTextFieldStyleStation;
+//    } else {
+//        firstStation.state=StationTextFieldStyleDefault;
+//    }
+    
     [self setStationToField:firstStation withStation:fromStation];
 }
 
 -(void)setToStation:(MStation*)toStation
 {
+//    if (toStation) {
+//        secondStation.state=StationTextFieldStyleStation;
+//    } else {
+//        firstStation.state=StationTextFieldStyleDefault;
+//    }
+
     [self setStationToField:secondStation withStation:toStation];
 }
 
