@@ -99,8 +99,12 @@
     CGRect rightViewFrame = self.rightView.frame;
     
     CGRect newFrame;
+    if (state==StationTextFieldStyleStation && [[SSThemeManager sharedTheme] isNewTheme]) {
+        newFrame.origin.x=bounds.size.width-rightViewFrame.size.width-10.0f;
+    } else {
+        newFrame.origin.x=bounds.size.width-rightViewFrame.size.width-[[SSThemeManager sharedTheme] stationTextFieldRightAdjust];
+    }
     
-    newFrame.origin.x=bounds.size.width-rightViewFrame.size.width-[[SSThemeManager sharedTheme] stationTextFieldRightAdjust];
     newFrame.origin.y=bounds.size.height/2-rightViewFrame.size.height/2;
     newFrame.size.width=rightViewFrame.size.width;
     newFrame.size.height = rightViewFrame.size.height;

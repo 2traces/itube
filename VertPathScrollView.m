@@ -587,7 +587,7 @@
     }
     
     if ([[SSThemeManager sharedTheme] isNewTheme]) {
-        lineStart=60.0f;
+        lineStart=75.0f;
     }
     
     if ([self dsIsStartingTransfer]) {
