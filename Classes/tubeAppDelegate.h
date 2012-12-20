@@ -20,6 +20,8 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 
 #define kParseComplete @"kParseComplete"
 
+@class RatePopupViewController;
+
 @interface tubeAppDelegate : NSObject <UIApplicationDelegate,MFMailComposeViewControllerDelegate> {
     UIWindow *window;
     GlViewController *gl;
@@ -35,6 +37,8 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
     NSDictionary *mapsInfo;
     NSMutableArray *purchasedMaps;
     NSString *mapDirectoryPath;
+    
+    BOOL shouldShowRateScreen;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -46,6 +50,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 @property (nonatomic, retain) NSOperationQueue *parseQueue;
 @property (nonatomic, assign) CGPoint userGeoPosition;
 @property (nonatomic, retain) NSString *mapDirectoryPath;
+@property (nonatomic, assign) BOOL shouldShowRateScreen;
 
 -(NSString*)nameCurrentMap;
 -(NSString*)nameCurrentCity;
@@ -67,6 +72,16 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 - (void)placeRemovedFromFavorites:(MPlace*)place;
 
 - (void)centerMapOnPlace:(MPlace*)place;
+
+//Rate popup
+
+- (void)rateNowFromPopup:(RatePopupViewController*)vc;
+- (void)rateFeedbackFromPopup:(RatePopupViewController*)vc;
+- (void)rateDismissFromPopup:(RatePopupViewController*)vc;
+
+
+- (NSString*)getAppStoreUrl;
+- (NSString*)getRateUrl;
 
 @end
 

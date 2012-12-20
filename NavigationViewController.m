@@ -16,6 +16,7 @@
 #import "ReaderViewController.h"
 #import "ManagedObjects.h"
 #import "SettingsNavController.h"
+#import "tubeAppDelegate.h"
 
 @interface NavigationViewController ()
 
@@ -81,6 +82,14 @@
     currentPlacePin = -1;
     
 
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    if (appDelegate.shouldShowRateScreen) {
+        [appDelegate askForRate];
+        appDelegate.shouldShowRateScreen = NO;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

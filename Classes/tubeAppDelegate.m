@@ -18,6 +18,7 @@
 #import "NavigationViewController.h"
 #import "PhotosViewController.h"
 #import "CategoriesViewController.h"
+#import "RatePopupViewController.h"
 
 @implementation tubeAppDelegate
 
@@ -29,6 +30,7 @@
 @synthesize parseQueue;
 @synthesize navigationViewController;
 @synthesize mapDirectoryPath;
+@synthesize shouldShowRateScreen;
 
 void uncaughtExceptionHandler(NSException *exception) {
     NSLog(@"CRASH: %@", exception);
@@ -124,11 +126,12 @@ void uncaughtExceptionHandler(NSException *exception) {
     initialDefaults = [NSDictionary dictionaryWithContentsOfFile:initialDefaultsPath];
     [[NSUserDefaults standardUserDefaults] registerDefaults:initialDefaults];
     
+    //self.shouldShowRateScreen = YES;
+    
 	if ([[NSUserDefaults standardUserDefaults] integerForKey:@"launches"])
 	{
         if ([[NSUserDefaults standardUserDefaults] integerForKey:@"launches"]==10) {
-            
-            [self askForRate];
+            self.shouldShowRateScreen = YES;
             
         } else if  ([[NSUserDefaults standardUserDefaults] integerForKey:@"launches"]<10) {
             
@@ -143,36 +146,91 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex { 
+- (void)rateNowFromPopup:(RatePopupViewController*)vc {
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        vc.view.alpha = 0;
+    } completion:^(BOOL finished) {
+        [vc.view removeFromSuperview];
+        
+        [vc autorelease];
+    }];
+    
+    NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setInteger:40 forKey:@"launches"];
+    [prefs synchronize];
+    
+    NSString *address = [self getRateUrl];
+    
+    
+    
+    if (address) {
+        NSURL *url = [NSURL URLWithString:address];
+        [[UIApplication sharedApplication] openURL:url];
+    }
+}
+
+
+- (void)rateFeedbackFromPopup:(RatePopupViewController*)vc {
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        vc.view.alpha = 0;
+    } completion:^(BOOL finished) {
+        [vc.view removeFromSuperview];
+        
+        [vc autorelease];
+    }];
+    
+    [self showMailComposer:nil];
+
+}
+
+
+- (void)rateDismissFromPopup:(RatePopupViewController*)vc {
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        vc.view.alpha = 0;
+    } completion:^(BOOL finished) {
+        [vc.view removeFromSuperview];
+
+        [vc autorelease];
+    }];
+    
+    NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setInteger:40 forKey:@"launches"];
+    [prefs synchronize];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     if (alertView.tag=1) {
-        if (buttonIndex == 0) {
-            
-            NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
-            [prefs setInteger:40 forKey:@"launches"];
-            [prefs synchronize];
-            
-        } else if (buttonIndex == 1) {
-            
-            NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
-            [prefs setInteger:40 forKey:@"launches"];
-            [prefs synchronize];
-            
-            NSString *address = [[NSUserDefaults standardUserDefaults] objectForKey:@"RateMeURL"];
-            if (address) {
-                NSURL *url = [NSURL URLWithString:address];
-                [[UIApplication sharedApplication] openURL:url];
-            }
-            
-        } else if (buttonIndex == 2) {
-            
-            NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
-            [prefs setInteger:1 forKey:@"launches"];
-            [prefs synchronize];
-        } else if (buttonIndex == 3) {
-            
-            [self showMailComposer:nil];
-        }
+//        if (buttonIndex == 0) {
+//            
+//            NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
+//            [prefs setInteger:40 forKey:@"launches"];
+//            [prefs synchronize];
+//            
+//        } else if (buttonIndex == 1) {
+//            
+//            NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
+//            [prefs setInteger:40 forKey:@"launches"];
+//            [prefs synchronize];
+//            
+//            NSString *address = [self getRateUrl];
+//            if (address) {
+//                NSURL *url = [NSURL URLWithString:address];
+//                [[UIApplication sharedApplication] openURL:url];
+//            }
+//            
+//        } else if (buttonIndex == 2) {
+//            
+//            NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
+//            [prefs setInteger:1 forKey:@"launches"];
+//            [prefs synchronize];
+//        } else if (buttonIndex == 3) {
+//            
+//            [self showMailComposer:nil];
+//        }
     }
 }
 
@@ -190,22 +248,32 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 -(void)askForRate
-{    
-    NSString *cancelButtonLabel = NSLocalizedString(@"No, Thanks", @"No, Thanks");
-    NSString *remindButtonLabel = NSLocalizedString(@"Remind Me Later", @"Remind Me Later");
-    NSString *rateButtonLabel = NSLocalizedString(@"Rate It Now", @"Rate It Now");
-    NSString *mailButtonLabel = NSLocalizedString(@"Drop Us An EMail", @"Drop Us An EMail");
-    NSString *rateLabel = [NSString stringWithFormat:NSLocalizedString(@"Rate", @"Rate"),[self getAppName]];
-    NSString *rateMessageLabel = [NSString stringWithFormat:NSLocalizedString(@"RateMessage", @"RateMessage"),[self getAppName]];
+{
     
-    UIAlertView *buttonAlert = [[UIAlertView alloc] initWithTitle:rateLabel message:rateMessageLabel delegate:self cancelButtonTitle:cancelButtonLabel otherButtonTitles:rateButtonLabel, nil];
+    RatePopupViewController *rateVC = [[RatePopupViewController alloc] initWithNibName:@"RatePopupViewController" bundle:[NSBundle mainBundle]];
+    rateVC.view.alpha = 0;
+    [self.window addSubview:rateVC.view];
+
+    [UIView animateWithDuration:0.5 animations:^{
+        rateVC.view.alpha = 1;
+
+    }];
     
-    buttonAlert.tag=1;
-    
-    [buttonAlert addButtonWithTitle:remindButtonLabel];
-    [buttonAlert addButtonWithTitle:mailButtonLabel];
-    [buttonAlert show];
-    [buttonAlert release];
+//    NSString *cancelButtonLabel = NSLocalizedString(@"No, Thanks", @"No, Thanks");
+//    NSString *remindButtonLabel = NSLocalizedString(@"Remind Me Later", @"Remind Me Later");
+//    NSString *rateButtonLabel = NSLocalizedString(@"Rate It Now", @"Rate It Now");
+//    NSString *mailButtonLabel = NSLocalizedString(@"Drop Us An EMail", @"Drop Us An EMail");
+//    NSString *rateLabel = [NSString stringWithFormat:NSLocalizedString(@"Rate", @"Rate"),[self getAppName]];
+//    NSString *rateMessageLabel = [NSString stringWithFormat:NSLocalizedString(@"RateMessage", @"RateMessage"),[self getAppName]];
+//    
+//    UIAlertView *buttonAlert = [[UIAlertView alloc] initWithTitle:rateLabel message:rateMessageLabel delegate:self cancelButtonTitle:cancelButtonLabel otherButtonTitles:rateButtonLabel, nil];
+//    
+//    buttonAlert.tag=1;
+//    
+//    [buttonAlert addButtonWithTitle:remindButtonLabel];
+//    [buttonAlert addButtonWithTitle:mailButtonLabel];
+//    [buttonAlert show];
+//    [buttonAlert release];
 }
 
 - (void)resizeAlertView:(UIAlertView *)alertView
@@ -320,6 +388,53 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
     
     return currentCity;
+}
+
+- (NSString*)getAppStoreUrl {
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+    
+    NSFileManager *manager = [NSFileManager defaultManager];
+    
+    if (![manager fileExistsAtPath:path]) {
+        NSBundle *bundle = [NSBundle mainBundle];
+        NSError *error = nil;
+        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
+        
+        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
+    }
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    NSDictionary *map = [dict objectForKey:bundleIdentifier];
+    if (map) {
+        return [map objectForKey:@"appstore_link"];
+    }
+    return nil;
+}
+
+- (NSString*)getRateUrl {
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+    
+    NSFileManager *manager = [NSFileManager defaultManager];
+    
+    if (![manager fileExistsAtPath:path]) {
+        NSBundle *bundle = [NSBundle mainBundle];
+        NSError *error = nil;
+        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
+        
+        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
+    }
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    NSDictionary *map = [dict objectForKey:bundleIdentifier];
+    if (map) {
+        return [map objectForKey:@"rate_link"];
+
+    }
+    return nil;
 }
 
 - (NSArray*)getTeasersForMaps {
@@ -498,7 +613,7 @@ void uncaughtExceptionHandler(NSException *exception) {
             picker.mailComposeDelegate = self;
             [picker setSubject:[NSString stringWithString:[self getAppName]]];
             [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"fusio@yandex.ru"]]];
-            [self.mainViewController presentModalViewController:picker animated:YES];
+            [self.navigationViewController presentModalViewController:picker animated:YES];
             [picker release];
         } else {
             // Device is not configured for sending emails, so notify user.
@@ -535,7 +650,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     [mailAlertView release];
     [resultTitle release];
     [resultMsg release];
-    [self.mainViewController dismissModalViewControllerAnimated:YES];
+    [self.navigationViewController dismissModalViewControllerAnimated:YES];
 }
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation

@@ -628,6 +628,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
     if (tableView==self.cityTableView) {
         NSMutableDictionary *map = [maps objectAtIndex:[indexPath row]];
         tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
@@ -694,7 +696,7 @@
     } else {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         if (indexPath.row==0) {
-            NSString *address = [[NSUserDefaults standardUserDefaults] objectForKey:@"RateMeURL"];
+            NSString *address = [appDelegate getRateUrl];
             if (address) {
                 NSURL *url = [NSURL URLWithString:address];
                 [[UIApplication sharedApplication] openURL:url];

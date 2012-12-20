@@ -1005,7 +1005,7 @@
     
     NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
     NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    NSString *appURL = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppStoreURL"];
+    NSString *appURL = [appDelegate getAppStoreUrl];
     NSString *iconURLString = [NSString stringWithFormat:@"<img src=\"%@\" alt=\"appIcon\">",[NSString stringWithFormat:@"http:/findmystation.info/maps/%@/icon.png",appDelegate.cityMap.thisMapName]];
     
     body = [body stringByAppendingFormat:@"</table><p>Sent from <a href=\"%@\">%@ ver. %@</a><p>%@<p></html>",appURL,appName,appVersion,iconURLString];

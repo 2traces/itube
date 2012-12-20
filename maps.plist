@@ -24,6 +24,8 @@
 		<string>/maps/paris/paris1.zip</string>
 		<key>appstore_link</key>
 		<string>http://itunes.apple.com/app/paris.metro/id513581498</string>
+		<key>rate_link</key>
+		<string>http://itunes.apple.com/app/paris.metro/id513581498</string>
 	</dict>
 	<key>com.zuev.hiddencities.berlin</key>
 	<dict>
@@ -46,6 +48,8 @@
 		<key>zip_download</key>
 		<string>/maps/berlin/berlin1.zip</string>
 		<key>appstore_link</key>
+		<string>http://itunes.apple.com/app/paris.metro/id513581498</string>
+		<key>rate_link</key>
 		<string>http://itunes.apple.com/app/paris.metro/id513581498</string>
 		<key>statusURL</key>
 		<string>   </string>
@@ -71,6 +75,8 @@
 		<key>zip_download</key>
 		<string>/maps/venice/venice1.zip</string>
 		<key>appstore_link</key>
+		<string>http://itunes.apple.com/app/paris.metro/id513581498</string>
+		<key>rate_link</key>
 		<string>http://itunes.apple.com/app/paris.metro/id513581498</string>
 		<key>statusURL</key>
 		<string>http://metro.dim0xff.com/nyc/data_RU.txt</string>
