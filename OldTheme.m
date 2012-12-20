@@ -604,4 +604,40 @@
     return nil;
 }
 
+-(CGFloat)vertScrollViewStartY
+{
+    return 66.0f;
+}
+
+-(CGFloat)statusViewWidth
+{
+    return 320.0f;
+}
+
+-(UIImage*)statusViewBackground
+{
+    return [UIImage imageNamed:@"statusViewBG.png"];
+}
+
+-(UIColor*)statusViewFontColor
+{
+    return [UIColor blackColor];
+}
+
+-(CGFloat)statusViewStartX
+{
+    return 0.0f;
+}
+
+-(CGFloat)statusViewTextY
+{
+    return 60.0f;
+}
+
+-(CGFloat)statusViewUpdateY
+{
+    return 60.0f;
+}
+
+
 @end

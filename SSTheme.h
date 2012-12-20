@@ -127,6 +127,13 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 -(UIImage*)switchButtonImage:(UIControlState)state;
 
 -(UIImage*)vertScrollViewBackground;
+-(CGFloat)vertScrollViewStartY;
+-(CGFloat)statusViewWidth;
+-(UIImage*)statusViewBackground;
+-(UIColor*)statusViewFontColor;
+-(CGFloat)statusViewStartX;
+-(CGFloat)statusViewTextY;
+-(CGFloat)statusViewUpdateY;
 
 @end
 

@@ -37,7 +37,7 @@
     }
     
     if ([[SSThemeManager sharedTheme] isNewTheme]) {
-        ylineStart=63.0f;
+        ylineStart=78.0f;
     }
 
     
