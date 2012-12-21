@@ -415,11 +415,11 @@
     CGPoint placePosition = CGPointMake([place.posX floatValue], [place.posY floatValue]);
     
     [(MainView*)(self.mainController.view) setGeoPosition:placePosition withZoom:-1];
-    [self.glController setGeoPosition:placePosition withZoom:-1];
+    [self.glController scrollToGeoPosition:placePosition withZoom:-1];
     if (currentPlacePin != -1) {
         [self.glController removePin:currentPlacePin];
     }
-    currentPlacePin = [self.glController newPin:placePosition color:1 name:place.name];
+    currentPlacePin = [self.glController newStar:placePosition color:1 name:place.name];
     Pin *pin = [self.glController getPin:currentPlacePin];
     return pin.distanceToUser;
 }

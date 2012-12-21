@@ -55,6 +55,8 @@
 
 //Center map on point with long/lat
 -(void)setGeoPosition:(CGPoint)geoCoords withZoom:(CGFloat)zoom;
+// scroll map to some geo point
+-(void)scrollToGeoPosition:(CGPoint)geoCoords withZoom:(CGFloat)zoom;
 //Calculate distance
 -(CGFloat)calcGeoDistanceFrom:(CGPoint)p1 to:(CGPoint)p2;
 //Set pin
@@ -65,6 +67,7 @@
 -(void)setStationsPosition:(NSArray*)coords withNames:(NSArray*)names andMarks:(BOOL)marks;
 -(void)errorWithGeoLocation;
 -(int)newPin:(CGPoint)coordinate color:(int)color name:(NSString*)name;
+-(int)newStar:(CGPoint)coordinate color:(int)color name:(NSString*)name;
 -(void)removePin:(int)pinId;
 -(void)removeAllPins;
 -(Pin*)getPin:(int)pinId;

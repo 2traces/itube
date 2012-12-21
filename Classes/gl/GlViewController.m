@@ -35,8 +35,8 @@ GLint uniforms[NUM_UNIFORMS];
     //float _rotation;
     
     RasterLayer *rasterLayer;
-    CGPoint position, prevPosition;
-    CGFloat scale, prevScale;
+    CGPoint position, prevPosition, targetPosition;
+    CGFloat scale, prevScale, targetScale, targetTimer;
     UIButton *sourceData, *settings, *zones;
     
     MItem *currentSelection;
@@ -204,6 +204,52 @@ GLint uniforms[NUM_UNIFORMS];
                 break;
             case 16:
                 sprite = [[GlSprite alloc] initWithPicture:@"pin_16"];// RG.
+                break;
+        }
+        size = 32;
+        sp = [[SmallPanel alloc] initWithText:text];
+    }
+    return self;
+}
+
+-(id) initStarWithId:(int)pinId color:(int)color andText:(NSString*)text
+{
+    if((self = [super init])) {
+        _id = pinId;
+        switch (color) {
+            case 0:
+            default:
+                sprite = [[GlSprite alloc] initWithPicture:@"star-aqua"];
+                break;
+            case 1:
+                sprite = [[GlSprite alloc] initWithPicture:@"star-blue-aqua"];
+                break;
+            case 2:
+                sprite = [[GlSprite alloc] initWithPicture:@"star-blue-pink"];
+                break;
+            case 3:
+                sprite = [[GlSprite alloc] initWithPicture:@"star-blue"];
+                break;
+            case 4:
+                sprite = [[GlSprite alloc] initWithPicture:@"star-green-yellow"];
+                break;
+            case 5:
+                sprite = [[GlSprite alloc] initWithPicture:@"star-green"];
+                break;
+            case 6:
+                sprite = [[GlSprite alloc] initWithPicture:@"star-pink"];
+                break;
+            case 7:
+                sprite = [[GlSprite alloc] initWithPicture:@"star-red-pink"];
+                break;
+            case 8:
+                sprite = [[GlSprite alloc] initWithPicture:@"star-red-yellow"];
+                break;
+            case 9:
+                sprite = [[GlSprite alloc] initWithPicture:@"star-red"];
+                break;
+            case 10:
+                sprite = [[GlSprite alloc] initWithPicture:@"star-yell"];
                 break;
         }
         size = 32;
@@ -764,6 +810,20 @@ GLint uniforms[NUM_UNIFORMS];
     return newId;
 }
 
+-(int)newStar:(CGPoint)coordinate color:(int)color name:(NSString*)name
+{
+    int newId = newPinId;
+    newPinId ++;
+    Pin *p = [[Pin alloc] initStarWithId:newId color:color andText:name];
+    [pinsArray addObject:p];
+    [p setPosition:[self translateFromGeoToMap:coordinate]];
+    
+    // distance from user to star
+    p.distanceToUser = [self calcGeoDistanceFrom:coordinate to:userGeoPosition];
+    
+    return newId;
+}
+
 -(void)removePin:(int)pinId
 {
     Pin *found = nil;
@@ -805,6 +865,17 @@ GLint uniforms[NUM_UNIFORMS];
 
 - (void)update
 {
+    if(targetTimer > 0.f) {
+        scale = (prevScale - targetScale) * targetTimer + targetScale;
+        position.x = (prevPosition.x - targetPosition.x) * targetTimer + targetPosition.x;
+        position.y = (prevPosition.y - targetPosition.y) * targetTimer + targetPosition.y;
+        targetTimer -= self.timeSinceLastUpdate;
+        if(targetTimer <= 0.f) {
+            scale = targetScale;
+            position = targetPosition;
+            targetTimer = 0.f;
+        }
+    }
     if(panTime == 0.f && (panVelocity.x != 0.f || panVelocity.y != 0.f)) {
         position.x += panVelocity.x * self.timeSinceLastUpdate;
         position.y += panVelocity.y * self.timeSinceLastUpdate;
@@ -1118,6 +1189,7 @@ GLint uniforms[NUM_UNIFORMS];
     position.x = -(r.origin.y + r.size.height * 0.5f);
     position.y = (y1 + y2) * 0.5f;
     scale = 256.f / r.size.height;
+    targetTimer = 0.f;
 }
 
 -(void)setGeoPosition:(CGPoint)geoCoords withZoom:(CGFloat)zoom
@@ -1125,11 +1197,29 @@ GLint uniforms[NUM_UNIFORMS];
     const static double mult = 256.0 / 360.0;
     float y = atanhf(sinf(geoCoords.x * M_PI / 180.f));
     y = y * 256.f / (M_PI*2.f);
-    position.x = - geoCoords.y * mult;
-    position.y = y + 120.f/zoom;
     if (zoom != -1) {
         scale = zoom;
     }
+    position.x = - geoCoords.y * mult;
+    position.y = y + 120.f/scale;
+    targetTimer = 0.f;
+}
+
+-(void)scrollToGeoPosition:(CGPoint)geoCoords withZoom:(CGFloat)zoom
+{
+    const static double mult = 256.0 / 360.0;
+    float y = atanhf(sinf(geoCoords.x * M_PI / 180.f));
+    y = y * 256.f / (M_PI*2.f);
+    prevScale = scale;
+    if (zoom != -1) {
+        targetScale = zoom;
+    } else {
+        targetScale = scale;
+    }
+    prevPosition = position;
+    targetPosition.x = - geoCoords.y * mult;
+    targetPosition.y = y + 120.f/targetScale;
+    targetTimer = 1.f;
 }
 
 -(void)setUserGeoPosition:(CGPoint)point
