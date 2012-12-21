@@ -876,6 +876,12 @@
     [mainView.mapView removeStarFromStation:stationName];
 }
 
+- (Station*)nearestStation {
+    MainView *view = (MainView*)self.view;
+    return view.mapView.nearestStation;
+}
+
+
 -(void)performFindingPath
 {
     MainView *mainView = (MainView*)self.view;

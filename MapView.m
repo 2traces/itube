@@ -32,6 +32,7 @@
 @synthesize previewImage;
 @synthesize activeLayer;
 @synthesize foundPaths;
+@synthesize nearestStation;
 
 + (Class)layerClass
 {
@@ -180,11 +181,10 @@
     [(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] setUserGeoPosition:curPos];
     selectedStationLayer.contents=(id)[nearestStationImage CGImage];
     Station *st = [cityMap findNearestStationTo:curPos];
-	
 	if (![st.name isEqualToString:nearestStationName])
 	{
         //[self.superview setContentOffset:CGPointMake(st.pos.x * self.Scale - self.superview.frame.size.width*0.5f, st.pos.y * self.Scale - self.superview.frame.size.height*0.5f) animated:YES];
-
+        self.nearestStation = st;
 		nearestStationName=st.name;
         selectedStationLayer.position = st.pos;
         

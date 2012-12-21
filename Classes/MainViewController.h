@@ -72,5 +72,6 @@
 
 -(void)setStarAtStation:(Station*)station;
 -(void)removeStarFromStation:(NSString*)stationName;
+- (Station*)nearestStation;
 
 @end

@@ -55,11 +55,13 @@ extern int const imagesCount;
     NSDictionary *foundPaths;
     CLLocationManager *locationManager;
     NSMutableDictionary *stationStars;
+    Station *nearestStation;
 }
 
 @property (assign) NSString *nearestStationName;
 
 @property (nonatomic, retain) CALayer *selectedStationLayer;
+@property (nonatomic, retain) Station *nearestStation;
 
 //
 @property (nonatomic, retain) UIImage *nearestStationImage;

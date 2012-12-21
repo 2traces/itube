@@ -166,6 +166,9 @@
     if (photosMode == mode) {
         return;
     }
+    
+    NSInteger oldMode = photosMode;
+    
     photosMode = mode;
 
     CGRect photosViewFrame = self.photosController.view.frame;
@@ -209,16 +212,28 @@
             }];
             break;
         case HCPhotosHiddenMetroDefault:
-            [self.mainController.stationsView resetBothStations];
             self.photosController.disappearingView.alpha = 1;
             self.photosController.placeNamePanel.hidden = NO;
             self.photosController.distanceContainer.hidden = NO;
 
-            //Here we should set the destination station
-            Station *station = [self.photosController stationForCurrentPhoto];
-            MStation *stationObject = [[MHelper sharedHelper] getStationWithName:station.name forLine:station.line.name];
-            [self.mainController resetToStation];
-            [self.mainController returnFromSelection:[NSArray arrayWithObject:stationObject]];
+            
+            if (oldMode != HCPhotosHiddenMetroPath) {
+                //Here we should set the destination station
+                Station *station = [self.photosController stationForCurrentPhoto];
+                MStation *stationObject = [[MHelper sharedHelper] getStationWithName:station.name forLine:station.line.name];
+                [self.mainController resetToStation];
+                
+                Station *userStation = [self.mainController nearestStation];
+                if (userStation) {
+                    MStation *stationUserObject = [[MHelper sharedHelper] getStationWithName:userStation.name forLine:userStation.line.name];
+                    [self.mainController returnFromSelection:[NSArray arrayWithObjects:stationUserObject, stationObject, nil]];
+                    
+                }
+                else {
+                    [self.mainController returnFromSelection:[NSArray arrayWithObject:stationObject]];
+                }
+            }
+
             
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
