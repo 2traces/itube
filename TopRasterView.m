@@ -11,6 +11,7 @@
 #import "MainViewController.h"
 #import "FastAccessTableViewController.h"
 #import "StationTextField.h"
+#import "SSTheme.h"
 
 @implementation TopRasterView
 
@@ -35,12 +36,15 @@
 -(void)drawInitialState
 {
     toolbar = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, self.frame.size.width,self.frame.size.height)];
-    [toolbar setImage:[UIImage imageNamed:@"toolbar_bg2.png"]];
+    [toolbar setImage:[[[SSThemeManager sharedTheme] topToolbarBackgroundImage] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 149.0, 0, 167.0)]];
+//    [toolbar setImage:[UIImage imageNamed:@"toolbar_bg2.png"]];
     [toolbar setUserInteractionEnabled:YES];
 	[self addSubview:toolbar];
 
-	UIImage *imageOpenList = [UIImage imageNamed:@"openlist2.png"];
-    UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist2.png"];
+//	UIImage *imageOpenList = [UIImage imageNamed:@"openlist2.png"];
+//    UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist2.png"];
+    UIImage *imageOpenList = [[SSThemeManager sharedTheme] stationTextFieldRightImageNormal];
+    UIImage *imageOpenListHL = [[SSThemeManager sharedTheme] stationTextFieldRightImageHighlighted];
 	
 	UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [refreshButton setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
