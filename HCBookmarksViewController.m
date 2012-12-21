@@ -21,6 +21,7 @@
 @synthesize items;
 @synthesize scrollView;
 @synthesize places;
+@synthesize emptyPlaceholder;
 
 - (IBAction)close:(id)sender {
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -59,6 +60,14 @@
     MainView* map = (MainView*)[appDelegate.mainViewController view];
     
     CGFloat offset = 50;
+    
+    if (!self.places || ![self.places count]) {
+        self.emptyPlaceholder.hidden = NO;
+    }
+    else {
+        self.emptyPlaceholder.hidden = YES;
+    }
+    
     for (MPlace *place in self.places) {
         NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"HCBookmarkItemView" owner:self options:nil];
         HCBookmarkItemView *itemView = (HCBookmarkItemView*)[nibObjects objectAtIndex:0];
@@ -136,6 +145,7 @@
         MPlace *place = [[MHelper sharedHelper] getPlaceWithIndex:view.tag];
         place.isFavorite = [NSNumber numberWithBool:NO];
         [appDelegate placeRemovedFromFavorites:place];
+        [self reloadScrollView];
     }];
 }
 

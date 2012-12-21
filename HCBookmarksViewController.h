@@ -22,11 +22,14 @@
     NSMutableArray *items;
     NSArray *places;
     UIScrollView *scrollView;
+    UIImageView *emptyPlaceholder;
 }
 
 @property (nonatomic, retain) NSMutableArray *items;
 @property (nonatomic, retain) NSArray *places;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) IBOutlet UIImageView *emptyPlaceholder;
+
 
 - (IBAction)close:(id)sender;
 

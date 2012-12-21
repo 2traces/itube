@@ -130,10 +130,10 @@ void uncaughtExceptionHandler(NSException *exception) {
     
 	if ([[NSUserDefaults standardUserDefaults] integerForKey:@"launches"])
 	{
-        if ([[NSUserDefaults standardUserDefaults] integerForKey:@"launches"]==10) {
+        if ([[NSUserDefaults standardUserDefaults] integerForKey:@"launches"]==[[NSUserDefaults standardUserDefaults] integerForKey:@"maxLaunches"]) {
             self.shouldShowRateScreen = YES;
             
-        } else if  ([[NSUserDefaults standardUserDefaults] integerForKey:@"launches"]<10) {
+        } else if  ([[NSUserDefaults standardUserDefaults] integerForKey:@"launches"]<[[NSUserDefaults standardUserDefaults] integerForKey:@"maxLaunches"]) {
             
             NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
             [prefs setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"launches"]+1 forKey:@"launches"];
@@ -142,6 +142,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 	} else {
         NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
         [prefs setInteger:1 forKey:@"launches"];
+        [prefs setInteger:6 forKey:@"maxLaunches"];
         [prefs synchronize];
     }
 }
@@ -197,7 +198,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     }];
     
     NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setInteger:40 forKey:@"launches"];
+    [prefs setInteger:1 forKey:@"launches"];
+    [prefs setInteger:25 forKey:@"maxLaunches"];
     [prefs synchronize];
 }
 

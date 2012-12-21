@@ -24,14 +24,12 @@
 - (IBAction)rateNow:(id)sender {
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate rateNowFromPopup:self];
-    [self updateButtons];
 
 }
 
 - (IBAction)getFeedback:(id)sender {
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate rateFeedbackFromPopup:self];
-    [self updateButtons];
 
 }
 
