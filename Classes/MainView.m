@@ -178,12 +178,12 @@ NSInteger const toolbarWidth=320;
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:settings];
 
-    zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    [zones setImage:[UIImage imageNamed:@"maps_button"] forState:UIControlStateNormal];
-    //[zones setImage:[UIImage imageNamed:@"zones_btn"] forState:UIControlStateHighlighted];
-    zones.frame = zonesRect;
-    [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:zones];
+//    zones = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [zones setImage:[UIImage imageNamed:@"maps_button"] forState:UIControlStateNormal];
+//    //[zones setImage:[UIImage imageNamed:@"zones_btn"] forState:UIControlStateHighlighted];
+//    zones.frame = zonesRect;
+//    [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
+//    [self addSubview:zones];
 
     UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
     shadow.frame = shadowRect;
