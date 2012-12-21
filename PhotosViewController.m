@@ -197,6 +197,17 @@
     [tapGR autorelease];
     currentPage = 0;
     [self updateInfoForCurrentPage];
+    
+    UISwipeGestureRecognizer* swipeUpGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUpFrom:)];
+    swipeUpGestureRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
+    
+    [self.view addGestureRecognizer:[swipeUpGestureRecognizer autorelease]];
+}
+
+- (void)handleSwipeUpFrom:(UIGestureRecognizer*)recognizer {
+    if ([self.navigationDelegate photosOpen]) {
+        [self showHidePhotos:nil];
+    }
 }
 
 - (void)photoTapped:(UITapGestureRecognizer *)recognizer {
@@ -221,11 +232,10 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     NSInteger page = (self.scrollPhotos.contentOffset.x / self.scrollPhotos.frame.size.width);
-    //NSLog(@"%f, %f", self.scrollPhotos.contentOffset.y, self.scrollPhotos.frame.size.width);
+    //NSLog(@"%f, %f", self.scrollPhotos.contentOffset.x, self.scrollPhotos.frame.size.width);
     //NSInteger visiblePage = (self.scrollPhotos.contentOffset.y / self.scrollPhotos.frame.size.width);
     // display the image and maybe +/-1 for a smoother scrolling
 	// but be sure to check if the image already exists, you can do this very easily using tags
-
     if (page != currentPage) {
         currentPage = page;
         

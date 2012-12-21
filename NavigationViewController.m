@@ -40,6 +40,16 @@
     [controller release];
 }
 
+- (BOOL) photosOpen {
+    if (photosMode == HCPhotosVisibleFully) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL) categoriesOpen {
+    return categoriesOpen;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController
 {
@@ -392,6 +402,7 @@
 
 - (void) showReaderWithItems:(NSArray*)items activePage:(NSInteger)activePage {
     if (categoriesOpen) {
+        [self showCategories:nil];
         return;
     }
     self.readerController = [[[ReaderViewController alloc] initWithReaderItems:items currentItemIndex:activePage] autorelease];

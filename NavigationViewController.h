@@ -29,6 +29,9 @@
 - (void) selectCategoryWithIndex:(NSInteger)index;
 - (CGFloat) selectPlaceWithIndex:(NSInteger)index;
 - (void) showSettings;
+- (BOOL) photosOpen;
+- (BOOL) categoriesOpen;
+
 
 @end
 

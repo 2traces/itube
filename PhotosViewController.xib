@@ -73,6 +73,8 @@
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
+								<bool key="IBUIShowsVerticalScrollIndicator">NO</bool>
 							</object>
 							<object class="IBUIButton" id="383595199">
 								<reference key="NSNextResponder" ref="667267882"/>
@@ -806,7 +808,6 @@
 						<string key="placeDescriptionBg">UILabel</string>
 						<string key="placeNameHeader">UILabel</string>
 						<string key="placeNamePanel">UILabel</string>
-						<string key="placeNamePanelBg">UILabel</string>
 						<string key="scrollPhotos">UIScrollView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -852,10 +853,6 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="placeNamePanel">
 							<string key="name">placeNamePanel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="placeNamePanelBg">
-							<string key="name">placeNamePanelBg</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="scrollPhotos">
