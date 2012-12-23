@@ -118,7 +118,6 @@
             if ([map objectForKey:@"altStatusURL"]) {
                 altURL = [NSString stringWithString:[map objectForKey:@"altStatusURL"]];
             }
-
         }
     }
     

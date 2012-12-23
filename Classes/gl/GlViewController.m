@@ -12,6 +12,7 @@
 #import "tubeAppDelegate.h"
 #import "SelectingTabBarViewController.h"
 #import "GlView.h"
+#import "SSTheme.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -42,7 +43,7 @@ GLint uniforms[NUM_UNIFORMS];
     MItem *currentSelection;
     MItem *fromStation;
     MItem *toStation;
-    TopRasterView *stationsView;
+    TopTwoStationsView *stationsView;
     
     CGPoint panVelocity;
     CGFloat panTime;
@@ -329,11 +330,15 @@ GLint uniforms[NUM_UNIFORMS];
     rasterLayer = [[RasterLayer alloc] initWithRect:CGRectMake(0, 0, 256, 256) mapName:@"cuba"];
     //[rasterLayer setSignal:self selector:@selector(redrawRect:)];
     
-    stationsView = [[TopRasterView alloc] initWithFrame:CGRectMake(0,0,320,44)];
-    [view addSubview:stationsView];
-    
+    TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault] fieldWidth:160.0f  fieldHeight:[[SSThemeManager sharedTheme] toolbarFieldHeight] fieldDelta:[[SSThemeManager sharedTheme] toolbarFieldDelta]  deviceHeight:480.0f deviceWidth:320.f];
+
+    twoStationsView.delegate=self;
+    self.stationsView = twoStationsView;
+    [view addSubview:twoStationsView];
+    [twoStationsView release];
+
     int adDelta = 0;
-    
+
     settings = [UIButton buttonWithType:UIButtonTypeCustom];
     [settings setImage:[UIImage imageNamed:@"settings_btn_normal"] forState:UIControlStateNormal];
     [settings setImage:[UIImage imageNamed:@"settings_btn"] forState:UIControlStateHighlighted];
@@ -642,6 +647,8 @@ GLint uniforms[NUM_UNIFORMS];
     [appDelegate showMetroMap];
     //[self dismissModalViewControllerAnimated:YES];
 }
+
+#pragma mark - twoStations delegate methods
 
 -(void)pressedSelectFromStation
 {
