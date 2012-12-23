@@ -462,8 +462,7 @@
 - (CGFloat) radialDirectionOffsetToPlaceWithIndex:(NSInteger)index {
     MPlace *place = [[MHelper sharedHelper] getPlaceWithIndex:index];
     CGPoint placePosition = CGPointMake([place.posX floatValue], [place.posY floatValue]);
-    MainView *mainView = (MainView*)self.mainController.view;
-    return [mainView radialOffsetToPoint:placePosition];
+    return [glController radialOffsetToPoint:placePosition];
 }
 
 

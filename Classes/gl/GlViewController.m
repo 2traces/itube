@@ -332,6 +332,16 @@ GLint uniforms[NUM_UNIFORMS];
 @synthesize stationsView;
 @synthesize navigationViewController;
 
+
+
+- (CGFloat) radialOffsetToPoint:(CGPoint)point
+{
+    CGPoint off = userGeoPosition;
+    return atan2f(point.y - off.y, point.x - off.x);
+}
+
+
+
 - (void)dealloc
 {
     [pinsArray release];

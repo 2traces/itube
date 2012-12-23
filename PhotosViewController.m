@@ -97,12 +97,13 @@
     }
     else {
         self.distanceLabel.text = [NSString stringWithFormat:@"%.1f km", distance/1000.0f];
+        CGFloat direction = [self.navigationDelegate radialDirectionOffsetToPlaceWithIndex:[place.index integerValue]];
+        NSLog(@"%f radians", direction);
+        //[self.directionImage
+        self.directionImage.transform = CGAffineTransformMakeRotation(0);
+        self.directionImage.transform = CGAffineTransformMakeRotation(direction);
     }
-    CGFloat direction = [self.navigationDelegate radialDirectionOffsetToPlaceWithIndex:[place.index integerValue]];
-    NSLog(@"%f radians", direction);
-    //[self.directionImage
-    self.directionImage.transform = CGAffineTransformMakeRotation(0);
-    self.directionImage.transform = CGAffineTransformMakeRotation(direction + M_PI_2);
+
 
 }
 

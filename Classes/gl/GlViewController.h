@@ -74,6 +74,7 @@
 
 - (CGFloat) setPinAtPlace:(MPlace*)place color:(int)color;
 - (void) removePinAtPlace:(MPlace*)place;
+- (CGFloat) radialOffsetToPoint:(CGPoint)point;
 
 
 @end
