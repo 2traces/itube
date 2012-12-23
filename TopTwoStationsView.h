@@ -11,12 +11,15 @@
 @class MStation;
 @class FastAccessTableViewController;
 @class StationTextField;
+@class StationListViewController;
+
+@protocol TwoStationsViewProtocol;
 
 @interface TopTwoStationsView : UIView <UITextFieldDelegate>
 {
     UIImageView  *toolbar; 
-	StationTextField *firstStation;
-	StationTextField *secondStation;	
+	StationTextField *fromStationField;
+	StationTextField *toStationField;
     BOOL isEditing;
     BOOL shouldEnlarge;
     UIImageView *arrowView;
@@ -25,8 +28,8 @@
 }
 
 @property (nonatomic, retain) UIImageView *toolbar;
-@property (nonatomic, retain) UITextField *firstStation;
-@property (nonatomic, retain) UITextField *secondStation;
+@property (nonatomic, retain) UITextField *fromStationField;
+@property (nonatomic, retain) UITextField *toStationField;
 @property (nonatomic, retain) UIButton *firstButton;
 @property (nonatomic, retain) UIButton *secondButton;
 @property (nonatomic, retain) FastAccessTableViewController *tableView;
@@ -39,18 +42,35 @@
 @property (nonatomic, assign) CGFloat fieldDelta;
 @property (nonatomic, assign) CGFloat fieldHeight;
 
+@property (nonatomic,assign) id <TwoStationsViewProtocol> delegate;
+
 -(id)initWithViewHeight:(CGFloat)vHeight fieldWidth:(CGFloat)fWidth  fieldHeight:(CGFloat)fHeight fieldDelta:(CGFloat)fDelta deviceHeight:(CGFloat)dHeight deviceWidth:(CGFloat)dWidth;
 -(void)drawInitialState;
 -(void)adjustSubviews:(UIInterfaceOrientation)interfaceOrientation;
 -(void)setFromStation:(MStation*)fromStation;
 -(void)setToStation:(MStation*)toStation;
--(UIImage*)drawCircleView:(UIColor*)myColor;
--(UIImage*)drawBiggerCircleView:(UIColor*)myColor;
 -(void)transitToPathView;
 
 -(void)resetFromStation;
 -(void)resetToStation;
 -(void)resetBothStations;
 
+@end
+
+@protocol TwoStationsViewProtocol <NSObject>
+
+-(FastAccessTableViewController *)showTableView;
+-(void)setCurrentSelection:(int)selection;
+-(void)removeTableView;
+-(void)pressedSelectFromStation;
+-(void)pressedSelectToStation;
+-(void)resetBothStations;
+-(void)resetFromStation;
+-(void)resetToStation;
+
+@optional
+-(void)showiPadLeftPathView;
+-(void)showiPadSettingsModalView;
+-(StationListViewController *)showiPadLiveSearchView;
 
 @end
