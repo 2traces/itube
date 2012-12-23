@@ -162,6 +162,14 @@
     }
 }
 
+- (void) stickThePanelBackToPhotos {
+    CGRect panelFrame = self.photosController.panelView.frame;
+    
+    panelFrame.origin = CGPointMake(0, 216);
+    [self.photosController.view addSubview:self.photosController.panelView];
+    self.photosController.panelView.frame = panelFrame;
+}
+
 - (void)transitPhotosToMode:(HCPhotosPresentationMode)mode animated:(BOOL)animated {
     if (photosMode == mode) {
         return;

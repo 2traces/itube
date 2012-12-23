@@ -25,6 +25,7 @@
     UIButton *btShowHideBookmarks;
     UILabel *distanceLabel;
     UIView *distanceContainer;
+    UIButton *btPanel;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *distanceLabel;
@@ -37,6 +38,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *btAddToFavorites;
 @property (nonatomic, retain) IBOutlet UIButton *buttonCategories;
 @property (nonatomic, retain) IBOutlet UIButton *btShowHideBookmarks;
+@property (nonatomic, retain) IBOutlet UIButton *btPanel;
 @property (nonatomic, retain) IBOutlet UIView *disappearingView;
 @property (nonatomic, retain) IBOutlet UIView *panelView;
 @property (nonatomic, assign) id<NavigationDelegate> navigationDelegate;

@@ -33,6 +33,7 @@
 @synthesize btShowHideBookmarks;
 @synthesize distanceContainer;
 @synthesize distanceLabel;
+@synthesize btPanel;
 
 - (IBAction)showCategories:(id)sender {
     [self.navigationDelegate showCategories:self];
@@ -202,6 +203,37 @@
     swipeUpGestureRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
     
     [self.view addGestureRecognizer:[swipeUpGestureRecognizer autorelease]];
+
+    [self.btPanel addTarget:self action:@selector(wasDragged:withEvent:)
+     forControlEvents:UIControlEventTouchDragInside];
+}
+
+- (void)wasDragged:(UIButton *)button withEvent:(UIEvent *)event
+{
+    if ([self.navigationDelegate categoriesOpen]) {
+        return;
+    }
+    
+	// get the touch
+	UITouch *touch = [[event touchesForView:button] anyObject];
+    
+	// get delta
+	CGPoint previousLocation = [touch previousLocationInView:button];
+	CGPoint location = [touch locationInView:button];
+	CGFloat delta_x = 0;//location.x - previousLocation.x;
+	CGFloat delta_y = location.y - previousLocation.y;
+    
+    if (self.view.frame.origin.y + delta_y > 0) {
+        return;
+    }
+    if (self.view.frame.origin.y + delta_y < -176) {
+        return;
+    }
+    
+	// move button
+    //[self.navigationDelegate stickThePanelBackToPhotos];
+	self.view.center = CGPointMake(self.view.center.x + delta_x,
+                                self.view.center.y + delta_y);
 }
 
 - (void)handleSwipeUpFrom:(UIGestureRecognizer*)recognizer {

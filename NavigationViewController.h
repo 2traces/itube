@@ -31,6 +31,7 @@
 - (void) showSettings;
 - (BOOL) photosOpen;
 - (BOOL) categoriesOpen;
+- (void) stickThePanelBackToPhotos;
 
 
 @end
