@@ -65,5 +65,6 @@ MBProgressHUD *commonActivityIndicator;
 //Centering map on station
 -(void)setGeoPosition:(CGPoint)geoPosition withZoom:(CGFloat)zoom;
 - (Station*) stationNearestToGeoPosition:(CGPoint)position;
+- (CGFloat) radialOffsetToPoint:(CGPoint)point;
 
 @end

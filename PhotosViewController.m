@@ -34,6 +34,7 @@
 @synthesize distanceContainer;
 @synthesize distanceLabel;
 @synthesize btPanel;
+@synthesize directionImage;
 
 - (IBAction)showCategories:(id)sender {
     [self.navigationDelegate showCategories:self];
@@ -97,6 +98,10 @@
     else {
         self.distanceLabel.text = [NSString stringWithFormat:@"%.1f km", distance/1000.0f];
     }
+    CGFloat direction = [self.navigationDelegate radialDirectionOffsetToPlaceWithIndex:[place.index integerValue]];
+    NSLog(@"%f radians", direction);
+    //[self.directionImage
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -378,6 +378,21 @@
 											<string key="NSResourceName">distance_icon@2x.png</string>
 										</object>
 									</object>
+									<object class="IBUIImageView" id="703360113">
+										<reference key="NSNextResponder" ref="548495841"/>
+										<int key="NSvFlags">292</int>
+										<string key="NSFrame">{{7, 5}, {20, 20}}</string>
+										<reference key="NSSuperview" ref="548495841"/>
+										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView" ref="1017073414"/>
+										<string key="NSReuseIdentifierKey">_NS:9</string>
+										<bool key="IBUIUserInteractionEnabled">NO</bool>
+										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+										<object class="NSCustomResource" key="IBUIImage">
+											<string key="NSClassName">NSImage</string>
+											<string key="NSResourceName">direction_icon@2x.png</string>
+										</object>
+									</object>
 									<object class="IBUILabel" id="1039898316">
 										<reference key="NSNextResponder" ref="548495841"/>
 										<int key="NSvFlags">292</int>
@@ -415,7 +430,7 @@
 								<string key="NSFrame">{{-4, -2}, {65, 38}}</string>
 								<reference key="NSSuperview" ref="373130457"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="1017073414"/>
+								<reference key="NSNextKeyView" ref="703360113"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -568,6 +583,14 @@
 						<reference key="destination" ref="853006367"/>
 					</object>
 					<int key="connectionID">67</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">directionImage</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="703360113"/>
+					</object>
+					<int key="connectionID">69</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -726,6 +749,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="1017073414"/>
 							<reference ref="1039898316"/>
+							<reference ref="703360113"/>
 						</array>
 						<reference key="parent" ref="373130457"/>
 					</object>
@@ -743,6 +767,11 @@
 						<int key="objectID">65</int>
 						<reference key="object" ref="952742180"/>
 						<reference key="parent" ref="667267882"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">68</int>
+						<reference key="object" ref="703360113"/>
+						<reference key="parent" ref="548495841"/>
 					</object>
 				</array>
 			</object>
@@ -768,12 +797,13 @@
 				<string key="61.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="62.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="65.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="68.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">67</int>
+			<int key="maxID">69</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -809,6 +839,7 @@
 						<string key="btPanel">UIButton</string>
 						<string key="btShowHideBookmarks">UIButton</string>
 						<string key="buttonCategories">UIButton</string>
+						<string key="directionImage">UIImageView</string>
 						<string key="disappearingView">UIView</string>
 						<string key="distanceContainer">UIView</string>
 						<string key="distanceLabel">UILabel</string>
@@ -835,6 +866,10 @@
 						<object class="IBToOneOutletInfo" key="buttonCategories">
 							<string key="name">buttonCategories</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="directionImage">
+							<string key="name">directionImage</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="disappearingView">
 							<string key="name">disappearingView</string>
@@ -888,6 +923,7 @@
 			<string key="bt_photo_like@2x.png">{96, 87}</string>
 			<string key="bt_star@2x.png">{88, 88}</string>
 			<string key="bt_stripes@2x.png">{88, 88}</string>
+			<string key="direction_icon@2x.png">{40, 40}</string>
 			<string key="distance_icon@2x.png">{130, 77}</string>
 			<string key="panel_bg@2x.png">{640, 128}</string>
 			<string key="sample_photo@2x.png">{640, 465}</string>

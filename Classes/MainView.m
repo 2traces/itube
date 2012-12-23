@@ -431,4 +431,15 @@ NSInteger const toolbarWidth=320;
     [containerView setContentOffset:CGPointMake(st.pos.x * mapView.Scale - containerView.bounds.size.width*0.5f, st.pos.y * mapView.Scale - containerView.bounds.size.height*0.75f ) animated:YES];
 }
 
+
+- (CGFloat) radialOffsetToPoint:(CGPoint)point
+{
+    CGPoint off = containerView.contentOffset;
+    CGSize size = containerView.bounds.size;
+    off.x = (off.x + size.width*0.5f) / containerView.zoomScale;
+    off.y = (off.y + size.height*0.5f) / containerView.zoomScale;
+    return atan2f(point.y - off.y, point.x - off.x);
+}
+
+
 @end

@@ -28,6 +28,7 @@
 - (void) showReaderWithItems:(NSArray*)items activePage:(NSInteger)activePage;
 - (void) selectCategoryWithIndex:(NSInteger)index;
 - (CGFloat) selectPlaceWithIndex:(NSInteger)index;
+- (CGFloat) radialDirectionOffsetToPlaceWithIndex:(NSInteger)index;
 - (void) showSettings;
 - (BOOL) photosOpen;
 - (BOOL) categoriesOpen;
