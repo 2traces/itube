@@ -13,6 +13,8 @@
 @implementation StationTextField
 
 @synthesize state;
+@synthesize station;
+@synthesize parentView;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -41,6 +43,18 @@
             [self setReturnKeyType:UIReturnKeyDone];
             [self setClearButtonMode:UITextFieldViewModeNever];
             self.state=style;
+            
+            UIImage *imageOpenList = [[SSThemeManager sharedTheme] stationTextFieldRightImageNormal];
+            UIImage *imageOpenListHL = [[SSThemeManager sharedTheme] stationTextFieldRightImageHighlighted];
+            
+            UIButton *rightView = [UIButton buttonWithType:UIButtonTypeCustom];
+            [rightView setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
+            [rightView setImage:imageOpenList forState:UIControlStateNormal];
+            [rightView setImage:imageOpenListHL forState:UIControlStateHighlighted];
+            self.rightView=rightView;
+            
+            [rightView addTarget:self action:@selector(callStationList) forControlEvents:UIControlEventTouchUpInside];
+            
         }
         return self;
     }
@@ -48,6 +62,42 @@
     return nil;
 }
 
+#pragma mark - setStation override
+-(void)setStation:(MStation *)newstation
+{
+    if (newstation) {
+        if (station) {
+            [newstation retain];
+            [station release];
+            station=newstation;
+            
+            if ([[MHelper sharedHelper] languageIndex]%2) {
+                self.text = station.altname;
+            } else {
+                self.text = station.name;
+            }
+            
+        } else {
+            [newstation retain];
+            [station release];
+            station=newstation;
+            
+            if ([[MHelper sharedHelper] languageIndex]%2) {
+                self.text = station.altname;
+            } else {
+                self.text = station.name;
+            }
+            
+            [self changeStyleTo:StationTextFieldStyleStation withFrame:self.frame animated:YES];
+        }
+    } else {
+        if (station) {
+            station=nil;
+            self.text=nil;
+            [self changeStyleTo:StationTextFieldStyleDefault withFrame:self.frame animated:YES];
+        }
+    }
+}
 
 #pragma mark - Style Changes
 
@@ -55,34 +105,122 @@
 {
     switch (style) {
         case StationTextFieldStyleDefault:
+        {
+            
+            NSTimeInterval animduration;
             if (animated) {
-                [UIView animateWithDuration:0.2f animations:^{
-                    self.frame=frame;
-                    //self.background = [[UIImage imageNamed:@"toolbar_bg.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
-                    self.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
-                }];
-            }
-
-            break;
-        case StationTextFieldStyleSearch:
-            if (animated) {
-                [UIView animateWithDuration:0.2f animations:^{
-                    self.frame=frame;
-                    self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 63.0, 0, 93.0)];
-                    self.text = @"";
-                    self.rightViewMode = UITextFieldViewModeAlways;
-                    self.leftView=nil;
-                    self.leftViewMode=UITextFieldViewModeAlways;
-                    self.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
-                    self.state=style;
-                }];
+                animduration=0.2;
+            } else {
+                animduration=-1;
             }
             
+            [UIView animateWithDuration:animduration animations:^{
+                self.frame=frame;
+                self.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
+                self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
+                self.rightViewMode = UITextFieldViewModeAlways;
+                self.state=style;
+                
+                UIImage *imageOpenList = [[SSThemeManager sharedTheme] stationTextFieldRightImageNormal];
+                UIImage *imageOpenListHL = [[SSThemeManager sharedTheme] stationTextFieldRightImageHighlighted];
+                
+                UIButton *rightView = [UIButton buttonWithType:UIButtonTypeCustom];
+                [rightView setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
+                [rightView setImage:imageOpenList forState:UIControlStateNormal];
+                [rightView setImage:imageOpenListHL forState:UIControlStateHighlighted];
+                [rightView addTarget:self action:@selector(callStationList) forControlEvents:UIControlEventTouchUpInside];
+                
+                self.rightView=rightView;
+                
+                self.leftView=nil;
+                self.leftViewMode =  UITextFieldViewModeNever;
+            }];
+        }
+            
+            break;
+        case StationTextFieldStyleSearch:
+        {
+            
+            NSTimeInterval animduration;
+            if (animated) {
+                animduration=0.2;
+            } else {
+                animduration=-1;
+            }
+            
+            [UIView animateWithDuration:animduration animations:^{
+                self.frame=frame;
+                self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 63.0, 0, 93.0)];
+                self.text = @"";
+                self.rightViewMode = UITextFieldViewModeAlways;
+                self.leftView=nil;
+                self.leftViewMode=UITextFieldViewModeAlways;
+                self.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+                
+                UIImage *imageOpenList = [[SSThemeManager sharedTheme] stationTextFieldRightImageNormal];
+                UIImage *imageOpenListHL = [[SSThemeManager sharedTheme] stationTextFieldRightImageHighlighted];
+                
+                UIButton *rightView = [UIButton buttonWithType:UIButtonTypeCustom];
+                [rightView setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
+                [rightView setImage:imageOpenList forState:UIControlStateNormal];
+                [rightView setImage:imageOpenListHL forState:UIControlStateHighlighted];
+                [rightView addTarget:self action:@selector(callStationList) forControlEvents:UIControlEventTouchUpInside];
+                
+                self.rightView=rightView;
+                
+                self.state=style;
+            }];
+        }
             break;
         case StationTextFieldStyleStation:
+        {
+            
+            NSTimeInterval animduration;
+            if (animated) {
+                animduration=0.2;
+            } else {
+                animduration=-1;
+            }
+            
+            [UIView animateWithDuration:animduration animations:^{
+                self.frame=frame;
+                self.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
+                
+                UIImage *crossImage = [[SSThemeManager sharedTheme] topToolbarCrossImage:UIControlStateNormal];
+                UIImage *crossImageHighlighted = [[SSThemeManager sharedTheme] topToolbarCrossImage:UIControlStateHighlighted];
+                
+                UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                [resetButton setImage:crossImage forState:UIControlStateNormal];
+                [resetButton setFrame:CGRectMake(0.0, 0.0, crossImage.size.width, crossImage.size.height)];
+                [resetButton setImage:crossImageHighlighted forState:UIControlStateHighlighted];
+                [resetButton addTarget:self action:@selector(resetStation) forControlEvents:UIControlEventTouchUpInside];
+                self.rightView= resetButton;
+                self.rightViewMode = UITextFieldViewModeAlways;
+                
+                UIImageView *lineColor = [[UIImageView alloc] initWithImage:[self imageWithColor:[station lines]]];
+                [self setLeftView:lineColor];
+                [lineColor release];
+                
+                [self setLeftViewMode: UITextFieldViewModeAlways];
+                self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
+                
+            }];
+            
             self.state=style;
+        }
             break;
         case StationTextFieldStylePath:
+            self.background = [UIImage imageNamed:@"pixeldummy.png"];
+            
+            if ([[SSThemeManager sharedTheme] isNewTheme]) {
+                [self setLeftView:nil];
+            }
+            
+            self.frame=frame;
+            
+            self.font = [[SSThemeManager sharedTheme] toolbarPathFont];
+            self.textColor = [[SSThemeManager sharedTheme] toolbarPathFontColor];
+            
             self.state=style;
             break;
             
@@ -91,6 +229,85 @@
     }
 }
 
+#pragma mark - button methods
+
+-(IBAction)resetStation
+{
+    [parentView resetStation:self];
+}
+
+-(IBAction)callStationList
+{
+    [parentView callStationList:self];
+}
+
+#pragma mark - support methods
+
+-(UIImage*)drawCircleView:(UIColor*)myColor
+{
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(10,10), NO, 0.0);
+    
+    CGRect circleRect = CGRectMake(0.0, 0.0, 9.0, 9.0);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    const CGFloat* components = CGColorGetComponents(myColor.CGColor);
+    
+    CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));
+    CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));
+    CGContextSetLineWidth(context, 0.0);
+    CGContextFillEllipseInRect(context, circleRect);
+    CGContextStrokeEllipseInRect(context, circleRect);
+    
+    UIImage *bevelImg = [UIImage imageNamed:@"bevel.png"];
+    
+    [bevelImg drawInRect:circleRect];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    CGContextRelease(context);
+    
+    return image;
+}
+
+-(UIImage*)drawBiggerCircleView:(UIColor*)myColor
+{
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(12,12), NO, 0.0);
+    
+    CGRect circleRect = CGRectMake(1.0, 1.0, 10.0, 10.0);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    const CGFloat* components = CGColorGetComponents(myColor.CGColor);
+    
+    CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));
+    CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));
+    CGContextSetLineWidth(context, 0.0);
+    CGContextFillEllipseInRect(context, circleRect);
+    CGContextStrokeEllipseInRect(context, circleRect);
+    
+    UIImage *bevelImg = [UIImage imageNamed:@"bevel.png"];
+    
+    [bevelImg drawInRect:circleRect];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    CGContextRelease(context);
+    
+    return image;
+}
+
+-(UIImage*)imageWithColor:(MLine*)line
+{
+    UIImage *image = [self drawCircleView:[line color]];
+    return image;
+}
+
+-(UIImage*)biggerImageWithColor:(MLine*)line
+{
+    UIImage *image = [self drawBiggerCircleView:[line color]];
+    return image;
+}
 
 #pragma mark - TextField override
 
@@ -101,6 +318,8 @@
     CGRect newFrame;
     if (state==StationTextFieldStyleStation && [[SSThemeManager sharedTheme] isNewTheme]) {
         newFrame.origin.x=bounds.size.width-rightViewFrame.size.width-10.0f;
+    } else if (state==StationTextFieldStyleSearch && [[SSThemeManager sharedTheme] isNewTheme]) {
+        newFrame.origin.x=bounds.size.width-rightViewFrame.size.width-2.0f;
     } else {
         newFrame.origin.x=bounds.size.width-rightViewFrame.size.width-[[SSThemeManager sharedTheme] stationTextFieldRightAdjust];
     }
@@ -128,7 +347,7 @@
 }
 
 - (CGRect)editingRectForBounds:(CGRect)bounds {
-    return CGRectInset(bounds, 20, 0);
+    return CGRectInset(bounds, 20, 1);
 }
 
 -(void) drawTextInRect:(CGRect)rect
@@ -166,7 +385,7 @@
     
 }
 
-- (void)drawPlaceholderInRect:(CGRect)rect 
+- (void)drawPlaceholderInRect:(CGRect)rect
 {
     CGRect newFrame;
     CGSize textBounds = [self.placeholder sizeWithFont:self.font];
