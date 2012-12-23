@@ -101,6 +101,8 @@
     CGFloat direction = [self.navigationDelegate radialDirectionOffsetToPlaceWithIndex:[place.index integerValue]];
     NSLog(@"%f radians", direction);
     //[self.directionImage
+    self.directionImage.transform = CGAffineTransformMakeRotation(0);
+    self.directionImage.transform = CGAffineTransformMakeRotation(direction + M_PI_2);
 
 }
 
