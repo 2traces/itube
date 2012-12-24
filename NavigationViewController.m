@@ -165,7 +165,7 @@
 - (void) stickThePanelBackToPhotos {
     CGRect panelFrame = self.photosController.panelView.frame;
     
-    panelFrame.origin = CGPointMake(0, 216);
+    panelFrame.origin = CGPointMake(0, 276);
     [self.photosController.view addSubview:self.photosController.panelView];
     self.photosController.panelView.frame = panelFrame;
 }
@@ -184,7 +184,7 @@
     CGFloat animationDuration = animated ? 0.5 : 0;
     
     photosViewFrame.origin.x = 0;
-    panelFrame.origin = CGPointMake(0, 216);
+    panelFrame.origin = CGPointMake(0, 276);
     [self.photosController.view addSubview:self.photosController.panelView];
     self.photosController.panelView.frame = panelFrame;
     self.photosController.view.frame = photosViewFrame;
@@ -211,7 +211,7 @@
 
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
-                photosViewFrame.origin.y = -216;
+                photosViewFrame.origin.y = -276;
                 self.photosController.disappearingView.alpha = 0;
                 self.photosController.view.frame = photosViewFrame;
                 self.photosController.placeNamePanel.hidden = NO;
@@ -245,14 +245,14 @@
             
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
-                photosViewFrame.origin.y = -176;
+                photosViewFrame.origin.y = -236;
                 self.photosController.disappearingView.alpha = 0;
                 self.photosController.view.frame = photosViewFrame;
             } completion:^(BOOL finished) {                
                 CGRect photosViewFrame = self.photosController.view.frame;
                 CGRect panelFrame = self.photosController.panelView.frame;
                 photosViewFrame.origin.x = 320;
-                panelFrame.origin = CGPointMake(0, 216 - 176);
+                panelFrame.origin = CGPointMake(0, 276 - 236);
                 [self.mainController.view insertSubview:self.photosController.panelView aboveSubview:self.mainController.stationsView];
                 self.photosController.panelView.frame = panelFrame;
                 self.photosController.view.frame = photosViewFrame;
@@ -266,7 +266,7 @@
 
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
-                photosViewFrame.origin.y = -176;
+                photosViewFrame.origin.y = -236;
                 self.photosController.disappearingView.alpha = 0;
                 self.photosController.view.frame = photosViewFrame;
             } completion:^(BOOL finished) {
@@ -275,7 +275,7 @@
                 CGRect photosViewFrame = self.photosController.view.frame;
                 CGRect panelFrame = self.photosController.panelView.frame;
                 photosViewFrame.origin.x = 320;
-                panelFrame.origin = CGPointMake(0, 216 - 176 - (44 - 28));
+                panelFrame.origin = CGPointMake(0, 276 - 236 - (44 - 28));
                 
                 [self.mainController.view insertSubview:self.photosController.panelView aboveSubview:self.mainController.stationsView];
                 
