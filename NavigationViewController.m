@@ -453,7 +453,7 @@
     if (currentPlacePin != -1) {
         [self.glController removePin:currentPlacePin];
     }
-    currentPlacePin = [self.glController newStar:placePosition color:1 name:place.name];
+    currentPlacePin = [self.glController newStar:placePosition color:0 name:place.name];
     Pin *pin = [self.glController getPin:currentPlacePin];
     return pin.distanceToUser;
 }

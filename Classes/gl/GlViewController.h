@@ -74,7 +74,9 @@
 
 - (CGFloat) setPinAtPlace:(MPlace*)place color:(int)color;
 - (void) removePinAtPlace:(MPlace*)place;
+// direction from user to geo point
 - (CGFloat) radialOffsetToPoint:(CGPoint)point;
-
+// direction from one geo point to another one
+- (CGFloat) radialOffsetFromPoint:(CGPoint)p1 toAnotherPoint:(CGPoint)p2;
 
 @end
