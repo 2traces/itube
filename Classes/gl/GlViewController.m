@@ -217,38 +217,41 @@ GLint uniforms[NUM_UNIFORMS];
     if((self = [super init])) {
         _id = pinId;
         switch (color) {
-            case 0:
             default:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-aqua"];
+            case 0:
+                sprite = [[GlSprite alloc] initWithPicture:@"station_mark"];
                 break;
             case 1:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-blue-aqua"];
+                sprite = [[GlSprite alloc] initWithPicture:@"star-aqua"];
                 break;
             case 2:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-blue-pink"];
+                sprite = [[GlSprite alloc] initWithPicture:@"star-blue-aqua"];
                 break;
             case 3:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-blue"];
+                sprite = [[GlSprite alloc] initWithPicture:@"star-blue-pink"];
                 break;
             case 4:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-green-yellow"];
+                sprite = [[GlSprite alloc] initWithPicture:@"star-blue"];
                 break;
             case 5:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-green"];
+                sprite = [[GlSprite alloc] initWithPicture:@"star-green-yellow"];
                 break;
             case 6:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-pink"];
+                sprite = [[GlSprite alloc] initWithPicture:@"star-green"];
                 break;
             case 7:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-red-pink"];
+                sprite = [[GlSprite alloc] initWithPicture:@"star-pink"];
                 break;
             case 8:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-red-yellow"];
+                sprite = [[GlSprite alloc] initWithPicture:@"star-red-pink"];
                 break;
             case 9:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-red"];
+                sprite = [[GlSprite alloc] initWithPicture:@"star-red-yellow"];
                 break;
             case 10:
+                sprite = [[GlSprite alloc] initWithPicture:@"star-red"];
+                break;
+            case 11:
                 sprite = [[GlSprite alloc] initWithPicture:@"star-yell"];
                 break;
         }
@@ -340,7 +343,10 @@ GLint uniforms[NUM_UNIFORMS];
     return atan2f(point.y - off.y, point.x - off.x);
 }
 
-
+- (CGFloat) radialOffsetFromPoint:(CGPoint)p1 toAnotherPoint:(CGPoint)p2
+{
+    return atan2f(p2.y - p1.y, p2.x - p1.x);
+}
 
 - (void)dealloc
 {
@@ -499,6 +505,7 @@ GLint uniforms[NUM_UNIFORMS];
 {
     scale *= 1.5f;
     panVelocity = CGPointZero;
+    [self setGeoPosition:userGeoPosition withZoom:-1];
 }
 
 -(void)handleSingleTap:(UITapGestureRecognizer*)recognizer
@@ -538,6 +545,9 @@ GLint uniforms[NUM_UNIFORMS];
             //NSLog(@"scale %f", scale);
             break;
         case UIGestureRecognizerStateEnded:
+            if(scale > 100000) {
+                scale = 100000;
+            }
             prevRecScale = 0.f;
             break;
         case UIGestureRecognizerStateFailed:
@@ -1239,6 +1249,7 @@ GLint uniforms[NUM_UNIFORMS];
     userPosition = up;
     Pin *p = [pinsArray objectAtIndex:0];
     if(p != nil) [p setPosition:up];
+    [self setGeoPosition:userGeoPosition withZoom:-1];
 }
 
 -(void)setStationsPosition:(NSArray *)coords withNames:(NSArray*)names andMarks:(BOOL)marks
