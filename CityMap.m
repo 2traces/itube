@@ -3003,6 +3003,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(CGRect)getGeoCoordsForRect:(CGRect)rect coordinates:(NSMutableArray*)coordinates names:(NSMutableArray *)names
 {
+    BOOL path = [activePath count] > 0;
     [coordinates removeAllObjects];
     [names removeAllObjects];
     CGRect geo = CGRectZero;
@@ -3013,7 +3014,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 if(geo.origin.x == 0 || geo.origin.y == 0) geo = r;
                 else geo = CGRectUnion(geo, r);
                 r.size.width = r.size.height = l.shortColorCode;
-                if(s.active) {
+                if(s.active && path) {
                     [coordinates addObject:[NSValue valueWithCGRect:r]];
                     [names addObject:s.name];
                 }

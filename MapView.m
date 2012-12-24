@@ -23,6 +23,7 @@
 @synthesize nearestStationName;
 @synthesize nearestStationImage;
 @synthesize selectedStationLayer;
+@synthesize selectedLocationLayer;
 @synthesize Scale;
 @synthesize MaxScale;
 @synthesize MinScale;
@@ -163,6 +164,12 @@
     [stationStars removeAllObjects];
 }
 
+-(void)setLocationAt:(Station*)st
+{
+    selectedLocationLayer.position = st.pos;
+    [self setNeedsDisplay];
+}
+
 - (void)highlightStationNearPoint:(CGPoint)point {
     Station *st = [cityMap findNearestStationTo:point];
 	
@@ -293,6 +300,12 @@
         selectedStationLayer.contents=(id)[nearestStationImage CGImage];
         [self.layer addSublayer:selectedStationLayer];
 
+        UIImage *nearestLocationImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"station_mark" ofType:@"png"]];
+		selectedLocationLayer = [[CALayer layer] retain];
+        selectedLocationLayer.frame = CGRectMake(0, 0, 5.f*nearestLocationImage.size.width, 5.f*nearestLocationImage.size.height);
+        selectedLocationLayer.contents=(id)[nearestLocationImage CGImage];
+        [self.layer addSublayer:selectedLocationLayer];
+       
         activeLayer = [[ActiveView alloc] initWithFrame:frame];
         activeLayer.hidden = YES;
         
@@ -391,6 +404,7 @@
     [midground2 release];
     [previewImage release];
     [selectedStationName release];
+    [selectedLocationLayer release];
     [stationStars release];
     [super dealloc];
 }

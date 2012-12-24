@@ -38,6 +38,7 @@ extern int const imagesCount;
 	NSInteger selectedStationLine;
 		
 	CALayer *selectedStationLayer;
+    CALayer *selectedLocationLayer;
 	NSString *nearestStationName;
 	//
 	UIImage *nearestStationImage;
@@ -61,6 +62,7 @@ extern int const imagesCount;
 @property (assign) NSString *nearestStationName;
 
 @property (nonatomic, retain) CALayer *selectedStationLayer;
+@property (nonatomic, retain) CALayer *selectedLocationLayer;
 @property (nonatomic, retain) Station *nearestStation;
 
 //
@@ -101,6 +103,8 @@ extern int const imagesCount;
 -(void) initData ;
 // adjust map after resizing parent views
 -(void)adjustMap;
+// highlight the station nearest to location
+-(void)setLocationAt:(Station*)st;
 //highlighting station nearest to the point
 - (void)highlightStationNearPoint:(CGPoint)point;
 
