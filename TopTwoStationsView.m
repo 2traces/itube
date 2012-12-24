@@ -67,6 +67,11 @@
 -(void)drawInitialState
 {
     if (IS_IPAD) {
+        
+//        [SSThemeManager customizeTableView:[self tableView]];
+        
+        id <SSTheme> theme = [SSThemeManager sharedTheme];
+
         toolbar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         [toolbar setImage:[[UIImage imageNamed:@"toolbar_bg1.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0]];
         [toolbar setUserInteractionEnabled:YES];
@@ -76,7 +81,10 @@
         
         UIImage *imageOpenList = [UIImage imageNamed:@"openlist.png"];
         UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist_highlight.png"];
-        
+
+//        UIImage *imageOpenList = [theme imageOpenlist1];
+//        UIImage *imageOpenListHL = [theme imageOpenlist2];
+
         UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [refreshButton setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
         [refreshButton setImage:imageOpenList forState:UIControlStateNormal];
