@@ -12,6 +12,7 @@
 #import "FastAccessTableViewController.h"
 #import "StationTextField.h"
 #import "NavigationViewController.h"
+#import "SSTheme.h"
 
 #define iPadWidth 768.0
 #define iPadHeight 1024.0
