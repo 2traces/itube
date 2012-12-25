@@ -234,7 +234,7 @@
     if (self.view.frame.origin.y + delta_y > 0) {
         return;
     }
-    if (self.view.frame.origin.y + delta_y < -236) {
+    if (self.view.frame.origin.y + delta_y < -261) {
         return;
     }
     
