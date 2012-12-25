@@ -61,7 +61,7 @@
 								<reference key="NSNextResponder" ref="667267882"/>
 								<int key="NSvFlags">256</int>
 								<array class="NSMutableArray" key="NSSubviews"/>
-								<string key="NSFrameSize">{320, 307}</string>
+								<string key="NSFrameSize">{340, 307}</string>
 								<reference key="NSSuperview" ref="667267882"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="383595199"/>

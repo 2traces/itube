@@ -38,6 +38,7 @@ MBProgressHUD *commonActivityIndicator;
     UIButton *sourceButton, *destinationButton, *zones;
     UIImageView *stationMark;
     BOOL buttonsVisible;
+    BOOL landscapeMode;
 }
 
 @property (nonatomic, retain) UIView *stationNameView;
@@ -61,7 +62,7 @@ MBProgressHUD *commonActivityIndicator;
 -(void)setCityMap:(CityMap*)cm;
 -(void)changeShadowFrameToRect:(CGRect)rect;
 -(CGRect)getMapVisibleRect;
-
+- (void)changedToLandscape:(BOOL)landscape;
 //Centering map on station
 -(void)setGeoPosition:(CGPoint)geoPosition withZoom:(CGFloat)zoom;
 - (Station*) stationNearestToGeoPosition:(CGPoint)position;

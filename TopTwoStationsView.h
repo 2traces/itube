@@ -42,6 +42,7 @@
 -(UIImage*)drawCircleView:(UIColor*)myColor;
 -(UIImage*)drawBiggerCircleView:(UIColor*)myColor;
 -(void)transitToPathView;
+-(void)transitToInitialSize;
 
 -(void)resetFromStation;
 -(void)resetToStation;

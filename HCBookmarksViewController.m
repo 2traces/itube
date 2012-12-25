@@ -101,7 +101,7 @@
     
     // Do any additional setup after loading the view from its nib.
     self.items = [NSMutableArray arrayWithCapacity:5];
-    [self reloadScrollView];
+    //[self reloadScrollView];
 
 }
 

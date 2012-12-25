@@ -149,8 +149,8 @@ NSInteger const toolbarWidth=320;
      CLController.delegate = self;
      [CLController.locMgr startUpdatingLocation];
      */
-	//UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
-	//[containerView addGestureRecognizer:singleTap];
+//	UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
+//	[containerView addGestureRecognizer:singleTap];
     
     stationMark = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"station_mark"]];
     stationMark.hidden = YES;
@@ -370,7 +370,9 @@ NSInteger const toolbarWidth=320;
 -(void)selectStationAt:(CGPoint)currentPosition
 {
 	if (mapView.stationSelected) {
-        [self showButtons:currentPosition];
+        if (landscapeMode) {
+            [self showButtons:currentPosition];
+        }
 	} else {
         [self hideButtons];
     }
@@ -404,6 +406,14 @@ NSInteger const toolbarWidth=320;
     UIImageView *shadow = (UIImageView*)[self viewWithTag:717];
     shadow.frame = rect;
 }
+
+- (void)changedToLandscape:(BOOL)landscape {
+    landscapeMode = landscape;
+    if (!landscape) {
+        [self hideButtons];
+    }
+}
+
 
 -(CGRect)getMapVisibleRect
 {

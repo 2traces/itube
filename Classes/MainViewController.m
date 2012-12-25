@@ -319,7 +319,9 @@
     if (IS_IPAD) {
         
     } else {
+        MainView *mainView = (MainView*)self.view;
         if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+            [mainView changedToLandscape:NO];
             self.stationsView.hidden=NO;
             self.horizontalPathesScrollView.hidden=NO;
             self.changeViewButton.hidden=NO;
@@ -336,6 +338,7 @@
             [(MainView*)self.view changeShadowFrameToRect:CGRectMake(0.0, 44.0, 320.0, 61.0)];
             
         } else {
+            [mainView changedToLandscape:YES];
             self.stationsView.hidden=YES;
             self.horizontalPathesScrollView.hidden=YES;
             self.changeViewButton.hidden=YES;
@@ -503,6 +506,10 @@
         self.horizontalPathesScrollView.delegate = self;
         [pathView release];
         
+        
+        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
+        [self.horizontalPathesScrollView addGestureRecognizer:[singleTap autorelease]];
+        
         [(MainView*)self.view addSubview:horizontalPathesScrollView];
         [(MainView*)self.view bringSubviewToFront:horizontalPathesScrollView];
         
@@ -634,6 +641,7 @@
         [(MainView*)self.view bringSubviewToFront:pathScrollView];
         [(MainView*)self.view bringSubviewToFront:self.stationsView];
         [(MainView*)self.view bringSubviewToFront:self.horizontalPathesScrollView];
+
         
         UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
         shadow.frame = CGRectMake(0,66, 320, 61);
@@ -652,6 +660,11 @@
         
     }
 }
+
+-(void)singleTapGestureCaptured:(UITapGestureRecognizer*) sender {
+    [self.navigationViewController showHidePhotos:nil];
+}
+
 
 -(void)removeVerticalPathView
 {
@@ -859,11 +872,22 @@
             [self changeMapToPathView:nil];
         }
         mainView.mapView.stationSelected=false;
+        
 	} else {
         commonActivityIndicator.delegate = self;
         [commonActivityIndicator showWhileExecuting:@selector(performFindingPath) onTarget:self withObject:nil animated:YES];
 	}
     
+    if ((self.fromStation==nil && self.toStation==nil)) {
+        //[stationsView transitToInitialSize];
+    }
+}
+
+- (void)clearPath {
+    MainView *mainView = (MainView*)self.view;
+
+    [mainView.mapView clearPath];
+
 }
 
 -(void)setStarAtStation:(Station*)station {
@@ -1028,6 +1052,11 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kPathCleared" object:nil];
 }
 
+- (void)resetBothStationsInASpecialWay {
+    [stationsView resetBothStations];
+
+}
+
 -(void)resetBothStations
 {
     int tempSelection = currentSelection;
@@ -1042,7 +1071,7 @@
     [self returnFromSelection2:[NSArray array]];
     
     currentSelection=tempSelection;
-    
+    //[stationsView resetBothStations];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kPathCleared" object:nil];
 }
 

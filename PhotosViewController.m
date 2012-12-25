@@ -124,6 +124,7 @@
     }
     imageView.frame = self.scrollPhotos.frame;
     CGRect imageFrame = imageView.frame;
+    imageFrame.size.width -= 20;
     imageFrame.origin.x = self.scrollPhotos.frame.size.width * index;
     imageFrame.origin.y = 0;
     imageView.frame = imageFrame;

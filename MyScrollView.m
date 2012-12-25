@@ -19,7 +19,7 @@
         tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
         tgr.numberOfTouchesRequired = 1;
         tgr.numberOfTapsRequired = 1;
-        //[self addGestureRecognizer:tgr];
+        [self addGestureRecognizer:tgr];
         tgr2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
         tgr2.numberOfTouchesRequired = 1;
         tgr2.numberOfTapsRequired = 2;

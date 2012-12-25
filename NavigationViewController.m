@@ -192,7 +192,8 @@
     switch (mode) {
         case HCPhotosVisibleFully:
             self.photosController.disappearingView.alpha = 0;
-            [self.mainController toggleTap];
+            //[self.mainController toggleTap];
+            [self.mainController clearPath];
 
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
@@ -202,6 +203,7 @@
                 self.photosController.placeNamePanel.hidden = NO;
                 self.photosController.distanceContainer.hidden = NO;
             } completion:^(BOOL finished) {
+
             }];
             break;
         case HCPhotosHiddenFully:
@@ -215,7 +217,7 @@
                 self.photosController.disappearingView.alpha = 0;
                 self.photosController.view.frame = photosViewFrame;
                 self.photosController.placeNamePanel.hidden = NO;
-                self.photosController.distanceContainer.hidden = YES;
+                self.photosController.distanceContainer.hidden = NO;
             } completion:^(BOOL finished) {
             }];
             break;
@@ -223,13 +225,15 @@
             self.photosController.disappearingView.alpha = 1;
             self.photosController.placeNamePanel.hidden = NO;
             self.photosController.distanceContainer.hidden = NO;
-
+            
             
             if (oldMode != HCPhotosHiddenMetroPath) {
                 //Here we should set the destination station
                 Station *station = [self.photosController stationForCurrentPhoto];
                 MStation *stationObject = [[MHelper sharedHelper] getStationWithName:station.name forLine:station.line.name];
-                [self.mainController resetToStation];
+                [self.mainController resetBothStationsInASpecialWay];
+
+                //[self.mainController resetFromStation];
                 
                 Station *userStation = [self.mainController nearestStation];
                 if (userStation) {
@@ -256,6 +260,7 @@
                 [self.mainController.view insertSubview:self.photosController.panelView aboveSubview:self.mainController.stationsView];
                 self.photosController.panelView.frame = panelFrame;
                 self.photosController.view.frame = photosViewFrame;
+
             }];
             break;
         case HCPhotosHiddenMetroPath:
@@ -339,6 +344,8 @@
         //If we're trying to set same layer, do nothing
         return;
     }
+    HCLayerMode oldMode = layerMode;
+
     if (layerMode == HCBookmarksLayer) {
         //As bookmarks layer is just placed ABOVE map/metro layer, we need to first dismiss it
         [self.bookmarksController.view removeFromSuperview];
@@ -395,10 +402,17 @@
             [self transitPhotosToMode:HCPhotosHiddenFully animated:YES];
             break;
         case HCMetroLayer:
-            [self transitPhotosToMode:HCPhotosVisibleFully animated:YES];
+            if (oldMode == HCBookmarksLayer) {
+                [self transitPhotosToMode:HCPhotosVisibleFully animated:YES];
+            }
+            else if (photosMode == HCPhotosHiddenFully) {
+                [self transitPhotosToMode:HCPhotosHiddenMetroDefault animated:YES];
+            }
             break;
         case HCOSMLayer:
-            [self transitPhotosToMode:HCPhotosVisibleFully animated:YES];
+            if (photosMode == HCPhotosHiddenMetroDefault || photosMode == HCPhotosHiddenMetroPath) {
+                [self transitPhotosToMode:HCPhotosHiddenFully animated:YES];
+            }
             break;
             
         default:
@@ -486,10 +500,12 @@
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-
+    MainView *mainView = (MainView*)[self.mainController view];
     if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+        [mainView changedToLandscape:NO];
         self.photosController.view.hidden = self.categoriesController.view.hidden = self.photosController.panelView.hidden = NO;
     } else {
+        [mainView changedToLandscape:YES];
 
         [self hideCategoriesAnimated:NO];
         [self transitPhotosToMode:HCPhotosVisibleFully animated:NO];

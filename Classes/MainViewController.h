@@ -62,6 +62,7 @@
 -(void)resetFromStation;
 -(void)resetToStation;
 -(void)resetBothStations;
+- (void)resetBothStationsInASpecialWay;
 -(FastAccessTableViewController*)showTableView;
 -(void)removeTableView;
 -(void)changeMapTo:(NSString*)newMap andCity:(NSString*)cityName;
@@ -73,5 +74,6 @@
 -(void)setStarAtStation:(Station*)station;
 -(void)removeStarFromStation:(NSString*)stationName;
 - (Station*)nearestStation;
+- (void)clearPath;
 
 @end
