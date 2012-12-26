@@ -1276,7 +1276,8 @@ GLint uniforms[NUM_UNIFORMS];
         } else {
             [self newPin:r.origin color:r.size.width name:nil];
         }
-        if(marks && (i == 0 || i == [coords count]-1)) {
+        if([[names objectAtIndex:i] length] > 0) {
+        //if(marks && (i == 0 || i == [coords count]-1)) {
             [[pinsArray lastObject] setActive:YES];
         }
     }

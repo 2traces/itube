@@ -3016,7 +3016,19 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 r.size.width = r.size.height = l.shortColorCode;
                 if(s.active && path) {
                     [coordinates addObject:[NSValue valueWithCGRect:r]];
-                    [names addObject:s.name];
+                    int activeSegments = 0;
+                    for (Segment *seg in s.segment) {
+                        if(seg.active) activeSegments ++;
+                    }
+                    for (Segment *seg in s.backSegment) {
+                        if(seg.active) activeSegments ++;
+                    }
+                    if(s.transfer.active) activeSegments ++;
+                    if(activeSegments < 2) {
+                        [names addObject:s.name];
+                    } else {
+                        [names addObject:@""];
+                    }
                 }
             }
         }
