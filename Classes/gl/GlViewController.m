@@ -142,7 +142,7 @@ GLint uniforms[NUM_UNIFORMS];
                 sprite = [[GlSprite alloc] initWithPicture:@"pin_16"];// RG.
                 break;
         }
-        size = 32;
+        size = 64;
         sp = [[SmallPanel alloc] initWithText:@"Hello!"];
     }
     return self;
@@ -206,7 +206,7 @@ GLint uniforms[NUM_UNIFORMS];
                 sprite = [[GlSprite alloc] initWithPicture:@"pin_16"];// RG.
                 break;
         }
-        size = 32;
+        size = 64;
         sp = [[SmallPanel alloc] initWithText:text];
     }
     return self;
@@ -283,9 +283,9 @@ GLint uniforms[NUM_UNIFORMS];
 -(void)drawWithScale:(CGFloat)scale
 {
     lastScale = scale;
-    size = 32.f / scale;
-    const CGFloat s2 = size * 0.5f;
-    [sprite setRect:CGRectMake(pos.x-s2, pos.y-s2-offset, size, size)];
+    CGFloat ss = size / scale;
+    const CGFloat s2 = ss * 0.5f;
+    [sprite setRect:CGRectMake(pos.x-s2, pos.y-s2-offset, ss, ss)];
     [sprite draw];
 }
 
