@@ -462,8 +462,8 @@
     MPlace *place = [[MHelper sharedHelper] getPlaceWithIndex:index];
     CGPoint placePosition = CGPointMake([place.posX floatValue], [place.posY floatValue]);
     
-    [(MainView*)(self.mainController.view) setGeoPosition:placePosition withZoom:-1];
-    [self.glController scrollToGeoPosition:placePosition withZoom:-1];
+    [(MainView*)(self.mainController.view) setGeoPosition:placePosition withZoom:100500];
+    [self.glController scrollToGeoPosition:placePosition withZoom:60000];
     if (currentPlacePin != -1) {
         [self.glController removePin:currentPlacePin];
     }

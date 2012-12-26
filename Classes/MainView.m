@@ -434,11 +434,14 @@ NSInteger const toolbarWidth=320;
     NSLog(@"Closest station is: %@", st.name);
     [mapView setLocationAt:st];
     
+    if(zoom > mapView.MaxScale) zoom = mapView.MaxScale;
     if (zoom != -1) {
-        [containerView setContentScaleFactor:zoom];
+        [containerView setZoomScale:zoom animated:NO];
+    } else {
+        zoom = mapView.Scale;
     }
     
-    [containerView setContentOffset:CGPointMake(st.pos.x * mapView.Scale - containerView.bounds.size.width*0.5f, st.pos.y * mapView.Scale - containerView.bounds.size.height*0.75f ) animated:YES];
+    [containerView setContentOffset:CGPointMake(st.pos.x * zoom - containerView.bounds.size.width*0.5f, st.pos.y * zoom - containerView.bounds.size.height*0.75f ) animated:YES];
 
 }
 
