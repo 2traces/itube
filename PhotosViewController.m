@@ -11,6 +11,7 @@
 #import "tubeAppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MainView.h"
+#import "UIImage+animatedGIF.h"
 
 @interface PhotosViewController ()
 
@@ -61,14 +62,19 @@
 
 - (UIImage*)imageForPhotoObject:(MPhoto*)photo {
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
+    UIImage *image = nil;
     NSString *imagePath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
-    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+    if ([[[photo.filename pathExtension] lowercaseString] isEqualToString:@"gif"]) {
+        image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfFile:imagePath] duration:2.5f];
+    } else {
+        image = [UIImage imageWithContentsOfFile:imagePath];
+    }
     if (!image) {
         image = [UIImage imageNamed:@"no_image.jpeg"];
     }
     return image;
 }
+
 
 - (Station*)stationForCurrentPhoto {
     MPlace *place = [(MPhoto*)(self.currentPhotos[currentPage]) place];
