@@ -584,7 +584,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     [self.navigationViewController showRasterMap];
 
     [gl setGeoPosition:pos];
-    [gl setStationsPosition:coords withNames:names andMarks:!CGRectIsNull(cityMap.activeExtent)];
+    if([coords count] > 0 && [names count] > 0) {
+        [gl setStationsPosition:coords withNames:names andMarks:!CGRectIsNull(cityMap.activeExtent)];
+    }
 }
 
 -(void)showMetroMap
