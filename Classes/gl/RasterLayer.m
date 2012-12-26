@@ -1033,8 +1033,8 @@
 
 -(void)debugStatus
 {
-    [rasterDownloader debugStatus];
-    [vectorDownloader debugStatus];
+    //[rasterDownloader debugStatus];
+    //[vectorDownloader debugStatus];
 }
 
 -(void)advance:(RPiece*)piece

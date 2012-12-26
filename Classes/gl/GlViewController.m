@@ -535,26 +535,40 @@ GLint uniforms[NUM_UNIFORMS];
 {
     panVelocity = CGPointZero;
     static CGFloat prevRecScale = 0.f;
+    CGPoint prevDp = CGPointZero;
+    static BOOL started = NO;
     switch (recognizer.state) {
         case UIGestureRecognizerStateBegan:
             prevScale = scale;
             prevRecScale = recognizer.scale;
+            prevPosition = position;
             break;
         case UIGestureRecognizerStateChanged:
             scale = prevScale * recognizer.scale / prevRecScale;
-            //NSLog(@"scale %f", scale);
+            CGPoint dp = [recognizer locationInView:self.view];
+            dp.x -= self.view.bounds.size.width * 0.5f;
+            dp.y -= self.view.bounds.size.height * 0.5f;
+            if(!started) {
+                prevDp = dp;
+                started = YES;
+            }
+            position.x = prevPosition.x + (dp.x - prevDp.x) / scale;
+            position.y = prevPosition.y + (dp.y - prevDp.y) / scale;
             break;
         case UIGestureRecognizerStateEnded:
             if(scale > 100000) {
                 scale = 100000;
             }
             prevRecScale = 0.f;
+            started = NO;
             break;
         case UIGestureRecognizerStateFailed:
         case UIGestureRecognizerStateCancelled:
         default:
             scale = prevScale;
             prevRecScale = 0.f;
+            position = prevPosition;
+            started = NO;
             break;
     }
 }
@@ -1262,7 +1276,8 @@ GLint uniforms[NUM_UNIFORMS];
         } else {
             [self newPin:r.origin color:r.size.width name:nil];
         }
-        if(marks && (i == 0 || i == [coords count]-1)) {
+        if([[names objectAtIndex:i] length] > 0) {
+        //if(marks && (i == 0 || i == [coords count]-1)) {
             [[pinsArray lastObject] setActive:YES];
         }
     }
