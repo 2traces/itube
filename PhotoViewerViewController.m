@@ -44,12 +44,7 @@
         NSMutableArray *tempArray = [NSMutableArray arrayWithCapacity:5];
         for (MPhoto* photo in place.photos) {
             [tempArray addObject:photo];
-            
-//            UIImage *image = [self imageForPhotoObject:photo];
-//            if (image) {
-//                UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-//                [tempArray addObject:[imageView autorelease]];
-//            }
+
         }
         self.photos = [NSArray arrayWithArray:tempArray];
         currentPage = index;

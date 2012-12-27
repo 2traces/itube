@@ -100,7 +100,9 @@
     self.scrollPhotos.contentOffset = CGPointZero;
     NSInteger index = 0;
     NSMutableArray *tempPhotos = [NSMutableArray arrayWithCapacity:[self.place.photos count]];
-    for (MPhoto *photo in self.place.photos) {
+    NSSortDescriptor* desc = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
+    NSArray *sortedPhotos = [self.place.photos sortedArrayUsingDescriptors:[NSArray arrayWithObject:desc]];
+    for (MPhoto *photo in sortedPhotos) {
         [tempPhotos addObject:photo];
         index++;
     }

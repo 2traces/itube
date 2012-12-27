@@ -51,6 +51,7 @@
 - (IBAction)showHidePhotos:(id)sender;
 - (IBAction)showBookmarks:(id)sender;
 - (IBAction)addToFavorites:(id)sender;
+- (IBAction)centerMapOnUser:(id)sender;
 - (void)updateInfoForCurrentPage;
 - (Station*)stationForCurrentPhoto;
 

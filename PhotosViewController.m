@@ -12,6 +12,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "MainView.h"
 #import "UIImage+animatedGIF.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface PhotosViewController ()
 
@@ -59,6 +60,10 @@
     [self updateInfoForCurrentPage];
 }
 
+- (IBAction)centerMapOnUser:(id)sender {
+    [self.navigationDelegate centerMapOnUser];
+}
+
 
 - (UIImage*)imageForPhotoObject:(MPhoto*)photo {
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -66,6 +71,9 @@
     NSString *imagePath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
     if ([[[photo.filename pathExtension] lowercaseString] isEqualToString:@"gif"]) {
         image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfFile:imagePath] duration:2.5f];
+    }
+    else if ([[[photo.filename pathExtension] lowercaseString] isEqualToString:@"mp4"]) {
+        return nil;
     } else {
         image = [UIImage imageWithContentsOfFile:imagePath];
     }
@@ -118,24 +126,44 @@
     [self updateInfoForCurrentPage];
 }
 
-- (UIImageView*)imageViewWithIndex:(NSInteger)index {
+- (UIView*)imageViewWithIndex:(NSInteger)index {
     MPhoto *photo = self.currentPhotos[index];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[self imageForPhotoObject:photo]];
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
-    imageView.clipsToBounds = YES;
-    if (imageView.frame.size.width < self.scrollPhotos.frame.size.width ||
-        imageView.frame.size.height < self.scrollPhotos.frame.size.height ) {
-        imageView.contentMode = UIViewContentModeCenter;
+    UIImage *image = [self imageForPhotoObject:photo];
+    UIView *mediaView = nil;
+    if (!image) {
+        //OMG, it's not an image, it's a... Video!
+        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        NSString *videoPath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
+        MPMoviePlayerController *moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
+        moviePlayerController.movieSourceType = MPMovieSourceTypeFile;
+        moviePlayerController.fullscreen = NO;
+        //moviePlayerController.controlStyle = MPMovieControlStyleNone;
+        moviePlayerController.repeatMode = MPMovieRepeatModeOne;
+        moviePlayerController.shouldAutoplay = YES;
+        [moviePlayerController prepareToPlay];
+        mediaView = [moviePlayerController.view retain];
+        //[moviePlayerController autorelease];
         
     }
-    imageView.frame = self.scrollPhotos.frame;
-    CGRect imageFrame = imageView.frame;
+    else {
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        mediaView = imageView;
+    }
+    mediaView.contentMode = UIViewContentModeScaleAspectFill;
+    mediaView.clipsToBounds = YES;
+    if (mediaView.frame.size.width < self.scrollPhotos.frame.size.width ||
+        mediaView.frame.size.height < self.scrollPhotos.frame.size.height ) {
+        mediaView.contentMode = UIViewContentModeCenter;
+        
+    }
+    mediaView.frame = self.scrollPhotos.frame;
+    CGRect imageFrame = mediaView.frame;
     imageFrame.size.width -= 20;
     imageFrame.origin.x = self.scrollPhotos.frame.size.width * index;
     imageFrame.origin.y = 0;
-    imageView.frame = imageFrame;
-    imageView.tag = index + 1;
-    return [imageView autorelease];
+    mediaView.frame = imageFrame;
+    mediaView.tag = index + 1;
+    return [mediaView autorelease];
 }
 
 - (void)reloadScrollView {
@@ -146,8 +174,10 @@
     self.currentPhotos = nil;
     NSMutableArray *mutablePhotos = [NSMutableArray arrayWithCapacity:10];
     NSInteger index = 0;
+    NSSortDescriptor* desc = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
     for (MPlace *place in self.currentPlaces) {
-        for (MPhoto *photo in place.photos) {
+        NSArray *sortedPhotos = [place.photos sortedArrayUsingDescriptors:[NSArray arrayWithObject:desc]];
+        for (MPhoto *photo in sortedPhotos) {
             [mutablePhotos addObject:photo];
             //[self.scrollPhotos addSubview:[self imageViewWithIndex:index]];
             index++;
@@ -228,6 +258,8 @@
     if ([self.navigationDelegate categoriesOpen]) {
         return;
     }
+    
+    [self.navigationDelegate showFullMap];
     
 	// get the touch
 	UITouch *touch = [[event touchesForView:button] anyObject];

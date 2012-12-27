@@ -62,6 +62,7 @@
 //Set pin
 -(int)newPin:(CGPoint)coordinate color:(int)color name:(NSString*)name;
 
+- (void) centerMapOnUser;
 
 -(void)setUserGeoPosition:(CGPoint)point;
 -(void)setStationsPosition:(NSArray*)coords withNames:(NSArray*)names andMarks:(BOOL)marks;
@@ -78,5 +79,9 @@
 - (CGFloat) radialOffsetToPoint:(CGPoint)point;
 // direction from one geo point to another one
 - (CGFloat) radialOffsetFromPoint:(CGPoint)p1 toAnotherPoint:(CGPoint)p2;
+- (void) moveModeButtonToFullScreen;
+- (void) moveModeButtonToCutScreen;
+
+
 
 @end

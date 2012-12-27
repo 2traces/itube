@@ -443,8 +443,8 @@ GLint uniforms[NUM_UNIFORMS];
     [view addSubview:sourceData];
 
     zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    [zones setImage:[UIImage imageNamed:@"bt_mode_metro"] forState:UIControlStateNormal];
-    //[zones setImage:[UIImage imageNamed:@"zones_btn"] forState:UIControlStateHighlighted];
+    [zones setImage:[UIImage imageNamed:@"bt_mode_metro_up"] forState:UIControlStateNormal];
+    [zones setImage:[UIImage imageNamed:@"bt_mode_metro"] forState:UIControlStateHighlighted];
     zones.frame = zonesRect;
     [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:zones];
@@ -455,6 +455,37 @@ GLint uniforms[NUM_UNIFORMS];
     [pinsArray addObject:p];
     [p setPosition:userPosition];
     newPinId = 1;
+}
+
+
+- (void) moveModeButtonToFullScreen {
+    CGRect zonesRect;
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if ([appDelegate isIPHONE5]) {
+        zonesRect=CGRectMake(250, 498, 71, 43);
+    }
+    else {
+        zonesRect=CGRectMake(250, 410, 71, 43);
+    }
+    
+    zones.frame = zonesRect;
+}
+
+- (void) moveModeButtonToCutScreen {
+    CGRect zonesRect;
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if ([appDelegate isIPHONE5]) {
+        zonesRect=CGRectMake(250, 498, 71, 43);
+    }
+    else {
+        zonesRect=CGRectMake(250, 410, 71, 43);
+    }
+    
+    zonesRect.origin.y -= 265;
+    
+    zones.frame = zonesRect;
 }
 
 -(void) changeSource
@@ -1265,6 +1296,11 @@ GLint uniforms[NUM_UNIFORMS];
     if(p != nil) [p setPosition:up];
     [self setGeoPosition:userGeoPosition withZoom:-1];
 }
+
+- (void) centerMapOnUser {
+    [self scrollToGeoPosition:userGeoPosition withZoom:-1];
+}
+
 
 -(void)setStationsPosition:(NSArray *)coords withNames:(NSArray*)names andMarks:(BOOL)marks
 {
