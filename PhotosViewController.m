@@ -37,6 +37,7 @@
 @synthesize distanceLabel;
 @synthesize btPanel;
 @synthesize directionImage;
+@synthesize moviePlayers;
 
 - (IBAction)showCategories:(id)sender {
     [self.navigationDelegate showCategories:self];
@@ -137,12 +138,15 @@
         MPMoviePlayerController *moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
         moviePlayerController.movieSourceType = MPMovieSourceTypeFile;
         moviePlayerController.fullscreen = NO;
-        //moviePlayerController.controlStyle = MPMovieControlStyleNone;
-        moviePlayerController.repeatMode = MPMovieRepeatModeOne;
+        moviePlayerController.controlStyle = MPMovieControlStyleNone;
+        moviePlayerController.repeatMode = MPMovieRepeatModeNone;
         moviePlayerController.shouldAutoplay = YES;
         [moviePlayerController prepareToPlay];
+        [moviePlayerController stop];
         mediaView = [moviePlayerController.view retain];
         //[moviePlayerController autorelease];
+        [self.moviePlayers addObject:moviePlayerController];
+        [moviePlayerController autorelease];
         
     }
     else {
@@ -240,6 +244,7 @@
     self.distanceLabel.textColor = [UIColor darkGrayColor];
     self.distanceLabel.text = @"";
     [self.scrollPhotos addGestureRecognizer:tapGR];
+    self.moviePlayers = [[[NSMutableArray alloc] initWithCapacity:3] autorelease];
     [tapGR autorelease];
     currentPage = 0;
     [self updateInfoForCurrentPage];
@@ -309,12 +314,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     NSInteger page = (self.scrollPhotos.contentOffset.x / self.scrollPhotos.frame.size.width);
+    NSInteger rest = ((int)self.scrollPhotos.contentOffset.x % (int)self.scrollPhotos.frame.size.width);
     //NSLog(@"%f, %f", self.scrollPhotos.contentOffset.x, self.scrollPhotos.frame.size.width);
     //NSInteger visiblePage = (self.scrollPhotos.contentOffset.y / self.scrollPhotos.frame.size.width);
     // display the image and maybe +/-1 for a smoother scrolling
 	// but be sure to check if the image already exists, you can do this very easily using tags
+    if (rest == 0) {
+        UIView *mediaView = [self.scrollPhotos viewWithTag:page + 1];
+        if (![mediaView isKindOfClass:[UIImageView class]]) {
+            for (MPMoviePlayerController *mp in self.moviePlayers) {
+                if (mp.view == mediaView) {
+                    [mp stop];
+                    [mp play];
+                    break;
+                }
+            }
+        }
+    }
     if (page != currentPage) {
         currentPage = page;
         
@@ -334,6 +353,17 @@
 
         for ( int i = 0; i < [self.currentPhotos count]; i++ ) {
             if ( (i < (currentPage - 1) || i > (currentPage + 1)) && [self.scrollPhotos viewWithTag:(i + 1)] ) {
+                UIView *mediaView = [self.scrollPhotos viewWithTag:(i + 1)];
+                MPMoviePlayerController *mpc = nil;
+                
+                for (MPMoviePlayerController *mp in self.moviePlayers) {
+                    if (mp.view == mediaView) {
+                        mpc = mp;
+                        break;
+                    }
+                }
+                
+                [self.moviePlayers removeObject:mpc];
                 [[self.scrollPhotos viewWithTag:(i + 1)] removeFromSuperview];
             }
         }

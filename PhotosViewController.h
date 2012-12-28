@@ -27,6 +27,7 @@
     UIView *distanceContainer;
     UIButton *btPanel;
     UIImageView *directionImage;
+    NSMutableArray *moviePlayers;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *distanceLabel;
@@ -46,6 +47,7 @@
 @property (nonatomic, assign) id<NavigationDelegate> navigationDelegate;
 @property (nonatomic, retain) NSArray *currentPlaces;
 @property (nonatomic, retain) NSArray *currentPhotos;
+@property (nonatomic, retain) NSMutableArray *moviePlayers;
 
 - (IBAction)showCategories:(id)sender;
 - (IBAction)showHidePhotos:(id)sender;
