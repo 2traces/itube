@@ -582,7 +582,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     pos = [mv getMapVisibleRect];
     pos = [cityMap getGeoCoordsForRect:pos coordinates:coords names:names];
     [self.navigationViewController showRasterMap];
-
+    [gl removeAllPins];
     [gl setGeoPosition:pos];
     if([coords count] > 0 && [names count] > 0) {
         [gl setStationsPosition:coords withNames:names andMarks:!CGRectIsNull(cityMap.activeExtent)];

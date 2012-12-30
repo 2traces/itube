@@ -241,6 +241,9 @@ NSInteger const toolbarWidth=320;
     if (IS_IPAD) {
         CGRect zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 43, 25);
         [zones setFrame:zonesRect];
+        [containerView setFrame:CGRectMake(0, 44,self.bounds.size.width,self.bounds.size.height-74)];
+    } else {
+        [containerView setFrame:CGRectMake(0, 44,self.bounds.size.width,self.bounds.size.height-44)];
     }
 }
 
@@ -477,7 +480,7 @@ NSInteger const toolbarWidth=320;
         zoom = mapView.Scale;
     }
     
-    [containerView setContentOffset:CGPointMake(st.pos.x * zoom - containerView.bounds.size.width*0.5f, st.pos.y * zoom - containerView.bounds.size.height*0.75f ) animated:YES];
+    [containerView setContentOffset:CGPointMake(st.pos.x * zoom - containerView.bounds.size.width*0.5f, st.pos.y * zoom - containerView.bounds.size.height*0.55f ) animated:YES];
 
 }
 

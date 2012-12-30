@@ -363,7 +363,7 @@
 
     Station *nearestStation = [map stationNearestToGeoPosition:placePoint];
 
-    [self.glController setPinAtPlace:place color:1];
+    [self.glController setStarAtPlace:place color:1];
     [self.mainController setStarAtStation:nearestStation];
 }
 
@@ -518,10 +518,10 @@
     
     [(MainView*)(self.mainController.view) setGeoPosition:placePosition withZoom:100500];
     [self.glController scrollToGeoPosition:placePosition withZoom:60000];
-    if (currentPlacePin != -1) {
-        [self.glController removePin:currentPlacePin];
-    }
-    currentPlacePin = [self.glController newStar:placePosition color:0 name:place.name];
+    //if (currentPlacePin != -1) {
+    //    [self.glController removePin:currentPlacePin];
+    //}
+    currentPlacePin = [self.glController setLocation:placePosition];
     Pin *pin = [self.glController getPin:currentPlacePin];
     return pin.distanceToUser;
 }
