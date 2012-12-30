@@ -75,5 +75,8 @@
 -(void)removeStarFromStation:(NSString*)stationName;
 - (Station*)nearestStation;
 - (void)clearPath;
+- (void) moveModeButtonToCutScreen;
+- (void) moveModeButtonToFullScreen;
+- (void) centerMapOnUser;
 
 @end

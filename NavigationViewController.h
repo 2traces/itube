@@ -33,7 +33,9 @@
 - (BOOL) photosOpen;
 - (BOOL) categoriesOpen;
 - (void) stickThePanelBackToPhotos;
-
+- (void) showFullMap;
+- (void) showCutMap;
+- (void) centerMapOnUser;
 
 @end
 
@@ -64,6 +66,8 @@ typedef enum {
     HCLayerMode layerMode;
     NSInteger currentPlacePin;
     UIImageView *shadow;
+    
+    CGRect rectMapFull, rectMapCut;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController;
@@ -75,6 +79,7 @@ typedef enum {
 - (void)placeRemovedFromFavorites:(MPlace*)place;
 
 - (void) centerMapOnPlace:(MPlace*)place;
+
 
 @property (nonatomic, retain) IBOutlet UIView *separatingView;
 @property (nonatomic, retain) IBOutlet UIImageView *shadow;

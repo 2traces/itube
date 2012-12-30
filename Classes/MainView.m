@@ -184,8 +184,8 @@ NSInteger const toolbarWidth=320;
     //[self addSubview:settings];
 
     zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    [zones setImage:[UIImage imageNamed:@"bt_mode_maps"] forState:UIControlStateNormal];
-    //[zones setImage:[UIImage imageNamed:@"zones_btn"] forState:UIControlStateHighlighted];
+    [zones setImage:[UIImage imageNamed:@"bt_mode_maps_up"] forState:UIControlStateNormal];
+    [zones setImage:[UIImage imageNamed:@"bt_mode_maps"] forState:UIControlStateHighlighted];
     zones.frame = zonesRect;
     [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:zones];
@@ -198,6 +198,42 @@ NSInteger const toolbarWidth=320;
     NSTimer *timer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(supervisor) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     [self bringSubviewToFront:commonActivityIndicator];
+    [self moveModeButtonToCutScreen];
+}
+
+- (void) centerMapOnUser {
+    [self setGeoPosition:mapView.nearestStation.gpsCoords withZoom:-1];
+}
+
+
+- (void) moveModeButtonToFullScreen {
+    CGRect zonesRect;
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    if ([appDelegate isIPHONE5]) {
+        zonesRect=CGRectMake(250, 498, 71, 43);
+    }
+    else {
+        zonesRect=CGRectMake(250, 410, 71, 43);
+    }
+    
+    zones.frame = zonesRect;
+}
+
+- (void) moveModeButtonToCutScreen {
+    CGRect zonesRect;
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if ([appDelegate isIPHONE5]) {
+        zonesRect=CGRectMake(250, 498, 71, 43);
+    }
+    else {
+        zonesRect=CGRectMake(250, 410, 71, 43);
+    }
+    
+    zonesRect.origin.y -= 265;
+    
+    zones.frame = zonesRect;
 }
 
 -(void)layoutSubviews

@@ -171,6 +171,18 @@
     
 }
 
+
+- (void) moveModeButtonToFullScreen {
+    MainView *view = self.view;
+    [view moveModeButtonToFullScreen];
+}
+
+- (void) moveModeButtonToCutScreen {
+    MainView *view = self.view;
+    [view moveModeButtonToCutScreen];
+    
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
 }
@@ -905,6 +917,11 @@
     return view.mapView.nearestStation;
 }
 
+
+- (void) centerMapOnUser {
+    MainView *view = self.view;
+    [view centerMapOnUser];
+}
 
 -(void)performFindingPath
 {

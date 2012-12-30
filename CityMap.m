@@ -2204,13 +2204,16 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             }
             //Read photos for this place
             NSMutableSet *setPhotos = [newPlace mutableSetValueForKey:@"photos"];
+            NSInteger index = 0;
             for (NSString *filename in [place objectForKey:@"photos"]) {
                 MPhoto *photo = [[MHelper sharedHelper] photoByFilename:filename];
                 if (!photo) {
                     photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
                     photo.filename = filename;
+                    photo.index = [NSNumber numberWithInteger:index];
                 }
                 [setPhotos addObject:photo];
+                index++;
             }
         }
         

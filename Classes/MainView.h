@@ -67,5 +67,7 @@ MBProgressHUD *commonActivityIndicator;
 -(void)setGeoPosition:(CGPoint)geoPosition withZoom:(CGFloat)zoom;
 - (Station*) stationNearestToGeoPosition:(CGPoint)position;
 - (CGFloat) radialOffsetToPoint:(CGPoint)point;
-
+- (void) moveModeButtonToCutScreen;
+- (void) moveModeButtonToFullScreen;
+- (void) centerMapOnUser;
 @end

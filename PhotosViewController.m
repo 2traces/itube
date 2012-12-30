@@ -11,6 +11,8 @@
 #import "tubeAppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MainView.h"
+#import "UIImage+animatedGIF.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface PhotosViewController ()
 
@@ -35,6 +37,7 @@
 @synthesize distanceLabel;
 @synthesize btPanel;
 @synthesize directionImage;
+@synthesize moviePlayers;
 
 - (IBAction)showCategories:(id)sender {
     [self.navigationDelegate showCategories:self];
@@ -58,17 +61,29 @@
     [self updateInfoForCurrentPage];
 }
 
+- (IBAction)centerMapOnUser:(id)sender {
+    [self.navigationDelegate centerMapOnUser];
+}
+
 
 - (UIImage*)imageForPhotoObject:(MPhoto*)photo {
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
+    UIImage *image = nil;
     NSString *imagePath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
-    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+    if ([[[photo.filename pathExtension] lowercaseString] isEqualToString:@"gif"]) {
+        image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfFile:imagePath] duration:2.5f];
+    }
+    else if ([[[photo.filename pathExtension] lowercaseString] isEqualToString:@"mp4"]) {
+        return nil;
+    } else {
+        image = [UIImage imageWithContentsOfFile:imagePath];
+    }
     if (!image) {
         image = [UIImage imageNamed:@"no_image.jpeg"];
     }
     return image;
 }
+
 
 - (Station*)stationForCurrentPhoto {
     MPlace *place = [(MPhoto*)(self.currentPhotos[currentPage]) place];
@@ -112,24 +127,47 @@
     [self updateInfoForCurrentPage];
 }
 
-- (UIImageView*)imageViewWithIndex:(NSInteger)index {
+- (UIView*)imageViewWithIndex:(NSInteger)index {
     MPhoto *photo = self.currentPhotos[index];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[self imageForPhotoObject:photo]];
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
-    imageView.clipsToBounds = YES;
-    if (imageView.frame.size.width < self.scrollPhotos.frame.size.width ||
-        imageView.frame.size.height < self.scrollPhotos.frame.size.height ) {
-        imageView.contentMode = UIViewContentModeCenter;
+    UIImage *image = [self imageForPhotoObject:photo];
+    UIView *mediaView = nil;
+    if (!image) {
+        //OMG, it's not an image, it's a... Video!
+        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        NSString *videoPath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
+        MPMoviePlayerController *moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
+        moviePlayerController.movieSourceType = MPMovieSourceTypeFile;
+        moviePlayerController.fullscreen = NO;
+        moviePlayerController.controlStyle = MPMovieControlStyleNone;
+        moviePlayerController.repeatMode = MPMovieRepeatModeNone;
+        moviePlayerController.shouldAutoplay = YES;
+        [moviePlayerController prepareToPlay];
+        [moviePlayerController stop];
+        mediaView = [moviePlayerController.view retain];
+        //[moviePlayerController autorelease];
+        [self.moviePlayers addObject:moviePlayerController];
+        [moviePlayerController autorelease];
         
     }
-    imageView.frame = self.scrollPhotos.frame;
-    CGRect imageFrame = imageView.frame;
+    else {
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        mediaView = imageView;
+    }
+    mediaView.contentMode = UIViewContentModeScaleAspectFill;
+    mediaView.clipsToBounds = YES;
+    if (mediaView.frame.size.width < self.scrollPhotos.frame.size.width ||
+        mediaView.frame.size.height < self.scrollPhotos.frame.size.height ) {
+        mediaView.contentMode = UIViewContentModeCenter;
+        
+    }
+    mediaView.frame = self.scrollPhotos.frame;
+    CGRect imageFrame = mediaView.frame;
     imageFrame.size.width -= 20;
     imageFrame.origin.x = self.scrollPhotos.frame.size.width * index;
     imageFrame.origin.y = 0;
-    imageView.frame = imageFrame;
-    imageView.tag = index + 1;
-    return [imageView autorelease];
+    mediaView.frame = imageFrame;
+    mediaView.tag = index + 1;
+    return [mediaView autorelease];
 }
 
 - (void)reloadScrollView {
@@ -140,8 +178,10 @@
     self.currentPhotos = nil;
     NSMutableArray *mutablePhotos = [NSMutableArray arrayWithCapacity:10];
     NSInteger index = 0;
+    NSSortDescriptor* desc = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
     for (MPlace *place in self.currentPlaces) {
-        for (MPhoto *photo in place.photos) {
+        NSArray *sortedPhotos = [place.photos sortedArrayUsingDescriptors:[NSArray arrayWithObject:desc]];
+        for (MPhoto *photo in sortedPhotos) {
             [mutablePhotos addObject:photo];
             //[self.scrollPhotos addSubview:[self imageViewWithIndex:index]];
             index++;
@@ -204,6 +244,7 @@
     self.distanceLabel.textColor = [UIColor darkGrayColor];
     self.distanceLabel.text = @"";
     [self.scrollPhotos addGestureRecognizer:tapGR];
+    self.moviePlayers = [[[NSMutableArray alloc] initWithCapacity:3] autorelease];
     [tapGR autorelease];
     currentPage = 0;
     [self updateInfoForCurrentPage];
@@ -222,6 +263,8 @@
     if ([self.navigationDelegate categoriesOpen]) {
         return;
     }
+    
+    [self.navigationDelegate showFullMap];
     
 	// get the touch
 	UITouch *touch = [[event touchesForView:button] anyObject];
@@ -271,12 +314,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     NSInteger page = (self.scrollPhotos.contentOffset.x / self.scrollPhotos.frame.size.width);
+    NSInteger rest = ((int)self.scrollPhotos.contentOffset.x % (int)self.scrollPhotos.frame.size.width);
     //NSLog(@"%f, %f", self.scrollPhotos.contentOffset.x, self.scrollPhotos.frame.size.width);
     //NSInteger visiblePage = (self.scrollPhotos.contentOffset.y / self.scrollPhotos.frame.size.width);
     // display the image and maybe +/-1 for a smoother scrolling
 	// but be sure to check if the image already exists, you can do this very easily using tags
+    if (rest == 0) {
+        UIView *mediaView = [self.scrollPhotos viewWithTag:page + 1];
+        if (![mediaView isKindOfClass:[UIImageView class]]) {
+            for (MPMoviePlayerController *mp in self.moviePlayers) {
+                if (mp.view == mediaView) {
+                    [mp stop];
+                    [mp play];
+                    break;
+                }
+            }
+        }
+    }
     if (page != currentPage) {
         currentPage = page;
         
@@ -296,6 +353,17 @@
 
         for ( int i = 0; i < [self.currentPhotos count]; i++ ) {
             if ( (i < (currentPage - 1) || i > (currentPage + 1)) && [self.scrollPhotos viewWithTag:(i + 1)] ) {
+                UIView *mediaView = [self.scrollPhotos viewWithTag:(i + 1)];
+                MPMoviePlayerController *mpc = nil;
+                
+                for (MPMoviePlayerController *mp in self.moviePlayers) {
+                    if (mp.view == mediaView) {
+                        mpc = mp;
+                        break;
+                    }
+                }
+                
+                [self.moviePlayers removeObject:mpc];
                 [[self.scrollPhotos viewWithTag:(i + 1)] removeFromSuperview];
             }
         }
