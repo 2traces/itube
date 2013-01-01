@@ -414,4 +414,49 @@ NSInteger const toolbarWidth=320;
     [containerView setContentOffset:CGPointMake(st.pos.x * mapView.Scale - containerView.bounds.size.width*0.5f, st.pos.y * mapView.Scale - containerView.bounds.size.height*0.75f ) animated:YES];
 }
 
+//- (UIView*)listSubviewsOfView:(UIView *)view {
+//    
+//    // Get the subviews of the view
+//    NSArray *subviews = [view subviews];
+//    
+//    // Return if there are no subviews
+//    if ([subviews count] == 0) return nil;
+//    
+//    for (UIView *subview in subviews) {
+//        
+//        if (subview.tag==555 || subview.tag==6843) {
+//            NSLog(@"%@", subview);
+//            return subview;
+//        }
+//        // List the subviews of subview
+//        [self listSubviewsOfView:subview];
+//    }
+//    
+//    return nil;
+//}
+
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    UIView *view = [self listSubviewsOfView:self];
+//    if (view) {
+//        [view touchesBegan: touches withEvent: event];
+//    }
+//}
+//
+//- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    UIView *view = [self listSubviewsOfView:self];
+//    if (view) {
+//        [view touchesMoved: touches withEvent: event];
+//    }
+//}
+//
+//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+//    UIView *view = [self listSubviewsOfView:self];
+//    if (view) {
+//        [view touchesEnded: touches withEvent: event];
+//    }
+//}
+
+
 @end

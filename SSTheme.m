@@ -115,5 +115,35 @@
     }
 }
 
++ (void)customizeSettingsTableView:(UITableView*)tableView imageView:(UIImageView*)imageView searchBar:(UISearchBar*)searchBar
+{
+    id <SSTheme> theme = [self sharedTheme];
+    UIImage *backgroundImage = [theme stationsTableViewBackground];
+    UIColor *backgroundColor = [theme stationsTableViewBackgroundColor];
+    if (backgroundImage) {
+        UIImageView *background = [[UIImageView alloc] initWithImage:backgroundImage];
+        [tableView setBackgroundView:background];
+        imageView.image=nil;
+    } else if (backgroundColor) {
+        [tableView setBackgroundView:nil];
+        [tableView setBackgroundColor:backgroundColor];
+        imageView.image=nil;
+    }
+    
+    searchBar.tintColor=[UIColor lightGrayColor];
+    
+    
+    
+    //    if ([[SSThemeManager sharedTheme] stationTableViewBackgroundImage]) {
+    //        self.imageView.image = [[SSThemeManager sharedTheme] stationTableViewBackgroundImage]; //[UIImage imageNamed:@"lines_shadow.png"];
+    //        [self.mytableView setBackgroundColor:[UIColor clearColor]];
+    //    } else {
+    //        self.imageView.image = nil;
+    //        self.mytableView.backgroundColor= [[SSThemeManager sharedTheme] stationTableViewBackgroundColor];
+    //    }
+    
+
+
+}
 
 @end

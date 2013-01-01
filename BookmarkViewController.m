@@ -11,6 +11,7 @@
 #import "StationListCell.h"
 #import "tubeAppDelegate.h"
 #import "MainViewController.h"
+#import "SSTheme.h"
 
 @implementation BookmarkViewController
 
@@ -37,8 +38,7 @@
     MHelper *helper = [MHelper sharedHelper];
     self.dataSource = helper;
     
-    [self.mytableView setBackgroundColor:[UIColor clearColor]];
-    self.imageView.image = [UIImage imageNamed:@"lines_shadow.png"];
+    [SSThemeManager customizeSettingsTableView:self.mytableView imageView:self.imageView searchBar:(UISearchBar*)nil];
     
 //    self.stationList = [NSMutableArray arrayWithArray:[dataSource getFavoriteStationList]];
     
@@ -141,7 +141,7 @@
     
     cell.mylabel.text = cellValue;
     cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
-    cell.mylabel.textColor = [UIColor blackColor];
+    cell.mylabel.textColor = [[SSThemeManager sharedTheme] mainColor];
     
     NSUInteger indexForTag = [indexPath row]; 
     
