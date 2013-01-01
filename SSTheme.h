@@ -134,6 +134,21 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 -(CGFloat)statusViewStartX;
 -(CGFloat)statusViewTextY;
 -(CGFloat)statusViewUpdateY;
+-(CGFloat)fastAccessTableViewStartY;
+
+-(UIImage*)stationsTableViewBackground;
+-(UIColor*)stationsTableViewBackgroundColor;
+
+-(UIImage*)stationsTabBarTopBackgroundStations;
+-(UIImage*)stationsTabBarTopBackgroundLines;
+-(UIImage*)stationsTabBarStationButtonForState:(UIControlState)state type:(int)type;
+-(UIImage*)stationsTabBarLineButtonForState:(UIControlState)state type:(int)type;
+-(UIImage*)stationsTabBarBackButtonForState:(UIControlState)state type:(int)type;
+
+-(UIImage*)stationsTabBarBottomBackgroundStations;
+-(UIImage*)stationsTabBarBookmarkButtonForState:(UIControlState)state;
+-(UIImage*)stationsTabBarHistoryButtonForState:(UIControlState)state;
+-(UIImage*)stationsTabBarSettingsButtonForState:(UIControlState)state;
 
 @end
 
@@ -145,5 +160,6 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 + (void)customizeView:(UIView *)view;
 + (void)customizeTableView:(UITableView *)tableView;
 + (void)customizeTabBarItem:(UITabBarItem *)item forTab:(SSThemeTab)tab;
++ (void)customizeSettingsTableView:(UITableView*)tableView imageView:(UIImageView*)imageView searchBar:(UISearchBar*)searchBar;
 
 @end

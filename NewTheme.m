@@ -636,6 +636,141 @@
     return 60.0f;
 }
 
+-(CGFloat)fastAccessTableViewStartY
+{
+    return 60.0f;
+}
+
+-(UIImage*)stationsTableViewBackground
+{
+    return nil;
+}
+
+-(UIColor*)stationsTableViewBackgroundColor
+{
+    UIColor *color = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"newdesBackground"]];
+    return [color autorelease];
+}
+
+-(UIImage*)stationsTabBarBottomBackgroundStations
+{
+    return [UIImage imageNamed:@"newdes_stations_bottom_bg"];
+}
+
+-(UIImage*)stationsTabBarBookmarkButtonForState:(UIControlState)state
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"newdes_stations_bookmarks";
+    } else  {
+        name = @"newdes_stations_bookmarks_pressed";
+    }
+    UIImage *image = [[UIImage imageNamed:name] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 45, 0, 5)];
+    return image;
+
+}
+
+-(UIImage*)stationsTabBarHistoryButtonForState:(UIControlState)state
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"newdes_stations_history";
+    } else  {
+        name = @"newdes_stations_history_pressed";
+    }
+    UIImage *image = [[UIImage imageNamed:name] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 45, 0, 5)];
+    return image;
+
+}
+
+-(UIImage*)stationsTabBarSettingsButtonForState:(UIControlState)state
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"newdes_stations_settings";
+    } else  {
+        name = @"newdes_stations_settings_pressed";
+    }
+    UIImage *image = [[UIImage imageNamed:name] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 45, 0, 5)];
+    return image;
+
+}
+
+-(UIImage*)stationsTabBarTopBackgroundStations
+{
+    return [UIImage imageNamed:@"newdes_stations_background"];
+}
+
+-(UIImage*)stationsTabBarTopBackgroundLines
+{
+    return [UIImage imageNamed:@"newdes_lines_background"];
+    
+}
+
+-(UIImage*)stationsTabBarStationButtonForState:(UIControlState)state type:(int)type
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        if (!type) {
+            name = @"newdes_s_stationsbutton";
+        } else {
+            name = @"newdes_l_stationsbutton";
+        }
+    } else  {
+        if (!type) {
+            name = @"newdes_s_stationsbutton";
+        } else {
+            name = @"newdes_l_stationsbutton_pressed";
+        }
+    }
+
+    UIImage *image = [[UIImage imageNamed:name] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+    return image;
+}
+
+-(UIImage*)stationsTabBarLineButtonForState:(UIControlState)state type:(int)type
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        if (!type) {
+            name = @"newdes_s_linesbutton";
+        } else {
+            name = @"newdes_l_linesbutton";
+        }
+    } else  {
+        if (!type) {
+            name = @"newdes_s_linesbutton_pressed";
+        } else {
+            name = @"newdes_l_linessbutton";
+        }
+    }
+    
+    UIImage *image = [[UIImage imageNamed:name] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+    return image;
+    
+}
+
+-(UIImage*)stationsTabBarBackButtonForState:(UIControlState)state type:(int)type
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        if (!type) {
+            name = @"newdes_s_backbutton";
+        } else {
+            name = @"newdes_l_backbutton";
+        }
+    } else  {
+        if (!type) {
+            name = @"newdes_s_backbutton_pressed";
+        } else {
+            name = @"newdes_l_backbutton_pressed";
+        }
+    }
+    
+    UIImage *image = [[UIImage imageNamed:name] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+    return image;    
+}
+
 
 @end
 

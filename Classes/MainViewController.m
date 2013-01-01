@@ -514,7 +514,8 @@
     if (!self.horizontalPathesScrollView) {
         
         CGRect rect = [[SSThemeManager sharedTheme] horizontalPathViewRect];
-        PathScrollView *pathView = [[PathScrollView alloc] initWithFrame:rect]; 
+        PathScrollView *pathView = [[PathScrollView alloc] initWithFrame:rect];
+        pathView.tag=6843;
         self.horizontalPathesScrollView = pathView;
         self.horizontalPathesScrollView.delegate = self;
         [pathView release];
@@ -708,7 +709,8 @@
 
 -(FastAccessTableViewController*)showTableView
 {
-    UIView *blackView = [[UIView alloc] initWithFrame:CGRectMake(0,44,320,440)];
+    CGFloat startY = [[SSThemeManager sharedTheme] fastAccessTableViewStartY];
+    UIView *blackView = [[UIView alloc] initWithFrame:CGRectMake(0,startY,320,440)];
     blackView.backgroundColor  = [UIColor blackColor];
     blackView.alpha=0.4;
     blackView.tag=554;
@@ -720,11 +722,11 @@
     FastAccessTableViewController *tableViewC=[[[FastAccessTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
     
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-    tableViewC.view.frame=CGRectMake(0,44,320,200);
+    tableViewC.view.frame=CGRectMake(0,startY,320,200);
     
     if ([appDelegate isIPHONE5]) {
-        tableViewC.view.frame=CGRectMake(0,44,320,288);
-        [[(MainView*)self.view viewWithTag:554] setFrame:CGRectMake(0,44,320,528)];
+        tableViewC.view.frame=CGRectMake(0,startY,320,288);
+        [[(MainView*)self.view viewWithTag:554] setFrame:CGRectMake(0,startY,320,528)];
     }
     
     tableViewC.tableView.hidden=YES;

@@ -12,6 +12,7 @@
 #import "tubeAppDelegate.h"
 #import "MainViewController.h"
 #import "UIColor-enhanced.h"
+#import "SSTheme.h"
 
 @implementation StationListViewController
 
@@ -45,17 +46,15 @@
     
     self.stationList = [dataSource getStationList];
     [self createStationIndex];
-    
-    [self.mytableView setBackgroundColor:[UIColor clearColor]];
-    self.imageView.image = [UIImage imageNamed:@"lines_shadow.png"];
-    
+
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 45)];
     searchBar.barStyle=UIBarStyleDefault;
     searchBar.showsCancelButton=NO;
     searchBar.autocorrectionType=UITextAutocorrectionTypeNo;
     searchBar.autocapitalizationType=UITextAutocapitalizationTypeNone;
-    searchBar.tintColor=[UIColor lightGrayColor];
     self.mytableView.tableHeaderView=searchBar;
+    
+    [SSThemeManager customizeSettingsTableView:self.mytableView imageView:self.imageView searchBar:(UISearchBar*)self.mytableView.tableHeaderView];
     
 	self.filteredStation = [[[NSMutableArray alloc] initWithCapacity:[self.stationList count]] autorelease];
     
@@ -257,7 +256,7 @@
             }
             cell.mylabel.text = cellValue;
             cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
-            cell.mylabel.textColor = [UIColor blackColor];
+            cell.mylabel.textColor = [[SSThemeManager sharedTheme] mainColor];
             
             NSUInteger indexForTag = [self.stationList indexOfObject:[stations objectAtIndex:indexPath.row]]; 
             
