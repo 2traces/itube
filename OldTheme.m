@@ -639,5 +639,27 @@
     return 60.0f;
 }
 
+-(CGFloat)fastAccessTableViewStartY
+{
+    return [self topToolbarHeight:UIBarMetricsDefault];
+}
+
+-(UIImage*)stationsTableViewBackground
+{
+    UIImage *image = [UIImage imageNamed:@"background.png"];
+    return image;
+}
+
+-(UIColor*)stationsTableViewBackgroundColor
+{
+    return nil;
+}
+
+-(UIImage*)stationsTabBarBottomBackgroundStations
+{
+    return nil;
+}
+
+
 
 @end

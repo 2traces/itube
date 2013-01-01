@@ -11,6 +11,7 @@
 #import "HistoryListCell.h"
 #import "MainViewController.h"
 #import "tubeAppDelegate.h"
+#import "SSTheme.h"
 
 @implementation HistoryViewController
 
@@ -40,8 +41,10 @@
     
     self.colorDictionary = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
     
-    [self.mytableView setBackgroundColor:[UIColor clearColor]];
-    self.imageView.image = [UIImage imageNamed:@"lines_shadow.png"];
+//    [self.mytableView setBackgroundColor:[UIColor clearColor]];
+//    self.imageView.image = [UIImage imageNamed:@"lines_shadow.png"];
+
+    [SSThemeManager customizeSettingsTableView:self.mytableView imageView:self.imageView searchBar:(UISearchBar*)nil];
 
     formatter = [[NSDateFormatter alloc] init];
     

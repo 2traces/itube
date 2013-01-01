@@ -43,37 +43,31 @@
         CGFloat viewWidth = [[SSThemeManager sharedTheme] statusViewWidth];
         CGFloat viewStartX = [[SSThemeManager sharedTheme] statusViewStartX];
         
-        UIImageView *imv;
-
         if (!IS_IPAD) {
-            imv = [[UIImageView alloc] initWithImage:[[SSThemeManager sharedTheme] statusViewBackground]];
             self.view.frame=CGRectMake(viewStartX, -354, viewWidth, 354);
-            imv.frame = CGRectMake(0.0, 0.0, viewWidth, 354);
-            imv.layer.cornerRadius=5.0f;
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[[SSThemeManager sharedTheme] statusViewBackground]];
+            self.view.layer.cornerRadius=5.0f;
+            self.view.layer.shadowColor=[[UIColor blackColor] CGColor];
+            self.view.layer.shadowOpacity = 0.8;
+            self.view.layer.shadowRadius = 2;
+            self.view.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
+
         } else {
-            imv = [[UIImageView alloc] init];
-            imv.hidden=YES;
             self.view.frame=CGRectMake(viewStartX, 0.0, viewWidth, 1004);
             self.view.backgroundColor = [UIColor whiteColor];
         }
 
-        [self.view addSubview:imv];
-        [imv setUserInteractionEnabled:YES];
-        [self.view sendSubviewToBack:imv];
-        
         self.shadowView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow.png"]] autorelease];
         shadowView.frame = CGRectMake(0, 0, viewWidth, 61);
         [shadowView setIsAccessibilityElement:YES];
         [shadowView setUserInteractionEnabled:YES];
-        [self.view insertSubview:shadowView aboveSubview:imv];
+        [self.view addSubview:shadowView];
         
         self.yellowView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"statViewYellowBG.png"]] autorelease];
         yellowView.frame = CGRectMake(0, 44, viewWidth, 63);
         [yellowView setUserInteractionEnabled:YES];
-        [self.view insertSubview:yellowView aboveSubview:imv];
+        [self.view addSubview:yellowView];
         [yellowView setHidden:YES];
-        
-        [imv release];
         
         self.servers=[NSMutableArray array];
     }

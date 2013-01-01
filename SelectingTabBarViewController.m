@@ -18,6 +18,7 @@
 #import "MBProgressHUD.h"
 #import "tubeAppDelegate.h"
 #import "MainViewController.h"
+#import "SSTheme.h"
 
 @implementation SelectingTabBarViewController
 
@@ -29,6 +30,7 @@
 @synthesize settingsButton;
 @synthesize tabBarController;
 @synthesize delegate;
+@synthesize topImageView, bottomImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,10 +55,26 @@
     return NO;
 }
 
+-(void)awakeFromNib
+{
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        [stationButton setImage:nil forState:UIControlStateNormal];
+        [stationButton setImage:nil forState:UIControlStateSelected];
+        [stationButton setImage:nil forState:UIControlStateHighlighted];
+
+        [linesButton setImage:nil forState:UIControlStateNormal];
+        [linesButton setImage:nil forState:UIControlStateSelected];
+        [linesButton setImage:nil forState:UIControlStateHighlighted];
+    }
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self drawTopViewState:0];
+    [self drawBottomView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapChanged:) name:kMapChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(languageChanged:) name:kLangChanged object:nil];
@@ -69,8 +87,11 @@
     self.tabBarController = [[[CustomTabBar alloc] init] autorelease];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:  viewController1, viewController2, viewController3,viewController4, nil];
 
-    [self.tabBarController.view setFrame:CGRectMake(0,63,320,407)]; //460-63-39+49 64 было сделал 63 белая полоска, 406 чтобы пропал эффект наезжания внизу
-    
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        [self.tabBarController.view setFrame:CGRectMake(0,46,320,424)]; //460-63-39+49 64 было сделал 63 белая полоска, 406 чтобы пропал эффект наезжания внизу
+    } else {
+        [self.tabBarController.view setFrame:CGRectMake(0,63,320,407)]; //460-63-39+49 64 было сделал 63 белая полоска, 406 чтобы пропал эффект наезжания внизу
+    }
     [self.view addSubview:self.tabBarController.view];
     [self.tabBarController viewWillAppear:YES];
     [self.view bringSubviewToFront:[self.view viewWithTag:333]];
@@ -86,6 +107,111 @@
         linesButton.frame=CGRectMake(2*originX+stationButton.frame.size.width, linesButton.frame.origin.y, linesButton.frame.size.width, linesButton.frame.size.height);
     }
 }
+
+-(void)drawTopViewState:(int)state
+{
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        [stationButton setImage:nil forState:UIControlStateNormal];
+        [stationButton setImage:nil forState:UIControlStateSelected];
+        [stationButton setImage:nil forState:UIControlStateHighlighted];
+        
+        [linesButton setImage:nil forState:UIControlStateNormal];
+        [linesButton setImage:nil forState:UIControlStateSelected];
+        [linesButton setImage:nil forState:UIControlStateHighlighted];
+        
+        [backButton setImage:nil forState:UIControlStateNormal];
+        [backButton setImage:nil forState:UIControlStateSelected];
+        [backButton setImage:nil forState:UIControlStateHighlighted];
+        
+        if (state==0) {
+            topImageView.image = [[SSThemeManager sharedTheme] stationsTabBarTopBackgroundStations];
+            topImageView.frame=CGRectMake(0, 0, 320, 46);
+            backButton.frame=CGRectMake(37, 0, 92, 31);
+            stationButton.frame=CGRectMake(116, 9, 95, 31);
+            linesButton.frame=CGRectMake(197, 4, 92, 31);
+        } else {
+            topImageView.image = [[SSThemeManager sharedTheme] stationsTabBarTopBackgroundLines];
+            topImageView.frame=CGRectMake(0, 0, 320, 46);
+            backButton.frame=CGRectMake(37, 0, 92, 31);
+            stationButton.frame=CGRectMake(116, 4, 92, 31);
+            linesButton.frame=CGRectMake(191, 9, 95, 31);
+        }
+        
+        [stationButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarStationButtonForState:UIControlStateNormal type:state] forState:UIControlStateNormal];
+        [stationButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarStationButtonForState:UIControlStateHighlighted type:state] forState:UIControlStateHighlighted];
+        [stationButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarStationButtonForState:UIControlStateSelected type:state] forState:UIControlStateSelected];
+        [stationButton setTitle:@"Stations" forState:UIControlStateNormal];
+        [stationButton setTitleColor:[[SSThemeManager sharedTheme] mainColor] forState:UIControlStateNormal];
+        [stationButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [stationButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        
+        [linesButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarLineButtonForState:UIControlStateNormal type:state] forState:UIControlStateNormal];
+        [linesButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarLineButtonForState:UIControlStateHighlighted type:state] forState:UIControlStateHighlighted];
+        [linesButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarLineButtonForState:UIControlStateSelected type:state] forState:UIControlStateSelected];
+        [linesButton setTitle:@"Lines" forState:UIControlStateNormal];
+        [linesButton setTitleColor:[[SSThemeManager sharedTheme] mainColor] forState:UIControlStateNormal];
+        [linesButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [linesButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        
+        [backButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarBackButtonForState:UIControlStateNormal type:state] forState:UIControlStateNormal];
+        [backButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarBackButtonForState:UIControlStateHighlighted type:state] forState:UIControlStateHighlighted];
+        [backButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarBackButtonForState:UIControlStateSelected type:state] forState:UIControlStateSelected];
+        [backButton setTitle:@"Back" forState:UIControlStateNormal];
+        [backButton setTitleColor:[[SSThemeManager sharedTheme] mainColor] forState:UIControlStateNormal];
+        [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        
+    }
+}
+
+-(void)drawBottomView
+{
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        [bookmarkButton setImage:nil forState:UIControlStateNormal];
+        [bookmarkButton setImage:nil forState:UIControlStateSelected];
+        [bookmarkButton setImage:nil forState:UIControlStateHighlighted];
+        
+        [historyButton setImage:nil forState:UIControlStateNormal];
+        [historyButton setImage:nil forState:UIControlStateSelected];
+        [historyButton setImage:nil forState:UIControlStateHighlighted];
+        
+        [settingsButton setImage:nil forState:UIControlStateNormal];
+        [settingsButton setImage:nil forState:UIControlStateSelected];
+        [settingsButton setImage:nil forState:UIControlStateHighlighted];
+        
+        bottomImageView.image = [[SSThemeManager sharedTheme] stationsTabBarBottomBackgroundStations];
+//        bottomImageView.frame=CGRectMake(0, 0, 320, 38);
+        bookmarkButton.frame=CGRectMake(0, 10, 115, 20);
+        historyButton.frame=CGRectMake(125, 10, 85, 20);
+        settingsButton.frame=CGRectMake(220, 10, 100, 20);
+        
+        [bookmarkButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarBookmarkButtonForState:UIControlStateNormal] forState:UIControlStateNormal];
+        [bookmarkButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarBookmarkButtonForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+        [bookmarkButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarBookmarkButtonForState:UIControlStateSelected] forState:UIControlStateSelected];
+        [bookmarkButton setTitle:@"Bookmarks" forState:UIControlStateNormal];
+        [bookmarkButton setTitleColor:[[SSThemeManager sharedTheme] highlightColor] forState:UIControlStateNormal];
+        [bookmarkButton setTitleColor:[[SSThemeManager sharedTheme] titleShadowColor] forState:UIControlStateHighlighted];
+        [bookmarkButton setTitleColor:[[SSThemeManager sharedTheme] titleShadowColor] forState:UIControlStateSelected];
+        
+        [historyButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarHistoryButtonForState:UIControlStateNormal] forState:UIControlStateNormal];
+        [historyButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarHistoryButtonForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+        [historyButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarHistoryButtonForState:UIControlStateSelected] forState:UIControlStateSelected];
+        [historyButton setTitle:@"History" forState:UIControlStateNormal];
+        [historyButton setTitleColor:[[SSThemeManager sharedTheme] highlightColor] forState:UIControlStateNormal];
+        [historyButton setTitleColor:[[SSThemeManager sharedTheme] titleShadowColor] forState:UIControlStateHighlighted];
+        [historyButton setTitleColor:[[SSThemeManager sharedTheme] titleShadowColor] forState:UIControlStateSelected];
+        
+        [settingsButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarSettingsButtonForState:UIControlStateNormal] forState:UIControlStateNormal];
+        [settingsButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarSettingsButtonForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+        [settingsButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarSettingsButtonForState:UIControlStateSelected] forState:UIControlStateSelected];
+        [settingsButton setTitle:@"Settings" forState:UIControlStateNormal];
+        [settingsButton setTitleColor:[[SSThemeManager sharedTheme] highlightColor] forState:UIControlStateNormal];
+        [settingsButton setTitleColor:[[SSThemeManager sharedTheme] titleShadowColor] forState:UIControlStateHighlighted];
+        [settingsButton setTitleColor:[[SSThemeManager sharedTheme] titleShadowColor] forState:UIControlStateSelected];
+        
+    }
+}
+
 
 -(void)mapChanged:(NSNotification*)note
 {
@@ -142,6 +268,7 @@
 -(IBAction)stationsPressed:(id)sender
 {
     [self.tabBarController setSelectedIndex:0];
+    [self drawTopViewState:0];
     [self setAllButtonsUnselected];
     stationButton.selected=YES;
 }
@@ -149,6 +276,7 @@
 -(IBAction)linesPresses:(id)sender
 {
     [self.tabBarController setSelectedIndex:1];
+    [self drawTopViewState:1];
     [self setAllButtonsUnselected];
     linesButton.selected=YES;
 }

@@ -14,6 +14,7 @@
 #import "tubeAppDelegate.h"
 #import "MainViewController.h"
 #import "UIColor-enhanced.h"
+#import "SSTheme.h"
 
 #define DEFAULT_ROW_HEIGHT 38
 #define HEADER_HEIGHT 40
@@ -50,9 +51,11 @@
     
     self.colorDictionary = [[[NSMutableDictionary alloc] initWithCapacity:[self.lineList count]] autorelease];
     
-    [self.mytableView setBackgroundColor:[UIColor clearColor]];
-    self.imageView.image = [UIImage imageNamed:@"lines_shadow.png"];
-    
+//    [self.mytableView setBackgroundColor:[UIColor clearColor]];
+//    self.imageView.image = [UIImage imageNamed:@"lines_shadow.png"];
+
+    [SSThemeManager customizeSettingsTableView:self.mytableView imageView:self.imageView searchBar:(UISearchBar*)nil];
+
     // Set up default values.
     self.mytableView.sectionHeaderHeight = HEADER_HEIGHT;
 	/*
@@ -191,7 +194,7 @@
     }
     cell.mylabel.text = cellValue;
     cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
-    cell.mylabel.textColor = [UIColor blackColor];
+    cell.mylabel.textColor = [[SSThemeManager sharedTheme] mainColor];
     
     UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
     
