@@ -655,6 +655,9 @@
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     DownloadPiece *dp = [queue get:connection];
+#ifdef DEBUG
+    NSLog(@"Download failed from '%@'", connection.originalRequest.URL.absoluteString);
+#endif
     if(dp != nil) {
         [dp->piece rasterLoaded];
         [queue removeByConnection:connection];
@@ -668,8 +671,13 @@
 {
     DownloadPiece *dp = [queue get:connection];
     if(dp == nil) {
+#ifdef DEBUG
         NSLog(@"Lost piece '%@'", connection.originalRequest.URL.absoluteString);
+#endif
     } else {
+#ifdef DEBUG
+        NSLog(@"Piece was downloaded from '%@'", connection.originalRequest.URL.absoluteString);
+#endif
         [dp->piece rasterLoaded];
         [queue removeByConnection:connection];
         CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((CFDataRef)dp->data);
@@ -1239,7 +1247,6 @@
 
 -(void)complete:(NSValue*)value
 {
-    NSLog(@"raster map is loaded");
     [lock lock];
     NSMutableArray *l = [levels objectForKey:[NSNumber numberWithInt:level]];
     NSMutableArray *removePieces = [NSMutableArray array];

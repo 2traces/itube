@@ -503,6 +503,8 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     }
     
     zones.frame = zonesRect;
+    // we need to force recreating framebuffer object
+    [((GLKView*)(self.view)) deleteDrawable];
 }
 
 - (void) moveModeButtonToCutScreen {
@@ -516,9 +518,11 @@ CGPoint translateFromGeoToMap(CGPoint pm)
         zonesRect=CGRectMake(250, 410, 71, 43);
     }
     
-    zonesRect.origin.y -= 265;
+    zonesRect.origin.y -= 330;
     
     zones.frame = zonesRect;
+    // we need to force recreating framebuffer object
+    [((GLKView*)(self.view)) deleteDrawable];
 }
 
 -(void) changeSource
@@ -1332,17 +1336,13 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 }
 
 
--(void)setStationsPosition:(NSArray *)coords withNames:(NSArray*)names andMarks:(BOOL)marks
+-(void)setStationsPosition:(NSArray *)data withMarks:(BOOL)marks
 {
     [self removeAllPins];
-    for (int i=0; i<[coords count]; i++) {
-        CGRect r = [[coords objectAtIndex:i] CGRectValue];
-        if(i < [names count]) {
-            [self newPin:r.origin color:r.size.width name:[names objectAtIndex:i]];
-        } else {
-            [self newPin:r.origin color:r.size.width name:nil];
-        }
-        if([[names objectAtIndex:i] length] > 0) {
+    for (int i=0; i<[data count]; i++) {
+        CGRect r = [[[data objectAtIndex:i] valueForKey:@"coordinate" ] CGRectValue];
+        [self newPin:r.origin color:[[[data objectAtIndex:i] valueForKey:@"pinColor"] intValue] name:[[data objectAtIndex:i] valueForKey:@"name"]];
+        if([[[data objectAtIndex:i] valueForKey:@"ending" ] length] > 0) {
         //if(marks && (i == 0 || i == [coords count]-1)) {
             [[pinsArray lastObject] setActive:YES];
         }

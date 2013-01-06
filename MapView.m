@@ -90,13 +90,13 @@
 
 -(void)setStarAtStation:(Station *)station
 {
-    [self setStarAtStation:station withType:station.line.index];
+    [self setStarAtStation:station withType:station.line.pinColor];
 }
 
 -(void)setStarAtStation:(Station*)station withType:(int)starType
 {
     NSString *starFile = nil;
-    switch (starType%11) {
+    switch (starType%12) {
         case 0:
             starFile = @"star-aqua";
             break;
@@ -116,18 +116,21 @@
             starFile = @"star-green";
             break;
         case 6:
-            starFile = @"star-pink";
+            starFile = @"star-pink-blue";
             break;
         case 7:
-            starFile = @"star-red-pink";
+            starFile = @"star-pink";
             break;
         case 8:
-            starFile = @"star-red-yellow";
+            starFile = @"star-red-pink";
             break;
         case 9:
-            starFile = @"star-red";
+            starFile = @"star-red-yellow";
             break;
         case 10:
+            starFile = @"star-red";
+            break;
+        case 11:
             starFile = @"star-yell";
             break;
     }

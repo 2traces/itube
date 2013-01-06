@@ -231,7 +231,7 @@ NSInteger const toolbarWidth=320;
         zonesRect=CGRectMake(250, 410, 71, 43);
     }
     
-    zonesRect.origin.y -= 265;
+    zonesRect.origin.y -= 290;
     
     zones.frame = zonesRect;
 }
@@ -480,7 +480,7 @@ NSInteger const toolbarWidth=320;
         zoom = mapView.Scale;
     }
     
-    [containerView setContentOffset:CGPointMake(st.pos.x * zoom - containerView.bounds.size.width*0.5f, st.pos.y * zoom - containerView.bounds.size.height*0.55f ) animated:YES];
+    [containerView setContentOffset:CGPointMake(st.pos.x * zoom - containerView.bounds.size.width*0.5f, st.pos.y * zoom - containerView.bounds.size.height*0.5f ) animated:YES];
 
 }
 

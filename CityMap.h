@@ -216,7 +216,7 @@ typedef enum {NAME_NORMAL=0, NAME_ALTERNATIVE=1, NAME_BOTH=2} DrawNameType;
     NSMutableArray* stations;
     UIColor* _color;
     UIColor* _disabledColor;
-    int index, scc;
+    int index, scc, _pinColor;
     CGLayerRef stationLayer, disabledStationLayer;
     CGRect boundingBox;
     BOOL twoStepsDraw;
@@ -224,6 +224,7 @@ typedef enum {NAME_NORMAL=0, NAME_ALTERNATIVE=1, NAME_BOTH=2} DrawNameType;
     BOOL hasAltNames;
 }
 @property (nonatomic, retain) UIColor* color;
+@property (nonatomic, assign) int pinColor;
 @property (nonatomic, readonly) NSString* name;
 @property (nonatomic, readonly) NSString* shortName;
 @property (nonatomic, readonly) NSMutableArray* stations;
@@ -337,7 +338,7 @@ typedef enum {NAME_NORMAL=0, NAME_ALTERNATIVE=1, NAME_BOTH=2} DrawNameType;
 -(void) activatePath:(NSArray*)pathMap;
 -(void) resetPath;
 -(Station*) findNearestStationTo:(CGPoint)gpsCoord;
--(CGRect)getGeoCoordsForRect:(CGRect)rect coordinates:(NSMutableArray*)coordinates names:(NSMutableArray*)names;
+-(CGRect)getGeoCoordsForRect:(CGRect)rect coordinates:(NSMutableArray*)date;
 
 -(NSMutableArray*) describePath:(NSArray*)pathMap;
 @end

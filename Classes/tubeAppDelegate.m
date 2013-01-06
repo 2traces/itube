@@ -576,16 +576,15 @@ void uncaughtExceptionHandler(NSException *exception) {
 -(void)showRasterMap
 {
     CGRect pos;
-    NSMutableArray *coords = [NSMutableArray array];
-    NSMutableArray *names = [NSMutableArray array];
+    NSMutableArray *data = [NSMutableArray array];
     MainView *mv = (MainView*)mainViewController.view;
     pos = [mv getMapVisibleRect];
-    pos = [cityMap getGeoCoordsForRect:pos coordinates:coords names:names];
+    pos = [cityMap getGeoCoordsForRect:pos coordinates:data];
     [self.navigationViewController showRasterMap];
     [gl removeAllPins];
     [gl setGeoPosition:pos];
-    if([coords count] > 0 && [names count] > 0) {
-        [gl setStationsPosition:coords withNames:names andMarks:!CGRectIsNull(cityMap.activeExtent)];
+    if([data count] > 0) {
+        [gl setStationsPosition:data withMarks:!CGRectIsNull(cityMap.activeExtent)];
     }
 }
 

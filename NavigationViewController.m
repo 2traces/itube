@@ -89,7 +89,7 @@
     rectMapFull = mainViewFrame;
     rectMapCut = rectMapFull;
     
-    CGFloat delta = self.photosController.view.frame.size.height - 100;
+    CGFloat delta = self.photosController.view.frame.size.height - 70;
     
     rectMapCut.size.height -= delta;
     rectMapCut.origin.y += delta;
@@ -182,11 +182,11 @@
     newRect.origin.y = rectMapCut.origin.y;
     newRect.size.height = rectMapCut.size.height;
     
-    self.mainController.view.frame = self.glController.view.frame = newRect;
+    self.mainController.view.frame = newRect;
     
     CGRect specialMapRect = newRect;
-//    specialMapRect.origin.y += 64;
-//    specialMapRect.size.height += 64;
+    specialMapRect.origin.y += 40;
+    specialMapRect.size.height -= 40;
     self.glController.view.frame = specialMapRect;
     [self.glController moveModeButtonToCutScreen];
     [self.mainController moveModeButtonToCutScreen];
@@ -363,7 +363,7 @@
 
     Station *nearestStation = [map stationNearestToGeoPosition:placePoint];
 
-    [self.glController setStarAtPlace:place color:1];
+    [self.glController setStarAtPlace:place color:nearestStation.line.pinColor];
     [self.mainController setStarAtStation:nearestStation];
 }
 
