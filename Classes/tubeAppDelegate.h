@@ -9,6 +9,7 @@
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import "GlViewController.h"
+#import "TubeSplitViewController.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 
@@ -42,6 +43,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 @property (nonatomic, retain) NSString *cityName;
 @property (nonatomic, retain) NSOperationQueue *parseQueue;
 @property (nonatomic, assign) CGPoint userGeoPosition;
+@property (nonatomic, retain) TubeSplitViewController *tubeSplitViewController;
 
 -(NSString*)nameCurrentMap;
 -(NSString*)nameCurrentCity;

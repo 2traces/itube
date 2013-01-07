@@ -8,31 +8,25 @@
 
 #import "CustomPopoverBackgroundView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "tubeAppDelegate.h"
+#import "MainViewController.h"
+#import "TubeSplitViewController.h"
 
 #define CONTENT_INSET 0.0
 #define CAP_INSET 7.0
-#define ARROW_BASE 30.0
-#define ARROW_HEIGHT 14.0
+#define ARROW_BASE 19.0
+#define ARROW_HEIGHT 31.0
 
 @implementation CustomPopoverBackgroundView
 
 -(id)initWithFrame:(CGRect)frame {
     
     if (self = [super initWithFrame:frame]) {
-        _borderImageView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"popover-bg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(CAP_INSET,CAP_INSET,CAP_INSET,CAP_INSET)]];
-        _arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
+        _borderImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"newdes_ipad_stations_background_v3"]];
+    //resizableImageWithCapInsets:UIEdgeInsetsMake(CAP_INSET,CAP_INSET,CAP_INSET,CAP_INSET)]];
+    _arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"newdes_ipad_popover_rope"]];
         [self addSubview:_borderImageView];
         [self addSubview:_arrowView];
-
-        _borderImageView.layer.cornerRadius = 10.0f;
-//        _borderImageView.layer.masksToBounds = NO;
-//        _borderImageView.layer.borderWidth = 1.0f;
-//        _borderImageView.layer.borderColor = [UIColor blackColor].CGColor;
-        _borderImageView.layer.shadowColor = [UIColor blackColor].CGColor;
-        _borderImageView.layer.shadowOpacity = 0.8;
-        _borderImageView.layer.shadowRadius = 10;
-        _borderImageView.layer.shadowOffset = CGSizeMake(0.0f, 10.0f);
-        
     }
     
     return self;
@@ -59,7 +53,12 @@
             _top += ARROW_HEIGHT;
             _height -= ARROW_HEIGHT;
             _coordinate = ((self.frame.size.width / 2) + self.arrowOffset) - (ARROW_BASE/2);
-            _arrowView.frame = CGRectMake(_coordinate, 0, ARROW_BASE, ARROW_HEIGHT);
+            tubeAppDelegate *ddelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+            if ([ddelegate.tubeSplitViewController.mainViewController currentSelection]==1) {
+                _arrowView.frame = CGRectMake(261, 0, ARROW_BASE, ARROW_HEIGHT);
+            } else {
+                _arrowView.frame = CGRectMake(61, 0, ARROW_BASE, ARROW_HEIGHT);
+            }
             break;
         case UIPopoverArrowDirectionDown:
             _height -= ARROW_HEIGHT;

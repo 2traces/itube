@@ -7,6 +7,7 @@
 //
 
 #import "NewTheme.h"
+#import "tubeAppDelegate.h"
 
 @implementation NewTheme
 
@@ -546,7 +547,11 @@
 
 -(UIImage*)horizontalPathViewBackground
 {
+    if (IS_IPAD) {
+        return nil;
+    } else {
     return [UIImage imageNamed:@"newdes_pathbar_bg.png"];
+    }
 }
 
 -(CGRect)horizontalPathViewRect
@@ -598,7 +603,11 @@
 
 -(UIImage*)vertScrollViewBackground
 {
-    return [UIImage imageNamed:@"newdes_vert_path_bg"];
+    if (IS_IPAD) {
+        return [UIImage imageNamed:@"newdes_ipad_left_background"];
+    } else {
+        return [UIImage imageNamed:@"newdes_vert_path_bg"];
+    }
 }
 
 -(CGFloat)vertScrollViewStartY
@@ -654,17 +663,27 @@
 
 -(UIImage*)stationsTabBarBottomBackgroundStations
 {
-    return [UIImage imageNamed:@"newdes_stations_bottom_bg"];
+        return [UIImage imageNamed:@"newdes_stations_bottom_bg"];
 }
 
 -(UIImage*)stationsTabBarBookmarkButtonForState:(UIControlState)state
 {
     NSString *name;
+    if (IS_IPAD) {
+        if (state == UIControlStateNormal) {
+            name = @"newdes_ipad_stations_bookmarks";
+        } else  {
+            name = @"newdes_ipad_stations_bookmarks_pressed";
+        }
+        
+    } else {
     if (state == UIControlStateNormal) {
         name = @"newdes_stations_bookmarks";
     } else  {
         name = @"newdes_stations_bookmarks_pressed";
     }
+    }
+    
     UIImage *image = [[UIImage imageNamed:name] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 45, 0, 5)];
     return image;
 
@@ -673,11 +692,21 @@
 -(UIImage*)stationsTabBarHistoryButtonForState:(UIControlState)state
 {
     NSString *name;
+    if (IS_IPAD) {
+        if (state == UIControlStateNormal) {
+            name = @"newdes_ipad_stations_history";
+        } else  {
+            name = @"newdes_ipad_stations_history_pressed";
+        }
+        
+    } else {
     if (state == UIControlStateNormal) {
         name = @"newdes_stations_history";
     } else  {
         name = @"newdes_stations_history_pressed";
     }
+    }
+    
     UIImage *image = [[UIImage imageNamed:name] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 45, 0, 5)];
     return image;
 
@@ -686,10 +715,20 @@
 -(UIImage*)stationsTabBarSettingsButtonForState:(UIControlState)state
 {
     NSString *name;
+    if (IS_IPAD) {
+        if (state == UIControlStateNormal) {
+            name = @"newdes_ipad_stations_settings";
+        } else  {
+            name = @"newdes_ipad_stations_settings_pressed";
+        }
+        
+    } else {
+
     if (state == UIControlStateNormal) {
         name = @"newdes_stations_settings";
     } else  {
         name = @"newdes_stations_settings_pressed";
+    }
     }
     UIImage *image = [[UIImage imageNamed:name] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 45, 0, 5)];
     return image;
@@ -698,29 +737,37 @@
 
 -(UIImage*)stationsTabBarTopBackgroundStations
 {
-    return [UIImage imageNamed:@"newdes_stations_background"];
+        return [UIImage imageNamed:@"newdes_stations_background"];
 }
 
 -(UIImage*)stationsTabBarTopBackgroundLines
 {
-    return [UIImage imageNamed:@"newdes_lines_background"];
-    
+        return [UIImage imageNamed:@"newdes_lines_background"];
 }
 
 -(UIImage*)stationsTabBarStationButtonForState:(UIControlState)state type:(int)type
 {
     NSString *name;
-    if (state == UIControlStateNormal) {
-        if (!type) {
-            name = @"newdes_s_stationsbutton";
-        } else {
-            name = @"newdes_l_stationsbutton";
+    
+    if (IS_IPAD) {
+        if (state == UIControlStateNormal) {
+                name = @"newdes_ipad_s_stationsbutton";
+        } else  {
+                name = @"newdes_ipad_s_stationsbutton_pressed";
         }
-    } else  {
-        if (!type) {
-            name = @"newdes_s_stationsbutton";
-        } else {
-            name = @"newdes_l_stationsbutton_pressed";
+    } else {
+        if (state == UIControlStateNormal) {
+            if (!type) {
+                name = @"newdes_s_stationsbutton";
+            } else {
+                name = @"newdes_l_stationsbutton";
+            }
+        } else  {
+            if (!type) {
+                name = @"newdes_s_stationsbutton";
+            } else {
+                name = @"newdes_l_stationsbutton_pressed";
+            }
         }
     }
 
@@ -731,7 +778,15 @@
 -(UIImage*)stationsTabBarLineButtonForState:(UIControlState)state type:(int)type
 {
     NSString *name;
-    if (state == UIControlStateNormal) {
+    if (IS_IPAD) {
+        if (state == UIControlStateNormal) {
+            name = @"newdes_ipad_s_linesbutton";
+        } else  {
+            name = @"newdes_ipad_s_linesbutton_pressed";
+        }
+        
+    } else {
+        if (state == UIControlStateNormal) {
         if (!type) {
             name = @"newdes_s_linesbutton";
         } else {
@@ -744,7 +799,7 @@
             name = @"newdes_l_linessbutton";
         }
     }
-    
+    }
     UIImage *image = [[UIImage imageNamed:name] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
     return image;
     
@@ -771,6 +826,107 @@
     return image;    
 }
 
+-(UIColor*)stationsBottomButtonsColor
+{
+    if (IS_IPAD) {
+        return [UIColor colorWithRed:250.0/255.0 green:232.0/255.0 blue:206.0/255.0 alpha:1.0];
+    } else {
+        return [UIColor colorWithRed:115.0/255.0 green:46.0/255.0 blue:22.0/255.0 alpha:1.0];
+    }
+}
+
+-(UIColor*)stationsBottomButtonsPressedColor
+{
+    if (IS_IPAD) {
+        return [UIColor colorWithRed:217.0/255.0 green:152.0/255.0 blue:114.0/255.0 alpha:1.0];
+    } else {
+        return [UIColor colorWithRed:217.0/255.0 green:152.0/255.0 blue:114.0/255.0 alpha:1.0];
+    }
+}
+
+-(UIColor*)stationsBottomButtonsShadowColor
+{
+    if (IS_IPAD) {
+        return [UIColor blackColor];
+    } else {
+        return [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.5];
+    }
+}
+
+-(UIColor*)stationsBottomButtonsPressedShadowColor
+{
+    if (IS_IPAD) {
+        return [UIColor blackColor];
+//        return [UIColor colorWithRed:211.0/255.0 green:211.0/255.0 blue:193.0/255.0 alpha:1.0];
+    } else {
+        return [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.5];
+    }
+}
+
+-(UIImage*)mapLabelEmbossedCircleImage
+{
+    return [UIImage imageNamed:@"newdes_label_bubble"];
+}
+
+-(UIColor*)stationsTopButtonsColor
+{
+    if (IS_IPAD) {
+        return [UIColor colorWithRed:195.0/255.0 green:199.0/255.0 blue:199.0/255.0 alpha:1.0];
+    } else {
+        return [UIColor colorWithRed:195.0/255.0 green:199.0/255.0 blue:199.0/255.0 alpha:1.0];
+    }
+}
+
+-(UIColor*)stationsTopButtonsPressedColor
+{
+    if (IS_IPAD) {
+        return [UIColor whiteColor];
+    } else {
+        return [UIColor whiteColor];
+    }
+}
+
+-(UIColor*)stationsTopButtonsShadowColor
+{
+    if (IS_IPAD) {
+        return [UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0.75];
+    } else {
+        return [UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0.75];
+    }
+}
+
+-(UIColor*)stationsTopButtonsPressedShadowColor
+{
+    if (IS_IPAD) {
+        return [UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0.75];
+    } else {
+        return [UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0.75];
+    }
+}
+
+-(UIFont*)pathBarViewFont;
+{
+    if (IS_IPAD) {
+        return  [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+    } else {
+        return  [UIFont fontWithName:@"MyriadPro-Regular" size:13.0];
+    }
+}
+
+-(UIColor*)pathBarViewFontColor1;
+{
+    return [self highlightColor];
+}
+
+-(UIColor*)pathBarViewFontColor2;
+{
+    return [self highlightColor];
+}
+
+-(UIColor*)pathBarViewFontShadowColor;
+{
+    return [UIColor colorWithRed:0.84 green:0.62 blue:0.47 alpha:1.0];
+}
 
 @end
 

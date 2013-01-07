@@ -150,6 +150,23 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 -(UIImage*)stationsTabBarHistoryButtonForState:(UIControlState)state;
 -(UIImage*)stationsTabBarSettingsButtonForState:(UIControlState)state;
 
+-(UIColor*)stationsBottomButtonsColor;
+-(UIColor*)stationsBottomButtonsPressedColor;
+-(UIColor*)stationsBottomButtonsShadowColor;
+-(UIColor*)stationsBottomButtonsPressedShadowColor;
+
+-(UIColor*)stationsTopButtonsColor;
+-(UIColor*)stationsTopButtonsPressedColor;
+-(UIColor*)stationsTopButtonsShadowColor;
+-(UIColor*)stationsTopButtonsPressedShadowColor;
+
+-(UIImage*)mapLabelEmbossedCircleImage;
+
+-(UIFont*)pathBarViewFont;
+-(UIColor*)pathBarViewFontColor1;
+-(UIColor*)pathBarViewFontColor2;
+-(UIColor*)pathBarViewFontShadowColor;
+
 @end
 
 @interface SSThemeManager : NSObject
