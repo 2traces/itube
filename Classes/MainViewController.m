@@ -22,6 +22,8 @@
 #import "CustomPopoverBackgroundView.h"
 #import "StatusViewController.h"
 #import "SSTheme.h"
+#import "SelectingTabBarViewControllerNDiPad.h"
+#import "CustomPopoverBackgroundView.h"
 
 #define FromStation 0
 #define ToStation 1
@@ -157,15 +159,19 @@
     
     TopTwoStationsView *twoStationsView;
     
-    if (IS_IPAD) {
+    if (IS_IPAD && ![[SSThemeManager sharedTheme] isNewTheme]) {
         twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault] fieldWidth:189.0f fieldHeight:[[SSThemeManager sharedTheme] toolbarFieldHeight] fieldDelta:[[SSThemeManager sharedTheme] toolbarFieldDelta] deviceHeight:1024.0f deviceWidth:768.0f];
-    } else {
+        twoStationsView.delegate=self;
+        self.stationsView = twoStationsView;
+        [(MainView*)self.view addSubview:twoStationsView];
+
+    } else if (!IS_IPAD) {
         twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault] fieldWidth:160.0f  fieldHeight:[[SSThemeManager sharedTheme] toolbarFieldHeight] fieldDelta:[[SSThemeManager sharedTheme] toolbarFieldDelta]  deviceHeight:480.0f deviceWidth:320.f];
+        twoStationsView.delegate=self;
+        self.stationsView = twoStationsView;
+        [(MainView*)self.view addSubview:twoStationsView];
     }
     
-    twoStationsView.delegate=self;
-    self.stationsView = twoStationsView;
-    [(MainView*)self.view addSubview:twoStationsView];
     [twoStationsView release];
     
     UISwipeGestureRecognizer *swipeRecognizerD = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];
@@ -753,42 +759,83 @@
 
 -(StationListViewController*)showiPadLiveSearchView
 {
-    SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
-    controller.delegate = self;
-    
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-        controller.contentSizeForViewInPopover=CGSizeMake(320, 350);
-        [popover setPopoverContentSize:CGSizeMake(320, 370)];
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        SelectingTabBarViewControllerNDiPad *controller = [[SelectingTabBarViewControllerNDiPad alloc] initWithNibName:@"SelectingTabBarViewControllerNDiPad" bundle:[NSBundle mainBundle]];
+        controller.delegate = self;
+        
+        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+            controller.contentSizeForViewInPopover=CGSizeMake(346, 350);
+            [popover setPopoverContentSize:CGSizeMake(346, 370)];
+        } else {
+            controller.contentSizeForViewInPopover=CGSizeMake(346, 524);
+            [popover setPopoverContentSize:CGSizeMake(346, 524)];
+        }
+        
+        [popover setPopoverContentSize:controller.view.frame.size];
+        
+        popover = [[UIPopoverController alloc] initWithContentViewController:controller];
+        popover.delegate=self;
+        popover.popoverBackgroundViewClass= [CustomPopoverBackgroundView class];
+        
+        CGFloat originx;
+        if (self.currentSelection==0) {
+            originx = self.stationsView.fromStationField.frame.origin.x;
+        } else {
+            originx = self.stationsView.toStationField.frame.origin.x;
+        }
+        
+        popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
+//        [popover presentPopoverFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+177.0, 36.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(originx+177.0, 36.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
+        [controller release];
+        
+        StationListViewController *stations = [[controller.tabBarController viewControllers] objectAtIndex:0];
+
+        return stations;
     } else {
-        controller.contentSizeForViewInPopover=CGSizeMake(320, 460);
-        [popover setPopoverContentSize:CGSizeMake(320, 480)];
+        SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
+        controller.delegate = self;
+        
+        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+            controller.contentSizeForViewInPopover=CGSizeMake(320, 350);
+            [popover setPopoverContentSize:CGSizeMake(320, 370)];
+        } else {
+            controller.contentSizeForViewInPopover=CGSizeMake(320, 460);
+            [popover setPopoverContentSize:CGSizeMake(320, 480)];
+        }
+        
+        [popover setPopoverContentSize:controller.view.frame.size];
+        
+        popover = [[UIPopoverController alloc] initWithContentViewController:controller];
+        popover.delegate=self;
+        
+        CGFloat originx;
+        if (self.currentSelection==0) {
+            originx = self.stationsView.fromStationField.frame.origin.x;
+        } else {
+            originx = self.stationsView.toStationField.frame.origin.x;
+        }
+        
+        popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
+        //        [popover presentPopoverFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(originx+80.0, 30.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
+        [controller release];
+        
+        StationListViewController *stations = [[controller.tabBarController viewControllers] objectAtIndex:0];
+
+        return stations;
+
     }
     
-    [popover setPopoverContentSize:controller.view.frame.size];
-    
-    popover = [[UIPopoverController alloc] initWithContentViewController:controller];
-    popover.delegate=self;
-    
-    CGFloat originx;
-    if (self.currentSelection==0) {
-        originx = self.stationsView.fromStationField.frame.origin.x;
-    } else {
-        originx = self.stationsView.toStationField.frame.origin.x;
-    }
-    
-    popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
-    //        [popover presentPopoverFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-    [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(originx+80.0, 30.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
-    [controller release];
-    
-    StationListViewController *stations = [[controller.tabBarController viewControllers] objectAtIndex:0];
-    return stations;
 }
 
 -(void)showiPadSettingsModalView
 {
-    if (popover) [popover dismissPopoverAnimated:YES];
-
+    if (popover) {
+        [popover dismissPopoverAnimated:YES];
+        [stationsView restoreFieldAfterPopover];
+    }
+    
     SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
     controller.delegate=self;
     UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:controller];
@@ -973,6 +1020,24 @@
     }
     else
     {
+        if ([[SSThemeManager sharedTheme] isNewTheme]) {
+            SelectingTabBarViewControllerNDiPad *controller = [[SelectingTabBarViewControllerNDiPad  alloc] initWithNibName:@"SelectingTabBarViewControllerNDiPad" bundle:[NSBundle mainBundle]];
+            controller.delegate = self;
+            
+            [popover setPopoverContentSize:CGSizeMake(346, 524)];
+            controller.contentSizeForViewInPopover=CGSizeMake(346, 524);
+            
+            popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
+            
+            [popover setPopoverContentSize:controller.view.frame.size];
+            
+            popover = [[UIPopoverController alloc] initWithContentViewController:controller];
+            popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
+            //        [popover presentPopoverFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+            [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+177.0, 36.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
+            [controller release];
+            
+        } else {
         SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
         controller.delegate = self;
         
@@ -986,6 +1051,7 @@
         //        [popover presentPopoverFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
         [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+80.0, 30.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
         [controller release];
+        }
     }
 }
 
@@ -1002,6 +1068,25 @@
     }
     else
     {
+        if ([[SSThemeManager sharedTheme] isNewTheme]) {
+            SelectingTabBarViewControllerNDiPad *controller = [[SelectingTabBarViewControllerNDiPad  alloc] initWithNibName:@"SelectingTabBarViewControllerNDiPad" bundle:[NSBundle mainBundle]];
+            controller.delegate = self;
+            
+            [popover setPopoverContentSize:CGSizeMake(346, 524)];
+            controller.contentSizeForViewInPopover=CGSizeMake(346, 524);
+            
+            popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
+            
+            [popover setPopoverContentSize:controller.view.frame.size];
+            
+            popover = [[UIPopoverController alloc] initWithContentViewController:controller];
+            popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
+            //        [popover presentPopoverFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+            [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+177.0, 36.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
+            [controller release];
+            
+        } else {
+
         SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
         controller.delegate = self;
         
@@ -1012,6 +1097,7 @@
         popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
         [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.toStationField.frame.origin.x+80.0, 30.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
         [controller release];
+        }
     }
 }
 

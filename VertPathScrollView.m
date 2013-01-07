@@ -733,6 +733,13 @@
             UIImageView *trainSubview = [[UIImageView alloc] initWithImage:trainImage];
             
             trainSubview.frame = CGRectMake(27, currentY+20.0, trainImage.size.width, trainImage.size.height); // было 37
+            
+            if ([[SSThemeManager sharedTheme] isNewTheme]) {
+                UIImageView *gradientView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"newdes_train_gradient"]];
+                gradientView.frame=CGRectMake(0, currentY+34.0, self.frame.size.width, 24);
+                [self addSubview:gradientView];
+            }
+            
             [self addSubview:trainSubview];
             [trainSubview release];
             

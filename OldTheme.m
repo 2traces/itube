@@ -7,6 +7,7 @@
 //
 
 #import "OldTheme.h"
+#import "tubeAppDelegate.h"
 
 @implementation OldTheme
 
@@ -660,6 +661,33 @@
     return nil;
 }
 
+-(UIImage*)mapLabelEmbossedCircleImage
+{
+    return [UIImage imageNamed:@"embossed_circle"];
+}
 
+-(UIFont*)pathBarViewFont;
+{
+    if (IS_IPAD) {
+      return  [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
+    } else {
+      return  [UIFont fontWithName:@"MyriadPro-Regular" size:13.0];
+    }
+}
+
+-(UIColor*)pathBarViewFontColor1;
+{
+    return [UIColor darkGrayColor];
+}
+
+-(UIColor*)pathBarViewFontColor2;
+{
+    return [UIColor blackColor];
+}
+
+-(UIColor*)pathBarViewFontShadowColor;
+{
+    return [UIColor whiteColor];
+}
 
 @end

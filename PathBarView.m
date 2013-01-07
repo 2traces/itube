@@ -64,9 +64,9 @@
         UILabel *travelTimeLabel = [[UILabel alloc] init];
         travelTimeLabel.text=[NSString stringWithFormat:@"%d %@",travelTime,NSLocalizedString(@"minutes", @"minutes")];        
         travelTimeLabel.backgroundColor = [UIColor clearColor];
-        travelTimeLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:13.0];
-        travelTimeLabel.textColor = [UIColor darkGrayColor];
-        travelTimeLabel.shadowColor = [UIColor whiteColor];
+        travelTimeLabel.font = [[SSThemeManager sharedTheme] pathBarViewFont];
+        travelTimeLabel.textColor = [[SSThemeManager sharedTheme] pathBarViewFontColor1];
+        travelTimeLabel.shadowColor = [[SSThemeManager sharedTheme] pathBarViewFontShadowColor];
         travelTimeLabel.shadowOffset = CGSizeMake(0, 1);
         travelTimeLabel.frame=CGRectMake(start+15.0f, 6, 65, 15);
         travelTimeLabel.tag=6000+page;
@@ -75,10 +75,11 @@
         
         UILabel *arrivalTimeLabel = [[UILabel alloc] init];
         arrivalTimeLabel.backgroundColor = [UIColor clearColor];
-        arrivalTimeLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:13.0];
+        arrivalTimeLabel.font = [[SSThemeManager sharedTheme] pathBarViewFont];
         arrivalTimeLabel.frame=CGRectMake(256.0, 7, 54, 15); 
         arrivalTimeLabel.shadowOffset = CGSizeMake(0, 1);
-        arrivalTimeLabel.shadowColor = [UIColor whiteColor];
+        arrivalTimeLabel.textColor= [[SSThemeManager sharedTheme] pathBarViewFontColor2];
+        arrivalTimeLabel.shadowColor = [[SSThemeManager sharedTheme] pathBarViewFontShadowColor];
         arrivalTimeLabel.tag=7000+page;
         arrivalTimeLabel.textAlignment=UITextAlignmentRight;
         [self addSubview:arrivalTimeLabel];
@@ -90,7 +91,7 @@
         [drawView release];
 
         NSString *arrivalTime = [self getArrivalTimeFromNow:travelTime];
-        CGSize atSize = [arrivalTime sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:13.0]];
+        CGSize atSize = [arrivalTime sizeWithFont: [[SSThemeManager sharedTheme] pathBarViewFont]];
         CGRect labelRect = [(UILabel*)[self viewWithTag:7000+page] frame];
         CGFloat labelStart = frame.size.width-atSize.width;//-10.0f-atSize.width-2.0;
         [(UILabel*)[self viewWithTag:7000+page] setFrame:CGRectMake(labelStart, labelRect.origin.y, atSize.width+2.0, labelRect.size.height)];
@@ -101,18 +102,13 @@
         
         if (IS_IPAD) {
             
-            CGSize dateSize = [arrivalTime sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:16.0]];
+            CGSize dateSize = [arrivalTime sizeWithFont:[[SSThemeManager sharedTheme] pathBarViewFont]];
             
             [[self viewWithTag:10000+page] removeFromSuperview];
             [[self viewWithTag:6400+page] setFrame:CGRectMake(start, 10, 18, 18)];
-            [[self viewWithTag:6500+page] setFrame:CGRectMake(320.0-10.0-dateSize.width-5-26, 10, 18, 18)];
-
+            [[self viewWithTag:6500+page] setFrame:CGRectMake(self.frame.size.width-10.0-dateSize.width-5-26, 10, 18, 18)];
             [[self viewWithTag:6000+page] setFrame:CGRectMake(start+26.0f, 12, 90, 20)];
-            [(UILabel*)[self viewWithTag:6000+page] setFont:[UIFont fontWithName:@"MyriadPro-Regular" size:16.0]];
-
-//            [[self viewWithTag:7000+page] setFrame:CGRectMake(196, 12, 90, 20)];
-            [[self viewWithTag:7000+page] setFrame:CGRectMake(320.0-10.0-dateSize.width-5 , 12 , dateSize.width+5 , 20)];
-            [(UILabel*)[self viewWithTag:7000+page] setFont:[UIFont fontWithName:@"MyriadPro-Regular" size:16.0]];
+            [[self viewWithTag:7000+page] setFrame:CGRectMake(self.frame.size.width-10.0-dateSize.width-5 , 12 , dateSize.width+5 , 20)];
             [(UILabel*)[self viewWithTag:7000+page] setTextAlignment:UITextAlignmentLeft];
         }
     }

@@ -32,7 +32,7 @@
         self = [self initWithFrame:frame];
         if (self) {
             self.borderStyle = UITextBorderStyleNone;
-            self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
+            self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 60)];
             self.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
             self.backgroundColor = [UIColor clearColor];
             self.textAlignment = UITextAlignmentLeft;
@@ -117,9 +117,11 @@
             [UIView animateWithDuration:animduration animations:^{
                 self.frame=frame;
                 self.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
-                self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
+                self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 60)];
                 self.rightViewMode = UITextFieldViewModeAlways;
                 self.state=style;
+                
+                self.text = [station name];
                 
                 UIImage *imageOpenList = [[SSThemeManager sharedTheme] stationTextFieldRightImageNormal];
                 UIImage *imageOpenListHL = [[SSThemeManager sharedTheme] stationTextFieldRightImageHighlighted];
@@ -196,13 +198,15 @@
                 [resetButton addTarget:self action:@selector(resetStation) forControlEvents:UIControlEventTouchUpInside];
                 self.rightView= resetButton;
                 self.rightViewMode = UITextFieldViewModeAlways;
-                
+
+                self.text = [station name];
+
                 UIImageView *lineColor = [[UIImageView alloc] initWithImage:[self imageWithColor:[station lines]]];
                 [self setLeftView:lineColor];
                 [lineColor release];
                 
                 [self setLeftViewMode: UITextFieldViewModeAlways];
-                self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
+                self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 60)];
                 
             }];
             

@@ -174,13 +174,21 @@
         [[SSThemeManager sharedTheme] decorMapViewCircleLabel:circleLabel];
         circleLabel.layer.cornerRadius = 11.f;
         circleLabel.backgroundColor = [UIColor redColor];
-        [circleLabel addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"embossed_circle"]]];
         
         labelBg = [[UIImageView alloc] initWithImage:[[SSThemeManager sharedTheme] mapViewLabelView]];
         [labelBg addSubview:mainLabel];
         [labelBg addSubview:lineLabel];
         [labelBg addSubview:circleLabel];
-		labelBg.hidden=true;
+		
+        if ([[SSThemeManager sharedTheme] isNewTheme]) {
+            UIImageView* embossLabel = [[UIImageView alloc] initWithFrame:CGRectMake(22.5, 7, 26, 26)];
+            embossLabel.image = [[SSThemeManager sharedTheme] mapLabelEmbossedCircleImage];
+            [labelBg addSubview:embossLabel];
+        } else {
+            [circleLabel addSubview:[[UIImageView alloc] initWithImage:[[SSThemeManager sharedTheme] mapLabelEmbossedCircleImage]]];
+        }
+        
+        labelBg.hidden=true;
         
         midground1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         midground1.backgroundColor = [UIColor colorWithRed:1.f green:1.f blue:1.f alpha:0.7f];

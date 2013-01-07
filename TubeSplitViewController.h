@@ -12,6 +12,7 @@
 
 @class MainViewController;
 @class LeftiPadPathViewController;
+@class TopTwoStationsView;
 
 @interface TubeSplitViewController : UIViewController {
     UIView *pathView;
@@ -27,6 +28,8 @@
 @property (nonatomic,retain) MainViewController *mainViewController;
 @property (nonatomic,retain) LeftiPadPathViewController *leftPathController;
 @property (nonatomic, readonly) UINavigationController *navigationController;
+@property (nonatomic, retain) TopTwoStationsView *topStationsView;
+@property (nonatomic, retain) UIImageView *shadowView;
 
 -(void)refreshPath;
 -(void)showLeftView;

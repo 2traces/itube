@@ -54,6 +54,7 @@
 -(void)resetFromStation;
 -(void)resetToStation;
 -(void)resetBothStations;
+-(void)restoreFieldAfterPopover;
 
 @end
 
