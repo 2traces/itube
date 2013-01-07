@@ -98,19 +98,40 @@
     
     if (IS_IPAD) {
         
-        UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button3 addTarget:self action:@selector(showiPadLeftPathView) forControlEvents:UIControlEventTouchUpInside];
-        [button3 setImage:[UIImage imageNamed:@"inv_close_ipad_button.png"] forState:UIControlStateNormal];
-        button3.frame = CGRectMake(15, 8, 17, 30);
-        self.leftButton=button3;
-        self.leftButton.userInteractionEnabled=YES;
-        [toolbar addSubview:button3];
-        
-        UIButton *button4 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button4 setImage:[UIImage imageNamed:@"settings_ipad_button.png"] forState:UIControlStateNormal];
-        [button4 addTarget:self action:@selector(showiPadSettingsModalView) forControlEvents:UIControlEventTouchUpInside];
-        button4.frame = CGRectMake(38, 4, 35, 38);
-        [toolbar addSubview:button4];
+        if ([[SSThemeManager sharedTheme] isNewTheme]) {
+            
+            UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button3 addTarget:self action:@selector(showiPadLeftPathView) forControlEvents:UIControlEventTouchUpInside];
+            [button3 setImage:[UIImage imageNamed:@"newdes_inv_close_ipad_button.png"] forState:UIControlStateNormal];
+            button3.frame = CGRectMake(self.frame.size.width-fieldWidth*2.0-31.0, 8, 25, 44);
+            self.leftButton=button3;
+            self.leftButton.userInteractionEnabled=YES;
+            [toolbar addSubview:button3];
+            
+            UIButton *button4 = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button4 setImage:[UIImage imageNamed:@"newdes_settings_ipad_button.png"] forState:UIControlStateNormal];
+            [button4 setImage:[UIImage imageNamed:@"newdes_settings_ipad_button_pressed.png"] forState:UIControlStateHighlighted];
+            [button4 addTarget:self action:@selector(showiPadSettingsModalView) forControlEvents:UIControlEventTouchUpInside];
+            button4.frame = CGRectMake(10, 8, 44, 44);
+            [toolbar addSubview:button4];
+            
+        } else {
+            
+            UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button3 addTarget:self action:@selector(showiPadLeftPathView) forControlEvents:UIControlEventTouchUpInside];
+            [button3 setImage:[UIImage imageNamed:@"inv_close_ipad_button.png"] forState:UIControlStateNormal];
+            button3.frame = CGRectMake(15, 8, 17, 30);
+            self.leftButton=button3;
+            self.leftButton.userInteractionEnabled=YES;
+            [toolbar addSubview:button3];
+            
+            UIButton *button4 = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button4 setImage:[UIImage imageNamed:@"settings_ipad_button.png"] forState:UIControlStateNormal];
+            [button4 addTarget:self action:@selector(showiPadSettingsModalView) forControlEvents:UIControlEventTouchUpInside];
+            button4.frame = CGRectMake(38, 4, 35, 38);
+            [toolbar addSubview:button4];
+            
+        }
         
         //       [toolbar release];
         
@@ -138,26 +159,36 @@
 -(void)adjustSubviews:(UIInterfaceOrientation)interfaceOrientation
 {
     if (IS_IPAD) {
-        fromStationField.frame = CGRectMake(self.frame.size.width-fieldWidth*2, fieldDelta, fieldWidth, fieldHeight);
-        toStationField.frame = CGRectMake(self.frame.size.width-fieldWidth, fieldDelta, fieldWidth, fieldHeight);
+        
+        fromStationField.frame = CGRectMake(self.frame.size.width-fieldWidth*2, fieldDelta, fromStationField.frame.size.width, fromStationField.frame.size.height);
+        toStationField.frame = CGRectMake(self.frame.size.width-toStationField.frame.size.width, fieldDelta, toStationField.frame.size.width, toStationField.frame.size.height);
         
         firstButton.frame = CGRectMake(self.frame.size.width-fieldWidth*2, fieldDelta, fieldWidth-30.0, fieldHeight);
         secondButton.frame = CGRectMake(self.frame.size.width-fieldWidth, fieldDelta, fieldWidth-30.0, fieldHeight);
         
         CGFloat desireOrigin = (toStationField.frame.origin.x - fromStationField.frame.origin.x - fromStationField.frame.size.width)/2.0+7.0;
-        arrowView.frame = CGRectMake(toStationField.frame.origin.x-desireOrigin,15, arrowView.frame.size.width, arrowView.frame.size.height);
+        
+        arrowView.frame = CGRectMake(toStationField.frame.origin.x-desireOrigin, [[SSThemeManager sharedTheme] isNewTheme] ? 22 : 15, arrowView.frame.size.width, arrowView.frame.size.height);
+        
+        if ([[SSThemeManager sharedTheme] isNewTheme]) {
+            leftButton.frame = CGRectMake(self.frame.size.width-fieldWidth*2.0-31.0, 8, 25, 44);
+        }
         
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
-            if (self.frame.size.width<deviceHeight) {
-                [self.leftButton setImage:[UIImage imageNamed:@"close_ipad_button.png"] forState:UIControlStateNormal];
-            } else {
-                [self.leftButton setImage:[UIImage imageNamed:@"inv_close_ipad_button.png"] forState:UIControlStateNormal];
+            if (![[SSThemeManager sharedTheme] isNewTheme]) {
+                if (self.frame.size.width<deviceHeight) {
+                    [self.leftButton setImage:[UIImage imageNamed:@"close_ipad_button.png"] forState:UIControlStateNormal];
+                } else {
+                    [self.leftButton setImage:[UIImage imageNamed:@"inv_close_ipad_button.png"] forState:UIControlStateNormal];
+                }
             }
         } else {
-            if (self.frame.size.width<deviceWidth) {
-                [self.leftButton setImage:[UIImage imageNamed:@"close_ipad_button.png"] forState:UIControlStateNormal];
-            } else {
-                [self.leftButton setImage:[UIImage imageNamed:@"inv_close_ipad_button.png"] forState:UIControlStateNormal];
+            if (![[SSThemeManager sharedTheme] isNewTheme]) {
+                if (self.frame.size.width<deviceWidth) {
+                    [self.leftButton setImage:[UIImage imageNamed:@"close_ipad_button.png"] forState:UIControlStateNormal];
+                } else {
+                    [self.leftButton setImage:[UIImage imageNamed:@"inv_close_ipad_button.png"] forState:UIControlStateNormal];
+                }
             }
         }
     }
@@ -301,7 +332,6 @@
         
         arrowView.hidden=NO;
         
-        CGFloat addWidth = 65;
         CGFloat maxWidth = fieldWidth;
         
         CGSize textBounds1 = [fromStationField.text sizeWithFont:[[SSThemeManager sharedTheme] toolbarPathFont]];
@@ -312,111 +342,86 @@
         CGFloat desireOrigin1;
         CGFloat desireOrigin2;
         CGFloat arrowOrigin;
+        CGFloat overallFirst;
+        CGFloat overallSecond;
         
-        if (IS_IPAD) {
-            if (textBounds1.width+textBounds2.width+addWidth*2+arrowView.frame.size.width>maxWidth*2) {
-                if (textBounds1.width+addWidth>maxWidth && textBounds2.width+addWidth>maxWidth) {
-                    desireWidth1=maxWidth-arrowView.frame.size.width/2;
-                    desireWidth2=maxWidth-arrowView.frame.size.width/2;
-                    desireOrigin1 = fromStationField.frame.origin.x;
-                    desireOrigin2 = self.frame.size.width-desireWidth2;
-                    arrowOrigin = desireOrigin2-arrowView.frame.size.width;
-                } else if (textBounds1.width+addWidth>=maxWidth && textBounds2.width+addWidth<=maxWidth) {
-                    desireWidth2=textBounds2.width+addWidth;
-                    desireOrigin2=self.frame.size.width-desireWidth2;
-                    desireOrigin1=fromStationField.frame.origin.x;
-                    desireWidth1 = desireOrigin2 - arrowView.frame.size.width-desireOrigin1;
-                    arrowOrigin = desireOrigin2 - arrowView.frame.size.width;
-                } else {
-                    desireWidth1=textBounds1.width+addWidth;
-                    desireOrigin1=fromStationField.frame.origin.x;
-                    desireOrigin2=desireOrigin1+desireWidth1+arrowView.frame.size.width;
-                    desireWidth2=self.frame.size.width-desireOrigin2;
-                    arrowOrigin=desireOrigin1+desireWidth1;
-                }
-                
-            } else {
-                desireWidth1=textBounds1.width+addWidth;
-                desireWidth2=textBounds2.width+addWidth;
-                desireOrigin1=fromStationField.frame.origin.x;
+        if (fromStationField.leftView) {
+            overallFirst = fromStationField.leftView.frame.size.width+textBounds1.width+fromStationField.rightView.frame.size.width+25;
+        } else {
+            overallFirst = textBounds1.width+fromStationField.rightView.frame.size.width+10;
+        }
+        
+        if (toStationField.leftView) {
+            overallSecond = toStationField.leftView.frame.size.width+textBounds2.width+toStationField.rightView.frame.size.width+25;
+        } else {
+            overallSecond = textBounds2.width+toStationField.rightView.frame.size.width+10;
+        }
+        
+        if (overallFirst+overallSecond+arrowView.frame.size.width>maxWidth*2) {
+            if (overallFirst>maxWidth && overallSecond>maxWidth) {
+                desireWidth1=maxWidth-arrowView.frame.size.width/2;
+                desireWidth2=maxWidth-arrowView.frame.size.width/2;
+                desireOrigin1 = self.frame.size.width-2*maxWidth;
+                desireOrigin2 = desireOrigin1+desireWidth1+arrowView.frame.size.width;
+                arrowOrigin = desireOrigin1 + desireWidth1;
+                NSLog(@"case1 - both bigger");
+            } else if (overallFirst>=maxWidth && overallSecond<=maxWidth) {
+                desireWidth2=overallSecond;
                 desireOrigin2=self.frame.size.width-desireWidth2;
-                arrowOrigin = desireOrigin2-(desireOrigin2-desireOrigin1-desireWidth1)/2-8;
+                desireOrigin1=self.frame.size.width-2*maxWidth;
+                desireWidth1 = desireOrigin2 - desireOrigin1 - arrowView.frame.size.width;
+                arrowOrigin = desireOrigin1 + desireWidth1;
+                NSLog(@"case2 - first bigger");
+            } else {
+                desireWidth1=overallFirst;
+                desireOrigin1=self.frame.size.width-2*maxWidth;
+                desireOrigin2=desireOrigin1+desireWidth1+arrowView.frame.size.width;
+                desireWidth2=self.frame.size.width - desireOrigin2;
+                arrowOrigin=desireOrigin1 + desireWidth1;
+                NSLog(@"case3 - second bigger");
             }
-            
-            fromStationField.frame = CGRectMake(desireOrigin1, [[SSThemeManager sharedTheme] isNewTheme] ? 6 : fieldDelta ,desireWidth1, 44);
-            toStationField.frame = CGRectMake(desireOrigin2, [[SSThemeManager sharedTheme] isNewTheme] ? 6 : fieldDelta, desireWidth2, 44);
-            arrowView.frame =CGRectMake(arrowOrigin, [[SSThemeManager sharedTheme] isNewTheme] ? 20 : 15, arrowView.frame.size.width, arrowView.frame.size.height);
             
         } else {
             
-            CGFloat overallFirst;
-            CGFloat overallSecond;
+            CGFloat emptySpace = maxWidth*2-overallFirst-overallSecond-arrowView.frame.size.width;
+            CGFloat oneEmptySpace = emptySpace/6.0;
             
-            if (fromStationField.leftView) {
-                overallFirst = fromStationField.leftView.frame.size.width+textBounds1.width+fromStationField.rightView.frame.size.width+25;
-            } else {
-                overallFirst = textBounds1.width+fromStationField.rightView.frame.size.width+10;
-            }
+            desireWidth1=overallFirst+oneEmptySpace;
+            desireWidth2=overallSecond+oneEmptySpace;
+            desireOrigin1=self.frame.size.width-2*maxWidth+oneEmptySpace;
+            desireOrigin2=self.frame.size.width-desireWidth2-oneEmptySpace;
+            arrowOrigin = desireOrigin1 + desireWidth1 + oneEmptySpace;
+            NSLog(@"case4 - both smaller");
+        }
+        
+        CGRect fromNewFrame;
+        CGRect toNewFrame;
+        
+        if (IS_IPAD) {
             
-            if (toStationField.leftView) {
-                overallSecond = toStationField.leftView.frame.size.width+textBounds2.width+toStationField.rightView.frame.size.width+25;
-            } else {
-                overallSecond = textBounds2.width+toStationField.rightView.frame.size.width+10;
-            }
+            fromNewFrame = CGRectMake(desireOrigin1, [[SSThemeManager sharedTheme] isNewTheme] ? 6 : fieldDelta ,desireWidth1, 44);
+            toNewFrame = CGRectMake(desireOrigin2, [[SSThemeManager sharedTheme] isNewTheme] ? 6 : fieldDelta, desireWidth2, 44);
+            arrowView.frame =CGRectMake(arrowOrigin, [[SSThemeManager sharedTheme] isNewTheme] ? 22 : 15, arrowView.frame.size.width, arrowView.frame.size.height);
             
-            if (overallFirst+overallSecond+arrowView.frame.size.width>maxWidth*2) {
-                if (overallFirst>maxWidth && overallSecond>maxWidth) {
-                    desireWidth1=maxWidth-arrowView.frame.size.width/2;
-                    desireWidth2=maxWidth-arrowView.frame.size.width/2;
-                    desireOrigin1 = self.frame.size.width-2*maxWidth;
-                    desireOrigin2 = maxWidth+arrowView.frame.size.width/2;
-                    arrowOrigin = desireWidth1;
-                    NSLog(@"case1 - both bigger");
-                } else if (overallFirst>=maxWidth && overallSecond<=maxWidth) {
-                    desireWidth2=overallSecond;
-                    desireOrigin2=self.frame.size.width-desireWidth2;
-                    desireOrigin1=self.frame.size.width-2*maxWidth;
-                    desireWidth1 = desireOrigin2 - arrowView.frame.size.width;
-                    arrowOrigin = desireWidth1;
-                    NSLog(@"case2 - first bigger");
-                } else {
-                    desireWidth1=overallFirst;
-                    desireOrigin1=self.frame.size.width-2*maxWidth;
-                    desireOrigin2=desireWidth1+arrowView.frame.size.width;
-                    desireWidth2=self.frame.size.width - desireOrigin2;
-                    arrowOrigin=desireWidth1;
-                    NSLog(@"case3 - second bigger");
-                }
-                
-            } else {
-                
-                CGFloat emptySpace = maxWidth*2-overallFirst-overallSecond-arrowView.frame.size.width;
-                CGFloat oneEmptySpace = emptySpace/6.0;
-                
-                desireWidth1=overallFirst+oneEmptySpace;
-                desireWidth2=overallSecond+oneEmptySpace;
-                desireOrigin1=self.frame.size.width-2*maxWidth+oneEmptySpace;
-                desireOrigin2=self.frame.size.width-desireWidth2-oneEmptySpace;
-                arrowOrigin = desireOrigin1 + desireWidth1 + oneEmptySpace;
-                NSLog(@"case4 - both smaller");
-            }
+        } else {
+            
+            fromNewFrame = CGRectMake(desireOrigin1, [[SSThemeManager sharedTheme] isNewTheme] ? 6 : fieldDelta, desireWidth1, 26);
+            toNewFrame = CGRectMake(desireOrigin2, [[SSThemeManager sharedTheme] isNewTheme] ? 6 : fieldDelta, desireWidth2, 26);
+            arrowView.frame =CGRectMake(arrowOrigin, [[SSThemeManager sharedTheme] isNewTheme] ? 12 : 6, arrowView.frame.size.width, arrowView.frame.size.height);
             
             CGFloat height = [[SSThemeManager sharedTheme] topToolbarPathHeight:UIBarMetricsDefault];
             
             self.frame=CGRectMake(0, 0, 320, height);
             self.toolbar.frame=CGRectMake(0, 0, 320, height);
             
-            CGRect fromNewFrame = CGRectMake(desireOrigin1, [[SSThemeManager sharedTheme] isNewTheme] ? 6 : fieldDelta, desireWidth1, 26);
-            CGRect toNewFrame = CGRectMake(desireOrigin2, [[SSThemeManager sharedTheme] isNewTheme] ? 6 : fieldDelta, desireWidth2, 26);
-
-            [fromStationField changeStyleTo:StationTextFieldStylePath withFrame:fromNewFrame animated:NO];
-            [toStationField changeStyleTo:StationTextFieldStylePath withFrame:toNewFrame animated:NO];
-            
-            arrowView.frame =CGRectMake(arrowOrigin, [[SSThemeManager sharedTheme] isNewTheme] ? 12 : 6, arrowView.frame.size.width, arrowView.frame.size.height);
-            
             [toolbar setImage:[[[SSThemeManager sharedTheme] topToolbarBackgroundPathImage] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 149.0, 0, 167.0)]];
             
+            
         }
+        
+        [fromStationField changeStyleTo:StationTextFieldStylePath withFrame:fromNewFrame animated:NO];
+        [toStationField changeStyleTo:StationTextFieldStylePath withFrame:toNewFrame animated:NO];
+        
     }];
 }
 
@@ -497,7 +502,14 @@
 
 #pragma mark - extern button calls
 
-
+-(void)restoreFieldAfterPopover
+{
+    if ([firstButton isHidden]) {
+        [self transitFirstToSmallField];
+    } else if ([secondButton isHidden]) {
+        [self transitSecondToSmallField];
+    }
+}
 
 -(void) selectFromStation {
     [fromStationField resignFirstResponder];
@@ -526,14 +538,23 @@
 
 -(void)resetFromStation
 {
-//    shouldEnlarge = YES;
+    //    shouldEnlarge = YES;
     [delegate resetFromStation];
 }
 
 -(void)resetToStation
 {
-//    shouldEnlarge=YES;
+    //    shouldEnlarge=YES;
     [delegate resetToStation];
+}
+
+-(void)setButtonToState:(int)state
+{
+    if (state) {
+        [self.leftButton setImage:[UIImage imageNamed:@"newdes_inv_close_ipad_button.png"] forState:UIControlStateNormal];
+    } else {
+        [self.leftButton setImage:[UIImage imageNamed:@"newdes_close_ipad_button.png"] forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark - UITextField delegate
@@ -594,7 +615,7 @@
 {
     UIView *view = [[delegate view] viewWithTag:555];
     if (view) {
-    [view touchesMoved: touches withEvent: event];
+        [view touchesMoved: touches withEvent: event];
     }
 }
 
@@ -602,7 +623,7 @@
 {
     UIView *view = [[delegate view] viewWithTag:555];
     if (view) {
-    [view touchesEnded: touches withEvent: event];
+        [view touchesEnded: touches withEvent: event];
     }
 }
 

@@ -11,6 +11,9 @@
 #import "CityMap.h"
 #import "Classes/MainView.h"
 #import "MapView.h"
+#import "SSTheme.h"
+#import "TubeSplitViewController.h"
+#import "TopTwoStationsView.h"
 
 @implementation LeftiPadPathViewController
 
@@ -236,14 +239,25 @@
     
     if (!self.horizontalPathesScrollView) {
         
-        PathScrollView *pathView = [[PathScrollView alloc] initWithFrame:CGRectMake(0.0, 4.0, 320.0, 40.0)];
-        self.horizontalPathesScrollView = pathView;
-        self.horizontalPathesScrollView.delegate = self;
-        [pathView release];
+        if ([[SSThemeManager sharedTheme] isNewTheme]) {
+            PathScrollView *pathView = [[PathScrollView alloc] initWithFrame:CGRectMake(60.0, 10.0, 240.0, 90.0)];
+            self.horizontalPathesScrollView = pathView;
+            self.horizontalPathesScrollView.delegate = self;
+            [pathView release];
+
+            tubeAppDelegate *delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+            [delegate.tubeSplitViewController.topStationsView addSubview:horizontalPathesScrollView];
+        } else {
+            PathScrollView *pathView = [[PathScrollView alloc] initWithFrame:CGRectMake(0.0, 4.0, 320.0, 40.0)];
+            self.horizontalPathesScrollView = pathView;
+            self.horizontalPathesScrollView.delegate = self;
+            [pathView release];
+            
+            [self.view addSubview:horizontalPathesScrollView];
+            [self.view bringSubviewToFront:horizontalPathesScrollView];
+        }
         
-        [self.view addSubview:horizontalPathesScrollView];
-        [self.view bringSubviewToFront:horizontalPathesScrollView];
-        
+    
     } else {
         
         [self.horizontalPathesScrollView refreshContent];
@@ -330,6 +344,16 @@
     if (!self.pathScrollView ) {
         
         VertPathScrollView *scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, 44.0, 320.0f, self.view.frame.size.height-44.0)];
+        
+//        if ([[SSThemeManager sharedTheme] isNewTheme]) {
+//            scview.frame=CGRectMake(0.0, 44.0, 320.0f, self.view.frame.size.height-44.0-20.0);
+//            scview.layer.cornerRadius=5.0;
+//            scview.layer.shadowColor=[[UIColor blackColor] CGColor];
+//            scview.layer.shadowOpacity = 0.8;
+//            scview.layer.shadowRadius = 2;
+//            scview.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
+//        }
+        
         self.pathScrollView = scview;
         tubeAppDelegate * delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
         scview.mainController=delegate.mainViewController;

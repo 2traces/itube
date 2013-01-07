@@ -10,7 +10,6 @@
 #import "MainViewController.h"
 #import "CityMap.h"
 #import "TubeAppIAPHelper.h"
-#import "TubeSplitViewController.h"
 #import "StatusViewController.h"
 #import <MapKit/MapKit.h>
 #import "ManagedObjects.h"
@@ -25,6 +24,7 @@
 @synthesize cityMap;
 @synthesize cityName;
 @synthesize parseQueue;
+@synthesize tubeSplitViewController;
 
 void uncaughtExceptionHandler(NSException *exception) {
     NSLog(@"CRASH: %@", exception);
@@ -76,6 +76,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     if (IS_IPAD) {
         TubeSplitViewController *splitController = [[TubeSplitViewController alloc] init];
+        self.tubeSplitViewController=splitController;
         splitController.mainViewController = self.mainViewController;
         [window addSubview:[splitController view]];
         [window setRootViewController:splitController];
