@@ -124,6 +124,7 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 
 -(CGFloat)pathBarViewWidth;
 -(UIImage*)pathBarViewDestinationIcon;
+-(UIImage*)pathBarViewClockIcon;
 -(UIImage*)switchButtonImage:(UIControlState)state;
 
 -(UIImage*)vertScrollViewBackground;

@@ -588,6 +588,11 @@
     return [UIImage imageNamed:@"flag.png"];
 }
 
+-(UIImage*)pathBarViewClockIcon
+{
+    return [UIImage imageNamed:@"clock"];
+}
+
 -(UIImage*)switchButtonImage:(UIControlState)state
 {
     NSString *name;
