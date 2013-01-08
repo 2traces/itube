@@ -204,6 +204,10 @@
 		BC28953214F621590054F9EB /* last_cell_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC28951C14F621580054F9EB /* last_cell_bg@2x.png */; };
 		BC28953314F621590054F9EB /* send_mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC28951D14F621590054F9EB /* send_mail@2x.png */; };
 		BC30660A1680D7A700D8F94F /* newtube-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC3066091680D7A700D8F94F /* newtube-Info.plist */; };
+		BC380720169BE6AF00214218 /* newdes_ipad_stations_destination.png in Resources */ = {isa = PBXBuildFile; fileRef = BC38071C169BE6AF00214218 /* newdes_ipad_stations_destination.png */; };
+		BC380721169BE6AF00214218 /* newdes_ipad_stations_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = BC38071D169BE6AF00214218 /* newdes_ipad_stations_clock.png */; };
+		BC380722169BE6AF00214218 /* newdes_ipad_stations_destination@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC38071E169BE6AF00214218 /* newdes_ipad_stations_destination@2x.png */; };
+		BC380723169BE6AF00214218 /* newdes_ipad_stations_clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC38071F169BE6AF00214218 /* newdes_ipad_stations_clock@2x.png */; };
 		BC3AAD9F153DB0C6009AF367 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = BC3AAD9D153DB0C6009AF367 /* checkmark.png */; };
 		BC3AADA0153DB0C6009AF367 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC3AAD9E153DB0C6009AF367 /* checkmark@2x.png */; };
 		BC3D14E814C338380059A17E /* HistoryListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3D14C214C338280059A17E /* HistoryListCell.m */; };
@@ -1453,6 +1457,10 @@
 		BC28951C14F621580054F9EB /* last_cell_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "last_cell_bg@2x.png"; path = "images/last_cell_bg@2x.png"; sourceTree = "<group>"; };
 		BC28951D14F621590054F9EB /* send_mail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "send_mail@2x.png"; path = "images/send_mail@2x.png"; sourceTree = "<group>"; };
 		BC3066091680D7A700D8F94F /* newtube-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "newtube-Info.plist"; sourceTree = "<group>"; };
+		BC38071C169BE6AF00214218 /* newdes_ipad_stations_destination.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = newdes_ipad_stations_destination.png; path = images/newdes_ipad_stations_destination.png; sourceTree = "<group>"; };
+		BC38071D169BE6AF00214218 /* newdes_ipad_stations_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = newdes_ipad_stations_clock.png; path = images/newdes_ipad_stations_clock.png; sourceTree = "<group>"; };
+		BC38071E169BE6AF00214218 /* newdes_ipad_stations_destination@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newdes_ipad_stations_destination@2x.png"; path = "images/newdes_ipad_stations_destination@2x.png"; sourceTree = "<group>"; };
+		BC38071F169BE6AF00214218 /* newdes_ipad_stations_clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newdes_ipad_stations_clock@2x.png"; path = "images/newdes_ipad_stations_clock@2x.png"; sourceTree = "<group>"; };
 		BC3AAD9D153DB0C6009AF367 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkmark.png; path = images/checkmark.png; sourceTree = "<group>"; };
 		BC3AAD9E153DB0C6009AF367 /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkmark@2x.png"; path = "images/checkmark@2x.png"; sourceTree = "<group>"; };
 		BC3D14C114C338270059A17E /* HistoryListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryListCell.h; sourceTree = "<group>"; };
@@ -2628,6 +2636,10 @@
 				BCDF0F6316984A2000DFAA0E /* newdes_ipad_left_background.png */,
 				BC97790C169B061000EB879D /* newdes_ipad_left_shadow.png */,
 				BC97790D169B061000EB879D /* newdes_ipad_left_shadow@2x.png */,
+				BC38071C169BE6AF00214218 /* newdes_ipad_stations_destination.png */,
+				BC38071D169BE6AF00214218 /* newdes_ipad_stations_clock.png */,
+				BC38071E169BE6AF00214218 /* newdes_ipad_stations_destination@2x.png */,
+				BC38071F169BE6AF00214218 /* newdes_ipad_stations_clock@2x.png */,
 				BCDF0F6416984A2000DFAA0E /* newdes_train_gradient.png */,
 				BCDF0F6516984A2000DFAA0E /* newdes_label_bubble.png */,
 				BCDF0F6616984A2000DFAA0E /* newdes_ipad_left_background@2x.png */,
@@ -4155,6 +4167,10 @@
 				BCDF0F6C16984A2000DFAA0E /* newdes_train_gradient@2x.png in Resources */,
 				BC97790E169B061000EB879D /* newdes_ipad_left_shadow.png in Resources */,
 				BC97790F169B061000EB879D /* newdes_ipad_left_shadow@2x.png in Resources */,
+				BC380720169BE6AF00214218 /* newdes_ipad_stations_destination.png in Resources */,
+				BC380721169BE6AF00214218 /* newdes_ipad_stations_clock.png in Resources */,
+				BC380722169BE6AF00214218 /* newdes_ipad_stations_destination@2x.png in Resources */,
+				BC380723169BE6AF00214218 /* newdes_ipad_stations_clock@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
