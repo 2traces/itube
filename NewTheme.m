@@ -586,8 +586,22 @@
 
 -(UIImage*)pathBarViewDestinationIcon
 {
-    return [UIImage imageNamed:@"newdes_pathbar_destination_icon"];
+    if (IS_IPAD) {
+        return [UIImage imageNamed:@"newdes_ipad_stations_destination"];
+    } else {
+        return [UIImage imageNamed:@"newdes_pathbar_destination_icon"];
+    }
 }
+
+-(UIImage*)pathBarViewClockIcon
+{
+    if (IS_IPAD) {
+        return [UIImage imageNamed:@"newdes_ipad_stations_clock"];
+    } else {
+        return [UIImage imageNamed:@"clock"];
+    }
+}
+
 
 -(UIImage*)switchButtonImage:(UIControlState)state
 {
@@ -915,17 +929,30 @@
 
 -(UIColor*)pathBarViewFontColor1;
 {
-    return [self highlightColor];
+    if (IS_IPAD) {
+        return [self highlightColor];
+    } else {
+        return [UIColor darkGrayColor];
+    }
 }
 
 -(UIColor*)pathBarViewFontColor2;
 {
-    return [self highlightColor];
+    if (IS_IPAD) {
+        return [self highlightColor];
+    } else {
+        return [UIColor blackColor];
+    }
 }
 
 -(UIColor*)pathBarViewFontShadowColor;
 {
-    return [UIColor colorWithRed:0.84 green:0.62 blue:0.47 alpha:1.0];
+    if (IS_IPAD) {
+        return [UIColor colorWithRed:0.84 green:0.62 blue:0.47 alpha:1.0];
+    } else {
+        return [UIColor whiteColor];
+    }
+
 }
 
 @end

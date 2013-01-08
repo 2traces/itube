@@ -736,7 +736,7 @@
             
             if ([[SSThemeManager sharedTheme] isNewTheme]) {
                 UIImageView *gradientView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"newdes_train_gradient"]];
-                gradientView.frame=CGRectMake(0, currentY+34.0, self.frame.size.width, 24);
+                gradientView.frame=CGRectMake(0, currentY+22.0, self.frame.size.width, 36);
                 [self addSubview:gradientView];
             }
             

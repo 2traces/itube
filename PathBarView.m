@@ -47,8 +47,9 @@
         }
         
 
-        UIImageView *clockView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"clock.png"]];
-        clockView.frame = CGRectMake(start, 4, 14, 14);
+        UIImage *clockImage = [[SSThemeManager sharedTheme] pathBarViewClockIcon];
+        UIImageView *clockView = [[UIImageView alloc] initWithImage:clockImage];
+        clockView.frame = CGRectMake(start, 4,clockImage.size.width,clockImage.size.height);
         clockView.tag=6400+page;
         [self addSubview:clockView];
         [clockView release];

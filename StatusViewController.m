@@ -44,7 +44,7 @@
         CGFloat viewStartX = [[SSThemeManager sharedTheme] statusViewStartX];
         
         if (!IS_IPAD) {
-            self.view.frame=CGRectMake(viewStartX, -354, viewWidth, 354);
+            self.view.frame=CGRectMake(viewStartX, -454, viewWidth, 354);
             self.view.backgroundColor = [UIColor colorWithPatternImage:[[SSThemeManager sharedTheme] statusViewBackground]];
             self.view.layer.cornerRadius=5.0f;
             self.view.layer.shadowColor=[[UIColor blackColor] CGColor];

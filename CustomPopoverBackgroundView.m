@@ -23,8 +23,7 @@
     
     if (self = [super initWithFrame:frame]) {
         _borderImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"newdes_ipad_stations_background_v3"]];
-    //resizableImageWithCapInsets:UIEdgeInsetsMake(CAP_INSET,CAP_INSET,CAP_INSET,CAP_INSET)]];
-    _arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"newdes_ipad_popover_rope"]];
+        _arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"newdes_ipad_popover_rope"]];
         [self addSubview:_borderImageView];
         [self addSubview:_arrowView];
     }
@@ -53,12 +52,7 @@
             _top += ARROW_HEIGHT;
             _height -= ARROW_HEIGHT;
             _coordinate = ((self.frame.size.width / 2) + self.arrowOffset) - (ARROW_BASE/2);
-            tubeAppDelegate *ddelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
-            if ([ddelegate.tubeSplitViewController.mainViewController currentSelection]==1) {
-                _arrowView.frame = CGRectMake(261, 0, ARROW_BASE, ARROW_HEIGHT);
-            } else {
-                _arrowView.frame = CGRectMake(61, 0, ARROW_BASE, ARROW_HEIGHT);
-            }
+            _arrowView.frame = CGRectMake(162.5, 0, ARROW_BASE, ARROW_HEIGHT);
             break;
         case UIPopoverArrowDirectionDown:
             _height -= ARROW_HEIGHT;
@@ -77,6 +71,10 @@
             _coordinate = ((self.frame.size.height / 2) + self.arrowOffset)- (ARROW_HEIGHT/2);
             _arrowView.frame = CGRectMake(_width, _coordinate, ARROW_BASE, ARROW_HEIGHT);
             _rotation = CGAffineTransformMakeRotation( M_PI_2 );
+            break;
+        case UIPopoverArrowDirectionAny:
+            break;
+        case UIPopoverArrowDirectionUnknown:
             break;
     }
     

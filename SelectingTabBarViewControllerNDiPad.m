@@ -91,12 +91,12 @@
         [linesButton setImage:nil forState:UIControlStateHighlighted];
         
         if (state==0) {
-            stationButton.frame=CGRectMake(90, 11, 95, 28);
-            linesButton.frame=CGRectMake(175, 11, 95, 28);
+            stationButton.frame=CGRectMake(75, 18, 95, 28);
+            linesButton.frame=CGRectMake(175, 18, 95, 28);
             [self.view bringSubviewToFront:stationButton];
         } else {
-            stationButton.frame=CGRectMake(90, 11, 95, 28);
-            linesButton.frame=CGRectMake(175, 11, 95, 28);
+            stationButton.frame=CGRectMake(75, 18, 95, 28);
+            linesButton.frame=CGRectMake(175, 18, 95, 28);
             [self.view bringSubviewToFront:linesButton];
         }
         
@@ -224,10 +224,9 @@
     
     CGFloat fff=(self.view.frame.size.width-40.0-(bsize.width+hsize.width+ssize.width+3*signWidth))/2.0;
     
-    bookmarkButton.frame=CGRectMake(20, 485, bsize.width+signWidth, 25);
-    historyButton.frame=CGRectMake(20+bsize.width+signWidth+fff, 485, hsize.width+signWidth, 25);
-    settingsButton.frame=CGRectMake(20+bsize.width+signWidth+2*fff+hsize.width+signWidth, 485, ssize.width+signWidth, 25);
-    settingsButton.frame=CGRectMake(self.view.frame.size.width-20.0-ssize.width-signWidth, 485, ssize.width+signWidth, 25);
+    bookmarkButton.frame=CGRectMake(20, 489, bsize.width+signWidth, 25);
+    historyButton.frame=CGRectMake(20+bsize.width+signWidth+fff, 489, hsize.width+signWidth, 25);
+    settingsButton.frame=CGRectMake(self.view.frame.size.width-20.0-ssize.width-signWidth, 489, ssize.width+signWidth, 25);
 
     [bookmarkButton setTitleEdgeInsets:UIEdgeInsetsMake(5, signWidth/2.0, 0, 0)];
     [historyButton setTitleEdgeInsets:UIEdgeInsetsMake(5, signWidth/2.0, 0, 0)];

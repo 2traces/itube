@@ -831,7 +831,7 @@
 
 -(void)showiPadSettingsModalView
 {
-    if (popover) {
+    if ([popover isPopoverVisible]) {
         [popover dismissPopoverAnimated:YES];
         [stationsView restoreFieldAfterPopover];
     }
@@ -1034,7 +1034,7 @@
             popover = [[UIPopoverController alloc] initWithContentViewController:controller];
             popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
             //        [popover presentPopoverFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-            [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+177.0, 36.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
+            [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+self.stationsView.fromStationField.frame.size.width/2.0, 36.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
             [controller release];
             
         } else {
@@ -1082,7 +1082,7 @@
             popover = [[UIPopoverController alloc] initWithContentViewController:controller];
             popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
             //        [popover presentPopoverFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-            [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+177.0, 36.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
+            [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.toStationField.frame.origin.x+20.0, 36.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
             [controller release];
             
         } else {
