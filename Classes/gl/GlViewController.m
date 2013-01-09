@@ -110,7 +110,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     size = 1.f;
     if((self = [super init])) {
         _id = 0;
-        sprite = [[GlSprite alloc] initWithPicture:@"user_pos"];
+        sprite = [[GlSprite alloc] initWithPicture:@"current_location"];
         sp = [[SmallPanel alloc] initWithText:@"You are here!"];
     }
     return self;
@@ -119,10 +119,10 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 -(id)initLocationPos
 {
     type = PIN_LOCATION;
-    size = 1.f;
+    size = 0.5f;
     if((self = [super init])) {
         _id = -1;
-        sprite = [[GlSprite alloc] initWithPicture:@"current_location"];
+        sprite = [[GlSprite alloc] initWithPicture:@"station_mark"];
         sp = [[SmallPanel alloc] initWithText:@"You are gonna be there!"];
     }
     return self;
@@ -136,7 +136,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 -(id) initWithId:(int)pinId color:(int)color andText:(NSString*)text
 {
     type = PIN_DEFAULT;
-    size = 1.f;
+    size = 0.5f;
     if((self = [super init])) {
         _id = pinId;
         switch (color%12) {
@@ -185,7 +185,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 
 -(id) initStarWithId:(int)pinId color:(int)color andText:(NSString*)text
 {
-    size = 1.f;
+    size = 0.5f;
     type = PIN_STAR;
     if((self = [super init])) {
         _id = pinId;
@@ -235,7 +235,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 
 -(id) initFavWithId:(int)pinId color:(int)color andText:(NSString*)text
 {
-    size = 1.f;
+    size = 0.5f;
     constOffset = 20;
     type = PIN_FAVORITE;
     if((self = [super init])) {
@@ -573,7 +573,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 {
     scale *= 1.5f;
     panVelocity = CGPointZero;
-    [self setGeoPosition:userGeoPosition withZoom:-1];
+    //[self setGeoPosition:userGeoPosition withZoom:-1];
 }
 
 -(void)handleSingleTap:(UITapGestureRecognizer*)recognizer
@@ -613,6 +613,9 @@ CGPoint translateFromGeoToMap(CGPoint pm)
             break;
         case UIGestureRecognizerStateChanged:
             scale = prevScale * recognizer.scale / prevRecScale;
+            if(scale > 100000) {
+                scale = 100000;
+            }
             CGPoint dp = [recognizer locationInView:self.view];
             dp.x -= self.view.bounds.size.width * 0.5f;
             dp.y -= self.view.bounds.size.height * 0.5f;
