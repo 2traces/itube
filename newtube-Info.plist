@@ -49,17 +49,18 @@
 	<string>MainWindow</string>
 	<key>NSMainNibFile~ipad</key>
 	<string>MainWindow-iPad</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>MyriadPr-It.otf</string>
-		<string>MyriadPro-Semibold.otf</string>
-		<string>MyriadPro-Regular.otf</string>
-	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleBlackOpaque</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>MyriadPr-It.otf</string>
+		<string>MyriadPro-Semibold.otf</string>
+		<string>MyriadPro-Regular.otf</string>
+		<string>MyriadPr-Bold.otf</string>
+	</array>
 </dict>
 </plist>

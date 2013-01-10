@@ -240,7 +240,7 @@
     if (!self.horizontalPathesScrollView) {
         
         if ([[SSThemeManager sharedTheme] isNewTheme]) {
-            PathScrollView *pathView = [[PathScrollView alloc] initWithFrame:CGRectMake(60.0, 10.0, 240.0, 90.0)];
+            PathScrollView *pathView = [[PathScrollView alloc] initWithFrame:CGRectMake(60.0, 10.0, 260.0, 90.0)];
             self.horizontalPathesScrollView = pathView;
             self.horizontalPathesScrollView.delegate = self;
             [pathView release];

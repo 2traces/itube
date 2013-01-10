@@ -581,7 +581,11 @@
 
 -(CGFloat)pathBarViewWidth
 {
-    return 223.0f;
+    if (IS_IPAD) {
+        return 250.0f;
+    } else {
+        return 223.0f;
+    }
 }
 
 -(UIImage*)pathBarViewDestinationIcon
@@ -921,7 +925,7 @@
 -(UIFont*)pathBarViewFont;
 {
     if (IS_IPAD) {
-        return  [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+        return  [UIFont fontWithName:@"MyriadPr-Bold" size:18.0];
     } else {
         return  [UIFont fontWithName:@"MyriadPro-Regular" size:13.0];
     }
