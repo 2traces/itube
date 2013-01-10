@@ -764,8 +764,8 @@
         controller.delegate = self;
         
         if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-            controller.contentSizeForViewInPopover=CGSizeMake(346, 350);
-            [popover setPopoverContentSize:CGSizeMake(346, 370)];
+            controller.contentSizeForViewInPopover=CGSizeMake(346, 315);
+            [popover setPopoverContentSize:CGSizeMake(346, 315)];
         } else {
             controller.contentSizeForViewInPopover=CGSizeMake(346, 524);
             [popover setPopoverContentSize:CGSizeMake(346, 524)];
