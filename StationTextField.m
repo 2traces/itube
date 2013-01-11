@@ -117,26 +117,29 @@
             [UIView animateWithDuration:animduration animations:^{
                 self.frame=frame;
                 self.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
+                self.textColor = [UIColor blackColor];
                 self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 60)];
                 self.rightViewMode = UITextFieldViewModeAlways;
                 self.state=style;
                 
                 self.text = [station name];
                 
-                UIImage *imageOpenList = [[SSThemeManager sharedTheme] stationTextFieldRightImageNormal];
-                UIImage *imageOpenListHL = [[SSThemeManager sharedTheme] stationTextFieldRightImageHighlighted];
-                
-                UIButton *rightView = [UIButton buttonWithType:UIButtonTypeCustom];
-                [rightView setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
-                [rightView setImage:imageOpenList forState:UIControlStateNormal];
-                [rightView setImage:imageOpenListHL forState:UIControlStateHighlighted];
-                [rightView addTarget:self action:@selector(callStationList) forControlEvents:UIControlEventTouchUpInside];
-                
-                self.rightView=rightView;
                 
                 self.leftView=nil;
                 self.leftViewMode =  UITextFieldViewModeNever;
             }];
+
+            UIImage *imageOpenList = [[SSThemeManager sharedTheme] stationTextFieldRightImageNormal];
+            UIImage *imageOpenListHL = [[SSThemeManager sharedTheme] stationTextFieldRightImageHighlighted];
+            
+            UIButton *rightView = [UIButton buttonWithType:UIButtonTypeCustom];
+            [rightView setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
+            [rightView setImage:imageOpenList forState:UIControlStateNormal];
+            [rightView setImage:imageOpenListHL forState:UIControlStateHighlighted];
+            [rightView addTarget:self action:@selector(callStationList) forControlEvents:UIControlEventTouchUpInside];
+            
+            self.rightView=rightView;
+
         }
             
             break;
@@ -158,20 +161,23 @@
                 self.leftView=nil;
                 self.leftViewMode=UITextFieldViewModeAlways;
                 self.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+                self.textColor = [UIColor blackColor];
                 
-                UIImage *imageOpenList = [[SSThemeManager sharedTheme] stationTextFieldRightImageNormal];
-                UIImage *imageOpenListHL = [[SSThemeManager sharedTheme] stationTextFieldRightImageHighlighted];
-                
-                UIButton *rightView = [UIButton buttonWithType:UIButtonTypeCustom];
-                [rightView setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
-                [rightView setImage:imageOpenList forState:UIControlStateNormal];
-                [rightView setImage:imageOpenListHL forState:UIControlStateHighlighted];
-                [rightView addTarget:self action:@selector(callStationList) forControlEvents:UIControlEventTouchUpInside];
-                
-                self.rightView=rightView;
                 
                 self.state=style;
             }];
+            
+            UIImage *imageOpenList = [[SSThemeManager sharedTheme] stationTextFieldRightImageNormal];
+            UIImage *imageOpenListHL = [[SSThemeManager sharedTheme] stationTextFieldRightImageHighlighted];
+            
+            UIButton *rightView = [UIButton buttonWithType:UIButtonTypeCustom];
+            [rightView setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];
+            [rightView setImage:imageOpenList forState:UIControlStateNormal];
+            [rightView setImage:imageOpenListHL forState:UIControlStateHighlighted];
+            [rightView addTarget:self action:@selector(callStationList) forControlEvents:UIControlEventTouchUpInside];
+            
+            self.rightView=rightView;
+
         }
             break;
         case StationTextFieldStyleStation:
@@ -187,17 +193,8 @@
             [UIView animateWithDuration:animduration animations:^{
                 self.frame=frame;
                 self.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
+                self.textColor = [UIColor blackColor];
                 
-                UIImage *crossImage = [[SSThemeManager sharedTheme] topToolbarCrossImage:UIControlStateNormal];
-                UIImage *crossImageHighlighted = [[SSThemeManager sharedTheme] topToolbarCrossImage:UIControlStateHighlighted];
-                
-                UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeCustom];
-                [resetButton setImage:crossImage forState:UIControlStateNormal];
-                [resetButton setFrame:CGRectMake(0.0, 0.0, crossImage.size.width, crossImage.size.height)];
-                [resetButton setImage:crossImageHighlighted forState:UIControlStateHighlighted];
-                [resetButton addTarget:self action:@selector(resetStation) forControlEvents:UIControlEventTouchUpInside];
-                self.rightView= resetButton;
-                self.rightViewMode = UITextFieldViewModeAlways;
 
                 self.text = [station name];
 
@@ -209,6 +206,18 @@
                 self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 60)];
                 
             }];
+            
+            UIImage *crossImage = [[SSThemeManager sharedTheme] topToolbarCrossImage:UIControlStateNormal];
+            UIImage *crossImageHighlighted = [[SSThemeManager sharedTheme] topToolbarCrossImage:UIControlStateHighlighted];
+            
+            UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [resetButton setImage:crossImage forState:UIControlStateNormal];
+            [resetButton setFrame:CGRectMake(0.0, 0.0, crossImage.size.width, crossImage.size.height)];
+            [resetButton setImage:crossImageHighlighted forState:UIControlStateHighlighted];
+            [resetButton addTarget:self action:@selector(resetStation) forControlEvents:UIControlEventTouchUpInside];
+            self.rightView= resetButton;
+            self.rightViewMode = UITextFieldViewModeAlways;
+
             
             self.state=style;
         }
@@ -362,7 +371,7 @@
     
     newFrame.origin.x=[[SSThemeManager sharedTheme] stationTextFieldDrawTextInRectAdjust]; //3.0 _original
     newFrame.origin.y=3.0;
-    newFrame.size.width=rect.size.width-10.0;
+    newFrame.size.width=rect.size.width-self.leftView.frame.size.width-5.0 ;//10
     newFrame.size.height = textBounds.height;
     
     

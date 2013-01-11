@@ -74,7 +74,7 @@
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:  viewController1, viewController2, viewController3,viewController4, nil];
     
     if ([[SSThemeManager sharedTheme] isNewTheme]) {
-        [self.tabBarController.view setFrame:CGRectMake(0,46,320,424)]; //460-63-39+49 64 было сделал 63 белая полоска, 406 чтобы пропал эффект наезжания внизу
+        [self.tabBarController.view setFrame:CGRectMake(0,46,320,430)]; //460-63-39+49 64 было сделал 63 белая полоска, 406 чтобы пропал эффект наезжания внизу
     } else {
         [self.tabBarController.view setFrame:CGRectMake(0,63,320,407)]; //460-63-39+49 64 было сделал 63 белая полоска, 406 чтобы пропал эффект наезжания внизу
     }

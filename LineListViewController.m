@@ -44,6 +44,11 @@
 {
     [super viewDidLoad];
     
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        self.view.backgroundColor=[UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
+        self.mytableView.layer.cornerRadius=5.0f;
+    }
+    
     MHelper *helper = [MHelper sharedHelper];
     self.dataSource = helper;
     

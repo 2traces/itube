@@ -80,7 +80,7 @@ NSInteger const toolbarWidth=320;
                 scrollSize = CGRectMake(0,44,(320),(568-64));
                 settingsRect=CGRectMake(285, 508, 27, 27);
                 shadowRect = CGRectMake(0, 44, 568, 61);
-                settingsRect=CGRectMake(55, 508, 27, 27);
+                zonesRect=CGRectMake(25, 508, 43, 25);
             }
         }
     }
@@ -178,12 +178,17 @@ NSInteger const toolbarWidth=320;
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:settings];
 
-//    zones = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [zones setImage:[UIImage imageNamed:@"maps_button"] forState:UIControlStateNormal];
-//    //[zones setImage:[UIImage imageNamed:@"zones_btn"] forState:UIControlStateHighlighted];
-//    zones.frame = zonesRect;
-//    [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
-//    [self addSubview:zones];
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        zones = [UIButton buttonWithType:UIButtonTypeCustom];
+        [zones setBackgroundImage:[[UIImage imageNamed:@"newdes_maps_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 21, 10, 11)] forState:UIControlStateNormal];
+        [zones setTitle:@"Maps" forState:UIControlStateNormal];
+        [[zones titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:10.0]];
+        [zones setTitleEdgeInsets:UIEdgeInsetsMake(2, 0, 0, 0)];
+        [zones setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        zones.frame = zonesRect;
+        [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:zones];
+    }
 
     UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
     shadow.frame = shadowRect;
