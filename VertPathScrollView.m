@@ -924,13 +924,13 @@
 -(IBAction)sendToFriendMail:(id)sender
 {
     NSString *body = [self generateMessageBodyPath];
-    [self showMailComposer:nil subject:@"Look at this path" body:body];
+    [self showMailComposer:nil subject:@"Look at this path" body:body to:nil];
 }
 
 -(IBAction)wrongPathMail:(id)sender
 {
     NSString *body = [self generateMessageBodyPath];
-    [self showMailComposer:nil subject:@"Wrong path" body:body];
+    [self showMailComposer:nil subject:@"Wrong path" body:body to:@"fusio@yandex.ru"];
 }
 
 -(NSString*)generateMessageBodyPath
@@ -1031,7 +1031,7 @@
     return body;
 }
 
--(IBAction)showMailComposer:(id)sender subject:(NSString*)subject body:(NSString*)mybody
+-(IBAction)showMailComposer:(id)sender subject:(NSString*)subject body:(NSString*)mybody to:(NSString*)toAddress
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
 
@@ -1043,7 +1043,9 @@
             picker.mailComposeDelegate = self;
             [picker setSubject:subject];
             [picker setMessageBody:mybody isHTML:YES];
-            [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"fusio@yandex.ru"]]];
+            if (toAddress) {
+                [picker setToRecipients:[NSArray arrayWithObject:toAddress]];
+            }
             [appDelegate.mainViewController presentModalViewController:picker animated:YES];
             [picker release];
         } else {

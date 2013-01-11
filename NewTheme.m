@@ -590,11 +590,7 @@
 
 -(UIImage*)pathBarViewDestinationIcon
 {
-    if (IS_IPAD) {
-        return [UIImage imageNamed:@"newdes_ipad_stations_destination"];
-    } else {
-        return [UIImage imageNamed:@"newdes_pathbar_destination_icon"];
-    }
+    return [UIImage imageNamed:@"newdes_pathbar_destination_icon"];
 }
 
 -(UIImage*)pathBarViewClockIcon
@@ -945,7 +941,7 @@
     if (IS_IPAD) {
         return [self highlightColor];
     } else {
-        return [UIColor blackColor];
+        return [UIColor darkGrayColor];
     }
 }
 
