@@ -72,7 +72,6 @@
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:  viewController1, viewController2, viewController3,viewController4, nil];
 
     [self.tabBarController.view setFrame:CGRectMake(12,70,317,440)]; //460-63-39+49 64 было сделал 63 белая полоска, 406 чтобы пропал
-//    self.tabBarController.view.layer.cornerRadius=5.0f;
     [self.view addSubview:self.tabBarController.view];
     [self.tabBarController viewWillAppear:YES];
     [self.view bringSubviewToFront:[self.view viewWithTag:333]];
@@ -225,14 +224,14 @@
     
     CGFloat fff=(self.view.frame.size.width-40.0-(bsize.width+hsize.width+ssize.width+3*signWidth))/2.0;
     
-    bookmarkButton.frame=CGRectMake(20, 489, bsize.width+signWidth, 25);
-    historyButton.frame=CGRectMake(20+bsize.width+signWidth+fff, 489, hsize.width+signWidth, 25);
-    settingsButton.frame=CGRectMake(self.view.frame.size.width-20.0-ssize.width-signWidth, 489, ssize.width+signWidth, 25);
+    bookmarkButton.frame=CGRectMake(20, 5, bsize.width+signWidth, 25);
+    historyButton.frame=CGRectMake(20+bsize.width+signWidth+fff, 5, hsize.width+signWidth, 25);
+    settingsButton.frame=CGRectMake(self.view.frame.size.width-20.0-ssize.width-signWidth, 5, ssize.width+signWidth, 25);
 
     [bookmarkButton setTitleEdgeInsets:UIEdgeInsetsMake(5, signWidth/2.0, 0, 0)];
     [historyButton setTitleEdgeInsets:UIEdgeInsetsMake(5, signWidth/2.0, 0, 0)];
     [settingsButton setTitleEdgeInsets:UIEdgeInsetsMake(5, signWidth/2.0, 0, 0)];
-
+    
 }
 
 -(void)mapChanged:(NSNotification*)note
