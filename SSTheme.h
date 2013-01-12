@@ -160,6 +160,7 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 -(UIColor*)stationsTopButtonsPressedColor;
 -(UIColor*)stationsTopButtonsShadowColor;
 -(UIColor*)stationsTopButtonsPressedShadowColor;
+-(UIImageView*)stationsTableViewCellBackgroundSelected;
 
 -(UIImage*)mapLabelEmbossedCircleImage;
 
@@ -167,6 +168,8 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 -(UIColor*)pathBarViewFontColor1;
 -(UIColor*)pathBarViewFontColor2;
 -(UIColor*)pathBarViewFontShadowColor;
+
+-(UIImage*)overlayShadowImage;
 
 @end
 

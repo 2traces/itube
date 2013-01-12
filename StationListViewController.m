@@ -212,6 +212,8 @@
         [[cell mybutton] addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
     
+    cell.selectedBackgroundView = [[SSThemeManager sharedTheme] stationsTableViewCellBackgroundSelected];
+    
     if (tableView == self.mySearchDC.searchResultsTableView || isTextFieldInUse)
     {
         NSString *cellValue;

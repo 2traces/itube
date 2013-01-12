@@ -205,6 +205,8 @@
     
     myImageView.image = [self imageWithColor:[(MStation*)[self.stationsList objectAtIndex:indexPath.row] lines]];
     
+    cell.selectedBackgroundView = [[SSThemeManager sharedTheme] stationsTableViewCellBackgroundSelected];
+    
 //    NSDate *date2 = [NSDate date];
 //    NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
     

@@ -262,7 +262,7 @@
     CGFloat viewWidth = [[SSThemeManager sharedTheme] statusViewWidth];
     
     [UIView animateWithDuration:0.55 animations:^{
-        self.view.frame = CGRectMake(0, newY, viewWidth, 354);
+        self.view.frame = CGRectMake([[SSThemeManager sharedTheme] statusViewStartX], newY, viewWidth, 354);
     }];
     
     isShown=NO;
@@ -275,8 +275,10 @@
     textView.scrollEnabled=YES;
     [textView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
     
+    [self layoutSubviews];
     [UIView animateWithDuration:0.55 animations:^{
-        [self layoutSubviews];
+        self.view.frame = CGRectMake(10, 0, [[SSThemeManager sharedTheme] statusViewWidth], 354);
+        self.shadowView.frame=CGRectMake(0, 44, [[SSThemeManager sharedTheme] statusViewWidth], 20);
     }];
 }
 
@@ -286,6 +288,8 @@
     
     textView.scrollEnabled=NO;
     [UIView animateWithDuration:0.55 animations:^{
+        self.view.frame = CGRectMake(10, -354, [[SSThemeManager sharedTheme] statusViewWidth], 354);
+    } completion:^(BOOL finished) {
         [self layoutSubviews];
     }];
 }
@@ -312,8 +316,6 @@
         }
     } else {
         if (isShown) {
-            self.view.frame = CGRectMake(viewStartX, 0, viewWidth, 354);
-            self.shadowView.frame=CGRectMake(0, 44, viewWidth, 20);
             if (isNewMapAvailable) {
                 updateTextView.hidden=NO;
                 yellowView.hidden=NO;
@@ -325,7 +327,6 @@
                 yellowView.hidden=YES;
             }
         } else {
-            self.view.frame = CGRectMake(viewStartX, -354, viewWidth, 354);
             textView.frame = CGRectMake(10.0, 322.0, viewWidth-20.0f, 25.0);
             
         }

@@ -41,6 +41,23 @@
     
     self.colorDictionary = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
     
+    if ([[SSThemeManager sharedTheme] isNewTheme] && !IS_IPAD) {
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mytableView.frame.size.width, 37)];
+        headerView.backgroundColor= [UIColor clearColor];
+        
+        UILabel *headerViewLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 7, mytableView.frame.size.width, 30)];
+        headerViewLabel.text = NSLocalizedString(@"StationsHistory", @"StationsHistory");
+        headerViewLabel.textAlignment=UITextAlignmentCenter;
+        headerViewLabel.textColor= [[SSThemeManager sharedTheme] mainColor];
+        headerViewLabel.font=[UIFont fontWithName:@"MyriadPro-Semibold" size:22.0];
+        headerViewLabel.backgroundColor=[UIColor clearColor];
+        [headerView addSubview:headerViewLabel];
+        [headerViewLabel release];
+        
+        mytableView.tableHeaderView=headerView;
+        [headerView release];
+    }
+
 //    [self.mytableView setBackgroundColor:[UIColor clearColor]];
 //    self.imageView.image = [UIImage imageNamed:@"lines_shadow.png"];
 
@@ -145,7 +162,9 @@
     
     cell.fromLineCircle.image = [self imageWithColor:[history.fromStation lines]];
     cell.toLineCircle.image = [self imageWithColor:[history.toStation lines]];
-    
+        
+    cell.selectedBackgroundView = [[SSThemeManager sharedTheme] stationsTableViewCellBackgroundSelected];
+
     return cell;
 }
 
