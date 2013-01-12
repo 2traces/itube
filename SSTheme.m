@@ -123,17 +123,15 @@
     if (backgroundImage) {
         UIImageView *background = [[UIImageView alloc] initWithImage:backgroundImage];
         [tableView setBackgroundView:background];
-        imageView.image=nil;
     } else if (backgroundColor) {
         [tableView setBackgroundView:nil];
         [tableView setBackgroundColor:backgroundColor];
-        imageView.image=nil;
     }
-    
+
+    imageView.image=[theme overlayShadowImage];
     searchBar.tintColor=[UIColor lightGrayColor];
     
-    
-    
+        
     //    if ([[SSThemeManager sharedTheme] stationTableViewBackgroundImage]) {
     //        self.imageView.image = [[SSThemeManager sharedTheme] stationTableViewBackgroundImage]; //[UIImage imageNamed:@"lines_shadow.png"];
     //        [self.mytableView setBackgroundColor:[UIColor clearColor]];

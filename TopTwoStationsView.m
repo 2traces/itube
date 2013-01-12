@@ -538,14 +538,12 @@
 
 -(void)resetFromStation
 {
-    //    shouldEnlarge = YES;
-    [delegate resetFromStation];
+    [self resetStation:fromStationField];
 }
 
 -(void)resetToStation
 {
-    //    shouldEnlarge=YES;
-    [delegate resetToStation];
+    [self resetStation:toStationField];
 }
 
 -(void)setButtonToState:(int)state
@@ -573,14 +571,14 @@
 -(void)resetStation:(StationTextField*)field
 {
     if (field==fromStationField) {
-        [self resetFromStation];
+        [delegate resetFromStation];
         if (toStationField.state==StationTextFieldStylePath) {
             [fromStationField changeStyleTo:StationTextFieldStyleDefault withFrame:CGRectMake(self.frame.size.width-fieldWidth*2, fieldDelta, fieldWidth, fieldHeight) animated:YES];
             [toStationField changeStyleTo:StationTextFieldStyleStation withFrame:CGRectMake(self.frame.size.width-fieldWidth, fieldDelta, fieldWidth, fieldHeight) animated:YES];
             [self transitToInitialSize];
         }
     } else {
-        [self resetToStation];
+        [delegate resetToStation];
         if (fromStationField.state==StationTextFieldStylePath) {
             [fromStationField changeStyleTo:StationTextFieldStyleStation withFrame:CGRectMake(self.frame.size.width-fieldWidth*2, fieldDelta, fieldWidth, fieldHeight) animated:YES];
             [toStationField changeStyleTo:StationTextFieldStyleDefault withFrame:CGRectMake(self.frame.size.width-fieldWidth, fieldDelta, fieldWidth, fieldHeight) animated:YES];

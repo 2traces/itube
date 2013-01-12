@@ -695,4 +695,14 @@
     return [UIColor whiteColor];
 }
 
+-(UIImageView*)stationsTableViewCellBackgroundSelected
+{
+    return nil;
+}
+
+-(UIImage*)overlayShadowImage
+{
+    return [[UIImage imageNamed:@"lines_shadow"] resizableImageWithCapInsets:UIEdgeInsetsMake(200, 100, 200, 100)];
+}
+
 @end

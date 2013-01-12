@@ -40,9 +40,9 @@
 
 @interface GlViewController : GLKViewController <TwoStationsViewProtocol>
 
-@property (nonatomic, assign) MItem *currentSelection;
-@property (nonatomic, retain) MItem *fromStation;
-@property (nonatomic, retain) MItem *toStation;
+@property (nonatomic, assign) MStation *currentSelection;
+@property (nonatomic, retain) MStation *fromStation;
+@property (nonatomic, retain) MStation *toStation;
 @property (nonatomic, retain) TopTwoStationsView *stationsView;
 
 -(FastAccessTableViewController*)showTableView;

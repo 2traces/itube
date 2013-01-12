@@ -955,5 +955,15 @@
 
 }
 
+-(UIImageView*)stationsTableViewCellBackgroundSelected
+{
+    return [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"newdes_stations_tblcell_selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)]];
+}
+
+-(UIImage*)overlayShadowImage
+{
+    return [[UIImage imageNamed:@"newdes_lines_shadow"] resizableImageWithCapInsets:UIEdgeInsetsMake(200, 100, 200, 100)];
+}
+
 @end
 

@@ -38,6 +38,23 @@
     MHelper *helper = [MHelper sharedHelper];
     self.dataSource = helper;
     
+    if ([[SSThemeManager sharedTheme] isNewTheme] && !IS_IPAD) {
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mytableView.frame.size.width, 37)];
+        headerView.backgroundColor= [UIColor clearColor];
+        
+        UILabel *headerViewLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 7, mytableView.frame.size.width, 30)];
+        headerViewLabel.text = NSLocalizedString(@"StationsBookmarks", @"StationsBookmarks");
+        headerViewLabel.textAlignment=UITextAlignmentCenter;
+        headerViewLabel.textColor= [[SSThemeManager sharedTheme] mainColor];
+        headerViewLabel.font=[UIFont fontWithName:@"MyriadPro-Semibold" size:22.0];
+        headerViewLabel.backgroundColor=[UIColor clearColor];
+        [headerView addSubview:headerViewLabel];
+        [headerViewLabel release];
+        
+        mytableView.tableHeaderView=headerView;
+        [headerView release];
+    }
+    
     [SSThemeManager customizeSettingsTableView:self.mytableView imageView:self.imageView searchBar:(UISearchBar*)nil];
     
 //    self.stationList = [NSMutableArray arrayWithArray:[dataSource getFavoriteStationList]];
@@ -156,6 +173,9 @@
     
     UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
     myImageView.image = [self imageWithColor:[station lines]];
+    
+    cell.selectedBackgroundView = [[SSThemeManager sharedTheme] stationsTableViewCellBackgroundSelected];
+
     
 //    NSDate *date2 = [NSDate date];
 //    NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
