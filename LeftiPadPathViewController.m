@@ -42,7 +42,6 @@
     isPathExists=NO;
     isStatusAvailable=NO;
     
-	// Do any additional setup after loading the view.
     self.toolbar = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44.0)] autorelease];
     [self.toolbar setImage:[[UIImage imageNamed:@"toolbar_bg1.png"] stretchableImageWithLeftCapWidth:20 topCapHeight:0]];
     [self.toolbar setUserInteractionEnabled:YES];
@@ -82,6 +81,7 @@
     self.statusViewController =statusView;
     self.statusViewController.infoURL=[self getStatusInfoURL];
     [self.statusViewController recieveStatusInfo];
+    self.statusViewController.view.tag=20312;
     [statusView release];
 }
 
@@ -130,7 +130,7 @@
         url=mainURL;
     } else {
         NSString *composedLocalURL = [NSString stringWithFormat:@"http://metro.dim0xff.com/%@/data_%@.txt",[[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] thisMapName],[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]];
-//        NSLog(@"%@",composedLocalURL);
+        //        NSLog(@"%@",composedLocalURL);
         if ([mainURL isEqualToString:composedLocalURL]) {
             url = mainURL;
         } else {
@@ -214,8 +214,15 @@
         self.statusViewController.view.hidden=NO;
         self.pathScrollView.hidden=NO;
         self.switchButton.hidden=NO;
-        [self.switchButton setImage:[UIImage imageNamed:@"statusButton.png"] forState:UIControlStateNormal];
-        [self.switchButton setImage:[UIImage imageNamed:@"statusButtonPressed.png"] forState:UIControlStateHighlighted];
+        
+        if ([[SSThemeManager sharedTheme] isNewTheme]) {
+            [self.switchButton setImage:[UIImage imageNamed:@"newdes_ipad_left_buttonZ"] forState:UIControlStateNormal];
+            [self.switchButton setImage:[UIImage imageNamed:@"newdes_ipad_left_buttonZ_pressed"] forState:UIControlStateHighlighted];
+        } else {
+            [self.switchButton setImage:[UIImage imageNamed:@"statusButton.png"] forState:UIControlStateNormal];
+            [self.switchButton setImage:[UIImage imageNamed:@"statusButtonPressed.png"] forState:UIControlStateHighlighted];
+        }
+        
         self.horizontalPathesScrollView.hidden=NO;
         self.statusLabel.hidden=NO;
         self.statusShadowView.hidden=NO;
@@ -243,8 +250,9 @@
             PathScrollView *pathView = [[PathScrollView alloc] initWithFrame:CGRectMake(60.0, 10.0, 260.0, 90.0)];
             self.horizontalPathesScrollView = pathView;
             self.horizontalPathesScrollView.delegate = self;
+            
             [pathView release];
-
+            
             tubeAppDelegate *delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
             [delegate.tubeSplitViewController.topStationsView addSubview:horizontalPathesScrollView];
         } else {
@@ -257,7 +265,7 @@
             [self.view bringSubviewToFront:horizontalPathesScrollView];
         }
         
-    
+        
     } else {
         
         [self.horizontalPathesScrollView refreshContent];
@@ -345,16 +353,17 @@
         
         VertPathScrollView *scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, 44.0, 320.0f, self.view.frame.size.height-44.0)];
         
-//        if ([[SSThemeManager sharedTheme] isNewTheme]) {
-//            scview.frame=CGRectMake(0.0, 44.0, 320.0f, self.view.frame.size.height-44.0-20.0);
-//            scview.layer.cornerRadius=5.0;
-//            scview.layer.shadowColor=[[UIColor blackColor] CGColor];
-//            scview.layer.shadowOpacity = 0.8;
-//            scview.layer.shadowRadius = 2;
-//            scview.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
-//        }
+        //        if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        //            scview.frame=CGRectMake(0.0, 44.0, 320.0f, self.view.frame.size.height-44.0-20.0);
+        //            scview.layer.cornerRadius=5.0;
+        //            scview.layer.shadowColor=[[UIColor blackColor] CGColor];
+        //            scview.layer.shadowOpacity = 0.8;
+        //            scview.layer.shadowRadius = 2;
+        //            scview.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
+        //        }
         
         self.pathScrollView = scview;
+        self.pathScrollView.tag=20313;
         tubeAppDelegate * delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
         scview.mainController=delegate.mainViewController;
         [scview release];
@@ -363,7 +372,7 @@
         [self.view addSubview:self.pathScrollView];
         
         UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
-        shadow.frame = CGRectMake(0, 44, 320, 61);
+        shadow.frame = CGRectMake(0, 44, self.view.frame.size.width, 61);
         [shadow setIsAccessibilityElement:YES];
         self.statusShadowView=shadow;
         [self.view addSubview:shadow];
@@ -375,36 +384,68 @@
 -(UIButton*)createSwitchButton
 {
     UIButton *changeViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *img = [UIImage imageNamed:@"statusButton.png"];
+    UIImage *img;
+    UIImage *imgHigh;
+    
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        img =  [UIImage imageNamed:@"newdes_ipad_left_buttonZ"];
+        imgHigh = [UIImage imageNamed:@"newdes_ipad_left_buttonZ_pressed"];
+        [changeViewButton setFrame:CGRectMake(253, 75 , img.size.width, img.size.height)];
+    } else {
+        img =  [UIImage imageNamed:@"statusButton.png"];
+        imgHigh = [UIImage imageNamed:@"statusButtonPressed.png"];
+        [changeViewButton setFrame:CGRectMake(34, 44 , img.size.width, img.size.height)];
+    }
+    
     [changeViewButton setImage:img forState:UIControlStateNormal];
-    [changeViewButton setImage:[UIImage imageNamed:@"statusButtonPressed.png"] forState:UIControlStateHighlighted];
+    [changeViewButton setImage:imgHigh forState:UIControlStateHighlighted];
     [changeViewButton addTarget:self action:@selector(changeMapToPathView:) forControlEvents:UIControlEventTouchUpInside];
     
-    [changeViewButton setFrame:CGRectMake(34 , 44 , img.size.width, img.size.height)];
     
     return changeViewButton;
 }
 
 -(IBAction)changeMapToPathView:(id)sender
 {
-    [self.view exchangeSubviewAtIndex:3 withSubviewAtIndex:4];
-    if ([self.view.subviews objectAtIndex:4]==self.statusViewController.view) {
+    NSInteger indexStatusView = [self.view.subviews indexOfObject:[self.view viewWithTag:20312]];
+    NSInteger indexPathView = [self.view.subviews indexOfObject:[self.view viewWithTag:20313]];
+    [self.view exchangeSubviewAtIndex:indexPathView withSubviewAtIndex:indexStatusView];
+    
+    UIImage *img;
+    UIImage *imgHigh;
+    
+    if (indexPathView>indexStatusView) {
         self.horizontalPathesScrollView.hidden=YES;
         self.statusShadowView.hidden=YES;
         self.statusLabel.hidden=NO;
         [[self.statusViewController shadowView] setHidden:NO];
-        [self.switchButton setImage:[UIImage imageNamed:@"pathButton.png"] forState:UIControlStateNormal];
-        [self.switchButton setImage:[UIImage imageNamed:@"pathButtonPressed.png"] forState:UIControlStateHighlighted];
-
+        if ([[SSThemeManager sharedTheme] isNewTheme]) {
+            img =  [UIImage imageNamed:@"newdes_ipad_left_buttonM"];
+            imgHigh = [UIImage imageNamed:@"newdes_ipad_left_buttonM_pressed"];
+        } else {
+            img =  [UIImage imageNamed:@"pathButton.png"];
+            imgHigh = [UIImage imageNamed:@"pathButtonPressed.png"];
+        }
+        
+        [self.switchButton setImage:img forState:UIControlStateNormal];
+        [self.switchButton setImage:imgHigh forState:UIControlStateHighlighted];
+        
     } else {
         self.horizontalPathesScrollView.hidden=NO;
         self.statusShadowView.hidden=NO;
         self.statusLabel.hidden=YES;
         [[self.statusViewController shadowView] setHidden:YES];
-        [self.switchButton setImage:[UIImage imageNamed:@"statusButton.png"] forState:UIControlStateNormal];
-        [self.switchButton setImage:[UIImage imageNamed:@"statusButtonPressed.png"] forState:UIControlStateHighlighted];
-
         
+        if ([[SSThemeManager sharedTheme] isNewTheme]) {
+            img =  [UIImage imageNamed:@"newdes_ipad_left_buttonZ"];
+            imgHigh = [UIImage imageNamed:@"newdes_ipad_left_buttonZ_pressed"];
+        } else {
+            img =  [UIImage imageNamed:@"statusButton.png"];
+            imgHigh = [UIImage imageNamed:@"statusButtonPressed.png"];
+        }
+        
+        [self.switchButton setImage:img forState:UIControlStateNormal];
+        [self.switchButton setImage:imgHigh forState:UIControlStateHighlighted];
     }
 }
 

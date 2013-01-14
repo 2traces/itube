@@ -18,11 +18,12 @@
 
 #if defined(NEW_THEME)
 #define constDividerWidth 0.0f
+#define constMasterWidth 320.0f
 #else
 #define constDividerWidth 1.0f
+#define constMasterWidth 320.0f
 #endif
 
-#define constMasterWidth 320.0f
 #define constDetailStartPoint (constMasterWidth+constDividerWidth)
 
 static float koefficient = 0.0f;

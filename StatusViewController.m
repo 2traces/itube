@@ -46,8 +46,8 @@
         if (!IS_IPAD) {
             self.view.frame=CGRectMake(viewStartX, -454, viewWidth, 354);
             self.view.backgroundColor = [UIColor colorWithPatternImage:[[SSThemeManager sharedTheme] statusViewBackground]];
-            self.view.layer.cornerRadius=5.0f;
-            self.view.layer.shadowColor=[[UIColor blackColor] CGColor];
+            self.view.layer.cornerRadius = 5.0f;
+            self.view.layer.shadowColor = [[UIColor blackColor] CGColor];
             self.view.layer.shadowOpacity = 0.8;
             self.view.layer.shadowRadius = 2;
             self.view.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
@@ -276,10 +276,12 @@
     [textView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
     
     [self layoutSubviews];
+    
     [UIView animateWithDuration:0.55 animations:^{
         self.view.frame = CGRectMake(10, 0, [[SSThemeManager sharedTheme] statusViewWidth], 354);
-        self.shadowView.frame=CGRectMake(0, 44, [[SSThemeManager sharedTheme] statusViewWidth], 20);
     }];
+
+    self.shadowView.frame=CGRectMake(0, 44, [[SSThemeManager sharedTheme] statusViewWidth], 20);
 }
 
 -(void)hideFullSizeView
