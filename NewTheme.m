@@ -269,6 +269,20 @@
     return image;
 }
 
+- (UIImage *)barButtonBorderedBackgroundForState:(UIControlState)state style:(UIBarButtonItemStyle)style barMetrics:(UIBarMetrics)barMetrics
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"newdes_bordered_button";
+    } else if (state == UIControlStateHighlighted) {
+        name = @"newdes_bordered_button_pressed";
+    }
+    UIImage *image = [UIImage imageNamed:name];
+    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 18.0, 0.0, 10.0)];
+    return image;
+}
+
+
 - (UIImage *)backBackgroundForState:(UIControlState)state barMetrics:(UIBarMetrics)barMetrics
 {
     NSString *name;
@@ -631,12 +645,16 @@
 
 -(CGFloat)statusViewWidth
 {
-    return 300.0f;
+    if (IS_IPAD) {
+        return 320.0;
+    } else {
+        return 300.0f;
+    }
 }
 
 -(UIImage*)statusViewBackground
 {
-    return [UIImage imageNamed:@"newdes_status_view_bg.png"];
+    return [UIImage imageNamed:@"newdes_status_view_bg"];
 }
 
 -(UIColor*)statusViewFontColor
@@ -962,7 +980,11 @@
 
 -(UIImage*)overlayShadowImage
 {
-    return [[UIImage imageNamed:@"newdes_lines_shadow"] resizableImageWithCapInsets:UIEdgeInsetsMake(200, 100, 200, 100)];
+    if (IS_IPAD) {
+        return nil;
+    } else {
+        return [[UIImage imageNamed:@"newdes_lines_shadow"] resizableImageWithCapInsets:UIEdgeInsetsMake(200, 100, 200, 100)];
+    }
 }
 
 @end

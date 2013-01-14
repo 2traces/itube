@@ -275,6 +275,20 @@
     return image;
 }
 
+- (UIImage *)barButtonBorderedBackgroundForState:(UIControlState)state style:(UIBarButtonItemStyle)style barMetrics:(UIBarMetrics)barMetrics
+{
+    NSString *name;
+    if (state == UIControlStateNormal) {
+        name = @"backButtonBG.png";
+    } else if (state == UIControlStateHighlighted) {
+        name = @"backButtonBGPressed.png";
+    }
+    UIImage *image = [UIImage imageNamed:name];
+    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 18.0, 0.0, 10.0)];
+    return image;
+}
+
+
 - (UIImage *)backBackgroundForState:(UIControlState)state barMetrics:(UIBarMetrics)barMetrics
 {
     NSString *name;
