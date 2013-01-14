@@ -27,7 +27,9 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 
 - (UIImage *)navigationBackgroundForBarMetrics:(UIBarMetrics)metrics;
 - (UIImage *)barButtonBackgroundForState:(UIControlState)state style:(UIBarButtonItemStyle)style barMetrics:(UIBarMetrics)barMetrics;
+- (UIImage *)barButtonBorderedBackgroundForState:(UIControlState)state style:(UIBarButtonItemStyle)style barMetrics:(UIBarMetrics)barMetrics;
 - (UIImage *)backBackgroundForState:(UIControlState)state barMetrics:(UIBarMetrics)barMetrics;
+
 
 - (UIImage *)toolbarBackgroundForBarMetrics:(UIBarMetrics)metrics;
 
@@ -170,6 +172,7 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 -(UIColor*)pathBarViewFontShadowColor;
 
 -(UIImage*)overlayShadowImage;
+
 
 @end
 
