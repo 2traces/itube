@@ -27,7 +27,7 @@
 + (void)customizeAppAppearance
 {
     id <SSTheme> theme = [self sharedTheme];
-    
+
     UINavigationBar *navigationBarAppearance = [UINavigationBar appearance];
     [navigationBarAppearance setBackgroundImage:[theme navigationBackgroundForBarMetrics:UIBarMetricsDefault] forBarMetrics:UIBarMetricsDefault];
     [navigationBarAppearance setBackgroundImage:[theme navigationBackgroundForBarMetrics:UIBarMetricsLandscapePhone] forBarMetrics:UIBarMetricsLandscapePhone];
@@ -46,34 +46,24 @@
     
 #if defined(NEW_THEME)
     [barButtonItemAppearance setBackButtonBackgroundVerticalPositionAdjustment:-2.0f forBarMetrics:UIBarMetricsDefault];
-//    [navigationBarAppearance setTitleVerticalPositionAdjustment:3.0f forBarMetrics:UIBarMetricsDefault];
     [barButtonItemAppearance setBackButtonTitlePositionAdjustment:UIOffsetMake(0.0f, 1.0f) forBarMetrics:UIBarMetricsDefault];
     [barButtonItemAppearance setBackgroundVerticalPositionAdjustment:-2.0f forBarMetrics:UIBarMetricsDefault];
-    [barButtonItemAppearance setTitlePositionAdjustment:UIOffsetMake(2.0f, 0.0f) forBarMetrics:UIBarMetricsDefault];
+    [barButtonItemAppearance setTitlePositionAdjustment:UIOffsetMake(0.0f, 3.0f) forBarMetrics:UIBarMetricsDefault];
 #else
     [navigationBarAppearance setTitleVerticalPositionAdjustment:4.0f forBarMetrics:UIBarMetricsDefault];
     [barButtonItemAppearance setBackButtonTitlePositionAdjustment:UIOffsetMake(0.0f, 1.0f) forBarMetrics:UIBarMetricsDefault];
+    [barButtonItemAppearance setTitlePositionAdjustment:UIOffsetMake(1.0f, 3.0f) forBarMetrics:UIBarMetricsDefault];
 #endif
     
-//    [barButtonItemAppearance setBackgroundImage:[theme barButtonBorderedBackgroundForState:UIControlStateNormal style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsDefault] forState:UIControlStateNormal style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsDefault];
-//    [barButtonItemAppearance setBackgroundImage:[theme barButtonBorderedBackgroundForState:UIControlStateHighlighted style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsDefault] forState:UIControlStateHighlighted style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsDefault];
-//    [barButtonItemAppearance setBackgroundImage:[theme barButtonBorderedBackgroundForState:UIControlStateNormal style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsLandscapePhone] forState:UIControlStateNormal style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsLandscapePhone];
-//    [barButtonItemAppearance setBackgroundImage:[theme barButtonBorderedBackgroundForState:UIControlStateHighlighted style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsLandscapePhone] forState:UIControlStateHighlighted style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsLandscapePhone];
-//    
-//    [barButtonItemAppearance setBackgroundImage:[theme barButtonBackgroundForState:UIControlStateNormal style:UIBarButtonItemStyleBordered barMetrics:UIBarMetricsDefault] forState:UIControlStateNormal style:UIBarButtonItemStyleBordered barMetrics:UIBarMetricsDefault];
-//    [barButtonItemAppearance setBackgroundImage:[theme barButtonBackgroundForState:UIControlStateHighlighted style:UIBarButtonItemStyleBordered barMetrics:UIBarMetricsDefault] forState:UIControlStateHighlighted style:UIBarButtonItemStyleBordered barMetrics:UIBarMetricsDefault];
-//    [barButtonItemAppearance setBackgroundImage:[theme barButtonBackgroundForState:UIControlStateNormal style:UIBarButtonItemStyleBordered barMetrics:UIBarMetricsLandscapePhone] forState:UIControlStateNormal style:UIBarButtonItemStyleBordered barMetrics:UIBarMetricsLandscapePhone];
-//    [barButtonItemAppearance setBackgroundImage:[theme barButtonBackgroundForState:UIControlStateHighlighted style:UIBarButtonItemStyleBordered barMetrics:UIBarMetricsLandscapePhone] forState:UIControlStateHighlighted style:UIBarButtonItemStyleBordered barMetrics:UIBarMetricsLandscapePhone];
+    [barButtonItemAppearance setBackgroundImage:[theme barButtonBorderedBackgroundForState:UIControlStateNormal style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsDefault] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [barButtonItemAppearance setBackgroundImage:[theme barButtonBorderedBackgroundForState:UIControlStateHighlighted style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsDefault] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    [barButtonItemAppearance setBackgroundImage:[theme barButtonBorderedBackgroundForState:UIControlStateNormal style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsLandscapePhone] forState:UIControlStateNormal barMetrics:UIBarMetricsLandscapePhone];
+    [barButtonItemAppearance setBackgroundImage:[theme barButtonBorderedBackgroundForState:UIControlStateHighlighted style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsLandscapePhone] forState:UIControlStateHighlighted  barMetrics:UIBarMetricsLandscapePhone];
     
     [barButtonItemAppearance setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[theme backButtonTitleColor], UITextAttributeTextColor, [theme backbuttonTitleFont], UITextAttributeFont, [theme titleShadowColor], UITextAttributeTextShadowColor, [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset, nil] forState:UIControlStateNormal];
     [barButtonItemAppearance setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[theme backButtonPressedTitleColor], UITextAttributeTextColor, [theme backbuttonTitleFont], UITextAttributeFont, [theme titleShadowColor], UITextAttributeTextShadowColor, [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset, nil] forState:UIControlStateDisabled];
     [barButtonItemAppearance setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[theme backButtonPressedTitleColor], UITextAttributeTextColor, [theme backbuttonTitleFont], UITextAttributeFont, [theme backButtonTitleColor], UITextAttributeTextShadowColor, [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset, nil] forState:UIControlStateHighlighted];
     
-}
-
-+ (void)customizeView:(UIView *)view
-{
-    id <SSTheme> theme = [self sharedTheme];
 }
 
 + (void)customizeTableView:(UITableView *)tableView
@@ -119,19 +109,7 @@
     }
     
     imageView.image=[theme overlayShadowImage];
-    searchBar.tintColor=[UIColor lightGrayColor];
-    
-    
-    //    if ([[SSThemeManager sharedTheme] stationTableViewBackgroundImage]) {
-    //        self.imageView.image = [[SSThemeManager sharedTheme] stationTableViewBackgroundImage]; //[UIImage imageNamed:@"lines_shadow.png"];
-    //        [self.mytableView setBackgroundColor:[UIColor clearColor]];
-    //    } else {
-    //        self.imageView.image = nil;
-    //        self.mytableView.backgroundColor= [[SSThemeManager sharedTheme] stationTableViewBackgroundColor];
-    //    }
-    
-    
-    
+    searchBar.tintColor=[UIColor lightGrayColor];    
 }
 
 @end

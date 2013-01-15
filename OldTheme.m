@@ -651,7 +651,7 @@
 
 -(CGFloat)statusViewTextY
 {
-    return 60.0f;
+    return 44.0f;
 }
 
 -(CGFloat)statusViewUpdateY
@@ -666,8 +666,7 @@
 
 -(UIImage*)stationsTableViewBackground
 {
-    UIImage *image = [UIImage imageNamed:@"background.png"];
-    return image;
+    return nil;
 }
 
 -(UIColor*)stationsTableViewBackgroundColor

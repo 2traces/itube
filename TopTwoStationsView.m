@@ -59,7 +59,7 @@
     self.backgroundColor=[UIColor clearColor];
     
     self.toolbar = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)] autorelease];
-    [toolbar setImage:[[[SSThemeManager sharedTheme] topToolbarBackgroundImage] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 149.0, 0, 167.0)]];
+    [toolbar setImage:[[[SSThemeManager sharedTheme] topToolbarBackgroundImage] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 149.0, self.frame.size.height-4.0, 167.0)]];
     [toolbar setUserInteractionEnabled:YES];
     toolbar.autoresizesSubviews = YES;
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -414,7 +414,7 @@
             self.frame=CGRectMake(0, 0, 320, height);
             self.toolbar.frame=CGRectMake(0, 0, 320, height);
             
-            [toolbar setImage:[[[SSThemeManager sharedTheme] topToolbarBackgroundPathImage] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 149.0, 0, 167.0)]];
+            [toolbar setImage:[[[SSThemeManager sharedTheme] topToolbarBackgroundPathImage] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 149.0, self.viewHeight-4.0, 167.0)]];
             
             
         }
@@ -461,7 +461,7 @@
             
         }
         
-        [toolbar setImage:[[[SSThemeManager sharedTheme] topToolbarBackgroundImage] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 149.0, 0, 167.0)]];
+        [toolbar setImage:[[[SSThemeManager sharedTheme] topToolbarBackgroundImage] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 149.0, self.viewHeight-4.0, 167.0)]];
         
         arrowView.hidden=YES;
         

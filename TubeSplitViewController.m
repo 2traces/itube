@@ -74,14 +74,16 @@ static float koefficient = 0.0f;
     [self.view addSubview:controller.view];
     [controller release];
     
-    TopTwoStationsView *twoStationsView;
-    twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault] fieldWidth:202.0f fieldHeight:[[SSThemeManager sharedTheme] toolbarFieldHeight] fieldDelta:[[SSThemeManager sharedTheme] toolbarFieldDelta] deviceHeight:1024.0f deviceWidth:768.0f];
-    
-    self.topStationsView=twoStationsView;
-    twoStationsView.delegate=mainViewController;
-    mainViewController.stationsView = twoStationsView;
-    [self.view addSubview:twoStationsView];
-    [twoStationsView release];
+    if (IS_IPAD && [[SSThemeManager sharedTheme] isNewTheme]) {
+        TopTwoStationsView *twoStationsView;
+        twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault] fieldWidth:202.0f fieldHeight:[[SSThemeManager sharedTheme] toolbarFieldHeight] fieldDelta:[[SSThemeManager sharedTheme] toolbarFieldDelta] deviceHeight:1024.0f deviceWidth:768.0f];
+        
+        self.topStationsView=twoStationsView;
+        twoStationsView.delegate=mainViewController;
+        mainViewController.stationsView = twoStationsView;
+        [self.view addSubview:twoStationsView];
+        [twoStationsView release];
+    }
 
     UIImageView *shadowView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"newdes_ipad_left_shadow"] resizableImageWithCapInsets:UIEdgeInsetsMake(2, 0, 2, 0)]];
     shadowView.frame=CGRectMake(0.0, 44.0, 7.0, 1024.0);

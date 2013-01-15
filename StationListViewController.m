@@ -435,8 +435,12 @@
     CGContextSetLineWidth(context, 0.0);
     CGContextFillEllipseInRect(context, circleRect);
     CGContextStrokeEllipseInRect(context, circleRect);
-    
-    [radialImg drawInRect:CGRectMake(0.0, 0.0, 28.0, 28.0)];
+
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        [radialImg drawInRect:CGRectMake(0.0, 0.0, 28.0, 28.0)];
+    } else {
+        [radialImg drawInRect:CGRectMake(1.0, 1.0, 25.0, 25.0)];
+    }
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
