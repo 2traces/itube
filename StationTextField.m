@@ -32,7 +32,7 @@
         self = [self initWithFrame:frame];
         if (self) {
             self.borderStyle = UITextBorderStyleNone;
-            self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 60)];
+            self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, frame.size.width-18.0)];
             self.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
             self.backgroundColor = [UIColor clearColor];
             self.textAlignment = UITextAlignmentLeft;
@@ -118,7 +118,7 @@
                 self.frame=frame;
                 self.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0];
                 self.textColor = [UIColor blackColor];
-                self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 60)];
+                self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroung] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, frame.size.width-18.0)];
                 self.rightViewMode = UITextFieldViewModeAlways;
                 self.state=style;
                 
@@ -203,7 +203,7 @@
                 [lineColor release];
                 
                 [self setLeftViewMode: UITextFieldViewModeAlways];
-                self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 60)];
+                self.background = [[[SSThemeManager sharedTheme] stationTextFieldBackgroungHighlighted] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, frame.size.width-18.0)];
                 
             }];
             

@@ -368,23 +368,34 @@
 
 -(UIImage*)drawCircleView:(UIColor*)myColor
 {
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(27, 27), NO, 0.0);
+    UIImage *radialImg;
+    CGRect circleRect;
     
-    UIImage *radialImg = [UIImage imageNamed:@"radial.png"];
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        radialImg = [UIImage imageNamed:@"newdes_stations_star.png"];
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(28, 28), NO, 0.0);
+        circleRect = CGRectMake(2.0, 2.0, 24.0, 24.0);
+    } else {
+        radialImg = [UIImage imageNamed:@"radial.png"];
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(27, 27), NO, 0.0);
+        circleRect = CGRectMake(1.0, 1.0, 25.0, 25.0);
+    }
     
-    CGRect circleRect = CGRectMake(1.0, 1.0, 25.0, 25.0);
-	
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     const CGFloat* components = CGColorGetComponents(myColor.CGColor);
     
-    CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor)); 
-    CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));  
-	CGContextSetLineWidth(context, 0.0);
-	CGContextFillEllipseInRect(context, circleRect);
-	CGContextStrokeEllipseInRect(context, circleRect);
+    CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));
+    CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));
+    CGContextSetLineWidth(context, 0.0);
+    CGContextFillEllipseInRect(context, circleRect);
+    CGContextStrokeEllipseInRect(context, circleRect);
     
-    [radialImg drawInRect:circleRect]; 
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        [radialImg drawInRect:CGRectMake(0.0, 0.0, 28.0, 28.0)];
+    } else {
+        [radialImg drawInRect:CGRectMake(1.0, 1.0, 25.0, 25.0)];
+    }
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
