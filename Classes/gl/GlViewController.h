@@ -15,23 +15,32 @@
 #import "GlSprite.h"
 #import "GlPanel.h"
 
+typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_LOCATION=2, PIN_STAR=3, PIN_FAVORITE=4} PinType;
+
 @interface Pin : NSObject {
-     int _id;
-     CGPoint pos;
-     GlSprite *sprite;
-     SmallPanel *sp;
-     CGFloat size;
-     CGFloat offset, speed;
-     float lastScale;
-     float distanceToUser;
+    int _id;
+    CGPoint pos;
+    GlSprite *sprite;
+    SmallPanel *sp;
+    CGFloat size;
+    CGFloat offset, speed, constOffset;
+    float lastScale;
+    float distanceToUser;
+    PinType type;
 }
 
 @property (nonatomic, readonly) int Id;
 @property (nonatomic, readonly) CGPoint position;
 @property (nonatomic, assign) BOOL active;
 @property (nonatomic, assign) CGFloat distanceToUser;
+@property (nonatomic, readonly) PinType type;
 
+-(id)initUserPos;
+-(id)initLocationPos;
 -(id)initWithId:(int)pinId andColor:(int)color;
+-(id)initWithId:(int)pinId color:(int)color andText:(NSString*)text;
+-(id)initStarWithId:(int)pinId color:(int)color andText:(NSString*)text;
+-(id)initFavWithId:(int)pinId color:(int)color andText:(NSString*)text;
 -(void)draw;
 -(void)drawWithScale:(CGFloat)scale;
 -(void)drawPanelWithScale:(CGFloat)scale;
@@ -65,15 +74,17 @@
 - (void) centerMapOnUser;
 
 -(void)setUserGeoPosition:(CGPoint)point;
--(void)setStationsPosition:(NSArray*)coords withNames:(NSArray*)names andMarks:(BOOL)marks;
+-(void)setStationsPosition:(NSArray*)data withMarks:(BOOL)marks;
 -(void)errorWithGeoLocation;
 -(int)newPin:(CGPoint)coordinate color:(int)color name:(NSString*)name;
 -(int)newStar:(CGPoint)coordinate color:(int)color name:(NSString*)name;
 -(void)removePin:(int)pinId;
 -(void)removeAllPins;
+-(int)setLocation:(CGPoint)coordinate;
 -(Pin*)getPin:(int)pinId;
 
 - (CGFloat) setPinAtPlace:(MPlace*)place color:(int)color;
+- (CGFloat) setStarAtPlace:(MPlace*)place color:(int)color;
 - (void) removePinAtPlace:(MPlace*)place;
 // direction from user to geo point
 - (CGFloat) radialOffsetToPoint:(CGPoint)point;
@@ -82,6 +93,9 @@
 - (void) moveModeButtonToFullScreen;
 - (void) moveModeButtonToCutScreen;
 
+-(void)removeTableView;
+-(void)pressedSelectFromStation;
+-(void)pressedSelectToStation;
 
 
 @end

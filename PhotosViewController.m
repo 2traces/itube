@@ -109,12 +109,12 @@
     [self.btShowHideBookmarks setImage:btImage forState:UIControlStateNormal];
     //[self.btAddToFavorites setImage:btImage forState:UIControlStateNormal];
     CGFloat distance = [self.navigationDelegate selectPlaceWithIndex:[place.index integerValue]];
-    NSLog(@"%f meters", distance);
+    NSLog(@"%f km", distance);
     if (distance == 0) {
         self.distanceLabel.text = @"";
     }
     else {
-        self.distanceLabel.text = [NSString stringWithFormat:@"%.1f km", distance/1000.0f];
+        self.distanceLabel.text = [NSString stringWithFormat:@"%.1f km", distance];
         CGFloat direction = [self.navigationDelegate radialDirectionOffsetToPlaceWithIndex:[place.index integerValue]];
         NSLog(@"%f radians", direction);
         //[self.directionImage

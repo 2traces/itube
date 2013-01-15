@@ -1383,6 +1383,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 @synthesize disabledStationLayer;
 @synthesize hasAltNames;
 @synthesize shortColorCode = scc;
+@synthesize pinColor = _pinColor;
 
 -(UIColor*) color {
     return _color;
@@ -2071,6 +2072,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 #endif
 
 		NSString *colors = [parserMap get:@"Color" section:lineName];
+        int pinColor = [[parserMap get:@"PinColor" section:lineName] intValue];
 		NSString *coords = [parserMap get:@"Coordinates" section:lineName];
 		NSString *coordsText = [parserMap get:@"Rects" section:lineName];
 		NSString *stations = [parserTrp get:@"Stations" section:sectionName];
@@ -2089,6 +2091,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             hasAltNames = YES;
         l.index = index;
         l.color = [self colorForHex:colors];
+        l.pinColor = pinColor-1;
         [mapLines addObject:l];
         boundingBox = CGRectUnion(boundingBox, l.boundingBox);
         index ++;
@@ -2282,6 +2285,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 #endif
         
 		NSString *colors = [parserMap get:@"Color" section:lineName];
+        int pinColor = [[parserMap get:@"PinColor" section:lineName] intValue];
         NSArray *coords = [[parserMap get:@"Coordinates" section:lineName] componentsSeparatedByString:@", "];
         NSArray *coordsText = [[parserMap get:@"Rects" section:lineName] componentsSeparatedByString:@", "];
         if([coords count] == 0 || [coordsText count] == 0) break;
@@ -2290,6 +2294,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         Line *l = [[[Line alloc] initWithMap:self andName:lineName] autorelease];
         l.index = index;
         l.color = [self colorForHex:colors];
+        l.pinColor = pinColor-1;
         [mapLines addObject:l];
         MLine *newLine = [NSEntityDescription insertNewObjectForEntityForName:@"Line" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
         newLine.name=lineName;
@@ -3004,11 +3009,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     return nearest;
 }
 
--(CGRect)getGeoCoordsForRect:(CGRect)rect coordinates:(NSMutableArray*)coordinates names:(NSMutableArray *)names
+-(CGRect)getGeoCoordsForRect:(CGRect)rect coordinates:(NSMutableArray*)data
 {
     BOOL path = [activePath count] > 0;
-    [coordinates removeAllObjects];
-    [names removeAllObjects];
+    [data removeAllObjects];
     CGRect geo = CGRectZero;
     for(Line *l in mapLines) {
         for (Station *s in l.stations) {
@@ -3018,7 +3022,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 else geo = CGRectUnion(geo, r);
                 r.size.width = r.size.height = l.shortColorCode;
                 if(s.active && path) {
-                    [coordinates addObject:[NSValue valueWithCGRect:r]];
+                    NSMutableDictionary *piece = [NSMutableDictionary dictionary];
+                    [piece setValue:[NSValue valueWithCGRect:r] forKey:@"coordinate"];
+                    [piece setValue:s.name forKey:@"name"];
+                    [piece setValue:[NSNumber numberWithInt:s.line.pinColor] forKey:@"pinColor"];
                     int activeSegments = 0;
                     for (Segment *seg in s.segment) {
                         if(seg.active) activeSegments ++;
@@ -3028,10 +3035,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     }
                     if(s.transfer.active) activeSegments ++;
                     if(activeSegments < 2) {
-                        [names addObject:s.name];
-                    } else {
-                        [names addObject:@""];
+                        [piece setValue:@"YES" forKey:@"ending"];
                     }
+                    [data addObject:piece];
                 }
             }
         }
