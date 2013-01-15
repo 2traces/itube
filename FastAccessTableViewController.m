@@ -11,6 +11,7 @@
 #import "StationListCell.h"
 #import "tubeAppDelegate.h"
 #import "MainViewController.h"
+#import "SSTheme.h"
 
 @implementation FastAccessTableViewController
 
@@ -47,6 +48,8 @@
     self.dataSource = helper;
     
     self.stationList = [dataSource getStationList];
+    
+    [SSThemeManager customizeSettingsTableView:self.tableView imageView:nil searchBar:nil];
     
     // create a filtered list that will contain products for the search results table.
 	self.filteredStation = [[[NSMutableArray alloc] initWithCapacity:[self.stationList count]] autorelease];
@@ -195,11 +198,18 @@
 
 -(UIImage*)drawCircleView:(UIColor*)myColor
 {
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(27, 27), NO, 0.0);
+    UIImage *radialImg;
+    CGRect circleRect;
     
-    UIImage *radialImg = [UIImage imageNamed:@"radial.png"];
-    
-    CGRect circleRect = CGRectMake(1.0, 1.0, 25.0, 25.0);
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        radialImg = [UIImage imageNamed:@"newdes_stations_star.png"];
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(28, 28), NO, 0.0);
+        circleRect = CGRectMake(2.0, 2.0, 24.0, 24.0);
+    } else {
+        radialImg = [UIImage imageNamed:@"radial.png"];
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(27, 27), NO, 0.0);
+        circleRect = CGRectMake(1.0, 1.0, 25.0, 25.0);
+    }
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -211,7 +221,7 @@
     CGContextFillEllipseInRect(context, circleRect);
     CGContextStrokeEllipseInRect(context, circleRect);
     
-    [radialImg drawInRect:circleRect];
+    [radialImg drawInRect:CGRectMake(0.0, 0.0, 28.0, 28.0)];
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
