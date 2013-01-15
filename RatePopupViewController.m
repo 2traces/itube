@@ -2,7 +2,6 @@
 //  RatePopupViewController.m
 //  tube
 //
-//  Created by Alexey Starovoitov on 20/12/12.
 //
 //
 
