@@ -278,7 +278,7 @@
     [self layoutSubviews];
     
     [UIView animateWithDuration:0.55 animations:^{
-        self.view.frame = CGRectMake(10, 0, [[SSThemeManager sharedTheme] statusViewWidth], 354);
+        self.view.frame = CGRectMake([[SSThemeManager sharedTheme] statusViewStartX], 0, [[SSThemeManager sharedTheme] statusViewWidth], 354);
     }];
 
     self.shadowView.frame=CGRectMake(0, 44, [[SSThemeManager sharedTheme] statusViewWidth], 20);
@@ -290,7 +290,7 @@
     
     textView.scrollEnabled=NO;
     [UIView animateWithDuration:0.55 animations:^{
-        self.view.frame = CGRectMake(10, -354, [[SSThemeManager sharedTheme] statusViewWidth], 354);
+        self.view.frame = CGRectMake([[SSThemeManager sharedTheme] statusViewStartX], -354, [[SSThemeManager sharedTheme] statusViewWidth], 354);
     } completion:^(BOOL finished) {
         [self layoutSubviews];
     }];

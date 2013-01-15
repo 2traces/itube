@@ -784,7 +784,6 @@
             originx = self.stationsView.toStationField.frame.origin.x;
         }
         
-        popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
 //        [popover presentPopoverFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+177.0, 36.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
         [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(originx+177.0, 36.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
         [controller release];
@@ -808,6 +807,7 @@
         
         popover = [[UIPopoverController alloc] initWithContentViewController:controller];
         popover.delegate=self;
+        popover.popoverBackgroundViewClass= [CustomPopoverBackgroundView class];
         
         CGFloat originx;
         if (self.currentSelection==0) {
@@ -816,7 +816,6 @@
             originx = self.stationsView.toStationField.frame.origin.x;
         }
         
-        popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
         //        [popover presentPopoverFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
         [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(originx+80.0, 30.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
         [controller release];
@@ -1047,7 +1046,7 @@
         [popover setPopoverContentSize:controller.view.frame.size];
         
         popover = [[UIPopoverController alloc] initWithContentViewController:controller];
-        popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
+        popover.popoverBackgroundViewClass= [CustomPopoverBackgroundView class];
         //        [popover presentPopoverFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
         [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+80.0, 30.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
         [controller release];
@@ -1094,7 +1093,7 @@
         controller.contentSizeForViewInPopover=CGSizeMake(320, 460);
         
         popover = [[UIPopoverController alloc] initWithContentViewController:controller];
-        popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
+        popover.popoverBackgroundViewClass= [CustomPopoverBackgroundView class];
         [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.toStationField.frame.origin.x+80.0, 30.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
         [controller release];
         }

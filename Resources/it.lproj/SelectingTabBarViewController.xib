@@ -272,7 +272,7 @@
 						<string key="NSReuseIdentifierKey">_NS:196</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
+							<bytes key="NSWhite">MAA</bytes>
 						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">333</int>

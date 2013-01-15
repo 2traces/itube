@@ -190,11 +190,14 @@ NSInteger const toolbarWidth=320;
         [self addSubview:zones];
     }
 
-    UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
-    shadow.frame = shadowRect;
-    [shadow setUserInteractionEnabled:YES];
-    [self addSubview:shadow];
-    shadow.tag=717;
+    
+    if (![[SSThemeManager sharedTheme] isNewTheme]) {
+        UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
+        shadow.frame = shadowRect;
+        [shadow setUserInteractionEnabled:NO];
+        [self addSubview:shadow];
+        shadow.tag=717;
+    }
     
     NSTimer *timer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(supervisor) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
