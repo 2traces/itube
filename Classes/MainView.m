@@ -251,8 +251,8 @@ NSInteger const toolbarWidth=320;
         cornerRect=CGRectMake(0, 400, 36, 60);
     }
     
-    zonesRect.origin.y -= 265;
-    cornerRect.origin.y -= 265;
+    zonesRect.origin.y -= 290;
+    cornerRect.origin.y -= 290;
     
     zones.frame = zonesRect;
     cornerButton.frame = cornerRect;

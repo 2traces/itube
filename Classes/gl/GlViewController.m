@@ -514,6 +514,8 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     }
     
     zones.frame = zonesRect;
+    // we need to force recreating framebuffer object
+    [((GLKView*)(self.view)) deleteDrawable];
     cornerButton.frame = cornerRect;
 }
 
@@ -532,8 +534,8 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 
     }
     
-    zonesRect.origin.y -= 265;
-    cornerRect.origin.y -= 265;
+    zonesRect.origin.y -= 330;
+    cornerRect.origin.y -= 330;
     
     zones.frame = zonesRect;
     cornerButton.frame = cornerRect;
