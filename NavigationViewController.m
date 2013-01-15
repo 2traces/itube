@@ -83,6 +83,8 @@
     [self.view insertSubview:[self.mainController view] aboveSubview:self.separatingView];
     [self.view insertSubview:[self.photosController view] aboveSubview:self.mainController.view];
     
+    self.categoriesController.view.layer.cornerRadius = 5;
+    
     CGRect mainViewFrame = self.mainController.view.frame;
     self.mainController.view.frame = self.glController.view.frame = mainViewFrame;
     
@@ -250,6 +252,9 @@
                 self.photosController.distanceContainer.hidden = NO;
             } completion:^(BOOL finished) {
                 [self showCutMap];
+                MainView *mainView = (MainView*)[self.mainController view];
+                [mainView changedToLandscape:NO];
+
             }];
             break;
         case HCPhotosHiddenFully:
@@ -266,7 +271,8 @@
                 self.photosController.placeNamePanel.hidden = NO;
                 self.photosController.distanceContainer.hidden = NO;
             } completion:^(BOOL finished) {
-
+                MainView *mainView = (MainView*)[self.mainController view];
+                [mainView changedToLandscape:YES];
             }];
             break;
         case HCPhotosHiddenMetroDefault:
@@ -310,7 +316,8 @@
                 self.photosController.panelView.frame = panelFrame;
                 self.photosController.view.frame = photosViewFrame;
                 
-
+                MainView *mainView = (MainView*)[self.mainController view];
+                [mainView changedToLandscape:YES];
         
             }];
             break;
@@ -327,6 +334,10 @@
                 self.photosController.disappearingView.alpha = 0;
                 self.photosController.view.frame = photosViewFrame;
             } completion:^(BOOL finished) {
+                if (returningFromLandscape) {
+                    returningFromLandscape = NO;
+                    return;
+                }
                 self.photosController.placeNamePanel.hidden = YES;
                 self.photosController.distanceContainer.hidden = YES;
                 CGRect photosViewFrame = self.photosController.view.frame;
@@ -339,7 +350,8 @@
                 self.photosController.panelView.frame = panelFrame;
                 self.photosController.view.frame = photosViewFrame;
                 
-
+                MainView *mainView = (MainView*)[self.mainController view];
+                [mainView changedToLandscape:YES];
             }];
             break;
             
@@ -377,7 +389,12 @@
 }
 
 - (void) showHidePhotos:(id)sender {
-    if (categoriesOpen || layerMode == HCBookmarksLayer) {
+    if (categoriesOpen) {
+        return;
+    }
+    if (layerMode == HCBookmarksLayer) {
+        [self hideBookmarksLayer];
+        [self transitPhotosToMode:HCPhotosVisibleFully animated:YES];
         return;
     }
     if (photosMode != HCPhotosVisibleFully) {
@@ -405,6 +422,9 @@
         [self.bookmarksController.view removeFromSuperview];
         [self.photosController.btShowHideBookmarks setImage:[UIImage imageNamed:@"bt_photo_like"] forState:UIControlStateNormal];
         self.photosController.placeNamePanel.hidden = NO;
+        self.photosController.btShowHideBookmarks.enabled = YES;
+
+        [self.photosController updateInfoForCurrentPage];
         if (fMetroMode) {
             layerMode = HCMetroLayer;
         }
@@ -423,7 +443,8 @@
                 CGRect frame = self.bookmarksController.view.frame;
                 frame.origin = CGPointMake(0, 0);
                 self.bookmarksController.view.frame = frame;
-                [self.photosController.btShowHideBookmarks setImage:[UIImage imageNamed:@"bt_bookmarks_map"] forState:UIControlStateNormal];
+//                [self.photosController.btShowHideBookmarks setImage:[UIImage imageNamed:@"bt_bookmarks_map"] forState:UIControlStateNormal];
+                self.photosController.btShowHideBookmarks.enabled = NO;
                 if (fMetroMode) {
                     [self.view insertSubview:self.bookmarksController.view aboveSubview:self.mainController.view];
                 }
@@ -432,6 +453,8 @@
                 }
                 [self transitPhotosToMode:HCPhotosHiddenFully animated:YES];
                 layerMode = HCBookmarksLayer;
+                self.photosController.placeNamePanel.text = @"Bookmarks";
+
                 break;
             case HCMetroLayer:
                 [self.view insertSubview:self.mainController.view belowSubview:self.glController.view];
@@ -543,19 +566,23 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
-//- (BOOL)shouldAutorotate {
-//        return YES;
-//}
-//
-//-(NSUInteger)supportedInterfaceOrientations{
-//    return UIInterfaceOrientationMaskAll;
-//}
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    if (layerMode == HCBookmarksLayer || self.presentedViewController) {
+        return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
+    }
+    return UIInterfaceOrientationMaskAll;
+}
 
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     MainView *mainView = (MainView*)[self.mainController view];
     if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+        returningFromLandscape = YES;
         [mainView changedToLandscape:NO];
         photosMode = HCPhotosHiddenFully;
         [self transitPhotosToMode:HCPhotosVisibleFully animated:NO];
@@ -563,6 +590,21 @@
 
     } else {
         [mainView changedToLandscape:YES];
+        if (layerMode == HCBookmarksLayer) {
+            //As bookmarks layer is just placed ABOVE map/metro layer, we need to first dismiss it
+            [self.bookmarksController.view removeFromSuperview];
+            [self.photosController.btShowHideBookmarks setImage:[UIImage imageNamed:@"bt_photo_like"] forState:UIControlStateNormal];
+            self.photosController.placeNamePanel.hidden = NO;
+            if (fMetroMode) {
+                layerMode = HCMetroLayer;
+            }
+            else {
+                layerMode = HCOSMLayer;
+            }
+        }
+        if (self.presentedViewController) {
+            [self.presentedViewController dismissModalViewControllerAnimated:YES];
+        }
 
         [self hideCategoriesAnimated:NO];
         //[self transitPhotosToMode:HCPhotosVisibleFully animated:NO];

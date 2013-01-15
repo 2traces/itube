@@ -35,7 +35,7 @@ MBProgressHUD *commonActivityIndicator;
 	NSNumber *yh;
 	UIView *stationNameView;
 	UILabel *stationNameLabel;
-    UIButton *sourceButton, *destinationButton, *zones;
+    UIButton *sourceButton, *destinationButton, *zones, *cornerButton;
     UIImageView *stationMark;
     BOOL buttonsVisible;
     BOOL landscapeMode;

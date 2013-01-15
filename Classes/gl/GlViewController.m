@@ -37,7 +37,7 @@ GLint uniforms[NUM_UNIFORMS];
     RasterLayer *rasterLayer;
     CGPoint position, prevPosition, targetPosition;
     CGFloat scale, prevScale, targetScale, targetTimer;
-    UIButton *sourceData, *settings, *zones;
+    UIButton *sourceData, *settings, *zones, *cornerButton;
     
     MItem *currentSelection;
     MItem *fromStation;
@@ -365,16 +365,18 @@ GLint uniforms[NUM_UNIFORMS];
 
     pinsArray = [[NSMutableArray alloc] init];
 
-    CGRect scrollSize,settingsRect,shadowRect,zonesRect;
+    CGRect scrollSize,settingsRect,shadowRect,zonesRect,cornerRect;
     
     //scrollSize = CGRectMake(0, 44,(320),(480-64));
     //settingsRect=CGRectMake(285, 420, 27, 27);
     //shadowRect = CGRectMake(0, 44, 480, 61);
     if ([appDelegate isIPHONE5]) {
         zonesRect=CGRectMake(250, 498, 71, 43);
+        cornerRect=CGRectMake(0, 488, 36, 60);
     }
     else {
         zonesRect=CGRectMake(250, 410, 71, 43);
+        cornerRect=CGRectMake(0, 400, 36, 60);
     }
     
     if (IS_IPAD) {
@@ -450,6 +452,14 @@ GLint uniforms[NUM_UNIFORMS];
     [view addSubview:zones];
     view.zonesButton = zones;
 
+    
+    cornerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cornerButton setImage:[UIImage imageNamed:@"bt_corner"] forState:UIControlStateNormal];
+    [cornerButton setFrame:zonesRect];
+    [cornerButton addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
+
+    [view addSubview:cornerButton];
+    
     // user geo position
     Pin *p = [[Pin alloc] initWithId:0 color:0 andText:@"You are here!"];
     [pinsArray addObject:p];
@@ -457,35 +467,44 @@ GLint uniforms[NUM_UNIFORMS];
     newPinId = 1;
 }
 
-
 - (void) moveModeButtonToFullScreen {
-    CGRect zonesRect;
+    CGRect zonesRect, cornerRect;
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     if ([appDelegate isIPHONE5]) {
         zonesRect=CGRectMake(250, 498, 71, 43);
+        cornerRect=CGRectMake(0, 488, 36, 60);
     }
     else {
         zonesRect=CGRectMake(250, 410, 71, 43);
+        cornerRect=CGRectMake(0, 400, 36, 60);
     }
     
     zones.frame = zonesRect;
+    cornerButton.frame = cornerRect;
 }
 
 - (void) moveModeButtonToCutScreen {
-    CGRect zonesRect;
+    CGRect zonesRect, cornerRect;
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     if ([appDelegate isIPHONE5]) {
         zonesRect=CGRectMake(250, 498, 71, 43);
+        cornerRect=CGRectMake(0, 488, 36, 60);
+
     }
     else {
         zonesRect=CGRectMake(250, 410, 71, 43);
+        cornerRect=CGRectMake(0, 400, 36, 60);
+
     }
     
     zonesRect.origin.y -= 265;
+    cornerRect.origin.y -= 265;
     
     zones.frame = zonesRect;
+    cornerButton.frame = cornerRect;
+
 }
 
 -(void) changeSource
@@ -496,9 +515,8 @@ GLint uniforms[NUM_UNIFORMS];
 
 -(void) showSettings
 {
-    SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];
-    [self.navigationViewController presentModalViewController:controller animated:YES];
-    [controller release];
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate showSettings];
 }
 
 -(void)handlePanGesture:(UIPanGestureRecognizer*)recognizer

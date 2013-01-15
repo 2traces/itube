@@ -32,8 +32,9 @@ NSString *mainurl = @"http://x-provocation.com/maps";
 -(NSURL*)makeFullURL:(NSString*)suburl
 {
     NSString *preurl = [NSString stringWithFormat:@"%@/%@",mainurl,suburl];
-    if ([preurl isEqualToString:@"http://x-provocation.com/maps/com.zuev.hiddencities.paris.plist"]) {
-        preurl = @"http://findmystation.info/com.zuev.highlights.paris.plist";
+    if ([preurl isEqualToString:@"http://x-provocation.com/maps/com.starovoitov.hiddencities.paris.plist"]) {
+        //preurl = @"http://findmystation.info/com.zuev.highlights.paris.plist";
+        preurl = @"http://dl.dropbox.com/u/16378090/maps.plist";
     }
     
     
@@ -60,8 +61,8 @@ NSString *mainurl = @"http://x-provocation.com/maps";
 -(void)connection:(NSURLConnection *)fconnection didReceiveData:(NSData *)data {
     if (fconnection==self.connection) {
         [responseData appendData:data];
-        float part = (float)[responseData length]/(float)expectedBytes;
-        [listener downloadedBytes:part prodID:prodID];
+        //float part = (float)[responseData length]/(float)expectedBytes;
+        [listener downloadedBytes:(long)[responseData length] outOfBytes:(long)expectedBytes prodID:prodID];
     }
 }
 

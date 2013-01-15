@@ -102,8 +102,8 @@
 {
     [super viewDidLoad];
     
-    CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, windowBounds.size.height);
+//    CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
+//    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, windowBounds.size.height);
     
     // Do any additional setup after loading the view from its nib.
     self.items = [NSMutableArray arrayWithCapacity:5];
@@ -113,6 +113,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, windowBounds.size.height);
     [self reloadScrollView];
 }
 
@@ -130,6 +132,7 @@
     }
     return nil;
 }
+
 
 - (void) removeFromFavoritesItemWithIndex:(NSInteger)index {
     HCBookmarkItemView *view = [self viewForPlaceIndex:index];
@@ -168,6 +171,10 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+-(BOOL)shouldAutorotate{
+    return NO;
 }
 
 @end

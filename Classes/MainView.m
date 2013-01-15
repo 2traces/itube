@@ -55,7 +55,7 @@ NSInteger const toolbarWidth=320;
 {
 	[self initVar];
     
-    CGRect scrollSize,settingsRect,shadowRect,zonesRect;
+    CGRect scrollSize,settingsRect,shadowRect,zonesRect,cornerRect;
     
     scrollSize = CGRectMake(0, 44,(320),(480-64));
     settingsRect=CGRectMake(285, 420, 27, 27);
@@ -63,12 +63,20 @@ NSInteger const toolbarWidth=320;
     
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
 
+    CGRect selfFrame = self.frame;
+    
     if ([appDelegate isIPHONE5]) {
         zonesRect=CGRectMake(250, 498, 71, 43);
+        cornerRect=CGRectMake(0, 498, 36, 60);
+        selfFrame.size.height = 568;
     }
     else {
         zonesRect=CGRectMake(250, 410, 71, 43);
+        cornerRect=CGRectMake(0, 410, 36, 60);
+
     }
+    
+    self.frame = selfFrame;
     
     if (IS_IPAD) {
         scrollSize = CGRectMake(0, 44, 768, (1024-74));
@@ -163,6 +171,12 @@ NSInteger const toolbarWidth=320;
     [sourceButton addTarget:self action:@selector(selectFromStationByButton) forControlEvents:UIControlEventTouchUpInside];
     [sourceButton setFrame:CGRectMake(-90, 190, 96, 96)];
     sourceButton.hidden = YES;
+    
+    cornerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cornerButton setImage:[UIImage imageNamed:@"bt_corner"] forState:UIControlStateNormal];
+    [cornerButton setFrame:zonesRect];
+    [cornerButton addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:cornerButton];
 
     destinationButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [destinationButton setImage:[UIImage imageNamed:@"dst_button_normal"] forState:UIControlStateNormal];
@@ -207,33 +221,41 @@ NSInteger const toolbarWidth=320;
 
 
 - (void) moveModeButtonToFullScreen {
-    CGRect zonesRect;
+    CGRect zonesRect, cornerRect;
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
 
     if ([appDelegate isIPHONE5]) {
         zonesRect=CGRectMake(250, 498, 71, 43);
+        cornerRect=CGRectMake(0, 488, 36, 60);
     }
     else {
         zonesRect=CGRectMake(250, 410, 71, 43);
+        cornerRect=CGRectMake(0, 400, 36, 60);
     }
     
     zones.frame = zonesRect;
+    cornerButton.frame = cornerRect;
 }
 
 - (void) moveModeButtonToCutScreen {
-    CGRect zonesRect;
+    CGRect zonesRect, cornerRect;
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     if ([appDelegate isIPHONE5]) {
         zonesRect=CGRectMake(250, 498, 71, 43);
+        cornerRect=CGRectMake(0, 488, 36, 60);
+
     }
     else {
         zonesRect=CGRectMake(250, 410, 71, 43);
+        cornerRect=CGRectMake(0, 400, 36, 60);
     }
     
     zonesRect.origin.y -= 265;
+    cornerRect.origin.y -= 265;
     
     zones.frame = zonesRect;
+    cornerButton.frame = cornerRect;
 }
 
 -(void)layoutSubviews
@@ -426,9 +448,8 @@ NSInteger const toolbarWidth=320;
 
 -(void) showSettings
 {
-    SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];
-    [self.vcontroller.navigationViewController presentModalViewController:controller animated:YES];
-    [controller release];
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate showSettings];
 }
 
 -(void) changeZones

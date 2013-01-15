@@ -236,6 +236,11 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
 }
 
+- (NSUInteger) application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    
+    return [self.navigationViewController supportedInterfaceOrientations];
+}
+
 -(NSString*)getAppName
 {
     NSString *appName;
@@ -603,6 +608,11 @@ void uncaughtExceptionHandler(NSException *exception) {
 -(void)hideBookmarks {
     [self.navigationViewController hideBookmarksLayer];
 }
+
+- (void)showSettings {
+    [self.navigationViewController showSettings];
+}
+
 
 #pragma mark - Mail methods
 

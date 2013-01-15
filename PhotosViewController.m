@@ -44,11 +44,8 @@
 }
 
 - (IBAction)showBookmarks:(id)sender {
-    [self.navigationDelegate showBookmarks:self];
 
-}
-
-- (IBAction)addToFavorites:(id)sender {
+    
     MPlace *place = [(MPhoto*)(self.currentPhotos[currentPage]) place];
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     if ([place.isFavorite boolValue]) {
@@ -59,6 +56,11 @@
     }
     place.isFavorite = [place.isFavorite boolValue] ? [NSNumber numberWithBool:NO] : [NSNumber numberWithBool:YES];
     [self updateInfoForCurrentPage];
+
+}
+
+- (IBAction)addToFavorites:(id)sender {
+    [self.navigationDelegate showBookmarks:self];
 }
 
 - (IBAction)centerMapOnUser:(id)sender {
@@ -102,9 +104,10 @@
     self.placeDescriptionBg.frame = self.placeDescription.frame;
     self.placeDescriptionBg.center = CGPointMake(self.placeDescription.center.x, self.placeDescription.center.y - 3);
     UIImage *btImage = [place.isFavorite boolValue] ?
-                [UIImage imageNamed:@"bt_star_solid"] :
-                [UIImage imageNamed:@"bt_star"];
-    [self.btAddToFavorites setImage:btImage forState:UIControlStateNormal];
+                [UIImage imageNamed:@"bt_photo_like"] :
+                [UIImage imageNamed:@"bt_photo_like_empty"];
+    [self.btShowHideBookmarks setImage:btImage forState:UIControlStateNormal];
+    //[self.btAddToFavorites setImage:btImage forState:UIControlStateNormal];
     CGFloat distance = [self.navigationDelegate selectPlaceWithIndex:[place.index integerValue]];
     NSLog(@"%f meters", distance);
     if (distance == 0) {
@@ -238,7 +241,7 @@
     tapGR.delegate = self;
     self.placeNameHeader.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18.0f];
     self.placeNamePanel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0f];
-    self.placeDescriptionBg.layer.cornerRadius = 11;
+    self.placeDescriptionBg.layer.cornerRadius = 5;
     self.placeDescription.font = [UIFont fontWithName:@"MyriadPr-Italic" size:16.0f];
     self.distanceLabel.font = [UIFont fontWithName:@"MyriadPr-Italic" size:10.0f];
     self.distanceLabel.textColor = [UIColor darkGrayColor];

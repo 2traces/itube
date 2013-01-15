@@ -49,13 +49,18 @@
 		<string>MyriadPro-Semibold.otf</string>
 		<string>MyriadPro-Regular.otf</string>
 	</array>
+	<key>UILaunchImageFile</key>
+	<string>nyc-Default.png</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleBlackOpaque</string>
 	<key>UISupportedInterfaceOrientations</key>
-	<array/>
-	<key>UILaunchImageFile</key>
-	<string>nyc-Default.png</string>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
 </dict>
 </plist>

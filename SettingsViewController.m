@@ -296,6 +296,10 @@
     }    
 }
 
+-(BOOL)shouldAutorotate{
+    return NO;
+}
+
 - (void)viewDidUnload
 {
     [updateButton release];
@@ -731,6 +735,26 @@
     [servers removeObject:myid];
 }
 
+
+-(void)downloadedBytes:(long)part outOfBytes:(long)whole prodID:(NSString*)prodID
+{
+    if (requested_file_type==zip_) {
+        NSIndexPath *mapIndexPath = [self getIndexPathProdID:prodID];
+        
+        if (mapIndexPath) {
+            for (NSDictionary *map in self.maps) {
+                if ([[map objectForKey:@"prodID"] isEqual:prodID]) {
+                    [map setValue:@"N" forKey:@"status"];
+                    [map setValue:[NSNumber numberWithLong:part] forKey:@"progressPart"];
+                    [map setValue:[NSNumber numberWithLong:whole] forKey:@"progressWhole"];
+                }
+            }
+            
+            [self performSelectorOnMainThread:@selector(refreshButton:) withObject:mapIndexPath waitUntilDone:NO];
+        }
+    }
+}
+
 -(void)downloadedBytes:(float)part prodID:(NSString*)prodID
 {
     if (requested_file_type==zip_) {
@@ -754,7 +778,11 @@
     CityCell *cell = (CityCell*)[self.cityTableView cellForRowAtIndexPath:path];
     UIProgressView *progress = (UIProgressView*)[cell viewWithTag:123];
     NSDictionary *map = [self.maps objectAtIndex:path.row];
-    progress.progress=[[map objectForKey:@"progress"] floatValue];
+    CGFloat prog = [[map objectForKey:@"progressPart"] floatValue] / [[map objectForKey:@"progressWhole"] floatValue];
+    CGFloat part = (float)[[map objectForKey:@"progressPart"] longValue] / (1024.0f*1024.0f);
+    CGFloat whole = (float)[[map objectForKey:@"progressWhole"] longValue] / (1024.0f*1024.0f);
+    cell.priceTag.text = [NSString stringWithFormat:@"%.1f/%.1f Mb", part, whole];
+    progress.progress=prog;
 }
 
 -(void)startDownloading:(NSString*)prodID

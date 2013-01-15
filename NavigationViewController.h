@@ -68,6 +68,8 @@ typedef enum {
     UIImageView *shadow;
     
     CGRect rectMapFull, rectMapCut;
+    
+    BOOL returningFromLandscape; //another freaking dummy flag to keep old and new UI consistent and synchronized...
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController;
