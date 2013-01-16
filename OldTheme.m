@@ -279,9 +279,9 @@
 {
     NSString *name;
     if (state == UIControlStateNormal) {
-        name = @"backButtonBG.png";
+        name = @"bordered_button_bg";
     } else if (state == UIControlStateHighlighted) {
-        name = @"backButtonBGPressed.png";
+        name = @"bordered_button_pressed_bg";
     }
     UIImage *image = [UIImage imageNamed:name];
     image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 18.0, 0.0, 10.0)];
