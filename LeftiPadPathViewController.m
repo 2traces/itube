@@ -390,7 +390,7 @@
     if ([[SSThemeManager sharedTheme] isNewTheme]) {
         img =  [UIImage imageNamed:@"newdes_ipad_left_buttonZ"];
         imgHigh = [UIImage imageNamed:@"newdes_ipad_left_buttonZ_pressed"];
-        [changeViewButton setFrame:CGRectMake(253, 75 , img.size.width, img.size.height)];
+        [changeViewButton setFrame:CGRectMake(252, 75 , img.size.width, img.size.height)];
     } else {
         img =  [UIImage imageNamed:@"statusButton.png"];
         imgHigh = [UIImage imageNamed:@"statusButtonPressed.png"];

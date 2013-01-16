@@ -52,7 +52,7 @@
 #else
     [navigationBarAppearance setTitleVerticalPositionAdjustment:4.0f forBarMetrics:UIBarMetricsDefault];
     [barButtonItemAppearance setBackButtonTitlePositionAdjustment:UIOffsetMake(0.0f, 1.0f) forBarMetrics:UIBarMetricsDefault];
-    [barButtonItemAppearance setTitlePositionAdjustment:UIOffsetMake(1.0f, 3.0f) forBarMetrics:UIBarMetricsDefault];
+    [barButtonItemAppearance setTitlePositionAdjustment:UIOffsetMake(0.0f, 5.0f) forBarMetrics:UIBarMetricsDefault];
 #endif
     
     [barButtonItemAppearance setBackgroundImage:[theme barButtonBorderedBackgroundForState:UIControlStateNormal style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsDefault] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];

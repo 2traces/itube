@@ -51,6 +51,10 @@
             self.view.layer.shadowOpacity = 0.8;
             self.view.layer.shadowRadius = 2;
             self.view.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
+            CGPathRef path = [UIBezierPath bezierPathWithRect:self.view.bounds].CGPath;
+            [self.view.layer setShadowPath:path];
+            self.view.layer.shouldRasterize = YES;
+            self.view.layer.rasterizationScale = [UIScreen mainScreen].scale;
 
         } else {
             self.view.frame=CGRectMake(viewStartX, 0.0, viewWidth, 1004);
@@ -275,10 +279,10 @@
     textView.scrollEnabled=YES;
     [textView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
     
-    [self layoutSubviews];
     
     [UIView animateWithDuration:0.55 animations:^{
         self.view.frame = CGRectMake([[SSThemeManager sharedTheme] statusViewStartX], 0, [[SSThemeManager sharedTheme] statusViewWidth], 354);
+        [self layoutSubviews];
     }];
 
     self.shadowView.frame=CGRectMake(0, 44, [[SSThemeManager sharedTheme] statusViewWidth], 20);
