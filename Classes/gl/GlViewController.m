@@ -405,11 +405,11 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     //shadowRect = CGRectMake(0, 44, 480, 61);
     if ([appDelegate isIPHONE5]) {
         zonesRect=CGRectMake(250, 498, 71, 43);
-        cornerRect=CGRectMake(0, 488, 36, 60);
+        cornerRect=CGRectMake(0, 489, 36, 60);
     }
     else {
         zonesRect=CGRectMake(250, 410, 71, 43);
-        cornerRect=CGRectMake(0, 400, 36, 60);
+        cornerRect=CGRectMake(0, 401, 36, 60);
     }
     
     if (IS_IPAD) {
@@ -506,11 +506,11 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     
     if ([appDelegate isIPHONE5]) {
         zonesRect=CGRectMake(250, 498, 71, 43);
-        cornerRect=CGRectMake(0, 488, 36, 60);
+        cornerRect=CGRectMake(0, 489, 36, 60);
     }
     else {
         zonesRect=CGRectMake(250, 410, 71, 43);
-        cornerRect=CGRectMake(0, 400, 36, 60);
+        cornerRect=CGRectMake(0, 401, 36, 60);
     }
     
     zones.frame = zonesRect;
@@ -525,17 +525,17 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     
     if ([appDelegate isIPHONE5]) {
         zonesRect=CGRectMake(250, 498, 71, 43);
-        cornerRect=CGRectMake(0, 488, 36, 60);
+        cornerRect=CGRectMake(0, 489, 36, 60);
 
     }
     else {
         zonesRect=CGRectMake(250, 410, 71, 43);
-        cornerRect=CGRectMake(0, 400, 36, 60);
+        cornerRect=CGRectMake(0, 401, 36, 60);
 
     }
     
-    zonesRect.origin.y -= 330;
-    cornerRect.origin.y -= 330;
+    zonesRect.origin.y -= 335;
+    cornerRect.origin.y -= 335;
     
     zones.frame = zonesRect;
     cornerButton.frame = cornerRect;

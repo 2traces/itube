@@ -226,11 +226,11 @@ NSInteger const toolbarWidth=320;
 
     if ([appDelegate isIPHONE5]) {
         zonesRect=CGRectMake(250, 498, 71, 43);
-        cornerRect=CGRectMake(0, 488, 36, 60);
+        cornerRect=CGRectMake(0, 489, 36, 60);
     }
     else {
         zonesRect=CGRectMake(250, 410, 71, 43);
-        cornerRect=CGRectMake(0, 400, 36, 60);
+        cornerRect=CGRectMake(0, 401, 36, 60);
     }
     
     zones.frame = zonesRect;
@@ -243,16 +243,16 @@ NSInteger const toolbarWidth=320;
     
     if ([appDelegate isIPHONE5]) {
         zonesRect=CGRectMake(250, 498, 71, 43);
-        cornerRect=CGRectMake(0, 488, 36, 60);
+        cornerRect=CGRectMake(0, 489, 36, 60);
 
     }
     else {
         zonesRect=CGRectMake(250, 410, 71, 43);
-        cornerRect=CGRectMake(0, 400, 36, 60);
+        cornerRect=CGRectMake(0, 401, 36, 60);
     }
     
-    zonesRect.origin.y -= 290;
-    cornerRect.origin.y -= 290;
+    zonesRect.origin.y -= 295;
+    cornerRect.origin.y -= 295;
     
     zones.frame = zonesRect;
     cornerButton.frame = cornerRect;

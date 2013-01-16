@@ -105,7 +105,20 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    
+    CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
+    //self.view.frame = windowBounds;
+    
+    if (windowBounds.size.height > 480) {
+        self.shadow.image = [UIImage imageNamed:@"navigation_shadow_higher.png"];
+        CGRect frame = self.shadow.frame;
+        frame.size.height = 548;
+        self.shadow.frame = frame;
+    }
+
+    
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
     if (appDelegate.shouldShowRateScreen) {
         [appDelegate askForRate];
         appDelegate.shouldShowRateScreen = NO;
@@ -137,19 +150,21 @@
 
     [UIView animateWithDuration:0.5f animations:^{
         CGRect mainViewFrame = self.mainController.view.frame;
+        CGRect glViewFrame = self.glController.view.frame;
         CGRect photosViewFrame = self.photosController.view.frame;
         CGRect separatingFrame = self.separatingView.frame;
 
         if (mainViewFrame.origin.x == 0) {
-            mainViewFrame.origin.x = photosViewFrame.origin.x = separatingFrame.origin.x = 227;
+            mainViewFrame.origin.x = photosViewFrame.origin.x = separatingFrame.origin.x = glViewFrame.origin.x = 227;
             categoriesOpen = YES;
         }
         else {
-            mainViewFrame.origin.x = photosViewFrame.origin.x = separatingFrame.origin.x = 0;
+            mainViewFrame.origin.x = photosViewFrame.origin.x = separatingFrame.origin.x = glViewFrame.origin.x =  0;
             categoriesOpen = NO;
 
         }
-        self.mainController.view.frame = self.glController.view.frame = self.bookmarksController.view.frame = mainViewFrame;
+        self.mainController.view.frame = self.bookmarksController.view.frame = mainViewFrame;
+        self.glController.view.frame = glViewFrame;
         self.photosController.view.frame = photosViewFrame;
         self.separatingView.frame = separatingFrame;
     }];
@@ -280,7 +295,7 @@
             self.photosController.placeNamePanel.hidden = NO;
             self.photosController.distanceContainer.hidden = NO;
             [self showFullMap];
-
+            returningFromLandscape = NO;
             
             if (oldMode != HCPhotosHiddenMetroPath) {
                 //Here we should set the destination station

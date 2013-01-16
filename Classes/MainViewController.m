@@ -174,11 +174,13 @@
 
 - (void) moveModeButtonToFullScreen {
     MainView *view = self.view;
+    //self.horizontalPathesScrollView.hidden = NO;
     [view moveModeButtonToFullScreen];
 }
 
 - (void) moveModeButtonToCutScreen {
     MainView *view = self.view;
+    self.horizontalPathesScrollView.hidden = YES;
     [view moveModeButtonToCutScreen];
     
 }
