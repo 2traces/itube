@@ -32,9 +32,9 @@ NSString *mainurl = @"http://x-provocation.com/maps";
 -(NSURL*)makeFullURL:(NSString*)suburl
 {
     NSString *preurl = [NSString stringWithFormat:@"%@/%@",mainurl,suburl];
-    if ([preurl isEqualToString:@"http://x-provocation.com/maps/com.starovoitov.hiddencities.paris.plist"]) {
-        //preurl = @"http://findmystation.info/com.zuev.highlights.paris.plist";
-        preurl = @"http://dl.dropbox.com/u/16378090/maps.plist";
+    if ([preurl isEqualToString:@"http://x-provocation.com/maps/com.zuev.hiddencities.paris.plist"]) {
+        preurl = @"http://findmystation.info/com.zuev.highlights.paris.plist";
+        //preurl = @"http://dl.dropbox.com/u/16378090/maps.plist";
     }
     
     
