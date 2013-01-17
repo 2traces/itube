@@ -405,6 +405,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 
     if (IS_IPAD) {
         [tubeSplitViewController hideTopViewAnimated];
+        [tubeSplitViewController hideLeftView];
     }
 }
 
