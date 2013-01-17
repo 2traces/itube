@@ -48,7 +48,16 @@
     [barButtonItemAppearance setBackButtonBackgroundVerticalPositionAdjustment:-2.0f forBarMetrics:UIBarMetricsDefault];
     [barButtonItemAppearance setBackButtonTitlePositionAdjustment:UIOffsetMake(0.0f, 1.0f) forBarMetrics:UIBarMetricsDefault];
     [barButtonItemAppearance setBackgroundVerticalPositionAdjustment:-2.0f forBarMetrics:UIBarMetricsDefault];
-    [barButtonItemAppearance setTitlePositionAdjustment:UIOffsetMake(0.0f, 3.0f) forBarMetrics:UIBarMetricsDefault];
+  
+    NSArray *vComp = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
+    
+    if ( 6 >= [[vComp objectAtIndex:0] intValue] ) {
+        // iOS-6 code and above 
+        [barButtonItemAppearance setTitlePositionAdjustment:UIOffsetMake(0.0f, 0.0f) forBarMetrics:UIBarMetricsDefault];
+    } else {        
+        // iOS-5 code
+        [barButtonItemAppearance setTitlePositionAdjustment:UIOffsetMake(0.0f, 3.0f) forBarMetrics:UIBarMetricsDefault];
+    }
 #else
     [navigationBarAppearance setTitleVerticalPositionAdjustment:4.0f forBarMetrics:UIBarMetricsDefault];
     [barButtonItemAppearance setBackButtonTitlePositionAdjustment:UIOffsetMake(0.0f, 1.0f) forBarMetrics:UIBarMetricsDefault];

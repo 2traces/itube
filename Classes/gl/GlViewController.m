@@ -292,14 +292,14 @@ GLint uniforms[NUM_UNIFORMS];
     } else {
         if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
             CGSize result = [[UIScreen mainScreen] bounds].size;
-            CGFloat scale = [UIScreen mainScreen].scale;
-            result = CGSizeMake(result.width * scale, result.height * scale);
+            CGFloat screen_scale = [UIScreen mainScreen].scale;
+            result = CGSizeMake(result.width * screen_scale, result.height * screen_scale);
             
             if(result.height == 1136){
                 //scrollSize = CGRectMake(0,44,(320),(568-64));
                 //settingsRect=CGRectMake(285, 508, 27, 27);
                 //shadowRect = CGRectMake(0, 44, 568, 61);
-                settingsRect=CGRectMake(55, 508, 27, 27);
+                zonesRect=CGRectMake(25, 508, 43, 25);
             }
         }
     }
@@ -330,31 +330,28 @@ GLint uniforms[NUM_UNIFORMS];
     rasterLayer = [[RasterLayer alloc] initWithRect:CGRectMake(0, 0, 256, 256) mapName:@"cuba"];
     //[rasterLayer setSignal:self selector:@selector(redrawRect:)];
     
-    TopTwoStationsView *twoStationsView;
+//    TopTwoStationsView *twoStationsView;
     
-    if (IS_IPAD && ![[SSThemeManager sharedTheme] isNewTheme]) {
-        twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault] fieldWidth:189.0f fieldHeight:[[SSThemeManager sharedTheme] toolbarFieldHeight] fieldDelta:[[SSThemeManager sharedTheme] toolbarFieldDelta] deviceHeight:1024.0f deviceWidth:768.0f];
-        twoStationsView.delegate=self;
-        self.stationsView = twoStationsView;
-        [view addSubview:twoStationsView];
-        
-    } else if (!IS_IPAD) {
-        twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault] fieldWidth:160.0f  fieldHeight:[[SSThemeManager sharedTheme] toolbarFieldHeight] fieldDelta:[[SSThemeManager sharedTheme] toolbarFieldDelta]  deviceHeight:480.0f deviceWidth:320.f];
-        twoStationsView.delegate=self;
-        self.stationsView = twoStationsView;
-        [view addSubview:twoStationsView];
-    }
+//    if (!IS_IPAD) {
+//        twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault] fieldWidth:160.0f  fieldHeight:[[SSThemeManager sharedTheme] toolbarFieldHeight] fieldDelta:[[SSThemeManager sharedTheme] toolbarFieldDelta]  deviceHeight:480.0f deviceWidth:320.f];
+//        twoStationsView.delegate=self;
+//        self.stationsView = twoStationsView;
+//        [view addSubview:twoStationsView];
+//        [twoStationsView release];
+//
+//        [UIView animateWithDuration:0.5 animations:^{
+//            [self.stationsView setFrame:CGRectMake(0, 33-[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault], 320, [[SSThemeManager sharedTheme] toolbarFieldHeight])];
+//        }];
+//    }
     
-    [twoStationsView release];
-
     int adDelta = 0;
 
-    settings = [UIButton buttonWithType:UIButtonTypeCustom];
-    [settings setImage:[UIImage imageNamed:@"settings_btn_normal"] forState:UIControlStateNormal];
-    [settings setImage:[UIImage imageNamed:@"settings_btn"] forState:UIControlStateHighlighted];
-    settings.frame = CGRectMake(285, 420 - adDelta, 27, 27);
-    [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:settings];
+//    settings = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [settings setImage:[[SSThemeManager sharedTheme] mapViewSettingsButton:UIControlStateNormal] forState:UIControlStateNormal];
+//    [settings setImage:[[SSThemeManager sharedTheme] mapViewSettingsButton:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+//    settings.frame = CGRectMake(285, 420 - adDelta, 27, 27);
+//    [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
+//    [view addSubview:settings];
     
     sourceData = [UIButton buttonWithType:UIButtonTypeCustom];
     [sourceData setImage:[UIImage imageNamed:@"vector"] forState:UIControlStateNormal];
@@ -364,13 +361,16 @@ GLint uniforms[NUM_UNIFORMS];
     [view addSubview:sourceData];
 
     zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    [zones setImage:[UIImage imageNamed:@"metro_button"] forState:UIControlStateNormal];
-    //[zones setImage:[UIImage imageNamed:@"zones_btn"] forState:UIControlStateHighlighted];
+    [zones setBackgroundImage:[[UIImage imageNamed:@"newdes_maps_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 21, 10, 11)] forState:UIControlStateNormal];
+    [zones setTitle:NSLocalizedString(@"MetroButton", @"MetroButton")  forState:UIControlStateNormal];
+    [[zones titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:10.0]];
+    [zones setTitleEdgeInsets:UIEdgeInsetsMake(2, 0, 0, 0)];
+    [zones setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     zones.frame = zonesRect;
     [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:zones];
     view.zonesButton = zones;
-
+    
     // user geo position
     Pin *p = [[Pin alloc] initWithId:0 color:0 andText:@"You are here!"];
     [pinsArray addObject:p];

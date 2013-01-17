@@ -61,15 +61,15 @@ NSInteger const toolbarWidth=320;
     CGRect scrollSize,settingsRect,shadowRect,zonesRect;
     
     scrollSize = CGRectMake(0, 44,(320),(480-64));
-    settingsRect=CGRectMake(285, 420, 27, 27);
+    settingsRect = CGRectMake(285, 420, 27, 27);
     shadowRect = CGRectMake(0, 44, 480, 61);
-    zonesRect=CGRectMake(25, 420, 43, 25);
+    zonesRect = CGRectMake(25, 420, 43, 25);
     
     if (IS_IPAD) {
         scrollSize = CGRectMake(0, 44, 768, (1024-74));
-        settingsRect=CGRectMake(-285, -420, 27, 27);
+        settingsRect = CGRectMake(-285, -420, 27, 27);
         shadowRect = CGRectMake(0, 44, 1024, 61);
-        zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 43, 25);
+        zonesRect = CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 43, 25);
     } else {
         if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
             CGSize result = [[UIScreen mainScreen] bounds].size;
@@ -78,9 +78,9 @@ NSInteger const toolbarWidth=320;
             
             if(result.height == 1136){
                 scrollSize = CGRectMake(0,44,(320),(568-64));
-                settingsRect=CGRectMake(285, 508, 27, 27);
+                settingsRect = CGRectMake(285, 508, 27, 27);
                 shadowRect = CGRectMake(0, 44, 568, 61);
-                zonesRect=CGRectMake(25, 508, 43, 25);
+                zonesRect = CGRectMake(25, 508, 43, 25);
             }
         }
     }
@@ -181,7 +181,7 @@ NSInteger const toolbarWidth=320;
     if ([[SSThemeManager sharedTheme] isNewTheme]) {
         zones = [UIButton buttonWithType:UIButtonTypeCustom];
         [zones setBackgroundImage:[[UIImage imageNamed:@"newdes_maps_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 21, 10, 11)] forState:UIControlStateNormal];
-        [zones setTitle:@"Maps" forState:UIControlStateNormal];
+        [zones setTitle:NSLocalizedString(@"MapsButton", @"MapsButton") forState:UIControlStateNormal];
         [[zones titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:10.0]];
         [zones setTitleEdgeInsets:UIEdgeInsetsMake(2, 0, 0, 0)];
         [zones setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -189,7 +189,6 @@ NSInteger const toolbarWidth=320;
         [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:zones];
     }
-
     
     if (![[SSThemeManager sharedTheme] isNewTheme]) {
         UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
@@ -288,10 +287,17 @@ NSInteger const toolbarWidth=320;
     
     pos.y -= 80;
     
-    if(pos.x < 120) pos.x = 120;
-    if(pos.x > 200) pos.x = 200;
-    if(pos.y < 130) pos.y += 200;
-    if(pos.y > 380) pos.y = 380;
+    if (IS_IPAD) {
+        if(pos.x < 120) pos.x = 120;
+        if(pos.x > self.frame.size.width-120.0) pos.x = self.frame.size.width-120.0;
+        if(pos.y < 130) pos.y += 200;
+        if(pos.y > self.frame.size.height-130.0) pos.x = self.frame.size.height-130.0;
+    } else {
+        if(pos.x < 120) pos.x = 120;
+        if(pos.x > 200) pos.x = 200;
+        if(pos.y < 130) pos.y += 200;
+        if(pos.y > 380) pos.y = 380;
+    }
     
     [UIView animateWithDuration:0.25f animations:^{ sourceButton.center = CGPointMake(pos.x-60, pos.y+20); }];
     [UIView animateWithDuration:0.25f animations:^{ destinationButton.center = CGPointMake(pos.x+60, pos.y+20); }];

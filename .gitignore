@@ -10,3 +10,6 @@ tube.xcodeproj/project.xcworkspace/xcuserdata/s.sojik.xcuserdatad/UserInterfaceS
 *.xcbkptlist
 
 *.xcscheme
+tube.xcodeproj/xcuserdata/soj.xcuserdatad/xcschemes/xcschememanagement.plist
+
+.DS_Store

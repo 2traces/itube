@@ -37,4 +37,7 @@
 -(void)refreshStatusInfo;
 -(void)changeStatusView;
 
+-(void)hideTopViewAnimated;
+-(void)showTopViewAnimated;
+
 @end
