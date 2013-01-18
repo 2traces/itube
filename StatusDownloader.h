@@ -35,5 +35,6 @@
 @protocol StatusDownloaderDelegate
 
 - (void)statusInfoDidLoad:(NSString*)info server:(StatusDownloader*)server;
+-(void)connectionFailed:(StatusDownloader*)server;
 
 @end

@@ -402,11 +402,19 @@ void uncaughtExceptionHandler(NSException *exception) {
     [navController pushViewController:gl animated:YES];
     [gl setGeoPosition:pos];
     [gl setStationsPosition:coords withNames:names andMarks:!CGRectIsNull(cityMap.activeExtent)];
+
+    if (IS_IPAD) {
+        [tubeSplitViewController hideTopViewAnimated];
+        [tubeSplitViewController hideLeftView];
+    }
 }
 
 -(void)showMetroMap
 {
     [navController popToRootViewControllerAnimated:YES];
+    if (IS_IPAD) {
+        [tubeSplitViewController showTopViewAnimated];
+    }
 }
 
 #pragma mark - Mail methods

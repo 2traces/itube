@@ -56,6 +56,11 @@
 -(void)resetBothStations;
 -(void)restoreFieldAfterPopover;
 
+-(void)resetStation:(StationTextField*)field;
+-(void)callStationList:(StationTextField*)field;
+
+-(void)setButtonToState:(int)state;
+
 @end
 
 @protocol TwoStationsViewProtocol <NSObject>

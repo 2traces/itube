@@ -139,14 +139,21 @@
     }
 }
 
-- (void)buyProductIdentifier:(NSString *)productIdentifier {
+//- (void)buyProductIdentifier:(NSString *)productIdentifier {
+//    
+//    NSLog(@"Buying %@...", productIdentifier);
+//    
+//    SKPayment *payment = [SKPayment paymentWithProductIdentifier:productIdentifier];
+//    [[SKPaymentQueue defaultQueue] addPayment:payment];
+//    
+//}
+
+- (void)buyProduct:(SKProduct *)product {
     
-    NSLog(@"Buying %@...", productIdentifier);
-    
-    SKPayment *payment = [SKPayment paymentWithProductIdentifier:productIdentifier];
+    SKPayment *payment = [SKPayment paymentWithProduct:product];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
-    
 }
+
 
 - (void)dealloc
 {

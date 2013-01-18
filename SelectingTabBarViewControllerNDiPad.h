@@ -41,9 +41,3 @@
 -(IBAction)settingsPressed:(id)sender;
 
 @end
-
-@protocol SelectingTabBarProtocol
-
--(void)returnFromSelection:(NSArray*)stations;    
-
-@end

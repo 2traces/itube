@@ -1912,9 +1912,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *mapDirPath = [cacheDir stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@",[mapName lowercaseString]]];
     
-    NSString *mapFile = [NSString stringWithString:@""];
-    NSString *trpFile = [NSString stringWithString:@""];
-    NSString *trpNewFile =  [NSString stringWithString:@""];
+    NSString *mapFile = @"";
+    NSString *trpFile = @"";
+    NSString *trpNewFile =  @"";
     BOOL useTrpNew=NO;
     
     if ([[manager contentsOfDirectoryAtPath:mapDirPath error:nil] count]>0) {

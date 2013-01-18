@@ -56,5 +56,6 @@
 -(void)removePin:(int)pinId;
 -(void)removeAllPins;
 -(Pin*)getPin:(int)pinId;
+-(void) showSettings;
 
 @end

@@ -975,7 +975,7 @@
 
 -(UIImageView*)stationsTableViewCellBackgroundSelected
 {
-    return [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"newdes_stations_tblcell_selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)]];
+    return [[[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"newdes_stations_tblcell_selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)]] autorelease];
 }
 
 -(UIImage*)overlayShadowImage

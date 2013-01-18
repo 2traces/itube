@@ -305,11 +305,11 @@
 
 -(NSMutableArray*)dsGetVeniceExitForStations
 {
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSArray *pathX = appDelegate.cityMap.activePath;
-    NSArray *exits = appDelegate.cityMap.pathDocksList;
+//    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+//    NSArray *pathX = appDelegate.cityMap.activePath;
+//    NSArray *exits = appDelegate.cityMap.pathDocksList;
     
-    NSMutableArray *stationsArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
+//    NSMutableArray *stationsArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     
     //    for (int i=0; i<[pathX count]; i++) {
     //
@@ -318,7 +318,8 @@
     //        }
     //    }
     
-    return stationsArray;
+    //return stationsArray;
+    return nil;
 }
 
 -(NSMutableArray*)dsGetEveryStationTimeScheduled
@@ -738,6 +739,7 @@
                 UIImageView *gradientView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"newdes_train_gradient"]];
                 gradientView.frame=CGRectMake(0, currentY+22.0, self.frame.size.width, 36);
                 [self addSubview:gradientView];
+                [gradientView release];
             }
             
             [self addSubview:trainSubview];
