@@ -66,7 +66,7 @@
 	<key>default</key>
 	<dict>
 		<key>url1</key>
-		<string>http://www.x-provocation.com/maps/berlin/osm/</string>
+		<string>http://parismetromaps.info/maps/berlin/osm/osm/</string>
 		<key>url2</key>
 		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
 		<key>ver</key>
