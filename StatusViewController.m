@@ -303,7 +303,7 @@
 -(void)layoutSubviews
 {
     CGFloat viewWidth = [[SSThemeManager sharedTheme] statusViewWidth];
-    CGFloat viewStartX = [[SSThemeManager sharedTheme] statusViewStartX];
+//    CGFloat viewStartX = [[SSThemeManager sharedTheme] statusViewStartX];
     CGFloat viewUpdateY = [[SSThemeManager sharedTheme] statusViewUpdateY];
     CGFloat viewTextY = [[SSThemeManager sharedTheme] statusViewTextY];
     

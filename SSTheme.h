@@ -30,7 +30,6 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 - (UIImage *)barButtonBorderedBackgroundForState:(UIControlState)state style:(UIBarButtonItemStyle)style barMetrics:(UIBarMetrics)barMetrics;
 - (UIImage *)backBackgroundForState:(UIControlState)state barMetrics:(UIBarMetrics)barMetrics;
 
-
 - (UIImage *)toolbarBackgroundForBarMetrics:(UIBarMetrics)metrics;
 
 - (UIImage *)searchBackground;
@@ -181,7 +180,7 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 + (id <SSTheme>)sharedTheme;
 
 + (void)customizeAppAppearance;
-+ (void)customizeView:(UIView *)view;
+//+ (void)customizeView:(UIView *)view;
 + (void)customizeTableView:(UITableView *)tableView;
 + (void)customizeTabBarItem:(UITabBarItem *)item forTab:(SSThemeTab)tab;
 + (void)customizeSettingsTableView:(UITableView*)tableView imageView:(UIImageView*)imageView searchBar:(UISearchBar*)searchBar;

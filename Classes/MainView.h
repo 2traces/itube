@@ -55,12 +55,13 @@ MBProgressHUD *commonActivityIndicator;
 
 @property(nonatomic,assign) MainViewController *vcontroller;
 
-- (void) initVar;
-- (void) viewInit:(MainViewController*)vcontroller;
+-(void) initVar;
+-(void) viewInit:(MainViewController*)vcontroller;
 -(void) findPathFrom :(NSString*) fs To:(NSString*) ss FirstLine:(NSInteger) fsl LastLine:(NSInteger) ssl ;
--(void)setCityMap:(CityMap*)cm;
--(void)changeShadowFrameToRect:(CGRect)rect;
--(CGRect)getMapVisibleRect;
--(void)setGeoPosition:(CGPoint)geoPosition withZoom:(CGFloat)zoom;
+-(void) setCityMap:(CityMap*)cm;
+-(void) changeShadowFrameToRect:(CGRect)rect;
+-(CGRect) getMapVisibleRect;
+-(void) setGeoPosition:(CGPoint)geoPosition withZoom:(CGFloat)zoom;
+-(void) showSettings;
 
 @end

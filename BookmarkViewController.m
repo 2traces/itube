@@ -38,7 +38,7 @@
     MHelper *helper = [MHelper sharedHelper];
     self.dataSource = helper;
     
-    if ([[SSThemeManager sharedTheme] isNewTheme] && !IS_IPAD) {
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mytableView.frame.size.width, 37)];
         headerView.backgroundColor= [UIColor clearColor];
         

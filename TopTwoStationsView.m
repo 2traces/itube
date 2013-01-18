@@ -601,53 +601,53 @@
     [super dealloc];
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UIView *view = [[delegate view] viewWithTag:555];
-    if (view) {
-        [view touchesBegan: touches withEvent: event];
-    }
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UIView *view = [[delegate view] viewWithTag:555];
-    if (view) {
-        [view touchesMoved: touches withEvent: event];
-    }
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UIView *view = [[delegate view] viewWithTag:555];
-    if (view) {
-        [view touchesEnded: touches withEvent: event];
-    }
-}
-
-- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-    UIView *view = [[delegate view] viewWithTag:555];
-    if (view) {
-        [view motionBegan:motion withEvent:event];
-    }
-}
-
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-    UIView *view = [[delegate view] viewWithTag:555];
-    if (view) {
-        [view motionEnded:motion withEvent:event];
-    }
-}
-
-- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-    UIView *view = [[delegate view] viewWithTag:555];
-    if (view) {
-        [view motionCancelled:motion withEvent:event];
-    }
-}
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    UIView *view = [[delegate view] viewWithTag:555];
+//    if (view) {
+//        [view touchesBegan: touches withEvent: event];
+//    }
+//}
+//
+//- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    UIView *view = [[delegate view] viewWithTag:555];
+//    if (view) {
+//        [view touchesMoved: touches withEvent: event];
+//    }
+//}
+//
+//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    UIView *view = [[delegate view] viewWithTag:555];
+//    if (view) {
+//        [view touchesEnded: touches withEvent: event];
+//    }
+//}
+//
+//- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+//{
+//    UIView *view = [[delegate view] viewWithTag:555];
+//    if (view) {
+//        [view motionBegan:motion withEvent:event];
+//    }
+//}
+//
+//- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+//{
+//    UIView *view = [[delegate view] viewWithTag:555];
+//    if (view) {
+//        [view motionEnded:motion withEvent:event];
+//    }
+//}
+//
+//- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
+//{
+//    UIView *view = [[delegate view] viewWithTag:555];
+//    if (view) {
+//        [view motionCancelled:motion withEvent:event];
+//    }
+//}
 
 
 @end

@@ -36,4 +36,7 @@
 -(void)refreshStatusInfo;
 -(void)changeStatusView;
 
+-(void)removeHorizontalPathesScrollView;
+-(void)refreshUITextView;
+
 @end
