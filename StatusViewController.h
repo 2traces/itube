@@ -35,4 +35,7 @@
 -(void)checkNewMaps;
 -(void)layoutSubviews;
 
+-(void)fixTextView:(UIInterfaceOrientation)orientation;
+-(void)rotateTextViewFromOrientation:(UIInterfaceOrientation)orientation;
+
 @end

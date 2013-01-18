@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Classes/MainViewController.h"
 #import "PathDrawVertView.h"
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
 @class MainViewController;
 
-@interface VertPathScrollView : UIScrollView <UIScrollViewDelegate,PathDrawProtocol> {
+@interface VertPathScrollView : UIScrollView <UIScrollViewDelegate,PathDrawProtocol,MFMailComposeViewControllerDelegate> {
     MainViewController *myMainController;
 }
 

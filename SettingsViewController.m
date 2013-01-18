@@ -225,6 +225,8 @@
 
     self.navigationItem.leftBarButtonItem=barButtonItem_back;
     
+    [barButtonItem_back release];
+    
     [TubeAppIAPHelper sharedHelper];
         
     [self adjustViewHeight];
@@ -1235,7 +1237,9 @@
         if ([product.productIdentifier isEqual:prodID]) {
             
             //NSLog(@"Buying %@...", product.productIdentifier);
-            [[TubeAppIAPHelper sharedHelper] buyProductIdentifier:product.productIdentifier];
+            //[[TubeAppIAPHelper sharedHelper] buyProductIdentifier:product.productIdentifier];
+            
+            [[TubeAppIAPHelper sharedHelper] buyProduct:product];
             
             self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             _hud.labelText = @"Buying map ...";
@@ -1438,6 +1442,7 @@
         [tweetSheet addImage:[UIImage imageNamed: [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIconFiles"] objectAtIndex:0]]];
         [tweetSheet addURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] objectForKey:@"AppStoreURL"]]];
         [self presentModalViewController:tweetSheet animated:YES];
+        [tweetSheet release];
     }
 }
 

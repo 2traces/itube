@@ -83,6 +83,7 @@
     if (backgroundImage) {
         UIImageView *background = [[UIImageView alloc] initWithImage:backgroundImage];
         [tableView setBackgroundView:background];
+        [background release];
     } else if (backgroundColor) {
         [tableView setBackgroundView:nil];
         [tableView setBackgroundColor:backgroundColor];
@@ -112,6 +113,7 @@
     if (backgroundImage) {
         UIImageView *background = [[UIImageView alloc] initWithImage:backgroundImage];
         [tableView setBackgroundView:background];
+        [background release];
     } else if (backgroundColor) {
         [tableView setBackgroundView:nil];
         [tableView setBackgroundColor:backgroundColor];

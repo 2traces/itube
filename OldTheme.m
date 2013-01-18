@@ -718,4 +718,87 @@
     return [[UIImage imageNamed:@"lines_shadow"] resizableImageWithCapInsets:UIEdgeInsetsMake(200, 100, 200, 100)];
 }
 
+
+#pragma mark - empty methods
+
+-(UIImage*)stationsTabBarBookmarkButtonForState:(UIControlState)state
+{
+    return nil;
+}
+
+-(UIImage*)stationsTabBarHistoryButtonForState:(UIControlState)state
+{
+    return nil;
+}
+
+-(UIImage*)stationsTabBarSettingsButtonForState:(UIControlState)state
+{
+    return nil;
+}
+
+-(UIImage*)stationsTabBarTopBackgroundStations
+{
+    return nil;
+}
+
+-(UIImage*)stationsTabBarTopBackgroundLines
+{
+    return nil;
+}
+
+-(UIImage*)stationsTabBarStationButtonForState:(UIControlState)state type:(int)type
+{
+    return nil;
+}
+
+-(UIImage*)stationsTabBarLineButtonForState:(UIControlState)state type:(int)type
+{
+    return nil;
+}
+
+-(UIImage*)stationsTabBarBackButtonForState:(UIControlState)state type:(int)type
+{
+    return nil;
+}
+
+-(UIColor*)stationsBottomButtonsColor
+{
+    return nil;
+}
+
+-(UIColor*)stationsBottomButtonsPressedColor
+{
+    return nil;
+}
+
+-(UIColor*)stationsBottomButtonsShadowColor
+{
+    return nil;
+}
+
+-(UIColor*)stationsBottomButtonsPressedShadowColor
+{
+    return nil;
+}
+
+-(UIColor*)stationsTopButtonsColor
+{
+    return nil;
+}
+
+-(UIColor*)stationsTopButtonsPressedColor
+{
+    return nil;
+}
+
+-(UIColor*)stationsTopButtonsShadowColor
+{
+    return nil;
+}
+
+-(UIColor*)stationsTopButtonsPressedShadowColor
+{
+    return nil;
+}
+
 @end
