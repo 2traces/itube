@@ -443,6 +443,18 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 // Dismisses the Mail composer when the user taps Cancel or Send.
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    
+//    if (error) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Can't send email" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+//        [alertView show];
+//        [alertView release];
+//
+//        NSLog(@"ERROR - mailComposeController: %@", [error localizedDescription]);
+//        
+//        [self.mainViewController dismissModalViewControllerAnimated:YES];
+//        return;
+//    }
+    
     NSString *resultTitle = nil; NSString *resultMsg = nil;
     switch (result) {
         case MFMailComposeResultCancelled:
