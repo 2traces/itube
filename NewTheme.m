@@ -819,19 +819,12 @@
         
     } else {
         if (state == UIControlStateNormal) {
-        if (!type) {
-            name = @"newdes_s_linesbutton";
-        } else {
             name = @"newdes_l_linesbutton";
-        }
-    } else  {
-        if (!type) {
-            name = @"newdes_s_linesbutton_pressed";
-        } else {
-            name = @"newdes_l_linessbutton";
+        } else  {
+            name = @"newdes_l_linesbutton_pressed";
         }
     }
-    }
+    
     UIImage *image = [[UIImage imageNamed:name] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
     return image;
     
@@ -841,17 +834,9 @@
 {
     NSString *name;
     if (state == UIControlStateNormal) {
-        if (!type) {
-            name = @"newdes_s_backbutton";
-        } else {
-            name = @"newdes_l_backbutton";
-        }
+            name = @"newdes_stations_backbutton";
     } else  {
-        if (!type) {
-            name = @"newdes_s_backbutton_pressed";
-        } else {
-            name = @"newdes_l_backbutton_pressed";
-        }
+            name = @"newdes_stations_backbutton_pressed";
     }
     
     UIImage *image = [[UIImage imageNamed:name] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];

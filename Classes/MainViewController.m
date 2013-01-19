@@ -832,8 +832,7 @@
 
         return stations;
 
-    }
-    
+    }    
 }
 
 -(void)showiPadSettingsModalView
@@ -847,6 +846,12 @@
     controller.delegate=self;
     UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:controller];
     navcontroller.modalPresentationStyle=UIModalPresentationFormSheet;
+    
+    id <SSTheme> theme = [SSThemeManager sharedTheme];
+    
+    NSDictionary *textTitleOptions = [NSDictionary dictionaryWithObjectsAndKeys:[theme highlightColor], UITextAttributeTextColor, [theme navigationTitleFont], UITextAttributeFont, [theme titleShadowColor],UITextAttributeTextShadowColor,[NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset, nil];
+    [navcontroller.navigationBar setTitleTextAttributes:textTitleOptions];
+
     [self presentModalViewController:navcontroller animated:YES];
     
     //    navcontroller.view.superview.autoresizingMask = UIViewAutoresizingFlexibleTopMargin |UIViewAutoresizingFlexibleBottomMargin;
