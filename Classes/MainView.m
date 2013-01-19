@@ -56,7 +56,7 @@ NSInteger const toolbarWidth=320;
 {
 	[self initVar];
 
-    self.layer.cornerRadius=10;
+//    self.layer.cornerRadius=10;
     
     CGRect scrollSize,settingsRect,shadowRect,zonesRect;
     

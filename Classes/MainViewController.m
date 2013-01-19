@@ -541,10 +541,18 @@
     
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     
-    if ([appDelegate isIPHONE5]) {
-        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, topPathHeight+pathViewHeight, 320, 568-topPathHeight-pathViewHeight-20.0)];
+    float viewDelatY;
+    
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        viewDelatY=topPathHeight-10.0f;//40.0+pathViewHeight; // topPathHeight - 10.0;
     } else {
-        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, topPathHeight+pathViewHeight, 320, 480-topPathHeight-pathViewHeight-20.0)];
+        viewDelatY=topPathHeight+pathViewHeight;
+    }
+    
+    if ([appDelegate isIPHONE5]) {
+        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, viewDelatY, 320, 568-viewDelatY-20.0)];
+    } else {
+        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, viewDelatY, 320, 480-viewDelatY-20.0)];
     }
     
     if ([self.horizontalPathesScrollView numberOfPages]>1) {
