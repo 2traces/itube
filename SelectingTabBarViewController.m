@@ -113,17 +113,17 @@
         if (state==0) {
             topImageView.image = [[SSThemeManager sharedTheme] stationsTabBarTopBackgroundStations];
             topImageView.frame=CGRectMake(0, 0, 320, 46);
-            backButton.frame=CGRectMake(37, 0, 92, 31);
-            stationButton.frame=CGRectMake(116, 9, 95, 31);
-            linesButton.frame=CGRectMake(197, 4, 92, 31);
-            //            [self.view bringSubviewToFront:stationButton];
+            backButton.frame=CGRectMake(40, 1.5, 95, 28);
+            stationButton.frame=CGRectMake(116, 11, 95, 28);
+            linesButton.frame=CGRectMake(191.5, 7, 95, 28);
+            [[self.view viewWithTag:334] bringSubviewToFront:stationButton];
         } else {
             topImageView.image = [[SSThemeManager sharedTheme] stationsTabBarTopBackgroundLines];
             topImageView.frame=CGRectMake(0, 0, 320, 46);
-            backButton.frame=CGRectMake(37, 0, 92, 31);
-            stationButton.frame=CGRectMake(116, 4, 92, 31);
-            linesButton.frame=CGRectMake(191, 9, 95, 31);
-            //            [self.view bringSubviewToFront:linesButton];
+            backButton.frame=CGRectMake(40, 1.5, 95, 28);
+            stationButton.frame=CGRectMake(116, 7, 95, 28);
+            linesButton.frame=CGRectMake(191.5, 11, 95, 28);
+            [[self.view viewWithTag:334] bringSubviewToFront:linesButton];
         }
         
         [stationButton setBackgroundImage:[[SSThemeManager sharedTheme] stationsTabBarStationButtonForState:UIControlStateNormal type:state] forState:UIControlStateNormal];

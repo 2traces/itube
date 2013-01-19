@@ -37,6 +37,12 @@
     [navController pushViewController:controller animated:NO];
     
     [controller release];
+    
+    id <SSTheme> theme = [SSThemeManager sharedTheme];
+    
+    NSDictionary *textTitleOptions = [NSDictionary dictionaryWithObjectsAndKeys:[theme highlightColor], UITextAttributeTextColor, [theme navigationTitleFont], UITextAttributeFont, [theme titleShadowColor],UITextAttributeTextShadowColor,[NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset, nil];
+    [navController.navigationBar setTitleTextAttributes:textTitleOptions];
+
 
     [self.view addSubview:[navController view]]; 
     
