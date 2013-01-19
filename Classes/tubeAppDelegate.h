@@ -80,6 +80,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 - (void)rateFeedbackFromPopup:(RatePopupViewController*)vc;
 - (void)rateDismissFromPopup:(RatePopupViewController*)vc;
 
+- (void) reloadContent;
 
 - (NSString*)getAppStoreUrl;
 - (NSString*)getRateUrl;

@@ -81,12 +81,21 @@
     NSMutableArray *mapsInfoArray = [[[NSMutableArray alloc] initWithCapacity:[mapIDs count]] autorelease];
     NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
 
+    NSMutableDictionary *productContent = nil;
+    NSString *contentID = nil;
+    
     for (NSString* mapID in mapIDs) {
         NSMutableDictionary *product = [[NSMutableDictionary alloc] initWithDictionary:[dict objectForKey:mapID]];
         [product setObject:mapID forKey:@"prodID"];
         
         if ([mapID isEqual:bundleIdentifier]) {
             [product setObject:@"D" forKey:@"status"];
+            productContent = [NSMutableDictionary dictionaryWithDictionary:product];
+            contentID = [NSString stringWithFormat:@"%@.content", mapID];
+            [productContent setObject:contentID forKey:@"prodID"];
+            if ([self isProductInstalled:contentID]) {
+                [productContent setObject:@"I" forKey:@"status"];
+            }
         } else if ([self isProductPurchased:mapID]) {
             if ([self isProductInstalled:[product valueForKey:@"filename"]]) {
                 [product setObject:@"I" forKey:@"status"];
@@ -100,6 +109,11 @@
         [mapsInfoArray addObject:product];
         [product release];
     }
+    
+    if (productContent) {
+        [mapsInfoArray addObject:productContent];
+    }
+    
     
     [dict release];
     
@@ -404,7 +418,15 @@
             CityCell *cityCell = (CityCell*)cell;
             cityCell.cityNameAlt.hidden = NO;
             cityCell.cityName.hidden = YES;
-            cityCell.cityNameAlt.text = [NSString stringWithFormat:@"Download offline maps for %@", mapName];
+            cityCell.cityNameAlt.text = [NSString stringWithFormat:NSLocalizedString(@"DownloadMapsLabel", @"DownloadMapsLabel"), mapName];
+            [cityCell.cellButton addTarget:self action:@selector(buyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        }
+        else if ([self isProductContentPurchase:[map objectForKey:@"prodID"]]) {
+            //This is a content purchase cell
+            CityCell *cityCell = (CityCell*)cell;
+            cityCell.cityNameAlt.hidden = NO;
+            cityCell.cityName.hidden = YES;
+            cityCell.cityNameAlt.text = [NSString stringWithFormat:NSLocalizedString(@"PurchaseContentLabel", @"PurchaseContentLabel"), mapName];
             [cityCell.cellButton addTarget:self action:@selector(buyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         }
         else {
@@ -818,6 +840,16 @@
 
 -(BOOL)isProductInstalled:(NSString*)mapName
 {
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    NSString *contentIdentifier = [NSString stringWithFormat:@"%@.content", bundleIdentifier];
+    
+    if ([mapName isEqualToString:contentIdentifier]) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        if ([[defaults objectForKey:@"additionalContentAccessLevel"] integerValue] > 0) {
+            return  YES;
+        }
+    }
+    
     NSFileManager *manager = [NSFileManager defaultManager];
     NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *mapDirPath = [cacheDir stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@",[mapName lowercaseString]]];
@@ -912,6 +944,20 @@
     } 
     
     return NO;     
+}
+
+
+-(BOOL)isProductContentPurchase:(NSString*)prodID
+{
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    
+    NSString *purchaseId = [NSString stringWithFormat:@"%@.content", bundleIdentifier];
+    
+    if ([prodID isEqual:purchaseId]) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 -(NSIndexPath*)getIndexPathProdID:(NSString*)prodID
@@ -1150,7 +1196,7 @@
     
     if (netStatus == NotReachable) {        
         NSLog(@"No internet connection!");        
-    } else {        
+    } else {
         if ([TubeAppIAPHelper sharedHelper].products == nil) {
             [[TubeAppIAPHelper sharedHelper] requestProducts];
         } else { 
@@ -1222,6 +1268,9 @@
 
     [self markProductAsPurchased:productIdentifier];
     
+    
+    
+    
     [self resortMapArray];
     
     [cityTableView reloadData];    
@@ -1235,6 +1284,13 @@
             [map setObject:@"P" forKey:@"status"];
         }
     }
+    
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    NSString *contentIdentifier = [NSString stringWithFormat:@"%@.content", bundleIdentifier];
+    if ([prodID isEqualToString:contentIdentifier]) {
+        [self markProductAsInstalled:prodID];
+    }
+    
 }
 
 -(void)markProductAsInstalled:(NSString*)prodID
@@ -1243,6 +1299,15 @@
         if ([[map valueForKey:@"prodID"] isEqual:prodID]) {
             [map setObject:@"I" forKey:@"status"];
         }
+    }
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    NSString *contentIdentifier = [NSString stringWithFormat:@"%@.content", bundleIdentifier];
+    if ([prodID isEqualToString:contentIdentifier]) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setValue:[NSNumber numberWithInt:1] forKey:@"additionalContentAccessLevel"];
+        [defaults synchronize];
+        tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+        [appdelegate reloadContent];
     }
 }
 

@@ -2190,6 +2190,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             MPlace *newPlace = [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
             newPlace.name = [place objectForKey:@"name"];
             newPlace.index = [NSNumber numberWithInt:[[place objectForKey:@"index"] integerValue]];
+            newPlace.accessLevel = [NSNumber numberWithInt:[[place objectForKey:@"accessLevel"] integerValue]];
             newPlace.text = [place objectForKey:@"text"];
             newPlace.posX = [NSNumber numberWithFloat:[[place objectForKey:@"long"] floatValue]];
             newPlace.posY = [NSNumber numberWithFloat:[[place objectForKey:@"lat"] floatValue]];

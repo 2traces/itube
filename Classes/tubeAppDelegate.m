@@ -203,6 +203,11 @@ void uncaughtExceptionHandler(NSException *exception) {
     [prefs synchronize];
 }
 
+- (void) reloadContent {
+    [self.navigationViewController reloadCategories];
+}
+
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     if (alertView.tag=1) {
@@ -498,7 +503,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
     NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
 
-    NSString *mapFileName =[NSString stringWithString:[[dict objectForKey:bundleIdentifier] objectForKey:@"filename"]];
+    NSString *filename = [[dict objectForKey:bundleIdentifier] objectForKey:@"filename"];
+    
+    NSString *mapFileName =[NSString stringWithString:filename];
     [dict release];
     
     return mapFileName;

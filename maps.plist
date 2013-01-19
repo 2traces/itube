@@ -5,9 +5,9 @@
 	<key>com.zuev.hiddencities.paris</key>
 	<dict>
 		<key>url1</key>
-		<string>http://www.x-provocation.com/maps/paris/osm</string>
+		<string>http://parismetromaps.info/maps/paris/osm</string>
 		<key>url2</key>
-		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
+		<string>http://parismetromaps.info/maps/cuba/RASTER</string>
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>
@@ -20,8 +20,6 @@
 		<string>preview_paris.png</string>
 		<key>icon</key>
 		<string>tr_paris.png</string>
-		<key>zip_download</key>
-		<string>/maps/paris/paris1.zip</string>
 		<key>appstore_link</key>
 		<string>http://itunes.apple.com/app/paris.metro/id513581498</string>
 		<key>rate_link</key>
@@ -45,8 +43,6 @@
 		<string>preview_berlin.png</string>
 		<key>icon</key>
 		<string>tr_berlin.png</string>
-		<key>zip_download</key>
-		<string>/maps/berlin/berlin1.zip</string>
 		<key>appstore_link</key>
 		<string>http://itunes.apple.com/app/paris.metro/id513581498</string>
 		<key>rate_link</key>
@@ -72,8 +68,6 @@
 		<string>preview_nyc.png</string>
 		<key>icon</key>
 		<string>tr_nyc.png</string>
-		<key>zip_download</key>
-		<string>/maps/venice/venice1.zip</string>
 		<key>appstore_link</key>
 		<string>http://itunes.apple.com/app/paris.metro/id513581498</string>
 		<key>rate_link</key>

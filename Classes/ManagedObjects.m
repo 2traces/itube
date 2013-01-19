@@ -33,6 +33,7 @@
 @dynamic posX;
 @dynamic posY;
 @dynamic index;
+@dynamic accessLevel;
 @dynamic isFavorite;
 @dynamic name;
 @dynamic text;
@@ -489,7 +490,17 @@ static MHelper * _sharedHelper;
     
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
-    return fetchedItems;
+    //Return only those that are allowed by current access level
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger accessLevel = [[defaults objectForKey:@"additionalContentAccessLevel"] integerValue];
+    NSMutableArray *filteredItems = [[NSMutableArray alloc] initWithCapacity:[fetchedItems count]];
+    for (MPlace *place in fetchedItems) {
+        if ([place.accessLevel integerValue] <= accessLevel) {
+            [filteredItems addObject:place];
+        }
+    }
+    
+    return [filteredItems autorelease];
 }
 
 

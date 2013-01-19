@@ -125,6 +125,10 @@
     CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
     //self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, windowBounds.size.height);
     
+    [self reloadCategories];
+}
+
+- (void) reloadCategories {
     [self.tableView reloadData];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
     MCategory *category = self.categories[1];

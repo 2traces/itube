@@ -37,6 +37,7 @@
 @property (nonatomic, assign) id<NavigationDelegate> navigationDelegate;
 
 - (IBAction)showSettings:(id)sender;
+- (void) reloadCategories;
 
 
 @end

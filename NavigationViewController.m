@@ -84,6 +84,7 @@
     [self.view insertSubview:[self.photosController view] aboveSubview:self.mainController.view];
     
     self.categoriesController.view.layer.cornerRadius = 5;
+    self.categoriesController.view.clipsToBounds = YES;
     
     CGRect mainViewFrame = self.mainController.view.frame;
     self.mainController.view.frame = self.glController.view.frame = mainViewFrame;
@@ -136,7 +137,10 @@
         frame.size.height = 548;
         self.shadow.frame = frame;
     }
-    [self showCutMap];
+    if (photosMode == HCPhotosVisibleFully) {
+        [self showCutMap];
+
+    }
 
 }
 
@@ -213,6 +217,11 @@
     [self.glController centerMapOnUser];
     [self.mainController centerMapOnUser];
 }
+
+- (void) reloadCategories {
+    [self.categoriesController reloadCategories];
+}
+
 
 
 - (void) showBookmarks:(id)sender {

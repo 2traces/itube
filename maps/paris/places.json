@@ -28,6 +28,7 @@
             "long": 48.805089,
             "lat": 2.231003,
             "index": 1,
+            "accessLevel": 1,
             "text": "The Paris Observatory (in French, Observatoire de Paris or Observatoire de Paris-Meudon) is the foremost astronomical observatory of France, and one of the largest astronomical centres in the world. Its historic main building is to be found on the Left Bank of the Seine in central Paris. The Meudon great refractor (Meudon 33-inch) was a 83 centimetres (33 in) aperture refractor, which with September 20, 1909 observations by E.M. Antoniadi helped disprove the Mars canals theory. It was a double telescope completed in 1891, with secondary having 62 centimetres (24 in) aperture lens for photography. It was one of the largest active telescopes in Europe.",
             "photos": [
                 "01.png",
@@ -42,7 +43,8 @@
             "name": "Parc de Bercy",
             "long": 48.805083,
             "lat": 2.230844,
-            "index": 2,
+               "index": 2,
+               "accessLevel": 1,
             "text": "Parc de Bercy is a group of three connected gardens in the 12th arrondissement of Paris. With a combined area of some 14 hectares, it is one of the most important parks in the city. The park is serviced by Bercy and Cour Saint-Emilion Metro stations. The three gardens The park is made up of three gardens designed by architects Bernard Huet, Madeleine Ferrand, Jean-Pierre Feugas, Bernard Leroy, and by landscapers Ian Le Caisne and Philippe Raguin between 1993 and 1997: The \"Romantic Garden\", which includes fishponds and dunes; The \"Flowerbeds\", dedicated to plant life; \"The Meadows\", an area of open lawns shaded by tall trees. In the north-east of the park stands the Cinematheque Francaise (the former American Center) designed by Frank Gehry, and on the raised terraces are the 21 sculptures of Rachid Khimoune's \"Children of the World\" installation, created in 2001 to honour children's rights. The park is linked directly to the National Library of France by the Simone de Beauvoir footbridge over the Seine. The area used to be an important location for Paris wine warehouses, and some remains of the industry can still be seen in the park. The Musee des Arts Forains is also located here.",
             "photos": [
                 "03.png",
@@ -68,7 +70,8 @@
             "name": "Rue Mouffetard",
             "long": 48.842195,
             "lat": 2.349738,
-            "index": 3,
+               "index": 3,
+               "accessLevel": 0,
             "text": "Rue Mouffetard (French pronunciation: ?[ry muf.ta?]) is a street in the 5th arrondissement of Paris, France. Situated in the fifth (cinquieme) arrondissement of Paris, Rue Mouffetard is one of Paris's oldest and liveliest neighbourhoods. These days the area has many restaurants, shops, and cafes, and a regular open market. It is centered on the Place de la Contrescarpe, at the junction of the rue Mouffetard and the rue de Lacepede. Its southern terminus is at the Square Saint-Medard where there is a permanent open-air market. At its northern terminus, it becomes the rue Descartes at the crossing of the rue Thouin. It is closed to normal motor traffic much of the week, and is predominantly a pedestrian avenue. ",
             "photos": [
                 "11.jpg",
@@ -83,6 +86,7 @@
             "long": 48.862574,
                "lat": 2.291381,
                "index": 4,
+               "accessLevel": 0,
             "text": "After almost 20 years of absence, the Trocadero aquarium is back since 2006 under the new name : Aquarium of Paris ñ Cineaqua. Strengthened by its great experience since it first opened for the 1878 World Expo, year when it was Europeís largest aquatic complex, the place has become more modern and is today attempting to achieve the unlikely mix between aquarium and cinematography.  The 3500m? trail gives you the opportunity to meet some of the 9000 specimens of fish and invertebrates divided into 43 tanks. Its locations is as good as it gets : on the capitalís podium, just opposite the Eiffel tower and its figures speak for themselves. In addition to the 500 corals, the 2 cinema rooms and the 20 tons of salt necessary to supply the sea-water tanks, here, you will also find Franceís biggest tank. With 3 000 000 litres of water, the sharks tank is unequalled throughout the country. 9,60m high and 33m wide, it contains 4 different species of sharks. The Aquarium of Paris- Cineaqua offers its visitors to discover the French littoral with a trip around the metropolitan and overseas coasts. You will be stunned by a panel of fish representing some 450 regional species. Starting point : the Trocadero gardens. There, you will plunge head first under the huge glass wave into the depths of the aquarium which is entirely underground.",
             "photos": [
                 "09.jpg",
@@ -97,6 +101,7 @@
             "long": 48.850556,
                "lat": 2.343333,
                "index": 5,
+               "accessLevel": 1,
             "text": "The Musee de Cluny houses a variety of important medieval artifacts, in particular its tapestry collection, which includes the fifteenth century tapestry cycle La Dame a la Licorne (The Lady and the Unicorn). Other notable works stored there include early Medieval sculptures from the seventh and eighth centuries. There are also works of gold, ivory, antique furnishings, and illuminated manuscripts.",
             "photos": [
                 "13.jpg"
@@ -110,6 +115,7 @@
             "long": 52.436902,
                "lat": 13.232732,
                "index": 6,
+               "accessLevel": 0,
             "text": "The most famous flea market in Paris is the one at Porte de Clignancourt, officially called Les Puces de Saint-Ouen, but known to everyone as Les Puces (The Fleas).  It covers seven hectares and is the largest antique market in the world, receiving between 120,000 to 180,000 visitors each weekend. If you get there early, plan on having a leisurely Cafe Creme and watching the antiques world start up for the day. If you're a serious shopper, watch out as it becomes very crowded after lunch!! We strongly recommend going to the Puces on Saturday or Sunday because many dealers aren't open on Monday, or only open by appointment.  If you can only shop on Monday, arrive in the morning when you stand a better chance of dealers being open, cleaning up after the weekend. Important Note: Be careful to hide wallets and purses; as in any city, big crowds are a great place for pickpockets to work - and the Flea Market is no exception. When guests reserve our apartments in Paris we repeatedly advise them to hide their wallets in a fanny pack and to leave their passports in our apartment safes, but every few months we get a phone call from them, telling us they have lost their passports and credit cards. Do be careful.",
             "photos": [
                 "14.jpg",
@@ -125,6 +131,7 @@
             "long": 52.436902,
                "lat": 13.232732,
                "index": 7,
+               "accessLevel": 1,
             "text": "The Cite des Sciences et de l'Industrie is the biggest science museum in Europe.[1] Located in Parc de la Villette in Paris, France, it is at the heart of the Cultural Center of Science, Technology and Industry (CCSTI), a center promoting science and science culture. About five million people visit the Cite each year. Attractions include a planetarium, a submarine (the Argonaute (S636)), an IMAX theatre (La Geode) and special areas for children and teenagers. The Cite is classified as a public establishment of an industrial and commercial character, an establishment specializing in the fostering of scientific and technical culture. Created on the initiative of President Giscard d'Estaing, the goal of the Cite is to spread scientific and technical knowledge among the public, particularly for youth, and to promote public interest in science, research and industry. The most notable features of the \"bioclimatic facade\" facing the park are Les Serres - three greenhouse spaces each 32 metres high, 32 metres wide and 8 metres deep. The facades of Les Serres were the first structural glass walls to be constructed without framing or supporting fins.",
             "photos": [
                 "17.jpg",
@@ -139,7 +146,8 @@
             "name": "Viaduc des Arts",
             "long": 48.894462,
             "lat": 2.370987,
-            "index": 8,
+               "index": 8,
+               "accessLevel": 1,
             "text": "Le viaduc des Arts est aujourdíhui un ensemble díateliers des metiers díart regroupes dans une construction unique a Paris (dans le 12e arrondissement) quíetait líancien viaduc de Paris construit en 1859, par les concepteurs Emile Vuigner et Albert Bassompierre-Sewrin, pour soutenir la voie de chemin de fer de la ligne de Vincennes, reliant l'ancienne gare de Paris-Bastille situee place de la Bastille a Vincennes, le long de líactuelle avenue Daumesnil.",
             "photos": [
                 "20.jpg",
@@ -155,6 +163,7 @@
             "long": 48.880278,
                "lat": 2.382778,
                "index": 9,
+               "accessLevel": 0,
             "text": "A 63 meter long suspension bridge, renovated in 2009, crosses the lake and allows access to the island. A 22 meter high bridge, known as the \"suicide bridge\", allows access to the belvedere from the south side of the park. The Parc des Buttes Chaumont (pronounced: [pa?k d? byt ?om??]) is a public garden situated in the 19th arrondissement of Paris, France. The name of the park is composed of two words, buttes (hills or heights), and Chaumont, which is probably a contraction of chauve (bald) and mont (mount). The park is the third largest of its kind in Paris encompassing over 5 kilometres of trails and paths. The main feature of the park is the Belvedere (or Temple) of Sybil which sits at the top of an island in the middle of a lake.",
             "photos": [
                 "23.jpg"
@@ -168,6 +177,7 @@
             "long": 48.866111,
                "lat": 2.355278,
                "index": 10,
+               "accessLevel": 1,
             "text": "The Musee des Arts et Metiers (French pronunciation: ?[myze dez?a? e metje], Museum of Arts and Crafts) is a museum in Paris that houses the collection of the Conservatoire National des Arts et Metiers (National Conservatory of Arts and Industry), which was founded in 1794 as a repository for the preservation of scientific instruments and inventions. Since its foundation, the museum has been housed in the deserted priory of Saint-Martin-des-Champs, in the rue Reaumur in the 3rd arrondissement of Paris. Today the museum, which underwent major renovation in 1990, includes an additional building adjacent to the abbey, with larger objects remaining in the abbey itself. The museum has over 80,000 objects and 15,000 drawings in its collection, with 40,000 at the Paris site. Among its collection is an original version of the Foucault pendulum.",
             "photos": [
                 "30.jpg",
@@ -186,6 +196,7 @@
             "long": 48.842109,
                "lat": 2.356286,
                "index": 11,
+               "accessLevel": 1,
             "text": "The Parc de la Villette is one of the largest parks in Paris, located at the northeastern edge of the 19th arrondissement. The park houses one of the largest concentration of cultural venues in Paris, including the Cite des Sciences et de l'Industrie (City of Science and Industry), Europe's largest science museum, three major concert venues and the prestigious Conservatoire de Paris. Parc de la Villette is served by Paris Metro stations Corentin Cariou on Line 7 and Porte de Pantin on Line 5.",
             "photos": [
                 "31.jpg",
@@ -200,6 +211,7 @@
             "long": 48.884699,
                "lat": 2.338543,
                "index": 12,
+               "accessLevel": 1,
             "text": "I love you : the wall is a monument dedicated to love erected in the romantic garden of the Square Jehan Rictus Place des Abbesses in Paris Montmartre. The work of art, created by Frederic Baron and Claire Kito has become a meeting place for lovers of Love. For a lovely walk or a hike, an unusual step for your honeymoon, the discovery of a missed spot, for saying I love you in different languages, to stroll in the most romantic place in Paris, we invite you to discover the The wall of love in music and images. ",
             "photos": [
                 "33.jpg"
@@ -213,6 +225,7 @@
             "long": 48.856499,
                "lat": 2.32657,
                "index": 13,
+               "accessLevel": 1,
             "text": "Since 1831, Deyrolle offers to Nature lovers and professionals, schools, universities, museums, scientific or medical centers, materials for natural science such as zoology, botanic, mineralogy, conchiliology, teaching apparatus of many sorts as well as insects and shells collections, mounted animals of many kind, natural wonders and collection pieces. The principle of Deyrolle was always to bring to human nature the sence of observation and description : ëan image is worth a thousand wordsí, so If one want to protect nature, one has to know it, understand it and overcome the cycles of reproduction of species as well. In february 2008, a terrible fire severely damaged the Cabinets of Curiosities (also known as Wunderkammer or wonder-rooms) as well as the entomology room and a large part of the historical collections. Deyrolle was saved because of the extraordinary enthusiasm of so many of its fan including Hermes, numerous artists that worldwide contributed to realise piece artwork for an auction done by Christieís last November. As a result, the entomology room has been opened during the fall 2009. Today, the store is as beautiful as ever, with still collection of large mammals, magnificent mounted birds and other beautiful and astonishing natural wonders.",
             "photos": [
                 "34.jpg",
@@ -229,6 +242,7 @@
             "long": 48.851783,
                "lat": 2.356911,
                "index": 14,
+               "accessLevel": 1,
             "text": "Many consider Berthillon to be the best ice cream of Paris and maybe of France. It is annually visited by Parisians, and by tourists from France and all over the world. Berthillon is a French manufacturer and retailer of luxury ice cream and sorbet, with its primary store on the Ile Saint-Louis in Paris, France. The company is owned and operated by the Chauvin family, descendants of the eponymous Monsieur Berthillon, who opened the first store in 1954. Berthillon sells its ice cream in bulk and by the scoop from its shop on the island, but many other retailers in Paris sell its ice cream in cones and cups, and some grocers sell larger amounts. Berthillon's fame derives in part from its use of natural ingredients, with no chemical preservatives, artificial sweeteners or stabilizers. Its ice creams are made from only milk, sugar, cream and eggs. Flavourings derive from natural sources (cocoa, vanilla bean, fruit, etc.). Fifteen flavors are produced everyday by the chefs depending on the season, the availability at the market and the customer's demand. In total about sixty different flavors are produced by the Maison Berthillon throughout the year.",
             "photos": [
                 "38.jpg",
@@ -243,6 +257,7 @@
             "long": 48.776485,
                "lat": 1.962078,
                "index": 15,
+               "accessLevel": 1,
             "text": "France Miniature is a miniature park tourist attraction in Elancourt, France featuring scale models of major French landmarks and monuments in an outdoor park. France Miniature is a 5-hectare (12-acre) outdoor park in the shape of France that contains about 160 outdoor 1/30-scale models of major French monuments and landmarks. Monuments are placed in the park to correlate approximately with their real-world locations in France. Many of the models are animated, and all of the country's best known landmarks are represented (the Eiffel Tower, Versailles, Lourdes, etc.). A system of model trains runs through the park, and animated boats ply the ìAtlantic Oceanî and the ìMediterranean Seaî (lagoons positioned appropriately around the perimeter of the park). Visitors walk along paved paths to visit the various models. An indoor exhibition features extremely detailed models of several indoor scenes. The park is closed during the winter.",
             "photos": [
                 "40.jpg",
@@ -257,6 +272,7 @@
             "long": 48.853056,
                "lat": 2.346111,
                "index": 16,
+               "accessLevel": 1,
             "text": "Rue du Chat-qui-Peche is considered the narrowest street in Paris. It is only 1.80m wide for the whole of its 29m length. It is located in the 5th arrondissement, on the Rive Gauche of the Seine, and runs from Quai Saint-Michel to Rue de la Huchette, Built in 1540, it then ended on the bank of the river Seine. The status of \"narrowest\" street in Paris is also conferred on the sentier des Merisiers in the 12e arrondissement and the passage de la Duee in the 20e arrondissement. In English the name means \"Street of the Fishing Cat\". It was named after the picture on a shop sign. The original name was Rue des Etuves, and at various times it has also been known as Rue du Renard (not to be confused with the current Rue du Renard, in the 4e arr.) and Rue des Bouticles. ",
             "photos": [
                 "42.jpg",
@@ -271,6 +287,7 @@
             "long": 48.888734,
                "lat": 2.320433,
                "index": 17,
+               "accessLevel": 1,
             "text": "fromage-alleosse",
             "photos": [
                 "44.jpg",
@@ -286,6 +303,7 @@
             "long": 48.873829,
                "lat": 2.295021,
                "index": 18,
+               "accessLevel": 1,
             "text": "The Arc de Triomphe (Arc de Triomphe de l'Étoile) is one of the most famous monuments in Paris. It stands in the centre of the Place Charles de Gaulle (originally named Place de l'Étoile), at the western end of the Champs-Élysées. There is a smaller arch, the Arc de Triomphe du Carrousel, which stands west of the Louvre. The Arc de Triomphe (in English: \"Triumphal Arch\") honours those who fought and died for France in the French Revolutionary and the Napoleonic Wars, with the names of all French victories and generals inscribed on its inner and outer surfaces. Beneath its vault lies the Tomb of the Unknown Soldier from World War I. The Arc de Triomphe is the linchpin of the historic axis (Axe historique) – a sequence of monuments and grand thoroughfares on a route which goes from the courtyard of the Louvre, to the Grande Arche de la Défense. The monument was designed by Jean Chalgrin in 1806, and its iconographic program pitted heroically nude French youths against bearded Germanic warriors in chain mail. It set the tone for public monuments, with triumphant patriotic messages.",
             "photos": [
                 "50.jpg",
@@ -301,6 +319,7 @@
             "long": 48.860755,
                "lat": 2.352424,
                "index": 19,
+               "accessLevel": 1,
             "text": "Centre Georges Pompidou (also known as the Pompidou Centre in English) is a complex in the Beaubourg area of the 4th arrondissement of Paris, near Les Halles, rue Montorgueil and the Marais. It was designed in the style of high-tech architecture. The idea for a multicultural complex sprouted from André Malraux, the first minister of cultural affairs, was the western prophet of art and culture as centralized political power. The idea for the Centre Pompidou as a nerve centre of the French art and culture, bringing together in one place the different forms of expression, can be traced back in a way to Malraux’ ideas. In the 1960s the city planners decided to move the foodmarkets of Les Halles, the historical structures were greatly prized and it was proposed that some of the cultural institutes would be appropriate occupants. Paris as a city of culture and art needed a boost and voices were raised to move the Musée d’Art Moderne to this more appropriate location. Another demand existed in Paris at the time, that for a decent public library, Paris at the time lacked any large, free, general-purpose library. At first the debate concerned Les Halles, but as the controversy settled, in 1968, President Charles de Gaulle announced the Plateau Beaubourg as the new site for the library. A year later in 1969, the new president adopted the Beaubourg project and decided it to be the location of both the new library and a center for the contemporary arts. In the process of developing the project, the IRCAM (Institut de recherche et coordination acoustique/musique) was also housed in the complex. By 1992, the Centre de Creation Industrielle was incorporated into the Centre Pompidou.",
             "photos": [
                 "53.jpg",
@@ -315,6 +334,7 @@
             "long": 48.855518,
                "lat": 2.345734,
                "index": 20,
+               "accessLevel": 1,
             "text": "La Conciergerie is a former royal palace and prison in Paris, France, located on the west of the Île de la Cité, near the Cathedral of Notre-Dame. It is part of the larger complex known as the Palais de Justice, which is still used for judicial purposes. Hundreds of prisoners during the French Revolution were taken from La Conciergerie to be executed on the guillotine at a number of locations around Paris.",
             "photos": [
                 "55.jpg",
@@ -329,6 +349,7 @@
             "long": 48.858525,
                "lat": 2.294581,
                "index": 21,
+               "accessLevel": 1,
             "text": "The Eiffel Tower is an iron lattice tower located on the Champ de Mars in Paris, named after the engineer Gustave Eiffel, whose company designed and built the tower. Erected in 1889 as the entrance arch to the 1889 World's Fair, it has become both a global cultural icon of France and one of the most recognizable structures in the world. The tower is the tallest structure in Paris and the most-visited paid monument in the world; 7.1 million people ascended it in 2011. The third level observatory's upper platform is at 279.11 m the highest accessible to public in the European Union and the highest in Europe as long as the platform of the Ostankino Tower, at 360 m, remains closed as a result of the fire of August 2000. The tower received its 250 millionth visitor in 2010. The tower stands 320 metres tall, about the same height as an 81-storey building. During its construction, the Eiffel Tower surpassed the Washington Monument to assume the title of the tallest man-made structure in the world, a title it held for 41 years, until the Chrysler Building in New York City was built in 1930. However, because of the addition, in 1957, of the antenna atop the Eiffel Tower, it is now taller than the Chrysler Building. Not including broadcast antennas, it is the second-tallest structure in France, after the Millau Viaduct. The tower has three levels for visitors. Tickets can be purchased to ascend, by stairs or lift (elevator), to the first and second levels. The walk from ground level to the first level is over 300 steps, as is the walk from the first to the second level. The third and highest level is accessible only by lift - stairs exist but they are not usually open for public use. Both the first and second levels feature restaurants. The tower has become the most prominent symbol of both Paris and France, often in the establishing shot of films set in the city.",
             "photos": [
                 "57.jpg",
@@ -343,6 +364,7 @@
             "long": 48.855119,
                "lat": 2.312562,
                "index": 22,
+               "accessLevel": 1,
             "text": "Les Invalides, officially known as L'Hôtel national des Invalides (The National Residence of the Invalids), is a complex of buildings in the 7th arrondissement of Paris, France, containing museums and monuments, all relating to the military history of France, as well as a hospital and a retirement home for war veterans, the building's original purpose. The buildings house the Musée de l'Armée, the military museum of the Army of France, the Musée des Plans-Reliefs, and the Musée d'Histoire Contemporaine, as well as the burial site for some of France's war heroes, notably Napoleon Bonaparte (lists below).",
             "photos": [
                 "59.jpg",
@@ -358,6 +380,7 @@
             "long": 48.860614,
                "lat": 2.33756,
                "index": 23,
+               "accessLevel": 1,
             "text": "The Musée du Louvre (in English, the Louvre Museum or simply The Louvre—is one of the world's largest museums, and a historic monument. A central landmark of Paris, France, it is located on the Right Bank of the Seine in the 1st arrondissement (district). Nearly 35,000 objects from prehistory to the 19th century are exhibited over an area of 60,600 square metres (652,300 square feet). With more than 8 million visitors each year, the Louvre is the world's most visited museum. The museum is housed in the Louvre Palace (Palais du Louvre) which began as a fortress built in the late 12th century under Philip II. Remnants of the fortress are visible in the basement of the museum. The building was extended many times to form the present Louvre Palace. In 1682, Louis XIV chose the Palace of Versailles for his household, leaving the Louvre primarily as a place to display the royal collection, including, from 1692, a collection of antique sculpture. In 1692, the building was occupied by the Académie des Inscriptions et Belles Lettres and the Académie Royale de Peinture et de Sculpture, which in 1699 held the first of a series of salons. The Académie remained at the Louvre for 100 years. During the French Revolution, the National Assembly decreed that the Louvre should be used as a museum, to display the nation's masterpieces. The museum opened on 10 August 1793 with an exhibition of 537 paintings, the majority of the works being royal and confiscated church property. Because of structural problems with the building, the museum was closed in 1796 until 1801. The size of the collection increased under Napoleon and the museum was renamed the Musée Napoléon. After the defeat of Napoleon at Waterloo, many works seized by his armies were returned to their original owners. The collection was further increased during the reigns of Louis XVIII and Charles X, and during the Second French Empire the museum gained 20,000 pieces. Holdings have grown steadily through donations and gifts since the Third Republic. As of 2008, the collection is divided among eight curatorial departments: Egyptian Antiquities; Near Eastern Antiquities; Greek, Etruscan, and Roman Antiquities; Islamic Art; Sculpture; Decorative Arts; Paintings; Prints and Drawings.",
             "photos": [
                 "62.jpg",
@@ -373,6 +396,7 @@
             "long": 48.860388,
                "lat": 2.325334,
                "index": 24,
+               "accessLevel": 1,
             "text": "The Musée d'Orsay is a museum in Paris, France, on the left bank of the Seine. It is housed in the former Gare d'Orsay, an impressive Beaux-Arts railway station built between 1898 and 1900. The museum holds mainly French art dating from 1848 to 1915, including paintings, sculptures, furniture, and photography. It is probably best known for its extensive collection of impressionist and post-impressionist masterpieces (the largest in the world) by such painters such as Monet, Manet, Degas, Renoir, Cézanne, Seurat, Sisley, Gauguin and Van Gogh. Many of these works were held at the Galerie nationale du Jeu de Paume prior to the museum's opening in 1986. The museum building was originally a railway station, Gare d'Orsay, constructed for the Chemin de Fer de Paris à Orléans and finished in time for the 1900 Exposition Universelle to the design of three architects: Lucien Magne, Émile Bénard and Victor Laloux. It was the terminus for the railways of southwestern France until 1939. By 1939 the station's short platforms had become unsuitable for the longer trains that had come to be used for mainline services. After 1939 it was used for suburban services and part of it became a mailing centre during World War II. It was then used as a set for several films, such as Kafka's The Trial adapted by Orson Welles, and as a haven for the Renaud–Barrault Theatre Company and for auctioneers, while the Hôtel Drouot was being rebuilt.",
             "photos": [
                 "65.jpg",
@@ -389,6 +413,7 @@
             "long": 48.886265,
                "lat": 2.34308,
                "index": 25,
+               "accessLevel": 1,
             "text": "Montmartre is a hill in the north of Paris, France. It is 130 metres high and gives its name to the surrounding district, in the 18th arrondissement, a part of the Right Bank. Montmartre is primarily known for the white-domed Basilica of the Sacré Cœur on its summit and as a nightclub district. The other, older, church on the hill is Saint Pierre de Montmartre, which claims to be the location at which the Jesuit order of priests was founded. Many artists had studios or worked around the community of Montmartre such as Salvador Dalí, Amedeo Modigliani, Claude Monet, Piet Mondrian, Pablo Picasso and Vincent van Gogh. Montmartre is also the setting for several hit films. This site is served by metro line 2 stations of Anvers, Pigalle and Blanche and the line 12 stations of Pigalle, Abbesses, Lamarck - Caulaincourt and Jules Joffrin. Since Montmartre was outside the city limits, free of Paris taxes and no doubt also due to the fact that the local nuns made wine, the hill quickly became a popular drinking area. The area developed into a centre of free-wheeling and decadent entertainment at the end of the 19th and the beginning of the 20th centuries. In the popular cabaret the Moulin Rouge, and at Le Chat Noir, artists, singers and performers regularly appeared including Yvette Guilbert, Marcelle Lender, Aristide Bruant, La Goulue, Georges Guibourg, Mistinguett, Fréhel, Jane Avril, Damia and others. When Napoleon III and his city planner Baron Haussmann planned to make Paris the most beautiful city in Europe, a first step was to grant large sweeps of land near the centre of the city to Haussmann's friends and financial supporters. This drove the original inhabitants to the edges of the city — to the districts of Clichy, La Villette, and the hill with a view of the city, Montmartre. The Basilica of the Sacré Cœur was built on Montmartre from 1876 to 1912 by public subscription as a gesture of expiation of the \"crimes of the communards\", after the Paris Commune events, and to honour the French victims of the 1871 Franco-Prussian War. Its white dome is a highly visible landmark in the city, and just below it artists still set up their easels each day amidst the tables and colourful umbrellas of Place du Tertre. At the beginning of his political career, the future French statesman Georges Clemenceau was mayor of Montmartre",
             "photos": [
 				"69.jpg",
@@ -403,6 +428,7 @@
             "long": 48.855383,
                "lat": 2.344914,
                "index": 26,
+               "accessLevel": 1,
             "text": "La Sainte-Chapelle is one of the only surviving buildings of the Capetian royal palace on the Île de la Cité in the heart of Paris, France (the others being those of the Conciergerie). It was commissioned by King Louis IX of France to house his collection of Passion Relics, including the Crown of Thorns - one of the most important relics in medieval Christendom. Begun some time after 1239 and consecrated on the 26th of April 1248, the Sainte-Chapelle is considered among the highest achievements of the Rayonnant period of Gothic architecture. Although damaged during the French revolution and heavily restored in the 19th century, it retains one of the most extensive in-situ collections of 13th century stained glass anywhere in the world.",
             "photos": [
 				"71.jpg",
@@ -417,6 +443,7 @@
             "long": 48.85293,
                "lat": 2.350194,
                "index": 27,
+               "accessLevel": 1,
             "text": "Notre Dame de Paris, also known as Notre Dame Cathedral or simply Notre Dame, is a historic Roman Catholic Marian cathedral on the eastern half of the Île de la Cité in the fourth arrondissement of Paris, France. Widely considered one of the finest examples of French Gothic architecture and among the largest and most well-known churches in the world ever built, Notre Dame is the cathedral of the Catholic Archdiocese of Paris; that is, it is the church that contains the cathedra (official chair) of the Archbishop of Paris, currently André Vingt-Trois. The cathedral treasury is notable for its reliquary, which houses the purported crown of thorns, a fragment of the True Cross and one of the Holy Nails – all instruments of the Passion and a few of the most important first-class relics. Notre Dame de Paris is often reputed to be one of the most prominent examples of Gothic architecture in both France and in Europe as a whole, and the naturalism of its sculptures and stained glass are in contrast with earlier Romanesque architecture. The first period of construction from 1163 into 1240s coincided with the musical experiments of the Notre Dame school. The cathedral suffered desecration during the radical phase of the French Revolution in the 1790s, when much of its religious imagery was damaged or destroyed. An extensive restoration supervised by Eugène Viollet-le-Duc removed remaining decoration, returning the cathedral to an 'original' gothic state.",
             "photos": [
 				"73.jpg",
@@ -432,6 +459,7 @@
             "long": 48.872033,
                "lat": 2.33174,
                "index": 28,
+               "accessLevel": 1,
             "text": "The Palais Garnier is a 1,979-seat opera house, which was built from 1861 to 1875 for the Paris Opera. It was originally called \"Salle des Capucines\" because of its location on the Boulevard des Capucines in the 9th arrondissement of Paris, but soon became known as the \"Palais Garnier\" in recognition of its opulence and its architect, Charles Garnier. The theatre was also often referred to as \"Opéra Garnier\", \"Opéra de Paris\" or simply \"Opéra\". It was the primary home of the Paris Opera and its associated Paris Opera Ballet until 1989, when a new 2,700-seat house, the Opéra Bastille, with elaborate facilities for set and production changes, opened at the Place de la Bastille. The Paris Opera now mainly uses the Palais Garnier for ballet. The Palais Garnier is \"probably the most famous opera house in the world, a symbol of Paris like Notre Dame cathedral, the Louvre, or the Sacré Coeur basilica.\" This is at least partly due to its use as the setting for Gaston Leroux's 1911 novel The Phantom of the Opera and the novel's subsequent adaptations in films and Andrew Lloyd Webber's popular 1986 musical. Another contributing factor is that among the buildings constructed in Paris during the Second Empire, besides being the most expensive, it has been described as the only one that is \"unquestionably a masterpiece of the first rank.\" The Palais Garnier also houses the Bibliothèque-Musée de l'Opéra de Paris (Paris Opera Library-Museum). Although the Library-Museum is no longer managed by the Opera and is part of the Bibliothèque nationale de France, the museum is included in unaccompanied tours of the Palais Garnier.",
             "photos": [
 				"76.jpg",
@@ -448,6 +476,7 @@
             "long": 48.884344,
                "lat": 2.341123,
                "index": 29,
+               "accessLevel": 1,
             "text": "\"Great little restaurant!\" I think this place is the perfect one when you want to try a really french crepe. The restaurant is comfortable, has pleasant decor and illumination, the service is very good and the food is perfect. You will realise the differential of this crepe when you taste the dough... It's crispy and soft at the same time. I recommend a flavour: \"chevrette\" (goat cheese with caramelized onion)... I came back there twice because of this one! Still, they offer an excellent cost-benefit and Montmartre is a very charming place in Paris.Price range: $9 - $25 Cuisines: Dessert, Organic, Tea Room, Creperie",
             "photos": [
 				"101.jpg",
@@ -463,6 +492,7 @@
             "long": 48.853209,
                "lat": 2.390454,
                "index": 30,
+               "accessLevel": 1,
             "text": "\"Simply Delicious.\" Delicious pizza, great choice of toppings, helpful staff, cheap prices! Great place for a quick lunch or take-away. Room to sit down if you prefer.Price range: $7 - $27 Cuisines: Italian, Pizza, Dutch",
             "photos": [
 				"104.jpg",
@@ -477,6 +507,7 @@
             "long": 48.851441,
                "lat": 2.332757,
                "index": 31,
+               "accessLevel": 1,
             "text": "\"Best macarons!\" These macarons are really flavoursome and slightly bigger than others. My favorite was the Passionfruit and my husband's was Creme Brulee. We bought a box and brought it back to Sydney. The office staff had a macaron morning tea 3 days later and they were still good. We carried them in our hand luggage and put them in the fridge when we got home 30 hours later. Thought Laduree's macarons were great but Pierre Herme seemed to have even more flavour. Queues weren't too bad but it was great just to look at the other amazing cakes and pastries they have. A challenge is to try all their flavours whilst in Paris...",
             "photos": [
 				"109.jpg",
@@ -493,6 +524,7 @@
             "long": 48.852777,
                "lat": 2.335981,
                "index": 32,
+               "accessLevel": 1,
             "text": "\"Very fresh seafood!\" Be sure to arrive early. Huiterie Regis does not take reservations and has only 7 tables. I picked this restaurant from a list provided by guardian.co.uk and decided to visit the restaurant. Boy, was I glad I arrived in time to be seated at the second last table. The service was great - the service staff was kind enough to explain the menu to me in English. No. 2 and 3 oysters were plump and tasted fabulous. So were the prawns. Unfortunately, the restaurant was not serving sea urchins otherwise I would love to have gotten a taste of that. It was so good that I visited the restaurant with a girlfriend for lunch the next day! The restaurant is located near the Mabillon metro station (less than a minute's walk) but be sure to arrive early to get a table! Price range: $20 - $25 Cuisines: French",
             "photos": [
 				"110.jpg",
@@ -507,6 +539,7 @@
             "long": 48.856135,
                "lat": 2.309516,
                "index": 33,
+               "accessLevel": 1,
             "text": "\"Best fish in a long time !\" It opens for the evening at 19, so do not try to go earlier. We did not book. You can eat really great and I'd have never thought that french cousine is so good till i ate here. Prices are as everywhere, but food is wonderful. Very nice staff and you do not have to wait long time to have your meal (very quick indeed). The restaurant inside is also very nicely arranged.",
             "photos": [
                 "112.jpg"
@@ -520,6 +553,7 @@
             "long": 48.876265,
                "lat": 2.347316,
                "index": 34,
+               "accessLevel": 1,
             "text": "\"Wonderful little find\". This small bistro is not near any major sights in Paris but is just a short walk from the Cadet metro stop. The four of us shared some excellent fish items including fish soup and pan seared shrimp and scallops in a Pernod sauce. The deserts came with a dollop of sorbet that matched Berthillon. Cuisines: French. Good for: Romance, Local cuisine, Entertaining clients, Dining on a budget",
             "photos": [
 				"113.jpg",
@@ -535,6 +569,7 @@
             "long": 48.857519,
                "lat": 2.359077,
                "index": 35,
+               "accessLevel": 1,
             "text": "This place is practically a hole in a wall, where the ques are always long (sometimes an hour), with prices generally comparable to other similar restaurants in the area and the city. However, the wait is definitely worth it, offering a unique blend of hummus, falafel and eggplants. Now with their claim as the best falafel house in the world, I doubt, but in Paris, most definitely, considering the owners and staff combined the best of the Middle East and Jewish cuisine to whip up a falafel that'll make you come back for seconds.",
             "photos": [
 				"116.jpg",
@@ -549,6 +584,7 @@
             "long": 48.856739,
                "lat": 2.356277,
                "index": 36,
+               "accessLevel": 1,
             "text": "\"Best icecream in Parisю\" They send you to Bertillon as a tourist.. Don't fall for that! Pozzetto offer first grade icecream. The pistachio is good, the fiordilatte and straciatella are exceptional. Price range: $8 - $16 Cuisines: Italian, Ice Cream, Café",
             "photos": [
 				"118.jpg",
@@ -563,6 +599,7 @@
             "long": 48.864699,
                "lat": 2.347356,
                "index": 37,
+               "accessLevel": 1,
             "text": "Looking for refined modern French Food at affordable price for a romantic meal with your partner or a few friends, try l'Apibo! A small typical French bistro decor for this restaurant with a limited number of tables, we were welcomed by Vanessa. The card has a menu for 32 euros with entree main and desert, but we went for the 5 course \"carte Blanche\" meal where the chef picks himself what you will eat. Actually most of these dishes are from the menu itself but it allows you to taste more of their menu items. The portions are just the right size, the mix of flavours is very interesting, presentation is impeccable.",
             "photos": [
 				"120.jpg",
@@ -579,6 +616,7 @@
             "long": 48.851702,
                "lat": 2.356771,
                "index": 38,
+               "accessLevel": 1,
             "text": "well, the very very best icecreams in town! What parisians say is true! Just natural flavors, but I can't understand how it can taste so perfectly like the thing it is made of... the wild strawberry IS like eating Wild strawberries... I tried the \"chocolat-mendiant\" also, dark chocolate with almonds, raisins, nuts... CRAZY. I'm going back and back, I want to try the \"calisson\".... For you to know: the whole Saint Louis island is selling some, even in the cafés, so you don't have to queue up if there's a line at the main address, they are everywhere around in smaller shops. Price range: $15 - $20 Cuisines: Coffee Shop, Dessert",
             "photos": [
 				"124.jpg",
@@ -594,6 +632,7 @@
             "long": 48.867564,
                "lat": 2.333165,
                "index": 39,
+               "accessLevel": 1,
             "text": "\"Interesting (bio) concept\" Love this concept: great organic food, nicely served in friendly ambiance. You buy the food in a yar, staff heats it up. New healthy option in the fast service segment. Price range: $13 - $25 Cuisines: Bistro",
             "photos": [
 				"128.jpg",
@@ -608,6 +647,7 @@
             "long": 48.861666,
                "lat": 2.37034,
                "index": 40,
+               "accessLevel": 1,
             "text": "\"Wonderful hidden gem, family-run Italian/French\" Having just moved to the neighborhood, at the border of the 3rd and 11th arrondissements, four of us decided to try this very cozy-looking venue on a whim--even though it doesn't appear in any guidebooks. We were very pleasantly suprised. It was just opened in August by a chef (who spent a year in Palm Beach, FL), his wife and daughter, folks who hail from Italy. Most importantly, they know their food. We had, among other superb dishes, a succulent dorade, rolled up (forgot French word for this) around perfectly cooked vegetables; an incredible cepes and tagliatelle, featuring loads of slices from a beautiful gigantic cepe the chef couldn't resist showing to the table; marinated rabbit with super-thin-sliced julienned beets; and pumpkin and leek soup. The desserts included outstanding tiramisu and a heavenly mi cuit chocolate cake with molten center. Service was quick and as warmly welcoming as one could ask. The bread served and the wine list are also first-rate, and the prices are very reasonable; the lunch menu is a stupendous bargain.",
             "photos": [
 				"127.jpg",
@@ -623,6 +663,7 @@
             "long": 48.874858,
                "lat": 2.347864,
                "index": 41,
+               "accessLevel": 1,
             "text": "\"The Perfect Cheeseburger in Paris!\" Today I went to Big Fernand for lunch with 3 friends to enjoy what we heard was \"a perfect cheeseburger\" from Google. When we got there, there was a good sized line but we ordered within 5 minutes. There are a few great burgers on the menu (about 12 euros without the menu, 15 with the menu), and you can also create your own burger. The Staff are really friendly and are happy to speak English. Highly recommended if you are searching for a good cheeseburger!",
             "photos": [
 				"129.jpg",
@@ -637,6 +678,7 @@
             "long": 48.870186,
                "lat": 2.310819,
                "index": 42,
+               "accessLevel": 1,
             "text": "\"Vietnamese with a French Twist - Fantastic.\" We loved this very tourist friendly, English speaking Vietnamese near the Champs Elysees. A small family owned restaurant, the owner and his wife were gracious hosts, and most importantly the food was consistently outstanding. ",
             "photos": [
 				"131.jpg",
@@ -652,6 +694,7 @@
             "long": 48.870251,
                "lat": 2.36901,
                "index": 43,
+               "accessLevel": 1,
             "text": "\"vegetarian with small price.\" An amazing variety of fresh vegetarian food, in an excellent atmosphere which is relaxed and friendly, a rarity in Paris :-). We have been put-off so many times, by the stand-offish attitude and inflexible menus in most restaurants, that we almost did a double-take at the friendly staff in Tien Hiang. The food is very good, and the variety offered is plentiful and tempting. We liked it so much, that we went back in two days, to try some different dishes :-)! We were not disappointed in the least. Warning: book your table in advance, esp on the weekends. They are always going full!",
             "photos": [
 				"136.jpg",

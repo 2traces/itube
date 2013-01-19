@@ -36,6 +36,7 @@
 - (void) showFullMap;
 - (void) showCutMap;
 - (void) centerMapOnUser;
+- (void) reloadCategories;
 
 @end
 

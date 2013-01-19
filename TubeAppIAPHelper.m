@@ -30,8 +30,9 @@ static TubeAppIAPHelper * _sharedHelper;
     NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithContentsOfFile:path] autorelease];
     NSArray *array = [dict allKeys];
     NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
-
-    NSSet *productIdentifiers = [[[NSSet alloc] initWithObjects:bundleIdentifier, nil] autorelease];
+    NSString *contentIdentifier = [NSString stringWithFormat:@"%@.content", bundleIdentifier];
+    
+    NSSet *productIdentifiers = [[[NSSet alloc] initWithObjects:bundleIdentifier, contentIdentifier, nil] autorelease];
     
     if ((self = [super initWithProductIdentifiers:productIdentifiers])) {                
         

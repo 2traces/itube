@@ -47,9 +47,10 @@
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
     
-    NSLog(@"Received products results...");   
     self.products = response.products;
-    self.request = nil;    
+    NSLog(@"Received products results... Total of %i products!", [self.products count]);
+
+    self.request = nil;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kProductsLoadedNotification object:_products];    
 }
