@@ -10,11 +10,11 @@
 #import "MainViewController.h"
 #import "CityMap.h"
 #import "TubeAppIAPHelper.h"
-#import "TubeSplitViewController.h"
 #import "StatusViewController.h"
 #import <MapKit/MapKit.h>
 #import "ManagedObjects.h"
 #import "MainView.h"
+#import "SSTheme.h"
 
 @implementation tubeAppDelegate
 
@@ -24,6 +24,7 @@
 @synthesize cityMap;
 @synthesize cityName;
 @synthesize parseQueue;
+@synthesize tubeSplitViewController;
 
 void uncaughtExceptionHandler(NSException *exception) {
     NSLog(@"CRASH: %@", exception);
@@ -51,6 +52,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     
+    [SSThemeManager customizeAppAppearance];
+    
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     gl = [[GlViewController alloc] initWithNibName:@"GlViewController" bundle:[NSBundle mainBundle]];
 	MainViewController *aController = [[MainViewController alloc] init];
@@ -73,6 +76,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     if (IS_IPAD) {
         TubeSplitViewController *splitController = [[TubeSplitViewController alloc] init];
+        self.tubeSplitViewController=splitController;
         splitController.mainViewController = self.mainViewController;
         [window addSubview:[splitController view]];
         [window setRootViewController:splitController];
@@ -399,11 +403,18 @@ void uncaughtExceptionHandler(NSException *exception) {
     if([data count] > 0) {
         [gl setStationsPosition:data withMarks:!CGRectIsNull(cityMap.activeExtent)];
     }
+    if (IS_IPAD) {
+        [tubeSplitViewController hideTopViewAnimated];
+        [tubeSplitViewController hideLeftView];
+    }
 }
 
 -(void)showMetroMap
 {
     [navController popToRootViewControllerAnimated:YES];
+    if (IS_IPAD) {
+        [tubeSplitViewController showTopViewAnimated];
+    }
 }
 
 #pragma mark - Mail methods
@@ -432,6 +443,18 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 // Dismisses the Mail composer when the user taps Cancel or Send.
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    
+//    if (error) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Can't send email" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+//        [alertView show];
+//        [alertView release];
+//
+//        NSLog(@"ERROR - mailComposeController: %@", [error localizedDescription]);
+//        
+//        [self.mainViewController dismissModalViewControllerAnimated:YES];
+//        return;
+//    }
+    
     NSString *resultTitle = nil; NSString *resultMsg = nil;
     switch (result) {
         case MFMailComposeResultCancelled:

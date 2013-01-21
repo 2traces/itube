@@ -2,7 +2,7 @@
 //  VertPathScrollView.m
 //  tube
 //
-//  Created by sergey on 01.08.12.
+//  Created by Sergey Mingalev on 01.08.12.
 //
 //
 
@@ -10,6 +10,7 @@
 #import "CityMap.h"
 #import "Classes/tubeAppDelegate.h"
 #import "UIColor-enhanced.h"
+#import "SSTheme.h"
 
 @implementation VertPathScrollView
 
@@ -20,6 +21,12 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        UIImage *image = [[SSThemeManager sharedTheme] vertScrollViewBackground];
+        if (image) {
+            self.backgroundColor = [UIColor colorWithPatternImage:image];
+        } else {
+            self.backgroundColor = [UIColor whiteColor];
+        }
     }
     return self;
 }
@@ -298,11 +305,11 @@
 
 -(NSMutableArray*)dsGetVeniceExitForStations
 {
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSArray *pathX = appDelegate.cityMap.activePath;
-    NSArray *exits = appDelegate.cityMap.pathDocksList;
+//    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+//    NSArray *pathX = appDelegate.cityMap.activePath;
+//    NSArray *exits = appDelegate.cityMap.pathDocksList;
     
-    NSMutableArray *stationsArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
+//    NSMutableArray *stationsArray = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     
     //    for (int i=0; i<[pathX count]; i++) {
     //
@@ -311,7 +318,8 @@
     //        }
     //    }
     
-    return stationsArray;
+    //return stationsArray;
+    return nil;
 }
 
 -(NSMutableArray*)dsGetEveryStationTimeScheduled
@@ -579,6 +587,10 @@
         lineStart=57.0;
     }
     
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        lineStart=75.0f;
+    }
+    
     if ([self dsIsStartingTransfer]) {
         [stations removeObjectAtIndex:0];
         lineStart+=20.0;
@@ -635,7 +647,7 @@
     
     self.bounces=YES;
     self.delegate = self;
-    self.backgroundColor = [UIColor whiteColor];
+//    self.backgroundColor = [UIColor whiteColor];
     
     [self scrollRectToVisible:CGRectMake(0.0, 0.0, 320.0, 300.0) animated:YES];
     
@@ -722,6 +734,14 @@
             UIImageView *trainSubview = [[UIImageView alloc] initWithImage:trainImage];
             
             trainSubview.frame = CGRectMake(27, currentY+20.0, trainImage.size.width, trainImage.size.height); // было 37
+            
+            if ([[SSThemeManager sharedTheme] isNewTheme]) {
+                UIImageView *gradientView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"newdes_train_gradient"]];
+                gradientView.frame=CGRectMake(0, currentY+22.0, self.frame.size.width, 36);
+                [self addSubview:gradientView];
+                [gradientView release];
+            }
+            
             [self addSubview:trainSubview];
             [trainSubview release];
             
@@ -879,7 +899,7 @@
     
     
     PathDrawVertView *drawView = [[PathDrawVertView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320, viewHeight+100.0)];
-    drawView.tag =20000;
+//    drawView.tag =20000;
     drawView.delegate=self;
     [self addSubview:drawView];
     [drawView release];
@@ -906,13 +926,13 @@
 -(IBAction)sendToFriendMail:(id)sender
 {
     NSString *body = [self generateMessageBodyPath];
-    [self showMailComposer:nil subject:@"Look at this path" body:body];
+    [self showMailComposer:nil subject:@"Look at this path" body:body to:nil];
 }
 
 -(IBAction)wrongPathMail:(id)sender
 {
     NSString *body = [self generateMessageBodyPath];
-    [self showMailComposer:nil subject:@"Wrong path" body:body];
+    [self showMailComposer:nil subject:@"Wrong path" body:body to:@"fusio@yandex.ru"];
 }
 
 -(NSString*)generateMessageBodyPath
@@ -1013,7 +1033,7 @@
     return body;
 }
 
--(IBAction)showMailComposer:(id)sender subject:(NSString*)subject body:(NSString*)mybody
+-(IBAction)showMailComposer:(id)sender subject:(NSString*)subject body:(NSString*)mybody to:(NSString*)toAddress
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
 
@@ -1025,7 +1045,9 @@
             picker.mailComposeDelegate = self;
             [picker setSubject:subject];
             [picker setMessageBody:mybody isHTML:YES];
-            [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"fusio@yandex.ru"]]];
+            if (toAddress) {
+                [picker setToRecipients:[NSArray arrayWithObject:toAddress]];
+            }
             [appDelegate.mainViewController presentModalViewController:picker animated:YES];
             [picker release];
         } else {

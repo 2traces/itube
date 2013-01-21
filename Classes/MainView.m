@@ -16,6 +16,7 @@
 #import "SettingsViewController.h"
 #import "SettingsNavController.h"
 #import "GlViewController.h"
+#import "SSTheme.h"
 
 NSInteger const toolbarHeight=44;
 NSInteger const toolbarWidth=320;
@@ -54,19 +55,21 @@ NSInteger const toolbarWidth=320;
 -(void)viewInit:(MainViewController*)vc
 {
 	[self initVar];
+
+//    self.layer.cornerRadius=10;
     
     CGRect scrollSize,settingsRect,shadowRect,zonesRect;
     
     scrollSize = CGRectMake(0, 44,(320),(480-64));
-    settingsRect=CGRectMake(285, 420, 27, 27);
+    settingsRect = CGRectMake(285, 420, 27, 27);
     shadowRect = CGRectMake(0, 44, 480, 61);
-    zonesRect=CGRectMake(25, 420, 43, 25);
+    zonesRect = CGRectMake(25, 420, 43, 25);
     
     if (IS_IPAD) {
         scrollSize = CGRectMake(0, 44, 768, (1024-74));
-        settingsRect=CGRectMake(-285, -420, 27, 27);
+        settingsRect = CGRectMake(-285, -420, 27, 27);
         shadowRect = CGRectMake(0, 44, 1024, 61);
-        zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 43, 25);
+        zonesRect = CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 43, 25);
     } else {
         if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
             CGSize result = [[UIScreen mainScreen] bounds].size;
@@ -75,9 +78,9 @@ NSInteger const toolbarWidth=320;
             
             if(result.height == 1136){
                 scrollSize = CGRectMake(0,44,(320),(568-64));
-                settingsRect=CGRectMake(285, 508, 27, 27);
+                settingsRect = CGRectMake(285, 508, 27, 27);
                 shadowRect = CGRectMake(0, 44, 568, 61);
-                settingsRect=CGRectMake(55, 508, 27, 27);
+                zonesRect = CGRectMake(25, 508, 43, 25);
             }
         }
     }
@@ -151,14 +154,14 @@ NSInteger const toolbarWidth=320;
     [self addSubview:mapView.labelView];
 	
     sourceButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [sourceButton setImage:[UIImage imageNamed:@"src_button_normal"] forState:UIControlStateNormal];
-    [sourceButton setImage:[UIImage imageNamed:@"src_button_pressed"] forState:UIControlStateHighlighted];
+    [sourceButton setImage:[[SSThemeManager sharedTheme] mapViewEntryButton:UIControlStateNormal] forState:UIControlStateNormal];
+    [sourceButton setImage:[[SSThemeManager sharedTheme] mapViewEntryButton:UIControlStateHighlighted] forState:UIControlStateHighlighted];
     [sourceButton addTarget:self action:@selector(selectFromStationByButton) forControlEvents:UIControlEventTouchUpInside];
     [sourceButton setFrame:CGRectMake(-90, 190, 96, 96)];
     
     destinationButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [destinationButton setImage:[UIImage imageNamed:@"dst_button_normal"] forState:UIControlStateNormal];
-    [destinationButton setImage:[UIImage imageNamed:@"dst_button_pressed"] forState:UIControlStateHighlighted];
+    [destinationButton setImage:[[SSThemeManager sharedTheme] mapViewExitButton:UIControlStateNormal] forState:UIControlStateNormal];
+    [destinationButton setImage:[[SSThemeManager sharedTheme] mapViewExitButton:UIControlStateHighlighted] forState:UIControlStateHighlighted];
     [destinationButton addTarget:self action:@selector(selectToStationByButton) forControlEvents:UIControlEventTouchUpInside];
     if (IS_IPAD) {
         [destinationButton setFrame:CGRectMake(1024, 190, 96, 96)];
@@ -169,23 +172,31 @@ NSInteger const toolbarWidth=320;
     [self addSubview:destinationButton];
     
     UIButton *settings = [UIButton buttonWithType:UIButtonTypeCustom];
-    [settings setImage:[UIImage imageNamed:@"settings_btn_normal"] forState:UIControlStateNormal];
-    [settings setImage:[UIImage imageNamed:@"settings_btn"] forState:UIControlStateHighlighted];
+    [settings setImage:[[SSThemeManager sharedTheme] mapViewSettingsButton:UIControlStateNormal] forState:UIControlStateNormal];
+    [settings setImage:[[SSThemeManager sharedTheme] mapViewSettingsButton:UIControlStateHighlighted] forState:UIControlStateHighlighted];
     settings.frame = settingsRect;
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:settings];
 
-    zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    [zones setImage:[UIImage imageNamed:@"maps_button"] forState:UIControlStateNormal];
-    //[zones setImage:[UIImage imageNamed:@"zones_btn"] forState:UIControlStateHighlighted];
-    zones.frame = zonesRect;
-    [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:zones];
-
-    UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
-    shadow.frame = shadowRect;
-    [self addSubview:shadow];
-    shadow.tag=717;
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        zones = [UIButton buttonWithType:UIButtonTypeCustom];
+        [zones setBackgroundImage:[[UIImage imageNamed:@"newdes_maps_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 21, 10, 11)] forState:UIControlStateNormal];
+        [zones setTitle:NSLocalizedString(@"MapsButton", @"MapsButton") forState:UIControlStateNormal];
+        [[zones titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:10.0]];
+        [zones setTitleEdgeInsets:UIEdgeInsetsMake(2, 0, 0, 0)];
+        [zones setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        zones.frame = zonesRect;
+        [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:zones];
+    }
+    
+    if (![[SSThemeManager sharedTheme] isNewTheme]) {
+        UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
+        shadow.frame = shadowRect;
+        [shadow setUserInteractionEnabled:NO];
+        [self addSubview:shadow];
+        shadow.tag=717;
+    }
     
     NSTimer *timer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(supervisor) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
@@ -276,10 +287,17 @@ NSInteger const toolbarWidth=320;
     
     pos.y -= 80;
     
-    if(pos.x < 120) pos.x = 120;
-    if(pos.x > 200) pos.x = 200;
-    if(pos.y < 130) pos.y += 200;
-    if(pos.y > 380) pos.y = 380;
+    if (IS_IPAD) {
+        if(pos.x < 120) pos.x = 120;
+        if(pos.x > self.frame.size.width-120.0) pos.x = self.frame.size.width-120.0;
+        if(pos.y < 130) pos.y += 200;
+        if(pos.y > self.frame.size.height-130.0) pos.x = self.frame.size.height-130.0;
+    } else {
+        if(pos.x < 120) pos.x = 120;
+        if(pos.x > 200) pos.x = 200;
+        if(pos.y < 130) pos.y += 200;
+        if(pos.y > 380) pos.y = 380;
+    }
     
     [UIView animateWithDuration:0.25f animations:^{ sourceButton.center = CGPointMake(pos.x-60, pos.y+20); }];
     [UIView animateWithDuration:0.25f animations:^{ destinationButton.center = CGPointMake(pos.x+60, pos.y+20); }];
@@ -409,5 +427,50 @@ NSInteger const toolbarWidth=320;
     [containerView setContentScaleFactor:zoom];
     [containerView setContentOffset:CGPointMake(st.pos.x * mapView.Scale - containerView.bounds.size.width*0.5f, st.pos.y * mapView.Scale - containerView.bounds.size.height*0.75f ) animated:YES];
 }
+
+//- (UIView*)listSubviewsOfView:(UIView *)view {
+//    
+//    // Get the subviews of the view
+//    NSArray *subviews = [view subviews];
+//    
+//    // Return if there are no subviews
+//    if ([subviews count] == 0) return nil;
+//    
+//    for (UIView *subview in subviews) {
+//        
+//        if (subview.tag==555 || subview.tag==6843) {
+//            NSLog(@"%@", subview);
+//            return subview;
+//        }
+//        // List the subviews of subview
+//        [self listSubviewsOfView:subview];
+//    }
+//    
+//    return nil;
+//}
+
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    UIView *view = [self listSubviewsOfView:self];
+//    if (view) {
+//        [view touchesBegan: touches withEvent: event];
+//    }
+//}
+//
+//- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    UIView *view = [self listSubviewsOfView:self];
+//    if (view) {
+//        [view touchesMoved: touches withEvent: event];
+//    }
+//}
+//
+//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+//    UIView *view = [self listSubviewsOfView:self];
+//    if (view) {
+//        [view touchesEnded: touches withEvent: event];
+//    }
+//}
+
 
 @end

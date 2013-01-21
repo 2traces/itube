@@ -2,7 +2,7 @@
 //  LineListViewController.m
 //  tube
 //
-//  Created by sergey on 06.12.11.
+//  Created by Sergey Mingalev on 06.12.11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -14,6 +14,7 @@
 #import "tubeAppDelegate.h"
 #import "MainViewController.h"
 #import "UIColor-enhanced.h"
+#import "SSTheme.h"
 
 #define DEFAULT_ROW_HEIGHT 38
 #define HEADER_HEIGHT 40
@@ -43,6 +44,11 @@
 {
     [super viewDidLoad];
     
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        self.view.backgroundColor=[UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
+        self.mytableView.layer.cornerRadius=5.0f;
+    }
+    
     MHelper *helper = [MHelper sharedHelper];
     self.dataSource = helper;
     
@@ -50,9 +56,11 @@
     
     self.colorDictionary = [[[NSMutableDictionary alloc] initWithCapacity:[self.lineList count]] autorelease];
     
-    [self.mytableView setBackgroundColor:[UIColor clearColor]];
-    self.imageView.image = [UIImage imageNamed:@"lines_shadow.png"];
-    
+//    [self.mytableView setBackgroundColor:[UIColor clearColor]];
+//    self.imageView.image = [UIImage imageNamed:@"lines_shadow.png"];
+
+    [SSThemeManager customizeSettingsTableView:self.mytableView imageView:self.imageView searchBar:(UISearchBar*)nil];
+
     // Set up default values.
     self.mytableView.sectionHeaderHeight = HEADER_HEIGHT;
 	/*
@@ -191,11 +199,13 @@
     }
     cell.mylabel.text = cellValue;
     cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
-    cell.mylabel.textColor = [UIColor blackColor];
+    cell.mylabel.textColor = [[SSThemeManager sharedTheme] mainColor];
     
     UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
     
     myImageView.image = [self imageWithColor:[(MStation*)[self.stationsList objectAtIndex:indexPath.row] lines]];
+    
+    cell.selectedBackgroundView = [[SSThemeManager sharedTheme] stationsTableViewCellBackgroundSelected];
     
 //    NSDate *date2 = [NSDate date];
 //    NSLog(@"%f",[date2 timeIntervalSinceDate:date]);
@@ -358,23 +368,34 @@
 
 -(UIImage*)drawCircleView:(UIColor*)myColor
 {
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(27, 27), NO, 0.0);
+    UIImage *radialImg;
+    CGRect circleRect;
     
-    UIImage *radialImg = [UIImage imageNamed:@"radial.png"];
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        radialImg = [UIImage imageNamed:@"newdes_stations_star.png"];
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(28, 28), NO, 0.0);
+        circleRect = CGRectMake(2.0, 2.0, 24.0, 24.0);
+    } else {
+        radialImg = [UIImage imageNamed:@"radial.png"];
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(27, 27), NO, 0.0);
+        circleRect = CGRectMake(1.0, 1.0, 25.0, 25.0);
+    }
     
-    CGRect circleRect = CGRectMake(1.0, 1.0, 25.0, 25.0);
-	
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     const CGFloat* components = CGColorGetComponents(myColor.CGColor);
     
-    CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor)); 
-    CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));  
-	CGContextSetLineWidth(context, 0.0);
-	CGContextFillEllipseInRect(context, circleRect);
-	CGContextStrokeEllipseInRect(context, circleRect);
+    CGContextSetRGBStrokeColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));
+    CGContextSetRGBFillColor(context, components[0],components[1], components[2],  CGColorGetAlpha(myColor.CGColor));
+    CGContextSetLineWidth(context, 0.0);
+    CGContextFillEllipseInRect(context, circleRect);
+    CGContextStrokeEllipseInRect(context, circleRect);
     
-    [radialImg drawInRect:circleRect]; 
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        [radialImg drawInRect:CGRectMake(0.0, 0.0, 28.0, 28.0)];
+    } else {
+        [radialImg drawInRect:CGRectMake(1.0, 1.0, 25.0, 25.0)];
+    }
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     

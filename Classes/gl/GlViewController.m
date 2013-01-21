@@ -12,6 +12,7 @@
 #import "tubeAppDelegate.h"
 #import "SelectingTabBarViewController.h"
 #import "GlView.h"
+#import "SSTheme.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -39,10 +40,10 @@ GLint uniforms[NUM_UNIFORMS];
     CGFloat scale, prevScale;
     UIButton *sourceData, *settings, *zones;
     
-    MItem *currentSelection;
-    MItem *fromStation;
-    MItem *toStation;
-    TopRasterView *stationsView;
+    MStation *currentSelection;
+    MStation *fromStation;
+    MStation *toStation;
+    TopTwoStationsView *stationsView;
     
     CGPoint panVelocity;
     CGFloat panTime;
@@ -291,14 +292,14 @@ GLint uniforms[NUM_UNIFORMS];
     } else {
         if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
             CGSize result = [[UIScreen mainScreen] bounds].size;
-            CGFloat scale = [UIScreen mainScreen].scale;
-            result = CGSizeMake(result.width * scale, result.height * scale);
+            CGFloat screen_scale = [UIScreen mainScreen].scale;
+            result = CGSizeMake(result.width * screen_scale, result.height * screen_scale);
             
             if(result.height == 1136){
                 //scrollSize = CGRectMake(0,44,(320),(568-64));
                 //settingsRect=CGRectMake(285, 508, 27, 27);
                 //shadowRect = CGRectMake(0, 44, 568, 61);
-                settingsRect=CGRectMake(55, 508, 27, 27);
+                zonesRect=CGRectMake(25, 508, 43, 25);
             }
         }
     }
@@ -329,17 +330,28 @@ GLint uniforms[NUM_UNIFORMS];
     rasterLayer = [[RasterLayer alloc] initWithRect:CGRectMake(0, 0, 256, 256) mapName:@"cuba"];
     //[rasterLayer setSignal:self selector:@selector(redrawRect:)];
     
-    stationsView = [[TopRasterView alloc] initWithFrame:CGRectMake(0,0,320,44)];
-    [view addSubview:stationsView];
+//    TopTwoStationsView *twoStationsView;
+    
+//    if (!IS_IPAD) {
+//        twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault] fieldWidth:160.0f  fieldHeight:[[SSThemeManager sharedTheme] toolbarFieldHeight] fieldDelta:[[SSThemeManager sharedTheme] toolbarFieldDelta]  deviceHeight:480.0f deviceWidth:320.f];
+//        twoStationsView.delegate=self;
+//        self.stationsView = twoStationsView;
+//        [view addSubview:twoStationsView];
+//        [twoStationsView release];
+//
+//        [UIView animateWithDuration:0.5 animations:^{
+//            [self.stationsView setFrame:CGRectMake(0, 33-[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault], 320, [[SSThemeManager sharedTheme] toolbarFieldHeight])];
+//        }];
+//    }
     
     int adDelta = 0;
-    
-    settings = [UIButton buttonWithType:UIButtonTypeCustom];
-    [settings setImage:[UIImage imageNamed:@"settings_btn_normal"] forState:UIControlStateNormal];
-    [settings setImage:[UIImage imageNamed:@"settings_btn"] forState:UIControlStateHighlighted];
-    settings.frame = CGRectMake(285, 420 - adDelta, 27, 27);
-    [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:settings];
+
+//    settings = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [settings setImage:[[SSThemeManager sharedTheme] mapViewSettingsButton:UIControlStateNormal] forState:UIControlStateNormal];
+//    [settings setImage:[[SSThemeManager sharedTheme] mapViewSettingsButton:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+//    settings.frame = CGRectMake(285, 420 - adDelta, 27, 27);
+//    [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
+//    [view addSubview:settings];
     
     sourceData = [UIButton buttonWithType:UIButtonTypeCustom];
     [sourceData setImage:[UIImage imageNamed:@"vector"] forState:UIControlStateNormal];
@@ -349,13 +361,16 @@ GLint uniforms[NUM_UNIFORMS];
     [view addSubview:sourceData];
 
     zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    [zones setImage:[UIImage imageNamed:@"metro_button"] forState:UIControlStateNormal];
-    //[zones setImage:[UIImage imageNamed:@"zones_btn"] forState:UIControlStateHighlighted];
+    [zones setBackgroundImage:[[UIImage imageNamed:@"newdes_maps_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 21, 10, 11)] forState:UIControlStateNormal];
+    [zones setTitle:NSLocalizedString(@"MetroButton", @"MetroButton")  forState:UIControlStateNormal];
+    [[zones titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:10.0]];
+    [zones setTitleEdgeInsets:UIEdgeInsetsMake(2, 0, 0, 0)];
+    [zones setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     zones.frame = zonesRect;
     [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:zones];
     view.zonesButton = zones;
-
+    
     // user geo position
     Pin *p = [[Pin alloc] initWithId:0 color:0 andText:@"You are here!"];
     [pinsArray addObject:p];
@@ -519,7 +534,8 @@ GLint uniforms[NUM_UNIFORMS];
 
 -(FastAccessTableViewController*)showTableView
 {
-    UIView *blackView = [[UIView alloc] initWithFrame:CGRectMake(0,44,320,440)];
+    CGFloat startY = [[SSThemeManager sharedTheme] fastAccessTableViewStartY];
+    UIView *blackView = [[UIView alloc] initWithFrame:CGRectMake(0,startY,320,440)];
     blackView.backgroundColor  = [UIColor blackColor];
     blackView.alpha=0.4;
     blackView.tag=554;
@@ -528,11 +544,15 @@ GLint uniforms[NUM_UNIFORMS];
     [blackView addGestureRecognizer:tapGesture];
     [tapGesture release];
     
-    [self.view addSubview:blackView];
-    [blackView release];
-    
     FastAccessTableViewController *tableViewC=[[[FastAccessTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
-    tableViewC.view.frame=CGRectMake(0,44,320,200);
+    
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+    tableViewC.view.frame=CGRectMake(0,startY,320,200);
+    
+    if ([appDelegate isIPHONE5]) {
+        tableViewC.view.frame=CGRectMake(0,startY,320,288);
+        [[self.view viewWithTag:554] setFrame:CGRectMake(0,startY,320,528)];
+    }
     
     tableViewC.tableView.hidden=YES;
     
@@ -540,8 +560,10 @@ GLint uniforms[NUM_UNIFORMS];
     
     tableViewC.tableView.tag=555;
     
-    [self.view addSubview:tableViewC.tableView];
-    [self.view bringSubviewToFront:tableViewC.tableView];
+    [self.view insertSubview:tableViewC.tableView belowSubview:stationsView];
+    [self.view insertSubview:blackView belowSubview:tableViewC.tableView];
+    
+    [blackView release];
     
     return tableViewC;
 }
@@ -552,42 +574,65 @@ GLint uniforms[NUM_UNIFORMS];
     [[self.view viewWithTag:555] removeFromSuperview];
 }
 
+
+-(void)returnFromSelection2:(NSArray*)stations
+{
+    if ([stations count]>1) {
+        // это история и надо ставить обе станции
+        self.fromStation = [stations objectAtIndex:0];
+        self.toStation = [stations objectAtIndex:1];
+        
+        if (currentSelection==0) {
+            [stationsView setFromStation:self.fromStation];
+            [stationsView setToStation:self.toStation];
+        } else {
+            [stationsView setToStation:self.toStation];
+            [stationsView setFromStation:self.fromStation];
+        }
+        
+        
+    } else if ([stations count]==1) {
+        // это конкретная станция
+        if (currentSelection==0) {
+            if ([stations objectAtIndex:0]==self.toStation) {
+                self.fromStation=nil;
+                [stationsView resetFromStation];
+            } else {
+                self.fromStation = [stations objectAtIndex:0];
+                [stationsView setFromStation:self.fromStation];
+            }
+        } else {
+            if ([stations objectAtIndex:0]==self.fromStation) {
+                self.toStation=nil;
+                [stationsView resetToStation];
+            } else {
+                self.toStation = [stations objectAtIndex:0];
+                [stationsView setToStation:self.toStation];
+            }
+        }
+        
+    } else if ([stations count]==0) {
+        if (currentSelection==0) {
+            self.fromStation=nil;
+            [stationsView setFromStation:self.fromStation];
+        } else {
+            self.toStation=nil;
+            [stationsView setToStation:self.toStation];
+        }
+    }
+}
+
 -(void)returnFromSelection:(NSArray*)stations
 {
-    [self dismissModalViewControllerAnimated:YES];
-    [self performSelector:@selector(returnFromSelection2:) withObject:stations afterDelay:0.1];
-    //((MainView*)self.view).shouldNotDropPins = NO;
+        [self dismissModalViewControllerAnimated:YES];
+        [self performSelector:@selector(returnFromSelection2:) withObject:stations afterDelay:0.1];
 }
-
--(void)returnFromSelection2:(NSArray*)items
-{
-    /*MainView *mainView = (MainView*)self.view;
-    if ([items count]) {
-        self.fromStation = [items objectAtIndex:0];
-        [stationsView setFromStation:self.fromStation];
-        if(![mainView centerMapOnUserAndItemWithID:[self.fromStation.index integerValue]]) {
-#ifdef DEBUG
-            NSLog(@"object %@ not found!", self.fromStation.index);
-#endif
-        }
-        else {
-            [self setPinForItem:[self.fromStation.index integerValue]];
-        }
-    }
-    else {
-        self.fromStation=nil;
-    }
-    
-	mainView.mapView.stationSelected=false;
-     */
-}
-
 
 -(void)returnFromSelectionFastAccess:(NSArray *)stations
 {
     [self removeTableView];
     if (stations) {
-        if (currentSelection==nil) {
+        if (currentSelection==0) {
             if ([stations objectAtIndex:0]==self.toStation) {
                 self.fromStation=nil;
                 [stationsView resetFromStation];
@@ -601,16 +646,64 @@ GLint uniforms[NUM_UNIFORMS];
             } else {
                 [self returnFromSelection:stations];
             }
-        }     
-        
-        //      [self returnFromSelection:stations];
+        }
     } else {
-        if (currentSelection==nil) {
+        if (currentSelection==0) {
             [stationsView setFromStation:self.fromStation];
         } else {
             [stationsView setToStation:self.toStation];
         }
     }
+}
+
+-(void)pressedSelectFromStation
+{
+    currentSelection=fromStation;
+    
+        [self showTabBarViewController];
+}
+
+-(void)pressedSelectToStation
+{
+    currentSelection=toStation;
+    
+        [self showTabBarViewController];
+}
+
+-(void)resetFromStation
+{
+    currentSelection=fromStation;
+    [self returnFromSelection:[NSArray array]];
+    [stationsView setToStation:self.toStation];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kPathCleared" object:nil];
+}
+
+-(void)resetToStation
+{
+    currentSelection=toStation;
+    [stationsView setFromStation:self.fromStation];
+    [self returnFromSelection:[NSArray array]];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kPathCleared" object:nil];
+}
+
+-(void)resetBothStations
+{
+    MStation *tempSelection = currentSelection;
+    
+    currentSelection=fromStation;
+    [stationsView setToStation:nil];
+    [stationsView setFromStation:nil];
+    
+    self.fromStation=nil;
+    self.toStation=nil;
+    
+    [self returnFromSelection2:[NSArray array]];
+    
+    currentSelection=tempSelection;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kPathCleared" object:nil];
 }
 
 -(void)showTabBarViewController
@@ -643,47 +736,7 @@ GLint uniforms[NUM_UNIFORMS];
     //[self dismissModalViewControllerAnimated:YES];
 }
 
--(void)pressedSelectFromStation
-{
-    currentSelection=fromStation;
-    [self showTabBarViewController];
-}
-
--(void)pressedSelectToStation
-{
-    currentSelection=toStation;
-    [self showTabBarViewController];
-}
-
--(void)resetFromStation
-{
-    currentSelection=fromStation;
-    [stationsView setToStation:self.toStation];
-    [self returnFromSelection:[NSArray array]];
-}
-
--(void)resetToStation
-{
-    currentSelection=toStation;
-    [stationsView setFromStation:self.fromStation];
-    [self returnFromSelection:[NSArray array]];
-}
-
--(void)resetBothStations
-{
-    MItem *tempSelection = currentSelection;
-    
-    currentSelection=fromStation;
-    [stationsView setToStation:nil];
-    [stationsView setFromStation:nil];
-    
-    self.fromStation=nil;
-    self.toStation=nil;
-    
-    [self returnFromSelection2:[NSArray array]];
-    
-    currentSelection=tempSelection;
-}
+#pragma mark - twoStations delegate methods
 
 -(int)newPin:(CGPoint)coordinate color:(int)color name:(NSString*)name
 {

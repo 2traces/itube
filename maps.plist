@@ -66,7 +66,7 @@
 	<key>default</key>
 	<dict>
 		<key>url1</key>
-		<string>http://www.x-provocation.com/maps/berlin/osm/</string>
+		<string>http://parismetromaps.info/maps/berlin/osm/osm/</string>
 		<key>url2</key>
 		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
 		<key>ver</key>
@@ -82,7 +82,7 @@
 		<key>zip_download</key>
 		<string>/maps/berlin/berlin1.zip</string>
 		<key>statusURL</key>
-		<string>   </string>
+		<string>http://metro.dim0xff.com/paris/data.txt</string>
 	</dict>
 	<key>com.zuev.itube.paris.hamburg</key>
 	<dict>

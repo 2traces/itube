@@ -13,6 +13,7 @@
 #import "MyTiledLayer.h"
 #import "Schedule.h"
 #import "ManagedObjects.h"
+#import "SSTheme.h"
 
 @implementation MapView
 @synthesize cityMap;
@@ -165,30 +166,29 @@
 		}
 
 		//метка которая показывает названия станций
-		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 27, 140, 25)];
-		mainLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:21.0];
-        mainLabel.textAlignment = UITextAlignmentCenter;
-		mainLabel.backgroundColor = [UIColor clearColor];
-        mainLabel.shadowColor = [UIColor whiteColor];
-        mainLabel.shadowOffset = CGSizeMake(0.5f, 1.f);
-        lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(180, 27, 40, 25)];
-        lineLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:21.f];
-        lineLabel.textAlignment = UITextAlignmentCenter;
-        lineLabel.textColor = [UIColor colorWithRed:0.5f green:0.5f blue:0.5f alpha:1.0f];
-        lineLabel.text = @"1";
-        lineLabel.backgroundColor = [UIColor clearColor];
-        lineLabel.shadowColor = [UIColor whiteColor];
-        lineLabel.shadowOffset = CGSizeMake(0.5f, 1.f);
-        circleLabel = [[UIView alloc] initWithFrame:CGRectMake(25, 23, 21, 21)];
+		mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 27, 140, 25)]; //
+        [[SSThemeManager sharedTheme] decorMapViewMainLabel:mainLabel];
+        lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(180, 27, 40, 25)]; //
+        [[SSThemeManager sharedTheme] decorMapViewLineLabel:lineLabel];
+        circleLabel = [[UIView alloc] initWithFrame:CGRectMake(25, 23, 21, 21)]; //
+        [[SSThemeManager sharedTheme] decorMapViewCircleLabel:circleLabel];
         circleLabel.layer.cornerRadius = 11.f;
         circleLabel.backgroundColor = [UIColor redColor];
-        [circleLabel addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"embossed_circle"]]];
         
-        labelBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"station_label"]];
+        labelBg = [[UIImageView alloc] initWithImage:[[SSThemeManager sharedTheme] mapViewLabelView]];
         [labelBg addSubview:mainLabel];
         [labelBg addSubview:lineLabel];
         [labelBg addSubview:circleLabel];
-		labelBg.hidden=true;
+		
+        if ([[SSThemeManager sharedTheme] isNewTheme]) {
+            UIImageView* embossLabel = [[UIImageView alloc] initWithFrame:CGRectMake(22.5, 7, 26, 26)];
+            embossLabel.image = [[SSThemeManager sharedTheme] mapLabelEmbossedCircleImage];
+            [labelBg addSubview:embossLabel];
+        } else {
+            [circleLabel addSubview:[[UIImageView alloc] initWithImage:[[SSThemeManager sharedTheme] mapLabelEmbossedCircleImage]]];
+        }
+        
+        labelBg.hidden=true;
         
         midground1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         midground1.backgroundColor = [UIColor colorWithRed:1.f green:1.f blue:1.f alpha:0.7f];

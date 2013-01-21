@@ -2,7 +2,7 @@
 //  StationListViewController.m
 //  tube
 //
-//  Created by sergey on 02.12.11.
+//  Created by Sergey Mingalev on 02.12.11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -12,6 +12,7 @@
 #import "tubeAppDelegate.h"
 #import "MainViewController.h"
 #import "UIColor-enhanced.h"
+#import "SSTheme.h"
 
 @implementation StationListViewController
 
@@ -45,17 +46,15 @@
     
     self.stationList = [dataSource getStationList];
     [self createStationIndex];
-    
-    [self.mytableView setBackgroundColor:[UIColor clearColor]];
-    self.imageView.image = [UIImage imageNamed:@"lines_shadow.png"];
-    
+
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 45)];
     searchBar.barStyle=UIBarStyleDefault;
     searchBar.showsCancelButton=NO;
     searchBar.autocorrectionType=UITextAutocorrectionTypeNo;
     searchBar.autocapitalizationType=UITextAutocapitalizationTypeNone;
-    searchBar.tintColor=[UIColor lightGrayColor];
     self.mytableView.tableHeaderView=searchBar;
+    
+    [SSThemeManager customizeSettingsTableView:self.mytableView imageView:self.imageView searchBar:(UISearchBar*)self.mytableView.tableHeaderView];
     
 	self.filteredStation = [[[NSMutableArray alloc] initWithCapacity:[self.stationList count]] autorelease];
     
@@ -213,6 +212,8 @@
         [[cell mybutton] addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
     
+    cell.selectedBackgroundView = [[SSThemeManager sharedTheme] stationsTableViewCellBackgroundSelected];
+    
     if (tableView == self.mySearchDC.searchResultsTableView || isTextFieldInUse)
     {
         NSString *cellValue;
@@ -257,7 +258,7 @@
             }
             cell.mylabel.text = cellValue;
             cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
-            cell.mylabel.textColor = [UIColor blackColor];
+            cell.mylabel.textColor = [[SSThemeManager sharedTheme] mainColor];
             
             NSUInteger indexForTag = [self.stationList indexOfObject:[stations objectAtIndex:indexPath.row]]; 
             
@@ -412,11 +413,18 @@
 
 -(UIImage*)drawCircleView:(UIColor*)myColor
 {
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(27, 27), NO, 0.0);
+    UIImage *radialImg;
+    CGRect circleRect;
     
-    UIImage *radialImg = [UIImage imageNamed:@"radial.png"];
-    
-    CGRect circleRect = CGRectMake(1.0, 1.0, 25.0, 25.0);
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        radialImg = [UIImage imageNamed:@"newdes_stations_star.png"];
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(28, 28), NO, 0.0);
+        circleRect = CGRectMake(2.0, 2.0, 24.0, 24.0);
+    } else {
+        radialImg = [UIImage imageNamed:@"radial.png"];
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(27, 27), NO, 0.0);
+        circleRect = CGRectMake(1.0, 1.0, 25.0, 25.0);
+    }
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -427,8 +435,12 @@
     CGContextSetLineWidth(context, 0.0);
     CGContextFillEllipseInRect(context, circleRect);
     CGContextStrokeEllipseInRect(context, circleRect);
-    
-    [radialImg drawInRect:circleRect]; 
+
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        [radialImg drawInRect:CGRectMake(0.0, 0.0, 28.0, 28.0)];
+    } else {
+        [radialImg drawInRect:CGRectMake(1.0, 1.0, 25.0, 25.0)];
+    }
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     

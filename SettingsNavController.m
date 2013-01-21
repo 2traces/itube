@@ -2,12 +2,13 @@
 //  SettingsNavController.m
 //  tube
 //
-//  Created by sergey on 21.03.12.
+//  Created by Sergey Mingalev on 21.03.12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "SettingsNavController.h"
 #import "SettingsViewController.h"
+#import "SSTheme.h"
 
 @interface SettingsNavController ()
 
@@ -36,6 +37,12 @@
     [navController pushViewController:controller animated:NO];
     
     [controller release];
+    
+    id <SSTheme> theme = [SSThemeManager sharedTheme];
+    
+    NSDictionary *textTitleOptions = [NSDictionary dictionaryWithObjectsAndKeys:[theme highlightColor], UITextAttributeTextColor, [theme navigationTitleFont], UITextAttributeFont, [theme titleShadowColor],UITextAttributeTextShadowColor,[NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset, nil];
+    [navController.navigationBar setTitleTextAttributes:textTitleOptions];
+
 
     [self.view addSubview:[navController view]]; 
     
@@ -50,8 +57,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -61,12 +66,12 @@
 
 -(NSUInteger)supportedInterfaceOrientations
 {
-    //return UIInterfaceOrientationMaskPortrait;
     return 1 << UIInterfaceOrientationPortrait;
 }
 
 -(void) dealloc
 {
+    self.navController=nil;
     [navController release];
     [super dealloc];
 }

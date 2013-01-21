@@ -2,7 +2,7 @@
 //  TubeSplitViewController.h
 //  tube
 //
-//  Created by sergey on 04.08.12.
+//  Created by Sergey Mingalev on 04.08.12.
 //
 //
 
@@ -12,6 +12,7 @@
 
 @class MainViewController;
 @class LeftiPadPathViewController;
+@class TopTwoStationsView;
 
 @interface TubeSplitViewController : UIViewController {
     UIView *pathView;
@@ -27,11 +28,16 @@
 @property (nonatomic,retain) MainViewController *mainViewController;
 @property (nonatomic,retain) LeftiPadPathViewController *leftPathController;
 @property (nonatomic, readonly) UINavigationController *navigationController;
+@property (nonatomic, retain) TopTwoStationsView *topStationsView;
+@property (nonatomic, retain) UIImageView *shadowView;
 
 -(void)refreshPath;
 -(void)showLeftView;
 -(void)hideLeftView;
 -(void)refreshStatusInfo;
 -(void)changeStatusView;
+
+-(void)hideTopViewAnimated;
+-(void)showTopViewAnimated;
 
 @end

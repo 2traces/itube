@@ -2,7 +2,7 @@
 //  StatusDownloader.m
 //  tube
 //
-//  Created by sergey on 05.09.12.
+//  Created by Sergey Mingalev on 05.09.12.
 //
 //
 

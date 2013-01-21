@@ -2,7 +2,7 @@
 //  TubeSplitViewController.m
 //  tube
 //
-//  Created by sergey on 04.08.12.
+//  Created by Sergey Mingalev on 04.08.12.
 //
 //
 
@@ -14,9 +14,16 @@
 #import "LeftiPadPathViewController.h"
 #import "CityMap.h"
 #import "SettingsViewController.h"
+#import "SSTheme.h"
 
+#if defined(NEW_THEME)
+#define constDividerWidth 0.0f
+#define constMasterWidth 320.0f
+#else
 #define constDividerWidth 1.0f
 #define constMasterWidth 320.0f
+#endif
+
 #define constDetailStartPoint (constMasterWidth+constDividerWidth)
 
 static float koefficient = 0.0f;
@@ -28,6 +35,7 @@ static float koefficient = 0.0f;
 @synthesize mainViewController;
 @synthesize leftPathController;
 @synthesize navigationController = navController;
+@synthesize topStationsView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,7 +61,7 @@ static float koefficient = 0.0f;
     navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
     navController.navigationBarHidden = YES;
     [self addChildViewController:navController];
-
+    
     mainView.frame = CGRectMake(0.0, 0.0, 768.0, 1004.0-44.0);
     [[mainView containerView] setFrame:CGRectMake(0.0, 44.0, 768.0, 1004-44.0)];
     self.mapView = mainView;
@@ -65,6 +73,24 @@ static float koefficient = 0.0f;
     self.leftPathController=controller;
     [self.view addSubview:controller.view];
     [controller release];
+    
+    if (IS_IPAD && [[SSThemeManager sharedTheme] isNewTheme]) {
+        TopTwoStationsView *twoStationsView;
+        twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault] fieldWidth:204.0f fieldHeight:[[SSThemeManager sharedTheme] toolbarFieldHeight] fieldDelta:[[SSThemeManager sharedTheme] toolbarFieldDelta] deviceHeight:1024.0f deviceWidth:768.0f];
+        
+        self.topStationsView=twoStationsView;
+        twoStationsView.delegate=mainViewController;
+        mainViewController.stationsView = twoStationsView;
+        [self.view addSubview:twoStationsView];
+        [twoStationsView release];
+    }
+    
+    UIImageView *shadowView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"newdes_ipad_left_shadow"] resizableImageWithCapInsets:UIEdgeInsetsMake(2, 0, 2, 0)]];
+    shadowView.frame=CGRectMake(0.0, 44.0, 7.0, 1024.0);
+    _shadowView=shadowView;
+    [(MainView*)self.mapView addSubview:_shadowView];
+    [shadowView setHidden:YES];
+    [shadowView release];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pathCleared:) name:@"kPathCleared" object:nil];
 }
@@ -109,8 +135,18 @@ static float koefficient = 0.0f;
                                    size.height + koefficient);
         
         [[(MainView*)self.mapView containerView] setFrame:CGRectMake(0.0, 44.0, size.width - constDetailStartPoint,size.height + koefficient - 44.0)];
-        [mainViewController.stationsView setFrame:CGRectMake(0, 0, size.width - constDetailStartPoint, 44)];
         
+        if ([[SSThemeManager sharedTheme] isNewTheme]) {
+            [_shadowView setHidden:NO];
+            [mainViewController.stationsView setButtonToState:1];
+        }
+        
+        if ([[SSThemeManager sharedTheme] isNewTheme ])
+        {
+            [mainViewController.stationsView setFrame:CGRectMake(0, 0, size.width, 44)];
+        } else {
+            [mainViewController.stationsView setFrame:CGRectMake(0, 0, size.width - constDetailStartPoint, 44)];
+        }
     } else {
         pathView.frame = CGRectMake(-constMasterWidth,
                                     0 - koefficient,
@@ -122,7 +158,12 @@ static float koefficient = 0.0f;
                                    size.height + koefficient);
         
         [[(MainView*)self.mapView containerView] setFrame:CGRectMake(0.0, 44.0, size.width ,size.height + koefficient - 44.0)];
-        [mainViewController.stationsView setFrame:CGRectMake(0, 0, size.width, 44)];
+        [mainViewController.stationsView setFrame:CGRectMake(0, mainViewController.stationsView.frame.origin.y, size.width, 44)];
+        
+        if ([[SSThemeManager sharedTheme] isNewTheme]) {
+            [_shadowView setHidden:YES];
+            [mainViewController.stationsView setButtonToState:0];
+        }
     }
     
     [mainViewController.stationsView adjustSubviews:self.interfaceOrientation];
@@ -150,16 +191,16 @@ static float koefficient = 0.0f;
         [self hideLeftView];
     } else {
         if ([self.leftPathController isReadyToShow]) {
-
+            
             isLeftShown=YES;
-
+            
             [self.leftPathController prepareToShow];
             
             [UIView animateWithDuration:0.5 animations:^{
                 [self layoutSubviews];
             } completion:^(BOOL finished) {
                 //           [self adjustMapView]; //выключили изза производительности
-                [leftPathController refreshUITextView]; //fixing ios bug 
+                [leftPathController refreshUITextView]; //fixing ios bug
             }];
         }
     }
@@ -171,9 +212,24 @@ static float koefficient = 0.0f;
     
     [UIView animateWithDuration:0.5 animations:^{
         [self layoutSubviews];
+        [self.leftPathController removeHorizontalPathesScrollView];
     } completion:^(BOOL finished) {
         //    [self adjustMapView]; //выключили изза производительности
     }];
+}
+
+-(void)hideTopViewAnimated
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        [self.topStationsView setFrame:CGRectMake(0, 35.0-[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault], topStationsView.frame.size.width, topStationsView.frame.size.height)];
+    }];
+}
+
+-(void)showTopViewAnimated
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        [self.topStationsView setFrame:CGRectMake(0, 0, topStationsView.frame.size.width, topStationsView.frame.size.height)];
+    }];    
 }
 
 -(void)refreshPath
@@ -192,7 +248,7 @@ static float koefficient = 0.0f;
     
     [UIView animateWithDuration:0.5 animations:^{
         [self layoutSubviews];
-        
+        [self.leftPathController removeHorizontalPathesScrollView];
     }];
 }
 

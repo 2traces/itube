@@ -21,6 +21,9 @@
 #import "LeftiPadPathViewController.h"
 #import "CustomPopoverBackgroundView.h"
 #import "StatusViewController.h"
+#import "SSTheme.h"
+#import "SelectingTabBarViewControllerNDiPad.h"
+#import "CustomPopoverBackgroundView.h"
 
 #define FromStation 0
 #define ToStation 1
@@ -124,9 +127,9 @@
     [self returnFromSelectionFastAccess:nil];
     
     if (currentSelection==0) {
-        [stationsView.firstStation resignFirstResponder];
+        [stationsView.fromStationField resignFirstResponder];
     } else {
-        [stationsView.secondStation resignFirstResponder];
+        [stationsView.toStationField resignFirstResponder];
     }
     
 }
@@ -154,9 +157,21 @@
         }
     }
     
-    TopTwoStationsView *twoStationsView = [[TopTwoStationsView alloc] init];
-    self.stationsView = twoStationsView;
-    [(MainView*)self.view addSubview:twoStationsView];
+    TopTwoStationsView *twoStationsView;
+    
+    if (IS_IPAD && ![[SSThemeManager sharedTheme] isNewTheme]) {
+        twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault] fieldWidth:189.0f fieldHeight:[[SSThemeManager sharedTheme] toolbarFieldHeight] fieldDelta:[[SSThemeManager sharedTheme] toolbarFieldDelta] deviceHeight:1024.0f deviceWidth:768.0f];
+        twoStationsView.delegate=self;
+        self.stationsView = twoStationsView;
+        [(MainView*)self.view addSubview:twoStationsView];
+
+    } else if (!IS_IPAD) {
+        twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault] fieldWidth:160.0f  fieldHeight:[[SSThemeManager sharedTheme] toolbarFieldHeight] fieldDelta:[[SSThemeManager sharedTheme] toolbarFieldDelta]  deviceHeight:480.0f deviceWidth:320.f];
+        twoStationsView.delegate=self;
+        self.stationsView = twoStationsView;
+        [(MainView*)self.view addSubview:twoStationsView];
+    }
+    
     [twoStationsView release];
     
     UISwipeGestureRecognizer *swipeRecognizerD = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];
@@ -166,8 +181,7 @@
     
     [self performSelector:@selector(refreshInApp) withObject:nil afterDelay:0.2];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(languageChanged:) name:@"kLangChanged" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(languageChanged:) name:@"kLangChanged" object:nil];    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -472,8 +486,8 @@
 -(UIButton*)createChangeButton
 {
     UIButton *changeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *img = [UIImage imageNamed:@"switch_to_path.png"];
-    UIImage *imgh = [UIImage imageNamed:@"switch_to_path_high.png"];
+    UIImage *img = [[SSThemeManager sharedTheme] switchButtonImage:UIControlStateNormal];
+    UIImage *imgh = [[SSThemeManager sharedTheme] switchButtonImage:UIControlStateHighlighted];
     [changeButton setImage:img forState:UIControlStateNormal];
     [changeButton setImage:imgh forState:UIControlStateHighlighted];
     [changeButton addTarget:self action:@selector(changeMapToPathView:) forControlEvents:UIControlEventTouchUpInside];
@@ -485,27 +499,37 @@
     CGSize dateSize = [dateString sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:11.0]];
     [formatter release];
     
-    [changeButton setFrame:CGRectMake(320.0-12.0-dateSize.width-img.size.width , 66 , img.size.width, img.size.height)];
+    CGFloat buttonX;
+    
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        buttonX = 240.0f;
+    } else {
+        buttonX = 320.0-12.0-dateSize.width-img.size.width;
+    }
+    
+    [changeButton setFrame:CGRectMake(buttonX , [[SSThemeManager sharedTheme] horizontalPathSwitchButtonY] , img.size.width, img.size.height)];
     
     return changeButton;
 }
 
 -(void)showHorizontalPathesScrollView
 {
+    CGFloat topPathHeight = [[SSThemeManager sharedTheme] topToolbarPathHeight:UIBarMetricsDefault];
+    CGFloat pathViewHeight = [[SSThemeManager sharedTheme] pathViewHeight:UIBarMetricsDefault];
     
     if (!self.horizontalPathesScrollView) {
         
-        PathScrollView *pathView = [[PathScrollView alloc] initWithFrame:CGRectMake(0.0, 26.0, 320.0, 40.0)];
+        CGRect rect = [[SSThemeManager sharedTheme] horizontalPathViewRect];
+        PathScrollView *pathView = [[PathScrollView alloc] initWithFrame:rect];
+        pathView.tag=6843;
         self.horizontalPathesScrollView = pathView;
         self.horizontalPathesScrollView.delegate = self;
         [pathView release];
         
-        [(MainView*)self.view addSubview:horizontalPathesScrollView];
-        [(MainView*)self.view bringSubviewToFront:horizontalPathesScrollView];
+        [(MainView*)self.view insertSubview:horizontalPathesScrollView belowSubview:self.stationsView];
+//        [(MainView*)self.view bringSubviewToFront:horizontalPathesScrollView];
         
-        if (IS_IPAD) {
-            
-        } else {
+        if (!IS_IPAD) {
             self.changeViewButton = [self createChangeButton];
             [(MainView*)self.view addSubview:self.changeViewButton];
         }
@@ -514,12 +538,21 @@
         
         [self.horizontalPathesScrollView refreshContent];
     }
+    
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     
-    if ([appDelegate isIPHONE5]) {
-        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 568-86)];
+    float viewDelatY;
+    
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        viewDelatY=topPathHeight-10.0f;//40.0+pathViewHeight; // topPathHeight - 10.0;
     } else {
-        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 66, 320, 480-86)];
+        viewDelatY=topPathHeight+pathViewHeight;
+    }
+    
+    if ([appDelegate isIPHONE5]) {
+        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, viewDelatY, 320, 568-viewDelatY-20.0)];
+    } else {
+        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, viewDelatY, 320, 480-viewDelatY-20.0)];
     }
     
     if ([self.horizontalPathesScrollView numberOfPages]>1) {
@@ -615,10 +648,12 @@
         
         VertPathScrollView *scview;
         
+        CGFloat viewStartY = [[SSThemeManager sharedTheme] vertScrollViewStartY];
+        
         if ([appDelegate isIPHONE5]) {
-            scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, 66.0, 320.0f, 502.0f)];
+            scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, viewStartY, 320.0f, 568.0f-viewStartY)]; //66
         } else {
-            scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, 66.0, 320.0f, 414.0f)];
+            scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, viewStartY, 320.0f, 480.0f-viewStartY)];  // original
         }
         
         self.pathScrollView = scview;
@@ -629,18 +664,22 @@
         
         [(MainView*)self.view addSubview:self.pathScrollView];
         [(MainView*)self.view bringSubviewToFront:pathScrollView];
-        [(MainView*)self.view bringSubviewToFront:self.stationsView];
         [(MainView*)self.view bringSubviewToFront:self.horizontalPathesScrollView];
-        
-        UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
-        shadow.frame = CGRectMake(0,66, 320, 61);
-        [shadow setIsAccessibilityElement:YES];
-        shadow.tag = 2321;
-        [(MainView*)self.view addSubview:shadow];
-        
-        [self.changeViewButton setImage:[UIImage imageNamed:@"pathButton.png"] forState:UIControlStateNormal];
-        [self.changeViewButton setImage:[UIImage imageNamed:@"pathButtonPressed.png"] forState:UIControlStateHighlighted];
+        [(MainView*)self.view bringSubviewToFront:self.stationsView];
 
+        if (![[SSThemeManager sharedTheme] isNewTheme]) {
+            UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
+            shadow.frame = CGRectMake(0,66, 320, 61);
+            [shadow setIsAccessibilityElement:YES];
+            shadow.tag = 2321;
+            [(MainView*)self.view addSubview:shadow];
+        }
+        
+        [self.changeViewButton setImage:[[SSThemeManager sharedTheme] switchButtonImage:UIControlStateNormal] forState:UIControlStateNormal];
+        [self.changeViewButton setImage:[[SSThemeManager sharedTheme] switchButtonImage:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+
+        //UIImage imageNamed:@"pathButtonPressed.png"
+        
         [(MainView*)self.view bringSubviewToFront:self.changeViewButton];
         
     } else {
@@ -656,8 +695,8 @@
     
     [self.pathScrollView removeFromSuperview];
     self.pathScrollView=nil;
-    [self.changeViewButton setImage:[UIImage imageNamed:@"switch_to_path.png"] forState:UIControlStateNormal];
-    [self.changeViewButton setImage:[UIImage imageNamed:@"switch_to_path_high.png"] forState:UIControlStateHighlighted];
+    [self.changeViewButton setImage:[[SSThemeManager sharedTheme] switchButtonImage:UIControlStateNormal]  forState:UIControlStateNormal];
+    [self.changeViewButton setImage:[[SSThemeManager sharedTheme] switchButtonImage:UIControlStateHighlighted]  forState:UIControlStateHighlighted];
 }
 
 -(void)showiPadLeftPathView
@@ -676,15 +715,16 @@
 {
     [self returnFromSelectionFastAccess:nil];
     if (currentSelection==0) {
-        [stationsView.firstStation resignFirstResponder];
+        [stationsView.fromStationField resignFirstResponder];
     } else {
-        [stationsView.secondStation resignFirstResponder];
+        [stationsView.toStationField resignFirstResponder];
     }
 }
 
 -(FastAccessTableViewController*)showTableView
 {
-    UIView *blackView = [[UIView alloc] initWithFrame:CGRectMake(0,44,320,440)];
+    CGFloat startY = [[SSThemeManager sharedTheme] fastAccessTableViewStartY];
+    UIView *blackView = [[UIView alloc] initWithFrame:CGRectMake(0,startY,320,440)];
     blackView.backgroundColor  = [UIColor blackColor];
     blackView.alpha=0.4;
     blackView.tag=554;
@@ -693,17 +733,14 @@
     [blackView addGestureRecognizer:tapGesture];
     [tapGesture release];
     
-    [(MainView*)self.view addSubview:blackView];
-    [blackView release];
-    
     FastAccessTableViewController *tableViewC=[[[FastAccessTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
     
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-    tableViewC.view.frame=CGRectMake(0,44,320,200);
+    tableViewC.view.frame=CGRectMake(0,startY,320,200);
     
     if ([appDelegate isIPHONE5]) {
-        tableViewC.view.frame=CGRectMake(0,44,320,288);
-        [[(MainView*)self.view viewWithTag:554] setFrame:CGRectMake(0,44,320,528)];
+        tableViewC.view.frame=CGRectMake(0,startY,320,288);
+        [[(MainView*)self.view viewWithTag:554] setFrame:CGRectMake(0,startY,320,528)];
     }
     
     tableViewC.tableView.hidden=YES;
@@ -712,8 +749,10 @@
     
     tableViewC.tableView.tag=555;
     
-    [(MainView*)self.view addSubview:tableViewC.tableView];
-    [(MainView*)self.view bringSubviewToFront:tableViewC.tableView];
+    [(MainView*)self.view insertSubview:tableViewC.tableView belowSubview:stationsView];
+    [(MainView*)self.view insertSubview:blackView belowSubview:tableViewC.tableView];
+
+    [blackView release];
     
     return tableViewC;
 }
@@ -728,46 +767,91 @@
 
 -(StationListViewController*)showiPadLiveSearchView
 {
-    SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
-    controller.delegate = self;
-    
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-        controller.contentSizeForViewInPopover=CGSizeMake(320, 350);
-        [popover setPopoverContentSize:CGSizeMake(320, 370)];
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        SelectingTabBarViewControllerNDiPad *controller = [[SelectingTabBarViewControllerNDiPad alloc] initWithNibName:@"SelectingTabBarViewControllerNDiPad" bundle:[NSBundle mainBundle]];
+        controller.delegate = self;
+        
+        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+            controller.contentSizeForViewInPopover=CGSizeMake(346, 315);
+            [popover setPopoverContentSize:CGSizeMake(346, 315)];
+        } else {
+            controller.contentSizeForViewInPopover=CGSizeMake(346, 524);
+            [popover setPopoverContentSize:CGSizeMake(346, 524)];
+        }
+        
+        [popover setPopoverContentSize:controller.view.frame.size];
+        
+        popover = [[UIPopoverController alloc] initWithContentViewController:controller];
+        popover.delegate=self;
+        popover.popoverBackgroundViewClass= [CustomPopoverBackgroundView class];
+        
+        CGFloat originx;
+        if (self.currentSelection==0) {
+            originx = self.stationsView.fromStationField.frame.origin.x;
+        } else {
+            originx = self.stationsView.toStationField.frame.origin.x;
+        }
+        
+//        [popover presentPopoverFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+177.0, 36.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(originx+177.0, 36.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
+        [controller release];
+        
+        StationListViewController *stations = [[controller.tabBarController viewControllers] objectAtIndex:0];
+
+        return stations;
     } else {
-        controller.contentSizeForViewInPopover=CGSizeMake(320, 460);
-        [popover setPopoverContentSize:CGSizeMake(320, 480)];
-    }
-    
-    [popover setPopoverContentSize:controller.view.frame.size];
-    
-    popover = [[UIPopoverController alloc] initWithContentViewController:controller];
-    popover.delegate=self;
-    
-    CGFloat originx;
-    if (self.currentSelection==0) {
-        originx = self.stationsView.firstStation.frame.origin.x;
-    } else {
-        originx = self.stationsView.secondStation.frame.origin.x;
-    }
-    
-    popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
-    //        [popover presentPopoverFromRect:CGRectMake(self.stationsView.firstStation.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-    [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(originx+80.0, 30.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
-    [controller release];
-    
-    StationListViewController *stations = [[controller.tabBarController viewControllers] objectAtIndex:0];
-    return stations;
+        SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
+        controller.delegate = self;
+        
+        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+            controller.contentSizeForViewInPopover=CGSizeMake(320, 350);
+            [popover setPopoverContentSize:CGSizeMake(320, 370)];
+        } else {
+            controller.contentSizeForViewInPopover=CGSizeMake(320, 460);
+            [popover setPopoverContentSize:CGSizeMake(320, 480)];
+        }
+        
+        [popover setPopoverContentSize:controller.view.frame.size];
+        
+        popover = [[UIPopoverController alloc] initWithContentViewController:controller];
+        popover.delegate=self;
+        popover.popoverBackgroundViewClass= [CustomPopoverBackgroundView class];
+        
+        CGFloat originx;
+        if (self.currentSelection==0) {
+            originx = self.stationsView.fromStationField.frame.origin.x;
+        } else {
+            originx = self.stationsView.toStationField.frame.origin.x;
+        }
+        
+        //        [popover presentPopoverFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(originx+80.0, 30.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
+        [controller release];
+        
+        StationListViewController *stations = [[controller.tabBarController viewControllers] objectAtIndex:0];
+
+        return stations;
+
+    }    
 }
 
 -(void)showiPadSettingsModalView
 {
-    if (popover) [popover dismissPopoverAnimated:YES];
-
+    if ([popover isPopoverVisible]) {
+        [popover dismissPopoverAnimated:YES];
+        [stationsView restoreFieldAfterPopover];
+    }
+    
     SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
     controller.delegate=self;
     UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:controller];
     navcontroller.modalPresentationStyle=UIModalPresentationFormSheet;
+    
+    id <SSTheme> theme = [SSThemeManager sharedTheme];
+    
+    NSDictionary *textTitleOptions = [NSDictionary dictionaryWithObjectsAndKeys:[theme highlightColor], UITextAttributeTextColor, [theme navigationTitleFont], UITextAttributeFont, [theme titleShadowColor],UITextAttributeTextShadowColor,[NSValue valueWithUIOffset:UIOffsetMake(0, 1)],UITextAttributeTextShadowOffset, nil];
+    [navcontroller.navigationBar setTitleTextAttributes:textTitleOptions];
+
     [self presentModalViewController:navcontroller animated:YES];
     
     //    navcontroller.view.superview.autoresizingMask = UIViewAutoresizingFlexibleTopMargin |UIViewAutoresizingFlexibleBottomMargin;
@@ -948,6 +1032,24 @@
     }
     else
     {
+        if ([[SSThemeManager sharedTheme] isNewTheme]) {
+            SelectingTabBarViewControllerNDiPad *controller = [[SelectingTabBarViewControllerNDiPad  alloc] initWithNibName:@"SelectingTabBarViewControllerNDiPad" bundle:[NSBundle mainBundle]];
+            controller.delegate = self;
+            
+            [popover setPopoverContentSize:CGSizeMake(346, 524)];
+            controller.contentSizeForViewInPopover=CGSizeMake(346, 524);
+            
+            popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
+            
+            [popover setPopoverContentSize:controller.view.frame.size];
+            
+            popover = [[UIPopoverController alloc] initWithContentViewController:controller];
+            popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
+            //        [popover presentPopoverFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+            [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+self.stationsView.fromStationField.frame.size.width/2.0, 36.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
+            [controller release];
+            
+        } else {
         SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
         controller.delegate = self;
         
@@ -957,10 +1059,11 @@
         [popover setPopoverContentSize:controller.view.frame.size];
         
         popover = [[UIPopoverController alloc] initWithContentViewController:controller];
-        popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
-        //        [popover presentPopoverFromRect:CGRectMake(self.stationsView.firstStation.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-        [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.firstStation.frame.origin.x+80.0, 30.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
+        popover.popoverBackgroundViewClass= [CustomPopoverBackgroundView class];
+        //        [popover presentPopoverFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+80.0, 30.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
         [controller release];
+        }
     }
 }
 
@@ -977,6 +1080,25 @@
     }
     else
     {
+        if ([[SSThemeManager sharedTheme] isNewTheme]) {
+            SelectingTabBarViewControllerNDiPad *controller = [[SelectingTabBarViewControllerNDiPad  alloc] initWithNibName:@"SelectingTabBarViewControllerNDiPad" bundle:[NSBundle mainBundle]];
+            controller.delegate = self;
+            
+            [popover setPopoverContentSize:CGSizeMake(346, 524)];
+            controller.contentSizeForViewInPopover=CGSizeMake(346, 524);
+            
+            popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
+            
+            [popover setPopoverContentSize:controller.view.frame.size];
+            
+            popover = [[UIPopoverController alloc] initWithContentViewController:controller];
+            popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
+            //        [popover presentPopoverFromRect:CGRectMake(self.stationsView.fromStationField.frame.origin.x+80.0, 30.0, 0.0, 0.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+            [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.toStationField.frame.origin.x+20.0, 36.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
+            [controller release];
+            
+        } else {
+
         SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
         controller.delegate = self;
         
@@ -984,17 +1106,18 @@
         controller.contentSizeForViewInPopover=CGSizeMake(320, 460);
         
         popover = [[UIPopoverController alloc] initWithContentViewController:controller];
-        popover.popoverBackgroundViewClass = [CustomPopoverBackgroundView class];
-        [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.secondStation.frame.origin.x+80.0, 30.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
+        popover.popoverBackgroundViewClass= [CustomPopoverBackgroundView class];
+        [popover presentPopoverWithoutInnerShadowFromRect:CGRectMake(self.stationsView.toStationField.frame.origin.x+80.0, 30.0, 1.0, 1.0) inView:self.stationsView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];;
         [controller release];
+        }
     }
 }
 
 -(void)resetFromStation
 {
     currentSelection=FromStation;
-    [stationsView setToStation:self.toStation];
     [self returnFromSelection:[NSArray array]];
+    [stationsView setToStation:self.toStation];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kPathCleared" object:nil];
 }

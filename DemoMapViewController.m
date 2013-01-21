@@ -2,7 +2,7 @@
 //  DemoMapViewController.m
 //  tube
 //
-//  Created by sergey on 21.03.12.
+//  Created by Sergey Mingalev on 21.03.12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,6 +10,7 @@
 #import "Reachability.h"
 #import "tubeAppDelegate.h"
 #import "ImageDownloader.h"
+#import "SSTheme.h"
 
 @interface DemoMapViewController ()
 
@@ -52,12 +53,24 @@
     } else {
         scrollView.frame = CGRectMake(0.0, 0.0, 320, 416);
     }
+    
     scrollView.contentSize = CGSizeMake(320, 939);
     
-    text1.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:13.0];
-    text2.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:13.0];
-    text3.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:13.0];
+   id <SSTheme> theme =[SSThemeManager sharedTheme];
     
+    text1.font = [theme fontForDemoMapView];
+    text2.font = [theme fontForDemoMapView];
+    text3.font = [theme fontForDemoMapView];
+    
+    text1.textColor = [theme mainColor];
+    text2.textColor = [theme mainColor];
+    text3.textColor = [theme mainColor];
+    
+    scrollView.backgroundColor = [theme demoMapViewBackgroundColor];
+    
+    [buyButton setImage:[theme buttonBackgroundForState:UIControlStateNormal] forState:UIControlStateNormal];
+    [buyButton setImage:[theme buttonBackgroundForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+
     if (IS_IPAD) {
 
         scrollView.frame = CGRectMake(0.0, 0.0, 540, 620-44.0);
@@ -82,33 +95,8 @@
     
     [scrollView scrollsToTop];
     
-    // Do any additional setup after loading the view from its nib.    
-    
-    UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,160,44)];
-    CGRect frame = CGRectMake(0, 3, 160, 44);
-	UILabel *label = [[[UILabel alloc] initWithFrame:frame] autorelease];
-	label.backgroundColor = [UIColor clearColor];
-	label.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0];
-    //	label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-	label.textAlignment = UITextAlignmentCenter;
-	label.textColor = [UIColor darkGrayColor];
-    label.text = cityName;
-    [iv addSubview:label];
-    self.navigationItem.titleView=iv;
-    [iv release];
-	
-    UIImage *back_image=[UIImage imageNamed:@"demo_back.png"];
-    UIImage *back_image_high=[UIImage imageNamed:@"demo_back_high.png"];
-	UIButton *back_button = [UIButton buttonWithType:UIButtonTypeCustom];
-	back_button.bounds = CGRectMake( 0, 0, back_image.size.width, back_image.size.height );    
-	[back_button setBackgroundImage:back_image forState:UIControlStateNormal];
-    [back_button setBackgroundImage:back_image_high forState:UIControlStateHighlighted];
-	[back_button addTarget:self action:@selector(donePressed:) forControlEvents:UIControlEventTouchUpInside];    
-	UIBarButtonItem *barButtonItem_back = [[UIBarButtonItem alloc] initWithCustomView:back_button];
-    self.navigationItem.leftBarButtonItem = barButtonItem_back;
-    self.navigationItem.hidesBackButton=YES;
-	[barButtonItem_back release];
-    
+    self.navigationItem.title=cityName;
+
     if ([delegate isProductStatusAvailable:prodID]) {
         buyButton.enabled = YES;
     } else {

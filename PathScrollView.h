@@ -2,11 +2,12 @@
 //  PathScrollView.h
 //  tube
 //
-//  Created by sergey on 01.02.12.
+//  Created by Sergey Mingalev on 01.02.12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "MetalPageControl.h"
 
 @protocol PathScrollViewProtocol;
 
@@ -17,6 +18,7 @@
 @property (nonatomic,retain) UIScrollView *scrollView;
 @property (nonatomic,assign) id <PathScrollViewProtocol> delegate;
 @property (nonatomic,assign) int numberOfPages;
+@property (nonatomic,assign) MetalPageControl *helpPageCon;
 
 -(void)refreshContent;
 

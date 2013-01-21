@@ -2,7 +2,7 @@
 //  LeftiPadPathViewController.h
 //  tube
 //
-//  Created by sergey on 13.08.12.
+//  Created by Sergey Mingalev on 13.08.12.
 //
 //
 
@@ -35,5 +35,8 @@
 -(void)prepareToShow;
 -(void)refreshStatusInfo;
 -(void)changeStatusView;
+
+-(void)removeHorizontalPathesScrollView;
+-(void)refreshUITextView;
 
 @end

@@ -99,5 +99,4 @@ extern int const imagesCount;
 // adjust map after resizing parent views
 -(void)adjustMap;
 
-
 @end

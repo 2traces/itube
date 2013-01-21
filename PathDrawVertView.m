@@ -2,13 +2,14 @@
 //  PathDrawVertView.m
 //  tube
 //
-//  Created by sergey on 02.02.12.
+//  Created by Sergey Mingalev on 02.02.12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "PathDrawVertView.h"
 #import "PathDrawView.h"
 #import "tubeAppDelegate.h"
+#import "SSTheme.h"
 
 @implementation PathDrawVertView
 
@@ -34,6 +35,11 @@
     if (IS_IPAD) {
         ylineStart=60.0f;
     }
+    
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        ylineStart=78.0f;
+    }
+
     
     CGFloat x=20.0f;
     

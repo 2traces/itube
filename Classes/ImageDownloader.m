@@ -2,7 +2,7 @@
 //  ImageDownloader.m
 //  tube
 //
-//  Created by sergey on 13.04.12.
+//  Created by Sergey Mingalev on 13.04.12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -46,7 +46,24 @@
     [self.imageConnection cancel];
     self.imageConnection = nil;
     self.activeDownload = nil;
+    self.delegate=nil;
 }
+
+//- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse
+//{
+//    if (redirectResponse) {
+//        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)redirectResponse;
+//        int statusCode = [httpResponse statusCode];
+//        
+//        if (redirectResponse && statusCode > 400)
+//            NSLog(@"disable redirect!");
+//            self.activeDownload = nil;
+//            self.imageConnection = nil;
+//            return nil;
+//    } else {
+//        return request;
+//    }
+//}
 
 #pragma mark -
 #pragma mark Download support (NSURLConnectionDelegate)
@@ -67,7 +84,12 @@
     NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [cacheDir stringByAppendingPathComponent:imageName];
 
-    [self.activeDownload writeToFile:path atomically:YES];
+    if (self.activeDownload) {
+        UIImage *image = [UIImage imageWithData:self.activeDownload];
+        if (image) {
+            [self.activeDownload writeToFile:path atomically:YES];
+        }
+    }
     
     self.activeDownload = nil;
     self.imageConnection = nil;

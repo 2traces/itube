@@ -2,7 +2,7 @@
 //  HistoryViewController.m
 //  tube
 //
-//  Created by sergey on 13.12.11.
+//  Created by Sergey Mingalev on 13.12.11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -11,6 +11,7 @@
 #import "HistoryListCell.h"
 #import "MainViewController.h"
 #import "tubeAppDelegate.h"
+#import "SSTheme.h"
 
 @implementation HistoryViewController
 
@@ -40,8 +41,27 @@
     
     self.colorDictionary = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
     
-    [self.mytableView setBackgroundColor:[UIColor clearColor]];
-    self.imageView.image = [UIImage imageNamed:@"lines_shadow.png"];
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mytableView.frame.size.width, 37)];
+        headerView.backgroundColor= [UIColor clearColor];
+        
+        UILabel *headerViewLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 7, mytableView.frame.size.width, 30)];
+        headerViewLabel.text = NSLocalizedString(@"StationsHistory", @"StationsHistory");
+        headerViewLabel.textAlignment=UITextAlignmentCenter;
+        headerViewLabel.textColor= [[SSThemeManager sharedTheme] mainColor];
+        headerViewLabel.font=[UIFont fontWithName:@"MyriadPro-Semibold" size:22.0];
+        headerViewLabel.backgroundColor=[UIColor clearColor];
+        [headerView addSubview:headerViewLabel];
+        [headerViewLabel release];
+        
+        mytableView.tableHeaderView=headerView;
+        [headerView release];
+    }
+
+//    [self.mytableView setBackgroundColor:[UIColor clearColor]];
+//    self.imageView.image = [UIImage imageNamed:@"lines_shadow.png"];
+
+    [SSThemeManager customizeSettingsTableView:self.mytableView imageView:self.imageView searchBar:(UISearchBar*)nil];
 
     formatter = [[NSDateFormatter alloc] init];
     
@@ -142,7 +162,9 @@
     
     cell.fromLineCircle.image = [self imageWithColor:[history.fromStation lines]];
     cell.toLineCircle.image = [self imageWithColor:[history.toStation lines]];
-    
+        
+    cell.selectedBackgroundView = [[SSThemeManager sharedTheme] stationsTableViewCellBackgroundSelected];
+
     return cell;
 }
 

@@ -2,7 +2,7 @@
 //  PathScrollView.m
 //  tube
 //
-//  Created by sergey on 01.02.12.
+//  Created by Sergey Mingalev on 01.02.12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,6 +10,7 @@
 #import "Classes/MainView.h"
 #import "Classes/tubeAppDelegate.h"
 #import "PathBarView.h"
+#import "SSTheme.h"
 
 @implementation PathScrollView
 
@@ -34,24 +35,28 @@
         
         self.numberOfPages = [pathes2 count];
         
-        CGFloat viewStartX = 0.0f;
-        CGFloat viewStartY = 0.0f;
-        CGFloat viewWidth = 320.0f;
-        CGFloat viewHeight = 40.0f;
-        
-        if (IS_IPAD) {
-            viewStartX = 0.0f;
-            viewStartY = 0.0f;
-            viewWidth = 320.0f;
-            viewHeight = 40.0f;
+        UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, frame.size.height)];
+        UIImage *image = [[SSThemeManager sharedTheme] horizontalPathViewBackground];
+        bgView.image = image;
+        [bgView setUserInteractionEnabled:YES];
+        [self addSubview:bgView];
+        [bgView release];
+
+        if ([[SSThemeManager sharedTheme] isNewTheme]) {
+            self.helpPageCon = [[[MetalPageControl alloc] initWithFrame:CGRectMake(0, 30, self.frame.size.width, 10)] autorelease];
+            self.helpPageCon.center = CGPointMake(self.frame.size.width/2, self.frame.size.height-13.0);
+            self.helpPageCon.numberOfPages = numberOfPages;
+            self.helpPageCon.imageCurrent = [UIImage imageNamed: @"newdes_pagecontrol_dot_selected.png"];
+            self.helpPageCon.imageNormal = [UIImage imageNamed: @"newdes_pagecontrol_dot.png"];
+            [self addSubview:self.helpPageCon];
         }
         
-        UIScrollView *scView= [[UIScrollView alloc] initWithFrame:CGRectMake(viewStartX, viewStartY, viewWidth, viewHeight)];
+        UIScrollView *scView= [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         self.scrollView=scView;
         [self addSubview:scrollView];
         [scView release];
         
-        self.scrollView.contentSize=CGSizeMake(numberOfPages * viewWidth, viewHeight);
+        self.scrollView.contentSize=CGSizeMake(numberOfPages * frame.size.width, frame.size.height);
         self.scrollView.pagingEnabled = YES;
         self.scrollView.bounces=NO;
         self.scrollView.showsVerticalScrollIndicator=NO;
@@ -60,9 +65,8 @@
         
         for (int i=0; i<numberOfPages; i++) {
             NSMutableArray *pathWithNumber = [appDelegate.cityMap describePath:[pathes2 objectAtIndex:i]];
-            PathBarView *pathView = [[PathBarView alloc] initWithFrame:CGRectMake(i*viewWidth, 0.0, viewWidth, viewHeight) path:pathWithNumber number:i overall:numberOfPages];
+            PathBarView *pathView = [[PathBarView alloc] initWithFrame:CGRectMake(i*frame.size.width, 0.0, [[SSThemeManager sharedTheme] pathBarViewWidth], frame.size.height) path:pathWithNumber number:i overall:numberOfPages];
             [self.scrollView addSubview:pathView];
-            pathView.tag=20000+i;
             [pathView release];
         }
         
@@ -91,28 +95,19 @@
     
     self.numberOfPages = [pathes2 count];
     
-    
-    CGFloat viewStartX = 0.0f;
-    CGFloat viewStartY = 26.0f;
-    CGFloat viewWidth = 320.0f;
-    CGFloat viewHeight = 40.0f;
-    
-    if (UI_USER_INTERFACE_IDIOM()== UIUserInterfaceIdiomPad) {
-        viewStartX = 0.0f;
-        viewStartY = 0.0f;
-        viewWidth = 320.0f;
-        viewHeight = 40.0f;
+    if ([[SSThemeManager sharedTheme] isNewTheme]) {
+        self.helpPageCon.numberOfPages = numberOfPages;
+        self.helpPageCon.currentPage = 0;
     }
 
-    [self.scrollView scrollRectToVisible:CGRectMake(viewStartX, viewStartY, viewWidth, viewHeight) animated:NO];
+    [self.scrollView scrollRectToVisible:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) animated:NO];
     
-    self.scrollView.contentSize=CGSizeMake(numberOfPages * viewWidth, viewHeight);
-    
+    self.scrollView.contentSize=CGSizeMake(numberOfPages * self.frame.size.width, self.frame.size.height);
+
     for (int i=0; i<numberOfPages; i++) {
         NSMutableArray *pathWithNumber = [appDelegate.cityMap describePath:[pathes2 objectAtIndex:i]];
-        PathBarView *pathView = [[PathBarView alloc] initWithFrame:CGRectMake(i*viewWidth, 0.0, viewWidth, viewHeight) path:pathWithNumber number:i overall:numberOfPages];
+        PathBarView *pathView = [[PathBarView alloc] initWithFrame:CGRectMake(i*self.frame.size.width, 0.0, [[SSThemeManager sharedTheme] pathBarViewWidth], self.frame.size.height) path:pathWithNumber number:i overall:numberOfPages];
         [self.scrollView addSubview:pathView];
-        pathView.tag=20000+i;
         [pathView release];
     }
     
@@ -123,14 +118,15 @@
     
     if (ascrollView==self.scrollView) {
         
-        int pathNumb = floor(ascrollView.contentOffset.x/320.0);
+        int pathNumb = floor(ascrollView.contentOffset.x/self.frame.size.width);
         [delegate requestChangeActivePath:[NSNumber numberWithInt:pathNumb]];
+        self.helpPageCon.currentPage=pathNumb;
     }
 }
 
 - (void)animateScrollView
 {
-    if (self.scrollView && self.scrollView.contentSize.width>320.0f && self.scrollView.contentOffset.x==0.0f) {
+    if (self.scrollView && self.scrollView.contentSize.width>self.frame.size.width && self.scrollView.contentOffset.x==0.0f) {
         
         [UIView animateWithDuration:1 delay:0 options:(UIViewAnimationCurveEaseInOut) animations:^{
             [self.scrollView setContentOffset:CGPointMake(38.0, 0.0)];

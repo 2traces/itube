@@ -15,13 +15,14 @@
 #import "VertPathScrollView.h"
 #import "TubeSplitViewController.h"
 #import "SettingsViewController.h"
+#import "TopTwoStationsView.h"
 
 @class TopTwoStationsView;
 @class VertPathScrollView;
 @class TubeSplitViewController;
 @class StatusViewController;
 
-@interface MainViewController : UIViewController <SelectingTabBarProtocol,UIScrollViewDelegate,MBProgressHUDDelegate,PathScrollViewProtocol,UIPopoverControllerDelegate,SettingsViewControllerDelegate> {
+@interface MainViewController : UIViewController <SelectingTabBarProtocol,UIScrollViewDelegate,MBProgressHUDDelegate,PathScrollViewProtocol,UIPopoverControllerDelegate,SettingsViewControllerDelegate,TwoStationsViewProtocol> {
     
     int currentSelection;
     MStation *fromStation;

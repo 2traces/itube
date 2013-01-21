@@ -10,9 +10,9 @@
 #import <GLKit/GLKit.h>
 #import "FastAccessTableViewController.h"
 #import "ManagedObjects.h"
-#import "TopRasterView.h"
 #import "GlSprite.h"
 #import "GlPanel.h"
+#import "TopTwoStationsView.h"
 
 @interface Pin : NSObject {
     int _id;
@@ -38,12 +38,12 @@
 -(CGRect)bounds;
 @end
 
-@interface GlViewController : GLKViewController 
+@interface GlViewController : GLKViewController <TwoStationsViewProtocol>
 
-@property (nonatomic, assign) MItem *currentSelection;
-@property (nonatomic, retain) MItem *fromStation;
-@property (nonatomic, retain) MItem *toStation;
-@property (nonatomic, retain) TopRasterView *stationsView;
+@property (nonatomic, assign) MStation *currentSelection;
+@property (nonatomic, retain) MStation *fromStation;
+@property (nonatomic, retain) MStation *toStation;
+@property (nonatomic, retain) TopTwoStationsView *stationsView;
 
 -(FastAccessTableViewController*)showTableView;
 -(void)returnFromSelectionFastAccess:(NSArray *)stations;
@@ -56,5 +56,6 @@
 -(void)removePin:(int)pinId;
 -(void)removeAllPins;
 -(Pin*)getPin:(int)pinId;
+-(void) showSettings;
 
 @end

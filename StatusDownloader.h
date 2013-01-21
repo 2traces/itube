@@ -2,7 +2,7 @@
 //  StatusDownloader.h
 //  tube
 //
-//  Created by sergey on 05.09.12.
+//  Created by Sergey Mingalev on 05.09.12.
 //
 //
 
@@ -35,5 +35,6 @@
 @protocol StatusDownloaderDelegate
 
 - (void)statusInfoDidLoad:(NSString*)info server:(StatusDownloader*)server;
+-(void)connectionFailed:(StatusDownloader*)server;
 
 @end

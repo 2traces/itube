@@ -2,7 +2,7 @@
 //  SelectingTabBarViewController.h
 //  tube
 //
-//  Created by sergey on 10.12.11.
+//  Created by Sergey Mingalev on 10.12.11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -22,6 +22,9 @@
     IBOutlet UIButton *historyButton;
     IBOutlet UIButton *settingsButton;
     
+    IBOutlet UIImageView *topImageView;
+    IBOutlet UIImageView *bottomImageView;
+    
     IBOutlet UITabBarController *tabBarController;
 }
 
@@ -31,6 +34,9 @@
 @property (nonatomic, retain) IBOutlet UIButton *backButton;
 @property (nonatomic, retain) IBOutlet UIButton *historyButton;
 @property (nonatomic, retain) IBOutlet UIButton *settingsButton;
+@property (nonatomic, retain) IBOutlet UIImageView *topImageView;
+@property (nonatomic, retain) IBOutlet UIImageView *bottomImageView;
+
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 
 @property (nonatomic, assign) id <SelectingTabBarProtocol> delegate;
