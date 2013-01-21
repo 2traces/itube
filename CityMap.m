@@ -2936,10 +2936,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     return nearest;
 }
 
--(CGRect)getGeoCoordsForRect:(CGRect)rect coordinates:(NSMutableArray*)coordinates names:(NSMutableArray *)names
+-(CGRect)getGeoCoordsForRect:(CGRect)rect coordinates:(NSMutableArray*)data
 {
-    [coordinates removeAllObjects];
-    [names removeAllObjects];
+    BOOL path = [activePath count] > 0;
+    [data removeAllObjects];
     CGRect geo = CGRectZero;
     for(Line *l in mapLines) {
         for (Station *s in l.stations) {
@@ -2948,9 +2948,22 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 if(geo.origin.x == 0 || geo.origin.y == 0) geo = r;
                 else geo = CGRectUnion(geo, r);
                 r.size.width = r.size.height = l.shortColorCode;
-                if(s.active) {
-                    [coordinates addObject:[NSValue valueWithCGRect:r]];
-                    [names addObject:s.name];
+                if(s.active && path) {
+                    NSMutableDictionary *piece = [NSMutableDictionary dictionary];
+                    [piece setValue:[NSValue valueWithCGRect:r] forKey:@"coordinate"];
+                    [piece setValue:s.name forKey:@"name"];
+                    int activeSegments = 0;
+                    for (Segment *seg in s.segment) {
+                        if(seg.active) activeSegments ++;
+                    }
+                    for (Segment *seg in s.backSegment) {
+                        if(seg.active) activeSegments ++;
+                    }
+                    //if(s.transfer.active) activeSegments ++;
+                    if(activeSegments < 2) {
+                        [piece setValue:@"YES" forKey:@"ending"];
+                    }
+                    [data addObject:piece];
                 }
             }
         }

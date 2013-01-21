@@ -390,14 +390,15 @@ void uncaughtExceptionHandler(NSException *exception) {
 -(void)showRasterMap
 {
     CGRect pos;
-    NSMutableArray *coords = [NSMutableArray array];
-    NSMutableArray *names = [NSMutableArray array];
+    NSMutableArray *data = [NSMutableArray array];
     MainView *mv = (MainView*)mainViewController.view;
     pos = [mv getMapVisibleRect];
-    pos = [cityMap getGeoCoordsForRect:pos coordinates:coords names:names];
+    pos = [cityMap getGeoCoordsForRect:pos coordinates:data];
     [navController pushViewController:gl animated:YES];
     [gl setGeoPosition:pos];
-    [gl setStationsPosition:coords withNames:names andMarks:!CGRectIsNull(cityMap.activeExtent)];
+    if([data count] > 0) {
+        [gl setStationsPosition:data withMarks:!CGRectIsNull(cityMap.activeExtent)];
+    }
 }
 
 -(void)showMetroMap

@@ -50,7 +50,7 @@
 -(void)setGeoPosition:(CGRect)rect;
 -(void)setGeoPosition:(CGPoint)geoCoords withZoom:(CGFloat)zoom;
 -(void)setUserGeoPosition:(CGPoint)point;
--(void)setStationsPosition:(NSArray*)coords withNames:(NSArray*)names andMarks:(BOOL)marks;
+-(void)setStationsPosition:(NSArray*)data withMarks:(BOOL)marks;
 -(void)errorWithGeoLocation;
 -(int)newPin:(CGPoint)coordinate color:(int)color name:(NSString*)name;
 -(void)removePin:(int)pinId;
