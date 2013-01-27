@@ -36,7 +36,10 @@ NSString *mainurl = @"http://parismetromaps.info/maps";
 //        preurl = @"http://findmystation.info/com.zuev.highlights.paris.plist";
 //        //preurl = @"http://dl.dropbox.com/u/16378090/maps.plist";
 //    }
-    
+//    if ([preurl isEqualToString:@"http://parismetromaps.info/maps/paris/paris.zip"]) {
+//        preurl = @"http://dl.dropbox.com/u/16378090/paris.zip";
+//        //preurl = @"http://dl.dropbox.com/u/16378090/maps.plist";
+//    }
     
     
     NSURL *url = [[[NSURL alloc] initWithString:preurl] autorelease];
