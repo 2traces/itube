@@ -615,6 +615,9 @@
         NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
         if (theConnection) {
             [queue put:[[DownloadPiece alloc] initWithPiece:piece andConnection:theConnection]];
+#ifdef DEBUG
+            NSLog(@"download a piece from %@", url);
+#endif
             return YES;
         } else {
             // Inform the user that the connection failed.
@@ -656,13 +659,28 @@
 {
     DownloadPiece *dp = [queue get:connection];
 #ifdef DEBUG
-    NSLog(@"Download failed from '%@'", connection.originalRequest.URL.absoluteString);
+    NSLog(@"Download failed from '%@' with reason: %@", connection.originalRequest.URL.absoluteString, error);
 #endif
     if(dp != nil) {
-        [dp->piece rasterLoaded];
-        [queue removeByConnection:connection];
-        [minusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil]];
-        [dp release];
+        if(error.code == -1001) {
+            // timeout
+            [queue removeByConnection:connection];
+            NSURLRequest *newRequest=[NSURLRequest requestWithURL:connection.originalRequest.URL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+            NSURLConnection *newConnection=[[NSURLConnection alloc] initWithRequest:newRequest delegate:self];
+            if (newConnection) {
+                dp->connection = newConnection;
+                [queue put:dp];
+#ifdef DEBUG
+                NSLog(@"redownload piece from %@", newRequest.URL.absoluteString);
+#endif
+            }
+        } else {
+            // any other error
+            [dp->piece rasterLoaded];
+            [queue removeByConnection:connection];
+            [minusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil]];
+            [dp release];
+        }
     }
     [self checkQueue];
 }
@@ -732,7 +750,7 @@
 
 -(void)debugStatus
 {
-    NSLog(@"raster queue %d pieces, second queue %d pieces", [queue count], [secondQueue count]);
+    //NSLog(@"raster queue %d pieces, second queue %d pieces", [queue count], [secondQueue count]);
 }
 
 -(void)stopBut:(int)level
@@ -936,7 +954,7 @@
 
 -(void)debugStatus
 {
-    NSLog(@"vector queue %d pieces, second queue %d pieces", [queue count], [secondQueue count]);
+    //NSLog(@"vector queue %d pieces, second queue %d pieces", [queue count], [secondQueue count]);
 }
 
 -(void)stopBut:(int)level
