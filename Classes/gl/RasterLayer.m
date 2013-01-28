@@ -1102,7 +1102,7 @@
         //NSString* vurlstr = [vurl absoluteString];
         vloader = [[VectorDownloader alloc] initWithUrl:url1];
         rloader1 = [[RasterDownloader alloc] initWithUrl:url1];
-        //rloader1.altSource = [[NSBundle mainBundle] pathForResource:@"OSM" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
+        rloader1.altSource = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         rloader2 = [[RasterDownloader alloc] initWithUrl:url2];
         //rloader2.altSource = [[NSBundle mainBundle] pathForResource:@"RASTER" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         dm.vectorDownloader = vloader;
