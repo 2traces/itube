@@ -379,6 +379,9 @@
 {
     
 }
+-(void)downloadedBytes:(long)part outOfBytes:(long)whole prodID:(NSString*)prodID {
+
+}
 
 -(void)downloadFailed:(DownloadServer*)myid
 {
