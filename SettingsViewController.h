@@ -36,6 +36,8 @@
     
     NSArray *maps;
     
+    NSString *mapID;
+    
     NSIndexPath *selectedPath;
     MBProgressHUD *_hud;
     

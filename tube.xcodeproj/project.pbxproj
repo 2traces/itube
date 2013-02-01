@@ -2942,7 +2942,7 @@
 		BC4DA4171537F03700B941F1 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloader.m; path = Classes/ImageDownloader.m; sourceTree = "<group>"; };
 		BC50B78615A5C6890078BE8E /* cross_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cross_red.png; path = images/cross_red.png; sourceTree = "<group>"; };
 		BC50B78715A5C6890078BE8E /* cross_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cross_red@2x.png"; path = "images/cross_red@2x.png"; sourceTree = "<group>"; };
-		BC68904B1575DFE7002232E6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BC68904B1575DFE7002232E6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		BC68904D1575DFE9002232E6 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BC68904F1575E075002232E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SelectingTabBarViewController.xib; sourceTree = "<group>"; };
 		BC6890511575E080002232E6 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/SelectingTabBarViewController.xib; sourceTree = "<group>"; };
@@ -3253,8 +3253,8 @@
 		BCDFF0F015CCDCEA00E004E6 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources/iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		BCDFF0F215CCDE1600E004E6 /* TubeSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TubeSplitViewController.h; sourceTree = "<group>"; };
 		BCDFF0F315CCDE1600E004E6 /* TubeSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TubeSplitViewController.m; sourceTree = "<group>"; };
-		BCE0B07814FCD47500CCE704 /* DownloadServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadServer.h; sourceTree = "<group>"; };
-		BCE0B07914FCD47500CCE704 /* DownloadServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadServer.m; sourceTree = "<group>"; };
+		BCE0B07814FCD47500CCE704 /* DownloadServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DownloadServer.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		BCE0B07914FCD47500CCE704 /* DownloadServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DownloadServer.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		BCE1C9DF151F63630029CCB2 /* n1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = n1.png; path = images/n1.png; sourceTree = "<group>"; };
 		BCE1C9E0151F63630029CCB2 /* n1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "n1@2x.png"; path = "images/n1@2x.png"; sourceTree = "<group>"; };
 		BCE1C9E1151F63630029CCB2 /* n2@.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "n2@.png"; path = "images/n2@.png"; sourceTree = "<group>"; };

@@ -490,6 +490,15 @@
             cityCell.cityNameAlt.hidden = YES;
             cityCell.cityName.hidden = YES;
 
+        }
+        else if ([self isProductStatusUnpacking:[map objectForKey:@"prodID"]]) {
+            [[(CityCell*)cell priceTag] setText:NSLocalizedString(@"UnpackingButton", @"UnpackingButton")];
+            
+            //cellButton.hidden=YES;
+            progress.hidden=NO;
+            CityCell *cityCell = (CityCell*)cell;
+            cityCell.cityNameAlt.hidden = YES;
+            cityCell.cityName.hidden = YES;
         } else {
             //cellButton.hidden=YES;
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -751,7 +760,22 @@
     if (requested_file_type==plist_) {
         [self processPlistFromServer:data];
     } else if (requested_file_type==zip_) {
-        [self processZipFromServer:data prodID:(NSString*)prodID];
+        NSIndexPath *mapIndexPath = [self getIndexPathProdID:prodID];
+        
+        if (mapIndexPath) {
+            for (NSDictionary *map in self.maps) {
+                if ([[map objectForKey:@"prodID"] isEqual:prodID]) {
+                    [map setValue:@"ZIP" forKey:@"status"];
+                }
+            }
+            [self performSelectorOnMainThread:@selector(updateFreakingButton:) withObject:mapIndexPath waitUntilDone:NO];
+            //[self updateFreakingButton:mapIndexPath];
+            
+        }
+        mapID = [prodID retain];
+//        zipData = [data retain];
+        [self performSelector:@selector(processZipFromServer:) withObject:data afterDelay:1];
+//        [self processZipFromServer:data prodID:(NSString*)prodID];
     }
     
     [servers removeObject:myid];
@@ -806,6 +830,35 @@
     cell.priceTag.text = [NSString stringWithFormat:@"%.1f/%.1f Mb", part, whole];
     progress.progress=prog;
 }
+
+-(void)updateFreakingButton:(NSIndexPath*)path
+{
+    CityCell *cell = (CityCell*)[self.cityTableView cellForRowAtIndexPath:path];
+    NSDictionary *map = [self.maps objectAtIndex:path.row];
+    if ([[map valueForKey:@"status"] isEqual:@"I"]) {
+        [[(CityCell*)cell priceTag] setText:NSLocalizedString(@"InstalledButton", @"InstalledButton")];
+
+    }
+    if ([[map valueForKey:@"status"] isEqual:@"ZIP"]) {
+        NSString *title = NSLocalizedString(@"UnpackingButton", @"UnpackingButton");
+        [[(CityCell*)cell priceTag] setText:title];
+        [self.view setNeedsLayout];
+    }
+}
+
+
+-(void)installedButton:(NSIndexPath*)path
+{
+    CityCell *cell = (CityCell*)[self.cityTableView cellForRowAtIndexPath:path];
+    UIProgressView *progress = (UIProgressView*)[cell viewWithTag:123];
+    NSDictionary *map = [self.maps objectAtIndex:path.row];
+    CGFloat prog = [[map objectForKey:@"progressPart"] floatValue] / [[map objectForKey:@"progressWhole"] floatValue];
+    CGFloat part = (float)[[map objectForKey:@"progressPart"] longValue] / (1024.0f*1024.0f);
+    CGFloat whole = (float)[[map objectForKey:@"progressWhole"] longValue] / (1024.0f*1024.0f);
+    cell.priceTag.text = [NSString stringWithFormat:@"%.1f/%.1f Mb", part, whole];
+    progress.progress=prog;
+}
+
 
 -(void)startDownloading:(NSString*)prodID
 {    
@@ -895,6 +948,17 @@
 {
     for (NSMutableDictionary *map in self.maps) {
         if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:@"N"]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+-(BOOL)isProductStatusUnpacking:(NSString*)prodID
+{
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:@"ZIP"]) {
             return YES;
         }
     }
@@ -1035,8 +1099,27 @@
     [self stopTimer];
 }
 
+-(void)processZipFromServer:(NSMutableData*)data {
+    [self processZipFromServer:data prodID:mapID];
+}
+
 -(void)processZipFromServer:(NSMutableData*)data prodID:(NSString*)prodID
 {
+    NSIndexPath *mapIndexPath = [self getIndexPathProdID:prodID];
+    
+    if (mapIndexPath) {
+        for (NSDictionary *map in self.maps) {
+            if ([[map objectForKey:@"prodID"] isEqual:prodID]) {
+                [map setValue:@"ZIP" forKey:@"status"];
+            }
+        }
+        //[self performSelectorOnMainThread:@selector(updateFreakingButton:) withObject:mapIndexPath waitUntilDone:NO];
+        [self updateFreakingButton:mapIndexPath];
+
+    }
+    [cityTableView reloadData];
+
+    
     // save data to file in tmp 
     NSString *tempDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [tempDir stringByAppendingPathComponent:[NSString stringWithFormat:@"1.zip"]];
@@ -1045,44 +1128,47 @@
     
     [data writeToFile:path atomically:YES];
     
-    BOOL success = [SSZipArchive unzipFileAtPath:path toDestination:cacheDir];
+    //SHOULD BE ASYNC!
+    __block BOOL success = NO;
     
-    // delete file from temp
-    NSFileManager *manager = [NSFileManager defaultManager];
-    [manager removeItemAtPath:path error:nil];
-    
-    if (success) {
-        [self markProductAsInstalled:prodID];
-    }
-    
-    [self resortMapArray];
-    
-    [self.cityTableView reloadData];
-    
-    // если мы скачали новую версию нашей текущей карты - то обновить ее
-    
-    tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
-    
-    NSString *mapName = [self getMapNameForProduct:prodID];
-    
-    if ([[[appdelegate cityMap] thisMapName] isEqual:mapName])
-    {
-        // перегрузить карту
-        //  NSLog(@"перегружаю активную карту");
+        success = [SSZipArchive unzipFileAtPath:path toDestination:cacheDir];
         
-        NSString *cityName;
         
-        for (NSDictionary *dict in self.maps) {
-            if ([[dict objectForKey:@"filename"] isEqual:mapName]) {
-                cityName = [dict objectForKey:@"name"];
-            }
+        // delete file from temp
+        NSFileManager *manager = [NSFileManager defaultManager];
+        [manager removeItemAtPath:path error:nil];
+        
+        if (success) {
+            [self markProductAsInstalled:prodID];
         }
         
-        //[appdelegate.mainViewController changeMapTo:mapName andCity:cityName];
-    }
-    
-    //    [self.updatButton enabled];
-    
+        [self resortMapArray];
+        
+        [self.cityTableView reloadData];
+        
+        // если мы скачали новую версию нашей текущей карты - то обновить ее
+        
+        tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+        
+        NSString *mapName = [self getMapNameForProduct:prodID];
+        
+        if ([[[appdelegate cityMap] thisMapName] isEqual:mapName])
+        {
+            // перегрузить карту
+            //  NSLog(@"перегружаю активную карту");
+            
+            NSString *cityName;
+            
+            for (NSDictionary *dict in self.maps) {
+                if ([[dict objectForKey:@"filename"] isEqual:mapName]) {
+                    cityName = [dict objectForKey:@"name"];
+                }
+            }
+            
+        }
+        [self performSelectorOnMainThread:@selector(updateFreakingButton:) withObject:mapIndexPath waitUntilDone:NO];
+
+
 }
 
 -(IBAction)updatePressed:(id)sender
