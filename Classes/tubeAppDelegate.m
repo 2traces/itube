@@ -147,6 +147,11 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
 }
 
+-(void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    [gl purgeUnusedCache];
+}
+
 - (void)rateNowFromPopup:(RatePopupViewController*)vc {
     
     [UIView animateWithDuration:0.5 animations:^{

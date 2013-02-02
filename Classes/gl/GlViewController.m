@@ -570,12 +570,17 @@ CGPoint translateFromGeoToMap(CGPoint pm)
             position.x = panVelocity.x + prevPosition.x;
             position.y = panVelocity.y + prevPosition.y;
             break;
-        case UIGestureRecognizerStateEnded:
+        case UIGestureRecognizerStateEnded: {
             position.x = p.x/scale + prevPosition.x;
             position.y = p.y/scale + prevPosition.y;
+            if(panTime < 0.01f) panTime = 0.1f;
             panVelocity.x /= panTime;
             panVelocity.y /= panTime;
+            float maxVel = 860.f / scale;
+            if(panVelocity.x > maxVel) panVelocity.x = maxVel;
+            if(panVelocity.y > maxVel) panVelocity.y = maxVel;
             panTime = 0.f;
+        }
             break;
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateFailed:
@@ -981,7 +986,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
             return -1;
         }
     }
-    Pin *loc = [[Pin alloc] initLocationPos];
+    Pin *loc = [[[Pin alloc] initLocationPos] autorelease];
     [loc setGeoPosition:coordinate];
     [pinsArray addObject:loc];
     return -1;
@@ -1376,6 +1381,11 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 -(CGFloat)calcGeoDistanceFrom:(CGPoint)p1 to:(CGPoint)p2
 {
     return calcGeoDistanceFrom(p1, p2);
+}
+
+-(void)purgeUnusedCache
+{
+    [rasterLayer purgeUnusedCache];
 }
 
 @end

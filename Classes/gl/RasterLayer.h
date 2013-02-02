@@ -113,6 +113,7 @@
 -(DownloadPiece*)get:(NSURLConnection*)connection;
 -(void)removeByConnection:(NSURLConnection*)connection;
 -(void)removePiece:(DownloadPiece*)piece;
+-(void)removeByPiece:(RPiece*)piece;
 -(int)count;
 -(NSArray*)allConnections;
 
@@ -150,6 +151,8 @@
 -(void)debugStatus;
 -(void)stopBut:(int)level;
 -(void)advance:(RPiece*)piece;
+-(void)purgeUnusedCache;
+-(void)cancelPieceLoading:(RPiece*)piece;
 
 @end
 
@@ -173,6 +176,8 @@
 -(void)debugStatus;
 -(void)stopBut:(int)level;
 -(void)advance:(RPiece*)piece;
+-(void)purgeUnusedCache;
+-(void)cancelPieceLoading:(RPiece*)piece;
 
 @end
 
@@ -194,6 +199,8 @@
 -(void)secondLoad:(RPiece*)piece;
 -(void)debugStatus;
 -(void)advance:(RPiece*)piece;
+-(void)purgeUnusedCache;
+-(void)cancelPieceLoading:(RPiece*)piece;
 
 @end
 
@@ -235,6 +242,7 @@
 -(BOOL) checkPoint:(CGPoint*)point;
 -(BOOL) changeSource;
 -(void) stopLoadingBut:(CGFloat)scale;
+-(void) purgeUnusedCache;
 
 //Получить координаты точки в системе координат UIView карты, в которую нужно будет положить пин
 - (CGPoint) pointOnMapViewForItemWithID:(NSInteger)itemID; 

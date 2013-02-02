@@ -14,6 +14,8 @@
 #define MAX_QUEUE 10
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
+static long DownloadCacheSize = 0;
+
 /***** RDescription *****/
 
 @implementation RDescription
@@ -518,6 +520,18 @@
     return [NSArray arrayWithArray:cons];
 }
 
+-(void)removeByPiece:(RPiece *)piece
+{
+    DownloadPiece *dp = nil;
+    for (DownloadPiece *d in array) {
+        if(d->piece == piece) {
+            dp = d;
+            break;
+        }
+    }
+    if(dp != nil) [array removeObject:dp];
+}
+
 @end
 
 /***** DownloadCache *****/
@@ -531,6 +545,7 @@
         x = _x;
         y = _y;
         data = [d retain];
+        DownloadCacheSize += [data length];
     }
     return self;
 }
@@ -556,6 +571,7 @@
 
 -(void)dealloc
 {
+    DownloadCacheSize -= [data length];
     [data release];
     [super dealloc];
 }
@@ -678,7 +694,7 @@
             // any other error
             [dp->piece rasterLoaded];
             [queue removeByConnection:connection];
-            [minusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil]];
+            [minusCache addObject:[[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil] autorelease]];
             [dp release];
         }
     }
@@ -703,7 +719,7 @@
             dp->piece->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
             dp->piece->layer->piecesCount ++;
         }
-        [plusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:dp->data]];
+        [plusCache addObject:[[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:dp->data] autorelease]];
         [target performSelector:selector withObject:dp->piece];
         [dp release];
     }
@@ -714,7 +730,9 @@
 {
     DownloadPiece *dp = [queue get:connection];
     if(dp == nil) {
+#ifdef DEBUG
         NSLog(@"Lost piece '%@'", connection.originalRequest.URL.absoluteString);
+#endif
         return;
     }
     [dp->data appendData:data];
@@ -773,6 +791,21 @@
     }
 }
 
+-(void)purgeUnusedCache
+{
+#ifdef DEBUG
+    NSLog(@"remove %i objects from plusCache and %i objects from minusCache", [plusCache count], [minusCache count]);
+#endif
+    [plusCache removeAllObjects];
+    [minusCache removeAllObjects];
+}
+
+-(void)cancelPieceLoading:(RPiece *)piece
+{
+    [queue removeByPiece:piece];
+    [secondQueue removeObject:piece];
+}
+
 @end
 
 /***** VectorDownloader *****/
@@ -816,7 +849,7 @@
         if(contents != nil) {
             NSMutableArray *a = [[NSMutableArray alloc] init];
             [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-                [a addObject:[[RObject alloc] initGlWithString:line rect:piece->rect]];
+                [a addObject:[[[RObject alloc] initGlWithString:line rect:piece->rect] autorelease]];
             }];
             [piece->objects release];
             piece->objects = a;
@@ -865,7 +898,7 @@
         [piece vectorLoaded];
         piece->objects = [[NSMutableArray alloc] init];
         [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-            [piece->objects addObject:[[RObject alloc] initGlWithString:line rect:piece->rect]];
+            [piece->objects addObject:[[[RObject alloc] initGlWithString:line rect:piece->rect] autorelease]];
         }];
         return YES;
     }
@@ -883,7 +916,7 @@
     if(dp != nil) {
         [dp->piece vectorLoaded];
         [queue removeByConnection:connection];
-        [minusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil]];
+        [minusCache addObject:[[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil] autorelease]];
         [dp release];
     }
     [self checkQueue];
@@ -905,13 +938,13 @@
         if(contents != nil) {
             NSMutableArray *a = [[NSMutableArray alloc] init];
             [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-                [a addObject:[[RObject alloc] initGlWithString:line rect:dp->piece->rect]];
+                [a addObject:[[[RObject alloc] initGlWithString:line rect:dp->piece->rect] autorelease]];
             }];
             [dp->piece->objects release];
             dp->piece->objects = a;
         }
 
-        [plusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:dp->data]];
+        [plusCache addObject:[[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:dp->data] autorelease]];
         [target performSelector:selector withObject:dp->piece];
         [dp release];
     } 
@@ -975,6 +1008,21 @@
         [secondQueue removeObject:piece];
         [secondQueue insertObject:piece atIndex:0];
     }
+}
+
+-(void)purgeUnusedCache
+{
+#ifdef DEBUG
+    NSLog(@"remove %i objects from plusCache and %i objects from minusCache", [plusCache count], [minusCache count]);
+#endif
+    [plusCache removeAllObjects];
+    [minusCache removeAllObjects];
+}
+
+-(void)cancelPieceLoading:(RPiece *)piece
+{
+    [queue removeByPiece:piece];
+    [secondQueue removeObject:piece];
 }
 
 @end
@@ -1067,6 +1115,18 @@
 {
     [rasterDownloader advance:piece];
     [vectorDownloader advance:piece];
+}
+
+-(void)purgeUnusedCache
+{
+    [rasterDownloader purgeUnusedCache];
+    [vectorDownloader purgeUnusedCache];
+}
+
+-(void)cancelPieceLoading:(RPiece *)piece
+{
+    [rasterDownloader cancelPieceLoading:piece];
+    [vectorDownloader cancelPieceLoading:piece];
 }
 
 @end
@@ -1436,7 +1496,7 @@
                 // loading
                 CGRect r = CGRectMake(dx*X, dy*Y, dx, dy);
                 if([self upperDraw:context rect:r level:level-1] || [self lowerDraw:context rect:r level:level+1]) {}
-                RPiece *p = [[RPiece alloc] initWithRect:r level:level x:X y:Y];
+                RPiece *p = [[[RPiece alloc] initWithRect:r level:level x:X y:Y] autorelease];
                 p->layer = self;
                 [lev addObject:p];
                 [loader load:p];
@@ -1521,7 +1581,7 @@
             if(!found) {
                 // loading
                 CGRect r = CGRectMake(dx*X, dy*Y, dx, dy);
-                RPiece *p = [[RPiece alloc] initWithRect:r level:nextLevel x:X y:Y];
+                RPiece *p = [[[RPiece alloc] initWithRect:r level:nextLevel x:X y:Y] autorelease];
                 p->layer = self;
                 [lev addObject:p];
                 [loader secondLoad:p];
@@ -1591,7 +1651,7 @@
                 // loading
                 CGRect r = CGRectMake(dx*X, dy*Y, dx, dy);
                 if([self upperDrawGlInRect:r level:level-1] || [self lowerDrawGlInRect:r level:level+1]) {}
-                RPiece *p = [[RPiece alloc] initWithRect:r level:level x:X y:Y];
+                RPiece *p = [[[RPiece alloc] initWithRect:r level:level x:X y:Y] autorelease];
                 p->layer = self;
                 [lev addObject:p];
                 [loader load:p];
@@ -1610,9 +1670,9 @@
     selector = _selector;
 }
 
--(void) freeSomeMemory
+-(void) freePieces:(int) num
 {
-    while(piecesCount > MAX_PIECES) {
+    for(int i = 0; i< num; i++) {
         // remove one piece
         [lock lock];
         id farthest = nil;
@@ -1635,6 +1695,7 @@
                 }
             }
             if(fp != nil) {
+                [loader cancelPieceLoading:fp];
                 [l removeObject:fp];
                 piecesCount --;
             }
@@ -1644,6 +1705,12 @@
         }
         [lock unlock];
     }
+}
+
+-(void) freeSomeMemory
+{
+    if(piecesCount > MAX_PIECES)
+        [self freePieces:piecesCount - MAX_PIECES];
 }
 
 -(BOOL)checkPoint:(CGPoint *)point
@@ -1722,6 +1789,23 @@
     if(it != nil) 
         return CGPointMake([it.posX floatValue], [it.posY floatValue]);
     return CGPointZero;
+}
+
+-(void) purgeUnusedCache
+{
+    long dcs = DownloadCacheSize;
+    [loader purgeUnusedCache];
+    dcs -= DownloadCacheSize;
+#ifdef DEBUG
+    NSLog(@"free %li bytes", dcs);
+#endif
+    if(piecesCount > 20) {
+        int dropPieces = piecesCount / 3;
+        [self freePieces:dropPieces];
+#ifdef DEBUG
+        NSLog(@"pieces count: %i", piecesCount);
+#endif
+    }
 }
 
 @end
