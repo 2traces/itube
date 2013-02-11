@@ -1129,17 +1129,13 @@ GLint uniforms[NUM_UNIFORMS];
     if(p != nil) [p setPosition:up];
 }
 
--(void)setStationsPosition:(NSArray *)coords withNames:(NSArray*)names andMarks:(BOOL)marks
+-(void)setStationsPosition:(NSArray *)data withMarks:(BOOL)marks
 {
     [self removeAllPins];
-    for (int i=0; i<[coords count]; i++) {
-        CGRect r = [[coords objectAtIndex:i] CGRectValue];
-        if(i < [names count]) {
-            [self newPin:r.origin color:r.size.width name:[names objectAtIndex:i]];
-        } else {
-            [self newPin:r.origin color:r.size.width name:nil];
-        }
-        if(marks && (i == 0 || i == [coords count]-1)) {
+    for (int i=0; i<[data count]; i++) {
+        CGRect r = [[[data objectAtIndex:i] valueForKey:@"coordinate" ] CGRectValue];
+        [self newPin:r.origin color:r.size.width name:[[data objectAtIndex:i] valueForKey:@"name"]];
+        if([[[data objectAtIndex:i] valueForKey:@"ending" ] length] > 0) {
             [[pinsArray lastObject] setActive:YES];
         }
     }

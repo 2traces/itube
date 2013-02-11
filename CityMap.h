@@ -337,7 +337,7 @@ typedef enum {NAME_NORMAL=0, NAME_ALTERNATIVE=1, NAME_BOTH=2} DrawNameType;
 -(void) activatePath:(NSArray*)pathMap;
 -(void) resetPath;
 -(Station*) findNearestStationTo:(CGPoint)gpsCoord;
--(CGRect)getGeoCoordsForRect:(CGRect)rect coordinates:(NSMutableArray*)coordinates names:(NSMutableArray*)names;
+-(CGRect)getGeoCoordsForRect:(CGRect)rect coordinates:(NSMutableArray*)date;
 
 -(NSMutableArray*) describePath:(NSArray*)pathMap;
 @end
