@@ -78,12 +78,38 @@
     [locationManager release];
     locationManager = nil;
     if([CLLocationManager locationServicesEnabled]) {
-        locationManager = [[CLLocationManager alloc] init];
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-        locationManager.distanceFilter = 500;
-        [locationManager startUpdatingLocation];
-        return YES;
+        switch([CLLocationManager authorizationStatus]) {
+            case kCLAuthorizationStatusAuthorized:
+                locationManager = [[CLLocationManager alloc] init];
+                locationManager.delegate = self;
+                locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+                locationManager.distanceFilter = 500;
+                [locationManager startUpdatingLocation];
+#ifdef DEBUG
+                NSLog(@"geo location is authorized");
+#endif
+                return YES;
+            case kCLAuthorizationStatusNotDetermined:
+                locationManager = [[CLLocationManager alloc] init];
+                locationManager.delegate = self;
+                locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+                locationManager.distanceFilter = 500;
+                [locationManager startUpdatingLocation];
+#ifdef DEBUG
+                NSLog(@"geo location is not determined");
+#endif
+                return YES;
+            case kCLAuthorizationStatusDenied:
+#ifdef DEBUG
+                NSLog(@"geo location is denied");
+#endif
+                return NO;
+            case kCLAuthorizationStatusRestricted:
+#ifdef DEBUG
+                NSLog(@"geo location is restricted");
+#endif
+                return NO;
+        }
     } else return NO;
 }
 

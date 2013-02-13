@@ -140,11 +140,6 @@ NSInteger const toolbarWidth=320;
 	
 	//œ[self addSubview:stationNameView];
 	stationNameView.userInteractionEnabled = YES;
-	/*
-     CLController = [[CoreLocationController alloc] init];
-     CLController.delegate = self;
-     [CLController.locMgr startUpdatingLocation];
-     */
 	//UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
 	//[containerView addGestureRecognizer:singleTap];
     
@@ -352,17 +347,6 @@ NSInteger const toolbarWidth=320;
     [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:station]];
 	mapView.stationSelected=false;
     [self hideButtons];
-}
-
-- (void)locationUpdate:(CLLocation *)location {
-	//locLabel.text = [location description];
-	DLog(@" update %@ ",[location description]);
-	[mapView calcNearStations:location];
-}
-
-- (void)locationError:(NSError *)error {
-	//locLabel.text = [error description];
-	DLog(@" error %@ ",[error description]);
 }
 
 - (void)dealloc {

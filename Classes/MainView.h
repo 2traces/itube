@@ -10,7 +10,6 @@
 #import "MapView.h"
 #import "MyScrollView.h"
 #import "SelectedPathMap.h"
-#import "CoreLocationController.h"
 #import "MBProgressHUD.h"
 
 extern NSInteger const toolbarHeight;
@@ -20,10 +19,9 @@ extern NSInteger const toolbarWidth;
 
 MBProgressHUD *commonActivityIndicator;
 
-//@interface MainView : UIView <UIScrollViewDelegate, UITextFieldDelegate , CoreLocationControllerDelegate>{
+//@interface MainView : UIView <UIScrollViewDelegate, UITextFieldDelegate>{
 
 @interface MainView : UIView  {
-//	CoreLocationController *CLController;
 	MapView *mapView;
 	MyScrollView *containerView;
 	UIToolbar *toolbar; 
@@ -42,7 +40,6 @@ MBProgressHUD *commonActivityIndicator;
 
 @property (nonatomic, retain) UIView *stationNameView;
 @property (nonatomic, retain) UILabel *stationNameLabel;
-//@property (nonatomic, retain) CoreLocationController *CLController;
 @property NSInteger firstStationLineNum;
 @property NSInteger secondStationLineNum;
 @property (assign) NSNumber *xw,*yw;
