@@ -14,6 +14,7 @@
 #import "NavigationViewController.h"
 #import "GlSprite.h"
 #import "GlPanel.h"
+#import "SettingsViewController.h"
 
 typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_LOCATION=2, PIN_STAR=3, PIN_FAVORITE=4} PinType;
 
@@ -50,7 +51,9 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_LOCATION=2, PIN_STAR=3, PIN_FAVORIT
 
 @class NavigationViewController;
 
-@interface GlViewController : GLKViewController 
+@interface GlViewController : GLKViewController<UIPopoverControllerDelegate,SettingsViewControllerDelegate> {
+    UIPopoverController *popover;
+}
 
 @property (nonatomic, assign) MItem *currentSelection;
 @property (nonatomic, retain) MItem *fromStation;

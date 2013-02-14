@@ -70,7 +70,13 @@ NSInteger const toolbarWidth=320;
         cornerRect=CGRectMake(0, 498, 36, 60);
         selfFrame.size.height = 568;
     }
-    else {
+    else  if (IS_IPAD) {
+        selfFrame.size.height = 1024;
+        selfFrame.size.width = 768;
+        
+        cornerRect=CGRectMake(0, 1000, 36, 60);
+    } else
+    {
         zonesRect=CGRectMake(250, 410, 71, 43);
         cornerRect=CGRectMake(0, 410, 36, 60);
 
@@ -79,10 +85,12 @@ NSInteger const toolbarWidth=320;
     self.frame = selfFrame;
     
     if (IS_IPAD) {
-        scrollSize = CGRectMake(0, 44, 768, (1024-74));
+        
+        scrollSize = CGRectMake(0, 44, 768, (1024-14));
         settingsRect=CGRectMake(-285, -420, 27, 27);
         shadowRect = CGRectMake(0, 44, 1024, 61);
-        zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 43, 25);
+        zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 71, 43);
+        
     } else {
         if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
             CGSize result = [[UIScreen mainScreen] bounds].size;
@@ -228,6 +236,15 @@ NSInteger const toolbarWidth=320;
         zonesRect=CGRectMake(250, 498, 71, 43);
         cornerRect=CGRectMake(0, 489, 36, 60);
     }
+    else if (IS_IPAD)  {
+        if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+            cornerRect=CGRectMake(0, 945, 36, 60);
+            zonesRect=CGRectMake(250, 945, 71, 43);
+        } else {
+            cornerRect=CGRectMake(0, 689, 36, 60);
+            zonesRect=CGRectMake(250, 689, 71, 43);
+        }
+    }
     else {
         zonesRect=CGRectMake(250, 410, 71, 43);
         cornerRect=CGRectMake(0, 401, 36, 60);
@@ -246,13 +263,27 @@ NSInteger const toolbarWidth=320;
         cornerRect=CGRectMake(0, 489, 36, 60);
 
     }
+    else if (IS_IPAD)  {
+        if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+            cornerRect=CGRectMake(0, 945, 36, 60);
+            zonesRect=CGRectMake(250, 945, 71, 43);
+        } else {
+            cornerRect=CGRectMake(0, 689, 36, 60);
+            zonesRect=CGRectMake(250, 689, 71, 43);
+        }
+    }
     else {
         zonesRect=CGRectMake(250, 410, 71, 43);
         cornerRect=CGRectMake(0, 401, 36, 60);
     }
     
-    zonesRect.origin.y -= 295;
-    cornerRect.origin.y -= 295;
+    if (IS_IPAD)  {
+        zonesRect.origin.y -= 624;
+        cornerRect.origin.y -= 624;
+    } else {
+        zonesRect.origin.y -= 295;
+        cornerRect.origin.y -= 295;
+    }
     
     zones.frame = zonesRect;
     cornerButton.frame = cornerRect;
@@ -261,9 +292,11 @@ NSInteger const toolbarWidth=320;
 -(void)layoutSubviews
 {
     if (IS_IPAD) {
-        CGRect zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 43, 25);
+       // CGRect zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 43, 25);
+        CGRect zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 71, 43);
+
         [zones setFrame:zonesRect];
-        [containerView setFrame:CGRectMake(0, 44,self.bounds.size.width,self.bounds.size.height-74)];
+        [containerView setFrame:CGRectMake(0, 44,self.bounds.size.width,self.bounds.size.height-44)];
     } else {
         [containerView setFrame:CGRectMake(0, 44,self.bounds.size.width,self.bounds.size.height-44)];
     }
@@ -279,9 +312,9 @@ NSInteger const toolbarWidth=320;
     
     if (IS_IPAD) {
         if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-            scrollSize = CGRectMake(0, 44, 768, (1024-64));
+            scrollSize = CGRectMake(0, 44, 768, (1024-44));
         } else {
-            scrollSize = CGRectMake(0, 44, 1024, (768-64));
+            scrollSize = CGRectMake(0, 44, 1024, (768-44));
         }
     } else {
         if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
@@ -452,7 +485,10 @@ NSInteger const toolbarWidth=320;
 -(void) showSettings
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate showSettings];
+    if (IS_IPAD)
+        [appDelegate.mainViewController showiPadSettingsModalView];
+    else
+        [appDelegate showSettings];
 }
 
 -(void) changeZones

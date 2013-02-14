@@ -24,5 +24,6 @@
 @property (nonatomic, retain) NSArray *currentPhotos;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollPhotos;
 @property (nonatomic, retain) IBOutlet UITextView *textView;
+@property (retain, nonatomic) IBOutlet UIImageView *separator;
 
 @end

@@ -75,7 +75,7 @@
     
     self.categoriesController = [[[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:[NSBundle mainBundle]] autorelease];
     self.categoriesController.navigationDelegate = self;
-    self.photosController = [[[PhotosViewController alloc] initWithNibName:@"PhotosViewController" bundle:[NSBundle mainBundle]]  autorelease];
+    self.photosController = [[[PhotosViewController alloc] initWithNibName:(IS_IPAD?@"PhotosViewController-iPad":@"PhotosViewController") bundle:[NSBundle mainBundle]]  autorelease];
     self.photosController.navigationDelegate = self;
     self.mainController.view.layer.cornerRadius = self.photosController.view.layer.cornerRadius = self.glController.view.layer.cornerRadius = self.separatingView.layer.cornerRadius = 5;
     self.mainController.view.layer.masksToBounds = self.photosController.view.layer.masksToBounds = YES;
@@ -92,7 +92,12 @@
     rectMapFull = mainViewFrame;
     rectMapCut = rectMapFull;
     
-    CGFloat delta = self.photosController.view.frame.size.height - 70;
+    CGFloat delta;
+    
+    if (IS_IPAD)
+        delta = self.photosController.view.frame.size.height - 96;
+    else
+        delta = self.photosController.view.frame.size.height - 70;
     
     rectMapCut.size.height -= delta;
     rectMapCut.origin.y += delta;
@@ -237,7 +242,10 @@
 - (void) stickThePanelBackToPhotos {
     CGRect panelFrame = self.photosController.panelView.frame;
     
-    panelFrame.origin = CGPointMake(0, 304);
+    if (IS_IPAD)
+        panelFrame.origin = CGPointMake(0, 635);
+    else
+        panelFrame.origin = CGPointMake(0, 304);
     [self.photosController.view addSubview:self.photosController.panelView];
     self.photosController.panelView.frame = panelFrame;
 }
@@ -256,7 +264,10 @@
     CGFloat animationDuration = animated ? 0.5 : 0;
     
     photosViewFrame.origin.x = 0;
-    panelFrame.origin = CGPointMake(0, 304);
+    if (IS_IPAD)
+        panelFrame.origin = CGPointMake(0, 635);
+    else
+        panelFrame.origin = CGPointMake(0, 304);
     [self.photosController.view addSubview:self.photosController.panelView];
     self.photosController.panelView.frame = panelFrame;
     self.photosController.view.frame = photosViewFrame;
@@ -289,7 +300,10 @@
 
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
-                photosViewFrame.origin.y = -304;
+                if (IS_IPAD)
+                    photosViewFrame.origin.y = -635;
+                else
+                    photosViewFrame.origin.y = -304;
                 self.photosController.disappearingView.alpha = 0;
                 self.photosController.view.frame = photosViewFrame;
                 self.photosController.placeNamePanel.hidden = NO;
@@ -328,14 +342,22 @@
             
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
-                photosViewFrame.origin.y = -261;
+                if (IS_IPAD)
+                    photosViewFrame.origin.y = -592;
+                else
+                    photosViewFrame.origin.y = -261;
                 self.photosController.disappearingView.alpha = 0;
                 self.photosController.view.frame = photosViewFrame;
             } completion:^(BOOL finished) {                
                 CGRect photosViewFrame = self.photosController.view.frame;
                 CGRect panelFrame = self.photosController.panelView.frame;
-                photosViewFrame.origin.x = 320;
-                panelFrame.origin = CGPointMake(0, 304 - 261);
+                if (IS_IPAD) {
+                    photosViewFrame.origin.x = self.view.frame.size.width;
+                    panelFrame.origin = CGPointMake(0, 635 - 592);
+                } else {
+                    photosViewFrame.origin.x = 320;
+                    panelFrame.origin = CGPointMake(0, 304 - 261);
+                }
                 [self.mainController.view insertSubview:self.photosController.panelView aboveSubview:self.mainController.stationsView];
                 self.photosController.panelView.frame = panelFrame;
                 self.photosController.view.frame = photosViewFrame;
@@ -354,7 +376,10 @@
 
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
-                photosViewFrame.origin.y = -261;
+                if (IS_IPAD)
+                    photosViewFrame.origin.y = -592;
+                else
+                    photosViewFrame.origin.y = -261;
                 self.photosController.disappearingView.alpha = 0;
                 self.photosController.view.frame = photosViewFrame;
             } completion:^(BOOL finished) {
@@ -366,8 +391,13 @@
                 self.photosController.distanceContainer.hidden = YES;
                 CGRect photosViewFrame = self.photosController.view.frame;
                 CGRect panelFrame = self.photosController.panelView.frame;
-                photosViewFrame.origin.x = 320;
-                panelFrame.origin = CGPointMake(0, 304 - 261 - (44 - 28));
+                if (IS_IPAD) {
+                    photosViewFrame.origin.x = self.view.frame.size.width;
+                    panelFrame.origin = CGPointMake(0, 635 - 592);
+                } else {
+                    photosViewFrame.origin.x = 320;
+                    panelFrame.origin = CGPointMake(0, 304 - 261 - (44 - 28));
+                }
                 
                 [self.mainController.view insertSubview:self.photosController.panelView aboveSubview:self.mainController.stationsView];
                 

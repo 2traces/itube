@@ -93,7 +93,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     self.window.frame = [[UIScreen mainScreen] bounds];
     
-    if (IS_IPAD) {
+    if (false/*IS_IPAD*/) {
 //        TubeSplitViewController *splitController = [[TubeSplitViewController alloc] init];
 //        splitController.mainViewController = self.mainViewController;
 //        [window addSubview:[splitController view]];

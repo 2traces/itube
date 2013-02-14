@@ -16,7 +16,8 @@
 
 -(void)layoutSubviews {
     if (IS_IPAD && zones) {
-        CGRect zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 43, 25);
+        //CGRect zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 43, 25);
+        CGRect zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 71, 43);
         [zones setFrame:zonesRect];
     }
     self.layer.cornerRadius = 5;

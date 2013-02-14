@@ -75,7 +75,7 @@
     }
     
     for (MPlace *place in self.places) {
-        NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"HCBookmarkItemView" owner:self options:nil];
+        NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:(IS_IPAD ? @"HCBookmarkItemView-iPad" : @"HCBookmarkItemView") owner:self options:nil];
         HCBookmarkItemView *itemView = (HCBookmarkItemView*)[nibObjects objectAtIndex:0];
         MPhoto *firstPhoto = nil;
         itemView.bookmarkDelegate = self;
@@ -114,7 +114,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, windowBounds.size.height);
+    if (IS_IPAD)
+        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, windowBounds.size.width, windowBounds.size.height);
+    else
+        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, windowBounds.size.height);
     [self reloadScrollView];
 }
 

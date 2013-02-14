@@ -101,8 +101,10 @@
     self.placeNameHeader.text = place.name;
     self.placeNamePanel.text = place.name;
     self.placeDescription.text = [NSString stringWithFormat:@"\"%@\"", place.text];
-    self.placeDescriptionBg.frame = self.placeDescription.frame;
-    self.placeDescriptionBg.center = CGPointMake(self.placeDescription.center.x, self.placeDescription.center.y - 3);
+    if (!IS_IPAD) {
+        self.placeDescriptionBg.frame = self.placeDescription.frame;
+        self.placeDescriptionBg.center = CGPointMake(self.placeDescription.center.x, self.placeDescription.center.y - 3);
+    }
     UIImage *btImage = [place.isFavorite boolValue] ?
                 [UIImage imageNamed:@"bt_photo_like"] :
                 [UIImage imageNamed:@"bt_photo_like_empty"];
@@ -165,9 +167,15 @@
     }
     mediaView.frame = self.scrollPhotos.frame;
     CGRect imageFrame = mediaView.frame;
-    imageFrame.size.width -= 20;
-    imageFrame.origin.x = self.scrollPhotos.frame.size.width * index;
-    imageFrame.origin.y = 0;
+    if (IS_IPAD) {
+        imageFrame.size.width = 768;
+        imageFrame.origin.x = 788 * index;
+    }
+    else
+    {
+        imageFrame.size.width -= 20;
+        imageFrame.origin.y = 0;
+    }
     mediaView.frame = imageFrame;
     mediaView.tag = index + 1;
     return [mediaView autorelease];
@@ -236,14 +244,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoTapped:)];
     tapGR.delegate = self;
-    self.placeNameHeader.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18.0f];
-    self.placeNamePanel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0f];
+    self.placeNameHeader.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:(IS_IPAD?22.0f:16.0f)];
+    self.placeNamePanel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:(IS_IPAD?22.0f:16.0f)];
     self.placeDescriptionBg.layer.cornerRadius = 5;
-    self.placeDescription.font = [UIFont fontWithName:@"MyriadPr-Italic" size:16.0f];
-    self.distanceLabel.font = [UIFont fontWithName:@"MyriadPr-Italic" size:10.0f];
+    if (IS_IPAD)   {
+        self.placeDescription.font = [UIFont fontWithName:@"MyriadPro-Regular" size:17.0f];
+        self.placeDescription.textColor = [UIColor blackColor];
+    } else
+        self.placeDescription.font = [UIFont fontWithName:@"MyriadPr-Italic" size:16.0f];
+    
+    self.distanceLabel.font = [UIFont fontWithName:@"MyriadPr-Italic" size:(IS_IPAD?13.0f:10.0f)];
     self.distanceLabel.textColor = [UIColor darkGrayColor];
     self.distanceLabel.text = @"";
     [self.scrollPhotos addGestureRecognizer:tapGR];

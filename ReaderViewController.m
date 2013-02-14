@@ -87,11 +87,15 @@
     [super viewDidLoad];
     
     CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, windowBounds.size.height);
+    if (IS_IPAD)
+        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, windowBounds.size.width, windowBounds.size.height);
+    else
+        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, windowBounds.size.height);
     // Do any additional setup after loading the view from its nib.
     self.visibleItems = [NSMutableDictionary dictionaryWithCapacity:5];
     self.scrollView.contentSize = CGSizeMake([self.items count] * self.scrollView.frame.size.width, 440);
     self.scrollView.contentOffset = CGPointMake(self.scrollView.frame.size.width * currentPage, 0);
+    self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [self.pageControl setNumberOfPages:[self.itemViews count]];
     [self.pageControl setCurrentPage:currentPage];
     self.lbHeader.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18.0f];
@@ -188,8 +192,6 @@
     
     
 }
-
-
 
 - (void)didReceiveMemoryWarning
 {

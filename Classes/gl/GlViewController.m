@@ -416,7 +416,9 @@ CGPoint translateFromGeoToMap(CGPoint pm)
         //scrollSize = CGRectMake(0, 44, 768, (1024-74));
         //settingsRect=CGRectMake(-285, -420, 27, 27);
         //shadowRect = CGRectMake(0, 44, 1024, 61);
-        zonesRect=CGRectMake(self.view.bounds.size.width-70, self.view.bounds.size.height-50, 43, 25);
+        zonesRect=CGRectMake(self.view.bounds.size.width-70, self.view.bounds.size.height-50, 71, 43);
+
+        //zonesRect=CGRectMake(self.view.bounds.size.width-70, self.view.bounds.size.height-50, 43, 25);
     } else {
         if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
             CGSize result = [[UIScreen mainScreen] bounds].size;
@@ -507,6 +509,14 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     if ([appDelegate isIPHONE5]) {
         zonesRect=CGRectMake(250, 498, 71, 43);
         cornerRect=CGRectMake(0, 489, 36, 60);
+    } else if (IS_IPAD)  {
+        if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+            cornerRect=CGRectMake(0, 945, 36, 60);
+            zonesRect=CGRectMake(250, 945, 71, 43);
+        } else {
+            cornerRect=CGRectMake(0, 689, 36, 60);
+            zonesRect=CGRectMake(250, 689, 71, 43);
+        }
     }
     else {
         zonesRect=CGRectMake(250, 410, 71, 43);
@@ -528,14 +538,28 @@ CGPoint translateFromGeoToMap(CGPoint pm)
         cornerRect=CGRectMake(0, 489, 36, 60);
 
     }
+    else if (IS_IPAD)  {
+        if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+            cornerRect=CGRectMake(0, 945, 36, 60);
+            zonesRect=CGRectMake(250, 945, 71, 43);
+        } else {
+            cornerRect=CGRectMake(0, 689, 36, 60);
+            zonesRect=CGRectMake(250, 689, 71, 43);
+        }
+    }
     else {
         zonesRect=CGRectMake(250, 410, 71, 43);
         cornerRect=CGRectMake(0, 401, 36, 60);
 
     }
     
-    zonesRect.origin.y -= 335;
-    cornerRect.origin.y -= 335;
+    if (IS_IPAD)  {
+        zonesRect.origin.y -= 664;
+        cornerRect.origin.y -= 664;
+    } else {
+        zonesRect.origin.y -= 335;
+        cornerRect.origin.y -= 335;
+    }
     
     zones.frame = zonesRect;
     cornerButton.frame = cornerRect;
@@ -551,7 +575,37 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 -(void) showSettings
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate showSettings];
+    if (IS_IPAD)
+        [self showiPadSettingsModalView];//[appDelegate.mainViewController showiPadSettingsModalView];
+    else
+        [appDelegate showSettings];
+}
+
+
+- (void) popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    // Stop holding onto the popover
+    popover = nil;
+    [self returnFromSelectionFastAccess:nil];
+}
+
+-(void)showiPadSettingsModalView
+{
+    if (popover) [popover dismissPopoverAnimated:YES];
+    
+    SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
+    controller.delegate=self;
+    UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:controller];
+    navcontroller.modalPresentationStyle=UIModalPresentationFormSheet;
+    [self presentModalViewController:navcontroller animated:YES];
+
+    [controller release];
+    [navcontroller release];
+}
+
+-(void)donePressed
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 -(void)handlePanGesture:(UIPanGestureRecognizer*)recognizer

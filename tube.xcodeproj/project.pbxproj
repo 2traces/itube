@@ -2139,6 +2139,22 @@
 		57D098031650434000467C1D /* categories_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D098011650434000467C1D /* categories_bg@2x.png */; };
 		57D09805165044D800467C1D /* btn_download@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D09804165044D800467C1D /* btn_download@2x.png */; };
 		57D09818165051A900467C1D /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D09817165051A900467C1D /* CategoryCell.m */; };
+		7028370116CD6D2400459E0C /* HCBookmarkItemView-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7028370016CD6D2400459E0C /* HCBookmarkItemView-iPad.xib */; };
+		7028370216CD6D2400459E0C /* HCBookmarkItemView-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7028370016CD6D2400459E0C /* HCBookmarkItemView-iPad.xib */; };
+		7028370316CD6D2400459E0C /* HCBookmarkItemView-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7028370016CD6D2400459E0C /* HCBookmarkItemView-iPad.xib */; };
+		7028370416CD6D2400459E0C /* HCBookmarkItemView-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7028370016CD6D2400459E0C /* HCBookmarkItemView-iPad.xib */; };
+		7028370616CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7028370516CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png */; };
+		7028370716CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7028370516CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png */; };
+		7028370816CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7028370516CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png */; };
+		7028370916CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7028370516CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png */; };
+		7039D5A816C55ECB0061314E /* PhotosViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7039D5A716C55ECB0061314E /* PhotosViewController-iPad.xib */; };
+		7039D5A916C55ECB0061314E /* PhotosViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7039D5A716C55ECB0061314E /* PhotosViewController-iPad.xib */; };
+		7039D5AA16C55ECB0061314E /* PhotosViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7039D5A716C55ECB0061314E /* PhotosViewController-iPad.xib */; };
+		7039D5AB16C55ECB0061314E /* PhotosViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7039D5A716C55ECB0061314E /* PhotosViewController-iPad.xib */; };
+		7039D5AD16C560BD0061314E /* panel_bg-iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7039D5AC16C560BC0061314E /* panel_bg-iPad@2x.png */; };
+		7039D5AE16C560BD0061314E /* panel_bg-iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7039D5AC16C560BC0061314E /* panel_bg-iPad@2x.png */; };
+		7039D5AF16C560BD0061314E /* panel_bg-iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7039D5AC16C560BC0061314E /* panel_bg-iPad@2x.png */; };
+		7039D5B016C560BD0061314E /* panel_bg-iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7039D5AC16C560BC0061314E /* panel_bg-iPad@2x.png */; };
 		9FFA6EBC14EE17920086199F /* ActiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA6EBB14EE17920086199F /* ActiveView.m */; };
 		BC0FD7031601DD8C00C048FF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0FD7021601DD8C00C048FF /* MapKit.framework */; };
 		BC102A271570F42E009390A6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC102A291570F42E009390A6 /* Localizable.strings */; };
@@ -2841,6 +2857,10 @@
 		57D09804165044D800467C1D /* btn_download@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_download@2x.png"; path = "images/hidden_cities/btn_download@2x.png"; sourceTree = "<group>"; };
 		57D09816165051A900467C1D /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		57D09817165051A900467C1D /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
+		7028370016CD6D2400459E0C /* HCBookmarkItemView-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HCBookmarkItemView-iPad.xib"; sourceTree = "<group>"; };
+		7028370516CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bookmark_item_info_bg_ipad@2x.png"; path = "images/hidden_cities/bookmark_item_info_bg_ipad@2x.png"; sourceTree = "<group>"; };
+		7039D5A716C55ECB0061314E /* PhotosViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PhotosViewController-iPad.xib"; sourceTree = "<group>"; };
+		7039D5AC16C560BC0061314E /* panel_bg-iPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "panel_bg-iPad@2x.png"; path = "images/hidden_cities/panel_bg-iPad@2x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* berlin-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "berlin-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9FFA6EBA14EE17920086199F /* ActiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActiveView.h; path = Classes/ActiveView.h; sourceTree = "<group>"; };
 		9FFA6EBB14EE17920086199F /* ActiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActiveView.m; path = Classes/ActiveView.m; sourceTree = "<group>"; };
@@ -3812,6 +3832,7 @@
 		577DEBAA166E385B006BA43A /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
+				579D28DD164815F70061B8F6 /* PhotosViewController.xib */,
 				57CD10071682F9810070D8B6 /* RatePopupViewController.xib */,
 				576E3FDA167C9341004050B7 /* CityCellContact.xib */,
 				BCD7E24B151AF85C007C658A /* CityCell.xib */,
@@ -3821,7 +3842,6 @@
 				572B6323165677D500B415DC /* ReaderViewController.xib */,
 				572B62BD1653FA2500B415DC /* HCBookmarkItemView.xib */,
 				572B62B31653F34500B415DC /* HCBookmarksViewController.xib */,
-				579D28DD164815F70061B8F6 /* PhotosViewController.xib */,
 				579D28D8164815DC0061B8F6 /* CategoriesViewController.xib */,
 				579D28D316480E990061B8F6 /* NavigationViewController.xib */,
 				BC88F91A15205B6A00BC7FAA /* LanguageViewController.xib */,
@@ -4407,6 +4427,10 @@
 		BCDFF0EF15CCDCE900E004E6 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
+				7028370516CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png */,
+				7028370016CD6D2400459E0C /* HCBookmarkItemView-iPad.xib */,
+				7039D5AC16C560BC0061314E /* panel_bg-iPad@2x.png */,
+				7039D5A716C55ECB0061314E /* PhotosViewController-iPad.xib */,
 				BCDFF0F015CCDCEA00E004E6 /* MainWindow-iPad.xib */,
 			);
 			name = iPad;
@@ -5068,6 +5092,10 @@
 				51F3FB24169092A70078B006 /* star-yell.png in Resources */,
 				5766026316A47D7600493495 /* bt_corner@2x.png in Resources */,
 				5766027B16A5AA8400493495 /* bt_photo_like_empty@2x.png in Resources */,
+				7039D5A816C55ECB0061314E /* PhotosViewController-iPad.xib in Resources */,
+				7039D5AD16C560BD0061314E /* panel_bg-iPad@2x.png in Resources */,
+				7028370116CD6D2400459E0C /* HCBookmarkItemView-iPad.xib in Resources */,
+				7028370616CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5590,6 +5618,10 @@
 				51F3FB25169092A70078B006 /* star-yell.png in Resources */,
 				5766026416A47D7600493495 /* bt_corner@2x.png in Resources */,
 				5766027C16A5AA8400493495 /* bt_photo_like_empty@2x.png in Resources */,
+				7039D5A916C55ECB0061314E /* PhotosViewController-iPad.xib in Resources */,
+				7039D5AE16C560BD0061314E /* panel_bg-iPad@2x.png in Resources */,
+				7028370216CD6D2400459E0C /* HCBookmarkItemView-iPad.xib in Resources */,
+				7028370716CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6109,6 +6141,10 @@
 				51F3FB26169092A70078B006 /* star-yell.png in Resources */,
 				5766026516A47D7600493495 /* bt_corner@2x.png in Resources */,
 				5766027D16A5AA8400493495 /* bt_photo_like_empty@2x.png in Resources */,
+				7039D5AA16C55ECB0061314E /* PhotosViewController-iPad.xib in Resources */,
+				7039D5AF16C560BD0061314E /* panel_bg-iPad@2x.png in Resources */,
+				7028370316CD6D2400459E0C /* HCBookmarkItemView-iPad.xib in Resources */,
+				7028370816CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6631,6 +6667,10 @@
 				51F3FB27169092A70078B006 /* star-yell.png in Resources */,
 				5766026616A47D7600493495 /* bt_corner@2x.png in Resources */,
 				5766027E16A5AA8400493495 /* bt_photo_like_empty@2x.png in Resources */,
+				7039D5AB16C55ECB0061314E /* PhotosViewController-iPad.xib in Resources */,
+				7039D5B016C560BD0061314E /* panel_bg-iPad@2x.png in Resources */,
+				7028370416CD6D2400459E0C /* HCBookmarkItemView-iPad.xib in Resources */,
+				7028370916CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7118,7 +7158,7 @@
 				INFOPLIST_FILE = "paris-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "HC Paris";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -7133,7 +7173,7 @@
 				INFOPLIST_FILE = "paris-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "HC Paris";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -7141,6 +7181,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -7154,7 +7195,8 @@
 				INFOPLIST_FILE = "berlin-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "HC Berlin";
-				TARGETED_DEVICE_FAMILY = 1;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -7162,6 +7204,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
@@ -7170,7 +7213,8 @@
 				INFOPLIST_FILE = "berlin-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "HC Berlin";
-				TARGETED_DEVICE_FAMILY = 1;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

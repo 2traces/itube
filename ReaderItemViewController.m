@@ -41,6 +41,15 @@
 {
     [super viewDidLoad];
 
+    CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
+    if (IS_IPAD) {
+        float center = windowBounds.size.height / 2 - 20;
+        self.scrollPhotos.frame = CGRectMake(scrollPhotos.frame.origin.x, 0, scrollPhotos.frame.size.width, center);
+        self.separator.frame = CGRectMake(0, center, self.separator.frame.size.width, self.separator.frame.size.height);
+        self.textView.frame = CGRectMake(textView.frame.origin.x, center + self.separator.frame.size.height, textView.frame.size.width, windowBounds.size.height - center - self.separator.frame.size.height);
+        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, windowBounds.size.width, windowBounds.size.height);
+    }
+    
     // Do any additional setup after loading the view from its nib.
     self.textView.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16.0f];
     [self reloadScrollView];
@@ -160,4 +169,12 @@
 
 
 
+- (void)dealloc {
+    [_separator release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setSeparator:nil];
+    [super viewDidUnload];
+}
 @end

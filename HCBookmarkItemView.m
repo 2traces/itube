@@ -7,6 +7,7 @@
 //
 
 #import "HCBookmarkItemView.h"
+#import "tubeAppDelegate.h"
 
 @implementation HCBookmarkItemView
 
@@ -30,7 +31,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    UIImage* infoBg = [[UIImage imageNamed:@"bookmark_item_info_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(30, 0, 30, 0)];
+    UIImage* infoBg = [[UIImage imageNamed:(IS_IPAD? @"bookmark_item_info_bg_ipad":@"bookmark_item_info_bg")] resizableImageWithCapInsets:UIEdgeInsetsMake(29, 0, 29, 0)];
     self.imageInfoBg.image = infoBg;
     self.textView.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12.0f];
     self.labelPlaceName.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15.0f];
