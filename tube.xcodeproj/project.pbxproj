@@ -675,7 +675,6 @@
 		576E3FF5167CAA88004050B7 /* navigation_shadow_higher@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 576E3FF2167CAA87004050B7 /* navigation_shadow_higher@2x.png */; };
 		576E3FF6167CAA88004050B7 /* navigation_shadow_higher@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 576E3FF2167CAA87004050B7 /* navigation_shadow_higher@2x.png */; };
 		576E400A167CBE87004050B7 /* paris-Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 576E4009167CBE86004050B7 /* paris-Default-568h@2x.png */; };
-		576E400C167CBEA1004050B7 /* berlin-Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 576E400B167CBE9F004050B7 /* berlin-Default-568h@2x.png */; };
 		576E400E167CBEB2004050B7 /* venice-Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 576E400D167CBEB0004050B7 /* venice-Default-568h@2x.png */; };
 		576E4010167CBEBB004050B7 /* nyc-Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 576E400F167CBEBA004050B7 /* nyc-Default-568h@2x.png */; };
 		5771A32E1652ABA500332A7D /* panel_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5771A32D1652ABA500332A7D /* panel_bg@2x.png */; };
@@ -2057,7 +2056,6 @@
 		577DEBCE166E3E34006BA43A /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 577DEBCA166E3E34006BA43A /* iTunesArtwork */; };
 		577DEBCF166E3E34006BA43A /* paris-Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 577DEBCB166E3E34006BA43A /* paris-Default@2x.png */; };
 		577DEBD0166E3E34006BA43A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 577DEBCC166E3E34006BA43A /* icon.png */; };
-		577DEBD6166E3E42006BA43A /* berlin-Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 577DEBD2166E3E42006BA43A /* berlin-Default@2x.png */; };
 		577DEBD9166E3E42006BA43A /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 577DEBD5166E3E42006BA43A /* iTunesArtwork */; };
 		577DEBDC166E403E006BA43A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 577DEBDA166E403E006BA43A /* icon.png */; };
 		577DEBDD166E403E006BA43A /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 577DEBDB166E403E006BA43A /* icon@2x.png */; };
@@ -2147,6 +2145,13 @@
 		7028370716CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7028370516CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png */; };
 		7028370816CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7028370516CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png */; };
 		7028370916CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7028370516CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png */; };
+		7028371616CE63DE00459E0C /* berlin-Default-568h@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7028371216CE63DE00459E0C /* berlin-Default-568h@2x.jpg */; };
+		7028371716CE63DE00459E0C /* berlin-Default-Landscape@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7028371316CE63DE00459E0C /* berlin-Default-Landscape@2x.jpg */; };
+		7028371816CE63DE00459E0C /* berlin-Default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7028371416CE63DE00459E0C /* berlin-Default.jpg */; };
+		7028371916CE63DE00459E0C /* berlin-Default@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7028371516CE63DE00459E0C /* berlin-Default@2x.jpg */; };
+		7028371D16CE648200459E0C /* berlin-Default-Landscape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7028371A16CE648100459E0C /* berlin-Default-Landscape.jpg */; };
+		7028371E16CE648200459E0C /* berlin-Default-Portrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7028371B16CE648200459E0C /* berlin-Default-Portrait.jpg */; };
+		7028371F16CE648200459E0C /* berlin-Default-Portrait@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7028371C16CE648200459E0C /* berlin-Default-Portrait@2x.jpg */; };
 		7039D5A816C55ECB0061314E /* PhotosViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7039D5A716C55ECB0061314E /* PhotosViewController-iPad.xib */; };
 		7039D5A916C55ECB0061314E /* PhotosViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7039D5A716C55ECB0061314E /* PhotosViewController-iPad.xib */; };
 		7039D5AA16C55ECB0061314E /* PhotosViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7039D5A716C55ECB0061314E /* PhotosViewController-iPad.xib */; };
@@ -2155,6 +2160,8 @@
 		7039D5AE16C560BD0061314E /* panel_bg-iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7039D5AC16C560BC0061314E /* panel_bg-iPad@2x.png */; };
 		7039D5AF16C560BD0061314E /* panel_bg-iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7039D5AC16C560BC0061314E /* panel_bg-iPad@2x.png */; };
 		7039D5B016C560BD0061314E /* panel_bg-iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7039D5AC16C560BC0061314E /* panel_bg-iPad@2x.png */; };
+		70BE35A116CE67D400852CD4 /* icon-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 70BE359F16CE67D400852CD4 /* icon-ipad.png */; };
+		70BE35A216CE67D400852CD4 /* icon-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70BE35A016CE67D400852CD4 /* icon-ipad@2x.png */; };
 		9FFA6EBC14EE17920086199F /* ActiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA6EBB14EE17920086199F /* ActiveView.m */; };
 		BC0FD7031601DD8C00C048FF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0FD7021601DD8C00C048FF /* MapKit.framework */; };
 		BC102A271570F42E009390A6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC102A291570F42E009390A6 /* Localizable.strings */; };
@@ -2775,7 +2782,6 @@
 		576E3FDA167C9341004050B7 /* CityCellContact.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CityCellContact.xib; path = Resources/CityCellContact.xib; sourceTree = "<group>"; };
 		576E3FF2167CAA87004050B7 /* navigation_shadow_higher@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navigation_shadow_higher@2x.png"; path = "images/hidden_cities/navigation_shadow_higher@2x.png"; sourceTree = "<group>"; };
 		576E4009167CBE86004050B7 /* paris-Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paris-Default-568h@2x.png"; sourceTree = "<group>"; };
-		576E400B167CBE9F004050B7 /* berlin-Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "berlin-Default-568h@2x.png"; sourceTree = "<group>"; };
 		576E400D167CBEB0004050B7 /* venice-Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "venice-Default-568h@2x.png"; sourceTree = "<group>"; };
 		576E400F167CBEBA004050B7 /* nyc-Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nyc-Default-568h@2x.png"; sourceTree = "<group>"; };
 		5771A32D1652ABA500332A7D /* panel_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "panel_bg@2x.png"; path = "images/hidden_cities/panel_bg@2x.png"; sourceTree = "<group>"; };
@@ -2808,7 +2814,6 @@
 		577DEBCA166E3E34006BA43A /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Service/Paris/iTunesArtwork; sourceTree = "<group>"; };
 		577DEBCB166E3E34006BA43A /* paris-Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "paris-Default@2x.png"; path = "Service/Paris/paris-Default@2x.png"; sourceTree = "<group>"; };
 		577DEBCC166E3E34006BA43A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Service/Paris/icon.png; sourceTree = "<group>"; };
-		577DEBD2166E3E42006BA43A /* berlin-Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "berlin-Default@2x.png"; path = "Service/Berlin/berlin-Default@2x.png"; sourceTree = "<group>"; };
 		577DEBD5166E3E42006BA43A /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Service/Berlin/iTunesArtwork; sourceTree = "<group>"; };
 		577DEBDA166E403E006BA43A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Service/Berlin/icon.png; sourceTree = "<group>"; };
 		577DEBDB166E403E006BA43A /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "Service/Berlin/icon@2x.png"; sourceTree = "<group>"; };
@@ -2859,8 +2864,17 @@
 		57D09817165051A900467C1D /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		7028370016CD6D2400459E0C /* HCBookmarkItemView-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HCBookmarkItemView-iPad.xib"; sourceTree = "<group>"; };
 		7028370516CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bookmark_item_info_bg_ipad@2x.png"; path = "images/hidden_cities/bookmark_item_info_bg_ipad@2x.png"; sourceTree = "<group>"; };
+		7028371216CE63DE00459E0C /* berlin-Default-568h@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "berlin-Default-568h@2x.jpg"; path = "Service/Berlin/berlin-Default-568h@2x.jpg"; sourceTree = "<group>"; };
+		7028371316CE63DE00459E0C /* berlin-Default-Landscape@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "berlin-Default-Landscape@2x.jpg"; path = "Service/Berlin/berlin-Default-Landscape@2x.jpg"; sourceTree = "<group>"; };
+		7028371416CE63DE00459E0C /* berlin-Default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "berlin-Default.jpg"; path = "Service/Berlin/berlin-Default.jpg"; sourceTree = "<group>"; };
+		7028371516CE63DE00459E0C /* berlin-Default@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "berlin-Default@2x.jpg"; path = "Service/Berlin/berlin-Default@2x.jpg"; sourceTree = "<group>"; };
+		7028371A16CE648100459E0C /* berlin-Default-Landscape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "berlin-Default-Landscape.jpg"; path = "Service/Berlin/berlin-Default-Landscape.jpg"; sourceTree = "<group>"; };
+		7028371B16CE648200459E0C /* berlin-Default-Portrait.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "berlin-Default-Portrait.jpg"; path = "Service/Berlin/berlin-Default-Portrait.jpg"; sourceTree = "<group>"; };
+		7028371C16CE648200459E0C /* berlin-Default-Portrait@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "berlin-Default-Portrait@2x.jpg"; path = "Service/Berlin/berlin-Default-Portrait@2x.jpg"; sourceTree = "<group>"; };
 		7039D5A716C55ECB0061314E /* PhotosViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PhotosViewController-iPad.xib"; sourceTree = "<group>"; };
 		7039D5AC16C560BC0061314E /* panel_bg-iPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "panel_bg-iPad@2x.png"; path = "images/hidden_cities/panel_bg-iPad@2x.png"; sourceTree = "<group>"; };
+		70BE359F16CE67D400852CD4 /* icon-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-ipad.png"; path = "Service/Berlin/icon-ipad.png"; sourceTree = "<group>"; };
+		70BE35A016CE67D400852CD4 /* icon-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-ipad@2x.png"; path = "Service/Berlin/icon-ipad@2x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* berlin-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "berlin-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9FFA6EBA14EE17920086199F /* ActiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActiveView.h; path = Classes/ActiveView.h; sourceTree = "<group>"; };
 		9FFA6EBB14EE17920086199F /* ActiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActiveView.m; path = Classes/ActiveView.m; sourceTree = "<group>"; };
@@ -3449,9 +3463,7 @@
 			children = (
 				576E400F167CBEBA004050B7 /* nyc-Default-568h@2x.png */,
 				576E400D167CBEB0004050B7 /* venice-Default-568h@2x.png */,
-				576E400B167CBE9F004050B7 /* berlin-Default-568h@2x.png */,
 				576E4009167CBE86004050B7 /* paris-Default-568h@2x.png */,
-				51DCC9E51673F5D7005BAB6C /* paris-Info.plist */,
 				57583546168B2E6E00C96F5C /* Animated UIImage */,
 				BC76ACF1151B1A74009BDABC /* minizip */,
 				289233A00DB2D0730083E9F9 /* Main View */,
@@ -3502,6 +3514,7 @@
 				BC234C4C16145AE600F3D35B /* InitialDefaults.plist */,
 				BC0FD7041601E05D00C048FF /* Paris.geojson */,
 				8D1107310486CEB800E47090 /* berlin-Info.plist */,
+				51DCC9E51673F5D7005BAB6C /* paris-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -3783,10 +3796,18 @@
 		577DEB9C166E30A3006BA43A /* Berlin */ = {
 			isa = PBXGroup;
 			children = (
-				57CD10261683056F0070D8B6 /* rate_icon@2x.png */,
-				577DEBD2166E3E42006BA43A /* berlin-Default@2x.png */,
 				577DEBDA166E403E006BA43A /* icon.png */,
 				577DEBDB166E403E006BA43A /* icon@2x.png */,
+				70BE359F16CE67D400852CD4 /* icon-ipad.png */,
+				70BE35A016CE67D400852CD4 /* icon-ipad@2x.png */,
+				7028371A16CE648100459E0C /* berlin-Default-Landscape.jpg */,
+				7028371B16CE648200459E0C /* berlin-Default-Portrait.jpg */,
+				7028371C16CE648200459E0C /* berlin-Default-Portrait@2x.jpg */,
+				7028371216CE63DE00459E0C /* berlin-Default-568h@2x.jpg */,
+				7028371316CE63DE00459E0C /* berlin-Default-Landscape@2x.jpg */,
+				7028371416CE63DE00459E0C /* berlin-Default.jpg */,
+				7028371516CE63DE00459E0C /* berlin-Default@2x.jpg */,
+				57CD10261683056F0070D8B6 /* rate_icon@2x.png */,
 				577DEBD5166E3E42006BA43A /* iTunesArtwork */,
 				577DEBA2166E3126006BA43A /* berlin */,
 			);
@@ -5455,7 +5476,6 @@
 				577DE6E1166E2F15006BA43A /* bt_mode_maps@2x.png in Resources */,
 				577DE6E2166E2F15006BA43A /* bt_mode_metro@2x.png in Resources */,
 				577DEBA3166E3126006BA43A /* berlin in Resources */,
-				577DEBD6166E3E42006BA43A /* berlin-Default@2x.png in Resources */,
 				577DEBD9166E3E42006BA43A /* iTunesArtwork in Resources */,
 				577DEBDC166E403E006BA43A /* icon.png in Resources */,
 				577DEBDD166E403E006BA43A /* icon@2x.png in Resources */,
@@ -5540,7 +5560,6 @@
 				576E3FBD167C8F6C004050B7 /* settings_upper_shadow@2x.png in Resources */,
 				576E3FDC167C9341004050B7 /* CityCellContact.xib in Resources */,
 				576E3FF4167CAA88004050B7 /* navigation_shadow_higher@2x.png in Resources */,
-				576E400C167CBEA1004050B7 /* berlin-Default-568h@2x.png in Resources */,
 				57C9C2A2167F5543004CE95A /* tr_nyc@2x.png in Resources */,
 				57CD100D1682F9810070D8B6 /* RatePopupViewController.xib in Resources */,
 				57CD10131682FAD30070D8B6 /* rate_bg@2x.png in Resources */,
@@ -5622,6 +5641,15 @@
 				7039D5AE16C560BD0061314E /* panel_bg-iPad@2x.png in Resources */,
 				7028370216CD6D2400459E0C /* HCBookmarkItemView-iPad.xib in Resources */,
 				7028370716CD718900459E0C /* bookmark_item_info_bg_ipad@2x.png in Resources */,
+				7028371616CE63DE00459E0C /* berlin-Default-568h@2x.jpg in Resources */,
+				7028371716CE63DE00459E0C /* berlin-Default-Landscape@2x.jpg in Resources */,
+				7028371816CE63DE00459E0C /* berlin-Default.jpg in Resources */,
+				7028371916CE63DE00459E0C /* berlin-Default@2x.jpg in Resources */,
+				7028371D16CE648200459E0C /* berlin-Default-Landscape.jpg in Resources */,
+				7028371E16CE648200459E0C /* berlin-Default-Portrait.jpg in Resources */,
+				7028371F16CE648200459E0C /* berlin-Default-Portrait@2x.jpg in Resources */,
+				70BE35A116CE67D400852CD4 /* icon-ipad.png in Resources */,
+				70BE35A216CE67D400852CD4 /* icon-ipad@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
