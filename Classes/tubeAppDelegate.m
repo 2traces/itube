@@ -93,18 +93,37 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     self.window.frame = [[UIScreen mainScreen] bounds];
     
-    if (false/*IS_IPAD*/) {
-//        TubeSplitViewController *splitController = [[TubeSplitViewController alloc] init];
-//        splitController.mainViewController = self.mainViewController;
-//        [window addSubview:[splitController view]];
-//        [window setRootViewController:splitController];
-//        navController = splitController.navigationController;
-//        [splitController release];
-//        [window makeKeyAndVisible];
+    if (IS_IPAD) {
+        TubeSplitViewController *splitController = [[TubeSplitViewController alloc] init];
+        splitController.mainViewController = self.mainViewController;
+        
+        
+                
+        //navController = [[UINavigationController alloc] initWithRootViewController:self.navigationViewController];
+        //navController.navigationBarHidden = YES;
+        //   CGRect main = [UIScreen mainScreen].applicationFrame;
+       // mainViewController.view.frame = self.navigationViewController.view.frame = [UIScreen mainScreen].applicationFrame;
+       // CGRect mainViewFrame = mainViewController.view.frame;
+       // mainViewFrame.origin.y = 0;
+        //mainViewController.view.frame = mainViewFrame;
+        ///navController.view.layer.cornerRadius = 5;
+        //window.layer.cornerRadius = 5;
+        //[window addSubview:[navController view]];
+        //[window setRootViewController:navController];
+        
+        [window addSubview:[splitController view]];
+        
+        
+         [window setRootViewController:splitController];
+         navController = splitController.navigationController;
+         //[splitController release];
+         //[window makeKeyAndVisible];
+
+        [window makeKeyAndVisible];
     } else {
         navController = [[UINavigationController alloc] initWithRootViewController:self.navigationViewController];
         navController.navigationBarHidden = YES;
-        CGRect main = [UIScreen mainScreen].applicationFrame;
+     //   CGRect main = [UIScreen mainScreen].applicationFrame;
         mainViewController.view.frame = self.navigationViewController.view.frame = [UIScreen mainScreen].applicationFrame;
         CGRect mainViewFrame = mainViewController.view.frame;
         mainViewFrame.origin.y = 0;
@@ -610,6 +629,14 @@ void uncaughtExceptionHandler(NSException *exception) {
     [self.navigationViewController showMetroMap];
 }
 
+-(void)switchMapMode
+{
+    BOOL isMetro = [self.navigationViewController isMetroMode];
+    if (isMetro)
+        [self showRasterMap];
+    else
+        [self showMetroMap];
+}
 
 -(void)showBookmarks
 {

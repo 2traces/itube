@@ -46,21 +46,26 @@ static float koefficient = 0.0f;
     self.view.frame = CGRectMake(0.0, 20.0, 768.0, 1004.0);
     
     tubeAppDelegate *delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+    
     MainView *mainView = (MainView*)[delegate.mainViewController view];
-    delegate.mainViewController.spltViewController=self;
+    delegate.mainViewController.spltViewController = self;
+    
     mainViewController = delegate.mainViewController;
     
-    navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+    navController = [[UINavigationController alloc] initWithRootViewController:delegate.navigationViewController];
     navController.navigationBarHidden = YES;
     [self addChildViewController:navController];
 
-    mainView.frame = CGRectMake(0.0, 0.0, 768.0, 1004.0-44.0);
-    [[mainView containerView] setFrame:CGRectMake(0.0, 44.0, 768.0, 1004-44.0)];
+   // self.view.frame = mainViewController.view.frame = navController.view.frame = [UIScreen mainScreen].applicationFrame;
+    
+    isLeftShown = NO;
+    //mainView.frame = CGRectMake(0.0, 0.0, 768.0, 1004.0-44.0);
+    //[[mainView containerView] setFrame:CGRectMake(0.0, 44.0, 768.0, 1004-44.0)];
     self.mapView = mainView;
     [self.view addSubview:[navController view]];
     
     LeftiPadPathViewController *controller = [[LeftiPadPathViewController alloc] init];
-    controller.view.frame=CGRectMake(-320.0, 0.0, 320.0, 1004.0);
+    controller.view.frame=CGRectMake(-1320.0, 0.0, 320.0, 1004.0);
     self.pathView=controller.view;
     self.leftPathController=controller;
     [self.view addSubview:controller.view];
@@ -141,6 +146,7 @@ static float koefficient = 0.0f;
 {
     CGSize size = [self sizeRotated];
     
+    if (isLeftShown)
     [self.leftPathController.pathScrollView setFrame:CGRectMake(0.0, 44.0, 320.0, size.height-44.0)];
 }
 
@@ -159,7 +165,7 @@ static float koefficient = 0.0f;
                 [self layoutSubviews];
             } completion:^(BOOL finished) {
                 //           [self adjustMapView]; //выключили изза производительности
-                [leftPathController refreshUITextView]; //fixing ios bug 
+              //  [leftPathController refreshUITextView]; //fixing ios bug
             }];
         }
     }
@@ -239,10 +245,11 @@ static float koefficient = 0.0f;
 	[mainViewController viewDidAppear:animated];
     
     // it's Needed to fix a bug with 20px near the statusbar
-    if (self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+     /*
+    if (self.interfaceOrientation == UIInterfaceOrientationPortrait)
         koefficient = 20.0f;
     else
-        koefficient = 0.0f;
+        koefficient = 0.0f;*/ 
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

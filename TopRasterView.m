@@ -40,7 +40,7 @@
 	//[self addSubview:toolbar];
 
 	UIImage *imageOpenList = [UIImage imageNamed:@"openlist2.png"];
-    UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist2.png"];
+   // UIImage *imageOpenListHL = [UIImage imageNamed:@"openlist2.png"];
 	
 	UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [refreshButton setFrame:CGRectMake(0.0, 0.0, imageOpenList.size.width,imageOpenList.size.height)];

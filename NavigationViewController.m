@@ -129,6 +129,10 @@
         [appDelegate askForRate];
         appDelegate.shouldShowRateScreen = NO;
     }
+    
+    if (IS_IPAD) {
+        [appDelegate.mainViewController hideiPadLeftPathView];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -243,7 +247,7 @@
     CGRect panelFrame = self.photosController.panelView.frame;
     
     if (IS_IPAD)
-        panelFrame.origin = CGPointMake(0, 635);
+        panelFrame.origin = CGPointMake(0, 535);
     else
         panelFrame.origin = CGPointMake(0, 304);
     [self.photosController.view addSubview:self.photosController.panelView];
@@ -265,7 +269,10 @@
     
     photosViewFrame.origin.x = 0;
     if (IS_IPAD)
-        panelFrame.origin = CGPointMake(0, 635);
+    {
+        panelFrame.origin = CGPointMake(0, 535);
+        //panelFrame.size = CGSizeMake(panelFrame.size.width, 90);
+    }
     else
         panelFrame.origin = CGPointMake(0, 304);
     [self.photosController.view addSubview:self.photosController.panelView];
@@ -277,6 +284,8 @@
             self.photosController.disappearingView.alpha = 0;
             //[self.mainController toggleTap];
             [self.mainController clearPath];
+            if (IS_IPAD)
+                [self.mainController hideiPadLeftPathView];
 
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
@@ -301,7 +310,7 @@
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
                 if (IS_IPAD)
-                    photosViewFrame.origin.y = -635;
+                    photosViewFrame.origin.y = -535;
                 else
                     photosViewFrame.origin.y = -304;
                 self.photosController.disappearingView.alpha = 0;
@@ -343,7 +352,7 @@
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
                 if (IS_IPAD)
-                    photosViewFrame.origin.y = -592;
+                    photosViewFrame.origin.y = -492;
                 else
                     photosViewFrame.origin.y = -261;
                 self.photosController.disappearingView.alpha = 0;
@@ -353,7 +362,7 @@
                 CGRect panelFrame = self.photosController.panelView.frame;
                 if (IS_IPAD) {
                     photosViewFrame.origin.x = self.view.frame.size.width;
-                    panelFrame.origin = CGPointMake(0, 635 - 592);
+                    panelFrame.origin = CGPointMake(0, 535 - 492);
                 } else {
                     photosViewFrame.origin.x = 320;
                     panelFrame.origin = CGPointMake(0, 304 - 261);
@@ -377,7 +386,7 @@
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
                 if (IS_IPAD)
-                    photosViewFrame.origin.y = -592;
+                    photosViewFrame.origin.y = -492;
                 else
                     photosViewFrame.origin.y = -261;
                 self.photosController.disappearingView.alpha = 0;
@@ -393,7 +402,7 @@
                 CGRect panelFrame = self.photosController.panelView.frame;
                 if (IS_IPAD) {
                     photosViewFrame.origin.x = self.view.frame.size.width;
-                    panelFrame.origin = CGPointMake(0, 635 - 592);
+                    panelFrame.origin = CGPointMake(0, 535 - 492);
                 } else {
                     photosViewFrame.origin.x = 320;
                     panelFrame.origin = CGPointMake(0, 304 - 261 - (44 - 28));
@@ -564,6 +573,10 @@
     [self switchToLayerMode:HCBookmarksLayer];
 }
 
+- (BOOL) isMetroMode {
+    return fMetroMode;
+}
+
 - (void) hideBookmarksLayer {
     [self switchToLayerMode:fMetroMode ? HCMetroLayer : HCOSMLayer];
 }
@@ -614,6 +627,9 @@
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
+    if (IS_IPAD)
+        return YES;
+    
     if (layerMode == HCBookmarksLayer || self.presentedViewController) {
             return (interfaceOrientation == UIInterfaceOrientationPortrait);
     }
@@ -625,6 +641,8 @@
 }
 
 -(NSUInteger)supportedInterfaceOrientations{
+    if (IS_IPAD)
+        return UIInterfaceOrientationMaskAll;
     if (layerMode == HCBookmarksLayer || self.presentedViewController) {
         return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
     }
@@ -638,8 +656,18 @@
     if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
         returningFromLandscape = YES;
         [mainView changedToLandscape:NO];
-        photosMode = HCPhotosHiddenFully;
-        [self transitPhotosToMode:HCPhotosVisibleFully animated:NO];
+        if (!IS_IPAD)
+        {
+            photosMode = HCPhotosHiddenFully;
+            [self transitPhotosToMode:HCPhotosVisibleFully animated:NO];
+        } else
+        {
+            if (photosMode != HCPhotosVisibleFully)
+            {
+                photosMode = HCPhotosVisibleFully;
+                [self transitPhotosToMode:HCPhotosHiddenMetroPath animated:NO];
+            }
+        }
         self.photosController.view.hidden = self.categoriesController.view.hidden = self.photosController.panelView.hidden = NO;
 
     } else {
@@ -662,13 +690,30 @@
 
         [self hideCategoriesAnimated:NO];
         //[self transitPhotosToMode:HCPhotosVisibleFully animated:NO];
-        self.photosController.view.hidden = self.categoriesController.view.hidden = self.photosController.panelView.hidden = YES;
-        [self showFullMap];
-
+        if (IS_IPAD)
+        {
+            self.categoriesController.view.hidden = YES;
+            
+            /*if (photosMode != HCPhotosVisibleFully)
+            {
+                photosMode = HCPhotosVisibleFully;
+                [self transitPhotosToMode:HCPhotosHiddenMetroPath animated:NO];
+            } else*/
+                [self transitPhotosToMode:photosMode animated:NO];
+        }
+        else
+        {
+            self.photosController.view.hidden = self.categoriesController.view.hidden = self.photosController.panelView.hidden = YES;
         
+            [self showFullMap];
+        }
     }
 }
 
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    if (IS_IPAD)
+        [self.photosController reloadScrollView]; // TODO: save current position
+}
 
 
 @end

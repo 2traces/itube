@@ -43,7 +43,17 @@
 @synthesize teasers;
 
 - (IBAction)showSettings:(id)sender {
-    [self.navigationDelegate showSettings];
+   // [self.navigationDelegate showSettings];
+    if (IS_IPAD)
+        [self showiPadSettingsModalView];
+    else
+        [self.navigationDelegate showSettings];
+}
+
+-(void)showiPadSettingsModalView
+{
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate.mainViewController showiPadSettingsModalView];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

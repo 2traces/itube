@@ -90,7 +90,6 @@ NSInteger const toolbarWidth=320;
         settingsRect=CGRectMake(-285, -420, 27, 27);
         shadowRect = CGRectMake(0, 44, 1024, 61);
         zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 71, 43);
-        
     } else {
         if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
             CGSize result = [[UIScreen mainScreen] bounds].size;
@@ -210,6 +209,9 @@ NSInteger const toolbarWidth=320;
     [zones setImage:[UIImage imageNamed:@"bt_mode_maps"] forState:UIControlStateHighlighted];
     zones.frame = zonesRect;
     [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
+    if (IS_IPAD)
+        zones.hidden = YES;
+  
     [self addSubview:zones];
 
     UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];

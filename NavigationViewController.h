@@ -23,6 +23,7 @@
 - (void) showHidePhotos:(id)sender;
 - (void) showRasterMap;
 - (void) showMetroMap;
+- (BOOL) isMetroMode;
 - (void) showBookmarksLayer;
 - (void) hideBookmarksLayer;
 - (void) showReaderWithItems:(NSArray*)items activePage:(NSInteger)activePage;

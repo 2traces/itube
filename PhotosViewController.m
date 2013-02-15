@@ -168,8 +168,11 @@
     mediaView.frame = self.scrollPhotos.frame;
     CGRect imageFrame = mediaView.frame;
     if (IS_IPAD) {
-        imageFrame.size.width = 768;
-        imageFrame.origin.x = 788 * index;
+        CGRect windowBounds = [[UIScreen mainScreen] bounds];
+        float width = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? windowBounds.size.width : windowBounds.size.height;
+        
+        imageFrame.size.width = width;
+        imageFrame.origin.x = (width + 20) * index;
     }
     else
     {
@@ -204,7 +207,7 @@
     self.scrollPhotos.pagingEnabled = YES;
     currentPage = 0;
     //Preload first two images
-    UIImageView *imageView = nil;
+    UIView *imageView = nil;
     if (index) {
         imageView = [self imageViewWithIndex:currentPage];
         [self.scrollPhotos addSubview:imageView];
@@ -363,7 +366,7 @@
             }
             else {
                 // view is missing, create it and set its tag to currentPage+1
-                UIImageView *imageView = [self imageViewWithIndex:i];
+                UIView *imageView = [self imageViewWithIndex:i];
                 [self.scrollPhotos addSubview:imageView];
             }
         }
@@ -390,4 +393,8 @@
 }
 
 
+- (IBAction)switchMapMetro:(id)sender {
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate switchMapMode];
+}
 @end

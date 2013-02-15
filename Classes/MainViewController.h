@@ -69,6 +69,7 @@
 -(StationListViewController*)showiPadLiveSearchView;
 -(void)showiPadSettingsModalView;
 -(void)showiPadLeftPathView;
+-(void)hideiPadLeftPathView;
 -(void)toggleTap;
 
 -(void)setStarAtStation:(Station*)station;

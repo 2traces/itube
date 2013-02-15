@@ -52,10 +52,12 @@
 - (IBAction)showCategories:(id)sender;
 - (IBAction)showHidePhotos:(id)sender;
 - (IBAction)showBookmarks:(id)sender;
+- (IBAction)switchMapMetro:(id)sender;
 - (IBAction)addToFavorites:(id)sender;
 - (IBAction)centerMapOnUser:(id)sender;
 - (void)updateInfoForCurrentPage;
 - (Station*)stationForCurrentPhoto;
+- (void)reloadScrollView;
 
 - (void) loadPlaces:(NSArray*)places;
 

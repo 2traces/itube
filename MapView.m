@@ -353,7 +353,7 @@
     }
     [self makePreview];
     // это недокументированный метод, так что если он в будущем изменится, то ой
-    [self.layer invalidateContents];
+    //[self.layer invalidateContents];
     [self setNeedsDisplay];
     [self setNeedsLayout];
 }

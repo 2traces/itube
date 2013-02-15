@@ -484,6 +484,8 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     [zones setImage:[UIImage imageNamed:@"bt_mode_metro"] forState:UIControlStateHighlighted];
     zones.frame = zonesRect;
     [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
+    if (IS_IPAD)
+        zones.hidden = YES;
     [view addSubview:zones];
     view.zonesButton = zones;
 
