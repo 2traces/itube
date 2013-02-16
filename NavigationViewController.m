@@ -31,6 +31,7 @@
 @synthesize bookmarksController;
 @synthesize readerController;
 @synthesize currentPlaces;
+@synthesize currentCategory;
 @synthesize separatingView;
 @synthesize shadow;
 
@@ -247,7 +248,7 @@
     CGRect panelFrame = self.photosController.panelView.frame;
     
     if (IS_IPAD)
-        panelFrame.origin = CGPointMake(0, 535);
+        panelFrame.origin = CGPointMake(0, 615);
     else
         panelFrame.origin = CGPointMake(0, 304);
     [self.photosController.view addSubview:self.photosController.panelView];
@@ -270,7 +271,7 @@
     photosViewFrame.origin.x = 0;
     if (IS_IPAD)
     {
-        panelFrame.origin = CGPointMake(0, 535);
+        panelFrame.origin = CGPointMake(0, 615);
         //panelFrame.size = CGSizeMake(panelFrame.size.width, 90);
     }
     else
@@ -310,7 +311,7 @@
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
                 if (IS_IPAD)
-                    photosViewFrame.origin.y = -535;
+                    photosViewFrame.origin.y = -615;
                 else
                     photosViewFrame.origin.y = -304;
                 self.photosController.disappearingView.alpha = 0;
@@ -352,7 +353,7 @@
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
                 if (IS_IPAD)
-                    photosViewFrame.origin.y = -492;
+                    photosViewFrame.origin.y = -572;
                 else
                     photosViewFrame.origin.y = -261;
                 self.photosController.disappearingView.alpha = 0;
@@ -362,7 +363,7 @@
                 CGRect panelFrame = self.photosController.panelView.frame;
                 if (IS_IPAD) {
                     photosViewFrame.origin.x = self.view.frame.size.width;
-                    panelFrame.origin = CGPointMake(0, 535 - 492);
+                    panelFrame.origin = CGPointMake(0, 615 - 572);
                 } else {
                     photosViewFrame.origin.x = 320;
                     panelFrame.origin = CGPointMake(0, 304 - 261);
@@ -386,7 +387,7 @@
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
                 if (IS_IPAD)
-                    photosViewFrame.origin.y = -492;
+                    photosViewFrame.origin.y = -572;
                 else
                     photosViewFrame.origin.y = -261;
                 self.photosController.disappearingView.alpha = 0;
@@ -402,7 +403,7 @@
                 CGRect panelFrame = self.photosController.panelView.frame;
                 if (IS_IPAD) {
                     photosViewFrame.origin.x = self.view.frame.size.width;
-                    panelFrame.origin = CGPointMake(0, 535 - 492);
+                    panelFrame.origin = CGPointMake(0, 615 - 572);
                 } else {
                     photosViewFrame.origin.x = 320;
                     panelFrame.origin = CGPointMake(0, 304 - 261 - (44 - 28));
@@ -592,6 +593,8 @@
 
 - (void) selectCategoryWithIndex:(NSInteger)index {
     self.currentPlaces = [[MHelper sharedHelper] getPlacesForCategoryIndex:index];
+    MCategory * category = self.categoriesController.categories[index - 1];
+    self.currentCategory = category.name;
     [photosController loadPlaces:self.currentPlaces];
 
 }

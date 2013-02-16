@@ -454,11 +454,19 @@
 }
 
 -(void) initData {
-	nearestStationImage = [[UIImage imageWithContentsOfFile: 
+    if (!IS_IPAD)
+    {
+        nearestStationImage = [[UIImage imageWithContentsOfFile: 
 						   [[NSBundle mainBundle] pathForResource:@"select_near_station" ofType:@"png"]]retain];
-	nearestStationImageBw = [[UIImage imageWithContentsOfFile:
+        nearestStationImageBw = [[UIImage imageWithContentsOfFile:
                             [[NSBundle mainBundle] pathForResource:@"select_near_station_bw" ofType:@"png"]]retain];
-
+    } else
+    {
+        nearestStationImage = [[UIImage imageWithContentsOfFile:
+                                [[NSBundle mainBundle] pathForResource:@"select_near_station_iPad" ofType:@"png"]]retain];
+        nearestStationImageBw = [[UIImage imageWithContentsOfFile:
+                                  [[NSBundle mainBundle] pathForResource:@"select_near_station_bw_iPad" ofType:@"png"]]retain];
+    }
 }
 
 #pragma mark -

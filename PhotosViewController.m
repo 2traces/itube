@@ -97,18 +97,25 @@
 }
 
 - (void)updateInfoForCurrentPage {
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     MPlace *place = [(MPhoto*)(self.currentPhotos[currentPage]) place];
-    self.placeNameHeader.text = place.name;
+    self.placeNameHeader.text = appDelegate.navigationViewController.currentCategory;//place.name;
     self.placeNamePanel.text = place.name;
     self.placeDescription.text = [NSString stringWithFormat:@"\"%@\"", place.text];
     if (!IS_IPAD) {
         self.placeDescriptionBg.frame = self.placeDescription.frame;
         self.placeDescriptionBg.center = CGPointMake(self.placeDescription.center.x, self.placeDescription.center.y - 3);
-    }
-    UIImage *btImage = [place.isFavorite boolValue] ?
+    
+        UIImage *btImage = [place.isFavorite boolValue] ?
                 [UIImage imageNamed:@"bt_photo_like"] :
                 [UIImage imageNamed:@"bt_photo_like_empty"];
-    [self.btShowHideBookmarks setImage:btImage forState:UIControlStateNormal];
+        [self.btShowHideBookmarks setImage:btImage forState:UIControlStateNormal];
+    } else {
+        UIImage *btImage = [place.isFavorite boolValue] ?
+        [UIImage imageNamed:@"bt_photo_like_iPad"] :
+        [UIImage imageNamed:@"bt_photo_like_empty_iPad"];
+        [self.btShowHideBookmarks setImage:btImage forState:UIControlStateNormal];
+    }
     //[self.btAddToFavorites setImage:btImage forState:UIControlStateNormal];
     CGFloat distance = [self.navigationDelegate selectPlaceWithIndex:[place.index integerValue]];
     NSLog(@"%f km", distance);
@@ -255,12 +262,13 @@
     self.placeNamePanel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:(IS_IPAD?22.0f:16.0f)];
     self.placeDescriptionBg.layer.cornerRadius = 5;
     if (IS_IPAD)   {
-        self.placeDescription.font = [UIFont fontWithName:@"MyriadPro-Regular" size:17.0f];
+        self.placeDescription.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0f];
         self.placeDescription.textColor = [UIColor blackColor];
+        self.placeDescriptionBg.layer.cornerRadius = 12;
     } else
         self.placeDescription.font = [UIFont fontWithName:@"MyriadPr-Italic" size:16.0f];
     
-    self.distanceLabel.font = [UIFont fontWithName:@"MyriadPr-Italic" size:(IS_IPAD?13.0f:10.0f)];
+    self.distanceLabel.font = [UIFont fontWithName:@"MyriadPr-Italic" size:(IS_IPAD?11.0f:10.0f)];
     self.distanceLabel.textColor = [UIColor darkGrayColor];
     self.distanceLabel.text = @"";
     [self.scrollPhotos addGestureRecognizer:tapGR];
@@ -396,5 +404,20 @@
 - (IBAction)switchMapMetro:(id)sender {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate switchMapMode];
+    
+    BOOL isMetro = [appDelegate.navigationViewController isMetroMode];
+    
+    UIImage *btImage = isMetro ?
+        [UIImage imageNamed:@"bt_mode_maps_iPad"]:
+        [UIImage imageNamed:@"bt_mode_metro_iPad"];
+    [self.btSwitchMode setImage:btImage forState:UIControlStateNormal];
+}
+- (void)dealloc {
+    [_btSwitchMode release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setBtSwitchMode:nil];
+    [super viewDidUnload];
 }
 @end

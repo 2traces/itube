@@ -33,7 +33,8 @@
     [super awakeFromNib];
     UIImage* infoBg = [[UIImage imageNamed:(IS_IPAD? @"bookmark_item_info_bg_ipad":@"bookmark_item_info_bg")] resizableImageWithCapInsets:UIEdgeInsetsMake(29, 0, 29, 0)];
     self.imageInfoBg.image = infoBg;
-    self.textView.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12.0f];
+    self.textView.font = [UIFont fontWithName:@"MyriadPro-Regular" size:(IS_IPAD?18.0f:12.0f)];
+
     self.labelPlaceName.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15.0f];
     self.labelPlaceDistance.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12.0f];
 }

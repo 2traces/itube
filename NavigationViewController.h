@@ -68,7 +68,7 @@ typedef enum {
     HCLayerMode layerMode;
     NSInteger currentPlacePin;
     UIImageView *shadow;
-    
+
     CGRect rectMapFull, rectMapCut;
     
     BOOL returningFromLandscape; //another freaking dummy flag to keep old and new UI consistent and synchronized...
@@ -88,6 +88,7 @@ typedef enum {
 @property (nonatomic, retain) IBOutlet UIView *separatingView;
 @property (nonatomic, retain) IBOutlet UIImageView *shadow;
 @property (nonatomic, retain) NSArray *currentPlaces;
+@property (nonatomic, retain) NSString *currentCategory;
 @property (nonatomic, retain) CategoriesViewController *categoriesController;
 @property (nonatomic, retain) PhotosViewController *photosController;
 @property (nonatomic, retain) ReaderViewController *readerController;

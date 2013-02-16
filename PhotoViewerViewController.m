@@ -83,6 +83,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if (IS_IPAD) {
+        CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
+               self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, windowBounds.size.width, windowBounds.size.height);
+            }
+    
+
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [self.photos count], self.scrollView.frame.size.height);
 
     self.scrollView.contentOffset = CGPointMake(currentPage*self.scrollView.frame.size.width, 0);

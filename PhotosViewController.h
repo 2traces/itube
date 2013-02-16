@@ -48,6 +48,7 @@
 @property (nonatomic, retain) NSArray *currentPlaces;
 @property (nonatomic, retain) NSArray *currentPhotos;
 @property (nonatomic, retain) NSMutableArray *moviePlayers;
+@property (retain, nonatomic) IBOutlet UIButton *btSwitchMode;
 
 - (IBAction)showCategories:(id)sender;
 - (IBAction)showHidePhotos:(id)sender;
