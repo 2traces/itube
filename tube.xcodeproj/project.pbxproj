@@ -3576,7 +3576,6 @@
 				BC102A291570F42E009390A6 /* Localizable.strings */,
 				BC234C4C16145AE600F3D35B /* InitialDefaults.plist */,
 				BC0FD7041601E05D00C048FF /* Paris.geojson */,
-				8D1107310486CEB800E47090 /* berlin-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -3751,14 +3750,13 @@
 				572B6322165677D500B415DC /* ReaderViewController.m */,
 				572B632716567EF600B415DC /* ReaderItemViewController.h */,
 				572B632816567EF600B415DC /* ReaderItemViewController.m */,
-				5772FBD016668D83007B7661 /* PhotoViewerViewController.h */,
 				57CD10051682F9810070D8B6 /* RatePopupViewController.h */,
 				57CD10061682F9810070D8B6 /* RatePopupViewController.m */,
-				572B62BB1653FA0600B415DC /* HCBookmarkItemView.m */,
 				579D28D116480E990061B8F6 /* NavigationViewController.h */,
 				579D28D216480E990061B8F6 /* NavigationViewController.m */,
 				579D28DB164815F70061B8F6 /* PhotosViewController.h */,
 				579D28DC164815F70061B8F6 /* PhotosViewController.m */,
+				5772FBD016668D83007B7661 /* PhotoViewerViewController.h */,
 				5772FBD116668D83007B7661 /* PhotoViewerViewController.m */,
 			);
 			name = Controllers;
@@ -3787,7 +3785,6 @@
 				BC98E47414C9592700F5260D /* TopTwoStationsView.m */,
 				5133EFCC1614499600B7171A /* TopRasterView.h */,
 				5133EFCD1614499600B7171A /* TopRasterView.m */,
-				289233A40DB2D0840083E9F9 /* MainView.h */,
 				BC8C71EC14D98F810038EE0F /* PathScrollView.h */,
 				BC8C71ED14D98F810038EE0F /* PathScrollView.m */,
 				BCAEF46B15C8F07A008A8014 /* VertPathScrollView.h */,
@@ -3800,13 +3797,15 @@
 				BC1061A114D7DCDB00B08E63 /* PathDrawView.m */,
 				BC8DF97D14DAD8DE00294B61 /* PathDrawVertView.h */,
 				BC8DF97E14DAD8DE00294B61 /* PathDrawVertView.m */,
-				4BC1C944142E36CA003651BB /* MapView.h */,
 				9FFA6EBA14EE17920086199F /* ActiveView.h */,
 				9FFA6EBB14EE17920086199F /* ActiveView.m */,
 				57D09816165051A900467C1D /* CategoryCell.h */,
 				57D09817165051A900467C1D /* CategoryCell.m */,
 				572B62BA1653FA0600B415DC /* HCBookmarkItemView.h */,
+				572B62BB1653FA0600B415DC /* HCBookmarkItemView.m */,
+				289233A40DB2D0840083E9F9 /* MainView.h */,
 				289233A50DB2D0840083E9F9 /* MainView.m */,
+				4BC1C944142E36CA003651BB /* MapView.h */,
 				4BC1C945142E36CA003651BB /* MapView.m */,
 			);
 			name = Views;
@@ -3858,6 +3857,7 @@
 		577DEB9C166E30A3006BA43A /* Berlin */ = {
 			isa = PBXGroup;
 			children = (
+				8D1107310486CEB800E47090 /* berlin-Info.plist */,
 				577DEBDA166E403E006BA43A /* icon.png */,
 				577DEBDB166E403E006BA43A /* icon@2x.png */,
 				70BE359F16CE67D400852CD4 /* icon-ipad.png */,

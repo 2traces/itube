@@ -42,6 +42,7 @@
     [cityName release];
     [cellButton release];
     [progress release];
+    [_imageButton release];
     [super dealloc];
 }
 

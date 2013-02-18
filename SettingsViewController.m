@@ -420,6 +420,10 @@
             cityCell.cityName.hidden = YES;
             cityCell.cityNameAlt.text = [NSString stringWithFormat:NSLocalizedString(@"DownloadMapsLabel", @"DownloadMapsLabel"), mapName];
             [cityCell.cellButton addTarget:self action:@selector(buyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [cityCell.imageButton addTarget:self action:@selector(previewButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+
+            if ([map objectForKey:@"picture_maps"] != nil)
+                [[(CityCell*)cell imageView] setImage:[UIImage imageNamed:[map objectForKey:@"picture_maps"]]];
         }
         else if ([self isProductContentPurchase:[map objectForKey:@"prodID"]]) {
             //This is a content purchase cell
@@ -428,6 +432,11 @@
             cityCell.cityName.hidden = YES;
             cityCell.cityNameAlt.text = [NSString stringWithFormat:NSLocalizedString(@"PurchaseContentLabel", @"PurchaseContentLabel"), mapName];
             [cityCell.cellButton addTarget:self action:@selector(buyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [cityCell.imageButton addTarget:self action:@selector(previewButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+
+            if ([map objectForKey:@"picture_content"] != nil)
+                [[(CityCell*)cell imageView] setImage:[UIImage imageNamed:[map objectForKey:@"picture_content"]]];
         }
         else {
             CityCell *cityCell = (CityCell*)cell;
@@ -1185,17 +1194,108 @@
     [self startTimer];
 }
 
--(IBAction)buyButtonPressed:(id)sender 
+-(IBAction)buyButtonPressed:(id)sender
 {
-    CityCell *cell = (CityCell*)[[sender superview] superview];  
+    CityCell *cell = (CityCell*)[[sender superview] superview];
     NSMutableDictionary *map = [maps objectAtIndex:[cityTableView indexPathForCell:cell].row];
     NSString *prodID = [map valueForKey:@"prodID"];
     
     if ([self isProductStatusAvailable:prodID]) {
-        [self purchaseProduct:prodID];    
+        [self purchaseProduct:prodID];
     } else if ([self isProductStatusPurchased:prodID]) {
         [self downloadProduct:prodID];
     }
+}
+
+- (NetworkStatus) connectionStatus
+{
+    // Create zero addy
+    struct sockaddr_in zeroAddress;
+    bzero(&zeroAddress, sizeof(zeroAddress));
+    zeroAddress.sin_len = sizeof(zeroAddress);
+    zeroAddress.sin_family = AF_INET;
+	
+    // Recover reachability flags
+    SCNetworkReachabilityRef defaultRouteReachability = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *)&zeroAddress);
+    SCNetworkReachabilityFlags flags;
+	
+    BOOL didRetrieveFlags = SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags);
+    CFRelease(defaultRouteReachability);
+	
+    if (!didRetrieveFlags)
+    {
+        printf("Error. Could not recover network reachability flags\n");
+        return 0;
+    }
+               
+    if ((flags & kSCNetworkReachabilityFlagsReachable) == 0)
+    {
+        // if target host is not reachable
+        return NotReachable;
+    }
+    
+    NetworkStatus retVal = NotReachable;
+    
+    if ((flags & kSCNetworkReachabilityFlagsConnectionRequired) == 0)
+    {
+        // if target host is reachable and no connection is required
+        //  then we'll assume (for now) that your on Wi-Fi
+        retVal = ReachableViaWiFi;
+    }
+    
+    
+    if ((((flags & kSCNetworkReachabilityFlagsConnectionOnDemand ) != 0) ||
+         (flags & kSCNetworkReachabilityFlagsConnectionOnTraffic) != 0))
+    {
+        // ... and the connection is on-demand (or on-traffic) if the
+        //     calling application is using the CFSocketStream or higher APIs
+        
+        if ((flags & kSCNetworkReachabilityFlagsInterventionRequired) == 0)
+        {
+            // ... and no [user] intervention is needed
+            retVal = ReachableViaWiFi;
+        }
+    }
+    
+    if ((flags & kSCNetworkReachabilityFlagsIsWWAN) == kSCNetworkReachabilityFlagsIsWWAN)
+    {
+        // ... but WWAN connections are OK if the calling application
+        //     is using the CFNetwork (CFSocketStream?) APIs.
+        retVal = ReachableViaWWAN;
+    }
+    return retVal;
+}
+
+-(IBAction)previewButtonPressed:(id)sender
+{
+    CityCell *cell = (CityCell*)[[sender superview] superview];
+    NSMutableDictionary *map = [maps objectAtIndex:[cityTableView indexPathForCell:cell].row];
+    //NSString *prodID = [map valueForKey:@"prodID"];
+    
+    NetworkStatus status = [self connectionStatus];
+
+    if (status == ReachableViaWiFi)
+    {
+        NSString *video =[map valueForKey:@"video"];
+        if (video == nil)
+            video = @"https://www.youtube.com/watch?v=f-qDgqTJehg";
+        //        
+        NSURL *url = [NSURL URLWithString:video];
+        [[UIApplication sharedApplication] openURL:url];
+
+        // TODO: open youtube link
+    }
+    else
+    {
+        // TODO: open slideshow
+    }
+    
+    /*
+    if ([self isProductStatusAvailable:prodID]) {
+        [self purchaseProduct:prodID];
+    } else if ([self isProductStatusPurchased:prodID]) {
+        [self downloadProduct:prodID];
+    }*/
 }
 
 -(IBAction)openAppStoreLinkPressed:(id)sender

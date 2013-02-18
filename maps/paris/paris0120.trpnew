@@ -1,0 +1,1267 @@
+[Line1]
+Name=Ligne 1
+57	>^Chateau; de Vincennes 48.8443817,2.4401358	, 	SE	SE
+39	>^Berault 48.845442,2.429342	, 	SE	SE
+259	<_Saint-Mandé 48.846402,2.41886	, 	SME	SME
+223	>_Porte de ;Vincennes 48.84729,2.408111	, 	SE	SE
+173	Nation 48.8487439,2.3959264	, 	SME	SE
+238	<Reuilly Diderot 48.8473177,2.3865813	, 	SE	SE
+99	<Gare de; Lyon 48.8447174,2.3739303	, 	SME	SM
+17	<Bastille 48.8530821,2.3690021	, 	SM	ME
+263	<Saint-Paul 48.8551681,2.3613793	, 	S	ME
+111	Hotel de Ville 48.8574852,2.3515168	, 	SME	SE
+59	>Chatelet 48.8585635,2.3472038	, 	SE	SME
+143	_Louvre; ó Rivoli 48.8609069,2.3407853	, 	E	S
+182	>_Palais Royal ;Musee du ;Louvre 48.8629255,2.3360297	, 	SE	SE
+282	Tuileries 48.8649583,2.3283666	, 	E	S
+66	<Concorde 48.8654470,2.3211113	, 	SE	SM
+46	>_Champs;-Elysees; Clemenceau 48.8675313,2.3135418	, 	S	ME
+93	>Franklin D. Roosevelt 48.8689775,2.3101169	, 	ME	SME
+104	George V 48.8720128,2.3005695	, 	M	ME
+50	>_Charles ;de Gaulle ;ó Etoile 48.8739342,2.2949002	, 	ME	SME
+7 	Argentine 48.8753435,2.2901167	, 	S	E
+206	>Porte Maillot 48.8779463,2.2819252	, 	SE	SE
+137	Les Sablons 48.8813967,2.2716004	, 	SE	SE
+202	Pont de Neuilly 48.8625268,2.3010027	, 	SE	SE
+86	>_Esplanade; de la Defense 48.888012,2.250011	, 	SE	S
+124	>_La Defense 48.891722,2.238488	, 	SE	S
+
+branch01 = <>57, 39, 259, 223, 173, 238, 99, 17, 263, 111, 59, 143, 182, 282, 66, 46, 93, 104, 50, 7, 206, 137, 202, 86, 124
+driving01 = 1, 8, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 4, 6
+
+[Line2]
+Name=Ligne 2
+173	Nation 48.8487439,2.3959264	, 	SME	SE
+13	Avron 48.8513066,2.3983106	, 	E	S
+2 	<Alexandre ;Dumas 48.855946,2.394936	, 	S	E
+189	<Philippe; Auguste 48.8583888,2.3896818	, 	S	E
+230	<Pere ;Lachaise 48.8629211,2.3873880	, 	S	E
+172	Menilmontant 48.8662481,2.3836255	, 	S	E
+73	<Couronnes 48.8692739,2.3801547	, 	E	S
+19	>Belleville 48.8720832,2.3769471	, 	E	S
+64	<Colonel Fabien 48.87685,2.371397	, 	S	E
+32	Jaures 48.882862,2.37071	, 	SE	SE
+271	<Stalingrad 48.884005,2.368478	, 	SM	SE
+122	<La ;Chapelle 48.8844093,2.3602901	, 	S	E
+15	|_Barbes; Rochechouart 48.8837373,2.3504171	, 	SM	SME
+6 	Anvers 48.8828484,2.3442534	, 	S	SE
+192	>Pigalle 48.8822547,2.3375730	, 	S	SE
+24	Blanche 48.88364,2.333147	, 	S	SE
+195	<_Place ;de Clichy 48.8834922,2.3273742	, 	SE	SE
+243	<^Rome 48.882411,2.321979	, 	S	E
+292	<Villiers 48.8813950,2.3158005	, 	ME	SME
+168	Monceau 48.8802943,2.3090386	, 	E	S
+72	>Courcelles 48.8792677,2.3033041	, 	S	E
+278	Ternes 48.8781088,2.2981864	, 	SM	E
+50	>_Charles ;de Gaulle ;ó Etoile 48.8739342,2.2949002	, 	ME	SME
+288	Victor Hugo 48.8698682,2.2852443	, 	S	E
+204	>^Porte ;Dauphine 48.8716380,2.2751677	, 	E	E
+
+branch2 = <>173, 13, 2, 189, 230, 172, 73, 19, 64, 32, 271, 122, 15, 6, 192, 24, 195, 243, 292, 168, 72, 278, 50, 288, 204
+driving2 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+
+[Line3]
+Name=Ligne 3
+96	_Gallieni 48.865079,2.415471	, 	SE	SE
+211	>Porte; de Bagnolet 48.8644995,2.4088383	, 	SE	SE
+97	Gambetta 48.8649470,2.3984513	, 	SE	SE
+230	<Pere ;Lachaise 48.8629211,2.3873880	, 	S	E
+244	Rue; Saint-Maur 48.8643352,2.3794476	, 	SE	SE
+183	Parmentier 48.8652986,2.3743808	, 	SE	S
+249	<Republique 48.8675033,2.3638109	, 	SME	ME
+277	Temple 48.866547,2.361376	, 	E	S
+8 	Arts et; Metiers 48.8654488,2.3561168	, 	SE	SM
+248	Reaumur; Sebastopol 48.8662562,2.3523944	, 	SE	SE
+268	Sentier 48.8675690,2.3463870	, 	SE	SE
+34	Bourse 48.8686478,2.3413738	, 	SE	SE
+233	<Quatre-Septembre 48.8696444,2.3364455	, 	S	E
+180	<Opera 48.8706430,2.3323550	, 	SME	SME
+109	Havre; Caumartin 48.8735469,2.3287287	, 	SM	ME
+259	>Saint-Lazare 48.8759602,2.3238015	, 	SME	SME
+87	Europe 48.8788208,2.3223800	, 	M	M
+292	<Villiers 48.8813950,2.3158005	, 	ME	SME
+157	<Malesherbes 48.8824550,2.3109591	, 	S	E
+295	Wagram 48.883992,2.303889	, 	ME	S
+187	<Pereire 48.8849120,2.2973174	, 	SM	ME
+212	>Porte de Champerret 48.8857744,2.2924680	, 	S	E
+141	>Louise Michel 48.888888,2.287957	, 	S	E
+5 	>Anatole France 48.8922257,2.2849041	, 	SM	S
+201	>_Pont de Levallois ;Becon 48.8973133,2.2807869	, 	SE	SE
+
+branch3 = <>96, 211, 97, 230, 244, 183, 249, 277, 8, 248, 268, 34, 233, 180, 109, 259, 87, 292, 157, 295, 187, 212, 141, 5, 201
+driving3 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+
+[Line4]
+Name=Ligne 3bis
+97	Gambetta 48.8649470,2.3984513	, 	SE	SE
+186	<Pelleport 48.8686750,2.4017526	, 	E	S
+254	>Saint-;Fargeau 48.8720886,2.4045226	, 	E	S
+226	<^Porte des ;Lilas 48.8771650,2.4064188	, 	S	S
+branch4 = <>97, 186, 254, 226
+driving4 = 1, 1, 1
+
+[Line5]
+Name=Ligne 4
+216	>Porte de Clignancourt 48.8973360,2.3449534	, 	SM	SM
+269	Simplon 48.893655,2.348008	, 	S	E
+159	<_Marcadet ;Poissonniers 48.8915539,2.3495936	, 	SM	E
+55	<Chateau Rouge 48.8871589,2.3494568	, 	S	E
+15	|_Barbes; Rochechouart 48.883738,2.34953	, 	SM	SME
+101	>Gare du Nord 48.880211,2.35558	, 	SME	SE
+100	<Gare de ;l'Est 48.8761414,2.3582835	, 	ME	SM
+56	<Chateau ;d'Eau 48.8724778,2.3559156	, 	ME	S
+272	<Strasbourg ;Saint-Denis 48.8694239,2.3542553	, 	ME	S
+248	Reaumur; Sebastopol 48.8662562,2.3523944	, 	SE	SE
+300	>Etienne Marcel 48.8638202,2.3490170	, 	E	S
+136	>Les Halles 48.862369,2.345175	, 	SM	M
+59	>Chatelet 48.85867,2.347471	, 	SE	SME
+62	Cite 48.855508,2.3476	, 	M	S
+262	>Saint-;Michel 48.8536609,2.3439288	, 	SM	SE
+178	Odeon 48.852071,2.340325	, 	SE	SE
+257	>Saint-Germain;-des-Pres 48.8537121,2.3332644	, 	E	S
+266	<Saint-Sulpice 48.8515060,2.3311856	, 	S	SE
+265	>Saint-Placide 48.8469258,2.3268056	, 	E	SM
+170	>_Montparnasse; Bienvenue 48.842659,2.322816	, 	SM	E
+287	Vavin 48.8536609,2.3439288	, 	E	M
+236	Raspail 48.8390088,2.3307297	, 	S	ME
+81	<_Denfert;-Rochereau 48.833803,2.332665	, 	SM	SE
+171	>Mouton;-Duvernet 48.831317,2.329919	, 	E	SM
+4 	Alesia 48.8282265,2.3268056	, 	E	SM
+210	>^Porte; d'Orleans 48.8231346,2.3256624	, 	SM	SM
+
+branch5 = <>210, 4, 171, 81, 236, 287, 170, 265, 266, 257, 178, 262, 62, 59, 136, 300, 248, 272, 56, 100, 101, 15, 55, 159, 269, 216
+driving5 = 1, 1, 1, 1, 1, 3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+
+[Line6]
+Name=Ligne 5
+25	<_Bobigny ;Pablo Picasso 48.906929,2.449717	, 	SE	SE
+26	>_Bobigny Pantin;Raymond Queneau 48.895472,2.425794	, 	SE	SM
+299	Eglise de Pantin 48.892933,2.41249	, 	SE	SE
+110	Hoche 48.8912752,2.4027658	, 	S	E
+218	|_Porte ;de Pantin 48.8897251,2.3962640	, 	SME	SE
+181	Ourcq 48.8868550,2.3857486	, 	S	E
+130	Laumiere 48.885077,2.37942	, 	S	E
+32	Jaures 48.882904,2.37071	, 	SE	SE
+271	<Stalingrad 48.884047,2.368586	, 	SM	SE
+101	>Gare du Nord 48.880211,2.35558	, 	SME	SE
+100	<Gare de ;l'Est 48.8761414,2.3582835	, 	ME	SM
+114	<Jacques ;Bonsergent 48.870866,2.361075	, 	E	S
+249	<Republique 48.8675033,2.3638109	, 	SME	ME
+177	Oberkampf 48.864571,2.368671	, 	SE	SE
+239	Richard-Lenoir 48.8603952,2.3720705	, 	SE	SE
+36	<_Breguet; Sabin 48.8567246,2.3705578	, 	SE	SE
+17	<Bastille 48.8530821,2.3690021	, 	SM	ME
+232	>_Quai de ;la Rapee 48.8465587,2.3658746	, 	E	S
+98	<_Gare ;d'Austerlitz 48.8426348,2.3649691	, 	SE	SE
+261	<Saint-Marcel 48.838635,2.361042	, 	S	E
+42	<_Campo ;Formio 48.8356598,2.3586059	, 	S	E
+194	<Place ;d'Italie 48.8314830,2.3556922	, 	SE	SE
+
+branch6 = <>194, 42, 261, 98, 232, 17, 36, 239, 177, 249, 114, 100, 101, 271, 32, 130, 181, 218, 110, 299, 26, 25
+driving6 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 9
+
+[Line7]
+Name=Ligne 6
+173	Nation 48.8487439,2.3959264	, 	SME	SE
+190	Picpus 48.8449754,2.4022132	, 	S	E
+18	Bel-Air 48.8413445,2.4009152	, 	E	S
+80	>Daumesnil 48.8396485,2.3957936	, 	SM	ME
+82	Dugommier 48.8390490,2.3899654	, 	S	E
+20	Bercy 48.8402163,2.3803397	, 	SE	SE
+231	Quai de la Gare 48.8372221,2.3730672	, 	E	S
+54	Chevaleret 48.8349406,2.3680827	, 	S	E
+10	Nationale 48.833168,2.362749	, 	SE	SE
+194	<Place ;d'Italie 48.8314830,2.3556922	, 	SE	SE
+70	Corvisart 48.8298660,2.3505050	, 	S	E
+105	Glaciere 48.8311608,2.3433855	, 	S	E
+258	Saint-Jacques 48.8329136,2.3370824	, 	S	E
+81	<_Denfert;-Rochereau 48.8339202,2.3327258	, 	SM	SE
+236	Raspail 48.8390088,2.3307297	, 	S	ME
+85	Edgar Quinet 48.841246,2.325263	, 	S	E
+170	Montparnasse Bienvenue 48.841938,2.321486	, 	SM	E
+185	<^Pasteur 48.8428425,2.3126815	, 	S	E
+275	Sevres Lecourbe 48.8456460,2.3094665	, 	E	S
+41	Cambronne 48.8475407,2.3028608	, 	S	E
+126	<La Motte-Picquet Grenelle 48.848787,2.298848	, 	S	E
+83	Dupleix 48.8504316,2.2935574	, 	S	E
+23	>Bir-Hakeim 48.8539172,2.2893325	, 	SE	SE
+184	Passy 48.8575017,2.2857879	, 	M	SM
+281	<Trocadero 48.8628797,2.2872054	, 	E	S
+27	Boissiere 48.8668497,2.2901210	, 	E	S
+121	Kleber 48.8714793,2.2933263	, 	S	E
+50	>_Charles ;de Gaulle ;ó Etoile 48.8739342,2.2949002	, 	ME	SME
+
+branch1 = <>173, 190, 18, 80, 82, 20, 231, 54, 10, 194, 70, 105, 258, 81, 236, 85, 170, 185, 275, 41, 126, 83, 23, 184, 281, 27, 121, 50
+driving1 = 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 4, 2, 1, 2
+
+[Line8]
+Name=Ligne 7
+123	>La Courneuve ;8 Mai 1945 48.9207509,2.4106407	, 	SM	SM
+92	<Fort ;d'Aubervilliers 48.9145677,2.4041015	, 	SM	ME
+11	>_Aubervilliers Pantin ;Quatre Chemins 48.9039007,2.3924991	, 	M	M
+225	Porte de la Villette 48.8970892,2.3858731	, 	SE	E
+68	Corentin Cariou 48.8947475,2.3824078	, 	S	E
+74	Crimee 48.890594,2.376718	, 	SE	SE
+241	Riquet 48.8883618,2.3741707	, 	SE	E
+271	<Stalingrad 48.884315,2.365989	, 	SM	SE
+140	<^Louis ;Blanc 48.8812027,2.3651585	, 	S	E
+58	Chateau-Landon 48.8784593,2.3620724	, 	S	E
+100	<Gare de ;l'Est 48.8761414,2.3582835	, 	ME	SM
+198	Poissonniere 48.8915539,2.3495936	, 	SM	E
+40	Cadet 48.876075,2.344187	, 	E	S
+132	Le Peletier 48.8749441,2.3404366	, 	S	E
+52	>Chaussee ;d'Antin ;La Fayette 48.8729277,2.3332348	, 	ME	SM
+180	<Opera 48.8706430,2.3323550	, 	SME	SME
+228	Pyramides 48.865779,2.334424	, 	SE	SE
+182	>_Palais Royal ;Musee du ;Louvre 48.8629255,2.3360297	, 	SE	SE
+200	>Pont Neuf 48.8585494,2.3420861	, 	E	S
+59	>Chatelet 48.8585635,2.3472038	, 	SE	SME
+199	>^Pont Marie 48.8536292,2.3572218	, 	E	S
+273	>Sully ;Morland 48.8512342,2.3623958	, 	SE	SE
+120	Jussieu 48.8459815,2.3545772	, 	ME	SM
+193	<Place ;Monge 48.8435897,2.3522788	, 	SE	SE
+45	<Censier ;Daubenton 48.8405970,2.3517741	, 	M	ME
+135	<Les ;Gobelins 48.836545,2.35203	, 	ME	SM
+194	<Place ;d'Italie 48.8314830,2.3556922	, 	SE	SE
+279	>Tolbiac 48.8262506,2.3570368	, 	E	SM
+152	>Maison Blanche 48.8221532,2.3585336	, 	SM	ME
+208	Porte d'Italie 48.8190932,2.3595500	, 	SE	M
+214	Porte de Choisy 48.8200116,2.3646677	, 	S	E
+209	Porte d'Ivry 48.8215551,2.3692703	, 	S	E
+191	<Pierre et Marie ;Curie 48.815715,2.377586	, 	M	M
+147	Mairie d'Ivry 48.8111272,2.3833914	, 	M	SE
+131	>Le Kremlin ;Bicetre 48.810493,2.36247	, 	M	M
+290	<Villejuif Leo Lagrange 48.804586,2.363994	, 	M	M
+291	<Villejuif Paul ;Vaillant-Couturier 48.796445,2.368242	, 	M	M
+289	<Villejuif Louis ;Aragon 48.787482,2.367856	, 	M	M
+
+branch8 = <>152, 279, 194, 135, 45, 193, 120, 273, 199, 59, 200, 182, 228, 180, 52, 132, 40, 198, 100, 58, 140, 271, 241, 74, 68, 225, 11, 92, 123
+branch9 = <>147, 191, 209, 214, 208, 152, 279, 194, 135, 45, 193, 120, 273, 199, 59, 200, 182, 228, 180, 52, 132, 40, 198, 100, 58, 140, 271, 241, 74, 68, 225, 11, 92, 123
+branch10 = <>289, 291, 290, 131, 152, 279, 194, 135, 45, 193, 120, 273, 199, 59, 200, 182, 228, 180, 52, 132, 40, 198, 100, 58, 140, 271, 241, 74, 68, 225, 11, 92, 123
+driving8 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1
+driving9 = 1, 7, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1
+driving10 = 1, 1, 7, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1
+
+[Line9]
+Name=Ligne 7bis
+140	Louis Blanc 48.8812027,2.3651585	, 	S	E
+32	Jaures 48.882916,2.370776	, 	SE	SE
+28	Bolivar 48.880686,2.374124	, 	S	E
+37	Buttes Chaumont 48.877807,2.381248	, 	S	ME
+30	Botzaris 48.8795323,2.3890596	, 	E	S
+196	Place des Fetes 48.8767452,2.3926941	,	M	M
+227	<Pre ;St-Gervais 48.8802255,2.3987371	,	M	M
+79	Danube 48.8820106,2.3930240	,	M	M
+
+branch11 = >30, 196, 227, 79, 30
+driving11 = 1, 1, 1, 1
+branch12 = <>140, 32, 28, 37, 30
+driving12 = 1, 1, 1, 1
+
+[Line10]
+Name=Ligne 8
+14	<Balard 48.8368567,2.2786009	, 	E	E
+142	Lourmel 48.8386010,2.2819805	, 	ME	S
+31	Boucicaut 48.8410874,2.2877888	, 	E	S
+94	<Felix ;Faure 48.8427442,2.2916995	, 	E	S
+65	<Commerce 48.8446682,2.2937688	, 	ME	E
+126	<La Motte-Picquet Grenelle 48.8490474,2.2979155	, 	S	E
+296	<Ecole Militaire 48.8544463,2.3054901	, 	SM	E
+128	>_La Tour-Maubourg 48.8576405,2.3105380	, 	ME	M
+112	>Invalides 48.863004,2.314834	, 	E	S
+66	<Concorde 48.8654470,2.3211113	, 	SE	SM
+145	<Madeleine 48.8697538,2.3244452	, 	SM	M
+180	<Opera 48.8706430,2.3323550	, 	SME	SME
+240	<_Richelieu ;Drouot 48.8721020,2.3395085	, 	SE	SM
+107	Grands ;Boulevards 48.8715234,2.3432100	, 	SE	SE
+29	Bonne Nouvelle 48.8706515,2.3488808	, 	SE	SE
+272	<Strasbourg ;Saint-Denis 48.8694239,2.3542553	, 	ME	S
+249	<Republique 48.8675033,2.3638109	, 	SME	ME
+91	<Filles ;du Calvaire 48.8630561,2.3666096	, 	E	S
+267	<Saint-Sebastien ;Froissart 48.8609740,2.3672265	, 	S	E
+53	>Chemin ;Vert 48.8576211,2.3679399	, 	S	E
+17	<Bastille 48.8530821,2.3690021	, 	SM	ME
+133	<Ledru-Rollin 48.8512642,2.3760992	, 	SE	SE
+89	<Faidherbe Chaligny 48.8502370,2.3833840	, 	SE	SE
+238	<Reuilly Diderot 48.8473177,2.3865813	, 	SE	SE
+169	<Montgallet 48.8443982,2.3898804	, 	S	E
+80	>Daumesnil 48.8396485,2.3957936	, 	SM	ME
+163	Michel Bizot 48.8372310,2.4022293	, 	E	S
+205	Porte Doree 48.8354799,2.4061020	, 	SE	SE
+213	Porte de Charenton 48.8327886,2.4004009	, 	E	S
+138	Liberte 48.826431,2.405846	, 	SE	SE
+48	<Charenton Ecoles 48.8214921,2.4138620	, 	SE	SE
+297	<Ecole Veterinaire ;de Maisons-Alfort 48.8151123,2.4217558	, 	M	SM
+154	<Maisons-Alfort Stade 48.809051,2.434675	, 	E	S
+153	<Maisons-Alfort Les Juilliottes 48.803342,2.44579	, 	SE	SE
+76	<Creteil L'Echat 48.796473,2.44946	, 	S	M
+78	<Creteil Universite 48.789885,2.450618	, 	SM	M
+77	<Creteil Prefecture 48.77972,2.459502	, 	M	M
+600	<Creteil Pointe du Lac 48.768769,2.464361	, 	M	M
+
+branch14 = <>600, 77, 78, 76, 153, 154, 297, 48, 138, 213, 205, 163, 80, 169, 238, 89, 133, 17, 53, 267, 91, 249, 272, 29, 107, 240, 180, 145, 66, 112, 128, 296, 126, 65, 94, 31, 142, 14
+driving14 = 1, 1, 1, 13, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+
+[Line11]
+Name=Ligne 9
+149	>_Mairie ;de Montreuil 48.8624262,2.4417114	, 	ME	ME
+75	>^Croix de Chavaux 48.8580554,2.4357636	, 	SE	SE
+242	<^Robespierre 48.8557733,2.4234509	, 	SE	SE
+217	<^Porte de Montreuil 48.8535392,2.4105066	, 	S	E
+158	<^Maraichers 48.8527291,2.4062821	, 	S	E
+38	<^Buzenval 48.8517566,2.4013469	, 	SE	E
+173	Nation 48.8487439,2.3959264	, 	SME	SE
+246	>Rue ;des Boulets 48.8525279,2.3890409	, 	S	ME
+51	Charonne 48.854703,2.38543	, 	SE	SE
+294	Voltaire 48.8578011,2.3801097	, 	SE	SME
+250	Saint-Ambroise 48.861282,2.37425	, 	SE	SE
+177	Oberkampf 48.864557,2.368757	, 	SE	SE
+249	<Republique 48.8675033,2.3638109	, 	SME	ME
+272	<Strasbourg ;Saint-Denis 48.8694239,2.3542553	, 	ME	S
+29	Bonne Nouvelle 48.8706515,2.3488808	, 	SE	SE
+107	Grands Boulevards 48.8715234,2.3432100	, 	SE	SE
+240	<_Richelieu ;Drouot 48.8721020,2.3395085	, 	SE	SM
+52	>Chaussee d'Antin La Fayette 48.8729277,2.3332348	, 	ME	SM
+109	Havre; Caumartin 48.873655,2.327418	, 	SM	ME
+251	Saint-Augustin 48.874728,2.320198	, 	SE	SE
+167	Miromesnil 48.8736545,2.3143145	, 	ME	SE
+264	Saint-Philippe du Roule 48.8722661,2.3099881	, 	E	S
+93	>Franklin D. Roosevelt 48.8689775,2.3101169	, 	ME	SME
+3 	>_Alma Marceau 48.8645912,2.3015445	, 	SME	M
+113	Iena 48.8647201,2.2938895	, 	E	S
+281	<Trocadero 48.8628797,2.2872054	, 	E	S
+245	_>Rue de la Pompe 48.8640707,2.2783220	, 	SE	S
+127	>La ;Muette 48.8580958,2.2741189	, 	E	S
+235	>Ranelagh 48.8550252,2.2696236	, 	E	S
+115	>Jasmin 48.8524502,2.2680438	, 	E	S
+164	>_Michel-;Ange ;Auteuil 48.8479249,2.2642082	, 	E	S
+165	>^Michel-;Ange ;Molitor 48.8451448,2.2616628	, 	E	S
+88	<Exelmans 48.8424155,2.2595637	, 	SE	SE
+219	<Porte de Saint-Cloud 48.8380818,2.2569560	, 	SE	SE
+160	<^Marcel Sembat 48.8336681,2.2435801	, 	SE	SE
+22	<^Billancourt 48.8322205,2.2385287	, 	SE	SE
+203	<^Pont de Sevres 48.8296672,2.2307181	, 	SME	SME
+
+branch15 = <>149, 75, 242, 217, 158, 38, 173, 246, 51, 294, 250, 177, 249, 272, 29, 107, 240, 52, 109, 251, 167, 264, 93, 3, 113, 281, 245, 127, 235, 115, 164, 165, 88, 219, 160, 22, 203
+driving15 = 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1
+
+[Line12]
+Name=Ligne 10
+33	<^Boulogne ;Pont de ;Saint-;Cloud 48.8406835,2.2283311	, 	E	E
+32	<^Boulogne ;Jean Jaures 48.8419727,2.2387862	, 	SE	SE
+165	>^Michel-;Ange ;Molitor 48.8451448,2.2616628	,	M	M
+47	Chardon Lagache 48.8451429,2.2662185	, 	S	S
+166	Mirabeau  48.8470600,2.2725713,	M	M
+164	Porte d'Auteuil 48.8483273,2.2576850	, 	SE	SE
+207	>_Michel-;Ange ;Auteuil 48.8479249,2.2642082	, 	E	S
+298	Eglise d'Auteuil 48.8479284,2.2700071	, 	SE	SE
+117	<Javel ;Andre Citroen 48.8470600,2.2725713	, 	E	S
+49	<Charles ;Michels 48.8464934,2.2858027	, 	S	E
+12	>_Avenue Emile Zola 48.8469858,2.2956759	, 	E	S
+126	<La Motte-Picquet Grenelle 48.8490474,2.2979155	, 	S	E
+276	Segur 48.8474429,2.3068782	, 	E	S
+84	Duroc 48.8468337,2.3164789	, 	E	S
+284	Vaneau 48.8489464,2.3215577	, 	S	E
+274	Sevres Babylone 48.8512678,2.3265159	, 	SE	SE
+144	Mabillon 48.8528862,2.3354235	, 	E	S
+178	Odeon 48.8523373,2.3388138	, 	SE	SE
+63	<_Cluny ;La Sorbonne 48.850843,2.3454	, 	SM	ME
+162	<_Maubert ;Mutualite 48.850052,2.348833	, 	E	SM
+43	<_Cardinal ;Lemoine 48.8466328,2.3515758	, 	E	S
+120	Jussieu 48.8459815,2.3545772	, 	ME	SM
+98	<_Gare ;d'Austerlitz 48.8426348,2.3649691	, 	SE	SE
+
+branch16 = <>98, 120, 43, 162, 63, 178, 144, 274, 284, 84, 276, 126, 12, 49, 117
+branch17 = >117, 298, 207, 164, 32, 33
+branch18 = >33, 32, 165, 47, 166, 117
+driving16 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+driving17 = 1, 1, 1, 1, 1
+driving18 = 1, 1, 1, 1, 1
+
+[Line13]
+Name=Ligne 11
+151	>_Mairie ;des Lilas 48.8797925,2.4162921	, 	S	S
+226	<^Porte des ;Lilas 48.8771650,2.4064188	, 	S	S
+283	Telegraphe 48.8755049,2.3989463	, 	S	E
+196	Place des Fetes 48.8767452,2.3926941	, 	SE	SE
+118	Jourdain 48.8752059,2.3895118	, 	E	S
+229	Pyrenees 48.8738776,2.3852595	, 	M	E
+19	>Belleville 48.8720832,2.3769471	, 	E	S
+106	Goncourt 48.8699655,2.3709226	, 	S	E
+249	<Republique 48.8675033,2.3638109	, 	SME	ME
+8 	Arts et Metiers 48.8654488,2.3561168	, 	SE	SM
+234	Rambuteau 48.8612210,2.3534131	, 	SE	SE
+111	Hotel de Ville 48.857273,2.352278	, 	SME	SE
+59	>Chatelet 48.8585635,2.3472038	, 	SE	SME
+
+branch19 = <>59, 111, 234, 8, 249, 106, 19, 229, 118, 196, 283, 226, 151
+driving19 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+
+[Line14]
+Name=Ligne 12
+146	<^Mairie d'Issy 48.8242711,2.2731829	, 	E	E
+69	<^Corentin Celton 48.8268330,2.2789847	, 	E	S
+222	<^Porte de Versailles 48.8323284,2.2878412	, 	S	SE
+67	<^Convention 48.8372381,2.2964054	, 	M	M
+286	<^Vaugirard 48.8396491,2.3014908	, 	E	S
+293	<^Volontaires 48.8414573,2.3079067	, 	S	E
+185	<^Pasteur 48.8428425,2.3126815	, 	S	E
+90	Falguiere 48.8443770,2.3176217	, 	E	S
+170	Montparnasse Bienvenue 48.842023,2.32155	, 	SM	E
+176	<Notre-Dame ;des-Champs 48.8452278,2.3285919	, 	E	S
+237	Rennes 48.8484367,2.3280287	, 	E	S
+274	Sevres Babylone 48.8512678,2.3265159	, 	SE	SE
+247	<_Rue ;du Bac 48.8559551,2.3255771	, 	S	E
+270	<Solferino 48.8582847,2.3232711	, 	SE	SE
+10	<_Assemblee Nationale 48.860802,2.321035	, 	SE	SE
+66	<Concorde 48.8654470,2.3211113	, 	SE	SM
+145	<Madeleine 48.8697538,2.3244452	, 	SM	M
+259	>Saint-Lazare 48.8759602,2.3238015	, 	SME	SME
+280	>Trinite d'Estienne d'Orves 48.8763051,2.3331992	, 	SE	SE
+175	>_Notre Dame; de Lorette 48.87613,2.33803	, 	SE	SE
+256	>_Saint; Georges 48.8784891,2.3373822	, 	M	S
+192	>Pigalle 48.8822547,2.3375730	, 	S	SE
+1 	Abbesses 48.8843035,2.3385590	, 	E	S
+129	>Lamarck ;Caulaincourt 48.8896686,2.3388916	, 	S	E
+119	Jules ;Joffrin 48.8925185,2.3443258	, 	E	M
+159	<_Marcadet ;Poissonniers 48.8915539,2.3495936	, 	SM	E
+161	<Marx ;Dormoy 48.8902259,2.3598880	, 	E	S
+224	<Porte ;de la Chapelle 48.8972792,2.3591918	, 	SME	SME
+
+branch20 = <>146, 69, 222, 67, 286, 293, 185, 90, 170, 176, 237, 274, 247, 270, 10, 66, 145, 259, 280, 175, 256, 192, 1, 129, 119, 159, 161, 224
+driving20 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+
+[Line15]
+Name=Ligne 13
+61	<_Chatillon Montrouge 48.8103893,2.3013997	, 	SM	SM
+156	<^Malakoff Rue Etienne Dolet 48.8152254,2.2967622	, 	E	SM
+155	<^Malakoff Plateau de Vanves 48.822036,2.298097	, 	M	M
+221	Porte de Vanves 48.8277409,2.3054391	, 	E	S
+197	Plaisance 48.8317596,2.3140061	, 	S	ME
+188	Pernety 48.8339860,2.3180401	, 	E	SE
+103	Gaite 48.8388411,2.3225355	, 	S	E
+170	Montparnasse Bienvenue 48.842023,2.32155	, 	SM	E
+84	Duroc 48.8468337,2.3164789	, 	E	S
+255	<Saint-;Francois-;Xavier 48.8516296,2.3142448	, 	E	S
+285	Varenne 48.8562344,2.3149225	, 	S	E
+112	>Invalides 48.8629784,2.3134053	, 	E	S
+46	>_Champs;-Elysees; Clemenceau 48.8675313,2.3135418	, 	S	ME
+167	Miromesnil 48.8736545,2.3143145	, 	ME	SE
+259	>Saint-Lazare 48.8759602,2.3238015	, 	SME	SME
+139	Liege 48.8796570,2.3269990	, 	S	S
+195	<_Place ;de Clichy 48.8834922,2.3273742	, 	SE	SE
+125	<La ;Fourche 48.8875011,2.3255932	, 	SE	SE
+35	>^Brochant 48.8906333,2.3201375	, 	E	S
+215	>^Porte de Clichy 48.894332,2.313611	, 	E	S
+148	>^Mairie de ;Clichy 48.9039287,2.3055195	, 	SME	SE
+95	<Gabriel Peri 48.9165631,2.2944045	, 	M	M
+134	<Les Agnettes 48.9231108,2.2861889	, 	SM	SE
+9 	<_Asnieres Gennevilliers - ;Les Courtilles 48.9317436,2.2867012	, 	M	M
+108	<^Guy ;Moquet 48.8928289,2.3272669	, 	SE	SE
+220	<^Porte ;de Saint-Ouen 48.8975123,2.3289192	, 	SE	E
+102	Garibaldi 48.9063852,2.3319291	, 	S	E
+150	>_Mairie ;de Saint-Ouen 48.9120329,2.3338437	, 	E	S
+44	Carrefour Pleyel 48.9196264,2.3430276	, 	S	E
+252	<Saint-Denis ;Porte de Paris 48.9343835,2.3453987	, 	SM	SM
+16	<_Basilique de ;Saint-Denis 48.938328,2.360432	, 	SM	SM
+253	<_Saint-Denis ;Universite 48.9343835,2.3453987	, 	S	E
+
+branch21 = <>61, 156, 155, 221, 197, 188, 103, 170, 84, 255, 285, 112, 46, 167, 259, 139, 195, 125, 35, 215, 148, 95, 134, 9
+branch22 = <>61, 156, 155, 221, 197, 188, 103, 170, 84, 255, 285, 112, 46, 167, 259, 139, 195, 125, 108, 220, 102, 150, 44, 252, 16, 253
+branch23 = <>61, 156, 155, 221, 197, 188, 103, 170, 84, 255, 285, 112, 46, 167, 259, 139, 195, 125
+driving21 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1
+driving22 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 12, 11
+driving23 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+
+[Line16]
+Name=Ligne 14
+179	Olympiades 48.827037,2.366697	, 	S	S
+21	<Bibliotheque ;Francois Mitterrand 48.829878,2.375548	, 	SM	SM
+71	>Cour ;Saint-Emilion 48.833211,2.385397	, 	E	S
+20	Bercy 48.8402163,2.3803397	, 	SE	SE
+99	<Gare de; Lyon 48.8447174,2.3739303	, 	SME	SM
+59	>Chatelet 48.8585635,2.3472038	, 	SE	SME
+228	Pyramides 48.865997,2.334318	, 	SE	SE
+145	<Madeleine 48.8697538,2.3244452	, 	SM	M
+259	>Saint-Lazare 48.8759602,2.3238015	, 	SME	SME
+
+branch3 = <>179, 21, 71, 20, 99, 59, 228, 145, 259
+driving3 = 1, 1, 1, 1, 1, 1, 1, 1
+
+[Line17]
+Name=RER Ligne A
+400	<Cergy Le Haut 49.048614,2.011979
+401	<Cergy Saint-Christophe 49.049584,2.03496
+402	<Cergy Prefecture 49.036067,2.080343
+403	<Neuville Universite 49.0143,2.078369
+404	<Conflans-Fin d Oise 48.990736,2.073734
+405	<Acheres-Ville 48.970203,2.077661
+406	<Maisons Laffitte 48.945997,2.144158
+407	<Sartrouville 48.937541,2.157311
+408	<Houilles-Carrieres 48.920793,2.184541
+409	<Nanterre Prefecture 48.896183,2.223465
+410	>_La Defense 48.891753,2.238459
+411	>_Charles ;de Gaulle ;ó Etoile 48.873939,2.294941
+412	Auber 48.872612,2.329718	,
+413	<_Chatelet ;Les Halles 48.862093,2.347003
+414	<Gare de; Lyon 48.849933,2.383368	,
+415	Nation 48.848401,2.395958	,
+416	>Vincennes 48.847321,2.433429	,
+417	<Val de Fontenay 48.85424,2.489004	,
+418	<Neuilly Plaisance 48.853308,2.513723	,
+419	>Bry sur-Marne 48.84557,2.525053
+420	<Noisy le-Grand Mont d Est 48.840854,2.548184
+421	<Noisy Champs 48.843085,2.581787
+422	>Noisiel 48.843396,2.616463
+423	<Lognes 48.839018,2.634101
+424	>Torcy 48.839695,2.654657
+425	>Bussy-Saint-Georges 48.836617,2.710018
+426	>Val d Europe 48.855991,2.774262
+427	>Marne-la-Vallee-Chessy 48.8683,2.782073
+
+branch60 = <>400...427
+Driving=4,3,3,3,4,3,3,3,4,4,3,3,3,3,4,4,4,3,3,3,3,4,3,3,4,3,3
+
+[Line18]
+Name=RER Ligne A1
+595	>Saint-Germain-en-Laye 48.898482,2.094569
+596	>Le Vesinet-Le Pecq 48.898355,2.12182
+597	>Le Ves net-Centre 48.890159,2.134566
+598	>Chatou Croissy 48.885235,2.155681
+599	>Rueil-Malmaison 48.887125,2.170851
+999	>Nanterre-Ville 48.895266,2.195914
+601	>Nanterre-Universite 48.901585,2.215161
+602	<Nanterre Prefecture 48.896183,2.223465
+
+branch62=<>595...599,999,601,602
+Driving62=2,2,2,3,2,3,2
+
+[Line19]
+Name=RER Ligne A5
+603	>Poissy 48.933044,2.040238
+604	>Acheres Grand Cormier 48.955256,2.092595
+605	<Maisons Laffitte 48.946012,2.144094
+
+branch64=<>603...605
+Driving64=3,8
+
+[Line20]
+Name=RER Ligne A2
+606	<Bolssy-Saint-Leger 48.752794,2.50469
+607	<Sucy Bonneuil 48.771054,2.507715
+608	<La Varenne Chennevieres 48.794991,2.512929
+609	<Champigny 48.807019,2.509818
+610	>Le Parc de Saint-Maur 48.80569,2.485571
+611	>Saint-Maur-Creteil 48.806454,2.472074
+612	<Joinville le-Pont 48.82105,2.463877
+613	<Nogent-sur-Marne 48.83519,2.471623
+614	>Fontenay-sous-Bois 48.843551,2.464757
+615	>Vincennes 48.847702,2.433472
+
+Driving66=2,2,2,2,2,3,2,2,2
+branch66=<>606...615
+
+[Line21]
+Name=RER Ligne B
+520	<Aeroport Charles de Gaulle 2-TGV 49.004012,2.571058
+521	<Aeroport Charles de Gaulle 1 49.009726,2.561102
+522	>Parc des Expositions 48.973809,2.51456
+523	>Villepinte 48.963202,2.512372
+524	>Sevran Beaudottes 48.947505,2.524302
+525	>Aulnay sous-Bois 48.932199,2.495444
+526	<Le Blanc Mesntil 48.932354,2.477052
+527	>Drancy 48.932565,2.45465
+528	<Le Bourget 48.930768,2.425758
+529	<La Courneuve Aubervilliers 48.924015,2.38443
+530	<La Plaine Stade de France 48.917543,2.361631
+531	>Gare du Nord 48.880211,2.35558
+532	<_Chatelet ;Les Halles 48.862093,2.347003
+533	<St-Michel Notre-Dame 48.853449,2.34571
+534	>Luxembourg 48.845401,2.33953
+535	<Port-Royal 48.839921,2.337019
+536	<_Denfert;-Rochereau 48.833912,2.332706
+537	<Cite Universitaire 48.820563,2.338908
+538	<Gentilly 48.815787,2.340828
+539	>Laplace 48.807634,2.333318
+540	>Arcueil-Cachan 48.798504,2.327996
+541	>Bagneux 48.79333,2.321291
+542	<Bourg la-Reine 48.780514,2.312343
+543	>Parc de Sceaux 48.770665,2.31023
+544	>La Croix de Berny 48.762172,2.304543
+545	>Antony 48.754972,2.300928
+546	>Fontaine Michalon 48.743059,2.295821
+547	>Les Baconnets 48.73984,2.287538
+548	<Massy-Verrieres 48.734937,2.27403
+549	<Massy-Palaiseau 48.725517,2.260115
+550	>Palaiseau 48.717965,2.246543
+551	>Palaiseau-Villebon 48.707743,2.237188
+552	>Lozere 48.706107,2.21161
+553	>Le Guichet 48.704861,2.191612
+554	>Orsay Ville 48.697738,2.182181
+555	>Bures sur-Yvette 48.695712,2.163491
+556	>La Hacquiniere 48.695047,2.152634
+557	<Gif sur-Yvette 48.698177,2.136723
+558	>Courcelle sur-Yvette 48.700945,2.098882
+559	>Saint-Remy-les-Chevreuse 48.702687,2.071095
+
+branch=<>520...559
+Driving=3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,3,3,3,3,3,3,3
+
+[Line22]
+Name=RER Ligne B1
+560	<Mitry-Claye 48.975703,2.642174
+561	<Villeparisis Mitry-le-Neuf 48.952945,2.602086
+562	<Vert Galant 48.944264,2.56681
+563	Sevran Livry 48.936315,2.534451
+564	>Aulnay sous-Bois 48.932283,2.495484
+
+branch=<>560...564
+Driving=3,3,3,3
+
+
+[Line23]
+Name=RER Ligne B2
+565	>Robinson 48.78,2.281255
+566	>Fontenay aux-Roses 48.787584,2.293096
+567	>Sceaux 48.781504,2.29713
+568	<Bourg la-Reine 48.780826,2.312365
+
+branch=<>565...568
+Driving=2,2,2
+
+[Line24]
+Name=RER Ligne C
+428	>Pontoise 49.046701,2.095127
+429	>Saint-0uen-l Aumone 49.045323,2.105598
+430	<Saint-Ouen-l Aumone-Liesse 49.034829,2.128515
+431	>Pierrelaye 49.019296,2.15405 49.007305,2.197995
+432	<Montigny-Beauchamp 49.007305,2.197995
+433	<Franconville-Le Plessis-Bouchard 48.993481,2.234945
+434	>Cernay 48.985202,2.256703
+435	<Ermont-Eaubonne 48.980555,2.271509
+436	<Saint-Gratien 48.963568,2.285542
+437	<Epinay-sur-Seine 48.953677,2.302237
+438	<Gennevilliers 48.933326,2.307515
+439	<Les Gresillons 48.920554,2.314253
+440	>Saint-Ouen 48.90538,2.322278
+441	Porte de Clichy 48.894307,2.313867
+442	>Pereire-Levallois 48.886095,2.29949
+443	>Neuilly-Porte Maillot 48.877883,2.284234
+444	>Avenue Foch 48.870615,2.2752
+445	>Avenue Henri Martin 48.864291,2.272217
+446	>Boulainvilliers 48.856456,2.275093
+447	<^Avenue du ;Pdt Kennedy 48.853477,2.280178
+448	Champ de Mars Tour Eiffel 48.855045,2.288547
+449	Pont de l Alma 48.862527,2.300992
+450	>Invalides 48.863261,2.31318
+451	<Musee d Orsay 48.860565,2.325368
+452	<St-Michel Notre-Dame 48.853449,2.34571
+453	<_Gare ;d'Austerlitz 48.842633,2.364786
+454	Bibliotheque Fr.Mitterrand 48.829809,2.376866
+455	Ivry sur-Seine 48.814367,2.391243
+456	>Vitry sur-Seine 48.800702,2.402401
+457	>Les Ardoines 48.783031,2.409954
+458	>Choisy le-Roi 48.763855,2.411113
+459	>Villeneuve le-Roi 48.739805,2.426219
+460	>Ablon 48.72551,2.419181
+461	>Athis Mons 48.712741,2.402959
+462	>Juvisy 48.689827,2.382832
+463	>Savigny sur-Orge 48.676369,2.352233
+464	>Epinay sur-Orge 48.669397,2.331934
+465	>Ste-Genevieve des-Bois 48.653183,2.31318
+466	>St-Michel sur-Orge 48.635887,2.306485
+467	<Bretigny sur-Orge 48.606525,2.30185
+468	<Marolles en-Hurepoix 48.565305,2.290821
+469	<Bouray 48.533374,2.290392
+470	<Lardy 48.520698,2.255502
+471	>Chamarande 48.514415,2.215719
+472	>Etrechy 48.493687,2.19439
+473	>Etampes 48.436832,2.158856
+474	<Saint-Martin d Etampes 48.427834,2.145123
+
+Driving68=9,9,9,9,9,10,9,9,9,9,9,9,9,9,10,9,9,9,9,9,9,9,10,10,9,9,9,9,9,9,9,9,9,9,10,9,9,9,9,9,9,9,9,9,9,9
+branch68=<>428...474
+
+[Line25]
+Name=RER Ligne C7
+475	>Saint-Quentin-en-Yvelines 48.787612,2.044702
+476	>Saint-Cyr 48.798702,2.072323
+477	>Versailles Chantiers 48.795443,2.135897
+478	<Viroflay-Rive Gauche 48.800673,2.171237
+
+branch=<>475...478
+Driving=4,4,3
+
+[Line26]
+Name=RER Ligne C1
+930	<Viroflay-Rive Gauche 48.800673,2.171237
+479	>Chaville-Velizy 48.799613,2.184112
+480	>Meudon Val-Fleury 48.807923,2.241125
+481	>Issy 48.819778,2.25872
+482	>Issy-Val de Seine 48.82978,2.263227
+483	<Bd Victor 48.838961,2.270436
+484	<Javel 48.846305,2.276874
+485	CHAMP DE MARS TOUR EIFFEL 48.854974,2.28919
+
+branch70=<>930,479...485
+Driving70=4,4,3,4,4,3,3
+
+[Line27]
+Name=RER Ligne C4
+616	>Dourdan-la-Foret 48.53532,1.995242
+617	>Dourdan 48.533715,2.00906
+618	>Sermaise 48.535619,2.068927
+619	>Saint-Cheron 48.551117,2.125726
+620	>Breuillet Village 48.564751,2.171195
+621	>Breuillet Bruyeres le-Chatel 48.577388,2.191751
+622	>Egly 48.582541,2.222285
+623	>Arpajon 48.586033,2.24061
+624	>La Norville Saint-Germain 48.591682,2.267368
+625	<Bretigny sur-Orge 48.60661,2.301936
+
+branch=<>616...625
+Driving=,4,4,3,4,4,4,4,4
+
+[Line28]
+Name=RER Ligne C8
+626	>Versailles Chantiers 48.795451,2.13594
+627	<Petit Jouy Les Loges 48.771677,2.146969
+628	>Jouy-en-Josas 48.764549,2.16347
+629	>Vauboyen 48.759075,2.192652
+630	>Bievres 48.751209,2.215483
+631	>Igny 48.740342,2.230933
+632	<Massy-Palaiseau 48.725355,2.260137
+633	<Longjumeau 48.702202,2.294244
+634	<Chilly Mazarin 48.685425,2.318019
+635	>Gravigny Balizy 48.685425,2.318019
+636	>Petit Vaux 48.676032,2.333093
+637	>Savigny sur-Orge 48.676429,2.352383
+638	>Juvisy 48.68982,2.382746
+639	>Athis Mons 48.712543,2.403318
+
+branch=<>626...639
+Driving=4,4,4,4,4,4,3,3,4,4,3,4,4
+
+[Line29]
+Name=RER Ligne C2
+640	<Massy-Palaiseau 48.725425,2.260051
+641	<Massy-Verrieres 48.735106,2.273698
+642	<Chemin d Antony 48.747863,2.312762
+643	<Rungis La Fraternelle 48.740364,2.352469
+644	<Aeroport d Orly 48.74821,2.372811
+645	Orly-Ville 48.741871,2.402884
+646	>Les Saules 48.745521,2.417303
+647	>Choisy le-Roi 48.763841,2.411166
+
+branch=<>640...647
+Driving=3,4,3,3,3,3,3
+
+[Line30]
+Name=RER Ligne C5
+648	>Versailles-Rive Gauche 48.800207,2.129041
+649	>Porchefontaine 48.796539,2.153631
+650	<Viroflay-Rive Gauche 48.800666,2.171323
+
+branch=<>648...650
+Driving=2,3
+
+[Line31]
+Name=RER Ligne D
+486	<Orry-la-Ville-Coye 49.138835,2.489991
+487	<La Borne Blanche 49.126873,2.50572
+488	<Survilliers-Fosses 49.099555,2.52589
+489	<Louvres 49.04912,2.501621
+490	>Les Noues 49.032325,2.476516
+491	>Goussainville 49.023658,2.46377
+492	>Villiers-le-Bel Gonesse-Arnouville 48.99396,2.416627
+493	>Garges-Sarcelles 48.976654,2.39032
+494	>Plerrefitte-Stains 48.963737,2.372596
+495	>Saint-Denis 48.935145,2.345431
+496	>Stade de France St-Denis 48.917903,2.350023
+497	>Gare du Nord 48.880211,2.35558
+498	<_Chatelet ;Les Halles 48.862093,2.347003
+499	<Gare de; Lyon 48.849933,2.383368
+500	<Maisons-Alfort Alfortville 48.802228,2.426627
+501	<Le Vert de Maisons 48.788517,2.432206
+502	<Villeneuve-Prairie 48.764181,2.433472
+503	<Villeneuve-Triage 48.745366,2.438364
+504	<Villeneuve-Saint-Georges 48.730209,2.44626
+505	<Vigneux sur-Seine 48.708422,2.414439
+950	<Juvisy 48.708422,2.414439
+506	<Viry Chatillon 48.676595,2.386694
+507	<Ris-Orangis 48.659392,2.41446
+508	<Grand-Bourg 48.648023,2.435918
+509	<Evry 48.634554,2.452097
+510	<Corbeil Essonnes 48.614328,2.473297
+511	<Moulin-Galant 48.587112,2.473254
+512	>Mennecy 48.571155,2.433128
+513	>Ballancourt 48.532294,2.371202
+514	>La Ferte-Alais 48.484983,2.351761
+515	>Boutigny 48.434867,2.376308
+516	>Maisse 48.393792,2.39326
+517	>Buno-Gironville 48.37099,2.387166
+518	>Boigneville 48.34253,2.379355
+519	<Malesherbes 48.882582,2.309597
+
+branch=<>486...505,950,506...519
+Driving=4,3,3,3,3,3,3,3,4,4,4,4,3,3,3,3,3,3,3,3,3,3,4,3,3,3,4,4,3,3,4,3,3,3
+
+[Line32]
+Name=RER Ligne D2
+569	<Villeneuve-Saint-Georges 48.730224,2.446239
+570	<Montgeron-Crosne 48.708352,2.462375
+571	<Yerres 48.706638,2.483511
+572	<Brunoy 48.699005,2.506878
+573	<Boussy-Saint-Antoine 48.680973,2.533035
+574	<Combs-la-Ville-Quincy 48.667824,2.547519
+575	<Lieusaint-Moissy 48.628413,2.569492
+576	<Savigny-le-Temple-Nandy 48.59699,2.583289
+577	<Cesson 48.565476,2.594318
+578	<Le Mee-sur-Seine 48.539753,2.624273
+579	<Melun 48.527363,2.655022
+581	<Vosves 48.515496,2.599039
+582	<Boissise le-Roi 48.529367,2.572904
+583	<Ponthierry Pringy 48.534965,2.544708
+584	>Saint Fargeau 48.564652,2.542562
+585	<Le Coudray Montceaux 48.566526,2.492266
+586	<Le Plessis-Chenet 48.573626,2.479606
+587	>Villabe 48.59259,2.461839
+588	>Essonnes-Robinson 48.605787,2.463169
+589	<Corbeil Essonnes 48.6143,2.473211
+590	>Le Bras-de-Fer 48.623265,2.450595
+591	>Evry-Courcouronnes 48.625874,2.42888
+592	>Orangis Bois de l Epine 48.636312,2.407465
+593	>Grigny Centre 48.653268,2.395706
+594	<Viry-Chatillon 48.676652,2.386694
+
+branch=<>569...579,581...594
+Driving=2,2,2,3,3,3,3,2,3,3,3,2,2,2,3,4,4,3,3,3,4,3,4
+
+[Line33]
+Name=RER Ligne E4
+651	<Haussmann St-Lazare 48.875184,2.329381
+652	<Magenta 48.8801,2.358252
+653	<Pantin 48.898059,2.399783
+654	>Noisy le-Sec 48.896662,2.459822
+655	<Rosny-Bois-Perrier 48.882575,2.480979
+656	<Rosny-sous-Bois 48.870551,2.486161
+657	<Val de Fontenay 48.854501,2.489122
+658	<Nogent-Le Perreux 48.838587,2.494336
+659	<Les Boullereaux Champigny 48.824977,2.51103
+660	<Villiers-sur-Marne Le Plessis-Trevise 48.823113,2.541769
+661	<Les Yvris Noisy-le-Grand 48.823275,2.579577
+662	<Emerainville Pontault-Combault 48.806355,2.617557
+663	<Roissy-en-Brie 48.795917,2.649615
+664	<Ozoir-la-Ferriere 48.77075,2.690341
+665	<Gretz Armainvilliers 48.745352,2.72859
+666	>Tournan 48.739125,2.759897
+
+branch=<>651...666
+Driving=3,3,3,4,3,3,3,3,4,4,3,3,3,3,3
+
+[Line34]
+Name=RER Ligne E42
+667	<Chelles Gournay 48.874185,2.582216
+668	<Le Chenay Gagny 48.877191,2.552787
+669	>Gagny 48.883175,2.526877
+670	<Le Raincy Villermomble Montfermeil 48.889242,2.512007
+671	<Bondy 48.894208,2.478458
+672	>Noisy le-Sec 48.896677,2.459768
+
+branch=<>667...672
+Driving=3,2,3,3,2
+
+[Line35]
+Name=Orlyval
+700	<Orly Sud 48.729025,2.369892
+701	<Orly Ouest 48.729672,2.360131
+702	>Antony 48.754972,2.300928
+
+branch=<>700...702
+Driving=3,3
+
+[Transfers]
+140=RER Ligne E4,Haussmann St-Lazare,RER Ligne A,Auber,10
+141=RER Ligne E4,Haussmann St-Lazare,Ligne 3,Saint-Lazare,10
+142=RER Ligne E4,Haussmann St-Lazare,Ligne 12,Saint-Lazare,10
+143=RER Ligne E4,Haussmann St-Lazare,Ligne 13,Saint-Lazare,10
+144=RER Ligne E4,Haussmann St-Lazare,Ligne 14,Saint-Lazare,10
+145=RER Ligne A,Auber,RER Ligne E4,Haussmann St-Lazare,10
+146=RER Ligne A,Auber,Ligne 3,Saint-Lazare,10
+147=RER Ligne A,Auber,Ligne 12,Saint-Lazare,10
+148=RER Ligne A,Auber,Ligne 13,Saint-Lazare,10
+149=RER Ligne A,Auber,Ligne 14,Saint-Lazare,10
+150=Ligne 3,Saint-Lazare,RER Ligne E4,Haussmann St-Lazare,10
+151=Ligne 3,Saint-Lazare,RER Ligne A,Auber,10
+152=Ligne 3,Saint-Lazare,Ligne 12,Saint-Lazare,5, SE, SE, ES, ES
+153=Ligne 3,Saint-Lazare,Ligne 13,Saint-Lazare,5, E, E, S, S
+154=Ligne 3,Saint-Lazare,Ligne 14,Saint-Lazare,5, E, E, MSE, MSE
+155=Ligne 12,Saint-Lazare,RER Ligne E4,Haussmann St-Lazare,10
+156=Ligne 12,Saint-Lazare,RER Ligne A,Auber,10
+157=Ligne 12,Saint-Lazare,Ligne 3,Saint-Lazare,5, E, E, S, S
+158=Ligne 12,Saint-Lazare,Ligne 13,Saint-Lazare,5, E, E, S, S
+159=Ligne 12,Saint-Lazare,Ligne 14,Saint-Lazare,5, E, E, MSE, MSE
+160=Ligne 13,Saint-Lazare,Ligne 3,Saint-Lazare,5, E, E, S, S
+161=Ligne 13,Saint-Lazare,Ligne 12,Saint-Lazare,5, SE, SE, ES, ES
+162=Ligne 13,Saint-Lazare,Ligne 14,Saint-Lazare,5, E, E, MSE, MSE
+163=Ligne 13,Saint-Lazare,RER Ligne E4,Haussmann St-Lazare,10
+164=Ligne 13,Saint-Lazare,RER Ligne A,Auber,10
+165=Ligne 14,Saint-Lazare,RER Ligne E4,Haussmann St-Lazare,10
+166=Ligne 14,Saint-Lazare,RER Ligne A,Auber,10
+167=Ligne 14,Saint-Lazare,Ligne 3,Saint-Lazare,10
+168=Ligne 14,Saint-Lazare,Ligne 12,Saint-Lazare,10
+169=Ligne 14,Saint-Lazare,Ligne 13,Saint-Lazare,10
+170=Ligne 2,La Chapelle,RER Ligne D,Gare du Nord,10
+171=Ligne 2,La Chapelle,Ligne 5,Gare du Nord,10
+172=Ligne 2,La Chapelle,Ligne 4,Gare du Nord,10
+173=Ligne 2,La Chapelle,RER Ligne E4,Magenta,10
+174=Ligne 2,La Chapelle,RER Ligne B,Gare du Nord,10
+175=RER Ligne E4,Magenta,Ligne 4,Gare du Nord,10
+176=RER Ligne E4,Magenta,Ligne 5,Gare du Nord,10
+177=RER Ligne E4,Magenta,RER Ligne D,Gare du Nord,10
+178=RER Ligne E4,Magenta,RER Ligne B,Gare du Nord,10
+179=RER Ligne E4,Magenta,Ligne 2,La Chapelle,10
+181=Ligne 4,Gare du Nord,RER Ligne E4,Magenta,10
+182=Ligne 4,Gare du Nord,RER Ligne D,Gare du Nord,10
+183=Ligne 4,Gare du Nord,RER Ligne B,Gare du Nord,10
+184=Ligne 4,Gare du Nord,Ligne 2,La Chapelle,10
+185=Ligne 4,Gare du Nord,Ligne 5,Gare du Nord,5, E, E, S, S
+186=Ligne 5,Gare du Nord,RER Ligne E4,Magenta,10
+187=Ligne 5,Gare du Nord,RER Ligne D,Gare du Nord,10
+188=Ligne 5,Gare du Nord,RER Ligne B,Gare du Nord,10
+189=Ligne 5,Gare du Nord,Ligne 2,La Chapelle,10
+190=Ligne 5,Gare du Nord,Ligne 4,Gare du Nord,5, E, E, M, M
+191=RER Ligne B,Gare du Nord,RER Ligne D,Gare du Nord,10
+192=RER Ligne B,Gare du Nord,RER Ligne E4,Magenta,10
+193=RER Ligne B,Gare du Nord,Ligne 2,La Chapelle,10
+194=RER Ligne B,Gare du Nord,Ligne 4,Gare du Nord,10
+195=RER Ligne B,Gare du Nord,Ligne 5,Gare du Nord,10
+196=RER Ligne D,Gare du Nord,RER Ligne B,Gare du Nord,10
+197=RER Ligne D,Gare du Nord,RER Ligne E4,Magenta,10
+198=RER Ligne D,Gare du Nord,Ligne 2,La Chapelle,10
+199=RER Ligne D,Gare du Nord,Ligne 4,Gare du Nord,10
+200=RER Ligne D,Gare du Nord,Ligne 5,Gare du Nord,10
+217=RER Ligne A1,Nanterre Prefecture,RER Ligne A,Nanterre Prefecture,10
+218=RER Ligne A,Nanterre Prefecture,RER Ligne A1,Nanterre Prefecture,10
+219=RER Ligne A5,Maisons Laffitte,RER Ligne A,Maisons Laffitte,10
+220=RER Ligne A,Maisons Laffitte,RER Ligne A5,Maisons Laffitte,10
+221=RER Ligne C1,CHAMP DE MARS TOUR EIFFEL,RER Ligne C,Champ de Mars Tour Eiffel,10
+222=RER Ligne C,Champ de Mars Tour Eiffel,RER Ligne C1,CHAMP DE MARS TOUR EIFFEL,10
+223=RER Ligne C5,Viroflay-Rive Gauche,RER Ligne C1,Viroflay-Rive Gauche,10
+224=RER Ligne C1,Viroflay-Rive Gauche,RER Ligne C5,Viroflay-Rive Gauche,10
+225=RER Ligne C8,Versailles Chantiers,RER Ligne C7,Versailles Chantiers,10
+226=RER Ligne C7,Versailles Chantiers,RER Ligne C8,Versailles Chantiers,10
+227=RER Ligne B2,Bourg la-Reine,RER Ligne B,Bourg la-Reine,10
+228=RER Ligne B,Bourg la-Reine,RER Ligne B2,Bourg la-Reine,10
+229=RER Ligne C8,Massy-Palaiseau,RER Ligne C2,Massy-Palaiseau,10
+230=RER Ligne C2,Massy-Palaiseau,RER Ligne C8,Massy-Palaiseau,10
+231=RER Ligne C2,Massy-Palaiseau,RER Ligne B,Massy-Palaiseau,10
+232=RER Ligne B,Massy-Palaiseau,RER Ligne C2,Massy-Palaiseau,10
+233=RER Ligne C8,Massy-Palaiseau,RER Ligne B,Massy-Palaiseau,10
+234=RER Ligne B,Massy-Palaiseau,RER Ligne C8,Massy-Palaiseau,10
+235=RER Ligne B,St-Michel Notre-Dame,RER Ligne C,St-Michel Notre-Dame,10
+236=RER Ligne C,St-Michel Notre-Dame,RER Ligne B,St-Michel Notre-Dame,10
+237=RER Ligne B,Chatelet Les Halles,RER Ligne A,Chatelet Les Halles,10
+238=RER Ligne A,Chatelet Les Halles,RER Ligne B,Chatelet Les Halles,10
+239=RER Ligne A,Chatelet Les Halles,RER Ligne D,Chatelet Les Halles,10
+240=RER Ligne D,Chatelet Les Halles,RER Ligne A,Chatelet Les Halles,10
+241=RER Ligne B,Chatelet Les Halles,RER Ligne D,Chatelet Les Halles,10
+242=RER Ligne D,Chatelet Les Halles,RER Ligne B,Chatelet Les Halles,10
+251=RER Ligne C2,Choisy le-Roi,RER Ligne C,Choisy le-Roi,10
+252=RER Ligne C,Choisy le-Roi,RER Ligne C2,Choisy le-Roi,10
+253=RER Ligne C8,Athis Mons,RER Ligne C,Athis Mons,10
+254=RER Ligne C,Athis Mons,RER Ligne C8,Athis Mons,10
+255=RER Ligne C4,Bretigny sur-Orge,RER Ligne C,Bretigny sur-Orge,10
+256=RER Ligne C,Bretigny sur-Orge,RER Ligne C4,Bretigny sur-Orge,10
+257=RER Ligne D2,Villeneuve-Saint-Georges,RER Ligne D,Villeneuve-Saint-Georges,10
+258=RER Ligne D,Villeneuve-Saint-Georges,RER Ligne D2,Villeneuve-Saint-Georges,10
+259=RER Ligne D2,Viry-Chatillon,RER Ligne D,Viry Chatillon,10
+260=RER Ligne D,Viry Chatillon,RER Ligne D2,Viry-Chatillon,10
+261=RER Ligne D2,Corbeil Essonnes,RER Ligne D,Corbeil Essonnes,10
+262=RER Ligne D,Corbeil Essonnes,RER Ligne D2,Corbeil Essonnes,10
+263=RER Ligne D2,Melun,RER Ligne D2,Melun,10
+264=RER Ligne D2,Melun,RER Ligne D2,Melun,10
+265=RER Ligne A,Vincennes,RER Ligne A2,Vincennes,10
+266=RER Ligne A2,Vincennes,RER Ligne A,Vincennes,10
+267=RER Ligne A,Gare de Lyon,RER Ligne D,Gare de Lyon,10
+268=RER Ligne D,Gare de Lyon,RER Ligne A,Gare de Lyon,10
+269=RER Ligne E42,Noisy le-Sec,RER Ligne E4,Noisy le-Sec,10
+270=RER Ligne E4,Noisy le-Sec,RER Ligne E42,Noisy le-Sec,10
+271=RER Ligne B1,Aulnay sous-Bois,RER Ligne B,Aulnay sous-Bois,10
+272=RER Ligne B,Aulnay sous-Bois,RER Ligne B1,Aulnay sous-Bois,10
+273=RER Ligne A,La Defense,Ligne 1,La Defense,10
+274=Ligne 3,Pereire,RER Ligne C,Pereire-Levallois,10
+275=Ligne 1,Porte Maillot,RER Ligne C,Neuilly-Porte Maillot,10
+276=RER Ligne C,Neuilly-Porte Maillot,Ligne 1,Porte Maillot,10
+277=Ligne 13,>_Porte; de Clichy,RER Ligne C,Porte de Clichy,10
+278=RER Ligne C,Porte de Clichy,Ligne 13,>_Porte; de Clichy,10
+279=Ligne 6,Bir-Hakeim,RER Ligne C1,CHAMP DE MARS TOUR EIFFEL,10
+280=RER Ligne C1,CHAMP DE MARS TOUR EIFFEL,Ligne 6,Bir-Hakeim,10
+281=RER Ligne A,Nation,Ligne 2,Nation,10
+282=Ligne 2,Nation,RER Ligne A,Nation,10
+283=RER Ligne A,Nation,Ligne 9,Nation,10
+284=Ligne 9,Nation,RER Ligne A,Nation,10
+285=Ligne 1,Nation,RER Ligne A,Nation,10
+286=RER Ligne A,Nation,Ligne 1,Nation,10
+287=RER Ligne A,Nation,Ligne 6,Nation,10
+288=Ligne 6,Nation,RER Ligne A,Nation,10
+289=RER Ligne A,Charles de Gaulle ó Etoile,Ligne 1,Charles de Gaulle ó Etoile,10
+290=Ligne 1,Charles de Gaulle ó Etoile,RER Ligne A,Charles de Gaulle ó Etoile,10
+291=RER Ligne A,Charles de Gaulle ó Etoile,Ligne 6,Charles de Gaulle ó Etoile,10
+292=Ligne 6,Charles de Gaulle ó Etoile,RER Ligne A,Charles de Gaulle ó Etoile,10
+293=RER Ligne A,Charles de Gaulle ó Etoile,Ligne 2,Charles de Gaulle ó Etoile,10
+294=Ligne 2,Charles de Gaulle ó Etoile,RER Ligne A,Charles de Gaulle ó Etoile,10
+295=RER Ligne C,Boulainvilliers,Ligne 9,La Muette,10
+296=Ligne 9,La Muette,RER Ligne C,Boulainvilliers,10
+297=RER Ligne B,Denfert-Rochereau,Ligne 6,Denfert-Rochereau,10
+298=Ligne 6,Denfert-Rochereau,RER Ligne B,Denfert-Rochereau,10
+299=RER Ligne B,Denfert-Rochereau,Ligne 4,Denfert-Rochereau,10
+300=Ligne 4,Denfert-Rochereau,RER Ligne B,Denfert-Rochereau,10
+301=RER Ligne C,Gare d'Austerlitz,Ligne 10,Gare d'Austerlitz,10
+302=Ligne 10,Gare d'Austerlitz,RER Ligne C,Gare d'Austerlitz,10
+303=RER Ligne C,Gare d'Austerlitz,Ligne 5,Gare d'Austerlitz,10
+304=Ligne 5,Gare d'Austerlitz,RER Ligne C,Gare d'Austerlitz,10
+305=Ligne 4,Saint-Michel,RER Ligne C,St-Michel Notre-Dame,10
+306=RER Ligne C,St-Michel Notre-Dame,Ligne 4,Saint-Michel,10
+307=Ligne 4,Saint-Michel,RER Ligne B,St-Michel Notre-Dame,10
+308=RER Ligne B,St-Michel Notre-Dame,Ligne 4,Saint-Michel,10
+309=Ligne 4,Saint-Michel,Ligne 10,Cluny La Sorbonne,10
+310=Ligne 10,Cluny La Sorbonne,Ligne 4,Saint-Michel,10
+311=Ligne 10,Cluny La Sorbonne,RER Ligne B,St-Michel Notre-Dame,10
+312=RER Ligne B,St-Michel Notre-Dame,Ligne 10,Cluny La Sorbonne,10
+313=Ligne 10,Cluny La Sorbonne,RER Ligne C,St-Michel Notre-Dame,10
+314=RER Ligne C,St-Michel Notre-Dame,Ligne 10,Cluny La Sorbonne,10
+315=Ligne 4,Les Halles,RER Ligne A,Chatelet Les Halles,10
+316=RER Ligne A,Chatelet Les Halles,Ligne 4,Les Halles,10
+317=Ligne 4,Les Halles,RER Ligne B,Chatelet Les Halles,10
+318=RER Ligne B,Chatelet Les Halles,Ligne 4,Les Halles,10
+319=Ligne 14,Chatelet,RER Ligne A,Chatelet Les Halles,10
+320=RER Ligne A,Chatelet Les Halles,Ligne 14,Chatelet,10
+321=Ligne 14,Chatelet,RER Ligne B,Chatelet Les Halles,10
+322=RER Ligne B,Chatelet Les Halles,Ligne 14,Chatelet,10
+323=Ligne 4,Les Halles,Ligne 14,Chatelet,5
+324=Ligne 14,Chatelet,Ligne 4,Les Halles,5
+343=Ligne 5,Gare de l'Est,Ligne 7,Gare de l'Est,5
+344=Ligne 7,Gare de l'Est,Ligne 5,Gare de l'Est,5
+345=Ligne 5,Gare de l'Est,Ligne 4,Gare de l'Est,5
+346=Ligne 4,Gare de l'Est,Ligne 5,Gare de l'Est,5
+347=RER Ligne D,Gare de Lyon,Ligne 1,Gare de Lyon,10
+348=Ligne 1,Gare de Lyon,RER Ligne D,Gare de Lyon,10
+349=RER Ligne D,Gare de Lyon,Ligne 14,Gare de Lyon,10
+350=Ligne 14,Gare de Lyon,RER Ligne D,Gare de Lyon,10
+351=RER Ligne A,Gare de Lyon,Ligne 14,Gare de Lyon,10
+352=Ligne 14,Gare de Lyon,RER Ligne A,Gare de Lyon,10
+353=RER Ligne A,Gare de Lyon,Ligne 1,Gare de Lyon,10
+354=Ligne 1,Gare de Lyon,RER Ligne A,Gare de Lyon,10
+355=Ligne 14,<_Bibliotheque; Francois; Mitterrand,RER Ligne C,Bibliotheque Fr.Mitterrand,10
+356=RER Ligne C,Bibliotheque Fr.Mitterrand,Ligne 14,<_Bibliotheque; Francois; Mitterrand,10
+357=Orlyval,Antony,RER Ligne B,Antony,10
+358=RER Ligne B,Antony,Orlyval,Antony,10
+359=RER Ligne C,Pereire-Levallois,Ligne 3,Pereire,10
+360=RER Ligne C,Juvisy,RER Ligne C8,Juvisy,10
+361=RER Ligne C8,Juvisy,RER Ligne C,Juvisy,10
+362=RER Ligne D,Juvisy,RER Ligne C8,Juvisy,10
+363=RER Ligne D,Juvisy,RER Ligne C,Juvisy,10
+364=RER Ligne C,Juvisy,RER Ligne D,Juvisy,10
+365=RER Ligne C8,Juvisy,RER Ligne D,Juvisy,10
+366=RER Ligne E4,Val de Fontenay,RER Ligne A,Val de Fontenay,10
+367=RER Ligne A,Val de Fontenay,RER Ligne E4,Val de Fontenay,10
+368=RER Ligne C1,Viroflay-Rive Gauche,RER Ligne C7,Viroflay-Rive Gauche,10
+369=RER Ligne C7,Viroflay-Rive Gauche,RER Ligne C1,Viroflay-Rive Gauche,10
+401=Ligne 1,Charles de Gaulle ó Etoile,Ligne 2,Charles de Gaulle ó Etoile,5, S, S, M, M
+402=Ligne 1,Nation,Ligne 2,Nation,5, S, S, E, E
+403=Ligne 1,Chatelet,Ligne 4,Chatelet,5, SE, SE, ES, ES
+404=Ligne 1,Bastille,Ligne 5,Bastille,5, SM, SM, EM, EM
+405=Ligne 1,Charles de Gaulle ó Etoile,Ligne 6,Charles de Gaulle ó Etoile,5, S, S, MS, MS
+406=Ligne 1,Nation,Ligne 6,Nation,5, S, S, E, E
+407=Ligne 1,Chatelet,Ligne 7,Chatelet,5, ME, ME, MS, MS
+408=Ligne 1,Palais Royal Musee du Louvre,Ligne 7,Palais Royal Musee du Louvre,5, E, E, S, S
+409=Ligne 1,Bastille,Ligne 8,Bastille,5, ME, ME, MS, MS
+414=Ligne 1,Concorde,Ligne 8,Concorde,5, S, S, E, E
+411=Ligne 1,Reuilly Diderot,Ligne 8,Reuilly Diderot,5, E, E, S, S
+412=Ligne 1,Franklin D. Roosevelt,Ligne 9,Franklin D. Roosevelt,5, E, E, S, S
+413=Ligne 1,Nation,Ligne 9,Nation,5, S, S, E, E
+414=Ligne 1,Chatelet,Ligne 11,Chatelet,5, SE, SE, ES, ES
+415=Ligne 1,Hotel de Ville,Ligne 11,Hotel de Ville,5, M, M, E, E
+416=Ligne 1,Concorde,Ligne 12,Concorde,5, SE, SE, ES, ES
+417=Ligne 1,Champs-Elysees Clemenceau,Ligne 13,Champs-Elysees Clemenceau,5, S, S, E, E
+418=Ligne 1,Chatelet,Ligne 14,Chatelet,5, ES, ES, SE, SE
+419=Ligne 1,Gare de Lyon,Ligne 14,Gare de Lyon,5, M, M, S, S
+420=Ligne 2,Charles de Gaulle ó Etoile,Ligne 1,Charles de Gaulle ó Etoile,5, E, E, E, E
+421=Ligne 2,Pere Lachaise,Ligne 3,Pere Lachaise,5, S, S, E, E
+422=Ligne 2,Villiers,Ligne 3,Villiers,5, ME, ME, ME, ME
+423=Ligne 2,Barbes Rochechouart,Ligne 4,Barbes Rochechouart,5, S, S, E, E
+424=Ligne 2,Jaures,Ligne 5,Jaures,5, S, S, E, E
+425=Ligne 2,Stalingrad,Ligne 5,Stalingrad,5, ES, ES, SME, SME
+426=Ligne 2,Charles de Gaulle ó Etoile,Ligne 6,Charles de Gaulle ó Etoile,5, M, M, EM, EM
+427=Ligne 2,Stalingrad,Ligne 7,Stalingrad,5, SM, SM, E, E
+428=Ligne 2,Jaures,Ligne 7bis,Jaures,5, SE, SE, ES, ES
+429=Ligne 2,Belleville,Ligne 11,Belleville,5, E, E, S, S
+430=Ligne 2,Pigalle,Ligne 12,Pigalle,5, S, S, E, E
+431=Ligne 2,Place de Clichy,Ligne 13,Place de Clichy,5, S, S, E, E
+432=Ligne 3,Pere Lachaise,Ligne 2,Pere Lachaise,5, E, E, M, M
+433=Ligne 3,Villiers,Ligne 2,Villiers,5, E, E, E, E
+434=Ligne 3,Gambetta,Ligne 3bis,Gambetta,5, E, E, S, S
+435=Ligne 3,Reaumur Sebastopol,Ligne 4,Reaumur Sebastopol,5, E, E, E, E
+436=Ligne 3,Republique,Ligne 5,Republique,5, ME, ME, E, E
+437=Ligne 3,Opera,Ligne 7,Opera,5, E, E, M, M
+438=Ligne 3,Opera,Ligne 8,Opera,5, ES, ES, ME, ME
+439=Ligne 3,Republique,Ligne 8,Republique,5, MES, MES, E, E
+440=Ligne 3,Havre Caumartin,Ligne 9,Havre Caumartin,5, E, E, E, E
+441=Ligne 3,Republique,Ligne 9,Republique,5, MS, MS, E, E
+442=Ligne 3,Arts et Metiers,Ligne 11,Arts et Metiers,5, S, S, E, E
+443=Ligne 3,Republique,Ligne 11,Republique,5, SEM, SEM, E, E
+447=Ligne 4,Chatelet,Ligne 1,Chatelet,5, SE, SE, SE, SE
+448=Ligne 4,Barbes Rochechouart,Ligne 2,Barbes Rochechouart,5, SME, SME, ME, ME
+449=Ligne 4,Reaumur Sebastopol,Ligne 3,Reaumur Sebastopol,5, M, M, E, E
+450=Ligne 4,Gare de l'Est,Ligne 5,Gare de l'Est,5, E, E, SM, SM
+452=Ligne 4,Denfert-Rochereau,Ligne 6,Denfert-Rochereau,5, S, S, E, E
+453=Ligne 4,Montparnasse Bienvenue,Ligne 6,Montparnasse Bienvenue,5, S, S, ME, ME
+454=Ligne 4,Raspail,Ligne 6,Raspail,5, S, S, E, E
+455=Ligne 4,Chatelet,Ligne 7,Chatelet,5, ME, ME, MS, MS
+456=Ligne 4,Gare de l'Est,Ligne 7,Gare de l'Est,5, SE, SE, SME, SME
+457=Ligne 4,Strasbourg Saint-Denis,Ligne 8,Strasbourg Saint-Denis,5, SE, SE, S, S
+458=Ligne 4,Strasbourg Saint-Denis,Ligne 9,Strasbourg Saint-Denis,5, E, E, S, S
+459=Ligne 4,Odeon,Ligne 10,Odeon,5, S, S, E, E
+460=Ligne 4,Chatelet,Ligne 11,Chatelet,5, SE, SE, ES, ES
+461=Ligne 4,Marcadet Poissonniers,Ligne 12,Marcadet Poissonniers,5, S, S, E, E
+462=Ligne 4,Montparnasse Bienvenue,Ligne 12,Montparnasse Bienvenue,5, SE, SE, EM, EM
+463=Ligne 4,Montparnasse Bienvenue,Ligne 13,Montparnasse Bienvenue,5, SE, SE, EM, EM
+464=Ligne 4,Chatelet,Ligne 14,Chatelet,5, ES, ES, SE, SE
+465=Ligne 5,Bastille,Ligne 1,Bastille,5, ES, ES, SE, SE
+466=Ligne 5,Jaures,Ligne 2,Jaures,5, ES, ES, SE, SE
+467=Ligne 5,Stalingrad,Ligne 2,Stalingrad,5, ME, ME, ESM, ESM
+468=Ligne 5,Republique,Ligne 3,Republique,5, SME, SME, ME, ME
+469=Ligne 5,Gare de l'Est,Ligne 4,Gare de l'Est,5, SE, SE, ES, ES
+471=Ligne 5,Gare de l'Est,Ligne 7,Gare de l'Est,5, ME, ME, ME, ME
+472=Ligne 5,Stalingrad,Ligne 7,Stalingrad,5, SM, SM, E, E
+473=Ligne 5,Jaures,Ligne 7bis,Jaures,5, SE, SE, ES, ES
+474=Ligne 5,Bastille,Ligne 8,Bastille,5, E, E, ES, ES
+475=Ligne 5,Republique,Ligne 8,Republique,5, MES, MES, E, E
+476=Ligne 5,Oberkampf,Ligne 9,Oberkampf,5, S, S, E, E
+477=Ligne 5,Republique,Ligne 9,Republique,5, MS, MS, E, E
+478=Ligne 5,Gare d'Austerlitz,Ligne 10,Gare d'Austerlitz,5, E, E, S, S
+479=Ligne 5,Republique,Ligne 11,Republique,5, SEM, SEM, E, E
+480=Ligne 6,Denfert-Rochereau,Ligne 4,Denfert-Rochereau,5, E, E, M, M
+481=Ligne 6,Montparnasse Bienvenue,Ligne 4,Montparnasse Bienvenue,5, ES, ES, E, E
+482=Ligne 6,Raspail,Ligne 4,Raspail,5, SM, SM, E, E
+483=Ligne 6,Place d'Italie,Ligne 5,Place d'Italie,5, SE, SE, ES, ES
+484=Ligne 6,Place d'Italie,Ligne 7,Place d'Italie,5, E, E, E, E
+485=Ligne 6,Daumesnil,Ligne 8,Daumesnil,5, S, S, E, E
+486=Ligne 6,La Motte-Picquet Grenelle,Ligne 8,La Motte-Picquet Grenelle,5, S, S, E, E
+487=Ligne 6,Trocadero,Ligne 9,Trocadero,5, E, E, S, S
+488=Ligne 6,La Motte-Picquet Grenelle,Ligne 10,La Motte-Picquet Grenelle,5, S, S, E, E
+489=Ligne 6,Montparnasse Bienvenue,Ligne 12,Montparnasse Bienvenue,5, SE, SE, E, E
+490=Ligne 6,Pasteur,Ligne 12,Pasteur,5, S, S, E, E
+491=Ligne 6,Montparnasse Bienvenue,Ligne 13,Montparnasse Bienvenue,5, SE, SE, E, E
+492=Ligne 6,Bercy,Ligne 14,Bercy,5, S, S, E, E
+493=Ligne 7,Chatelet,Ligne 1,Chatelet,5, MSE, MSE, SE, SE
+494=Ligne 7,Palais Royal Musee du Louvre,Ligne 1,Palais Royal Musee du Louvre,5, S, S, E, E
+495=Ligne 7,Stalingrad,Ligne 2,Stalingrad,5, ME, ME, ESM, ESM
+496=Ligne 7,Opera,Ligne 3,Opera,5, SE, SE, E, E
+497=Ligne 7,Chatelet,Ligne 4,Chatelet,5, SE, SE, ESM, ESM
+498=Ligne 7,Gare de l'Est,Ligne 4,Gare de l'Est,5, SE, SE, ES, ES
+499=Ligne 7,Gare de l'Est,Ligne 5,Gare de l'Est,5, E, E, SE, SE
+500=Ligne 7,Place d'Italie,Ligne 5,Place d'Italie,5, SE, SE, ES, ES
+501=Ligne 7,Stalingrad,Ligne 5,Stalingrad,5, ES, ES, SME, SME
+502=Ligne 7,Place d'Italie,Ligne 6,Place d'Italie,5, E, E, SE, SE
+503=Ligne 7,Louis Blanc,Ligne 7bis,Louis Blanc,5, S, S, E, E
+504=Ligne 7,Opera,Ligne 8,Opera,5, ES, ES, ME, ME
+505=Ligne 7,Chaussee d'Antin La Fayette,Ligne 9,Chaussee d'Antin La Fayette,5, E, E, E, E
+506=Ligne 7,Jussieu,Ligne 10,Jussieu,5, E, E, E, E
+507=Ligne 7,Chatelet,Ligne 11,Chatelet,5, SE, SE, EMS, EMS
+508=Ligne 7,Chatelet,Ligne 14,Chatelet,5, ES, ES, ME, ME
+509=Ligne 7,Pyramides,Ligne 14,Pyramides,5, E, E, S, S
+510=Ligne 7bis,Jaures,Ligne 2,Jaures,5, EM, EM, ME, ME
+511=Ligne 7bis,Jaures,Ligne 5,Jaures,5, M, M, E, E
+512=Ligne 7bis,Place des Fetes,Ligne 11,Place des Fetes,5, M, M, M, M
+513=Ligne 8,Bastille,Ligne 1,Bastille,5, ES, ES, SE, SE
+514=Ligne 8,Concorde,Ligne 1,Concorde,5, EM, EM, SE, SE
+515=Ligne 8,Reuilly Diderot,Ligne 1,Reuilly Diderot,5, S, S, E, E
+516=Ligne 8,Opera,Ligne 3,Opera,5, SE, SE, E, E
+517=Ligne 8,Republique,Ligne 3,Republique,5, SME, SME, ME, ME
+518=Ligne 8,Strasbourg Saint-Denis,Ligne 4,Strasbourg Saint-Denis,5, E, E, S, S
+519=Ligne 8,Bastille,Ligne 5,Bastille,5, SE, SE, E, E
+520=Ligne 8,Republique,Ligne 5,Republique,5, ME, ME, E, E
+521=Ligne 8,Daumesnil,Ligne 6,Daumesnil,5, E, E, S, S
+522=Ligne 8,La Motte-Picquet Grenelle,Ligne 6,La Motte-Picquet Grenelle,5, S, S, E, E
+523=Ligne 8,Opera,Ligne 7,Opera,5, E, E, M, M
+524=Ligne 8,Bonne Nouvelle,Ligne 9,Bonne Nouvelle,5, S, S, E, E
+525=Ligne 8,Grands Boulevards,Ligne 9,Grands Boulevards,5, SE, SE, S, S
+526=Ligne 8,Richelieu Drouot,Ligne 9,Richelieu Drouot,5, S, S, E, E
+527=Ligne 8,Republique,Ligne 9,Republique,5, MS, MS, E, E
+528=Ligne 8,Strasbourg Saint-Denis,Ligne 9,Strasbourg Saint-Denis,5, E, E, S, S
+529=Ligne 8,La Motte-Picquet Grenelle,Ligne 10,La Motte-Picquet Grenelle,5, S, S, E, E
+530=Ligne 8,Republique,Ligne 11,Republique,5, SEM, SEM, E, E
+531=Ligne 8,Concorde,Ligne 12,Concorde,5, SE, SE, ES, ES
+532=Ligne 8,Madeleine,Ligne 12,Madeleine,5, S, S, E, E
+533=Ligne 8,Invalides,Ligne 13,Invalides,5, E, E, S, S
+534=Ligne 8,Madeleine,Ligne 14,Madeleine,5, ES, ES, E, E
+535=Ligne 9,Franklin D. Roosevelt,Ligne 1,Franklin D. Roosevelt,5, E, E, M, M
+536=Ligne 9,Nation,Ligne 1,Nation,5, M, M, E, E
+537=Ligne 9,Nation,Ligne 2,Nation,5, MS, MS, E, E
+538=Ligne 9,Havre Caumartin,Ligne 3,Havre Caumartin,5, M, M, E, E
+539=Ligne 9,Republique,Ligne 3,Republique,5, SME, SME, ME, ME
+540=Ligne 9,Strasbourg Saint-Denis,Ligne 4,Strasbourg Saint-Denis,5, E, E, S, S
+541=Ligne 9,Oberkampf,Ligne 5,Oberkampf,5, E, E, S, S
+542=Ligne 9,Republique,Ligne 5,Republique,5, ME, ME, E, E
+543=Ligne 9,Nation,Ligne 6,Nation,5, MS, MS, E, E
+544=Ligne 9,Trocadero,Ligne 6,Trocadero,5, E, E, S, S
+545=Ligne 9,Chaussee d'Antin La Fayette,Ligne 7,Chaussee d'Antin La Fayette,5, S, S, E, E
+546=Ligne 9,Bonne Nouvelle,Ligne 8,Bonne Nouvelle,5, S, S, E, E
+547=Ligne 9,Grands Boulevards,Ligne 8,Grands Boulevards,5, S, S, SE, SE
+548=Ligne 9,Richelieu Drouot,Ligne 8,Richelieu Drouot,5, S, S, E, E
+549=Ligne 9,Republique,Ligne 8,Republique,5, MES, MES, E, E
+550=Ligne 9,Strasbourg Saint-Denis,Ligne 8,Strasbourg Saint-Denis,5, ME, ME, S, S
+551=Ligne 9,Michel-Ange Auteuil,Ligne 10,Michel-Ange Auteuil,5, E, E, S, S
+552=Ligne 9,Michel-Ange Molitor,Ligne 10,Michel-Ange Molitor,5, E, E, S, S
+553=Ligne 9,Republique,Ligne 11,Republique,5, SEM, SEM, E, E
+554=Ligne 9,Miromesnil,Ligne 13,Miromesnil,5, M, M, E, E
+555=Ligne 10,Odeon,Ligne 4,Odeon,5, S, S, E, E
+556=Ligne 10,La Motte-Picquet Grenelle,Ligne 6,La Motte-Picquet Grenelle,5, SE, SE, E, E
+557=Ligne 10,Jussieu,Ligne 7,Jussieu,5, M, M, SE, SE
+558=Ligne 10,La Motte-Picquet Grenelle,Ligne 8,La Motte-Picquet Grenelle,5, SE, SE, SME, SME
+559=Ligne 10,Michel-Ange Auteuil,Ligne 9,Michel-Ange Auteuil,5, S, S, , 
+560=Ligne 10,Sevres Babylone,Ligne 12,Sevres Babylone,5, E, E, S, S
+561=Ligne 10,Duroc,Ligne 13,Duroc,5, E, E, S, S
+562=Ligne 11,Hotel de Ville,Ligne 1,Hotel de Ville,5, S, S, E, E
+563=Ligne 11,Belleville,Ligne 2,Belleville,5, S, S, E, E
+564=Ligne 11,Arts et Metiers,Ligne 3,Arts et Metiers,5, E, E, S, S
+565=Ligne 11,Republique,Ligne 3,Republique,5, ME, ME, SME, SME
+566=Ligne 11,Porte des Lilas,Ligne 3bis,Porte des Lilas,5, E, E, S, S
+567=Ligne 11,Republique,Ligne 5,Republique,5, E, E, ME, ME
+568=Ligne 11,Place des Fetes,Ligne 7bis,Place des Fetes,5, S, S, E, E
+569=Ligne 11,Republique,Ligne 8,Republique,5, E, E, MES, MES
+570=Ligne 11,Republique,Ligne 9,Republique,5, E, E, MS, MS
+571=Ligne 12,Concorde,Ligne 1,Concorde,5, EM, EM, SE, SE
+572=Ligne 12,Pigalle,Ligne 2,Pigalle,5, E, E, M, M
+574=Ligne 12,Marcadet Poissonniers,Ligne 4,Marcadet Poissonniers,5, E, E, S, S
+575=Ligne 12,Montparnasse Bienvenue,Ligne 4,Montparnasse Bienvenue,5, ES, ES, E, E
+576=Ligne 12,Montparnasse Bienvenue,Ligne 6,Montparnasse Bienvenue,5, S, S, E, E
+577=Ligne 12,Pasteur,Ligne 6,Pasteur,5, S, S, E, E
+578=Ligne 12,Concorde,Ligne 8,Concorde,5, MS, MS, E, E
+579=Ligne 12,Madeleine,Ligne 8,Madeleine,5, E, E, SM, SM
+580=Ligne 12,Sevres Babylone,Ligne 10,Sevres Babylone,5, E, E, S, S
+581=Ligne 12,Montparnasse Bienvenue,Ligne 13,Montparnasse Bienvenue,5, SE, SE, E, E
+583=Ligne 12,Madeleine,Ligne 14,Madeleine,5, ES, ES, E, E
+585=Ligne 13,Champs-Elysees Clemenceau,Ligne 1,Champs-Elysees Clemenceau,5, E, E, M, M
+586=Ligne 13,Place de Clichy,Ligne 2,Place de Clichy,5, E, E, M, M
+588=Ligne 13,Montparnasse Bienvenue,Ligne 4,Montparnasse Bienvenue,5, E, E, ES, ES
+589=Ligne 13,Montparnasse Bienvenue,Ligne 6,Montparnasse Bienvenue,5, E, E, S, S
+590=Ligne 13,Invalides,Ligne 8,Invalides,5, S, S, E, E
+591=Ligne 13,Miromesnil,Ligne 9,Miromesnil,5, SME, SME, SE, SE
+592=Ligne 13,Duroc,Ligne 10,Duroc,5, E, E, S, S
+593=Ligne 13,Montparnasse Bienvenue,Ligne 12,Montparnasse Bienvenue,5, E, E, SE, SE
+596=Ligne 14,Chatelet,Ligne 1,Chatelet,5, MSE, MSE, SE, SE
+597=Ligne 14,Gare de Lyon,Ligne 1,Gare de Lyon,5, M, M, E, E
+598=Ligne 14,Chatelet,Ligne 4,Chatelet,5, SE, SE, ESM, ESM
+599=Ligne 14,Bercy,Ligne 6,Bercy,5, M, M, E, E
+600=Ligne 14,Chatelet,Ligne 7,Chatelet,5, E, E, EM, EM
+601=Ligne 14,Pyramides,Ligne 7,Pyramides,5, E, E, E, E
+602=Ligne 14,Madeleine,Ligne 8,Madeleine,5, E, E, SM, SM
+603=Ligne 14,Chatelet,Ligne 11,Chatelet,5, SE, SE, EMS, EMS
+604=Ligne 14,Madeleine,Ligne 12,Madeleine,5, S, S, E, E
+
+
+
+

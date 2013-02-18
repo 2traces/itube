@@ -325,7 +325,25 @@
 - (void)photoTapped:(UITapGestureRecognizer *)recognizer {
     MPlace* place = [((MPhoto*)self.currentPhotos[currentPage]) place];
     
-    [self.navigationDelegate showReaderWithItems:self.currentPlaces activePage:[self.currentPlaces indexOfObject:place]];
+    MPhoto * photo = (MPhoto*)(self.currentPhotos[currentPage]);
+    if ([photo.filename rangeOfString:@"_ab"].location != NSNotFound)
+    {
+        /*
+        if (IS_IPAD)
+        {
+            tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
+            [appDelegate showSettings];
+        }
+        else
+            [self.navigationDelegate showSettings];*/
+        tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
+        MainView* map = (MainView*)[appDelegate.mainViewController view];
+        [map showSettings];
+
+    } else
+        [self.navigationDelegate showReaderWithItems:self.currentPlaces activePage:[self.currentPlaces indexOfObject:place]];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {

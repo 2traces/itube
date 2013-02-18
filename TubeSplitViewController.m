@@ -14,6 +14,7 @@
 #import "LeftiPadPathViewController.h"
 #import "CityMap.h"
 #import "SettingsViewController.h"
+#import "PhotosViewController.h"
 
 #define constDividerWidth 1.0f
 #define constMasterWidth 320.0f
@@ -128,6 +129,7 @@ static float koefficient = 0.0f;
         
         [[(MainView*)self.mapView containerView] setFrame:CGRectMake(0.0, 44.0, size.width ,size.height + koefficient - 44.0)];
         [mainViewController.stationsView setFrame:CGRectMake(0, 0, size.width, 44)];
+        
     }
     
     [mainViewController.stationsView adjustSubviews:self.interfaceOrientation];
@@ -158,6 +160,14 @@ static float koefficient = 0.0f;
         if ([self.leftPathController isReadyToShow]) {
 
             isLeftShown=YES;
+            
+            PhotosViewController * photos = mainViewController.navigationViewController.photosController;
+            photos.placeNamePanel.hidden = YES;
+            photos.distanceContainer.hidden = YES;
+            
+            CGSize size = [self sizeRotated];
+            CGRect rect = photos.panelView.frame;
+            [photos.panelView setFrame:CGRectMake(constDetailStartPoint, rect.origin.y, size.width - constDetailStartPoint, rect.size.height)];
 
             [self.leftPathController prepareToShow];
             
@@ -174,6 +184,13 @@ static float koefficient = 0.0f;
 -(void)hideLeftView
 {
     isLeftShown=NO;
+    
+    CGSize size = [self sizeRotated];
+
+    PhotosViewController * photos = mainViewController.navigationViewController.photosController;
+    CGRect rect = photos.panelView.frame;
+    [photos.panelView setFrame:CGRectMake(rect.origin.x, rect.origin.y, size.width, rect.size.height)];
+
     
     [UIView animateWithDuration:0.5 animations:^{
         [self layoutSubviews];

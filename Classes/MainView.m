@@ -284,6 +284,7 @@ NSInteger const toolbarWidth=320;
     }
     
     if (IS_IPAD)  {
+        
         zonesRect.origin.y -= 604;
         cornerRect.origin.y -= 604;
     } else {

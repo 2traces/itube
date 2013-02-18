@@ -31,5 +31,6 @@
 @property (nonatomic, retain) IBOutlet UIImageView *iconView;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
 @property (nonatomic, retain) IBOutlet UIView *priceContainer;
+@property (retain, nonatomic) IBOutlet UIButton *imageButton;
 
 @end
