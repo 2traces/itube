@@ -188,6 +188,16 @@ NSInteger const toolbarWidth=320;
     [cornerButton setFrame:zonesRect];
     [cornerButton addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:cornerButton];
+    
+    if (IS_IPAD)
+    {
+        corner2Button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [corner2Button setImage:[UIImage imageNamed:@"bt_corner"] forState:UIControlStateNormal];
+        [corner2Button setFrame:zonesRect];
+        [corner2Button addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:corner2Button];
+    }
+
 
     destinationButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [destinationButton setImage:[UIImage imageNamed:@"dst_button_normal"] forState:UIControlStateNormal];
@@ -250,6 +260,7 @@ NSInteger const toolbarWidth=320;
             cornerRect=CGRectMake(0, 689, 36, 60);
             zonesRect=CGRectMake(250, 689, 71, 43);
         }
+        corner2Button.frame = cornerRect;
     }
     else {
         zonesRect=CGRectMake(250, 410, 71, 43);
@@ -284,6 +295,7 @@ NSInteger const toolbarWidth=320;
     }
     
     if (IS_IPAD)  {
+        corner2Button.frame = cornerRect;
         
         zonesRect.origin.y -= 604;
         cornerRect.origin.y -= 604;

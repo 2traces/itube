@@ -12,6 +12,7 @@
 @interface SettingsNavController : UIViewController <SettingsViewControllerDelegate>
 {
     IBOutlet UINavigationController *navController;
+    int purchaseIndex;
 }
 @property (nonatomic,retain) IBOutlet UINavigationController *navController;
 

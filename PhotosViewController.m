@@ -179,11 +179,13 @@
         float width = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? windowBounds.size.width : windowBounds.size.height;
         
         imageFrame.size.width = width;
+        imageFrame.origin.y = 0;
         imageFrame.origin.x = (width + 20) * index;
     }
     else
     {
         imageFrame.size.width -= 20;
+        imageFrame.origin.x = self.scrollPhotos.frame.size.width * index;
         imageFrame.origin.y = 0;
     }
     mediaView.frame = imageFrame;
@@ -337,11 +339,33 @@
         }
         else
             [self.navigationDelegate showSettings];*/
-        tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        UIView * view = [self.scrollPhotos viewWithTag:currentPage + 1];
+        CGPoint point = [recognizer locationInView:view];
+        
+        if (point.y > view.frame.size.height/ 3 && point.y < 2*view.frame.size.height/ 3)
+        {
+            int index;
+            
+            if (point.x < view.frame.size.width/2 - view.frame.size.height/6)
+                index = 1;
+            else
+                if (point.x < view.frame.size.width/2 + view.frame.size.height/6)
+                    index = 2;
+                    else
+                        index = 0;
+            
+            tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
 
-        MainView* map = (MainView*)[appDelegate.mainViewController view];
-        [map showSettings];
+            BOOL isMetro = [appDelegate.navigationViewController isMetroMode];
 
+            if (isMetro)
+            {
+                [appDelegate.mainViewController showPurchases:index];
+            } else
+            {
+                [appDelegate.glViewController showPurchases:index];
+            }
+        }
     } else
         [self.navigationDelegate showReaderWithItems:self.currentPlaces activePage:[self.currentPlaces indexOfObject:place]];
 }

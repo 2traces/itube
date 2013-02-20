@@ -80,4 +80,6 @@
 - (void) moveModeButtonToFullScreen;
 - (void) centerMapOnUser;
 
+- (void)showPurchases:(int)index;
+
 @end

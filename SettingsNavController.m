@@ -32,6 +32,7 @@
     SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
     
     controller.delegate = self;
+    controller.purchaseIndex = purchaseIndex;
     
     [navController pushViewController:controller animated:NO];
     

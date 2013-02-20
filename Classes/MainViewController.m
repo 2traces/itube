@@ -261,6 +261,16 @@
     }
 }
 
+- (void)showPurchases:(int)index
+{
+    if (IS_IPAD)
+        [self showiPadPurchases:index];
+    else
+    {
+        tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+        [appDelegate.navigationViewController showPurchases:index];
+    }
+}
 // --- status lines
 
 -(void)refreshInApp
@@ -796,6 +806,26 @@
 
     SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
     controller.delegate=self;
+    UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:controller];
+    navcontroller.modalPresentationStyle=UIModalPresentationFormSheet;
+    [self presentModalViewController:navcontroller animated:YES];
+    
+    //    navcontroller.view.superview.autoresizingMask = UIViewAutoresizingFlexibleTopMargin |UIViewAutoresizingFlexibleBottomMargin;
+    //    navcontroller.view.superview.frame = CGRectMake(navcontroller.view.superview.frame.origin.x, navcontroller.view.superview.frame.origin.x, 320, 700);
+    //
+    //    navcontroller.view.superview.center = self.view.center;
+    
+    [controller release];
+    [navcontroller release];
+}
+
+-(void)showiPadPurchases:(int)index
+{
+    if (popover) [popover dismissPopoverAnimated:YES];
+    
+    SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
+    controller.delegate=self;
+    controller.purchaseIndex = index;
     UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:controller];
     navcontroller.modalPresentationStyle=UIModalPresentationFormSheet;
     [self presentModalViewController:navcontroller animated:YES];

@@ -100,6 +100,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_LOCATION=2, PIN_STAR=3, PIN_FAVORIT
 -(void)pressedSelectFromStation;
 -(void)pressedSelectToStation;
 -(void)purgeUnusedCache;
-
+-(void)showSettings;
+-(void)showPurchases:(int)index;
 
 @end

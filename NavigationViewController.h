@@ -38,6 +38,7 @@
 - (void) showCutMap;
 - (void) centerMapOnUser;
 - (void) reloadCategories;
+- (void) showPurchases:(int)index;
 
 @end
 

@@ -52,6 +52,9 @@
     BOOL isFirstTime;
     
     id <SettingsViewControllerDelegate> delegate;
+    
+    int purchaseIndex;
+
 }
 
 @property (nonatomic, assign) id <SettingsViewControllerDelegate> delegate;
@@ -66,6 +69,7 @@
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) NSIndexPath *selectedPath;
 @property (retain) MBProgressHUD *hud;
+@property (assign) int purchaseIndex;
 @property (nonatomic, retain) NSMutableArray *servers;
 @property (nonatomic, retain) NSTimer *timer;
 @property (nonatomic, retain) UIImageView *progressArrows;

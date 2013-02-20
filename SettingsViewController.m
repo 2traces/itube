@@ -17,6 +17,7 @@
 #import "DemoMapViewController.h"
 #import "SSZipArchive.h"
 #import "SSTheme.h"
+#import "CustomPhotoViewerViewController.h"
 
 #define plist_ 1
 #define zip_  2
@@ -422,8 +423,8 @@
             [cityCell.cellButton addTarget:self action:@selector(buyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
             [cityCell.imageButton addTarget:self action:@selector(previewButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
-            if ([map objectForKey:@"picture_maps"] != nil)
-                [[(CityCell*)cell imageView] setImage:[UIImage imageNamed:[map objectForKey:@"picture_maps"]]];
+           // if ([map objectForKey:@"picture_maps"] != nil)
+             //   [[(CityCell*)cell imageView] setImage:[UIImage imageNamed:[map objectForKey:@"picture_maps"]]];
         }
         else if ([self isProductContentPurchase:[map objectForKey:@"prodID"]]) {
             //This is a content purchase cell
@@ -1276,18 +1277,40 @@
 
     if (status == ReachableViaWiFi)
     {
-        NSString *video =[map valueForKey:@"video"];
-        if (video == nil)
-            video = @"https://www.youtube.com/watch?v=f-qDgqTJehg";
-        //        
-        NSURL *url = [NSURL URLWithString:video];
-        [[UIApplication sharedApplication] openURL:url];
+        NSString * key;
+        if ([self isProductContentPurchase:[map objectForKey:@"prodID"]])
+            key = @"video_content";
+        else
+            key = @"video";
 
-        // TODO: open youtube link
+        NSString *video = [map valueForKey:key];
+
+        if (video != nil)
+        {
+            CustomPhotoViewerViewController *viewer = [[CustomPhotoViewerViewController alloc] initWithVideo:video];
+            viewer.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            
+            [self presentModalViewController:[viewer autorelease] animated:YES];
+            return;
+        }
+
     }
-    else
     {
-        // TODO: open slideshow
+        NSString * key;
+        if ([self isProductContentPurchase:[map objectForKey:@"prodID"]])
+            key = @"preview_content";
+        else
+            key = @"preview";
+        
+        NSArray *photos = (NSArray*)[map valueForKey:key];
+        
+        if (photos != nil)
+        {
+            CustomPhotoViewerViewController *viewer = [[CustomPhotoViewerViewController alloc] initWithNames:photos];
+            viewer.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        
+            [self presentModalViewController:[viewer autorelease] animated:YES];
+        }
     }
     
     /*

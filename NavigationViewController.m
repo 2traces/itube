@@ -35,7 +35,15 @@
 @synthesize separatingView;
 @synthesize shadow;
 
-- (void) showSettings {
+- (void) showSettings
+{
+    SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];
+    [self presentModalViewController:controller animated:YES];
+    [controller release];
+}
+
+- (void) showPurchases:(int)index
+{
     SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];
     [self presentModalViewController:controller animated:YES];
     [controller release];

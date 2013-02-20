@@ -6,55 +6,70 @@
 //
 //
 
-#import "PhotoViewerViewController.h"
+#import "CustomPhotoViewerViewController.h"
 #import "tubeAppDelegate.h"
-#import "UIImage+animatedGIF.h"
 
-@interface PhotoViewerViewController ()
+@interface CustomPhotoViewerViewController ()
 
 @end
 
-@implementation PhotoViewerViewController
+@implementation CustomPhotoViewerViewController
 
 @synthesize scrollView;
 @synthesize photos;
+@synthesize link;
 
-
-- (UIImage*)imageForPhotoObject:(MPhoto*)photo {
-    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    UIImage *image = nil;
-    NSString *imagePath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
-    if ([[[photo.filename pathExtension] lowercaseString] isEqualToString:@"gif"]) {
-        image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfFile:imagePath] duration:2.5f];
-    } else {
-        image = [UIImage imageWithContentsOfFile:imagePath];
-    }
-    if (!image) {
-        image = [UIImage imageNamed:@"no_image.jpeg"];
-    }
-    return image;
-}
-
-
-
-- (id) initWithPlace:(MPlace*)place index:(NSInteger)index {
+- (id) initWithNames:(NSArray *)names {
     self = [super initWithNibName:@"PhotoViewerViewController" bundle:[NSBundle mainBundle]];
     if (self) {
         // Custom initialization
         NSMutableArray *tempArray = [NSMutableArray arrayWithCapacity:5];
-        for (MPhoto* photo in place.photos) {
+        
+        for (NSString* name in names) {
+            UIImage * photo = [UIImage imageNamed:name];
             [tempArray addObject:photo];
 
         }
         self.photos = [NSArray arrayWithArray:tempArray];
-        currentPage = index;
+        currentPage = 0;
+    }
+    return self;
+}
+
+
+- (UIButton *)findButtonInView:(UIView *)view {
+	UIButton *button = nil;
+    
+	if ([view isMemberOfClass:[UIButton class]]) {
+		return (UIButton *)view;
+	}
+    
+	if (view.subviews && [view.subviews count] > 0) {
+		for (UIView *subview in view.subviews) {
+			button = [self findButtonInView:subview];
+			if (button) return button;
+		}
+	}
+    
+	return button;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)awebView {
+	UIButton *b = [self findButtonInView:awebView];
+	[b sendActionsForControlEvents:UIControlEventTouchUpInside];
+}
+
+- (id) initWithVideo:(NSString *)link {
+    self = [super initWithNibName:@"PhotoViewerViewController" bundle:[NSBundle mainBundle]];
+    if (self) {
+        self.link = link;
     }
     return self;
 }
 
 - (UIScrollView*)zoomingViewWithIndex:(NSInteger)index {
-    MPhoto *photo = self.photos[index];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[self imageForPhotoObject:photo]];
+    UIImage *photo = self.photos[index];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:photo];
 
     UIScrollView *zoomView = [[UIScrollView alloc] initWithFrame:self.scrollView.frame];
     zoomView.contentSize = imageView.frame.size;
@@ -88,31 +103,85 @@
         CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
                self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, windowBounds.size.width, windowBounds.size.height);
             }
+    if (link != nil)
+    {
+        self.webView.hidden = NO;
+        self.scrollView.hidden = YES;
     
-
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [self.photos count], self.scrollView.frame.size.height);
-
-    self.scrollView.contentOffset = CGPointMake(currentPage*self.scrollView.frame.size.width, 0);
+    /*NSString *embedHTML = @"\
+     <html><head>\
+     <style type=\"text/css\">\
+     body {\
+     background-color: transparent;\
+     color: white;\
+     }\
+     </style>\
+     </head><body style=\"margin:0\">\
+     <embed id=\"yt\" src=\"%@\" type=\"application/x-shockwave-flash\" \
+     width=\"%0.0f\" height=\"%0.0f\"></embed>\
+     </body></html>";
+        */
+   NSString *embedHTML = @"<html><head>\
+    <meta name = \"viewport\" content = \"initial-scale = 1.0, user-scalable = no, width = 320\"/></head>\
+    <body style=\"background:#888;margin-top:0px;margin-left:0px\">\
+    <div><object width=\"320\" height=\"240\">\
+    <param name=\"movie\" value=\"%@\"></param>\
+    <param name=\"wmode\" value=\"transparent\"></param>\
+    <embed src=\"%@\"\
+    type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"320\" height=\"240\"></embed>\
+    </object></div></body></html>";
     
-    //Preload current item, -1 and +1
-    for (int i = currentPage - 1; i <= currentPage + 1; i++) {
-        if (i < 0 || i > [self.photos count] - 1) {
-            continue;
-        }
-        if ( [self.scrollView viewWithTag:(i + 1)] ) {
-            continue;
-        }
-        else {
-            // view is missing, create it and set its tag to currentPage+1
-            UIScrollView *zoomView = [self zoomingViewWithIndex:i];
-            [self.scrollView addSubview:zoomView];
+        NSString *html = [NSString stringWithFormat:embedHTML, link, link];
+    /*
+     NSString * embedHTML = [NSString stringWithFormat:@"\
+     <html><head>\
+     <style type=\"text/css\">\
+     body {\
+     background-color: black;\
+     color: blue;\
+     }\
+     </style>\
+     </head><body style=\"margin:0\">\
+     <iframe height=\"200\" width=\"310\" src=\"%@\"></iframe></body></html>", link];
+     */
+    //self.webView.delegate = self;
+    
+    
+        [self.webView loadHTMLString:html baseURL:nil];
+    } else
+    {
+        self.webView.hidden = YES;
+        self.scrollView.hidden = NO;
+
+    
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [self.photos count], self.scrollView.frame.size.height);
+
+        self.scrollView.contentOffset = CGPointMake(currentPage*self.scrollView.frame.size.width, 0);
+    
+        //Preload current item, -1 and +1
+        for (int i = currentPage - 1; i <= currentPage + 1; i++) {
+            if (i < 0 || i > [self.photos count] - 1) {
+                continue;
+            }
+            if ( [self.scrollView viewWithTag:(i + 1)] ) {
+                continue;
+            }
+            else {
+                // view is missing, create it and set its tag to currentPage+1
+                UIScrollView *zoomView = [self zoomingViewWithIndex:i];
+                [self.scrollView addSubview:zoomView];
+            }
         }
     }
-
     // Do any additional setup after loading the view from its nib.
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoTapped:)];
     tapGR.delegate = self;
-    [self.scrollView addGestureRecognizer:tapGR];
+    
+    if (link != nil)
+        [self.scrollView addGestureRecognizer:tapGR];
+    else
+        [self.webView addGestureRecognizer:tapGR];
+
     [tapGR autorelease];
 }
 
@@ -229,12 +298,4 @@
     }
 }
 
-- (void)dealloc {
-    [_webView release];
-    [super dealloc];
-}
-- (void)viewDidUnload {
-    [self setWebView:nil];
-    [super viewDidUnload];
-}
 @end

@@ -578,11 +578,21 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     if (IS_IPAD)
-        [self showiPadSettingsModalView];//[appDelegate.mainViewController showiPadSettingsModalView];
+        [self showiPadSettingsModalView];
     else
         [appDelegate showSettings];
 }
 
+- (void)showPurchases:(int)index
+{
+    if (IS_IPAD)
+        [self showiPadPurchases:index];
+    else
+    {
+        tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
+        [appDelegate.navigationViewController showPurchases:index];
+    }
+}
 
 - (void) popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
@@ -601,6 +611,22 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     navcontroller.modalPresentationStyle=UIModalPresentationFormSheet;
     [self presentModalViewController:navcontroller animated:YES];
 
+    [controller release];
+    [navcontroller release];
+}
+
+
+-(void)showiPadPurchases:(int)index
+{
+    if (popover) [popover dismissPopoverAnimated:YES];
+    
+    SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
+    controller.purchaseIndex = index;
+    controller.delegate=self;
+    UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:controller];
+    navcontroller.modalPresentationStyle=UIModalPresentationFormSheet;
+    [self presentModalViewController:navcontroller animated:YES];
+    
     [controller release];
     [navcontroller release];
 }
