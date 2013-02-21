@@ -45,8 +45,18 @@
             "accessLevel": 1,
             "text": "Parc de Bercy is a group of three connected gardens designed by architects Bernard Huet, Madeleine Ferrand, Jean-Pierre Feugas, Bernard Leroy, and by landscapers Ian Le Caisne and Philippe Raguin between 1993 and 1997: The \"Romantic Garden\", which includes fishponds and dunes; The \"Flowerbeds\", dedicated to plant life; \"The Meadows\", an area of open lawns shaded by tall trees. In the north-east of the park stands the Cinematheque Francaise (the former American Center) designed by Frank Gehry, and on the raised terraces are the 21 sculptures of Rachid Khimoune's \"Children of the World\" installation, created in 2001 to honour children's rights. The park is linked directly to the National Library of France by the Simone de Beauvoir footbridge over the Seine. The area used to be an important location for Paris wine warehouses, and some remains of the industry can still be seen in the park. The Musee des Arts Forains is also located here.",
             "photos": [
-                "png42.jpg",
-                "png43.jpg"
+                       {
+                        "filename": "png42.jpg",
+                        "repeatCount": 0
+                       },
+                       {
+                        "filename": "png43.jpg",
+                        "repeatCount": 0
+                       },
+                       {
+                        "filename": "hypnotoad.gif",
+                        "repeatCount": 5
+                       }
             ],
             "categories": [
                 1
@@ -106,10 +116,10 @@
             "text": "30, avenue Gabriel Péri 93400 Saint Ouen\n\n+33 (0)1 40 11 77 36\n\nThe most famous flea market in Paris is the one at Porte de Clignancourt, officially called Les Puces de Saint-Ouen, but known to everyone as Les Puces (The Fleas).  It covers seven hectares and is the largest antique market in the world, receiving between 120,000 to 180,000 visitors each weekend. If you get there early, plan on having a leisurely Cafe Creme and watching the antiques world start up for the day. If you're a serious shopper, watch out as it becomes very crowded after lunch!! We strongly recommend going to the Puces on Saturday or Sunday because many dealers aren't open on Monday, or only open by appointment.  If you can only shop on Monday, arrive in the morning when you stand a better chance of dealers being open, cleaning up after the weekend. Important Note: Be careful to hide wallets and purses; as in any city, big crowds are a great place for pickpockets to work - and the Flea Market is no exception. When guests reserve our apartments in Paris we repeatedly advise them to hide their wallets in a fanny pack and to leave their passports in our apartment safes, but every few months we get a phone call from them, telling us they have lost their passports and credit cards. Do be careful.",
             "photos": [
                 "png58a.jpg",
-				"png58b.jpg",
-				"png58c.jpg",
-				"png58d.jpg",
-				"png58e.jpg"
+                "png58b.jpg",
+                "png58c.jpg",
+                "png58d.jpg",
+                "png58e.jpg"
             ],
             "categories": [
                 1
@@ -278,12 +288,20 @@
                "index": 18,
             "accessLevel": 0,
             "text": "The Arc de Triomphe (Arc de Triomphe de l'Étoile) is one of the most famous monuments in Paris. It stands in the centre of the Place Charles de Gaulle (originally named Place de l'Étoile), at the western end of the Champs-Élysées. There is a smaller arch, the Arc de Triomphe du Carrousel, which stands west of the Louvre. The Arc de Triomphe (in English: \"Triumphal Arch\") honours those who fought and died for France in the French Revolutionary and the Napoleonic Wars, with the names of all French victories and generals inscribed on its inner and outer surfaces. Beneath its vault lies the Tomb of the Unknown Soldier from World War I. The Arc de Triomphe is the linchpin of the historic axis (Axe historique) – a sequence of monuments and grand thoroughfares on a route which goes from the courtyard of the Louvre, to the Grande Arche de la Défense. The monument was designed by Jean Chalgrin in 1806, and its iconographic program pitted heroically nude French youths against bearded Germanic warriors in chain mail. It set the tone for public monuments, with triumphant patriotic messages. The Arc is located on the right bank of the Seine at the centre of a dodecagonal configuration of twelve radiating avenues. It was commissioned in 1806 after the victory at Austerlitz by Emperor Napoleon at the peak of his fortunes. Laying the foundations alone took two years and, in 1810, when Napoleon entered Paris from the west with his bride Archduchess Marie-Louise of Austria, he had a wooden mock-up of the completed arch constructed. The architect, Jean Chalgrin, died in 1811 and the work was taken over by Jean-Nicolas Huyot. During the Bourbon Restoration, construction was halted and it would not be completed until the reign of King Louis-Philippe, between 1833 and 1836, by the architects Goust, then Huyot, under the direction of Héricart de Thury. On 15 December 1840, brought back to France from Saint Helena, Napoleon's remains passed under it on their way to the Emperor's final resting place at the Invalides. Prior to burial in the Panthéon, the body of Victor Hugo was exposed under the Arc during the night of 22 May 1885. The sword carried by the Republic in the Marseillaise relief broke off on the day, it is said, that the Battle of Verdun began in 1916. The relief was immediately hidden by tarpaulins to conceal the accident and avoid any undesired ominous interpretations. On 7 August 1919, Charles Godefroy successfully flew his biplane under the Arc. Jean Navarre was the pilot who was tasked to make the flight, but he died on 10 July 1919 when he crashed near Villacoublay while training for the flight. Following its construction, the Arc de Triomphe became the rallying point of French troops parading after successful military campaigns and for the annual Bastille Day Military Parade. Famous victory marches around or under the Arc have included the Germans in 1871, the French in 1919, the Germans in 1940, and the French and Allies in 1944 and 1945. A United States postage stamp of 1945 shows the Arc de Triomphe in the background as victorious American troops march down the Champs-Élysées and U.S. airplanes fly overhead on 29 August 1944. After the interment of the Unknown Soldier, however, all military parades (including the aforementioned post-1919) have avoided marching through the actual arch. The route taken is up to the arch and then around its side, out of respect for the tomb and its symbolism. Both Hitler in 1940 and de Gaulle in 1944 observed this custom. By the early 1960s, the monument had grown very blackened from coal soot and automobile exhaust, and during 1965–1966 it was cleaned through bleaching. In the prolongation of the Avenue des Champs-Élysées, a new arch, the Grande Arche de la Défense, was built in 1982, completing the line of monuments that forms Paris's Axe historique. After the Arc de Triomphe du Carrousel and the Arc de Triomphe de l'Étoile, the Grande Arche is the third arch built on the same perspective.",
-            "photos": [
-                "png01a.jpg",
-				"png02.jpg",
-				"png02a.jpg",
-                "png04.jpg"
-            ],
+               "photos": [
+                          {
+                          "filename": "png42.jpg",
+                          "repeatCount": 0
+                          },
+                          {
+                          "filename": "png43.jpg",
+                          "repeatCount": 0
+                          },
+                          {
+                          "filename": "hypnotoad.gif",
+                          "repeatCount": 5
+                          }
+                          ],
             "categories": [
                 2
             ]

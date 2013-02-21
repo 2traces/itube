@@ -53,6 +53,7 @@
 
 @implementation MPhoto
 
+@dynamic repeatCount;
 @dynamic index;
 @dynamic isFavorite;
 @dynamic filename;

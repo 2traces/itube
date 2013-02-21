@@ -1497,6 +1497,11 @@
     NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
     NSString *contentIdentifier = [NSString stringWithFormat:@"%@.content", bundleIdentifier];
     if ([prodID isEqualToString:contentIdentifier]) {
+        for (NSMutableDictionary *map in self.maps) {
+            if ([[map valueForKey:@"prodID"] isEqual:bundleIdentifier] && ([[map valueForKey:@"status"] isEqual:@"V"] || [[map valueForKey:@"status"] isEqual:@"Z"]) ) {
+                [map setObject:@"P" forKey:@"status"];
+            }
+        }
         [self markProductAsInstalled:prodID];
     }
     

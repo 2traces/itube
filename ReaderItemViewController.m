@@ -66,10 +66,20 @@
 - (UIImage*)imageForPhotoObject:(MPhoto*)photo {
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     UIImage *image = nil;
+    NSArray *images = nil;
     NSString *imagePath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
     if ([[[photo.filename pathExtension] lowercaseString] isEqualToString:@"gif"]) {
-        image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfFile:imagePath] duration:2.5f];
-    } else {
+        images = [UIImage imagesArrayWithAnimatedGIFData:[NSData dataWithContentsOfFile:imagePath] duration:2.5f];
+        if (images) {
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:images[0]];
+            imageView.animationImages = images;
+            imageView.animationDuration = 2.5f;
+            imageView.animationRepeatCount = [photo.repeatCount integerValue];
+            [imageView startAnimating];
+            return [imageView autorelease];
+        }
+    }
+    else {
         image = [UIImage imageWithContentsOfFile:imagePath];
     }
     if (!image) {
@@ -81,7 +91,14 @@
 
 - (UIImageView*)imageViewWithIndex:(NSInteger)index {
     MPhoto *photo = self.currentPhotos[index];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[self imageForPhotoObject:photo]];
+    UIImageView *imageView = nil;
+    UIImage *image = [self imageForPhotoObject:photo];
+    if ([image isKindOfClass:[UIImageView class]]) {
+        imageView = [(UIImageView*)image retain];
+    }
+    else {
+        imageView = [[UIImageView alloc] initWithImage:image];
+    }
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.clipsToBounds = YES;
     if (imageView.frame.size.width < self.scrollPhotos.frame.size.width ||

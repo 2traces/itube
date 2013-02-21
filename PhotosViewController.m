@@ -71,9 +71,19 @@
 - (UIImage*)imageForPhotoObject:(MPhoto*)photo {
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     UIImage *image = nil;
+    NSArray *images = nil;
     NSString *imagePath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
     if ([[[photo.filename pathExtension] lowercaseString] isEqualToString:@"gif"]) {
-        image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfFile:imagePath] duration:2.5f];
+        images = [UIImage imagesArrayWithAnimatedGIFData:[NSData dataWithContentsOfFile:imagePath] duration:2.5f];
+        if (images) {
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:images[0]];
+            imageView.animationImages = images;
+            imageView.animationDuration = 2.5f;
+            imageView.animationRepeatCount = [photo.repeatCount integerValue];
+            [imageView startAnimating];
+
+            return [imageView autorelease];
+        }
     }
     else if ([[[photo.filename pathExtension] lowercaseString] isEqualToString:@"mp4"]) {
         return nil;
@@ -160,6 +170,9 @@
         [self.moviePlayers addObject:moviePlayerController];
         [moviePlayerController autorelease];
         
+    }
+    else if ([image isKindOfClass:[UIImageView class]]) {
+        mediaView = [(UIImageView*)image retain];
     }
     else {
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];

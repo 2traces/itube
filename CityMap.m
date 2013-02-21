@@ -2159,13 +2159,28 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     [self predraw];
 }
 
+- (NSString*)pathToPlacesFileLocalized:(BOOL)localized mapName:(NSString*)mapName {
+    NSString *locale = nil;
+    if ([NSLocale preferredLanguages] && [[NSLocale preferredLanguages] count]) {
+        locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    }
+    NSString *placesFileName = (locale && localized) ? [NSString stringWithFormat:@"places_%@.json", locale] : [NSString stringWithFormat:@"places.json"];
+    NSString *path = [NSString stringWithFormat:@"%@/%@",[mapName stringByDeletingLastPathComponent], placesFileName];
+    return path;
+}
+
 - (void) loadPlacesForMap:(NSString*)mapName {
-    NSString *path = [NSString stringWithFormat:@"%@/places.json",[mapName stringByDeletingLastPathComponent]];
+    NSString *path = [self pathToPlacesFileLocalized:YES mapName:mapName];
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.mapDirectoryPath = [mapName stringByDeletingLastPathComponent];
     NSDictionary *placesData = nil;
     if (path) {
         NSData *jsonData = [NSData dataWithContentsOfFile:path];
+        if (!jsonData) {
+            //Try to get a non-localized file...
+            path = [self pathToPlacesFileLocalized:NO mapName:mapName];
+            jsonData = [NSData dataWithContentsOfFile:path];
+        }
         if (jsonData) {
             NSError *error = nil;
             placesData = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
@@ -2209,14 +2224,30 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             //Read photos for this place
             NSMutableSet *setPhotos = [newPlace mutableSetValueForKey:@"photos"];
             NSInteger index = 0;
-            for (NSString *filename in [place objectForKey:@"photos"]) {
-                MPhoto *photo = [[MHelper sharedHelper] photoByFilename:filename];
-                if (!photo) {
-                    photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
-                    photo.filename = filename;
-                    photo.index = [NSNumber numberWithInteger:index];
+            for (id filename in [place objectForKey:@"photos"]) {
+                MPhoto *photo = nil;
+                if ([filename isKindOfClass:[NSString class]]) {
+                    photo = [[MHelper sharedHelper] photoByFilename:filename];
+                    if (!photo) {
+                        photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+                        photo.filename = filename;
+                        photo.index = [NSNumber numberWithInteger:index];
+                        photo.repeatCount = [NSNumber numberWithInteger:0];
+                    }
                 }
-                [setPhotos addObject:photo];
+                else if ([filename isKindOfClass:[NSDictionary class]]) {
+                    NSDictionary *photoInfo = filename;
+                    photo = [[MHelper sharedHelper] photoByFilename:[photoInfo objectForKey:@"filename"]];
+                    if (!photo) {
+                        photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+                        photo.filename = [photoInfo objectForKey:@"filename"];
+                        photo.index = [NSNumber numberWithInteger:index];
+                        photo.repeatCount = [NSNumber numberWithInteger:[[photoInfo objectForKey:@"repeatCount"] integerValue]];
+                    }
+                }
+                if (photo) {
+                    [setPhotos addObject:photo];
+                }
                 index++;
             }
         }

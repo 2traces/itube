@@ -45,7 +45,8 @@
     NSString *imagePath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
     if ([[[photo.filename pathExtension] lowercaseString] isEqualToString:@"gif"]) {
         image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfFile:imagePath] duration:2.5f];
-    } else {
+    }
+    else {
         image = [UIImage imageWithContentsOfFile:imagePath];
     }
     if (!image) {

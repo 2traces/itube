@@ -65,6 +65,7 @@
 @property (nonatomic, retain) NSString * filename;
 @property (nonatomic, retain) MPlace* place;
 @property (nonatomic, assign) NSNumber* index;
+@property (nonatomic, assign) NSNumber* repeatCount;
 
 
 @end

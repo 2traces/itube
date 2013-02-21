@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Category" representedClassName="MCategory" syncable="YES">
         <attribute name="color" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="image_highlighted" optional="YES" attributeType="String" syncable="YES"/>
@@ -22,6 +22,7 @@
     <entity name="Photo" representedClassName="MPhoto" syncable="YES">
         <attribute name="filename" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="repeatCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="place" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="photos" inverseEntity="Place" syncable="YES"/>
     </entity>
     <entity name="Place" representedClassName="MPlace" syncable="YES">
@@ -46,7 +47,7 @@
         <element name="Category" positionX="160" positionY="192" width="128" height="135"/>
         <element name="History" positionX="-630" positionY="-450" width="128" height="90"/>
         <element name="Line" positionX="-549" positionY="-171" width="128" height="105"/>
-        <element name="Photo" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="Photo" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Place" positionX="160" positionY="192" width="128" height="180"/>
         <element name="Station" positionX="-279" positionY="-324" width="128" height="120"/>
     </elements>
