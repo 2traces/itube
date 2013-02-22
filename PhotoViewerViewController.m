@@ -33,7 +33,11 @@
             imageView.animationDuration = 2.5f;
             imageView.animationRepeatCount = [photo.repeatCount integerValue];
             [imageView startAnimating];
-
+            //...Returning UIImageView instead of declared UIImage...
+            //I know that it's a crappy solution, however, the quickest possible,
+            //as using animatedImage method of UIImage can't control repeat count —
+            //we have to switch to animated UIImageView to be able to control amount
+            //of times to repeat the animation.
             return [imageView autorelease];
         }
     }
@@ -68,6 +72,11 @@
     UIImageView *imageView = nil;
     UIImage *image = [self imageForPhotoObject:photo];
     if ([image isKindOfClass:[UIImageView class]]) {
+        //...Checking if we got UIImageView instead of expected UIImage...
+        //I know that it's a crappy solution, however, the quickest possible,
+        //as using animatedImage method of UIImage can't control repeat count —
+        //we have to switch to animated UIImageView to be able to control amount
+        //of times to repeat the animation.
         imageView = [(UIImageView*)image retain];
     }
     else {
