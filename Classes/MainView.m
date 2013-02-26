@@ -297,8 +297,8 @@ NSInteger const toolbarWidth=320;
     if (IS_IPAD)  {
         corner2Button.frame = cornerRect;
         
-        zonesRect.origin.y -= 604;
-        cornerRect.origin.y -= 604;
+        zonesRect.origin.y -= 734;
+        cornerRect.origin.y -= 734;
     } else {
         zonesRect.origin.y -= 295;
         cornerRect.origin.y -= 295;

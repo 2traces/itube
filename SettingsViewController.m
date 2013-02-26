@@ -40,6 +40,7 @@
 @synthesize feedback;
 @synthesize updateButton;
 @synthesize updateImageView;
+@synthesize purchaseIndex;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -358,6 +359,15 @@
     [super dealloc];    
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+
+    if (purchaseCell != nil)
+    {
+        [self buyButtonPressed:purchaseCell];
+        purchaseCell = nil;
+    }
+}
 #pragma mark - TableView
 
 // Customize the number of sections in the table view.
@@ -423,6 +433,12 @@
             [cityCell.cellButton addTarget:self action:@selector(buyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
             [cityCell.imageButton addTarget:self action:@selector(previewButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
+            
+            if (self.purchaseIndex == 1)
+            {
+                purchaseCell = cityCell.cellButton;
+                purchaseIndex = 0;
+            }
            // if ([map objectForKey:@"picture_maps"] != nil)
              //   [[(CityCell*)cell imageView] setImage:[UIImage imageNamed:[map objectForKey:@"picture_maps"]]];
         }
@@ -438,6 +454,12 @@
 
             if ([map objectForKey:@"picture_content"] != nil)
                 [[(CityCell*)cell imageView] setImage:[UIImage imageNamed:[map objectForKey:@"picture_content"]]];
+            
+            if (self.purchaseIndex == 2)
+            {
+                purchaseCell = cityCell.cellButton;
+                purchaseIndex = 0;
+            }
         }
         else {
             CityCell *cityCell = (CityCell*)cell;
@@ -1287,11 +1309,15 @@
 
         if (video != nil)
         {
-            CustomPhotoViewerViewController *viewer = [[CustomPhotoViewerViewController alloc] initWithVideo:video];
-            viewer.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+         //   CustomPhotoViewerViewController *viewer = [[CustomPhotoViewerViewController alloc] initWithVideo:video];
+           // viewer.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             
-            [self presentModalViewController:[viewer autorelease] animated:YES];
-            return;
+           // [self presentModalViewController:[viewer autorelease] animated:YES];
+           // return;
+            NSURL *url = [NSURL URLWithString:video];
+            UIApplication *app = [UIApplication sharedApplication];
+            if ([app openURL:url])
+                return;
         }
 
     }

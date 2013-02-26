@@ -177,7 +177,7 @@
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoTapped:)];
     tapGR.delegate = self;
     
-    if (link != nil)
+    if (link == nil)
         [self.scrollView addGestureRecognizer:tapGR];
     else
         [self.webView addGestureRecognizer:tapGR];

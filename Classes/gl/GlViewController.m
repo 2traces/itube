@@ -556,8 +556,8 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     }
     
     if (IS_IPAD)  {
-        zonesRect.origin.y -= 644;
-        cornerRect.origin.y -= 644;
+        zonesRect.origin.y -= 774;
+        cornerRect.origin.y -= 774;
     } else {
         zonesRect.origin.y -= 335;
         cornerRect.origin.y -= 335;

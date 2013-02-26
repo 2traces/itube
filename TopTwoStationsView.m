@@ -156,6 +156,8 @@
         arrowView.hidden=YES;
         [arrowView release];
         
+        /*
+        
         UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
         [button3 addTarget:self action:@selector(showiPadLeftPathView) forControlEvents:UIControlEventTouchUpInside];
         [button3 setImage:[UIImage imageNamed:@"inv_close_ipad_button.png"] forState:UIControlStateNormal];
@@ -168,7 +170,7 @@
         [button4 setImage:[UIImage imageNamed:@"settings_ipad_button.png"] forState:UIControlStateNormal];
         [button4 addTarget:self action:@selector(showiPadSettingsModalView) forControlEvents:UIControlEventTouchUpInside];
         button4.frame = CGRectMake(38, 4, 35, 38);
-        [toolbar addSubview:button4];
+        [toolbar addSubview:button4];*/
 
         [toolbar release];
         

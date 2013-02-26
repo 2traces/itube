@@ -256,7 +256,7 @@
     CGRect panelFrame = self.photosController.panelView.frame;
     
     if (IS_IPAD)
-        panelFrame.origin = CGPointMake(0, 615);
+        panelFrame.origin = CGPointMake(0, 745);
     else
         panelFrame.origin = CGPointMake(0, 304);
     [self.photosController.view addSubview:self.photosController.panelView];
@@ -279,7 +279,7 @@
     photosViewFrame.origin.x = 0;
     if (IS_IPAD)
     {
-        panelFrame.origin = CGPointMake(0, 615);
+        panelFrame.origin = CGPointMake(0, 745);
         //panelFrame.size = CGSizeMake(panelFrame.size.width, 90);
     }
     else
@@ -319,7 +319,7 @@
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
                 if (IS_IPAD)
-                    photosViewFrame.origin.y = -615;
+                    photosViewFrame.origin.y = -745;
                 else
                     photosViewFrame.origin.y = -304;
                 self.photosController.disappearingView.alpha = 0;
@@ -361,7 +361,7 @@
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
                 if (IS_IPAD)
-                    photosViewFrame.origin.y = -572;
+                    photosViewFrame.origin.y = -702;
                 else
                     photosViewFrame.origin.y = -261;
                 self.photosController.disappearingView.alpha = 0;
@@ -371,7 +371,7 @@
                 CGRect panelFrame = self.photosController.panelView.frame;
                 if (IS_IPAD) {
                     photosViewFrame.origin.x = self.view.frame.size.width;
-                    panelFrame.origin = CGPointMake(0, 615 - 572);
+                    panelFrame.origin = CGPointMake(0, 745 - 702);
                 } else {
                     photosViewFrame.origin.x = 320;
                     panelFrame.origin = CGPointMake(0, 304 - 261);
@@ -395,7 +395,7 @@
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
                 if (IS_IPAD)
-                    photosViewFrame.origin.y = -572;
+                    photosViewFrame.origin.y = -702;
                 else
                     photosViewFrame.origin.y = -261;
                 self.photosController.disappearingView.alpha = 0;
@@ -405,13 +405,14 @@
                     returningFromLandscape = NO;
                     return;
                 }
-                self.photosController.placeNamePanel.hidden = YES;
+                if (!IS_IPAD)
+                    self.photosController.placeNamePanel.hidden = YES;
                 self.photosController.distanceContainer.hidden = YES;
                 CGRect photosViewFrame = self.photosController.view.frame;
                 CGRect panelFrame = self.photosController.panelView.frame;
                 if (IS_IPAD) {
                     photosViewFrame.origin.x = self.view.frame.size.width;
-                    panelFrame.origin = CGPointMake(0, 615 - 572);
+                    panelFrame.origin = CGPointMake(0, 745 - 702);
                 } else {
                     photosViewFrame.origin.x = 320;
                     panelFrame.origin = CGPointMake(0, 304 - 261 - (44 - 28));

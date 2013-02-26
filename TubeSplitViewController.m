@@ -162,7 +162,7 @@ static float koefficient = 0.0f;
             isLeftShown=YES;
             
             PhotosViewController * photos = mainViewController.navigationViewController.photosController;
-            photos.placeNamePanel.hidden = YES;
+            //photos.placeNamePanel.hidden = YES;
             photos.distanceContainer.hidden = YES;
             
             CGSize size = [self sizeRotated];

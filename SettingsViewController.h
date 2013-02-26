@@ -53,8 +53,7 @@
     
     id <SettingsViewControllerDelegate> delegate;
     
-    int purchaseIndex;
-
+    NSObject * purchaseCell;
 }
 
 @property (nonatomic, assign) id <SettingsViewControllerDelegate> delegate;

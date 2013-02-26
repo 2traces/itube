@@ -43,6 +43,15 @@
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     UIImage *image = nil;
     NSString *imagePath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
+    
+    if (IS_IPAD)
+    {
+        NSString *iPadPath = [NSString stringWithFormat:@"%@/photos_ipad/%@", appDelegate.mapDirectoryPath, photo.filename];
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:iPadPath])
+            imagePath = iPadPath;
+    }
+    
     if ([[[photo.filename pathExtension] lowercaseString] isEqualToString:@"gif"]) {
         image = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfFile:imagePath] duration:2.5f];
     }

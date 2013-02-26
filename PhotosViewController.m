@@ -73,6 +73,15 @@
     UIImage *image = nil;
     NSArray *images = nil;
     NSString *imagePath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
+    
+    if (IS_IPAD)
+    {
+        NSString *iPadPath = [NSString stringWithFormat:@"%@/photos_ipad/%@", appDelegate.mapDirectoryPath, photo.filename];
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:iPadPath])
+            imagePath = iPadPath;
+    }
+    
     if ([[[photo.filename pathExtension] lowercaseString] isEqualToString:@"gif"]) {
         images = [UIImage imagesArrayWithAnimatedGIFData:[NSData dataWithContentsOfFile:imagePath] duration:2.5f];
         if (images) {
@@ -161,6 +170,15 @@
         //OMG, it's not an image, it's a... Video!
         tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
         NSString *videoPath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
+        
+        if (IS_IPAD)
+        {
+            NSString *iPadPath = [NSString stringWithFormat:@"%@/photos_ipad/%@", appDelegate.mapDirectoryPath, photo.filename];
+            
+            if ([[NSFileManager defaultManager] fileExistsAtPath:iPadPath])
+                videoPath = iPadPath;
+        }
+        
         MPMoviePlayerController *moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
         moviePlayerController.movieSourceType = MPMovieSourceTypeFile;
         moviePlayerController.fullscreen = NO;
@@ -234,7 +252,16 @@
     }
    // NSLog(@"Loaded %i photos!", index);
     self.currentPhotos = [NSArray arrayWithArray:mutablePhotos];
-    self.scrollPhotos.contentSize = CGSizeMake(self.scrollPhotos.frame.size.width * index, self.scrollPhotos.frame.size.height);
+    float width = self.scrollPhotos.frame.size.width;
+    
+
+    if (IS_IPAD)
+    {
+        CGRect windowBounds = [[UIScreen mainScreen] bounds];
+        width = 20 + (UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? windowBounds.size.width : windowBounds.size.height);
+    }
+
+    self.scrollPhotos.contentSize = CGSizeMake(width * index, self.scrollPhotos.frame.size.height);
     self.scrollPhotos.pagingEnabled = YES;
     currentPage = 0;
     //Preload first two images

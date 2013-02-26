@@ -25,6 +25,15 @@
     UIImage *image = nil;
     NSArray *images = nil;
     NSString *imagePath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
+    
+    if (IS_IPAD)
+    {
+        NSString *iPadPath = [NSString stringWithFormat:@"%@/photos_ipad/%@", appDelegate.mapDirectoryPath, photo.filename];
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:iPadPath])
+            imagePath = iPadPath;
+    }
+    
     if ([[[photo.filename pathExtension] lowercaseString] isEqualToString:@"gif"]) {
         images = [UIImage imagesArrayWithAnimatedGIFData:[NSData dataWithContentsOfFile:imagePath] duration:2.5f];
         if (images) {
