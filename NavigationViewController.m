@@ -640,7 +640,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     if (IS_IPAD)
-        return YES;
+        return interfaceOrientation == UIInterfaceOrientationPortrait;// || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown;
     
     if (layerMode == HCBookmarksLayer || self.presentedViewController) {
             return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -654,7 +654,7 @@
 
 -(NSUInteger)supportedInterfaceOrientations{
     if (IS_IPAD)
-        return UIInterfaceOrientationMaskAll;
+        return UIInterfaceOrientationMaskPortrait ;//| UIInterfaceOrientationMaskPortraitUpsideDown;
     if (layerMode == HCBookmarksLayer || self.presentedViewController) {
         return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
     }
