@@ -44,7 +44,7 @@
     CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
     if (IS_IPAD) {
         float center = windowBounds.size.height / 2 - 20;
-        self.scrollPhotos.frame = CGRectMake(scrollPhotos.frame.origin.x, 0, scrollPhotos.frame.size.width, center);
+        self.scrollPhotos.frame = CGRectMake(0/*scrollPhotos.frame.origin.x*/, 0, 320/*scrollPhotos.frame.size.width*/, center);
         self.separator.frame = CGRectMake(0, center, self.separator.frame.size.width, self.separator.frame.size.height);
         self.textView.frame = CGRectMake(textView.frame.origin.x, center + self.separator.frame.size.height, textView.frame.size.width, windowBounds.size.height - center - self.separator.frame.size.height);
         self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, windowBounds.size.width, windowBounds.size.height);
@@ -127,9 +127,19 @@
     }
     imageView.frame = self.scrollPhotos.frame;
     CGRect imageFrame = imageView.frame;
-    imageFrame.origin.x = self.scrollPhotos.frame.size.width * index;
-    imageFrame.size.width -= 20;
-    imageFrame.origin.y = 0;
+    if (IS_IPAD) {
+        CGRect windowBounds = [[UIScreen mainScreen] bounds];
+        float width = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? windowBounds.size.width : windowBounds.size.height;
+        
+        imageFrame.size.width = width;
+        imageFrame.origin.y = 0;
+        imageFrame.origin.x = width * index;
+    } else
+    {
+        imageFrame.size.width -= 20;
+        imageFrame.origin.x = self.scrollPhotos.frame.size.width * index;
+        imageFrame.origin.y = 0;
+    }
     imageView.frame = imageFrame;
     imageView.tag = index + 1;
     return [imageView autorelease];

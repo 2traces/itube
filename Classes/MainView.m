@@ -83,9 +83,9 @@ NSInteger const toolbarWidth=320;
     
     if (IS_IPAD) {
         
-        scrollSize = CGRectMake(0, 44, 768, (1024-14));
+        scrollSize = CGRectMake(0, 44, 768, (1024-64));
         settingsRect=CGRectMake(-285, -420, 27, 27);
-        shadowRect = CGRectMake(0, 44, 1024, 61);
+        shadowRect = CGRectMake(0, 44, 768, 61);
         
         if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
             cornerRect=CGRectMake(0, 945, 36, 60);
@@ -229,9 +229,13 @@ NSInteger const toolbarWidth=320;
     [self addSubview:zones];
 
     UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
+    if (IS_IPAD)
+        shadow.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    
     shadow.frame = shadowRect;
     [self addSubview:shadow];
     shadow.tag=717;
+    
     
     NSTimer *timer = [NSTimer timerWithTimeInterval:0.5f target:self selector:@selector(supervisor) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
@@ -406,9 +410,23 @@ NSInteger const toolbarWidth=320;
     pos.y -= 80;
     
     if(pos.x < 120) pos.x = 120;
-    if(pos.x > 200) pos.x = 200;
+    if (IS_IPAD)
+    {
+        if(pos.x > 648) pos.x = 648;
+    }
+    else
+    {
+        if(pos.x > 200) pos.x = 200;
+    }
     if(pos.y < 130) pos.y += 200;
-    if(pos.y > 380) pos.y = 380;
+    
+    if (IS_IPAD)
+    {
+        if(pos.y > 900) pos.y = 900;
+    } else
+    {
+        if(pos.y > 380) pos.y = 380;
+    }
     sourceButton.hidden = NO;
 
     [UIView animateWithDuration:0.25f animations:^{ sourceButton.center = CGPointMake(pos.x-60, pos.y+20); }];

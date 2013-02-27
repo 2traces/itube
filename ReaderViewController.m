@@ -76,7 +76,10 @@
 - (ReaderItemViewController*)itemViewControllerWithIndex:(NSInteger)index {
     ReaderItemViewController *itemVC = [[ReaderItemViewController alloc] initWithPlaceObject:self.items[index]];
     CGRect frame = itemVC.view.frame;
-    frame.origin = CGPointMake(self.scrollView.frame.size.width * index + 10, 0);
+    if (IS_IPAD)
+        frame.origin = CGPointMake(self.scrollView.frame.size.width * index, 0);
+    else
+        frame.origin = CGPointMake(self.scrollView.frame.size.width * index + 10, 0);
     //frame.size.width -= 20;
     itemVC.view.frame = frame;
     return [itemVC autorelease];

@@ -113,7 +113,15 @@
     
     fMetroMode = YES;
     layerMode = HCMetroLayer;
-    photosMode = HCPhotosVisibleFully;
+    if (IS_IPAD)
+    {
+        photosMode = HCPhotosHiddenFully;
+
+        [self transitPhotosToMode:HCPhotosVisibleFully animated:false];
+    }
+    
+    photosMode = HCPhotosHiddenFully;
+    
     currentPlacePin = -1;
    
 
@@ -125,9 +133,17 @@
     //self.view.frame = windowBounds;
     
     if (windowBounds.size.height > 480) {
-        self.shadow.image = [UIImage imageNamed:@"navigation_shadow_higher.png"];
+        if (IS_IPAD)
+            self.shadow.image = [UIImage imageNamed:@"navigation_shadow_higher_ipad.png"];
+        else
+            self.shadow.image = [UIImage imageNamed:@"navigation_shadow_higher.png"];
         CGRect frame = self.shadow.frame;
-        frame.size.height = 548;
+        if (IS_IPAD)
+        {
+            frame.size.height = 1004;
+        }
+        else
+            frame.size.height = 548;
         self.shadow.frame = frame;
     }
 
@@ -150,11 +166,20 @@
     //self.view.frame = windowBounds;
     
     if (windowBounds.size.height > 480) {
-        self.shadow.image = [UIImage imageNamed:@"navigation_shadow_higher.png"];
+        if (IS_IPAD)
+            self.shadow.image = [UIImage imageNamed:@"navigation_shadow_higher_ipad.png"];
+        else
+            self.shadow.image = [UIImage imageNamed:@"navigation_shadow_higher.png"];
         CGRect frame = self.shadow.frame;
-        frame.size.height = 548;
+        if (IS_IPAD)
+        {
+            frame.size.height = 1004;
+        }
+        else
+            frame.size.height = 548;
         self.shadow.frame = frame;
     }
+    
     if (photosMode == HCPhotosVisibleFully) {
         [self showCutMap];
 

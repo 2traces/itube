@@ -341,7 +341,8 @@
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     if (IS_IPAD) {
-        
+        [(MainView*)self.view changeShadowFrameToRect:CGRectMake(0.0, 44.0, 768.0, 61.0)];
+
     } else {
         MainView *mainView = (MainView*)self.view;
         if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
