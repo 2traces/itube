@@ -1514,20 +1514,19 @@
 
 -(void)markProductAsPurchased:(NSString*)prodID
 {
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    NSString *contentIdentifier = [NSString stringWithFormat:@"%@.content", bundleIdentifier];
+    
     for (NSMutableDictionary *map in self.maps) {
         if ([[map valueForKey:@"prodID"] isEqual:prodID] && ([[map valueForKey:@"status"] isEqual:@"V"] || [[map valueForKey:@"status"] isEqual:@"Z"]) ) {
             [map setObject:@"P" forKey:@"status"];
+            if ([prodID isEqualToString:bundleIdentifier]) {
+                [self markProductAsInstalled:contentIdentifier];
+            }
         }
     }
     
-    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
-    NSString *contentIdentifier = [NSString stringWithFormat:@"%@.content", bundleIdentifier];
     if ([prodID isEqualToString:contentIdentifier]) {
-        for (NSMutableDictionary *map in self.maps) {
-            if ([[map valueForKey:@"prodID"] isEqual:bundleIdentifier] && ([[map valueForKey:@"status"] isEqual:@"V"] || [[map valueForKey:@"status"] isEqual:@"Z"]) ) {
-                [map setObject:@"P" forKey:@"status"];
-            }
-        }
         [self markProductAsInstalled:prodID];
     }
     
