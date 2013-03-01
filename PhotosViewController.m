@@ -343,6 +343,9 @@
         return;
     }
     
+    if (IS_IPAD && self.view.frame.origin.y < 0)
+        return;
+    
     [self.navigationDelegate showFullMap];
     
 	// get the touch
@@ -353,7 +356,7 @@
 	CGPoint location = [touch locationInView:button];
 	CGFloat delta_x = 0;//location.x - previousLocation.x;
 	CGFloat delta_y = location.y - previousLocation.y;
-    
+
     if (self.view.frame.origin.y + delta_y > 0) {
         return;
     }
@@ -396,10 +399,10 @@
             int index;
             
             if (point.x < view.frame.size.width/2 - view.frame.size.height/6)
-                index = 1;
+                index = 2; // Changed from 1 to 2 by S.Z. request, 28.02.13
             else
                 if (point.x < view.frame.size.width/2 + view.frame.size.height/6)
-                    index = 2;
+                    index = 1; // Changed from 2 to 1 by S.Z. request, 28.02.13
                     else
                         index = 0;
             

@@ -118,9 +118,8 @@
         photosMode = HCPhotosHiddenFully;
 
         [self transitPhotosToMode:HCPhotosVisibleFully animated:false];
-    }
-    
-    photosMode = HCPhotosHiddenFully;
+    } else
+        photosMode = HCPhotosVisibleFully;
     
     currentPlacePin = -1;
    
