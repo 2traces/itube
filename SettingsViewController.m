@@ -88,15 +88,23 @@
     
     for (NSString* mapID in mapIDs) {
         NSMutableDictionary *product = [[NSMutableDictionary alloc] initWithDictionary:[dict objectForKey:mapID]];
+        [product setObject:@"3" forKey:@"sortingPosition"];
         [product setObject:mapID forKey:@"prodID"];
         
         if ([mapID isEqual:bundleIdentifier]) {
+            [product setObject:@"1" forKey:@"sortingPosition"];
+
             [product setObject:@"D" forKey:@"status"];
             productContent = [NSMutableDictionary dictionaryWithDictionary:product];
+            [productContent setObject:@"2" forKey:@"sortingPosition"];
+
             contentID = [NSString stringWithFormat:@"%@.content", mapID];
             [productContent setObject:contentID forKey:@"prodID"];
             if ([self isProductInstalled:contentID]) {
                 [productContent setObject:@"I" forKey:@"status"];
+            }
+            if ([self isProductPurchased:bundleIdentifier]) {
+                [product setObject:@"P" forKey:@"status"];
             }
         } else if ([self isProductPurchased:mapID]) {
             if ([self isProductInstalled:[product valueForKey:@"filename"]]) {
@@ -132,17 +140,17 @@
 
 -(void)resortMapArray
 {
-    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
-    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    //NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"sortingPosition" ascending:YES];
     
     NSMutableArray *temp = [NSMutableArray arrayWithArray:self.maps];
     
-    [temp sortUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil]];
+    [temp sortUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor2, nil]];
     
     self.maps = [NSArray arrayWithArray:temp];
     
     [sortDescriptor2 release];
-    [sortDescriptor1 release];
+//    [sortDescriptor1 release];
     
     [self setCurrentMapSelectedPath];
 }
@@ -1516,11 +1524,12 @@
 {
     NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
     NSString *contentIdentifier = [NSString stringWithFormat:@"%@.content", bundleIdentifier];
-    
+
     for (NSMutableDictionary *map in self.maps) {
         if ([[map valueForKey:@"prodID"] isEqual:prodID] && ([[map valueForKey:@"status"] isEqual:@"V"] || [[map valueForKey:@"status"] isEqual:@"Z"]) ) {
             [map setObject:@"P" forKey:@"status"];
             if ([prodID isEqualToString:bundleIdentifier]) {
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:bundleIdentifier];
                 [self markProductAsInstalled:contentIdentifier];
             }
         }
@@ -1534,12 +1543,14 @@
 
 -(void)markProductAsInstalled:(NSString*)prodID
 {
+
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+
     for (NSMutableDictionary *map in self.maps) {
         if ([[map valueForKey:@"prodID"] isEqual:prodID]) {
             [map setObject:@"I" forKey:@"status"];
         }
     }
-    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
     NSString *contentIdentifier = [NSString stringWithFormat:@"%@.content", bundleIdentifier];
     if ([prodID isEqualToString:contentIdentifier]) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -1548,6 +1559,7 @@
         tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
         [appdelegate reloadContent];
     }
+
 }
 
 
