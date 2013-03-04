@@ -260,7 +260,7 @@
 
 -(void)adjustViewHeight
 {
-    CGFloat langTableHeight;
+    CGFloat langTableHeight = 0.0;
     CGFloat addX = 0.0;
     
     if (IS_IPAD) {

@@ -447,8 +447,8 @@
 -(id)initWithPiece:(RPiece *)p andConnection:(NSURLConnection *)con
 {
     if((self = [super init])) {
-        piece = p;
-        connection = con;
+        piece = [p retain];
+        connection = [con retain];
         data = [[NSMutableData data] retain];
     }
     return self;
@@ -596,8 +596,10 @@
     if(dc != nil) {
         [piece rasterLoaded];
         CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((CFDataRef)dc->data);
-        if(dataProvider != nil) 
+        if(dataProvider != nil) {
             piece->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
+            CGDataProviderRelease(dataProvider);
+        }
         [target performSelector:selector withObject:piece];
         return YES;
     }
@@ -614,7 +616,8 @@
         // and start loading the data
         NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
         if (theConnection) {
-            [queue put:[[DownloadPiece alloc] initWithPiece:piece andConnection:theConnection]];
+            [queue put:[[[DownloadPiece alloc] initWithPiece:piece andConnection:theConnection] autorelease]];
+            [theConnection release];
             return YES;
         } else {
             // Inform the user that the connection failed.
@@ -642,6 +645,7 @@
         p->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
         p->layer->piecesCount ++;
         [p rasterLoaded];
+        CGDataProviderRelease(dataProvider);
         return YES;
     }
     return NO;
@@ -660,9 +664,8 @@
 #endif
     if(dp != nil) {
         [dp->piece rasterLoaded];
-        [queue removeByConnection:connection];
         [minusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil]];
-        [dp release];
+        [queue removeByConnection:connection];
     }
     [self checkQueue];
 }
@@ -679,7 +682,6 @@
         NSLog(@"Piece was downloaded from '%@'", connection.originalRequest.URL.absoluteString);
 #endif
         [dp->piece rasterLoaded];
-        [queue removeByConnection:connection];
         CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((CFDataRef)dp->data);
         if(dataProvider != nil) {
             dp->piece->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
@@ -687,7 +689,7 @@
         }
         [plusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:dp->data]];
         [target performSelector:selector withObject:dp->piece];
-        [dp release];
+        [queue removeByConnection:connection];
     }
     [self checkQueue];
 }
@@ -798,7 +800,7 @@
         if(contents != nil) {
             NSMutableArray *a = [[NSMutableArray alloc] init];
             [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-                [a addObject:[[RObject alloc] initGlWithString:line rect:piece->rect]];
+                [a addObject:[[[RObject alloc] initGlWithString:line rect:piece->rect] autorelease]];
             }];
             [piece->objects release];
             piece->objects = a;
@@ -820,7 +822,8 @@
         // and start loading the data
         NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
         if (theConnection) {
-            [queue put:[[DownloadPiece alloc] initWithPiece:piece andConnection:theConnection]];
+            [queue put:[[[DownloadPiece alloc] initWithPiece:piece andConnection:theConnection] autorelease]];
+            [theConnection release];
             return YES;
         } else {
             // Inform the user that the connection failed.
@@ -847,7 +850,7 @@
         [piece vectorLoaded];
         piece->objects = [[NSMutableArray alloc] init];
         [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-            [piece->objects addObject:[[RObject alloc] initGlWithString:line rect:piece->rect]];
+            [piece->objects addObject:[[[RObject alloc] initGlWithString:line rect:piece->rect] autorelease]];
         }];
         return YES;
     }
@@ -864,9 +867,8 @@
     DownloadPiece *dp = [queue get:connection];
     if(dp != nil) {
         [dp->piece vectorLoaded];
-        [queue removeByConnection:connection];
         [minusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil]];
-        [dp release];
+        [queue removeByConnection:connection];
     }
     [self checkQueue];
 }
@@ -877,7 +879,6 @@
     if(dp != nil) {
         char term = 0;
         [dp->data appendBytes:&term length:1];
-        [queue removeByConnection:connection];
         [dp->piece vectorLoaded];
         NSString *contents = [NSString stringWithCString:(const char*)([dp->data bytes]) encoding:NSUTF8StringEncoding];
         if([[contents substringToIndex:2] isEqualToString:@"<!"]) {
@@ -887,7 +888,7 @@
         if(contents != nil) {
             NSMutableArray *a = [[NSMutableArray alloc] init];
             [contents enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-                [a addObject:[[RObject alloc] initGlWithString:line rect:dp->piece->rect]];
+                [a addObject:[[[RObject alloc] initGlWithString:line rect:dp->piece->rect] autorelease]];
             }];
             [dp->piece->objects release];
             dp->piece->objects = a;
@@ -895,8 +896,8 @@
 
         [plusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:dp->data]];
         [target performSelector:selector withObject:dp->piece];
-        [dp release];
-    } 
+        [queue removeByConnection:connection];
+    }
     [self checkQueue];
 }
 
@@ -1503,7 +1504,7 @@
             if(!found) {
                 // loading
                 CGRect r = CGRectMake(dx*X, dy*Y, dx, dy);
-                RPiece *p = [[RPiece alloc] initWithRect:r level:nextLevel x:X y:Y];
+                RPiece *p = [[[RPiece alloc] initWithRect:r level:nextLevel x:X y:Y] autorelease];
                 p->layer = self;
                 [lev addObject:p];
                 [loader secondLoad:p];
@@ -1573,7 +1574,7 @@
                 // loading
                 CGRect r = CGRectMake(dx*X, dy*Y, dx, dy);
                 if([self upperDrawGlInRect:r level:level-1] || [self lowerDrawGlInRect:r level:level+1]) {}
-                RPiece *p = [[RPiece alloc] initWithRect:r level:level x:X y:Y];
+                RPiece *p = [[[RPiece alloc] initWithRect:r level:level x:X y:Y] autorelease];
                 p->layer = self;
                 [lev addObject:p];
                 [loader load:p];

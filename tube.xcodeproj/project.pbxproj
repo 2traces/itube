@@ -213,7 +213,6 @@
 		BC28953114F621590054F9EB /* first_cell_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC28951B14F621580054F9EB /* first_cell_bg@2x.png */; };
 		BC28953214F621590054F9EB /* last_cell_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC28951C14F621580054F9EB /* last_cell_bg@2x.png */; };
 		BC28953314F621590054F9EB /* send_mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC28951D14F621590054F9EB /* send_mail@2x.png */; };
-		BC30660A1680D7A700D8F94F /* newtube-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC3066091680D7A700D8F94F /* newtube-Info.plist */; };
 		BC380721169BE6AF00214218 /* newdes_ipad_stations_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = BC38071D169BE6AF00214218 /* newdes_ipad_stations_clock.png */; };
 		BC380723169BE6AF00214218 /* newdes_ipad_stations_clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC38071F169BE6AF00214218 /* newdes_ipad_stations_clock@2x.png */; };
 		BC3AAD9F153DB0C6009AF367 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = BC3AAD9D153DB0C6009AF367 /* checkmark.png */; };
@@ -1101,16 +1100,8 @@
 		BCA7375514E02A740065EC2D /* pipka@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCA7375314E02A740065EC2D /* pipka@2x.png */; };
 		BCABF1A215E761FD00A38108 /* settings_ipad_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCABF19E15E761FD00A38108 /* settings_ipad_button@2x.png */; };
 		BCABF1A415E761FD00A38108 /* settings_ipad_button.png in Resources */ = {isa = PBXBuildFile; fileRef = BCABF1A015E761FD00A38108 /* settings_ipad_button.png */; };
-		BCAC9DE216AA8E130077896E /* newdes_s_stationsbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = BCAC9DD416AA8E130077896E /* newdes_s_stationsbutton.png */; };
-		BCAC9DE316AA8E130077896E /* newdes_s_stationsbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCAC9DD516AA8E130077896E /* newdes_s_stationsbutton@2x.png */; };
 		BCAC9DE416AA8E130077896E /* newdes_l_linesbutton_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = BCAC9DD616AA8E130077896E /* newdes_l_linesbutton_pressed.png */; };
 		BCAC9DE516AA8E130077896E /* newdes_l_linesbutton_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCAC9DD716AA8E130077896E /* newdes_l_linesbutton_pressed@2x.png */; };
-		BCAC9DE616AA8E130077896E /* newdes_l_stationsbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = BCAC9DD816AA8E130077896E /* newdes_l_stationsbutton.png */; };
-		BCAC9DE716AA8E130077896E /* newdes_l_linesbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = BCAC9DD916AA8E130077896E /* newdes_l_linesbutton.png */; };
-		BCAC9DE816AA8E130077896E /* newdes_l_stationsbutton_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = BCAC9DDA16AA8E130077896E /* newdes_l_stationsbutton_pressed.png */; };
-		BCAC9DE916AA8E130077896E /* newdes_l_linesbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCAC9DDB16AA8E130077896E /* newdes_l_linesbutton@2x.png */; };
-		BCAC9DEA16AA8E130077896E /* newdes_l_stationsbutton_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCAC9DDC16AA8E130077896E /* newdes_l_stationsbutton_pressed@2x.png */; };
-		BCAC9DEB16AA8E130077896E /* newdes_l_stationsbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCAC9DDD16AA8E130077896E /* newdes_l_stationsbutton@2x.png */; };
 		BCAC9DEC16AA8E130077896E /* newdes_stations_backbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = BCAC9DDE16AA8E130077896E /* newdes_stations_backbutton.png */; };
 		BCAC9DED16AA8E130077896E /* newdes_stations_backbutton_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = BCAC9DDF16AA8E130077896E /* newdes_stations_backbutton_pressed.png */; };
 		BCAC9DEE16AA8E130077896E /* newdes_stations_backbutton_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCAC9DE016AA8E130077896E /* newdes_stations_backbutton_pressed@2x.png */; };
@@ -3223,7 +3214,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "tube" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -4181,7 +4172,6 @@
 				BCA23C8E1680CE1400BE6AC3 /* newdes_switch_button_pressed.png in Resources */,
 				BCA23C8F1680CE1400BE6AC3 /* newdes_switch_button_pressed@2x.png in Resources */,
 				BCA23C911680CE1400BE6AC3 /* newdes_switch_button@2x.png in Resources */,
-				BC30660A1680D7A700D8F94F /* newtube-Info.plist in Resources */,
 				BCAE75421682186100EFEDB1 /* newdes_vert_path_bg.png in Resources */,
 				BCAE75431682186100EFEDB1 /* newdes_vert_path_bg@2x.png in Resources */,
 				BCEB50331682EB71009C2BDF /* newdes_status_view_bg.png in Resources */,
@@ -4289,16 +4279,8 @@
 				BCDAE00916A1D8D800A47858 /* newdes_bordered_button.png in Resources */,
 				BCDAE00A16A1D8D800A47858 /* newdes_bordered_button_pressed@2x.png in Resources */,
 				BCDAE00B16A1D8D800A47858 /* newdes_bordered_button@2x.png in Resources */,
-				BCAC9DE216AA8E130077896E /* newdes_s_stationsbutton.png in Resources */,
-				BCAC9DE316AA8E130077896E /* newdes_s_stationsbutton@2x.png in Resources */,
 				BCAC9DE416AA8E130077896E /* newdes_l_linesbutton_pressed.png in Resources */,
 				BCAC9DE516AA8E130077896E /* newdes_l_linesbutton_pressed@2x.png in Resources */,
-				BCAC9DE616AA8E130077896E /* newdes_l_stationsbutton.png in Resources */,
-				BCAC9DE716AA8E130077896E /* newdes_l_linesbutton.png in Resources */,
-				BCAC9DE816AA8E130077896E /* newdes_l_stationsbutton_pressed.png in Resources */,
-				BCAC9DE916AA8E130077896E /* newdes_l_linesbutton@2x.png in Resources */,
-				BCAC9DEA16AA8E130077896E /* newdes_l_stationsbutton_pressed@2x.png in Resources */,
-				BCAC9DEB16AA8E130077896E /* newdes_l_stationsbutton@2x.png in Resources */,
 				BCAC9DEC16AA8E130077896E /* newdes_stations_backbutton.png in Resources */,
 				BCAC9DED16AA8E130077896E /* newdes_stations_backbutton_pressed.png in Resources */,
 				BCAC9DEE16AA8E130077896E /* newdes_stations_backbutton_pressed@2x.png in Resources */,
@@ -4616,6 +4598,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "tube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
@@ -4631,6 +4614,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "tube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
@@ -4653,6 +4637,7 @@
 					DEBUG,
 					"NEW_THEME=1",
 				);
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "$(SRCROOT)/newtube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
@@ -4671,6 +4656,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "NEW_THEME=1";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "$(SRCROOT)/newtube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
@@ -4690,6 +4676,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
@@ -4708,6 +4695,7 @@
 				);
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;

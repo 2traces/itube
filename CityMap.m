@@ -2974,7 +2974,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(NSMutableArray*) describePath:(NSArray*)pathMap {
  
-    NSMutableArray *path = [[NSMutableArray alloc] init];
+    NSMutableArray *path = [[[NSMutableArray alloc] init] autorelease];
     
     [path removeAllObjects];
 	int count_ = [pathMap count];

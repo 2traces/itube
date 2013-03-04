@@ -439,14 +439,18 @@
             NSRange range;
             range.location = 1;
             range.length = [words count] - 1;
-            [elements addObject:[[[VectorLine alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:penColor andDisabledColor:[self disabledColor:penColor]] autorelease]];
+            CGColorRef disabled = [self disabledColor:penColor];
+            [elements addObject:[[[VectorLine alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:penColor andDisabledColor:disabled] autorelease]];
+            CGColorRelease(disabled);
             [[elements lastObject] rotateAt:-currentAngle center:CGPointMake(size.width/2, size.height/2)];
             
         } else if([w isEqualToString:@"polygon"]) {
             NSRange range;
             range.location = 1;
             range.length = [words count] - 1;
-            [elements addObject:[[[VectorPolygon alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:brushColor andDisabledColor:[self disabledColor:brushColor]] autorelease]];
+            CGColorRef disabled = [self disabledColor:brushColor];
+            [elements addObject:[[[VectorPolygon alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:brushColor andDisabledColor:disabled] autorelease]];
+            CGColorRelease(disabled);
             [[elements lastObject] rotateAt:-currentAngle center:CGPointMake(size.width/2, size.height/2)];
             
         } else if([w isEqualToString:@"textout"]) {
@@ -472,7 +476,9 @@
             NSRange range;
             range.location = 1;
             range.length = [words count] - 1;
-            [elements addObject:[[[VectorSpline alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:brushColor strokeColor:penColor andDisabledColor:[self disabledColor:brushColor]] autorelease]];
+            CGColorRef disabled = [self disabledColor:brushColor];
+            [elements addObject:[[[VectorSpline alloc] initWithPoints:[words objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]] color:brushColor strokeColor:penColor andDisabledColor:disabled] autorelease]];
+            CGColorRelease(disabled);
             [[elements lastObject] rotateAt:-currentAngle center:CGPointMake(size.width/2, size.height/2)];
             
         } else if([w isEqualToString:@"scale"]) {

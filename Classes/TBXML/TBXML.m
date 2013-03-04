@@ -225,7 +225,7 @@
 	// decode xml data
 	[self decodeBytes];
     
-    if (!self.rootXMLElement) {
+    if (!self.rootXMLElement && error != nil) {
         *error = [TBXML errorWithCode:D_TBXML_DECODE_FAILURE];
     }
 }
@@ -357,7 +357,7 @@
             if (attribute->value[0])
                 value = [NSString stringWithCString:&attribute->value[0] encoding:NSUTF8StringEncoding];
             else
-                value = [NSString stringWithString:@""];
+                value = @"";
             
 			break;
 		}
@@ -891,7 +891,7 @@
 			currentAttributeBuffer = 0;
 		}
 	}
-	
+	[super dealloc];
 }
 
 - (TBXMLElement*) nextAvailableElement {

@@ -10,7 +10,6 @@
 #import "RasterLayer.h"
 #import "SettingsNavController.h"
 #import "tubeAppDelegate.h"
-#import "SelectingTabBarViewController.h"
 #import "GlView.h"
 #import "SSTheme.h"
 
@@ -372,7 +371,7 @@ GLint uniforms[NUM_UNIFORMS];
     view.zonesButton = zones;
     
     // user geo position
-    Pin *p = [[Pin alloc] initWithId:0 color:0 andText:@"You are here!"];
+    Pin *p = [[[Pin alloc] initWithId:0 color:0 andText:@"You are here!"] autorelease];
     [pinsArray addObject:p];
     [p setPosition:userPosition];
     newPinId = 1;
@@ -744,9 +743,9 @@ GLint uniforms[NUM_UNIFORMS];
     newPinId ++;
     Pin *p = nil;
     if(name != nil)
-        p = [[Pin alloc] initWithId:newId color:color andText:name];
+        p = [[[Pin alloc] initWithId:newId color:color andText:name] autorelease];
     else
-        p = [[Pin alloc] initWithId:newId andColor:color];
+        p = [[[Pin alloc] initWithId:newId andColor:color] autorelease];
     float dist = 256.f/scale;
     [p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
     [pinsArray addObject:p];
