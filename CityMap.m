@@ -2224,16 +2224,20 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             //Read photos for this place
             NSMutableSet *setPhotos = [newPlace mutableSetValueForKey:@"photos"];
             NSInteger index = 0;
+            NSString *mediaType = [place objectForKey:@"media_type"];
+            if( (mediaType != nil) && ([mediaType isEqualToString:@"3dview"]) ){
+                for (int i = 0; i < [[place objectForKey:@"photos_count"] intValue]; i++) {
+//                    NSString *filename = [NSString stringWithFormat:@"%@%i%@",
+//                                          [place objectForKey:@"photos_prefix"], i,
+//                                          [place objectForKey:@"photos_ext"]];
+//                    NSLog(@"filename %@", filename);
+                    
+                }
+            }//end media type enumerator
             for (id filename in [place objectForKey:@"photos"]) {
                 MPhoto *photo = nil;
                 if ([filename isKindOfClass:[NSString class]]) {
-                    photo = [[MHelper sharedHelper] photoByFilename:filename];
-                    if (!photo) {
-                        photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
-                        photo.filename = filename;
-                        photo.index = [NSNumber numberWithInteger:index];
-                        photo.repeatCount = [NSNumber numberWithInteger:0];
-                    }
+                    photo = [self photoWithFilename:filename withIndex:index];
                 }
                 else if ([filename isKindOfClass:[NSDictionary class]]) {
                     NSDictionary *photoInfo = filename;
@@ -2249,12 +2253,23 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     [setPhotos addObject:photo];
                 }
                 index++;
-            }
+            }//end for
         }
         
         
         [[MHelper sharedHelper] saveContext];
     }
+}
+
+-(MPhoto*) photoWithFilename:(NSString*)filename withIndex:(NSInteger)index{
+    MPhoto *photo = [[MHelper sharedHelper] photoByFilename:filename];
+    if (!photo) {
+        photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+        photo.filename = filename;
+        photo.index = [NSNumber numberWithInteger:index];
+        photo.repeatCount = [NSNumber numberWithInteger:0];
+    }
+    return photo;
 }
 
 -(void) loadNewMap:(NSString *)mapFile trp:(NSString *)trpFile {
