@@ -2227,11 +2227,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             NSString *mediaType = [place objectForKey:@"media_type"];
             if( (mediaType != nil) && ([mediaType isEqualToString:@"3dview"]) ){
                 for (int i = 0; i < [[place objectForKey:@"photos_count"] intValue]; i++) {
-//                    NSString *filename = [NSString stringWithFormat:@"%@%i%@",
-//                                          [place objectForKey:@"photos_prefix"], i,
-//                                          [place objectForKey:@"photos_ext"]];
-//                    NSLog(@"filename %@", filename);
-                    
+                    NSString *filename = [NSString stringWithFormat:@"%@%i%@",
+                                          [place objectForKey:@"photos_prefix"], i,
+                                          [place objectForKey:@"photos_ext"]];
+                    MPhoto *photo = [self photoWithFilename:filename withIndex:index];
+                    if (photo) {
+                        [setPhotos addObject:photo];
+                    }
+                    index++;
                 }
             }//end media type enumerator
             for (id filename in [place objectForKey:@"photos"]) {
