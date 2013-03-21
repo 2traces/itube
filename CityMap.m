@@ -2250,7 +2250,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                         photo.filename = [photoInfo objectForKey:@"filename"];
                         photo.index = [NSNumber numberWithInteger:index];
                         photo.repeatCount = [NSNumber numberWithInteger:[[photoInfo objectForKey:@"repeatCount"] integerValue]];
-                        photo.mediaType = @"animation";
+                        photo.mediaType = @"slide_animation";
                     }
                 }
                 if (photo) {
@@ -2272,6 +2272,13 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         photo.filename = filename;
         photo.mediaType = @"photo";
         photo.index = [NSNumber numberWithInteger:index];
+        NSString *ext = [[photo.filename pathExtension] lowercaseString];
+        if ([ext isEqualToString:@"gif"]) {
+            photo.mediaType = @"gif_animation";
+        }
+        if ([ext isEqualToString:@"mp4"]) {
+            photo.mediaType = @"video";
+        }
         photo.repeatCount = [NSNumber numberWithInteger:0];
     }
     return photo;
