@@ -2250,6 +2250,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                         photo.filename = [photoInfo objectForKey:@"filename"];
                         photo.index = [NSNumber numberWithInteger:index];
                         photo.repeatCount = [NSNumber numberWithInteger:[[photoInfo objectForKey:@"repeatCount"] integerValue]];
+                        photo.mediaType = @"animation";
                     }
                 }
                 if (photo) {
