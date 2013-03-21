@@ -19,7 +19,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="stations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Station" inverseName="lines" inverseEntity="Station" syncable="YES"/>
     </entity>
-    <entity name="Photo" representedClassName="MMedia" syncable="YES">
+    <entity name="Media" representedClassName="MMedia" syncable="YES">
         <attribute name="filename" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="mediaType" optional="YES" attributeType="String" syncable="YES"/>
@@ -35,7 +35,7 @@
         <attribute name="posY" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="categories" optional="YES" toMany="YES" minCount="1" deletionRule="No Action" destinationEntity="Category" syncable="YES"/>
-        <relationship name="photos" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Photo" inverseName="place" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Media" inverseName="place" inverseEntity="Media" syncable="YES"/>
     </entity>
     <entity name="Station" representedClassName="MStation" syncable="YES">
         <attribute name="altname" optional="YES" attributeType="String" syncable="YES"/>
@@ -48,7 +48,7 @@
         <element name="Category" positionX="0" positionY="0" width="128" height="135"/>
         <element name="History" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Line" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="Photo" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Media" positionX="0" positionY="0" width="128" height="120"/>
         <element name="Place" positionX="0" positionY="0" width="128" height="180"/>
         <element name="Station" positionX="0" positionY="0" width="128" height="120"/>
     </elements>

@@ -2246,7 +2246,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     NSDictionary *photoInfo = filename;
                     photo = [[MHelper sharedHelper] photoByFilename:[photoInfo objectForKey:@"filename"]];
                     if (!photo) {
-                        photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+                        photo = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
                         photo.filename = [photoInfo objectForKey:@"filename"];
                         photo.index = [NSNumber numberWithInteger:index];
                         photo.repeatCount = [NSNumber numberWithInteger:[[photoInfo objectForKey:@"repeatCount"] integerValue]];
@@ -2267,7 +2267,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 -(MMedia*) photoWithFilename:(NSString*)filename withIndex:(NSInteger)index{
     MMedia *photo = [[MHelper sharedHelper] photoByFilename:filename];
     if (!photo) {
-        photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+        photo = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
         photo.filename = filename;
         photo.mediaType = @"photo";
         photo.index = [NSNumber numberWithInteger:index];

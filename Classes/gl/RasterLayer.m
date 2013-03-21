@@ -1300,7 +1300,7 @@ static long DownloadCacheSize = 0;
                     NSMutableSet *set = [item mutableSetValueForKey:@"photos"];
                     for (NSString *imageName in imageNames) {
                         if (![imageName isEqualToString:@""]) {
-                            MMedia *photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+                            MMedia *photo = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
                             photo.filename = imageName;
                             if (photo) {
                                 [set addObject:photo];
