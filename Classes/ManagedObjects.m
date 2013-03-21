@@ -51,6 +51,13 @@
 @dynamic image_normal;
 @end
 
+@implementation Slide3D
+
+@dynamic photosCount;
+@dynamic photosPrefix;
+@dynamic photosExt;
+@end
+
 @implementation MMedia
 
 @dynamic repeatCount;
@@ -59,6 +66,7 @@
 @dynamic filename;
 @dynamic place;
 @dynamic mediaType;
+@dynamic slide3D;
 @end
 
 @implementation MStation
