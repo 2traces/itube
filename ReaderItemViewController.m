@@ -63,7 +63,7 @@
 }
 
 
-- (UIImage*)imageForPhotoObject:(MPhoto*)photo {
+- (UIImage*)imageForPhotoObject:(MMedia*)photo {
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     UIImage *image = nil;
     NSArray *images = nil;
@@ -104,7 +104,7 @@
 
 
 - (UIImageView*)imageViewWithIndex:(NSInteger)index {
-    MPhoto *photo = self.currentPhotos[index];
+    MMedia *photo = self.currentPhotos[index];
     UIImageView *imageView = nil;
     UIImage *image = [self imageForPhotoObject:photo];
     if ([image isKindOfClass:[UIImageView class]]) {
@@ -157,7 +157,7 @@
     NSMutableArray *tempPhotos = [NSMutableArray arrayWithCapacity:[self.place.photos count]];
     NSSortDescriptor* desc = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
     NSArray *sortedPhotos = [self.place.photos sortedArrayUsingDescriptors:[NSArray arrayWithObject:desc]];
-    for (MPhoto *photo in sortedPhotos) {
+    for (MMedia *photo in sortedPhotos) {
         [tempPhotos addObject:photo];
         index++;
     }

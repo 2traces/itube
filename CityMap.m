@@ -2226,19 +2226,19 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             NSInteger index = 0;
             NSString *mediaType = [place objectForKey:@"media_type"];
             if( (mediaType != nil) && ([mediaType isEqualToString:@"3dview"]) ){
-                for (int i = 0; i < [[place objectForKey:@"photos_count"] intValue]; i++) {
-                    NSString *filename = [NSString stringWithFormat:@"%@%i%@",
-                                          [place objectForKey:@"photos_prefix"], i,
-                                          [place objectForKey:@"photos_ext"]];
-                    MPhoto *photo = [self photoWithFilename:filename withIndex:index];
-                    if (photo) {
-                        [setPhotos addObject:photo];
-                    }
-                    index++;
-                }
+//                for (int i = 0; i < [[place objectForKey:@"photos_count"] intValue]; i++) {
+//                    NSString *filename = [NSString stringWithFormat:@"%@%i%@",
+//                                          [place objectForKey:@"photos_prefix"], i,
+//                                          [place objectForKey:@"photos_ext"]];
+//                    MMedia *photo = [self photoWithFilename:filename withIndex:index];
+//                    if (photo) {
+//                        [setPhotos addObject:photo];
+//                    }
+//                    index++;
+//                }
             }//end media type enumerator
             for (id filename in [place objectForKey:@"photos"]) {
-                MPhoto *photo = nil;
+                MMedia *photo = nil;
                 if ([filename isKindOfClass:[NSString class]]) {
                     photo = [self photoWithFilename:filename withIndex:index];
                 }
@@ -2264,11 +2264,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
 }
 
--(MPhoto*) photoWithFilename:(NSString*)filename withIndex:(NSInteger)index{
-    MPhoto *photo = [[MHelper sharedHelper] photoByFilename:filename];
+-(MMedia*) photoWithFilename:(NSString*)filename withIndex:(NSInteger)index{
+    MMedia *photo = [[MHelper sharedHelper] photoByFilename:filename];
     if (!photo) {
         photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
         photo.filename = filename;
+        photo.mediaType = @"photo";
         photo.index = [NSNumber numberWithInteger:index];
         photo.repeatCount = [NSNumber numberWithInteger:0];
     }

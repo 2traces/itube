@@ -51,13 +51,14 @@
 @dynamic image_normal;
 @end
 
-@implementation MPhoto
+@implementation MMedia
 
 @dynamic repeatCount;
 @dynamic index;
 @dynamic isFavorite;
 @dynamic filename;
 @dynamic place;
+@dynamic mediaType;
 @end
 
 @implementation MStation
@@ -320,7 +321,7 @@ static MHelper * _sharedHelper;
 }
 
 
--(MPhoto*)photoByFilename:(NSString*)filename {
+-(MMedia*)photoByFilename:(NSString*)filename {
     NSError *error =nil;
     
     NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];

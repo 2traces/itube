@@ -46,7 +46,7 @@
 - (IBAction)showBookmarks:(id)sender {
 
     
-    MPlace *place = [(MPhoto*)(self.currentPhotos[currentPage]) place];
+    MPlace *place = [(MMedia*)(self.currentPhotos[currentPage]) place];
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     if ([place.isFavorite boolValue]) {
         [appDelegate placeRemovedFromFavorites:place];
@@ -68,7 +68,7 @@
 }
 
 
-- (UIImage*)imageForPhotoObject:(MPhoto*)photo {
+- (UIImage*)imageForPhotoObject:(MMedia*)photo {
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     UIImage *image = nil;
     NSArray *images = nil;
@@ -111,7 +111,7 @@
 
 
 - (Station*)stationForCurrentPhoto {
-    MPlace *place = [(MPhoto*)(self.currentPhotos[currentPage]) place];
+    MPlace *place = [(MMedia*)(self.currentPhotos[currentPage]) place];
     CGPoint placePoint = CGPointMake([place.posX floatValue], [place.posY floatValue]);
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     MainView* map = (MainView*)[appDelegate.mainViewController view];
@@ -121,7 +121,7 @@
 
 - (void)updateInfoForCurrentPage {
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    MPlace *place = [(MPhoto*)(self.currentPhotos[currentPage]) place];
+    MPlace *place = [(MMedia*)(self.currentPhotos[currentPage]) place];
     self.placeNameHeader.text = appDelegate.navigationViewController.currentCategory;//place.name;
     self.placeNamePanel.text = place.name;
     self.placeDescription.text = [NSString stringWithFormat:@"\"%@\"", place.text];
@@ -163,7 +163,7 @@
 }
 
 - (UIView*)imageViewWithIndex:(NSInteger)index {
-    MPhoto *photo = self.currentPhotos[index];
+    MMedia *photo = self.currentPhotos[index];
     UIImage *image = [self imageForPhotoObject:photo];
     UIView *mediaView = nil;
     if (!image) {
@@ -244,7 +244,7 @@
     NSSortDescriptor* desc = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
     for (MPlace *place in self.currentPlaces) {
         NSArray *sortedPhotos = [place.photos sortedArrayUsingDescriptors:[NSArray arrayWithObject:desc]];
-        for (MPhoto *photo in sortedPhotos) {
+        for (MMedia *photo in sortedPhotos) {
             [mutablePhotos addObject:photo];
             //[self.scrollPhotos addSubview:[self imageViewWithIndex:index]];
             index++;
@@ -377,9 +377,9 @@
 }
 
 - (void)photoTapped:(UITapGestureRecognizer *)recognizer {
-    MPlace* place = [((MPhoto*)self.currentPhotos[currentPage]) place];
+    MPlace* place = [((MMedia*)self.currentPhotos[currentPage]) place];
     
-    MPhoto * photo = (MPhoto*)(self.currentPhotos[currentPage]);
+    MMedia * photo = (MMedia*)(self.currentPhotos[currentPage]);
     if ([photo.filename rangeOfString:@"_ab"].location != NSNotFound)
     {
         /*

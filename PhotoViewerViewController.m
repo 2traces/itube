@@ -20,7 +20,7 @@
 @synthesize photos;
 
 
-- (UIImage*)imageForPhotoObject:(MPhoto*)photo {
+- (UIImage*)imageForPhotoObject:(MMedia*)photo {
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     UIImage *image = nil;
     NSArray *images = nil;
@@ -66,7 +66,7 @@
     if (self) {
         // Custom initialization
         NSMutableArray *tempArray = [NSMutableArray arrayWithCapacity:5];
-        for (MPhoto* photo in place.photos) {
+        for (MMedia* photo in place.photos) {
             [tempArray addObject:photo];
 
         }
@@ -77,7 +77,7 @@
 }
 
 - (UIScrollView*)zoomingViewWithIndex:(NSInteger)index {
-    MPhoto *photo = self.photos[index];
+    MMedia *photo = self.photos[index];
     UIImageView *imageView = nil;
     UIImage *image = [self imageForPhotoObject:photo];
     if ([image isKindOfClass:[UIImageView class]]) {

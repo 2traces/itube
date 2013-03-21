@@ -39,7 +39,7 @@
 }
 
 
-- (UIImage*)imageForPhotoObject:(MPhoto*)photo {
+- (UIImage*)imageForPhotoObject:(MMedia*)photo {
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     UIImage *image = nil;
     NSString *imagePath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
@@ -87,7 +87,7 @@
     for (MPlace *place in self.places) {
         NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:(IS_IPAD ? @"HCBookmarkItemView-iPad" : @"HCBookmarkItemView") owner:self options:nil];
         HCBookmarkItemView *itemView = (HCBookmarkItemView*)[nibObjects objectAtIndex:0];
-        MPhoto *firstPhoto = nil;
+        MMedia *firstPhoto = nil;
         itemView.bookmarkDelegate = self;
         if ([place.photos count]) {
             firstPhoto = [place.photos anyObject];

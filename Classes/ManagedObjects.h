@@ -59,14 +59,15 @@
 @property (nonatomic, retain) NSSet *items;
 @end
 
-@interface MPhoto : NSManagedObject
+@interface MMedia : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * isFavorite;
 @property (nonatomic, retain) NSString * filename;
 @property (nonatomic, retain) MPlace* place;
+@property (nonatomic, retain) NSString* mediaType;
+
 @property (nonatomic, assign) NSNumber* index;
 @property (nonatomic, assign) NSNumber* repeatCount;
-
 
 @end
 
@@ -121,7 +122,7 @@
 -(NSArray*)getFavoritePlacesList;
 
 -(MLine*)lineByName:(NSString*)name;
--(MPhoto*)photoByFilename:(NSString*)filename;
+-(MMedia*)photoByFilename:(NSString*)filename;
 -(MLine*)lineByIndex:(int)index;
 -(MCategory*)categoryByIndex:(int)index;
 -(MStation*)getStationWithName:(NSString*)station forLine:(NSString*)lineName;
