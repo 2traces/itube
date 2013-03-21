@@ -2226,16 +2226,16 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             NSInteger index = 0;
             NSString *mediaType = [place objectForKey:@"media_type"];
             if( (mediaType != nil) && ([mediaType isEqualToString:@"3dview"]) ){
-//                for (int i = 0; i < [[place objectForKey:@"photos_count"] intValue]; i++) {
-//                    NSString *filename = [NSString stringWithFormat:@"%@%i%@",
-//                                          [place objectForKey:@"photos_prefix"], i,
-//                                          [place objectForKey:@"photos_ext"]];
-//                    MMedia *photo = [self photoWithFilename:filename withIndex:index];
-//                    if (photo) {
-//                        [setPhotos addObject:photo];
-//                    }
-//                    index++;
-//                }
+                MMedia *media = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+                media.mediaType = mediaType;
+                media.slide3D = [self slideWithPrefix:[place objectForKey:@"photos_prefix"]
+                                              withExt:[place objectForKey:@"photos_ext"]
+                                            withCount:[place objectForKey:@"photos_count"]];
+                media.index = [NSNumber numberWithInteger:index];
+                media.filename = @"hypnotoad.gif";
+                [setPhotos addObject:media];
+                index++;
+                NSLog(@"added 3dview");
             }//end media type enumerator
             for (id filename in [place objectForKey:@"photos"]) {
                 MMedia *photo = nil;
@@ -2263,6 +2263,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         
         [[MHelper sharedHelper] saveContext];
     }
+}
+
+-(Slide3D*) slideWithPrefix:(NSString*)prefix withExt:(NSString*)ext withCount:(NSNumber*)count{
+    Slide3D *slide = [NSEntityDescription insertNewObjectForEntityForName:@"Slide3D" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+    slide.photosCount = count;
+    slide.photosExt = ext;
+    slide.photosPrefix = prefix;
+    return slide;
 }
 
 -(MMedia*) photoWithFilename:(NSString*)filename withIndex:(NSInteger)index{

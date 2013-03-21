@@ -164,6 +164,9 @@
 
 - (UIView*)imageViewWithIndex:(NSInteger)index {
     MMedia *photo = self.currentPhotos[index];
+    if ([photo.mediaType isEqualToString:@"3dview"]) {
+        NSLog(@"3dview detected!");
+    }
     UIImage *image = [self imageForPhotoObject:photo];
     UIView *mediaView = nil;
     if (!image) {
