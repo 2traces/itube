@@ -95,6 +95,8 @@
             //as using animatedImage method of UIImage can't control repeat count —
             //we have to switch to animated UIImageView to be able to control amount
             //of times to repeat the animation.
+            
+            //Buddy, please don't do this again. Especially if you know what you are doint...
             return [imageView autorelease];
         }
     }
@@ -163,20 +165,22 @@
 }
 
 - (UIView*)imageViewWithIndex:(NSInteger)index {
-    MMedia *photo = self.currentPhotos[index];
-    if ([photo.mediaType isEqualToString:@"3dview"]) {
-        NSLog(@"3dview detected!");
-    }
-    UIImage *image = [self imageForPhotoObject:photo];
+    MMedia *media = self.currentPhotos[index];
+    UIImage *image = [self imageForPhotoObject:media];
+    
     UIView *mediaView = nil;
-    if (!image) {
+    if ([media.mediaType isEqualToString:@"3dview"]) {
+        NSLog(@"3dview detected");
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        mediaView = imageView;
+    }else if (!image) {
         //OMG, it's not an image, it's a... Video!
         tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-        NSString *videoPath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
+        NSString *videoPath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, media.filename];
         
         if (IS_IPAD)
         {
-            NSString *iPadPath = [NSString stringWithFormat:@"%@/photos_ipad/%@", appDelegate.mapDirectoryPath, photo.filename];
+            NSString *iPadPath = [NSString stringWithFormat:@"%@/photos_ipad/%@", appDelegate.mapDirectoryPath, media.filename];
             
             if ([[NSFileManager defaultManager] fileExistsAtPath:iPadPath])
                 videoPath = iPadPath;
@@ -208,6 +212,7 @@
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         mediaView = imageView;
     }
+    
     mediaView.contentMode = UIViewContentModeScaleAspectFill;
     mediaView.clipsToBounds = YES;
     if (mediaView.frame.size.width < self.scrollPhotos.frame.size.width ||

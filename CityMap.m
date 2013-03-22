@@ -2222,7 +2222,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 }
             }
             //Read photos for this place
-            NSMutableSet *setPhotos = [newPlace mutableSetValueForKey:@"photos"];
+            NSMutableSet *mediaSet = [newPlace mutableSetValueForKey:@"photos"];
             NSInteger index = 0;
             NSString *mediaType = [place objectForKey:@"media_type"];
             if( (mediaType != nil) && ([mediaType isEqualToString:@"3dview"]) ){
@@ -2232,8 +2232,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                                               withExt:[place objectForKey:@"photos_ext"]
                                             withCount:[place objectForKey:@"photos_count"]];
                 media.index = [NSNumber numberWithInteger:index];
+                NSString *firstImageFilename = [NSString stringWithFormat:@"%@%i%@",
+                                                [place objectForKey:@"photos_prefix"], 0,
+                                                [place objectForKey:@"photos_ext"]];
                 media.filename = @"hypnotoad.gif";
-                [setPhotos addObject:media];
+                [mediaSet addObject:media];
                 index++;
                 NSLog(@"added 3dview");
             }//end media type enumerator
@@ -2254,7 +2257,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     }
                 }
                 if (photo) {
-                    [setPhotos addObject:photo];
+                    [mediaSet addObject:photo];
                 }
                 index++;
             }//end for
