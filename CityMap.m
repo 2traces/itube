@@ -2226,20 +2226,24 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             NSInteger index = 0;
             NSString *mediaType = [place objectForKey:@"media_type"];
             if( (mediaType != nil) && ([mediaType isEqualToString:@"3dview"]) ){
-                MMedia *media = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
-                media.mediaType = mediaType;
-                media.slide3D = [self slideWithPrefix:[place objectForKey:@"photos_prefix"]
-                                              withExt:[place objectForKey:@"photos_ext"]
-                                            withCount:[place objectForKey:@"photos_count"]];
-                media.index = [NSNumber numberWithInteger:index];
                 NSString *firstImageFilename = [NSString stringWithFormat:@"%@%i%@",
                                                 [place objectForKey:@"photos_prefix"], 0,
                                                 [place objectForKey:@"photos_ext"]];
-                media.filename = @"hypnotoad.gif";
-                [mediaSet addObject:media];
-                index++;
-                NSLog(@"added 3dview");
-            }//end media type enumerator
+                firstImageFilename = @"hypnotoad.jpg";
+                MMedia *media = [[MHelper sharedHelper] photoByFilename:firstImageFilename];
+                if (!media) {
+                    media = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+                    media.mediaType = mediaType;
+                    media.slide3D = [self slideWithPrefix:[place objectForKey:@"photos_prefix"]
+                                                  withExt:[place objectForKey:@"photos_ext"]
+                                                withCount:[place objectForKey:@"photos_count"]];
+                    media.index = [NSNumber numberWithInteger:index];
+                    
+                    media.filename = firstImageFilename;
+                    [mediaSet addObject:media];
+                    index++;
+                }
+            }//end media type block
             for (id filename in [place objectForKey:@"photos"]) {
                 MMedia *photo = nil;
                 if ([filename isKindOfClass:[NSString class]]) {
@@ -2260,10 +2264,8 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     [mediaSet addObject:photo];
                 }
                 index++;
-            }//end for
+            }//end for filename in photos
         }
-        
-        
         [[MHelper sharedHelper] saveContext];
     }
 }
@@ -2281,14 +2283,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if (!photo) {
         photo = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
         photo.filename = filename;
-        photo.mediaType = @"photo";
         photo.index = [NSNumber numberWithInteger:index];
         NSString *ext = [[photo.filename pathExtension] lowercaseString];
         if ([ext isEqualToString:@"gif"]) {
             photo.mediaType = @"gif_animation";
-        }
-        if ([ext isEqualToString:@"mp4"]) {
+        }else if ([ext isEqualToString:@"mp4"]) {
             photo.mediaType = @"video";
+        }else{
+            photo.mediaType = @"photo";
         }
         photo.repeatCount = [NSNumber numberWithInteger:0];
     }
