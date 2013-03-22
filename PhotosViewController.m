@@ -13,6 +13,8 @@
 #import "MainView.h"
 #import "UIImage+animatedGIF.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "PhotosViewController+Slide3DRotation.h"
+
 
 @interface PhotosViewController ()
 
@@ -38,14 +40,19 @@
 @synthesize btPanel;
 @synthesize directionImage;
 @synthesize moviePlayers;
+@synthesize upperPanel;
 
 - (IBAction)showCategories:(id)sender {
     [self.navigationDelegate showCategories:self];
 }
 
-- (IBAction)showBookmarks:(id)sender {
+- (IBAction)handleUpperPan:(UIPanGestureRecognizer *)tapper{
+    if (self.current3DView) {
+        [self.current3DView handleRotation:tapper];
+    }
+}
 
-    
+- (IBAction)showBookmarks:(id)sender {
     MPlace *place = [(MMedia*)(self.currentPhotos[currentPage]) place];
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     if ([place.isFavorite boolValue]) {
@@ -170,8 +177,14 @@
     
     UIView *mediaView = nil;
     if ([media.mediaType isEqualToString:@"3dview"]) {
-        NSLog(@"3dview detected");
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        NSString *prefix = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, media.slide3D.photosPrefix];
+        Slide3DImageView *imageView = [[Slide3DImageView alloc]
+                                       initWithImage:image
+                                       withPrefix:prefix
+                                       withExt:media.slide3D.photosExt
+                                       withSlidesCount:[media.slide3D.photosCount intValue]];
+        self.current3DView = imageView;
         mediaView = imageView;
     }else if (!image) {
         //OMG, it's not an image, it's a... Video!
@@ -517,6 +530,9 @@
 }
 - (void)dealloc {
     [_btSwitchMode release];
+    self.upperPanel = nil;
+    self.upperPanGestureRecognizer = nil;
+    self.current3DView = nil;
     [super dealloc];
 }
 - (void)viewDidUnload {

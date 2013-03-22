@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "NavigationViewController.h"
+#import "Slide3DImageView.h"
+
 
 @class Station;
 
@@ -28,6 +30,8 @@
     UIButton *btPanel;
     UIImageView *directionImage;
     NSMutableArray *moviePlayers;
+    UIView *upperPanel;
+    Slide3DImageView *current3DView;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *distanceLabel;
@@ -49,6 +53,9 @@
 @property (nonatomic, retain) NSArray *currentPhotos;
 @property (nonatomic, retain) NSMutableArray *moviePlayers;
 @property (retain, nonatomic) IBOutlet UIButton *btSwitchMode;
+@property (nonatomic, retain) IBOutlet UIView *upperPanel;
+@property (nonatomic, retain) IBOutlet UIPanGestureRecognizer *upperPanGestureRecognizer;
+@property (nonatomic, retain) Slide3DImageView *current3DView;
 
 - (IBAction)showCategories:(id)sender;
 - (IBAction)showHidePhotos:(id)sender;
@@ -56,6 +63,7 @@
 - (IBAction)switchMapMetro:(id)sender;
 - (IBAction)addToFavorites:(id)sender;
 - (IBAction)centerMapOnUser:(id)sender;
+- (IBAction)handleUpperPan:(UIPanGestureRecognizer*)tapper;
 - (void)updateInfoForCurrentPage;
 - (Station*)stationForCurrentPhoto;
 - (void)reloadScrollView;

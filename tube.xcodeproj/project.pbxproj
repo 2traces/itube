@@ -2612,6 +2612,14 @@
 		CE94E279146D0F7900D6BD43 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE94E278146D0F7900D6BD43 /* CoreLocation.framework */; };
 		CE96C6FB146830A8005A56F3 /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = CE96C6FA146830A8005A56F3 /* Resource.m */; };
 		CECCD33A1461A38D00804CB9 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CECCD3391461A38D00804CB9 /* CoreLocationController.m */; };
+		FAC3984116FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984016FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m */; };
+		FAC3984216FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984016FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m */; };
+		FAC3984316FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984016FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m */; };
+		FAC3984416FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984016FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m */; };
+		FAC3984816FCD07400A6CC0C /* Slide3DImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */; };
+		FAC3984916FCD07400A6CC0C /* Slide3DImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */; };
+		FAC3984A16FCD07400A6CC0C /* Slide3DImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */; };
+		FAC3984B16FCD07400A6CC0C /* Slide3DImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -3417,6 +3425,10 @@
 		CE96C6FA146830A8005A56F3 /* Resource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resource.m; sourceTree = "<group>"; };
 		CECCD3381461A38D00804CB9 /* CoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
 		CECCD3391461A38D00804CB9 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
+		FAC3983F16FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhotosViewController+Slide3DRotation.h"; sourceTree = "<group>"; };
+		FAC3984016FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhotosViewController+Slide3DRotation.m"; sourceTree = "<group>"; };
+		FAC3984616FCD07400A6CC0C /* Slide3DImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slide3DImageView.h; sourceTree = "<group>"; };
+		FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Slide3DImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3798,6 +3810,8 @@
 				579D28D216480E990061B8F6 /* NavigationViewController.m */,
 				579D28DB164815F70061B8F6 /* PhotosViewController.h */,
 				579D28DC164815F70061B8F6 /* PhotosViewController.m */,
+				FAC3983F16FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.h */,
+				FAC3984016FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m */,
 				5772FBD016668D83007B7661 /* PhotoViewerViewController.h */,
 				5772FBD116668D83007B7661 /* PhotoViewerViewController.m */,
 			);
@@ -3849,6 +3863,8 @@
 				289233A50DB2D0840083E9F9 /* MainView.m */,
 				4BC1C944142E36CA003651BB /* MapView.h */,
 				4BC1C945142E36CA003651BB /* MapView.m */,
+				FAC3984616FCD07400A6CC0C /* Slide3DImageView.h */,
+				FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -7013,6 +7029,8 @@
 				57CD10081682F9810070D8B6 /* RatePopupViewController.m in Sources */,
 				5758354A168B2E9F00C96F5C /* UIImage+animatedGIF.m in Sources */,
 				70010AB616D53697005B6244 /* CustomPhotoViewerViewController.m in Sources */,
+				FAC3984116FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m in Sources */,
+				FAC3984816FCD07400A6CC0C /* Slide3DImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7117,6 +7135,8 @@
 				57CD10091682F9810070D8B6 /* RatePopupViewController.m in Sources */,
 				5758354B168B2E9F00C96F5C /* UIImage+animatedGIF.m in Sources */,
 				70010AB716D53697005B6244 /* CustomPhotoViewerViewController.m in Sources */,
+				FAC3984216FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m in Sources */,
+				FAC3984916FCD07400A6CC0C /* Slide3DImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7221,6 +7241,8 @@
 				57CD100A1682F9810070D8B6 /* RatePopupViewController.m in Sources */,
 				5758354C168B2E9F00C96F5C /* UIImage+animatedGIF.m in Sources */,
 				70010AB816D53697005B6244 /* CustomPhotoViewerViewController.m in Sources */,
+				FAC3984316FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m in Sources */,
+				FAC3984A16FCD07400A6CC0C /* Slide3DImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7325,6 +7347,8 @@
 				57CD100B1682F9810070D8B6 /* RatePopupViewController.m in Sources */,
 				5758354D168B2E9F00C96F5C /* UIImage+animatedGIF.m in Sources */,
 				70010AB916D53697005B6244 /* CustomPhotoViewerViewController.m in Sources */,
+				FAC3984416FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m in Sources */,
+				FAC3984B16FCD07400A6CC0C /* Slide3DImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
