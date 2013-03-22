@@ -190,6 +190,7 @@
         //OMG, it's not an image, it's a... Video!
         tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
         NSString *videoPath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, media.filename];
+        NSLog(@"video path %@", videoPath);
         
         if (IS_IPAD)
         {

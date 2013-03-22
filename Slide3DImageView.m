@@ -29,7 +29,7 @@
 - (void) handleRotation:(UIPanGestureRecognizer *)recognizer{
     CGPoint translation = [recognizer translationInView:self];
     int delta = round((translation.x - self.lastTranslation) / PAN_THRESHOLD);
-    if (delta > 0){
+    if (delta < 0){
         self.currentSlideNumber -= 1;
         if (self.currentSlideNumber < 0) {
             self.currentSlideNumber = self.slidesCount - 1;
@@ -37,7 +37,7 @@
         self.lastTranslation = round(translation.x);
         [self loadSlideWithNumber:self.currentSlideNumber];
     }else{
-        if(delta < 0){
+        if(delta > 0){
             self.currentSlideNumber += 1;
             if (self.currentSlideNumber >= self.slidesCount) {
                 self.currentSlideNumber = 0;
@@ -49,10 +49,8 @@
 }
 
 - (void)loadSlideWithNumber:(int)slideNumber{
-    NSString *imagePath = [NSString stringWithFormat:@"%@%i%@", self.photosPrefix, self.slidesCount, self.photosExt];
-    NSLog(@"imagePath %@", imagePath);
+    NSString *imagePath = [NSString stringWithFormat:@"%@%i%@", self.photosPrefix, self.currentSlideNumber, self.photosExt];
     UIImage *loadedImage = [UIImage imageWithContentsOfFile:imagePath];
-    NSLog(@"loaded image %@", loadedImage);
     self.image = loadedImage;
 }
 
