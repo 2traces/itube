@@ -251,6 +251,7 @@
     NSInteger index = 0;
     NSSortDescriptor* desc = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
     for (MPlace *place in self.currentPlaces) {
+        NSLog(@"place descriptoin %@", place.description);
         NSArray *sortedPhotos = [place.photos sortedArrayUsingDescriptors:[NSArray arrayWithObject:desc]];
         for (MMedia *photo in sortedPhotos) {
             [mutablePhotos addObject:photo];
