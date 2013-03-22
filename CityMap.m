@@ -2229,7 +2229,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 NSString *firstImageFilename = [NSString stringWithFormat:@"%@%i%@",
                                                 [place objectForKey:@"photos_prefix"], 0,
                                                 [place objectForKey:@"photos_ext"]];
-                firstImageFilename = @"hypnotoad.jpg";
                 MMedia *media = [[MHelper sharedHelper] photoByFilename:firstImageFilename];
                 if (!media) {
                     media = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
