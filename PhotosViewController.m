@@ -174,10 +174,10 @@
 - (UIView*)imageViewWithIndex:(NSInteger)index {
     MMedia *media = self.currentPhotos[index];
     UIImage *image = [self imageForPhotoObject:media];
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     UIView *mediaView = nil;
     if ([media.mediaType isEqualToString:@"3dview"]) {
-        tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
         NSString *prefix = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, media.slide3D.photosPrefix];
         Slide3DImageView *imageView = [[Slide3DImageView alloc]
                                        initWithImage:image
@@ -186,9 +186,13 @@
                                        withSlidesCount:[media.slide3D.photosCount intValue]];
         self.current3DView = imageView;
         mediaView = imageView;
+    }else if ([media.mediaType isEqualToString:@"html"]) {
+        NSLog(@"detected html");
+        NSString *path = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, @"01.jpg"];
+        UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
+        mediaView = [[UIImageView alloc] initWithImage:image];
     }else if (!image) {
         //OMG, it's not an image, it's a... Video!
-        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
         NSString *videoPath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, media.filename];
         NSLog(@"video path %@", videoPath);
         

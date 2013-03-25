@@ -2225,22 +2225,34 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             NSMutableSet *mediaSet = [newPlace mutableSetValueForKey:@"photos"];
             NSInteger index = 0;
             NSString *mediaType = [place objectForKey:@"media_type"];
-            if( (mediaType != nil) && ([mediaType isEqualToString:@"3dview"]) ){
-                NSString *firstImageFilename = [NSString stringWithFormat:@"%@%i%@",
-                                                [place objectForKey:@"photos_prefix"], 0,
-                                                [place objectForKey:@"photos_ext"]];
-                MMedia *media = [[MHelper sharedHelper] photoByFilename:firstImageFilename];
-                if (!media) {
-                    media = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
-                    media.mediaType = mediaType;
-                    media.slide3D = [self slideWithPrefix:[place objectForKey:@"photos_prefix"]
-                                                  withExt:[place objectForKey:@"photos_ext"]
-                                                withCount:[place objectForKey:@"photos_count"]];
-                    media.index = [NSNumber numberWithInteger:index];
-                    
-                    media.filename = firstImageFilename;
-                    [mediaSet addObject:media];
-                    index++;
+            if( mediaType != nil ){
+                if ( [mediaType isEqualToString:@"3dview"] ){
+                    NSString *firstImageFilename = [NSString stringWithFormat:@"%@%i%@",
+                                                    [place objectForKey:@"photos_prefix"], 0,
+                                                    [place objectForKey:@"photos_ext"]];
+                    MMedia *media = [[MHelper sharedHelper] photoByFilename:firstImageFilename];
+                    if (!media) {
+                        media = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+                        media.mediaType = mediaType;
+                        media.slide3D = [self slideWithPrefix:[place objectForKey:@"photos_prefix"]
+                                                      withExt:[place objectForKey:@"photos_ext"]
+                                                    withCount:[place objectForKey:@"photos_count"]];
+                        media.index = [NSNumber numberWithInteger:index];
+                        
+                        media.filename = firstImageFilename;
+                        [mediaSet addObject:media];
+                        index++;
+                    }
+                }else if( [mediaType isEqualToString:@"html"] ){
+                    NSString *path = [place objectForKey:@"url"];
+                    MMedia *media = [[MHelper sharedHelper] photoByFilename:path];
+                    if (!media) {
+                        media = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+                        media.mediaType = mediaType;
+                        media.filename = path;
+                        [mediaSet addObject:media];
+                        index++;
+                    }
                 }
             }//end media type block
             for (id filename in [place objectForKey:@"photos"]) {

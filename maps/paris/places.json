@@ -44,11 +44,9 @@
            "index": 5,
            "accessLevel": 0,
            "text": "This is a 3D building. Drag a line above to rotate",
-            "media_type": "3dview",
-            "photos_prefix": "3d/3dbuilding0/3dbuilding0_",
-            "photos_count": 40,
-            "photos_ext": ".jpg",
-            "categories": [
+           "media_type": "html",
+           "url": "http://ramonka.com/temp/hidden-cities/",
+           "categories": [
                     2
                         ]
         },
