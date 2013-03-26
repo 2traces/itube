@@ -187,10 +187,11 @@
         self.current3DView = imageView;
         mediaView = imageView;
     }else if ([media.mediaType isEqualToString:@"html"]) {
-        NSLog(@"detected html");
-        NSString *path = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, @"01.jpg"];
-        UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
-        mediaView = [[UIImageView alloc] initWithImage:image];
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+        mediaView = webView;
+        NSURL* url = [NSURL URLWithString:media.filename];
+        NSURLRequest* request = [NSURLRequest requestWithURL:url];
+        [webView loadRequest:request];
     }else if (!image) {
         //OMG, it's not an image, it's a... Video!
         NSString *videoPath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, media.filename];
