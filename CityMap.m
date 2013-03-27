@@ -2244,7 +2244,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                         index++;
                     }
                 }else if( [mediaType isEqualToString:@"html"] ){
-                    NSString *path = [place objectForKey:@"url"];
+                    NSString *path = [place objectForKey:@"filename"];
                     MMedia *media = [[MHelper sharedHelper] photoByFilename:path];
                     if (!media) {
                         media = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];

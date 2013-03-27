@@ -189,7 +189,8 @@
     }else if ([media.mediaType isEqualToString:@"html"]) {
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
         mediaView = webView;
-        NSURL* url = [NSURL URLWithString:media.filename];
+        NSString *htmlPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename];
+        NSURL* url = [NSURL fileURLWithPath:htmlPath];
         NSURLRequest* request = [NSURLRequest requestWithURL:url];
         [webView loadRequest:request];
     }else if (!image) {
