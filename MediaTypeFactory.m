@@ -8,10 +8,56 @@
 
 #import "MediaTypeFactory.h"
 #import "Slide3DImageView.h"
+#import "UIImage+animatedGIF.h"
 
 @implementation MediaTypeFactory
 
-+(UIView*)viewForMedia:(MMedia *)media withImage:(UIImage*)image withParent:(UIView*)parent withOrientation:(UIInterfaceOrientation)orientation withIndex:(int)index{
+
++(UIImage*)imageForMedia:(MMedia *)media{
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    UIImage *image = nil;
+    NSArray *images = nil;
+    NSString *imagePath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, media.filename];
+    
+    if (IS_IPAD)
+    {
+        NSString *iPadPath = [NSString stringWithFormat:@"%@/photos_ipad/%@", appDelegate.mapDirectoryPath, media.filename];
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:iPadPath])
+            imagePath = iPadPath;
+    }
+    
+    if ([[[media.filename pathExtension] lowercaseString] isEqualToString:@"gif"]) {
+        images = [UIImage imagesArrayWithAnimatedGIFData:[NSData dataWithContentsOfFile:imagePath] duration:2.5f];
+        if (images) {
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:images[0]];
+            imageView.animationImages = images;
+            imageView.animationDuration = 2.5f;
+            imageView.animationRepeatCount = [media.repeatCount integerValue];
+            [imageView startAnimating];
+            //...Returning UIImageView instead of declared UIImage...
+            //I know that it's a crappy solution, however, the quickest possible,
+            //as using animatedImage method of UIImage can't control repeat count —
+            //we have to switch to animated UIImageView to be able to control amount
+            //of times to repeat the animation.
+            
+            //Buddy, please don't do this again. Especially if you know what you are doint...
+            return [imageView autorelease];
+        }
+    }
+    else if ([[[media.filename pathExtension] lowercaseString] isEqualToString:@"mp4"]) {
+        return nil;
+    } else {
+        image = [UIImage imageWithContentsOfFile:imagePath];
+    }
+    if (!image) {
+        image = [UIImage imageNamed:@"no_image.jpeg"];
+    }
+    return image;
+}
+
++(UIView*)viewForMedia:(MMedia *)media withParent:(UIView*)parent withOrientation:(UIInterfaceOrientation)orientation withIndex:(int)index{
+    UIImage *image = [self imageForMedia:media];
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     UIView *mediaView = nil;
     if ([media.mediaType isEqualToString:@"3dview"]) {

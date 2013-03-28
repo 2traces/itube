@@ -172,8 +172,7 @@
 
 - (UIView*)imageViewWithIndex:(NSInteger)index {
     MMedia *media = self.currentPhotos[index];
-    UIImage *image = [self imageForPhotoObject:media];
-    return [MediaTypeFactory viewForMedia:media withImage:image withParent:self.scrollPhotos withOrientation:self.interfaceOrientation withIndex:index];
+    return [MediaTypeFactory viewForMedia:media withParent:self.scrollPhotos withOrientation:self.interfaceOrientation withIndex:index];
 }
 
 - (void)reloadScrollView {
