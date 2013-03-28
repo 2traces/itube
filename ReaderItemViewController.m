@@ -10,6 +10,7 @@
 #import "ManagedObjects.h"
 #import "tubeAppDelegate.h"
 #import "UIImage+animatedGIF.h"
+#import "MediaTypeFactory.h"
 
 @interface ReaderItemViewController ()
 
@@ -62,90 +63,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-- (UIImage*)imageForPhotoObject:(MMedia*)photo {
-    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    UIImage *image = nil;
-    NSArray *images = nil;
-    NSString *imagePath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
-    
-    if (IS_IPAD)
-    {
-        NSString *iPadPath = [NSString stringWithFormat:@"%@/photos_ipad/%@", appDelegate.mapDirectoryPath, photo.filename];
-        
-        if ([[NSFileManager defaultManager] fileExistsAtPath:iPadPath])
-            imagePath = iPadPath;
-    }
-    
-    if ([[[photo.filename pathExtension] lowercaseString] isEqualToString:@"gif"]) {
-        images = [UIImage imagesArrayWithAnimatedGIFData:[NSData dataWithContentsOfFile:imagePath] duration:2.5f];
-        if (images) {
-            UIImageView *imageView = [[UIImageView alloc] initWithImage:images[0]];
-            imageView.animationImages = images;
-            imageView.animationDuration = 2.5f;
-            imageView.animationRepeatCount = [photo.repeatCount integerValue];
-            [imageView startAnimating];
-            //...Returning UIImageView instead of declared UIImage...
-            //I know that it's a crappy solution, however, the quickest possible,
-            //as using animatedImage method of UIImage can't control repeat count —
-            //we have to switch to animated UIImageView to be able to control amount
-            //of times to repeat the animation.
-            return [imageView autorelease];
-        }
-    }
-    else {
-        image = [UIImage imageWithContentsOfFile:imagePath];
-    }
-    if (!image) {
-        image = [UIImage imageNamed:@"no_image.jpeg"];
-    }
-    return image;
+- (UIView*)mediaViewWithIndex:(NSInteger)index {
+    MMedia *media = self.currentPhotos[index];
+    return [MediaTypeFactory viewForMedia:media withParent:self.scrollPhotos withOrientation:self.interfaceOrientation withIndex:index];
 }
-
-
-- (UIImageView*)imageViewWithIndex:(NSInteger)index {
-    MMedia *photo = self.currentPhotos[index];
-    UIImageView *imageView = nil;
-    UIImage *image = [self imageForPhotoObject:photo];
-    if ([image isKindOfClass:[UIImageView class]]) {
-        //...Checking if we got UIImageView instead of expected UIImage...
-        //I know that it's a crappy solution, however, the quickest possible,
-        //as using animatedImage method of UIImage can't control repeat count —
-        //we have to switch to animated UIImageView to be able to control amount
-        //of times to repeat the animation.
-        imageView = [(UIImageView*)image retain];
-    }
-    else {
-        imageView = [[UIImageView alloc] initWithImage:image];
-    }
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
-    imageView.clipsToBounds = YES;
-    if (imageView.frame.size.width < self.scrollPhotos.frame.size.width ||
-        imageView.frame.size.height < self.scrollPhotos.frame.size.height ) {
-        imageView.contentMode = UIViewContentModeCenter;
-        
-    }
-    imageView.frame = self.scrollPhotos.frame;
-    CGRect imageFrame = imageView.frame;
-    if (IS_IPAD) {
-        CGRect windowBounds = [[UIScreen mainScreen] bounds];
-        float width = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? windowBounds.size.width : windowBounds.size.height;
-        
-        imageFrame.size.width = width;
-        imageFrame.origin.y = 0;
-        imageFrame.origin.x = width * index;
-    } else
-    {
-        imageFrame.size.width -= 20;
-        imageFrame.origin.x = self.scrollPhotos.frame.size.width * index;
-        imageFrame.origin.y = 0;
-    }
-    imageView.frame = imageFrame;
-    imageView.tag = index + 1;
-    return [imageView autorelease];
-}
-
-
 
 - (void)reloadScrollView {
     for (UIView *subview in self.scrollPhotos.subviews) {
@@ -168,14 +89,14 @@
     currentPage = 0;
     
     //Preload first two images
-    UIImageView *imageView = nil;
+    UIView *mediaView = nil;
     if (index) {
-        imageView = [self imageViewWithIndex:currentPage];
-        [self.scrollPhotos addSubview:imageView];
+        mediaView = [self mediaViewWithIndex:currentPage];
+        [self.scrollPhotos addSubview:mediaView];
     }
     if (index > 1) {
-        imageView = [self imageViewWithIndex:currentPage + 1];
-        [self.scrollPhotos addSubview:imageView];
+        mediaView = [self mediaViewWithIndex:currentPage + 1];
+        [self.scrollPhotos addSubview:mediaView];
     }
 
 }
@@ -200,8 +121,8 @@
             }
             else {
                 // view is missing, create it and set its tag to currentPage+1
-                UIImageView *imageView = [self imageViewWithIndex:i];
-                [self.scrollPhotos addSubview:imageView];
+                UIImageView *mediaView = [self mediaViewWithIndex:i];
+                [self.scrollPhotos addSubview:mediaView];
             }
         }
         
