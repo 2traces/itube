@@ -13,7 +13,6 @@
 #import "MainView.h"
 #import "UIImage+animatedGIF.h"
 #import <MediaPlayer/MediaPlayer.h>
-#import "PhotosViewController+Slide3DRotation.h"
 #import "MediaTypeFactory.h"
 
 

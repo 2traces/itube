@@ -30,7 +30,6 @@
     UIButton *btPanel;
     UIImageView *directionImage;
     NSMutableArray *moviePlayers;
-    UIView *upperPanel;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *distanceLabel;
