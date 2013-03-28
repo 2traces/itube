@@ -11,7 +11,7 @@
 
 @implementation HCBookmarkItemView
 
-@synthesize imageView;
+@synthesize mainView;
 @synthesize textView;
 @synthesize labelPlaceDistance;
 @synthesize labelPlaceName;
@@ -44,8 +44,8 @@
 }
 
 
-- (void) setImage:(UIImage*)image text:(NSString*)text placeName:(NSString*)name placeDistance:(NSString*)distance {
-    self.imageView.image = image;
+- (void) setView:(UIView*)child text:(NSString*)text placeName:(NSString*)name placeDistance:(NSString*)distance {
+    [self.mainView addSubview:child];
     self.labelPlaceName.text = name;
     self.labelPlaceDistance.text = distance;
     self.textView.text = text;

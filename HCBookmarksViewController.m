@@ -12,6 +12,7 @@
 #import "tubeAppDelegate.h"
 #import "MainView.h"
 #import "UIImage+animatedGIF.h"
+#import "MediaTypeFactory.h"
 
 @interface HCBookmarksViewController ()
 
@@ -94,8 +95,6 @@
         }
         CGPoint placePoint = CGPointMake([place.posX floatValue], [place.posY floatValue]);
         Station *nearestStation = [map stationNearestToGeoPosition:placePoint];
-        
-        [itemView setImage:[self imageForPhotoObject:firstPhoto] text:place.text placeName:place.name placeDistance:nearestStation.name];
         itemView.tag = [place.index integerValue];
         [self.items addObject:itemView];
         [self.scrollView addSubview:itemView];
@@ -103,6 +102,10 @@
         frame.origin.y = offset;
         offset += itemView.frame.size.height;
         itemView.frame = frame;
+        UIView *mediaView = [MediaTypeFactory viewForMedia:firstPhoto withParent:itemView.mainView withOrientation:self.interfaceOrientation withIndex:[place.index integerValue]];
+        mediaView.frame = CGRectMake(0, 0, itemView.mainView.frame.size.width, itemView.mainView.frame.size.height);
+        NSLog(@"mediaView %@", mediaView.description);
+        [itemView setView:mediaView text:place.text placeName:place.name placeDistance:nearestStation.name];
     }
     self.scrollView.contentSize = CGSizeMake(320.0f, offset);
 
