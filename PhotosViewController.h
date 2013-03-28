@@ -31,7 +31,6 @@
     UIImageView *directionImage;
     NSMutableArray *moviePlayers;
     UIView *upperPanel;
-    Slide3DImageView *current3DView;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *distanceLabel;
