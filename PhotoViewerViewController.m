@@ -9,6 +9,7 @@
 #import "PhotoViewerViewController.h"
 #import "tubeAppDelegate.h"
 #import "UIImage+animatedGIF.h"
+#import "MediaTypeFactory.h"
 
 @interface PhotoViewerViewController ()
 
@@ -18,48 +19,6 @@
 
 @synthesize scrollView;
 @synthesize photos;
-
-
-- (UIImage*)imageForPhotoObject:(MMedia*)photo {
-    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    UIImage *image = nil;
-    NSArray *images = nil;
-    NSString *imagePath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, photo.filename];
-    
-    if (IS_IPAD)
-    {
-        NSString *iPadPath = [NSString stringWithFormat:@"%@/photos_ipad/%@", appDelegate.mapDirectoryPath, photo.filename];
-        
-        if ([[NSFileManager defaultManager] fileExistsAtPath:iPadPath])
-            imagePath = iPadPath;
-    }
-    
-    if ([[[photo.filename pathExtension] lowercaseString] isEqualToString:@"gif"]) {
-        images = [UIImage imagesArrayWithAnimatedGIFData:[NSData dataWithContentsOfFile:imagePath] duration:2.5f];
-        if (images) {
-            UIImageView *imageView = [[UIImageView alloc] initWithImage:images[0]];
-            imageView.animationImages = images;
-            imageView.animationDuration = 2.5f;
-            imageView.animationRepeatCount = [photo.repeatCount integerValue];
-            [imageView startAnimating];
-            //...Returning UIImageView instead of declared UIImage...
-            //I know that it's a crappy solution, however, the quickest possible,
-            //as using animatedImage method of UIImage can't control repeat count —
-            //we have to switch to animated UIImageView to be able to control amount
-            //of times to repeat the animation.
-            return [imageView autorelease];
-        }
-    }
-    else {
-        image = [UIImage imageWithContentsOfFile:imagePath];
-    }
-    if (!image) {
-        image = [UIImage imageNamed:@"no_image.jpeg"];
-    }
-    return image;
-}
-
-
 
 - (id) initWithPlace:(MPlace*)place index:(NSInteger)index {
     self = [super initWithNibName:@"PhotoViewerViewController" bundle:[NSBundle mainBundle]];
@@ -77,28 +36,15 @@
 }
 
 - (UIScrollView*)zoomingViewWithIndex:(NSInteger)index {
-    MMedia *photo = self.photos[index];
-    UIImageView *imageView = nil;
-    UIImage *image = [self imageForPhotoObject:photo];
-    if ([image isKindOfClass:[UIImageView class]]) {
-        //...Checking if we got UIImageView instead of expected UIImage...
-        //I know that it's a crappy solution, however, the quickest possible,
-        //as using animatedImage method of UIImage can't control repeat count —
-        //we have to switch to animated UIImageView to be able to control amount
-        //of times to repeat the animation.
-        imageView = [(UIImageView*)image retain];
-    }
-    else {
-        imageView = [[UIImageView alloc] initWithImage:image];
-    }
-
+    MMedia *media = self.photos[index];
+    UIView *mediaView = [MediaTypeFactory viewForMedia:media withParent:self.scrollView withOrientation:self.interfaceOrientation withIndex:index];
     UIScrollView *zoomView = [[UIScrollView alloc] initWithFrame:self.scrollView.frame];
-    zoomView.contentSize = imageView.frame.size;
-    [zoomView addSubview:[imageView autorelease]];
+    zoomView.contentSize = mediaView.frame.size;
+    [zoomView addSubview:mediaView];
     zoomView.delegate = self;
     zoomView.tag = index + 1;
     zoomView.maximumZoomScale = 2.0f;
-    zoomView.minimumZoomScale = zoomView.frame.size.width / imageView.frame.size.width;
+    zoomView.minimumZoomScale = zoomView.frame.size.width / mediaView.frame.size.width;
     CGRect frame = zoomView.frame;
     frame.origin = CGPointMake(self.scrollView.frame.size.width * index, 0);
     zoomView.frame = frame;
