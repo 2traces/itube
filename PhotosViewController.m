@@ -14,6 +14,7 @@
 #import "UIImage+animatedGIF.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "PhotosViewController+Slide3DRotation.h"
+#import "MediaTypeFactory.h"
 
 
 @interface PhotosViewController ()
@@ -162,8 +163,6 @@
         self.directionImage.transform = CGAffineTransformMakeRotation(0);
         self.directionImage.transform = CGAffineTransformMakeRotation(direction);
     }
-
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -174,91 +173,7 @@
 - (UIView*)imageViewWithIndex:(NSInteger)index {
     MMedia *media = self.currentPhotos[index];
     UIImage *image = [self imageForPhotoObject:media];
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    UIView *mediaView = nil;
-    if ([media.mediaType isEqualToString:@"3dview"]) {
-        NSString *prefix = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, media.slide3D.photosPrefix];
-        Slide3DImageView *imageView = [[Slide3DImageView alloc]
-                                       initWithImage:image
-                                       withPrefix:prefix
-                                       withExt:media.slide3D.photosExt
-                                       withSlidesCount:[media.slide3D.photosCount intValue]];
-        self.current3DView = imageView;
-        mediaView = imageView;
-    }else if ([media.mediaType isEqualToString:@"html"]) {
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-        mediaView = webView;
-        NSString *htmlPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename];
-        NSURL* url = [NSURL fileURLWithPath:htmlPath];
-        NSURLRequest* request = [NSURLRequest requestWithURL:url];
-        [webView loadRequest:request];
-    }else if (!image) {
-        //OMG, it's not an image, it's a... Video!
-        NSString *videoPath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, media.filename];
-        NSLog(@"video path %@", videoPath);
-        
-        if (IS_IPAD)
-        {
-            NSString *iPadPath = [NSString stringWithFormat:@"%@/photos_ipad/%@", appDelegate.mapDirectoryPath, media.filename];
-            
-            if ([[NSFileManager defaultManager] fileExistsAtPath:iPadPath])
-                videoPath = iPadPath;
-        }
-        
-        MPMoviePlayerController *moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
-        moviePlayerController.movieSourceType = MPMovieSourceTypeFile;
-        moviePlayerController.fullscreen = NO;
-        moviePlayerController.controlStyle = MPMovieControlStyleNone;
-        moviePlayerController.repeatMode = MPMovieRepeatModeNone;
-        moviePlayerController.shouldAutoplay = YES;
-        [moviePlayerController prepareToPlay];
-        [moviePlayerController stop];
-        mediaView = [moviePlayerController.view retain];
-        //[moviePlayerController autorelease];
-        [self.moviePlayers addObject:moviePlayerController];
-        [moviePlayerController autorelease];
-        
-    }
-    else if ([image isKindOfClass:[UIImageView class]]) {
-        //...Checking if we got UIImageView instead of expected UIImage...
-        //I know that it's a crappy solution, however, the quickest possible,
-        //as using animatedImage method of UIImage can't control repeat count —
-        //we have to switch to animated UIImageView to be able to control amount
-        //of times to repeat the animation.
-        mediaView = [(UIImageView*)image retain];
-    }
-    else {
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        mediaView = imageView;
-    }
-    
-    mediaView.contentMode = UIViewContentModeScaleAspectFill;
-    mediaView.clipsToBounds = YES;
-    if (mediaView.frame.size.width < self.scrollPhotos.frame.size.width ||
-        mediaView.frame.size.height < self.scrollPhotos.frame.size.height ) {
-        mediaView.contentMode = UIViewContentModeCenter;
-        
-    }
-    mediaView.frame = self.scrollPhotos.frame;
-    CGRect imageFrame = mediaView.frame;
-    if (IS_IPAD) {
-        CGRect windowBounds = [[UIScreen mainScreen] bounds];
-        float width = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? windowBounds.size.width : windowBounds.size.height;
-        
-        imageFrame.size.width = width;
-        imageFrame.origin.y = 0;
-        imageFrame.origin.x = (width + 20) * index;
-    }
-    else
-    {
-        imageFrame.size.width -= 20;
-        imageFrame.origin.x = self.scrollPhotos.frame.size.width * index;
-        imageFrame.origin.y = 0;
-    }
-    mediaView.frame = imageFrame;
-    mediaView.tag = index + 1;
-    return [mediaView autorelease];
+    return [MediaTypeFactory viewForMedia:media withImage:image withParent:self.scrollPhotos withOrientation:self.interfaceOrientation withIndex:index];
 }
 
 - (void)reloadScrollView {

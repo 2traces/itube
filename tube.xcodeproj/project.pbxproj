@@ -2620,6 +2620,10 @@
 		FAC3984916FCD07400A6CC0C /* Slide3DImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */; };
 		FAC3984A16FCD07400A6CC0C /* Slide3DImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */; };
 		FAC3984B16FCD07400A6CC0C /* Slide3DImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */; };
+		FAF4970E170493E80054C0D2 /* MediaTypeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF4970D170493E80054C0D2 /* MediaTypeFactory.m */; };
+		FAF4970F170493E80054C0D2 /* MediaTypeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF4970D170493E80054C0D2 /* MediaTypeFactory.m */; };
+		FAF49710170493E80054C0D2 /* MediaTypeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF4970D170493E80054C0D2 /* MediaTypeFactory.m */; };
+		FAF49711170493E80054C0D2 /* MediaTypeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF4970D170493E80054C0D2 /* MediaTypeFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -3429,6 +3433,8 @@
 		FAC3984016FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhotosViewController+Slide3DRotation.m"; sourceTree = "<group>"; };
 		FAC3984616FCD07400A6CC0C /* Slide3DImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slide3DImageView.h; sourceTree = "<group>"; };
 		FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Slide3DImageView.m; sourceTree = "<group>"; };
+		FAF4970C170493E80054C0D2 /* MediaTypeFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTypeFactory.h; sourceTree = "<group>"; };
+		FAF4970D170493E80054C0D2 /* MediaTypeFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaTypeFactory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3865,6 +3871,8 @@
 				4BC1C945142E36CA003651BB /* MapView.m */,
 				FAC3984616FCD07400A6CC0C /* Slide3DImageView.h */,
 				FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */,
+				FAF4970C170493E80054C0D2 /* MediaTypeFactory.h */,
+				FAF4970D170493E80054C0D2 /* MediaTypeFactory.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -7031,6 +7039,7 @@
 				70010AB616D53697005B6244 /* CustomPhotoViewerViewController.m in Sources */,
 				FAC3984116FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m in Sources */,
 				FAC3984816FCD07400A6CC0C /* Slide3DImageView.m in Sources */,
+				FAF4970E170493E80054C0D2 /* MediaTypeFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7137,6 +7146,7 @@
 				70010AB716D53697005B6244 /* CustomPhotoViewerViewController.m in Sources */,
 				FAC3984216FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m in Sources */,
 				FAC3984916FCD07400A6CC0C /* Slide3DImageView.m in Sources */,
+				FAF4970F170493E80054C0D2 /* MediaTypeFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7243,6 +7253,7 @@
 				70010AB816D53697005B6244 /* CustomPhotoViewerViewController.m in Sources */,
 				FAC3984316FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m in Sources */,
 				FAC3984A16FCD07400A6CC0C /* Slide3DImageView.m in Sources */,
+				FAF49710170493E80054C0D2 /* MediaTypeFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7349,6 +7360,7 @@
 				70010AB916D53697005B6244 /* CustomPhotoViewerViewController.m in Sources */,
 				FAC3984416FCCF8700A6CC0C /* PhotosViewController+Slide3DRotation.m in Sources */,
 				FAC3984B16FCD07400A6CC0C /* Slide3DImageView.m in Sources */,
+				FAF49711170493E80054C0D2 /* MediaTypeFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
