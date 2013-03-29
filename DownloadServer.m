@@ -55,7 +55,7 @@ NSString *mainurl = @"http://findmystation.info";
     if (fconnection==self.connection) {
         [responseData appendData:data];
         float part = (float)[responseData length]/(float)expectedBytes;
-        [listener downloadedBytes:part prodID:prodID];
+        [listener downloadedBytes:part outOfBytes:expectedBytes prodID:prodID];
     }
 }
 

@@ -310,6 +310,18 @@
     return image;
 }
 
+
+- (UIImage *)priceTagImage {
+    return [UIImage imageNamed:@"newdes_bt_price"];
+    
+}
+
+
+- (UIImage *)settingsMapItemBackgroundImage {
+    return [UIImage imageNamed:@"newdes_settings_item_bg"];
+    
+}
+
 - (UIImage *)firstAndLastCellSettingsTableImageNormal
 {
     return [UIImage imageNamed:@"newdes_settings_cell_bg.png"];

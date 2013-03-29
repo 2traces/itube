@@ -413,6 +413,12 @@
     
 }
 
+
+-(void)downloadedBytes:(float)part outOfBytes:(long)whole prodID:(NSString*)prodID
+{
+    
+}
+
 -(void)downloadedBytes:(float)part prodID:(NSString*)prodID
 {
     

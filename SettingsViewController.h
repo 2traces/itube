@@ -48,10 +48,13 @@
     
     NSTimer *timer;
     BOOL isFirstTime;
-    
+    NSObject * purchaseCell;
+    NSString *mapID;
+
     id <SettingsViewControllerDelegate> delegate;
 }
 
+@property (assign) int purchaseIndex;
 @property (nonatomic, assign) id <SettingsViewControllerDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UITableView *langTableView;
 @property (nonatomic, retain) IBOutlet UITableView *cityTableView;
