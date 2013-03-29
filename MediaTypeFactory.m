@@ -75,6 +75,14 @@
         NSURL* url = [NSURL fileURLWithPath:htmlPath];
         NSURLRequest* request = [NSURLRequest requestWithURL:url];
         [webView loadRequest:request];
+    }else if ([media.mediaType isEqualToString:@"html_with_video"]) {
+        NSLog(@"html with video %@", media.videoPath);
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+        mediaView = webView;
+        NSString *htmlPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename];
+        NSURL* url = [NSURL fileURLWithPath:htmlPath];
+        NSURLRequest* request = [NSURLRequest requestWithURL:url];
+        [webView loadRequest:request];
     }else if (!image) {
         //OMG, it's not an image, it's a... Video!
         NSString *videoPath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, media.filename];

@@ -2250,14 +2250,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     index++;
                 }else if( [mediaType isEqualToString:@"html_with_video"] ){
                     NSString *path = [place objectForKey:@"filename"];
-                    MMedia *media = [[MHelper sharedHelper] mediaByFilename:path];
-                    if (!media) {
-                        media = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
-                        media.mediaType = mediaType;
-                        media.filename = path;
-                        [mediaSet addObject:media];
-                        index++;
-                    }
+                    MMedia *media = [self mediaWithFilename:path withIndex:index withMediaType:mediaType];
+                    [mediaSet addObject:media];
+                    index++;
                 }
             }//end media type block
             for (id filename in [place objectForKey:@"photos"]) {

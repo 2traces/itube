@@ -38,14 +38,15 @@
             ]
         },
         {
-           "name": "3D Building",
+           "name": "HTML with video example",
            "long": 48.873829,
            "lat": 2.295022,
            "index": 5,
            "accessLevel": 0,
-           "text": "This is a 3D building. Drag a line above to rotate",
-           "media_type": "html",
+           "text": "HTML with video example",
+           "media_type": "html_with_video",
            "filename": "html/hidden-cities.html",
+           "video_path": "html/hidden-cities_files/eiffel_tower.mp4",
            "categories": [
                     2
                         ]

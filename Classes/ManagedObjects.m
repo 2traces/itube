@@ -67,6 +67,7 @@
 @dynamic place;
 @dynamic mediaType;
 @dynamic slide3D;
+@dynamic videoPath;
 @end
 
 @implementation MStation

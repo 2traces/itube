@@ -74,7 +74,7 @@
 @property (nonatomic, retain) MPlace* place;
 @property (nonatomic, retain) NSString* mediaType;
 @property (nonatomic, retain) Slide3D* slide3D;
-
+@property (nonatomic, retain) NSString* videoPath;
 @property (nonatomic, assign) NSNumber* index;
 @property (nonatomic, assign) NSNumber* repeatCount;
 
