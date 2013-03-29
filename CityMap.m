@@ -2251,6 +2251,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 }else if( [mediaType isEqualToString:@"html_with_video"] ){
                     NSString *path = [place objectForKey:@"filename"];
                     MMedia *media = [self mediaWithFilename:path withIndex:index withMediaType:mediaType];
+                    media.videoPath = [place objectForKey:@"video_path"];
                     [mediaSet addObject:media];
                     index++;
                 }
