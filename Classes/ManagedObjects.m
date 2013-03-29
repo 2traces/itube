@@ -329,7 +329,7 @@ static MHelper * _sharedHelper;
 }
 
 
--(MMedia*)photoByFilename:(NSString*)filename {
+-(MMedia*)mediaByFilename:(NSString*)filename {
     NSError *error =nil;
     
     NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];

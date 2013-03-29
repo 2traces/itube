@@ -2230,7 +2230,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     NSString *firstImageFilename = [NSString stringWithFormat:@"%@%i%@",
                                                     [place objectForKey:@"photos_prefix"], 0,
                                                     [place objectForKey:@"photos_ext"]];
-                    MMedia *media = [[MHelper sharedHelper] photoByFilename:firstImageFilename];
+                    MMedia *media = [[MHelper sharedHelper] mediaByFilename:firstImageFilename];
                     if (!media) {
                         media = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
                         media.mediaType = mediaType;
@@ -2245,7 +2245,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     }
                 }else if( [mediaType isEqualToString:@"html"] ){
                     NSString *path = [place objectForKey:@"filename"];
-                    MMedia *media = [[MHelper sharedHelper] photoByFilename:path];
+                    MMedia *media = [self mediaWithFilename:path withIndex:index withMediaType:mediaType];
+                    [mediaSet addObject:media];
+                    index++;
+                }else if( [mediaType isEqualToString:@"html_with_video"] ){
+                    NSString *path = [place objectForKey:@"filename"];
+                    MMedia *media = [[MHelper sharedHelper] mediaByFilename:path];
                     if (!media) {
                         media = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
                         media.mediaType = mediaType;
@@ -2258,11 +2263,11 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             for (id filename in [place objectForKey:@"photos"]) {
                 MMedia *photo = nil;
                 if ([filename isKindOfClass:[NSString class]]) {
-                    photo = [self photoWithFilename:filename withIndex:index];
+                    photo = [self mediaWithFilename:filename withIndex:index withMediaType:nil];
                 }
                 else if ([filename isKindOfClass:[NSDictionary class]]) {
                     NSDictionary *photoInfo = filename;
-                    photo = [[MHelper sharedHelper] photoByFilename:[photoInfo objectForKey:@"filename"]];
+                    photo = [[MHelper sharedHelper] mediaByFilename:[photoInfo objectForKey:@"filename"]];
                     if (!photo) {
                         photo = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
                         photo.filename = [photoInfo objectForKey:@"filename"];
@@ -2289,19 +2294,23 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     return slide;
 }
 
--(MMedia*) photoWithFilename:(NSString*)filename withIndex:(NSInteger)index{
-    MMedia *photo = [[MHelper sharedHelper] photoByFilename:filename];
+-(MMedia*) mediaWithFilename:(NSString*)filename withIndex:(NSInteger)index withMediaType:(NSString*)mediaType{
+    MMedia *photo = [[MHelper sharedHelper] mediaByFilename:filename];
     if (!photo) {
         photo = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
         photo.filename = filename;
         photo.index = [NSNumber numberWithInteger:index];
-        NSString *ext = [[photo.filename pathExtension] lowercaseString];
-        if ([ext isEqualToString:@"gif"]) {
-            photo.mediaType = @"gif_animation";
-        }else if ([ext isEqualToString:@"mp4"]) {
-            photo.mediaType = @"video";
+        if (mediaType == nil) {
+            NSString *ext = [[photo.filename pathExtension] lowercaseString];
+            if ([ext isEqualToString:@"gif"]) {
+                photo.mediaType = @"gif_animation";
+            }else if ([ext isEqualToString:@"mp4"]) {
+                photo.mediaType = @"video";
+            }else{
+                photo.mediaType = @"photo";
+            }
         }else{
-            photo.mediaType = @"photo";
+            photo.mediaType = mediaType;
         }
         photo.repeatCount = [NSNumber numberWithInteger:0];
     }

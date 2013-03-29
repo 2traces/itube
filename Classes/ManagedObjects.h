@@ -131,7 +131,7 @@
 -(NSArray*)getFavoritePlacesList;
 
 -(MLine*)lineByName:(NSString*)name;
--(MMedia*)photoByFilename:(NSString*)filename;
+-(MMedia*)mediaByFilename:(NSString*)filename;
 -(MLine*)lineByIndex:(int)index;
 -(MCategory*)categoryByIndex:(int)index;
 -(MStation*)getStationWithName:(NSString*)station forLine:(NSString*)lineName;
