@@ -324,7 +324,7 @@
 
 
 - (UIImage *)settingsMapItemBackgroundImage {
-    return [UIImage imageNamed:@"settings_item_image_bg"];
+    return [UIImage imageNamed:@"settings_item_bg"];
 
 }
 

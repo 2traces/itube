@@ -445,7 +445,8 @@
             AdvancedCityCell *cityCell = (AdvancedCityCell*)cell;
             cityCell.priceContainer.hidden = YES;
             cityCell.cityName.frame = CGRectMake(cityCell.cityName.frame.origin.x, cityCell.cityName.frame.origin.y, 224, cityCell.cityName.frame.size.height);
-            [cityCell.cellButton addTarget:self action:@selector(openAppStoreLinkPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [[(AdvancedCityCell*)cell cellButton] addTarget:self action:@selector(openAppStoreLinkPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [[(AdvancedCityCell*)cell imageButton] addTarget:self action:@selector(openAppStoreLinkPressed:) forControlEvents:UIControlEventTouchUpInside];
         }
         
 //        if ([self isProductStatusDefault:[map objectForKey:@"prodID"]]) {
