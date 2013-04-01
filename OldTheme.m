@@ -725,6 +725,11 @@
     return nil;
 }
 
+
+- (UIImage*)mapsSwitchButtonImage {
+    return [[UIImage imageNamed:@"maps_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 21, 10, 11)];
+}
+
 -(UIImage*)overlayShadowImage
 {
     return [[UIImage imageNamed:@"lines_shadow"] resizableImageWithCapInsets:UIEdgeInsetsMake(200, 100, 200, 100)];

@@ -176,6 +176,7 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 
 -(UIImage*)overlayShadowImage;
 
+- (UIImage*)mapsSwitchButtonImage;
 
 @end
 

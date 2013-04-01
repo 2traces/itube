@@ -975,6 +975,10 @@
     return [[[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"newdes_stations_tblcell_selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)]] autorelease];
 }
 
+- (UIImage*)mapsSwitchButtonImage {
+    return [[UIImage imageNamed:@"newdes_maps_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 21, 10, 11)];
+}
+
 -(UIImage*)overlayShadowImage
 {
     if (IS_IPAD) {

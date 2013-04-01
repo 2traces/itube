@@ -360,7 +360,9 @@ GLint uniforms[NUM_UNIFORMS];
     [view addSubview:sourceData];
 
     zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    [zones setBackgroundImage:[[UIImage imageNamed:@"newdes_maps_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 21, 10, 11)] forState:UIControlStateNormal];
+    
+    [zones setBackgroundImage:[[SSThemeManager sharedTheme] mapsSwitchButtonImage] forState:UIControlStateNormal];
+    
     [zones setTitle:NSLocalizedString(@"MetroButton", @"MetroButton")  forState:UIControlStateNormal];
     [[zones titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:10.0]];
     [zones setTitleEdgeInsets:UIEdgeInsetsMake(2, 0, 0, 0)];
