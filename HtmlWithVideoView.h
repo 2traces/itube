@@ -13,4 +13,7 @@
 
 -(id)initWithMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate;
 
+@property (retain) NSString *videoPreviewPath;
+@property CGRect videoFrame;
+
 @end

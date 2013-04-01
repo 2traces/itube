@@ -11,15 +11,16 @@
 
 @implementation HtmlWithVideoView
 
+@synthesize videoFrame;
+@synthesize videoPreviewPath;
+
 - (id)initWithMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate
 {
-    NSLog(@"html with video %@", media.description);
     self = [super initWithFrame:parent.frame];
     if (self) {
         // Setup video
         NSString *videoPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.videoPath];
-        NSString *videoPreviewPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.previewPath];
-        NSLog(@"preview path exists %i", [[NSFileManager defaultManager] fileExistsAtPath:videoPreviewPath]);
+        self.videoPreviewPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.previewPath];
         MPMoviePlayerController *moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
         moviePlayerController.movieSourceType = MPMovieSourceTypeFile;
         moviePlayerController.fullscreen = NO;
@@ -28,15 +29,12 @@
         moviePlayerController.shouldAutoplay = YES;
         moviePlayerController.scalingMode = MPMovieScalingModeAspectFill;
         [moviePlayerController prepareToPlay];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:moviePlayerController];
         UIView *movieView = moviePlayerController.view;
         CGFloat videoWidth = [[UIScreen mainScreen] bounds].size.width;
         CGFloat videoHeight = videoWidth * 428 / 768;
-        CGRect videoRect = CGRectMake(0, 0, videoWidth, videoHeight);
-        UIImageView *videoPreview = [[UIImageView alloc] initWithFrame:videoRect];
-        videoPreview.image = [[UIImage alloc] initWithContentsOfFile:videoPreviewPath];
-        [self addSubview:videoPreview];
-        
-        movieView.frame = videoRect;
+        self.videoFrame = CGRectMake(0, 0, videoWidth, videoHeight);
+        movieView.frame = self.videoFrame;
         movieView.userInteractionEnabled = NO;
         [self addSubview:movieView];
         
@@ -47,16 +45,21 @@
         NSURL* url = [NSURL fileURLWithPath:htmlPath];
         NSURLRequest* request = [NSURLRequest requestWithURL:url];
         [webView loadRequest:request];
+        NSLog(@"video preview path %@", self.videoPreviewPath);
         [self addSubview:webView];
     }
     return self;
 }
 
 - (void) playerPlaybackDidFinish:(NSNotification*)notification{
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    UIImageView *videoPreview = [[UIImageView alloc] initWithFrame:self.videoFrame];
+    videoPreview.image = [[UIImage alloc] initWithContentsOfFile:self.videoPreviewPath];
+    [self addSubview:videoPreview];
 }
 
 -(void)dealloc{
+    self.videoPreviewPath = nil;
     [super dealloc];
 }
 
