@@ -9,6 +9,7 @@
 #import "MediaTypeFactory.h"
 #import "Slide3DImageView.h"
 #import "UIImage+animatedGIF.h"
+#import "HtmlWithVideoView.h"
 
 @implementation MediaTypeFactory
 
@@ -57,33 +58,7 @@
 }
 
 + (UIView *)htmlWithVideoViewForMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate {
-    UIView *mediaView;
-    mediaView = [[UIView alloc] initWithFrame:parent.frame ];
-    // Setup video
-    NSString *videoPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.videoPath];
-    MPMoviePlayerController *moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
-    moviePlayerController.movieSourceType = MPMovieSourceTypeFile;
-    moviePlayerController.fullscreen = NO;
-    moviePlayerController.controlStyle = MPMovieControlStyleNone;
-    moviePlayerController.repeatMode = MPMovieRepeatModeOne;
-    moviePlayerController.shouldAutoplay = YES;
-    moviePlayerController.scalingMode = MPMovieScalingModeAspectFill;
-    [moviePlayerController prepareToPlay];
-    UIView *movieView = moviePlayerController.view;
-    CGFloat videoWidth = [[UIScreen mainScreen] bounds].size.width;
-    CGFloat videoHeight = videoWidth * 428 / 768;
-    movieView.frame = CGRectMake(0, 0, videoWidth, videoHeight);
-    [mediaView addSubview:movieView];
-    
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, videoHeight,
-                                                                     videoWidth,
-                                                                     parent.frame.size.height-videoHeight)];
-    NSString *htmlPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename];
-    NSURL* url = [NSURL fileURLWithPath:htmlPath];
-    NSURLRequest* request = [NSURLRequest requestWithURL:url];
-    [webView loadRequest:request];
-    [mediaView addSubview:webView];
-    return mediaView;
+    return [[HtmlWithVideoView alloc] initWithMedia:media withParent:parent withAppDelegate:appDelegate];
 }
 
 +(UIView*)viewForMedia:(MMedia *)media withParent:(UIView*)parent withOrientation:(UIInterfaceOrientation)orientation withIndex:(int)index{

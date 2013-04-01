@@ -2252,6 +2252,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     NSString *path = [place objectForKey:@"filename"];
                     MMedia *media = [self mediaWithFilename:path withIndex:index withMediaType:mediaType];
                     media.videoPath = [place objectForKey:@"video_path"];
+                    media.previewPath = [place objectForKey:@"video_preview_path"];
                     [mediaSet addObject:media];
                     index++;
                 }

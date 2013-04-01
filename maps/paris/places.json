@@ -46,6 +46,7 @@
            "text": "HTML with video example",
            "media_type": "html_with_video",
            "filename": "html/hidden-cities.html",
+           "video_preview_path": "html/hidden-cities_files/eiffel_tower.png",
            "video_path": "html/hidden-cities_files/eiffel_tower.mp4",
            "categories": [
                     2

@@ -77,6 +77,7 @@
 @property (nonatomic, retain) NSString* videoPath;
 @property (nonatomic, assign) NSNumber* index;
 @property (nonatomic, assign) NSNumber* repeatCount;
+@property (nonatomic, retain) NSString* previewPath;
 
 @end
 
