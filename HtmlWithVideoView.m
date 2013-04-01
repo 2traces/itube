@@ -41,11 +41,13 @@
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, videoHeight,
                                                                          videoWidth,
                                                                          parent.frame.size.height-videoHeight)];
+        if (IS_IPAD) {
+            webView.userInteractionEnabled = NO;
+        }
         NSString *htmlPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename];
         NSURL* url = [NSURL fileURLWithPath:htmlPath];
         NSURLRequest* request = [NSURLRequest requestWithURL:url];
         [webView loadRequest:request];
-        NSLog(@"video preview path %@", self.videoPreviewPath);
         [self addSubview:webView];
     }
     return self;
