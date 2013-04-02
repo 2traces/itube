@@ -61,7 +61,7 @@
     return [[HtmlWithVideoView alloc] initWithMedia:media withParent:parent withAppDelegate:appDelegate];
 }
 
-+(UIView*)viewForMedia:(MMedia *)media withParent:(UIView*)parent withOrientation:(UIInterfaceOrientation)orientation withIndex:(int)index{
++(UIView*)viewForMedia:(MMedia *)media withParent:(UIView*)parent withOrientation:(UIInterfaceOrientation)orientation withIndex:(int)index withMoviePlayers:(NSMutableArray *)moviePlayers{
     UIImage *image = [self imageForMedia:media];
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     UIView *mediaView = nil;
@@ -105,6 +105,7 @@
         [moviePlayerController stop];
         mediaView = [moviePlayerController.view retain];
         //[moviePlayerController autorelease];
+        [moviePlayers addObject:moviePlayerController];
         [moviePlayerController autorelease];
         
     }

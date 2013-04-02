@@ -8,12 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "tubeAppDelegate.h"
+#import <MediaPlayer/MediaPlayer.h>
+
 
 @interface HtmlWithVideoView : UIView
 
--(id)initWithMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate;
+- (id)initWithMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate;
+- (void) restart;
 
 @property (retain) NSString *videoPreviewPath;
 @property CGRect videoFrame;
+@property (retain) MPMoviePlayerController *moviePlayer;
 
 @end

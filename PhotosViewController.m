@@ -14,6 +14,7 @@
 #import "UIImage+animatedGIF.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "MediaTypeFactory.h"
+#import "HtmlWithVideoView.h"
 
 
 @interface PhotosViewController ()
@@ -126,7 +127,7 @@
 
 - (UIView*)imageViewWithIndex:(NSInteger)index {
     MMedia *media = self.currentPhotos[index];
-    return [MediaTypeFactory viewForMedia:media withParent:self.scrollPhotos withOrientation:self.interfaceOrientation withIndex:index];
+    return [MediaTypeFactory viewForMedia:media withParent:self.scrollPhotos withOrientation:self.interfaceOrientation withIndex:index withMoviePlayers:self.moviePlayers];
 }
 
 - (void)reloadScrollView {
@@ -343,12 +344,18 @@
     if (rest == 0) {
         UIView *mediaView = [self.scrollPhotos viewWithTag:page + 1];
         if (![mediaView isKindOfClass:[UIImageView class]]) {
-            for (MPMoviePlayerController *mp in self.moviePlayers) {
-                if (mp.view == mediaView) {
-                    [mp stop];
-                    [mp play];
-                    break;
-                }
+            if ([mediaView isKindOfClass:[HtmlWithVideoView class]]) {
+                NSLog(@"found htmlWithMedia");
+                HtmlWithVideoView *htmlWithVideo = (HtmlWithVideoView*)mediaView;
+                [htmlWithVideo restart];
+            }else{
+                for (MPMoviePlayerController *mp in self.moviePlayers) {
+                    if (mp.view == mediaView) {
+                        [mp stop];
+                        [mp play];
+                        break;
+                    }
+                }//end for
             }
         }
     }

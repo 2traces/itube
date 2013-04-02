@@ -5,7 +5,6 @@
 //  Created by alex on 01.04.13.
 //
 //
-#import <MediaPlayer/MediaPlayer.h>
 
 #import "HtmlWithVideoView.h"
 
@@ -21,16 +20,15 @@
         // Setup video
         NSString *videoPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.videoPath];
         self.videoPreviewPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.previewPath];
-        MPMoviePlayerController *moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
-        moviePlayerController.movieSourceType = MPMovieSourceTypeFile;
-        moviePlayerController.fullscreen = NO;
-        moviePlayerController.controlStyle = MPMovieControlStyleNone;
-        moviePlayerController.repeatMode = MPMovieRepeatModeNone;
-        moviePlayerController.shouldAutoplay = YES;
-        moviePlayerController.scalingMode = MPMovieScalingModeAspectFill;
-        [moviePlayerController prepareToPlay];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:moviePlayerController];
-        UIView *movieView = moviePlayerController.view;
+        self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
+        self.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
+        self.moviePlayer.fullscreen = NO;
+        self.moviePlayer.controlStyle = MPMovieControlStyleNone;
+        self.moviePlayer.repeatMode = MPMovieRepeatModeNone;
+        self.moviePlayer.shouldAutoplay = YES;
+        self.moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
+        [self.moviePlayer prepareToPlay];
+        UIView *movieView = self.moviePlayer.view;
         CGFloat videoWidth = [[UIScreen mainScreen] bounds].size.width;
         CGFloat videoHeight = videoWidth * 428 / 768;
         self.videoFrame = CGRectMake(0, 0, videoWidth, videoHeight);
@@ -53,15 +51,14 @@
     return self;
 }
 
-- (void) playerPlaybackDidFinish:(NSNotification*)notification{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    UIImageView *videoPreview = [[UIImageView alloc] initWithFrame:self.videoFrame];
-    videoPreview.image = [[UIImage alloc] initWithContentsOfFile:self.videoPreviewPath];
-    [self addSubview:videoPreview];
+- (void) restart{
+    [self.moviePlayer stop];
+    [self.moviePlayer play];
 }
 
 -(void)dealloc{
     self.videoPreviewPath = nil;
+    [self.moviePlayer release];
     [super dealloc];
 }
 
