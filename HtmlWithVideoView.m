@@ -33,15 +33,12 @@
         CGFloat videoHeight = videoWidth * 428 / 768;
         self.videoFrame = CGRectMake(0, 0, videoWidth, videoHeight);
         movieView.frame = self.videoFrame;
-        movieView.userInteractionEnabled = NO;
+        movieView.userInteractionEnabled = YES;
         [self addSubview:movieView];
         
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, videoHeight,
                                                                          videoWidth,
                                                                          parent.frame.size.height-videoHeight)];
-        if (IS_IPAD) {
-            webView.userInteractionEnabled = NO;
-        }
         NSString *htmlPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename];
         NSURL* url = [NSURL fileURLWithPath:htmlPath];
         NSURLRequest* request = [NSURLRequest requestWithURL:url];
