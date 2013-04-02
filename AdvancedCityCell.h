@@ -14,6 +14,7 @@
     IBOutlet UILabel *cityNameAlt;
     IBOutlet UILabel *priceTag;
     IBOutlet UIButton *cellButton;
+    IBOutlet UIButton *priceButton;
     IBOutlet UIProgressView *progress;
     IBOutlet UIImageView *checkView;
     IBOutlet UIImageView *iconView;
@@ -34,6 +35,7 @@
 @property (nonatomic, retain) IBOutlet UIImageView *priceBgView;
 @property (nonatomic, retain) IBOutlet UIView *priceContainer;
 @property (retain, nonatomic) IBOutlet UIButton *imageButton;
+@property (retain, nonatomic) IBOutlet UIButton *priceButton;
 
 - (void) setupCell;
 

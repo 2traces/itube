@@ -22,6 +22,7 @@
 @synthesize imageView;
 @synthesize priceContainer;
 @synthesize priceBgView;
+@synthesize priceButton;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -38,8 +39,11 @@
 
     self.imageView.layer.cornerRadius = 10;
     self.imageView.layer.masksToBounds = YES;
-    self.priceBgView.image = [theme priceTagImage];
+//    [self.priceButton setBackgroundImage:[theme priceTagImage] forState:UIControlStateNormal];
     [self.cellButton setImage:[theme settingsMapItemBackgroundImage] forState:UIControlStateNormal];
+//    [[self priceButton].titleLabel setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:18.0]];
+//    self.priceButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+//    [[self priceButton] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
