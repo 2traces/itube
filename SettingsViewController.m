@@ -430,11 +430,18 @@
         [[(AdvancedCityCell*)cell cityNameAlt] setText:mapName];
         [[(AdvancedCityCell*)cell cityNameAlt] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:16.0]];
         [[(AdvancedCityCell*)cell cityNameAlt] setTextColor:[UIColor darkGrayColor]];
-        
-        
+    
         [[(AdvancedCityCell*)cell priceButton] setTitle:[map valueForKey:@"price"] forState:UIControlStateNormal];
         
         cell.backgroundColor = [UIColor clearColor];
+        
+        if ([indexPath isEqual:self.selectedPath]) {
+            cell.accessoryType=UITableViewCellAccessoryNone;
+            [[(AdvancedCityCell*)cell checkView] setImage:[UIImage imageNamed:@"checkmark.png"]];
+        } else {
+            cell.accessoryType=UITableViewCellAccessoryNone;
+            [[(AdvancedCityCell*)cell checkView] setImage:nil];
+        }
         
         NSString *imageName = [map objectForKey:@"picture"];
         UIImage *image = [UIImage imageNamed:imageName];
