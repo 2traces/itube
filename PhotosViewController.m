@@ -345,7 +345,6 @@
         UIView *mediaView = [self.scrollPhotos viewWithTag:page + 1];
         if (![mediaView isKindOfClass:[UIImageView class]]) {
             if ([mediaView isKindOfClass:[HtmlWithVideoView class]]) {
-                NSLog(@"found htmlWithMedia");
                 HtmlWithVideoView *htmlWithVideo = (HtmlWithVideoView*)mediaView;
                 [htmlWithVideo restart];
             }else{
