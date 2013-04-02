@@ -92,6 +92,31 @@
 		<key>icon</key>
 		<string>icon_paris</string>
 	</dict>
+	<key>com.zuev.itube.paris.berlin.offlinemap</key>
+	<dict>
+		<key>url1</key>
+		<string>http://parismetromaps.info/maps/berlin/osm/osm/</string>
+		<key>url2</key>
+		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
+		<key>ver</key>
+		<string>1</string>
+		<key>name</key>
+		<string>Offline map</string>
+		<key>filename</key>
+		<string>berlin</string>
+		<key>description</key>
+		<string>berlin.txt</string>
+		<key>picture</key>
+		<string>poster_berlin</string>
+		<key>zip_download</key>
+		<string>/maps/berlin/berlin1.zip</string>
+		<key>statusURL</key>
+		<string>http://metro.dim0xff.com/paris/data.txt</string>
+		<key>isOfflineMap</key>
+		<true/>
+		<key>icon</key>
+		<string>icon_paris</string>
+	</dict>
 	<key>com.zuev.itube.paris.hamburg</key>
 	<dict>
 		<key>icon</key>

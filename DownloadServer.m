@@ -15,7 +15,7 @@
 @synthesize listener;
 @synthesize prodID;
 
-NSString *mainurl = @"http://findmystation.info";
+NSString *regularMainUrl = @"http://findmystation.info";
 
 - (id)init
 {
@@ -29,20 +29,23 @@ NSString *mainurl = @"http://findmystation.info";
     return self;
 }
 
--(NSURL*)makeFullURL:(NSString*)suburl
+-(NSURL*)makeFullURL:(NSString*)suburl withMainUrl:(NSString*)mainUrl
 {
-    NSString *preurl = [NSString stringWithFormat:@"%@/%@",mainurl,suburl];
+    NSString *preurl = [NSString stringWithFormat:@"%@/%@",mainUrl,suburl];
     NSURL *url = [[[NSURL alloc] initWithString:preurl] autorelease];
     return url;
 }
 
--(void)loadFileAtURL:(NSString *)suburl
-{
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[self makeFullURL:suburl] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60.0];
+- (void)loadFileAtURL:(NSString *)url withMainURL:(NSString*)mainUrl {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[self makeFullURL:url withMainUrl:mainUrl] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60.0];
     
     self.connection = [[[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES] autorelease];
     [request release];
-    request=nil;    
+    request=nil;
+}
+
+-(void)loadFileAtURL:(NSString *)suburl {
+    [self loadFileAtURL:suburl withMainURL:regularMainUrl];
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -54,8 +57,7 @@ NSString *mainurl = @"http://findmystation.info";
 -(void)connection:(NSURLConnection *)fconnection didReceiveData:(NSData *)data {
     if (fconnection==self.connection) {
         [responseData appendData:data];
-        float part = (float)[responseData length]/(float)expectedBytes;
-        [listener downloadedBytes:part outOfBytes:expectedBytes prodID:prodID];
+        [listener downloadedBytes:(long)[responseData length] outOfBytes:expectedBytes prodID:prodID];
     }
 }
 

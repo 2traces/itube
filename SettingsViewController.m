@@ -43,6 +43,8 @@
 @synthesize updateImageView;
 @synthesize purchaseIndex;
 
+NSString *offlineMapsUrl = @"http://parismetromaps.info";
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -91,13 +93,13 @@
     NSArray *mapIDs = [dict allKeys];
     NSMutableArray *mapsInfoArray = [[[NSMutableArray alloc] initWithCapacity:[mapIDs count]] autorelease];
     
-    for (NSString* mapID in mapIDs) {
-        NSMutableDictionary *product = [[NSMutableDictionary alloc] initWithDictionary:[dict objectForKey:mapID]];
-        [product setObject:mapID forKey:@"prodID"];
+    for (NSString* _mapID in mapIDs) {
+        NSMutableDictionary *product = [[NSMutableDictionary alloc] initWithDictionary:[dict objectForKey:_mapID]];
+        [product setObject:_mapID forKey:@"prodID"];
         
-        if ([mapID isEqual:@"default"]) {
+        if ([_mapID isEqual:@"default"]) {
             [product setObject:@"D" forKey:@"status"];
-        } else if ([self isProductPurchased:mapID]) {
+        } else if ([self isProductPurchased:_mapID]) {
             if ([self isProductInstalled:[product valueForKey:@"filename"]]) {
                 [product setObject:@"I" forKey:@"status"];
             } else {
@@ -249,7 +251,7 @@
     NSString *currentMap = [[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] thisMapName];
     
     for (int i=0;i<mapsC;i++) {
-        if ([[[self.maps objectAtIndex:i] objectForKey:@"filename"] isEqual:currentMap]) {
+        if ([[[self.maps objectAtIndex:i] objectForKey:@"filename"] isEqual:currentMap] && ![self isProductOfflineMap:[[self.maps objectAtIndex:i] objectForKey:@"prodID"]]) {
             self.selectedPath=[NSIndexPath indexPathForRow:i inSection:0];
         }
     }
@@ -496,7 +498,7 @@
             [cellButton setBackgroundImage:[theme buybuttonBackgroundForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
             [cellButton setTitleColor:[theme buyButtonFontColorAvailable] forState:UIControlStateNormal];
             [[cellButton titleLabel] setFont:[theme buyButtonFont]];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.accessoryType = UITableViewCellAccessoryNone;
             
             [[cellButton titleLabel] setShadowColor:[UIColor whiteColor]];
             [[cellButton titleLabel] setShadowOffset:CGSizeMake(0, 1)];
@@ -505,7 +507,7 @@
             
         } else if ([self isProductStatusDownloading:[map objectForKey:@"prodID"]]){
             
-            cellButton.hidden=YES;
+            cellButton.hidden=NO;
             progress.hidden=NO;
             AdvancedCityCell *cityCell = (AdvancedCityCell*)cell;
             cityCell.cityNameAlt.hidden = YES;
@@ -516,17 +518,17 @@
             
             [cellButton setTitle:NSLocalizedString(@"UnpackingButton", @"UnpackingButton") forState:UIControlStateNormal];
             
-            //cellButton.hidden=YES;
-            progress.hidden=NO;
+            cellButton.hidden=NO;
+            progress.hidden=YES;
             AdvancedCityCell *cityCell = (AdvancedCityCell*)cell;
-            cityCell.cityNameAlt.hidden = YES;
-            cityCell.cityName.hidden = YES;
+            cityCell.cityNameAlt.hidden = NO;
+            cityCell.cityName.hidden = NO;
             [cellButton setTitleEdgeInsets:UIEdgeInsetsMake(5, 0, 0, 0)];
 
         }
         else {
             cellButton.hidden=YES;
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.accessoryType = UITableViewCellAccessoryNone;
         }
          return cell;
 
@@ -708,7 +710,7 @@
         NSString *cityName = [appDelegate getDefaultCityName];
         
         [appDelegate.mainViewController changeMapTo:mapName andCity:cityName];
-    } else if ([self isProductInstalled:[map objectForKey:@"filename"]] || [self isProductPurchased:[map objectForKey:@"filename"]]) {
+    } else if (([self isProductInstalled:[map objectForKey:@"filename"]] || [self isProductPurchased:[map objectForKey:@"filename"]]) && ![self isProductOfflineMap:[map objectForKey:@"prodID"]]) {
         
         self.selectedPath=indexPath;
         [self.cityTableView reloadData];
@@ -848,6 +850,11 @@
 -(void)refreshButton:(NSIndexPath*)path
 {
     AdvancedCityCell *cell = (AdvancedCityCell*)[self.cityTableView cellForRowAtIndexPath:path];
+    UIButton *cellButton = [(AdvancedCityCell*)cell priceButton];
+
+    id <SSTheme> theme = [SSThemeManager sharedTheme];
+
+    
     UIProgressView *progress = (UIProgressView*)[cell viewWithTag:123];
     NSDictionary *map = [self.maps objectAtIndex:path.row];
     CGFloat prog = [[map objectForKey:@"progressPart"] floatValue] / [[map objectForKey:@"progressWhole"] floatValue];
@@ -855,12 +862,24 @@
     CGFloat whole = (float)[[map objectForKey:@"progressWhole"] longValue] / (1024.0f*1024.0f);
     NSString *strProgress = [NSString stringWithFormat:@"%.1f/%.1f Mb", part, whole];
     [cell.priceButton setTitle:strProgress forState:UIControlStateNormal];
+    [cellButton setTitle:strProgress forState:UIControlStateNormal];
+    [cellButton setTitle:strProgress forState:UIControlStateHighlighted];
+
+    [cellButton setBackgroundImage:[theme greenbuttonBackgroundForState:UIControlStateNormal] forState:UIControlStateNormal];
+    [cellButton setBackgroundImage:[theme greenbuttonBackgroundForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+    [cellButton setTitleColor:[theme buyButtonFontColorInstalled] forState:UIControlStateNormal];
+    [[cellButton titleLabel] setFont:[theme buyButtonFont]];
+    [cellButton setTitleEdgeInsets:UIEdgeInsetsMake(5, 0, 0, 0)];
+    
     progress.progress=prog;
 }
 
 -(void)updateFreakingButton:(NSIndexPath*)path
 {
     CityCell *cell = (CityCell*)[self.cityTableView cellForRowAtIndexPath:path];
+    UIButton *cellButton = [(AdvancedCityCell*)cell priceButton];
+    id <SSTheme> theme = [SSThemeManager sharedTheme];
+
     NSDictionary *map = [self.maps objectAtIndex:path.row];
     if ([[map valueForKey:@"status"] isEqual:@"I"]) {
         [[(AdvancedCityCell*)cell priceButton] setTitle:NSLocalizedString(@"InstalledButton", @"InstalledButton") forState:UIControlStateNormal];
@@ -869,6 +888,11 @@
     if ([[map valueForKey:@"status"] isEqual:@"ZIP"]) {
         NSString *title = NSLocalizedString(@"UnpackingButton", @"UnpackingButton");
         [[(AdvancedCityCell*)cell priceButton] setTitle:title forState:UIControlStateNormal];
+        [cellButton setBackgroundImage:[theme greenbuttonBackgroundForState:UIControlStateNormal] forState:UIControlStateNormal];
+        [cellButton setBackgroundImage:[theme greenbuttonBackgroundForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+        [cellButton setTitleColor:[theme buyButtonFontColorInstalled] forState:UIControlStateNormal];
+        [[cellButton titleLabel] setFont:[theme buyButtonFont]];
+        [cellButton setTitleEdgeInsets:UIEdgeInsetsMake(5, 0, 0, 0)];
         [self.view setNeedsLayout];
     }
 }
@@ -978,6 +1002,17 @@
         }
     }
     
+    return NO;
+}
+
+
+-(BOOL)isProductOfflineMap:(NSString*)prodID
+{
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"isOfflineMap"] boolValue]) {
+            return YES;
+        }
+    }
     return NO;
 }
 
@@ -1110,8 +1145,8 @@
                 [map setValue:@"ZIP" forKey:@"status"];
             }
         }
-        //[self performSelectorOnMainThread:@selector(updateFreakingButton:) withObject:mapIndexPath waitUntilDone:NO];
-        [self updateFreakingButton:mapIndexPath];
+        [self performSelectorOnMainThread:@selector(updateFreakingButton:) withObject:mapIndexPath waitUntilDone:NO];
+        //[self updateFreakingButton:mapIndexPath];
         
     }
     [cityTableView reloadData];
@@ -1260,7 +1295,12 @@
     
     NSString *mapFilePath = [NSString stringWithFormat:@"maps/%@/%@.zip",mapName,mapName];
     requested_file_type=zip_;
-    [server loadFileAtURL:mapFilePath];
+    if ([self isProductOfflineMap:prodID]) {
+        [server loadFileAtURL:mapFilePath withMainURL:offlineMapsUrl];
+    }
+    else {
+        [server loadFileAtURL:mapFilePath];
+    }
 }
 
 -(void)returnWithPurchase:(NSString *)prodID
