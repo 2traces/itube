@@ -37,7 +37,7 @@
 
 - (UIScrollView*)zoomingViewWithIndex:(NSInteger)index {
     MMedia *media = self.photos[index];
-    UIView *mediaView = [MediaTypeFactory viewForMedia:media withParent:self.scrollView withOrientation:self.interfaceOrientation withIndex:index];
+    UIView *mediaView = [MediaTypeFactory viewForMedia:media withParent:self.scrollView withOrientation:self.interfaceOrientation withIndex:index withMoviePlayers:nil];
     UIScrollView *zoomView = [[UIScrollView alloc] initWithFrame:self.scrollView.frame];
     zoomView.contentSize = mediaView.frame.size;
     [zoomView addSubview:mediaView];

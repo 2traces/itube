@@ -65,7 +65,7 @@
 
 - (UIView*)mediaViewWithIndex:(NSInteger)index {
     MMedia *media = self.currentPhotos[index];
-    return [MediaTypeFactory viewForMedia:media withParent:self.scrollPhotos withOrientation:self.interfaceOrientation withIndex:index];
+    return [MediaTypeFactory viewForMedia:media withParent:self.scrollPhotos withOrientation:self.interfaceOrientation withIndex:index withMoviePlayers:nil];
 }
 
 - (void)reloadScrollView {
