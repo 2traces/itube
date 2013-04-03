@@ -17,8 +17,7 @@
 - (id)initWithMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate;
 - (void) restart;
 
-@property (retain) NSString *videoPreviewPath;
-@property CGRect videoFrame;
+@property (retain) UIImageView *videoPreview;
 @property (retain) MPMoviePlayerController *moviePlayer;
 
 @end

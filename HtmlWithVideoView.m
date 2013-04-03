@@ -10,8 +10,7 @@
 
 @implementation HtmlWithVideoView
 
-@synthesize videoFrame;
-@synthesize videoPreviewPath;
+@synthesize videoPreview;
 
 - (id)initWithMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate
 {
@@ -19,7 +18,7 @@
     if (self) {
         // Setup video
         NSString *videoPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.videoPath];
-        self.videoPreviewPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.previewPath];
+        NSString *videoPreviewPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.previewPath];
         self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
         self.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
         self.moviePlayer.fullscreen = NO;
@@ -27,14 +26,18 @@
         self.moviePlayer.repeatMode = MPMovieRepeatModeNone;
         self.moviePlayer.shouldAutoplay = YES;
         self.moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
+        
         UIView *movieView = self.moviePlayer.view;
         CGFloat videoWidth = [[UIScreen mainScreen] bounds].size.width;
         CGFloat videoHeight = videoWidth * 428 / 768;
-        self.videoFrame = CGRectMake(0, 0, videoWidth, videoHeight);
-        
-        movieView.frame = self.videoFrame;
+        CGRect videoFrame = CGRectMake(0, 0, videoWidth, videoHeight);
+        movieView.frame = videoFrame;
         movieView.userInteractionEnabled = YES;
         [self addSubview:movieView];
+        
+        self.videoPreview = [[UIImageView alloc] initWithFrame:videoFrame];
+        self.videoPreview.image = [[UIImage alloc] initWithContentsOfFile:videoPreviewPath];
+        [self addSubview:self.videoPreview];
         
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, videoHeight,
                                                                          videoWidth,
@@ -50,8 +53,9 @@
 }
 
 - (void) restart{
-   [self.moviePlayer stop];
-   [self.moviePlayer play];
+    self.videoPreview.hidden =YES;
+    [self.moviePlayer stop];
+    [self.moviePlayer play];
 }
 
 - (void) onFocusReceive{
@@ -59,7 +63,7 @@
 }
 
 -(void)dealloc{
-    self.videoPreviewPath = nil;
+    [self.videoPreview release];
     [self.moviePlayer release];
     [super dealloc];
 }
