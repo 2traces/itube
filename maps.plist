@@ -24,6 +24,8 @@
 		<string>/maps/newyork/newyork1.zip</string>
 		<key>statusURL</key>
 		<string></string>
+		<key>position</key>
+		<integer>0</integer>
 	</dict>
 	<key>com.zuev.itube.paris.london</key>
 	<dict>
@@ -47,6 +49,8 @@
 		<string>/maps/london/london1.zip</string>
 		<key>statusURL</key>
 		<string>http://metro.dim0xff.com/london/lines.txt</string>
+		<key>position</key>
+		<integer>1</integer>
 	</dict>
 	<key>com.zuev.itube.paris.paris</key>
 	<dict>
@@ -68,6 +72,8 @@
 		<string>poster_paris</string>
 		<key>zip_download</key>
 		<string>/maps/paris/paris1.zip</string>
+		<key>position</key>
+		<integer>2</integer>
 	</dict>
 	<key>default</key>
 	<dict>
@@ -91,8 +97,10 @@
 		<string>http://metro.dim0xff.com/paris/data.txt</string>
 		<key>icon</key>
 		<string>icon_paris</string>
+		<key>position</key>
+		<integer>3</integer>
 	</dict>
-	<key>com.zuev.itube.paris.berlin.offlinemap</key>
+	<key>com.zuev.itube.paris.hamburg</key>
 	<dict>
 		<key>url1</key>
 		<string>http://parismetromaps.info/maps/berlin/osm/osm/</string>
@@ -116,8 +124,10 @@
 		<true/>
 		<key>icon</key>
 		<string>icon_paris</string>
+		<key>position</key>
+		<integer>4</integer>
 	</dict>
-	<key>com.zuev.itube.paris.hamburg</key>
+	<key>com.zuev.itube.paris.hamburg.temp</key>
 	<dict>
 		<key>icon</key>
 		<string>icon_hamburg</string>
@@ -127,16 +137,18 @@
 		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
 		<key>ver</key>
 		<string>1</string>
-		<key>name</key>
-		<string>Hamburg</string>
 		<key>filename</key>
 		<string>hamburg</string>
+		<key>name</key>
+		<string>Hamburg</string>
 		<key>description</key>
 		<string>hamburg.txt</string>
 		<key>picture</key>
 		<string>poster_hamburg</string>
 		<key>zip_download</key>
 		<string>/maps/hamburg/hamburg1.zip</string>
+		<key>position</key>
+		<integer>5</integer>
 	</dict>
 	<key>com.zuev.itube.paris.venice</key>
 	<dict>
@@ -162,6 +174,8 @@
 		<string>http://metro.dim0xff.com/paris/data_RU.txt</string>
 		<key>altStatusURL</key>
 		<string>http://metro.dim0xff.com/paris/data.txt</string>
+		<key>position</key>
+		<integer>6</integer>
 	</dict>
 	<key>com.zuev.itube.paris.peterburg</key>
 	<dict>
@@ -185,6 +199,8 @@
 		<string>/maps/peterburg/peterburg1.zip</string>
 		<key>appstore_link</key>
 		<string>https://itunes.apple.com/us/app/angry-birds/id343200656?mt=8&amp;</string>
+		<key>position</key>
+		<integer>7</integer>
 	</dict>
 	<key>com.zuev.itube.paris.shanghai</key>
 	<dict>
@@ -206,6 +222,8 @@
 		<string>poster_shanghai</string>
 		<key>zip_download</key>
 		<string>/maps/shanghai/shanghai1.zip</string>
+		<key>position</key>
+		<integer>8</integer>
 	</dict>
 </dict>
 </plist>

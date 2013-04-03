@@ -92,15 +92,18 @@ NSString *offlineMapsUrl = @"http://parismetromaps.info";
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
     NSArray *mapIDs = [dict allKeys];
     NSMutableArray *mapsInfoArray = [[[NSMutableArray alloc] initWithCapacity:[mapIDs count]] autorelease];
-    
+        
     for (NSString* _mapID in mapIDs) {
         NSMutableDictionary *product = [[NSMutableDictionary alloc] initWithDictionary:[dict objectForKey:_mapID]];
         [product setObject:_mapID forKey:@"prodID"];
-        
+
         if ([_mapID isEqual:@"default"]) {
             [product setObject:@"D" forKey:@"status"];
         } else if ([self isProductPurchased:_mapID]) {
-            if ([self isProductInstalled:[product valueForKey:@"filename"]]) {
+            if ([[product valueForKey:@"isOfflineMap"] boolValue] && [self isOfflineMapInstalled]) {
+                [product setObject:@"I" forKey:@"status"];
+            }
+            else if ([self isProductInstalled:[product valueForKey:@"filename"]]) {
                 [product setObject:@"I" forKey:@"status"];
             } else {
                 [product setObject:@"P" forKey:@"status"];
@@ -115,31 +118,27 @@ NSString *offlineMapsUrl = @"http://parismetromaps.info";
     
     [dict release];
     
-    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
-    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSSortDescriptor *sortDescriptor0 = [[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
     
-    [mapsInfoArray sortUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil]];
-    
-    [sortDescriptor2 release];
-    [sortDescriptor1 release];
+    [mapsInfoArray sortUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor0, nil]];
+
+    [sortDescriptor0 release];
     
     return mapsInfoArray;
 }
 
 -(void)resortMapArray
 {
-    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
-    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSSortDescriptor *sortDescriptor0 = [[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
     
     NSMutableArray *temp = [NSMutableArray arrayWithArray:self.maps];
     
-    [temp sortUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil]];
+    [temp sortUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor0, nil]];
     
     self.maps = [NSArray arrayWithArray:temp];
     
-    [sortDescriptor2 release];
-    [sortDescriptor1 release];
-    
+    [sortDescriptor0 release];
+
     [self setCurrentMapSelectedPath];
 }
 
@@ -928,6 +927,8 @@ NSString *offlineMapsUrl = @"http://parismetromaps.info";
 
 #pragma mark - some helpers
 
+
+
 -(BOOL)isProductInstalled:(NSString*)mapName
 {
     NSFileManager *manager = [NSFileManager defaultManager];
@@ -1003,6 +1004,12 @@ NSString *offlineMapsUrl = @"http://parismetromaps.info";
     }
     
     return NO;
+}
+
+- (BOOL) isOfflineMapInstalled {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    return [[defaults objectForKey:@"kOfflineMapInstalled"] boolValue];
 }
 
 
@@ -1172,6 +1179,7 @@ NSString *offlineMapsUrl = @"http://parismetromaps.info";
     
     if (success) {
         [self markProductAsInstalled:prodID];
+
     }
     
     [self resortMapArray];
@@ -1408,6 +1416,15 @@ NSString *offlineMapsUrl = @"http://parismetromaps.info";
 
 -(void)markProductAsInstalled:(NSString*)prodID
 {
+    if ([self isProductOfflineMap:prodID]) {
+        if ([self isProductOfflineMap:prodID]) {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            
+            [defaults setObject:[NSNumber numberWithBool:YES] forKey:@"kOfflineMapInstalled"];
+            
+            [defaults synchronize];
+        }
+    }
     for (NSMutableDictionary *map in self.maps) {
         if ([[map valueForKey:@"prodID"] isEqual:prodID]) {
             [map setObject:@"I" forKey:@"status"];
