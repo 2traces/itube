@@ -43,6 +43,8 @@
 @property (nonatomic, retain) IBOutlet UIButton *buttonCategories;
 @property (nonatomic, retain) IBOutlet UIButton *btShowHideBookmarks;
 @property (nonatomic, retain) IBOutlet UIButton *btPanel;
+@property (nonatomic, retain) IBOutlet UIButton *btScrollLeft;
+@property (nonatomic, retain) IBOutlet UIButton *btScrollRight;
 @property (nonatomic, retain) IBOutlet UIView *disappearingView;
 @property (nonatomic, retain) IBOutlet UIView *panelView;
 @property (nonatomic, retain) IBOutlet UIImageView *directionImage;
@@ -58,6 +60,9 @@
 - (IBAction)switchMapMetro:(id)sender;
 - (IBAction)addToFavorites:(id)sender;
 - (IBAction)centerMapOnUser:(id)sender;
+- (IBAction)scrollPhotosLeft:(id)sender;
+- (IBAction)scrollPhotosRight:(id)sender;
+
 - (void)updateInfoForCurrentPage;
 - (Station*)stationForCurrentPhoto;
 - (void)reloadScrollView;

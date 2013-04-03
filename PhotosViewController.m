@@ -37,6 +37,8 @@
 @synthesize placeDescriptionBg;
 @synthesize btAddToFavorites;
 @synthesize btShowHideBookmarks;
+@synthesize btScrollLeft;
+@synthesize btScrollRight;
 @synthesize distanceContainer;
 @synthesize distanceLabel;
 @synthesize btPanel;
@@ -67,6 +69,21 @@
 
 - (IBAction)centerMapOnUser:(id)sender {
     [self.navigationDelegate centerMapOnUser];
+}
+
+- (IBAction)scrollPhotosLeft:(id)sender{
+    [self scrollPhotosToPage:currentPage-1];
+}
+
+- (IBAction)scrollPhotosRight:(id)sender{
+    [self scrollPhotosToPage:currentPage+1];
+}
+
+- (void)scrollPhotosToPage:(int)page{
+    CGRect frame = self.scrollPhotos.frame;
+    frame.origin.x = frame.size.width * page;
+    frame.origin.y = 0;
+    [self.scrollPhotos scrollRectToVisible:frame animated:YES];
 }
 
 - (Station*)stationForCurrentPhoto {
@@ -112,6 +129,8 @@
         self.directionImage.transform = CGAffineTransformMakeRotation(0);
         self.directionImage.transform = CGAffineTransformMakeRotation(direction);
     }
+    self.btScrollLeft.hidden = currentPage == 0;
+    self.btScrollRight.hidden = (currentPage + 1) == [self.currentPhotos count];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -174,6 +193,7 @@
     if ([self.currentPhotos count]) {
         [self updateInfoForCurrentPage];
     }
+    self.btScrollLeft.hidden = YES;
 }
 
 - (void) loadPlaces:(NSArray*)places {
@@ -405,10 +425,14 @@
         [UIImage imageNamed:@"bt_mode_metro_iPad"];
     [self.btSwitchMode setImage:btImage forState:UIControlStateNormal];
 }
+
 - (void)dealloc {
+    self.btScrollLeft = nil;
+    self.btScrollRight = nil;
     [_btSwitchMode release];
     [super dealloc];
 }
+
 - (void)viewDidUnload {
     [self setBtSwitchMode:nil];
     [super viewDidUnload];
