@@ -83,7 +83,7 @@
 								<string key="NSFrame">{{272, -3}, {44, 44}}</string>
 								<reference key="NSSuperview" ref="667267882"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="122534926"/>
+								<reference key="NSNextKeyView" ref="422472583"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -122,7 +122,7 @@
 							<object class="IBUIButton" id="422472583">
 								<reference key="NSNextResponder" ref="667267882"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{0, 398}, {33, 44}}</string>
+								<string key="NSFrame">{{7.5, 387.5}, {34, 65}}</string>
 								<reference key="NSSuperview" ref="667267882"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="183505856"/>
@@ -131,14 +131,16 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<int key="IBUIButtonType">1</int>
-								<string key="IBUINormalTitle">&lt;</string>
 								<reference key="IBUIHighlightedTitleColor" ref="528693396"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="934477126"/>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">scroll_btn_prev.png</string>
+								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="253945672">
 									<int key="type">2</int>
 									<double key="pointSize">15</double>
@@ -152,23 +154,25 @@
 							<object class="IBUIButton" id="183505856">
 								<reference key="NSNextResponder" ref="667267882"/>
 								<int key="NSvFlags">265</int>
-								<string key="NSFrame">{{287, 398}, {33, 44}}</string>
+								<string key="NSFrame">{{281.5, 388}, {34, 64}}</string>
 								<reference key="NSSuperview" ref="667267882"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="373130457"/>
+								<reference key="NSNextKeyView" ref="122534926"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<int key="IBUIButtonType">1</int>
-								<string key="IBUINormalTitle">&gt;</string>
 								<reference key="IBUIHighlightedTitleColor" ref="528693396"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="934477126"/>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">scroll_btn_next.png</string>
+								</object>
 								<reference key="IBUIFontDescription" ref="253945672"/>
 								<reference key="IBUIFont" ref="437005131"/>
 							</object>
@@ -304,7 +308,7 @@
 										<string key="NSFrame">{{20, 61}, {101, 120}}</string>
 										<reference key="NSSuperview" ref="122534926"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="422472583"/>
+										<reference key="NSNextKeyView" ref="373130457"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<object class="NSColor" key="IBUIBackgroundColor">
 											<int key="NSColorSpace">3</int>
@@ -440,6 +444,7 @@
 								<string key="NSFrame">{{232, 15}, {61, 48}}</string>
 								<reference key="NSSuperview" ref="373130457"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -1180,6 +1185,8 @@
 			<string key="distance_icon@2x.png">{130, 77}</string>
 			<string key="panel_bg-iPad@2x.png">{2048, 180}</string>
 			<string key="sample_photo@2x.png">{640, 465}</string>
+			<string key="scroll_btn_next.png">{34, 64}</string>
+			<string key="scroll_btn_prev.png">{34, 64}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
