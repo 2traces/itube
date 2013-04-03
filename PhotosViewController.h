@@ -58,7 +58,6 @@
 - (IBAction)switchMapMetro:(id)sender;
 - (IBAction)addToFavorites:(id)sender;
 - (IBAction)centerMapOnUser:(id)sender;
-- (IBAction)handleUpperPan:(UIPanGestureRecognizer*)tapper;
 - (void)updateInfoForCurrentPage;
 - (Station*)stationForCurrentPhoto;
 - (void)reloadScrollView;
