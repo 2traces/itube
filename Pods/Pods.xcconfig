@@ -1,0 +1,7 @@
+ALWAYS_SEARCH_USER_PATHS = YES
+HEADER_SEARCH_PATHS = ${PODS_HEADERS_SEARCH_PATHS} $(SDKROOT)/usr/include/libxml2
+OTHER_LDFLAGS = -ObjC -lxml2 -lz -framework MobileCoreServices -framework QuartzCore -framework SystemConfiguration -framework UIKit
+PODS_BUILD_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/AFNetworking" "${PODS_ROOT}/BuildHeaders/ActionSheetPicker" "${PODS_ROOT}/BuildHeaders/DCKeyValueObjectMapping" "${PODS_ROOT}/BuildHeaders/DejalActivityView" "${PODS_ROOT}/BuildHeaders/JMImageCache" "${PODS_ROOT}/BuildHeaders/NSData+Base64" "${PODS_ROOT}/BuildHeaders/PSTCollectionView" "${PODS_ROOT}/BuildHeaders/RaptureXML" "${PODS_ROOT}/BuildHeaders/SVPullToRefresh" "${PODS_ROOT}/BuildHeaders/TLBindings" "${PODS_ROOT}/BuildHeaders/TLSignals"
+PODS_HEADERS_SEARCH_PATHS = ${PODS_PUBLIC_HEADERS_SEARCH_PATHS}
+PODS_PUBLIC_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/ActionSheetPicker" "${PODS_ROOT}/Headers/DCKeyValueObjectMapping" "${PODS_ROOT}/Headers/DejalActivityView" "${PODS_ROOT}/Headers/JMImageCache" "${PODS_ROOT}/Headers/NSData+Base64" "${PODS_ROOT}/Headers/PSTCollectionView" "${PODS_ROOT}/Headers/RaptureXML" "${PODS_ROOT}/Headers/SVPullToRefresh" "${PODS_ROOT}/Headers/TLBindings" "${PODS_ROOT}/Headers/TLSignals"
+PODS_ROOT = ${SRCROOT}/Pods
