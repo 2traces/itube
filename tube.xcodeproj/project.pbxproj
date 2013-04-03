@@ -3435,6 +3435,7 @@
 		CECCD3391461A38D00804CB9 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
 		FA0DABD21709E88800CF48B4 /* HtmlWithVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlWithVideoView.h; sourceTree = "<group>"; };
 		FA0DABD31709E88800CF48B4 /* HtmlWithVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlWithVideoView.m; sourceTree = "<group>"; };
+		FA1A08C5170C18B1000CD689 /* MediaViewEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaViewEvents.h; sourceTree = "<group>"; };
 		FAC3984616FCD07400A6CC0C /* Slide3DImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slide3DImageView.h; sourceTree = "<group>"; };
 		FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Slide3DImageView.m; sourceTree = "<group>"; };
 		FAF4970C170493E80054C0D2 /* MediaTypeFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTypeFactory.h; sourceTree = "<group>"; };
@@ -3876,6 +3877,7 @@
 				FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */,
 				FAF4970C170493E80054C0D2 /* MediaTypeFactory.h */,
 				FAF4970D170493E80054C0D2 /* MediaTypeFactory.m */,
+				FA1A08C5170C18B1000CD689 /* MediaViewEvents.h */,
 				FA0DABD21709E88800CF48B4 /* HtmlWithVideoView.h */,
 				FA0DABD31709E88800CF48B4 /* HtmlWithVideoView.m */,
 			);
