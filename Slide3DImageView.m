@@ -13,6 +13,13 @@
 
 @implementation Slide3DImageView
 
+@synthesize panGR;
+@synthesize currentSlideNumber;
+@synthesize slidesCount;
+@synthesize lastTranslation;
+@synthesize photosExt;
+@synthesize photosPrefix;
+
 - (id)initWithImage:(UIImage *)image withPrefix:(NSString*)prefix withExt:(NSString*)ext withSlidesCount:(int)count{
     self = [super initWithImage:image];
     if (self) {
@@ -21,12 +28,15 @@
         self.lastTranslation = 0;
         self.photosExt = ext;
         self.photosPrefix = prefix;
+        self.panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotation:)];
+        self.userInteractionEnabled = YES;
+        [self addGestureRecognizer:self.panGR];
     }
     return self;
 }
 
 
-- (void) handleRotation:(UIPanGestureRecognizer *)recognizer{
+- (void) handleRotation:(UIPanGestureRecognizer*)recognizer{
     CGPoint translation = [recognizer translationInView:self];
     int delta = round((translation.x - self.lastTranslation) / PAN_THRESHOLD);
     if (delta < 0){
@@ -55,6 +65,7 @@
 }
 
 - (void) dealloc{
+    [self.panGR release];
     self.photosExt = nil;
     self.photosPrefix = nil;
     [super dealloc];

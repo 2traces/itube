@@ -44,11 +44,11 @@
                "index": 18,
                       "accessLevel": 0,
            "text": "Arc de Triomphe",
-           "media_type": "html_with_video",
-           "filename": "arc.html",
-           "video_preview_path": "html/hidden-cities_files/arc.png",
-           "video_path": "html/hidden-cities_files/arc.mp4",
-            "categories": [
+           "media_type": "3dview",
+           "photos_prefix": "3d/3dbuilding0/3dbuilding0_",
+           "photos_count": 40,
+           "photos_ext": ".jpg",
+           "categories": [
                 2
             ]
         },

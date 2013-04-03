@@ -15,6 +15,7 @@
 @property int lastTranslation;
 @property (retain) NSString *photosPrefix;
 @property (retain) NSString *photosExt;
+@property (retain) UIPanGestureRecognizer *panGR;
 
 - (id)initWithImage:(UIImage *)image withPrefix:(NSString*)prefix withExt:(NSString*)ext withSlidesCount:(int)count;
 - (void) handleRotation:(UIPanGestureRecognizer *)recognizer;
