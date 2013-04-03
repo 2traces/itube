@@ -391,7 +391,6 @@
                         break;
                     }
                 }
-                NSLog(@"remove movie player");
                 [self.moviePlayers removeObject:mpc];
                 [[self.scrollPhotos viewWithTag:(i + 1)] removeFromSuperview];
             }
