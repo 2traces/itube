@@ -42,16 +42,9 @@
 @synthesize btPanel;
 @synthesize directionImage;
 @synthesize moviePlayers;
-@synthesize upperPanel;
 
 - (IBAction)showCategories:(id)sender {
     [self.navigationDelegate showCategories:self];
-}
-
-- (IBAction)handleUpperPan:(UIPanGestureRecognizer *)tapper{
-    if (self.current3DView) {
-        [self.current3DView handleRotation:tapper];
-    }
 }
 
 - (IBAction)showBookmarks:(id)sender {
@@ -414,9 +407,6 @@
 }
 - (void)dealloc {
     [_btSwitchMode release];
-    self.upperPanel = nil;
-    self.upperPanGestureRecognizer = nil;
-    self.current3DView = nil;
     [super dealloc];
 }
 - (void)viewDidUnload {

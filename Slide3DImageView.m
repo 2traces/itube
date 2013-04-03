@@ -35,7 +35,6 @@
     return self;
 }
 
-
 - (void) handleRotation:(UIPanGestureRecognizer*)recognizer{
     CGPoint translation = [recognizer translationInView:self];
     int delta = round((translation.x - self.lastTranslation) / PAN_THRESHOLD);

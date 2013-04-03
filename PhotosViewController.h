@@ -51,9 +51,6 @@
 @property (nonatomic, retain) NSArray *currentPhotos;
 @property (nonatomic, retain) NSMutableArray *moviePlayers;
 @property (retain, nonatomic) IBOutlet UIButton *btSwitchMode;
-@property (nonatomic, retain) IBOutlet UIView *upperPanel;
-@property (nonatomic, retain) IBOutlet UIPanGestureRecognizer *upperPanGestureRecognizer;
-@property (nonatomic, retain) Slide3DImageView *current3DView;
 
 - (IBAction)showCategories:(id)sender;
 - (IBAction)showHidePhotos:(id)sender;
