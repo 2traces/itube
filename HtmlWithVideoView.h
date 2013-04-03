@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "tubeAppDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "MediaViewEvents.h"
 
 
-@interface HtmlWithVideoView : UIView
+@interface HtmlWithVideoView : UIView <MediaViewEvents>
 
 - (id)initWithMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate;
 - (void) restart;

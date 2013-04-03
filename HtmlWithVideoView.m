@@ -18,6 +18,7 @@
     self = [super initWithFrame:parent.frame];
     if (self) {
         // Setup video
+        NSLog(@"html + video init");
         NSString *videoPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.videoPath];
         self.videoPreviewPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.previewPath];
         self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
@@ -27,7 +28,6 @@
         self.moviePlayer.repeatMode = MPMovieRepeatModeNone;
         self.moviePlayer.shouldAutoplay = YES;
         self.moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
-        [self.moviePlayer prepareToPlay];
         UIView *movieView = self.moviePlayer.view;
         CGFloat videoWidth = [[UIScreen mainScreen] bounds].size.width;
         CGFloat videoHeight = videoWidth * 428 / 768;
@@ -49,8 +49,12 @@
 }
 
 - (void) restart{
-    [self.moviePlayer stop];
-    [self.moviePlayer play];
+   [self.moviePlayer stop];
+   [self.moviePlayer play];
+}
+
+- (void) onFocusReceive{
+    [self restart];
 }
 
 -(void)dealloc{

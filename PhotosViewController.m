@@ -14,6 +14,7 @@
 #import "UIImage+animatedGIF.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "MediaTypeFactory.h"
+#import "MediaViewEvents.h"
 #import "HtmlWithVideoView.h"
 
 
@@ -162,14 +163,18 @@
     self.scrollPhotos.pagingEnabled = YES;
     currentPage = 0;
     //Preload first two images
-    UIView *imageView = nil;
+    UIView *mediaView = nil;
     if (index) {
-        imageView = [self imageViewWithIndex:currentPage];
-        [self.scrollPhotos addSubview:imageView];
+        mediaView = [self imageViewWithIndex:currentPage];
+        if ([mediaView conformsToProtocol:@protocol(MediaViewEvents)]) {
+            id<MediaViewEvents> mediaEventsView = (id<MediaViewEvents>)mediaView;
+            [mediaEventsView onFocusReceive];
+        }
+        [self.scrollPhotos addSubview:mediaView];
     }
     if (index > 1) {
-        imageView = [self imageViewWithIndex:currentPage + 1];
-        [self.scrollPhotos addSubview:imageView];
+        mediaView = [self imageViewWithIndex:currentPage + 1];
+        [self.scrollPhotos addSubview:mediaView];
     }
 
     
@@ -346,7 +351,7 @@
         if (![mediaView isKindOfClass:[UIImageView class]]) {
             if ([mediaView isKindOfClass:[HtmlWithVideoView class]]) {
                 HtmlWithVideoView *htmlWithVideo = (HtmlWithVideoView*)mediaView;
-                [htmlWithVideo restart];
+                [htmlWithVideo onFocusReceive];
             }else{
                 for (MPMoviePlayerController *mp in self.moviePlayers) {
                     if (mp.view == mediaView) {
@@ -386,7 +391,7 @@
                         break;
                     }
                 }
-                
+                NSLog(@"remove movie player");
                 [self.moviePlayers removeObject:mpc];
                 [[self.scrollPhotos viewWithTag:(i + 1)] removeFromSuperview];
             }
