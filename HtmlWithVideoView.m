@@ -26,7 +26,7 @@
         self.moviePlayer.repeatMode = MPMovieRepeatModeNone;
         self.moviePlayer.shouldAutoplay = YES;
         self.moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:self.moviePlayer];
         UIView *movieView = self.moviePlayer.view;
         CGFloat videoWidth = [[UIScreen mainScreen] bounds].size.width;
         CGFloat videoHeight = videoWidth * 428 / 768;
@@ -52,9 +52,13 @@
     return self;
 }
 
+- (void) playerPlaybackDidFinish:(NSNotification*)notification{
+    self.videoPreview.hidden = NO;
+}
+
 - (void) restart{
-    self.videoPreview.hidden =YES;
     [self.moviePlayer stop];
+    self.videoPreview.hidden = YES;
     [self.moviePlayer play];
 }
 
@@ -63,6 +67,7 @@
 }
 
 -(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self.videoPreview release];
     [self.moviePlayer release];
     [super dealloc];
