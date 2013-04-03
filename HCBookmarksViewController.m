@@ -102,7 +102,7 @@
         frame.origin.y = offset;
         offset += itemView.frame.size.height;
         itemView.frame = frame;
-        UIView *mediaView = [MediaTypeFactory viewForMedia:firstPhoto withParent:itemView.mainView withOrientation:self.interfaceOrientation withIndex:[place.index integerValue]];
+        UIView *mediaView = [MediaTypeFactory viewForMedia:firstPhoto withParent:itemView.mainView withOrientation:self.interfaceOrientation withIndex:[place.index integerValue] withMoviePlayers:nil];
         mediaView.frame = CGRectMake(0, 0, itemView.mainView.frame.size.width, itemView.mainView.frame.size.height);
         NSLog(@"mediaView %@", mediaView.description);
         [itemView setView:mediaView text:place.text placeName:place.name placeDistance:nearestStation.name];
