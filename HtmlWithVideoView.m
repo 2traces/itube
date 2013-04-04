@@ -60,7 +60,12 @@
 }
 
 - (void) playerPlaybackStarted:(NSNotification*)notification{
-    self.videoPreview.hidden = YES;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.videoPreview.alpha = 0;
+    } completion: ^(BOOL finished) {
+        self.videoPreview.hidden = YES;
+        self.videoPreview.alpha = 1;
+    }];
 }
 
 - (void) restart{
