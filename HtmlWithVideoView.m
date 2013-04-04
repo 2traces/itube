@@ -11,7 +11,7 @@
 @implementation HtmlWithVideoView
 
 @synthesize videoPreview;
-@synthesize whitePanel;
+@synthesize lightPanel;
 @synthesize lightGray;
 @synthesize moviePlayer;
 
@@ -22,6 +22,7 @@
         // Setup video
         // #lightGray color is #f5f4f5
         self.lightGray = [UIColor colorWithRed:245./255 green:244./255 blue:245./255 alpha:1];
+        self.backgroundColor = self.lightGray;
         NSString *videoPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.videoPath];
         NSString *videoPreviewPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.previewPath];
         self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
@@ -47,9 +48,9 @@
         self.videoPreview.image = [[UIImage alloc] initWithContentsOfFile:videoPreviewPath];
         [self addSubview:self.videoPreview];
         
-        self.whitePanel = [[UIView alloc] initWithFrame:videoFrame];
-        self.whitePanel.backgroundColor = lightGray;
-        [self addSubview:self.whitePanel];
+        self.lightPanel = [[UIView alloc] initWithFrame:videoFrame];
+        self.lightPanel.backgroundColor = lightGray;
+        [self addSubview:self.lightPanel];
         
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, videoHeight,
                                                                          videoWidth,
@@ -59,6 +60,8 @@
         NSURL* url = [NSURL fileURLWithPath:htmlPath];
         NSURLRequest* request = [NSURLRequest requestWithURL:url];
         [webView loadRequest:request];
+        webView.backgroundColor = self.lightGray;
+        webView.opaque = NO;
         [self addSubview:webView];
     }
     return self;
@@ -66,17 +69,17 @@
 
 - (void) playerPlaybackDidFinish:(NSNotification*)notification{
     self.videoPreview.hidden = NO;
-    self.whitePanel.hidden = YES;
+    self.lightPanel.hidden = YES;
 }
 
 - (void) playerPlaybackStarted:(NSNotification*)notification{
-    self.whitePanel.hidden = NO;
+    self.lightPanel.hidden = NO;
     self.videoPreview.hidden = YES;
     [UIView animateWithDuration:1 animations:^{
-        self.whitePanel.alpha = 0;
+        self.lightPanel.alpha = 0;
     } completion: ^(BOOL finished) {
-        self.whitePanel.hidden = YES;
-        self.whitePanel.alpha = 1;
+        self.lightPanel.hidden = YES;
+        self.lightPanel.alpha = 1;
     }];
 }
 
@@ -94,7 +97,7 @@
     [self.videoPreview release];
     [self.moviePlayer release];
     [self.lightGray release];
-    [self.whitePanel release];
+    [self.lightPanel release];
     [super dealloc];
 }
 
