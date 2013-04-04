@@ -18,6 +18,8 @@
 - (void) restart;
 
 @property (retain) UIImageView *videoPreview;
+@property (retain) UIView *whitePanel;
 @property (retain) MPMoviePlayerController *moviePlayer;
+@property (retain) UIColor *lightGray;
 
 @end
