@@ -10,6 +10,8 @@
 #import "Slide3DImageView.h"
 #import "UIImage+animatedGIF.h"
 #import "HtmlWithVideoView.h"
+#import "WebViewGalleryOpener.h"
+
 
 @implementation MediaTypeFactory
 
@@ -75,6 +77,7 @@
         mediaView = imageView;
     }else if ([media.mediaType isEqualToString:@"html"]) {
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+        webView.delegate = [[WebViewGalleryOpener alloc] init];
         mediaView = webView;
         NSString *htmlPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename];
         NSURL* url = [NSURL fileURLWithPath:htmlPath];
