@@ -127,6 +127,10 @@ a:active {
 	top:0;
 	text-decoration:none;
 	}
+.text-images a.controls{
+	top:50%;
+	position:fixed;
+	}
 .controls.prev{
 	background:url(images/prev.png) center center no-repeat;
 	left:0.5%;
@@ -256,6 +260,33 @@ a:active {
 .text-images div.images a.html5lightbox.fifth{
 	margin:-105px 20px 0 0;
 	}
+.text-images div.images a.seventh span{
+	text-align:center;
+	padding:0 10px 0 0;
+	display:block;
+	}
+.text-images div.images a.ninth{
+	margin:-30px 0 0 0;
+	}
+.text-images div.images a.ninth span{
+	display:block;
+	margin:-185px -50px 0 205px;
+	}
+.text-images div.images a.tenth span{
+	text-align:center;
+	padding:0 0 10px 0;
+	display:block;
+	}
+.text-images div.images a.eleventh span{
+	text-align:center;
+	padding:0 25px 0 0;
+	display:block;
+	}
+.text-images div.images a.twelfth span{
+	text-align:center;
+	margin:-270px 0 0 -180px;
+	display:block;
+	}
 .text-images h2{
 	color:#284795;
 	font-style:italic;
@@ -273,7 +304,7 @@ a:active {
 	.text-images div.images{width:330px;}
 	.text-images div.images a{margin:0 0 15px 30px!important;font-size:80%;}
 	.text-images div.images a.first{margin:0 0 15px 90px!important;}
-	.text-images div.images a span{padding:0!important;}
+	.text-images div.images a span{padding:0!important;margin:0!important;}
 	.text-images h2{font-size:160%;}
 	.text-images p{font-size:80%;}
 	}
@@ -281,7 +312,7 @@ a:active {
 	.text-images div.images{width:180px;}
 	.text-images div.images a{margin:0 0 15px 30px!important;font-size:70%;}
 	.text-images div.images a img{max-width:150px;}
-	.text-images div.images a span{padding:0!important;}
+	.text-images div.images a span{padding:0!important;margin:0!important;}
 	.text-images h2{font-size:120%;}
 	.text-images p{font-size:70%;}
 	}
@@ -289,7 +320,7 @@ a:active {
 	.text-images div.images{width:180px;}
 	.text-images div.images a{margin:0 0 15px 30px!important;font-size:60%;}
 	.text-images div.images a img{max-width:150px;}
-	.text-images div.images a span{padding:0!important;}
+	.text-images div.images a span{padding:0!important;margin:0!important;}
 	.text-images h2{font-size:120%;}
 	.text-images p{font-size:70%;}
 	}
