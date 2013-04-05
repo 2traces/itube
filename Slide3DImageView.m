@@ -55,6 +55,10 @@
             [self loadSlideWithNumber:self.currentSlideNumber];
         }
     }
+    if(recognizer.state == UIGestureRecognizerStateEnded)
+    {
+        self.lastTranslation = 0;
+    }
 }
 
 - (void)loadSlideWithNumber:(int)slideNumber{
