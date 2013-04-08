@@ -12,6 +12,7 @@
 		496355781712E51A00EEB5DA /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 496355771712E51A00EEB5DA /* icon114.png */; };
 		4963557A1712E52600EEB5DA /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 496355791712E52600EEB5DA /* icon72.png */; };
 		4963557C1712E52D00EEB5DA /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = 4963557B1712E52D00EEB5DA /* icon144.png */; };
+		4963557E1712EA4D00EEB5DA /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4963557D1712EA4D00EEB5DA /* libxml2.dylib */; };
 		49750CF5170B5A1300ED9AA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49750CF4170B5A1300ED9AA4 /* UIKit.framework */; };
 		49750CF7170B5A1300ED9AA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49750CF6170B5A1300ED9AA4 /* Foundation.framework */; };
 		49750CF9170B5A1300ED9AA4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49750CF8170B5A1300ED9AA4 /* CoreGraphics.framework */; };
@@ -80,6 +81,7 @@
 		496355771712E51A00EEB5DA /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
 		496355791712E52600EEB5DA /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72.png; sourceTree = "<group>"; };
 		4963557B1712E52D00EEB5DA /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
+		4963557D1712EA4D00EEB5DA /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		49750CF1170B5A1300ED9AA4 /* HomeWorks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeWorks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49750CF4170B5A1300ED9AA4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		49750CF6170B5A1300ED9AA4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -138,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4963557E1712EA4D00EEB5DA /* libxml2.dylib in Frameworks */,
 				49EAF44E170F1BBA0023DA83 /* StoreKit.framework in Frameworks */,
 				49B713DE170CB0580032B42E /* QuickLook.framework in Frameworks */,
 				49750CF5170B5A1300ED9AA4 /* UIKit.framework in Frameworks */,
@@ -153,6 +156,7 @@
 		49750CE8170B5A1300ED9AA4 = {
 			isa = PBXGroup;
 			children = (
+				4963557D1712EA4D00EEB5DA /* libxml2.dylib */,
 				49EAF44D170F1BBA0023DA83 /* StoreKit.framework */,
 				49750CFA170B5A1300ED9AA4 /* HomeWorks */,
 				49B713DD170CB0580032B42E /* QuickLook.framework */,
