@@ -10,38 +10,67 @@
 
 @implementation NSObject (homeWorksServiceLocator)
 
-
--(NSURL *)catalogDownloadUrl {
-
-    static NSURL *catalogDownloadUrl;
-
-    if(catalogDownloadUrl == nil) {
-        catalogDownloadUrl = [NSURL URLWithString:@"http://www.trylogic.ru/homeworks/catalog.xml"];
-    }
-
-    return catalogDownloadUrl;
+- (NSString *)bookIAPStringFormat
+{
+	return @"ru.trylogic.homeworks.term%@subject%@book%@";
 }
 
-- (NSString *)catalogFilePath {
-    static NSString *catalogFilePath;
-
-    if(catalogFilePath == nil) {
-        NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        catalogFilePath = [documentsDirectory stringByAppendingPathComponent:@"catalog.xml"];
-    }
-
-    return catalogFilePath;
+- (NSString *)pageURLStringFormat
+{
+	return [[self.catalogRxml attribute:@"baseurl"] stringByAppendingString:@"/terms/%@/subjects/%@/books/%@/%d.%@"];
 }
 
 
--(RXMLElement *)catalogRxml {
-    static RXMLElement *catalogRxml;
+- (NSString *)pageFilePathStringFormat
+{
+	NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	return [documentsDirectory stringByAppendingPathComponent:@"terms%@subjects%@books%@answer%d.%@"];
+}
 
-    if(catalogRxml == nil) {
-        catalogRxml = [RXMLElement elementFromXMLString:[NSString stringWithContentsOfFile:self.catalogFilePath encoding:NSUTF8StringEncoding error:nil] encoding:NSUTF8StringEncoding];
-    }
+- (NSURL *)catalogDownloadUrl
+{
+	static NSURL *catalogDownloadUrl;
 
-    return catalogRxml;
+	if (catalogDownloadUrl == nil)
+	{
+		catalogDownloadUrl = [NSURL URLWithString:@"http://parismetromaps.info/homeworks/catalog.xml"];
+	}
+
+	return catalogDownloadUrl;
+}
+
+- (NSString *)catalogFilePath
+{
+	static NSString *catalogFilePath;
+
+	if (catalogFilePath == nil)
+	{
+		NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+		catalogFilePath = [documentsDirectory stringByAppendingPathComponent:@"catalog.xml"];
+	}
+
+	return catalogFilePath;
+}
+
+- (RXMLElement *)catalogRxml
+{
+	static RXMLElement *catalogRxml;
+
+	if (catalogRxml == nil)
+	{
+		NSString *libraryOrBundledCatalogFilePath;
+
+		if ([[NSFileManager defaultManager] fileExistsAtPath:self.catalogFilePath])
+		{
+			libraryOrBundledCatalogFilePath = self.catalogFilePath;
+		} else
+		{
+			libraryOrBundledCatalogFilePath = [[NSBundle mainBundle] pathForResource:@"Homeworks.bundle/catalog" ofType:@"xml"];
+		}
+		catalogRxml = [RXMLElement elementFromXMLString:[NSString stringWithContentsOfFile:libraryOrBundledCatalogFilePath encoding:NSUTF8StringEncoding error:nil] encoding:NSUTF8StringEncoding];
+	}
+
+	return catalogRxml;
 }
 
 @end

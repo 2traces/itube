@@ -5,10 +5,11 @@
 //
 
 
-#import "TermTableVIewCell.h"
+#import "TermTableViewCell.h"
 
 
-@implementation TermTableVIewCell {
+@implementation TermTableViewCell
+{
 
 }
 @end

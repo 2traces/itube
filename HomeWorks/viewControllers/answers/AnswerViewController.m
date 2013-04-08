@@ -5,42 +5,38 @@
 //
 
 
+#import <RaptureXML/RXMLElement.h>
 #import "AnswerViewController.h"
 
-@implementation AnswerViewController {
-    UIBarStyle oldBarStyle;
-    UIBarStyle oldToolbarBarStyle;
-    UIStatusBarStyle oldStatusBarStyle;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    oldBarStyle = self.navigationController.navigationBar.barStyle;
-    oldToolbarBarStyle = self.navigationController.toolbar.barStyle;
-    oldStatusBarStyle =[UIApplication sharedApplication].statusBarStyle;
-
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-    self.navigationController.toolbar.barStyle = UIBarStyleBlackTranslucent;
-    UIApplication.sharedApplication.statusBarStyle = UIStatusBarStyleBlackTranslucent;
-
-    [self.navigationController.toolbar setItems:@[]];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-
-    self.navigationController.navigationBar.barStyle = oldBarStyle;
-    self.navigationController.toolbar.barStyle = oldToolbarBarStyle;
-    UIApplication.sharedApplication.statusBarStyle = oldStatusBarStyle;
-}
-
--(void)onTap
+@implementation AnswerViewController
 {
-    [UIApplication.sharedApplication setStatusBarHidden:!UIApplication.sharedApplication.isStatusBarHidden withAnimation:UIStatusBarAnimationFade];
-    [self.navigationController setNavigationBarHidden:!self.navigationController.isNavigationBarHidden animated:YES];
-    [self.navigationController setToolbarHidden:!self.navigationController.toolbarHidden animated:YES];
+	UIBarStyle oldBarStyle;
+	UIBarStyle oldToolbarBarStyle;
+	UIStatusBarStyle oldStatusBarStyle;
 }
 
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+
+	oldBarStyle = self.navigationController.navigationBar.barStyle;
+	oldToolbarBarStyle = self.navigationController.toolbar.barStyle;
+	oldStatusBarStyle = [UIApplication sharedApplication].statusBarStyle;
+
+	self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+	self.navigationController.toolbar.barStyle = UIBarStyleBlackTranslucent;
+	UIApplication.sharedApplication.statusBarStyle = UIStatusBarStyleBlackTranslucent;
+
+	[self.navigationController.toolbar setItems:@[]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+
+	self.navigationController.navigationBar.barStyle = oldBarStyle;
+	self.navigationController.toolbar.barStyle = oldToolbarBarStyle;
+	UIApplication.sharedApplication.statusBarStyle = oldStatusBarStyle;
+}
 
 @end

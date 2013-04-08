@@ -8,5 +8,11 @@
 #import <Foundation/Foundation.h>
 
 
-@interface BookTableViewCell : NSObject
+@interface BookTableViewCell : UITableViewCell
+
+
+@property(nonatomic) IBOutlet UIImageView *bookImage;
+@property(nonatomic) IBOutlet UILabel *nameLabel;
+@property(nonatomic) IBOutlet UILabel *authorsLabel;
+
 @end

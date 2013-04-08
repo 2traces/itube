@@ -8,7 +8,8 @@
 #import "BookTableViewCell.h"
 
 
-@implementation BookTableViewCell {
+@implementation BookTableViewCell
+{
 
 }
 @end

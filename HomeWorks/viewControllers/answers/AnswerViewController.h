@@ -8,6 +8,8 @@
 #import <Foundation/Foundation.h>
 #import <QuickLook/QuickLook.h>
 
+@class RXMLElement;
+
 
 @interface AnswerViewController : QLPreviewController
 @end

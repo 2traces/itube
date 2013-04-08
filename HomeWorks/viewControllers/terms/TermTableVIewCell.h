@@ -8,5 +8,9 @@
 #import <Foundation/Foundation.h>
 
 
-@interface TermTableVIewCell : NSObject
+@interface TermTableViewCell : UITableViewCell
+
+@property(nonatomic) IBOutlet UIImageView *iconImageView;
+@property(nonatomic) IBOutlet UILabel *numLabel;
+
 @end

@@ -8,7 +8,8 @@
 #import "SubjectTableVIewCell.h"
 
 
-@implementation SubjectTableVIewCell {
+@implementation SubjectTableVIewCell
+{
 
 }
 @end

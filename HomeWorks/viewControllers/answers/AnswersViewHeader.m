@@ -8,7 +8,8 @@
 #import "AnswersViewHeader.h"
 
 
-@implementation AnswersViewHeader {
+@implementation AnswersViewHeader
+{
 
 }
 @end

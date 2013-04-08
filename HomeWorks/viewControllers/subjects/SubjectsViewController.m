@@ -5,10 +5,53 @@
 //
 
 
+#import <RaptureXML/RXMLElement.h>
 #import "SubjectsViewController.h"
+#import "BooksViewController.h"
+#import "SubjectTableVIewCell.h"
 
 
-@implementation SubjectsViewController {
+@implementation SubjectsViewController
+{
 
 }
+
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+
+	self.navigationItem.title = [NSString stringWithFormat:@"%d класс", [_term attributeAsInt:@"num"]];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return [_term children:@"subject"].count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+		 cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	static NSString *cellIdentifier = @"subjectCell";
+	SubjectTableVIewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+
+	cell.nameLabel.text = [[[_term children:@"subject"] objectAtIndex:indexPath.row] attribute:@"name"];
+
+	return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"showSubject"])
+	{
+		BooksViewController *booksViewController = segue.destinationViewController;
+		booksViewController.term = _term;
+		booksViewController.subject = [[_term children:@"subject"] objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+	}
+}
+
 @end

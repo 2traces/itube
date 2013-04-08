@@ -8,7 +8,8 @@
 #import "AnswerViewCell.h"
 
 
-@implementation AnswerViewCell {
+@implementation AnswerViewCell
+{
 
 }
 @end

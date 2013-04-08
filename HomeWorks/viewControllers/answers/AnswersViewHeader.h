@@ -7,6 +7,14 @@
 
 #import <Foundation/Foundation.h>
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 60000
 
-@interface AnswersViewHeader : NSObject
+@interface AnswersViewHeader : PSUICollectionReusableView_
+#else
+@interface AnswersViewHeader : UICollectionReusableView
+#endif
+
+
+@property(nonatomic) IBOutlet UILabel *nameLabel;
+@property(nonatomic) IBOutlet UILabel *authorsLabel;
 @end

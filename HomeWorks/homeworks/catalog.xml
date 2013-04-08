@@ -1,7 +1,7 @@
 <catalog baseurl="http://www.trylogic.ru/homeworks/">
     <term num="6">
         <subject id="0" name="Математика">
-            <book id="0" name="Материалы по математике. 6 класс." authors="Чесноков А.С., Нешков К.И., 2000-2011гг." type="png" />
+            <book id="0" name="Материалы по математике. 6 класс." authors="Чесноков А.С., Нешков К.И., 2000-2011гг." type="png"/>
         </subject>
     </term>
 </catalog>

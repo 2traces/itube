@@ -10,10 +10,16 @@
 
 @interface NSObject (homeWorksServiceLocator)
 
--(NSURL *)catalogDownloadUrl;
+- (NSString *)bookIAPStringFormat;
 
--(NSString *)catalogFilePath;
+- (NSString *)pageURLStringFormat;
 
--(RXMLElement *)catalogRxml;
+- (NSString *)pageFilePathStringFormat;
+
+- (NSURL *)catalogDownloadUrl;
+
+- (NSString *)catalogFilePath;
+
+- (RXMLElement *)catalogRxml;
 
 @end

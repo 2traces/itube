@@ -7,6 +7,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class RXMLElement;
+
 
 @interface SubjectsViewController : UITableViewController
+
+@property(nonatomic) RXMLElement *term;
+
 @end

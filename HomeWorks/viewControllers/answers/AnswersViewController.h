@@ -12,5 +12,8 @@
 
 @interface AnswersViewController : PSUICollectionViewController
 
-@property(nonatomic, strong) RXMLElement *book;
+@property(nonatomic) RXMLElement *term;
+@property(nonatomic) RXMLElement *subject;
+@property(nonatomic) RXMLElement *book;
+
 @end

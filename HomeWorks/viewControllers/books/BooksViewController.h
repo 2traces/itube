@@ -7,6 +7,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class RXMLElement;
+
 
 @interface BooksViewController : UITableViewController
+
+@property(nonatomic) RXMLElement *term;
+@property(nonatomic) RXMLElement *subject;
+
 @end
