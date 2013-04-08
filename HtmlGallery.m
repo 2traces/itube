@@ -45,13 +45,13 @@
 
 - (void) fadeInMainImage{
     self.mainImageView.hidden = NO;
-    [UIView animateWithDuration:1.0 animations:^{
+    [UIView animateWithDuration:0.7 animations:^{
         self.mainImageView.alpha = 1.0;
     }];
 }
 
 - (void) fadeOutMainImage{
-    [UIView animateWithDuration:1.0 animations:^{
+    [UIView animateWithDuration:0.7 animations:^{
         self.mainImageView.alpha = 0.0;
     } completion:^(BOOL finished) {
         self.mainImageView.hidden = YES;
