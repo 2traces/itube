@@ -10,7 +10,7 @@
 #import "Slide3DImageView.h"
 #import "UIImage+animatedGIF.h"
 #import "HtmlWithVideoView.h"
-#import "WebViewGalleryOpener.h"
+#import "HtmlGallery.h"
 
 
 @implementation MediaTypeFactory
@@ -59,10 +59,6 @@
     return image;
 }
 
-+ (UIView *)htmlWithVideoViewForMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate {
-    return [[HtmlWithVideoView alloc] initWithMedia:media withParent:parent withAppDelegate:appDelegate];
-}
-
 +(UIView*)viewForMedia:(MMedia *)media withParent:(UIView*)parent withOrientation:(UIInterfaceOrientation)orientation withIndex:(int)index withMoviePlayers:(NSMutableArray *)moviePlayers{
     UIImage *image = [self imageForMedia:media];
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -77,14 +73,15 @@
         mediaView = imageView;
     }else if ([media.mediaType isEqualToString:@"html"]) {
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-        webView.delegate = [[WebViewGalleryOpener alloc] init];
         mediaView = webView;
         NSString *htmlPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename];
         NSURL* url = [NSURL fileURLWithPath:htmlPath];
         NSURLRequest* request = [NSURLRequest requestWithURL:url];
         [webView loadRequest:request];
     }else if ([media.mediaType isEqualToString:@"html_with_video"]) {
-        mediaView = [self htmlWithVideoViewForMedia:media withParent:parent withAppDelegate:appDelegate];
+        mediaView = [[HtmlWithVideoView alloc] initWithMedia:media withParent:parent withAppDelegate:appDelegate];
+    }else if ([media.mediaType isEqualToString:@"html_gallery"]){
+        mediaView = [[HtmlGallery alloc] initWithMedia:media withParent:parent withAppDelegate:appDelegate];
     }else if (!image) {
         //OMG, it's not an image, it's a... Video!
         NSString *videoPath = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, media.filename];

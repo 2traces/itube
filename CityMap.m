@@ -2243,7 +2243,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                         [mediaSet addObject:media];
                         index++;
                     }
-                }else if( [mediaType isEqualToString:@"html"] ){
+                }else if( [mediaType isEqualToString:@"html"] || [mediaType isEqualToString:@"html_gallery"] ){
                     NSString *path = [place objectForKey:@"filename"];
                     MMedia *media = [self mediaWithFilename:path withIndex:index withMediaType:mediaType];
                     [mediaSet addObject:media];
