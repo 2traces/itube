@@ -14,6 +14,7 @@
 
 - (id)initWithMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate;
 
-@property (retain) UIImageView *mainImage;
+@property (retain) UIImageView *mainImageView;
+@property (retain) NSString *htmlDir;
 
 @end

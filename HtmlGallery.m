@@ -10,7 +10,8 @@
 
 @implementation HtmlGallery
 
-@synthesize mainImage;
+@synthesize mainImageView;
+@synthesize htmlDir;
 
 - (id)initWithMedia:(MMedia *)media withParent:(UIView *)parent withAppDelegate:(tubeAppDelegate *)appDelegate{
     self = [super initWithFrame:parent.frame];
@@ -19,24 +20,46 @@
         [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         webView.delegate = self;
         NSString *htmlPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename];
+        self.htmlDir = [htmlPath stringByDeletingLastPathComponent];
         NSURL* url = [NSURL fileURLWithPath:htmlPath];
         NSURLRequest* request = [NSURLRequest requestWithURL:url];
         [webView loadRequest:request];
         [self addSubview:webView];
+        
+        self.mainImageView = [[UIImageView alloc] initWithFrame:parent.frame];
+        self.mainImageView.hidden = YES;
+        [self.mainImageView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+        self.mainImageView.userInteractionEnabled = YES;
+        [self.mainImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mainImageTapped:)]];
+        self.mainImageView.contentMode = UIViewContentModeScaleAspectFit;
+        self.mainImageView.backgroundColor = [UIColor colorWithRed:245./255 green:244./255 blue:245./255 alpha:1];
+        [self addSubview:self.mainImageView];
     }
     return self;
 }
 
+- (void)mainImageTapped:(UITapGestureRecognizer*)recognizer{
+    self.mainImageView.hidden = YES;
+}
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    NSLog(@"request %@", request.description);
+    if([request.URL.absoluteString hasPrefix:@"preview"]){
+        NSString *filename = [request.URL.absoluteString substringFromIndex:10];
+        NSString *fullPath = [NSString stringWithFormat:@"%@/%@", self.htmlDir, filename];
+        [self showImageWithPath:fullPath];
+    }
     return YES;
 }
 
+- (void)showImageWithPath:(NSString*)path{
+    self.mainImageView.hidden = NO;
+    self.mainImageView.image = [UIImage imageWithContentsOfFile:path];
+    
+}
+
 - (void)dealloc{
-    if (self.mainImage != nil) {
-        [self.mainImage release];
-        self.mainImage = nil;
-    }
+    [self.mainImageView release];
+    [self.htmlDir release];
     [super dealloc];
 }
 
