@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		09D6457BEA6349B19EB91D72 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D877E36C9014414BF51AAF5 /* libPods.a */; };
+		496355761712E51700EEB5DA /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 496355751712E51700EEB5DA /* icon57.png */; };
+		496355781712E51A00EEB5DA /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 496355771712E51A00EEB5DA /* icon114.png */; };
+		4963557A1712E52600EEB5DA /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 496355791712E52600EEB5DA /* icon72.png */; };
+		4963557C1712E52D00EEB5DA /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = 4963557B1712E52D00EEB5DA /* icon144.png */; };
 		49750CF5170B5A1300ED9AA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49750CF4170B5A1300ED9AA4 /* UIKit.framework */; };
 		49750CF7170B5A1300ED9AA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49750CF6170B5A1300ED9AA4 /* Foundation.framework */; };
 		49750CF9170B5A1300ED9AA4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49750CF8170B5A1300ED9AA4 /* CoreGraphics.framework */; };
@@ -72,6 +76,10 @@
 
 /* Begin PBXFileReference section */
 		0D877E36C9014414BF51AAF5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		496355751712E51700EEB5DA /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
+		496355771712E51A00EEB5DA /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
+		496355791712E52600EEB5DA /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72.png; sourceTree = "<group>"; };
+		4963557B1712E52D00EEB5DA /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
 		49750CF1170B5A1300ED9AA4 /* HomeWorks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeWorks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49750CF4170B5A1300ED9AA4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		49750CF6170B5A1300ED9AA4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -192,6 +200,10 @@
 		49750CFB170B5A1300ED9AA4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4963557B1712E52D00EEB5DA /* icon144.png */,
+				496355791712E52600EEB5DA /* icon72.png */,
+				496355771712E51A00EEB5DA /* icon114.png */,
+				496355751712E51700EEB5DA /* icon57.png */,
 				49750CFC170B5A1300ED9AA4 /* HomeWorks-Info.plist */,
 				49750CFD170B5A1300ED9AA4 /* InfoPlist.strings */,
 				49750D00170B5A1300ED9AA4 /* main.m */,
@@ -364,6 +376,10 @@
 				A56A120A3750466D1BFBC569 /* MainStoryboard_iPhone.storyboard in Resources */,
 				A56A1F8BD30F6CD86DE3068F /* MainStoryboard_iPad.storyboard in Resources */,
 				49C60A94170E2C3F009327CA /* Homeworks.bundle in Resources */,
+				496355761712E51700EEB5DA /* icon57.png in Resources */,
+				496355781712E51A00EEB5DA /* icon114.png in Resources */,
+				4963557A1712E52600EEB5DA /* icon72.png in Resources */,
+				4963557C1712E52D00EEB5DA /* icon144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
