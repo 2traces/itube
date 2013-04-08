@@ -425,13 +425,14 @@
         </scene>
     </scenes>
     <classes>
-        <class className="AnswersViewController" superclassName="PSUICollectionViewController_">
+        <class className="AnswersViewController" superclassName="PSUICollectionViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewController.h"/>
         </class>
         <class className="AnswersViewHeader" superclassName="PSUICollectionReusableView_">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewHeader.h"/>
             <relationships>
                 <relationship kind="outlet" name="authorsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="BookTableViewCell" superclassName="UITableViewCell">
@@ -447,18 +448,15 @@
         </class>
         <class className="InfoViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/InfoViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="tlDismissMe:"/>
+            </relationships>
         </class>
         <class className="PSTCollectionReusableView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PSTCollectionReusableView.h"/>
         </class>
-        <class className="PSTCollectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSTCollectionViewController.h"/>
-        </class>
         <class className="PSUICollectionReusableView_" superclassName="PSTCollectionReusableView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PSUICollectionReusableView_.h"/>
-        </class>
-        <class className="PSUICollectionViewController_" superclassName="PSTCollectionViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSUICollectionViewController_.h"/>
         </class>
         <class className="StartScreenViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/StartScreenViewController.h"/>
