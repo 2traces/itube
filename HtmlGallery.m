@@ -27,7 +27,8 @@
         [self addSubview:webView];
         
         self.mainImageView = [[UIImageView alloc] initWithFrame:parent.frame];
-        self.mainImageView.hidden = YES;
+        self.mainImageView.alpha = 0.0;
+        self.mainImageView.hidden = NO;
         [self.mainImageView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         self.mainImageView.userInteractionEnabled = YES;
         [self.mainImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mainImageTapped:)]];
@@ -39,7 +40,22 @@
 }
 
 - (void)mainImageTapped:(UITapGestureRecognizer*)recognizer{
-    self.mainImageView.hidden = YES;
+    [self fadeOutMainImage];
+}
+
+- (void) fadeInMainImage{
+    self.mainImageView.hidden = NO;
+    [UIView animateWithDuration:1.0 animations:^{
+        self.mainImageView.alpha = 1.0;
+    }];
+}
+
+- (void) fadeOutMainImage{
+    [UIView animateWithDuration:1.0 animations:^{
+        self.mainImageView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        self.mainImageView.hidden = YES;
+    }];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
@@ -52,9 +68,8 @@
 }
 
 - (void)showImageWithPath:(NSString*)path{
-    self.mainImageView.hidden = NO;
     self.mainImageView.image = [UIImage imageWithContentsOfFile:path];
-    
+    [self fadeInMainImage];
 }
 
 - (void)dealloc{
