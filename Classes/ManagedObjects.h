@@ -59,7 +59,7 @@
 @property (nonatomic, retain) NSSet *items;
 @end
 
-@interface Slide3D : NSManagedObject
+@interface PhotosSetConf : NSManagedObject
 
 @property (nonatomic, retain) NSNumber* photosCount;
 @property (nonatomic, retain) NSString* photosPrefix;
@@ -73,7 +73,7 @@
 @property (nonatomic, retain) NSString * filename;
 @property (nonatomic, retain) MPlace* place;
 @property (nonatomic, retain) NSString* mediaType;
-@property (nonatomic, retain) Slide3D* slide3D;
+@property (nonatomic, retain) PhotosSetConf* photosSet;
 @property (nonatomic, retain) NSString* videoPath;
 @property (nonatomic, assign) NSNumber* index;
 @property (nonatomic, assign) NSNumber* repeatCount;

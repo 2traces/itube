@@ -26,8 +26,13 @@
         <attribute name="previewPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="repeatCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="videoPath" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="photosSet" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PhotosSetConf" syncable="YES"/>
         <relationship name="place" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="photos" inverseEntity="Place" syncable="YES"/>
-        <relationship name="slide3D" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Slide3D" syncable="YES"/>
+    </entity>
+    <entity name="PhotosSetConf" syncable="YES">
+        <attribute name="photosCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="photosExt" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photosPrefix" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Place" representedClassName="MPlace" syncable="YES">
         <attribute name="accessLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -39,11 +44,6 @@
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="categories" optional="YES" toMany="YES" minCount="1" deletionRule="No Action" destinationEntity="Category" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Media" inverseName="place" inverseEntity="Media" syncable="YES"/>
-    </entity>
-    <entity name="Slide3D" syncable="YES">
-        <attribute name="photosCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="photosExt" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="photosPrefix" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Station" representedClassName="MStation" syncable="YES">
         <attribute name="altname" optional="YES" attributeType="String" syncable="YES"/>
@@ -57,8 +57,8 @@
         <element name="History" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Line" positionX="0" positionY="0" width="128" height="105"/>
         <element name="Media" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="PhotosSetConf" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Place" positionX="0" positionY="0" width="128" height="180"/>
-        <element name="Slide3D" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Station" positionX="0" positionY="0" width="128" height="120"/>
     </elements>
 </model>

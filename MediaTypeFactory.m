@@ -64,12 +64,12 @@
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     UIView *mediaView = nil;
     if ([media.mediaType isEqualToString:@"3dview"]) {
-        NSString *prefix = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, media.slide3D.photosPrefix];
+        NSString *prefix = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, media.photosSet.photosPrefix];
         Slide3DImageView *imageView = [[Slide3DImageView alloc]
                                        initWithImage:image
                                        withPrefix:prefix
-                                       withExt:media.slide3D.photosExt
-                                       withSlidesCount:[media.slide3D.photosCount intValue]];
+                                       withExt:media.photosSet.photosExt
+                                       withSlidesCount:[media.photosSet.photosCount intValue]];
         mediaView = imageView;
     }else if ([media.mediaType isEqualToString:@"html"]) {
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];

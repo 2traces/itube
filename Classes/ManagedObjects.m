@@ -51,7 +51,7 @@
 @dynamic image_normal;
 @end
 
-@implementation Slide3D
+@implementation PhotosSetConf
 
 @dynamic photosCount;
 @dynamic photosPrefix;
@@ -66,7 +66,7 @@
 @dynamic filename;
 @dynamic place;
 @dynamic mediaType;
-@dynamic slide3D;
+@dynamic photosSet;
 @dynamic videoPath;
 @dynamic previewPath;
 

@@ -2234,7 +2234,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     if (!media) {
                         media = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
                         media.mediaType = mediaType;
-                        media.slide3D = [self slideWithPrefix:[place objectForKey:@"photos_prefix"]
+                        media.photosSet = [self photosSetWithPrefix:[place objectForKey:@"photos_prefix"]
                                                       withExt:[place objectForKey:@"photos_ext"]
                                                     withCount:[place objectForKey:@"photos_count"]];
                         media.index = [NSNumber numberWithInteger:index];
@@ -2283,12 +2283,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     }
 }
 
--(Slide3D*) slideWithPrefix:(NSString*)prefix withExt:(NSString*)ext withCount:(NSNumber*)count{
-    Slide3D *slide = [NSEntityDescription insertNewObjectForEntityForName:@"Slide3D" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
-    slide.photosCount = count;
-    slide.photosExt = ext;
-    slide.photosPrefix = prefix;
-    return slide;
+-(PhotosSetConf*) photosSetWithPrefix:(NSString*)prefix withExt:(NSString*)ext withCount:(NSNumber*)count{
+    PhotosSetConf *photosSetConf = [NSEntityDescription insertNewObjectForEntityForName:@"PhotosSetConf" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+    photosSetConf.photosCount = count;
+    photosSetConf.photosExt = ext;
+    photosSetConf.photosPrefix = prefix;
+    return photosSetConf;
 }
 
 -(MMedia*) mediaWithFilename:(NSString*)filename withIndex:(NSInteger)index withMediaType:(NSString*)mediaType{
