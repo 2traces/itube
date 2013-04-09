@@ -100,7 +100,7 @@
 		<key>position</key>
 		<integer>3</integer>
 	</dict>
-	<key>com.zuev.itube.paris.hamburg</key>
+	<key>com.zuev.itube.paris.berlin.offlinemap</key>
 	<dict>
 		<key>url1</key>
 		<string>http://parismetromaps.info/maps/berlin/osm/osm/</string>
@@ -127,7 +127,7 @@
 		<key>position</key>
 		<integer>4</integer>
 	</dict>
-	<key>com.zuev.itube.paris.hamburg.temp</key>
+	<key>com.zuev.itube.paris.hamburg</key>
 	<dict>
 		<key>icon</key>
 		<string>icon_hamburg</string>
