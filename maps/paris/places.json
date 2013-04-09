@@ -37,19 +37,21 @@
                 1
             ]
         },
-				{
-            "name": "Arc de Triomphe",
-            "long": 48.873829,
+               {
+               "Name": "Arc de Triomphe",
+               "long": 48.873829,
                "lat": 2.295021,
                "index": 18,
-                      "accessLevel": 0,
-           "text": "Arc de Triomphe",
-           "media_type": "html_gallery",
-           "filename": "html/gallery.html",
-           "categories": [
-                2
-            ]
-        },
+               "accessLevel": 0,
+               "text": "Arc de Triomphe",
+               "media_type": "3dview",
+               "photos_prefix": "3d/3dbuilding0/3dbuilding0_",
+               "photos_count": 40,
+               "photos_ext": ".jpg",
+               "categories": [
+                              2
+                              ]
+               },
         {
             "name": "Moulin Rouge",
             "long": 48.884142,
