@@ -9,6 +9,7 @@
 #import "NativeGallery.h"
 #import "ColorFactory.h"
 #import <QuartzCore/QuartzCore.h>
+#import "IndexedImageView.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 
@@ -56,9 +57,9 @@
     }
     for (int i = 0; i < self.slidesCount; i++) {
         int y = offsetY + i * (thumbSize+padding);
-        UIImageView *thumb = [[UIImageView alloc] initWithFrame:CGRectMake(offsetX, y, thumbSize, thumbSize)];
+        IndexedImageView *thumb = [[IndexedImageView alloc] initWithFrame:CGRectMake(offsetX, y, thumbSize, thumbSize)];
         thumb.image = [self.imagesArray objectAtIndex:i];
-        thumb.tag = i;
+        thumb.index = i;
         thumb.userInteractionEnabled = YES;
         [thumb addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(thumbTapped:)]];
         [thumb.layer setBorderColor: [[UIColor blackColor] CGColor]];
@@ -68,7 +69,9 @@
 }
 
 - (void)thumbTapped:(UITapGestureRecognizer*)recognizer{
-    self.bgImageView.image = [self.imagesArray objectAtIndex:recognizer.view.tag];
+    IndexedImageView *thumb = (IndexedImageView*)recognizer.view;
+    self.bgImageView.image = [self.imagesArray objectAtIndex:thumb.index];
+    
     CATransition *transition = [CATransition animation];
     transition.duration = 0.3f;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
