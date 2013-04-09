@@ -2227,22 +2227,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             NSString *mediaType = [place objectForKey:@"media_type"];
             if( mediaType != nil ){
                 if ( [mediaType isEqualToString:@"3dview"] ){
-                    NSString *firstImageFilename = [NSString stringWithFormat:@"%@%i%@",
-                                                    [place objectForKey:@"photos_prefix"], 0,
-                                                    [place objectForKey:@"photos_ext"]];
-                    MMedia *media = [[MHelper sharedHelper] mediaByFilename:firstImageFilename];
-                    if (!media) {
-                        media = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
-                        media.mediaType = mediaType;
-                        media.photosSet = [self photosSetWithPrefix:[place objectForKey:@"photos_prefix"]
-                                                      withExt:[place objectForKey:@"photos_ext"]
-                                                    withCount:[place objectForKey:@"photos_count"]];
-                        media.index = [NSNumber numberWithInteger:index];
-                        
-                        media.filename = firstImageFilename;
-                        [mediaSet addObject:media];
-                        index++;
-                    }
+                    MMedia *media = [self photosSetMediaWithPlace:place withMediaType:mediaType withIndex:index];
+                    [mediaSet addObject:media];
+                    index++;
                 }else if( [mediaType isEqualToString:@"html"] || [mediaType isEqualToString:@"html_gallery"] ){
                     NSString *path = [place objectForKey:@"filename"];
                     MMedia *media = [self mediaWithFilename:path withIndex:index withMediaType:mediaType];
@@ -2289,6 +2276,24 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     photosSetConf.photosExt = ext;
     photosSetConf.photosPrefix = prefix;
     return photosSetConf;
+}
+
+-(MMedia*) photosSetMediaWithPlace:(NSDictionary*)place withMediaType:(NSString*)mediaType withIndex:(NSInteger)index{
+    NSString *firstImageFilename = [NSString stringWithFormat:@"%@%i%@",
+                                    [place objectForKey:@"photos_prefix"], 0,
+                                    [place objectForKey:@"photos_ext"]];
+    MMedia *media = [[MHelper sharedHelper] mediaByFilename:firstImageFilename];
+    if (!media) {
+        media = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+        media.mediaType = mediaType;
+        media.photosSet = [self photosSetWithPrefix:[place objectForKey:@"photos_prefix"]
+                                            withExt:[place objectForKey:@"photos_ext"]
+                                          withCount:[place objectForKey:@"photos_count"]];
+        media.index = [NSNumber numberWithInteger:index];
+        
+        media.filename = firstImageFilename;
+    }
+    return media;
 }
 
 -(MMedia*) mediaWithFilename:(NSString*)filename withIndex:(NSInteger)index withMediaType:(NSString*)mediaType{
