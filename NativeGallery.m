@@ -58,10 +58,17 @@
         int y = offsetY + i * (thumbSize+padding);
         UIImageView *thumb = [[UIImageView alloc] initWithFrame:CGRectMake(offsetX, y, thumbSize, thumbSize)];
         thumb.image = [self.imagesArray objectAtIndex:i];
+        thumb.tag = i;
+        thumb.userInteractionEnabled = YES;
+        [thumb addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(thumbTapped:)]];
         [thumb.layer setBorderColor: [[UIColor blackColor] CGColor]];
         [thumb.layer setBorderWidth: 2.0];
         [self addSubview:thumb];
     }
+}
+
+- (void)thumbTapped:(UITapGestureRecognizer*)recognizer{
+    self.bgImageView.image = [self.imagesArray objectAtIndex:recognizer.view.tag];
 }
 
 - (void)dealloc{
