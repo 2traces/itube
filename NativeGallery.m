@@ -9,6 +9,8 @@
 #import "NativeGallery.h"
 #import "ColorFactory.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+
 @implementation NativeGallery
 
 @synthesize currentSlideNumber;
@@ -33,8 +35,30 @@
         self.bgImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.bgImageView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self addSubview:self.bgImageView];
+        [self loadThumbs];
     }
     return self;
+}
+
+- (void)loadThumbs{
+    int offsetX, offsetY, thumbSize, padding;
+    if (IS_IPAD) {
+        offsetX = 50;
+        offsetY = 50;
+        thumbSize = 100;
+        padding = 10;
+    }else{
+        offsetX = 50;
+        offsetY = 50;
+        thumbSize = 100;
+        padding = 10;
+    }
+    for (int i = 0; i < self.slidesCount; i++) {
+        int y = offsetY + i * (thumbSize+padding);
+        UIImageView *thumb = [[UIImageView alloc] initWithFrame:CGRectMake(offsetX, y, thumbSize, thumbSize)];
+        thumb.image = [self.imagesArray objectAtIndex:i];
+        [self addSubview:thumb];
+    }
 }
 
 - (void)dealloc{
