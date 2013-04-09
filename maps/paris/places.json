@@ -44,7 +44,7 @@
                "index": 18,
                "accessLevel": 0,
                "text": "Arc de Triomphe",
-               "media_type": "3dview",
+               "media_type": "native_gallery",
                "photos_prefix": "3d/3dbuilding0/3dbuilding0_",
                "photos_count": 40,
                "photos_ext": ".jpg",

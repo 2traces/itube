@@ -2226,7 +2226,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             NSInteger index = 0;
             NSString *mediaType = [place objectForKey:@"media_type"];
             if( mediaType != nil ){
-                if ( [mediaType isEqualToString:@"3dview"] ){
+                if ( [mediaType isEqualToString:@"3dview"] || [mediaType isEqualToString:@"native_gallery"] ){
                     MMedia *media = [self photosSetMediaWithPlace:place withMediaType:mediaType withIndex:index];
                     [mediaSet addObject:media];
                     index++;
