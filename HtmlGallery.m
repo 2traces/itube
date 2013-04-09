@@ -7,6 +7,7 @@
 //
 
 #import "HtmlGallery.h"
+#import "ColorFactory.h"
 
 @implementation HtmlGallery
 
@@ -33,7 +34,7 @@
         self.mainImageView.userInteractionEnabled = YES;
         [self.mainImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mainImageTapped:)]];
         self.mainImageView.contentMode = UIViewContentModeScaleAspectFit;
-        self.mainImageView.backgroundColor = [UIColor colorWithRed:245./255 green:244./255 blue:245./255 alpha:1];
+        self.mainImageView.backgroundColor = [ColorFactory lightGrayColor];
         [self addSubview:self.mainImageView];
     }
     return self;

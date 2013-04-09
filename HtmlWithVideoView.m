@@ -7,6 +7,7 @@
 //
 
 #import "HtmlWithVideoView.h"
+#import "ColorFactory.h"
 
 @implementation HtmlWithVideoView
 
@@ -21,7 +22,7 @@
     if (self) {
         // Setup video
         // #lightGray color is #f5f4f5
-        self.lightGray = [UIColor colorWithRed:245./255 green:244./255 blue:245./255 alpha:1];
+        self.lightGray = [ColorFactory lightGrayColor];
         self.backgroundColor = self.lightGray;
         NSString *videoPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.videoPath];
         NSString *videoPreviewPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.previewPath];

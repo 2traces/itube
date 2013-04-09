@@ -7,6 +7,7 @@
 //
 
 #import "NativeGallery.h"
+#import "ColorFactory.h"
 
 @implementation NativeGallery
 
@@ -23,6 +24,7 @@
         self.slidesCount = count;
         self.photosExt = ext;
         self.photosPrefix = prefix;
+        self.backgroundColor = [ColorFactory lightGrayColor];
         for (int i = 0; i < self.slidesCount; i++) {
             [self.imagesArray addObject:[self loadSlideWithNumber:i]];
         }
