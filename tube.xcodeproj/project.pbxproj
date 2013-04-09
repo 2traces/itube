@@ -2628,6 +2628,10 @@
 		FA4BA177171309CF0066BA71 /* HtmlGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA175171309CF0066BA71 /* HtmlGallery.m */; };
 		FA4BA178171309CF0066BA71 /* HtmlGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA175171309CF0066BA71 /* HtmlGallery.m */; };
 		FA4BA179171309CF0066BA71 /* HtmlGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA175171309CF0066BA71 /* HtmlGallery.m */; };
+		FA4BA1D2171471C80066BA71 /* NativeGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA1D1171471C80066BA71 /* NativeGallery.m */; };
+		FA4BA1D3171471C80066BA71 /* NativeGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA1D1171471C80066BA71 /* NativeGallery.m */; };
+		FA4BA1D4171471C80066BA71 /* NativeGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA1D1171471C80066BA71 /* NativeGallery.m */; };
+		FA4BA1D5171471C80066BA71 /* NativeGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA1D1171471C80066BA71 /* NativeGallery.m */; };
 		FAC3984816FCD07400A6CC0C /* Slide3DImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */; };
 		FAC3984916FCD07400A6CC0C /* Slide3DImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */; };
 		FAC3984A16FCD07400A6CC0C /* Slide3DImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */; };
@@ -3452,6 +3456,8 @@
 		FA1A08F2170C9F45000CD689 /* scroll_btn_prev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scroll_btn_prev.png; sourceTree = "<group>"; };
 		FA4BA174171309CF0066BA71 /* HtmlGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlGallery.h; sourceTree = "<group>"; };
 		FA4BA175171309CF0066BA71 /* HtmlGallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlGallery.m; sourceTree = "<group>"; };
+		FA4BA1D0171471C80066BA71 /* NativeGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeGallery.h; sourceTree = "<group>"; };
+		FA4BA1D1171471C80066BA71 /* NativeGallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeGallery.m; sourceTree = "<group>"; };
 		FAC3984616FCD07400A6CC0C /* Slide3DImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slide3DImageView.h; sourceTree = "<group>"; };
 		FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Slide3DImageView.m; sourceTree = "<group>"; };
 		FAF4970C170493E80054C0D2 /* MediaTypeFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTypeFactory.h; sourceTree = "<group>"; };
@@ -3898,6 +3904,8 @@
 				FA0DABD31709E88800CF48B4 /* HtmlWithVideoView.m */,
 				FA4BA174171309CF0066BA71 /* HtmlGallery.h */,
 				FA4BA175171309CF0066BA71 /* HtmlGallery.m */,
+				FA4BA1D0171471C80066BA71 /* NativeGallery.h */,
+				FA4BA1D1171471C80066BA71 /* NativeGallery.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -7081,6 +7089,7 @@
 				FAF4970E170493E80054C0D2 /* MediaTypeFactory.m in Sources */,
 				FA0DABD41709E88800CF48B4 /* HtmlWithVideoView.m in Sources */,
 				FA4BA176171309CF0066BA71 /* HtmlGallery.m in Sources */,
+				FA4BA1D2171471C80066BA71 /* NativeGallery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7189,6 +7198,7 @@
 				FAF4970F170493E80054C0D2 /* MediaTypeFactory.m in Sources */,
 				FA0DABD51709E88800CF48B4 /* HtmlWithVideoView.m in Sources */,
 				FA4BA177171309CF0066BA71 /* HtmlGallery.m in Sources */,
+				FA4BA1D3171471C80066BA71 /* NativeGallery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7297,6 +7307,7 @@
 				FAF49710170493E80054C0D2 /* MediaTypeFactory.m in Sources */,
 				FA0DABD61709E88800CF48B4 /* HtmlWithVideoView.m in Sources */,
 				FA4BA178171309CF0066BA71 /* HtmlGallery.m in Sources */,
+				FA4BA1D4171471C80066BA71 /* NativeGallery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7405,6 +7416,7 @@
 				FAF49711170493E80054C0D2 /* MediaTypeFactory.m in Sources */,
 				FA0DABD71709E88800CF48B4 /* HtmlWithVideoView.m in Sources */,
 				FA4BA179171309CF0066BA71 /* HtmlGallery.m in Sources */,
+				FA4BA1D5171471C80066BA71 /* NativeGallery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
