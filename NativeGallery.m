@@ -69,6 +69,12 @@
 
 - (void)thumbTapped:(UITapGestureRecognizer*)recognizer{
     self.bgImageView.image = [self.imagesArray objectAtIndex:recognizer.view.tag];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.3f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFade;
+    
+    [self.bgImageView.layer addAnimation:transition forKey:nil];
 }
 
 - (void)dealloc{
