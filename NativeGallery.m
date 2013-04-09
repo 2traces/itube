@@ -49,10 +49,10 @@
         thumbSize = 100;
         padding = 10;
     }else{
-        offsetX = 50;
-        offsetY = 50;
-        thumbSize = 100;
-        padding = 10;
+        offsetX = 25;
+        offsetY = 40;
+        thumbSize = 50;
+        padding = 5;
     }
     for (int i = 0; i < self.slidesCount; i++) {
         int y = offsetY + i * (thumbSize+padding);
