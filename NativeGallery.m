@@ -8,6 +8,7 @@
 
 #import "NativeGallery.h"
 #import "ColorFactory.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 
@@ -57,6 +58,8 @@
         int y = offsetY + i * (thumbSize+padding);
         UIImageView *thumb = [[UIImageView alloc] initWithFrame:CGRectMake(offsetX, y, thumbSize, thumbSize)];
         thumb.image = [self.imagesArray objectAtIndex:i];
+        [thumb.layer setBorderColor: [[UIColor blackColor] CGColor]];
+        [thumb.layer setBorderWidth: 2.0];
         [self addSubview:thumb];
     }
 }
@@ -70,7 +73,7 @@
 }
 
 - (UIImage*)loadSlideWithNumber:(int)slideNumber{
-    NSString *imagePath = [NSString stringWithFormat:@"%@%i%@", self.photosPrefix, self.currentSlideNumber, self.photosExt];
+    NSString *imagePath = [NSString stringWithFormat:@"%@%i%@", self.photosPrefix, slideNumber, self.photosExt];
     return [UIImage imageWithContentsOfFile:imagePath];
 }
 /*
