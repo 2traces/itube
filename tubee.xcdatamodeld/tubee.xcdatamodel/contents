@@ -31,7 +31,7 @@
         <attribute name="previewPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="repeatCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="videoPath" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="galleryPictures" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="GalleryPicture" inverseName="media" inverseEntity="GalleryPicture" syncable="YES"/>
+        <relationship name="galleryPictures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GalleryPicture" inverseName="media" inverseEntity="GalleryPicture" syncable="YES"/>
         <relationship name="photosSet" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PhotosSetConf" syncable="YES"/>
         <relationship name="place" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="photos" inverseEntity="Place" syncable="YES"/>
     </entity>
@@ -60,12 +60,12 @@
     </entity>
     <elements>
         <element name="Category" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="GalleryPicture" positionX="439" positionY="36" width="128" height="90"/>
         <element name="History" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Line" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="Media" positionX="0" positionY="0" width="128" height="180"/>
-        <element name="PhotosSetConf" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="Place" positionX="0" positionY="0" width="128" height="180"/>
-        <element name="Station" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="GalleryPicture" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="Media" positionX="216" positionY="-45" width="128" height="180"/>
+        <element name="PhotosSetConf" positionX="324" positionY="225" width="128" height="90"/>
+        <element name="Place" positionX="18" positionY="234" width="128" height="180"/>
+        <element name="Station" positionX="-0" positionY="-252" width="128" height="120"/>
     </elements>
 </model>
