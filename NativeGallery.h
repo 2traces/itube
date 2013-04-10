@@ -13,7 +13,9 @@
 
 @property (retain) NSMutableArray *imagesArray;
 @property (retain) UIImageView *bgImageView;
+@property (retain) UILabel *titleLabel;
 @property (retain) NSSet *pictures;
+@property (retain) NSMutableArray *titlesArray;
 
 - (id)initWithFrame:(CGRect)frame withGalleryPictures:(NSSet*)pictures withAppDelegate:(tubeAppDelegate*)appDelegate;
 

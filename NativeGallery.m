@@ -21,13 +21,29 @@
     if (self) {
         self.pictures = galleryPictures;
         self.imagesArray = [NSMutableArray array];
+        self.titlesArray = [NSMutableArray array];
         self.backgroundColor = [UIColor blackColor];
+        
+        //add bgImageView
         self.bgImageView = [[UIImageView alloc] initWithFrame:frame];
         self.bgImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.bgImageView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self addSubview:self.bgImageView];
+        
+        //add title
+        self.titleLabel = [[UILabel alloc] initWithFrame:frame];
+        self.titleLabel.backgroundColor = [UIColor clearColor];
+        self.titleLabel.textAlignment = UITextAlignmentCenter;
+        self.titleLabel.textColor = [UIColor whiteColor];
+        self.titleLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth;
+        if (IS_IPAD) {
+            self.titleLabel.font = [UIFont systemFontOfSize:20];
+        }
+        [self addSubview:self.titleLabel];
+        
         [self loadThumbs:appDelegate];
         self.bgImageView.image = [self.imagesArray objectAtIndex:0];
+        self.titleLabel.text = [self.titlesArray objectAtIndex:0];
     }
     return self;
 }
@@ -51,14 +67,13 @@
     }
     int i = 0;
     for (MGalleryPicture *picture in self.pictures) {
-        NSLog(@"loading pictures");
         int y = offsetY + i * (thumbSize+padding);
         IndexedImageView *thumb = [[IndexedImageView alloc] initWithFrame:CGRectMake(offsetX, y, thumbSize, thumbSize)];
         NSString *path = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, picture.path];
-        NSLog(@"picture path %@, %i", path, [[NSFileManager defaultManager] fileExistsAtPath:path]);
         UIImage *image = [UIImage imageWithContentsOfFile:path];
         thumb.image = image;
         [self.imagesArray addObject:image];
+        [self.titlesArray addObject:picture.title];
         thumb.index = i;
         thumb.userInteractionEnabled = YES;
         [thumb addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(thumbTapped:)]];
@@ -77,6 +92,7 @@
 - (void)thumbTapped:(UITapGestureRecognizer*)recognizer{
     IndexedImageView *thumb = (IndexedImageView*)recognizer.view;
     self.bgImageView.image = [self.imagesArray objectAtIndex:thumb.index];
+    self.titleLabel.text = [self.titlesArray objectAtIndex:thumb.index];
     
     CATransition *transition = [CATransition animation];
     transition.duration = 0.3f;
@@ -90,6 +106,8 @@
     [self.pictures release];
     [self.imagesArray release];
     [self.bgImageView release];
+    [self.titleLabel release];
+    [self.titlesArray release];
     [super dealloc];
 }
 
