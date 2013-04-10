@@ -178,6 +178,9 @@ typedef NS_ENUM(NSInteger, SSThemeTab) {
 
 - (UIImage*)mapsSwitchButtonImage;
 
+- (UIImage*)downloadPopupImage;
+
+
 @end
 
 @interface SSThemeManager : NSObject

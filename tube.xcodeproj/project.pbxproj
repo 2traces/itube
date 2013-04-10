@@ -99,6 +99,8 @@
 		51DA320416611F4200424D3E /* select_near_station_bw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51DA320116611F4000424D3E /* select_near_station_bw@2x.png */; };
 		51DA320516611F4200424D3E /* select_near_station@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51DA320216611F4100424D3E /* select_near_station@2x.png */; };
 		51F15F7714D99A3800D11B79 /* VectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F15F7614D99A3800D11B79 /* VectorLayer.m */; };
+		571D5C3717157D0900ECDC2B /* download_popup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 571D5C3517157D0900ECDC2B /* download_popup@2x.png */; };
+		571D5C3A17157D0900ECDC2B /* newdes_download_popup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 571D5C3617157D0900ECDC2B /* newdes_download_popup@2x.png */; };
 		57A6ECB51709BB4600F8660D /* maps_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A6ECB31709BB4600F8660D /* maps_button.png */; };
 		57A6ECB61709BB4600F8660D /* maps_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A6ECB41709BB4600F8660D /* maps_button@2x.png */; };
 		57FD886917058FDB00100651 /* AdvancedCityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57FD886817058FDB00100651 /* AdvancedCityCell.xib */; };
@@ -1401,6 +1403,8 @@
 		51DA320216611F4100424D3E /* select_near_station@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select_near_station@2x.png"; sourceTree = "<group>"; };
 		51F15F7514D99A3800D11B79 /* VectorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VectorLayer.h; path = Classes/VectorLayer.h; sourceTree = "<group>"; };
 		51F15F7614D99A3800D11B79 /* VectorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VectorLayer.m; path = Classes/VectorLayer.m; sourceTree = "<group>"; };
+		571D5C3517157D0900ECDC2B /* download_popup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download_popup@2x.png"; sourceTree = "<group>"; };
+		571D5C3617157D0900ECDC2B /* newdes_download_popup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newdes_download_popup@2x.png"; path = "images/newdes_download_popup@2x.png"; sourceTree = "<group>"; };
 		57A6ECB31709BB4600F8660D /* maps_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = maps_button.png; path = images/maps_button.png; sourceTree = "<group>"; };
 		57A6ECB41709BB4600F8660D /* maps_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "maps_button@2x.png"; path = "images/maps_button@2x.png"; sourceTree = "<group>"; };
 		57FD886817058FDB00100651 /* AdvancedCityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AdvancedCityCell.xib; path = Resources/AdvancedCityCell.xib; sourceTree = "<group>"; };
@@ -2784,6 +2788,7 @@
 		BC520366166A1A0400B1E0A0 /* NewTheme */ = {
 			isa = PBXGroup;
 			children = (
+				571D5C3617157D0900ECDC2B /* newdes_download_popup@2x.png */,
 				57FD88C21705C4A800100651 /* newdes_settings_item_bg@2x.png */,
 				BCC172E416A16FA2002B440A /* newdes_stations_tblcell_selected.png */,
 				BCC172E516A16FA2002B440A /* newdes_stations_tblcell_selected@2x.png */,
@@ -3194,6 +3199,7 @@
 		CE96C6F41468307C005A56F3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				571D5C3517157D0900ECDC2B /* download_popup@2x.png */,
 				57FD88701705959C00100651 /* settings_item_bg@2x.png */,
 				5198F7B4163A71F500A045DE /* pins */,
 				513C87601618C6B300D1F431 /* openlist2.png */,
@@ -3795,6 +3801,7 @@
 				57FD88C51705C4AB00100651 /* newdes_settings_item_bg@2x.png in Resources */,
 				57A6ECB51709BB4600F8660D /* maps_button.png in Resources */,
 				57A6ECB61709BB4600F8660D /* maps_button@2x.png in Resources */,
+				571D5C3717157D0900ECDC2B /* download_popup@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4416,6 +4423,7 @@
 				57FD88BE1705BA2C00100651 /* poster_singapor@2x.png in Resources */,
 				57FD88C01705BA2C00100651 /* poster_venice@2x.png in Resources */,
 				57FD88C61705C4AB00100651 /* newdes_settings_item_bg@2x.png in Resources */,
+				571D5C3A17157D0900ECDC2B /* newdes_download_popup@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

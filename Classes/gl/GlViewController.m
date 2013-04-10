@@ -37,7 +37,7 @@ GLint uniforms[NUM_UNIFORMS];
     RasterLayer *rasterLayer;
     CGPoint position, prevPosition;
     CGFloat scale, prevScale;
-    UIButton *sourceData, *settings, *zones;
+    UIButton *sourceData, *settings, *zones, *downloadPopup;
     
     MStation *currentSelection;
     MStation *fromStation;
@@ -52,6 +52,7 @@ GLint uniforms[NUM_UNIFORMS];
     CGPoint userPosition, userGeoPosition;
 }
 @property (strong, nonatomic) EAGLContext *context;
+@property (nonatomic, retain) NSTimer *timer;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
 
 - (void)setupGL;
@@ -245,6 +246,7 @@ GLint uniforms[NUM_UNIFORMS];
 
 -(void)dealloc
 {
+
     [sp release];
     [sprite release];
     [super dealloc];
@@ -263,6 +265,9 @@ GLint uniforms[NUM_UNIFORMS];
 
 - (void)dealloc
 {
+    [self.timer invalidate];
+    self.timer = nil;
+    [downloadPopup release];
     [pinsArray release];
     [stationsView release];
     [_context release];
@@ -276,12 +281,14 @@ GLint uniforms[NUM_UNIFORMS];
     [super viewDidLoad];
     pinsArray = [[NSMutableArray alloc] init];
 
-    CGRect scrollSize,settingsRect,shadowRect,zonesRect;
+    CGRect scrollSize,settingsRect,shadowRect,zonesRect, downloadPopupRect;
     
     //scrollSize = CGRectMake(0, 44,(320),(480-64));
     //settingsRect=CGRectMake(285, 420, 27, 27);
     //shadowRect = CGRectMake(0, 44, 480, 61);
     zonesRect=CGRectMake(25, 420, 43, 25);
+    
+    downloadPopupRect = CGRectMake(30, 30, 260, 137);
     
     if (IS_IPAD) {
         //scrollSize = CGRectMake(0, 44, 768, (1024-74));
@@ -372,11 +379,45 @@ GLint uniforms[NUM_UNIFORMS];
     [view addSubview:zones];
     view.zonesButton = zones;
     
+    downloadPopup = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+    
+    [downloadPopup setBackgroundImage:[[SSThemeManager sharedTheme] downloadPopupImage] forState:UIControlStateNormal];
+    
+    downloadPopup.frame = downloadPopupRect;
+    [downloadPopup addTarget:self action:@selector(openSettings) forControlEvents:UIControlEventTouchUpInside];
+    
+
+    
     // user geo position
     Pin *p = [[[Pin alloc] initWithId:0 color:0 andText:@"You are here!"] autorelease];
     [pinsArray addObject:p];
     [p setPosition:userPosition];
     newPinId = 1;
+}
+
+- (void) showDownloadPopup {
+    if (![SettingsViewController isOfflineMapInstalled]) {
+        [self.view addSubview:downloadPopup];
+        downloadPopup.alpha = 0;
+        [UIView animateWithDuration:0.5f animations:^{
+            downloadPopup.alpha = 1;
+        }];
+        [self.timer invalidate];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:10
+                                                      target:self
+                                                    selector:@selector(dismissDownloadPopup)
+                                                    userInfo:nil
+                                                     repeats:NO];
+    }
+}
+
+- (void)dismissDownloadPopup {
+    self.timer = nil;
+    [UIView animateWithDuration:0.5f animations:^{
+        downloadPopup.alpha = 0;
+    } completion:^(BOOL finished) {
+        [downloadPopup removeFromSuperview];
+    }];
 }
 
 -(void) changeSource
@@ -728,6 +769,12 @@ GLint uniforms[NUM_UNIFORMS];
     //(self.view).shouldNotDropPins = YES;
     
     [controller autorelease];
+}
+
+-(void) openSettings
+{
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate showSettings];
 }
 
 -(void) changeZones

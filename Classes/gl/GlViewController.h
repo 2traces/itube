@@ -58,5 +58,6 @@
 -(void)removeAllPins;
 -(Pin*)getPin:(int)pinId;
 -(void) showSettings;
+- (void) showDownloadPopup;
 
 @end

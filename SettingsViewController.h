@@ -78,6 +78,7 @@
 -(BOOL)isProductInstalled:(NSString*)prodID;
 -(BOOL)isProductPurchased:(NSString*)prodID;
 -(BOOL)isProductAvailable:(NSString*)prodID;
++ (BOOL) isOfflineMapInstalled;
 
 @end
 

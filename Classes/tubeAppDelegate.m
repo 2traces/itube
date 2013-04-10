@@ -26,6 +26,16 @@
 @synthesize parseQueue;
 @synthesize tubeSplitViewController;
 
+-(void)showSettings
+{
+    if (IS_IPAD) {
+        // show setting modal
+        [[self mainViewController] showiPadSettingsModalView];
+    } else {
+        [[[self mainViewController] view] showSettings];
+    }
+}
+
 void uncaughtExceptionHandler(NSException *exception) {
     NSLog(@"CRASH: %@", exception);
     NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
@@ -407,6 +417,7 @@ void uncaughtExceptionHandler(NSException *exception) {
         [tubeSplitViewController hideTopViewAnimated];
         [tubeSplitViewController hideLeftView];
     }
+    [gl showDownloadPopup];
 }
 
 -(void)showMetroMap

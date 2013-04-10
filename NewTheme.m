@@ -979,6 +979,10 @@
     return [[UIImage imageNamed:@"newdes_maps_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 21, 10, 11)];
 }
 
+- (UIImage*)downloadPopupImage {
+    return [UIImage imageNamed:@"newdes_download_popup"];
+}
+
 -(UIImage*)overlayShadowImage
 {
     if (IS_IPAD) {

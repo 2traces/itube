@@ -100,7 +100,7 @@ NSString *offlineMapsUrl = @"http://parismetromaps.info";
         if ([_mapID isEqual:@"default"]) {
             [product setObject:@"D" forKey:@"status"];
         } else if ([self isProductPurchased:_mapID]) {
-            if ([[product valueForKey:@"isOfflineMap"] boolValue] && [self isOfflineMapInstalled]) {
+            if ([[product valueForKey:@"isOfflineMap"] boolValue] && [SettingsViewController isOfflineMapInstalled]) {
                 [product setObject:@"I" forKey:@"status"];
             }
             else if ([self isProductInstalled:[product valueForKey:@"filename"]]) {
@@ -1006,7 +1006,7 @@ NSString *offlineMapsUrl = @"http://parismetromaps.info";
     return NO;
 }
 
-- (BOOL) isOfflineMapInstalled {
++ (BOOL) isOfflineMapInstalled {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     return [[defaults objectForKey:@"kOfflineMapInstalled"] boolValue];
