@@ -10,39 +10,29 @@
 #import "ColorFactory.h"
 #import <QuartzCore/QuartzCore.h>
 #import "IndexedImageView.h"
+#import "ManagedObjects.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 
 @implementation NativeGallery
 
-@synthesize currentSlideNumber;
-@synthesize slidesCount;
-@synthesize photosExt;
-@synthesize photosPrefix;
-
-- (id)initWithFrame:(CGRect)frame withPrefix:(NSString*)prefix withExt:(NSString*)ext withSlidesCount:(int)count{
+- (id)initWithFrame:(CGRect)frame withGalleryPictures:(NSSet *)galleryPictures withAppDelegate:(tubeAppDelegate *)appDelegate{
     self = [super initWithFrame:frame];
     if (self) {
+        self.pictures = galleryPictures;
         self.imagesArray = [NSMutableArray array];
-        self.currentSlideNumber = 0;
-        self.slidesCount = count;
-        self.photosExt = ext;
-        self.photosPrefix = prefix;
         self.backgroundColor = [UIColor blackColor];
-        for (int i = 0; i < self.slidesCount; i++) {
-            [self.imagesArray addObject:[self loadSlideWithNumber:i]];
-        }
         self.bgImageView = [[UIImageView alloc] initWithFrame:frame];
-        self.bgImageView.image = [self.imagesArray objectAtIndex:0];
         self.bgImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.bgImageView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self addSubview:self.bgImageView];
-        [self loadThumbs];
+        [self loadThumbs:appDelegate];
+        self.bgImageView.image = [self.imagesArray objectAtIndex:0];
     }
     return self;
 }
 
-- (void)loadThumbs{
+- (void)loadThumbs:(tubeAppDelegate*)appDelegate{
     int offsetX, offsetY, thumbSize, padding, borderWidth, cornerRadius;
     if (IS_IPAD) {
         offsetX = 50;
@@ -59,10 +49,16 @@
         borderWidth = 2;
         cornerRadius = 5;
     }
-    for (int i = 0; i < self.slidesCount; i++) {
+    int i = 0;
+    for (MGalleryPicture *picture in self.pictures) {
+        NSLog(@"loading pictures");
         int y = offsetY + i * (thumbSize+padding);
         IndexedImageView *thumb = [[IndexedImageView alloc] initWithFrame:CGRectMake(offsetX, y, thumbSize, thumbSize)];
-        thumb.image = [self.imagesArray objectAtIndex:i];
+        NSString *path = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, picture.path];
+        NSLog(@"picture path %@, %i", path, [[NSFileManager defaultManager] fileExistsAtPath:path]);
+        UIImage *image = [UIImage imageWithContentsOfFile:path];
+        thumb.image = image;
+        [self.imagesArray addObject:image];
         thumb.index = i;
         thumb.userInteractionEnabled = YES;
         [thumb addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(thumbTapped:)]];
@@ -74,6 +70,7 @@
         thumb.clipsToBounds = YES;
         thumb.backgroundColor = [UIColor clearColor];
         [self addSubview:thumb];
+        i++;
     }
 }
 
@@ -90,17 +87,12 @@
 }
 
 - (void)dealloc{
-    [self.photosExt release];
-    [self.photosPrefix release];
+    [self.pictures release];
     [self.imagesArray release];
     [self.bgImageView release];
     [super dealloc];
 }
 
-- (UIImage*)loadSlideWithNumber:(int)slideNumber{
-    NSString *imagePath = [NSString stringWithFormat:@"%@%i%@", self.photosPrefix, slideNumber, self.photosExt];
-    return [UIImage imageWithContentsOfFile:imagePath];
-}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

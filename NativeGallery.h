@@ -7,17 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "tubeAppDelegate.h"
 
 @interface NativeGallery : UIView
 
-@property int currentSlideNumber;
-@property int slidesCount;
-@property (retain) NSString *photosPrefix;
-@property (retain) NSString *photosExt;
 @property (retain) NSMutableArray *imagesArray;
 @property (retain) UIImageView *bgImageView;
+@property (retain) NSSet *pictures;
 
-- (id)initWithFrame:(CGRect)frame withPrefix:(NSString*)prefix withExt:(NSString*)ext withSlidesCount:(int)count;
+- (id)initWithFrame:(CGRect)frame withGalleryPictures:(NSSet*)pictures withAppDelegate:(tubeAppDelegate*)appDelegate;
 
 
 @end
