@@ -28,7 +28,7 @@
         self.slidesCount = count;
         self.photosExt = ext;
         self.photosPrefix = prefix;
-        self.backgroundColor = [ColorFactory lightGrayColor];
+        self.backgroundColor = [UIColor blackColor];
         for (int i = 0; i < self.slidesCount; i++) {
             [self.imagesArray addObject:[self loadSlideWithNumber:i]];
         }
@@ -43,17 +43,21 @@
 }
 
 - (void)loadThumbs{
-    int offsetX, offsetY, thumbSize, padding;
+    int offsetX, offsetY, thumbSize, padding, borderWidth, cornerRadius;
     if (IS_IPAD) {
         offsetX = 50;
         offsetY = 50;
         thumbSize = 100;
         padding = 10;
+        borderWidth = 5;
+        cornerRadius = 10;
     }else{
         offsetX = 25;
         offsetY = 40;
         thumbSize = 50;
         padding = 5;
+        borderWidth = 2;
+        cornerRadius = 5;
     }
     for (int i = 0; i < self.slidesCount; i++) {
         int y = offsetY + i * (thumbSize+padding);
@@ -62,9 +66,13 @@
         thumb.index = i;
         thumb.userInteractionEnabled = YES;
         [thumb addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(thumbTapped:)]];
-        [thumb.layer setBorderColor: [[UIColor blackColor] CGColor]];
-        [thumb.layer setBorderWidth: 2.0];
-        thumb.layer.cornerRadius = 5.0;
+        thumb.layer.backgroundColor = [[UIColor clearColor] CGColor];
+        [thumb.layer setBorderColor: [[ColorFactory lightGrayColor] CGColor]];
+        [thumb.layer setBorderWidth: borderWidth];
+        thumb.layer.cornerRadius = cornerRadius;
+        [thumb.layer setMasksToBounds:YES];
+        thumb.clipsToBounds = YES;
+        thumb.backgroundColor = [UIColor clearColor];
         [self addSubview:thumb];
     }
 }
