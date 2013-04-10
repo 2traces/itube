@@ -64,6 +64,7 @@
         [thumb addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(thumbTapped:)]];
         [thumb.layer setBorderColor: [[UIColor blackColor] CGColor]];
         [thumb.layer setBorderWidth: 2.0];
+        thumb.layer.cornerRadius = 5.0;
         [self addSubview:thumb];
     }
 }
