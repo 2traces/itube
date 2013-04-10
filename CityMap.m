@@ -2226,8 +2226,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             NSInteger index = 0;
             NSString *mediaType = [place objectForKey:@"media_type"];
             if( mediaType != nil ){
-                if ( [mediaType isEqualToString:@"3dview"] || [mediaType isEqualToString:@"native_gallery"] ){
+                if ( [mediaType isEqualToString:@"3dview"] ){
                     MMedia *media = [self photosSetMediaWithPlace:place withMediaType:mediaType withIndex:index];
+                    [mediaSet addObject:media];
+                    index++;
+                }else if( [mediaType isEqualToString:@"native_gallery"] ){
+                    MMedia *media = [self nativeGalleryMediaWithPlace:place withMediaType:mediaType withIndex:index];
                     [mediaSet addObject:media];
                     index++;
                 }else if( [mediaType isEqualToString:@"html"] || [mediaType isEqualToString:@"html_gallery"] ){
@@ -2276,6 +2280,19 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     photosSetConf.photosExt = ext;
     photosSetConf.photosPrefix = prefix;
     return photosSetConf;
+}
+
+-(MMedia*) nativeGalleryMediaWithPlace:(NSDictionary*)place withMediaType:(NSString*)mediaType withIndex:(NSInteger)index{
+    MMedia *media = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+    media.mediaType = mediaType;
+    media.index = [NSNumber numberWithInteger:index];
+    for (NSDictionary *picture in [place objectForKey:@"pictures"]){
+        MGalleryPicture *galleryPicture = [NSEntityDescription insertNewObjectForEntityForName:@"GalleryPicture" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
+        galleryPicture.path = [picture objectForKey:@"path"];
+        galleryPicture.title = [picture objectForKey:@"title"];
+        galleryPicture.media = media;
+    }
+    return media;
 }
 
 -(MMedia*) photosSetMediaWithPlace:(NSDictionary*)place withMediaType:(NSString*)mediaType withIndex:(NSInteger)index{

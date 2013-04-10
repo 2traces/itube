@@ -56,6 +56,15 @@
 @dynamic photosCount;
 @dynamic photosPrefix;
 @dynamic photosExt;
+
+@end
+
+@implementation MGalleryPicture
+
+@dynamic title;
+@dynamic path;
+@dynamic media;
+
 @end
 
 @implementation MMedia
@@ -67,6 +76,7 @@
 @dynamic place;
 @dynamic mediaType;
 @dynamic photosSet;
+@dynamic galleryPictures;
 @dynamic videoPath;
 @dynamic previewPath;
 

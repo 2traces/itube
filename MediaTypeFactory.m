@@ -73,9 +73,7 @@
                                        withSlidesCount:[media.photosSet.photosCount intValue]];
         mediaView = imageView;
     }else if ([media.mediaType isEqualToString:@"native_gallery"]){
-        NSString *prefix = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, media.photosSet.photosPrefix];
-        NativeGallery *nativeGallery = [[NativeGallery alloc] initWithFrame:CGRectMake(0, 0, 10, 10) withPrefix:prefix withExt:media.photosSet.photosExt withSlidesCount:[media.photosSet.photosCount intValue]];
-        mediaView = nativeGallery;
+        NSLog(@"media description %@", media.galleryPictures);
     }else if ([media.mediaType isEqualToString:@"html"]) {
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
         mediaView = webView;

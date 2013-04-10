@@ -74,10 +74,19 @@
 @property (nonatomic, retain) MPlace* place;
 @property (nonatomic, retain) NSString* mediaType;
 @property (nonatomic, retain) PhotosSetConf* photosSet;
+@property (nonatomic, retain) NSSet* galleryPictures;
 @property (nonatomic, retain) NSString* videoPath;
 @property (nonatomic, assign) NSNumber* index;
 @property (nonatomic, assign) NSNumber* repeatCount;
 @property (nonatomic, retain) NSString* previewPath;
+
+@end
+
+@interface MGalleryPicture : NSManagedObject
+
+@property (nonatomic, retain) NSString* path;
+@property (nonatomic, retain) NSString* title;
+@property (nonatomic, retain) MMedia* media;
 
 @end
 

@@ -8,6 +8,11 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="places" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Place" syncable="YES"/>
     </entity>
+    <entity name="GalleryPicture" representedClassName="MGalleryPicture" syncable="YES">
+        <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="media" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Media" inverseName="galleryPictures" inverseEntity="Media" syncable="YES"/>
+    </entity>
     <entity name="History" representedClassName="MHistory" syncable="YES">
         <attribute name="adate" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="fromStation" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Station" syncable="YES"/>
@@ -26,10 +31,11 @@
         <attribute name="previewPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="repeatCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="videoPath" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="galleryPictures" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="GalleryPicture" inverseName="media" inverseEntity="GalleryPicture" syncable="YES"/>
         <relationship name="photosSet" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PhotosSetConf" syncable="YES"/>
         <relationship name="place" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="photos" inverseEntity="Place" syncable="YES"/>
     </entity>
-    <entity name="PhotosSetConf" syncable="YES">
+    <entity name="PhotosSetConf" representedClassName="PhotosSetConf" syncable="YES">
         <attribute name="photosCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="photosExt" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photosPrefix" optional="YES" attributeType="String" syncable="YES"/>
@@ -56,9 +62,10 @@
         <element name="Category" positionX="0" positionY="0" width="128" height="135"/>
         <element name="History" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Line" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="Media" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="Media" positionX="0" positionY="0" width="128" height="180"/>
         <element name="PhotosSetConf" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Place" positionX="0" positionY="0" width="128" height="180"/>
         <element name="Station" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="GalleryPicture" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>
