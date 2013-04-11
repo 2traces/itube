@@ -7,7 +7,6 @@
 
 #import <RaptureXML/RXMLElement.h>
 #import "BooksViewController.h"
-#import "AnswerViewController.h"
 #import "BookTableViewCell.h"
 #import "AnswersViewController.h"
 #import "UIImageView+JMImageCache.h"

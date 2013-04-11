@@ -63,7 +63,6 @@
 		A56A1B0AD6A8409AD28320C1 /* BookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A56A1117080B3574D6A8D70C /* BookTableViewCell.m */; };
 		A56A1B304ACD57B4C0D0A470 /* table_button_single_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A56A1E53714FA3A8B36D8C2C /* table_button_single_pressed@2x.png */; };
 		A56A1B5F43834DCCF2B97F9E /* UIImage+crop.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A56A198A6D246393CE6CA476 /* UIImage+crop.h */; };
-		A56A1BEC41436A937E45D111 /* AnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A56A1BCF9B892936AC6BE336 /* AnswerViewController.m */; };
 		A56A1C38B1DC8A4C85CF13CD /* InfoViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A56A1C20388DA491084BDE68 /* InfoViewController.h */; };
 		A56A1C572016F4FAC82DA6F6 /* icon_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A56A133323BCF7B71C3A69B5 /* icon_2@2x.png */; };
 		A56A1C9ABBE448DC58A1668B /* icon_7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A56A1A6E2DDDDE3026820151 /* icon_7@2x.png */; };
@@ -150,7 +149,6 @@
 		A56A11DFF149FC75E7B4B148 /* StartScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScreenViewController.h; sourceTree = "<group>"; };
 		A56A123732927F7AE32EE906 /* bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar@2x.png"; sourceTree = "<group>"; };
 		A56A12D67073BA0094EC3460 /* AnswerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerViewCell.h; sourceTree = "<group>"; };
-		A56A13239E8B1D6B6C7B1A7C /* AnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerViewController.h; sourceTree = "<group>"; };
 		A56A1327335BF7403CC9BBDA /* TermTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermTableViewCell.m; sourceTree = "<group>"; };
 		A56A133323BCF7B71C3A69B5 /* icon_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_2@2x.png"; sourceTree = "<group>"; };
 		A56A13DCE63D602E38B5FB28 /* icon_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_4@2x.png"; sourceTree = "<group>"; };
@@ -183,7 +181,6 @@
 		A56A1AD8E917244405659786 /* table_button_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table_button_top@2x.png"; sourceTree = "<group>"; };
 		A56A1ADF44A9E293852B5B45 /* SubjectTableVIewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectTableVIewCell.h; sourceTree = "<group>"; };
 		A56A1AF8466FD683CB9C3877 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = HomeWorks/en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
-		A56A1BCF9B892936AC6BE336 /* AnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerViewController.m; sourceTree = "<group>"; };
 		A56A1BD0CB10D9837ECEE494 /* restore_purchases@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "restore_purchases@2x.png"; sourceTree = "<group>"; };
 		A56A1BE847B57A0029BE4273 /* AnswersViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswersViewHeader.h; sourceTree = "<group>"; };
 		A56A1C20388DA491084BDE68 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
@@ -302,15 +299,6 @@
 			path = answersGrid;
 			sourceTree = "<group>";
 		};
-		A56A1330111AB0CB7053F686 /* answer */ = {
-			isa = PBXGroup;
-			children = (
-				A56A13239E8B1D6B6C7B1A7C /* AnswerViewController.h */,
-				A56A1BCF9B892936AC6BE336 /* AnswerViewController.m */,
-			);
-			path = answer;
-			sourceTree = "<group>";
-		};
 		A56A14219D4BBCFF8105C25C /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,7 +344,6 @@
 				A56A1C54C11EB8827D96804B /* books */,
 				A56A1C131095746B5F26B4B6 /* answers */,
 				A56A1C2642A97B97FBE5460A /* info */,
-				A56A1330111AB0CB7053F686 /* answer */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -594,7 +581,6 @@
 				A56A183782DC0E8F61C0BADE /* HomeworksTableViewController.m in Sources */,
 				A56A1F5EE0A9477B75F7A4F0 /* UIImage+crop.m in Sources */,
 				A56A182F943D57878DC622DA /* AnswersViewFooter.m in Sources */,
-				A56A1BEC41436A937E45D111 /* AnswerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

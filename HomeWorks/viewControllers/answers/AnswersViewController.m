@@ -7,7 +7,6 @@
 //
 
 #import "AnswersViewController.h"
-#import "AnswerViewController.h"
 #import "NSObject+homeWorksServiceLocator.h"
 #import "AnswersViewHeader.h"
 #import "MKStoreManager.h"
@@ -46,16 +45,17 @@ NSString *kFooterID = @"collectionFooter";
 		return;
 	}
 
-	AnswerViewController *previewController = [[AnswerViewController alloc] init];
-	previewController.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+	QLPreviewController *previewController = [[QLPreviewController alloc] init];
 	previewController.dataSource = self;
 	previewController.currentPreviewItemIndex = indexPath.item;
 
 	UINavigationController *navigationControllerForPreview = [[UINavigationController alloc] initWithRootViewController:previewController];
 
-	previewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+	previewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
 																									   target:navigationControllerForPreview
 																									   action:@selector(dismissModalViewControllerAnimated:)];
+	navigationControllerForPreview.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+	navigationControllerForPreview.toolbar.barStyle = UIBarStyleBlackTranslucent;
 
 	[self presentModalViewController:navigationControllerForPreview animated:YES];
 }
@@ -80,14 +80,6 @@ NSString *kFooterID = @"collectionFooter";
 
 - (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller
 {
-	for (id object in controller.childViewControllers)
-	{
-		if ([object isKindOfClass:[UINavigationController class]])
-		{
-			UINavigationController *navController = object;
-			navController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-		}
-	}
 	return purchased ? [_book attributeAsInt:@"numPages"] : 2;
 }
 
@@ -112,8 +104,6 @@ NSString *kFooterID = @"collectionFooter";
 														   [_book attribute:@"id"],
 														   (index + 1),
 														   [_book attribute:@"type"]];
-
-		NSLog(urlAsString);
 
 		NSURL *url = [NSURL URLWithString:urlAsString];
 		NSURLRequest *request = [NSURLRequest requestWithURL:url];
