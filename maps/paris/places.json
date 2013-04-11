@@ -46,7 +46,7 @@
                "text": "Arc de Triomphe",
                "media_type": "native_gallery",
                "pictures": [
-                    {"path": "gall/louvre_0.jpg", "title": "Picture description 0"},
+                    {"path": "gall/louvre_0.jpg"},
                     {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
                     {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
                     {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}

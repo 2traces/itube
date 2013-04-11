@@ -73,7 +73,11 @@
         UIImage *image = [UIImage imageWithContentsOfFile:path];
         thumb.image = image;
         [self.imagesArray addObject:image];
-        [self.titlesArray addObject:picture.title];
+        if (picture.title == nil) {
+            [self.titlesArray addObject:@""];
+        }else{
+            [self.titlesArray addObject:picture.title];
+        }
         thumb.index = i;
         thumb.userInteractionEnabled = YES;
         [thumb addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(thumbTapped:)]];
