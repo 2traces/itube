@@ -14,6 +14,8 @@
 
 - (NSString *)pageURLStringFormat;
 
+- (NSString *)pageCoverStringFormat;
+
 - (NSString *)pageFilePathStringFormat;
 
 - (NSURL *)catalogDownloadUrl;

@@ -16,6 +16,23 @@
 
 }
 
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+
+	[self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:121.0 / 255.0 green:166.0 / 255.0 blue:191.0 / 255.0 alpha:1.0]];
+	[self.navigationController.navigationBar setTitleTextAttributes:
+			@{
+					UITextAttributeTextShadowColor : [UIColor blackColor],
+					UITextAttributeTextShadowOffset : [NSValue valueWithUIOffset:UIOffsetMake(0.0, 1.0)]
+			}];
+
+	UIImage *navigationBarBackgroundImage = [[UIImage imageNamed:@"bar"] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 5.0, 1.0, 5.0)];
+	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
+												  forBarMetrics:UIBarMetricsDefault];
+	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
+												  forBarMetrics:UIBarMetricsLandscapePhone];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -33,7 +50,9 @@
 	static NSString *cellIdentifier = @"termCell";
 	TermTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
-	cell.numLabel.text = [[[self.catalogRxml children:@"term"] objectAtIndex:indexPath.row] attribute:@"num"];
+	RXMLElement *term = [[self.catalogRxml children:@"term"] objectAtIndex:indexPath.row];
+	cell.numLabel.text = [term attribute:@"num"];
+	[cell.iconImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"icon_%d", [[term attribute:@"icon"] intValue]]]];
 
 	return cell;
 

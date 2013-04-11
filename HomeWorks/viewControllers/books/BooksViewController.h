@@ -6,11 +6,12 @@
 
 
 #import <Foundation/Foundation.h>
+#import "HomeworksTableViewController.h"
 
 @class RXMLElement;
 
 
-@interface BooksViewController : UITableViewController
+@interface BooksViewController : HomeworksTableViewController
 
 @property(nonatomic) RXMLElement *term;
 @property(nonatomic) RXMLElement *subject;

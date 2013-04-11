@@ -36,13 +36,13 @@
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="wdZ-AW-Uyc">
-                                            <rect key="frame" x="205" y="3" width="55" height="55"/>
+                                            <rect key="frame" x="220" y="3" width="55" height="55"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" red="0.90446671195652173" green="0.90446671195652173" blue="0.90446671195652173" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="iconImageView" destination="wdZ-AW-Uyc" id="Hcv-kN-tbP"/>
                                     <outlet property="numLabel" destination="2lK-ba-DLa" id="Vud-MD-QE9"/>
@@ -59,6 +59,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jEr-AZ-d8j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -82,10 +83,9 @@
                                             <rect key="frame" x="10" y="1" width="300" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="Tcn-5V-Dup">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="icon114.png" id="Tcn-5V-Dup">
                                                     <rect key="frame" x="10" y="10" width="60" height="60"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Готовые Домашние Задания" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hak-1d-UBc">
                                                     <rect key="frame" x="80" y="10" width="210" height="55"/>
@@ -127,13 +127,12 @@
                                             <rect key="frame" x="10" y="1" width="300" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="2vB-3U-3bH">
-                                                    <rect key="frame" x="20" y="4" width="44" height="44"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="restore_purchases@2x.png" id="2vB-3U-3bH">
+                                                    <rect key="frame" x="10" y="4" width="44" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Восстановить покупки" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KqR-gu-naR">
-                                                    <rect key="frame" x="74" y="15" width="206" height="21"/>
+                                                    <rect key="frame" x="62" y="15" width="218" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -167,7 +166,9 @@
         <scene sceneID="hqw-6A-Ebq">
             <objects>
                 <navigationController definesPresentationContext="YES" id="jBe-OJ-YUY" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YJL-WZ-bvZ">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="YJL-WZ-bvZ">
+                        <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -225,10 +226,9 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="2kd-9V-rSY">
-                                            <rect key="frame" x="205" y="3" width="55" height="55"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" id="2kd-9V-rSY">
+                                            <rect key="frame" x="220" y="3" width="55" height="55"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -249,6 +249,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JnP-79-NKl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -277,10 +278,9 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="xSR-nm-jme">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="xSR-nm-jme">
                                             <rect key="frame" x="10" y="10" width="70" height="80"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Чесноков А.С., Нешков К.И., 2000-2011гг." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="03u-CK-FJU">
                                             <rect key="frame" x="88" y="58" width="187" height="32"/>
@@ -309,6 +309,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5J0-We-hk9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -321,23 +322,27 @@
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="GFk-qE-bUj" customClass="PSUICollectionView">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iBz-Sk-M7o">
-                            <size key="itemSize" width="60" height="60"/>
-                            <size key="headerReferenceSize" width="50" height="98"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                        <inset key="contentInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="iBz-Sk-M7o">
+                            <size key="itemSize" width="75" height="75"/>
+                            <size key="headerReferenceSize" width="50" height="100"/>
+                            <size key="footerReferenceSize" width="50" height="62"/>
+                            <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="answerCell" id="dYa-ov-ZPJ" customClass="PSUICollectionViewCell">
-                                <rect key="frame" x="10" y="108" width="60" height="60"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="answerCell" id="dYa-ov-ZPJ" customClass="AnswerViewCell">
+                                <rect key="frame" x="10" y="100" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="ISl-c6-ANM">
+                                            <rect key="frame" x="10" y="10" width="56" height="56"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2QM-aC-R54">
-                                            <rect key="frame" x="9" y="19" width="42" height="21"/>
+                                            <rect key="frame" x="0.0" y="23.5" width="75" height="26.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -347,40 +352,29 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="lockedAnswerCell" id="HaN-c8-k9Q" customClass="PSUICollectionViewCell">
-                                <rect key="frame" x="90" y="108" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="🔒" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cjz-Ho-MlD">
-                                            <rect key="frame" x="10" y="8.5" width="41" height="42"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="backgroundImage" destination="ISl-c6-ANM" id="HWP-D4-56w"/>
+                                    <outlet property="label" destination="2QM-aC-R54" id="QMo-uq-Els"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionHeader" id="sCb-14-f0N" customClass="AnswersViewHeader">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="aHf-Z1-Wkw">
+                                    <rect key="frame" x="10" y="0.0" width="300" height="100"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </imageView>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Материалы по математике. 6 класс." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xul-dF-liS">
-                                    <rect key="frame" x="20" y="4" width="280" height="45"/>
+                                    <rect key="frame" x="20" y="4" width="280" height="46"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Чесноков А.С., Нешков К.И., 2000-2011гг." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MjR-eW-8J6">
-                                    <rect key="frame" x="20" y="51" width="280" height="38"/>
+                                    <rect key="frame" x="20" y="52" width="280" height="39"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -389,7 +383,21 @@
                             </subviews>
                             <connections>
                                 <outlet property="authorsLabel" destination="MjR-eW-8J6" id="KKF-XT-q37"/>
+                                <outlet property="backgroundImage" destination="aHf-Z1-Wkw" id="T57-4m-f1o"/>
                                 <outlet property="nameLabel" destination="Xul-dF-liS" id="wuX-hu-MXe"/>
+                            </connections>
+                        </collectionReusableView>
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionFooter" id="WHD-Kb-Dmf" customClass="AnswersViewFooter">
+                            <rect key="frame" x="0.0" y="175" width="320" height="62"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="qL0-de-h41">
+                                    <rect key="frame" x="10" y="0.0" width="300" height="62"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </imageView>
+                            </subviews>
+                            <connections>
+                                <outlet property="backgroundImage" destination="qL0-de-h41" id="zxQ-cS-whV"/>
                             </connections>
                         </collectionReusableView>
                     </collectionView>
@@ -400,6 +408,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nyp-7J-QsT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -424,14 +433,28 @@
             <point key="canvasLocation" x="616" y="843"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon114.png" width="114" height="114"/>
+        <image name="restore_purchases@2x.png" width="94" height="94"/>
+    </resources>
     <classes>
+        <class className="AnswerViewCell" superclassName="PSUICollectionViewCell_">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswerViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
         <class className="AnswersViewController" superclassName="PSUICollectionViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewController.h"/>
+        </class>
+        <class className="AnswersViewFooter" superclassName="PSUICollectionReusableView_">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewFooter.h"/>
         </class>
         <class className="AnswersViewHeader" superclassName="PSUICollectionReusableView_">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewHeader.h"/>
             <relationships>
                 <relationship kind="outlet" name="authorsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
@@ -443,10 +466,13 @@
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="BooksViewController" superclassName="UITableViewController">
+        <class className="BooksViewController" superclassName="HomeworksTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BooksViewController.h"/>
         </class>
-        <class className="InfoViewController" superclassName="UITableViewController">
+        <class className="HomeworksTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeworksTableViewController.h"/>
+        </class>
+        <class className="InfoViewController" superclassName="HomeworksTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/InfoViewController.h"/>
             <relationships>
                 <relationship kind="action" name="tlDismissMe:"/>
@@ -455,8 +481,14 @@
         <class className="PSTCollectionReusableView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PSTCollectionReusableView.h"/>
         </class>
+        <class className="PSTCollectionViewCell" superclassName="PSTCollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSTCollectionViewCell.h"/>
+        </class>
         <class className="PSUICollectionReusableView_" superclassName="PSTCollectionReusableView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PSUICollectionReusableView_.h"/>
+        </class>
+        <class className="PSUICollectionViewCell_" superclassName="PSTCollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSUICollectionViewCell_.h"/>
         </class>
         <class className="StartScreenViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/StartScreenViewController.h"/>
@@ -468,7 +500,7 @@
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="SubjectsViewController" superclassName="UITableViewController">
+        <class className="SubjectsViewController" superclassName="HomeworksTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SubjectsViewController.h"/>
         </class>
         <class className="TermTableViewCell" superclassName="UITableViewCell">
@@ -478,7 +510,7 @@
                 <relationship kind="outlet" name="numLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="TermsViewController" superclassName="UITableViewController">
+        <class className="TermsViewController" superclassName="HomeworksTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TermsViewController.h"/>
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
@@ -491,6 +523,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ndM-tI-n4P"/>
+        <segue reference="sQG-W7-mxP"/>
     </inferredMetricsTieBreakers>
 </document>

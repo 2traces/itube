@@ -20,6 +20,12 @@
 	return [[self.catalogRxml attribute:@"baseurl"] stringByAppendingString:@"/terms/%@/subjects/%@/books/%@/%d.%@"];
 }
 
+- (NSString *)pageCoverStringFormat
+{
+	return [[self.catalogRxml attribute:@"baseurl"] stringByAppendingString:@"/terms/%@/subjects/%@/books/%@/cover.png"];
+}
+
+
 
 - (NSString *)pageFilePathStringFormat
 {

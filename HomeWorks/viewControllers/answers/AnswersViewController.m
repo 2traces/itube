@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Trylogic. All rights reserved.
 //
 
-#import <RaptureXML/RXMLElement.h>
 #import "AnswersViewController.h"
 #import "AnswerViewController.h"
 #import "NSObject+homeWorksServiceLocator.h"
@@ -15,10 +14,11 @@
 #import "DejalActivityView.h"
 #import "AFHTTPRequestOperation.h"
 #import "AnswerFileURL.h"
+#import "AnswerViewCell.h"
 
 NSString *kCellID = @"answerCell";
-NSString *kLockedCellID = @"lockedAnswerCell";
 NSString *kHeaderID = @"collectionHeader";
+NSString *kFooterID = @"collectionFooter";
 
 @interface AnswersViewController () <QLPreviewControllerDataSource>
 @end
@@ -41,10 +41,23 @@ NSString *kHeaderID = @"collectionHeader";
 		return;
 	}
 
+	if (indexPath.item >= [_book attributeAsInt:@"numPages"])
+	{
+		return;
+	}
+
 	AnswerViewController *previewController = [[AnswerViewController alloc] init];
+	previewController.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
 	previewController.dataSource = self;
 	previewController.currentPreviewItemIndex = indexPath.item;
-	[self.navigationController pushViewController:previewController animated:YES];
+
+	UINavigationController *navigationControllerForPreview = [[UINavigationController alloc] initWithRootViewController:previewController];
+
+	previewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+																									   target:navigationControllerForPreview
+																									   action:@selector(dismissModalViewControllerAnimated:)];
+
+	[self presentModalViewController:navigationControllerForPreview animated:YES];
 }
 
 - (IBAction)buy
@@ -67,6 +80,14 @@ NSString *kHeaderID = @"collectionHeader";
 
 - (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller
 {
+	for (id object in controller.childViewControllers)
+	{
+		if ([object isKindOfClass:[UINavigationController class]])
+		{
+			UINavigationController *navController = object;
+			navController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+		}
+	}
 	return purchased ? [_book attributeAsInt:@"numPages"] : 2;
 }
 
@@ -99,7 +120,8 @@ NSString *kHeaderID = @"collectionHeader";
 
 		AFHTTPRequestOperation *catalogDownloadOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 
-		if(index == controller.currentPreviewItemIndex) {
+		if (index == controller.currentPreviewItemIndex)
+		{
 			[operationQueue cancelAllOperations];
 			catalogDownloadOperation.queuePriority = NSOperationQueuePriorityHigh;
 		}
@@ -128,7 +150,7 @@ NSString *kHeaderID = @"collectionHeader";
 
 - (NSInteger)collectionView:(PSUICollectionView *)view numberOfItemsInSection:(NSInteger)section;
 {
-	return [_book attributeAsInt:@"numPages"];
+	return ([_book attributeAsInt:@"numPages"] / 4 + 1) * 4;
 }
 
 - (void)viewDidLoad
@@ -147,6 +169,9 @@ NSString *kHeaderID = @"collectionHeader";
 
 	self.collectionView.allowsMultipleSelection = NO;
 
+	self.collectionView.backgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)]];
+	self.collectionView.backgroundColor = [UIColor clearColor];
+
 	fileAlreadyDownloading = [NSMutableDictionary dictionary];
 	operationQueue = [[NSOperationQueue alloc] init];
 	[operationQueue setMaxConcurrentOperationCount:1];
@@ -155,26 +180,46 @@ NSString *kHeaderID = @"collectionHeader";
 
 - (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 {
-	PSUICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:((!purchased && indexPath.item > 1) ? kLockedCellID : kCellID) forIndexPath:indexPath];
+	AnswerViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:kCellID forIndexPath:indexPath];
 
-	if (cell.reuseIdentifier == kCellID)
+	if (indexPath.item >= [_book attributeAsInt:@"numPages"])
 	{
-		[[cell.contentView.subviews objectAtIndex:0] setText:[NSString stringWithFormat:@"%d", (indexPath.item + 1)]];
+		cell.label.text = @"";
 	}
+	else
+	{
+		if (purchased || (indexPath.item < 2))
+		{
+			cell.label.text = [NSString stringWithFormat:@"%d", (indexPath.item + 1)];
+			cell.backgroundImage.image = [UIImage imageNamed:@"element"];
+		} else
+		{
+			cell.label.text = @"";
+			cell.backgroundImage.image = [UIImage imageNamed:@"element-locked"];
+		}
+	}
+
+	cell.backgroundColor = [UIColor colorWithRed:233.0 / 255.0 green:233.0 / 255.0 blue:233.0 / 255.0 alpha:1.0];
 
 	return cell;
 }
 
 - (PSUICollectionReusableView *)collectionView:(PSUICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-
 	if ([kind isEqualToString:PSTCollectionElementKindSectionHeader])
 	{
 		AnswersViewHeader *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:kHeaderID forIndexPath:indexPath];
 
+		[headerView.backgroundImage setImage:[[UIImage imageNamed:@"table_button_top"] stretchableImageWithLeftCapWidth:10 topCapHeight:10]];
 		headerView.nameLabel.text = [_book attribute:@"name"];
 		headerView.authorsLabel.text = [_book attribute:@"authors"];
 		return headerView;
+	} else if ([kind isEqualToString:PSTCollectionElementKindSectionFooter])
+	{
+		AnswersViewHeader *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:kFooterID forIndexPath:indexPath];
+		[footerView.backgroundImage setImage:[UIImage imageNamed:@"table_button_top"]];
+		footerView.backgroundImage.transform = CGAffineTransformMakeRotation(M_PI);
+		return footerView;
 	}
 
 	return nil;

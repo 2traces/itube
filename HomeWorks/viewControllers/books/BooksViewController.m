@@ -10,6 +10,8 @@
 #import "AnswerViewController.h"
 #import "BookTableViewCell.h"
 #import "AnswersViewController.h"
+#import "UIImageView+JMImageCache.h"
+#import "NSObject+homeWorksServiceLocator.h"
 
 static NSString *cellIdentifier = @"bookCell";
 
@@ -52,9 +54,20 @@ static NSString *cellIdentifier = @"bookCell";
 {
 	BookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
+	RXMLElement *book = [[_subject children:@"book"] objectAtIndex:indexPath.row];
 
-	cell.nameLabel.text = [[[_subject children:@"book"] objectAtIndex:indexPath.row] attribute:@"name"];
-	cell.authorsLabel.text = [[[_subject children:@"book"] objectAtIndex:indexPath.row] attribute:@"authors"];
+	cell.nameLabel.text = [book attribute:@"name"];
+	cell.authorsLabel.text = [book attribute:@"authors"];
+
+	NSLog([NSString stringWithFormat:self.pageCoverStringFormat,
+									 [_term attribute:@"id"],
+									 [_subject attribute:@"id"],
+									 [book attribute:@"id"]]);
+
+	[cell.bookImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:self.pageCoverStringFormat,
+																					[_term attribute:@"id"],
+																					[_subject attribute:@"id"],
+																					[book attribute:@"id"]]]];
 
 	return cell;
 

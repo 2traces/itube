@@ -1,10 +1,12 @@
 <catalog baseurl="http://parismetromaps.info/homeworks/">
-    <term id="0" num="6">
-        <subject id="0" name="Математика">
+    <term id="0" num="6" icon="8">
+        <subject id="0" name="Математика" icon="1">
             <book id="0" name="Материалы по математике1. 6 класс." authors="Чесноков А.С.,qwe Нешков К.И., 2000-2011гг." numPages="18" type="png"/>
             <book id="1" name="Материалы по математике2. 6 класс." authors="Чесноков А.С., Нешков К.И., 2000-2011гг." numPages="10" type="png"/>
+            <book id="1" name="Материалы по математике2. 6 класс." authors="Чесноков А.С., Нешков К.И., 2000-2011гг." numPages="10" type="png"/>
+            <book id="1" name="Материалы по математике2. 6 класс." authors="Чесноков А.С., Нешков К.И., 2000-2011гг." numPages="10" type="png"/>
         </subject>
-        <subject id="1" name="Биология">
+        <subject id="1" name="Биология" icon="7">
             <book id="0" name="Материалы по биологии. 6 класс." authors="Чесноков А.С., Нешков К.И., 2000-2011гг." numPages="5" type="png"/>
         </subject>
     </term>

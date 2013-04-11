@@ -19,6 +19,15 @@
 {
 	[super viewDidLoad];
 
+	self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+	self.navigationController.toolbar.barStyle = UIBarStyleBlackTranslucent;
+	UIApplication.sharedApplication.statusBarStyle = UIStatusBarStyleBlackTranslucent;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+
 	oldBarStyle = self.navigationController.navigationBar.barStyle;
 	oldToolbarBarStyle = self.navigationController.toolbar.barStyle;
 	oldStatusBarStyle = [UIApplication sharedApplication].statusBarStyle;
@@ -26,13 +35,11 @@
 	self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
 	self.navigationController.toolbar.barStyle = UIBarStyleBlackTranslucent;
 	UIApplication.sharedApplication.statusBarStyle = UIStatusBarStyleBlackTranslucent;
-
-	[self.navigationController.toolbar setItems:@[]];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
-	[super viewWillDisappear:animated];
+	[super viewDidDisappear:animated];
 
 	self.navigationController.navigationBar.barStyle = oldBarStyle;
 	self.navigationController.toolbar.barStyle = oldToolbarBarStyle;

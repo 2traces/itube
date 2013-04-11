@@ -6,7 +6,8 @@
 
 
 #import <Foundation/Foundation.h>
+#import "HomeworksTableViewController.h"
 
 
-@interface InfoViewController : UITableViewController
+@interface InfoViewController : HomeworksTableViewController
 @end

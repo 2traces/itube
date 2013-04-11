@@ -14,7 +14,7 @@
 @interface AnswersViewHeader : UICollectionReusableView
 #endif
 
-
+@property (nonatomic) IBOutlet UIImageView *backgroundImage;
 @property(nonatomic) IBOutlet UILabel *nameLabel;
 @property(nonatomic) IBOutlet UILabel *authorsLabel;
 @end

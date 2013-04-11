@@ -39,7 +39,9 @@
 	static NSString *cellIdentifier = @"subjectCell";
 	SubjectTableVIewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
-	cell.nameLabel.text = [[[_term children:@"subject"] objectAtIndex:indexPath.row] attribute:@"name"];
+	RXMLElement *subject = [[_term children:@"subject"] objectAtIndex:indexPath.row];
+	cell.nameLabel.text = [subject attribute:@"name"];
+	[cell.iconImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"icon_%d", [[subject attribute:@"icon"] intValue]]]];
 
 	return cell;
 }
