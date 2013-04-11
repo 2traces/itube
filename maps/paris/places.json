@@ -108,10 +108,8 @@
                "index": 19,
            "accessLevel": 0,
            "text": "Eiffel Tower",
-           "media_type": "html_with_video",
-           "filename": "html/eiffel_tower.html",
-           "video_preview_path": "html/hidden-cities_files/eiffel_tower.png",
-           "video_path": "html/hidden-cities_files/eiffel_tower.mp4",
+           "media_type": "html_gallery",
+           "filename": "html/html_gallery.html",
             "categories": [
                 2
             ]
