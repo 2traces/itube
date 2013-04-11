@@ -43,6 +43,8 @@
         
         [self loadThumbs:appDelegate];
         self.bgImageView.image = [self.imagesArray objectAtIndex:0];
+        self.bgImageView.userInteractionEnabled = YES;
+        [self.bgImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] init]];
         self.titleLabel.text = [self.titlesArray objectAtIndex:0];
     }
     return self;
