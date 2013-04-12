@@ -187,14 +187,17 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="bottom" image="Default" id="oFo-kR-jCs">
+                                <rect key="frame" x="0.0" y="-20" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                            </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="gray" id="PiH-eI-NYx">
-                                <rect key="frame" x="151" y="197" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="151" y="319" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="kQg-rM-bws"/>
                     <connections>
                         <segue destination="jBe-OJ-YUY" kind="modal" identifier="showList" modalTransitionStyle="flipHorizontal" id="YG7-XO-hd8"/>
                     </connections>
@@ -417,6 +420,7 @@
         <!--Navigation Controller-->
         <scene sceneID="lTu-8F-meA">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g54-YF-zzd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="BoX-aD-lOx" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pxZ-Qr-cHa">
@@ -428,12 +432,12 @@
                         <segue destination="2jG-eO-1XM" kind="relationship" relationship="rootViewController" id="n5Z-ED-M3g"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g54-YF-zzd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="616" y="843"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Default" width="16" height="16"/>
         <image name="icon114.png" width="114" height="114"/>
         <image name="restore_purchases@2x.png" width="94" height="94"/>
     </resources>
@@ -523,6 +527,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="sQG-W7-mxP"/>
+        <segue reference="ndM-tI-n4P"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -17,15 +17,13 @@
 
 - (NSString *)pageURLStringFormat
 {
-	return [[self.catalogRxml attribute:@"baseurl"] stringByAppendingString:@"/terms/%@/subjects/%@/books/%@/%d.%@"];
+	return [[self.catalogRxml attribute:@"baseurl"] stringByAppendingString:@"/%@/%@/%@/%d.%@"];
 }
 
 - (NSString *)pageCoverStringFormat
 {
-	return [[self.catalogRxml attribute:@"baseurl"] stringByAppendingString:@"/terms/%@/subjects/%@/books/%@/cover.png"];
+	return [[self.catalogRxml attribute:@"baseurl"] stringByAppendingString:@"/%@/%@/%@/cover.png"];
 }
-
-
 
 - (NSString *)pageFilePathStringFormat
 {
