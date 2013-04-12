@@ -31,8 +31,17 @@ NSString *kFooterID = @"collectionFooter";
 	NSOperationQueue *operationQueue;
 }
 
+- (IBAction)tlDismissMe:(id)sender
+{
+	[self dismissModalViewControllerAnimated:YES];
+}
+
 - (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+	if (indexPath.item >= [_book attributeAsInt:@"numPages"])
+	{
+		return;
+	}
 
 	if (!purchased && indexPath.item > 1)
 	{
@@ -40,30 +49,37 @@ NSString *kFooterID = @"collectionFooter";
 		return;
 	}
 
-	if (indexPath.item >= [_book attributeAsInt:@"numPages"])
-	{
-		return;
-	}
-
 	QLPreviewController *previewController = [[QLPreviewController alloc] init];
 	previewController.dataSource = self;
 	previewController.currentPreviewItemIndex = indexPath.item;
 
-	UINavigationController *navigationControllerForPreview = [[UINavigationController alloc] initWithRootViewController:previewController];
+	if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+	{
+		[self presentModalViewController:previewController animated:YES];
+	}
+	else
+	{
+		UINavigationController *navigationControllerForPreview = [[UINavigationController alloc] initWithRootViewController:previewController];
 
-	previewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-																									   target:navigationControllerForPreview
-																									   action:@selector(dismissModalViewControllerAnimated:)];
-	navigationControllerForPreview.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-	navigationControllerForPreview.toolbar.barStyle = UIBarStyleBlackTranslucent;
+		previewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+																										   target:navigationControllerForPreview
+																										   action:@selector(dismissModalViewControllerAnimated:)];
+		navigationControllerForPreview.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+		navigationControllerForPreview.toolbar.barStyle = UIBarStyleBlackTranslucent;
 
-	[self presentModalViewController:navigationControllerForPreview animated:YES];
+		[self presentModalViewController:navigationControllerForPreview animated:YES];
+	}
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+	return YES;
 }
 
 - (IBAction)buy
 {
 	NSLog(@"buying %@", featureId);
-	[DejalBezelActivityView activityViewForView:self.view.window withLabel:@"Purchasing..."];
+	[DejalBezelActivityView activityViewForView:self.view.window withLabel:@""];
 
 	[[MKStoreManager sharedManager] buyFeature:featureId onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads)
 	{
@@ -140,7 +156,8 @@ NSString *kFooterID = @"collectionFooter";
 
 - (NSInteger)collectionView:(PSUICollectionView *)view numberOfItemsInSection:(NSInteger)section;
 {
-	return ([_book attributeAsInt:@"numPages"] / 4 + 1) * 4;
+	int numRows = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? 6 : 4;
+	return ([_book attributeAsInt:@"numPages"] / 6 + 1) * 6;
 }
 
 - (void)viewDidLoad
@@ -159,8 +176,23 @@ NSString *kFooterID = @"collectionFooter";
 
 	self.collectionView.allowsMultipleSelection = NO;
 
-	self.collectionView.backgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)]];
-	self.collectionView.backgroundColor = [UIColor clearColor];
+	[self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:121.0 / 255.0 green:166.0 / 255.0 blue:191.0 / 255.0 alpha:1.0]];
+	[self.navigationController.navigationBar setTitleTextAttributes:
+			@{
+					UITextAttributeTextShadowColor : [UIColor blackColor],
+					UITextAttributeTextShadowOffset : [NSValue valueWithUIOffset:UIOffsetMake(0.0, 1.0)]
+			}];
+
+	UIImage *navigationBarBackgroundImage = [[UIImage imageNamed:@"bar"] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 5.0, 1.0, 5.0)];
+	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
+												  forBarMetrics:UIBarMetricsDefault];
+	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
+												  forBarMetrics:UIBarMetricsLandscapePhone];
+
+	//self.collectionView.backgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)]];
+	//self.collectionView.backgroundColor = [UIColor clearColor];
+
+	self.collectionView.backgroundColor = [UIColor colorWithRed:222.0 / 255.0 green:225.0 / 255.0 blue:230.0 / 255.0 alpha:1.0];
 
 	fileAlreadyDownloading = [NSMutableDictionary dictionary];
 	operationQueue = [[NSOperationQueue alloc] init];
@@ -175,6 +207,7 @@ NSString *kFooterID = @"collectionFooter";
 	if (indexPath.item >= [_book attributeAsInt:@"numPages"])
 	{
 		cell.label.text = @"";
+		cell.backgroundImage.image = nil;
 	}
 	else
 	{

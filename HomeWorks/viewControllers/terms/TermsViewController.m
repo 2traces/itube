@@ -19,19 +19,6 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-
-	[self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:121.0 / 255.0 green:166.0 / 255.0 blue:191.0 / 255.0 alpha:1.0]];
-	[self.navigationController.navigationBar setTitleTextAttributes:
-			@{
-					UITextAttributeTextShadowColor : [UIColor blackColor],
-					UITextAttributeTextShadowOffset : [NSValue valueWithUIOffset:UIOffsetMake(0.0, 1.0)]
-			}];
-
-	UIImage *navigationBarBackgroundImage = [[UIImage imageNamed:@"bar"] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 5.0, 1.0, 5.0)];
-	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
-												  forBarMetrics:UIBarMetricsDefault];
-	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
-												  forBarMetrics:UIBarMetricsLandscapePhone];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -62,8 +49,13 @@
 {
 	if ([segue.identifier isEqualToString:@"showTerm"])
 	{
-		SubjectsViewController *subjectsViewController = segue.destinationViewController;
-		subjectsViewController.term = [[self.catalogRxml children:@"term"] objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+		SubjectsViewController *targetViewController = segue.destinationViewController;
+		if([segue.destinationViewController isKindOfClass:[UINavigationController class]])
+		{
+			targetViewController = [segue.destinationViewController topViewController];
+
+		}
+		targetViewController.term = [[self.catalogRxml children:@"term"] objectAtIndex:self.tableView.indexPathForSelectedRow.row];
 	}
 }
 

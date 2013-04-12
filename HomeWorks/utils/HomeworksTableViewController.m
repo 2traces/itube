@@ -5,6 +5,7 @@
 //
 
 
+#import <FRLayeredNavigationController/UIViewController+FRLayeredNavigationController.h>
 #import "HomeworksTableViewController.h"
 
 
@@ -25,8 +26,21 @@
 {
 	[super viewDidLoad];
 
-	self.tableView.backgroundView  = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)]];
-	self.tableView.backgroundColor = [UIColor clearColor];
+	[self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:121.0 / 255.0 green:166.0 / 255.0 blue:191.0 / 255.0 alpha:1.0]];
+	[self.navigationController.navigationBar setTitleTextAttributes:
+			@{
+					UITextAttributeTextShadowColor : [UIColor blackColor],
+					UITextAttributeTextShadowOffset : [NSValue valueWithUIOffset:UIOffsetMake(0.0, 1.0)]
+			}];
+
+	UIImage *navigationBarBackgroundImage = [[UIImage imageNamed:@"bar"] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 5.0, 1.0, 5.0)];
+	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
+												  forBarMetrics:UIBarMetricsDefault];
+	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
+												  forBarMetrics:UIBarMetricsLandscapePhone];
+
+	//self.tableView.backgroundView  = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)]];
+	//self.tableView.backgroundColor = [UIColor clearColor];
 
 	tableButtomTopImage = [[UIImage imageNamed:@"table_button_top"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
 	tableButtomTopPressedImage = [[UIImage imageNamed:@"table_button_top_pressed"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];

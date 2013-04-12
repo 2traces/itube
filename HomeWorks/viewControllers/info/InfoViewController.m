@@ -45,7 +45,7 @@
 		return;
 	}
 
-	[DejalBezelActivityView activityViewForView:self.view.window].showNetworkActivityIndicator = YES;
+	[DejalBezelActivityView activityViewForView:self.view.window withLabel:@""].showNetworkActivityIndicator = YES;
 
 	[[MKStoreManager sharedManager] restorePreviousTransactionsOnComplete:^
 	{

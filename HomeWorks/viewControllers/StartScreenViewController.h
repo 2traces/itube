@@ -9,4 +9,5 @@
 
 
 @interface StartScreenViewController : UIViewController
+@property (nonatomic) IBOutlet UIImageView *backgroundView;
 @end

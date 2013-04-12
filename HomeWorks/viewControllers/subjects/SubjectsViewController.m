@@ -50,9 +50,14 @@
 {
 	if ([segue.identifier isEqualToString:@"showSubject"])
 	{
-		BooksViewController *booksViewController = segue.destinationViewController;
-		booksViewController.term = _term;
-		booksViewController.subject = [[_term children:@"subject"] objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+		BooksViewController *targetViewController = segue.destinationViewController;
+		if([segue.destinationViewController isKindOfClass:[UINavigationController class]])
+		{
+			targetViewController = [segue.destinationViewController topViewController];
+
+		}
+		targetViewController.term = _term;
+		targetViewController.subject = [[_term children:@"subject"] objectAtIndex:self.tableView.indexPathForSelectedRow.row];
 	}
 }
 

@@ -17,6 +17,34 @@
 
 @implementation StartScreenViewController
 
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+	{
+		if (screenSize.height > 480.0f)
+		{
+			self.backgroundView.image = [UIImage imageNamed:@"Default-568h@2x.png"];
+			self.backgroundView.contentScaleFactor = 2.0;
+		}
+	}
+	else
+	{
+		if(UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
+		{
+			NSLog(@"landscape");
+			self.backgroundView.image = [UIImage imageNamed:@"Default-Landscape"];
+		}
+		else
+		{
+			self.backgroundView.image = [UIImage imageNamed:@"Default-Portrait"];
+		}
+	}
+
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
@@ -33,8 +61,8 @@
 		// Check that file is parsed fine
 		if ([rxml attribute:@"baseurl"])
 		{
-			//[self.catalogRxml initFromXMLData:operation.responseData];
-			//[operation.responseString writeToFile:self.catalogFilePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+			[self.catalogRxml initFromXMLData:operation.responseData];
+			[operation.responseString writeToFile:self.catalogFilePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 		}
 
 		[self prepareProducts];

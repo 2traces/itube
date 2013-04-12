@@ -76,10 +76,14 @@ static NSString *cellIdentifier = @"bookCell";
 {
 	if ([segue.identifier isEqualToString:@"showBook"])
 	{
-		AnswersViewController *answersViewController = segue.destinationViewController;
-		answersViewController.term = _term;
-		answersViewController.subject = _subject;
-		answersViewController.book = [[_subject children:@"book"] objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+		AnswersViewController *targetViewController = segue.destinationViewController;
+		if([segue.destinationViewController isKindOfClass:[UINavigationController class]])
+		{
+			targetViewController = [segue.destinationViewController topViewController];
+		}
+		targetViewController.term = _term;
+		targetViewController.subject = _subject;
+		targetViewController.book = [[_subject children:@"book"] objectAtIndex:self.tableView.indexPathForSelectedRow.row];
 	}
 }
 @end
