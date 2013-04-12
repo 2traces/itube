@@ -157,7 +157,7 @@ NSString *kFooterID = @"collectionFooter";
 - (NSInteger)collectionView:(PSUICollectionView *)view numberOfItemsInSection:(NSInteger)section;
 {
 	int numRows = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? 6 : 4;
-	return ([_book attributeAsInt:@"numPages"] / 6 + 1) * 6;
+	return ([_book attributeAsInt:@"numPages"] / numRows + 1) * numRows;
 }
 
 - (void)viewDidLoad
