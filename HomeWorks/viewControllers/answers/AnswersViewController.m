@@ -79,7 +79,7 @@ NSString *kFooterID = @"collectionFooter";
 - (IBAction)buy
 {
 	NSLog(@"buying %@", featureId);
-	[DejalBezelActivityView activityViewForView:self.view.window withLabel:@""];
+	DejalActivityView *activityView = [DejalBezelActivityView activityViewForView:self.view.window withLabel:@""];
 
 	[[MKStoreManager sharedManager] buyFeature:featureId onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads)
 	{
@@ -92,6 +92,23 @@ NSString *kFooterID = @"collectionFooter";
 		NSLog(@"canceled");
 		[DejalBezelActivityView removeView];
 	}];
+
+	[self performSelector:@selector(removeActivityView:) withObject:activityView afterDelay:10];
+}
+
+-(void)removeActivityView:(DejalActivityView *)activityView
+{
+	if(activityView.superview != nil)
+	{
+		[activityView removeFromSuperview];
+		UIAlertView *alert = [[UIAlertView alloc]
+				initWithTitle: @"Ошибка"
+					  message: @"Внимание! Покупка не удалась и деньги не снялись. Попробуйте позднее."
+					 delegate: nil
+			cancelButtonTitle:@"OK"
+			otherButtonTitles:nil];
+		[alert show];
+	}
 }
 
 - (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller
