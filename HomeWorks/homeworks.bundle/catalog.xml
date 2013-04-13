@@ -1,5 +1,5 @@
 <catalog baseurl="http://parismetromaps.info/homeworks/">
-    <term id="0" num="10">
+    <term id="5" num="10">
         <subject id="1" name="Русский язык">
             <book id="1" name="Русский язык" authors="Разумовская М.М." numPages="457" type="png"/>
             <book id="2" name="Русский язык" authors="Ладыженская Т.А." numPages="760" type="png"/>

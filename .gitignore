@@ -5,3 +5,6 @@
 Podfile.lock
 Pods/
 .idea/
+*.iml
+target/
+**/target/

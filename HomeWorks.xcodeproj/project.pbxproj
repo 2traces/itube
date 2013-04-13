@@ -363,8 +363,8 @@
 		A56A16856FEF5E8A631AEEB1 /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A56A156E4079E3000BCFF927 /* StartScreenViewController.m */,
 				A56A11DFF149FC75E7B4B148 /* StartScreenViewController.h */,
+				A56A156E4079E3000BCFF927 /* StartScreenViewController.m */,
 				A56A143B1C8BA7D44994BB80 /* terms */,
 				A56A14D518501F59E9988978 /* subjects */,
 				A56A1C54C11EB8827D96804B /* books */,
