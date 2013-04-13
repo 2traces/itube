@@ -16,6 +16,7 @@ import java.util.Comparator;
 import java.util.regex.Pattern;
 
 import org.apache.xpath.NodeSet;
+import org.w3c.dom.Element;
 
 public class CatalogUpdater implements Runnable {
 
@@ -57,7 +58,16 @@ public class CatalogUpdater implements Runnable {
             } });
         
         for (String answer : answers){
-            nodeSet.addElement(document.createTextNode(answer));
+            int lastDotIndex = answer.lastIndexOf(".");
+            String fileName = answer.substring(0, lastDotIndex);
+            String fileExt = answer.substring(lastDotIndex + 1);
+            if(fileName.equalsIgnoreCase("cover")) {
+                continue;
+            }
+            Element answerElement = document.createElement("answer");
+            answerElement.setAttribute("file", fileName);
+            answerElement.setAttribute("ext", fileExt);
+            nodeSet.addElement(answerElement);
         }
 
         return nodeSet;

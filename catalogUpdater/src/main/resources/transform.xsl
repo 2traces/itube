@@ -17,9 +17,12 @@
             <xsl:apply-templates select="@*"/>
             <xsl:variable name="currentBook" select="." />
                 <xsl:for-each select="java:ru.trylogic.ios.homeworks.CatalogUpdater.getList(string(../../@id), string(../@id), string(@id))">
-                    <answer file="">
+                    <answer>
                         <xsl:attribute name="file">
-                            <xsl:value-of select="."/>
+                            <xsl:value-of select="@file"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="ext">
+                            <xsl:value-of select="@ext"/>
                         </xsl:attribute>
                 </answer>
                 </xsl:for-each>

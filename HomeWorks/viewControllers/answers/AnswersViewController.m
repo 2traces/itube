@@ -38,7 +38,7 @@ NSString *kFooterID = @"collectionFooter";
 
 - (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.item >= [_book attributeAsInt:@"numPages"])
+	if (indexPath.item >= [_book children:@"answer"].count)
 	{
 		return;
 	}
@@ -53,7 +53,7 @@ NSString *kFooterID = @"collectionFooter";
 	previewController.dataSource = self;
 	previewController.currentPreviewItemIndex = indexPath.item;
 
-	if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 	{
 		[self presentModalViewController:previewController animated:YES];
 	}
@@ -96,16 +96,15 @@ NSString *kFooterID = @"collectionFooter";
 	[self performSelector:@selector(removeActivityView:) withObject:activityView afterDelay:10];
 }
 
--(void)removeActivityView:(DejalActivityView *)activityView
+- (void)removeActivityView:(DejalActivityView *)activityView
 {
-	if(activityView.superview != nil)
+	if (activityView.superview != nil)
 	{
 		[activityView removeFromSuperview];
 		UIAlertView *alert = [[UIAlertView alloc]
-				initWithTitle: @"Ошибка"
-					  message: @"Внимание! Покупка не удалась и деньги не снялись. Попробуйте позднее."
-					 delegate: nil
-			cancelButtonTitle:@"OK"
+				initWithTitle:@"Ошибка"
+					  message:@"Внимание! Покупка не удалась и деньги не снялись. Попробуйте позднее."
+					 delegate:nil cancelButtonTitle:@"OK"
 			otherButtonTitles:nil];
 		[alert show];
 	}
@@ -113,30 +112,38 @@ NSString *kFooterID = @"collectionFooter";
 
 - (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller
 {
-	return purchased ? [_book attributeAsInt:@"numPages"] : 2;
+	return purchased ? [_book children:@"answer"].count : 2;
 }
 
 - (id <QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index
 {
 	__weak __typeof (&*controller) weakController = controller;
 
+	RXMLElement *answer = [[_book children:@"answer"] objectAtIndex:index];
+
+	NSString *termId = [_term attribute:@"id"];
+	NSString *subjectId = [_subject attribute:@"id"];
+	NSString *bookId = [_book attribute:@"id"];
+	NSString *answerFile = [answer attribute:@"file"];
+	NSString *answerExt = [answer attribute:@"ext"];
 	NSString *pageFilePath = [NSString stringWithFormat:self.pageFilePathStringFormat,
-														[_term attribute:@"id"],
-														[_subject attribute:@"id"],
-														[_book attribute:@"id"],
-														(index + 1),
-														[_book attribute:@"type"]];
+														termId,
+														subjectId,
+														bookId,
+														answerFile,
+														answerExt];
 
 	if (![[NSFileManager defaultManager] fileExistsAtPath:pageFilePath] && [fileAlreadyDownloading valueForKey:pageFilePath] == nil)
 	{
-		NSLog(@"starting downloading for file %@", pageFilePath);
 		[fileAlreadyDownloading setValue:@(YES) forKey:pageFilePath];
 		NSString *urlAsString = [NSString stringWithFormat:self.pageURLStringFormat,
-														   [_term attribute:@"id"],
-														   [_subject attribute:@"id"],
-														   [_book attribute:@"id"],
-														   (index + 1),
-														   [_book attribute:@"type"]];
+														   termId,
+														   subjectId,
+														   bookId,
+														   answerFile,
+														   answerExt];
+
+		NSLog(@"starting downloading for %@", urlAsString);
 
 		NSURL *url = [NSURL URLWithString:urlAsString];
 		NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -162,7 +169,7 @@ NSString *kFooterID = @"collectionFooter";
 
 		[operationQueue addOperation:catalogDownloadOperation];
 	}
-	return [AnswerFileURL fileURLWithPath:pageFilePath previewTitle:[NSString stringWithFormat:@"%d", index + 1]];
+	return [AnswerFileURL fileURLWithPath:pageFilePath previewTitle:[NSString stringWithFormat:@"%@", answerFile]];
 }
 
 
@@ -174,7 +181,7 @@ NSString *kFooterID = @"collectionFooter";
 - (NSInteger)collectionView:(PSUICollectionView *)view numberOfItemsInSection:(NSInteger)section;
 {
 	int numRows = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? 6 : 4;
-	return ([_book attributeAsInt:@"numPages"] / numRows + 1) * numRows;
+	return ([_book children:@"answer"].count / numRows + 1) * numRows;
 }
 
 - (void)viewDidLoad
@@ -221,7 +228,7 @@ NSString *kFooterID = @"collectionFooter";
 {
 	AnswerViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:kCellID forIndexPath:indexPath];
 
-	if (indexPath.item >= [_book attributeAsInt:@"numPages"])
+	if (indexPath.item >= [_book children:@"answer"].count)
 	{
 		cell.label.text = @"";
 		cell.backgroundImage.image = nil;
@@ -230,7 +237,7 @@ NSString *kFooterID = @"collectionFooter";
 	{
 		if (purchased || (indexPath.item < 2))
 		{
-			cell.label.text = [NSString stringWithFormat:@"%d", (indexPath.item + 1)];
+			cell.label.text = [NSString stringWithFormat:@"%@", [[[_book children:@"answer"] objectAtIndex:indexPath.item] attribute:@"file"]];
 			cell.backgroundImage.image = [UIImage imageNamed:@"element"];
 		} else
 		{

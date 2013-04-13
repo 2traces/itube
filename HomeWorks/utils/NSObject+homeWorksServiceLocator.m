@@ -17,7 +17,7 @@
 
 - (NSString *)pageURLStringFormat
 {
-	return [[self.catalogRxml attribute:@"baseurl"] stringByAppendingString:@"/%@/%@/%@/%d.%@"];
+	return [[self.catalogRxml attribute:@"baseurl"] stringByAppendingString:@"/%@/%@/%@/%@.%@"];
 }
 
 - (NSString *)pageCoverStringFormat
@@ -28,7 +28,7 @@
 - (NSString *)pageFilePathStringFormat
 {
 	NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	return [documentsDirectory stringByAppendingPathComponent:@"terms%@subjects%@books%@answer%d.%@"];
+	return [documentsDirectory stringByAppendingPathComponent:@"terms%@subjects%@books%@answer%@.%@"];
 }
 
 - (NSURL *)catalogDownloadUrl
