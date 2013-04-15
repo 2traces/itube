@@ -1,18 +1,105 @@
-<catalog baseurl="http://parismetromaps.info/homeworks/">
-    <term id="5" num="10">
-        <subject id="1" name="Русский язык">
-            <book id="1" name="Русский язык" authors="Разумовская М.М." numPages="457" type="png"/>
-            <book id="2" name="Русский язык" authors="Ладыженская Т.А." numPages="760" type="png"/>
-            <book id="3" name="Русский язык" authors="Пашковская Н.А." numPages="315" type="png"/>
+<?xml version="1.0" encoding="UTF-8"?><catalog baseurl="http://parismetromaps.info/homeworks/" pathFormat="/%s/%s/%s/">
+    <term id="0" num="10">
+        <subject id="0" name="Русский язык">
+            <book id="0" name="Русский язык" authors="Разумовская М.М.">
+                <answer file="1.1" ext="png"/>
+                <answer file="1.2" ext="png"/>
+                <answer file="1.3" ext="png"/>
+                <answer file="1.4" ext="png"/>
+                <answer file="1.5" ext="png"/>
+                <answer file="1.6" ext="png"/>
+                <answer file="1.7" ext="png"/>
+                <answer file="1.8" ext="png"/>
+                <answer file="1.9" ext="png"/>
+                <answer file="1.10" ext="png"/>
+                <answer file="1.11" ext="png"/>
+                <answer file="1.12" ext="png"/>
+                <answer file="1.13" ext="png"/>
+                <answer file="1.14" ext="png"/>
+                <answer file="2.1" ext="png"/>
+                <answer file="2.2" ext="png"/>
+                <answer file="2.3" ext="png"/>
+                <answer file="2.4" ext="png"/>
+            </book>
+            <book id="2" name="Русский язык" authors="Ладыженская Т.А.">
+                <answer file="1" ext="png"/>
+                <answer file="2" ext="png"/>
+                <answer file="3" ext="png"/>
+                <answer file="4" ext="png"/>
+                <answer file="5" ext="png"/>
+                <answer file="6" ext="png"/>
+                <answer file="7" ext="png"/>
+                <answer file="8" ext="png"/>
+                <answer file="9" ext="png"/>
+                <answer file="10" ext="png"/>
+                <answer file="11" ext="png"/>
+                <answer file="12" ext="png"/>
+                <answer file="13" ext="png"/>
+                <answer file="14" ext="png"/>
+            </book>
+            <book id="3" name="Русский язык" authors="Ладыженская Т.А.">
+                <answer file="1" ext="png"/>
+                <answer file="2" ext="png"/>
+                <answer file="3" ext="png"/>
+                <answer file="4" ext="png"/>
+                <answer file="5" ext="png"/>
+                <answer file="6" ext="png"/>
+                <answer file="7" ext="png"/>
+                <answer file="8" ext="png"/>
+                <answer file="9" ext="png"/>
+            </book>
         </subject>
         <subject id="2" name="Математика">
-            <book id="1" name="Математика" authors="Валенкин Н.Я., Жохов В.И." numPages="1790" type="png"/>
-            <book id="2" name="Математика" authors="Чесноков А.С., Нешков К.И." numPages="2163" type="png"/>
-            <book id="3" name="Математика" authors="Виленкин Н.Я." numPages="1942" type="png"/>
-            <book id="4" name="Математика" authors="Дорофеев Г.В., Петерсон Л.Г." numPages="1974" type="png"/>
-            <book id="5" name="Математика" authors="Зубарева И.И., Мордкович А.Г." numPages="300" type="png"/>
-            <book id="6" name="Математика" authors="Никольский С.М., Потапов М.К." numPages="466" type="png"/>
-            <book id="7" name="Математика" authors="Виленкин Н.Я., Жохов В.И." numPages="1790" type="png"/>
+            <book id="1" name="Математика" authors="Валенкин Н.Я., Жохов В.И.">
+                <answer file="1.1" ext="png"/>
+                <answer file="1.2" ext="png"/>
+                <answer file="1.3" ext="png"/>
+                <answer file="2.1" ext="png"/>
+                <answer file="2.2" ext="png"/>
+                <answer file="2.10" ext="png"/>
+                <answer file="12.1" ext="png"/>
+            </book>
+            <book id="2" name="Математика" authors="Чесноков А.С., Нешков К.И.">
+                <answer file="1" ext="png"/>
+                <answer file="2" ext="png"/>
+                <answer file="3" ext="png"/>
+                <answer file="4" ext="png"/>
+                <answer file="5" ext="png"/>
+                <answer file="6" ext="png"/>
+                <answer file="7" ext="png"/>
+                <answer file="8" ext="png"/>
+                <answer file="9" ext="png"/>
+                <answer file="10" ext="png"/>
+                <answer file="11" ext="png"/>
+                <answer file="12" ext="png"/>
+                <answer file="13" ext="png"/>
+                <answer file="14" ext="png"/>
+            </book>
         </subject>
     </term>
+    <term id="6" num="11">
+    <subject id="1" name="Русский язык">
+        <book id="1" name="Русский язык" authors="Разумовская М.М.">
+                <answer file="1.а" ext="png"/>
+                <answer file="1.б" ext="png"/>
+                <answer file="2.4" ext="png"/>
+                <answer file="2.а" ext="png"/>
+                <answer file="2.б" ext="png"/>
+                <answer file="10.1" ext="png"/>
+            </book>
+        <book id="2" name="Русский язык" authors="Ладыженская Т.А.">
+                <answer file="1" ext="png"/>
+                <answer file="2" ext="png"/>
+            </book>
+        <book id="3" name="Русский язык" authors="Ладыженская Т.А.">
+                <answer file="1" ext="png"/>
+                <answer file="2" ext="png"/>
+                <answer file="3" ext="png"/>
+                <answer file="4" ext="png"/>
+                <answer file="5" ext="png"/>
+                <answer file="6" ext="png"/>
+                <answer file="7" ext="png"/>
+            </book>
+    </subject>
+</term>
 </catalog>
