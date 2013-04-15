@@ -29,6 +29,10 @@ NSString *kFooterID = @"collectionFooter";
 
 	NSDictionary *fileAlreadyDownloading;
 	NSOperationQueue *operationQueue;
+
+	NSArray *answers;
+
+	UIAlertView *errorAlertView;
 }
 
 - (IBAction)tlDismissMe:(id)sender
@@ -38,7 +42,7 @@ NSString *kFooterID = @"collectionFooter";
 
 - (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.item >= [_book children:@"answer"].count)
+	if (indexPath.item >= answers.count)
 	{
 		return;
 	}
@@ -64,8 +68,8 @@ NSString *kFooterID = @"collectionFooter";
 		previewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
 																										   target:navigationControllerForPreview
 																										   action:@selector(dismissModalViewControllerAnimated:)];
-		navigationControllerForPreview.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-		navigationControllerForPreview.toolbar.barStyle = UIBarStyleBlackTranslucent;
+		navigationControllerForPreview.navigationBar.barStyle = UIBarStyleBlack;
+		navigationControllerForPreview.toolbar.barStyle = UIBarStyleBlack;
 
 		[self presentModalViewController:navigationControllerForPreview animated:YES];
 	}
@@ -83,10 +87,14 @@ NSString *kFooterID = @"collectionFooter";
 
 	[[MKStoreManager sharedManager] buyFeature:featureId onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads)
 	{
+		[DejalBezelActivityView removeView];
+		if(errorAlertView) {
+			[errorAlertView dismissWithClickedButtonIndex:0 animated:NO];
+			errorAlertView = nil;
+		}
 		purchased = YES;
 		self.navigationItem.rightBarButtonItem = nil;
 		[self.collectionView reloadData];
-		[DejalBezelActivityView removeView];
 	}                              onCancelled:^
 	{
 		NSLog(@"canceled");
@@ -101,25 +109,25 @@ NSString *kFooterID = @"collectionFooter";
 	if (activityView.superview != nil)
 	{
 		[activityView removeFromSuperview];
-		UIAlertView *alert = [[UIAlertView alloc]
+		errorAlertView = [[UIAlertView alloc]
 				initWithTitle:@"Ошибка"
 					  message:@"Внимание! Покупка не удалась и деньги не снялись. Попробуйте позднее."
 					 delegate:nil cancelButtonTitle:@"OK"
 			otherButtonTitles:nil];
-		[alert show];
+		[errorAlertView show];
 	}
 }
 
 - (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller
 {
-	return purchased ? [_book children:@"answer"].count : 2;
+	return purchased ? answers.count : 2;
 }
 
 - (id <QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index
 {
 	__weak __typeof (&*controller) weakController = controller;
 
-	RXMLElement *answer = [[_book children:@"answer"] objectAtIndex:index];
+	RXMLElement *answer = [answers objectAtIndex:index];
 
 	NSString *termId = [_term attribute:@"id"];
 	NSString *subjectId = [_subject attribute:@"id"];
@@ -181,12 +189,15 @@ NSString *kFooterID = @"collectionFooter";
 - (NSInteger)collectionView:(PSUICollectionView *)view numberOfItemsInSection:(NSInteger)section;
 {
 	int numRows = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? 6 : 4;
-	return ([_book children:@"answer"].count / numRows + 1) * numRows;
+	NSUInteger answersCountByNumRows = answers.count % numRows;
+	return (answersCountByNumRows == 0) ? answers.count : ((answers.count - answersCountByNumRows) + numRows);
 }
 
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+
+	answers = [_book children:@"answer"];
 
 	featureId = [NSString stringWithFormat:self.bookIAPStringFormat,
 										   [_term attribute:@"id"],
@@ -228,22 +239,24 @@ NSString *kFooterID = @"collectionFooter";
 {
 	AnswerViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:kCellID forIndexPath:indexPath];
 
-	if (indexPath.item >= [_book children:@"answer"].count)
+	if (indexPath.item >= answers.count)
 	{
-		cell.label.text = @"";
-		cell.backgroundImage.image = nil;
+		cell.label.hidden = YES;
+		cell.backgroundImage.hidden = YES;
 	}
 	else
 	{
 		if (purchased || (indexPath.item < 2))
 		{
-			cell.label.text = [NSString stringWithFormat:@"%@", [[[_book children:@"answer"] objectAtIndex:indexPath.item] attribute:@"file"]];
+			cell.label.hidden = NO;
+			cell.label.text = [NSString stringWithFormat:@"%@", [[answers objectAtIndex:indexPath.item] attribute:@"file"]];
 			cell.backgroundImage.image = [UIImage imageNamed:@"element"];
 		} else
 		{
-			cell.label.text = @"";
+			cell.label.hidden = YES;
 			cell.backgroundImage.image = [UIImage imageNamed:@"element-locked"];
 		}
+		cell.backgroundImage.hidden = NO;
 	}
 
 	cell.backgroundColor = [UIColor colorWithRed:233.0 / 255.0 green:233.0 / 255.0 blue:233.0 / 255.0 alpha:1.0];

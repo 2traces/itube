@@ -19,6 +19,21 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+
+	UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+	[button setImage:[UIImage imageNamed:@"settings"] forState:UIControlStateNormal];
+	[button setImage:[UIImage imageNamed:@"settings_pressed"] forState:UIControlStateHighlighted];
+	[button addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
+
+	UIView *buttonContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 35, 25)];
+	[buttonContainer addSubview:button];
+
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonContainer];
+}
+
+- (void)showInfo
+{
+	[self presentModalViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"infoViewController"] animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -50,7 +65,7 @@
 	if ([segue.identifier isEqualToString:@"showTerm"])
 	{
 		SubjectsViewController *targetViewController = segue.destinationViewController;
-		if([segue.destinationViewController isKindOfClass:[UINavigationController class]])
+		if ([segue.destinationViewController isKindOfClass:[UINavigationController class]])
 		{
 			targetViewController = [segue.destinationViewController topViewController];
 

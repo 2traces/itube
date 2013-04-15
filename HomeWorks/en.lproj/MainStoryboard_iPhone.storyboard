@@ -52,13 +52,7 @@
                         </prototypes>
                         <sections/>
                     </tableView>
-                    <navigationItem key="navigationItem" title="ГДЗ" id="eaA-7l-EEw">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="O9l-hE-tAU">
-                            <connections>
-                                <segue destination="BoX-aD-lOx" kind="modal" id="sQG-W7-mxP"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="ГДЗ" id="eaA-7l-EEw"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jEr-AZ-d8j" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -83,8 +77,8 @@
                                             <rect key="frame" x="10" y="1" width="300" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="icon114.png" id="Tcn-5V-Dup">
-                                                    <rect key="frame" x="10" y="10" width="60" height="60"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="icon144-no-borders.png" id="Tcn-5V-Dup">
+                                                    <rect key="frame" x="13" y="10" width="60" height="60"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Готовые Домашние Задания" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hak-1d-UBc">
@@ -98,17 +92,16 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="166" id="cUf-31-t3i">
-                                        <rect key="frame" x="0.0" y="91" width="320" height="167"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="100" id="FEu-fg-U0Z">
+                                        <rect key="frame" x="0.0" y="91" width="320" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="300" height="165"/>
+                                            <rect key="frame" x="10" y="0.0" width="300" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" id="xNw-Zg-ElX">
-                                                    <rect key="frame" x="10" y="9" width="280" height="148"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="Ответы более чем к 500 русским и украинским учебникам." id="roe-8o-zR0">
+                                                    <rect key="frame" x="10" y="22.5" width="281" height="53"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea </string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
@@ -121,7 +114,7 @@
                             <tableViewSection id="8te-qJ-z66">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="53" id="24n-09-Yo2">
-                                        <rect key="frame" x="0.0" y="278" width="320" height="55"/>
+                                        <rect key="frame" x="0.0" y="212" width="320" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="52"/>
@@ -132,7 +125,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Восстановить покупки" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KqR-gu-naR">
-                                                    <rect key="frame" x="62" y="15" width="218" height="21"/>
+                                                    <rect key="frame" x="59" y="15" width="183" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -246,13 +239,7 @@
                         </prototypes>
                         <sections/>
                     </tableView>
-                    <navigationItem key="navigationItem" title="5 класс" id="OLB-H5-ghq">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="VPM-ej-mUn">
-                            <connections>
-                                <segue destination="BoX-aD-lOx" kind="modal" id="7jU-mc-M6C"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="5 класс" id="OLB-H5-ghq"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JnP-79-NKl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -306,13 +293,7 @@
                         </prototypes>
                         <sections/>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Математика" id="rpg-TR-Pub">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="I8i-7x-lni">
-                            <connections>
-                                <segue destination="BoX-aD-lOx" kind="modal" id="ndM-tI-n4P"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Математика" id="rpg-TR-Pub"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5J0-We-hk9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -345,10 +326,10 @@
                                             <rect key="frame" x="10" y="10" width="56" height="56"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2QM-aC-R54">
-                                            <rect key="frame" x="0.0" y="23.5" width="75" height="26.5"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="7" id="2QM-aC-R54">
+                                            <rect key="frame" x="10" y="23.5" width="56" height="26.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -421,7 +402,7 @@
         <!--Navigation Controller-->
         <scene sceneID="lTu-8F-meA">
             <objects>
-                <navigationController id="BoX-aD-lOx" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="infoViewController" id="BoX-aD-lOx" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pxZ-Qr-cHa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -439,101 +420,12 @@
     </scenes>
     <resources>
         <image name="Default.png" width="320" height="480"/>
-        <image name="icon114.png" width="114" height="114"/>
+        <image name="icon144-no-borders.png" width="144" height="144"/>
         <image name="restore_purchases@2x.png" width="94" height="94"/>
     </resources>
-    <classes>
-        <class className="AnswerViewCell" superclassName="PSUICollectionViewCell_">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswerViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="AnswersViewController" superclassName="PSUICollectionViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewController.h"/>
-        </class>
-        <class className="AnswersViewFooter" superclassName="PSUICollectionReusableView_">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewFooter.h"/>
-            <relationships>
-                <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="AnswersViewHeader" superclassName="PSUICollectionReusableView_">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewHeader.h"/>
-            <relationships>
-                <relationship kind="outlet" name="authorsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="BookTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BookTableViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="authorsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="bookImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="BooksViewController" superclassName="HomeworksTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BooksViewController.h"/>
-        </class>
-        <class className="HomeworksTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeworksTableViewController.h"/>
-        </class>
-        <class className="InfoViewController" superclassName="HomeworksTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InfoViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="tlDismissMe:"/>
-            </relationships>
-        </class>
-        <class className="PSTCollectionReusableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSTCollectionReusableView.h"/>
-        </class>
-        <class className="PSTCollectionViewCell" superclassName="PSTCollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSTCollectionViewCell.h"/>
-        </class>
-        <class className="PSUICollectionReusableView_" superclassName="PSTCollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSUICollectionReusableView_.h"/>
-        </class>
-        <class className="PSUICollectionViewCell_" superclassName="PSTCollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSUICollectionViewCell_.h"/>
-        </class>
-        <class className="StartScreenViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StartScreenViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="backgroundView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="SubjectTableVIewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SubjectTableVIewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="iconImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SubjectsViewController" superclassName="HomeworksTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SubjectsViewController.h"/>
-        </class>
-        <class className="TermTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TermTableViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="iconImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="numLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TermsViewController" superclassName="HomeworksTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TermsViewController.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="ndM-tI-n4P"/>
-    </inferredMetricsTieBreakers>
 </document>

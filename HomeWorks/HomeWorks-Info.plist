@@ -17,7 +17,7 @@
 				<string>icon57.png</string>
 				<string>icon114.png</string>
 				<string>icon72.png</string>
-				<string>icon144.png</string>
+				<string>icon144-no-borders.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>
@@ -57,8 +57,6 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>
