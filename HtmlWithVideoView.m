@@ -70,20 +70,16 @@
 
 - (void) playerPlaybackDidFinish:(NSNotification*)notification{
     self.videoPreview.hidden = NO;
+    self.lightPanel.alpha = 1;
     self.lightPanel.hidden = YES;
 }
 
 - (void) playerPlaybackStarted:(NSNotification*)notification{
     self.lightPanel.hidden = NO;
     self.videoPreview.hidden = YES;
-//    [UIView animateWithDuration:1  animations:^{
-//        self.lightPanel.alpha = 0;
-//    } completion: ^(BOOL finished) {
-//        if (finished) {
-            self.lightPanel.hidden = YES;
-            self.lightPanel.alpha = 1;
-//        }
-//    }];
+    [UIView animateWithDuration:1  animations:^{
+        self.lightPanel.alpha = 0;
+    }];
 }
 
 - (void) restart{
