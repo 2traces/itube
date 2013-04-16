@@ -405,7 +405,8 @@
                     }
                 }
                 [self.moviePlayers removeObject:mpc];
-                [[self.scrollPhotos viewWithTag:(i + 1)] removeFromSuperview];
+                [mediaView removeFromSuperview];
+                [mediaView release];
             }
         }
         

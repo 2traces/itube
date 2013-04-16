@@ -76,12 +76,14 @@
 - (void) playerPlaybackStarted:(NSNotification*)notification{
     self.lightPanel.hidden = NO;
     self.videoPreview.hidden = YES;
-    [UIView animateWithDuration:1 animations:^{
-        self.lightPanel.alpha = 0;
-    } completion: ^(BOOL finished) {
-        self.lightPanel.hidden = YES;
-        self.lightPanel.alpha = 1;
-    }];
+//    [UIView animateWithDuration:1  animations:^{
+//        self.lightPanel.alpha = 0;
+//    } completion: ^(BOOL finished) {
+//        if (finished) {
+            self.lightPanel.hidden = YES;
+            self.lightPanel.alpha = 1;
+//        }
+//    }];
 }
 
 - (void) restart{
@@ -94,8 +96,10 @@
 }
 
 -(void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:self.moviePlayer];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerNowPlayingMovieDidChangeNotification object:self.moviePlayer];
     [self.videoPreview release];
+    [self.moviePlayer stop];
     [self.moviePlayer release];
     [self.lightGray release];
     [self.lightPanel release];
