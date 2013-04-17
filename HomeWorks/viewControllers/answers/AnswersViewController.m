@@ -103,7 +103,7 @@ NSString *kFooterID = @"collectionFooter";
 
 	if (!self.purchased && indexPath.item > 1)
 	{
-		[self rightBarButtonItemPresses];
+		[self purchase];
 		return;
 	}
 
