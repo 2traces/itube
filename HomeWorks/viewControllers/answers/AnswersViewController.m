@@ -227,7 +227,7 @@ NSString *kFooterID = @"collectionFooter";
 	void (^successOrFailure)() = ^
 	{
 		activityView.activityLabel.text = [NSString stringWithFormat:@"Загружено %d из %d",
-																	 (answers.count - succesfullyDownloaded),
+																	 succesfullyDownloaded,
 																	 answers.count];
 
 		if(operationQueue.operationCount == 0)
