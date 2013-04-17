@@ -322,7 +322,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="ISl-c6-ANM">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="element.png" id="ISl-c6-ANM">
                                             <rect key="frame" x="10" y="10" width="56" height="56"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -336,11 +336,40 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="backgroundImage" destination="ISl-c6-ANM" id="HWP-D4-56w"/>
                                     <outlet property="label" destination="2QM-aC-R54" id="QMo-uq-Els"/>
                                 </connections>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="lockedAnswerCell" id="tbo-Y6-Rql" customClass="AnswerViewCell">
+                                <rect key="frame" x="85" y="100" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="element-locked.png" id="7Yb-BZ-NHv">
+                                            <rect key="frame" x="10" y="10" width="56" height="56"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="backgroundImage" destination="7Yb-BZ-NHv" id="wRZ-dQ-XXf"/>
+                                </connections>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="emptyAnswerCell" id="Wjj-Gy-mNP" customClass="AnswerViewCell">
+                                <rect key="frame" x="160" y="100" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionHeader" id="sCb-14-f0N" customClass="AnswersViewHeader">
@@ -389,7 +418,7 @@
                     <navigationItem key="navigationItem" id="UL9-b6-CMu">
                         <barButtonItem key="rightBarButtonItem" title="Купить все за 0.99$" id="mjg-9L-yYt">
                             <connections>
-                                <action selector="buy" destination="L1f-qM-Cej" id="tE5-ma-ccz"/>
+                                <action selector="rightBarButtonItemPresses" destination="L1f-qM-Cej" id="tE5-ma-ccz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -420,9 +449,110 @@
     </scenes>
     <resources>
         <image name="Default.png" width="320" height="480"/>
+        <image name="element-locked.png" width="56" height="56"/>
+        <image name="element.png" width="56" height="56"/>
         <image name="icon144-no-borders.png" width="144" height="144"/>
         <image name="restore_purchases@2x.png" width="94" height="94"/>
     </resources>
+    <classes>
+        <class className="AnswerViewCell" superclassName="PSUICollectionViewCell_">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswerViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="label" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="AnswersViewController" superclassName="PSUICollectionViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="tlDismissMe:"/>
+            </relationships>
+        </class>
+        <class className="AnswersViewFooter" superclassName="PSUICollectionReusableView_">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewFooter.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="AnswersViewHeader" superclassName="PSUICollectionReusableView_">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewHeader.h"/>
+            <relationships>
+                <relationship kind="outlet" name="authorsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="BookTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BookTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="authorsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="bookImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="BooksViewController" superclassName="HomeworksTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BooksViewController.h"/>
+        </class>
+        <class className="HomeworksTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeworksTableViewController.h"/>
+        </class>
+        <class className="InfoViewController" superclassName="HomeworksTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InfoViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="tlDismissMe:"/>
+            </relationships>
+        </class>
+        <class className="PSTCollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSTCollectionReusableView.h"/>
+        </class>
+        <class className="PSTCollectionViewCell" superclassName="PSTCollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSTCollectionViewCell.h"/>
+        </class>
+        <class className="PSTCollectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSTCollectionViewController.h"/>
+        </class>
+        <class className="PSUICollectionReusableView_" superclassName="PSTCollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSUICollectionReusableView_.h"/>
+        </class>
+        <class className="PSUICollectionViewCell_" superclassName="PSTCollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSUICollectionViewCell_.h"/>
+        </class>
+        <class className="PSUICollectionViewController_" superclassName="PSTCollectionViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSUICollectionViewController_.h"/>
+        </class>
+        <class className="StartScreenViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StartScreenViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backgroundView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="SubjectTableVIewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SubjectTableVIewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="iconImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SubjectsViewController" superclassName="HomeworksTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SubjectsViewController.h"/>
+        </class>
+        <class className="TermTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TermTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="iconImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="numLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TermsViewController" superclassName="HomeworksTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TermsViewController.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

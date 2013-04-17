@@ -22,7 +22,7 @@
 
 - (NSString *)pageCoverStringFormat
 {
-	return [[self.catalogRxml attribute:@"baseurl"] stringByAppendingString:@"/%@/%@/%@/cover.png"];
+	return [[self.catalogRxml attribute:@"baseurl"] stringByAppendingString:@"/%@/%@/%@/cover.jpg"];
 }
 
 - (NSString *)pageFilePathStringFormat
