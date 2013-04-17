@@ -81,7 +81,7 @@ NSString *kFooterID = @"collectionFooter";
 	_purchased = value;
 	if (value)
 	{
-		[self checkAllFilesDownloaded];
+		[self updateAllFilesDownloadedStatus];
 	}
 	else
 	{
@@ -142,13 +142,13 @@ NSString *kFooterID = @"collectionFooter";
 	{
 		[self purchase];
 	}
-	else if(![self checkAllFilesDownloaded])
+	else if(![self updateAllFilesDownloadedStatus])
 	{
 		[self downloadAll];
 	}
 }
 
--(BOOL)checkAllFilesDownloaded
+-(BOOL)updateAllFilesDownloadedStatus
 {
 	BOOL allFilesDownloaded = YES;
 	NSString *termId = [_term attribute:@"id"];
@@ -222,16 +222,18 @@ NSString *kFooterID = @"collectionFooter";
 
 	__weak __typeof (&*self) weakSelf = self;
 
+	__block int succesfullyDownloaded = 0;
+
 	void (^successOrFailure)() = ^
 	{
-		activityView.activityLabel.text = [NSString stringWithFormat:@"Загружаю %d из %d",
-																	 (answers.count - operationQueue.operationCount),
+		activityView.activityLabel.text = [NSString stringWithFormat:@"Загружено %d из %d",
+																	 (answers.count - succesfullyDownloaded),
 																	 answers.count];
 
 		if(operationQueue.operationCount == 0)
 		{
 			[DejalBezelActivityView removeView];
-			[weakSelf checkAllFilesDownloaded];
+			[weakSelf updateAllFilesDownloadedStatus];
 			[weakSelf.collectionView reloadData];
 		}
 	};
@@ -265,6 +267,7 @@ NSString *kFooterID = @"collectionFooter";
 			[catalogDownloadOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
 			{
 				[operation.responseData writeToFile:pageFilePath atomically:YES];
+				succesfullyDownloaded++;
 				successOrFailure();
 
 			}                                               failure:^(AFHTTPRequestOperation *operation, NSError *error)
@@ -273,6 +276,10 @@ NSString *kFooterID = @"collectionFooter";
 			}];
 
 			[operationQueue addOperation:catalogDownloadOperation];
+		}
+		else
+		{
+			succesfullyDownloaded++;
 		}
 	}
 	if(operationQueue.operationCount > 0)
