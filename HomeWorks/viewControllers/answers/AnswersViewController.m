@@ -72,7 +72,7 @@ NSString *kFooterID = @"collectionFooter";
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[super viewDidDisappear:animated];
+	[super viewWillDisappear:animated];
 	[operationQueue cancelAllOperations];
 }
 
@@ -231,7 +231,7 @@ NSString *kFooterID = @"collectionFooter";
 		if(operationQueue.operationCount == 0)
 		{
 			[DejalBezelActivityView removeView];
-			[self checkAllFilesDownloaded];
+			[weakSelf checkAllFilesDownloaded];
 			[weakSelf.collectionView reloadData];
 		}
 	};
@@ -285,11 +285,11 @@ NSString *kFooterID = @"collectionFooter";
 	[self.collectionView reloadData];
 }
 
-- (void)removeActivityView:(DejalActivityView *)activityView
+- (void)removeActivityView:(DejalActivityView *)activityViewToRemove
 {
-	if (activityView.superview != nil)
+	if (activityViewToRemove.superview != nil)
 	{
-		[activityView removeFromSuperview];
+		[activityViewToRemove removeFromSuperview];
 		[[[UIAlertView alloc]
 				initWithTitle:@"Ошибка"
 					  message:@"Внимание! Покупка не удалась и деньги не снялись. Попробуйте позднее."
