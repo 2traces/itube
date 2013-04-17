@@ -85,23 +85,37 @@ NSString *kFooterID = @"collectionFooter";
 	NSLog(@"buying %@", featureId);
 	DejalActivityView *activityView = [DejalBezelActivityView activityViewForView:self.view.window withLabel:@""];
 
-	[[MKStoreManager sharedManager] buyFeature:featureId onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads)
-	{
-		[DejalBezelActivityView removeView];
-		if(errorAlertView) {
-			[errorAlertView dismissWithClickedButtonIndex:0 animated:NO];
-			errorAlertView = nil;
-		}
-		purchased = YES;
-		self.navigationItem.rightBarButtonItem = nil;
-		[self.collectionView reloadData];
-	}                              onCancelled:^
-	{
-		NSLog(@"canceled");
-		[DejalBezelActivityView removeView];
-	}];
+	BOOL founded = NO;
 
-	[self performSelector:@selector(removeActivityView:) withObject:activityView afterDelay:10];
+	NSMutableArray *purchasableObjects = [MKStoreManager sharedManager].purchasableObjects;
+	for(SKProduct *product in purchasableObjects)
+	{
+		if ([[product productIdentifier] isEqualToString:featureId])
+		{
+			founded = YES;
+			break;
+		}
+	}
+
+	NSLog(@"founded: %d", founded);
+
+	if (founded)
+	{
+		[[MKStoreManager sharedManager] buyFeature:featureId onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads)
+		{
+			[DejalBezelActivityView removeView];
+			purchased = YES;
+			self.navigationItem.rightBarButtonItem = nil;
+			[self.collectionView reloadData];
+		}                              onCancelled:^
+		{
+			NSLog(@"canceled");
+			[self removeActivityView:activityView];
+		}];
+	} else
+	{
+		[self performSelector:@selector(removeActivityView:) withObject:activityView afterDelay:5];
+	}
 }
 
 - (void)removeActivityView:(DejalActivityView *)activityView

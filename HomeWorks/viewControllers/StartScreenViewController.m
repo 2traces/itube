@@ -63,7 +63,7 @@
 		{
 			[self.catalogRxml initFromXMLData:operation.responseData];
 			[operation.responseString writeToFile:self.catalogFilePath atomically:YES encoding:operation.responseStringEncoding error:nil];
-			NSLog(@"new catalog is: %@", [NSString stringWithContentsOfFile:self.catalogFilePath encoding:operation.responseStringEncoding error:nil]);
+			//NSLog(@"new catalog is: %@", [NSString stringWithContentsOfFile:self.catalogFilePath encoding:operation.responseStringEncoding error:nil]);
 		}
 
 		[self prepareProducts];
