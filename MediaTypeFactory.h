@@ -14,5 +14,6 @@
 @interface MediaTypeFactory : NSObject
 
 +(UIView*)viewForMedia:(MMedia *)media withParent:(UIView*)parent withOrientation:(UIInterfaceOrientation)orientation withIndex:(int)index withMoviePlayers:(NSMutableArray*)moviePlayers;
++(UIView*)customBookmarkViewForMedia:(MMedia*)media withParent:(UIView*)parent withOrientation:(UIInterfaceOrientation)orientation withIndex:(int)index;
 
 @end

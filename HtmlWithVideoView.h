@@ -15,6 +15,7 @@
 @interface HtmlWithVideoView : UIView <MediaViewEvents>
 
 - (id)initWithMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate;
+- (id)initWithMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate withVideo:(BOOL)flag;
 - (void) restart;
 
 @property (retain) UIImageView *videoPreview;

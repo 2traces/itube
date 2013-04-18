@@ -60,6 +60,16 @@
     return image;
 }
 
++(UIView*)customBookmarkViewForMedia:(MMedia*)media withParent:(UIView*)parent withOrientation:(UIInterfaceOrientation)orientation withIndex:(int)index{
+    //return nil if you want standard view to be shown in bookmarks
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    UIView *mediaView = nil;
+    if ([media.mediaType isEqualToString:@"html_with_video"]) {
+        mediaView = [[HtmlWithVideoView alloc] initWithMedia:media withParent:parent withAppDelegate:appDelegate withVideo:NO];
+    }
+    return mediaView;
+}
+
 +(UIView*)viewForMedia:(MMedia *)media withParent:(UIView*)parent withOrientation:(UIInterfaceOrientation)orientation withIndex:(int)index withMoviePlayers:(NSMutableArray *)moviePlayers{
     UIImage *image = [self imageForMedia:media];
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];

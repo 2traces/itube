@@ -16,7 +16,29 @@
 @synthesize lightGray;
 @synthesize moviePlayer;
 
-- (id)initWithMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate
+- (void)createMoviePlayer:(MMedia *)media appDelegate:(tubeAppDelegate *)appDelegate videoFrame:(CGRect)videoFrame
+{
+    NSString *videoPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.videoPath];
+    self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
+    self.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
+    self.moviePlayer.fullscreen = NO;
+    self.moviePlayer.controlStyle = MPMovieControlStyleNone;
+    self.moviePlayer.repeatMode = MPMovieRepeatModeNone;
+    self.moviePlayer.shouldAutoplay = YES;
+    self.moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
+    self.moviePlayer.view.backgroundColor = lightGray;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:self.moviePlayer];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerPlaybackStarted:) name:MPMoviePlayerNowPlayingMovieDidChangeNotification object:self.moviePlayer];
+    
+    UIView *movieView = self.moviePlayer.view;
+    
+    
+    movieView.frame = videoFrame;
+    movieView.userInteractionEnabled = YES;
+    [self addSubview:movieView];
+}
+
+- (id)initWithMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate withVideo:(BOOL)withVideo
 {
     self = [super initWithFrame:parent.frame];
     if (self) {
@@ -24,35 +46,22 @@
         // #lightGray color is #f5f4f5
         self.lightGray = [ColorFactory lightGrayColor];
         self.backgroundColor = self.lightGray;
-        NSString *videoPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.videoPath];
-        NSString *videoPreviewPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.previewPath];
-        self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
-        self.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
-        self.moviePlayer.fullscreen = NO;
-        self.moviePlayer.controlStyle = MPMovieControlStyleNone;
-        self.moviePlayer.repeatMode = MPMovieRepeatModeNone;
-        self.moviePlayer.shouldAutoplay = YES;
-        self.moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
-        self.moviePlayer.view.backgroundColor = lightGray;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:self.moviePlayer];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerPlaybackStarted:) name:MPMoviePlayerNowPlayingMovieDidChangeNotification object:self.moviePlayer];
-        
-        UIView *movieView = self.moviePlayer.view;
-        CGFloat videoWidth = [[UIScreen mainScreen] bounds].size.width;
+        CGFloat videoWidth = parent.bounds.size.width;
         CGFloat videoHeight = videoWidth * 428 / 768;
         CGRect videoFrame = CGRectMake(0, 0, videoWidth, videoHeight);
-        movieView.frame = videoFrame;
-        movieView.userInteractionEnabled = YES;
-        [self addSubview:movieView];
-        
+        NSString *videoPreviewPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.previewPath];
+        if (withVideo) {
+            [self createMoviePlayer:media appDelegate:appDelegate videoFrame:videoFrame];
+        }
         self.videoPreview = [[UIImageView alloc] initWithFrame:videoFrame];
         self.videoPreview.image = [[UIImage alloc] initWithContentsOfFile:videoPreviewPath];
         [self addSubview:self.videoPreview];
         
         self.lightPanel = [[UIView alloc] initWithFrame:videoFrame];
         self.lightPanel.backgroundColor = lightGray;
-        [self addSubview:self.lightPanel];
-        
+        if (withVideo) {
+            [self addSubview:self.lightPanel];
+        }
         UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, videoHeight,
                                                                          videoWidth,
                                                                          parent.frame.size.height-videoHeight)];
@@ -66,6 +75,10 @@
         [self addSubview:webView];
     }
     return self;
+}
+
+- (id)initWithMedia:(MMedia *)media withParent:(UIView *)parent withAppDelegate:(tubeAppDelegate *)appDelegate{
+    return [self initWithMedia:media withParent:parent withAppDelegate:appDelegate withVideo:YES];
 }
 
 - (void) playerPlaybackDidFinish:(NSNotification*)notification{
