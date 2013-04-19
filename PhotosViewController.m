@@ -146,6 +146,7 @@
 - (void)reloadScrollView {
     for (UIView *subview in self.scrollPhotos.subviews) {
         [subview removeFromSuperview];
+        [subview release];
     }
     self.scrollPhotos.contentOffset = CGPointZero;
     self.currentPhotos = nil;
