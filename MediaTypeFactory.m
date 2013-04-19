@@ -162,7 +162,7 @@
     mediaView.frame = imageFrame;
     //move to user code
     mediaView.tag = index + 1;
-    return [mediaView autorelease];
+    return mediaView;
 }
 
 @end
