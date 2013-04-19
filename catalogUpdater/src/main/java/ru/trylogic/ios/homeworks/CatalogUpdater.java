@@ -2,6 +2,7 @@ package ru.trylogic.ios.homeworks;
 
 import org.w3c.dom.Document;
 
+import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -23,10 +24,13 @@ public class CatalogUpdater implements Runnable {
     public static final String sourceDirectory = "homeworks";
 
     public static void main(String[] args) throws Exception {
-        (new CatalogUpdater()).run();
+        
+        try {
+            (new CatalogUpdater()).run();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
-
-
 
     public static String normalisedVersion(String version) {
         return normalisedVersion(version, ".", 4);
@@ -49,6 +53,10 @@ public class CatalogUpdater implements Runnable {
         Document document = docBuilder.newDocument();
         
         File answersDirectory = new File("." + File.separator + sourceDirectory + File.separator + termId + File.separator + subjectId + File.separator + bookId);
+        
+        if(!answersDirectory.exists()) {
+            return nodeSet;
+        }
         
         String[] answers = answersDirectory.list();
         Arrays.sort(answers, new Comparator<String>(){
@@ -83,8 +91,10 @@ public class CatalogUpdater implements Runnable {
             Source text = new StreamSource(new File("input.xml"));
             
             transformer.transform(text, new StreamResult("catalog.xml"));
+
+            JOptionPane.showMessageDialog(null, "Done");
         } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 }

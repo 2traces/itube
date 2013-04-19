@@ -7,7 +7,6 @@
 
 #import "StartScreenViewController.h"
 #import "AFHTTPRequestOperation.h"
-#import "RXMLElement.h"
 #import "NSObject+homeWorksServiceLocator.h"
 #import "MKStoreManager.h"
 
@@ -42,7 +41,6 @@
 			self.backgroundView.image = [UIImage imageNamed:@"Default-Portrait"];
 		}
 	}
-
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -109,7 +107,6 @@
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
 	[[MKStoreManager sharedManager] productsRequest:request didReceiveResponse:response];
-
 }
 
 - (void)requestDidFinish:(SKRequest *)request

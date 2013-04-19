@@ -142,13 +142,13 @@ NSString *kFooterID = @"collectionFooter";
 	{
 		[self purchase];
 	}
-	else if(![self updateAllFilesDownloadedStatus])
+	else if (![self updateAllFilesDownloadedStatus])
 	{
 		[self downloadAll];
 	}
 }
 
--(BOOL)updateAllFilesDownloadedStatus
+- (BOOL)updateAllFilesDownloadedStatus
 {
 	BOOL allFilesDownloaded = YES;
 	NSString *termId = [_term attribute:@"id"];
@@ -167,15 +167,15 @@ NSString *kFooterID = @"collectionFooter";
 															answerExt];
 
 		allFilesDownloaded = [[NSFileManager defaultManager] fileExistsAtPath:pageFilePath];
-		if(!allFilesDownloaded)
+		if (!allFilesDownloaded)
 		{
 			break;
 		}
 	}
 
-	if(self.purchased)
+	if (self.purchased)
 	{
-		if(allFilesDownloaded)
+		if (allFilesDownloaded)
 		{
 			self.navigationItem.rightBarButtonItem = nil;
 		}
@@ -230,7 +230,7 @@ NSString *kFooterID = @"collectionFooter";
 																	 succesfullyDownloaded,
 																	 answers.count];
 
-		if(operationQueue.operationCount == 0)
+		if (operationQueue.operationCount == 0)
 		{
 			[DejalBezelActivityView removeView];
 			[weakSelf updateAllFilesDownloadedStatus];
@@ -253,15 +253,12 @@ NSString *kFooterID = @"collectionFooter";
 
 		if (![[NSFileManager defaultManager] fileExistsAtPath:pageFilePath])
 		{
-			NSString *urlAsString = [NSString stringWithFormat:self.pageURLStringFormat,
-															   termId,
-															   subjectId,
-															   bookId,
-															   answerFile,
-															   answerExt];
-
-			NSURL *url = [NSURL URLWithString:urlAsString];
-			NSURLRequest *request = [NSURLRequest requestWithURL:url];
+			NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:self.pageURLStringFormat,
+																												 termId,
+																												 subjectId,
+																												 bookId,
+																												 answerFile,
+																												 answerExt]]];
 
 			AFHTTPRequestOperation *catalogDownloadOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 			[catalogDownloadOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -282,14 +279,12 @@ NSString *kFooterID = @"collectionFooter";
 			succesfullyDownloaded++;
 		}
 	}
-	if(operationQueue.operationCount > 0)
+	if (operationQueue.operationCount > 0)
 	{
 		activityView = [DejalBezelActivityView activityViewForView:self.view withLabel:@"" width:200];
 		successOrFailure();
 	}
 	[operationQueue setSuspended:NO];
-
-	[self.collectionView reloadData];
 }
 
 - (void)removeActivityView:(DejalActivityView *)activityViewToRemove
