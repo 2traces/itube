@@ -38,9 +38,16 @@
 												  forBarMetrics:UIBarMetricsDefault];
 	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
 												  forBarMetrics:UIBarMetricsLandscapePhone];
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+	{
+		self.tableView.backgroundView  = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableBackgroundIpad"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 768.0, 0.0, 0.0)]];
+	}
+	else
+	{
+		self.tableView.backgroundView  = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)]];
 
-	//self.tableView.backgroundView  = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)]];
-	//self.tableView.backgroundColor = [UIColor clearColor];
+	}
+	self.tableView.backgroundColor = [UIColor clearColor];
 
 	tableButtomTopImage = [[UIImage imageNamed:@"table_button_top"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
 	tableButtomTopPressedImage = [[UIImage imageNamed:@"table_button_top_pressed"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];

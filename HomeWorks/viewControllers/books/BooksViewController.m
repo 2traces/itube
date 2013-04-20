@@ -6,13 +6,19 @@
 
 
 #import <RaptureXML/RXMLElement.h>
+#import <MessageUI/MessageUI.h>
+#import <CoreGraphics/CoreGraphics.h>
 #import "BooksViewController.h"
 #import "BookTableViewCell.h"
 #import "AnswersViewController.h"
 #import "UIImageView+JMImageCache.h"
 #import "NSObject+homeWorksServiceLocator.h"
 
+static NSString *findCellidentifier = @"findCell";
 static NSString *cellIdentifier = @"bookCell";
+
+@interface BooksViewController () <MFMailComposeViewControllerDelegate>
+@end
 
 @implementation BooksViewController
 {
@@ -43,17 +49,22 @@ static NSString *cellIdentifier = @"bookCell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 1;
+	return [MFMailComposeViewController canSendMail] ? 2 : 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [_subject children:@"book"].count;
+	return section == 1 ? 1 : [_subject children:@"book"].count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	if(indexPath.section == 1)
+	{
+		return [[tableView dequeueReusableCellWithIdentifier:findCellidentifier] frame].size.height;;
+	}
+
 	static NSNumber *height;
 	if (!height)
 	{
@@ -66,6 +77,10 @@ static NSString *cellIdentifier = @"bookCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView
 		 cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	if(indexPath.section == 1) {
+		return [tableView dequeueReusableCellWithIdentifier:findCellidentifier];
+	}
+
 	BookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
 	RXMLElement *book = [[_subject children:@"book"] objectAtIndex:indexPath.row];
@@ -87,6 +102,24 @@ static NSString *cellIdentifier = @"bookCell";
 
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if(indexPath.section == 1)
+	{
+		MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+		mailViewController.mailComposeDelegate = self;
+		[mailViewController setToRecipients:@[@"oxana.bakuma@hotmail.com"]];
+		[mailViewController setSubject:@"Новый решебник"];
+		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+		{
+			mailViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+			mailViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+		}
+
+		[self presentModalViewController:mailViewController animated:YES];
+	}
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	if ([segue.identifier isEqualToString:@"showBook"])
@@ -100,5 +133,12 @@ static NSString *cellIdentifier = @"bookCell";
 		targetViewController.subject = _subject;
 		targetViewController.book = [[_subject children:@"book"] objectAtIndex:self.tableView.indexPathForSelectedRow.row];
 	}
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+	[self dismissModalViewControllerAnimated:YES];
+	[self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+
 }
 @end

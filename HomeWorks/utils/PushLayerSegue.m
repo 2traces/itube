@@ -27,6 +27,7 @@
 														   configuration:^(FRLayeredNavigationItem *item)
 	{
 		item.hasChrome = NO;
+		item.hasBorder = NO;
 	}];
 }
 @end

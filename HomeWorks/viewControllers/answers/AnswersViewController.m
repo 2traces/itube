@@ -62,10 +62,16 @@ NSString *kFooterID = @"collectionFooter";
 	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
 	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage forBarMetrics:UIBarMetricsLandscapePhone];
 
-	//self.collectionView.backgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)]];
-	//self.collectionView.backgroundColor = [UIColor clearColor];
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+	{
+		self.collectionView.backgroundView  = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableBackgroundIpad"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 768.0, 0.0, 0.0)]];
+	}
+	else
+	{
+		self.collectionView.backgroundView  = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)]];
 
-	self.collectionView.backgroundColor = [UIColor colorWithRed:222.0 / 255.0 green:225.0 / 255.0 blue:230.0 / 255.0 alpha:1.0];
+	}
+	self.collectionView.backgroundColor = [UIColor clearColor];
 
 	operationQueue = [[NSOperationQueue alloc] init];
 }
