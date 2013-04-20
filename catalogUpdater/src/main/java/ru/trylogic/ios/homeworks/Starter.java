@@ -1,3 +1,5 @@
+package ru.trylogic.ios.homeworks;
+
 import ru.trylogic.ios.homeworks.CatalogUpdater;
 
 /**
