@@ -40,7 +40,7 @@ NSString *kFooterID = @"collectionFooter";
 {
 	[super viewDidLoad];
 
-	answers = [_book children:@"answer"];
+	answers = [_book children:@"a"];
 
 	NSString *termId = [_term attribute:@"id"];
 	NSString *subjectId = [_subject attribute:@"id"];
@@ -154,11 +154,11 @@ NSString *kFooterID = @"collectionFooter";
 	NSString *termId = [_term attribute:@"id"];
 	NSString *subjectId = [_subject attribute:@"id"];
 	NSString *bookId = [_book attribute:@"id"];
+	NSString *answerExt = [_book attribute:@"ext"];
 
 	for (RXMLElement *answer in answers)
 	{
-		NSString *answerFile = [answer attribute:@"file"];
-		NSString *answerExt = [answer attribute:@"ext"];
+		NSString *answerFile = answer.text;
 		NSString *pageFilePath = [NSString stringWithFormat:self.pageFilePathStringFormat,
 															termId,
 															subjectId,
@@ -240,10 +240,10 @@ NSString *kFooterID = @"collectionFooter";
 
 	[operationQueue cancelAllOperations];
 	[operationQueue setSuspended:YES];
+	NSString *answerExt = [_book attribute:@"ext"];
 	for (RXMLElement *answer in answers)
 	{
-		NSString *answerFile = [answer attribute:@"file"];
-		NSString *answerExt = [answer attribute:@"ext"];
+		NSString *answerFile = answer.text;
 		NSString *pageFilePath = [NSString stringWithFormat:self.pageFilePathStringFormat,
 															termId,
 															subjectId,
@@ -322,7 +322,7 @@ NSString *kFooterID = @"collectionFooter";
 	else if (indexPath.item < 2 || self.purchased)
 	{
 		cell = [cv dequeueReusableCellWithReuseIdentifier:kCellID forIndexPath:indexPath];
-		cell.label.text = [NSString stringWithFormat:@"%@", [[answers objectAtIndex:indexPath.item] attribute:@"file"]];
+		cell.label.text = [NSString stringWithFormat:@"%@", [[answers objectAtIndex:indexPath.item] text]];
 		return cell;
 	}
 	else

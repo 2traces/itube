@@ -130,9 +130,15 @@ public class CatalogUpdater extends DefaultHandler implements Runnable {
                         s.append(fileName);
                         s.append("</a>\n");
                     }
+
+                    if (!extAppended) {
+                        s.append(">\n");
+                    }
                 } else {
                     s.append(">\n");
                 }
+            } else {
+                s.append(">\n");
             }
 
             indentLevel++;

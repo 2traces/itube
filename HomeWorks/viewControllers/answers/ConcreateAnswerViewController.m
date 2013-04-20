@@ -30,7 +30,7 @@
 {
 	[super viewDidLoad];
 
-	answers = [_book children:@"answer"];
+	answers = [_book children:@"a"];
 
 	NSString *featureId = [NSString stringWithFormat:self.bookIAPStringFormat,
 										   [_term attribute:@"id"],
@@ -57,8 +57,8 @@
 	NSString *termId = [_term attribute:@"id"];
 	NSString *subjectId = [_subject attribute:@"id"];
 	NSString *bookId = [_book attribute:@"id"];
-	NSString *answerFile = [answer attribute:@"file"];
-	NSString *answerExt = [answer attribute:@"ext"];
+	NSString *answerExt = [_book attribute:@"ext"];
+	NSString *answerFile = answer.text;
 	NSString *pageFilePath = [NSString stringWithFormat:self.pageFilePathStringFormat,
 														termId,
 														subjectId,

@@ -59,8 +59,8 @@
 		// Check that file is parsed fine
 		if ([rxml attribute:@"baseurl"])
 		{
-			[self.catalogRxml initFromXMLData:operation.responseData];
-			[operation.responseString writeToFile:self.catalogFilePath atomically:YES encoding:operation.responseStringEncoding error:nil];
+			//[self.catalogRxml initFromXMLData:operation.responseData];
+			//[operation.responseString writeToFile:self.catalogFilePath atomically:YES encoding:operation.responseStringEncoding error:nil];
 			//NSLog(@"new catalog is: %@", [NSString stringWithContentsOfFile:self.catalogFilePath encoding:operation.responseStringEncoding error:nil]);
 		}
 
