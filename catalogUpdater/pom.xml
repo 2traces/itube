@@ -26,7 +26,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>ru.trylogic.ios.homeworks.CatalogUpdater</mainClass>
+                            <mainClass>ru.trylogic.ios.homeworks.Starter</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -37,7 +37,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>ru.trylogic.ios.homeworks.CatalogUpdater</mainClass>
+                            <mainClass>ru.trylogic.ios.homeworks.Starter</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
