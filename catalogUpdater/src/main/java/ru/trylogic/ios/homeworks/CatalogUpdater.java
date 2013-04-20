@@ -6,12 +6,11 @@ import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.*;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.File;
+import java.io.FilenameFilter;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.regex.Pattern;
@@ -46,6 +45,7 @@ public class CatalogUpdater implements Runnable {
     }
 
     public static NodeSet getList(String termId, String subjectId, String bookId) throws ParserConfigurationException {
+        System.out.println("getList for " + termId + "/" + subjectId + "/" + bookId);
         NodeSet nodeSet = new NodeSet();
         
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -58,7 +58,12 @@ public class CatalogUpdater implements Runnable {
             return nodeSet;
         }
         
-        String[] answers = answersDirectory.list();
+        String[] answers = answersDirectory.list(new FilenameFilter() {
+            @Override
+            public boolean accept(File file, String s) {
+                return new File(file, s).isFile();
+            }
+        });
         Arrays.sort(answers, new Comparator<String>(){
             public int compare(String f1, String f2)
             {
@@ -87,6 +92,22 @@ public class CatalogUpdater implements Runnable {
             TransformerFactory factory = TransformerFactory.newInstance();
             Source xslt = new StreamSource(CatalogUpdater.class.getClassLoader().getResourceAsStream("transform.xsl"));
             Transformer transformer = factory.newTransformer(xslt);
+            transformer.setErrorListener(new ErrorListener() {
+                @Override
+                public void warning(TransformerException e) throws TransformerException {
+                    //To change body of implemented methods use File | Settings | File Templates.
+                }
+
+                @Override
+                public void error(TransformerException e) throws TransformerException {
+                    e.printStackTrace();
+                }
+
+                @Override
+                public void fatalError(TransformerException e) throws TransformerException {
+                    e.printStackTrace();
+                }
+            });
 
             Source text = new StreamSource(new File("input.xml"));
             

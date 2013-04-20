@@ -13,8 +13,10 @@ public class Starter {
     
     public static void main(String[] args) throws Exception {
 
-        String pathToJar = CatalogUpdater.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
-        ProcessBuilder pb = new ProcessBuilder("java","-Xmx1024m", "-classpath", pathToJar, "ru.trylogic.ios.homeworks.CatalogUpdater");
-        pb.start();
+        //String pathToJar = CatalogUpdater.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+        //ProcessBuilder pb = new ProcessBuilder("java","-Xmx1024m", "-classpath", pathToJar, "ru.trylogic.ios.homeworks.CatalogUpdater");
+        //pb.start();
+        
+        CatalogUpdater.main(args);
     }
 }
