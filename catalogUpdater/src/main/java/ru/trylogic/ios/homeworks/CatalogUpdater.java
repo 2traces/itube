@@ -1,34 +1,29 @@
 package ru.trylogic.ios.homeworks;
 
-import org.w3c.dom.Document;
+import org.apache.commons.lang.StringUtils;
 
 import javax.swing.*;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.*;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
-import java.io.File;
-import java.io.FilenameFilter;
+import javax.xml.parsers.*;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.regex.Pattern;
 
-import org.apache.xpath.NodeSet;
-import org.w3c.dom.Element;
+import org.xml.sax.Attributes;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 
-public class CatalogUpdater implements Runnable {
+public class CatalogUpdater extends DefaultHandler implements Runnable {
 
     public static final String sourceDirectory = "homeworks";
+    private OutputStream outputStream;
+    private String currentTerm;
+    private String currentSubject;
+    private int indentLevel = 0;
 
     public static void main(String[] args) throws Exception {
-        
-        try {
-            (new CatalogUpdater()).run();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        (new CatalogUpdater()).run();
     }
 
     public static String normalisedVersion(String version) {
@@ -44,78 +39,130 @@ public class CatalogUpdater implements Runnable {
         return sb.toString();
     }
 
-    public static NodeSet getList(String termId, String subjectId, String bookId) throws ParserConfigurationException {
-        System.out.println("getList for " + termId + "/" + subjectId + "/" + bookId);
-        NodeSet nodeSet = new NodeSet();
-        
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder docBuilder = dbf.newDocumentBuilder();
-        Document document = docBuilder.newDocument();
-        
-        File answersDirectory = new File("." + File.separator + sourceDirectory + File.separator + termId + File.separator + subjectId + File.separator + bookId);
-        
-        if(!answersDirectory.exists()) {
-            return nodeSet;
-        }
-        
-        String[] answers = answersDirectory.list(new FilenameFilter() {
-            @Override
-            public boolean accept(File file, String s) {
-                return new File(file, s).isFile();
-            }
-        });
-        Arrays.sort(answers, new Comparator<String>(){
-            public int compare(String f1, String f2)
-            {
-                return normalisedVersion(f1).compareTo(normalisedVersion(f2));
-            } });
-        
-        for (String answer : answers){
-            int lastDotIndex = answer.lastIndexOf(".");
-            String fileName = answer.substring(0, lastDotIndex);
-            String fileExt = answer.substring(lastDotIndex + 1);
-            if(fileName.equalsIgnoreCase("cover")) {
-                continue;
-            }
-            Element answerElement = document.createElement("answer");
-            answerElement.setAttribute("file", fileName);
-            answerElement.setAttribute("ext", fileExt);
-            nodeSet.addElement(answerElement);
-        }
-
-        return nodeSet;
-    }
-
     @Override
     public void run() {
         try {
-            TransformerFactory factory = TransformerFactory.newInstance();
-            Source xslt = new StreamSource(CatalogUpdater.class.getClassLoader().getResourceAsStream("transform.xsl"));
-            Transformer transformer = factory.newTransformer(xslt);
-            transformer.setErrorListener(new ErrorListener() {
-                @Override
-                public void warning(TransformerException e) throws TransformerException {
-                    //To change body of implemented methods use File | Settings | File Templates.
-                }
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            SAXParser saxParser = factory.newSAXParser();
 
-                @Override
-                public void error(TransformerException e) throws TransformerException {
-                    e.printStackTrace();
-                }
+            outputStream = new FileOutputStream(new File(sourceDirectory, "catalog.xml"));
 
-                @Override
-                public void fatalError(TransformerException e) throws TransformerException {
-                    e.printStackTrace();
-                }
-            });
+            InputStream inputStream = new FileInputStream(new File("input.xml"));
+            Reader reader = new InputStreamReader(inputStream, "UTF-8");
 
-            Source text = new StreamSource(new File("input.xml"));
-            
-            transformer.transform(text, new StreamResult("catalog.xml"));
+            InputSource is = new InputSource(reader);
+            is.setEncoding("UTF-8");
+            saxParser.parse(is, this);
 
             JOptionPane.showMessageDialog(null, "Done");
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
+
+    @Override
+    public void startElement(String uri, String localName, String qName,
+                             Attributes attributes) throws SAXException {
+
+        try {
+
+            StringBuilder s = new StringBuilder();
+            s.append(StringUtils.repeat("\t", indentLevel));
+            s.append("<");
+            s.append(qName);
+
+            for (int i = 0; i < attributes.getLength(); i++) {
+                s.append(" ");
+                s.append(attributes.getQName(i));
+                s.append("=\"");
+                s.append(attributes.getValue(i));
+                s.append("\"");
+            }
+
+
+            String id = attributes.getValue("id");
+
+            if (qName.equalsIgnoreCase("term")) {
+                currentTerm = id;
+                s.append(">\n");
+            } else if (qName.equalsIgnoreCase("subject")) {
+                currentSubject = id;
+                s.append(">\n");
+            } else if (qName.equalsIgnoreCase("book")) {
+
+                File answersDirectory = new File("." + File.separator + sourceDirectory + File.separator + currentTerm + File.separator + currentSubject + File.separator + id);
+
+                System.out.println("getList for " + answersDirectory.getAbsolutePath());
+
+                if (answersDirectory.exists()) {
+
+                    String[] answers = answersDirectory.list(new FilenameFilter() {
+                        @Override
+                        public boolean accept(File dir, String fileName) {
+                            return new File(dir, fileName).isFile() && fileName.contains(".");
+                        }
+                    });
+                    Arrays.sort(answers, new Comparator<String>() {
+                        public int compare(String f1, String f2) {
+                            return normalisedVersion(f1).compareTo(normalisedVersion(f2));
+                        }
+                    });
+
+                    Boolean extAppended = false;
+                    for (String answer : answers) {
+                        int lastDotIndex = answer.lastIndexOf(".");
+                        String fileName = answer.substring(0, lastDotIndex);
+                        if (fileName.equalsIgnoreCase("cover")) {
+                            continue;
+                        }
+                        String fileExt = answer.substring(lastDotIndex + 1);
+
+                        if (!extAppended) {
+                            s.append(" ext=\"");
+                            s.append(fileExt);
+                            s.append("\">\n");
+                            extAppended = true;
+                        }
+
+                        s.append(StringUtils.repeat("\t", indentLevel + 1));
+                        s.append("<a>");
+                        s.append(fileName);
+                        s.append("</a>\n");
+                    }
+                } else {
+                    s.append(">\n");
+                }
+            }
+
+            indentLevel++;
+            outputStream.write(s.toString().getBytes("utf-8"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void endElement(String uri, String localName,
+                           String qName) throws SAXException {
+        try {
+            indentLevel--;
+            String s = StringUtils.repeat("\t", indentLevel) + "</" + qName + ">\n";
+            outputStream.write(s.getBytes());
+            outputStream.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void endDocument() throws org.xml.sax.SAXException {
+        try {
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
