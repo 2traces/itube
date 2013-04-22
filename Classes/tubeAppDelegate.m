@@ -16,6 +16,16 @@
 #import "MainView.h"
 #import "SSTheme.h"
 
+#import <sys/utsname.h>
+
+NSString* machineName() {
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    
+    return [NSString stringWithCString:systemInfo.machine
+                              encoding:NSUTF8StringEncoding];
+}
+
 @implementation tubeAppDelegate
 
 @synthesize window;
@@ -533,6 +543,14 @@ void uncaughtExceptionHandler(NSException *exception) {
         }
     }
     
+    return NO;
+}
+
+- (BOOL)isIPodTouch4thGen {
+    NSString *device = machineName();
+    if ([device rangeOfString:@"iPod4" options:NSCaseInsensitiveSearch].location != NSNotFound) {
+        return YES;
+    }
     return NO;
 }
 

@@ -376,7 +376,12 @@ GLint uniforms[NUM_UNIFORMS];
     [zones setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     zones.frame = zonesRect;
     [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:zones];
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    if (![appDelegate isIPodTouch4thGen]) {
+        [view addSubview:zones];
+    }
+    
     view.zonesButton = zones;
     
     downloadPopup = [[UIButton buttonWithType:UIButtonTypeCustom] retain];

@@ -173,18 +173,20 @@ NSInteger const toolbarWidth=320;
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:settings];
 
-        zones = [UIButton buttonWithType:UIButtonTypeCustom];
-        
-        [zones setBackgroundImage:[[SSThemeManager sharedTheme] mapsSwitchButtonImage] forState:UIControlStateNormal];
-
-        [zones setTitle:NSLocalizedString(@"MapsButton", @"MapsButton") forState:UIControlStateNormal];
-        [[zones titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:10.0]];
-        [zones setTitleEdgeInsets:UIEdgeInsetsMake(2, 0, 0, 0)];
-        [zones setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        zones.frame = zonesRect;
-        [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:zones];
+    zones = [UIButton buttonWithType:UIButtonTypeCustom];
     
+    [zones setBackgroundImage:[[SSThemeManager sharedTheme] mapsSwitchButtonImage] forState:UIControlStateNormal];
+
+    [zones setTitle:NSLocalizedString(@"MapsButton", @"MapsButton") forState:UIControlStateNormal];
+    [[zones titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:10.0]];
+    [zones setTitleEdgeInsets:UIEdgeInsetsMake(2, 0, 0, 0)];
+    [zones setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    zones.frame = zonesRect;
+    [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
+    
+    if (![appDelegate isIPodTouch4thGen]) {
+        [self addSubview:zones];
+    }
     if (![[SSThemeManager sharedTheme] isNewTheme]) {
         UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
         shadow.frame = shadowRect;

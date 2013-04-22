@@ -53,6 +53,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 -(NSString*)getDefaultMapUrl2;
 
 -(BOOL)isIPHONE5;
+- (BOOL)isIPodTouch4thGen;
 
 -(void)showRasterMap;
 -(void)showMetroMap;

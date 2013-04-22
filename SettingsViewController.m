@@ -88,7 +88,8 @@ NSString *offlineMapsUrl = @"http://parismetromaps.info";
 {
     NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
     NSArray *mapIDs = [dict allKeys];
     NSMutableArray *mapsInfoArray = [[[NSMutableArray alloc] initWithCapacity:[mapIDs count]] autorelease];
@@ -112,7 +113,14 @@ NSString *offlineMapsUrl = @"http://parismetromaps.info";
             [product setObject:@"Z" forKey:@"status"];
         };
         
-        [mapsInfoArray addObject:product];
+        if ([appDelegate isIPodTouch4thGen] && [[product valueForKey:@"isOfflineMap"] boolValue]) {
+            //OMG it's an iPod 4th Gen, and the current inapp is offline map
+            NSLog(@"NOT adding offline map purchase to the list, as current device is iPod Touch 4th gen");
+        }
+        else {
+            [mapsInfoArray addObject:product];
+        }
+        
         [product release];
     }
     
