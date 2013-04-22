@@ -319,7 +319,6 @@
             [self.mainController clearPath];
             if (IS_IPAD)
                 [self.mainController hideiPadLeftPathView];
-
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
                 photosViewFrame.origin.y = 0;
@@ -331,7 +330,10 @@
                 [self showCutMap];
                 MainView *mainView = (MainView*)[self.mainController view];
                 [mainView changedToLandscape:NO];
-
+                
+                //the crap below makes map centering properly
+                [mainView layoutSubviews];
+                [self.photosController updateInfoForCurrentPage];
             }];
             break;
         case HCPhotosHiddenFully:
