@@ -122,7 +122,7 @@
 							<object class="IBUIButton" id="422472583">
 								<reference key="NSNextResponder" ref="667267882"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{7.5, 387.5}, {34, 65}}</string>
+								<string key="NSFrame">{{7.5, 392.5}, {34, 55}}</string>
 								<reference key="NSSuperview" ref="667267882"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="183505856"/>
@@ -154,7 +154,7 @@
 							<object class="IBUIButton" id="183505856">
 								<reference key="NSNextResponder" ref="667267882"/>
 								<int key="NSvFlags">265</int>
-								<string key="NSFrame">{{281.5, 388}, {34, 64}}</string>
+								<string key="NSFrame">{{281.5, 393}, {34, 54}}</string>
 								<reference key="NSSuperview" ref="667267882"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="122534926"/>
@@ -1185,8 +1185,8 @@
 			<string key="distance_icon@2x.png">{130, 77}</string>
 			<string key="panel_bg-iPad@2x.png">{2048, 180}</string>
 			<string key="sample_photo@2x.png">{640, 465}</string>
-			<string key="scroll_btn_next.png">{34, 64}</string>
-			<string key="scroll_btn_prev.png">{34, 64}</string>
+			<string key="scroll_btn_next.png">{34, 54}</string>
+			<string key="scroll_btn_prev.png">{34, 55}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
