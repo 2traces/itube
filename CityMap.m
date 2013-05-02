@@ -2968,9 +2968,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             }
         }
     }
-    if(geo.size.width > 1.f || geo.size.height > 1.f) {
-        NSLog(@"Probably GPS coordinates are invalide!\nGPS1: %5f, %5f\nGPS2: %5f, %5f\nGPS3: %5f, %5f\nGPS4: %5f, %5f", geo.origin.x, geo.origin.y, geo.origin.x, geo.origin.y+geo.size.height, geo.origin.x + geo.size.width, geo.origin.y, geo.origin.x + geo.size.width, geo.origin.y + geo.size.height);
-    }
+    //if(geo.size.width > 1.f || geo.size.height > 1.f) {
+        NSLog(@"GPS coordinates\nGPS1: %5f, %5f\nGPS2: %5f, %5f\nGPS3: %5f, %5f\nGPS4: %5f, %5f", geo.origin.x, geo.origin.y, geo.origin.x, geo.origin.y+geo.size.height, geo.origin.x + geo.size.width, geo.origin.y, geo.origin.x + geo.size.width, geo.origin.y + geo.size.height);
+    //}
     return geo;
 }
 
