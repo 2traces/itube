@@ -16,6 +16,13 @@
 
 @implementation NativeGallery
 
+@synthesize imagesArray;
+@synthesize bgImageView;
+@synthesize titleLabel;
+@synthesize pictures;
+@synthesize titlesArray;
+
+
 - (id)initWithFrame:(CGRect)frame withGalleryPictures:(NSSet *)galleryPictures withAppDelegate:(tubeAppDelegate *)appDelegate{
     self = [super initWithFrame:frame];
     if (self) {
@@ -40,7 +47,6 @@
             self.titleLabel.font = [UIFont systemFontOfSize:20];
         }
         [self addSubview:self.titleLabel];
-        
         [self loadThumbs:appDelegate];
         self.bgImageView.image = [self.imagesArray objectAtIndex:0];
         self.bgImageView.userInteractionEnabled = YES;
@@ -109,7 +115,9 @@
 }
 
 - (void)dealloc{
+    NSLog(@"release native gallery");
     [self.pictures release];
+    [self.bgImageView release];
     [self.imagesArray release];
     [self.bgImageView release];
     [self.titleLabel release];

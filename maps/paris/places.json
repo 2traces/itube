@@ -41,7 +41,169 @@
                "Name": "Arc de Triomphe",
                "long": 48.873829,
                "lat": 2.295021,
-               "index": 18,
+               "index": 2,
+               "accessLevel": 0,
+               "text": "Arc de Triomphe",
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/louvre_0.jpg"},
+                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
+                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
+                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
+               ],
+               "categories": [
+                              2
+                              ]
+               },
+                              {
+               "Name": "Arc de Triomphe",
+               "long": 48.873829,
+               "lat": 2.295021,
+               "index": 3,
+               "accessLevel": 0,
+               "text": "Arc de Triomphe",
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/louvre_0.jpg"},
+                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
+                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
+                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
+               ],
+               "categories": [
+                              2
+                              ]
+               },
+                              {
+               "Name": "Arc de Triomphe",
+               "long": 48.873829,
+               "lat": 2.295021,
+               "index": 6,
+               "accessLevel": 0,
+               "text": "Arc de Triomphe",
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/louvre_0.jpg"},
+                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
+                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
+                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
+               ],
+               "categories": [
+                              2
+                              ]
+               },
+                              {
+               "Name": "Arc de Triomphe",
+               "long": 48.873829,
+               "lat": 2.295021,
+               "index": 7,
+               "accessLevel": 0,
+               "text": "Arc de Triomphe",
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/louvre_0.jpg"},
+                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
+                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
+                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
+               ],
+               "categories": [
+                              2
+                              ]
+               },
+                              {
+               "Name": "Arc de Triomphe",
+               "long": 48.873829,
+               "lat": 2.295021,
+               "index": 11,
+               "accessLevel": 0,
+               "text": "Arc de Triomphe",
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/louvre_0.jpg"},
+                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
+                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
+                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
+               ],
+               "categories": [
+                              2
+                              ]
+               },
+                              {
+               "Name": "Arc de Triomphe",
+               "long": 48.873829,
+               "lat": 2.295021,
+               "index": 12,
+               "accessLevel": 0,
+               "text": "Arc de Triomphe",
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/louvre_0.jpg"},
+                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
+                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
+                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
+               ],
+               "categories": [
+                              2
+                              ]
+               },
+                                             {
+               "Name": "Arc de Triomphe",
+               "long": 48.873829,
+               "lat": 2.295021,
+               "index": 16,
+               "accessLevel": 0,
+               "text": "Arc de Triomphe",
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/louvre_0.jpg"},
+                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
+                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
+                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
+               ],
+               "categories": [
+                              2
+                              ]
+               },
+                                             {
+               "Name": "Arc de Triomphe",
+               "long": 48.873829,
+               "lat": 2.295021,
+               "index": 17,
+               "accessLevel": 0,
+               "text": "Arc de Triomphe",
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/louvre_0.jpg"},
+                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
+                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
+                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
+               ],
+               "categories": [
+                              2
+                              ]
+               },
+                                             {
+               "Name": "Arc de Triomphe",
+               "long": 48.873829,
+               "lat": 2.295021,
+               "index": 21,
+               "accessLevel": 0,
+               "text": "Arc de Triomphe",
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/louvre_0.jpg"},
+                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
+                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
+                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
+               ],
+               "categories": [
+                              2
+                              ]
+               },
+                                             {
+               "Name": "Arc de Triomphe",
+               "long": 48.873829,
+               "lat": 2.295021,
+               "index": 22,
                "accessLevel": 0,
                "text": "Arc de Triomphe",
                "media_type": "native_gallery",
@@ -59,7 +221,7 @@
             "name": "Moulin Rouge",
             "long": 48.884142,
                "lat": 2.332321,
-               "index": 45,
+               "index": 1,
            "accessLevel": 0,
            "text": "Moulin Rouge",
            "media_type": "html_with_video",
@@ -90,7 +252,7 @@
             "name": "Centre Georges Pompidou",
             "long": 48.860755,
                "lat": 2.352424,
-               "index": 28,
+               "index": 5,
            "accessLevel": 0,
            "text": "Centre Georges Pompidou",
            "media_type": "html_with_video",
@@ -105,7 +267,7 @@
             "name": "Eiffel Tower",
             "long": 48.858897,
                "lat": 2.293558,
-               "index": 19,
+               "index": 10,
            "accessLevel": 0,
            "text": "Eiffel Tower",
            "media_type": "html_gallery",
@@ -118,7 +280,7 @@
             "name": "Les Invalides",
             "long": 48.855119,
                "lat": 2.312562,
-               "index": 20,
+               "index": 15,
            "accessLevel": 0,
            "text": "Les Invalides",
            "media_type": "html_with_video",
@@ -133,7 +295,7 @@
             "name": "Musée du Louvre",
             "long": 48.860614,
                "lat": 2.33756,
-               "index": 21,
+               "index": 20,
            "accessLevel": 0,
            "text": "Musee du Louvre",
            "media_type": "html_with_video",
@@ -148,7 +310,7 @@
             "name": "Montmartre",
             "long": 48.886265,
                "lat": 2.34308,
-               "index": 23,
+               "index": 25,
            "accessLevel": 0,
            "text": "Montmartre",
            "media_type": "html_with_video",
@@ -163,7 +325,7 @@
             "name": "Notre Dame de Paris",
             "long": 48.85293,
                "lat": 2.350194,
-               "index": 25,
+               "index": 30,
            "accessLevel": 0,
            "text": "Notre dame de Paris",
            "media_type": "html_with_video",
