@@ -150,6 +150,7 @@
 -(void)debugStatus;
 -(void)stopBut:(int)level;
 -(void)advance:(RPiece*)piece;
+-(void)releaseMemory;
 
 @end
 
@@ -173,6 +174,7 @@
 -(void)debugStatus;
 -(void)stopBut:(int)level;
 -(void)advance:(RPiece*)piece;
+-(void)releaseMemory;
 
 @end
 
@@ -194,6 +196,7 @@
 -(void)secondLoad:(RPiece*)piece;
 -(void)debugStatus;
 -(void)advance:(RPiece*)piece;
+-(void)releaseMemory;
 
 @end
 
@@ -236,6 +239,7 @@
 -(BOOL) checkPoint:(CGPoint*)point;
 -(BOOL) changeSource;
 -(void) stopLoadingBut:(CGFloat)scale;
+-(void) releaseMemory;
 
 //Получить координаты точки в системе координат UIView карты, в которую нужно будет положить пин
 - (CGPoint) pointOnMapViewForItemWithID:(NSInteger)itemID; 

@@ -456,6 +456,7 @@
 
 -(void)dealloc
 {
+    [piece release];
     [connection release];
     [data release];
     [super dealloc];
@@ -591,6 +592,7 @@
     DownloadCache *dc = [[[DownloadCache alloc] initWithLevel:piece->level x:piece->x y:piece->y data:nil] autorelease];
     if([minusCache containsObject:dc]) {
         [piece rasterLoaded];
+        piece->level = -1;
         return YES;
     }
     dc = [plusCache member:dc];
@@ -666,7 +668,7 @@
     if(dp != nil) {
         [dp->piece rasterLoaded];
         dp->piece->level = -1;
-        [minusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil]];
+        [minusCache addObject:[[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil] autorelease]];
         [target performSelector:erSelector];
         [queue removeByConnection:connection];
     }
@@ -695,7 +697,7 @@
             //NSLog(@"Download failed from '%@'", connection.originalRequest.URL.absoluteString);
 #endif
             dp->piece->level = -1;
-            [minusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil]];
+            [minusCache addObject:[[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil] autorelease]];
             [target performSelector:erSelector];
         } else {
 #ifdef DEBUG
@@ -706,7 +708,7 @@
                 dp->piece->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
                 dp->piece->layer->piecesCount ++;
             }
-            [plusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:dp->data]];
+            [plusCache addObject:[[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:dp->data] autorelease]];
             [target performSelector:selector withObject:dp->piece];
         }
         [queue removeByConnection:connection];
@@ -775,6 +777,12 @@
         [secondQueue removeObject:piece];
         [secondQueue insertObject:piece atIndex:0];
     }
+}
+
+-(void)releaseMemory
+{
+    [plusCache removeAllObjects];
+    [minusCache removeAllObjects];
 }
 
 @end
@@ -887,7 +895,7 @@
     DownloadPiece *dp = [queue get:connection];
     if(dp != nil) {
         [dp->piece vectorLoaded];
-        [minusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil]];
+        [minusCache addObject:[[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil] autorelease]];
         [queue removeByConnection:connection];
     }
     [self checkQueue];
@@ -914,7 +922,7 @@
             dp->piece->objects = a;
         }
 
-        [plusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:dp->data]];
+        [plusCache addObject:[[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:dp->data] autorelease]];
         [target performSelector:selector withObject:dp->piece];
         [queue removeByConnection:connection];
     }
@@ -980,6 +988,12 @@
     }
 }
 
+-(void)releaseMemory
+{
+    [plusCache removeAllObjects];
+    [minusCache removeAllObjects];
+}
+
 @end
 
 /***** RDownloadManger *****/
@@ -1007,7 +1021,7 @@
 -(void)setRasterDownloader:(id)_rasterDownloader
 {
     if(rasterDownloader != nil) [rasterDownloader setTarget:nil andSelector:nil];
-    rasterDownloader = _rasterDownloader;
+    rasterDownloader = [_rasterDownloader retain];
     [rasterDownloader setTarget:self selector:@selector(rasterComplete:) andErrorSelector:@selector(rasterNotFound)];
 }
 
@@ -1019,7 +1033,7 @@
 -(void)setVectorDownloader:(id)_vectorDownloader
 {
     if(vectorDownloader != nil) [vectorDownloader setTarget:nil andSelector:nil];
-    vectorDownloader = _vectorDownloader;
+    vectorDownloader = [_vectorDownloader retain];
     [vectorDownloader setTarget:self andSelector:@selector(vectorComplete:)];
 }
 
@@ -1078,6 +1092,12 @@
     [vectorDownloader advance:piece];
 }
 
+-(void)releaseMemory
+{
+    [rasterDownloader releaseMemory];
+    [vectorDownloader releaseMemory];
+}
+
 @end
 
 /***** RasterLayer *****/
@@ -1109,10 +1129,10 @@
         //NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         //NSURL *vurl = [[[NSURL alloc] initFileURLWithPath:rasterPath] autorelease];
         //NSString* vurlstr = [vurl absoluteString];
-        vloader = [[VectorDownloader alloc] initWithUrl:url1];
-        rloader1 = [[RasterDownloader alloc] initWithUrl:url1];
+        vloader = [[[VectorDownloader alloc] initWithUrl:url1] autorelease];
+        rloader1 = [[[RasterDownloader alloc] initWithUrl:url1] autorelease];
         rloader1.altSource = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        rloader2 = [[RasterDownloader alloc] initWithUrl:url2];
+        rloader2 = [[[RasterDownloader alloc] initWithUrl:url2] autorelease];
         //rloader2.altSource = [[NSBundle mainBundle] pathForResource:@"RASTER" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         dm.vectorDownloader = vloader;
         dm.rasterDownloader = rloader1;
@@ -1466,7 +1486,7 @@
                 // loading
                 CGRect r = CGRectMake(dx*X, dy*Y, dx, dy);
                 if([self upperDraw:context rect:r level:level-1] || [self lowerDraw:context rect:r level:level+1]) {}
-                RPiece *p = [[RPiece alloc] initWithRect:r level:level x:X y:Y];
+                RPiece *p = [[[RPiece alloc] initWithRect:r level:level x:X y:Y] autorelease];
                 p->layer = self;
                 [lev addObject:p];
                 [loader load:p];
@@ -1699,7 +1719,7 @@
                 currentObjectNumber = ob->number;
                 currentObject = [description objectForKey:[NSNumber numberWithInt:currentObjectNumber]];
                 if(currentObject == nil) {
-                    currentObject = [[RDescription alloc] initWithName:[NSString stringWithFormat:@"Name of object #%d",currentObjectNumber] andDescription:[NSString stringWithFormat:@"Description of object #%d",currentObjectNumber]];
+                    currentObject = [[[RDescription alloc] initWithName:[NSString stringWithFormat:@"Name of object #%d",currentObjectNumber] andDescription:[NSString stringWithFormat:@"Description of object #%d",currentObjectNumber]] autorelease];
                     [description setObject:currentObject forKey:[NSNumber numberWithInt:currentObjectNumber]];
                 }
                 return YES;
@@ -1749,6 +1769,11 @@
     }
     [loader.rasterDownloader stopBut:_lvl];
     [loader.vectorDownloader stopBut:_lvl];
+}
+
+-(void)releaseMemory
+{
+    [loader releaseMemory];
 }
 
 - (CGPoint) pointOnMapViewForItemWithID:(NSInteger)itemID
