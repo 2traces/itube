@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>default</key>
+	<key>com.zuev.itube.paris.nyc</key>
 	<dict>
 		<key>icon</key>
 		<string>icon_paris</string>
@@ -52,14 +52,14 @@
 		<key>position</key>
 		<integer>1</integer>
 	</dict>
-	<key>com.zuev.itube.paris.paris</key>
+	<key>default</key>
 	<dict>
 		<key>icon</key>
 		<string>icon_paris</string>
 		<key>url1</key>
-		<string>http://www.x-provocation.com/maps/paris/osm</string>
+		<string>http://parismetromaps.info/maps/paris/osm</string>
 		<key>url2</key>
-		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
+		<string>http://parismetromaps.info/maps/paris/osm</string>
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>
