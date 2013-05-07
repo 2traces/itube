@@ -129,20 +129,41 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"StationCell";
+    BOOL lang = [[MHelper sharedHelper] languageIndex]%2;
     
     StationListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"StationListCell" owner:self options:nil] lastObject];
         [[cell mybutton] addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
+    MStation *station = [self.filteredStation objectAtIndex:indexPath.row];
     
     NSString *cellValue;
-    if ([[MHelper sharedHelper] languageIndex]%2) {
-        cellValue = [[self.filteredStation objectAtIndex:indexPath.row] altname];
+    if (lang) {
+        cellValue = station.altname;
     } else {
-        cellValue = [[self.filteredStation objectAtIndex:indexPath.row] name];
+        cellValue = station.name;
     }
 
+    BOOL duplicate = NO;
+    for (MStation *st in self.filteredStation) {
+        if(st != station) {
+            if(lang) {
+                if([st.altname isEqualToString:station.altname]) {
+                    duplicate = YES;
+                    break;
+                }
+            } else {
+                if([st.name isEqualToString:station.name]) {
+                    duplicate = YES;
+                    break;
+                }
+            }
+        }
+    }
+    if(duplicate) {
+        cellValue = [NSString stringWithFormat:@"%@ (%@)", cellValue, station.lines.name];
+    }
     cell.mylabel.text = cellValue;
     cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
     cell.mylabel.textColor = [UIColor blackColor];
