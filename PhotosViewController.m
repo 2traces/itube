@@ -140,6 +140,7 @@
 
 - (UIView*)imageViewWithIndex:(NSInteger)index {
     MMedia *media = self.currentPhotos[index];
+    NSLog(@"INIT WITH INDEX %i", index);
     return [MediaTypeFactory viewForMedia:media withParent:self.scrollPhotos withOrientation:self.interfaceOrientation withIndex:index withMoviePlayers:self.moviePlayers];
 }
 
