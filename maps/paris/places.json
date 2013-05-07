@@ -224,10 +224,13 @@
                "index": 1,
            "accessLevel": 0,
            "text": "Moulin Rouge",
-           "media_type": "html_with_video",
-           "filename": "html/mrouge.html",
-           "video_preview_path": "html/hidden-cities_files/mrouge.png",
-           "video_path": "html/hidden-cities_files/mrouge.mp4",
+               "media_type": "native_gallery",
+               "pictures": [
+                            {"path": "gall/louvre_0.jpg"},
+                            {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
+                            {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
+                            {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
+                            ],
             "categories": [
                 2
             ]
@@ -255,10 +258,13 @@
                "index": 5,
            "accessLevel": 0,
            "text": "Centre Georges Pompidou",
-           "media_type": "html_with_video",
-           "filename": "html/pompidu.html",
-           "video_preview_path": "html/hidden-cities_files/pompidu.png",
-           "video_path": "html/hidden-cities_files/pompidu.mp4",
+               "media_type": "native_gallery",
+               "pictures": [
+                            {"path": "gall/louvre_0.jpg"},
+                            {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
+                            {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
+                            {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
+                            ],
             "categories": [
                 2
             ]
@@ -270,8 +276,13 @@
                "index": 10,
            "accessLevel": 0,
            "text": "Eiffel Tower",
-           "media_type": "html_gallery",
-           "filename": "html/html_gallery.html",
+               "media_type": "native_gallery",
+               "pictures": [
+                            {"path": "gall/louvre_0.jpg"},
+                            {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
+                            {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
+                            {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
+                            ],
             "categories": [
                 2
             ]
@@ -283,10 +294,13 @@
                "index": 15,
            "accessLevel": 0,
            "text": "Les Invalides",
-           "media_type": "html_with_video",
-           "filename": "html/invalides.html",
-           "video_preview_path": "html/hidden-cities_files/invalides.png",
-           "video_path": "html/hidden-cities_files/invalides.mp4",
+               "media_type": "native_gallery",
+               "pictures": [
+                            {"path": "gall/louvre_0.jpg"},
+                            {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
+                            {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
+                            {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
+                            ],
             "categories": [
                 2
             ]
@@ -298,10 +312,13 @@
                "index": 20,
            "accessLevel": 0,
            "text": "Musee du Louvre",
-           "media_type": "html_with_video",
-           "filename": "html/louvre.html",
-           "video_preview_path": "html/hidden-cities_files/louvre.png",
-           "video_path": "html/hidden-cities_files/louvre.mp4",
+               "media_type": "native_gallery",
+               "pictures": [
+                            {"path": "gall/louvre_0.jpg"},
+                            {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
+                            {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
+                            {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
+                            ],
             "categories": [
                 2
             ]
@@ -313,10 +330,13 @@
                "index": 25,
            "accessLevel": 0,
            "text": "Montmartre",
-           "media_type": "html_with_video",
-           "filename": "html/monmartre.html",
-           "video_preview_path": "html/hidden-cities_files/monmartre.png",
-           "video_path": "html/hidden-cities_files/monmartre.mp4",
+               "media_type": "native_gallery",
+               "pictures": [
+                            {"path": "gall/louvre_0.jpg"},
+                            {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
+                            {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
+                            {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
+                            ],
             "categories": [
                 2
             ]
@@ -328,10 +348,13 @@
                "index": 30,
            "accessLevel": 0,
            "text": "Notre dame de Paris",
-           "media_type": "html_with_video",
-           "filename": "html/notre.html",
-           "video_preview_path": "html/hidden-cities_files/eiffel_tower.png",
-           "video_path": "html/hidden-cities_files/notre.mp4",
+               "media_type": "native_gallery",
+               "pictures": [
+                            {"path": "gall/louvre_0.jpg"},
+                            {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
+                            {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
+                            {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
+                            ],
             "categories": [
                 2
             ]
@@ -357,10 +380,13 @@
                "lat": 2.345437,
                "index": 27,
             "accessLevel": 0,
-           "media_type": "html_with_video",
-           "filename": "html/citadele.html",
-           "video_preview_path": "html/hidden-cities_files/citadele.png",
-           "video_path": "html/hidden-cities_files/citadele.mp4",
+               "media_type": "native_gallery",
+               "pictures": [
+                            {"path": "gall/louvre_0.jpg"},
+                            {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
+                            {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
+                            {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
+                            ],
             "categories": [
                 2
             ]
@@ -372,10 +398,13 @@
                "index": 63,
            "accessLevel": 0,
            "text": "La Defense",
-           "media_type": "html_with_video",
-           "filename": "html/defance.html",
-           "video_preview_path": "html/hidden-cities_files/defance.png",
-           "video_path": "html/hidden-cities_files/defance.mp4",
+               "media_type": "native_gallery",
+               "pictures": [
+                            {"path": "gall/louvre_0.jpg"},
+                            {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
+                            {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
+                            {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
+                            ],
  "categories": [
                                                                                        1
                                                                                        ]

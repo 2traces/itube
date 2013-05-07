@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "IndexedImageView.h"
 #import "ManagedObjects.h"
+#import "DebugUIImage.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 
@@ -21,14 +22,16 @@
 @synthesize titleLabel;
 @synthesize pictures;
 @synthesize titlesArray;
+@synthesize thumbsArray;
 
 
 - (id)initWithFrame:(CGRect)frame withGalleryPictures:(NSSet *)galleryPictures withAppDelegate:(tubeAppDelegate *)appDelegate{
     self = [super initWithFrame:frame];
     if (self) {
-        self.pictures = galleryPictures;
+        self.pictures = [NSMutableSet setWithSet: galleryPictures];
         self.imagesArray = [NSMutableArray array];
         self.titlesArray = [NSMutableArray array];
+        self.thumbsArray = [NSMutableArray array];
         self.backgroundColor = [UIColor blackColor];
         
         //add bgImageView
@@ -78,7 +81,7 @@
         int y = offsetY + i * (thumbSize+padding);
         IndexedImageView *thumb = [[IndexedImageView alloc] initWithFrame:CGRectMake(offsetX, y, thumbSize, thumbSize)];
         NSString *path = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, picture.path];
-        UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
+        UIImage *image = [[DebugUIImage alloc] initWithContentsOfFile:path];
         thumb.image = image;
         [self.imagesArray addObject:image];
         if (picture.title == nil) {
@@ -97,6 +100,7 @@
         thumb.clipsToBounds = YES;
         thumb.backgroundColor = [UIColor clearColor];
         [self addSubview:thumb];
+        [self.thumbsArray addObject:thumb];
         i++;
     }
 }
@@ -115,13 +119,18 @@
 }
 
 - (void)dealloc{
-    NSLog(@"Release native gallery %i", self.tag);
-    [self.pictures release];
+    for (IndexedImageView *thumb in self.thumbsArray) {
+        thumb.image = nil;
+    }
     for(UIView *view in self.subviews){
         [view removeFromSuperview];
         [view release];
     }
+    [self.thumbsArray release];
     [self.bgImageView release];
+    for (DebugUIImage *image in self.imagesArray) {
+        [image release];
+    }
     [self.imagesArray release];
     [self.bgImageView release];
     [self.titleLabel release];

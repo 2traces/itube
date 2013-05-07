@@ -16,6 +16,7 @@
 @property (retain) UILabel *titleLabel;
 @property (retain) NSSet *pictures;
 @property (retain) NSMutableArray *titlesArray;
+@property (retain) NSMutableArray *thumbsArray;
 
 - (id)initWithFrame:(CGRect)frame withGalleryPictures:(NSSet*)pictures withAppDelegate:(tubeAppDelegate*)appDelegate;
 
