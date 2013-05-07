@@ -7,9 +7,9 @@
 		<key>icon</key>
 		<string>icon_paris</string>
 		<key>url1</key>
-		<string></string>
+		<string>http://parismetromaps.info/maps/nyc/osm/</string>
 		<key>url2</key>
-		<string></string>
+		<string>http://parismetromaps.info/maps/nyc/osm/</string>
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>

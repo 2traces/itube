@@ -507,9 +507,10 @@ GLint uniforms[NUM_UNIFORMS];
             prevScale = scale;
             prevRecScale = recognizer.scale;
             break;
-        case UIGestureRecognizerStateChanged:
-            scale = prevScale * recognizer.scale / prevRecScale;
-            //NSLog(@"scale %f", scale);
+        case UIGestureRecognizerStateChanged: {
+            CGFloat sc2 = prevScale * recognizer.scale / prevRecScale;
+            if([rasterLayer checkLevel:sc2]) scale = sc2;
+        }
             break;
         case UIGestureRecognizerStateEnded:
             prevRecScale = 0.f;
