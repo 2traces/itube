@@ -74,6 +74,7 @@
 }
 
 - (void)dealloc{
+    self.mainImageView.image = nil;
     [_mainImageView release];
     self.mainImageView = nil;
     [_htmlDir release];
