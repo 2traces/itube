@@ -18,6 +18,8 @@
 
 static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 
+NSString* DisplayStationName(NSString* stName);
+
 #define kParseComplete @"kParseComplete"
 
 @interface tubeAppDelegate : NSObject <UIApplicationDelegate,MFMailComposeViewControllerDelegate> {

@@ -146,21 +146,23 @@
     }
 
     BOOL duplicate = NO;
+    NSString *stN = lang ? DisplayStationName(station.altname) : DisplayStationName(station.name);
     for (MStation *st in self.filteredStation) {
         if(st != station) {
             if(lang) {
-                if([st.altname isEqualToString:station.altname]) {
+                if([DisplayStationName(st.altname) isEqualToString:stN]) {
                     duplicate = YES;
                     break;
                 }
             } else {
-                if([st.name isEqualToString:station.name]) {
+                if([DisplayStationName(st.name) isEqualToString:stN]) {
                     duplicate = YES;
                     break;
                 }
             }
         }
     }
+    cellValue = DisplayStationName(cellValue);
     if(duplicate) {
         cellValue = [NSString stringWithFormat:@"%@ (%@)", cellValue, station.lines.name];
     }
@@ -268,7 +270,7 @@
 	
 	for (MStation* station in self.stationList)
 	{
-		NSRange isFound = [[station name] rangeOfString:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)];
+		NSRange isFound = [DisplayStationName(station.name) rangeOfString:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)];
         
 		if (isFound.location!=NSNotFound)
 		{
