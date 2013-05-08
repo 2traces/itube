@@ -2620,6 +2620,10 @@
 		FA1B84BD1739313400D8A05F /* DebugUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1B84BB1739313400D8A05F /* DebugUIImage.m */; };
 		FA1B84BE1739313400D8A05F /* DebugUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1B84BB1739313400D8A05F /* DebugUIImage.m */; };
 		FA1B84BF1739313400D8A05F /* DebugUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1B84BB1739313400D8A05F /* DebugUIImage.m */; };
+		FA1B84C8173A9B3600D8A05F /* DebugUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1B84C7173A9B3600D8A05F /* DebugUIImageView.m */; };
+		FA1B84C9173A9B3600D8A05F /* DebugUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1B84C7173A9B3600D8A05F /* DebugUIImageView.m */; };
+		FA1B84CA173A9B3600D8A05F /* DebugUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1B84C7173A9B3600D8A05F /* DebugUIImageView.m */; };
+		FA1B84CB173A9B3600D8A05F /* DebugUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1B84C7173A9B3600D8A05F /* DebugUIImageView.m */; };
 		FA4BA176171309CF0066BA71 /* HtmlGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA175171309CF0066BA71 /* HtmlGallery.m */; };
 		FA4BA177171309CF0066BA71 /* HtmlGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA175171309CF0066BA71 /* HtmlGallery.m */; };
 		FA4BA178171309CF0066BA71 /* HtmlGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA175171309CF0066BA71 /* HtmlGallery.m */; };
@@ -3474,6 +3478,8 @@
 		FA1A08C5170C18B1000CD689 /* MediaViewEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaViewEvents.h; sourceTree = "<group>"; };
 		FA1B84BA1739313400D8A05F /* DebugUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugUIImage.h; sourceTree = "<group>"; };
 		FA1B84BB1739313400D8A05F /* DebugUIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugUIImage.m; sourceTree = "<group>"; };
+		FA1B84C6173A9B3600D8A05F /* DebugUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugUIImageView.h; sourceTree = "<group>"; };
+		FA1B84C7173A9B3600D8A05F /* DebugUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugUIImageView.m; sourceTree = "<group>"; };
 		FA4BA174171309CF0066BA71 /* HtmlGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlGallery.h; sourceTree = "<group>"; };
 		FA4BA175171309CF0066BA71 /* HtmlGallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlGallery.m; sourceTree = "<group>"; };
 		FA4BA1D0171471C80066BA71 /* NativeGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeGallery.h; sourceTree = "<group>"; };
@@ -3940,6 +3946,8 @@
 				FA4BA1DE171484BA0066BA71 /* IndexedImageView.m */,
 				FA1B84BA1739313400D8A05F /* DebugUIImage.h */,
 				FA1B84BB1739313400D8A05F /* DebugUIImage.m */,
+				FA1B84C6173A9B3600D8A05F /* DebugUIImageView.h */,
+				FA1B84C7173A9B3600D8A05F /* DebugUIImageView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -7137,6 +7145,7 @@
 				FA4BA1D9171477C30066BA71 /* ColorFactory.m in Sources */,
 				FA4BA1DF171484BA0066BA71 /* IndexedImageView.m in Sources */,
 				FA1B84BC1739313400D8A05F /* DebugUIImage.m in Sources */,
+				FA1B84C8173A9B3600D8A05F /* DebugUIImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7249,6 +7258,7 @@
 				FA4BA1DA171477C30066BA71 /* ColorFactory.m in Sources */,
 				FA4BA1E0171484BA0066BA71 /* IndexedImageView.m in Sources */,
 				FA1B84BD1739313400D8A05F /* DebugUIImage.m in Sources */,
+				FA1B84C9173A9B3600D8A05F /* DebugUIImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7361,6 +7371,7 @@
 				FA4BA1DB171477C30066BA71 /* ColorFactory.m in Sources */,
 				FA4BA1E1171484BA0066BA71 /* IndexedImageView.m in Sources */,
 				FA1B84BE1739313400D8A05F /* DebugUIImage.m in Sources */,
+				FA1B84CA173A9B3600D8A05F /* DebugUIImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7473,6 +7484,7 @@
 				FA4BA1DC171477C30066BA71 /* ColorFactory.m in Sources */,
 				FA4BA1E2171484BA0066BA71 /* IndexedImageView.m in Sources */,
 				FA1B84BF1739313400D8A05F /* DebugUIImage.m in Sources */,
+				FA1B84CB173A9B3600D8A05F /* DebugUIImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -81,7 +81,7 @@
         int y = offsetY + i * (thumbSize+padding);
         IndexedImageView *thumb = [[IndexedImageView alloc] initWithFrame:CGRectMake(offsetX, y, thumbSize, thumbSize)];
         NSString *path = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, picture.path];
-        UIImage *image = [[DebugUIImage alloc] initWithContentsOfFile:path];
+        UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
         thumb.image = image;
         [self.imagesArray addObject:image];
         if (picture.title == nil) {
@@ -128,7 +128,7 @@
     }
     [self.thumbsArray release];
     [self.bgImageView release];
-    for (DebugUIImage *image in self.imagesArray) {
+    for (UIImage *image in self.imagesArray) {
         [image release];
     }
     [self.imagesArray release];

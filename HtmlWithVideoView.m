@@ -11,10 +11,49 @@
 
 @implementation HtmlWithVideoView
 
-@synthesize videoPreview;
-@synthesize lightPanel;
-@synthesize lightGray;
-@synthesize moviePlayer;
+@synthesize videoPreview = _videoPreview;
+@synthesize lightPanel = _lightPanel;
+@synthesize moviePlayer = _moviePlayer;
+@synthesize videoPreviewImage = _videoPreviewImage;
+
+- (id)initWithMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate withVideo:(BOOL)withVideo
+{
+    self = [super initWithFrame:parent.frame];
+    if (self) {
+        // Setup video
+        // #lightGray color is #f5f4f5
+        self.backgroundColor = [ColorFactory lightGrayColor];
+        CGFloat videoWidth = parent.bounds.size.width;
+        CGFloat videoHeight = videoWidth * 428 / 768;
+        CGRect videoFrame = CGRectMake(0, 0, videoWidth, videoHeight);
+        NSString *videoPreviewPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.previewPath];
+        if (withVideo) {
+            [self createMoviePlayer:media appDelegate:appDelegate videoFrame:videoFrame];
+        }
+        self.videoPreviewImage = [[DebugUIImage alloc] initWithContentsOfFile:videoPreviewPath];
+        self.videoPreview = [[DebugUIImageView alloc] initWithFrame:videoFrame];
+        self.videoPreview.image = self.videoPreviewImage;
+        [self addSubview:self.videoPreview];
+        
+        self.lightPanel = [[UIView alloc] initWithFrame:videoFrame];
+        self.lightPanel.backgroundColor = [ColorFactory lightGrayColor];
+        if (withVideo) {
+            [self addSubview:self.lightPanel];
+        }
+        self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, videoHeight,
+                                                                         videoWidth,
+                                                                         parent.frame.size.height-videoHeight)];
+        self.webView.scrollView.bounces = NO;
+        NSString *htmlPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename];
+        NSURL* url = [NSURL fileURLWithPath:htmlPath];
+        NSURLRequest* request = [NSURLRequest requestWithURL:url];
+        [self.webView loadRequest:request];
+        self.webView.backgroundColor = [ColorFactory lightGrayColor];
+        self.webView.opaque = NO;
+        [self addSubview:self.webView];
+    }
+    return self;
+}
 
 - (void)createMoviePlayer:(MMedia *)media appDelegate:(tubeAppDelegate *)appDelegate videoFrame:(CGRect)videoFrame
 {
@@ -26,7 +65,7 @@
     self.moviePlayer.repeatMode = MPMovieRepeatModeNone;
     self.moviePlayer.shouldAutoplay = YES;
     self.moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
-    self.moviePlayer.view.backgroundColor = lightGray;
+    self.moviePlayer.view.backgroundColor = [ColorFactory lightGrayColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:self.moviePlayer];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerPlaybackStarted:) name:MPMoviePlayerNowPlayingMovieDidChangeNotification object:self.moviePlayer];
     
@@ -38,47 +77,12 @@
     [self addSubview:movieView];
 }
 
-- (id)initWithMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate withVideo:(BOOL)withVideo
-{
-    self = [super initWithFrame:parent.frame];
+- (id)initWithMedia:(MMedia *)media withParent:(UIView *)parent withAppDelegate:(tubeAppDelegate *)appDelegate{
+    self = [self initWithMedia:media withParent:parent withAppDelegate:appDelegate withVideo:YES];
     if (self) {
-        // Setup video
-        // #lightGray color is #f5f4f5
-        self.lightGray = [ColorFactory lightGrayColor];
-        self.backgroundColor = self.lightGray;
-        CGFloat videoWidth = parent.bounds.size.width;
-        CGFloat videoHeight = videoWidth * 428 / 768;
-        CGRect videoFrame = CGRectMake(0, 0, videoWidth, videoHeight);
-        NSString *videoPreviewPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.previewPath];
-        if (withVideo) {
-            [self createMoviePlayer:media appDelegate:appDelegate videoFrame:videoFrame];
-        }
-        self.videoPreview = [[UIImageView alloc] initWithFrame:videoFrame];
-        self.videoPreview.image = [[UIImage alloc] initWithContentsOfFile:videoPreviewPath];
-        [self addSubview:self.videoPreview];
         
-        self.lightPanel = [[UIView alloc] initWithFrame:videoFrame];
-        self.lightPanel.backgroundColor = lightGray;
-        if (withVideo) {
-            [self addSubview:self.lightPanel];
-        }
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, videoHeight,
-                                                                         videoWidth,
-                                                                         parent.frame.size.height-videoHeight)];
-        webView.scrollView.bounces = NO;
-        NSString *htmlPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename];
-        NSURL* url = [NSURL fileURLWithPath:htmlPath];
-        NSURLRequest* request = [NSURLRequest requestWithURL:url];
-        [webView loadRequest:request];
-        webView.backgroundColor = self.lightGray;
-        webView.opaque = NO;
-        [self addSubview:webView];
     }
     return self;
-}
-
-- (id)initWithMedia:(MMedia *)media withParent:(UIView *)parent withAppDelegate:(tubeAppDelegate *)appDelegate{
-    return [self initWithMedia:media withParent:parent withAppDelegate:appDelegate withVideo:YES];
 }
 
 - (void) playerPlaybackDidFinish:(NSNotification*)notification{
@@ -105,13 +109,25 @@
 }
 
 -(void)dealloc{
+    NSLog(@"dealloc HtmlWithVideoView");
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:self.moviePlayer];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerNowPlayingMovieDidChangeNotification object:self.moviePlayer];
-    [self.videoPreview release];
+    self.videoPreview.image = nil;
+    [self.videoPreview removeFromSuperview];
+    [_videoPreview release];
+    self.videoPreview = nil;
+    
+    [self.webView removeFromSuperview];
+    [_webView release];
+    self.webView = nil;
+    
+    [_videoPreviewImage release];
+    self.videoPreviewImage = nil;
+    
     [self.moviePlayer stop];
-    [self.moviePlayer release];
-    [self.lightGray release];
-    [self.lightPanel release];
+    [_moviePlayer release];
+    self.moviePlayer = nil;
+    self.lightPanel = nil;
     [super dealloc];
 }
 

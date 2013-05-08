@@ -12,6 +12,7 @@
 
 
 - (void) dealloc{
+    NSLog(@"dealloc DebugUIImage");
     [super dealloc];
 }
 
