@@ -11,8 +11,8 @@
 
 @implementation HtmlGallery
 
-@synthesize mainImageView;
-@synthesize htmlDir;
+@synthesize mainImageView = _mainImageView;
+@synthesize htmlDir = _htmlDir;
 
 - (id)initWithMedia:(MMedia *)media withParent:(UIView *)parent withAppDelegate:(tubeAppDelegate *)appDelegate{
     self = [super initWithFrame:parent.frame];
@@ -74,8 +74,10 @@
 }
 
 - (void)dealloc{
-    [self.mainImageView release];
-    [self.htmlDir release];
+    [_mainImageView release];
+    self.mainImageView = nil;
+    [_htmlDir release];
+    self.htmlDir = nil;
     [super dealloc];
 }
 
