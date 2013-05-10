@@ -1119,6 +1119,7 @@
         [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
         level = 0;
         MAX_PIECES = 60;
+        if(IS_IPAD) MAX_PIECES *= 2;
         //loader = [[RManager alloc] initWithTarget:self selector:@selector(complete) andPath:rasterPath];
         
         NSString *url1 = [NSString stringWithFormat:[appDelegate getDefaultMapUrl1], mapName];
