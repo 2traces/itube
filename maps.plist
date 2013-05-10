@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>com.zuev.itube.paris.nyc</key>
+	<key>default</key>
 	<dict>
 		<key>icon</key>
 		<string>icon_paris</string>
@@ -150,7 +150,7 @@
 		<key>position</key>
 		<integer>5</integer>
 	</dict>
-	<key>default</key>
+	<key>com.zuev.itube.paris.venice</key>
 	<dict>
 		<key>icon</key>
 		<string>icon_venice</string>

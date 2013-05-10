@@ -457,8 +457,12 @@ GLint uniforms[NUM_UNIFORMS];
         case UIGestureRecognizerStateEnded:
             position.x = p.x/scale + prevPosition.x;
             position.y = p.y/scale + prevPosition.y;
+            if(panTime < 0.01f) panTime = 0.1f;
             panVelocity.x /= panTime;
             panVelocity.y /= panTime;
+            float maxVel = 860.f / scale;
+            if(panVelocity.x > maxVel) panVelocity.x = maxVel;
+            if(panVelocity.y > maxVel) panVelocity.y = maxVel;
             panTime = 0.f;
             break;
         case UIGestureRecognizerStateCancelled:
@@ -1152,6 +1156,11 @@ GLint uniforms[NUM_UNIFORMS];
 
 -(void)setGeoPosition:(CGRect)rect
 {
+    if(CGRectEqualToRect(rect, CGRectZero)) {
+        position = CGPointZero;
+        scale = 1.f;
+        return;
+    }
     const static double mult = 256.0 / 360.0;
     float y1 = atanhf(sinf(rect.origin.x * M_PI / 180.f));
     y1 = y1 * 256.f / (M_PI*2.f);
