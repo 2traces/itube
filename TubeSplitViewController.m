@@ -165,7 +165,7 @@ static float koefficient = 0.0f;
             [mainViewController.stationsView setButtonToState:0];
         }
     }
-    
+
     [mainViewController.stationsView adjustSubviews:self.interfaceOrientation];
     
 }
