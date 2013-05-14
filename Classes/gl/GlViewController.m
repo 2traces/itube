@@ -1396,7 +1396,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     r.size.height = rect.size.height * mult;
     position.x = -(r.origin.y + r.size.height * 0.5f);
     position.y = (y1 + y2) * 0.5f;
-    scale = 256.f / r.size.height;
+    scale = MIN(256.f / r.size.height, 256.f / rect.size.width);
     targetTimer = 0.f;
 }
 

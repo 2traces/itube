@@ -3060,29 +3060,32 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     CGRect geo = CGRectZero;
     for(Line *l in mapLines) {
         for (Station *s in l.stations) {
-            if(CGRectIntersectsRect(s.boundingBox, rect)) {
+            if(s.active && path) {
                 CGRect r = CGRectMake(s.gpsCoords.x, s.gpsCoords.y, 0, 0);
                 if(geo.origin.x == 0 || geo.origin.y == 0) geo = r;
                 else geo = CGRectUnion(geo, r);
                 r.size.width = r.size.height = l.shortColorCode;
-                if(s.active && path) {
-                    NSMutableDictionary *piece = [NSMutableDictionary dictionary];
-                    [piece setValue:[NSValue valueWithCGRect:r] forKey:@"coordinate"];
-                    [piece setValue:s.name forKey:@"name"];
-                    [piece setValue:[NSNumber numberWithInt:s.line.pinColor] forKey:@"pinColor"];
-                    int activeSegments = 0;
-                    for (Segment *seg in s.segment) {
-                        if(seg.active) activeSegments ++;
-                    }
-                    for (Segment *seg in s.backSegment) {
-                        if(seg.active) activeSegments ++;
-                    }
-                    if(s.transfer.active) activeSegments ++;
-                    if(activeSegments < 2) {
-                        [piece setValue:@"YES" forKey:@"ending"];
-                    }
-                    [data addObject:piece];
+                NSMutableDictionary *piece = [NSMutableDictionary dictionary];
+                [piece setValue:[NSValue valueWithCGRect:r] forKey:@"coordinate"];
+                [piece setValue:s.name forKey:@"name"];
+                [piece setValue:[NSNumber numberWithInt:s.line.pinColor] forKey:@"pinColor"];
+                int activeSegments = 0;
+                for (Segment *seg in s.segment) {
+                    if(seg.active) activeSegments ++;
                 }
+                for (Segment *seg in s.backSegment) {
+                    if(seg.active) activeSegments ++;
+                }
+                if(s.transfer.active) activeSegments ++;
+                if(activeSegments < 2) {
+                    [piece setValue:@"YES" forKey:@"ending"];
+                }
+                [data addObject:piece];
+            } else if(CGRectIntersectsRect(s.boundingBox, rect)) {
+                CGRect r = CGRectMake(s.gpsCoords.x, s.gpsCoords.y, 0, 0);
+                if(geo.origin.x == 0 || geo.origin.y == 0) geo = r;
+                else geo = CGRectUnion(geo, r);
+                r.size.width = r.size.height = l.shortColorCode;
             }
         }
     }
