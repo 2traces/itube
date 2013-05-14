@@ -1387,6 +1387,11 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 
 -(void)setGeoPosition:(CGRect)rect
 {
+    if(CGRectEqualToRect(rect, CGRectZero)) {
+        position = CGPointZero;
+        scale = 1.f;
+        return;
+    }
     const static double mult = 256.0 / 360.0;
     float y1 = atanhf(sinf(rect.origin.x * M_PI / 180.f));
     y1 = y1 * 256.f / (M_PI*2.f);
