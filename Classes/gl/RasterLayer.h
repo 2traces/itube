@@ -139,13 +139,13 @@
     NSMutableArray *secondQueue;
     NSMutableSet *minusCache, *plusCache;
     id target;
-    SEL selector;
+    SEL selector, erSelector;
     NSString *altSource;
 }
 @property (nonatomic, retain) NSString* altSource;
 
 -(id)initWithUrl:(NSString*)url;
--(void)setTarget:(id)t andSelector:(SEL)sel;
+-(void)setTarget:(id)t selector:(SEL)sel andErrorSelector:(SEL)sel2;
 -(void)loadPiece:(RPiece*)piece;
 -(void)secondLoadPiece:(RPiece*)piece;
 -(void)debugStatus;
@@ -185,7 +185,7 @@
 
 @interface RDownloadManager : NSObject {
     id target;
-    SEL selector;
+    SEL selector, erSelector;
     //NSRecursiveLock *lock;
     id rasterDownloader;
     id vectorDownloader;
@@ -194,7 +194,7 @@
 @property (nonatomic, retain) id rasterDownloader;
 @property (nonatomic, retain) id vectorDownloader;
 
--(id)initWithTarget:(id)target selector:(SEL)selector;
+-(id)initWithTarget:(id)target selector:(SEL)selector andErrorSelector:(SEL)selector2;
 -(void)load:(RPiece*)piece;
 -(void)secondLoad:(RPiece*)piece;
 -(void)debugStatus;
@@ -224,6 +224,7 @@
     BOOL altSource;
     VectorDownloader *vloader;
     RasterDownloader *rloader1, *rloader2;
+    BOOL emptyLayer;
 @public
     int piecesCount;
 }

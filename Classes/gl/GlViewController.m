@@ -714,8 +714,9 @@ CGPoint translateFromGeoToMap(CGPoint pm)
             prevRecScale = recognizer.scale;
             prevPosition = position;
             break;
-        case UIGestureRecognizerStateChanged:
-            scale = prevScale * recognizer.scale / prevRecScale;
+        case UIGestureRecognizerStateChanged: {
+            CGFloat sc2 = prevScale * recognizer.scale / prevRecScale;
+            if([rasterLayer checkLevel:sc2]) scale = sc2;
             if(scale > 100000) {
                 scale = 100000;
             }
@@ -728,6 +729,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
             }
             position.x = prevPosition.x + (dp.x - prevDp.x) / scale;
             position.y = prevPosition.y + (dp.y - prevDp.y) / scale;
+        }
             break;
         case UIGestureRecognizerStateEnded:
             if(scale > 100000) {
