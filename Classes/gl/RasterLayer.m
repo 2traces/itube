@@ -458,6 +458,7 @@ static long DownloadCacheSize = 0;
 
 -(void)dealloc
 {
+    [piece release];
     [connection release];
     [data release];
     [super dealloc];
@@ -607,6 +608,7 @@ static long DownloadCacheSize = 0;
     DownloadCache *dc = [[[DownloadCache alloc] initWithLevel:piece->level x:piece->x y:piece->y data:nil] autorelease];
     if([minusCache containsObject:dc]) {
         [piece rasterLoaded];
+        piece->level = -1;
         return YES;
     }
     dc = [plusCache member:dc];
@@ -727,7 +729,7 @@ static long DownloadCacheSize = 0;
             //NSLog(@"Download failed from '%@'", connection.originalRequest.URL.absoluteString);
 #endif
             dp->piece->level = -1;
-            [minusCache addObject:[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil]];
+            [minusCache addObject:[[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil] autorelease]];
             [target performSelector:erSelector];
         } else {
 #ifdef DEBUG
@@ -1072,7 +1074,7 @@ static long DownloadCacheSize = 0;
 -(void)setRasterDownloader:(id)_rasterDownloader
 {
     if(rasterDownloader != nil) [rasterDownloader setTarget:nil andSelector:nil];
-    rasterDownloader = _rasterDownloader;
+    rasterDownloader = [_rasterDownloader retain];
     [rasterDownloader setTarget:self selector:@selector(rasterComplete:) andErrorSelector:@selector(rasterNotFound)];
 }
 
@@ -1084,7 +1086,7 @@ static long DownloadCacheSize = 0;
 -(void)setVectorDownloader:(id)_vectorDownloader
 {
     if(vectorDownloader != nil) [vectorDownloader setTarget:nil andSelector:nil];
-    vectorDownloader = _vectorDownloader;
+    vectorDownloader = [_vectorDownloader retain];
     [vectorDownloader setTarget:self andSelector:@selector(vectorComplete:)];
 }
 
@@ -1186,10 +1188,10 @@ static long DownloadCacheSize = 0;
         //NSString *rasterPath = [[NSBundle mainBundle] pathForResource:@"vector" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         //NSURL *vurl = [[[NSURL alloc] initFileURLWithPath:rasterPath] autorelease];
         //NSString* vurlstr = [vurl absoluteString];
-        vloader = [[VectorDownloader alloc] initWithUrl:url1];
-        rloader1 = [[RasterDownloader alloc] initWithUrl:url1];
+        vloader = [[[VectorDownloader alloc] initWithUrl:url1] autorelease];
+        rloader1 = [[[RasterDownloader alloc] initWithUrl:url1] autorelease];
         rloader1.altSource = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        rloader2 = [[RasterDownloader alloc] initWithUrl:url2];
+        rloader2 = [[[RasterDownloader alloc] initWithUrl:url2] autorelease];
         //rloader2.altSource = [[NSBundle mainBundle] pathForResource:@"RASTER" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         dm.vectorDownloader = vloader;
         dm.rasterDownloader = rloader1;
@@ -1783,7 +1785,7 @@ static long DownloadCacheSize = 0;
                 currentObjectNumber = ob->number;
                 currentObject = [description objectForKey:[NSNumber numberWithInt:currentObjectNumber]];
                 if(currentObject == nil) {
-                    currentObject = [[RDescription alloc] initWithName:[NSString stringWithFormat:@"Name of object #%d",currentObjectNumber] andDescription:[NSString stringWithFormat:@"Description of object #%d",currentObjectNumber]];
+                    currentObject = [[[RDescription alloc] initWithName:[NSString stringWithFormat:@"Name of object #%d",currentObjectNumber] andDescription:[NSString stringWithFormat:@"Description of object #%d",currentObjectNumber]] autorelease];
                     [description setObject:currentObject forKey:[NSNumber numberWithInt:currentObjectNumber]];
                 }
                 return YES;
