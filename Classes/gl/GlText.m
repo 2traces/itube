@@ -19,7 +19,15 @@
 -(id)initWithText:(NSString *)text font:(NSString *)font fontSize:(CGFloat)fontSize andRect:(CGRect)rect
 {
     if((self = [super init])) {
-        UILabel *label = [[UILabel alloc] initWithFrame:rect];
+        const int scale = [[UIScreen mainScreen] scale];
+        CGRect rect2 = rect;
+        // double density for retina
+        if(scale > 1) {
+            rect2.size.width *= scale;
+            rect2.size.height *= scale;
+            fontSize *= scale;
+        }
+        UILabel *label = [[UILabel alloc] initWithFrame:rect2];
 		label.font = [UIFont fontWithName:font size:fontSize];
         label.textAlignment = UITextAlignmentCenter;
 		label.backgroundColor = [UIColor clearColor];
