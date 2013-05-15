@@ -316,6 +316,18 @@
     return image;
 }
 
+
+- (UIImage *)priceTagImage {
+    return [UIImage imageNamed:@"bt_price"];
+
+}
+
+
+- (UIImage *)settingsMapItemBackgroundImage {
+    return [UIImage imageNamed:@"settings_item_bg"];
+
+}
+
 - (UIImage *)firstAndLastCellSettingsTableImageNormal
 {
    return [UIImage imageNamed:@"first_and_last_cell_bg.png"];
@@ -358,7 +370,7 @@
 
 - (CGFloat)widthSettingsCellTableView
 {
-    return 304.0;
+    return 320.0;
 }
 
 - (UIImage *)buybuttonBackgroundForState:(UIControlState)state
@@ -711,6 +723,16 @@
 -(UIImageView*)stationsTableViewCellBackgroundSelected
 {
     return nil;
+}
+
+
+- (UIImage*)mapsSwitchButtonImage {
+    return [[UIImage imageNamed:@"maps_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 21, 10, 11)];
+}
+
+
+- (UIImage*)downloadPopupImage {
+    return [UIImage imageNamed:@"download_popup"];
 }
 
 -(UIImage*)overlayShadowImage

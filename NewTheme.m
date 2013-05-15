@@ -310,6 +310,18 @@
     return image;
 }
 
+
+- (UIImage *)priceTagImage {
+    return [UIImage imageNamed:@"newdes_bt_price"];
+    
+}
+
+
+- (UIImage *)settingsMapItemBackgroundImage {
+    return [UIImage imageNamed:@"newdes_settings_item_bg"];
+    
+}
+
 - (UIImage *)firstAndLastCellSettingsTableImageNormal
 {
     return [UIImage imageNamed:@"newdes_settings_cell_bg.png"];
@@ -961,6 +973,14 @@
 -(UIImageView*)stationsTableViewCellBackgroundSelected
 {
     return [[[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"newdes_stations_tblcell_selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)]] autorelease];
+}
+
+- (UIImage*)mapsSwitchButtonImage {
+    return [[UIImage imageNamed:@"newdes_maps_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 21, 10, 11)];
+}
+
+- (UIImage*)downloadPopupImage {
+    return [UIImage imageNamed:@"newdes_download_popup"];
 }
 
 -(UIImage*)overlayShadowImage

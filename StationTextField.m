@@ -278,7 +278,7 @@
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
-    CGContextRelease(context);
+    //CGContextRelease(context);
     
     return image;
 }
@@ -305,7 +305,7 @@
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
-    CGContextRelease(context);
+    //CGContextRelease(context);
     
     return image;
 }

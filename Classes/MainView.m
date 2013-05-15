@@ -140,11 +140,6 @@ NSInteger const toolbarWidth=320;
 	
 	//œ[self addSubview:stationNameView];
 	stationNameView.userInteractionEnabled = YES;
-	/*
-     CLController = [[CoreLocationController alloc] init];
-     CLController.delegate = self;
-     [CLController.locMgr startUpdatingLocation];
-     */
 	//UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
 	//[containerView addGestureRecognizer:singleTap];
     
@@ -178,18 +173,20 @@ NSInteger const toolbarWidth=320;
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:settings];
 
-    if ([[SSThemeManager sharedTheme] isNewTheme]) {
-        zones = [UIButton buttonWithType:UIButtonTypeCustom];
-        [zones setBackgroundImage:[[UIImage imageNamed:@"newdes_maps_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 21, 10, 11)] forState:UIControlStateNormal];
-        [zones setTitle:NSLocalizedString(@"MapsButton", @"MapsButton") forState:UIControlStateNormal];
-        [[zones titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:10.0]];
-        [zones setTitleEdgeInsets:UIEdgeInsetsMake(2, 0, 0, 0)];
-        [zones setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        zones.frame = zonesRect;
-        [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
+    zones = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [zones setBackgroundImage:[[SSThemeManager sharedTheme] mapsSwitchButtonImage] forState:UIControlStateNormal];
+
+    [zones setTitle:NSLocalizedString(@"MapsButton", @"MapsButton") forState:UIControlStateNormal];
+    [[zones titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:10.0]];
+    [zones setTitleEdgeInsets:UIEdgeInsetsMake(2, 0, 0, 0)];
+    [zones setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    zones.frame = zonesRect;
+    [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
+    
+    if (![appDelegate isIPodTouch4thGen]) {
         [self addSubview:zones];
     }
-    
     if (![[SSThemeManager sharedTheme] isNewTheme]) {
         UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
         shadow.frame = shadowRect;
@@ -352,17 +349,6 @@ NSInteger const toolbarWidth=320;
     [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:station]];
 	mapView.stationSelected=false;
     [self hideButtons];
-}
-
-- (void)locationUpdate:(CLLocation *)location {
-	//locLabel.text = [location description];
-	DLog(@" update %@ ",[location description]);
-	[mapView calcNearStations:location];
-}
-
-- (void)locationError:(NSError *)error {
-	//locLabel.text = [error description];
-	DLog(@" error %@ ",[error description]);
 }
 
 - (void)dealloc {

@@ -16,6 +16,22 @@
 #import "MainView.h"
 #import "SSTheme.h"
 
+#import <sys/utsname.h>
+
+NSString* machineName() {
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    
+    return [NSString stringWithCString:systemInfo.machine
+                              encoding:NSUTF8StringEncoding];
+}
+
+NSString* DisplayStationName(NSString* stName) {
+    NSString *tmpStr = [[stName stringByReplacingOccurrencesOfString:@"_" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    tmpStr = [[tmpStr stringByReplacingOccurrencesOfString:@"'" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    return [[tmpStr stringByReplacingOccurrencesOfString:@"." withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+}
+
 @implementation tubeAppDelegate
 
 @synthesize window;
@@ -25,6 +41,16 @@
 @synthesize cityName;
 @synthesize parseQueue;
 @synthesize tubeSplitViewController;
+
+-(void)showSettings
+{
+    if (IS_IPAD) {
+        // show setting modal
+        [[self mainViewController] showiPadSettingsModalView];
+    } else {
+        [[[self mainViewController] view] showSettings];
+    }
+}
 
 void uncaughtExceptionHandler(NSException *exception) {
     NSLog(@"CRASH: %@", exception);
@@ -121,9 +147,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex { 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     
-    if (alertView.tag=1) {
+    if (alertView.tag==1) {
         if (buttonIndex == 0) {
             
             NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
@@ -188,7 +214,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)resizeAlertView:(UIAlertView *)alertView
 {
-    if (alertView.tag=1) {
+    if (alertView.tag==1) {
         NSInteger imageCount = 0;
         CGFloat offset = 0.0f;
         CGFloat messageOffset = 0.0f;
@@ -407,6 +433,7 @@ void uncaughtExceptionHandler(NSException *exception) {
         [tubeSplitViewController hideTopViewAnimated];
         [tubeSplitViewController hideLeftView];
     }
+    [gl showDownloadPopup];
 }
 
 -(void)showMetroMap
@@ -522,6 +549,14 @@ void uncaughtExceptionHandler(NSException *exception) {
         }
     }
     
+    return NO;
+}
+
+- (BOOL)isIPodTouch4thGen {
+    NSString *device = machineName();
+    if ([device rangeOfString:@"iPod4" options:NSCaseInsensitiveSearch].location != NSNotFound) {
+        return YES;
+    }
     return NO;
 }
 

@@ -157,22 +157,23 @@
         }
     }
     
-    TopTwoStationsView *twoStationsView;
+    TopTwoStationsView *twoStationsView = nil;
     
     if (IS_IPAD && ![[SSThemeManager sharedTheme] isNewTheme]) {
         twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault] fieldWidth:189.0f fieldHeight:[[SSThemeManager sharedTheme] toolbarFieldHeight] fieldDelta:[[SSThemeManager sharedTheme] toolbarFieldDelta] deviceHeight:1024.0f deviceWidth:768.0f];
         twoStationsView.delegate=self;
         self.stationsView = twoStationsView;
         [(MainView*)self.view addSubview:twoStationsView];
-
+        [twoStationsView release];
+        
     } else if (!IS_IPAD) {
         twoStationsView = [[TopTwoStationsView alloc] initWithViewHeight:[[SSThemeManager sharedTheme] topToolbarHeight:UIBarMetricsDefault] fieldWidth:160.0f  fieldHeight:[[SSThemeManager sharedTheme] toolbarFieldHeight] fieldDelta:[[SSThemeManager sharedTheme] toolbarFieldDelta]  deviceHeight:480.0f deviceWidth:320.f];
         twoStationsView.delegate=self;
         self.stationsView = twoStationsView;
         [(MainView*)self.view addSubview:twoStationsView];
+        [twoStationsView release];
     }
     
-    [twoStationsView release];
     
     UISwipeGestureRecognizer *swipeRecognizerD = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];
     [swipeRecognizerD setDirection:UISwipeGestureRecognizerDirectionDown];

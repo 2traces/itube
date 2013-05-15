@@ -75,7 +75,7 @@ static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v )
 }
 
 - (NSString *)hexStringFromColor {
-    return [NSString stringWithFormat:@"%0.6X", self.rgbHex];
+    return [NSString stringWithFormat:@"%0.6X", (unsigned int)self.rgbHex];
 }
 
 -(UIColor*)darkenedColor {

@@ -10,7 +10,6 @@
 #import "RasterLayer.h"
 #import "SettingsNavController.h"
 #import "tubeAppDelegate.h"
-#import "SelectingTabBarViewController.h"
 #import "GlView.h"
 #import "SSTheme.h"
 
@@ -38,7 +37,7 @@ GLint uniforms[NUM_UNIFORMS];
     RasterLayer *rasterLayer;
     CGPoint position, prevPosition;
     CGFloat scale, prevScale;
-    UIButton *sourceData, *settings, *zones;
+    UIButton *sourceData, *settings, *zones, *downloadPopup;
     
     MStation *currentSelection;
     MStation *fromStation;
@@ -53,6 +52,7 @@ GLint uniforms[NUM_UNIFORMS];
     CGPoint userPosition, userGeoPosition;
 }
 @property (strong, nonatomic) EAGLContext *context;
+@property (nonatomic, retain) NSTimer *timer;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
 
 - (void)setupGL;
@@ -246,6 +246,7 @@ GLint uniforms[NUM_UNIFORMS];
 
 -(void)dealloc
 {
+
     [sp release];
     [sprite release];
     [super dealloc];
@@ -264,6 +265,9 @@ GLint uniforms[NUM_UNIFORMS];
 
 - (void)dealloc
 {
+    [self.timer invalidate];
+    self.timer = nil;
+    [downloadPopup release];
     [pinsArray release];
     [stationsView release];
     [_context release];
@@ -277,12 +281,14 @@ GLint uniforms[NUM_UNIFORMS];
     [super viewDidLoad];
     pinsArray = [[NSMutableArray alloc] init];
 
-    CGRect scrollSize,settingsRect,shadowRect,zonesRect;
+    CGRect scrollSize,settingsRect,shadowRect,zonesRect, downloadPopupRect;
     
     //scrollSize = CGRectMake(0, 44,(320),(480-64));
     //settingsRect=CGRectMake(285, 420, 27, 27);
     //shadowRect = CGRectMake(0, 44, 480, 61);
     zonesRect=CGRectMake(25, 420, 43, 25);
+    
+    downloadPopupRect = CGRectMake(30, 30, 260, 137);
     
     if (IS_IPAD) {
         //scrollSize = CGRectMake(0, 44, 768, (1024-74));
@@ -361,21 +367,62 @@ GLint uniforms[NUM_UNIFORMS];
     [view addSubview:sourceData];
 
     zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    [zones setBackgroundImage:[[UIImage imageNamed:@"newdes_maps_button"] resizableImageWithCapInsets:UIEdgeInsetsMake(14, 21, 10, 11)] forState:UIControlStateNormal];
+    
+    [zones setBackgroundImage:[[SSThemeManager sharedTheme] mapsSwitchButtonImage] forState:UIControlStateNormal];
+    
     [zones setTitle:NSLocalizedString(@"MetroButton", @"MetroButton")  forState:UIControlStateNormal];
     [[zones titleLabel] setFont:[UIFont fontWithName:@"MyriadPro-Semibold" size:10.0]];
     [zones setTitleEdgeInsets:UIEdgeInsetsMake(2, 0, 0, 0)];
     [zones setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     zones.frame = zonesRect;
     [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:zones];
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    if (![appDelegate isIPodTouch4thGen]) {
+        [view addSubview:zones];
+    }
+    
     view.zonesButton = zones;
     
+    downloadPopup = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+    
+    [downloadPopup setBackgroundImage:[[SSThemeManager sharedTheme] downloadPopupImage] forState:UIControlStateNormal];
+    
+    downloadPopup.frame = downloadPopupRect;
+    [downloadPopup addTarget:self action:@selector(openSettings) forControlEvents:UIControlEventTouchUpInside];
+    
+
+    
     // user geo position
-    Pin *p = [[Pin alloc] initWithId:0 color:0 andText:@"You are here!"];
+    Pin *p = [[[Pin alloc] initWithId:0 color:0 andText:@"You are here!"] autorelease];
     [pinsArray addObject:p];
     [p setPosition:userPosition];
     newPinId = 1;
+}
+
+- (void) showDownloadPopup {
+    if (![SettingsViewController isOfflineMapInstalled]) {
+        [self.view addSubview:downloadPopup];
+        downloadPopup.alpha = 0;
+        [UIView animateWithDuration:0.5f animations:^{
+            downloadPopup.alpha = 1;
+        }];
+        [self.timer invalidate];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:10
+                                                      target:self
+                                                    selector:@selector(dismissDownloadPopup)
+                                                    userInfo:nil
+                                                     repeats:NO];
+    }
+}
+
+- (void)dismissDownloadPopup {
+    self.timer = nil;
+    [UIView animateWithDuration:0.5f animations:^{
+        downloadPopup.alpha = 0;
+    } completion:^(BOOL finished) {
+        [downloadPopup removeFromSuperview];
+    }];
 }
 
 -(void) changeSource
@@ -410,8 +457,12 @@ GLint uniforms[NUM_UNIFORMS];
         case UIGestureRecognizerStateEnded:
             position.x = p.x/scale + prevPosition.x;
             position.y = p.y/scale + prevPosition.y;
+            if(panTime < 0.01f) panTime = 0.1f;
             panVelocity.x /= panTime;
             panVelocity.y /= panTime;
+            float maxVel = 860.f / scale;
+            if(panVelocity.x > maxVel) panVelocity.x = maxVel;
+            if(panVelocity.y > maxVel) panVelocity.y = maxVel;
             panTime = 0.f;
             break;
         case UIGestureRecognizerStateCancelled:
@@ -460,9 +511,10 @@ GLint uniforms[NUM_UNIFORMS];
             prevScale = scale;
             prevRecScale = recognizer.scale;
             break;
-        case UIGestureRecognizerStateChanged:
-            scale = prevScale * recognizer.scale / prevRecScale;
-            //NSLog(@"scale %f", scale);
+        case UIGestureRecognizerStateChanged: {
+            CGFloat sc2 = prevScale * recognizer.scale / prevRecScale;
+            if([rasterLayer checkLevel:sc2]) scale = sc2;
+        }
             break;
         case UIGestureRecognizerStateEnded:
             prevRecScale = 0.f;
@@ -492,6 +544,7 @@ GLint uniforms[NUM_UNIFORMS];
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc. that aren't in use.
+    [rasterLayer releaseMemory];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -729,6 +782,12 @@ GLint uniforms[NUM_UNIFORMS];
     [controller autorelease];
 }
 
+-(void) openSettings
+{
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate showSettings];
+}
+
 -(void) changeZones
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -744,9 +803,9 @@ GLint uniforms[NUM_UNIFORMS];
     newPinId ++;
     Pin *p = nil;
     if(name != nil)
-        p = [[Pin alloc] initWithId:newId color:color andText:name];
+        p = [[[Pin alloc] initWithId:newId color:color andText:name] autorelease];
     else
-        p = [[Pin alloc] initWithId:newId andColor:color];
+        p = [[[Pin alloc] initWithId:newId andColor:color] autorelease];
     float dist = 256.f/scale;
     [p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
     [pinsArray addObject:p];
@@ -1097,6 +1156,11 @@ GLint uniforms[NUM_UNIFORMS];
 
 -(void)setGeoPosition:(CGRect)rect
 {
+    if(CGRectEqualToRect(rect, CGRectZero)) {
+        position = CGPointZero;
+        scale = 1.f;
+        return;
+    }
     const static double mult = 256.0 / 360.0;
     float y1 = atanhf(sinf(rect.origin.x * M_PI / 180.f));
     y1 = y1 * 256.f / (M_PI*2.f);
@@ -1107,7 +1171,7 @@ GLint uniforms[NUM_UNIFORMS];
     r.size.height = rect.size.height * mult;
     position.x = -(r.origin.y + r.size.height * 0.5f);
     position.y = (y1 + y2) * 0.5f;
-    scale = 256.f / r.size.height;
+    scale = MIN(256.f / r.size.height, 256.f / rect.size.width);
 }
 
 -(void)setGeoPosition:(CGPoint)geoCoords withZoom:(CGFloat)zoom

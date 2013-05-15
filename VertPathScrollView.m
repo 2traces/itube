@@ -93,6 +93,7 @@
             
             Transfer *transfer = (Transfer*)[path objectAtIndex:i];
             
+            if(threadStartArray != nil) [threadStartArray release];
             threadStartArray = [[[transfer stations] allObjects] retain];
             threadStart = nil;
             

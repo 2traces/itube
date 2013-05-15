@@ -13,6 +13,7 @@
 #import "GlSprite.h"
 #import "GlPanel.h"
 #import "TopTwoStationsView.h"
+#import "SelectingTabBarViewController.h"
 
 @interface Pin : NSObject {
     int _id;
@@ -38,7 +39,7 @@
 -(CGRect)bounds;
 @end
 
-@interface GlViewController : GLKViewController <TwoStationsViewProtocol>
+@interface GlViewController : GLKViewController <TwoStationsViewProtocol, SelectingTabBarProtocol>
 
 @property (nonatomic, assign) MStation *currentSelection;
 @property (nonatomic, retain) MStation *fromStation;
@@ -57,5 +58,6 @@
 -(void)removeAllPins;
 -(Pin*)getPin:(int)pinId;
 -(void) showSettings;
+- (void) showDownloadPopup;
 
 @end

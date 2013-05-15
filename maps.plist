@@ -2,12 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>com.zuev.itube.paris.newyork</key>
+	<key>default</key>
 	<dict>
+		<key>icon</key>
+		<string>icon_paris</string>
 		<key>url1</key>
-		<string></string>
+		<string>http://parismetromaps.info/maps/nyc/osm/</string>
 		<key>url2</key>
-		<string></string>
+		<string>http://parismetromaps.info/maps/nyc/osm/</string>
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>
@@ -17,14 +19,18 @@
 		<key>description</key>
 		<string>newyork.txt</string>
 		<key>picture</key>
-		<string>newyork.png</string>
+		<string>poster_paris</string>
 		<key>zip_download</key>
 		<string>/maps/newyork/newyork1.zip</string>
 		<key>statusURL</key>
 		<string></string>
+		<key>position</key>
+		<integer>0</integer>
 	</dict>
 	<key>com.zuev.itube.paris.london</key>
 	<dict>
+		<key>icon</key>
+		<string>icon_london</string>
 		<key>url1</key>
 		<string>http://www.x-provocation.com/maps/cuba/OSM</string>
 		<key>url2</key>
@@ -38,18 +44,22 @@
 		<key>description</key>
 		<string>london.txt</string>
 		<key>picture</key>
-		<string>london.png</string>
+		<string>poster_london</string>
 		<key>zip_donwload</key>
 		<string>/maps/london/london1.zip</string>
 		<key>statusURL</key>
 		<string>http://metro.dim0xff.com/london/lines.txt</string>
+		<key>position</key>
+		<integer>1</integer>
 	</dict>
 	<key>com.zuev.itube.paris.paris</key>
 	<dict>
+		<key>icon</key>
+		<string>icon_paris</string>
 		<key>url1</key>
-		<string>http://www.x-provocation.com/maps/paris/osm</string>
+		<string>http://parismetromaps.info/maps/paris/osm</string>
 		<key>url2</key>
-		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
+		<string>http://parismetromaps.info/maps/paris/osm</string>
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>
@@ -59,11 +69,13 @@
 		<key>description</key>
 		<string>paris.txt</string>
 		<key>picture</key>
-		<string>paris.png</string>
+		<string>poster_paris</string>
 		<key>zip_download</key>
 		<string>/maps/paris/paris1.zip</string>
+		<key>position</key>
+		<integer>2</integer>
 	</dict>
-	<key>default</key>
+	<key>com.zuev.itube.paris.berlin</key>
 	<dict>
 		<key>url1</key>
 		<string>http://parismetromaps.info/maps/berlin/osm/osm/</string>
@@ -78,56 +90,97 @@
 		<key>description</key>
 		<string>berlin.txt</string>
 		<key>picture</key>
-		<string>berlin.png</string>
+		<string>poster_berlin</string>
 		<key>zip_download</key>
 		<string>/maps/berlin/berlin1.zip</string>
 		<key>statusURL</key>
 		<string>http://metro.dim0xff.com/paris/data.txt</string>
+		<key>icon</key>
+		<string>icon_paris</string>
+		<key>position</key>
+		<integer>3</integer>
+	</dict>
+	<key>com.zuev.itube.paris.berlin.offlinemap</key>
+	<dict>
+		<key>url1</key>
+		<string>http://parismetromaps.info/maps/berlin/osm/osm/</string>
+		<key>url2</key>
+		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
+		<key>ver</key>
+		<string>1</string>
+		<key>name</key>
+		<string>Offline map</string>
+		<key>filename</key>
+		<string>berlin</string>
+		<key>description</key>
+		<string>berlin.txt</string>
+		<key>picture</key>
+		<string>poster_berlin</string>
+		<key>zip_download</key>
+		<string>/maps/berlin/berlin1.zip</string>
+		<key>statusURL</key>
+		<string>http://metro.dim0xff.com/paris/data.txt</string>
+		<key>isOfflineMap</key>
+		<true/>
+		<key>icon</key>
+		<string>icon_paris</string>
+		<key>position</key>
+		<integer>4</integer>
 	</dict>
 	<key>com.zuev.itube.paris.hamburg</key>
 	<dict>
+		<key>icon</key>
+		<string>icon_hamburg</string>
 		<key>url1</key>
 		<string>http://www.x-provocation.com/maps/cuba/OSM</string>
 		<key>url2</key>
 		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
 		<key>ver</key>
 		<string>1</string>
-		<key>name</key>
-		<string>Hamburg</string>
 		<key>filename</key>
 		<string>hamburg</string>
+		<key>name</key>
+		<string>Hamburg</string>
 		<key>description</key>
 		<string>hamburg.txt</string>
 		<key>picture</key>
-		<string>hamburg.png</string>
+		<string>poster_hamburg</string>
 		<key>zip_download</key>
 		<string>/maps/hamburg/hamburg1.zip</string>
+		<key>position</key>
+		<integer>5</integer>
 	</dict>
 	<key>com.zuev.itube.paris.venice</key>
 	<dict>
+		<key>icon</key>
+		<string>icon_venice</string>
 		<key>url1</key>
-		<string>http://www.x-provocation.com/maps/cuba/OSM</string>
+		<string>http://parismetromaps.info/maps/venice/OSM/</string>
 		<key>url2</key>
-		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
+		<string>http://parismetromaps.info/maps/venice/OSM/</string>
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>
-		<string>Paris</string>
+		<string>Venice</string>
 		<key>filename</key>
-		<string>paris</string>
+		<string>venice</string>
 		<key>description</key>
 		<string>venice.txt</string>
 		<key>picture</key>
-		<string>venice.png</string>
+		<string>poster_venice</string>
 		<key>zip_download</key>
 		<string>/maps/venice/venice1.zip</string>
 		<key>statusURL</key>
 		<string>http://metro.dim0xff.com/paris/data_RU.txt</string>
 		<key>altStatusURL</key>
 		<string>http://metro.dim0xff.com/paris/data.txt</string>
+		<key>position</key>
+		<integer>6</integer>
 	</dict>
 	<key>com.zuev.itube.paris.peterburg</key>
 	<dict>
+		<key>icon</key>
+		<string>icon_peterburg</string>
 		<key>url1</key>
 		<string>http://www.x-provocation.com/maps/cuba/OSM</string>
 		<key>url2</key>
@@ -141,12 +194,18 @@
 		<key>description</key>
 		<string>peterburg.txt</string>
 		<key>picture</key>
-		<string>peterburg.png</string>
+		<string>poster_peterburg</string>
 		<key>zip_download</key>
 		<string>/maps/peterburg/peterburg1.zip</string>
+		<key>appstore_link</key>
+		<string>https://itunes.apple.com/us/app/angry-birds/id343200656?mt=8&amp;</string>
+		<key>position</key>
+		<integer>7</integer>
 	</dict>
 	<key>com.zuev.itube.paris.shanghai</key>
 	<dict>
+		<key>icon</key>
+		<string>icon_shanghai</string>
 		<key>url1</key>
 		<string>http://www.x-provocation.com/maps/cuba/OSM</string>
 		<key>url2</key>
@@ -160,9 +219,11 @@
 		<key>description</key>
 		<string>shanghai.txt</string>
 		<key>picture</key>
-		<string>shanghai.png</string>
+		<string>poster_shanghai</string>
 		<key>zip_download</key>
 		<string>/maps/shanghai/shanghai1.zip</string>
+		<key>position</key>
+		<integer>8</integer>
 	</dict>
 </dict>
 </plist>

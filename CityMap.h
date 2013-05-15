@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "Graph.h"
 #import "Schedule.h"
-//#import <CoreLocation/CoreLocation.h>
 
 NSMutableArray * Split(NSString* s);
 //CG Helpers	

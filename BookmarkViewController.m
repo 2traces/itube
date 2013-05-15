@@ -156,7 +156,7 @@
         cellValue = [station name];
     }
     
-    cell.mylabel.text = cellValue;
+    cell.mylabel.text = DisplayStationName(cellValue);
     cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
     cell.mylabel.textColor = [[SSThemeManager sharedTheme] mainColor];
     
@@ -250,7 +250,7 @@
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
-    CGContextRelease(context);
+    //CGContextRelease(context);
     
     return image;
 }

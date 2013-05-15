@@ -78,12 +78,38 @@
     [locationManager release];
     locationManager = nil;
     if([CLLocationManager locationServicesEnabled]) {
-        locationManager = [[CLLocationManager alloc] init];
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-        locationManager.distanceFilter = 500;
-        [locationManager startUpdatingLocation];
-        return YES;
+        switch([CLLocationManager authorizationStatus]) {
+            case kCLAuthorizationStatusAuthorized:
+                locationManager = [[CLLocationManager alloc] init];
+                locationManager.delegate = self;
+                locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+                locationManager.distanceFilter = 500;
+                [locationManager startUpdatingLocation];
+#ifdef DEBUG
+                NSLog(@"geo location is authorized");
+#endif
+                return YES;
+            case kCLAuthorizationStatusNotDetermined:
+                locationManager = [[CLLocationManager alloc] init];
+                locationManager.delegate = self;
+                locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+                locationManager.distanceFilter = 500;
+                [locationManager startUpdatingLocation];
+#ifdef DEBUG
+                NSLog(@"geo location is not determined");
+#endif
+                return YES;
+            case kCLAuthorizationStatusDenied:
+#ifdef DEBUG
+                NSLog(@"geo location is denied");
+#endif
+                return NO;
+            case kCLAuthorizationStatusRestricted:
+#ifdef DEBUG
+                NSLog(@"geo location is restricted");
+#endif
+                return NO;
+        }
     } else return NO;
 }
 
@@ -408,11 +434,16 @@
     } else {
         [foundPaths release];
         foundPaths = nil;
-        // path not found
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"NoPathHeader", @"") message:NSLocalizedString(@"NoPathText", @"") delegate:nil cancelButtonTitle:NSLocalizedString(@"NoPathButton", @"") otherButtonTitles:nil];
-        [alert show];
-        [alert release];
+        [self performSelectorOnMainThread:@selector(showPathNotFoundMessage) withObject:nil waitUntilDone:NO];
     }
+}
+
+-(void) showPathNotFoundMessage
+{
+    // path not found
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"NoPathHeader", @"") message:NSLocalizedString(@"NoPathText", @"") delegate:nil cancelButtonTitle:NSLocalizedString(@"NoPathButton", @"") otherButtonTitles:nil];
+    [alert show];
+    [alert release];
 }
 
 -(void) clearPath

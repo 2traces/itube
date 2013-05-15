@@ -24,6 +24,7 @@
 @property(nonatomic, assign) id <DownloadServerListener> listener;
 @property(nonatomic, retain) NSString *prodID;
 
+- (void)loadFileAtURL:(NSString *)url withMainURL:(NSString*)mainUrl;
 -(void)loadFileAtURL:(NSString*)url;
 -(void)cancel;
 
@@ -34,6 +35,7 @@
 -(void)downloadDone:(NSMutableData*)data prodID:(NSString*)prodID server:(DownloadServer*)myid;
 -(void)startDownloading:(NSString*)prodID;
 -(void)downloadedBytes:(float)part prodID:(NSString*)prodID;
+-(void)downloadedBytes:(long)part outOfBytes:(long)whole prodID:(NSString*)prodID;
 -(void)downloadFailed:(DownloadServer*)myid;
 
 @end

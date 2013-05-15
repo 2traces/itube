@@ -168,7 +168,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         if(alternative != NSNotFound) {
             string = [string substringToIndex:alternative];
         }
-        words = [[string componentsSeparatedByString:@";"] retain];
+        NSString *tmpStr = [[string stringByReplacingOccurrencesOfString:@"_" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        tmpStr = [[tmpStr stringByReplacingOccurrencesOfString:@"'" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        tmpStr = [[tmpStr stringByReplacingOccurrencesOfString:@"." withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        words = [[tmpStr componentsSeparatedByString:@";"] retain];
         string = [[[string stringByReplacingOccurrencesOfString:@";" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
         if(angle == 0) {
             CGFloat d = rect.size.height * 0.5f;
@@ -257,7 +260,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         if(alternative != NSNotFound) {
             string = [string substringFromIndex:alternative+1];
         }
-        words = [[string componentsSeparatedByString:@";"] retain];
+        NSString *tmpStr = [[string stringByReplacingOccurrencesOfString:@"_" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        tmpStr = [[tmpStr stringByReplacingOccurrencesOfString:@"'" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        tmpStr = [[tmpStr stringByReplacingOccurrencesOfString:@"." withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        words = [[tmpStr componentsSeparatedByString:@";"] retain];
         string = [[[string stringByReplacingOccurrencesOfString:@";" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
         if(angle == 0) {
             CGFloat d = rect.size.height * 0.5f;
@@ -342,7 +348,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             if(finish) break;
             else string = [string substringFromIndex:1];
         }
-        words = [[string componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@";&"]] retain];
+        NSString *tmpStr = [[string stringByReplacingOccurrencesOfString:@"_" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        tmpStr = [[tmpStr stringByReplacingOccurrencesOfString:@"'" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        tmpStr = [[tmpStr stringByReplacingOccurrencesOfString:@"." withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        words = [[tmpStr componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@";&"]] retain];
         string = [[[string stringByReplacingOccurrencesOfString:@";" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
         if(angle == 0) {
             CGFloat d = rect.size.height * 0.5f;
@@ -2943,38 +2952,44 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     CGRect geo = CGRectZero;
     for(Line *l in mapLines) {
         for (Station *s in l.stations) {
-            if(CGRectIntersectsRect(s.boundingBox, rect)) {
+            if(s.active && path) {
                 CGRect r = CGRectMake(s.gpsCoords.x, s.gpsCoords.y, 0, 0);
                 if(geo.origin.x == 0 || geo.origin.y == 0) geo = r;
                 else geo = CGRectUnion(geo, r);
                 r.size.width = r.size.height = l.shortColorCode;
-                if(s.active && path) {
-                    NSMutableDictionary *piece = [NSMutableDictionary dictionary];
-                    [piece setValue:[NSValue valueWithCGRect:r] forKey:@"coordinate"];
-                    [piece setValue:s.name forKey:@"name"];
-                    int activeSegments = 0;
-                    for (Segment *seg in s.segment) {
-                        if(seg.active) activeSegments ++;
-                    }
-                    for (Segment *seg in s.backSegment) {
-                        if(seg.active) activeSegments ++;
-                    }
-                    //if(s.transfer.active) activeSegments ++;
-                    if(activeSegments < 2) {
-                        [piece setValue:@"YES" forKey:@"ending"];
-                    }
-                    [data addObject:piece];
+                NSMutableDictionary *piece = [NSMutableDictionary dictionary];
+                [piece setValue:[NSValue valueWithCGRect:r] forKey:@"coordinate"];
+                [piece setValue:s.name forKey:@"name"];
+                int activeSegments = 0;
+                for (Segment *seg in s.segment) {
+                    if(seg.active) activeSegments ++;
                 }
+                for (Segment *seg in s.backSegment) {
+                    if(seg.active) activeSegments ++;
+                }
+                //if(s.transfer.active) activeSegments ++;
+                if(activeSegments < 2) {
+                    [piece setValue:@"YES" forKey:@"ending"];
+                }
+                [data addObject:piece];
+            } else if(!path && CGRectIntersectsRect(s.boundingBox, rect)) {
+                CGRect r = CGRectMake(s.gpsCoords.x, s.gpsCoords.y, 0, 0);
+                if(geo.origin.x == 0 || geo.origin.y == 0) geo = r;
+                else geo = CGRectUnion(geo, r);
+                r.size.width = r.size.height = l.shortColorCode;
             }
         }
     }
+    //if(geo.size.width > 1.f || geo.size.height > 1.f) {
+        NSLog(@"GPS coordinates\nGPS1: %5f, %5f\nGPS2: %5f, %5f\nGPS3: %5f, %5f\nGPS4: %5f, %5f", geo.origin.x, geo.origin.y, geo.origin.x, geo.origin.y+geo.size.height, geo.origin.x + geo.size.width, geo.origin.y, geo.origin.x + geo.size.width, geo.origin.y + geo.size.height);
+    //}
     return geo;
 }
 
 
 -(NSMutableArray*) describePath:(NSArray*)pathMap {
  
-    NSMutableArray *path = [[NSMutableArray alloc] init];
+    NSMutableArray *path = [[[NSMutableArray alloc] init] autorelease];
     
     [path removeAllObjects];
 	int count_ = [pathMap count];

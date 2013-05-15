@@ -205,6 +205,7 @@
     //    NSDate *date = [NSDate date];
     
     static NSString *CellIdentifier = @"StationCell";
+    BOOL lang = [[MHelper sharedHelper] languageIndex]%2;
     
     StationListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -217,10 +218,32 @@
     if (tableView == self.mySearchDC.searchResultsTableView || isTextFieldInUse)
     {
         NSString *cellValue;
-        if ([[MHelper sharedHelper] languageIndex]%2) {
-            cellValue = [[self.filteredStation objectAtIndex:indexPath.row] altname];
+        MStation *station = [self.filteredStation objectAtIndex:indexPath.row];
+        if (lang) {
+            cellValue = station.altname;
         } else {
-            cellValue = [[self.filteredStation objectAtIndex:indexPath.row] name];
+            cellValue = station.name;
+        }
+        BOOL duplicate = NO;
+        NSString *stN = lang ? DisplayStationName(station.altname) : DisplayStationName(station.name);
+        for (MStation *st in self.filteredStation) {
+            if(st != station) {
+                if(lang) {
+                    if([DisplayStationName(st.altname) isEqualToString:stN]) {
+                        duplicate = YES;
+                        break;
+                    }
+                } else {
+                    if([DisplayStationName(st.name) isEqualToString:stN]) {
+                        duplicate = YES;
+                        break;
+                    }
+                }
+            }
+        }
+        cellValue = DisplayStationName(cellValue);
+        if(duplicate) {
+            cellValue = [NSString stringWithFormat:@"%@ (%@)", cellValue, station.lines.name];
         }
         cell.mylabel.text = cellValue;
         cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
@@ -250,11 +273,32 @@
         
         if ([stations count]>0) {
             NSString *cellValue;
-            
-            if ([[MHelper sharedHelper] languageIndex]%2) {
-                cellValue = [[stations objectAtIndex:indexPath.row] altname];
+            MStation *station = [stations objectAtIndex:indexPath.row];
+            if (lang) {
+                cellValue = station.altname;
             } else {
-                cellValue = [[stations objectAtIndex:indexPath.row] name];
+                cellValue = station.name;
+            }
+            BOOL duplicate = NO;
+            NSString *stN = lang ? DisplayStationName(station.altname) : DisplayStationName(station.name);
+            for (MStation *st in stations) {
+                if(st != station) {
+                    if(lang) {
+                        if([DisplayStationName(st.altname) isEqualToString:stN]) {
+                            duplicate = YES;
+                            break;
+                        }
+                    } else {
+                        if([DisplayStationName(st.name) isEqualToString:stN]) {
+                            duplicate = YES;
+                            break;
+                        }
+                    }
+                }
+            }
+            cellValue = DisplayStationName(cellValue);
+            if(duplicate) {
+                cellValue = [NSString stringWithFormat:@"%@ (%@)", cellValue, station.lines.name];
             }
             cell.mylabel.text = cellValue;
             cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
@@ -444,7 +488,7 @@
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
-    CGContextRelease(context);
+    //CGContextRelease(context);
     
     return image;
 }
@@ -476,7 +520,7 @@
 	
 	for (MStation* station in self.stationList)
 	{
-		NSRange isFound = [[station name] rangeOfString:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)];
+		NSRange isFound = [DisplayStationName(station.name) rangeOfString:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)];
         
 		if (isFound.location!=NSNotFound)
 		{
