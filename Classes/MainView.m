@@ -95,6 +95,13 @@ NSInteger const toolbarWidth=320;
     
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	mapView = [[[MapView alloc] initWithFrame:scrollSize] autorelease];
+    
+    //
+    mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    mapView.autoresizesSubviews = YES;
+    
+    //
+    
     mapView.cityMap = appDelegate.cityMap;
     mapView.vcontroller = self.vcontroller;
     self.backgroundColor = mapView.backgroundColor;
@@ -114,6 +121,10 @@ NSInteger const toolbarWidth=320;
 	//containerView.directionalLockEnabled = YES;
     //	containerView.userInteractionEnabled = YES;
     //	mapView.exclusiveTouch = NO;
+    
+    containerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    containerView.autoresizesSubviews = YES;
+
     
     [containerView addSubview:mapView.previewImage];
     containerView.scrolledView = mapView;

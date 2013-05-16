@@ -81,6 +81,10 @@ static float koefficient = 0.0f;
         self.topStationsView=twoStationsView;
         twoStationsView.delegate=mainViewController;
         mainViewController.stationsView = twoStationsView;
+        
+        twoStationsView.autoresizesSubviews = YES;
+        twoStationsView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        
         [self.view addSubview:twoStationsView];
         [twoStationsView release];
     }
@@ -328,9 +332,9 @@ static float koefficient = 0.0f;
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
 	[leftPathController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 	[mainViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    [self layoutSubviews];
-    [self adjustMapView];
-    [self adjustPathView];
+//    [self layoutSubviews]; // скорее всего это не надо 
+//    [self adjustMapView];
+//    [self adjustPathView];
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {

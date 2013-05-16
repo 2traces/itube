@@ -47,7 +47,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrameSize">{320, 75}</string>
 								<reference key="NSSuperview" ref="108823769"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="528696650"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -85,7 +84,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{13, 32}, {17, 17}}</string>
 								<reference key="NSSuperview" ref="108823769"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="438322741"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -96,7 +94,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{78, 37}, {117, 9}}</string>
 								<reference key="NSSuperview" ref="108823769"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="293394868"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -108,7 +105,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{76, 36}, {130, 21}}</string>
 								<reference key="NSSuperview" ref="108823769"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="775144969"/>
 								<string key="NSReuseIdentifierKey">_NS:328</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -140,7 +136,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{78, 28}, {130, 39}}</string>
 								<reference key="NSSuperview" ref="108823769"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="517148956"/>
 								<string key="NSReuseIdentifierKey">_NS:328</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -163,7 +158,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{32, 13}, {43, 43}}</string>
 								<reference key="NSSuperview" ref="108823769"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="607474057"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -174,7 +168,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{10, 91}, {300, 100}}</string>
 								<reference key="NSSuperview" ref="108823769"/>
-								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="231434339"/>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -184,7 +177,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 83}, {320, 115}}</string>
 								<reference key="NSSuperview" ref="108823769"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="652014639"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -205,7 +197,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{203, 28}, {102, 27}}</string>
 								<reference key="NSSuperview" ref="108823769"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="108559493"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -224,7 +215,6 @@
 						</array>
 						<string key="NSFrameSize">{320, 198}</string>
 						<reference key="NSSuperview" ref="1048029169"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="411710355"/>
 						<string key="NSReuseIdentifierKey">_NS:395</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -240,7 +230,6 @@
 				</array>
 				<string key="NSFrameSize">{320, 199}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="108823769"/>
 				<string key="NSReuseIdentifierKey">_NS:384</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
