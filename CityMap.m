@@ -1043,7 +1043,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         Station *st = [sibling objectAtIndex:i];
         int curDrv = driving;
         if(drv >= 0) curDrv = [[relationDriving objectAtIndex:drv] intValue];
-        [segment addObject:[[[Segment alloc] initFromStation:self toStation:st withDriving:curDrv] autorelease]];
+        Segment *bseg = [[[Segment alloc] initFromStation:self toStation:st withDriving:curDrv] autorelease];
+        [segment addObject:bseg];
+        [st.backSegment addObject:bseg];
         if(drv < [relationDriving count]-1) drv ++;
     }
     if(!driving && [relationDriving count]) driving = [[relationDriving objectAtIndex:0] intValue];
@@ -1256,7 +1258,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         isSpline = NO;
         start = from;
         end = to;
-        [end.backSegment addObject:self];
         driving = dr;
         //NSAssert(driving > 0, @"illegal driving");
 #ifdef DEBUG
