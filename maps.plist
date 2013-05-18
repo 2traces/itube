@@ -43,12 +43,12 @@
 		<key>video_content</key>
 		<string>https://www.youtube.com/watch?v=f-qDgqTJehg</string>
 	</dict>
-	<key>com.zuev.highlights.berlin</key>
+	<key>com.zuev.hiddencities.berlin</key>
 	<dict>
 		<key>url1</key>
-		<string>http://www.x-provocation.com/maps/berlin/osm/</string>
+		<string>http://parismetromaps.info/maps/berlin/osm/osm</string>
 		<key>url2</key>
-		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
+		<string>http://parismetromaps.info/maps/berlin/osm/osm</string>
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>

@@ -449,7 +449,7 @@ static long DownloadCacheSize = 0;
 -(id)initWithPiece:(RPiece *)p andConnection:(NSURLConnection *)con
 {
     if((self = [super init])) {
-        piece = p;
+        piece = [p retain];
         connection = con;
         data = [[NSMutableData data] retain];
     }
@@ -728,8 +728,8 @@ static long DownloadCacheSize = 0;
 #ifdef DEBUG
             //NSLog(@"Download failed from '%@'", connection.originalRequest.URL.absoluteString);
 #endif
-            dp->piece->level = -1;
             [minusCache addObject:[[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil] autorelease]];
+            dp->piece->level = -1;
             [target performSelector:erSelector];
         } else {
 #ifdef DEBUG

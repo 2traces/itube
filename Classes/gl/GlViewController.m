@@ -765,7 +765,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc. that aren't in use.
-    [rasterLayer releaseMemory];
+    [rasterLayer purgeUnusedCache];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
