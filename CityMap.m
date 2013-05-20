@@ -2060,6 +2060,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         gpsCircleScale = sc;
     }
     BOOL tuneEnabled = [[parserMap get:@"TuneTransfers" section:@"Options"] boolValue];
+    UnrealTransfers = [[parserMap get:@"UnrealTransfers" section:@"Options"] boolValue];
     NSString *bgColor = [parserMap get:@"BackgroundColor" section:@"Options"];
     if(bgColor != nil && [bgColor length] > 0) {
         backgroundColor = [self colorForHex:bgColor];
@@ -2201,6 +2202,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(sc != 0.f) maxScale = sc;
     PredrawScale = maxScale;
     BOOL tuneEnabled = [[parserMap get:@"TuneTransfers" section:@"Options"] boolValue];
+    UnrealTransfers = [[parserMap get:@"UnrealTransfers" section:@"Options"] boolValue];
     sc = [[parserMap get:@"GpsMarkScale" section:@"Options"] floatValue];
     if(sc != 0.f) {
         gpsCircleScale = sc;
@@ -2545,18 +2547,29 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(ss1 == nil) NSLog(@"Error: station %@ from line %@ not found", station1, lineStation1);
     if(ss2 == nil) NSLog(@"Error: station %@ from line %@ not found", station2, lineStation2);
 #endif
+    Transfer *tr = nil;
     if(ss1.transfer != nil && ss2.transfer != nil) {
-        
+
     } else if(ss1.transfer) {
         [ss1.transfer addStation:ss2];
+        tr = ss1.transfer;
     } else if(ss2.transfer) {
         [ss2.transfer addStation:ss1];
+        tr = ss2.transfer;
     } else {
-        Transfer *tr = [[[Transfer alloc] initWithMap:self] autorelease];
+        tr = [[[Transfer alloc] initWithMap:self] autorelease];
         tr.time = [[elements objectAtIndex:4] floatValue];
         [tr addStation:ss1];
         [tr addStation:ss2];
         [transfers addObject:tr];
+    }
+    if(UnrealTransfers) {
+        [graph addEdgeFromNode:[GraphNode nodeWithName:ss1.name andLine:ss1.line.index]
+                        toNode:[GraphNode nodeWithName:ss2.name andLine:ss2.line.index]
+                    withWeight:tr.time];
+        [graph addEdgeFromNode:[GraphNode nodeWithName:ss2.name andLine:ss2.line.index]
+                        toNode:[GraphNode nodeWithName:ss1.name andLine:ss1.line.index]
+                    withWeight:tr.time];
     }
 }
 
@@ -2596,18 +2609,29 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         [ways addObject:[NSNumber numberWithInt:StringToWay([elements objectAtIndex:8])]];
     } else [ways addObject:[NSNumber numberWithInt:NOWAY]];
     [ss1 setTransferWays:ways to:ss2];
+    Transfer *tr = nil;
     if(ss1.transfer != nil && ss2.transfer != nil) {
         
     } else if(ss1.transfer) {
         [ss1.transfer addStation:ss2];
+        tr = ss1.transfer;
     } else if(ss2.transfer) {
         [ss2.transfer addStation:ss1];
+        tr = ss2.transfer;
     } else {
-        Transfer *tr = [[[Transfer alloc] initWithMap:self] autorelease];
+        tr = [[[Transfer alloc] initWithMap:self] autorelease];
         tr.time = [[elements objectAtIndex:4] floatValue];
         [tr addStation:ss1];
         [tr addStation:ss2];
         [transfers addObject:tr];
+    }
+    if(UnrealTransfers) {
+        [graph addEdgeFromNode:[GraphNode nodeWithName:ss1.name andLine:ss1.line.index]
+                        toNode:[GraphNode nodeWithName:ss2.name andLine:ss2.line.index]
+                    withWeight:tr.time];
+        [graph addEdgeFromNode:[GraphNode nodeWithName:ss2.name andLine:ss2.line.index]
+                        toNode:[GraphNode nodeWithName:ss1.name andLine:ss1.line.index]
+                    withWeight:tr.time];
     }
 }
 
@@ -2692,6 +2716,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 }
 
 -(void) processTransfersForGraph{
+    if(UnrealTransfers) return;
     for (Transfer *t in transfers) {
         for (Station *s1 in t.stations) {
             for (Station *s2 in t.stations) {
@@ -2706,6 +2731,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 }
 
 -(void) processTransfersForGraph2{
+    if(UnrealTransfers) return;
     for (Transfer *t in transfers) {
         for (Station *s1 in t.stations) {
             for (Station *s2 in t.stations) {
@@ -2828,7 +2854,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                 else [pathStationsList addObject:n1.name];
                 [pathStationsList addObject:@"---"]; //временно до обновления модели
                 if(sp1 && schedule) {
-                    [pathTimesList addObject:[schedule getPointDate:sp1]];
+                    [pathTimesList addObject:[schedule getPointDate:(SchPoint*)n2]];
                     [pathDocksList addObject:[NSString stringWithFormat:@"%c", sp1.dock]];
                 }
             }
@@ -3032,7 +3058,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 CGFloat FindTransferTime(int line1, NSString* station1, int line2, NSString* station2)
 {
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSMutableArray *stations = [[appDelegate.cityMap.mapLines objectAtIndex:line1-1] stations];
+    NSMutableSet *stations = [[appDelegate.cityMap.mapLines objectAtIndex:line1-1] stations];
     for (Station *s in stations) {
         if([s.name isEqualToString:station1] && s.transfer != nil) {
             return s.transfer.time;

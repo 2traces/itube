@@ -627,7 +627,15 @@
             tempTH = emptyTransferHeight;
         }
         
-        NSString *directionName = [directions objectAtIndex:[stations indexOfObject:tempStations]];
+        // BUG+BUG+BUG+BUG+BUG+BUG+BUG+BUG+BUG+BUG
+        // -= WORKAROUND =-
+        // на самом деле нужно массив directions более подругому делать. А так просто маскируем багу.
+        //
+        int directionIndex = [stations indexOfObject:tempStations];
+        if(directionIndex >= [directions count]) directionIndex = [directions count]-1;
+        NSString *directionName = [directions objectAtIndex:directionIndex];
+        //
+        // BUG+BUG+BUG+BUG+BUG+BUG+BUG+BUG+BUG+BUG
         
         CGSize max = CGSizeMake(235, 500);
         CGSize expected = [directionName sizeWithFont:[UIFont fontWithName:@"MyriadPr-Italic" size:14.0] constrainedToSize:max lineBreakMode:UILineBreakModeWordWrap];
@@ -760,7 +768,15 @@
         directionLabel.lineBreakMode = UILineBreakModeWordWrap;
         directionLabel.numberOfLines = 0;
         
-        NSString *directionName = [directions objectAtIndex:j];
+        // BUG+BUG+BUG+BUG+BUG+BUG+BUG+BUG+BUG+BUG
+        // -= WORKAROUND =-
+        // на самом деле нужно массив directions более подругому делать. А так просто маскируем багу.
+        //
+        int directionIndex = j;
+        if(directionIndex >= [directions count]) directionIndex = [directions count]-1;
+        NSString *directionName = [directions objectAtIndex:directionIndex];
+        //
+        // BUG+BUG+BUG+BUG+BUG+BUG+BUG+BUG+BUG+BUG
         
         CGRect currentFrame = directionLabel.frame;
         CGSize max = CGSizeMake(directionLabel.frame.size.width, 500);
