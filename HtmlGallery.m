@@ -77,7 +77,6 @@
     self.mainImageView.image = nil;
     [_mainImageView release];
     self.mainImageView = nil;
-    [_htmlDir release];
     self.htmlDir = nil;
     [super dealloc];
 }
