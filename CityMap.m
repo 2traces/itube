@@ -168,7 +168,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         if(alternative != NSNotFound) {
             string = [string substringToIndex:alternative];
         }
-        words = [[string componentsSeparatedByString:@";"] retain];
+        NSString *tmpStr = [[string stringByReplacingOccurrencesOfString:@"_" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        tmpStr = [[tmpStr stringByReplacingOccurrencesOfString:@"'" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        tmpStr = [[tmpStr stringByReplacingOccurrencesOfString:@"." withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        words = [[tmpStr componentsSeparatedByString:@";"] retain];
         string = [[[string stringByReplacingOccurrencesOfString:@";" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
         if(angle == 0) {
             CGFloat d = rect.size.height * 0.5f;
@@ -257,7 +260,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         if(alternative != NSNotFound) {
             string = [string substringFromIndex:alternative+1];
         }
-        words = [[string componentsSeparatedByString:@";"] retain];
+        NSString *tmpStr = [[string stringByReplacingOccurrencesOfString:@"_" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        tmpStr = [[tmpStr stringByReplacingOccurrencesOfString:@"'" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        tmpStr = [[tmpStr stringByReplacingOccurrencesOfString:@"." withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        words = [[tmpStr componentsSeparatedByString:@";"] retain];
         string = [[[string stringByReplacingOccurrencesOfString:@";" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
         if(angle == 0) {
             CGFloat d = rect.size.height * 0.5f;
@@ -342,7 +348,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             if(finish) break;
             else string = [string substringFromIndex:1];
         }
-        words = [[string componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@";&"]] retain];
+        NSString *tmpStr = [[string stringByReplacingOccurrencesOfString:@"_" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        tmpStr = [[tmpStr stringByReplacingOccurrencesOfString:@"'" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        tmpStr = [[tmpStr stringByReplacingOccurrencesOfString:@"." withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        words = [[tmpStr componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@";&"]] retain];
         string = [[[string stringByReplacingOccurrencesOfString:@";" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] retain];
         if(angle == 0) {
             CGFloat d = rect.size.height * 0.5f;
@@ -1034,7 +1043,9 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         Station *st = [sibling objectAtIndex:i];
         int curDrv = driving;
         if(drv >= 0) curDrv = [[relationDriving objectAtIndex:drv] intValue];
-        [segment addObject:[[[Segment alloc] initFromStation:self toStation:st withDriving:curDrv] autorelease]];
+        Segment *bseg = [[[Segment alloc] initFromStation:self toStation:st withDriving:curDrv] autorelease];
+        [segment addObject:bseg];
+        [st.backSegment addObject:bseg];
         if(drv < [relationDriving count]-1) drv ++;
     }
     if(!driving && [relationDriving count]) driving = [[relationDriving objectAtIndex:0] intValue];
@@ -1247,7 +1258,6 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         isSpline = NO;
         start = from;
         end = to;
-        [end.backSegment addObject:self];
         driving = dr;
         //NSAssert(driving > 0, @"illegal driving");
 #ifdef DEBUG
@@ -3127,29 +3137,32 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     CGRect geo = CGRectZero;
     for(Line *l in mapLines) {
         for (Station *s in l.stations) {
-            if(CGRectIntersectsRect(s.boundingBox, rect)) {
+            if(s.active && path) {
                 CGRect r = CGRectMake(s.gpsCoords.x, s.gpsCoords.y, 0, 0);
                 if(geo.origin.x == 0 || geo.origin.y == 0) geo = r;
                 else geo = CGRectUnion(geo, r);
                 r.size.width = r.size.height = l.shortColorCode;
-                if(s.active && path) {
-                    NSMutableDictionary *piece = [NSMutableDictionary dictionary];
-                    [piece setValue:[NSValue valueWithCGRect:r] forKey:@"coordinate"];
-                    [piece setValue:s.name forKey:@"name"];
-                    [piece setValue:[NSNumber numberWithInt:s.line.pinColor] forKey:@"pinColor"];
-                    int activeSegments = 0;
-                    for (Segment *seg in s.segment) {
-                        if(seg.active) activeSegments ++;
-                    }
-                    for (Segment *seg in s.backSegment) {
-                        if(seg.active) activeSegments ++;
-                    }
-                    if(s.transfer.active) activeSegments ++;
-                    if(activeSegments < 2) {
-                        [piece setValue:@"YES" forKey:@"ending"];
-                    }
-                    [data addObject:piece];
+                NSMutableDictionary *piece = [NSMutableDictionary dictionary];
+                [piece setValue:[NSValue valueWithCGRect:r] forKey:@"coordinate"];
+                [piece setValue:s.name forKey:@"name"];
+                [piece setValue:[NSNumber numberWithInt:s.line.pinColor] forKey:@"pinColor"];
+                int activeSegments = 0;
+                for (Segment *seg in s.segment) {
+                    if(seg.active) activeSegments ++;
                 }
+                for (Segment *seg in s.backSegment) {
+                    if(seg.active) activeSegments ++;
+                }
+                if(s.transfer.active) activeSegments ++;
+                if(activeSegments < 2) {
+                    [piece setValue:@"YES" forKey:@"ending"];
+                }
+                [data addObject:piece];
+            } else if(CGRectIntersectsRect(s.boundingBox, rect)) {
+                CGRect r = CGRectMake(s.gpsCoords.x, s.gpsCoords.y, 0, 0);
+                if(geo.origin.x == 0 || geo.origin.y == 0) geo = r;
+                else geo = CGRectUnion(geo, r);
+                r.size.width = r.size.height = l.shortColorCode;
             }
         }
     }

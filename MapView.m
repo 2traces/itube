@@ -523,11 +523,16 @@
     } else {
         [foundPaths release];
         foundPaths = nil;
-        // path not found
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"NoPathHeader", @"") message:NSLocalizedString(@"NoPathText", @"") delegate:nil cancelButtonTitle:NSLocalizedString(@"NoPathButton", @"") otherButtonTitles:nil];
-        [alert show];
-        [alert release];
+        [self performSelectorOnMainThread:@selector(showPathNotFoundMessage) withObject:nil waitUntilDone:NO];
     }
+}
+
+-(void) showPathNotFoundMessage
+{
+    // path not found
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"NoPathHeader", @"") message:NSLocalizedString(@"NoPathText", @"") delegate:nil cancelButtonTitle:NSLocalizedString(@"NoPathButton", @"") otherButtonTitles:nil];
+    [alert show];
+    [alert release];
 }
 
 -(void) clearPath

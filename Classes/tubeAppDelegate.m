@@ -20,6 +20,12 @@
 #import "CategoriesViewController.h"
 #import "RatePopupViewController.h"
 
+NSString* DisplayStationName(NSString* stName) {
+    NSString *tmpStr = [[stName stringByReplacingOccurrencesOfString:@"_" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    tmpStr = [[tmpStr stringByReplacingOccurrencesOfString:@"'" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    return [[tmpStr stringByReplacingOccurrencesOfString:@"." withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+}
+
 @implementation tubeAppDelegate
 
 @synthesize window;

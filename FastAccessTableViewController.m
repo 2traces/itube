@@ -126,20 +126,43 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"StationCell";
+    BOOL lang = [[MHelper sharedHelper] languageIndex]%2;
     
     StationListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"StationListCell" owner:self options:nil] lastObject];
         [[cell mybutton] addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
+    MStation *station = [self.filteredStation objectAtIndex:indexPath.row];
     
     NSString *cellValue;
-    if ([[MHelper sharedHelper] languageIndex]%2) {
-        cellValue = [[self.filteredStation objectAtIndex:indexPath.row] altname];
+    if (lang) {
+        cellValue = station.altname;
     } else {
-        cellValue = [[self.filteredStation objectAtIndex:indexPath.row] name];
+        cellValue = station.name;
     }
 
+    BOOL duplicate = NO;
+    NSString *stN = lang ? DisplayStationName(station.altname) : DisplayStationName(station.name);
+    for (MStation *st in self.filteredStation) {
+        if(st != station) {
+            if(lang) {
+                if([DisplayStationName(st.altname) isEqualToString:stN]) {
+                    duplicate = YES;
+                    break;
+                }
+            } else {
+                if([DisplayStationName(st.name) isEqualToString:stN]) {
+                    duplicate = YES;
+                    break;
+                }
+            }
+        }
+    }
+    cellValue = DisplayStationName(cellValue);
+    if(duplicate) {
+        cellValue = [NSString stringWithFormat:@"%@ (%@)", cellValue, station.lines.name];
+    }
     cell.mylabel.text = cellValue;
     cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
     cell.mylabel.textColor = [UIColor blackColor];
@@ -232,7 +255,7 @@
 	
 	for (MStation* station in self.stationList)
 	{
-		NSRange isFound = [[station name] rangeOfString:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)];
+		NSRange isFound = [DisplayStationName(station.name) rangeOfString:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)];
         
 		if (isFound.location!=NSNotFound)
 		{

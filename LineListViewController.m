@@ -189,7 +189,7 @@
     } else {
         cellValue = [[self.stationsList objectAtIndex:indexPath.row] name];
     }
-    cell.mylabel.text = cellValue;
+    cell.mylabel.text = DisplayStationName(cellValue);
     cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
     cell.mylabel.textColor = [UIColor blackColor];
     

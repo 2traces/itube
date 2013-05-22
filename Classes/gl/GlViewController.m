@@ -714,8 +714,9 @@ CGPoint translateFromGeoToMap(CGPoint pm)
             prevRecScale = recognizer.scale;
             prevPosition = position;
             break;
-        case UIGestureRecognizerStateChanged:
-            scale = prevScale * recognizer.scale / prevRecScale;
+        case UIGestureRecognizerStateChanged: {
+            CGFloat sc2 = prevScale * recognizer.scale / prevRecScale;
+            if([rasterLayer checkLevel:sc2]) scale = sc2;
             if(scale > 100000) {
                 scale = 100000;
             }
@@ -728,6 +729,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
             }
             position.x = prevPosition.x + (dp.x - prevDp.x) / scale;
             position.y = prevPosition.y + (dp.y - prevDp.y) / scale;
+        }
             break;
         case UIGestureRecognizerStateEnded:
             if(scale > 100000) {
@@ -763,6 +765,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc. that aren't in use.
+    [rasterLayer purgeUnusedCache];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -1384,6 +1387,11 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 
 -(void)setGeoPosition:(CGRect)rect
 {
+    if(CGRectEqualToRect(rect, CGRectZero)) {
+        position = CGPointZero;
+        scale = 1.f;
+        return;
+    }
     const static double mult = 256.0 / 360.0;
     float y1 = atanhf(sinf(rect.origin.x * M_PI / 180.f));
     y1 = y1 * 256.f / (M_PI*2.f);
@@ -1394,7 +1402,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     r.size.height = rect.size.height * mult;
     position.x = -(r.origin.y + r.size.height * 0.5f);
     position.y = (y1 + y2) * 0.5f;
-    scale = 256.f / r.size.height;
+    scale = MIN(256.f / r.size.height, 256.f / rect.size.width);
     targetTimer = 0.f;
 }
 
