@@ -2473,6 +2473,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
 
 -(NSDictionary*) calcPath :(NSString*) firstStation :(NSString*) secondStation :(NSInteger) firstStationLineNum :(NSInteger)secondStationLineNum {
 
+    graph.blockMultiTransfers = UnrealTransfers;
     if(schedule != nil) {
         NSMutableSet *missingStations = [NSMutableSet set];
         NSMutableDictionary *trpaths = [NSMutableDictionary dictionary];
@@ -2547,6 +2548,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(ss1 == nil) NSLog(@"Error: station %@ from line %@ not found", station1, lineStation1);
     if(ss2 == nil) NSLog(@"Error: station %@ from line %@ not found", station2, lineStation2);
 #endif
+    CGFloat ttime = [[elements objectAtIndex:4] floatValue];
     Transfer *tr = nil;
     if(ss1.transfer != nil && ss2.transfer != nil) {
 
@@ -2558,7 +2560,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         tr = ss2.transfer;
     } else {
         tr = [[[Transfer alloc] initWithMap:self] autorelease];
-        tr.time = [[elements objectAtIndex:4] floatValue];
+        tr.time = ttime;
         [tr addStation:ss1];
         [tr addStation:ss2];
         [transfers addObject:tr];
@@ -2566,10 +2568,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(UnrealTransfers) {
         [graph addEdgeFromNode:[GraphNode nodeWithName:ss1.name andLine:ss1.line.index]
                         toNode:[GraphNode nodeWithName:ss2.name andLine:ss2.line.index]
-                    withWeight:tr.time];
+                    withWeight:ttime];
         [graph addEdgeFromNode:[GraphNode nodeWithName:ss2.name andLine:ss2.line.index]
                         toNode:[GraphNode nodeWithName:ss1.name andLine:ss1.line.index]
-                    withWeight:tr.time];
+                    withWeight:ttime];
     }
 }
 
@@ -2595,6 +2597,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         [ss1 setTransferDriving:drv to:ss2];
         [ss2 setTransferDriving:drv to:ss1];
     }
+    CGFloat ttime = [[elements objectAtIndex:4] floatValue];
     NSMutableArray *ways = [NSMutableArray array];
     if([elements count] >= 6) {
         [ways addObject:[NSNumber numberWithInt:StringToWay([elements objectAtIndex:5])]];
@@ -2620,7 +2623,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
         tr = ss2.transfer;
     } else {
         tr = [[[Transfer alloc] initWithMap:self] autorelease];
-        tr.time = [[elements objectAtIndex:4] floatValue];
+        tr.time = ttime;
         [tr addStation:ss1];
         [tr addStation:ss2];
         [transfers addObject:tr];
@@ -2628,10 +2631,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     if(UnrealTransfers) {
         [graph addEdgeFromNode:[GraphNode nodeWithName:ss1.name andLine:ss1.line.index]
                         toNode:[GraphNode nodeWithName:ss2.name andLine:ss2.line.index]
-                    withWeight:tr.time];
+                    withWeight:ttime];
         [graph addEdgeFromNode:[GraphNode nodeWithName:ss2.name andLine:ss2.line.index]
                         toNode:[GraphNode nodeWithName:ss1.name andLine:ss1.line.index]
-                    withWeight:tr.time];
+                    withWeight:ttime];
     }
 }
 

@@ -29,7 +29,7 @@
 
 @implementation Graph
 
-@synthesize nodes = nodes_;
+@synthesize nodes = nodes_, blockMultiTransfers;
 
 - (id)init
 {
@@ -103,6 +103,9 @@
         // loop through each neighbor to find min dist
         for (GraphNode* neighbor in [neighbors objectEnumerator]) {
             //NSLog(@"Looping neighbor %@", (NSString*)[neighbor value]);
+            if(blockMultiTransfers && neighbor.line != minNode.line && minNode.line != [minNode->customData line]) {
+                continue;
+            }
             BOOL setPrevPath = YES;
             float alt = minNode->dist;
             alt += [[minNode edgeConnectedTo: neighbor] weight];
@@ -175,6 +178,9 @@
         // loop through each neighbor to find min dist
         for (GraphNode* neighbor in [neighbors objectEnumerator]) {
             //NSLog(@"Looping neighbor %@", (NSString*)[neighbor value]);
+            if(blockMultiTransfers && neighbor.line != minNode.line && minNode.line != [minNode->customData line]) {
+                continue;
+            }
             BOOL setPrevPath = YES;
             float alt = minNode->dist;
             alt += [[minNode edgeConnectedTo: neighbor] weight];
