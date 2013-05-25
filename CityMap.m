@@ -2501,7 +2501,7 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     NSLog(@"path is %@", path);
                     NSLog(@"schedule path is %@", trpath);
 #endif
-                    if(weight2 < 60*60*12 && pathCount < 3) {  // время пути должно быть меньше 12 часов
+                    if(weight2 < 60*60*6 && pathCount < 3) {  // время пути должно быть меньше 6 часов
                         [trpaths setObject:trpath forKey:[NSNumber numberWithDouble:weight2]];
                         pathCount ++;
                     }

@@ -103,7 +103,7 @@
         // loop through each neighbor to find min dist
         for (GraphNode* neighbor in [neighbors objectEnumerator]) {
             //NSLog(@"Looping neighbor %@", (NSString*)[neighbor value]);
-            if(blockMultiTransfers && neighbor.line != minNode.line && minNode.line != [minNode->customData line]) {
+            if(blockMultiTransfers && neighbor.line != minNode.line && nil != minNode->customData && minNode.line != [minNode->customData line]) {
                 continue;
             }
             BOOL setPrevPath = YES;
@@ -178,7 +178,7 @@
         // loop through each neighbor to find min dist
         for (GraphNode* neighbor in [neighbors objectEnumerator]) {
             //NSLog(@"Looping neighbor %@", (NSString*)[neighbor value]);
-            if(blockMultiTransfers && neighbor.line != minNode.line && minNode.line != [minNode->customData line]) {
+            if(blockMultiTransfers && neighbor.line != minNode.line && nil != minNode->customData && minNode.line != [minNode->customData line]) {
                 continue;
             }
             BOOL setPrevPath = YES;
