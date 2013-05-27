@@ -6,13 +6,13 @@
 //
 //
 
-#import "LeftiPadPathViewController.h"
+#import "RightiPadPathViewController.h"
 #import "Classes/tubeAppDelegate.h"
 #import "CityMap.h"
 #import "Classes/MainView.h"
 #import "MapView.h"
 
-@implementation LeftiPadPathViewController
+@implementation RightiPadPathViewController
 
 @synthesize horizontalPathesScrollView;
 @synthesize timer;

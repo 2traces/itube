@@ -18,7 +18,7 @@
 #import "PathDrawVertView.h"
 #import "TubeAppIAPHelper.h"
 #import "UIColor-enhanced.h"
-#import "LeftiPadPathViewController.h"
+#import "RightiPadPathViewController.h"
 #import "CustomPopoverBackgroundView.h"
 #import "StatusViewController.h"
 

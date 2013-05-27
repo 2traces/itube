@@ -11,21 +11,21 @@
 #import <UIKit/UIKit.h>
 
 @class MainViewController;
-@class LeftiPadPathViewController;
+@class RightiPadPathViewController;
 
 @interface TubeSplitViewController : UIViewController {
     UIView *pathView;
     UIView *mapView;
     MainViewController *mainViewController;
-    LeftiPadPathViewController *leftPathController;
+    RightiPadPathViewController *rightPathController;
     UINavigationController * navController;
-    BOOL isLeftShown;
+    BOOL isRightShown;
 }
 
 @property (nonatomic,retain) UIView *pathView;
 @property (nonatomic,retain) UIView *mapView;
 @property (nonatomic,retain) MainViewController *mainViewController;
-@property (nonatomic,retain) LeftiPadPathViewController *leftPathController;
+@property (nonatomic,retain) RightiPadPathViewController *rightPathController;
 @property (nonatomic, readonly) UINavigationController *navigationController;
 
 -(void)refreshPath;

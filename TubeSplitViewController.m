@@ -11,7 +11,7 @@
 #import "MainViewController.h"
 #import "MainView.h"
 #import "TopTwoStationsView.h"
-#import "LeftiPadPathViewController.h"
+#import "RightiPadPathViewController.h"
 #import "CityMap.h"
 #import "SettingsViewController.h"
 #import "PhotosViewController.h"
@@ -27,7 +27,7 @@ static float koefficient = 0.0f;
 @synthesize pathView;
 @synthesize mapView;
 @synthesize mainViewController;
-@synthesize leftPathController;
+@synthesize rightPathController;
 @synthesize navigationController = navController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -59,16 +59,16 @@ static float koefficient = 0.0f;
 
    // self.view.frame = mainViewController.view.frame = navController.view.frame = [UIScreen mainScreen].applicationFrame;
     
-    isLeftShown = NO;
+    isRightShown = NO;
     //mainView.frame = CGRectMake(0.0, 0.0, 768.0, 1004.0-44.0);
     //[[mainView containerView] setFrame:CGRectMake(0.0, 44.0, 768.0, 1004-44.0)];
     self.mapView = mainView;
     [self.view addSubview:[navController view]];
     
-    LeftiPadPathViewController *controller = [[LeftiPadPathViewController alloc] init];
+    RightiPadPathViewController *controller = [[RightiPadPathViewController alloc] init];
     controller.view.frame=CGRectMake(-1320.0, 0.0, 320.0, 1004.0);
     self.pathView=controller.view;
-    self.leftPathController=controller;
+    self.rightPathController=controller;
     [self.view addSubview:controller.view];
     [controller release];
     
@@ -103,30 +103,29 @@ static float koefficient = 0.0f;
 - (void) layoutSubviews {
     
 	CGSize size = [self sizeRotated];
-    
-    if (isLeftShown) {
-        pathView.frame = CGRectMake(0,
-                                    0 - koefficient,
-                                    constMasterWidth,
-                                    size.height + koefficient);
-        mapView.frame = CGRectMake(constDetailStartPoint,
+    float leftWidth = size.width - constMasterWidth - constDividerWidth;
+    float rightWidth = constMasterWidth;
+    if (isRightShown) {
+        mapView.frame = CGRectMake(0,
                                    0 - koefficient,
-                                   size.width - constDetailStartPoint,
+                                   leftWidth,
                                    size.height + koefficient);
-        
+        pathView.frame = CGRectMake(leftWidth + constDividerWidth,
+                                    0 - koefficient,
+                                    rightWidth,
+                                    size.height + koefficient);        
         [[(MainView*)self.mapView containerView] setFrame:CGRectMake(0.0, 44.0, size.width - constDetailStartPoint,size.height + koefficient - 44.0)];
         [mainViewController.stationsView setFrame:CGRectMake(0, 0, size.width - constDetailStartPoint, 44)];
         
     } else {
-        pathView.frame = CGRectMake(-constMasterWidth,
-                                    0 - koefficient,
-                                    constMasterWidth,
-                                    size.height + koefficient);
         mapView.frame = CGRectMake(0,
                                    0 - koefficient,
                                    size.width,
                                    size.height + koefficient);
-        
+        pathView.frame = CGRectMake(size.width,
+                                    0 - koefficient,
+                                    rightWidth,
+                                    size.height + koefficient);
         [[(MainView*)self.mapView containerView] setFrame:CGRectMake(0.0, 44.0, size.width ,size.height + koefficient - 44.0)];
         [mainViewController.stationsView setFrame:CGRectMake(0, 0, size.width, 44)];
         
@@ -148,18 +147,18 @@ static float koefficient = 0.0f;
 {
     CGSize size = [self sizeRotated];
     
-    if (isLeftShown)
-    [self.leftPathController.pathScrollView setFrame:CGRectMake(0.0, 44.0, 320.0, size.height-44.0)];
+    if (isRightShown)
+    [self.rightPathController.pathScrollView setFrame:CGRectMake(0.0, 44.0, 320.0, size.height-44.0)];
 }
 
 -(void)showLeftView
 {
-    if (isLeftShown) {
+    if (isRightShown) {
         [self hideLeftView];
     } else {
-        if ([self.leftPathController isReadyToShow]) {
+        if ([self.rightPathController isReadyToShow]) {
 
-            isLeftShown=YES;
+            isRightShown=YES;
             
             PhotosViewController * photos = mainViewController.navigationViewController.photosController;
             //photos.placeNamePanel.hidden = YES;
@@ -169,7 +168,7 @@ static float koefficient = 0.0f;
             CGRect rect = photos.panelView.frame;
             [photos.panelView setFrame:CGRectMake(constDetailStartPoint, rect.origin.y, size.width - constDetailStartPoint, rect.size.height)];
 
-            [self.leftPathController prepareToShow];
+            [self.rightPathController prepareToShow];
             
             [UIView animateWithDuration:0.5 animations:^{
                 [self layoutSubviews];
@@ -183,7 +182,7 @@ static float koefficient = 0.0f;
 
 -(void)hideLeftView
 {
-    isLeftShown=NO;
+    isRightShown=NO;
     
     CGSize size = [self sizeRotated];
 
@@ -201,17 +200,17 @@ static float koefficient = 0.0f;
 
 -(void)refreshPath
 {
-    if (!isLeftShown) {
+    if (!isRightShown) {
         [self showLeftView];
     } else {
-        [self.leftPathController prepareToShow];
+        [self.rightPathController prepareToShow];
     }
 }
 
 -(void)pathCleared:(NSNotification*)note
 {
     
-    isLeftShown=NO;
+    isRightShown=NO;
     
     [UIView animateWithDuration:0.5 animations:^{
         [self layoutSubviews];
@@ -222,7 +221,7 @@ static float koefficient = 0.0f;
 -(void)pathFound:(NSNotification*)note
 {
     
-    isLeftShown=YES;
+    isRightShown=YES;
     
     [UIView animateWithDuration:0.5 animations:^{
         [self layoutSubviews];
@@ -238,19 +237,19 @@ static float koefficient = 0.0f;
 
 -(void)refreshStatusInfo
 {
-    [leftPathController refreshStatusInfo];
+    [rightPathController refreshStatusInfo];
 }
 
 -(void)changeStatusView
 {
-    [leftPathController changeStatusView];
+    [rightPathController changeStatusView];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
 	
     [super viewWillAppear:animated];
     
-	[leftPathController viewWillAppear:animated];
+	[rightPathController viewWillAppear:animated];
 	[mainViewController viewWillAppear:animated];
 }
 
@@ -258,7 +257,7 @@ static float koefficient = 0.0f;
 	
     [super viewDidAppear:animated];
 	
-    [leftPathController viewDidAppear:animated];
+    [rightPathController viewDidAppear:animated];
 	[mainViewController viewDidAppear:animated];
     
     // it's Needed to fix a bug with 20px near the statusbar
@@ -272,14 +271,14 @@ static float koefficient = 0.0f;
 - (void)viewWillDisappear:(BOOL)animated {
 	
     [super viewWillDisappear:animated];
-	[leftPathController viewWillDisappear:animated];
+	[rightPathController viewWillDisappear:animated];
 	[mainViewController viewWillDisappear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
 	
     [super viewDidDisappear:animated];
-	[leftPathController viewDidDisappear:animated];
+	[rightPathController viewDidDisappear:animated];
 	[mainViewController viewDidDisappear:animated];
 }
 
@@ -290,13 +289,13 @@ static float koefficient = 0.0f;
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-	[leftPathController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	[rightPathController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 	[mainViewController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
     //    [self layoutSubviews];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-	[leftPathController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+	[rightPathController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 	[mainViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     [self layoutSubviews];
     [self adjustMapView];
@@ -304,22 +303,22 @@ static float koefficient = 0.0f;
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-	[leftPathController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	[rightPathController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
 	[mainViewController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
 - (void)willAnimateFirstHalfOfRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-	[leftPathController willAnimateFirstHalfOfRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	[rightPathController willAnimateFirstHalfOfRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
 	[mainViewController willAnimateFirstHalfOfRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
 - (void)didAnimateFirstHalfOfRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-	[leftPathController didAnimateFirstHalfOfRotationToInterfaceOrientation:toInterfaceOrientation];
+	[rightPathController didAnimateFirstHalfOfRotationToInterfaceOrientation:toInterfaceOrientation];
 	[mainViewController didAnimateFirstHalfOfRotationToInterfaceOrientation:toInterfaceOrientation];
 }
 
 - (void)willAnimateSecondHalfOfRotationFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation duration:(NSTimeInterval)duration {
-	[leftPathController willAnimateSecondHalfOfRotationFromInterfaceOrientation:fromInterfaceOrientation duration:duration];
+	[rightPathController willAnimateSecondHalfOfRotationFromInterfaceOrientation:fromInterfaceOrientation duration:duration];
 	[mainViewController willAnimateSecondHalfOfRotationFromInterfaceOrientation:fromInterfaceOrientation duration:duration];
 }
 

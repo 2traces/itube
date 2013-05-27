@@ -11,7 +11,7 @@
 #import "VertPathScrollView.h"
 #import "StatusViewController.h"
 
-@interface LeftiPadPathViewController : UIViewController <PathScrollViewProtocol>
+@interface RightiPadPathViewController : UIViewController <PathScrollViewProtocol>
 {
     NSTimer *timer;
     BOOL isPathExists;
