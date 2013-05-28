@@ -44,13 +44,10 @@
                "index": 2,
                "accessLevel": 0,
                "text": "Arc de Triomphe",
-               "media_type": "native_gallery",
-               "pictures": [
-                    {"path": "gall/louvre_0.jpg"},
-                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
-                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
-                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
-               ],
+               "media_type": "3dview",
+               "photos_prefix": "3d/3dbuilding0/3dbuilding0_",
+               "photos_count": 40,
+               "photos_ext": ".jpg",
                "categories": [
                               2
                               ]

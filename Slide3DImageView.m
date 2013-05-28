@@ -14,6 +14,7 @@
 @implementation Slide3DImageView
 
 @synthesize panGR;
+@synthesize tapGR;
 @synthesize currentSlideNumber;
 @synthesize slidesCount;
 @synthesize lastTranslation;
@@ -29,8 +30,10 @@
         self.photosExt = ext;
         self.photosPrefix = prefix;
         self.panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotation:)];
+        self.tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
         self.userInteractionEnabled = YES;
         [self addGestureRecognizer:self.panGR];
+        [self addGestureRecognizer:self.tapGR];
     }
     return self;
 }
@@ -61,6 +64,10 @@
     }
 }
 
+- (void)handleTap:(UITapGestureRecognizer *)recognizer{
+    //nothing to do
+}
+
 - (void)loadSlideWithNumber:(int)slideNumber{
     NSString *imagePath = [NSString stringWithFormat:@"%@%i%@", self.photosPrefix, self.currentSlideNumber, self.photosExt];
     UIImage *loadedImage = [UIImage imageWithContentsOfFile:imagePath];
@@ -69,6 +76,7 @@
 
 - (void) dealloc{
     [self.panGR release];
+    [self.tapGR release];
     self.photosExt = nil;
     self.photosPrefix = nil;
     [super dealloc];

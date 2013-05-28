@@ -16,8 +16,10 @@
 @property (retain) NSString *photosPrefix;
 @property (retain) NSString *photosExt;
 @property (retain) UIPanGestureRecognizer *panGR;
+@property (retain) UITapGestureRecognizer *tapGR;
 
 - (id)initWithImage:(UIImage *)image withPrefix:(NSString*)prefix withExt:(NSString*)ext withSlidesCount:(int)count;
 - (void) handleRotation:(UIPanGestureRecognizer *)recognizer;
+- (void) handleTap:(UITapGestureRecognizer *)recognizer;
     
 @end
