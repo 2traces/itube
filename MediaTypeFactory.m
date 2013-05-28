@@ -76,6 +76,14 @@
     UIView *mediaView = nil;
     if ([media.mediaType isEqualToString:@"3dview"]) {
         NSString *prefix = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, media.photosSet.photosPrefix];
+        NSString *iPadPrefix;
+        if(IS_IPAD){
+            iPadPrefix = [NSString stringWithFormat:@"%@/photos_ipad/%@", appDelegate.mapDirectoryPath, media.photosSet.photosPrefix];
+            NSString *checkPath = [NSString stringWithFormat:@"%@%i%@", iPadPrefix, 0, media.photosSet.photosExt];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:checkPath]){
+                prefix = iPadPrefix;
+            }
+        }
         Slide3DImageView *imageView = [[Slide3DImageView alloc]
                                        initWithImage:image
                                        withPrefix:prefix
