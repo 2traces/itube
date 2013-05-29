@@ -23,7 +23,7 @@
         // Setup video
         // #lightGray color is #f5f4f5
         self.backgroundColor = [ColorFactory lightGrayColor];
-        CGFloat videoWidth = parent.bounds.size.width;
+        CGFloat videoWidth = [[UIScreen mainScreen] bounds].size.width;
         CGFloat videoHeight = videoWidth * 428 / 768;
         CGFloat webViewY = videoHeight;
         CGRect videoFrame = CGRectMake(0, 0, videoWidth, videoHeight);
