@@ -25,24 +25,31 @@
         self.backgroundColor = [ColorFactory lightGrayColor];
         CGFloat videoWidth = parent.bounds.size.width;
         CGFloat videoHeight = videoWidth * 428 / 768;
+        CGFloat webViewY = videoHeight;
         CGRect videoFrame = CGRectMake(0, 0, videoWidth, videoHeight);
         NSString *videoPreviewPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.previewPath];
         if (withVideo) {
             [self createMoviePlayer:media appDelegate:appDelegate videoFrame:videoFrame];
+        }else{
+            if(IS_IPAD){
+                webViewY = 20;
+            }else{
+                webViewY = 10;
+            }
         }
         self.videoPreviewImage = [[DebugUIImage alloc] initWithContentsOfFile:videoPreviewPath];
         self.videoPreview = [[DebugUIImageView alloc] initWithFrame:videoFrame];
         self.videoPreview.image = self.videoPreviewImage;
-        [self addSubview:self.videoPreview];
-        
+    
         self.lightPanel = [[UIView alloc] initWithFrame:videoFrame];
         self.lightPanel.backgroundColor = [ColorFactory lightGrayColor];
         if (withVideo) {
+            [self addSubview:self.videoPreview];
             [self addSubview:self.lightPanel];
         }
-        self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, videoHeight,
+        self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, webViewY,
                                                                          videoWidth,
-                                                                         parent.frame.size.height-videoHeight)];
+                                                                         parent.frame.size.height-webViewY)];
         self.webView.scrollView.bounces = NO;
         NSString *htmlPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename];
         NSURL* url = [NSURL fileURLWithPath:htmlPath];
