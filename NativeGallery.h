@@ -14,7 +14,7 @@
 @property (retain) NSMutableArray *imagesArray;
 @property (retain) UIImageView *bgImageView;
 @property (retain) UILabel *titleLabel;
-@property (retain) NSSet *pictures;
+@property (retain) NSMutableArray *pictures;
 @property (retain) NSMutableArray *titlesArray;
 @property (retain) NSMutableArray *thumbsArray;
 

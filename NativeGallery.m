@@ -28,7 +28,13 @@
 - (id)initWithFrame:(CGRect)frame withGalleryPictures:(NSSet *)galleryPictures withAppDelegate:(tubeAppDelegate *)appDelegate{
     self = [super initWithFrame:frame];
     if (self) {
-        self.pictures = [NSMutableSet setWithSet: galleryPictures];
+        self.pictures = [NSMutableArray array];
+        for(MGalleryPicture *picture in [NSMutableSet setWithSet: galleryPictures]){
+            [self.pictures addObject:picture];
+        };
+        [self.pictures sortUsingComparator:^NSComparisonResult(MGalleryPicture *obj1, MGalleryPicture *obj2) {
+            return [obj1.index compare:obj2.index];
+        }];
         self.imagesArray = [NSMutableArray array];
         self.titlesArray = [NSMutableArray array];
         self.thumbsArray = [NSMutableArray array];
@@ -78,7 +84,7 @@
     }
     int i = 0;
     for (MGalleryPicture *picture in self.pictures) {
-        int y = offsetY + i * (thumbSize+padding);
+        int y = offsetY + i * (thumbSize + padding);
         IndexedImageView *thumb = [[IndexedImageView alloc] initWithFrame:CGRectMake(offsetX, y, thumbSize, thumbSize)];
         NSString *path = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, picture.path];
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];

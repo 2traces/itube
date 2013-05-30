@@ -64,6 +64,7 @@
 @dynamic title;
 @dynamic path;
 @dynamic media;
+@dynamic index;
 
 @end
 

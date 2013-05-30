@@ -65,7 +65,8 @@
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     UIView *mediaView = nil;
     if ([media.mediaType isEqualToString:@"html_with_video"]) {
-        mediaView = [[HtmlWithVideoView alloc] initWithMedia:media withParent:parent withAppDelegate:appDelegate withVideo:NO];
+        mediaView = [[
+                      HtmlWithVideoView alloc] initWithMedia:media withParent:parent withAppDelegate:appDelegate withVideo:NO];
     }
     return mediaView;
 }

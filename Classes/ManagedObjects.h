@@ -87,6 +87,7 @@
 @property (nonatomic, retain) NSString* path;
 @property (nonatomic, retain) NSString* title;
 @property (nonatomic, retain) MMedia* media;
+@property (nonatomic, retain) NSNumber *index;
 
 @end
 

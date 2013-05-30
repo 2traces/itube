@@ -2296,11 +2296,14 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     MMedia *media = [NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
     media.mediaType = mediaType;
     media.index = [NSNumber numberWithInteger:index];
+    int i = 0;
     for (NSDictionary *picture in [place objectForKey:@"pictures"]){
         MGalleryPicture *galleryPicture = [NSEntityDescription insertNewObjectForEntityForName:@"GalleryPicture" inManagedObjectContext:[MHelper sharedHelper].managedObjectContext];
         galleryPicture.path = [picture objectForKey:@"path"];
         galleryPicture.title = [picture objectForKey:@"title"];
         galleryPicture.media = media;
+        galleryPicture.index = [NSNumber numberWithInt:i];
+        i += 1;
     }
     return media;
 }

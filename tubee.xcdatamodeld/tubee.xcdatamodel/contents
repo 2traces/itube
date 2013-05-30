@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1810" systemVersion="11G63" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="11G63" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Category" representedClassName="MCategory" syncable="YES">
         <attribute name="color" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="image_highlighted" optional="YES" attributeType="String" syncable="YES"/>
@@ -9,6 +9,7 @@
         <relationship name="places" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Place" syncable="YES"/>
     </entity>
     <entity name="GalleryPicture" representedClassName="MGalleryPicture" syncable="YES">
+        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="media" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Media" inverseName="galleryPictures" inverseEntity="Media" syncable="YES"/>
@@ -60,7 +61,7 @@
     </entity>
     <elements>
         <element name="Category" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="GalleryPicture" positionX="439" positionY="36" width="128" height="90"/>
+        <element name="GalleryPicture" positionX="439" positionY="36" width="128" height="105"/>
         <element name="History" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Line" positionX="0" positionY="0" width="128" height="105"/>
         <element name="Media" positionX="216" positionY="-45" width="128" height="180"/>
