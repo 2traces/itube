@@ -87,13 +87,8 @@ NSInteger const toolbarWidth=320;
         settingsRect=CGRectMake(-285, -420, 27, 27);
         shadowRect = CGRectMake(0, 44, 768, 61);
         
-        if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-            cornerRect=CGRectMake(0, 945, 36, 60);
-            zonesRect=CGRectMake(250, 945, 71, 43);
-        } else {
-            cornerRect=CGRectMake(0, 689, 36, 60);
-            zonesRect=CGRectMake(250, 689, 71, 43);
-        }
+        cornerRect=CGRectMake(0, 945, 36, 60);
+        zonesRect=CGRectMake(250, 945, 71, 43);
     } else {
         if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
             CGSize result = [[UIScreen mainScreen] bounds].size;
@@ -260,13 +255,8 @@ NSInteger const toolbarWidth=320;
         cornerRect=CGRectMake(0, 489, 36, 60);
     }
     else if (IS_IPAD)  {
-        if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-            cornerRect=CGRectMake(0, 945, 36, 60);
-            zonesRect=CGRectMake(250, 945, 71, 43);
-        } else {
-            cornerRect=CGRectMake(0, 689, 36, 60);
-            zonesRect=CGRectMake(250, 689, 71, 43);
-        }
+        cornerRect=CGRectMake(0, 945, 36, 60);
+        zonesRect=CGRectMake(250, 945, 71, 43);
         corner2Button.frame = cornerRect;
     }
     else {
@@ -286,19 +276,14 @@ NSInteger const toolbarWidth=320;
         zonesRect=CGRectMake(250, 498, 71, 43);
         cornerRect=CGRectMake(0, 489, 36, 60);
 
-    }
-    else if (IS_IPAD)  {
-        if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+    }else{
+        if (IS_IPAD)  {
             cornerRect=CGRectMake(0, 945, 36, 60);
             zonesRect=CGRectMake(250, 945, 71, 43);
         } else {
-            cornerRect=CGRectMake(0, 689, 36, 60);
-            zonesRect=CGRectMake(250, 689, 71, 43);
+            zonesRect=CGRectMake(250, 410, 71, 43);
+            cornerRect=CGRectMake(0, 401, 36, 60);
         }
-    }
-    else {
-        zonesRect=CGRectMake(250, 410, 71, 43);
-        cornerRect=CGRectMake(0, 401, 36, 60);
     }
     
     if (IS_IPAD)  {
@@ -318,19 +303,7 @@ NSInteger const toolbarWidth=320;
 -(void)layoutSubviews
 {
     if (IS_IPAD) {
-       // CGRect zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 43, 25);
-        //CGRect zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 71, 43);
-        
-       /* CGRect zonesRect;
-        if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-            zonesRect=CGRectMake(250, 945, 71, 43);
-        } else {
-            zonesRect=CGRectMake(250, 689, 71, 43);
-        }
-
-
-        [zones setFrame:zonesRect];*/
-        [containerView setFrame:CGRectMake(0, 44,self.bounds.size.width,self.bounds.size.height-44)];
+       [containerView setFrame:CGRectMake(0, 44,self.bounds.size.width,self.bounds.size.height-44)];
     } else {
         [containerView setFrame:CGRectMake(0, 44,self.bounds.size.width,self.bounds.size.height-44)];
     }
