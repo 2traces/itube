@@ -219,13 +219,16 @@ NSInteger const toolbarWidth=320;
     //[self addSubview:settings];
 
     zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    [zones setImage:[UIImage imageNamed:@"bt_mode_maps_up"] forState:UIControlStateNormal];
-    [zones setImage:[UIImage imageNamed:@"bt_mode_maps"] forState:UIControlStateHighlighted];
-    zones.frame = zonesRect;
-    [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
-    if (IS_IPAD)
-        zones.hidden = YES;
-  
+    if(IS_IPAD){
+        [zones setImage:[UIImage imageNamed:@"citymap-button"] forState:UIControlStateNormal];
+        [zones setImage:[UIImage imageNamed:@"citymap-button"] forState:UIControlStateHighlighted];
+        zones.frame = zonesRect;
+    }else{
+        [zones setImage:[UIImage imageNamed:@"bt_mode_maps_up"] forState:UIControlStateNormal];
+        [zones setImage:[UIImage imageNamed:@"bt_mode_maps"] forState:UIControlStateHighlighted];
+        zones.frame = zonesRect;
+    }[zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
+    
     [self addSubview:zones];
 
     UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];

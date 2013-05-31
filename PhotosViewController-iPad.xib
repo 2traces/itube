@@ -274,7 +274,7 @@
 								<string key="NSFrame">{{61, 11}, {198, 34}}</string>
 								<reference key="NSSuperview" ref="373130457"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="642518259"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -316,31 +316,6 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="934477126"/>
-								<reference key="IBUIFontDescription" ref="253945672"/>
-								<reference key="IBUIFont" ref="437005131"/>
-							</object>
-							<object class="IBUIButton" id="642518259">
-								<reference key="NSNextResponder" ref="373130457"/>
-								<int key="NSvFlags">289</int>
-								<string key="NSFrame">{{152, 16}, {61, 48}}</string>
-								<reference key="NSSuperview" ref="373130457"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="591688651"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIHighlightedTitleColor" ref="528693396"/>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="934477126"/>
-								<object class="NSCustomResource" key="IBUINormalImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">bt_mode_maps_iPad@2x.png</string>
-								</object>
 								<reference key="IBUIFontDescription" ref="253945672"/>
 								<reference key="IBUIFont" ref="437005131"/>
 							</object>
@@ -441,7 +416,7 @@
 							<object class="IBUIButton" id="591688651">
 								<reference key="NSNextResponder" ref="373130457"/>
 								<int key="NSvFlags">289</int>
-								<string key="NSFrame">{{228, 17}, {61, 42}}</string>
+								<string key="NSFrame">{{202, 17}, {61, 42}}</string>
 								<reference key="NSSuperview" ref="373130457"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -592,14 +567,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">btSwitchMode</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="642518259"/>
-					</object>
-					<int key="connectionID">78</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">btScrollLeft</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="422472583"/>
@@ -677,15 +644,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">switchMapMetro:</string>
-						<reference key="source" ref="642518259"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">77</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">scrollPhotosLeft:</string>
 						<reference key="source" ref="422472583"/>
 						<reference key="destination" ref="372490531"/>
@@ -740,7 +698,6 @@
 							<reference ref="323947097"/>
 							<reference ref="548495841"/>
 							<reference ref="591688651"/>
-							<reference ref="642518259"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Panel</string>
@@ -851,11 +808,6 @@
 						<reference key="object" ref="591688651"/>
 						<reference key="parent" ref="373130457"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">74</int>
-						<reference key="object" ref="642518259"/>
-						<reference key="parent" ref="373130457"/>
-					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -882,7 +834,6 @@
 				<string key="62.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="68.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="70.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="74.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="89.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="98.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="99.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1043,7 +994,6 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bt_mode_maps_iPad@2x.png">{122, 96}</string>
 			<string key="bt_star_solid@2x.png">{88, 88}</string>
 			<string key="bt_stripes@2x.png">{88, 88}</string>
 			<string key="direction_icon_ipad@2x.png">{70, 70}</string>
