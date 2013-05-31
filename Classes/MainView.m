@@ -74,7 +74,7 @@ NSInteger const toolbarWidth=320;
         selfFrame.size.height = 1024;
         selfFrame.size.width = 768;
     } else {
-        zonesRect=CGRectMake(250, 410, 71, 43);
+        zonesRect=CGRectMake(630, 945, 73, 53);
         cornerRect=CGRectMake(0, 410, 36, 60);
 
     }
@@ -89,10 +89,10 @@ NSInteger const toolbarWidth=320;
         
         if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
             cornerRect=CGRectMake(0, 945, 36, 60);
-            zonesRect=CGRectMake(250, 945, 71, 43);
+            zonesRect=CGRectMake(630, 945, 71, 43);
         } else {
             cornerRect=CGRectMake(0, 689, 36, 60);
-            zonesRect=CGRectMake(250, 689, 71, 43);
+            zonesRect=CGRectMake(630, 689, 71, 43);
         }
     } else {
         if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
@@ -219,13 +219,16 @@ NSInteger const toolbarWidth=320;
     //[self addSubview:settings];
 
     zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    [zones setImage:[UIImage imageNamed:@"bt_mode_maps_up"] forState:UIControlStateNormal];
-    [zones setImage:[UIImage imageNamed:@"bt_mode_maps"] forState:UIControlStateHighlighted];
-    zones.frame = zonesRect;
+    if(IS_IPAD){
+        [zones setImage:[UIImage imageNamed:@"citymap-button"] forState:UIControlStateNormal];
+        [zones setImage:[UIImage imageNamed:@"citymap-button"] forState:UIControlStateHighlighted];
+        zones.frame = CGRectMake(630, 945, 73, 53);
+    }else{
+        [zones setImage:[UIImage imageNamed:@"bt_mode_maps_up"] forState:UIControlStateNormal];
+        [zones setImage:[UIImage imageNamed:@"bt_mode_maps"] forState:UIControlStateHighlighted];
+        zones.frame = zonesRect;
+    }
     [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
-    if (IS_IPAD)
-        zones.hidden = YES;
-  
     [self addSubview:zones];
 
     UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
@@ -259,7 +262,7 @@ NSInteger const toolbarWidth=320;
     else if (IS_IPAD)  {
         if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
             cornerRect=CGRectMake(0, 945, 36, 60);
-            zonesRect=CGRectMake(250, 945, 71, 43);
+            zonesRect=CGRectMake(250, 945, 871, 43);
         } else {
             cornerRect=CGRectMake(0, 689, 36, 60);
             zonesRect=CGRectMake(250, 689, 71, 43);
@@ -287,10 +290,10 @@ NSInteger const toolbarWidth=320;
     else if (IS_IPAD)  {
         if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
             cornerRect=CGRectMake(0, 945, 36, 60);
-            zonesRect=CGRectMake(250, 945, 71, 43);
+            zonesRect=CGRectMake(630, 945, 73, 53);
         } else {
             cornerRect=CGRectMake(0, 689, 36, 60);
-            zonesRect=CGRectMake(250, 689, 71, 43);
+            zonesRect=CGRectMake(630, 689, 73, 53);
         }
     }
     else {
@@ -302,6 +305,7 @@ NSInteger const toolbarWidth=320;
         corner2Button.frame = cornerRect;
         
         zonesRect.origin.y -= 734;
+        zonesRect.origin.x = 630;
         cornerRect.origin.y -= 734;
     } else {
         zonesRect.origin.y -= 295;

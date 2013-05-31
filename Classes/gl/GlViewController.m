@@ -480,12 +480,17 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     [view addSubview:sourceData];
 
     zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    [zones setImage:[UIImage imageNamed:@"bt_mode_metro_up"] forState:UIControlStateNormal];
-    [zones setImage:[UIImage imageNamed:@"bt_mode_metro"] forState:UIControlStateHighlighted];
-    zones.frame = zonesRect;
+    if(IS_IPAD){
+        [zones setImage:[UIImage imageNamed:@"metro-button"] forState:UIControlStateNormal];
+        [zones setImage:[UIImage imageNamed:@"metro-button"] forState:UIControlStateHighlighted];
+        zones.frame = CGRectMake(self.view.bounds.size.width-600, self.view.bounds.size.height-200, 71, 43);
+    }else{
+        [zones setImage:[UIImage imageNamed:@"bt_mode_metro_up"] forState:UIControlStateNormal];
+        [zones setImage:[UIImage imageNamed:@"bt_mode_metro"] forState:UIControlStateHighlighted];
+        zones.frame = zonesRect;
+    }
+    
     [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
-    if (IS_IPAD)
-        zones.hidden = YES;
     [view addSubview:zones];
     view.zonesButton = zones;
 
