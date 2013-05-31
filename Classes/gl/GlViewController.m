@@ -517,15 +517,9 @@ CGPoint translateFromGeoToMap(CGPoint pm)
         zonesRect=CGRectMake(250, 498, 71, 43);
         cornerRect=CGRectMake(0, 489, 36, 60);
     } else if (IS_IPAD)  {
-        if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-            cornerRect=CGRectMake(0, 945, 36, 60);
-            zonesRect=CGRectMake(250, 945, 71, 43);
-        } else {
-            cornerRect=CGRectMake(0, 689, 36, 60);
-            zonesRect=CGRectMake(250, 689, 71, 43);
-        }
-    }
-    else {
+        cornerRect=CGRectMake(0, 945, 36, 60);
+        zonesRect=CGRectMake(250, 945, 71, 43);
+    } else {
         zonesRect=CGRectMake(250, 410, 71, 43);
         cornerRect=CGRectMake(0, 401, 36, 60);
     }
@@ -546,18 +540,12 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 
     }
     else if (IS_IPAD)  {
-        if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-            cornerRect=CGRectMake(0, 945, 36, 60);
-            zonesRect=CGRectMake(250, 945, 71, 43);
-        } else {
-            cornerRect=CGRectMake(0, 689, 36, 60);
-            zonesRect=CGRectMake(250, 689, 71, 43);
-        }
-    }
-    else {
+        cornerRect=CGRectMake(0, 945, 36, 60);
+        zonesRect=CGRectMake(250, 945, 71, 43);
+        
+    }else {
         zonesRect=CGRectMake(250, 410, 71, 43);
         cornerRect=CGRectMake(0, 401, 36, 60);
-
     }
     
     if (IS_IPAD)  {
