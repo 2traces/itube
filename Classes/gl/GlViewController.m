@@ -14,6 +14,7 @@
 #import "GlView.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
+#define IPAD_ZONES_RECT CGRectMake(250, 410, 71, 43)
 
 // Uniform index.
 enum
@@ -416,7 +417,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
         //scrollSize = CGRectMake(0, 44, 768, (1024-74));
         //settingsRect=CGRectMake(-285, -420, 27, 27);
         //shadowRect = CGRectMake(0, 44, 1024, 61);
-        zonesRect=CGRectMake(self.view.bounds.size.width-70, self.view.bounds.size.height-50, 71, 43);
+        zonesRect=IPAD_ZONES_RECT;
 
         //zonesRect=CGRectMake(self.view.bounds.size.width-70, self.view.bounds.size.height-50, 43, 25);
     } else {
@@ -483,7 +484,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     if(IS_IPAD){
         [zones setImage:[UIImage imageNamed:@"metro-button"] forState:UIControlStateNormal];
         [zones setImage:[UIImage imageNamed:@"metro-button"] forState:UIControlStateHighlighted];
-        zones.frame = CGRectMake(self.view.bounds.size.width-600, self.view.bounds.size.height-200, 71, 43);
+        zones.frame = zonesRect;
     }else{
         [zones setImage:[UIImage imageNamed:@"bt_mode_metro_up"] forState:UIControlStateNormal];
         [zones setImage:[UIImage imageNamed:@"bt_mode_metro"] forState:UIControlStateHighlighted];
@@ -518,7 +519,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
         cornerRect=CGRectMake(0, 489, 36, 60);
     } else if (IS_IPAD)  {
         cornerRect=CGRectMake(0, 945, 36, 60);
-        zonesRect=CGRectMake(250, 945, 71, 43);
+        zonesRect=IPAD_ZONES_RECT;
     } else {
         zonesRect=CGRectMake(250, 410, 71, 43);
         cornerRect=CGRectMake(0, 401, 36, 60);
@@ -541,7 +542,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     }
     else if (IS_IPAD)  {
         cornerRect=CGRectMake(0, 945, 36, 60);
-        zonesRect=CGRectMake(250, 945, 71, 43);
+        zonesRect=IPAD_ZONES_RECT;
         
     }else {
         zonesRect=CGRectMake(250, 410, 71, 43);
@@ -558,7 +559,6 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     
     zones.frame = zonesRect;
     cornerButton.frame = cornerRect;
-
 }
 
 -(void) changeSource
