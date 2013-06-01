@@ -19,7 +19,7 @@
     if (IS_IPAD && zones) {
         //CGRect zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 43, 25);
 //        CGRect zonesRect=CGRectMake(self.bounds.size.width-70, self.bounds.size.height-50, 71, 43);
-        [zones setFrame:IPAD_CITYMAP_ZONES_RECT];
+//        [zones setFrame:IPAD_CITYMAP_ZONES_RECT];
     }
     self.layer.cornerRadius = 5;
 }
