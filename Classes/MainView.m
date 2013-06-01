@@ -291,7 +291,6 @@ NSInteger const toolbarWidth=320;
         corner2Button.frame = cornerRect;
         
         zonesRect.origin.y -= 734;
-        zonesRect.origin.x = 630;
         cornerRect.origin.y -= 734;
     } else {
         zonesRect.origin.y -= 295;
