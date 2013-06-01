@@ -75,7 +75,7 @@ NSInteger const toolbarWidth=320;
         selfFrame.size.height = 1024;
         selfFrame.size.width = 768;
     } else {
-        zonesRect=CGRectMake(250, 410, 71, 43);
+        zonesRect=CGRectMake(630, 945, 73, 53);
         cornerRect=CGRectMake(0, 410, 36, 60);
 
     }
@@ -291,6 +291,7 @@ NSInteger const toolbarWidth=320;
         corner2Button.frame = cornerRect;
         
         zonesRect.origin.y -= 734;
+        zonesRect.origin.x = 630;
         cornerRect.origin.y -= 734;
     } else {
         zonesRect.origin.y -= 295;
