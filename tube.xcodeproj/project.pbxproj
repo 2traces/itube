@@ -3528,6 +3528,7 @@
 		FA4BA1D8171477C30066BA71 /* ColorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorFactory.m; sourceTree = "<group>"; };
 		FA4BA1DD171484BA0066BA71 /* IndexedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexedImageView.h; sourceTree = "<group>"; };
 		FA4BA1DE171484BA0066BA71 /* IndexedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexedImageView.m; sourceTree = "<group>"; };
+		FAC35EBA1759D39C00432679 /* ZonesButtonConf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZonesButtonConf.h; sourceTree = "<group>"; };
 		FAC3984616FCD07400A6CC0C /* Slide3DImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slide3DImageView.h; sourceTree = "<group>"; };
 		FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Slide3DImageView.m; sourceTree = "<group>"; };
 		FAD1333C1757DAB4004859C1 /* citymap-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "citymap-button@2x.png"; sourceTree = "<group>"; };
@@ -3998,6 +3999,7 @@
 				FA1B84BB1739313400D8A05F /* DebugUIImage.m */,
 				FA1B84C6173A9B3600D8A05F /* DebugUIImageView.h */,
 				FA1B84C7173A9B3600D8A05F /* DebugUIImageView.m */,
+				FAC35EBA1759D39C00432679 /* ZonesButtonConf.h */,
 			);
 			name = Views;
 			sourceTree = "<group>";

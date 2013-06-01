@@ -16,6 +16,7 @@
 #import "SettingsViewController.h"
 #import "SettingsNavController.h"
 #import "GlViewController.h"
+#import "ZonesButtonConf.h"
 
 NSInteger const toolbarHeight=44;
 NSInteger const toolbarWidth=320;
@@ -88,7 +89,7 @@ NSInteger const toolbarWidth=320;
         shadowRect = CGRectMake(0, 44, 768, 61);
         
         cornerRect=CGRectMake(0, 945, 36, 60);
-        zonesRect=CGRectMake(645, 945, 71, 43);
+        zonesRect=IPAD_METRO_ZONES_RECT;
     } else {
         if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
             CGSize result = [[UIScreen mainScreen] bounds].size;
@@ -256,7 +257,7 @@ NSInteger const toolbarWidth=320;
     }
     else if (IS_IPAD)  {
         cornerRect=CGRectMake(0, 945, 36, 60);
-        zonesRect=CGRectMake(645, 945, 71, 43);
+        zonesRect=IPAD_METRO_ZONES_RECT;
         corner2Button.frame = cornerRect;
     }
     else {
@@ -279,7 +280,7 @@ NSInteger const toolbarWidth=320;
     }else{
         if (IS_IPAD)  {
             cornerRect=CGRectMake(0, 945, 36, 60);
-            zonesRect=CGRectMake(645, 945, 71, 43);
+            zonesRect=IPAD_METRO_ZONES_RECT;
         } else {
             zonesRect=CGRectMake(250, 410, 71, 43);
             cornerRect=CGRectMake(0, 401, 36, 60);
