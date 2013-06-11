@@ -230,7 +230,7 @@ a:active {
 	position:relative;
 	}
 .text-text{
-	margin:0 570px 0 0;
+	margin:0 540px 0 0;
 	}
 .text-text div.bgbot{
 	background:transparent url(images/bg.png) bottom left repeat-x;
@@ -240,7 +240,7 @@ a:active {
 	margin:-45px 0 0 0;
 	}
 .text-images div.images{
-	width:570px;
+	width:540px;
 	position:absolute;
 	top:2%;
 	right:0;
@@ -253,6 +253,7 @@ a:active {
 	}
 .text-images div.images a img{
 	margin:0 0 15px 0;
+	max-width:263px;
 	}
 .text-images div.images a.html5lightbox.first{
 	margin:21px 29px 0 59px;
@@ -274,27 +275,45 @@ a:active {
 .text-images div.images a.html5lightbox.fifth{
 	margin:-105px 20px 0 0;
 	}
+.text-images div.images a.seventh img{
+	max-width:257px;
+	}
 .text-images div.images a.seventh span{
 	text-align:center;
 	padding:0 10px 0 0;
 	display:block;
 	}
+.text-images div.images a.eighth img{
+	max-width:247px;
+	}
 .text-images div.images a.ninth{
 	margin:-30px 0 0 0;
+	}
+.text-images div.images a.ninth img{
+	max-width:195px;
 	}
 .text-images div.images a.ninth span{
 	display:block;
 	margin:-185px -50px 0 205px;
+	}
+.text-images div.images a.tenth img{
+	max-width:263px;
 	}
 .text-images div.images a.tenth span{
 	text-align:center;
 	padding:0 0 10px 0;
 	display:block;
 	}
+.text-images div.images a.eleventh img{
+	max-width:228px;
+	}
 .text-images div.images a.eleventh span{
 	text-align:center;
 	padding:0 25px 0 0;
 	display:block;
+	}
+.text-images div.images a.twelfth img{
+	max-width:215px;
 	}
 .text-images div.images a.twelfth span{
 	text-align:center;
@@ -318,35 +337,36 @@ a:active {
 	.text-images h2{font-size:160%;}
 	.text-images p{font-size:80%;}
 	}
-@media all and (min-width:593px) and (max-width:640px){
+@media all and (min-width:563px) and (max-width:640px){
 	.text-text{margin:0;}
 	.text-images div.images{position:inherit; margin:2% 0 0 0;}
 	.text-images div.images a{font-size:80%;}
 	.text-images h2{font-size:160%;}
 	.text-images p{font-size:80%;}
 	}
-@media all and (min-width:481px) and (max-width:592px){
+@media all and (min-width:481px) and (max-width:562px){
 	.text-text{margin:0;}
 	.text-images div.images{position:inherit; margin:2% 0 0 0;width:462px;}
 	.text-images div.images a{font-size:80%;}
-	.text-images div.images a img{max-width:190px;}
+	.text-images div.images a img{max-width:195px!important;}
+	.text-images div.images a.eleventh{margin-top:50px;}
 	.text-images h2{font-size:120%;}
 	.text-images p{font-size:70%;}
 	}
 @media all and (min-width:321px) and (max-width:480px){
 	.text-text{margin:0;}
 	.text-images div.images{position:inherit; margin:2% auto;width:308px;}
-	.text-images div.images a{margin:15px 0!important;font-size:60%; }
-	.text-images div.images a img{max-width:308px;}
+	.text-images div.images a{margin:15px auto!important;font-size:60%; }
 	.text-images div.images a span{padding:0!important;margin:0!important;}
+	.text-images div.images a img{max-width:195px!important;}
 	.text-images h2{font-size:120%;}
 	.text-images p{font-size:70%;}
 	}
 @media all and (max-width:320px){
 	.text-text{margin:0;}
 	.text-images div.images{position:inherit; margin:2% auto;width:auto;}
-	.text-images div.images a{margin:0 0 15px 30px!important;font-size:60%;}
-	.text-images div.images a img{max-width:200px;}
+	.text-images div.images a{margin:15px auto!important;font-size:60%; }
+	.text-images div.images a img{max-width:195px!important;}
 	.text-images div.images a span{padding:0!important;margin:0!important;}
 	.text-images h2{font-size:120%;}
 	.text-images p{font-size:70%;}
@@ -361,10 +381,11 @@ a:active {
 	position:absolute;
 	top:50%;
 	left:5%;
-	margin:-152px 0 0 0;
+	margin:-380px 0 0 0;
+	max-width:227px;
 	}
 .text{
-	margin:0 0 0 250px;
+	margin:-100px 0 0 250px;
 	}
 .text h2{
 	color:#284795;
@@ -384,13 +405,13 @@ a:active {
 	.text p{font-size:80%;}
 	}
 @media all and (min-width:321px) and (max-width:480px){
-	.text-full img{width:150px;}
+	.text-full img{max-width:150px;}
 	.text{margin:0 0 0 170px;}
 	.text h2{font-size:120%;}
 	.text p{font-size:70%;}
 	}
 @media all and (max-width:320px){
-	.text-full img{position: inherit;margin:0 auto; width:150px;}
+	.text-full img{position: inherit;margin:0 auto; max-width:150px;}
 	.text{margin:20px 0 0 0;}
 	.text h2{font-size:120%;}
 	.text p{font-size:70%;}

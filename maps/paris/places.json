@@ -13,327 +13,10 @@
             "image_highlighted": "cat_otbt_pressed.png",
             "color": "dc79b0",
             "index": 1
-        },
-        {
-            "name": "Recommended cafes",
-            "image_normal": "cat_rc_normal.png",
-            "image_highlighted": "cat_rc_pressed.png",
-            "color": "dc79b0",
-            "index": 3
         }
     ],
     "places": [
-        {
-            "name": "Observatoire de Paris",
-            "long": 48.805037,
-            "lat": 2.231051,
-            "index": 5,
-            "accessLevel": 1,
-            "text": "61 Avenue de l'Observatoire, 75014 Paris, France\n\n+33 1 40 51 22 21/n/nThe Paris Observatory is the foremost astronomical observatory of France, and one of the largest astronomical centres in the world.\n\nIts foundation lies in the ambitions of Jean-Baptiste Colbert to extend France's maritime power and international trade in the 17th century. Louis XIV promoted its construction starting in 1667, being completed in 1671. It thus predates the Royal Greenwich Observatory in England which was founded in 1675. The architect of the Paris Observatory was Claude Perrault whose brother, Charles, was secretary to Colbert and superintendent of public works. Optical instruments were supplied by Giuseppe Campani. The buildings were extended in 1730, 1810, 1834, 1850, and 1951. The last extension incorporates the spectacular Meridian Room designed by Jean Prouvé./n/nThe world's first national almanac, the Connaissance des temps was published by the observatory in 1679, using eclipses in Jupiter's satellites to aid sea-farers in establishing longitude. In 1863, the observatory published the first modern weather maps. In 1882, a 33 cm astrographic lens was constructed, an instrument that catalysed what proved to be the over-ambitious, international Carte du Ciel project./n/nIn November 1913, the Paris Observatory, using the Eiffel Tower as an antenna, exchanged sustained wireless (radio) signals with the United States Naval Observatory to determine the exact difference of longitude between the two institutions./n/nThe Meudon great refractor was a 83 centimetres aperture refractor, which with September 20, 1909 observations by E.M. Antoniadi helped disprove the Mars canals theory. It was a double telescope completed in 1891, with secondary having 62 centimetres aperture lens for photography. It was one of the largest active telescopes in Europe.",
-            "photos": [
-                "png47.jpg"
-            ],
-            "categories": [
-                1
-            ]
-        },
-               {
-               "Name": "Arc de Triomphe",
-               "long": 48.873829,
-               "lat": 2.295021,
-               "index": 2,
-               "accessLevel": 0,
-               "text": "Arc de Triomphe",
-               "media_type": "3dview",
-               "photos_prefix": "3d/3dbuilding0/3dbuilding0_",
-               "photos_count": 40,
-               "photos_ext": ".jpg",
-               "categories": [
-                              2
-                              ]
-               },
-                              {
-               "Name": "Arc de Triomphe",
-               "long": 48.873829,
-               "lat": 2.295021,
-               "index": 3,
-               "accessLevel": 0,
-               "text": "Arc de Triomphe",
-               "media_type": "native_gallery",
-               "pictures": [
-                    {"path": "gall/louvre_0.jpg"},
-                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
-                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
-                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
-               ],
-               "categories": [
-                              2
-                              ]
-               },
-                              {
-               "Name": "Arc de Triomphe",
-               "long": 48.873829,
-               "lat": 2.295021,
-               "index": 6,
-               "accessLevel": 0,
-               "text": "Arc de Triomphe",
-               "media_type": "native_gallery",
-               "pictures": [
-                    {"path": "gall/louvre_0.jpg"},
-                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
-                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
-                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
-               ],
-               "categories": [
-                              2
-                              ]
-               },
-                              {
-               "Name": "Arc de Triomphe",
-               "long": 48.873829,
-               "lat": 2.295021,
-               "index": 7,
-               "accessLevel": 0,
-               "text": "Arc de Triomphe",
-               "media_type": "native_gallery",
-               "pictures": [
-                    {"path": "gall/louvre_0.jpg"},
-                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
-                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
-                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
-               ],
-               "categories": [
-                              2
-                              ]
-               },
-                              {
-               "Name": "Arc de Triomphe",
-               "long": 48.873829,
-               "lat": 2.295021,
-               "index": 11,
-               "accessLevel": 0,
-               "text": "Arc de Triomphe",
-               "media_type": "native_gallery",
-               "pictures": [
-                    {"path": "gall/louvre_0.jpg"},
-                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
-                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
-                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
-               ],
-               "categories": [
-                              2
-                              ]
-               },
-                              {
-               "Name": "Arc de Triomphe",
-               "long": 48.873829,
-               "lat": 2.295021,
-               "index": 12,
-               "accessLevel": 0,
-               "text": "Arc de Triomphe",
-               "media_type": "native_gallery",
-               "pictures": [
-                    {"path": "gall/louvre_0.jpg"},
-                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
-                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
-                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
-               ],
-               "categories": [
-                              2
-                              ]
-               },
-                                             {
-               "Name": "Arc de Triomphe",
-               "long": 48.873829,
-               "lat": 2.295021,
-               "index": 16,
-               "accessLevel": 0,
-               "text": "Arc de Triomphe",
-               "media_type": "native_gallery",
-               "pictures": [
-                    {"path": "gall/louvre_0.jpg"},
-                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
-                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
-                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
-               ],
-               "categories": [
-                              2
-                              ]
-               },
-                                             {
-               "Name": "Arc de Triomphe",
-               "long": 48.873829,
-               "lat": 2.295021,
-               "index": 17,
-               "accessLevel": 0,
-               "text": "Arc de Triomphe",
-               "media_type": "native_gallery",
-               "pictures": [
-                    {"path": "gall/louvre_0.jpg"},
-                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
-                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
-                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
-               ],
-               "categories": [
-                              2
-                              ]
-               },
-                                             {
-               "Name": "Arc de Triomphe",
-               "long": 48.873829,
-               "lat": 2.295021,
-               "index": 21,
-               "accessLevel": 0,
-               "text": "Arc de Triomphe",
-               "media_type": "native_gallery",
-               "pictures": [
-                    {"path": "gall/louvre_0.jpg"},
-                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
-                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
-                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
-               ],
-               "categories": [
-                              2
-                              ]
-               },
-                                             {
-               "Name": "Arc de Triomphe",
-               "long": 48.873829,
-               "lat": 2.295021,
-               "index": 22,
-               "accessLevel": 0,
-               "text": "Arc de Triomphe",
-               "media_type": "native_gallery",
-               "pictures": [
-                    {"path": "gall/louvre_0.jpg"},
-                    {"path": "gall/louvre_1.jpg", "title": "Picture description 1"},
-                    {"path": "gall/louvre_2.jpg", "title": "Picture description 2"},
-                    {"path": "gall/louvre_3.jpg", "title": "Picture description 3"}
-               ],
-               "categories": [
-                              2
-                              ]
-               },
-        {
-            "name": "Moulin Rouge",
-            "long": 48.884142,
-               "lat": 2.332321,
-               "index": 1,
-           "accessLevel": 0,
-           "text": "Moulin Rouge",
-           "media_type": "html_with_video",
-           "filename": "html/mrouge.html",
-           "video_preview_path": "html/hidden-cities_files/mrouge.png",
-           "video_path": "html/hidden-cities_files/mrouge.mp4",
-            "categories": [
-                2
-            ]
-        },
-                {
-            "name": "Paris Disneyland",
-            "long": 48.870762,
-               "lat": 2.779138,
-               "index": 46,
-            "accessLevel": 1,
-            "text": "Disneyland Paris, originally Euro Disney Resort, later Euro Disneyland, is an entertainment resort in Marne-la-Vallée, a new town in the eastern suburbs of Paris, France, located 32 km from the center of Paris and mostly lying within the commune of Chessy, Seine-et-Marne. Home to two theme parks, seven hotels, and a shopping, dining and entertainment complex, the resort is the second Disney resort to open outside the United States, following Tokyo Disney Resort, and the first to be owned and operated by Disney. The resort opened on 12 April 1992 with the Disneyland theme park, and has since added Walt Disney Studios Park. With 15,405,000 combined visitors to the parks in the fiscal year of 2009, it is France's and Europe's most visited themed attraction",
-            "photos": [
-                "png74.jpg",
-				"png75.jpg",
-				"png76.jpg"
-            ],
-            "categories": [
-                2
-            ]
-        },
-						{
-            "name": "Centre Georges Pompidou",
-            "long": 48.860755,
-               "lat": 2.352424,
-               "index": 5,
-           "accessLevel": 0,
-           "text": "Centre Georges Pompidou",
-           "media_type": "html_with_video",
-           "filename": "html/pompidu.html",
-           "video_preview_path": "html/hidden-cities_files/pompidu.png",
-           "video_path": "html/hidden-cities_files/pompidu.mp4",
-            "categories": [
-                2
-            ]
-        },
-						{
-            "name": "Eiffel Tower",
-            "long": 48.858897,
-               "lat": 2.293558,
-               "index": 10,
-           "accessLevel": 0,
-           "text": "Eiffel Tower",
-           "media_type": "html_gallery",
-           "filename": "html/html_gallery.html",
-            "categories": [
-                2
-            ]
-        },
-						{
-            "name": "Les Invalides",
-            "long": 48.855119,
-               "lat": 2.312562,
-               "index": 15,
-           "accessLevel": 0,
-           "text": "Les Invalides",
-           "media_type": "html_with_video",
-           "filename": "html/invalides.html",
-           "video_preview_path": "html/hidden-cities_files/invalides.png",
-           "video_path": "html/hidden-cities_files/invalides.mp4",
-            "categories": [
-                2
-            ]
-        },
-						{
-            "name": "Musée du Louvre",
-            "long": 48.860614,
-               "lat": 2.33756,
-               "index": 20,
-           "accessLevel": 0,
-           "text": "Musee du Louvre",
-           "media_type": "html_with_video",
-           "filename": "html/louvre.html",
-           "video_preview_path": "html/hidden-cities_files/louvre.png",
-           "video_path": "html/hidden-cities_files/louvre.mp4",
-            "categories": [
-                2
-            ]
-        },
-						{
-            "name": "Montmartre",
-            "long": 48.886265,
-               "lat": 2.34308,
-               "index": 25,
-           "accessLevel": 0,
-           "text": "Montmartre",
-           "media_type": "html_with_video",
-           "filename": "html/monmartre.html",
-           "video_preview_path": "html/hidden-cities_files/monmartre.png",
-           "video_path": "html/hidden-cities_files/monmartre.mp4",
-            "categories": [
-                2
-            ]
-        },
-						{
-            "name": "Notre Dame de Paris",
-            "long": 48.85293,
-               "lat": 2.350194,
-               "index": 30,
-           "accessLevel": 0,
-           "text": "Notre dame de Paris",
-           "media_type": "html_with_video",
-           "filename": "html/notre.html",
-           "video_preview_path": "html/hidden-cities_files/eiffel_tower.png",
-           "video_path": "html/hidden-cities_files/notre.mp4",
-            "categories": [
-                2
-            ]
-        },
-						{
+                    			{
             "name": "Creperie Broceliande",
             "long": 48.884344,
                "lat": 2.341123,
@@ -348,12 +31,344 @@
                 3
             ]
         },
+                                                                                        {
+            "name": "Musée du Louvre",
+            "long": 48.86057,
+            "lat": 2.337625,
+            "index": 1,
+           "accessLevel": 0,
+           "text": "Musee du Louvre",
+           "media_type": "html_with_video",
+           "filename": "html/louvre.html",
+           "video_path": "html/hidden-cities_files/louvre.mp4",
+            "categories": [
+                2
+            ]
+        },
+                        						{
+            "name": "Musée du Louvre",
+            "long": 48.86057,
+            "lat": 2.337625,
+               "index": 2,
+           "accessLevel": 0,
+           "text": "Louvre gallery",
+           "media_type": "html_gallery",
+           "filename": "html/louvre_t1.html",
+            "categories": [
+                2
+            ]
+        },
+                                						{
+            "name": "Musée du Louvre",
+            "long": 48.86057,
+            "lat": 2.337625,
+               "index": 4,
+           "accessLevel": 0,
+           "text": "Louvre gallery",
+           "media_type": "html_gallery",
+           "filename": "html/louvre_t2.html",
+            "categories": [
+                2
+            ]
+        },
+                                                        {
+            "name": "Musée du Louvre",
+            "long": 48.86057,
+            "lat": 2.337625,
+               "index": 5,
+           "accessLevel": 0,
+           "text": "Moulin Rouge2",
+           "media_type": "3dview",
+           "photos_prefix": "3d/louvre/test_.RGB_color.00",
+           "photos_count": 40,
+           "photos_ext": ".jpg",
+            "categories": [
+                2
+            ]
+        },
+                                       {
+            "name": "View from Arc de Triomphe",
+            "long": 48.873768,
+               "lat": 2.295095,
+               "index": 6,
+           "accessLevel": 0,
+           "text": "View from Arc de Triomphe",
+           "media_type": "html",
+           "filename": "html/image_05.html",
+            "categories": [
+                2
+            ]
+        },
+                                                        {
+            "name": "Eiffel tower",
+            "long": 48.858227,
+               "lat": 2.294559,
+               "index": 7,
+           "accessLevel": 0,
+           "text": "Moulin Rouge",
+           "media_type": "html_with_video",
+           "filename": "html/eif0.html",
+           "video_path": "html/hidden-cities_files/eif.mp4",
+            "categories": [
+                2
+            ]
+        },
+                                       {
+               "Name": "Eiffel tower",
+            "long": 48.858424,
+               "lat": 2.294516,
+               "index": 8,
+               "accessLevel": 0,
+               "text": "Eiffel tower",
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/e_0.jpg"},
+                    {"path": "gall/e_1.jpg"},
+                    {"path": "gall/e_2.jpg"},
+                    {"path": "gall/e_3.jpg"}
+               ],
+               "categories": [
+                              2
+                              ]
+               },
+                                        {
+            "name": "Eiffel tower",
+            "long": 48.858424,
+               "lat": 2.294516,
+               "index": 9,
+           "accessLevel": 0,
+           "text": "Moulin Rouge",
+           "media_type": "html",
+           "filename": "html/image_01.html",
+            "categories": [
+                2
+            ]
+        },
+                                    			{
+            "name": "Musee dOrsay",
+            "long": 48.86057,
+            "lat": 2.337625,
+               "index": 10,
+            "accessLevel": 0,
+            "text": "1",
+            "photos": [
+				"png_ab1.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+                       {
+            "name": "Musee d'Orsay",
+            "long": 48.85997,
+               "lat": 2.326624,
+               "index": 11,
+           "accessLevel": 1,
+           "text": "Musee d'Orsay",
+           "media_type": "html",
+           "filename": "html/orsay.html",
+            "categories": [
+                2
+            ]
+        },
+                                {
+            "name": "Musee d'Orsay",
+            "long": 48.85997,
+               "lat": 2.326624,
+               "index": 12,
+           "accessLevel": 1,
+           "media_type": "3dview",
+           "photos_prefix": "3d/orsay/all_et_.RGB_color.00",
+               "photos_count": 40,
+               "photos_ext": ".jpg",
+            "categories": [
+                2
+            ]
+        },
+                                               {
+            "name": "Musee d'Orsay",
+            "long": 48.85997,
+               "lat": 2.326624,
+               "index": 13,
+               "accessLevel": 1,
+               "text": "Musee d'Orsay",
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/orsay_1.jpg"},
+                    {"path": "gall/orsay_2.jpg"},
+                    {"path": "gall/orsay_3.jpg"},
+                    {"path": "gall/orsay_4.jpg"}
+               ],
+               "categories": [
+                              2
+                              ]
+               },
         						{
+            "name": "Centre Georges Pompidou",
+            "long": 48.860755,
+               "lat": 2.352424,
+               "index": 14,
+           "accessLevel": 1,
+           "text": "Centre Georges Pompidou",
+           "media_type": "html_with_video",
+           "filename": "html/pompidu.html",
+           "video_preview_path": "html/hidden-cities_files/pompidu.png",
+           "video_path": "html/hidden-cities_files/pompidu.mp4",
+            "categories": [
+                2
+            ]
+        },
+                						{
+            "name": "Centre Georges Pompidou",
+            "long": 48.860755,
+               "lat": 2.352424,
+               "index": 15,
+           "accessLevel": 1,
+           "text": "Centre Georges Pompidou",
+           "media_type": "html",
+           "filename": "html/pompidou_t1.html",
+            "categories": [
+                2
+            ]
+        },
+                                                                                        {
+            "name": "Cite des Sciences",
+            "long": 48.89596,
+               "lat": 2.387059,
+               "index": 16,
+           "accessLevel": 1,
+           "text": "Moulin Rouge",
+           "media_type": "html_gallery",
+           "filename": "html/cite.html",
+            "categories": [
+                2
+            ]
+        },
+                                                                                          {
+            "name": "discover La Défense...",
+            "long": 48.890757,
+               "lat": 2.241301,
+               "index": 17,
+           "accessLevel": 1,
+           "text": "discover La Défense...",
+           "media_type": "html_with_video",
+           "filename": "html/defance.html",
+           "video_path": "html/hidden-cities_files/defance.mp4",
+ "categories": [
+                                                                                       2
+                                                                                       ]
+                                                                        },
+                                                                                  {
+            "name": "discover La Défense...",
+            "long": 48.890757,
+               "lat": 2.241301,
+               "index": 18,
+               "accessLevel": 1,
+               "text": "Eiffel tower",
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/c_0.jpg"},
+                    {"path": "gall/c_1.jpg"},
+                    {"path": "gall/c_2.jpg"},
+                    {"path": "gall/c_3.jpg"}
+               ],
+               "categories": [
+                              2
+                              ]
+               },
+                                               {
+            "name": "Montmartre",
+            "long": 48.886265,
+               "lat": 2.34308,
+               "index": 33,
+           "accessLevel": 1,
+           "text": "Montmartre",
+           "media_type": "html",
+           "filename": "html/image_06.html",
+            "categories": [
+                2
+            ]
+        },
+                                       						{
+            "name": "Montmartre",
+            "long": 48.886265,
+               "lat": 2.34308,
+               "index": 34,
+           "accessLevel": 1,
+           "text": "Montmartre",
+           "media_type": "html_with_video",
+           "filename": "html/monmartre.html",
+           "video_preview_path": "html/hidden-cities_files/monmartre.png",
+           "video_path": "html/hidden-cities_files/monmartre.mp4",
+            "categories": [
+                2
+            ]
+        },
+                                               						{
+            "name": "Montparnasse tower",
+            "long": 48.842153,
+               "lat": 2.322083,
+               "index": 35,
+           "accessLevel": 1,
+           "text": "Montparnasse tower",
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/a_0.jpg"},
+                    {"path": "gall/a_1.jpg"},
+                    {"path": "gall/a_2.jpg"},
+                    {"path": "gall/a_3.jpg"}
+               ],
+            "categories": [
+                2
+            ]
+        },
+        						{
+            "name": "Notre Dame de Paris",
+            "long": 48.853014,
+               "lat": 2.349896,
+               "index": 36,
+           "accessLevel": 1,
+           "text": "Notre dame de Paris",
+           "media_type": "html_with_video",
+           "filename": "html/notre.html",
+           "video_path": "html/hidden-cities_files/notre.mp4",
+            "categories": [
+                2
+            ]
+        },
+                                        {
+            "name": "Notre Dame de Paris",
+            "long": 48.853014,
+               "lat": 2.349896,
+               "index": 37,
+           "accessLevel": 1,
+           "media_type": "3dview",
+           "photos_prefix": "3d/notre/test_.RGB_color.00",
+           "photos_count": 40,
+           "photos_ext": ".jpg",
+            "categories": [
+                2
+            ]
+        },
+                                                                                        {
+            "name": "Musée du Quai Branly",
+            "long": 48.86105,
+               "lat": 2.297756,
+               "index": 38,
+           "accessLevel": 1,
+           "text": "Musée du Quai Branly",
+           "media_type": "html",
+           "filename": "html/branly.html",
+            "categories": [
+                2
+            ]
+        },
+                        						{
             "name": "Conciergerie",
             "long": 48.856456,
                "lat": 2.345437,
-               "index": 27,
-            "accessLevel": 0,
+               "index": 39,
+            "accessLevel": 1,
            "media_type": "html_with_video",
            "filename": "html/citadele.html",
            "video_preview_path": "html/hidden-cities_files/citadele.png",
@@ -362,21 +377,382 @@
                 2
             ]
         },
-                                                                        {
-            "name": "La Défense",
-            "long": 48.890757,
-               "lat": 2.241301,
-               "index": 63,
-           "accessLevel": 0,
-           "text": "La Defense",
+                						{
+            "name": "Les Invalides",
+            "long": 48.854966,
+               "lat": 2.312519,
+               "index": 40,
+           "accessLevel": 1,
+           "text": "Les Invalides",
            "media_type": "html_with_video",
-           "filename": "html/defance.html",
-           "video_preview_path": "html/hidden-cities_files/defance.png",
-           "video_path": "html/hidden-cities_files/defance.mp4",
- "categories": [
-                                                                                       1
-                                                                                       ]
-                                                                        }
+           "filename": "html/invalides.html",
+           "video_preview_path": "html/hidden-cities_files/invalides.png",
+           "video_path": "html/hidden-cities_files/invalides.mp4",
+            "categories": [
+                2
+            ]
+        },
+                                                                                {
+            "name": "Les Invalides",
+            "long": 48.854966,
+               "lat": 2.312519,
+               "index": 41,
+           "accessLevel": 1,
+           "text": "Les Invalides",
+           "media_type": "html",
+           "filename": "html/invalides2.html",
+            "categories": [
+                2
+            ]
+        },                                                                                                                                                      
+                                                        {
+            "name": "Versailles",
+            "long": 48.804512,
+               "lat": 2.121752,
+               "index": 45,
+           "accessLevel": 1,
+           "text": "Versailles",
+           "media_type": "html",
+           "filename": "html/vers.html",
+            "categories": [
+                2
+            ]
+        },
+                                                                {
+            "name": "Versailles",
+            "long": 48.804512,
+               "lat": 2.121752,
+               "index": 46,
+           "accessLevel": 1,
+           "text": "Versailles",
+           "media_type": "html_gallery",
+           "filename": "html/vers_2.html",
+            "categories": [
+                2
+            ]
+        },
+                                                {
+            "name": "Versailles",
+            "long": 48.804512,
+               "lat": 2.121752,
+               "index": 47,
+           "accessLevel": 1,
+           "media_type": "3dview",
+           "photos_prefix": "3d/versal/test_.RGB_color.00",
+           "photos_count": 40,
+           "photos_ext": ".jpg",
+            "categories": [
+                2
+            ]
+        },
+                                        {
+            "name": "Paris",
+            "long": 48.884142,
+               "lat": 2.332321,
+               "index": 98,
+           "accessLevel": 1,
+           "text": "Moulin Rouge",
+           "media_type": "html",
+           "filename": "html/image_03.html",
+            "categories": [
+                2
+            ]
+        },
+                                                {
+            "name": "Paris",
+            "long": 48.884142,
+               "lat": 2.332321,
+               "index": 99,
+           "accessLevel": 1,
+           "text": "Moulin Rouge",
+           "media_type": "html",
+           "filename": "html/image_02.html",
+            "categories": [
+                1
+            ]
+        },
+        						{
+            "name": "Arc de Triomphe",
+            "long": 48.873807,
+            "lat": 2.294997,
+            "index": 50,
+           "accessLevel": 1,
+           "text": "Arc des Triomphes",
+           "media_type": "html_with_video",
+           "filename": "html/arc.html",
+           "video_path": "html/hidden-cities_files/arc.mp4",
+            "categories": [
+                2
+            ]
+        },
+                						{
+            "name": "Opera",
+            "long": 48.872042,
+               "lat": 2.331699,
+               "index": 52,
+           "accessLevel": 1,
+           "text": "Opera",
+           "media_type": "html_with_video",
+           "filename": "html/opera.html",
+           "video_path": "html/hidden-cities_files/opera.mp4",
+            "categories": [
+                2
+            ]
+        },
+                                                                              {
+            "name": "Opera",
+            "long": 48.872042,
+               "lat": 2.331699,
+               "index": 53,
+           "accessLevel": 1,
+           "text": "Palais Garnier",
+           "media_type": "html",
+           "filename": "html/opera2.html",
+            "categories": [
+                2
+            ]
+        },
+                {
+            "name": "Moulin Rouge",
+            "long": 48.884142,
+               "lat": 2.332321,
+               "index": 55,
+           "accessLevel": 1,
+           "text": "Moulin Rouge",
+           "media_type": "html_with_video",
+           "filename": "html/mrouge.html",
+           "video_preview_path": "html/hidden-cities_files/mrouge.png",
+           "video_path": "html/hidden-cities_files/mrouge.mp4",
+            "categories": [
+                2
+            ]
+        },
+                       {
+               "Name": "Moulin Rouge",
+            "long": 48.884142,
+               "lat": 2.332321,
+               "index": 56,
+               "accessLevel": 1,
+               "text": "Moulin Rouge",
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/mr_0.jpg"},
+                    {"path": "gall/mr_1.jpg"},
+                    {"path": "gall/mr_2.jpg"},
+                    {"path": "gall/mr_3.jpg"}
+               ],
+               "categories": [
+                              2
+                              ]
+               },
+                {
+            "name": "Paris Disneyland",
+            "long": 48.870762,
+               "lat": 2.779138,
+               "index": 90,
+            "accessLevel": 1,
+            "text": "Disneyland Paris, originally Euro Disney Resort, later Euro Disneyland, is an entertainment resort in Marne-la-Vallée, a new town in the eastern suburbs of Paris, France, located 32 km from the center of Paris and mostly lying within the commune of Chessy, Seine-et-Marne. Home to two theme parks, seven hotels, and a shopping, dining and entertainment complex, the resort is the second Disney resort to open outside the United States, following Tokyo Disney Resort, and the first to be owned and operated by Disney. The resort opened on 12 April 1992 with the Disneyland theme park, and has since added Walt Disney Studios Park. With 15,405,000 combined visitors to the parks in the fiscal year of 2009, it is France's and Europe's most visited themed attraction",
+            "photos": [
+                "png74.jpg",
+				"png75.jpg",
+				"png76.jpg"
+            ],
+            "categories": [
+                2
+            ]
+        },
+                                                                                              {
+            "name": "Catacombes",
+            "long": 48.83382,
+               "lat": 2.332485,
+               "index": 80,
+           "accessLevel": 0,
+           "text": "Palais Garnier",
+           "media_type": "html_gallery",
+           "filename": "html/catacombes.html",
+            "categories": [
+                1
+            ]
+        },
+                                                                                              {
+            "name": "Narrowest street",
+            "long": 48.853199,
+               "lat": 2.346203,
+               "index": 81,
+           "accessLevel": 1,
+           "text": "Palais Garnier",
+           "media_type": "html",
+           "filename": "html/full2.html",
+            "categories": [
+                1
+            ]
+        },
+                                                                                                     {
+            "name": "Institut du Monde Arabe",
+            "long": 48.849037,
+               "lat": 2.35663,
+               "index": 82,
+           "accessLevel": 1,
+           "text": "Palais Garnier",
+           "media_type": "html_gallery",
+           "filename": "html/arabe.html",
+            "categories": [
+                1
+            ]
+        },
+                                       {
+               "Name": "Institut du Monde Arabe",
+            "long": 48.849037,
+               "lat": 2.35663,
+               "index": 83,
+               "accessLevel": 1,
+               "text": "Moulin Rouge",
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/arabe_1.jpg"},
+                    {"path": "gall/arabe_2.jpg"},
+                    {"path": "gall/arabe_3.jpg"},
+                    {"path": "gall/arabe_4.jpg"}
+               ],
+               "categories": [
+                              1
+                              ]
+               },
+                                           			{
+            "name": "Musee dOrsay",
+            "long": 48.86057,
+            "lat": 2.337625,
+               "index": 84,
+            "accessLevel": 0,
+            "text": "1",
+            "photos": [
+				"png_ab2.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        },
+                                                                                                             {
+            "name": "Wall of love",
+            "long": 48.884631,
+               "lat": 2.338423,
+               "index": 85,
+           "accessLevel": 1,
+           "text": "Palais Garnier",
+           "media_type": "html",
+           "filename": "html/full1.html",
+            "categories": [
+                1
+            ]
+        },
+                                              {
+               "Name": "Luxembourg gardens",
+            "long": 48.846643,
+               "lat": 2.336648,
+               "index": 86,
+               "accessLevel": 0,
+               "text": "Moulin Rouge",
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/l_1.jpg"},
+                    {"path": "gall/l_2.jpg"},
+                    {"path": "gall/l_3.jpg"},
+                    {"path": "gall/l_4.jpg"}
+               ],
+               "categories": [
+                              1
+                              ]
+               },
+                                                                                              {
+            "name": "Miniature",
+            "long": 48.776272,
+               "lat": 1.962162,
+               "index": 87,
+           "accessLevel": 1,
+           "text": "Palais Garnier",
+           "media_type": "html",
+           "filename": "html/miniature.html",
+            "categories": [
+                1
+            ]
+        },
+                                                                                      {
+            "name": "Aquarium",
+            "long": 48.862569,
+               "lat": 2.29163,
+               "index": 88,
+           "accessLevel": 1,
+           "text": "Palais Garnier",
+           "media_type": "html_gallery",
+           "filename": "html/aquarium.html",
+            "categories": [
+                1
+            ]
+        },
+                                              {
+               "Name": "Parc Monceau",
+            "long": 48.87959,
+               "lat": 2.309311,
+               "index": 89,
+               "accessLevel": 1,
+               "text": "Moulin Rouge",
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/p_1.jpg"},
+                    {"path": "gall/p_2.jpg"},
+                    {"path": "gall/p_3.jpg"},
+                    {"path": "gall/p_4.jpg"}
+               ],
+               "categories": [
+                              1
+                              ]
+               },
+                                                                                                             {
+            "name": "Musee Rodin",
+            "long": 48.855059,
+               "lat": 2.316128,
+               "index": 90,
+           "accessLevel": 1,
+           "text": "Palais Garnier",
+           "media_type": "html",
+           "filename": "html/full3.html",
+            "categories": [
+                1
+            ]
+        },
+                                                             {
+               "Name": "Metro",
+            "long": 48.862569,
+               "lat": 2.347285,
+               "index": 91,
+               "accessLevel": 1,
+               "text": "Moulin Rouge",
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/metro_1.jpg"},
+                    {"path": "gall/metro_2.jpg"},
+                    {"path": "gall/metro_3.jpg"},
+                    {"path": "gall/metro_4.jpg"}
+               ],
+               "categories": [
+                              1
+                              ]
+               },
+                {
+            "name": "Observatoire de Paris",
+            "long": 48.805037,
+            "lat": 2.231051,
+            "index": 60,
+            "accessLevel": 1,
+            "text": "61 Avenue de l'Observatoire, 75014 Paris, France\n\n+33 1 40 51 22 21/n/nThe Paris Observatory is the foremost astronomical observatory of France, and one of the largest astronomical centres in the world.\n\nIts foundation lies in the ambitions of Jean-Baptiste Colbert to extend France's maritime power and international trade in the 17th century. Louis XIV promoted its construction starting in 1667, being completed in 1671. It thus predates the Royal Greenwich Observatory in England which was founded in 1675. The architect of the Paris Observatory was Claude Perrault whose brother, Charles, was secretary to Colbert and superintendent of public works. Optical instruments were supplied by Giuseppe Campani. The buildings were extended in 1730, 1810, 1834, 1850, and 1951. The last extension incorporates the spectacular Meridian Room designed by Jean Prouvé./n/nThe world's first national almanac, the Connaissance des temps was published by the observatory in 1679, using eclipses in Jupiter's satellites to aid sea-farers in establishing longitude. In 1863, the observatory published the first modern weather maps. In 1882, a 33 cm astrographic lens was constructed, an instrument that catalysed what proved to be the over-ambitious, international Carte du Ciel project./n/nIn November 1913, the Paris Observatory, using the Eiffel Tower as an antenna, exchanged sustained wireless (radio) signals with the United States Naval Observatory to determine the exact difference of longitude between the two institutions./n/nThe Meudon great refractor was a 83 centimetres aperture refractor, which with September 20, 1909 observations by E.M. Antoniadi helped disprove the Mars canals theory. It was a double telescope completed in 1891, with secondary having 62 centimetres aperture lens for photography. It was one of the largest active telescopes in Europe.",
+            "photos": [
+                "png47.jpg"
+            ],
+            "categories": [
+                1
+            ]
+        }
+                                                                        
                                                                         ]
                                                                         }
 
