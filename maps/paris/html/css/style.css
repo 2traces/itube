@@ -18,6 +18,7 @@ body {
 }
 a {
   color: #000;
+  text-decoration: none;
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 767px) {
   /* iphone */
@@ -82,9 +83,10 @@ a {
   /*type 1*/
   /*type 3*/
   h1 {
-    font-size: 31px;
+    font-size: 28px;
     font-style: italic;
     color: #284795;
+    text-align: center;
     margin-bottom: 0.2em;
   }
   p {
@@ -233,6 +235,7 @@ a {
   }
   .type1-text {
     margin-left: 260px;
+    text-decoration: none;
   }
   .type1-footimg {
     position: absolute;
@@ -242,6 +245,7 @@ a {
   .type1-scroll {
     height: 335px;
     overflow: auto;
+    text-decoration: none;
   }
   .type1-scroll_2 {
     height: 410px;
