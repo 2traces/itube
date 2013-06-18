@@ -19,7 +19,6 @@
 
 @implementation ConcreateAnswerViewController
 {
-	BOOL purchased;
 	NSArray *answers;
 
 	NSMutableDictionary *fileAlreadyDownloading;
@@ -32,11 +31,6 @@
 
 	answers = [_book children:@"a"];
 
-	NSString *featureId = [NSString stringWithFormat:self.bookIAPStringFormat,
-										   [_term attribute:@"id"],
-										   [_subject attribute:@"id"],
-										   [_book attribute:@"id"]];
-	purchased = [MKStoreManager isFeaturePurchased:featureId];
 	self.dataSource = self;
 
 	fileAlreadyDownloading = [NSMutableDictionary dictionary];
@@ -46,7 +40,7 @@
 
 - (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller
 {
-	return purchased ? answers.count : 2;
+	return _purchased ? answers.count : 2;
 }
 
 - (id <QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index

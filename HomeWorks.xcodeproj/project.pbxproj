@@ -106,7 +106,6 @@
 		A56A1C9ABBE448DC58A1668B /* icon_7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A56A1A6E2DDDDE3026820151 /* icon_7@2x.png */; };
 		A56A1D23E91F27869BC0512E /* SubjectTableVIewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A56A1909590A86CBEC5AD7AF /* SubjectTableVIewCell.m */; };
 		A56A1D58E05945C3DEE0BDBF /* BooksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A56A17836D536C022D4A7A6A /* BooksViewController.m */; };
-		A56A1DAAC803AE916AA6AE9D /* StartScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A56A156E4079E3000BCFF927 /* StartScreenViewController.m */; };
 		A56A1DB3CAAC582BEF0A0258 /* TermTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A56A100983717C68C80AB82B /* TermTableViewCell.h */; };
 		A56A1DC557EFEF11F910B6D6 /* table_button_single@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A56A15A09C9F24CE33C9A771 /* table_button_single@2x.png */; };
 		A56A1E88BD7287681D77437B /* HomeworksTableViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A56A1A683FB9ED470FEE0C5A /* HomeworksTableViewController.h */; };
@@ -222,7 +221,6 @@
 		A56A1117080B3574D6A8D70C /* BookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookTableViewCell.m; sourceTree = "<group>"; };
 		A56A1178308F8211D5BEB5D7 /* table_button_mid_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table_button_mid_pressed@2x.png"; sourceTree = "<group>"; };
 		A56A11C8D7B979E0D92412E5 /* NSObject+homeWorksServiceLocator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+homeWorksServiceLocator.m"; sourceTree = "<group>"; };
-		A56A11DFF149FC75E7B4B148 /* StartScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScreenViewController.h; sourceTree = "<group>"; };
 		A56A123732927F7AE32EE906 /* bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar@2x.png"; sourceTree = "<group>"; };
 		A56A125A8CEB591F9529E586 /* PushLayerSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushLayerSegue.m; sourceTree = "<group>"; };
 		A56A12D67073BA0094EC3460 /* AnswerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerViewCell.h; sourceTree = "<group>"; };
@@ -233,7 +231,6 @@
 		A56A14325489779303F64C4A /* ConcreateAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcreateAnswerViewController.m; sourceTree = "<group>"; };
 		A56A1502A9262C834672A558 /* SubjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectsViewController.h; sourceTree = "<group>"; };
 		A56A1543312044B358734366 /* icon_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_6@2x.png"; sourceTree = "<group>"; };
-		A56A156E4079E3000BCFF927 /* StartScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScreenViewController.m; sourceTree = "<group>"; };
 		A56A15A09C9F24CE33C9A771 /* table_button_single@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table_button_single@2x.png"; sourceTree = "<group>"; };
 		A56A15CB774EB0A84FC9D920 /* AnswerFileURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerFileURL.m; sourceTree = "<group>"; };
 		A56A15F3CD3C6640C93EA821 /* table_button_down_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table_button_down_pressed@2x.png"; sourceTree = "<group>"; };
@@ -431,8 +428,6 @@
 		A56A16856FEF5E8A631AEEB1 /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A56A11DFF149FC75E7B4B148 /* StartScreenViewController.h */,
-				A56A156E4079E3000BCFF927 /* StartScreenViewController.m */,
 				A56A143B1C8BA7D44994BB80 /* terms */,
 				A56A14D518501F59E9988978 /* subjects */,
 				A56A1C54C11EB8827D96804B /* books */,
@@ -718,7 +713,6 @@
 			files = (
 				49750D01170B5A1300ED9AA4 /* main.m in Sources */,
 				49750D05170B5A1300ED9AA4 /* AppDelegate.m in Sources */,
-				A56A1DAAC803AE916AA6AE9D /* StartScreenViewController.m in Sources */,
 				A56A1B09BAB020D7465E9989 /* NSObject+homeWorksServiceLocator.m in Sources */,
 				A56A122A29BD55618022CC21 /* TermsViewController.m in Sources */,
 				A56A18585FE5D760441D5563 /* SubjectsViewController.m in Sources */,

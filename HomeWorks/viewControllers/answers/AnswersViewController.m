@@ -33,7 +33,6 @@ NSString *kFooterID = @"collectionFooter";
 
 	NSOperationQueue *operationQueue;
 	DejalActivityView *activityView;
-
 }
 
 - (void)viewDidLoad
@@ -47,7 +46,7 @@ NSString *kFooterID = @"collectionFooter";
 	NSString *bookId = [_book attribute:@"id"];
 
 	featureId = [NSString stringWithFormat:self.bookIAPStringFormat, termId, subjectId, bookId];
-	self.purchased = [MKStoreManager isFeaturePurchased:featureId];
+	self.purchased = [_book attributeAsInt:@"free"] || [MKStoreManager isFeaturePurchased:featureId];
 
 	self.collectionView.allowsMultipleSelection = NO;
 
@@ -117,6 +116,7 @@ NSString *kFooterID = @"collectionFooter";
 	previewController.term = _term;
 	previewController.subject = _subject;
 	previewController.book = _book;
+	previewController.purchased = _purchased;
 	previewController.currentPreviewItemIndex = indexPath.item;
 
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)

@@ -8,6 +8,8 @@
 #import "InfoViewController.h"
 #import "MKStoreManager.h"
 #import "DejalActivityView.h"
+#import "AFHTTPRequestOperation.h"
+#import "NSObject+homeWorksServiceLocator.h"
 
 
 @implementation InfoViewController
@@ -40,11 +42,54 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.section != 1)
+	switch(indexPath.section)
 	{
-		return;
+		case 1:
+			[self restorePurchases];
+			break;
+		case 2:
+			[self updateCatalog];
+			break;
+		default:
+			break;
 	}
 
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)updateCatalog
+{
+	[DejalBezelActivityView activityViewForView:self.view.window withLabel:@""].showNetworkActivityIndicator = YES;
+
+	NSURLRequest *request = [NSURLRequest requestWithURL:self.catalogDownloadUrl];
+	AFHTTPRequestOperation *catalogDownloadOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+
+	[catalogDownloadOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+	{
+		NSLog(@"Catalog succesfully downloaded");
+
+		RXMLElement *rxml = [RXMLElement elementFromXMLData:operation.responseData];
+
+		// Check that file is parsed fine
+		if ([rxml attribute:@"baseurl"])
+		{
+			[self.catalogRxml initFromXMLData:operation.responseData];
+			//TODO [operation.responseString writeToFile:self.catalogFilePath atomically:YES encoding:operation.responseStringEncoding error:nil];
+		}
+
+		[DejalBezelActivityView removeView];
+
+	}                                               failure:^(AFHTTPRequestOperation *operation, NSError *error)
+	{
+		NSLog(@"error downloading catalog!");
+		[DejalBezelActivityView removeView];
+	}];
+
+	[catalogDownloadOperation start];
+}
+
+- (void)restorePurchases
+{
 	[DejalBezelActivityView activityViewForView:self.view.window withLabel:@""].showNetworkActivityIndicator = YES;
 
 	[[MKStoreManager sharedManager] restorePreviousTransactionsOnComplete:^
@@ -54,8 +99,6 @@
 	{
 		[DejalBezelActivityView removeView];
 	}];
-
-	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

@@ -18,4 +18,6 @@
 @property(nonatomic) RXMLElement *subject;
 @property(nonatomic) RXMLElement *book;
 
+@property (nonatomic) BOOL purchased;
+
 @end
