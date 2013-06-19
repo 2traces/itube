@@ -240,6 +240,7 @@
            "accessLevel": 0,
            "media_type": "html_with_video",
            "filename": "html/defance.html",
+           "video_preview_path": "html/hidden-cities_files/defance.png",
            "video_path": "html/hidden-cities_files/defance.mp4",
  "categories": [
                                                                                        2
@@ -396,19 +397,21 @@
             "categories": [
                 2
             ]
-        },                                                                                                                                                      
+        },   
                                                         {
             "name": "Versailles",
             "long": 48.804512,
                "lat": 2.121752,
                "index": 45,
            "accessLevel": 0,
-           "media_type": "html_gallery",
-           "filename": "html/vers.html",
+           "media_type": "html_with_video",
+           "filename": "html/vers_video.html",
+           "video_preview_path": "html/hidden-cities_files/vers.png",
+           "video_path": "html/hidden-cities_files/vers.mp4",
             "categories": [
                 2
             ]
-        },
+        },                                                                                                                                                   
                                                                 {
             "name": "Versailles",
             "long": 48.804512,
@@ -431,6 +434,18 @@
            "photos_prefix": "3d/versal/test_.RGB_color.00",
            "photos_count": 40,
            "photos_ext": ".jpg",
+            "categories": [
+                2
+            ]
+        },
+                                                {
+            "name": "Sainte-Chapelle",
+            "long": 48.855405,
+               "lat": 2.345011,
+               "index": 48,
+           "accessLevel": 0,
+           "media_type": "html",
+           "filename": "html/full6.html",
             "categories": [
                 2
             ]
@@ -534,7 +549,7 @@
             "name": "Paris Disneyland",
             "long": 48.870762,
                "lat": 2.779138,
-               "index": 77,
+               "index": 75,
            "accessLevel": 0,
            "media_type": "html_with_video",
            "filename": "html/disneyland.html",
@@ -548,7 +563,7 @@
             "name": "Shakespeare and Company bookstore",
             "long": 48.852588,
                "lat": 2.34712,
-               "index": 78,
+               "index": 76,
            "accessLevel": 0,
            "media_type": "html",
            "filename": "html/full4.html",
@@ -560,7 +575,7 @@
             "name": "extra content",
             "long": 48.86057,
             "lat": 2.337625,
-               "index": 79,
+               "index": 77,
             "accessLevel": 0,
             "photos": [
 				"png_ab2.jpg"
@@ -568,7 +583,39 @@
             "categories": [
                 1
             ]
-        },                                                                                     {
+        },                                                                                     
+                                						{
+            "name": "National library of France",
+            "long": 48.833707,
+               "lat": 2.375812,
+               "index": 78,
+           "accessLevel": 0,
+           "media_type": "html_with_video",
+           "filename": "html/lib.html",
+                      "video_preview_path": "html/hidden-cities_files/lib.png",
+           "video_path": "html/hidden-cities_files/lib.mp4",
+            "categories": [
+                1
+            ]
+        },
+                                               {
+               "Name": "Center for European Photography",
+            "long": 48.85496,
+               "lat": 2.359203,
+               "index": 79,
+               "accessLevel": 0,
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/f_0.jpg"},
+                    {"path": "gall/f_1.jpg"},
+                    {"path": "gall/f_2.jpg"},
+                    {"path": "gall/f_3.jpg"}
+               ],
+               "categories": [
+                              1
+                              ]
+               },  
+        {
             "name": "Catacombes",
             "long": 48.83382,
                "lat": 2.332485,
