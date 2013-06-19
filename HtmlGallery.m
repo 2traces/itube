@@ -20,6 +20,7 @@
         UIWebView *webView = [[UIWebView alloc] initWithFrame:parent.frame];
         [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         webView.delegate = self;
+        webView.scrollView.bounces = NO;
         NSString *htmlPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename];
         self.htmlDir = [htmlPath stringByDeletingLastPathComponent];
         NSURL* url = [NSURL fileURLWithPath:htmlPath];
