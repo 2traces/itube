@@ -144,7 +144,6 @@
         [image release];
     }
     [self.imagesArray release];
-    [self.bgImageView release];
     [self.titleLabel release];
     [self.titlesArray release];
     [super dealloc];
