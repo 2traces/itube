@@ -92,10 +92,10 @@
 {
 	[DejalBezelActivityView activityViewForView:self.view.window withLabel:@""].showNetworkActivityIndicator = YES;
 
-	[[MKStoreManager sharedManager] restorePreviousTransactionsOnComplete:^
+	[self.purchaseService restorePurchasesOnComplete:^()
 	{
 		[DejalBezelActivityView removeView];
-	}                                                             onError:^(NSError *error)
+	}                                    onError:^()
 	{
 		[DejalBezelActivityView removeView];
 	}];

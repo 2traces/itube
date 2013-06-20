@@ -6,13 +6,19 @@
 
 
 #import "NSObject+homeWorksServiceLocator.h"
+#import "PurchasesService.h"
 
 
 @implementation NSObject (homeWorksServiceLocator)
 
-- (NSString *)bookIAPStringFormat
+-(NSString *)monthlySubscriptionIAP
 {
-	return @"ru.trylogic.homeworks.term%@subject%@book%@";
+	return @"ru.trylogic.homeworks.monthly";
+}
+
+-(NSString *)yearlySubscriptionIAP
+{
+	return @"ru.trylogic.homeworks.yearly";
 }
 
 - (NSString *)pageURLStringFormat
@@ -76,5 +82,18 @@
 
 	return catalogRxml;
 }
+
+- (PurchasesService *)purchaseService
+{
+	static PurchasesService *purchasesService;
+
+	if(purchasesService == nil)
+	{
+		purchasesService = [[PurchasesService alloc] init];
+	}
+
+	return purchasesService;
+}
+
 
 @end

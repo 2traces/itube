@@ -8,9 +8,13 @@
 #import <Foundation/Foundation.h>
 #import "RXMLElement.h"
 
+@class PurchasesService;
+
 @interface NSObject (homeWorksServiceLocator)
 
-- (NSString *)bookIAPStringFormat;
+-(NSString *)monthlySubscriptionIAP;
+
+-(NSString *)yearlySubscriptionIAP;
 
 - (NSString *)pageURLStringFormat;
 
@@ -23,5 +27,7 @@
 - (NSString *)catalogFilePath;
 
 - (RXMLElement *)catalogRxml;
+
+-(PurchasesService *)purchaseService;
 
 @end

@@ -15,6 +15,7 @@
 #import "AnswerFileURL.h"
 #import "AnswerViewCell.h"
 #import "ConcreateAnswerViewController.h"
+#import "PurchasesService.h"
 
 NSString *kCellID = @"answerCell";
 NSString *kLockedCellID = @"lockedAnswerCell";
@@ -28,7 +29,6 @@ NSString *kFooterID = @"collectionFooter";
 
 @implementation AnswersViewController
 {
-	NSString *featureId;
 	NSArray *answers;
 
 	NSOperationQueue *operationQueue;
@@ -45,8 +45,7 @@ NSString *kFooterID = @"collectionFooter";
 	NSString *subjectId = [_subject attribute:@"id"];
 	NSString *bookId = [_book attribute:@"id"];
 
-	featureId = [NSString stringWithFormat:self.bookIAPStringFormat, termId, subjectId, bookId];
-	self.purchased = [_book attributeAsInt:@"free"] || [MKStoreManager isFeaturePurchased:featureId];
+	self.purchased = [self.purchaseService isPurchasedTermId:termId  withSubjectId:subjectId withBookId:bookId];
 
 	self.collectionView.allowsMultipleSelection = NO;
 
@@ -148,7 +147,7 @@ NSString *kFooterID = @"collectionFooter";
 	{
 		[self purchase];
 	}
-	else if (![self updateAllFilesDownloadedStatus])
+	else
 	{
 		[self downloadAll];
 	}
@@ -156,7 +155,6 @@ NSString *kFooterID = @"collectionFooter";
 
 - (BOOL)updateAllFilesDownloadedStatus
 {
-	BOOL allFilesDownloaded = YES;
 	NSString *termId = [_term attribute:@"id"];
 	NSString *subjectId = [_subject attribute:@"id"];
 	NSString *bookId = [_book attribute:@"id"];
@@ -172,50 +170,35 @@ NSString *kFooterID = @"collectionFooter";
 															answerFile,
 															answerExt];
 
-		allFilesDownloaded = [[NSFileManager defaultManager] fileExistsAtPath:pageFilePath];
-		if (!allFilesDownloaded)
+		if (![[NSFileManager defaultManager] fileExistsAtPath:pageFilePath])
 		{
-			break;
+			self.navigationItem.rightBarButtonItem.title = @"Загрузить все ответы";
+			return NO;
 		}
 	}
 
 	if (self.purchased)
 	{
-		if (allFilesDownloaded)
-		{
-			self.navigationItem.rightBarButtonItem = nil;
-		}
-		else
-		{
-			self.navigationItem.rightBarButtonItem.title = @"Загрузить все ответы";
-		}
+		self.navigationItem.rightBarButtonItem = nil;
 	}
 
-	return allFilesDownloaded;
+	return YES;
 }
 
 - (void)purchase
 {
-	NSLog(@"buying %@", featureId);
+	NSLog(@"buying");
 	activityView = [DejalBezelActivityView activityViewForView:self.view.window withLabel:@""];
 
-	NSMutableArray *purchasableObjects = [MKStoreManager sharedManager].purchasableObjects;
-	for (SKProduct *product in purchasableObjects)
+	[self.purchaseService purchaseMonthlySubscriptionWithComplete:^()
 	{
-		if ([[product productIdentifier] isEqualToString:featureId])
-		{
-			[[MKStoreManager sharedManager] buyFeature:featureId onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads)
-			{
-				[activityView removeFromSuperview];
-				self.purchased = YES;
-				[self.collectionView reloadData];
-			}                              onCancelled:^
-			{
-				[self removeActivityView:activityView];
-			}];
-			return;
-		}
-	}
+		[activityView removeFromSuperview];
+		self.purchased = YES;
+		[self.collectionView reloadData];
+	} andError:^()
+	{
+		[self removeActivityView:activityView];
+	}];
 
 	[self performSelector:@selector(removeActivityView:) withObject:activityView afterDelay:5];
 }
@@ -347,7 +330,8 @@ NSString *kFooterID = @"collectionFooter";
 		headerView.nameLabel.text = [_book attribute:@"name"];
 		headerView.authorsLabel.text = [_book attribute:@"authors"];
 		return headerView;
-	} else if ([kind isEqualToString:PSTCollectionElementKindSectionFooter])
+	}
+	else if ([kind isEqualToString:PSTCollectionElementKindSectionFooter])
 	{
 		AnswersViewHeader *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:kFooterID forIndexPath:indexPath];
 		[footerView.backgroundImage setImage:[UIImage imageNamed:@"table_button_top"]];

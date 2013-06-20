@@ -22,8 +22,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 	[MKStoreManager sharedManager];
 
-	//[[UITableView appearance] setBackgroundView:nil];
-
 	return YES;
 }
 
