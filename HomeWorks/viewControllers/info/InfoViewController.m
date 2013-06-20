@@ -74,7 +74,7 @@
 		if ([rxml attribute:@"baseurl"])
 		{
 			[self.catalogRxml initFromXMLData:operation.responseData];
-			//TODO [operation.responseString writeToFile:self.catalogFilePath atomically:YES encoding:operation.responseStringEncoding error:nil];
+			[operation.responseString writeToFile:self.catalogFilePath atomically:YES encoding:operation.responseStringEncoding error:nil];
 		}
 
 		[DejalBezelActivityView removeView];
