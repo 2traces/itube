@@ -33,7 +33,7 @@
         CGFloat videoHeight = videoWidth * 428 / 768;
         CGFloat webViewY = videoHeight;
         CGRect videoFrame = CGRectMake(0, 0, videoWidth, videoHeight);
-        NSString *videoPreviewPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.previewPath];
+        NSString *videoPreviewPath = [LCUtil getLocalizedPath:[NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.previewPath]];
         if (withVideo) {
             [self createMoviePlayer:media appDelegate:appDelegate videoFrame:videoFrame];
         }else{
@@ -70,7 +70,7 @@
 
 - (void)createMoviePlayer:(MMedia *)media appDelegate:(tubeAppDelegate *)appDelegate videoFrame:(CGRect)videoFrame
 {
-    NSString *videoPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.videoPath];
+    NSString *videoPath = [LCUtil getLocalizedPath:[NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.videoPath]];
     self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:videoPath]];
     self.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
     self.moviePlayer.fullscreen = NO;

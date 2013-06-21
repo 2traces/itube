@@ -31,6 +31,7 @@
         if ([[NSFileManager defaultManager] fileExistsAtPath:iPadPath])
             imagePath = iPadPath;
     }
+    imagePath = [LCUtil getLocalizedPath:imagePath];
     
     if ([[[media.filename pathExtension] lowercaseString] isEqualToString:@"gif"]) {
         images = [UIImage imagesArrayWithAnimatedGIFData:[NSData dataWithContentsOfFile:imagePath] duration:2.5f];
