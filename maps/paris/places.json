@@ -695,30 +695,7 @@
                               1
                               ]
                },
-                                                                                              {
-            "name": "Miniature",
-            "long": 48.776272,
-               "lat": 1.962162,
-               "index": 88,
-           "accessLevel": 0,
-           "media_type": "html_gallery",
-           "filename": "html/miniature.html",
-            "categories": [
-                1
-            ]
-        },
-                                                                                      {
-            "name": "Aquarium",
-            "long": 48.862569,
-               "lat": 2.29163,
-               "index": 89,
-           "accessLevel": 0,
-           "media_type": "html_gallery",
-           "filename": "html/aquarium.html",
-            "categories": [
-                1
-            ]
-        },
+
                                               {
                "Name": "Parc Monceau",
             "long": 48.87959,
