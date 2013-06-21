@@ -8,6 +8,7 @@
 
 #import "HtmlWithVideoView.h"
 #import "ColorFactory.h"
+#import "LCUtil.h"
 
 @implementation HtmlWithVideoView
 
@@ -56,7 +57,7 @@
                                                                          videoWidth,
                                                                          parent.frame.size.height-webViewY)];
         self.webView.scrollView.bounces = NO;
-        NSString *htmlPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename];
+        NSString *htmlPath = [LCUtil getLocalizedPath:[NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename]];
         NSURL* url = [NSURL fileURLWithPath:htmlPath];
         NSURLRequest* request = [NSURLRequest requestWithURL:url];
         [self.webView loadRequest:request];

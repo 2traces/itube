@@ -12,6 +12,7 @@
 #import "HtmlWithVideoView.h"
 #import "HtmlGallery.h"
 #import "NativeGallery.h"
+#import "LCUtil.h"
 
 
 @implementation MediaTypeFactory

@@ -368,8 +368,6 @@
 		5758354D168B2E9F00C96F5C /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 57583549168B2E9F00C96F5C /* UIImage+animatedGIF.m */; };
 		5758354F168B303200C96F5C /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5758354E168B303200C96F5C /* ImageIO.framework */; };
 		5758F1751672913F00A12E35 /* berlin-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107310486CEB800E47090 /* berlin-Info.plist */; };
-		5758F1761672914800A12E35 /* venice-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 577DE973166E2F1E006BA43A /* venice-Info.plist */; };
-		5758F1771672914F00A12E35 /* nyc-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 577DEB96166E2F22006BA43A /* nyc-Info.plist */; };
 		5766026316A47D7600493495 /* bt_corner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5766026216A47D7600493495 /* bt_corner@2x.png */; };
 		5766026416A47D7600493495 /* bt_corner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5766026216A47D7600493495 /* bt_corner@2x.png */; };
 		5766026516A47D7600493495 /* bt_corner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5766026216A47D7600493495 /* bt_corner@2x.png */; };
@@ -2620,6 +2618,10 @@
 		FA1B84C9173A9B3600D8A05F /* DebugUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1B84C7173A9B3600D8A05F /* DebugUIImageView.m */; };
 		FA1B84CA173A9B3600D8A05F /* DebugUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1B84C7173A9B3600D8A05F /* DebugUIImageView.m */; };
 		FA1B84CB173A9B3600D8A05F /* DebugUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1B84C7173A9B3600D8A05F /* DebugUIImageView.m */; };
+		FA38296D1774BE2A003BCCE0 /* LCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FA38296C1774BE2A003BCCE0 /* LCUtil.m */; };
+		FA38296E1774BE2A003BCCE0 /* LCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FA38296C1774BE2A003BCCE0 /* LCUtil.m */; };
+		FA38296F1774BE2A003BCCE0 /* LCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FA38296C1774BE2A003BCCE0 /* LCUtil.m */; };
+		FA3829701774BE2A003BCCE0 /* LCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FA38296C1774BE2A003BCCE0 /* LCUtil.m */; };
 		FA4BA176171309CF0066BA71 /* HtmlGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA175171309CF0066BA71 /* HtmlGallery.m */; };
 		FA4BA177171309CF0066BA71 /* HtmlGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA175171309CF0066BA71 /* HtmlGallery.m */; };
 		FA4BA178171309CF0066BA71 /* HtmlGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA175171309CF0066BA71 /* HtmlGallery.m */; };
@@ -2965,11 +2967,8 @@
 		5778E2C9166D1065009716BC /* bt_mode_maps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bt_mode_maps@2x.png"; path = "images/hidden_cities/bt_mode_maps@2x.png"; sourceTree = "<group>"; };
 		5778E2CA166D1065009716BC /* bt_mode_metro@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bt_mode_metro@2x.png"; path = "images/hidden_cities/bt_mode_metro@2x.png"; sourceTree = "<group>"; };
 		577DE74D166E2F15006BA43A /* HC Berlin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HC Berlin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		577DE74F166E2F15006BA43A /* paris-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "paris-Info.plist"; path = "/Users/alexeystarovoitov/XCode Projects/itube/paris-Info.plist"; sourceTree = "<absolute>"; };
 		577DE971166E2F1D006BA43A /* HC Venice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HC Venice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		577DE973166E2F1E006BA43A /* venice-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "venice-Info.plist"; path = "/Users/alexeystarovoitov/XCode Projects/itube/venice-Info.plist"; sourceTree = "<absolute>"; };
 		577DEB94166E2F21006BA43A /* HC NYC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HC NYC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		577DEB96166E2F22006BA43A /* nyc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "nyc-Info.plist"; path = "/Users/alexeystarovoitov/XCode Projects/itube/nyc-Info.plist"; sourceTree = "<absolute>"; };
 		577DEBA2166E3126006BA43A /* berlin */ = {isa = PBXFileReference; lastKnownFileType = folder; name = berlin; path = maps/berlin; sourceTree = "<group>"; };
 		577DEBA4166E312D006BA43A /* paris */ = {isa = PBXFileReference; lastKnownFileType = folder; name = paris; path = maps/paris; sourceTree = "<group>"; };
 		577DEBA6166E3137006BA43A /* venice */ = {isa = PBXFileReference; lastKnownFileType = folder; name = venice; path = maps/venice; sourceTree = "<group>"; };
@@ -3520,6 +3519,8 @@
 		FA1B84BB1739313400D8A05F /* DebugUIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugUIImage.m; sourceTree = "<group>"; };
 		FA1B84C6173A9B3600D8A05F /* DebugUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugUIImageView.h; sourceTree = "<group>"; };
 		FA1B84C7173A9B3600D8A05F /* DebugUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugUIImageView.m; sourceTree = "<group>"; };
+		FA38296B1774BE2A003BCCE0 /* LCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCUtil.h; sourceTree = "<group>"; };
+		FA38296C1774BE2A003BCCE0 /* LCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCUtil.m; sourceTree = "<group>"; };
 		FA4BA174171309CF0066BA71 /* HtmlGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlGallery.h; sourceTree = "<group>"; };
 		FA4BA175171309CF0066BA71 /* HtmlGallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlGallery.m; sourceTree = "<group>"; };
 		FA4BA1D0171471C80066BA71 /* NativeGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeGallery.h; sourceTree = "<group>"; };
@@ -3737,10 +3738,7 @@
 				4B1F19C41454308B008B0966 /* GraphNode.h */,
 				4B1F19C51454308B008B0966 /* GraphNode.m */,
 				32CA4F630368D1EE00C91783 /* tube_Prefix.pch */,
-				577DE74F166E2F15006BA43A /* paris-Info.plist */,
 				8D1107310486CEB800E47090 /* berlin-Info.plist */,
-				577DE973166E2F1E006BA43A /* venice-Info.plist */,
-				577DEB96166E2F22006BA43A /* nyc-Info.plist */,
 				BC3D150B14C338EE0059A17E /* maps.plist */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -4011,6 +4009,8 @@
 				FA1B84C6173A9B3600D8A05F /* DebugUIImageView.h */,
 				FA1B84C7173A9B3600D8A05F /* DebugUIImageView.m */,
 				FAC35EBA1759D39C00432679 /* ZonesButtonConf.h */,
+				FA38296B1774BE2A003BCCE0 /* LCUtil.h */,
+				FA38296C1774BE2A003BCCE0 /* LCUtil.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -6382,7 +6382,6 @@
 				577DE906166E2F1D006BA43A /* bt_mode_metro@2x.png in Resources */,
 				577DEBA7166E3137006BA43A /* venice in Resources */,
 				577DEBC7166E3E0B006BA43A /* venice-Default@2x.png in Resources */,
-				5758F1761672914800A12E35 /* venice-Info.plist in Resources */,
 				576843251675FA9200FA36AE /* no_image.jpeg in Resources */,
 				5768436E167636BE00FA36AE /* arrow.png in Resources */,
 				57684372167636BE00FA36AE /* arrow@2x.png in Resources */,
@@ -6934,7 +6933,6 @@
 				577DEB29166E2F21006BA43A /* bt_mode_metro@2x.png in Resources */,
 				577DEBA9166E37C1006BA43A /* nyc in Resources */,
 				577DEBC9166E3E16006BA43A /* nyc-Default@2x.png in Resources */,
-				5758F1771672914F00A12E35 /* nyc-Info.plist in Resources */,
 				576843261675FA9200FA36AE /* no_image.jpeg in Resources */,
 				5768436F167636BE00FA36AE /* arrow.png in Resources */,
 				57684373167636BE00FA36AE /* arrow@2x.png in Resources */,
@@ -7248,6 +7246,7 @@
 				FA4BA1DF171484BA0066BA71 /* IndexedImageView.m in Sources */,
 				FA1B84BC1739313400D8A05F /* DebugUIImage.m in Sources */,
 				FA1B84C8173A9B3600D8A05F /* DebugUIImageView.m in Sources */,
+				FA38296D1774BE2A003BCCE0 /* LCUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7361,6 +7360,7 @@
 				FA4BA1E0171484BA0066BA71 /* IndexedImageView.m in Sources */,
 				FA1B84BD1739313400D8A05F /* DebugUIImage.m in Sources */,
 				FA1B84C9173A9B3600D8A05F /* DebugUIImageView.m in Sources */,
+				FA38296E1774BE2A003BCCE0 /* LCUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7474,6 +7474,7 @@
 				FA4BA1E1171484BA0066BA71 /* IndexedImageView.m in Sources */,
 				FA1B84BE1739313400D8A05F /* DebugUIImage.m in Sources */,
 				FA1B84CA173A9B3600D8A05F /* DebugUIImageView.m in Sources */,
+				FA38296F1774BE2A003BCCE0 /* LCUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7587,6 +7588,7 @@
 				FA4BA1E2171484BA0066BA71 /* IndexedImageView.m in Sources */,
 				FA1B84BF1739313400D8A05F /* DebugUIImage.m in Sources */,
 				FA1B84CB173A9B3600D8A05F /* DebugUIImageView.m in Sources */,
+				FA3829701774BE2A003BCCE0 /* LCUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
