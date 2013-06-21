@@ -7,6 +7,7 @@
 //
 
 #import "Slide3DImageView.h"
+#import "LCUtil.h"
 
 #define PAN_THRESHOLD 20
 
@@ -69,7 +70,7 @@
 }
 
 - (void)loadSlideWithNumber:(int)slideNumber{
-    NSString *imagePath = [NSString stringWithFormat:@"%@%i%@", self.photosPrefix, self.currentSlideNumber, self.photosExt];
+    NSString *imagePath = [LCUtil getLocalizedPath:[NSString stringWithFormat:@"%@%i%@", self.photosPrefix, self.currentSlideNumber, self.photosExt]];
     UIImage *loadedImage = [UIImage imageWithContentsOfFile:imagePath];
     self.image = loadedImage;
 }
