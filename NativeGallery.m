@@ -12,6 +12,8 @@
 #import "IndexedImageView.h"
 #import "ManagedObjects.h"
 #import "DebugUIImage.h"
+#import "LCUtil.h"
+
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 
@@ -93,7 +95,7 @@
                 path = iPadPath;
             }
         }
-        UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
+        UIImage *image = [[UIImage alloc] initWithContentsOfFile: [LCUtil getLocalizedPath:path]];
         thumb.image = image;
         [self.imagesArray addObject:image];
         if (picture.title == nil) {
