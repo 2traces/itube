@@ -8,6 +8,7 @@
 
 #import "HtmlGallery.h"
 #import "ColorFactory.h"
+#import "LCUtil.h"
 
 @implementation HtmlGallery
 
@@ -21,7 +22,7 @@
         [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         webView.delegate = self;
         webView.scrollView.bounces = NO;
-        NSString *htmlPath = [NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename];
+        NSString *htmlPath = [LCUtil getLocalizedPath:[NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename]];
         self.htmlDir = [htmlPath stringByDeletingLastPathComponent];
         NSURL* url = [NSURL fileURLWithPath:htmlPath];
         NSURLRequest* request = [NSURLRequest requestWithURL:url];
