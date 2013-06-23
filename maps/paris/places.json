@@ -549,7 +549,7 @@
             "name": "Paris Disneyland",
             "long": 48.870762,
                "lat": 2.779138,
-               "index": 75,
+               "index": 74,
            "accessLevel": 0,
            "media_type": "html_with_video",
            "filename": "html/disneyland.html",
@@ -563,7 +563,7 @@
             "name": "Shakespeare and Company bookstore",
             "long": 48.852588,
                "lat": 2.34712,
-               "index": 76,
+               "index": 75,
            "accessLevel": 0,
            "media_type": "html",
            "filename": "html/full4.html",
@@ -571,6 +571,23 @@
                 1
             ]
         },
+                                                      {
+               "Name": "Luxembourg gardens",
+            "long": 48.846643,
+               "lat": 2.336648,
+               "index": 76,
+               "accessLevel": 0,
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/l_1.jpg"},
+                    {"path": "gall/l_2.jpg"},
+                    {"path": "gall/l_3.jpg"},
+                    {"path": "gall/l_4.jpg"}
+               ],
+               "categories": [
+                              1
+                              ]
+               },
                                            			{
             "name": "extra content",
             "long": 48.86057,
@@ -614,19 +631,7 @@
                "categories": [
                               1
                               ]
-               },  
-        {
-            "name": "Catacombes",
-            "long": 48.83382,
-               "lat": 2.332485,
-               "index": 81,
-           "accessLevel": 0,
-           "media_type": "html_gallery",
-           "filename": "html/catacombes.html",
-            "categories": [
-                1
-            ]
-        },                                                                                      {
+               },                                                                                     {
             "name": "Narrowest street",
             "long": 48.853199,
                "lat": 2.346203,
@@ -679,24 +684,6 @@
             ]
         },
                                               {
-               "Name": "Luxembourg gardens",
-            "long": 48.846643,
-               "lat": 2.336648,
-               "index": 87,
-               "accessLevel": 0,
-               "media_type": "native_gallery",
-               "pictures": [
-                    {"path": "gall/l_1.jpg"},
-                    {"path": "gall/l_2.jpg"},
-                    {"path": "gall/l_3.jpg"},
-                    {"path": "gall/l_4.jpg"}
-               ],
-               "categories": [
-                              1
-                              ]
-               },
-
-                                              {
                "Name": "Parc Monceau",
             "long": 48.87959,
                "lat": 2.309311,
@@ -727,8 +714,8 @@
         },
                                                              {
                "Name": "Metro",
-            "long": 48.862569,
-               "lat": 2.347285,
+            "long": 48.855525,
+               "lat": 2.347688,
                "index": 92,
                "accessLevel": 0,
                "media_type": "native_gallery",
