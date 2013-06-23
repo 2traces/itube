@@ -4,10 +4,30 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Berlin.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>NYC.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>Venice.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>newtube.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
+		</dict>
+		<key>tube copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>tube.xcscheme</key>
 		<dict>
@@ -18,6 +38,21 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>1D6058900D05DD3D006BFB54</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>577DE52D166E2F15006BA43A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>577DE751166E2F1D006BA43A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>577DE974166E2F21006BA43A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

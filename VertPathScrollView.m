@@ -573,7 +573,7 @@
     CGFloat viewHeight=0;
     CGFloat segmentHeight;
     CGFloat currentY;
-    CGFloat lineStart=17.0;
+    CGFloat lineStart=30.0;
     
     if (IS_IPAD) {
         lineStart=57.0;

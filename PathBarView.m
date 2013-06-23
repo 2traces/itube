@@ -27,35 +27,70 @@
         [self addSubview:bgView];
         [bgView release];
         
+        CGRect numberImageViewRect;
+        CGRect pageLabelRect;
+        CGRect clockViewRect;
+        CGRect flagViewRect;
+        CGRect travelTimeLabelRect;
+        CGRect arrivalTimeLabelRect;
+
+        NSInteger travelTime = [self dsGetTravelTime:thisPath];
+        NSString *arrivalTime = [self getArrivalTimeFromNow:travelTime];
+
+        if (IS_IPAD) {
+            clockViewRect = CGRectMake(37, 4, 14, 14);
+            flagViewRect = CGRectMake(184,5,14,14);
+            travelTimeLabelRect = CGRectMake(52.0, 6, 65, 15);
+            arrivalTimeLabelRect = CGRectMake(196.0, 7, 54, 15);
+            numberImageViewRect  = CGRectMake(8,4,24,32);
+            pageLabelRect = CGRectMake(23, 9, 10, 10);
+        } else {
+            numberImageViewRect  = CGRectMake(8,7,24,32);
+            pageLabelRect = CGRectMake(23, 12, 10, 10);
+            
+            clockViewRect = CGRectMake(89, 24, 14, 14);
+            travelTimeLabelRect = CGRectMake(104, 26, 75, 15); // +15 +2
+
+            flagViewRect = CGRectMake(184,24,14,14);
+            arrivalTimeLabelRect = CGRectMake(196, 26, 54, 15); // +12 +2
+            
+            CGSize atSize = [arrivalTime sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:13.0]];
+            CGRect labelRect = arrivalTimeLabelRect;
+            CGFloat labelStart = 250.0-atSize.width-2.0;
+            
+            arrivalTimeLabelRect = CGRectMake(labelStart, labelRect.origin.y, atSize.width+2.0, labelRect.size.height);
+            
+            CGRect flagRect = flagViewRect;
+            flagViewRect = CGRectMake(labelStart-flagRect.size.width-2.0, flagRect.origin.y, flagRect.size.width, flagRect.size.height);
+        }
+
         NSString *fileName = [NSString stringWithFormat:@"n%d.png",number+1];
         UIImageView *pathNumberView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:fileName]];
-        pathNumberView.frame = CGRectMake(8,4,24,32);
+        pathNumberView.frame = numberImageViewRect;
         [self addSubview:pathNumberView];
         [pathNumberView release];
         
         UILabel *over = [[UILabel alloc] init];
-        over.text=[NSString stringWithFormat:@"%d",overall];        
+        over.text=[NSString stringWithFormat:@"%d",overall];
         over.backgroundColor = [UIColor clearColor];
         over.font = [UIFont fontWithName:@"MyriadPro-Regular" size:9.0];
         over.textColor = [UIColor whiteColor];
-        over.frame=CGRectMake(23, 9, 10, 10); 
+        over.frame=pageLabelRect;
         [self addSubview:over];
         [over release];
 
-        
         UIImageView *clockView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"clock.png"]];
-        clockView.frame = CGRectMake(37, 4, 14, 14);
+        clockView.frame = clockViewRect;
         clockView.tag=6400+page;
         [self addSubview:clockView];
         [clockView release];
         
         UIImageView *flagView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"flag.png"]];
-        flagView.frame = CGRectMake(184,5,14,14);
+        flagView.frame = flagViewRect;
         flagView.tag=6500+page;
         [self addSubview:flagView];
         [flagView release];
         
-        NSInteger travelTime = [self dsGetTravelTime:thisPath];
         UILabel *travelTimeLabel = [[UILabel alloc] init];
         travelTimeLabel.text=[NSString stringWithFormat:@"%d %@",travelTime,NSLocalizedString(@"minutes", @"minutes")];        
         travelTimeLabel.backgroundColor = [UIColor clearColor];
@@ -63,7 +98,7 @@
         travelTimeLabel.textColor = [UIColor darkGrayColor];
         travelTimeLabel.shadowColor = [UIColor whiteColor];
         travelTimeLabel.shadowOffset = CGSizeMake(0, 1);
-        travelTimeLabel.frame=CGRectMake(52.0, 6, 65, 15); 
+        travelTimeLabel.frame=travelTimeLabelRect;
         travelTimeLabel.tag=6000+page;
         [self addSubview:travelTimeLabel];
         [travelTimeLabel release];
@@ -71,11 +106,12 @@
         UILabel *arrivalTimeLabel = [[UILabel alloc] init];
         arrivalTimeLabel.backgroundColor = [UIColor clearColor];
         arrivalTimeLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:13.0];
-        arrivalTimeLabel.frame=CGRectMake(196.0, 7, 54, 15);
+        arrivalTimeLabel.frame=arrivalTimeLabelRect;
         arrivalTimeLabel.shadowOffset = CGSizeMake(0, 1);
         arrivalTimeLabel.shadowColor = [UIColor whiteColor];
         arrivalTimeLabel.tag=7000+page;
         arrivalTimeLabel.textAlignment=UITextAlignmentRight;
+        arrivalTimeLabel.text = arrivalTime;
         [self addSubview:arrivalTimeLabel];
         [arrivalTimeLabel release];
         
@@ -84,16 +120,6 @@
         [self addSubview:drawView];
         [drawView release];
 
-        NSString *arrivalTime = [self getArrivalTimeFromNow:travelTime];
-        CGSize atSize = [arrivalTime sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:13.0]];
-        CGRect labelRect = [(UILabel*)[self viewWithTag:7000+page] frame];
-        CGFloat labelStart = 250.0-atSize.width-2.0;
-        [(UILabel*)[self viewWithTag:7000+page] setFrame:CGRectMake(labelStart, labelRect.origin.y, atSize.width+2.0, labelRect.size.height)];
-        [(UILabel*)[self viewWithTag:7000+page] setText:[NSString stringWithFormat:@"%@",arrivalTime]];
-        
-        CGRect flagRect = [(UILabel*)[self viewWithTag:6500+page] frame];
-        [(UIImageView*)[self viewWithTag:6500+page] setFrame:CGRectMake(labelStart-flagRect.size.width-2.0, flagRect.origin.y, flagRect.size.width, flagRect.size.height)];
-        
         if (IS_IPAD) {
             
             CGSize dateSize = [arrivalTime sizeWithFont:[UIFont fontWithName:@"MyriadPro-Regular" size:16.0]];
