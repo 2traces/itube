@@ -374,8 +374,12 @@
                 
                 Station *userStation = [self.mainController nearestStation];
                 if (userStation) {
-                    MStation *stationUserObject = [[MHelper sharedHelper] getStationWithName:userStation.name forLine:userStation.line.name];
-                    [self.mainController returnFromSelection:[NSArray arrayWithObjects:stationUserObject, stationObject, nil]];
+                    //MStation *stationUserObject = [[MHelper sharedHelper] getStationWithName:userStation.name forLine:userStation.line.name];
+                    //[self.mainController returnFromSelection:[NSArray arrayWithObjects:nil, stationObject, nil]];
+                    self.mainController.toStation = stationObject;
+                    [self.mainController.stationsView setFromStation:nil];
+                    [self.mainController.stationsView setToStation:stationObject];
+                    [((MainView*)(self.mainController.view)) centerMapOnUser];
                     
                 }
                 else {
