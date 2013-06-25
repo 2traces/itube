@@ -65,7 +65,7 @@
             pathView.tag=20000+i;
             [pathView release];
         }
-        
+                
         [pathes2 release];
     }
     return self;

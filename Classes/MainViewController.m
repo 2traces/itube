@@ -21,6 +21,7 @@
 #import "RightiPadPathViewController.h"
 #import "CustomPopoverBackgroundView.h"
 #import "StatusViewController.h"
+#import "PhotosViewController.h"
 
 #define FromStation 0
 #define ToStation 1
@@ -517,7 +518,7 @@
     [formatter release];
     
     [changeButton setFrame:CGRectMake(320.0-12.0-dateSize.width-img.size.width , 66 , img.size.width, img.size.height)];
-    
+
     return changeButton;
 }
 
@@ -533,17 +534,32 @@
         
         
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
+        singleTap.delegate = self;
         [self.horizontalPathesScrollView addGestureRecognizer:[singleTap autorelease]];
         
         [(MainView*)self.view addSubview:horizontalPathesScrollView];
         [(MainView*)self.view bringSubviewToFront:horizontalPathesScrollView];
         
-        if (IS_IPAD) {
-            
-        } else {
-            //self.changeViewButton = [self createChangeButton];
-            [(MainView*)self.view addSubview:self.changeViewButton];
-        }
+        UIImage *back_image=[UIImage imageNamed:@"changePathTestButton.png"];
+        UIImage *back_image_high=[UIImage imageNamed:@"changePathTestButton.png"];
+        
+        UIButton *back_button = [UIButton buttonWithType:UIButtonTypeCustom];
+        back_button.frame = CGRectMake(36, 11, back_image.size.width, back_image.size.height );
+        [back_button setBackgroundImage:back_image forState:UIControlStateNormal];
+        [back_button setBackgroundImage:back_image_high forState:UIControlStateHighlighted];
+        
+        [back_button setTag:321123];
+        
+        [back_button addTarget:self action:@selector(changeMapToPathView:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.horizontalPathesScrollView addSubview:back_button];
+
+//        if (IS_IPAD) {
+//            
+//        } else {
+//            self.changeViewButton = [self createChangeButton];
+//            [(MainView*)self.view addSubview:self.changeViewButton];
+//        }
         
     } else {
         
@@ -613,6 +629,7 @@
         [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 44, 320, 480-64)];
     }
     
+    [[self.horizontalPathesScrollView viewWithTag:321123] removeFromSuperview];
     
     [self.horizontalPathesScrollView removeFromSuperview];
     self.horizontalPathesScrollView=nil;
@@ -651,9 +668,9 @@
         VertPathScrollView *scview;
         
         if ([appDelegate isIPHONE5]) {
-            scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, 66.0, 320.0f, 502.0f)];
+            scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, 62.0, 320.0f, 506.0f)];
         } else {
-            scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, 66.0, 320.0f, 414.0f)];
+            scview= [[VertPathScrollView alloc] initWithFrame:CGRectMake(0.0, 62.0, 320.0f, 418.0f)];
         }
         
         self.pathScrollView = scview;
@@ -662,18 +679,21 @@
         
         [self.pathScrollView drawPathScrollView];
         
+        PhotosViewController *photos =  [[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] navigationViewController] photosController];
+        
         [(MainView*)self.view addSubview:self.pathScrollView];
         [(MainView*)self.view bringSubviewToFront:pathScrollView];
-        [(MainView*)self.view bringSubviewToFront:self.stationsView];
-        [(MainView*)self.view bringSubviewToFront:self.horizontalPathesScrollView];
-
         
         UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
-        shadow.frame = CGRectMake(0,66, 320, 61);
+        shadow.frame = CGRectMake(0,62, 320, 61);
         [shadow setIsAccessibilityElement:YES];
         shadow.tag = 2321;
         [(MainView*)self.view addSubview:shadow];
-        
+
+        [(MainView*)self.view bringSubviewToFront:self.stationsView];
+        [(MainView*)self.view bringSubviewToFront:[photos panelView]];
+        [(MainView*)self.view bringSubviewToFront:self.horizontalPathesScrollView];
+
         [self.changeViewButton setImage:[UIImage imageNamed:@"pathButton.png"] forState:UIControlStateNormal];
         [self.changeViewButton setImage:[UIImage imageNamed:@"pathButtonPressed.png"] forState:UIControlStateHighlighted];
 
@@ -686,7 +706,25 @@
     }
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    // test if our control subview is on-screen
+    
+    UIButton *button = (UIButton*)[self.horizontalPathesScrollView viewWithTag:321123];
+    
+    if (button.superview != nil) {
+        if ([touch.view isDescendantOfView:button]) {
+            // we touched our control surface
+            return NO; // ignore the touch
+        }
+    }
+    return YES; // handle the touch
+}
+
 -(void)singleTapGestureCaptured:(UITapGestureRecognizer*) sender {
+    if (self.pathScrollView) {
+        [self removeVerticalPathView];
+    }
+    
     [self.navigationViewController showHidePhotos:nil];
 }
 

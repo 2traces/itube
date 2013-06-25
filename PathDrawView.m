@@ -178,6 +178,13 @@
     CGFloat overallLineWidth = 201.0f;
     CGFloat lineStart = 44.0f;
     CGFloat y = 29.0f+rect.origin.y;
+
+    if (!IS_IPAD) {
+        overallLineWidth = 151.0f;
+        lineStart = 95.0f;
+        y = 15.0f+rect.origin.y;
+    }
+    
     CGFloat lineH=6.0;
     CGFloat firstAndLastR=9.0;
     CGFloat middleR=9.0;
