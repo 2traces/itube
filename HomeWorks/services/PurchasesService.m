@@ -54,13 +54,4 @@
 	} onCancelled:error];
 }
 
-- (void)restorePurchasesOnComplete:(void (^)())complete onError:(void (^)())error
-{
-	[[MKStoreManager sharedManager] restorePreviousTransactionsOnComplete:complete onError:^(NSError *restoreError)
-	{
-		error();
-	}];
-
-}
-
 @end

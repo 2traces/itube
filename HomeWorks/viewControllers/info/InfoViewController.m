@@ -90,15 +90,15 @@
 
 - (void)restorePurchases
 {
-	[DejalBezelActivityView activityViewForView:self.view.window withLabel:@""].showNetworkActivityIndicator = YES;
-
-	[self.purchaseService restorePurchasesOnComplete:^()
-	{
-		[DejalBezelActivityView removeView];
-	}                                    onError:^()
-	{
-		[DejalBezelActivityView removeView];
-	}];
+	[DejalBezelActivityView activityViewForView:self.view.window withLabel:@""].showNetworkActivityIndicator = YES;    
+    
+	[[MKStoreManager sharedManager] restorePreviousTransactionsOnComplete:^()
+     {
+          [DejalBezelActivityView removeView];
+     } onError:^(NSError *restoreError)
+     {
+         [DejalBezelActivityView removeView];
+     }];
 }
 
 @end
