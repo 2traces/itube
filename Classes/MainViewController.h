@@ -22,7 +22,7 @@
 @class TubeSplitViewController;
 @class StatusViewController;
 
-@interface MainViewController : UIViewController <SelectingTabBarProtocol,UIScrollViewDelegate,MBProgressHUDDelegate,PathScrollViewProtocol,UIPopoverControllerDelegate,SettingsViewControllerDelegate> {
+@interface MainViewController : UIViewController <SelectingTabBarProtocol,UIScrollViewDelegate,MBProgressHUDDelegate,PathScrollViewProtocol,UIPopoverControllerDelegate,SettingsViewControllerDelegate, UIGestureRecognizerDelegate> {
     
     int currentSelection;
     MStation *fromStation;

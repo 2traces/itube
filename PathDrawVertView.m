@@ -29,7 +29,7 @@
 - (void)drawRect:(CGRect)rect
 {
     CGFloat segmentLenght;
-    CGFloat ylineStart = 20.0f;
+    CGFloat ylineStart = 33.0f;
     
     if (IS_IPAD) {
         ylineStart=60.0f;
