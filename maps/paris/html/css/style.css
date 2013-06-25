@@ -313,9 +313,9 @@ a {
   }
   .img1 {
     position: absolute;
-    top: 40px;
-    left: 370px;
-    width: 151px;
+    top: 20px;
+    left: 330px;
+    width: 190px;
   }
   .img1_3 {
     top: -10px;
@@ -331,7 +331,7 @@ a {
     position: absolute;
     top: 20px;
     left: 530px;
-    width: 222px;
+    width: 210px;
   }
   .img2_3 {
     top: 220px;
@@ -345,9 +345,9 @@ a {
   }
   .img3 {
     position: absolute;
-    top: 340px;
-    left: 340px;
-    width: 226px;
+    top: 310px;
+    left: 390px;
+    width: 160px;
   }
   .img3_3 {
     top: 250px;
@@ -358,15 +358,75 @@ a {
     top: 230px;
     width: 200px;
   }
-  .img4 {
+   .img1b {
     position: absolute;
-    top: 265px;
-    left: 565px;
-    width: 153px;
+    top: 5px;
+    left: 330px;
+    width: 180px;
+  }
+   .img2b {
+    position: absolute;
+    top: 1px;
+    left: 495px;
+    width: 230px;
+  }
+   .img3b {
+    position: absolute;
+    top: 340px;
+    left: 340px;
+    width: 180px;
+  }
+  .img4b {
+    position: absolute;
+    top: 290px;
+    left: 540px;
+    width: 160px;
+  }
+     .img1c {
+    position: absolute;
+    top: 5px;
+    left: 310px;
+    width: 300px;
+  }
+   .img2c {
+    position: absolute;
+    top: 30px;
+    left: 605px;
+    width: 150px;
+  }
+   .img3c {
+    position: absolute;
+    top: 180px;
+    left: 340px;
+    width: 240px;
+  }
+       .img1d {
+    position: absolute;
+    top: 1px;
+    left: 350px;
+    width: 340px;
+  }
+   .img2d {
+    position: absolute;
+    top: 190px;
+    left: 310px;
+    width: 240px;
+  }
+   .img3d {
+    position: absolute;
+    top: 150px;
+    left: 550px;
+    width: 200px;
   }
   .img4_2 {
     width: 133px;
     top: 310px;
+  }
+    .img4 {
+    position: absolute;
+    top: 300px;
+    left: 565px;
+    width: 180px;
   }
   .opinion {
     text-align: center;

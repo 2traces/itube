@@ -130,10 +130,27 @@
             "name": "Eiffel tower",
             "long": 48.858424,
                "lat": 2.294516,
-               "index": 10,
+               "index": 9,
            "accessLevel": 0,
            "media_type": "html",
            "filename": "html/image_01.html",
+            "categories": [
+                2
+            ]
+        },
+                                                       						{
+            "name": "Montparnasse tower",
+            "long": 48.842153,
+               "lat": 2.322083,
+               "index": 10,
+           "accessLevel": 0,
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/a_0.jpg"},
+                    {"path": "gall/a_1.jpg"},
+                    {"path": "gall/a_2.jpg"},
+                    {"path": "gall/a_3.jpg"}
+               ],
             "categories": [
                 2
             ]
@@ -142,7 +159,7 @@
             "name": "extra content",
             "long": 48.86057,
             "lat": 2.337625,
-               "index": 9,
+               "index": 11,
             "accessLevel": 0,
             "photos": [
 				"png_ab1.jpg"
@@ -155,7 +172,7 @@
             "name": "Musee d'Orsay",
             "long": 48.85997,
                "lat": 2.326624,
-               "index": 11,
+               "index": 12,
            "accessLevel": 0,
            "media_type": "html_gallery",
            "filename": "html/orsay.html",
@@ -167,7 +184,7 @@
             "name": "Musee d'Orsay",
             "long": 48.85997,
                "lat": 2.326624,
-               "index": 12,
+               "index": 13,
            "accessLevel": 0,
            "media_type": "3dview",
            "photos_prefix": "3d/orsay/all_et_.RGB_color.00",
@@ -181,7 +198,7 @@
             "name": "Musee d'Orsay",
             "long": 48.85997,
                "lat": 2.326624,
-               "index": 13,
+               "index": 14,
                "accessLevel": 0,
                "media_type": "native_gallery",
                "pictures": [
@@ -198,7 +215,7 @@
             "name": "Centre Georges Pompidou",
             "long": 48.860755,
                "lat": 2.352424,
-               "index": 14,
+               "index": 15,
            "accessLevel": 0,
            "media_type": "html_with_video",
            "filename": "html/pompidu.html",
@@ -212,7 +229,7 @@
             "name": "Centre Georges Pompidou",
             "long": 48.860755,
                "lat": 2.352424,
-               "index": 15,
+               "index": 16,
            "accessLevel": 0,
            "media_type": "html_gallery",
            "filename": "html/pompidou_t1.html",
@@ -224,7 +241,7 @@
             "name": "Cite des Sciences",
             "long": 48.89596,
                "lat": 2.387059,
-               "index": 16,
+               "index": 17,
            "accessLevel": 0,
            "media_type": "html_gallery",
            "filename": "html/cite.html",
@@ -236,7 +253,7 @@
             "name": "discover La Défense...",
             "long": 48.890757,
                "lat": 2.241301,
-               "index": 17,
+               "index": 18,
            "accessLevel": 0,
            "media_type": "html_with_video",
            "filename": "html/defance.html",
@@ -250,7 +267,7 @@
             "name": "discover La Défense...",
             "long": 48.890757,
                "lat": 2.241301,
-               "index": 18,
+               "index": 19,
                "accessLevel": 0,
                "media_type": "native_gallery",
                "pictures": [
@@ -285,23 +302,6 @@
            "filename": "html/monmartre.html",
            "video_preview_path": "html/hidden-cities_files/monmartre.png",
            "video_path": "html/hidden-cities_files/monmartre.mp4",
-            "categories": [
-                2
-            ]
-        },
-                                               						{
-            "name": "Montparnasse tower",
-            "long": 48.842153,
-               "lat": 2.322083,
-               "index": 35,
-           "accessLevel": 0,
-               "media_type": "native_gallery",
-               "pictures": [
-                    {"path": "gall/a_0.jpg"},
-                    {"path": "gall/a_1.jpg"},
-                    {"path": "gall/a_2.jpg"},
-                    {"path": "gall/a_3.jpg"}
-               ],
             "categories": [
                 2
             ]
@@ -575,7 +575,7 @@
                "Name": "Luxembourg gardens",
             "long": 48.846643,
                "lat": 2.336648,
-               "index": 76,
+               "index": 77,
                "accessLevel": 0,
                "media_type": "native_gallery",
                "pictures": [
@@ -592,7 +592,7 @@
             "name": "extra content",
             "long": 48.86057,
             "lat": 2.337625,
-               "index": 77,
+               "index": 76,
             "accessLevel": 0,
             "photos": [
 				"png_ab2.jpg"
