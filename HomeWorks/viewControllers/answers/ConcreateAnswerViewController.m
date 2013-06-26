@@ -25,6 +25,20 @@
 	NSOperationQueue *operationQueue;
 }
 
+- (id)initWithTerm:(RXMLElement *)term subject:(RXMLElement *)subject book:(RXMLElement *)book purchased:(BOOL)purchased
+{
+	self = [super init];
+	if (self)
+	{
+		self.term = term;
+		self.subject = subject;
+		self.book = book;
+		self.purchased = purchased;
+	}
+
+	return self;
+}
+
 -(void)viewDidLoad
 {
 	[super viewDidLoad];

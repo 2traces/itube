@@ -111,11 +111,7 @@ NSString *kFooterID = @"collectionFooter";
 		return;
 	}
 
-	ConcreateAnswerViewController *previewController = [[ConcreateAnswerViewController alloc] init];
-	previewController.term = _term;
-	previewController.subject = _subject;
-	previewController.book = _book;
-	previewController.purchased = _purchased;
+	ConcreateAnswerViewController *previewController = [[ConcreateAnswerViewController alloc] initWithTerm:_term subject:_subject book:_book purchased:_purchased];
 	previewController.currentPreviewItemIndex = indexPath.item;
 
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)

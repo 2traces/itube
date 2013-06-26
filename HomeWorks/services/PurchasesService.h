@@ -14,6 +14,4 @@
 -(BOOL)isPurchasedTermId:(NSString *)termId withSubjectId:(NSString *)subjectId withBookId:(NSString *)bookId;
 
 - (void)purchaseMonthlySubscriptionWithComplete:(void (^)())complete andError:(void (^)())error;
-
-- (void)restorePurchasesOnComplete:(void (^)())complete onError:(void (^)())error;
 @end

@@ -20,4 +20,6 @@
 
 @property (nonatomic) BOOL purchased;
 
+- (id)initWithTerm:(RXMLElement *)term subject:(RXMLElement *)subject book:(RXMLElement *)book purchased:(BOOL)purchased;
+
 @end

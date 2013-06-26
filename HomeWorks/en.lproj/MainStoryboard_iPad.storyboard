@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="quw-t9-1cs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="lLy-XU-F77">
     <dependencies>
+        <development version="4600" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
@@ -280,18 +281,11 @@
                                     <rect key="frame" x="45" y="0.0" width="658" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FRY-6w-gjg">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Не нашли необходимый решебник?  Сообщите нам об этом, мы постараемся включить его в ближайшей версии." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FRY-6w-gjg">
                                             <rect key="frame" x="10" y="0.0" width="639" height="79"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <attributedString key="attributedText">
-                                                <fragment content="Не нашли необходимый решебник?  Сообщите нам об этом, мы постараемся включить его в ближайшей версии.">
-                                                    <attributes>
-                                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                        <font key="NSFont" size="17" name="Helvetica"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
+                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                     </subviews>
@@ -334,11 +328,11 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="element.png" id="Bey-nf-cUm">
-                                            <rect key="frame" x="16.5" y="16.5" width="56" height="56"/>
+                                            <rect key="frame" x="17" y="17" width="56" height="56"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="7" id="n5x-CD-SM2">
-                                            <rect key="frame" x="16.5" y="28" width="56" height="31"/>
+                                            <rect key="frame" x="17" y="28" width="56" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -361,7 +355,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="element-locked.png" id="hpI-WV-2Xi">
-                                            <rect key="frame" x="16.5" y="16.5" width="56" height="56"/>
+                                            <rect key="frame" x="17" y="17" width="56" height="56"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -388,7 +382,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="bLs-bb-lOw">
-                                    <rect key="frame" x="8" y="0.0" width="524" height="100"/>
+                                    <rect key="frame" x="9" y="0.0" width="522" height="100"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </imageView>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Материалы по математике. 6 класс." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n84-QY-e9I">
@@ -417,7 +411,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="yG9-en-P4V">
-                                    <rect key="frame" x="8" y="0.0" width="524" height="62"/>
+                                    <rect key="frame" x="9" y="0.0" width="522" height="62"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </imageView>
                             </subviews>
@@ -464,6 +458,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pus-IM-q2h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="416" y="1687"/>
+        </scene>
+        <!--Pad Start Screen View Controller-->
+        <scene sceneID="eGq-Aj-mVW">
+            <objects>
+                <viewController id="lLy-XU-F77" customClass="IPadStartScreenViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rg7-cG-lxL">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="quw-t9-1cs" kind="custom" identifier="show" customClass="ShowIpadListSegue" id="5Sm-hH-u0I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wl1-5g-noT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-303" y="226"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ecc-T3-6iu">
@@ -545,6 +556,92 @@
         <image name="icon_2.png" width="47" height="47"/>
         <image name="restore_purchases@2x.png" width="94" height="94"/>
     </resources>
+    <classes>
+        <class className="AnswerViewCell" superclassName="PSUICollectionViewCell_">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswerViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="AnswersViewController" superclassName="PSUICollectionViewController_">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewController.h"/>
+        </class>
+        <class className="AnswersViewFooter" superclassName="PSUICollectionReusableView_">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewFooter.h"/>
+        </class>
+        <class className="AnswersViewHeader" superclassName="PSUICollectionReusableView_">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewHeader.h"/>
+            <relationships>
+                <relationship kind="outlet" name="authorsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="BookTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BookTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="authorsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="bookImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="BooksViewController" superclassName="HomeworksTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BooksViewController.h"/>
+        </class>
+        <class className="HomeworksTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeworksTableViewController.h"/>
+        </class>
+        <class className="IPadStartScreenViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IPadStartScreenViewController.h"/>
+        </class>
+        <class className="InfoViewController" superclassName="HomeworksTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InfoViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="tlDismissMe:"/>
+            </relationships>
+        </class>
+        <class className="PSTCollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSTCollectionReusableView.h"/>
+        </class>
+        <class className="PSTCollectionViewCell" superclassName="PSTCollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSTCollectionViewCell.h"/>
+        </class>
+        <class className="PSTCollectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSTCollectionViewController.h"/>
+        </class>
+        <class className="PSUICollectionReusableView_" superclassName="PSTCollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSUICollectionReusableView_.h"/>
+        </class>
+        <class className="PSUICollectionViewCell_" superclassName="PSTCollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSUICollectionViewCell_.h"/>
+        </class>
+        <class className="PSUICollectionViewController_" superclassName="PSTCollectionViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSUICollectionViewController_.h"/>
+        </class>
+        <class className="SubjectTableVIewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SubjectTableVIewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="iconImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SubjectsViewController" superclassName="HomeworksTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SubjectsViewController.h"/>
+        </class>
+        <class className="TermTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TermTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="iconImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="numLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TermsViewController" superclassName="HomeworksTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TermsViewController.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -32,6 +32,6 @@
 
 	layeredNavigationController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
-	[self.sourceViewController presentModalViewController:layeredNavigationController animated:YES];
+	[self.sourceViewController presentModalViewController:layeredNavigationController animated:NO];
 }
 @end

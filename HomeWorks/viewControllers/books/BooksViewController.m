@@ -70,7 +70,7 @@ static NSUInteger kFeedbackSection = 2;
 {
 	if(indexPath.section == kFeedbackSection)
 	{
-		return [[tableView dequeueReusableCellWithIdentifier:findCellidentifier] frame].size.height;;
+		return [[tableView dequeueReusableCellWithIdentifier:findCellidentifier] frame].size.height;
 	}
 
 	static NSNumber *height;
