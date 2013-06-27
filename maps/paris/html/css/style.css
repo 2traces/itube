@@ -278,7 +278,7 @@ a {
     font-size: 16px;
   }
   .text_full {
-    height: 480px;
+    height: 548px;
     overflow: auto;
   }
   .text_full_2 {
@@ -391,7 +391,7 @@ a {
    .img2c {
     position: absolute;
     top: 30px;
-    left: 605px;
+    left: 600px;
     width: 150px;
   }
    .img3c {
@@ -428,6 +428,24 @@ a {
     left: 565px;
     width: 180px;
   }
+   .img1e {
+    position: absolute;
+    top: 50px;
+    left: 250px;
+    width: 300px;
+  }
+   .img2e {
+    position: absolute;
+    top: 265px;
+    left: 520px;
+    width: 220px;
+  }
+   .img3e {
+    position: absolute;
+    top: 1px;
+    left: 490px;
+    width: 265px;
+  }
   .opinion {
     text-align: center;
     font-size: 13px;
@@ -453,6 +471,15 @@ a {
     position: relative;
     z-index: 2;
   }
+  .head_block{
+ font-size:31px;
+ font-style:italic;
+ color:#284795;
+ margin-bottom:0.2em;
+ font-family: Myriad Pro2;
+ font-style:normal !important;
+ font-weight:normal;
+}
 }
 /*type 3*/
 /* ipad */

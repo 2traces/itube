@@ -16,5 +16,6 @@
 
 @property (retain) UIImageView *mainImageView;
 @property (retain) NSString *htmlDir;
+@property (retain) UIWebView *webView;
 
 @end

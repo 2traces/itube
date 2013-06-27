@@ -14,20 +14,21 @@
 
 @synthesize mainImageView = _mainImageView;
 @synthesize htmlDir = _htmlDir;
+@synthesize webView = _webView;
 
 - (id)initWithMedia:(MMedia *)media withParent:(UIView *)parent withAppDelegate:(tubeAppDelegate *)appDelegate{
     self = [super initWithFrame:parent.frame];
     if (self) {
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:parent.frame];
-        [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        webView.delegate = self;
-        webView.scrollView.bounces = NO;
+        self.webView = [[UIWebView alloc] initWithFrame:parent.frame];
+        [self.webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+        self.webView.delegate = self;
+        self.webView.scrollView.bounces = NO;
         NSString *htmlPath = [LCUtil getLocalizedPath:[NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename]];
         self.htmlDir = [htmlPath stringByDeletingLastPathComponent];
         NSURL* url = [NSURL fileURLWithPath:htmlPath];
         NSURLRequest* request = [NSURLRequest requestWithURL:url];
-        [webView loadRequest:request];
-        [self addSubview:webView];
+        [self.webView loadRequest:request];
+        [self addSubview:self.webView];
         
         self.mainImageView = [[UIImageView alloc] initWithFrame:parent.frame];
         self.mainImageView.alpha = 0.0;
@@ -76,9 +77,11 @@
 }
 
 - (void)dealloc{
+    self.webView.delegate = nil;
     self.mainImageView.image = nil;
     [_mainImageView release];
-    self.mainImageView = nil;
+    [self.webView removeFromSuperview];
+    [_webView release];
     self.htmlDir = nil;
     [super dealloc];
 }
