@@ -316,6 +316,7 @@
         case HCPhotosVisibleFully:
             self.photosController.disappearingView.alpha = 0;
             //[self.mainController toggleTap];
+            [self.mainController removeVerticalPathView];
             [self.mainController clearPath];
             if (IS_IPAD)
                 [self.mainController hideiPadLeftPathView];
@@ -372,15 +373,17 @@
 
                 //[self.mainController resetFromStation];
                 
-                Station *userStation = [self.mainController nearestStation];
-                if (userStation) {
-                    MStation *stationUserObject = [[MHelper sharedHelper] getStationWithName:userStation.name forLine:userStation.line.name];
-                    [self.mainController returnFromSelection:[NSArray arrayWithObjects:stationUserObject, stationObject, nil]];
-                    
-                }
-                else {
-                    [self.mainController returnFromSelection:[NSArray arrayWithObject:stationObject]];
-                }
+                
+                // Commented by Zuev request June 2013
+//                Station *userStation = [self.mainController nearestStation];
+//                if (userStation) {
+//                    MStation *stationUserObject = [[MHelper sharedHelper] getStationWithName:userStation.name forLine:userStation.line.name];
+//                    [self.mainController returnFromSelection:[NSArray arrayWithObjects:stationUserObject, stationObject, nil]];
+//                    
+//                }
+//                else {
+//                    [self.mainController returnFromSelection:[NSArray arrayWithObject:stationObject]];
+//                }
             }
 
             
