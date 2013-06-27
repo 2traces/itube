@@ -71,6 +71,7 @@
 -(void)showiPadLeftPathView;
 -(void)hideiPadLeftPathView;
 -(void)toggleTap;
+-(void)removeVerticalPathView;
 
 -(void)setStarAtStation:(Station*)station;
 -(void)removeStarFromStation:(NSString*)stationName;
