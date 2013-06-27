@@ -370,22 +370,24 @@
                 Station *station = [self.photosController stationForCurrentPhoto];
                 MStation *stationObject = [[MHelper sharedHelper] getStationWithName:station.name forLine:station.line.name];
                 [self.mainController resetBothStationsInASpecialWay];
-
+                
                 //[self.mainController resetFromStation];
                 
-                
-                // Commented by Zuev request June 2013
-//                Station *userStation = [self.mainController nearestStation];
-//                if (userStation) {
-//                    MStation *stationUserObject = [[MHelper sharedHelper] getStationWithName:userStation.name forLine:userStation.line.name];
-//                    [self.mainController returnFromSelection:[NSArray arrayWithObjects:stationUserObject, stationObject, nil]];
-//                    
-//                }
-//                else {
-//                    [self.mainController returnFromSelection:[NSArray arrayWithObject:stationObject]];
-//                }
+                Station *userStation = [self.mainController nearestStation];
+                if (userStation) {
+                    //MStation *stationUserObject = [[MHelper sharedHelper] getStationWithName:userStation.name forLine:userStation.line.name];
+                    //[self.mainController returnFromSelection:[NSArray arrayWithObjects:nil, stationObject, nil]];
+                    self.mainController.toStation = stationObject;
+                    [self.mainController.stationsView setFromStation:nil];
+                    [self.mainController.stationsView setToStation:stationObject];
+                    [((MainView*)(self.mainController.view)) centerMapOnUser];
+                    
+                }
+                else {
+                    [self.mainController returnFromSelection:[NSArray arrayWithObject:stationObject]];
+                }
             }
-
+            
             
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;
