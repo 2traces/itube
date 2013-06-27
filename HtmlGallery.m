@@ -77,6 +77,7 @@
 }
 
 - (void)dealloc{
+    self.webView.delegate = nil;
     self.mainImageView.image = nil;
     [_mainImageView release];
     [self.webView removeFromSuperview];
