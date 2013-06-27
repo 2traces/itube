@@ -2622,6 +2622,10 @@
 		F7E89524177C01320027F333 /* newChangePathButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7E89516177C01320027F333 /* newChangePathButtonPressed@2x.png */; };
 		F7E89525177C01320027F333 /* newChangePathButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7E89516177C01320027F333 /* newChangePathButtonPressed@2x.png */; };
 		F7E89526177C01320027F333 /* newChangePathButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7E89516177C01320027F333 /* newChangePathButtonPressed@2x.png */; };
+		F7E89528177C17F00027F333 /* PhotosViewController5.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7E89527177C17EF0027F333 /* PhotosViewController5.xib */; };
+		F7E89529177C17F00027F333 /* PhotosViewController5.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7E89527177C17EF0027F333 /* PhotosViewController5.xib */; };
+		F7E8952A177C17F00027F333 /* PhotosViewController5.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7E89527177C17EF0027F333 /* PhotosViewController5.xib */; };
+		F7E8952B177C17F00027F333 /* PhotosViewController5.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7E89527177C17EF0027F333 /* PhotosViewController5.xib */; };
 		FA0DABD41709E88800CF48B4 /* HtmlWithVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0DABD31709E88800CF48B4 /* HtmlWithVideoView.m */; };
 		FA0DABD51709E88800CF48B4 /* HtmlWithVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0DABD31709E88800CF48B4 /* HtmlWithVideoView.m */; };
 		FA0DABD61709E88800CF48B4 /* HtmlWithVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0DABD31709E88800CF48B4 /* HtmlWithVideoView.m */; };
@@ -3532,6 +3536,7 @@
 		F7E89514177C01320027F333 /* newChangePathButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newChangePathButton@2x.png"; path = "images/newChangePathButton@2x.png"; sourceTree = "<group>"; };
 		F7E89515177C01320027F333 /* newChangePathButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = newChangePathButtonPressed.png; path = images/newChangePathButtonPressed.png; sourceTree = "<group>"; };
 		F7E89516177C01320027F333 /* newChangePathButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newChangePathButtonPressed@2x.png"; path = "images/newChangePathButtonPressed@2x.png"; sourceTree = "<group>"; };
+		F7E89527177C17EF0027F333 /* PhotosViewController5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosViewController5.xib; sourceTree = "<group>"; };
 		FA0DABD21709E88800CF48B4 /* HtmlWithVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlWithVideoView.h; sourceTree = "<group>"; };
 		FA0DABD31709E88800CF48B4 /* HtmlWithVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlWithVideoView.m; sourceTree = "<group>"; };
 		FA1A08C5170C18B1000CD689 /* MediaViewEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaViewEvents.h; sourceTree = "<group>"; };
@@ -4150,6 +4155,7 @@
 			children = (
 				5772FBD216668D83007B7661 /* PhotoViewerViewController.xib */,
 				579D28DD164815F70061B8F6 /* PhotosViewController.xib */,
+				F7E89527177C17EF0027F333 /* PhotosViewController5.xib */,
 				57CD10071682F9810070D8B6 /* RatePopupViewController.xib */,
 				576E3FDA167C9341004050B7 /* CityCellContact.xib */,
 				BCD7E24B151AF85C007C658A /* CityCell.xib */,
@@ -5492,6 +5498,7 @@
 				F7E8951B177C01320027F333 /* newChangePathButton@2x.png in Resources */,
 				F7E8951F177C01320027F333 /* newChangePathButtonPressed.png in Resources */,
 				F7E89523177C01320027F333 /* newChangePathButtonPressed@2x.png in Resources */,
+				F7E89528177C17F00027F333 /* PhotosViewController5.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6054,6 +6061,7 @@
 				F7E8951C177C01320027F333 /* newChangePathButton@2x.png in Resources */,
 				F7E89520177C01320027F333 /* newChangePathButtonPressed.png in Resources */,
 				F7E89524177C01320027F333 /* newChangePathButtonPressed@2x.png in Resources */,
+				F7E89529177C17F00027F333 /* PhotosViewController5.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6609,6 +6617,7 @@
 				F7E8951D177C01320027F333 /* newChangePathButton@2x.png in Resources */,
 				F7E89521177C01320027F333 /* newChangePathButtonPressed.png in Resources */,
 				F7E89525177C01320027F333 /* newChangePathButtonPressed@2x.png in Resources */,
+				F7E8952A177C17F00027F333 /* PhotosViewController5.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7167,6 +7176,7 @@
 				F7E8951E177C01320027F333 /* newChangePathButton@2x.png in Resources */,
 				F7E89522177C01320027F333 /* newChangePathButtonPressed.png in Resources */,
 				F7E89526177C01320027F333 /* newChangePathButtonPressed@2x.png in Resources */,
+				F7E8952B177C17F00027F333 /* PhotosViewController5.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
