@@ -84,7 +84,15 @@
     
     self.categoriesController = [[[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:[NSBundle mainBundle]] autorelease];
     self.categoriesController.navigationDelegate = self;
-    self.photosController = [[[PhotosViewController alloc] initWithNibName:(IS_IPAD?@"PhotosViewController-iPad":@"PhotosViewController") bundle:[NSBundle mainBundle]]  autorelease];
+    if (IS_IPAD)
+        self.photosController = [[[PhotosViewController alloc] initWithNibName:@"PhotosViewController-iPad" bundle:[NSBundle mainBundle]]  autorelease];
+    else {
+        if ([(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] isIPHONE5]) {
+            self.photosController = [[[PhotosViewController alloc] initWithNibName:@"PhotosViewController5" bundle:[NSBundle mainBundle]]  autorelease];
+        } else {
+            self.photosController = [[[PhotosViewController alloc] initWithNibName:@"PhotosViewController" bundle:[NSBundle mainBundle]]  autorelease];
+        }
+    }
     self.photosController.navigationDelegate = self;
     self.mainController.view.layer.cornerRadius = self.photosController.view.layer.cornerRadius = self.glController.view.layer.cornerRadius = self.separatingView.layer.cornerRadius = 5;
     self.mainController.view.layer.masksToBounds = self.photosController.view.layer.masksToBounds = YES;
@@ -281,8 +289,13 @@
     
     if (IS_IPAD)
         panelFrame.origin = CGPointMake(0, 745);
-    else
-        panelFrame.origin = CGPointMake(0, 304);
+    else {
+        if ([(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] isIPHONE5]) {
+            panelFrame.origin = CGPointMake(0, 392);
+        } else {
+            panelFrame.origin = CGPointMake(0, 304);
+        }
+    }
     [self.photosController.view addSubview:self.photosController.panelView];
     self.photosController.panelView.frame = panelFrame;
 }
@@ -305,9 +318,13 @@
     {
         panelFrame.origin = CGPointMake(0, 745);
         //panelFrame.size = CGSizeMake(panelFrame.size.width, 90);
+    } else {
+        if ([(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] isIPHONE5]) {
+            panelFrame.origin = CGPointMake(0, 392);
+        } else {
+            panelFrame.origin = CGPointMake(0, 304);
+        }
     }
-    else
-        panelFrame.origin = CGPointMake(0, 304);
     [self.photosController.view addSubview:self.photosController.panelView];
     self.photosController.panelView.frame = panelFrame;
     self.photosController.view.frame = photosViewFrame;
@@ -347,8 +364,13 @@
                 CGRect photosViewFrame = self.photosController.view.frame;
                 if (IS_IPAD)
                     photosViewFrame.origin.y = -745;
-                else
-                    photosViewFrame.origin.y = -304;
+                else {
+                    if ([(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] isIPHONE5]) {
+                        photosViewFrame.origin.y = -392;
+                    } else {
+                        photosViewFrame.origin.y = -304;
+                    }
+                }
                 self.photosController.disappearingView.alpha = 0;
                 self.photosController.view.frame = photosViewFrame;
                 self.photosController.placeNamePanel.hidden = NO;
@@ -393,8 +415,13 @@
                 CGRect photosViewFrame = self.photosController.view.frame;
                 if (IS_IPAD)
                     photosViewFrame.origin.y = -702;
-                else
-                    photosViewFrame.origin.y = -261;
+                else {
+                    if ([(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] isIPHONE5]) {
+                        photosViewFrame.origin.y = -349;
+                    } else {
+                        photosViewFrame.origin.y = -261;
+                    }
+                }
                 self.photosController.disappearingView.alpha = 0;
                 self.photosController.view.frame = photosViewFrame;
             } completion:^(BOOL finished) {                
@@ -404,8 +431,13 @@
                     photosViewFrame.origin.x = self.view.frame.size.width;
                     panelFrame.origin = CGPointMake(0, 745 - 702);
                 } else {
-                    photosViewFrame.origin.x = 320;
-                    panelFrame.origin = CGPointMake(0, 304 - 261);
+                    if ([(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] isIPHONE5]) {
+                        photosViewFrame.origin.x = 408;
+                        panelFrame.origin = CGPointMake(0, 392 - 349);
+                    } else {
+                        photosViewFrame.origin.x = 320;
+                        panelFrame.origin = CGPointMake(0, 304 - 261);
+                    }                    
                 }
                 [self.mainController.view insertSubview:self.photosController.panelView aboveSubview:self.mainController.stationsView];
                 self.photosController.panelView.frame = panelFrame;
@@ -427,8 +459,13 @@
                 CGRect photosViewFrame = self.photosController.view.frame;
                 if (IS_IPAD)
                     photosViewFrame.origin.y = -702;
-                else
-                    photosViewFrame.origin.y = -261;
+                else {
+                    if ([(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] isIPHONE5]) {
+                        photosViewFrame.origin.y = -349;
+                    } else {
+                        photosViewFrame.origin.y = -261;
+                    }
+                }
                 self.photosController.disappearingView.alpha = 0;
                 self.photosController.view.frame = photosViewFrame;
             } completion:^(BOOL finished) {
@@ -445,8 +482,13 @@
                     photosViewFrame.origin.x = self.view.frame.size.width;
                     panelFrame.origin = CGPointMake(0, 745 - 702);
                 } else {
-                    photosViewFrame.origin.x = 320;
-                    panelFrame.origin = CGPointMake(0, 304 - 261 - (44 - 28));
+                    if ([(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] isIPHONE5]) {
+                        photosViewFrame.origin.x = 408;
+                        panelFrame.origin = CGPointMake(0, 392 - 349 - (44 - 28));
+                    } else {
+                        photosViewFrame.origin.x = 320;
+                        panelFrame.origin = CGPointMake(0, 304 - 261 - (44 - 28));
+                    }
                 }
                 
                 [self.mainController.view insertSubview:self.photosController.panelView aboveSubview:self.mainController.stationsView];
