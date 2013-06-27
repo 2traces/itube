@@ -316,6 +316,7 @@
         case HCPhotosVisibleFully:
             self.photosController.disappearingView.alpha = 0;
             //[self.mainController toggleTap];
+            [self.mainController removeVerticalPathView];
             [self.mainController clearPath];
             if (IS_IPAD)
                 [self.mainController hideiPadLeftPathView];
@@ -369,7 +370,7 @@
                 Station *station = [self.photosController stationForCurrentPhoto];
                 MStation *stationObject = [[MHelper sharedHelper] getStationWithName:station.name forLine:station.line.name];
                 [self.mainController resetBothStationsInASpecialWay];
-
+                
                 //[self.mainController resetFromStation];
                 
                 Station *userStation = [self.mainController nearestStation];
@@ -386,7 +387,7 @@
                     [self.mainController returnFromSelection:[NSArray arrayWithObject:stationObject]];
                 }
             }
-
+            
             
             [UIView animateWithDuration:animationDuration animations:^{
                 CGRect photosViewFrame = self.photosController.view.frame;

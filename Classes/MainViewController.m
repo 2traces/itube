@@ -540,11 +540,11 @@
         [(MainView*)self.view addSubview:horizontalPathesScrollView];
         [(MainView*)self.view bringSubviewToFront:horizontalPathesScrollView];
         
-        UIImage *back_image=[UIImage imageNamed:@"changePathTestButton.png"];
-        UIImage *back_image_high=[UIImage imageNamed:@"changePathTestButton.png"];
+        UIImage *back_image=[UIImage imageNamed:@"newChangePathButton.png"];
+        UIImage *back_image_high=[UIImage imageNamed:@"newChangePathButtonPressed.png"];
         
         UIButton *back_button = [UIButton buttonWithType:UIButtonTypeCustom];
-        back_button.frame = CGRectMake(36, 11, back_image.size.width, back_image.size.height );
+        back_button.frame = CGRectMake(36, 10, back_image.size.width, back_image.size.height );
         [back_button setBackgroundImage:back_image forState:UIControlStateNormal];
         [back_button setBackgroundImage:back_image_high forState:UIControlStateHighlighted];
         
