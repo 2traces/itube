@@ -96,12 +96,6 @@ NSInteger const toolbarWidth=320;
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	mapView = [[[MapView alloc] initWithFrame:scrollSize] autorelease];
     
-    //
-    mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    mapView.autoresizesSubviews = YES;
-    
-    //
-    
     mapView.cityMap = appDelegate.cityMap;
     mapView.vcontroller = self.vcontroller;
     self.backgroundColor = mapView.backgroundColor;

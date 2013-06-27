@@ -69,10 +69,13 @@ static float koefficient = 0.0f;
     
     LeftiPadPathViewController *controller = [[LeftiPadPathViewController alloc] init];
     controller.view.frame=CGRectMake(-320.0, 0.0, 320.0, 1004.0);
+    controller.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.pathView=controller.view;
     self.leftPathController=controller;
     [self.view addSubview:controller.view];
     [controller release];
+    
+//    self.leftPathController.view.hidden = YES;
     
     if (IS_IPAD && [[SSThemeManager sharedTheme] isNewTheme]) {
         TopTwoStationsView *twoStationsView;
@@ -332,9 +335,9 @@ static float koefficient = 0.0f;
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
 	[leftPathController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 	[mainViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-//    [self layoutSubviews]; // скорее всего это не надо 
-//    [self adjustMapView];
-//    [self adjustPathView];
+    [self layoutSubviews]; // скорее всего это не надо
+    [self adjustMapView];
+    [self adjustPathView];
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
