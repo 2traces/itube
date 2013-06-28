@@ -85,11 +85,14 @@
 }
 
 - (void) webViewTapped:(UITapGestureRecognizer*)recognizer{
-    NSLog(@"webview tapped");
-    if (self.webviewMaxmized){
-        [self minimizeWebView];
-    }else{
-        [self maximizeWebView];
+    if (!IS_IPAD){
+        if (self.moviePlayer){
+            if (self.webviewMaxmized){
+                [self minimizeWebView];
+            }else{
+                [self maximizeWebView];
+            }
+        }
     }
 }
 
@@ -102,6 +105,12 @@
     self.webViewRect = self.webView.frame;
     self.fullRect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     [UIView animateWithDuration:0.7 animations:^{
+        self.videoPreview.frame = CGRectMake(0, -self.videoPreview.frame.size.height,
+                                             self.videoPreview.frame.size.width,
+                                             self.videoPreview.frame.size.height);
+        self.moviePlayer.view.frame = CGRectMake(0, -self.moviePlayer.view.frame.size.height,
+                                                 self.moviePlayer.view.frame.size.width,
+                                                 self.moviePlayer.view.frame.size.height);
         self.webView.frame = self.fullRect;
     }];
     self.webviewMaxmized = true;
@@ -109,6 +118,12 @@
 
 - (void) minimizeWebView{
     [UIView animateWithDuration:0.7 animations:^{
+        self.videoPreview.frame = CGRectMake(0, 0,
+                                             self.videoPreview.frame.size.width,
+                                             self.videoPreview.frame.size.height);
+        self.moviePlayer.view.frame = CGRectMake(0, 0,
+                                                 self.moviePlayer.view.frame.size.width,
+                                                 self.moviePlayer.view.frame.size.height);
         self.webView.frame = self.webViewRect;
     }];
     self.webviewMaxmized = false;
