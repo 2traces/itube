@@ -16,6 +16,10 @@
 @synthesize lightPanel = _lightPanel;
 @synthesize moviePlayer = _moviePlayer;
 @synthesize videoPreviewImage = _videoPreviewImage;
+@synthesize tapGR = _tapGR;
+@synthesize webViewRect;
+@synthesize fullRect;
+@synthesize webviewMaxmized;
 
 - (id)initWithMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate withVideo:(BOOL)withVideo
 {
@@ -23,6 +27,7 @@
     if (self) {
         // Setup video
         // #lightGray color is #f5f4f5
+        self.webviewMaxmized = false;
         self.backgroundColor = [ColorFactory lightGrayColor];
         CGFloat videoWidth;
         if(withVideo){
@@ -64,8 +69,49 @@
         self.webView.backgroundColor = [ColorFactory lightGrayColor];
         self.webView.opaque = NO;
         [self addSubview:self.webView];
+        self.tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(webViewTapped:)];
+        self.tapGR.delegate = self;
+        [self.webView addGestureRecognizer:self.tapGR];
     }
     return self;
+}
+
+- (id)initWithMedia:(MMedia *)media withParent:(UIView *)parent withAppDelegate:(tubeAppDelegate *)appDelegate{
+    self = [self initWithMedia:media withParent:parent withAppDelegate:appDelegate withVideo:YES];
+    if (self) {
+        
+    }
+    return self;
+}
+
+- (void) webViewTapped:(UITapGestureRecognizer*)recognizer{
+    NSLog(@"webview tapped");
+    if (self.webviewMaxmized){
+        [self minimizeWebView];
+    }else{
+        [self maximizeWebView];
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
+- (void) maximizeWebView{
+    self.webViewRect = self.webView.frame;
+    self.fullRect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    [UIView animateWithDuration:0.7 animations:^{
+        self.webView.frame = self.fullRect;
+    }];
+    self.webviewMaxmized = true;
+}
+
+- (void) minimizeWebView{
+    [UIView animateWithDuration:0.7 animations:^{
+        self.webView.frame = self.webViewRect;
+    }];
+    self.webviewMaxmized = false;
 }
 
 - (void)createMoviePlayer:(MMedia *)media appDelegate:(tubeAppDelegate *)appDelegate videoFrame:(CGRect)videoFrame
@@ -88,14 +134,6 @@
     movieView.frame = videoFrame;
     movieView.userInteractionEnabled = YES;
     [self addSubview:movieView];
-}
-
-- (id)initWithMedia:(MMedia *)media withParent:(UIView *)parent withAppDelegate:(tubeAppDelegate *)appDelegate{
-    self = [self initWithMedia:media withParent:parent withAppDelegate:appDelegate withVideo:YES];
-    if (self) {
-        
-    }
-    return self;
 }
 
 - (void) playerPlaybackDidFinish:(NSNotification*)notification{
@@ -125,6 +163,9 @@
     NSLog(@"dealloc HtmlWithVideoView");
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:self.moviePlayer];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerNowPlayingMovieDidChangeNotification object:self.moviePlayer];
+    self.tapGR.delegate = nil;
+    [self.webView removeGestureRecognizer:self.tapGR];
+    [_tapGR release];
     self.videoPreview.image = nil;
     [self.videoPreview removeFromSuperview];
     [_videoPreview release];

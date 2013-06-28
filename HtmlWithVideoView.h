@@ -14,7 +14,7 @@
 #import "DebugUIImageView.h"
 
 
-@interface HtmlWithVideoView : UIView <MediaViewEvents>
+@interface HtmlWithVideoView : UIView <MediaViewEvents, UIGestureRecognizerDelegate>
 
 - (id)initWithMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate;
 - (id)initWithMedia:(MMedia *)media withParent:(UIView*)parent withAppDelegate:(tubeAppDelegate *)appDelegate withVideo:(BOOL)flag;
@@ -25,5 +25,9 @@
 @property (retain) UIView *lightPanel;
 @property (retain) MPMoviePlayerController *moviePlayer;
 @property (retain) UIWebView *webView;
+@property CGRect webViewRect;
+@property CGRect fullRect;
+@property BOOL webviewMaxmized;
+@property (retain) UITapGestureRecognizer *tapGR;
 
 @end
