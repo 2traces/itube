@@ -76,13 +76,13 @@ static NSUInteger kFeedbackSection = 2;
 		return [[tableView dequeueReusableCellWithIdentifier:findCellidentifier] frame].size.height;
 	}
 
-	static NSNumber *height;
+	static CGFloat height;
 	if (!height)
 	{
 		UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-		height = @(cell.bounds.size.height);
+		height = cell.bounds.size.height;
 	}
-	return [height floatValue];
+	return height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView

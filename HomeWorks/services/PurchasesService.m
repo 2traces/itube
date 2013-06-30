@@ -46,9 +46,9 @@
 	return NO;
 }
 
-- (void)purchaseMonthlySubscriptionWithComplete:(void (^)())complete andError:(void (^)())error
+- (void)purchaseSubscription:(NSString *)subscriptionId WithComplete:(void (^)())complete andError:(void (^)())error
 {
-	[[MKStoreManager sharedManager] buyFeature:self.monthlySubscriptionIAP onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads)
+	[[MKStoreManager sharedManager] buyFeature:subscriptionId onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads)
 	{
 		complete();
 	} onCancelled:error];

@@ -447,6 +447,77 @@
             </objects>
             <point key="canvasLocation" x="1884" y="226"/>
         </scene>
+        <!--Buy View Controller-->
+        <scene sceneID="c7j-oF-xwl">
+            <objects>
+                <tableViewController id="ivZ-nd-sWM" customClass="BuyViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="P8Y-O8-zEL">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Неограниченный доступ ко всем решебникам" id="rxn-Ui-Chp">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="gpj-Kf-Kob">
+                                        <rect key="frame" x="0.0" y="67" width="320" height="46"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="На целый месяц" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2KH-jb-Rrx">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="46"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection footerTitle="Все решебники будут доступны offline" id="5ql-rv-Fyp">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="HN8-6o-QbJ">
+                                        <rect key="frame" x="0.0" y="133" width="320" height="46"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="На год" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DOs-Ki-Ad5">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="46"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="ivZ-nd-sWM" id="5p8-rR-4CZ"/>
+                            <outlet property="delegate" destination="ivZ-nd-sWM" id="vEJ-0s-VYc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="SGP-FE-y0A">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="5hx-lc-0zs">
+                            <connections>
+                                <action selector="cancel" destination="ivZ-nd-sWM" id="VPB-0z-bzX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VFd-UL-8ia" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2805" y="226"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="lTu-8F-meA">
             <objects>
@@ -465,6 +536,24 @@
             </objects>
             <point key="canvasLocation" x="616" y="843"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cWq-B6-l63">
+            <objects>
+                <navigationController storyboardIdentifier="buy" id="fMH-u7-EXw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0VB-Vd-816">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ivZ-nd-sWM" kind="relationship" relationship="rootViewController" id="YAA-Ow-aEk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EJr-tJ-GNQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2311" y="226"/>
+        </scene>
     </scenes>
     <resources>
         <image name="element-locked.png" width="56" height="56"/>
@@ -473,6 +562,96 @@
         <image name="icon_2.png" width="47" height="47"/>
         <image name="restore_purchases@2x.png" width="94" height="94"/>
     </resources>
+    <classes>
+        <class className="AnswerViewCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswerViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="label" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="AnswersViewController" superclassName="UICollectionViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewController.h"/>
+        </class>
+        <class className="AnswersViewFooter" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewFooter.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="AnswersViewHeader" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewHeader.h"/>
+            <relationships>
+                <relationship kind="outlet" name="authorsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="BookTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BookTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="authorsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="bookImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="BooksViewController" superclassName="HomeworksTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BooksViewController.h"/>
+        </class>
+        <class className="BuyViewController" superclassName="HomeworksTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BuyViewController.h"/>
+        </class>
+        <class className="HomeworksTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeworksTableViewController.h"/>
+        </class>
+        <class className="InfoViewController" superclassName="HomeworksTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InfoViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="tlDismissMe:"/>
+            </relationships>
+        </class>
+        <class className="SubjectTableVIewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SubjectTableVIewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="iconImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SubjectsViewController" superclassName="HomeworksTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SubjectsViewController.h"/>
+        </class>
+        <class className="TermTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TermTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="iconImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="numLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TermsViewController" superclassName="HomeworksTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TermsViewController.h"/>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewController.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+        <class className="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="tlDismissMe:"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

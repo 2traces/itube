@@ -58,6 +58,7 @@
 		49EEE2011718105B009E1BBF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EEE2001718105B009E1BBF /* Default-568h@2x.png */; };
 		49EEE20317181074009E1BBF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EEE20217181074009E1BBF /* Default.png */; };
 		A56A1034972868831A7211DD /* bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A56A123732927F7AE32EE906 /* bar@2x.png */; };
+		A56A10639268BA2550715291 /* BuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A56A17C1587480F6A36D089C /* BuyViewController.m */; };
 		A56A10811B2A13937FF3217B /* BooksService.m in Sources */ = {isa = PBXBuildFile; fileRef = A56A10D1BAE4A2C27AC1F082 /* BooksService.m */; };
 		A56A10F3B3C2C0A239AA1139 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A56A10372EFAFB2A4F58F41F /* InfoViewController.m */; };
 		A56A11555FF85B464D084028 /* SubjectsViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A56A1502A9262C834672A558 /* SubjectsViewController.h */; };
@@ -222,6 +223,7 @@
 		A56A10732A21C11AE6B47D6A /* tableBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableBackground@2x.png"; sourceTree = "<group>"; };
 		A56A1092FAAB82E7DDCF7428 /* BookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookTableViewCell.h; sourceTree = "<group>"; };
 		A56A10A05949C893FFEE8AD9 /* element-locked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "element-locked@2x.png"; sourceTree = "<group>"; };
+		A56A10C3BF5677611FE7BB40 /* BuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyViewController.h; sourceTree = "<group>"; };
 		A56A10D1BAE4A2C27AC1F082 /* BooksService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksService.m; sourceTree = "<group>"; };
 		A56A10E08CA85227B3AD7A8E /* icon_10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_10@2x.png"; sourceTree = "<group>"; };
 		A56A1117080B3574D6A8D70C /* BookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookTableViewCell.m; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 		A56A16B4E0A9082E8A75FC22 /* MKStoreKitConfigs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = MKStoreKitConfigs.plist; sourceTree = "<group>"; };
 		A56A173BFAC8E0AE5642F505 /* icon_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_3@2x.png"; sourceTree = "<group>"; };
 		A56A17836D536C022D4A7A6A /* BooksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksViewController.m; sourceTree = "<group>"; };
+		A56A17C1587480F6A36D089C /* BuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyViewController.m; sourceTree = "<group>"; };
 		A56A17F5725C448AD182460E /* AnswersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswersViewController.h; sourceTree = "<group>"; };
 		A56A18099CC70D2430739F0D /* AnswersViewFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswersViewFooter.m; sourceTree = "<group>"; };
 		A56A182D835AA39F947BBC12 /* icon_8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_8@2x.png"; sourceTree = "<group>"; };
@@ -452,8 +455,18 @@
 				A56A1C131095746B5F26B4B6 /* answers */,
 				A56A1C2642A97B97FBE5460A /* info */,
 				A56A1FFAF5255B89AF6819C3 /* ipadStartScreen */,
+				A56A182F2E6501D14FAD716D /* buy */,
 			);
 			path = viewControllers;
+			sourceTree = "<group>";
+		};
+		A56A182F2E6501D14FAD716D /* buy */ = {
+			isa = PBXGroup;
+			children = (
+				A56A17C1587480F6A36D089C /* BuyViewController.m */,
+				A56A10C3BF5677611FE7BB40 /* BuyViewController.h */,
+			);
+			path = buy;
 			sourceTree = "<group>";
 		};
 		A56A18D94B185D8D3C98CDC6 /* storyboards */ = {
@@ -775,6 +788,7 @@
 				A56A148CC60D32FF7695A486 /* IPadStartScreenViewController.m in Sources */,
 				A56A1C9826EC400FF628AFD6 /* UIViewController+tlDismissMe.m in Sources */,
 				A56A10811B2A13937FF3217B /* BooksService.m in Sources */,
+				A56A10639268BA2550715291 /* BuyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

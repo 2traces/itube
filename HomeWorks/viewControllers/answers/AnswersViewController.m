@@ -17,6 +17,7 @@
 #import "PurchasesService.h"
 #import "UIViewController+tlDismissMe.h"
 #import "BooksService.h"
+#import "BuyViewController.h"
 
 NSString *kCellID = @"answerCell";
 NSString *kLockedCellID = @"lockedAnswerCell";
@@ -24,7 +25,7 @@ NSString *kEmptyCellID = @"emptyAnswerCell";
 NSString *kHeaderID = @"collectionHeader";
 NSString *kFooterID = @"collectionFooter";
 
-@interface AnswersViewController ()
+@interface AnswersViewController () <BuyViewControllerDelegate>
 @property(nonatomic) BOOL purchased;
 @end
 
@@ -42,11 +43,7 @@ NSString *kFooterID = @"collectionFooter";
 
 	answers = [_book children:@"a"];
 
-	NSString *termId = [_term attribute:@"id"];
-	NSString *subjectId = [_subject attribute:@"id"];
-	NSString *bookId = [_book attribute:@"id"];
-
-	self.purchased = [self.purchaseService isPurchasedTermId:termId  withSubjectId:subjectId withBookId:bookId];
+	[self buyControllerDidFinish:NO];
 
 	self.collectionView.allowsMultipleSelection = NO;
 
@@ -73,6 +70,15 @@ NSString *kFooterID = @"collectionFooter";
 	self.collectionView.backgroundColor = [UIColor clearColor];
 
 	operationQueue = [[NSOperationQueue alloc] init];
+}
+
+- (void)buyControllerDidFinish:(BOOL)success
+{
+	NSString *termId = [_term attribute:@"id"];
+	NSString *subjectId = [_subject attribute:@"id"];
+	NSString *bookId = [_book attribute:@"id"];
+
+	self.purchased = [self.purchaseService isPurchasedTermId:termId  withSubjectId:subjectId withBookId:bookId];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -103,7 +109,6 @@ NSString *kFooterID = @"collectionFooter";
 
 	if (!self.purchased && indexPath.item > 1)
 	{
-		[self purchase];
 		return;
 	}
 
@@ -139,7 +144,11 @@ NSString *kFooterID = @"collectionFooter";
 {
 	if (!self.purchased)
 	{
-		[self purchase];
+		UINavigationController *buyNagivationController = [self.storyboard instantiateViewControllerWithIdentifier:@"buy"];
+		BuyViewController *buyViewController = [buyNagivationController topViewController];
+
+		buyViewController.delegate = self;
+		[self presentViewController:buyNagivationController animated:YES completion:nil];
 	}
 	else
 	{
@@ -165,24 +174,6 @@ NSString *kFooterID = @"collectionFooter";
 	}
 
 	return YES;
-}
-
-- (void)purchase
-{
-	NSLog(@"buying");
-	activityView = [DejalBezelActivityView activityViewForView:self.view.window withLabel:@""];
-
-	[self.purchaseService purchaseMonthlySubscriptionWithComplete:^()
-	{
-		[activityView removeFromSuperview];
-		self.purchased = YES;
-		[self.collectionView reloadData];
-	} andError:^()
-	{
-		[self removeActivityView:activityView];
-	}];
-
-	[self performSelector:@selector(removeActivityView:) withObject:activityView afterDelay:30];
 }
 
 - (void)downloadAll
@@ -261,19 +252,6 @@ NSString *kFooterID = @"collectionFooter";
 		successOrFailure();
 	}
 	[operationQueue setSuspended:NO];
-}
-
-- (void)removeActivityView:(DejalActivityView *)activityViewToRemove
-{
-	if (activityViewToRemove.superview != nil)
-	{
-		[activityViewToRemove removeFromSuperview];
-		[[[UIAlertView alloc]
-				initWithTitle:@"Ошибка"
-					  message:@"Внимание! Покупка не удалась и деньги не снялись. Попробуйте позднее."
-					 delegate:nil cancelButtonTitle:@"OK"
-			otherButtonTitles:nil] show];
-	}
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
