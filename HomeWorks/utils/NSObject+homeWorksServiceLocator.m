@@ -13,12 +13,12 @@
 
 -(NSString *)monthlySubscriptionIAP
 {
-	return @"ru.trylogic.homeworks.monthly";
+	return @"monthly";
 }
 
 -(NSString *)yearlySubscriptionIAP
 {
-	return @"ru.trylogic.homeworks.yearly";
+	return @"yearly";
 }
 
 - (NSString *)pageURLStringFormat

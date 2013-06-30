@@ -10,10 +10,10 @@
 	</array>
 	<key>Subscriptions</key>
 	<dict>
-		<key>ru.trylogic.homeworks.monthly</key>
+		<key>monthly</key>
 		<integer>1</integer>
 
-		<key>ru.trylogic.homeworks.yearly</key>
+		<key>yearly</key>
 		<integer>12</integer>
 	</dict>
 </dict>

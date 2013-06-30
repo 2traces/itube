@@ -10,12 +10,12 @@
 #import "AnswersViewController.h"
 #import "NSObject+homeWorksServiceLocator.h"
 #import "AnswersViewHeader.h"
-#import "MKStoreManager.h"
 #import "DejalActivityView.h"
 #import "AnswerFileURL.h"
 #import "AnswerViewCell.h"
 #import "ConcreateAnswerViewController.h"
 #import "PurchasesService.h"
+#import "UIViewController+tlDismissMe.h"
 
 NSString *kCellID = @"answerCell";
 NSString *kLockedCellID = @"lockedAnswerCell";
@@ -89,16 +89,11 @@ NSString *kFooterID = @"collectionFooter";
 	}
 	else
 	{
-		self.navigationItem.rightBarButtonItem.title = @"Купить все за 0.99$";
+		self.navigationItem.rightBarButtonItem.title = @"посмотреть все ответы";
 	}
 }
 
-- (IBAction)tlDismissMe:(id)sender
-{
-	[self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (indexPath.item >= answers.count)
 	{
@@ -116,7 +111,8 @@ NSString *kFooterID = @"collectionFooter";
 
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 	{
-		[self presentModalViewController:previewController animated:YES];
+		previewController.modalPresentationStyle = UIModalPresentationFullScreen;
+		[self presentViewController:previewController animated:YES completion:nil];
 	}
 	else
 	{
@@ -124,11 +120,12 @@ NSString *kFooterID = @"collectionFooter";
 
 		previewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
 																										   target:navigationControllerForPreview
-																										   action:@selector(dismissModalViewControllerAnimated:)];
+																										   action:@selector(tlDismissMe:)];
 		navigationControllerForPreview.navigationBar.barStyle = UIBarStyleBlack;
 		navigationControllerForPreview.toolbar.barStyle = UIBarStyleBlack;
+		navigationControllerForPreview.modalPresentationStyle = UIModalPresentationFullScreen;
 
-		[self presentModalViewController:navigationControllerForPreview animated:YES];
+		[self presentViewController:navigationControllerForPreview animated:YES completion:nil];
 	}
 }
 
@@ -196,7 +193,7 @@ NSString *kFooterID = @"collectionFooter";
 		[self removeActivityView:activityView];
 	}];
 
-	[self performSelector:@selector(removeActivityView:) withObject:activityView afterDelay:5];
+	[self performSelector:@selector(removeActivityView:) withObject:activityView afterDelay:10];
 }
 
 - (void)downloadAll
@@ -285,19 +282,19 @@ NSString *kFooterID = @"collectionFooter";
 	}
 }
 
-- (NSInteger)numberOfSectionsInCollectionView:(PSUICollectionView *)collectionView
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
 	return 1;
 }
 
-- (NSInteger)collectionView:(PSUICollectionView *)view numberOfItemsInSection:(NSInteger)section;
+- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section;
 {
 	int numRows = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? 6 : 4;
 	NSUInteger answersCountByNumRows = answers.count % numRows;
 	return (answersCountByNumRows == 0) ? answers.count : ((answers.count - answersCountByNumRows) + numRows);
 }
 
-- (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath;
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 {
 	AnswerViewCell *cell;
 	if (indexPath.item >= answers.count)
@@ -316,9 +313,9 @@ NSString *kFooterID = @"collectionFooter";
 	}
 }
 
-- (PSUICollectionReusableView *)collectionView:(PSUICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-	if ([kind isEqualToString:PSTCollectionElementKindSectionHeader])
+	if ([kind isEqualToString:UICollectionElementKindSectionHeader])
 	{
 		AnswersViewHeader *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:kHeaderID forIndexPath:indexPath];
 
@@ -327,7 +324,7 @@ NSString *kFooterID = @"collectionFooter";
 		headerView.authorsLabel.text = [_book attribute:@"authors"];
 		return headerView;
 	}
-	else if ([kind isEqualToString:PSTCollectionElementKindSectionFooter])
+	else if ([kind isEqualToString:UICollectionElementKindSectionFooter])
 	{
 		AnswersViewHeader *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:kFooterID forIndexPath:indexPath];
 		[footerView.backgroundImage setImage:[UIImage imageNamed:@"table_button_top"]];

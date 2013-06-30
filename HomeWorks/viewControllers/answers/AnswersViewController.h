@@ -10,7 +10,7 @@
 
 @class RXMLElement;
 
-@interface AnswersViewController : PSUICollectionViewController
+@interface AnswersViewController : UICollectionViewController
 
 @property(nonatomic) RXMLElement *term;
 @property(nonatomic) RXMLElement *subject;

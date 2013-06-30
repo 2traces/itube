@@ -106,6 +106,7 @@
 		A56A1B5F43834DCCF2B97F9E /* UIImage+crop.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A56A198A6D246393CE6CA476 /* UIImage+crop.h */; };
 		A56A1C38B1DC8A4C85CF13CD /* InfoViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A56A1C20388DA491084BDE68 /* InfoViewController.h */; };
 		A56A1C572016F4FAC82DA6F6 /* icon_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A56A133323BCF7B71C3A69B5 /* icon_2@2x.png */; };
+		A56A1C9826EC400FF628AFD6 /* UIViewController+tlDismissMe.m in Sources */ = {isa = PBXBuildFile; fileRef = A56A1D00EE3D54FCA8B2834F /* UIViewController+tlDismissMe.m */; };
 		A56A1C9ABBE448DC58A1668B /* icon_7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A56A1A6E2DDDDE3026820151 /* icon_7@2x.png */; };
 		A56A1D23E91F27869BC0512E /* SubjectTableVIewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A56A1909590A86CBEC5AD7AF /* SubjectTableVIewCell.m */; };
 		A56A1D58E05945C3DEE0BDBF /* BooksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A56A17836D536C022D4A7A6A /* BooksViewController.m */; };
@@ -224,6 +225,7 @@
 		A56A1117080B3574D6A8D70C /* BookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookTableViewCell.m; sourceTree = "<group>"; };
 		A56A1178308F8211D5BEB5D7 /* table_button_mid_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table_button_mid_pressed@2x.png"; sourceTree = "<group>"; };
 		A56A11C8D7B979E0D92412E5 /* NSObject+homeWorksServiceLocator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+homeWorksServiceLocator.m"; sourceTree = "<group>"; };
+		A56A122CF1079617E1C500DF /* UIViewController+tlDismissMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+tlDismissMe.h"; sourceTree = "<group>"; };
 		A56A123732927F7AE32EE906 /* bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar@2x.png"; sourceTree = "<group>"; };
 		A56A1245065F78093FDD37E0 /* PurchasesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchasesService.m; sourceTree = "<group>"; };
 		A56A125A8CEB591F9529E586 /* PushLayerSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushLayerSegue.m; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 		A56A1C20388DA491084BDE68 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		A56A1CAA1E69D8426CBDCABC /* AnswersViewFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswersViewFooter.h; sourceTree = "<group>"; };
 		A56A1CF568615C9EE22BB5A9 /* IPadStartScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPadStartScreenViewController.h; sourceTree = "<group>"; };
+		A56A1D00EE3D54FCA8B2834F /* UIViewController+tlDismissMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+tlDismissMe.m"; sourceTree = "<group>"; };
 		A56A1D08724D2D6E0F0E6E9F /* HomeworksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworksTableViewController.m; sourceTree = "<group>"; };
 		A56A1D65604D0D70314AD7F0 /* ConcreateAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcreateAnswerViewController.h; sourceTree = "<group>"; };
 		A56A1DAE221759AB60FD31CB /* AnswersViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswersViewHeader.m; sourceTree = "<group>"; };
@@ -409,6 +412,8 @@
 				A56A1014B5638168D3E42519 /* ShowIpadListSegue.h */,
 				A56A125A8CEB591F9529E586 /* PushLayerSegue.m */,
 				A56A19F4FB3F8AAC05013DDD /* PushLayerSegue.h */,
+				A56A1D00EE3D54FCA8B2834F /* UIViewController+tlDismissMe.m */,
+				A56A122CF1079617E1C500DF /* UIViewController+tlDismissMe.h */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -763,6 +768,7 @@
 				A56A17758D62CFA8A164E8CC /* ConcreateAnswerViewController.m in Sources */,
 				A56A1580A9DF5DF2C902DBDB /* PurchasesService.m in Sources */,
 				A56A148CC60D32FF7695A486 /* IPadStartScreenViewController.m in Sources */,
+				A56A1C9826EC400FF628AFD6 /* UIViewController+tlDismissMe.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -821,7 +827,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -847,7 +853,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -868,7 +874,7 @@
 					"${PODS_HEADERS_SEARCH_PATHS}",
 				);
 				INFOPLIST_FILE = "HomeWorks/HomeWorks-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
@@ -887,7 +893,7 @@
 					"${PODS_HEADERS_SEARCH_PATHS}",
 				);
 				INFOPLIST_FILE = "HomeWorks/HomeWorks-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";

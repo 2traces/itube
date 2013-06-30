@@ -4,8 +4,6 @@ pod 'AFNetworking', '~> 1.0'
 
 pod 'DejalActivityView', '~> 1.0'
 
-pod 'PSTCollectionView', '~> 0.0.1'
-
 pod 'RaptureXML', '~> 1.0.1'
 
 pod 'MKStoreKit', '~> 4.99'
