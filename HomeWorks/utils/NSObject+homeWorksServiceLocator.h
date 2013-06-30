@@ -9,6 +9,7 @@
 #import "RXMLElement.h"
 
 @class PurchasesService;
+@class BooksService;
 
 @interface NSObject (homeWorksServiceLocator)
 
@@ -20,6 +21,8 @@
 
 - (NSString *)pageCoverStringFormat;
 
+- (NSString *)offlineFilePathStringFormat;
+
 - (NSString *)pageFilePathStringFormat;
 
 - (NSURL *)catalogDownloadUrl;
@@ -29,5 +32,7 @@
 - (RXMLElement *)catalogRxml;
 
 -(PurchasesService *)purchaseService;
+
+-(BooksService *)booksService;
 
 @end

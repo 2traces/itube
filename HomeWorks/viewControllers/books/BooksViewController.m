@@ -12,6 +12,7 @@
 #import "AnswersViewController.h"
 #import "UIImageView+JMImageCache.h"
 #import "NSObject+homeWorksServiceLocator.h"
+#import "BooksService.h"
 
 static NSString *findCellidentifier = @"findCell";
 static NSString *cellIdentifier = @"bookCell";
@@ -37,13 +38,15 @@ static NSUInteger kFeedbackSection = 2;
 	paidBooks = [NSMutableArray array];
 	for(RXMLElement *book in [_subject children:@"book"])
 	{
-		if([book attributeAsInt:@"free"] == YES)
+		NSMutableArray *targetArray = [book attributeAsInt:@"free"] ? freeBooks : paidBooks;
+
+		if([[self booksService] isAvailableOfflineWithTermId:[_term attribute:@"id"] withSubjectId:[_subject attribute:@"id"] withBookId:[book attribute:@"id"]])
 		{
-			[freeBooks addObject:book];
+			[targetArray insertObject:book atIndex:0];
 		}
 		else
 		{
-			[paidBooks addObject:book];
+			[targetArray addObject:book];
 		}
 	}
 }
@@ -98,16 +101,20 @@ static NSUInteger kFeedbackSection = 2;
 	cell.nameLabel.text = [book attribute:@"name"];
 	cell.authorsLabel.text = [book attribute:@"authors"];
 
-	NSLog([NSString stringWithFormat:self.pageCoverStringFormat,
-									 [_term attribute:@"id"],
-									 [_subject attribute:@"id"],
-									 [book attribute:@"id"]]);
+	NSString *termId = [_term attribute:@"id"];
+	NSString *subjectId = [_subject attribute:@"id"];
+	NSString *bookId = [book attribute:@"id"];
 
 	[cell.bookImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:self.pageCoverStringFormat,
-																					[_term attribute:@"id"],
-																					[_subject attribute:@"id"],
-																					[book attribute:@"id"]]]];
+																					termId,
+																					subjectId,
+																					bookId]]];
 
+	if([self.booksService isAvailableOfflineWithTermId:termId withSubjectId:subjectId withBookId:bookId])
+	{
+		cell.nameLabel.text = [cell.nameLabel.text stringByAppendingString:@" [offline]"];
+	}
+	
 	return cell;
 
 }
@@ -126,13 +133,13 @@ static NSUInteger kFeedbackSection = 2;
 			mailViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 		}
 
-		[self presentModalViewController:mailViewController animated:YES];
+		[self presentViewController:mailViewController animated:YES completion:nil];
 	}
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:nil];
 	[self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
 
 }

@@ -16,6 +16,7 @@
 #import "ConcreateAnswerViewController.h"
 #import "PurchasesService.h"
 #import "UIViewController+tlDismissMe.h"
+#import "BooksService.h"
 
 NSString *kCellID = @"answerCell";
 NSString *kLockedCellID = @"lockedAnswerCell";
@@ -151,23 +152,11 @@ NSString *kFooterID = @"collectionFooter";
 	NSString *termId = [_term attribute:@"id"];
 	NSString *subjectId = [_subject attribute:@"id"];
 	NSString *bookId = [_book attribute:@"id"];
-	NSString *answerExt = [_book attribute:@"ext"];
 
-	for (RXMLElement *answer in answers)
+	if(![self.booksService isAvailableOfflineWithTermId:termId withSubjectId:subjectId withBookId:bookId])
 	{
-		NSString *answerFile = answer.text;
-		NSString *pageFilePath = [NSString stringWithFormat:self.pageFilePathStringFormat,
-															termId,
-															subjectId,
-															bookId,
-															answerFile,
-															answerExt];
-
-		if (![[NSFileManager defaultManager] fileExistsAtPath:pageFilePath])
-		{
-			self.navigationItem.rightBarButtonItem.title = @"Загрузить все ответы";
-			return NO;
-		}
+		self.navigationItem.rightBarButtonItem.title = @"Загрузить все ответы";
+		return NO;
 	}
 
 	if (self.purchased)
@@ -193,7 +182,7 @@ NSString *kFooterID = @"collectionFooter";
 		[self removeActivityView:activityView];
 	}];
 
-	[self performSelector:@selector(removeActivityView:) withObject:activityView afterDelay:10];
+	[self performSelector:@selector(removeActivityView:) withObject:activityView afterDelay:30];
 }
 
 - (void)downloadAll
@@ -215,6 +204,11 @@ NSString *kFooterID = @"collectionFooter";
 		if (operationQueue.operationCount == 0)
 		{
 			[DejalBezelActivityView removeView];
+			NSString *offlineFilePath = [NSString stringWithFormat:self.offlineFilePathStringFormat,
+																termId,
+																subjectId,
+																bookId];
+			[[NSData data] writeToFile:offlineFilePath atomically:NO];
 			[weakSelf updateAllFilesDownloadedStatus];
 			[weakSelf.collectionView reloadData];
 		}

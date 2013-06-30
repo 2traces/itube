@@ -7,6 +7,7 @@
 
 #import "NSObject+homeWorksServiceLocator.h"
 #import "PurchasesService.h"
+#import "BooksService.h"
 
 
 @implementation NSObject (homeWorksServiceLocator)
@@ -35,6 +36,12 @@
 {
 	NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	return [documentsDirectory stringByAppendingPathComponent:@"terms%@subjects%@books%@answer%@.%@"];
+}
+
+- (NSString *)offlineFilePathStringFormat
+{
+	NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	return [documentsDirectory stringByAppendingPathComponent:@"terms%@subjects%@books%@.offline"];
 }
 
 - (NSURL *)catalogDownloadUrl
@@ -93,6 +100,18 @@
 	}
 
 	return purchasesService;
+}
+
+- (BooksService *)booksService
+{
+	static BooksService *booksService;
+
+	if(booksService == nil)
+	{
+		booksService = [[BooksService alloc] init];
+	}
+
+	return booksService;
 }
 
 
