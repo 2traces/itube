@@ -89,6 +89,7 @@
         }
         Slide3DImageView *imageView = [[Slide3DImageView alloc]
                                        initWithImage:image
+                                       withFrame:CGRectMake(0, 0, 10, 10)
                                        withPrefix:prefix
                                        withExt:media.photosSet.photosExt
                                        withSlidesCount:[media.photosSet.photosCount intValue]];
