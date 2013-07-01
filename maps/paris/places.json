@@ -13,20 +13,216 @@
             "image_highlighted": "cat_otbt_pressed.png",
             "color": "dc79b0",
             "index": 1
+        },
+       {
+            "name": "Top rated cafes",
+            "image_normal": "cat_rc_normal.png",
+            "image_highlighted": "cat_rc_pressed.png",
+            "color": "dc79b0",
+            "index": 3
         }
     ],
     "places": [
-                    			{
-            "name": "Creperie Broceliande",
-            "long": 48.884344,
-               "lat": 2.341123,
-               "index": 29,
-            "accessLevel": 0,
-            "text": "\"Great little restaurant!\" \n\n15 Rue des 3 Frères, 75018 Paris, France\n\n+33 1 42 23 31 34 \n\nI think this place is the perfect one when you want to try a really french crepe. The restaurant is comfortable, has pleasant decor and illumination, the service is very good and the food is perfect. You will realise the differential of this crepe when you taste the dough... It's crispy and soft at the same time. I recommend a flavour: \"chevrette\" (goat cheese with caramelized onion)... I came back there twice because of this one! Still, they offer an excellent cost-benefit and Montmartre is a very charming place in Paris.Price range: $9 - $25 Cuisines: Dessert, Organic, Tea Room, Creperie",
-            "photos": [
-				"101.jpg",
-                "103.jpg"
-            ],
+                        {
+            "name": "Restaurant Benoit",
+            "long": 48.858438,
+               "lat": 2.350009,
+               "index": 120,
+           "accessLevel": 0,
+           "media_type": "html_gallery",
+           "filename": "html/rest1.html",
+            "categories": [
+                3
+            ]
+        },
+                                {
+            "name": "Bofinger",
+            "long": 48.853908,
+               "lat": 2.367725,
+               "index": 111,
+           "accessLevel": 0,
+           "media_type": "html_gallery",
+           "filename": "html/rest2.html",
+            "categories": [
+                3
+            ]
+        },
+                                {
+            "name": "La Bouteille d'Or",
+            "long": 48.851536,
+               "lat": 2.349817,
+               "index": 114,
+           "accessLevel": 0,
+           "media_type": "html_gallery",
+           "filename": "html/rest3.html",
+            "categories": [
+                3
+            ]
+        },
+                                {
+            "name": "Dessirier",
+            "long": 48.884967,
+               "lat": 2.296593,
+               "index": 112,
+           "accessLevel": 0,
+           "media_type": "html_gallery",
+           "filename": "html/rest4.html",
+            "categories": [
+                3
+            ]
+        },
+                                        {
+            "name": "Brasserie Gallopin",
+            "long": 48.868858,
+               "lat": 2.342168,
+               "index": 115,
+           "accessLevel": 0,
+           "media_type": "html_gallery",
+           "filename": "html/rest5.html",
+            "categories": [
+                3
+            ]
+        },
+                                {
+            "name": "Mon Vieil Ami",
+            "long": 48.852489,
+               "lat": 2.354517,
+               "index": 116,
+           "accessLevel": 0,
+           "media_type": "html_gallery",
+           "filename": "html/rest6.html",
+            "categories": [
+                3
+            ]
+        },
+                                {
+            "name": "Drouant",
+            "long": 48.868716,
+               "lat": 2.334357,
+               "index": 117,
+           "accessLevel": 0,
+           "media_type": "html_gallery",
+           "filename": "html/rest7.html",
+            "categories": [
+                3
+            ]
+        },
+                                {
+            "name": "L'Evasion",
+            "long": 48.875198,
+               "lat": 2.319166,
+               "index": 118,
+           "accessLevel": 0,
+           "media_type": "html_gallery",
+           "filename": "html/rest8.html",
+            "categories": [
+                3
+            ]
+        },
+                                {
+            "name": "Al-Ajami",
+            "long": 48.869768,
+               "lat": 2.302289,
+               "index": 119,
+           "accessLevel": 0,
+           "media_type": "html_gallery",
+           "filename": "html/rest9.html",
+            "categories": [
+                3
+            ]
+        },
+                                        {
+            "name": "Le Ciel de Paris",
+            "long": 48.842238,
+               "lat": 2.321639,
+               "index": 109,
+           "accessLevel": 0,
+           "media_type": "html_gallery",
+           "filename": "html/rest10.html",
+            "categories": [
+                3
+            ]
+        },
+		                                        {
+            "name": "Restaurant Georges",
+            "long": 48.860958,
+               "lat": 2.352849,
+               "index": 121,
+           "accessLevel": 0,
+           "media_type": "html_gallery",
+           "filename": "html/rest11.html",
+            "categories": [
+                3
+            ]
+        },
+				                                        {
+            "name": "Chez Vong",
+            "long": 48.862795,
+               "lat": 2.34921,
+               "index": 122,
+           "accessLevel": 0,
+           "media_type": "html_gallery",
+           "filename": "html/rest12.html",
+            "categories": [
+                3
+            ]
+        },
+						                                        {
+            "name": "Restaurant Hanawa",
+            "long": 48.867174,
+               "lat": 2.307818,
+               "index": 123,
+           "accessLevel": 0,
+           "media_type": "html_gallery",
+           "filename": "html/rest13.html",
+            "categories": [
+                3
+            ]
+        },
+								                                        {
+            "name": "Nodaiwa",
+            "long": 48.864341,
+               "lat": 2.333267,
+               "index": 124,
+           "accessLevel": 0,
+           "media_type": "html_gallery",
+           "filename": "html/rest14.html",
+            "categories": [
+                3
+            ]
+        },
+										                                        {
+            "name": "La Petite Cour",
+            "long": 48.852175,
+               "lat": 2.335136,
+               "index": 108,
+           "accessLevel": 0,
+           "media_type": "html_gallery",
+           "filename": "html/rest15.html",
+            "categories": [
+                3
+            ]
+        },
+												                                        {
+            "name": "Bar Restaurant Kong",
+            "long": 48.859252,
+               "lat": 2.343208,
+               "index": 109,
+           "accessLevel": 0,
+           "media_type": "html_gallery",
+           "filename": "html/rest16.html",
+            "categories": [
+                3
+            ]
+        },
+												                                        {
+            "name": "Relais Plaza",
+            "long": 48.866245,
+               "lat": 2.304272,
+               "index": 127,
+           "accessLevel": 0,
+           "media_type": "html_gallery",
+           "filename": "html/rest17.html",
             "categories": [
                 3
             ]
@@ -166,6 +362,19 @@
             ],
             "categories": [
                 2
+            ]
+        },
+                                            			{
+            "name": "extra content",
+            "long": 48.86057,
+            "lat": 2.337625,
+               "index": 113,
+            "accessLevel": 0,
+            "photos": [
+				"png_ab3.jpg"
+            ],
+            "categories": [
+                3
             ]
         },
                        {
@@ -565,7 +774,7 @@
                "lat": 2.34712,
                "index": 75,
            "accessLevel": 0,
-           "media_type": "html",
+           "media_type": "html_gallery",
            "filename": "html/full4.html",
             "categories": [
                 1
@@ -728,21 +937,7 @@
                "categories": [
                               1
                               ]
-               },
-                {
-            "name": "Observatoire de Paris",
-            "long": 48.805037,
-            "lat": 2.231051,
-            "index": 101,
-            "accessLevel": 0,
-            "text": "61 Avenue de l'Observatoire, 75014 Paris, France\n\n+33 1 40 51 22 21/n/nThe Paris Observatory is the foremost astronomical observatory of France, and one of the largest astronomical centres in the world.\n\nIts foundation lies in the ambitions of Jean-Baptiste Colbert to extend France's maritime power and international trade in the 17th century. Louis XIV promoted its construction starting in 1667, being completed in 1671. It thus predates the Royal Greenwich Observatory in England which was founded in 1675. The architect of the Paris Observatory was Claude Perrault whose brother, Charles, was secretary to Colbert and superintendent of public works. Optical instruments were supplied by Giuseppe Campani. The buildings were extended in 1730, 1810, 1834, 1850, and 1951. The last extension incorporates the spectacular Meridian Room designed by Jean Prouvé./n/nThe world's first national almanac, the Connaissance des temps was published by the observatory in 1679, using eclipses in Jupiter's satellites to aid sea-farers in establishing longitude. In 1863, the observatory published the first modern weather maps. In 1882, a 33 cm astrographic lens was constructed, an instrument that catalysed what proved to be the over-ambitious, international Carte du Ciel project./n/nIn November 1913, the Paris Observatory, using the Eiffel Tower as an antenna, exchanged sustained wireless (radio) signals with the United States Naval Observatory to determine the exact difference of longitude between the two institutions./n/nThe Meudon great refractor was a 83 centimetres aperture refractor, which with September 20, 1909 observations by E.M. Antoniadi helped disprove the Mars canals theory. It was a double telescope completed in 1891, with secondary having 62 centimetres aperture lens for photography. It was one of the largest active telescopes in Europe.",
-            "photos": [
-                "png47.jpg"
-            ],
-            "categories": [
-                3
-            ]
-        }
+               }
                                                                         
                                                                         ]
                                                                         }

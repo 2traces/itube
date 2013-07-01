@@ -62,9 +62,9 @@
 		<key>icon</key>
 		<string>tr_berlin.png</string>
 		<key>appstore_link</key>
-		<string>http://itunes.apple.com/app/paris.metro/id513581498</string>
+		<string>http://itunes.apple.com/app/berlin-metro-maps/id517540610</string>
 		<key>rate_link</key>
-		<string>http://itunes.apple.com/app/paris.metro/id513581498</string>
+		<string>http://itunes.apple.com/app/berlin-metro-maps/id517540610</string>
 		<key>statusURL</key>
 		<string>   </string>
 	</dict>
@@ -87,9 +87,36 @@
 		<key>icon</key>
 		<string>tr_nyc.png</string>
 		<key>appstore_link</key>
-		<string>http://itunes.apple.com/app/paris.metro/id513581498</string>
+		<string>http://itunes.apple.com/app/subway-nyc-maps/id547106753</string>
 		<key>rate_link</key>
-		<string>http://itunes.apple.com/app/paris.metro/id513581498</string>
+		<string>http://itunes.apple.com/app/subway-nyc-maps/id547106753</string>
+		<key>statusURL</key>
+		<string>http://metro.dim0xff.com/nyc/data_RU.txt</string>
+		<key>altStatusURL</key>
+		<string>http://metro.dim0xff.com/nyc/data.txt</string>
+	</dict>
+	<key>com.zuev.highlight.nyc1</key>
+	<dict>
+		<key>url1</key>
+		<string>http://www.x-provocation.com/maps/cuba/OSM</string>
+		<key>url2</key>
+		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
+		<key>ver</key>
+		<string>1</string>
+		<key>name</key>
+		<string>Venice</string>
+		<key>filename</key>
+		<string>nyc</string>
+		<key>description</key>
+		<string>nyc.txt</string>
+		<key>picture</key>
+		<string>preview_nyc.png</string>
+		<key>icon</key>
+		<string>tr_venice.png</string>
+		<key>appstore_link</key>
+		<string>http://itunes.apple.com/app/venice-transport-maps/id517758059</string>
+		<key>rate_link</key>
+		<string>http://itunes.apple.com/app/venice-transport-maps/id517758059</string>
 		<key>statusURL</key>
 		<string>http://metro.dim0xff.com/nyc/data_RU.txt</string>
 		<key>altStatusURL</key>

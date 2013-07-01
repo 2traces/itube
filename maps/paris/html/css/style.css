@@ -29,7 +29,23 @@ a {
     position: relative;
     width: 400px;
   }
+  .type9-headimg-iphone {
+    position: relative;
+    width: 400px;
+  }
+  .type10-headimg-iphone {
+    position: absolute;
+    bottom: 0px;
+    height: 393px;
+    width: auto;
+  }
   .type4-headimg {
+    display: none;
+  }
+  .type9-headimg {
+    display: none;
+  }
+  .type10-headimg {
     display: none;
   }
   /*type 4*/
@@ -204,6 +220,12 @@ a {
     background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(207, 214, 225, 0.7)));
   }
   .type4-headimg-iphone {
+    display: none;
+  }
+  .type9-headimg-iphone {
+    display: none;
+  }
+  .type10-headimg-iphone {
     display: none;
   }
   /*type 4*/
