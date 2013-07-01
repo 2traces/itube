@@ -8,6 +8,7 @@
 
 #import "Slide3DImageView.h"
 #import "LCUtil.h"
+#import "ColorFactory.h"
 
 #define PAN_THRESHOLD 20
 
@@ -26,6 +27,7 @@
 - (id)initWithImage:(UIImage *)image withFrame:(CGRect)frame withPrefix:(NSString*)prefix withExt:(NSString*)ext withSlidesCount:(int)count{
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor whiteColor];
         self.currentSlideNumber = 0;
         self.slidesCount = count;
         self.lastTranslation = 0;

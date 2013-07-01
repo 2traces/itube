@@ -13,6 +13,7 @@
 #import "ManagedObjects.h"
 #import "DebugUIImage.h"
 #import "LCUtil.h"
+#import "ColorFactory.h"
 
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
@@ -40,7 +41,7 @@
         self.imagesArray = [NSMutableArray array];
         self.titlesArray = [NSMutableArray array];
         self.thumbsArray = [NSMutableArray array];
-        self.backgroundColor = [UIColor blackColor];
+        self.backgroundColor = [ColorFactory lightGrayColor];
         
         //add bgImageView
         self.bgImageView = [[UIImageView alloc] initWithFrame:frame];
