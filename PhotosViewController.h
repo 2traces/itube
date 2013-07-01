@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NavigationViewController.h"
-#import "Slide3DImageView.h"
+#import "Slide3DView.h"
 
 
 @class Station;

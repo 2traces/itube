@@ -7,7 +7,7 @@
 //
 
 #import "MediaTypeFactory.h"
-#import "Slide3DImageView.h"
+#import "Slide3DView.h"
 #import "UIImage+animatedGIF.h"
 #import "HtmlWithVideoView.h"
 #import "HtmlGallery.h"
@@ -87,7 +87,7 @@
                 prefix = iPadPrefix;
             }
         }
-        Slide3DImageView *imageView = [[Slide3DImageView alloc]
+        Slide3DView *imageView = [[Slide3DView alloc]
                                        initWithImage:image
                                        withFrame:CGRectMake(0, 0, 10, 10)
                                        withPrefix:prefix

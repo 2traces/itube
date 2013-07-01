@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Slide3DImageView : UIView
+@interface Slide3DView : UIView
 
 @property int currentSlideNumber;
 @property int slidesCount;

@@ -6,14 +6,14 @@
 //
 //
 
-#import "Slide3DImageView.h"
+#import "Slide3DView.h"
 #import "LCUtil.h"
 #import "ColorFactory.h"
 
 #define PAN_THRESHOLD 20
 
 
-@implementation Slide3DImageView
+@implementation Slide3DView
 
 @synthesize panGR = _panGR;
 @synthesize tapGR = _tapGR;

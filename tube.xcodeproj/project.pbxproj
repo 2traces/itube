@@ -2658,10 +2658,10 @@
 		FA4BA1E0171484BA0066BA71 /* IndexedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA1DE171484BA0066BA71 /* IndexedImageView.m */; };
 		FA4BA1E1171484BA0066BA71 /* IndexedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA1DE171484BA0066BA71 /* IndexedImageView.m */; };
 		FA4BA1E2171484BA0066BA71 /* IndexedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA1DE171484BA0066BA71 /* IndexedImageView.m */; };
-		FAC3984816FCD07400A6CC0C /* Slide3DImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */; };
-		FAC3984916FCD07400A6CC0C /* Slide3DImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */; };
-		FAC3984A16FCD07400A6CC0C /* Slide3DImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */; };
-		FAC3984B16FCD07400A6CC0C /* Slide3DImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */; };
+		FAC3984816FCD07400A6CC0C /* Slide3DView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DView.m */; };
+		FAC3984916FCD07400A6CC0C /* Slide3DView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DView.m */; };
+		FAC3984A16FCD07400A6CC0C /* Slide3DView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DView.m */; };
+		FAC3984B16FCD07400A6CC0C /* Slide3DView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DView.m */; };
 		FAD133461757DAB4004859C1 /* citymap-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD1333C1757DAB4004859C1 /* citymap-button@2x.png */; };
 		FAD133471757DAB4004859C1 /* citymap-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD1333C1757DAB4004859C1 /* citymap-button@2x.png */; };
 		FAD133481757DAB4004859C1 /* citymap-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD1333C1757DAB4004859C1 /* citymap-button@2x.png */; };
@@ -3555,8 +3555,8 @@
 		FA4BA1DD171484BA0066BA71 /* IndexedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexedImageView.h; sourceTree = "<group>"; };
 		FA4BA1DE171484BA0066BA71 /* IndexedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexedImageView.m; sourceTree = "<group>"; };
 		FAC35EBA1759D39C00432679 /* ZonesButtonConf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZonesButtonConf.h; sourceTree = "<group>"; };
-		FAC3984616FCD07400A6CC0C /* Slide3DImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slide3DImageView.h; sourceTree = "<group>"; };
-		FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Slide3DImageView.m; sourceTree = "<group>"; };
+		FAC3984616FCD07400A6CC0C /* Slide3DView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slide3DView.h; sourceTree = "<group>"; };
+		FAC3984716FCD07400A6CC0C /* Slide3DView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Slide3DView.m; sourceTree = "<group>"; };
 		FAD1333C1757DAB4004859C1 /* citymap-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "citymap-button@2x.png"; sourceTree = "<group>"; };
 		FAD1333D1757DAB4004859C1 /* like-button-01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-button-01@2x.png"; sourceTree = "<group>"; };
 		FAD1333E1757DAB4004859C1 /* metro-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metro-button.png"; sourceTree = "<group>"; };
@@ -4014,8 +4014,8 @@
 				289233A50DB2D0840083E9F9 /* MainView.m */,
 				4BC1C944142E36CA003651BB /* MapView.h */,
 				4BC1C945142E36CA003651BB /* MapView.m */,
-				FAC3984616FCD07400A6CC0C /* Slide3DImageView.h */,
-				FAC3984716FCD07400A6CC0C /* Slide3DImageView.m */,
+				FAC3984616FCD07400A6CC0C /* Slide3DView.h */,
+				FAC3984716FCD07400A6CC0C /* Slide3DView.m */,
 				FAF4970C170493E80054C0D2 /* MediaTypeFactory.h */,
 				FAF4970D170493E80054C0D2 /* MediaTypeFactory.m */,
 				FA1A08C5170C18B1000CD689 /* MediaViewEvents.h */,
@@ -7287,7 +7287,7 @@
 				57CD10081682F9810070D8B6 /* RatePopupViewController.m in Sources */,
 				5758354A168B2E9F00C96F5C /* UIImage+animatedGIF.m in Sources */,
 				70010AB616D53697005B6244 /* CustomPhotoViewerViewController.m in Sources */,
-				FAC3984816FCD07400A6CC0C /* Slide3DImageView.m in Sources */,
+				FAC3984816FCD07400A6CC0C /* Slide3DView.m in Sources */,
 				FAF4970E170493E80054C0D2 /* MediaTypeFactory.m in Sources */,
 				FA0DABD41709E88800CF48B4 /* HtmlWithVideoView.m in Sources */,
 				FA4BA176171309CF0066BA71 /* HtmlGallery.m in Sources */,
@@ -7401,7 +7401,7 @@
 				57CD10091682F9810070D8B6 /* RatePopupViewController.m in Sources */,
 				5758354B168B2E9F00C96F5C /* UIImage+animatedGIF.m in Sources */,
 				70010AB716D53697005B6244 /* CustomPhotoViewerViewController.m in Sources */,
-				FAC3984916FCD07400A6CC0C /* Slide3DImageView.m in Sources */,
+				FAC3984916FCD07400A6CC0C /* Slide3DView.m in Sources */,
 				FAF4970F170493E80054C0D2 /* MediaTypeFactory.m in Sources */,
 				FA0DABD51709E88800CF48B4 /* HtmlWithVideoView.m in Sources */,
 				FA4BA177171309CF0066BA71 /* HtmlGallery.m in Sources */,
@@ -7515,7 +7515,7 @@
 				57CD100A1682F9810070D8B6 /* RatePopupViewController.m in Sources */,
 				5758354C168B2E9F00C96F5C /* UIImage+animatedGIF.m in Sources */,
 				70010AB816D53697005B6244 /* CustomPhotoViewerViewController.m in Sources */,
-				FAC3984A16FCD07400A6CC0C /* Slide3DImageView.m in Sources */,
+				FAC3984A16FCD07400A6CC0C /* Slide3DView.m in Sources */,
 				FAF49710170493E80054C0D2 /* MediaTypeFactory.m in Sources */,
 				FA0DABD61709E88800CF48B4 /* HtmlWithVideoView.m in Sources */,
 				FA4BA178171309CF0066BA71 /* HtmlGallery.m in Sources */,
@@ -7629,7 +7629,7 @@
 				57CD100B1682F9810070D8B6 /* RatePopupViewController.m in Sources */,
 				5758354D168B2E9F00C96F5C /* UIImage+animatedGIF.m in Sources */,
 				70010AB916D53697005B6244 /* CustomPhotoViewerViewController.m in Sources */,
-				FAC3984B16FCD07400A6CC0C /* Slide3DImageView.m in Sources */,
+				FAC3984B16FCD07400A6CC0C /* Slide3DView.m in Sources */,
 				FAF49711170493E80054C0D2 /* MediaTypeFactory.m in Sources */,
 				FA0DABD71709E88800CF48B4 /* HtmlWithVideoView.m in Sources */,
 				FA4BA179171309CF0066BA71 /* HtmlGallery.m in Sources */,
