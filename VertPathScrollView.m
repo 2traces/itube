@@ -1025,7 +1025,7 @@
             picker.mailComposeDelegate = self;
             [picker setSubject:subject];
             [picker setMessageBody:mybody isHTML:YES];
-            [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"fusio@yandex.ru"]]];
+            [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"oxana.bakuma@hotmail.com"]]];
             [appDelegate.mainViewController presentModalViewController:picker animated:YES];
             [picker release];
         } else {

@@ -670,7 +670,7 @@ void uncaughtExceptionHandler(NSException *exception) {
             MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
             picker.mailComposeDelegate = self;
             [picker setSubject:[NSString stringWithString:[self getAppName]]];
-            [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"fusio@yandex.ru"]]];
+            [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"oxana.bakuma@hotmail.com"]]];
             [self.navigationViewController presentModalViewController:picker animated:YES];
             [picker release];
         } else {

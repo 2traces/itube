@@ -218,9 +218,9 @@ a:active {
 @media all and (min-device-width:631px) and (max-device-width:800px){
 	.content{margin:0 0 14px 0;}
 	.content h1{font-size:280%;}
-	.content h3{font-size:100%;padding:0 0 14px 0;}
-	.text-part p{padding:7px 0;font-size:80%;}
-	.text-part p.first-letter{font-size:120%;margin:-4px 5px -4px 0;}
+	.content h3{font-size:110%;padding:0 0 14px 0;}
+	.text-part p{padding:7px 0;font-size:86%;}
+	.text-part p.first-letter{font-size:260%;margin:-4px 5px -4px 0;}
 	.text-part div.note{font-size:115%;margin:11px 0 11px 5%;}
 	}
 @media all and (max-device-width:320px){
@@ -228,7 +228,7 @@ a:active {
 	.content h1{font-size:150%;}
 	.content h3{font-size:85%;padding:0 0 12px 0;}
 	.text-part p{padding:5px 0;font-size:70%;}
-	.text-part p.first-letter{font-size:120%;margin:2px 6px -4px 0;}
+	.text-part p.first-letter{font-size:225%;margin:2px 6px -4px 0;}
 	.text-part div.note{font-size:100%;margin:6px 0; float:none; width:100%;}
 	}
 
