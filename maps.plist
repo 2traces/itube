@@ -43,7 +43,7 @@
 		<key>video_content</key>
 		<string>https://www.youtube.com/watch?v=f-qDgqTJehg</string>
 	</dict>
-	<key>com.zuev.hiddencities.berlin</key>
+	<key>com.zuev.highlight.berlin</key>
 	<dict>
 		<key>url1</key>
 		<string>http://parismetromaps.info/maps/berlin/osm/osm</string>
