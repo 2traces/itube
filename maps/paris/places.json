@@ -143,7 +143,7 @@
                 3
             ]
         },
-		                                        {
+    	                                        {
             "name": "Restaurant Georges",
             "long": 48.860958,
                "lat": 2.352849,
@@ -228,7 +228,7 @@
             ]
         },
                                                                                         {
-            "name": "Musée du Louvre",
+            "name": "Paris",
             "long": 48.86057,
             "lat": 2.337625,
             "index": 1,
@@ -375,6 +375,20 @@
             ],
             "categories": [
                 3
+            ]
+        },
+        						{
+            "name": "River Seine",
+            "long": 48.857416,
+               "lat": 2.340397,
+               "index": 11,
+           "accessLevel": 1,
+           "media_type": "html_with_video",
+           "filename": "html/seine.html",
+           "video_preview_path": "html/hidden-cities_files/seine.png",
+           "video_path": "html/hidden-cities_files/seine.mp4",
+            "categories": [
+                2
             ]
         },
                        {
@@ -734,7 +748,7 @@
             "name": "Paris Disneyland",
             "long": 48.870762,
                "lat": 2.779138,
-               "index": 73,
+               "index": 70,
            "accessLevel": 0,
            "media_type": "html_with_video",
            "filename": "html/disneyland.html",
@@ -748,10 +762,22 @@
             "name": "Shakespeare and Company bookstore",
             "long": 48.852588,
                "lat": 2.34712,
-               "index": 74,
+               "index": 71,
            "accessLevel": 0,
            "media_type": "html_gallery",
            "filename": "html/full4.html",
+            "categories": [
+                1
+            ]
+        },
+         {
+            "name": "Musée Jacquemart-André",
+            "long": 48.875293,
+               "lat": 2.310625,
+               "index": 72,
+           "accessLevel": 0,
+           "media_type": "html_gallery",
+           "filename": "html/full10.html",
             "categories": [
                 1
             ]
@@ -760,7 +786,7 @@
             "name": "Tokio Palace",
             "long": 48.864503,
                "lat": 2.297031,
-               "index": 75,
+               "index": 73,
            "accessLevel": 0,
            "media_type": "html_gallery",
            "filename": "html/full7.html",
@@ -768,7 +794,36 @@
                 1
             ]
         },
-                                                      {
+                                						{
+            "name": "Paris Metro",
+            "long": 48.870375,
+               "lat": 2.32557,
+               "index": 74,
+           "accessLevel": 0,
+           "media_type": "html_with_video",
+           "filename": "html/metro.html",
+        	"video_preview_path": "html/hidden-cities_files/metro.png",
+           "video_path": "html/hidden-cities_files/metro.mp4",
+            "categories": [
+                1
+            ]
+        },                                                   {
+               "Name": "Metro",
+            "long": 48.855525,
+               "lat": 2.347688,
+               "index": 75,
+               "accessLevel": 0,
+               "media_type": "native_gallery",
+               "pictures": [
+                    {"path": "gall/metro_1.jpg"},
+                    {"path": "gall/metro_2.jpg"},
+                    {"path": "gall/metro_3.jpg"},
+                    {"path": "gall/metro_4.jpg"}
+               ],
+               "categories": [
+                              1
+                              ]
+               },                                          {
                "Name": "Luxembourg gardens",
             "long": 48.846643,
                "lat": 2.336648,
@@ -880,6 +935,18 @@
                 1
             ]
         },
+        {
+            "name": "Muséum National d’Histoire Naturelle",
+            "long": 48.843664,
+               "lat": 2.356073,
+               "index": 86,
+           "accessLevel": 1,
+           "media_type": "html",
+           "filename": "html/full9.html",
+            "categories": [
+                1
+            ]
+        },
                                               {
                "Name": "Parc Monceau",
             "long": 48.87959,
@@ -908,24 +975,7 @@
             "categories": [
                 1
             ]
-        },
-                                                             {
-               "Name": "Metro",
-            "long": 48.855525,
-               "lat": 2.347688,
-               "index": 92,
-               "accessLevel": 1,
-               "media_type": "native_gallery",
-               "pictures": [
-                    {"path": "gall/metro_1.jpg"},
-                    {"path": "gall/metro_2.jpg"},
-                    {"path": "gall/metro_3.jpg"},
-                    {"path": "gall/metro_4.jpg"}
-               ],
-               "categories": [
-                              1
-                              ]
-               }
+        }
                                                                         
                                                                         ]
                                                                         }
