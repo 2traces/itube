@@ -878,7 +878,7 @@
             "long": 48.852588,
                "lat": 2.34712,
                "index": 80,
-           "accessLevel": 1,
+           "accessLevel": 0,
            "media_type": "html_gallery",
            "filename": "html/full4.html",
             "categories": [
@@ -902,7 +902,7 @@
             "long": 48.864503,
                "lat": 2.297031,
                "index": 79,
-           "accessLevel": 1,
+           "accessLevel": 0,
            "media_type": "html_gallery",
            "filename": "html/full7.html",
             "categories": [
