@@ -81,8 +81,8 @@
     if([CLLocationManager locationServicesEnabled]) {
         locationManager = [[CLLocationManager alloc] init];
         locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-        locationManager.distanceFilter = 500;
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        locationManager.distanceFilter = 50;
         [locationManager startUpdatingLocation];
         return YES;
     } else return NO;
@@ -326,7 +326,7 @@
     self.frame = CGRectMake(0, 0, cityMap.w, cityMap.h);
     MinScale = MIN( (float)visualFrame.size.width / cityMap.size.width, (float)visualFrame.size.height / cityMap.size.height);
     MaxScale = cityMap.maxScale;
-    Scale = MinScale * 2.f;
+    Scale = MaxScale;
     selectedStationLayer.frame = CGRectMake(0, 0, cityMap.gpsCircleScale*nearestStationImage.size.width, cityMap.gpsCircleScale*nearestStationImage.size.height);
 
     midground1.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
