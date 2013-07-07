@@ -758,47 +758,24 @@
                 1
             ]
         },
-                        {
-            "name": "Shakespeare and Company bookstore",
-            "long": 48.852588,
-               "lat": 2.34712,
+                {
+            "name": "Muséum National d’Histoire Naturelle",
+            "long": 48.843664,
+               "lat": 2.356073,
                "index": 71,
            "accessLevel": 0,
-           "media_type": "html_gallery",
-           "filename": "html/full4.html",
+           "media_type": "html",
+           "filename": "html/full9.html",
             "categories": [
                 1
             ]
         },
-         {
-            "name": "Musée Jacquemart-André",
-            "long": 48.875293,
-               "lat": 2.310625,
-               "index": 72,
-           "accessLevel": 0,
-           "media_type": "html_gallery",
-           "filename": "html/full10.html",
-            "categories": [
-                1
-            ]
-        },
-                                {
-            "name": "Tokio Palace",
-            "long": 48.864503,
-               "lat": 2.297031,
-               "index": 73,
-           "accessLevel": 0,
-           "media_type": "html_gallery",
-           "filename": "html/full7.html",
-            "categories": [
-                1
-            ]
-        },
+
                                 						{
             "name": "Paris Metro",
             "long": 48.870375,
                "lat": 2.32557,
-               "index": 74,
+               "index": 72,
            "accessLevel": 0,
            "media_type": "html_with_video",
            "filename": "html/metro.html",
@@ -811,7 +788,7 @@
                "Name": "Metro",
             "long": 48.855525,
                "lat": 2.347688,
-               "index": 75,
+               "index": 74,
                "accessLevel": 0,
                "media_type": "native_gallery",
                "pictures": [
@@ -827,7 +804,7 @@
                "Name": "Luxembourg gardens",
             "long": 48.846643,
                "lat": 2.336648,
-               "index": 77,
+               "index": 75,
                "accessLevel": 1,
                "media_type": "native_gallery",
                "pictures": [
@@ -857,7 +834,7 @@
             "name": "National library of France",
             "long": 48.833707,
                "lat": 2.375812,
-               "index": 78,
+               "index": 76,
            "accessLevel": 1,
            "media_type": "html_with_video",
            "filename": "html/lib.html",
@@ -871,7 +848,7 @@
                "Name": "Center for European Photography",
             "long": 48.85496,
                "lat": 2.359203,
-               "index": 79,
+               "index": 77,
                "accessLevel": 1,
                "media_type": "native_gallery",
                "pictures": [
@@ -883,71 +860,56 @@
                "categories": [
                               1
                               ]
-               },                                                                                     {
-            "name": "Narrowest street",
-            "long": 48.853199,
-               "lat": 2.346203,
-               "index": 82,
-           "accessLevel": 1,
-           "media_type": "html",
-           "filename": "html/full2.html",
-            "categories": [
-                1
-            ]
-        },
-                                                                                                     {
+               },                                                                                     
+                                                                                            {
             "name": "Institut du Monde Arabe",
             "long": 48.849037,
                "lat": 2.35663,
-               "index": 83,
+               "index": 78,
            "accessLevel": 1,
            "media_type": "html_gallery",
            "filename": "html/arabe.html",
             "categories": [
                 1
             ]
-        },
-                                       {
-               "Name": "Institut du Monde Arabe",
-            "long": 48.849037,
-               "lat": 2.35663,
-               "index": 84,
-               "accessLevel": 1,
-               "media_type": "native_gallery",
-               "pictures": [
-                    {"path": "gall/arabe_1.jpg"},
-                    {"path": "gall/arabe_2.jpg"},
-                    {"path": "gall/arabe_3.jpg"},
-                    {"path": "gall/arabe_4.jpg"}
-               ],
-               "categories": [
-                              1
-                              ]
-               },                                                                                              {
-            "name": "Wall of love",
-            "long": 48.884631,
-               "lat": 2.338423,
-               "index": 85,
+        },                                                                                            
+                        {
+            "name": "Shakespeare and Company bookstore",
+            "long": 48.852588,
+               "lat": 2.34712,
+               "index": 80,
            "accessLevel": 1,
-           "media_type": "html",
-           "filename": "html/full1.html",
+           "media_type": "html_gallery",
+           "filename": "html/full4.html",
             "categories": [
                 1
             ]
         },
-        {
-            "name": "Muséum National d’Histoire Naturelle",
-            "long": 48.843664,
-               "lat": 2.356073,
-               "index": 86,
+         {
+            "name": "Musée Jacquemart-André",
+            "long": 48.875293,
+               "lat": 2.310625,
+               "index": 81,
            "accessLevel": 1,
-           "media_type": "html",
-           "filename": "html/full9.html",
+           "media_type": "html_gallery",
+           "filename": "html/full10.html",
             "categories": [
                 1
             ]
         },
-                                              {
+                                {
+            "name": "Tokio Palace",
+            "long": 48.864503,
+               "lat": 2.297031,
+               "index": 79,
+           "accessLevel": 1,
+           "media_type": "html_gallery",
+           "filename": "html/full7.html",
+            "categories": [
+                1
+            ]
+        },
+                                 {
                "Name": "Parc Monceau",
             "long": 48.87959,
                "lat": 2.309311,
