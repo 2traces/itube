@@ -30,14 +30,24 @@
         self.webviewMaxmized = false;
         self.backgroundColor = [ColorFactory lightGrayColor];
         CGFloat videoWidth;
+        BOOL isIPHONE5 = [appDelegate isIPHONE5];
         if(withVideo){
             videoWidth = [[UIScreen mainScreen] bounds].size.width;
         }else{
             videoWidth = parent.frame.size.width;
         }
+        CGFloat leftPoint = 0;
+        if(isIPHONE5){
+            CGFloat iphone5LeftCut = 74; //make video wider than screen, initial resolution is 1536 × 864
+            CGFloat iphone5RightCut = 307;
+            CGFloat unscaledWidth = 1536;
+            CGFloat k = unscaledWidth / (unscaledWidth - iphone5LeftCut - iphone5RightCut);
+            leftPoint = -iphone5LeftCut * videoWidth / unscaledWidth;
+            videoWidth = k * videoWidth;
+        }
         CGFloat videoHeight = videoWidth * 428 / 768;
         CGFloat webViewY = videoHeight;
-        CGRect videoFrame = CGRectMake(0, 0, videoWidth, videoHeight);
+        CGRect videoFrame = CGRectMake(leftPoint, 0, videoWidth, videoHeight);
         NSString *videoPreviewPath = [LCUtil getLocalizedPath:[NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.previewPath]];
         if (withVideo) {
             [self createMoviePlayer:media appDelegate:appDelegate videoFrame:videoFrame];
@@ -105,10 +115,12 @@
     self.webViewRect = self.webView.frame;
     self.fullRect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     [UIView animateWithDuration:0.7 animations:^{
-        self.videoPreview.frame = CGRectMake(0, -self.videoPreview.frame.size.height,
+        self.videoPreview.frame = CGRectMake(self.videoPreview.frame.origin.x,
+                                             -self.videoPreview.frame.size.height,
                                              self.videoPreview.frame.size.width,
                                              self.videoPreview.frame.size.height);
-        self.moviePlayer.view.frame = CGRectMake(0, -self.moviePlayer.view.frame.size.height,
+        self.moviePlayer.view.frame = CGRectMake(self.videoPreview.frame.origin.x,
+                                                 -self.moviePlayer.view.frame.size.height,
                                                  self.moviePlayer.view.frame.size.width,
                                                  self.moviePlayer.view.frame.size.height);
         self.webView.frame = self.fullRect;
@@ -118,10 +130,12 @@
 
 - (void) minimizeWebView{
     [UIView animateWithDuration:0.7 animations:^{
-        self.videoPreview.frame = CGRectMake(0, 0,
+        self.videoPreview.frame = CGRectMake(self.videoPreview.frame.origin.x,
+                                             0,
                                              self.videoPreview.frame.size.width,
                                              self.videoPreview.frame.size.height);
-        self.moviePlayer.view.frame = CGRectMake(0, 0,
+        self.moviePlayer.view.frame = CGRectMake(self.moviePlayer.view.frame.origin.x,
+                                                 0,
                                                  self.moviePlayer.view.frame.size.width,
                                                  self.moviePlayer.view.frame.size.height);
         self.webView.frame = self.webViewRect;
