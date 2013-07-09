@@ -82,7 +82,7 @@
     [self.webView loadRequest:request];
 
     CATransition *transition = [CATransition animation];
-    transition.duration = 1.0f;
+    transition.duration = 1.5f;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = kCATransitionFade;
     
