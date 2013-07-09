@@ -374,8 +374,9 @@
 							<object class="IBUIButton" id="591688651">
 								<reference key="NSNextResponder" ref="373130457"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{258, 6}, {48, 43}}</string>
+								<string key="NSFrame">{{258, 7}, {48, 43}}</string>
 								<reference key="NSSuperview" ref="373130457"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -417,27 +418,13 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{5, 7}, {20, 20}}</string>
 										<reference key="NSSuperview" ref="548495841"/>
-										<reference key="NSNextKeyView" ref="365993424"/>
+										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<object class="NSCustomResource" key="IBUIImage">
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">direction_icon@2x.png</string>
-										</object>
-									</object>
-									<object class="IBUIImageView" id="365993424">
-										<reference key="NSNextResponder" ref="548495841"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{5, 7}, {20, 20}}</string>
-										<reference key="NSSuperview" ref="548495841"/>
-										<reference key="NSNextKeyView" ref="1039898316"/>
-										<string key="NSReuseIdentifierKey">_NS:9</string>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<object class="NSCustomResource" key="IBUIImage">
-											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">direction_icon_man@2x.png</string>
 										</object>
 									</object>
 									<object class="IBUILabel" id="1039898316">
@@ -838,7 +825,6 @@
 							<reference ref="1017073414"/>
 							<reference ref="1039898316"/>
 							<reference ref="703360113"/>
-							<reference ref="365993424"/>
 						</array>
 						<reference key="parent" ref="373130457"/>
 					</object>
@@ -860,11 +846,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">68</int>
 						<reference key="object" ref="703360113"/>
-						<reference key="parent" ref="548495841"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">70</int>
-						<reference key="object" ref="365993424"/>
 						<reference key="parent" ref="548495841"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -903,7 +884,6 @@
 				<string key="62.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="65.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="68.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="70.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="74.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="75.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
@@ -919,11 +899,10 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bt_photo_like@2x.png">{96, 87}</string>
+			<string key="bt_photo_like@2x.png">{96, 86}</string>
 			<string key="bt_star_solid@2x.png">{88, 88}</string>
 			<string key="bt_stripes@2x.png">{88, 88}</string>
 			<string key="direction_icon@2x.png">{40, 40}</string>
-			<string key="direction_icon_man@2x.png">{40, 40}</string>
 			<string key="distance_icon@2x.png">{130, 77}</string>
 			<string key="panel_bg@2x.png">{640, 128}</string>
 			<string key="sample_photo@2x.png">{640, 465}</string>
