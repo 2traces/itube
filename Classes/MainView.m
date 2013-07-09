@@ -287,6 +287,10 @@ NSInteger const toolbarWidth=320;
         }
     }
     
+    if ([appDelegate isIPHONE5]) {
+        zonesRect.origin.y -= 383;
+        cornerRect.origin.y -= 383;
+    }else{
     if (IS_IPAD)  {
         corner2Button.frame = cornerRect;
         
@@ -295,6 +299,7 @@ NSInteger const toolbarWidth=320;
     } else {
         zonesRect.origin.y -= 295;
         cornerRect.origin.y -= 295;
+    }
     }
     
     zones.frame = zonesRect;
