@@ -37,6 +37,12 @@ body {
 	right:0;
 	height:394px;
 }
+.type-luvr-headimg2{
+	position:absolute;
+	bottom:0px;
+	right:0;
+	height:394px;
+}
 .text-luvr{
 	margin-top:450px;
 }
@@ -44,7 +50,6 @@ body {
 	 font-size:26px;
 	 color:#284795;
 	 font-family: Myriad Pro2;
-	 font-weight:bold;
 	 line-height:20px;
 	 position:absolute;
 	 top:185px;
@@ -75,6 +80,12 @@ hr{
 @media only screen and (min-device-height: 320px) and (max-device-height: 490px) {
 	/* iphone 4*/
 .type-luvr-headimg{
+	position:absolute;
+	bottom:0px;
+	right:0;
+	max-width:100%;
+  }
+.type-luvr-headimg2{
 	position:absolute;
 	bottom:0px;
 	right:0;
@@ -425,6 +436,9 @@ hr{
 	display:none !important;
 	float: left;
 	margin-left: 10px;
+}
+.header_two{
+	display:none;
 }
 .next {
 	display:none !important;
