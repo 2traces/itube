@@ -36,6 +36,7 @@
         }else{
             videoWidth = parent.frame.size.width;
         }
+        CGFloat htmlWidth = videoWidth;
         CGFloat leftPoint = 0;
         if(isIPHONE5){
             CGFloat iphone5LeftCut = 74; //make video wider than screen, initial resolution is 1536 × 864
@@ -69,8 +70,8 @@
             [self addSubview:self.lightPanel];
         }
         self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, webViewY,
-                                                                         videoWidth,
-                                                                         parent.frame.size.height-webViewY)];
+                                                                   htmlWidth,
+                                                                   parent.frame.size.height-webViewY)];
         self.webView.scrollView.bounces = NO;
         NSString *htmlPath = [LCUtil getLocalizedPath:[NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename]];
         NSURL* url = [NSURL fileURLWithPath:htmlPath];
