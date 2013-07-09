@@ -65,10 +65,29 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     if([request.URL.absoluteString hasPrefix:@"preview"]){
         NSString *filename = [request.URL.absoluteString substringFromIndex:10];
-        NSString *fullPath = [NSString stringWithFormat:@"%@/%@", self.htmlDir, filename];
+        NSString *fullPath = [LCUtil getLocalizedPath:[NSString stringWithFormat:@"%@/%@", self.htmlDir, filename]];
         [self showImageWithPath:fullPath];
     }
+    if([request.URL.absoluteString hasPrefix:@"reloadto"]){
+        NSString *filename = [request.URL.absoluteString substringFromIndex:11];
+        NSString *fullPath = [LCUtil getLocalizedPath: [NSString stringWithFormat:@"%@/%@", self.htmlDir, filename]];
+        [self loadAnimHtmlWithPath: fullPath];
+    }
     return YES;
+}
+
+- (void) loadAnimHtmlWithPath: (NSString*) fullPath{
+    NSURL* url = [NSURL fileURLWithPath:fullPath];
+    NSURLRequest* request = [NSURLRequest requestWithURL:url];
+    [self.webView loadRequest:request];
+
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.3f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFade;
+    
+    [self.webView.layer addAnimation:transition forKey:nil];
+
 }
 
 - (void)showImageWithPath:(NSString*)path{
