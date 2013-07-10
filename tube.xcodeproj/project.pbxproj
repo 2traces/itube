@@ -7699,7 +7699,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Zuev (2AEQRC3ZN4)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sergey Zuev";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -7709,7 +7709,7 @@
 				INFOPLIST_FILE = "paris-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "HC Paris";
-				PROVISIONING_PROFILE = "62FBD165-95A4-42FE-9646-8FAB2A4B673B";
+				PROVISIONING_PROFILE = "252275FD-9826-4334-82F3-73164E432C50";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -7718,7 +7718,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Zuev (2AEQRC3ZN4)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sergey Zuev";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
@@ -7726,7 +7726,7 @@
 				INFOPLIST_FILE = "paris-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "HC Paris";
-				PROVISIONING_PROFILE = "62FBD165-95A4-42FE-9646-8FAB2A4B673B";
+				PROVISIONING_PROFILE = "252275FD-9826-4334-82F3-73164E432C50";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
