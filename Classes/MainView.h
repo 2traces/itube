@@ -55,6 +55,7 @@ MBProgressHUD *commonActivityIndicator;
 @property (nonatomic, retain) UITextField *secondStation;
 
 @property(nonatomic,assign) MainViewController *vcontroller;
+@property (nonatomic, assign) BOOL followUserGPS;
 
 - (void) initVar;
 - (void) viewInit:(MainViewController*)vcontroller;

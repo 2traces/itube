@@ -13,6 +13,7 @@
 #import "MyTiledLayer.h"
 #import "Schedule.h"
 #import "ManagedObjects.h"
+#import "MainView.h"
 
 @implementation MapView
 @synthesize cityMap;
@@ -82,7 +83,7 @@
         locationManager = [[CLLocationManager alloc] init];
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-        locationManager.distanceFilter = 50;
+        locationManager.distanceFilter = kCLDistanceFilterNone;
         [locationManager startUpdatingLocation];
         return YES;
     } else return NO;
@@ -605,7 +606,9 @@
 
 - (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    //printf("offset is %d %d\n", (int)scrollView.contentOffset.x, (int)scrollView.contentOffset.y);
+    tubeAppDelegate *appd = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+    MainView *mv = (MainView*)[appd.mainViewController view];
+    mv.followUserGPS = NO;
 }
 
 -(void) scrollViewDidScroll:(UIScrollView *)scrollView

@@ -683,7 +683,9 @@
 
 - (void) centerMapOnPlace:(MPlace*)place {
     CGPoint placePosition = CGPointMake([place.posX floatValue], [place.posY floatValue]);
-    [(MainView*)(self.mainController.view) setGeoPosition:placePosition withZoom:-1];
+    MainView *mv = (MainView*)(self.mainController.view);
+    mv.followUserGPS = NO;
+    [mv setGeoPosition:placePosition withZoom:-1];
     [self.glController setGeoPosition:placePosition withZoom:-1];
 }
 
@@ -691,7 +693,9 @@
     MPlace *place = [[MHelper sharedHelper] getPlaceWithIndex:index];
     CGPoint placePosition = CGPointMake([place.posX floatValue], [place.posY floatValue]);
     
-    [(MainView*)(self.mainController.view) setGeoPosition:placePosition withZoom:100500];
+    MainView *mv = (MainView*)(self.mainController.view);
+    mv.followUserGPS = NO;
+    [mv setGeoPosition:placePosition withZoom:100500];
     [self.glController scrollToGeoPosition:placePosition withZoom:60000];
     //if (currentPlacePin != -1) {
     //    [self.glController removePin:currentPlacePin];
