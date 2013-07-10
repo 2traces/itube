@@ -13,6 +13,7 @@
 #import "SelectingTabBarViewController.h"
 #import "GlView.h"
 #import "ZonesButtonConf.h"
+#import <CoreLocation/CoreLocation.h>
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 #define d2r (M_PI / 180.0)
@@ -112,6 +113,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 @synthesize Id = _id;
 @synthesize distanceToUser;
 @synthesize type;
+@synthesize rotation;
 
 -(void)setActive:(BOOL)active
 {
@@ -130,10 +132,15 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 -(id)initUserPos
 {
     type = PIN_USER;
-    size = 1.f;
+    size = 1.f / [UIScreen mainScreen].scale;
     if((self = [super init])) {
         _id = 0;
-        sprite = [[GlSprite alloc] initWithPicture:@"current_location"];
+        if([CLLocationManager headingAvailable]) {
+            sprite = [[GlSprite alloc] initWithPicture:@"current_location-with-direction"];
+            rotation = M_PI_4;
+        } else {
+            sprite = [[GlSprite alloc] initWithPicture:@"current_location"];
+        }
         sp = [[SmallPanel alloc] initWithText:@"You are here!"];
     }
     return self;
@@ -330,7 +337,11 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     CGSize s;
     s.width = size * sprite.origWidth;
     s.height = size * sprite.origHeight;
-    [sprite setRect:CGRectMake(pos.x-s.width*0.5f, pos.y-s.height*0.5f-offset-constOffset, s.width, s.height)];
+    if(rotation != 0) {
+        [sprite setRect:CGRectMake(pos.x-s.width*0.5f, pos.y-s.height*0.5f-offset-constOffset, s.width, s.height) withRotation:rotation];
+    } else {
+        [sprite setRect:CGRectMake(pos.x-s.width*0.5f, pos.y-s.height*0.5f-offset-constOffset, s.width, s.height)];
+    }
     [sprite draw];
     [sp drawWithScale:1.f];
 }
@@ -341,7 +352,11 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     CGSize s;
     s.width = size * sprite.origWidth / scale;
     s.height = size * sprite.origHeight / scale;
-    [sprite setRect:CGRectMake(pos.x-s.width*0.5f, pos.y-s.height*0.5f-offset-constOffset/scale, s.width, s.height)];
+    if(rotation != 0) {
+        [sprite setRect:CGRectMake(pos.x-s.width*0.5f, pos.y-s.height*0.5f-offset-constOffset/scale, s.width, s.height) withRotation:rotation];
+    } else {
+        [sprite setRect:CGRectMake(pos.x-s.width*0.5f, pos.y-s.height*0.5f-offset-constOffset/scale, s.width, s.height)];
+    }
     [sprite draw];
 }
 
@@ -390,7 +405,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 @synthesize fromStation;
 @synthesize stationsView;
 @synthesize navigationViewController;
-
+@synthesize followUserGPS;
 
 
 - (CGFloat) radialOffsetToPoint:(CGPoint)point
@@ -417,6 +432,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    followUserGPS = YES;
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
 
     pinsArray = [[NSMutableArray alloc] init];
@@ -1461,7 +1477,14 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     [self setGeoPosition:userGeoPosition withZoom:-1];
 }
 
+-(void)setUserHeading:(double)heading
+{
+    Pin *p = [pinsArray objectAtIndex:0];
+    if(p != nil) [p setRotation:heading];
+}
+
 - (void) centerMapOnUser {
+    followUserGPS = YES;
     [self scrollToGeoPosition:userGeoPosition withZoom:-1];
 }
 

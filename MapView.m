@@ -77,6 +77,7 @@
 #pragma mark gps stuff 
 -(BOOL) enableUserLocation
 {
+    BOOL result = NO;
     [locationManager release];
     locationManager = nil;
     if([CLLocationManager locationServicesEnabled]) {
@@ -85,8 +86,13 @@
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
         locationManager.distanceFilter = kCLDistanceFilterNone;
         [locationManager startUpdatingLocation];
-        return YES;
-    } else return NO;
+        result =  YES;
+    }
+    if([CLLocationManager headingAvailable]) {
+        locationManager.headingFilter = kCLHeadingFilterNone;
+        [locationManager startUpdatingHeading];
+    }
+    return result;
 }
 
 -(void)setStarAtStation:(Station *)station
@@ -201,6 +207,14 @@
         
         [self setNeedsDisplay];
 	};
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
+{
+    CLLocationDirection dir = 0;
+    if(newHeading.trueHeading >= 0) dir = newHeading.trueHeading;
+    else dir = newHeading.magneticHeading;
+    [(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] setUserHeading:dir];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error

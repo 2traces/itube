@@ -191,6 +191,45 @@ void ResetColor();
     free(buf);
 }
 
+-(void)setRect:(CGRect)rect withRotation:(double)rotation
+{
+    int bufSize = (3*4 + 2*4) * sizeof(float);
+    float *buf = (float*)calloc(bufSize, 1);
+    double s = sin(rotation), c = cos(rotation);
+    CGPoint center = CGPointMake(rect.origin.x + rect.size.width*0.5f, rect.origin.y + rect.size.height*0.5f);
+    CGPoint p1 = CGPointMake(rect.size.width * 0.5f, rect.size.height * 0.5f);
+    CGFloat x1 = p1.x * c - p1.y * s;
+    CGFloat y1 = p1.y * c + p1.x * s;
+    CGPoint p2 = CGPointMake(rect.size.width * 0.5f, -rect.size.height * 0.5f);
+    CGFloat x2 = p2.x * c - p2.y * s;
+    CGFloat y2 = p2.y * c + p2.x * s;
+    
+    buf[0] = center.x - x1;
+    buf[1] = center.y - y1;
+    buf[2] = 0.f; //z
+    buf[3] = 0.f; //u
+    buf[4] = 0.f; //v
+    buf[5] = center.x + x2;
+    buf[6] = center.y + y2;
+    buf[7] = 0.f; //z
+    buf[8] = mU; //u
+    buf[9] = 0.f; //v
+    buf[10] = center.x - x2;
+    buf[11] = center.y - y2;
+    buf[12] = 0.f; //z
+    buf[13] = 0.f; //u
+    buf[14] = mV; //v
+    buf[15] = center.x + x1;
+    buf[16] = center.y + y1;
+    buf[17] = 0.f; //z
+    buf[18] = mU; //u
+    buf[19] = mV; //v
+    
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+    glBufferData(GL_ARRAY_BUFFER, bufSize, buf, GL_STATIC_DRAW);
+    free(buf);
+}
+
 -(void) draw
 {
     SetColor(1.f, 1.f, 1.f, alpha);

@@ -33,6 +33,7 @@ NSString* DisplayStationName(NSString* stName);
     CityMap *cityMap;
     NSString *cityName;
     CGPoint userGeoP;
+    double userH;
     NSOperationQueue    *parseQueue;
     
     //soj
@@ -51,6 +52,7 @@ NSString* DisplayStationName(NSString* stName);
 @property (nonatomic, retain) NSString *cityName;
 @property (nonatomic, retain) NSOperationQueue *parseQueue;
 @property (nonatomic, assign) CGPoint userGeoPosition;
+@property (nonatomic, assign) double userHeading;
 @property (nonatomic, retain) NSString *mapDirectoryPath;
 @property (nonatomic, assign) BOOL shouldShowRateScreen;
 

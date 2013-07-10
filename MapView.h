@@ -14,6 +14,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "VectorLayer.h"
 #import "ActiveView.h"
+#import <CoreMotion/CoreMotion.h>
 
 extern int const imagesCount;
 
@@ -55,6 +56,7 @@ extern int const imagesCount;
     ActiveView *activeLayer;
     NSDictionary *foundPaths;
     CLLocationManager *locationManager;
+    CMMotionManager *motionManager;
     NSMutableDictionary *stationStars;
     Station *nearestStation;
 }

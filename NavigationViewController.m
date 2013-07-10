@@ -685,6 +685,7 @@
     CGPoint placePosition = CGPointMake([place.posX floatValue], [place.posY floatValue]);
     MainView *mv = (MainView*)(self.mainController.view);
     mv.followUserGPS = NO;
+    self.glController.followUserGPS = NO;
     [mv setGeoPosition:placePosition withZoom:-1];
     [self.glController setGeoPosition:placePosition withZoom:-1];
 }
@@ -695,6 +696,7 @@
     
     MainView *mv = (MainView*)(self.mainController.view);
     mv.followUserGPS = NO;
+    self.glController.followUserGPS = NO;
     [mv setGeoPosition:placePosition withZoom:100500];
     [self.glController scrollToGeoPosition:placePosition withZoom:60000];
     //if (currentPlacePin != -1) {
