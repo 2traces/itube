@@ -22,6 +22,7 @@
 #import "CustomPopoverBackgroundView.h"
 #import "StatusViewController.h"
 #import "PhotosViewController.h"
+#import "WeatherHelper.h"
 
 #define FromStation 0
 #define ToStation 1
@@ -169,21 +170,19 @@
     [self performSelector:@selector(refreshInApp) withObject:nil afterDelay:0.2];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(languageChanged:) name:@"kLangChanged" object:nil];
-    
 }
 
 
 - (void) moveModeButtonToFullScreen {
-    MainView *view = self.view;
+    MainView *view = (MainView*)self.view;
     //self.horizontalPathesScrollView.hidden = NO;
     [view moveModeButtonToFullScreen];
 }
 
 - (void) moveModeButtonToCutScreen {
-    MainView *view = self.view;
+    MainView *view = (MainView*)self.view;
     self.horizontalPathesScrollView.hidden = YES;
     [view moveModeButtonToCutScreen];
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -990,7 +989,7 @@
 
 
 - (void) centerMapOnUser {
-    MainView *view = self.view;
+    MainView *view = (MainView*)self.view;
     [view centerMapOnUser];
 }
 

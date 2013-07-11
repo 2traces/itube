@@ -2606,6 +2606,14 @@
 		CE94E279146D0F7900D6BD43 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE94E278146D0F7900D6BD43 /* CoreLocation.framework */; };
 		CE96C6FB146830A8005A56F3 /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = CE96C6FA146830A8005A56F3 /* Resource.m */; };
 		CECCD33A1461A38D00804CB9 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CECCD3391461A38D00804CB9 /* CoreLocationController.m */; };
+		F75DAC15178E6CD700677F13 /* WeatherHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F75DAC14178E6CD700677F13 /* WeatherHelper.m */; };
+		F75DAC16178E6CD700677F13 /* WeatherHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F75DAC14178E6CD700677F13 /* WeatherHelper.m */; };
+		F75DAC17178E6CD700677F13 /* WeatherHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F75DAC14178E6CD700677F13 /* WeatherHelper.m */; };
+		F75DAC18178E6CD700677F13 /* WeatherHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F75DAC14178E6CD700677F13 /* WeatherHelper.m */; };
+		F75DAC1B178E779600677F13 /* WeatherXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F75DAC1A178E779600677F13 /* WeatherXMLParser.m */; };
+		F75DAC1C178E779600677F13 /* WeatherXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F75DAC1A178E779600677F13 /* WeatherXMLParser.m */; };
+		F75DAC1D178E779600677F13 /* WeatherXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F75DAC1A178E779600677F13 /* WeatherXMLParser.m */; };
+		F75DAC1E178E779600677F13 /* WeatherXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F75DAC1A178E779600677F13 /* WeatherXMLParser.m */; };
 		F7E89517177C01320027F333 /* newChangePathButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F7E89513177C01320027F333 /* newChangePathButton.png */; };
 		F7E89518177C01320027F333 /* newChangePathButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F7E89513177C01320027F333 /* newChangePathButton.png */; };
 		F7E89519177C01320027F333 /* newChangePathButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F7E89513177C01320027F333 /* newChangePathButton.png */; };
@@ -3532,6 +3540,10 @@
 		CE96C6FA146830A8005A56F3 /* Resource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resource.m; sourceTree = "<group>"; };
 		CECCD3381461A38D00804CB9 /* CoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
 		CECCD3391461A38D00804CB9 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
+		F75DAC13178E6CD700677F13 /* WeatherHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherHelper.h; sourceTree = "<group>"; };
+		F75DAC14178E6CD700677F13 /* WeatherHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherHelper.m; sourceTree = "<group>"; };
+		F75DAC19178E779500677F13 /* WeatherXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherXMLParser.h; sourceTree = "<group>"; };
+		F75DAC1A178E779600677F13 /* WeatherXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherXMLParser.m; sourceTree = "<group>"; };
 		F7E89513177C01320027F333 /* newChangePathButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = newChangePathButton.png; path = images/newChangePathButton.png; sourceTree = "<group>"; };
 		F7E89514177C01320027F333 /* newChangePathButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newChangePathButton@2x.png"; path = "images/newChangePathButton@2x.png"; sourceTree = "<group>"; };
 		F7E89515177C01320027F333 /* newChangePathButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = newChangePathButtonPressed.png; path = images/newChangePathButtonPressed.png; sourceTree = "<group>"; };
@@ -4340,6 +4352,10 @@
 				BC3D150314C3385B0059A17E /* XMLParser.m */,
 				BC3D14D914C338310059A17E /* TubeAppIAPHelper.h */,
 				BC3D14DA14C338310059A17E /* TubeAppIAPHelper.m */,
+				F75DAC13178E6CD700677F13 /* WeatherHelper.h */,
+				F75DAC14178E6CD700677F13 /* WeatherHelper.m */,
+				F75DAC19178E779500677F13 /* WeatherXMLParser.h */,
+				F75DAC1A178E779600677F13 /* WeatherXMLParser.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -7297,6 +7313,8 @@
 				FA1B84BC1739313400D8A05F /* DebugUIImage.m in Sources */,
 				FA1B84C8173A9B3600D8A05F /* DebugUIImageView.m in Sources */,
 				FA38296D1774BE2A003BCCE0 /* LCUtil.m in Sources */,
+				F75DAC15178E6CD700677F13 /* WeatherHelper.m in Sources */,
+				F75DAC1B178E779600677F13 /* WeatherXMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7411,6 +7429,8 @@
 				FA1B84BD1739313400D8A05F /* DebugUIImage.m in Sources */,
 				FA1B84C9173A9B3600D8A05F /* DebugUIImageView.m in Sources */,
 				FA38296E1774BE2A003BCCE0 /* LCUtil.m in Sources */,
+				F75DAC16178E6CD700677F13 /* WeatherHelper.m in Sources */,
+				F75DAC1C178E779600677F13 /* WeatherXMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7525,6 +7545,8 @@
 				FA1B84BE1739313400D8A05F /* DebugUIImage.m in Sources */,
 				FA1B84CA173A9B3600D8A05F /* DebugUIImageView.m in Sources */,
 				FA38296F1774BE2A003BCCE0 /* LCUtil.m in Sources */,
+				F75DAC17178E6CD700677F13 /* WeatherHelper.m in Sources */,
+				F75DAC1D178E779600677F13 /* WeatherXMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7639,6 +7661,8 @@
 				FA1B84BF1739313400D8A05F /* DebugUIImage.m in Sources */,
 				FA1B84CB173A9B3600D8A05F /* DebugUIImageView.m in Sources */,
 				FA3829701774BE2A003BCCE0 /* LCUtil.m in Sources */,
+				F75DAC18178E6CD700677F13 /* WeatherHelper.m in Sources */,
+				F75DAC1E178E779600677F13 /* WeatherXMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

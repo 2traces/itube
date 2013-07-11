@@ -97,6 +97,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     // Override point for customization after application launch.
     [[SKPaymentQueue defaultQueue] addTransactionObserver:[TubeAppIAPHelper sharedHelper]];
     
+    self.parseQueue = [[NSOperationQueue alloc] init];
+    
     self.window.frame = [[UIScreen mainScreen] bounds];
     
     if (IS_IPAD) {
