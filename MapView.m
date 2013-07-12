@@ -91,6 +91,13 @@
     if([CLLocationManager headingAvailable]) {
         locationManager.headingFilter = kCLHeadingFilterNone;
         [locationManager startUpdatingHeading];
+#ifdef DEBUG
+        NSLog(@"Good news: magnetometer have found!");
+#endif
+    } else {
+#ifdef DEBUG
+        NSLog(@"Sorry: there aren't any magnetometer in the device.");
+#endif
     }
     return result;
 }
@@ -195,7 +202,8 @@
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     CGPoint curPos = CGPointMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-    [(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] setUserGeoPosition:curPos];
+    tubeAppDelegate *appd = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appd setUserGeoPosition:curPos];
     selectedStationLayer.contents=(id)[nearestStationImage CGImage];
     Station *st = [cityMap findNearestStationTo:curPos];
 	if (![st.name isEqualToString:nearestStationName])

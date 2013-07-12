@@ -137,7 +137,6 @@ CGPoint translateFromGeoToMap(CGPoint pm)
         _id = 0;
         if([CLLocationManager headingAvailable]) {
             sprite = [[GlSprite alloc] initWithPicture:@"current_location-with-direction"];
-            rotation = M_PI_4;
         } else {
             sprite = [[GlSprite alloc] initWithPicture:@"current_location"];
         }
@@ -758,8 +757,8 @@ CGPoint translateFromGeoToMap(CGPoint pm)
                 prevDp = dp;
                 started = YES;
             }
-            position.x = prevPosition.x + (dp.x - prevDp.x) / scale;
-            position.y = prevPosition.y + (dp.y - prevDp.y) / scale;
+            //position.x = prevPosition.x + (dp.x - prevDp.x) / scale;
+            //position.y = prevPosition.y + (dp.y - prevDp.y) / scale;
         }
             break;
         case UIGestureRecognizerStateEnded:

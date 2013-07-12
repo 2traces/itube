@@ -78,6 +78,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_LOCATION=2, PIN_STAR=3, PIN_FAVORIT
 
 - (void) centerMapOnUser;
 
+-(void)setUserHeading:(double)heading;
 -(void)setUserGeoPosition:(CGPoint)point;
 -(void)setStationsPosition:(NSArray*)data withMarks:(BOOL)marks;
 -(void)errorWithGeoLocation;

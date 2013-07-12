@@ -61,6 +61,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 -(void)setUserHeading:(double)userHeading
 {
     userH = userHeading;
+    [gl setUserHeading:userH];
 }
 
 -(double)userHeading
