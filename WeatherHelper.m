@@ -15,6 +15,11 @@
 
 @implementation WeatherHelper
 
+@synthesize weatherURL;
+@synthesize infoDictionary;
+@synthesize lastUpdate;
+@synthesize isRequesting;
+
 static WeatherHelper * _sharedHelper;
 
 + (WeatherHelper *) sharedHelper {
@@ -32,12 +37,13 @@ static WeatherHelper * _sharedHelper;
 	if ((self=[super init]))
 	{
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapChanged:) name:@"kMapChanged" object:nil];
-        _weatherURL = [self getCityWeatherURL];
+        self.weatherURL = [self getCityWeatherURL];
+        self.lastUpdate = nil;
+        self.isRequesting = NO;
         
-        if (_weatherURL) {
+        if (self.weatherURL) {
             [self recieveWeatherInfo];
         }
-
 	}
 	
 	return self;
@@ -45,11 +51,7 @@ static WeatherHelper * _sharedHelper;
 
 -(NSString*)getCityWeatherURL
 {
-    NSString *url;
-    
-    url = nil;
-    
-    NSString *mainURL=nil;
+    NSMutableString *mainURL=nil;
     
     NSString *currentMap = [[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] thisMapName];
     NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -60,29 +62,36 @@ static WeatherHelper * _sharedHelper;
     for (NSString* mapID in mapIDs) {
         NSDictionary *map = [dict objectForKey:mapID];
         if ([[map objectForKey:@"filename"] isEqual:currentMap]) {
-            if ([map objectForKey:@"weatherURL"]) {
-                mainURL = [NSString stringWithString:[map objectForKey:@"weatherURL"]];
+            if ([map objectForKey:@"weather_info"]) {
+                mainURL = [NSMutableString stringWithString:[map objectForKey:@"weather_info"]];
+
+                BOOL isMetric = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
+                
+                if (isMetric) {
+                    [mainURL appendString:@"&units=metric"];
+                } else {
+                    [mainURL appendString:@"&units=imperial"];
+                }
             }
         }
     }
     
     [dict release];
     
-    //temp
-    mainURL = @"http://xml.weather.com/weather/local/FRXX0076?cc=*&dayf=3";
-    
     return mainURL;
 }
 
 -(void)recieveWeatherInfo
 {
+    self.isRequesting = YES;
+    
     Reachability *reach = [Reachability reachabilityForInternetConnection];
     NetworkStatus netStatus = [reach currentReachabilityStatus];
     
     if (netStatus != NotReachable) {
         StatusDownloader *statusDownloader = [[StatusDownloader alloc] init];
         statusDownloader.delegate = self;
-        statusDownloader.imageURLString=_weatherURL;
+        statusDownloader.imageURLString=self.weatherURL;
         [statusDownloader startDownload];
         [statusDownloader release];
     }
@@ -108,30 +117,31 @@ static WeatherHelper * _sharedHelper;
 {
 //    [servers removeObject:server];
 //    NSLog(@"%@",servers);
+    self.isRequesting = NO;
 }
 
 -(void)parseComplete:(NSNotification*)note
 {
-//    NSLog(@"%@",[note object]);
-    
     NSMutableDictionary *dict = [note object];
     
-    _infoDictionary = dict;
+    self.infoDictionary = dict;
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kWeatherInfo" object:_infoDictionary];
+    self.lastUpdate = [NSDate date];
+    
+    self.isRequesting = NO;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kWeatherInfo" object:self.infoDictionary];
 }
 
 -(NSDictionary*)getWeatherInformation
 {
-    if (_infoDictionary) {
+    if (self.infoDictionary) {
         
-        NSDate *date = [_infoDictionary objectForKey:@"timeStamp"];
-        
-        if ([date timeIntervalSinceNow]>3600) {
-            [self getWeatherInformation];
+        if ([self.lastUpdate timeIntervalSinceNow]<-10 && !isRequesting) {
+            [self recieveWeatherInfo];
         }
         
-        return _infoDictionary;
+        return self.infoDictionary;
         
     } 
     

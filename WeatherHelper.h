@@ -13,6 +13,8 @@
 
 @property (nonatomic,retain) NSString *weatherURL;
 @property (nonatomic,retain) NSMutableDictionary *infoDictionary;
+@property (nonatomic,retain) NSDate *lastUpdate;
+@property (nonatomic,assign) BOOL isRequesting;
 
 +(WeatherHelper*)sharedHelper;
 -(NSMutableDictionary*)getWeatherInformation;

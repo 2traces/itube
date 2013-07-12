@@ -14,11 +14,15 @@
 @synthesize currentItemValue = _currentItemValue;
 @synthesize xml;
 @synthesize scheduleDict;
-@synthesize currentStation;
 @synthesize nextStation;
 @synthesize nextStationItem;
 @synthesize currentStationItem;
-@synthesize nextStationDict;
+@synthesize currentDayDict;
+@synthesize currentDay;
+@synthesize tempValue;
+@synthesize conditionValue;
+@synthesize varValue;
+
 
 - (id)initWithString:(NSString *)parseString
 {
@@ -30,13 +34,12 @@
         
         formatter = [[NSDateFormatter alloc] init];
         
-        [formatter setDateFormat:@"HH:mm:ss"];
+        [formatter setDateFormat:@"YYYY-MM-DD"];
     }
     
     return self;
 }
 
-// the main function for this NSOperation, to start the parsing
 - (void)main
 {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -69,10 +72,10 @@
     [parser release];
 }
 
-static NSString * const kDayfElementName = @"dayf";
-static NSString * const kDayElementName = @"day";
-static NSString * const kHiElementName = @"hi";
-static NSString * const kLowElementName = @"low";
+static NSString * const kForecastElementName = @"forecast";
+static NSString * const kTimeElementName = @"time";
+static NSString * const kTemperatureElementName = @"temperature";
+static NSString * const kSymbolElementName = @"symbol";
 
 -(void)parseCompleteNoData:(WeatherXMLParser*)myoperation
 {
@@ -90,32 +93,27 @@ static NSString * const kLowElementName = @"low";
 		elementName = qualifiedName;
 	}
     
-	if ([elementName isEqualToString:kDayfElementName]) {
+	if ([elementName isEqualToString:kForecastElementName]) {
 
         NSMutableDictionary *aDictionary = [[NSMutableDictionary alloc] init];
         self.scheduleDict = aDictionary;
         [aDictionary release];
     
-    } else if ([elementName isEqualToString:kDayElementName]) {
-        self.currentStation = [attributeDict valueForKey:@"dt"];
-    } else if ([elementName isEqualToString:kHiElementName]) {
-        self.currentItemValue = [NSMutableString string];
+    } else if ([elementName isEqualToString:kTimeElementName]) {
+        self.currentDay = [formatter dateFromString:[attributeDict valueForKey:@"day"]];
+        
+        NSMutableDictionary *aDictionary = [[NSMutableDictionary alloc] init];
+        self.currentDayDict = aDictionary;
+        [aDictionary release];
+
+    } else if ([elementName isEqualToString:kTemperatureElementName]) {
+        self.tempValue = [attributeDict valueForKey:@"day"];
+    } else if ([elementName isEqualToString:kSymbolElementName]) {
+        self.conditionValue = [attributeDict valueForKey:@"number"];
+        self.varValue = [attributeDict valueForKey:@"var"];
     }  else {
         self.currentItemValue = nil;
     }
-
-
-//        self.currentStation = [attributeDict valueForKey:@"name"];
-//        self.currentStationItem = [NSMutableArray array];
-//        isNoData=NO;
-//    } else if([elementName isEqualToString:kTimetableElementName] ) {
-//        self.nextStation = [attributeDict valueForKey:@"next_station"];
-//        self.nextStationItem = [NSMutableArray array];
-//    } else if([elementName isEqualToString:kTimeElementName] ) {
-//		self.currentItemValue = [NSMutableString string];
-//    } else {
-//		self.currentItemValue = nil;
-//	}
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
@@ -123,27 +121,18 @@ static NSString * const kLowElementName = @"low";
 		elementName = qName;
 	}
     
-    if ([elementName isEqualToString:kDayfElementName]) {
-        [self.scheduleDict setObject:[NSDate date] forKey:@"timeStamp"];
-    } else if ([elementName isEqualToString:kDayElementName]) {
-        [self.scheduleDict setObject:self.nextStation forKey:self.currentStation];
-        
-    } else if ([elementName isEqualToString:kHiElementName]) {
-        self.nextStation  = self.currentItemValue;
+    if ([elementName isEqualToString:kForecastElementName]) {
+//        [self.scheduleDict setObject:[NSDate date] forKey:@"timeStamp"];
+    } else if ([elementName isEqualToString:kTimeElementName]) {
+        [self.scheduleDict setObject:self.currentDayDict forKey:self.currentDay];
+    } else if ([elementName isEqualToString:kTemperatureElementName]) {
+        [self.currentDayDict setObject:self.tempValue forKey:@"temperature"];
+    } else if ([elementName isEqualToString:kSymbolElementName]) {
+        [self.currentDayDict setObject:self.conditionValue forKey:@"number"];
+        [self.currentDayDict setObject:self.varValue forKey:@"var"];
     }  else {
         self.currentItemValue = nil;
     }
-
-    
-        //        [self.scheduleDict setObject:self.currentStationItem forKey:self.currentStation];
-//    } else if ([elementName isEqualToString:kTimetableElementName]) {
-//        self.nextStationDict = [[[NSDictionary alloc] initWithObjectsAndKeys:self.nextStationItem, self.nextStation,nil] autorelease];
-//        [self.currentStationItem addObject:self.nextStationDict];
-//    } else if ([elementName isEqualToString:kTimeElementName]) {
-//		[self.nextStationItem addObject:[formatter dateFromString:self.currentItemValue]];
-//    } else {
-//		self.currentItemValue = nil;
-//	}
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {

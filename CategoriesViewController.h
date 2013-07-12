@@ -35,7 +35,6 @@
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UIButton *buttonSettings;
 @property (nonatomic, assign) id<NavigationDelegate> navigationDelegate;
-@property (nonatomic, retain) NSMutableDictionary *weatherInfo;
 
 - (IBAction)showSettings:(id)sender;
 - (void) reloadCategories;

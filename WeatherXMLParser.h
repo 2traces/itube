@@ -16,9 +16,6 @@
 	NSMutableString * _currentItemValue;
 	NSMutableArray * nextStationItem;
 	NSMutableArray * currentStationItem;
-    NSDictionary *nextStationDict;
-    NSString *currentStation;
-    NSString *nextStation;
 	
     NSDateFormatter *formatter;
     BOOL isNoData;
@@ -30,9 +27,12 @@
 @property(nonatomic, retain) NSMutableArray * nextStationItem;
 @property(nonatomic, retain) NSMutableArray * currentStationItem;
 @property(nonatomic, retain) NSMutableDictionary *scheduleDict;
-@property(nonatomic, retain) NSDictionary *nextStationDict;
-@property(nonatomic, retain) NSString *currentStation;
+@property(nonatomic, retain) NSMutableDictionary *currentDayDict;
+@property(nonatomic, retain) NSDate *currentDay;
 @property(nonatomic, retain) NSString *nextStation;
+@property(nonatomic, retain) NSString *tempValue;
+@property(nonatomic, retain) NSString *conditionValue;
+@property(nonatomic, retain) NSString *varValue;
 
 - (id)initWithString:(NSString *)parseString;
 

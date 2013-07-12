@@ -2606,6 +2606,10 @@
 		CE94E279146D0F7900D6BD43 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE94E278146D0F7900D6BD43 /* CoreLocation.framework */; };
 		CE96C6FB146830A8005A56F3 /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = CE96C6FA146830A8005A56F3 /* Resource.m */; };
 		CECCD33A1461A38D00804CB9 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CECCD3391461A38D00804CB9 /* CoreLocationController.m */; };
+		F734DB7E178FF57A009E08F7 /* WeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = F734DB7D178FF57A009E08F7 /* WeatherView.m */; };
+		F734DB7F178FF57A009E08F7 /* WeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = F734DB7D178FF57A009E08F7 /* WeatherView.m */; };
+		F734DB80178FF57A009E08F7 /* WeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = F734DB7D178FF57A009E08F7 /* WeatherView.m */; };
+		F734DB81178FF57A009E08F7 /* WeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = F734DB7D178FF57A009E08F7 /* WeatherView.m */; };
 		F75DAC15178E6CD700677F13 /* WeatherHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F75DAC14178E6CD700677F13 /* WeatherHelper.m */; };
 		F75DAC16178E6CD700677F13 /* WeatherHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F75DAC14178E6CD700677F13 /* WeatherHelper.m */; };
 		F75DAC17178E6CD700677F13 /* WeatherHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F75DAC14178E6CD700677F13 /* WeatherHelper.m */; };
@@ -3540,6 +3544,8 @@
 		CE96C6FA146830A8005A56F3 /* Resource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resource.m; sourceTree = "<group>"; };
 		CECCD3381461A38D00804CB9 /* CoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
 		CECCD3391461A38D00804CB9 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
+		F734DB7C178FF57A009E08F7 /* WeatherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherView.h; sourceTree = "<group>"; };
+		F734DB7D178FF57A009E08F7 /* WeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherView.m; sourceTree = "<group>"; };
 		F75DAC13178E6CD700677F13 /* WeatherHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherHelper.h; sourceTree = "<group>"; };
 		F75DAC14178E6CD700677F13 /* WeatherHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherHelper.m; sourceTree = "<group>"; };
 		F75DAC19178E779500677F13 /* WeatherXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherXMLParser.h; sourceTree = "<group>"; };
@@ -3984,6 +3990,8 @@
 		570944461648072000468F77 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F734DB7C178FF57A009E08F7 /* WeatherView.h */,
+				F734DB7D178FF57A009E08F7 /* WeatherView.m */,
 				51F15F7514D99A3800D11B79 /* VectorLayer.h */,
 				51F15F7614D99A3800D11B79 /* VectorLayer.m */,
 				BC3D14D314C3382F0059A17E /* MBProgressHUD.h */,
@@ -7315,6 +7323,7 @@
 				FA38296D1774BE2A003BCCE0 /* LCUtil.m in Sources */,
 				F75DAC15178E6CD700677F13 /* WeatherHelper.m in Sources */,
 				F75DAC1B178E779600677F13 /* WeatherXMLParser.m in Sources */,
+				F734DB7E178FF57A009E08F7 /* WeatherView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7431,6 +7440,7 @@
 				FA38296E1774BE2A003BCCE0 /* LCUtil.m in Sources */,
 				F75DAC16178E6CD700677F13 /* WeatherHelper.m in Sources */,
 				F75DAC1C178E779600677F13 /* WeatherXMLParser.m in Sources */,
+				F734DB7F178FF57A009E08F7 /* WeatherView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7547,6 +7557,7 @@
 				FA38296F1774BE2A003BCCE0 /* LCUtil.m in Sources */,
 				F75DAC17178E6CD700677F13 /* WeatherHelper.m in Sources */,
 				F75DAC1D178E779600677F13 /* WeatherXMLParser.m in Sources */,
+				F734DB80178FF57A009E08F7 /* WeatherView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7663,6 +7674,7 @@
 				FA3829701774BE2A003BCCE0 /* LCUtil.m in Sources */,
 				F75DAC18178E6CD700677F13 /* WeatherHelper.m in Sources */,
 				F75DAC1E178E779600677F13 /* WeatherXMLParser.m in Sources */,
+				F734DB81178FF57A009E08F7 /* WeatherView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

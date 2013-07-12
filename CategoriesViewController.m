@@ -12,6 +12,7 @@
 #import "SettingsNavController.h"
 #import "tubeAppDelegate.h"
 #import "WeatherHelper.h"
+#import "WeatherView.h"
 
 @interface CategoriesViewController ()
 
@@ -42,7 +43,6 @@
 @synthesize navigationDelegate;
 @synthesize categories;
 @synthesize teasers;
-@synthesize weatherInfo;
 
 - (IBAction)showSettings:(id)sender {
    // [self.navigationDelegate showSettings];
@@ -71,8 +71,6 @@
     self.categories = [[MHelper sharedHelper] getCategoriesList];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weatherInfoRecieved:) name:@"kWeatherInfo" object:nil];
-    
-    self.weatherInfo = [[WeatherHelper sharedHelper] getWeatherInformation];
 }
 
 - (void) initializeTeasers {
@@ -189,7 +187,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 {
-    if (self.weatherInfo) {
+    if ([[[WeatherHelper sharedHelper] getWeatherInformation] count]>0) {
         return 60.0;
     } else {
         return 0;
@@ -198,28 +196,10 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *view;
+    WeatherView *view;
     
-    view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 60)];
-    view.backgroundColor = [UIColor clearColor];
-    
-    if (self.weatherInfo) {
-        
-        UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(5, 5, 190, 50)];
-        view2.backgroundColor = [UIColor whiteColor];
-        view2.layer.cornerRadius = 5.0f;
-        
-        [view addSubview:view2];
-         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 10.0, 80, 30)];
-        
-        NSArray *array = [self.weatherInfo allKeys];
-        
-        label.text = [self.weatherInfo objectForKey:[array objectAtIndex:0]];
-        
-        [view2 addSubview:label];
-        
-        [label release];
+    if ([[WeatherHelper sharedHelper] getWeatherInformation]) {
+        view = [[WeatherView alloc]  initWithFrame:CGRectMake(0, 0, 200, 60)];
     }
     
     return view;
@@ -251,12 +231,7 @@
 
 -(void)weatherInfoRecieved:(NSNotification*)note
 {
- //   _weatherInfo = [note object];
-     self.weatherInfo = [[WeatherHelper sharedHelper] getWeatherInformation];
-    
     [self.tableView reloadData];
-    
-    NSLog(@"Weather 2 - %@",[note object]);
 }
 
 
