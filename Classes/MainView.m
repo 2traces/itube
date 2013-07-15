@@ -33,7 +33,7 @@ NSInteger const toolbarWidth=320;
 @synthesize stationNameLabel;
 //@synthesize CLController;
 @synthesize xw,yw;
-@synthesize vcontroller;
+@synthesize vcontroller, followUserGPS;
 
 
 - (id)initWithFrame:(CGRect)frame {
@@ -50,6 +50,7 @@ NSInteger const toolbarWidth=320;
 -(void) initVar{
 	xw = [NSNumber numberWithDouble:48.865499];
 	yw = [NSNumber numberWithDouble:2.135647];
+    followUserGPS = YES;
 }
 
 -(void)viewInit:(MainViewController*)vc
@@ -243,6 +244,7 @@ NSInteger const toolbarWidth=320;
 }
 
 - (void) centerMapOnUser {
+    followUserGPS = YES;
     [self setGeoPosition:mapView.nearestStation.gpsCoords withZoom:-1];
 }
 

@@ -13,6 +13,7 @@
 #import "MyTiledLayer.h"
 #import "Schedule.h"
 #import "ManagedObjects.h"
+#import "MainView.h"
 
 @implementation MapView
 @synthesize cityMap;
@@ -76,16 +77,29 @@
 #pragma mark gps stuff 
 -(BOOL) enableUserLocation
 {
+    BOOL result = NO;
     [locationManager release];
     locationManager = nil;
     if([CLLocationManager locationServicesEnabled]) {
         locationManager = [[CLLocationManager alloc] init];
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-        locationManager.distanceFilter = 50;
+        locationManager.distanceFilter = kCLDistanceFilterNone;
         [locationManager startUpdatingLocation];
-        return YES;
-    } else return NO;
+        result =  YES;
+    }
+    if([CLLocationManager headingAvailable]) {
+        locationManager.headingFilter = kCLHeadingFilterNone;
+        [locationManager startUpdatingHeading];
+#ifdef DEBUG
+        NSLog(@"Good news: magnetometer have found!");
+#endif
+    } else {
+#ifdef DEBUG
+        NSLog(@"Sorry: there aren't any magnetometer in the device.");
+#endif
+    }
+    return result;
 }
 
 -(void)setStarAtStation:(Station *)station
@@ -188,7 +202,8 @@
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     CGPoint curPos = CGPointMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-    [(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] setUserGeoPosition:curPos];
+    tubeAppDelegate *appd = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appd setUserGeoPosition:curPos];
     selectedStationLayer.contents=(id)[nearestStationImage CGImage];
     Station *st = [cityMap findNearestStationTo:curPos];
 	if (![st.name isEqualToString:nearestStationName])
@@ -200,6 +215,14 @@
         
         [self setNeedsDisplay];
 	};
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
+{
+    CLLocationDirection dir = 0;
+    if(newHeading.trueHeading >= 0) dir = newHeading.trueHeading;
+    else dir = newHeading.magneticHeading;
+    [(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] setUserHeading:dir];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
@@ -605,7 +628,9 @@
 
 - (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    //printf("offset is %d %d\n", (int)scrollView.contentOffset.x, (int)scrollView.contentOffset.y);
+    tubeAppDelegate *appd = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+    MainView *mv = (MainView*)[appd.mainViewController view];
+    mv.followUserGPS = NO;
 }
 
 -(void) scrollViewDidScroll:(UIScrollView *)scrollView

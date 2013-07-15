@@ -22,5 +22,6 @@
 -(id)initWithPicture:(NSString*)pictureFile;
 -(void) draw;
 -(void)setRect:(CGRect)rect;
+-(void)setRect:(CGRect)rect withRotation:(double)rotation;
 
 @end

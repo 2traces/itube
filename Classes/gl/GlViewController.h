@@ -35,6 +35,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_LOCATION=2, PIN_STAR=3, PIN_FAVORIT
 @property (nonatomic, assign) BOOL active;
 @property (nonatomic, assign) CGFloat distanceToUser;
 @property (nonatomic, readonly) PinType type;
+@property (nonatomic, assign) double rotation;
 
 -(id)initUserPos;
 -(id)initLocationPos;
@@ -60,6 +61,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_LOCATION=2, PIN_STAR=3, PIN_FAVORIT
 @property (nonatomic, retain) MItem *toStation;
 @property (nonatomic, retain) TopRasterView *stationsView;
 @property (nonatomic, retain) NavigationViewController *navigationViewController;
+@property (nonatomic, assign) BOOL followUserGPS;
 
 -(FastAccessTableViewController*)showTableView;
 -(void)returnFromSelectionFastAccess:(NSArray *)stations;
@@ -76,6 +78,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_LOCATION=2, PIN_STAR=3, PIN_FAVORIT
 
 - (void) centerMapOnUser;
 
+-(void)setUserHeading:(double)heading;
 -(void)setUserGeoPosition:(CGPoint)point;
 -(void)setStationsPosition:(NSArray*)data withMarks:(BOOL)marks;
 -(void)errorWithGeoLocation;

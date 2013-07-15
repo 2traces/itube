@@ -48,15 +48,26 @@ void uncaughtExceptionHandler(NSException *exception) {
 -(void)setUserGeoPosition:(CGPoint)userGeoPosition
 {
     userGeoP = userGeoPosition;
-    [gl setUserGeoPosition:userGeoP];
+    if(gl.followUserGPS) [gl setUserGeoPosition:userGeoP];
     MainView *mv = (MainView*)mainViewController.view;
-    [mv setGeoPosition:userGeoPosition withZoom:mv.containerView.zoomScale];
-    [self.navigationViewController.photosController updateInfoForCurrentPage];
+    if(mv.followUserGPS) [mv setGeoPosition:userGeoPosition withZoom:mv.containerView.zoomScale];
+    //[self.navigationViewController.photosController updateInfoForCurrentPage];
 }
 
 -(CGPoint)userGeoPosition
 {
     return userGeoP;
+}
+
+-(void)setUserHeading:(double)userHeading
+{
+    userH = userHeading;
+    [gl setUserHeading:userH];
+}
+
+-(double)userHeading
+{
+    return userH;
 }
 
 -(void)errorWithGeoLocation
