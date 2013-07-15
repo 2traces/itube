@@ -1479,7 +1479,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 -(void)setUserHeading:(double)heading
 {
     Pin *p = [pinsArray objectAtIndex:0];
-    if(p != nil) [p setRotation:heading];
+    if(p != nil) [p setRotation:heading / 180.0 * M_PI];
 }
 
 - (void) centerMapOnUser {
