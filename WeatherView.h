@@ -14,4 +14,8 @@
 @property (nonatomic,retain) UILabel *dayTwoLabel;
 @property (nonatomic,retain) UILabel *dayThreeLabel;
 
+@property (nonatomic,retain) UIImageView *dayOneView;
+@property (nonatomic,retain) UIImageView *dayTwoView;
+@property (nonatomic,retain) UIImageView *dayThreeView;
+
 @end

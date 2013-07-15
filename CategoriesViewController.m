@@ -188,7 +188,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 {
     if ([[[WeatherHelper sharedHelper] getWeatherInformation] count]>0) {
-        return 60.0;
+        return 68.0;
     } else {
         return 0;
     }
@@ -199,7 +199,7 @@
     WeatherView *view;
     
     if ([[WeatherHelper sharedHelper] getWeatherInformation]) {
-        view = [[WeatherView alloc]  initWithFrame:CGRectMake(0, 0, 200, 60)];
+        view = [[WeatherView alloc]  initWithFrame:CGRectMake(0, 0, 219, 68)];
     }
     
     return view;

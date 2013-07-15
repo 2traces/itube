@@ -115,8 +115,6 @@ static WeatherHelper * _sharedHelper;
 
 -(void)connectionFailed:(StatusDownloader*)server
 {
-//    [servers removeObject:server];
-//    NSLog(@"%@",servers);
     self.isRequesting = NO;
 }
 
@@ -146,6 +144,18 @@ static WeatherHelper * _sharedHelper;
     } 
     
     return nil;
+}
+
+- (void)mapChanged:(NSNotification*)note
+{
+    self.weatherURL = [self getCityWeatherURL];
+    self.lastUpdate = nil;
+    self.isRequesting = NO;
+    self.infoDictionary = nil;
+    
+    if (self.weatherURL) {
+        [self recieveWeatherInfo];
+    }
 }
 
 @end
