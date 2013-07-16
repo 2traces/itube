@@ -42,6 +42,8 @@
 		<string>https://www.youtube.com/watch?v=f-qDgqTJehg</string>
 		<key>video_content</key>
 		<string>https://www.youtube.com/watch?v=f-qDgqTJehg</string>
+		<key>weather_info</key>
+		<string>http://api.openweathermap.org/data/2.5/forecast/daily?q=Paris&amp;mode=xml&amp;cnt=4</string>
 	</dict>
 	<key>com.zuev.highlight.berlin</key>
 	<dict>

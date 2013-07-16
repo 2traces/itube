@@ -11,6 +11,8 @@
 #import "ManagedObjects.h"
 #import "SettingsNavController.h"
 #import "tubeAppDelegate.h"
+#import "WeatherHelper.h"
+#import "WeatherView.h"
 
 @interface CategoriesViewController ()
 
@@ -67,6 +69,8 @@
 
 - (void) initializeCategories {
     self.categories = [[MHelper sharedHelper] getCategoriesList];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weatherInfoRecieved:) name:@"kWeatherInfo" object:nil];
 }
 
 - (void) initializeTeasers {
@@ -181,6 +185,25 @@
 
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
+{
+    if ([[[WeatherHelper sharedHelper] getWeatherInformation] count]>0) {
+        return 70.0;
+    } else {
+        return 0;
+    }
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    WeatherView *view;
+    
+    if ([[WeatherHelper sharedHelper] getWeatherInformation]) {
+        view = [[WeatherView alloc]  initWithFrame:CGRectMake(0, 0, 219, 68)];
+    }
+    
+    return view;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.categories count];
@@ -204,6 +227,11 @@
     UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)] autorelease];
     view.backgroundColor = [UIColor clearColor];
     return view;
+}
+
+-(void)weatherInfoRecieved:(NSNotification*)note
+{
+    [self.tableView reloadData];
 }
 
 
