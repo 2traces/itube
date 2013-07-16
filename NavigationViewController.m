@@ -17,6 +17,7 @@
 #import "ManagedObjects.h"
 #import "SettingsNavController.h"
 #import "tubeAppDelegate.h"
+#import "WeatherHelper.h"
 
 @interface NavigationViewController ()
 
@@ -222,6 +223,8 @@
         self.photosController.view.frame = photosViewFrame;
         self.separatingView.frame = separatingFrame;
     }];
+    
+    [[WeatherHelper sharedHelper] getWeatherInformation];
 }
 
 - (void) hideCategoriesAnimated:(BOOL)animated {

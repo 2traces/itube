@@ -135,7 +135,14 @@ static WeatherHelper * _sharedHelper;
 {
     if (self.infoDictionary) {
         
-        if ([self.lastUpdate timeIntervalSinceNow]<-10 && !isRequesting) {
+        if ([self.lastUpdate timeIntervalSinceNow]<-86400 && !isRequesting) {
+
+            self.infoDictionary = nil;
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"kWeatherInfo" object:self.infoDictionary];
+        }
+        
+        if ([self.lastUpdate timeIntervalSinceNow]<-3600 && !isRequesting) {
             [self recieveWeatherInfo];
         }
         
@@ -156,6 +163,15 @@ static WeatherHelper * _sharedHelper;
     if (self.weatherURL) {
         [self recieveWeatherInfo];
     }
+}
+
+-(void)dealloc
+{
+    [weatherURL release];
+    [infoDictionary release];
+    [lastUpdate release];
+
+    [super dealloc];
 }
 
 @end

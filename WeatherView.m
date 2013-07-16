@@ -31,25 +31,27 @@
         
         [self addSubview:view2];
         
+        [view2 release];
+        
         self.dayOneLabel = [[[UILabel alloc] initWithFrame:CGRectMake(60.0, 17.0, 65, 46)] autorelease];
-        self.dayTwoLabel = [[[UILabel alloc] initWithFrame:CGRectMake(150.0, 21.0, 55, 15)] autorelease];
-        self.dayThreeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(150.0, 37.0, 55, 15)] autorelease];
+        self.dayTwoLabel = [[[UILabel alloc] initWithFrame:CGRectMake(150.0, 21.0, 55, 16)] autorelease];
+        self.dayThreeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(150.0, 37.0, 55, 16)] autorelease];
         
         self.dayOneLabel.textColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1];
         self.dayTwoLabel.textColor = [UIColor colorWithRed:0.53 green:0.53 blue:0.53 alpha:1];
         self.dayThreeLabel.textColor = [UIColor colorWithRed:0.53 green:0.53 blue:0.53 alpha:1];
         
         self.dayOneLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:40.0f];
-        self.dayTwoLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:13.0f];
-        self.dayThreeLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:13.0f];
+        self.dayTwoLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14.0f];
+        self.dayThreeLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14.0f];
         
         [self addSubview:self.dayOneLabel];
         [self addSubview:self.dayTwoLabel];
         [self addSubview:self.dayThreeLabel];
         
-        self.dayOneView = [[UIImageView alloc] initWithFrame:CGRectMake(13, 10, 46, 48)];
-        self.dayTwoView = [[UIImageView alloc] initWithFrame:CGRectMake(128, 18, 17, 16)];
-        self.dayThreeView = [[UIImageView alloc] initWithFrame:CGRectMake(128, 34, 17, 16)];
+        self.dayOneView = [[[UIImageView alloc] initWithFrame:CGRectMake(13, 10, 46, 48)] autorelease];
+        self.dayTwoView = [[[UIImageView alloc] initWithFrame:CGRectMake(128, 18, 15, 16)] autorelease];
+        self.dayThreeView = [[[UIImageView alloc] initWithFrame:CGRectMake(128, 34, 15, 16)] autorelease];
 
         [self addSubview:self.dayOneView];
         [self addSubview:self.dayTwoView];
@@ -101,22 +103,18 @@
         twoText = [NSMutableString stringWithString:@"--"];
         threeText = [NSMutableString stringWithString:@"--"];
         
+        oneImage = nil;
+        twoImage = nil;
+        threeImage = nil;
+        
     }
     
     [weekday release];
     
-    BOOL isMetric = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
-    
-    if (isMetric) {
-        [oneText appendString:@"°"];
-        [twoText appendString:@"°"];
-        [threeText appendString:@"°"];
-    } else {
-        [oneText appendString:@"F"];
-        [twoText appendString:@"F"];
-        [threeText appendString:@"F"];
-    }
-    
+    [oneText appendString:@"°"];
+    [twoText appendString:@"°"];
+    [threeText appendString:@"°"];
+
     dayOneLabel.text = oneText;
     dayTwoLabel.text = twoText;
     dayThreeLabel.text = threeText;
@@ -131,48 +129,70 @@
 {
     NSInteger intCode = [code integerValue];
     switch (intCode) {
+        case 200:
+        case 201:
+        case 202:
+        case 210:
+        case 211:
+        case 212:
+        case 221:
+        case 230:
+        case 231:
+        case 232:
+            return [UIImage imageNamed:@"today_thunder"];
+            break;
+            
+        case 300:
+        case 301:
+        case 302:
+        case 310:
+        case 311:
+        case 312:
+        case 321:
+
         case 500:
-            return [UIImage imageNamed:@"today_smallrain"];
-            break;
-
         case 501:
-            return [UIImage imageNamed:@"today_smallrain"];
-            break;
-
         case 502:
-            return [UIImage imageNamed:@"today_rain"];
-            break;
-
         case 503:
+        case 504:
+        case 511:
+        case 520:
+        case 521:
+        case 522:
+
+        case 600:
+        case 601:
+        case 602:
+        case 611:
+        case 621:
+
+        case 701:
+        case 711:
+        case 721:
+        case 731:
+        case 741:
+
             return [UIImage imageNamed:@"today_rain"];
             break;
-        
+                    
         case 800:
+        case 801:
             return [UIImage imageNamed:@"today_sun"];
             break;
 
-        case 801:
-            return [UIImage imageNamed:@"today_cloud"];
-            break;
-
         case 802:
-            return [UIImage imageNamed:@"today_cloud"];
-            break;
-
         case 803:
-            return [UIImage imageNamed:@"today_cloud"];
-            break;
-
         case 804:
             return [UIImage imageNamed:@"today_cloud"];
             break;
 
         default:
-            return [UIImage imageNamed:@"today_sun"];
+            return nil;
             break;
+            
     }
     
-    return [UIImage imageNamed:@"today_sun"];
+    return nil;
 }
 
 /*
@@ -183,5 +203,17 @@
     // Drawing code
 }
 */
+
+-(void)dealloc
+{
+    [dayOneLabel release];
+    [dayTwoLabel release];
+    [dayThreeLabel release];
+    [dayOneView release];
+    [dayTwoView release];
+    [dayThreeView release];
+
+    [super dealloc];
+}
 
 @end

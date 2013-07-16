@@ -188,7 +188,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 {
     if ([[[WeatherHelper sharedHelper] getWeatherInformation] count]>0) {
-        return 68.0;
+        return 70.0;
     } else {
         return 0;
     }

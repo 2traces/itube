@@ -161,9 +161,18 @@ static NSString * const kSymbolElementName = @"symbol";
     self.scheduleDict = nil;
     
     [xml release];
-    [formatter release];
-	[scheduleDict release];
-	[super dealloc];
+    [_currentItemValue release];
+    [nextStationItem release];
+    [currentStationItem release];
+    [scheduleDict release];
+    [currentDayDict release];
+    [currentDay release];
+    [nextStation release];
+    [tempValue release];
+    [conditionValue release];
+    [varValue release];
+    
+    [super dealloc];
 }
 
 @end

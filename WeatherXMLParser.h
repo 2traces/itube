@@ -22,6 +22,7 @@
     
     NSMutableDictionary *scheduleDict;
 }
+
 @property(nonatomic, retain) NSString *xml;
 @property(nonatomic, retain) NSMutableString * currentItemValue;
 @property(nonatomic, retain) NSMutableArray * nextStationItem;
