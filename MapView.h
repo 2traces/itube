@@ -28,7 +28,7 @@ extern int const imagesCount;
 @interface MapView : UIView <UIScrollViewDelegate, CLLocationManagerDelegate> {
 
     CGRect visualFrame;
-	UILabel *mainLabel;
+    UILabel *mainLabel;
     UILabel *lineLabel;
     UIView *circleLabel;
     UIImageView *labelBg;
