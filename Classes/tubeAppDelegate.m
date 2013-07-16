@@ -19,6 +19,7 @@
 #import "PhotosViewController.h"
 #import "CategoriesViewController.h"
 #import "RatePopupViewController.h"
+#import "WeatherHelper.h"
 
 NSString* DisplayStationName(NSString* stName) {
     NSString *tmpStr = [[stName stringByReplacingOccurrencesOfString:@"_" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -107,6 +108,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     // Override point for customization after application launch.
     [[SKPaymentQueue defaultQueue] addTransactionObserver:[TubeAppIAPHelper sharedHelper]];
+    
+    self.parseQueue = [[NSOperationQueue alloc] init];
     
     self.window.frame = [[UIScreen mainScreen] bounds];
     
@@ -763,6 +766,15 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
     
     return NO;
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    /*
+     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+     */
+    
+    [[WeatherHelper sharedHelper] getWeatherInformation];
 }
 
 

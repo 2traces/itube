@@ -586,12 +586,17 @@ CGPoint translateFromGeoToMap(CGPoint pm)
         cornerRect=CGRectMake(0, 401, 36, 60);
     }
     
+    if ([appDelegate isIPHONE5]) {
+        zonesRect.origin.y -= 423;
+        cornerRect.origin.y -= 423;
+    }else{
     if (IS_IPAD)  {
         zonesRect.origin.y -= 774;
         cornerRect.origin.y -= 774;
     } else {
         zonesRect.origin.y -= 335;
         cornerRect.origin.y -= 335;
+    }
     }
     
     zones.frame = zonesRect;
