@@ -34,6 +34,7 @@
 @dynamic posY;
 @dynamic index;
 @dynamic accessLevel;
+@dynamic hideLevel;
 @dynamic isFavorite;
 @dynamic name;
 @dynamic text;
@@ -520,7 +521,10 @@ static MHelper * _sharedHelper;
     NSMutableArray *filteredItems = [[NSMutableArray alloc] initWithCapacity:[fetchedItems count]];
     for (MPlace *place in fetchedItems) {
         if ([place.accessLevel integerValue] <= accessLevel) {
-            [filteredItems addObject:place];
+            NSLog(@"accessLevel %i, %i", [place.hideLevel integerValue], accessLevel);
+            if ([place.hideLevel integerValue] > accessLevel) {
+                [filteredItems addObject:place];
+            }
         }
     }
     

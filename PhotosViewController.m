@@ -319,13 +319,13 @@
             else
                 if (point.x < view.frame.size.width/2 + view.frame.size.height/6)
                     index = 1; // Changed from 2 to 1 by S.Z. request, 28.02.13
-                    else
-                        index = 0;
+                else
+                    index = 0;
             
             tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-
+            
             BOOL isMetro = [appDelegate.navigationViewController isMetroMode];
-
+            
             if (isMetro)
             {
                 [appDelegate.mainViewController showPurchases:index];

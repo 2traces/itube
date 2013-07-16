@@ -43,6 +43,7 @@
     </entity>
     <entity name="Place" representedClassName="MPlace" syncable="YES">
         <attribute name="accessLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="hideLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -66,7 +67,7 @@
         <element name="Line" positionX="0" positionY="0" width="128" height="105"/>
         <element name="Media" positionX="216" positionY="-45" width="128" height="180"/>
         <element name="PhotosSetConf" positionX="324" positionY="225" width="128" height="90"/>
-        <element name="Place" positionX="18" positionY="234" width="128" height="180"/>
+        <element name="Place" positionX="18" positionY="234" width="128" height="195"/>
         <element name="Station" positionX="-0" positionY="-252" width="128" height="120"/>
     </elements>
 </model>

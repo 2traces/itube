@@ -2216,6 +2216,12 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
             newPlace.name = [place objectForKey:@"name"];
             newPlace.index = [NSNumber numberWithInt:[[place objectForKey:@"index"] integerValue]];
             newPlace.accessLevel = [NSNumber numberWithInt:[[place objectForKey:@"accessLevel"] integerValue]];
+            NSNumber *hideLevel = [place objectForKey:@"hideLevel"];
+            if(hideLevel == nil){
+                newPlace.hideLevel = [NSNumber numberWithInt:1000];
+            }else{
+                newPlace.hideLevel = hideLevel;
+            }
             newPlace.text = [place objectForKey:@"text"];
             newPlace.posX = [NSNumber numberWithFloat:[[place objectForKey:@"long"] floatValue]];
             newPlace.posY = [NSNumber numberWithFloat:[[place objectForKey:@"lat"] floatValue]];

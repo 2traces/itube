@@ -39,6 +39,7 @@
 
 @property (nonatomic, retain) NSNumber* index;
 @property (nonatomic, retain) NSNumber* accessLevel;
+@property (nonatomic, retain) NSNumber* hideLevel;
 @property (nonatomic, retain) NSNumber * isFavorite;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * text;
