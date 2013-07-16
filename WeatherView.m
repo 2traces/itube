@@ -151,6 +151,9 @@
         case 321:
 
         case 500:
+            return [UIImage imageNamed:@"today_smallrain"];
+            break;
+
         case 501:
         case 502:
         case 503:
