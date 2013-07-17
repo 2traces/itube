@@ -27,6 +27,8 @@
     NSArray *itemsNames;
     NSArray *itemsImages;
     NSArray *itemsImagesHighlighted;
+    
+    NSInteger currentIndex;
 }
 
 @property (nonatomic, retain) NSArray *categories;

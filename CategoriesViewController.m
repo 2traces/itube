@@ -144,7 +144,10 @@
 
 - (void) reloadCategories {
     [self.tableView reloadData];
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+    
+    currentIndex = 1;
+    
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:currentIndex inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
     MCategory *category = self.categories[1];
     [self.navigationDelegate selectCategoryWithIndex:[category.index integerValue]];
     
@@ -179,6 +182,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //NSLog(@"DID SELECT...");
 
+    currentIndex = indexPath.row;
     MCategory *category = self.categories[indexPath.row];
     [self.navigationDelegate selectCategoryWithIndex:[category.index integerValue]];
    // NSLog(@"DID SELECT!");
@@ -232,6 +236,7 @@
 -(void)weatherInfoRecieved:(NSNotification*)note
 {
     [self.tableView reloadData];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:currentIndex inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
 }
 
 
