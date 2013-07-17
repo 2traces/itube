@@ -73,7 +73,7 @@
     UIImage *threeImage;
     
     NSDateFormatter *weekday = [[NSDateFormatter alloc] init];
-    [weekday setDateFormat: @"EEE"];
+    [weekday setDateFormat: @"eee"];
     
     NSDictionary *dict = [[WeatherHelper sharedHelper] getWeatherInformation];
     
@@ -84,7 +84,7 @@
 
         NSInteger oneDayTemp = [[[dict objectForKey:[sortedKeys objectAtIndex:0]] objectForKey:@"temperature"] integerValue];
         NSInteger twoDayTemp = [[[dict objectForKey:[sortedKeys objectAtIndex:1]] objectForKey:@"temperature"] integerValue];
-        NSInteger threeDayTemp = [[[dict objectForKey:[sortedKeys objectAtIndex:1]] objectForKey:@"temperature"] integerValue];
+        NSInteger threeDayTemp = [[[dict objectForKey:[sortedKeys objectAtIndex:2]] objectForKey:@"temperature"] integerValue];
         
         NSString *twoDayWeekday = [weekday stringFromDate:[sortedKeys objectAtIndex:1]];
         NSString *threeDayWeekday = [weekday stringFromDate:[sortedKeys objectAtIndex:2]];
