@@ -34,7 +34,7 @@
         
         formatter = [[NSDateFormatter alloc] init];
         
-        [formatter setDateFormat:@"YYYY-MM-DD"];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
     }
     
     return self;

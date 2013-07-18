@@ -2,6 +2,49 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>com.zuev.highlight.paris</key>
+	<dict>
+		<key>url1</key>
+		<string>http://parismetromaps.info/maps/paris/osm</string>
+		<key>url2</key>
+		<string>http://parismetromaps.info/maps/paris/osm</string>
+		<key>ver</key>
+		<string>1</string>
+		<key>name</key>
+		<string>Paris</string>
+		<key>filename</key>
+		<string>paris</string>
+		<key>description</key>
+		<string>paris.txt</string>
+		<key>picture</key>
+		<string>preview_paris.png</string>
+		<key>picture_content</key>
+		<string>preview_paris_content.png</string>
+		<key>icon</key>
+		<string>tr_paris.png</string>
+		<key>appstore_link</key>
+		<string>http://itunes.apple.com/app/paris.metro/id513581498</string>
+		<key>rate_link</key>
+		<string>http://itunes.apple.com/app/paris.metro/id513581498</string>
+		<key>preview</key>
+		<array>
+			<string>paris-2-i5.png</string>
+			<string>paris-3-i5.png</string>
+			<string>paris-i5.png</string>
+		</array>
+		<key>preview_content</key>
+		<array>
+			<string>paris-2-i4.png</string>
+			<string>paris-3-i4.png</string>
+			<string>paris-i4.png</string>
+		</array>
+		<key>video</key>
+		<string>https://www.youtube.com/watch?v=f-qDgqTJehg</string>
+		<key>video_content</key>
+		<string>https://www.youtube.com/watch?v=f-qDgqTJehg</string>
+		<key>weather_info</key>
+		<string>http://api.openweathermap.org/data/2.5/forecast/daily?q=Paris&amp;mode=xml&amp;cnt=4</string>
+	</dict>
 	<key>com.zuev.highlight.berlin</key>
 	<dict>
 		<key>url1</key>

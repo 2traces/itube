@@ -28,7 +28,7 @@
       "long":48.858438,
       "lat":2.350009,
       "index":120,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/rest1.html",
       "categories":[
@@ -40,7 +40,7 @@
       "long":48.853908,
       "lat":2.367725,
       "index":113,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/rest2.html",
       "categories":[
@@ -52,7 +52,7 @@
       "long":48.851536,
       "lat":2.349817,
       "index":114,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/rest3.html",
       "categories":[
@@ -76,7 +76,7 @@
       "long":48.868858,
       "lat":2.342168,
       "index":115,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/rest5.html",
       "categories":[
@@ -88,7 +88,7 @@
       "long":48.852489,
       "lat":2.354517,
       "index":116,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/rest6.html",
       "categories":[
@@ -100,7 +100,7 @@
       "long":48.868716,
       "lat":2.334357,
       "index":117,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/rest7.html",
       "categories":[
@@ -112,7 +112,7 @@
       "long":48.875198,
       "lat":2.319166,
       "index":118,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/rest8.html",
       "categories":[
@@ -124,7 +124,7 @@
       "long":48.869768,
       "lat":2.302289,
       "index":119,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/rest9.html",
       "categories":[
@@ -148,7 +148,7 @@
       "long":48.860958,
       "lat":2.352849,
       "index":121,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/rest11.html",
       "categories":[
@@ -160,7 +160,7 @@
       "long":48.862795,
       "lat":2.34921,
       "index":122,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/rest12.html",
       "categories":[
@@ -172,7 +172,7 @@
       "long":48.867174,
       "lat":2.307818,
       "index":123,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/rest13.html",
       "categories":[
@@ -184,7 +184,7 @@
       "long":48.864341,
       "lat":2.333267,
       "index":124,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/rest14.html",
       "categories":[
@@ -220,7 +220,7 @@
       "long":48.866245,
       "lat":2.304272,
       "index":127,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/rest17.html",
       "categories":[
@@ -242,7 +242,7 @@
       "long":48.86057,
       "lat":2.337625,
       "index":3,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/louvre_t1.html",
       "categories":[
@@ -289,8 +289,8 @@
     },
     {
       "name":"Eiffel tower",
-      "long":48.858227,
-      "lat":2.294559,
+      "long":48.857935,
+      "lat":2.294522,
       "index":7,
       "accessLevel":0,
       "media_type":"html_with_video",
@@ -303,8 +303,8 @@
     },
     {
       "Name":"Eiffel tower",
-      "long":48.858424,
-      "lat":2.294516,
+      "long":48.857935,
+      "lat":2.294522,
       "index":8,
       "accessLevel":0,
       "media_type":"native_gallery",
@@ -328,10 +328,10 @@
     },
     {
       "name":"Eiffel tower",
-      "long":48.858424,
-      "lat":2.294516,
+      "long":48.857935,
+      "lat":2.294522,
       "index":9,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html",
       "filename":"html/image_01.html",
       "categories":[
@@ -343,7 +343,7 @@
       "long":48.842153,
       "lat":2.322083,
       "index":10,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"native_gallery",
       "pictures":[
         {
@@ -395,7 +395,7 @@
       "long":48.857416,
       "lat":2.340397,
       "index":11,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_with_video",
       "filename":"html/seine.html",
       "video_preview_path":"html/hidden-cities_files/seine.png",
@@ -409,7 +409,7 @@
       "long":48.85997,
       "lat":2.326624,
       "index":12,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/full8.html",
       "categories":[
@@ -421,7 +421,7 @@
       "long":48.85997,
       "lat":2.326624,
       "index":13,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"3dview",
       "photos_prefix":"3d/orsay/all_et_.RGB_color.00",
       "photos_count":40,
@@ -435,7 +435,7 @@
       "long":48.85997,
       "lat":2.326624,
       "index":14,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"native_gallery",
       "pictures":[
         {
@@ -460,7 +460,7 @@
       "long":48.860755,
       "lat":2.352424,
       "index":15,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_with_video",
       "filename":"html/pompidu.html",
       "video_preview_path":"html/hidden-cities_files/pompidu.png",
@@ -474,7 +474,7 @@
       "long":48.860755,
       "lat":2.352424,
       "index":16,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/pompidou_t1.html",
       "categories":[
@@ -486,7 +486,7 @@
       "long":48.89596,
       "lat":2.387059,
       "index":17,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/cite.html",
       "categories":[
@@ -498,7 +498,7 @@
       "long":48.890757,
       "lat":2.241301,
       "index":18,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_with_video",
       "filename":"html/defance.html",
       "video_preview_path":"html/hidden-cities_files/defance.png",
@@ -508,36 +508,11 @@
       ]
     },
     {
-      "name":"discover La Défense...",
-      "long":48.890757,
-      "lat":2.241301,
-      "index":19,
-      "accessLevel":1,
-      "media_type":"native_gallery",
-      "pictures":[
-        {
-          "path":"gall/c_0.jpg"
-        },
-        {
-          "path":"gall/c_1.jpg"
-        },
-        {
-          "path":"gall/c_2.jpg"
-        },
-        {
-          "path":"gall/c_3.jpg"
-        }
-      ],
-      "categories":[
-        2
-      ]
-    },
-    {
       "name":"Montmartre",
       "long":48.886265,
       "lat":2.34308,
       "index":33,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html",
       "filename":"html/image_06.html",
       "categories":[
@@ -549,7 +524,7 @@
       "long":48.886265,
       "lat":2.34308,
       "index":34,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_with_video",
       "filename":"html/monmartre.html",
       "video_preview_path":"html/hidden-cities_files/monmartre.png",
@@ -563,7 +538,7 @@
       "long":48.853014,
       "lat":2.349896,
       "index":36,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_with_video",
       "filename":"html/notre.html",
       "video_preview_path":"html/hidden-cities_files/notre.png",
@@ -577,7 +552,7 @@
       "long":48.853014,
       "lat":2.349896,
       "index":37,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"3dview",
       "photos_prefix":"3d/notre/test_.RGB_color.00",
       "photos_count":40,
@@ -591,7 +566,7 @@
       "long":48.86105,
       "lat":2.297756,
       "index":38,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/branly.html",
       "categories":[
@@ -603,7 +578,7 @@
       "long":48.86396,
       "lat":2.322191,
       "index":39,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/orangerie.html",
       "categories":[
@@ -615,7 +590,7 @@
       "long":48.856456,
       "lat":2.345437,
       "index":40,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_with_video",
       "filename":"html/citadele.html",
       "video_preview_path":"html/hidden-cities_files/citadele.png",
@@ -629,7 +604,7 @@
       "long":48.854966,
       "lat":2.312519,
       "index":41,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_with_video",
       "filename":"html/invalides.html",
       "video_preview_path":"html/hidden-cities_files/invalides.png",
@@ -643,7 +618,7 @@
       "long":48.804512,
       "lat":2.121752,
       "index":45,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_with_video",
       "filename":"html/vers_video.html",
       "video_preview_path":"html/hidden-cities_files/vers.png",
@@ -657,7 +632,7 @@
       "long":48.804512,
       "lat":2.121752,
       "index":46,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/vers_2.html",
       "categories":[
@@ -669,7 +644,7 @@
       "long":48.804512,
       "lat":2.121752,
       "index":47,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"3dview",
       "photos_prefix":"3d/versal/test_.RGB_color.00",
       "photos_count":40,
@@ -683,7 +658,7 @@
       "long":48.855405,
       "lat":2.345011,
       "index":48,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html",
       "filename":"html/full6.html",
       "categories":[
@@ -695,7 +670,7 @@
       "long":48.884142,
       "lat":2.332321,
       "index":98,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html",
       "filename":"html/image_03.html",
       "categories":[
@@ -707,7 +682,7 @@
       "long":48.884142,
       "lat":2.332321,
       "index":99,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html",
       "filename":"html/image_02.html",
       "categories":[
@@ -719,7 +694,7 @@
       "long":48.873807,
       "lat":2.294997,
       "index":50,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_with_video",
       "filename":"html/arc.html",
       "video_preview_path":"html/hidden-cities_files/arc.png",
@@ -733,7 +708,7 @@
       "long":48.872042,
       "lat":2.331699,
       "index":52,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_with_video",
       "filename":"html/opera.html",
       "video_preview_path":"html/hidden-cities_files/opera.png",
@@ -761,7 +736,7 @@
       "long":48.884142,
       "lat":2.332321,
       "index":56,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"native_gallery",
       "pictures":[
         {
@@ -785,7 +760,7 @@
       "name":"Paris Disneyland",
       "long":48.870762,
       "lat":2.779138,
-      "index":70,
+      "index":69,
       "accessLevel":0,
       "media_type":"html_with_video",
       "filename":"html/disneyland.html",
@@ -799,10 +774,22 @@
       "name":"Muséum National d’Histoire Naturelle",
       "long":48.843664,
       "lat":2.356073,
-      "index":71,
+      "index":70,
       "accessLevel":0,
       "media_type":"html",
       "filename":"html/full9.html",
+      "categories":[
+        1
+      ]
+    },
+    {
+      "name":"Musee des Arts et Metiers",
+      "long":48.866047,
+      "lat":2.355424,
+      "index":71,
+      "accessLevel":0,
+      "media_type":"html_gallery",
+      "filename":"html/full5.html",
       "categories":[
         1
       ]
@@ -826,7 +813,7 @@
       "long":48.855525,
       "lat":2.347688,
       "index":74,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"native_gallery",
       "pictures":[
         {
@@ -851,7 +838,7 @@
       "long":48.846643,
       "lat":2.336648,
       "index":75,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"native_gallery",
       "pictures":[
         {
@@ -889,7 +876,7 @@
       "long":48.833707,
       "lat":2.375812,
       "index":76,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_with_video",
       "filename":"html/lib.html",
       "video_preview_path":"html/hidden-cities_files/lib.png",
@@ -903,7 +890,7 @@
       "long":48.85496,
       "lat":2.359203,
       "index":77,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"native_gallery",
       "pictures":[
         {
@@ -928,9 +915,35 @@
       "long":48.849037,
       "lat":2.35663,
       "index":78,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/arabe.html",
+      "categories":[
+        1
+      ]
+    },
+    {
+      "name":"Grande Arche",
+      "long":48.892571,
+      "lat":2.23604,
+      "index":79,
+      "accessLevel":0,
+      "media_type":"html_with_video",
+      "filename":"html/arc2.html",
+      "video_preview_path":"html/hidden-cities_files/arc2.png",
+      "video_path":"html/hidden-cities_files/arc2.mp4",
+      "categories":[
+        1
+      ]
+    },
+    {
+      "name":"Tokio Palace",
+      "long":48.864503,
+      "lat":2.297031,
+      "index":80,
+      "accessLevel":0,
+      "media_type":"html_gallery",
+      "filename":"html/full7.html",
       "categories":[
         1
       ]
@@ -939,8 +952,8 @@
       "name":"Shakespeare and Company bookstore",
       "long":48.852588,
       "lat":2.34712,
-      "index":80,
-      "accessLevel":1,
+      "index":81,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/full4.html",
       "categories":[
@@ -951,22 +964,10 @@
       "name":"Musée Jacquemart-André",
       "long":48.875293,
       "lat":2.310625,
-      "index":81,
-      "accessLevel":1,
+      "index":82,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/full10.html",
-      "categories":[
-        1
-      ]
-    },
-    {
-      "name":"Tokio Palace",
-      "long":48.864503,
-      "lat":2.297031,
-      "index":79,
-      "accessLevel":1,
-      "media_type":"html_gallery",
-      "filename":"html/full7.html",
       "categories":[
         1
       ]
@@ -976,7 +977,7 @@
       "long":48.87959,
       "lat":2.309311,
       "index":90,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"native_gallery",
       "pictures":[
         {
@@ -1001,7 +1002,7 @@
       "long":48.855059,
       "lat":2.316128,
       "index":91,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/full3.html",
       "categories":[

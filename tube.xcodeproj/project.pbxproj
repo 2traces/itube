@@ -2618,6 +2618,14 @@
 		CE94E279146D0F7900D6BD43 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE94E278146D0F7900D6BD43 /* CoreLocation.framework */; };
 		CE96C6FB146830A8005A56F3 /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = CE96C6FA146830A8005A56F3 /* Resource.m */; };
 		CECCD33A1461A38D00804CB9 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CECCD3391461A38D00804CB9 /* CoreLocationController.m */; };
+		F72C99B117965BAF000DFFB3 /* today_rain.png in Resources */ = {isa = PBXBuildFile; fileRef = F72C99AF17965BAF000DFFB3 /* today_rain.png */; };
+		F72C99B217965BAF000DFFB3 /* today_rain.png in Resources */ = {isa = PBXBuildFile; fileRef = F72C99AF17965BAF000DFFB3 /* today_rain.png */; };
+		F72C99B317965BAF000DFFB3 /* today_rain.png in Resources */ = {isa = PBXBuildFile; fileRef = F72C99AF17965BAF000DFFB3 /* today_rain.png */; };
+		F72C99B417965BAF000DFFB3 /* today_rain.png in Resources */ = {isa = PBXBuildFile; fileRef = F72C99AF17965BAF000DFFB3 /* today_rain.png */; };
+		F72C99B517965BAF000DFFB3 /* today_rain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F72C99B017965BAF000DFFB3 /* today_rain@2x.png */; };
+		F72C99B617965BAF000DFFB3 /* today_rain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F72C99B017965BAF000DFFB3 /* today_rain@2x.png */; };
+		F72C99B717965BAF000DFFB3 /* today_rain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F72C99B017965BAF000DFFB3 /* today_rain@2x.png */; };
+		F72C99B817965BAF000DFFB3 /* today_rain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F72C99B017965BAF000DFFB3 /* today_rain@2x.png */; };
 		F734DB7E178FF57A009E08F7 /* WeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = F734DB7D178FF57A009E08F7 /* WeatherView.m */; };
 		F734DB7F178FF57A009E08F7 /* WeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = F734DB7D178FF57A009E08F7 /* WeatherView.m */; };
 		F734DB80178FF57A009E08F7 /* WeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = F734DB7D178FF57A009E08F7 /* WeatherView.m */; };
@@ -3591,6 +3599,8 @@
 		CE96C6FA146830A8005A56F3 /* Resource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resource.m; sourceTree = "<group>"; };
 		CECCD3381461A38D00804CB9 /* CoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
 		CECCD3391461A38D00804CB9 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
+		F72C99AF17965BAF000DFFB3 /* today_rain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = today_rain.png; path = images/today_rain.png; sourceTree = "<group>"; };
+		F72C99B017965BAF000DFFB3 /* today_rain@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "today_rain@2x.png"; path = "images/today_rain@2x.png"; sourceTree = "<group>"; };
 		F734DB7C178FF57A009E08F7 /* WeatherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherView.h; sourceTree = "<group>"; };
 		F734DB7D178FF57A009E08F7 /* WeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherView.m; sourceTree = "<group>"; };
 		F75DAC13178E6CD700677F13 /* WeatherHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherHelper.h; sourceTree = "<group>"; };
@@ -4311,6 +4321,8 @@
 				57684344167636BE00FA36AE /* pixeldummy.png */,
 				57684345167636BE00FA36AE /* popover-bg.png */,
 				57684346167636BE00FA36AE /* popover-bg@2x.png */,
+				F72C99AF17965BAF000DFFB3 /* today_rain.png */,
+				F72C99B017965BAF000DFFB3 /* today_rain@2x.png */,
 				F7B12A881793DC5D00DA1DEB /* today_smallrain.png */,
 				F7B12A891793DC5D00DA1DEB /* today_cloud.png */,
 				F7B12A8A1793DC5D00DA1DEB /* today_sun.png */,
@@ -5603,6 +5615,8 @@
 				F7B12AC81793DC5E00DA1DEB /* today_cloud@2x.png in Resources */,
 				F7A3FC1C1795432100946E0A /* today_thunder.png in Resources */,
 				F7A3FC201795432100946E0A /* today_thunder@2x.png in Resources */,
+				F72C99B117965BAF000DFFB3 /* today_rain.png in Resources */,
+				F72C99B517965BAF000DFFB3 /* today_rain@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6176,6 +6190,8 @@
 				F7B12AC91793DC5E00DA1DEB /* today_cloud@2x.png in Resources */,
 				F7A3FC1D1795432100946E0A /* today_thunder.png in Resources */,
 				F7A3FC211795432100946E0A /* today_thunder@2x.png in Resources */,
+				F72C99B217965BAF000DFFB3 /* today_rain.png in Resources */,
+				F72C99B617965BAF000DFFB3 /* today_rain@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6742,6 +6758,8 @@
 				F7B12ACA1793DC5E00DA1DEB /* today_cloud@2x.png in Resources */,
 				F7A3FC1E1795432100946E0A /* today_thunder.png in Resources */,
 				F7A3FC221795432100946E0A /* today_thunder@2x.png in Resources */,
+				F72C99B317965BAF000DFFB3 /* today_rain.png in Resources */,
+				F72C99B717965BAF000DFFB3 /* today_rain@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7311,6 +7329,8 @@
 				F7B12ACB1793DC5E00DA1DEB /* today_cloud@2x.png in Resources */,
 				F7A3FC1F1795432100946E0A /* today_thunder.png in Resources */,
 				F7A3FC231795432100946E0A /* today_thunder@2x.png in Resources */,
+				F72C99B417965BAF000DFFB3 /* today_rain.png in Resources */,
+				F72C99B817965BAF000DFFB3 /* today_rain@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7845,6 +7865,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Zuev (2AEQRC3ZN4)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -7854,6 +7875,7 @@
 				INFOPLIST_FILE = "paris-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "HC Paris";
+				PROVISIONING_PROFILE = "52876630-7C6B-4723-932E-E14E547AEC82";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -7862,6 +7884,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Zuev (2AEQRC3ZN4)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
@@ -7869,6 +7892,7 @@
 				INFOPLIST_FILE = "paris-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "HC Paris";
+				PROVISIONING_PROFILE = "52876630-7C6B-4723-932E-E14E547AEC82";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
