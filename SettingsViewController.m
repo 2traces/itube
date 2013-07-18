@@ -198,7 +198,6 @@
 	feedbackTableView.backgroundColor = [UIColor clearColor];
     feedbackTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,180,44)];
     CGRect frame = CGRectMake(0, 3, 180, 44);
 	UILabel *label = [[[UILabel alloc] initWithFrame:frame] autorelease];
 	label.backgroundColor = [UIColor clearColor];
@@ -207,9 +206,6 @@
 	label.textAlignment = UITextAlignmentCenter;
 	label.textColor = [UIColor darkGrayColor];
     label.text = NSLocalizedString(@"Settings",@"Settings");
-    [iv addSubview:label];
-    self.navigationItem.titleView=iv;
-    [iv release];
 	
     UIImage *back_image=[UIImage imageNamed:NSLocalizedString(@"backstation", @"backstation")];
     UIImage *back_image_high=[UIImage imageNamed:NSLocalizedString(@"pr_backstation", @"pr_backstation")];
@@ -217,12 +213,7 @@
 	back_button.bounds = CGRectMake( 0, 0, back_image.size.width, back_image.size.height );    
 	[back_button setBackgroundImage:back_image forState:UIControlStateNormal];
 	[back_button setBackgroundImage:back_image_high forState:UIControlStateHighlighted];
-	[back_button addTarget:self action:@selector(donePressed:) forControlEvents:UIControlEventTouchUpInside];    
-	UIBarButtonItem *barButtonItem_back = [[UIBarButtonItem alloc] initWithCustomView:back_button];
-    self.navigationItem.leftBarButtonItem = barButtonItem_back;
-    self.navigationItem.hidesBackButton=YES;
-	[barButtonItem_back release];
-    
+	[back_button addTarget:self action:@selector(donePressed:) forControlEvents:UIControlEventTouchUpInside];
     [TubeAppIAPHelper sharedHelper];
         
     [self adjustViewHeight];

@@ -15,10 +15,12 @@
 @synthesize mainImageView = _mainImageView;
 @synthesize htmlDir = _htmlDir;
 @synthesize webView = _webView;
+@synthesize appDelegate = _appDelegate;
 
 - (id)initWithMedia:(MMedia *)media withParent:(UIView *)parent withAppDelegate:(tubeAppDelegate *)appDelegate{
     self = [super initWithFrame:parent.frame];
     if (self) {
+        self.appDelegate = appDelegate;
         self.webView = [[UIWebView alloc] initWithFrame:parent.frame];
         [self.webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         self.webView.delegate = self;
@@ -73,6 +75,9 @@
         NSString *fullPath = [LCUtil getLocalizedPath: [NSString stringWithFormat:@"%@/%@", self.htmlDir, filename]];
         [self loadAnimHtmlWithPath: fullPath];
     }
+    if([request.URL.absoluteString hasPrefix:@"settings"]){
+        [self.appDelegate showSettingsCrossDevices];
+    }
     return YES;
 }
 
@@ -102,6 +107,7 @@
     [self.webView removeFromSuperview];
     [_webView release];
     self.htmlDir = nil;
+    [_appDelegate release];
     [super dealloc];
 }
 
