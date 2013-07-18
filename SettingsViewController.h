@@ -80,11 +80,12 @@
 -(BOOL)isProductInstalled:(NSString*)prodID;
 -(BOOL)isProductPurchased:(NSString*)prodID;
 -(BOOL)isProductAvailable:(NSString*)prodID;
+-(IBAction)donePressed:(id)sender;
+
 
 @end
 
 @protocol SettingsViewControllerDelegate
 
--(void)donePressed;
 
 @end

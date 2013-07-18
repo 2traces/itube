@@ -207,24 +207,9 @@
 	label.textColor = [UIColor darkGrayColor];
     label.text = NSLocalizedString(@"Settings",@"Settings");
 	
-    UIImage *back_image=[UIImage imageNamed:NSLocalizedString(@"backstation", @"backstation")];
-    UIImage *back_image_high=[UIImage imageNamed:NSLocalizedString(@"pr_backstation", @"pr_backstation")];
-	UIButton *back_button = [UIButton buttonWithType:UIButtonTypeCustom];
-	back_button.bounds = CGRectMake( 0, 0, back_image.size.width, back_image.size.height );    
-	[back_button setBackgroundImage:back_image forState:UIControlStateNormal];
-	[back_button setBackgroundImage:back_image_high forState:UIControlStateHighlighted];
-	[back_button addTarget:self action:@selector(donePressed:) forControlEvents:UIControlEventTouchUpInside];
     [TubeAppIAPHelper sharedHelper];
         
     [self adjustViewHeight];
-
-//    for testing multi-charts
-//    [self markProductAsPurchased:@"com.zuev.itube.paris.shanghai"];
-//    [self markProductAsPurchased:@"com.zuev.itube.paris.london"];
-//    [self markProductAsPurchased:@"com.zuev.itube.paris.hamburg"];
-//    [self resortMapArray];
-//    [cityTableView reloadData];
-    
 }
 
 -(void)setCurrentMapSelectedPath
