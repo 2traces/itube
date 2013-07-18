@@ -77,6 +77,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_LOCATION=2, PIN_STAR=3, PIN_FAVORIT
 -(int)newPin:(CGPoint)coordinate color:(int)color name:(NSString*)name;
 
 - (void) centerMapOnUser;
+-(CGPoint)getCenterMapGeoCoordinates;
 
 -(void)setUserHeading:(double)heading;
 -(void)setUserGeoPosition:(CGPoint)point;

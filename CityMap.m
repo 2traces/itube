@@ -3139,6 +3139,23 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
     return nearest;
 }
 
+-(Station*)findMapNearestStationTo:(CGPoint)mapCoord
+{
+    CGFloat sqDist = INFINITY;
+    Station *nearest = nil;
+    for(Line *l in mapLines) {
+        for (Station *s in l.stations) {
+            CGPoint dp = CGPointMake(s.pos.x - mapCoord.x, s.pos.y - mapCoord.y);
+            CGFloat d = dp.x * dp.x + dp.y * dp.y;
+            if(d < sqDist) {
+                sqDist = d;
+                nearest = s;
+            }
+        }
+    }
+    return nearest;
+}
+
 -(CGRect)getGeoCoordsForRect:(CGRect)rect coordinates:(NSMutableArray*)data
 {
     BOOL path = [activePath count] > 0;

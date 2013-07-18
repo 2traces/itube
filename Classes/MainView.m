@@ -570,4 +570,17 @@ NSInteger const toolbarWidth=320;
 
 }
 
+-(CGPoint)getCenterMapGeoCoordinates
+{
+    CGPoint c = containerView.contentOffset;
+    c.x += containerView.bounds.size.width*0.5f;
+    c.y += containerView.bounds.size.height*0.5f;
+    c.x /= mapView.Scale;
+    c.y /= mapView.Scale;
+    
+    Station *st = [mapView.cityMap findMapNearestStationTo:c];
+    
+    return st.gpsCoords;
+}
+
 @end

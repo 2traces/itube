@@ -70,6 +70,25 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     return p;
 }
 
+CGPoint translateFromMapToGeo(CGPoint p)
+{
+//    const static double mult = 256.0 / 360.0;
+//    float y = atanhf(sinf(geoCoords.x * M_PI / 180.f));
+//    y = y * 256.f / (M_PI*2.f);
+//    if (zoom != -1) {
+//        scale = zoom;
+//    }
+//    position.x = - geoCoords.y * mult;
+//    position.y = y + 2.f / scale;
+    
+    
+    const static double mult = 256.0 / 360.0;
+    CGPoint pm;
+    pm.y = (-p.x) / mult;
+    pm.x = asinf(tanhf((p.y) * (M_PI*2.f) / 256.f)) * 180.f / M_PI;
+    return pm;
+}
+
 
 @interface GlViewController () {
     GLuint _program;
@@ -148,7 +167,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 -(id)initLocationPos
 {
     type = PIN_LOCATION;
-    size = 0.5f;
+    size = 1.f / [UIScreen mainScreen].scale;
     if((self = [super init])) {
         _id = -1;
         sprite = [[GlSprite alloc] initWithPicture:@"station_mark"];
@@ -165,7 +184,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 -(id) initWithId:(int)pinId color:(int)color andText:(NSString*)text
 {
     type = PIN_DEFAULT;
-    size = 0.5f;
+    size = 1.f / [UIScreen mainScreen].scale;
     if((self = [super init])) {
         _id = pinId;
         switch (color%12) {
@@ -214,7 +233,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 
 -(id) initStarWithId:(int)pinId color:(int)color andText:(NSString*)text
 {
-    size = 0.5f;
+    size = 1.f / [UIScreen mainScreen].scale;
     type = PIN_STAR;
     if((self = [super init])) {
         _id = pinId;
@@ -264,7 +283,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 
 -(id) initFavWithId:(int)pinId color:(int)color andText:(NSString*)text
 {
-    size = 0.5f;
+    size = 1.f / [UIScreen mainScreen].scale;
     constOffset = 20;
     type = PIN_FAVORITE;
     if((self = [super init])) {
@@ -705,6 +724,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
             position = prevPosition;
             break;
     }
+    followUserGPS = NO;
 }
 
 -(void)handleDoubleTap:(UITapGestureRecognizer*)recognizer
@@ -1420,6 +1440,8 @@ CGPoint translateFromGeoToMap(CGPoint pm)
     return YES;
 }
 
+#pragma mark - Geo coordinates
+
 -(void)setGeoPosition:(CGRect)rect
 {
     if(CGRectEqualToRect(rect, CGRectZero)) {
@@ -1514,6 +1536,12 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 -(CGFloat)calcGeoDistanceFrom:(CGPoint)p1 to:(CGPoint)p2
 {
     return calcGeoDistanceFrom(p1, p2);
+}
+
+-(CGPoint)getCenterMapGeoCoordinates
+{
+    CGPoint gps = translateFromMapToGeo(position);
+    return gps;
 }
 
 -(void)purgeUnusedCache

@@ -71,4 +71,5 @@ MBProgressHUD *commonActivityIndicator;
 - (void) moveModeButtonToCutScreen;
 - (void) moveModeButtonToFullScreen;
 - (void) centerMapOnUser;
+-(CGPoint) getCenterMapGeoCoordinates;
 @end
