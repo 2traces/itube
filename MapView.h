@@ -114,5 +114,6 @@ extern int const imagesCount;
 -(void)setStarAtStation:(Station*)station withType:(int)starType;
 -(void)removeStarFromStation:(NSString*)stationName;
 -(void)removeAllStars;
+-(void)sendMapMovedNotification;
 
 @end

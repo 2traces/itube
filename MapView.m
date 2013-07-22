@@ -624,6 +624,8 @@
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
 {
     Scale = scale;
+
+    [self sendMapMovedNotification];
 }
 
 - (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
@@ -631,6 +633,8 @@
     tubeAppDelegate *appd = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
     MainView *mv = (MainView*)[appd.mainViewController view];
     mv.followUserGPS = NO;
+    
+    [self sendMapMovedNotification];
 }
 
 -(void) scrollViewDidScroll:(UIScrollView *)scrollView
@@ -645,6 +649,15 @@
     if(stationSelected) {
         stationSelected = NO;
     }
+}
+
+-(void)sendMapMovedNotification
+{
+    tubeAppDelegate *appd = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+    MainView *mv = (MainView*)[appd.mainViewController view];
+    CGPoint coords = [mv getCenterMapGeoCoordinates];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kMapMoved" object:
+     [NSArray arrayWithObjects:[NSNumber numberWithFloat:coords.x], [NSNumber numberWithFloat:coords.y],nil]];
 }
 
 @end

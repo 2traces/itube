@@ -122,7 +122,12 @@
         self.distanceLabel.text = @"";
     }
     else {
-        self.distanceLabel.text = [NSString stringWithFormat:@"%.1f km", distance];
+        if (distance<10.0) {
+            self.distanceLabel.text = [NSString stringWithFormat:@"%.1f km", distance];
+        } else {
+            self.distanceLabel.text = [NSString stringWithFormat:@"%.0f km", distance];
+        }
+
         CGFloat direction = [self.navigationDelegate radialDirectionOffsetToPlaceWithIndex:[place.index integerValue]];
         NSLog(@"%f radians", direction);
         //[self.directionImage
@@ -131,6 +136,37 @@
     }
     self.btScrollLeft.hidden = currentPage == 0;
     self.btScrollRight.hidden = (currentPage + 1) == [self.currentPhotos count];
+}
+
+-(void)updateDistanceToCoords:(NSNotification*)note
+{
+    NSArray *coors = [note object];
+    tubeAppDelegate *appd = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+
+    CGPoint placePosition = CGPointMake([[coors objectAtIndex:0] floatValue], [[coors objectAtIndex:1] floatValue]);
+    
+    CGFloat distance = [appd.glViewController calcGeoDistanceFrom:appd.userGeoPosition to:placePosition];
+
+    if (distance == 0) {
+        self.distanceLabel.text = @"";
+        
+        self.directionImage.transform = CGAffineTransformMakeRotation(0);
+        self.directionImage.transform = CGAffineTransformMakeRotation(0.81);
+
+    } else {
+        
+        if (distance<10.0) {
+            self.distanceLabel.text = [NSString stringWithFormat:@"%.1f km", distance];
+        } else {
+            self.distanceLabel.text = [NSString stringWithFormat:@"%.0f km", distance];
+        }
+
+        CGFloat direction = [appd.glViewController radialOffsetToPoint:placePosition];
+
+        self.directionImage.transform = CGAffineTransformMakeRotation(0);
+        self.directionImage.transform = CGAffineTransformMakeRotation(direction);
+    }
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -251,6 +287,8 @@
 
     [self.btPanel addTarget:self action:@selector(wasDragged:withEvent:)
      forControlEvents:UIControlEventTouchDragInside];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDistanceToCoords:) name:@"kMapMoved" object:nil];
 }
 
 - (void)wasDragged:(UIButton *)button withEvent:(UIEvent *)event

@@ -716,6 +716,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
             if(panVelocity.x > maxVel) panVelocity.x = maxVel;
             if(panVelocity.y > maxVel) panVelocity.y = maxVel;
             panTime = 0.f;
+            
+            [self sendMapMovedNotification];
         }
             break;
         case UIGestureRecognizerStateCancelled:
@@ -732,6 +734,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
     scale *= 1.5f;
     panVelocity = CGPointZero;
     //[self setGeoPosition:userGeoPosition withZoom:-1];
+    
+    [self sendMapMovedNotification];
 }
 
 -(void)handleSingleTap:(UITapGestureRecognizer*)recognizer
@@ -792,6 +796,9 @@ CGPoint translateFromMapToGeo(CGPoint p)
             }
             prevRecScale = 0.f;
             started = NO;
+            
+            [self sendMapMovedNotification];
+
             break;
         case UIGestureRecognizerStateFailed:
         case UIGestureRecognizerStateCancelled:
@@ -804,8 +811,15 @@ CGPoint translateFromMapToGeo(CGPoint p)
     }
 }
 
+-(void)sendMapMovedNotification
+{
+    CGPoint coords = [self getCenterMapGeoCoordinates];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kMapMoved" object:
+     [NSArray arrayWithObjects:[NSNumber numberWithFloat:coords.x], [NSNumber numberWithFloat:coords.y],nil]];
+}
+
 - (void)viewDidUnload
-{    
+{
     [super viewDidUnload];
     
     [self tearDownGL];
@@ -1491,6 +1505,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
     targetPosition.x = - geoCoords.y * mult;
     targetPosition.y = y + 2.f / scale;
     targetTimer = 1.f;
+    
+    [self sendMapMovedNotification];
 }
 
 -(void)setUserGeoPosition:(CGPoint)point
