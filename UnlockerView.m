@@ -25,7 +25,11 @@
         self.bg = [[UIImageView alloc] initWithFrame:frame];
         self.bg.contentMode = UIViewContentModeScaleAspectFit;
         [self.bg setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        self.bg.image = [UIImage imageNamed:@"paris-Default"];
+        if (IS_IPAD) {
+            self.bg.image = [UIImage imageNamed:@"unlocker_bg-ipad.jpg"];
+        }else{
+            self.bg.image = [UIImage imageNamed:@"unlocker_bg.png"];
+        }
         self.bg.userInteractionEnabled = YES;
         self.tapGR = [[UITapGestureRecognizer alloc] init];
         [self.bg addGestureRecognizer:self.tapGR];
