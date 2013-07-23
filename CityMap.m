@@ -2262,6 +2262,10 @@ void drawFilledCircle(CGContextRef context, CGFloat x, CGFloat y, CGFloat r) {
                     media.previewPath = [place objectForKey:@"video_preview_path"];
                     [mediaSet addObject:media];
                     index++;
+                }else if( [mediaType isEqualToString:@"unlocker"] ){
+                    MMedia *media = [self mediaWithFilename:nil withIndex:index withMediaType:mediaType];
+                    [mediaSet addObject:media];
+                    index++;
                 }
             }//end media type block
             for (id filename in [place objectForKey:@"photos"]) {

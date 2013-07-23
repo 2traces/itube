@@ -294,48 +294,7 @@
 
 - (void)photoTapped:(UITapGestureRecognizer *)recognizer {
     MPlace* place = [((MMedia*)self.currentPhotos[currentPage]) place];
-    
-    MMedia * photo = (MMedia*)(self.currentPhotos[currentPage]);
-    if ([photo.filename rangeOfString:@"_ab"].location != NSNotFound)
-    {
-        /*
-        if (IS_IPAD)
-        {
-            tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-
-            [appDelegate showSettings];
-        }
-        else
-            [self.navigationDelegate showSettings];*/
-        UIView * view = [self.scrollPhotos viewWithTag:currentPage + 1];
-        CGPoint point = [recognizer locationInView:view];
-        
-        if (point.y > view.frame.size.height/ 3 && point.y < 2*view.frame.size.height/ 3)
-        {
-            int index;
-            
-            if (point.x < view.frame.size.width/2 - view.frame.size.height/6)
-                index = 2; // Changed from 1 to 2 by S.Z. request, 28.02.13
-            else
-                if (point.x < view.frame.size.width/2 + view.frame.size.height/6)
-                    index = 1; // Changed from 2 to 1 by S.Z. request, 28.02.13
-                else
-                    index = 0;
-            
-            tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-            
-            BOOL isMetro = [appDelegate.navigationViewController isMetroMode];
-            
-            if (isMetro)
-            {
-                [appDelegate.mainViewController showPurchases:index];
-            } else
-            {
-                [appDelegate.glViewController showPurchases:index];
-            }
-        }
-    } else
-        [self.navigationDelegate showReaderWithItems:self.currentPlaces activePage:[self.currentPlaces indexOfObject:place]];
+    [self.navigationDelegate showReaderWithItems:self.currentPlaces activePage:[self.currentPlaces indexOfObject:place]];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {

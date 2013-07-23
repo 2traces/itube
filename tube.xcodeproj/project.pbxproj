@@ -2726,6 +2726,10 @@
 		FAC3984916FCD07400A6CC0C /* Slide3DView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DView.m */; };
 		FAC3984A16FCD07400A6CC0C /* Slide3DView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DView.m */; };
 		FAC3984B16FCD07400A6CC0C /* Slide3DView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DView.m */; };
+		FAC9066C179E6E1B00A31A7D /* UnlockerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC9066B179E6E1B00A31A7D /* UnlockerView.m */; };
+		FAC9066D179E6E1B00A31A7D /* UnlockerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC9066B179E6E1B00A31A7D /* UnlockerView.m */; };
+		FAC9066E179E6E1B00A31A7D /* UnlockerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC9066B179E6E1B00A31A7D /* UnlockerView.m */; };
+		FAC9066F179E6E1B00A31A7D /* UnlockerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC9066B179E6E1B00A31A7D /* UnlockerView.m */; };
 		FAD133461757DAB4004859C1 /* citymap-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD1333C1757DAB4004859C1 /* citymap-button@2x.png */; };
 		FAD133471757DAB4004859C1 /* citymap-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD1333C1757DAB4004859C1 /* citymap-button@2x.png */; };
 		FAD133481757DAB4004859C1 /* citymap-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD1333C1757DAB4004859C1 /* citymap-button@2x.png */; };
@@ -3640,6 +3644,8 @@
 		FAC35EBA1759D39C00432679 /* ZonesButtonConf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZonesButtonConf.h; sourceTree = "<group>"; };
 		FAC3984616FCD07400A6CC0C /* Slide3DView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slide3DView.h; sourceTree = "<group>"; };
 		FAC3984716FCD07400A6CC0C /* Slide3DView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Slide3DView.m; sourceTree = "<group>"; };
+		FAC9066A179E6E1B00A31A7D /* UnlockerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnlockerView.h; sourceTree = "<group>"; };
+		FAC9066B179E6E1B00A31A7D /* UnlockerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnlockerView.m; sourceTree = "<group>"; };
 		FAD1333C1757DAB4004859C1 /* citymap-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "citymap-button@2x.png"; sourceTree = "<group>"; };
 		FAD1333D1757DAB4004859C1 /* like-button-01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-button-01@2x.png"; sourceTree = "<group>"; };
 		FAD1333E1757DAB4004859C1 /* metro-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metro-button.png"; sourceTree = "<group>"; };
@@ -4126,6 +4132,8 @@
 				FAC35EBA1759D39C00432679 /* ZonesButtonConf.h */,
 				FA38296B1774BE2A003BCCE0 /* LCUtil.h */,
 				FA38296C1774BE2A003BCCE0 /* LCUtil.m */,
+				FAC9066A179E6E1B00A31A7D /* UnlockerView.h */,
+				FAC9066B179E6E1B00A31A7D /* UnlockerView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -7454,6 +7462,7 @@
 				F75DAC15178E6CD700677F13 /* WeatherHelper.m in Sources */,
 				F75DAC1B178E779600677F13 /* WeatherXMLParser.m in Sources */,
 				F734DB7E178FF57A009E08F7 /* WeatherView.m in Sources */,
+				FAC9066C179E6E1B00A31A7D /* UnlockerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7571,6 +7580,7 @@
 				F75DAC16178E6CD700677F13 /* WeatherHelper.m in Sources */,
 				F75DAC1C178E779600677F13 /* WeatherXMLParser.m in Sources */,
 				F734DB7F178FF57A009E08F7 /* WeatherView.m in Sources */,
+				FAC9066D179E6E1B00A31A7D /* UnlockerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7688,6 +7698,7 @@
 				F75DAC17178E6CD700677F13 /* WeatherHelper.m in Sources */,
 				F75DAC1D178E779600677F13 /* WeatherXMLParser.m in Sources */,
 				F734DB80178FF57A009E08F7 /* WeatherView.m in Sources */,
+				FAC9066E179E6E1B00A31A7D /* UnlockerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7805,6 +7816,7 @@
 				F75DAC18178E6CD700677F13 /* WeatherHelper.m in Sources */,
 				F75DAC1E178E779600677F13 /* WeatherXMLParser.m in Sources */,
 				F734DB81178FF57A009E08F7 /* WeatherView.m in Sources */,
+				FAC9066F179E6E1B00A31A7D /* UnlockerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

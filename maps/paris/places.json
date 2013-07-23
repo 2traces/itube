@@ -228,13 +228,12 @@
       ]
     },
     {
-            "name":"Restaurant Benoit",
+            "name":"Unlock content",
             "long":48.858438,
             "lat":2.350009,
             "index":1,
             "accessLevel":0,
-            "media_type":"html_gallery",
-            "filename":"html/rest1.html",
+            "media_type":"unlocker",
             "categories":[ 2 ]
     },
     {
