@@ -17,8 +17,8 @@
 @synthesize tapGR = _tapGR;
 
 #define BUTTON_FRAME_IPAD CGRectMake(210, 650, 360, 60);
-#define BUTTON_FRAME_IPHONE CGRectMake(200, 600, 360, 60);
-#define BUTTON_FRAME_IPHONE5 CGRectMake(200, 600, 360, 60);
+#define BUTTON_FRAME_IPHONE CGRectMake(29, 240, 262, 43);
+#define BUTTON_FRAME_IPHONE5 CGRectMake(29, 322, 262, 43);
 
 - (id)initWithFrame:(CGRect)frame withAppDelegate:(tubeAppDelegate *)tubeAppDelegate
 {
@@ -47,7 +47,7 @@
                 buttonFrame = BUTTON_FRAME_IPHONE5;
             }else{
                 bgImageName = @"unlocker_bg-iphone.png";
-                buttonFrame = BUTTON_FRAME_IPHONE5;
+                buttonFrame = BUTTON_FRAME_IPHONE;
             }
         }
         self.bg.image = [UIImage imageNamed:bgImageName];
