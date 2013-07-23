@@ -228,14 +228,18 @@
       ]
     },
     {
-            "name":"Restaurant Benoit",
-            "long":48.858438,
-            "lat":2.350009,
-            "index":1,
-            "accessLevel":0,
-            "media_type":"html_gallery",
-            "filename":"html/rest1.html",
-            "categories":[ 2 ]
+      "name":"Musée du Louvre",
+      "long":48.86057,
+      "lat":2.337625,
+      "index":1,
+      "accessLevel":0,
+      "media_type":"html_with_video",
+      "filename":"html/louvre.html",
+      "video_preview_path":"html/hidden-cities_files/louvre.png",
+      "video_path":"html/hidden-cities_files/louvre.mp4",
+      "categories":[
+        2
+      ]
     },
     {
       "name":"Musée du Louvre",
