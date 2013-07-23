@@ -23,12 +23,16 @@
         self.appDelegate = tubeAppDelegate;
         self.backgroundColor = [ColorFactory lightGrayColor];
         self.bg = [[UIImageView alloc] initWithFrame:frame];
-        self.bg.contentMode = UIViewContentModeScaleAspectFit;
+        self.bg.contentMode =  UIViewContentModeScaleAspectFill;
         [self.bg setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         if (IS_IPAD) {
             self.bg.image = [UIImage imageNamed:@"unlocker_bg-ipad.jpg"];
         }else{
-            self.bg.image = [UIImage imageNamed:@"unlocker_bg.png"];
+            if([tubeAppDelegate isIPHONE5]){
+                self.bg.image = [UIImage imageNamed:@"unlocker_bg-iphone5.png"];
+            }else{
+                self.bg.image = [UIImage imageNamed:@"unlocker_bg-iphone.png"];
+            }
         }
         self.bg.userInteractionEnabled = YES;
         self.tapGR = [[UITapGestureRecognizer alloc] init];
