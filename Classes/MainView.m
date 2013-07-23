@@ -568,6 +568,7 @@ NSInteger const toolbarWidth=320;
     
     [containerView setContentOffset:CGPointMake(st.pos.x * zoom - containerView.bounds.size.width*0.5f, st.pos.y * zoom - containerView.bounds.size.height*0.5f ) animated:YES];
 
+//    [mapView sendMapMovedNotification];
 }
 
 -(CGPoint)getCenterMapGeoCoordinates
