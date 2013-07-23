@@ -132,7 +132,7 @@
         NSLog(@"%f radians", direction);
         //[self.directionImage
         self.directionImage.transform = CGAffineTransformMakeRotation(0);
-        self.directionImage.transform = CGAffineTransformMakeRotation(direction);
+        self.directionImage.transform = CGAffineTransformMakeRotation(direction+M_PI);
     }
     self.btScrollLeft.hidden = currentPage == 0;
     self.btScrollRight.hidden = (currentPage + 1) == [self.currentPhotos count];
@@ -164,7 +164,7 @@
         CGFloat direction = [appd.glViewController radialOffsetToPoint:placePosition];
 
         self.directionImage.transform = CGAffineTransformMakeRotation(0);
-        self.directionImage.transform = CGAffineTransformMakeRotation(direction);
+        self.directionImage.transform = CGAffineTransformMakeRotation(direction+M_PI);
     }
 
 }
