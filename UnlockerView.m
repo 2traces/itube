@@ -16,6 +16,10 @@
 @synthesize appDelegate = _appDelegate;
 @synthesize tapGR = _tapGR;
 
+#define BUTTON_FRAME_IPAD CGRectMake(210, 650, 360, 60);
+#define BUTTON_FRAME_IPHONE CGRectMake(200, 600, 360, 60);
+#define BUTTON_FRAME_IPHONE5 CGRectMake(200, 600, 360, 60);
+
 - (id)initWithFrame:(CGRect)frame withAppDelegate:(tubeAppDelegate *)tubeAppDelegate
 {
     self = [super initWithFrame:frame];
@@ -25,20 +29,36 @@
         self.bg = [[UIImageView alloc] initWithFrame:frame];
         self.bg.contentMode =  UIViewContentModeScaleAspectFill;
         [self.bg setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+        CGRect buttonFrame;
+        NSString *bgImageName;
+        NSString *buttonBgPressedName;
+        NSString *buttonBgName;
+        NSString *buttonTitle = @"Unlock Full Guide";//TODO: localize that
         if (IS_IPAD) {
-            self.bg.image = [UIImage imageNamed:@"unlocker_bg-ipad.jpg"];
+            bgImageName = @"unlocker_bg-ipad.jpg";
+            buttonFrame = BUTTON_FRAME_IPAD;
+            buttonBgName = @"unlocker_button_ipad_unpressed";
+            buttonBgPressedName = @"unlocker_button_ipad_pressed";
         }else{
+            buttonBgName = @"unlocker_button_unpressed";
+            buttonBgPressedName = @"unlocker_button_pressed";
             if([tubeAppDelegate isIPHONE5]){
-                self.bg.image = [UIImage imageNamed:@"unlocker_bg-iphone5.png"];
+                bgImageName = @"unlocker_bg-iphone5.png";
+                buttonFrame = BUTTON_FRAME_IPHONE5;
             }else{
-                self.bg.image = [UIImage imageNamed:@"unlocker_bg-iphone.png"];
+                bgImageName = @"unlocker_bg-iphone.png";
+                buttonFrame = BUTTON_FRAME_IPHONE5;
             }
         }
+        self.bg.image = [UIImage imageNamed:bgImageName];
         self.bg.userInteractionEnabled = YES;
         self.tapGR = [[UITapGestureRecognizer alloc] init];
         [self.bg addGestureRecognizer:self.tapGR];
         [self addSubview:self.bg];
-        self.showSettingsButton = [[UIButton alloc] initWithFrame:frame];
+        self.showSettingsButton = [[UIButton alloc] initWithFrame:buttonFrame];
+        [self.showSettingsButton setBackgroundImage:[UIImage imageNamed:buttonBgName] forState:UIControlStateNormal];
+        [self.showSettingsButton setTitle:buttonTitle forState:UIControlStateNormal];
+        [self.showSettingsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self addSubview:self.showSettingsButton];
     }
     return self;
