@@ -3373,9 +3373,6 @@
 		BC6890CD157611C4002232E6 /* it_stationsstation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = it_stationsstation.png; path = images/it_stationsstation.png; sourceTree = "<group>"; };
 		BC6890CE157611C4002232E6 /* it_stationsstation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "it_stationsstation@2x.png"; path = "images/it_stationsstation@2x.png"; sourceTree = "<group>"; };
 		BC6890EC15761C58002232E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
-		BC6890EF15761C62002232E6 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
-		BC6890F015761C64002232E6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
-		BC6890F115761C66002232E6 /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = it.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
 		BC6C097915D8FE2F00EAA6D2 /* RightiPadPathViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RightiPadPathViewController.xib; path = Resources/RightiPadPathViewController.xib; sourceTree = "<group>"; };
 		BC6FEB6E14E252530066D6E6 /* bottomtabbarstation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bottomtabbarstation.png; path = images/bottomtabbarstation.png; sourceTree = "<group>"; };
 		BC6FEB6F14E252530066D6E6 /* bottomtabbarstation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bottomtabbarstation@2x.png"; path = "images/bottomtabbarstation@2x.png"; sourceTree = "<group>"; };
@@ -7920,9 +7917,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				BC6890EC15761C58002232E6 /* en */,
-				BC6890EF15761C62002232E6 /* de */,
-				BC6890F015761C64002232E6 /* fr */,
-				BC6890F115761C66002232E6 /* it */,
 			);
 			name = SettingsViewController.xib;
 			path = Resources;

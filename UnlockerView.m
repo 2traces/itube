@@ -61,9 +61,14 @@
         [self.showSettingsButton setBackgroundImage:[UIImage imageNamed:buttonBgPressedName] forState:UIControlStateHighlighted];
         [self.showSettingsButton setTitle:buttonTitle forState:UIControlStateNormal];
         [self.showSettingsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.showSettingsButton addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.showSettingsButton];
     }
     return self;
+}
+
+- (void)showSettings{
+    [self.appDelegate showSettingsCrossDevices];
 }
 
 /*
