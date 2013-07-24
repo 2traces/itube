@@ -31,6 +31,7 @@
 @synthesize maps;
 @synthesize textLabel1,textLabel2,textLabel3,textLabel4;
 @synthesize scrollView;
+@synthesize imagesScrollView;
 @synthesize selectedPath;
 @synthesize hud = _hud;
 @synthesize delegate;
@@ -186,9 +187,35 @@
             NSLog(@"Error reading JSON: %@, %@", [error localizedFailureReason], [error localizedDescription]);
         }
         NSArray *imagePaths = [json objectForKey:@"images"];
+        CGFloat parentWidth;
+        CGFloat imageHeight;
+        CGFloat yOffset = 0;
+        NSLog(@"width: %f", parentWidth);
+        if (IS_IPAD) {
+            parentWidth = 540;
+            imageHeight = 1496 * parentWidth / 1536;
+        }else{
+            parentWidth = [[UIScreen mainScreen] bounds].size.width;
+            if(appdelegate.isIPHONE5){
+                imageHeight = 393;
+            }else{
+                imageHeight = 393;
+                yOffset = -70;
+            }
+        }
+        self.imagesScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, yOffset, parentWidth, imageHeight)];
+        [self.view addSubview:self.imagesScrollView];
+        self.imagesScrollView.pagingEnabled = YES;
+        self.imagesScrollView.contentSize = CGSizeMake(parentWidth * imagePaths.count, imageHeight);
         if(imagePaths){
-            for (NSString *imagePath in imagePaths) {
-                NSLog(@"IMAGE_PATH: %@", [LCUtil getLocalizedPhotoPathWithMapDirectory:appdelegate.mapDirectoryPath withPath:imagePath iphone5:appdelegate.isIPHONE5]);
+            for (int i = 0; i < imagePaths.count; i++) {
+                NSString *imagePath = [imagePaths objectAtIndex:i];
+                NSString *localizedPath = [LCUtil getLocalizedPhotoPathWithMapDirectory:appdelegate.mapDirectoryPath withPath:imagePath iphone5:appdelegate.isIPHONE5];
+                CGFloat offset = i * parentWidth;
+                UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(offset, 0, parentWidth, imageHeight)];
+                UIImage *image = [UIImage imageWithContentsOfFile:localizedPath];
+                imageView.image = image;
+                [self.imagesScrollView addSubview:imageView];
             }
         }
     }

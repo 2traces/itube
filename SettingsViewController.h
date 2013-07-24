@@ -32,6 +32,7 @@
     
     IBOutlet UIButton *updateButton;
     IBOutlet UIScrollView *scrollView;
+    IBOutlet UIScrollView *imagesScrollView;
     IBOutlet UIImageView *updateImageView;
     
     NSArray *maps;
@@ -66,6 +67,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *textLabel3;
 @property (nonatomic, retain) IBOutlet UILabel *textLabel4;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) IBOutlet UIScrollView *imagesScrollView;
 @property (nonatomic, retain) NSIndexPath *selectedPath;
 @property (retain) MBProgressHUD *hud;
 @property (assign) int purchaseIndex;
