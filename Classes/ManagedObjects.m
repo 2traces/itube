@@ -521,7 +521,6 @@ static MHelper * _sharedHelper;
     NSMutableArray *filteredItems = [[NSMutableArray alloc] initWithCapacity:[fetchedItems count]];
     for (MPlace *place in fetchedItems) {
         if ([place.accessLevel integerValue] <= accessLevel) {
-            NSLog(@"accessLevel %i, %i", [place.hideLevel integerValue], accessLevel);
             if ([place.hideLevel integerValue] > accessLevel) {
                 [filteredItems addObject:place];
             }
