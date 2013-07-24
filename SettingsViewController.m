@@ -18,6 +18,7 @@
 #import "SSZipArchive.h"
 #import "SSTheme.h"
 #import "CustomPhotoViewerViewController.h"
+#import "LCUtil.h"
 
 #define plist_ 1
 #define zip_  2
@@ -61,6 +62,7 @@
         self.feedback = [NSArray arrayWithObjects:NSLocalizedString(@"FeedbackRate",@"FeedbackRate"),NSLocalizedString(@"FeedbackMail",@"FeedbackMail"),NSLocalizedString(@"FeedbackTell",@"FeedbackTell"), nil];
         
         isFirstTime=YES;
+        [self loadImages];
     }
     return self;
 }
@@ -171,6 +173,25 @@
     
     [langTableView reloadData];
     [self adjustViewHeight];
+}
+
+- (void) loadImages{
+    tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSString *configPath = [NSString stringWithFormat:@"%@/settings_images.json", appdelegate.mapDirectoryPath];
+    NSData *jsonData = [NSData dataWithContentsOfFile:configPath];
+    if (jsonData) {
+        NSError *error = nil;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+        if (error) {
+            NSLog(@"Error reading JSON: %@, %@", [error localizedFailureReason], [error localizedDescription]);
+        }
+        NSArray *imagePaths = [json objectForKey:@"images"];
+        if(imagePaths){
+            for (NSString *imagePath in imagePaths) {
+                NSLog(@"IMAGE_PATH: %@", [LCUtil getLocalizedPhotoPathWithMapDirectory:appdelegate.mapDirectoryPath withPath:imagePath iphone5:appdelegate.isIPHONE5]);
+            }
+        }
+    }
 }
 
 - (void)viewDidLoad
