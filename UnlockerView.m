@@ -55,8 +55,10 @@
         self.tapGR = [[UITapGestureRecognizer alloc] init];
         [self.bg addGestureRecognizer:self.tapGR];
         [self addSubview:self.bg];
+        
         self.showSettingsButton = [[UIButton alloc] initWithFrame:buttonFrame];
         [self.showSettingsButton setBackgroundImage:[UIImage imageNamed:buttonBgName] forState:UIControlStateNormal];
+        [self.showSettingsButton setBackgroundImage:[UIImage imageNamed:buttonBgPressedName] forState:UIControlStateHighlighted];
         [self.showSettingsButton setTitle:buttonTitle forState:UIControlStateNormal];
         [self.showSettingsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self addSubview:self.showSettingsButton];
