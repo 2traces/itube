@@ -2722,6 +2722,54 @@
 		FA4BA1E0171484BA0066BA71 /* IndexedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA1DE171484BA0066BA71 /* IndexedImageView.m */; };
 		FA4BA1E1171484BA0066BA71 /* IndexedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA1DE171484BA0066BA71 /* IndexedImageView.m */; };
 		FA4BA1E2171484BA0066BA71 /* IndexedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA1DE171484BA0066BA71 /* IndexedImageView.m */; };
+		FA82B46A17A174D6009F76BA /* SettingsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA82B46917A174D6009F76BA /* SettingsViewController_iPad.xib */; };
+		FA82B46B17A174D6009F76BA /* SettingsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA82B46917A174D6009F76BA /* SettingsViewController_iPad.xib */; };
+		FA82B46C17A174D6009F76BA /* SettingsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA82B46917A174D6009F76BA /* SettingsViewController_iPad.xib */; };
+		FA82B46D17A174D6009F76BA /* SettingsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA82B46917A174D6009F76BA /* SettingsViewController_iPad.xib */; };
+		FA82B47617A18E09009F76BA /* ipad_button_nonpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B46E17A18E09009F76BA /* ipad_button_nonpressed.png */; };
+		FA82B47717A18E0A009F76BA /* ipad_button_nonpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B46E17A18E09009F76BA /* ipad_button_nonpressed.png */; };
+		FA82B47817A18E0A009F76BA /* ipad_button_nonpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B46E17A18E09009F76BA /* ipad_button_nonpressed.png */; };
+		FA82B47917A18E0A009F76BA /* ipad_button_nonpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B46E17A18E09009F76BA /* ipad_button_nonpressed.png */; };
+		FA82B47A17A18E0A009F76BA /* ipad_button_nonpressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B46F17A18E09009F76BA /* ipad_button_nonpressed@2x.png */; };
+		FA82B47B17A18E0A009F76BA /* ipad_button_nonpressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B46F17A18E09009F76BA /* ipad_button_nonpressed@2x.png */; };
+		FA82B47C17A18E0A009F76BA /* ipad_button_nonpressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B46F17A18E09009F76BA /* ipad_button_nonpressed@2x.png */; };
+		FA82B47D17A18E0A009F76BA /* ipad_button_nonpressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B46F17A18E09009F76BA /* ipad_button_nonpressed@2x.png */; };
+		FA82B47E17A18E0A009F76BA /* ipad_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47017A18E09009F76BA /* ipad_button_pressed.png */; };
+		FA82B47F17A18E0A009F76BA /* ipad_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47017A18E09009F76BA /* ipad_button_pressed.png */; };
+		FA82B48017A18E0A009F76BA /* ipad_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47017A18E09009F76BA /* ipad_button_pressed.png */; };
+		FA82B48117A18E0A009F76BA /* ipad_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47017A18E09009F76BA /* ipad_button_pressed.png */; };
+		FA82B48217A18E0A009F76BA /* ipad_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47117A18E09009F76BA /* ipad_button_pressed@2x.png */; };
+		FA82B48317A18E0A009F76BA /* ipad_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47117A18E09009F76BA /* ipad_button_pressed@2x.png */; };
+		FA82B48417A18E0A009F76BA /* ipad_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47117A18E09009F76BA /* ipad_button_pressed@2x.png */; };
+		FA82B48517A18E0A009F76BA /* ipad_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47117A18E09009F76BA /* ipad_button_pressed@2x.png */; };
+		FA82B48617A18E0A009F76BA /* X-symbol.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47217A18E09009F76BA /* X-symbol.png */; };
+		FA82B48717A18E0A009F76BA /* X-symbol.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47217A18E09009F76BA /* X-symbol.png */; };
+		FA82B48817A18E0A009F76BA /* X-symbol.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47217A18E09009F76BA /* X-symbol.png */; };
+		FA82B48917A18E0A009F76BA /* X-symbol.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47217A18E09009F76BA /* X-symbol.png */; };
+		FA82B48A17A18E0A009F76BA /* reload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47317A18E09009F76BA /* reload@2x.png */; };
+		FA82B48B17A18E0A009F76BA /* reload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47317A18E09009F76BA /* reload@2x.png */; };
+		FA82B48C17A18E0A009F76BA /* reload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47317A18E09009F76BA /* reload@2x.png */; };
+		FA82B48D17A18E0A009F76BA /* reload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47317A18E09009F76BA /* reload@2x.png */; };
+		FA82B48E17A18E0A009F76BA /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47417A18E09009F76BA /* reload.png */; };
+		FA82B48F17A18E0A009F76BA /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47417A18E09009F76BA /* reload.png */; };
+		FA82B49017A18E0A009F76BA /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47417A18E09009F76BA /* reload.png */; };
+		FA82B49117A18E0A009F76BA /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47417A18E09009F76BA /* reload.png */; };
+		FA82B49217A18E0A009F76BA /* X-symbol@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47517A18E09009F76BA /* X-symbol@2x.png */; };
+		FA82B49317A18E0A009F76BA /* X-symbol@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47517A18E09009F76BA /* X-symbol@2x.png */; };
+		FA82B49417A18E0A009F76BA /* X-symbol@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47517A18E09009F76BA /* X-symbol@2x.png */; };
+		FA82B49517A18E0A009F76BA /* X-symbol@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47517A18E09009F76BA /* X-symbol@2x.png */; };
+		FA82B49817A19060009F76BA /* iphone_adscreen_button_notpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B49617A19060009F76BA /* iphone_adscreen_button_notpressed.png */; };
+		FA82B49917A19060009F76BA /* iphone_adscreen_button_notpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B49617A19060009F76BA /* iphone_adscreen_button_notpressed.png */; };
+		FA82B49A17A19060009F76BA /* iphone_adscreen_button_notpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B49617A19060009F76BA /* iphone_adscreen_button_notpressed.png */; };
+		FA82B49B17A19060009F76BA /* iphone_adscreen_button_notpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B49617A19060009F76BA /* iphone_adscreen_button_notpressed.png */; };
+		FA82B49C17A19060009F76BA /* iphone_adscreen_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B49717A19060009F76BA /* iphone_adscreen_button_pressed.png */; };
+		FA82B49D17A19060009F76BA /* iphone_adscreen_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B49717A19060009F76BA /* iphone_adscreen_button_pressed.png */; };
+		FA82B49E17A19060009F76BA /* iphone_adscreen_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B49717A19060009F76BA /* iphone_adscreen_button_pressed.png */; };
+		FA82B49F17A19060009F76BA /* iphone_adscreen_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B49717A19060009F76BA /* iphone_adscreen_button_pressed.png */; };
+		FA82B4A117A1926B009F76BA /* iphone_adscreen_restore.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B4A017A1926B009F76BA /* iphone_adscreen_restore.png */; };
+		FA82B4A217A1926B009F76BA /* iphone_adscreen_restore.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B4A017A1926B009F76BA /* iphone_adscreen_restore.png */; };
+		FA82B4A317A1926B009F76BA /* iphone_adscreen_restore.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B4A017A1926B009F76BA /* iphone_adscreen_restore.png */; };
+		FA82B4A417A1926B009F76BA /* iphone_adscreen_restore.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B4A017A1926B009F76BA /* iphone_adscreen_restore.png */; };
 		FAC3984816FCD07400A6CC0C /* Slide3DView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DView.m */; };
 		FAC3984916FCD07400A6CC0C /* Slide3DView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DView.m */; };
 		FAC3984A16FCD07400A6CC0C /* Slide3DView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3984716FCD07400A6CC0C /* Slide3DView.m */; };
@@ -3666,6 +3714,18 @@
 		FA4BA1D8171477C30066BA71 /* ColorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorFactory.m; sourceTree = "<group>"; };
 		FA4BA1DD171484BA0066BA71 /* IndexedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexedImageView.h; sourceTree = "<group>"; };
 		FA4BA1DE171484BA0066BA71 /* IndexedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexedImageView.m; sourceTree = "<group>"; };
+		FA82B46917A174D6009F76BA /* SettingsViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController_iPad.xib; sourceTree = "<group>"; };
+		FA82B46E17A18E09009F76BA /* ipad_button_nonpressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad_button_nonpressed.png; sourceTree = "<group>"; };
+		FA82B46F17A18E09009F76BA /* ipad_button_nonpressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipad_button_nonpressed@2x.png"; sourceTree = "<group>"; };
+		FA82B47017A18E09009F76BA /* ipad_button_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad_button_pressed.png; sourceTree = "<group>"; };
+		FA82B47117A18E09009F76BA /* ipad_button_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipad_button_pressed@2x.png"; sourceTree = "<group>"; };
+		FA82B47217A18E09009F76BA /* X-symbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "X-symbol.png"; sourceTree = "<group>"; };
+		FA82B47317A18E09009F76BA /* reload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reload@2x.png"; sourceTree = "<group>"; };
+		FA82B47417A18E09009F76BA /* reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reload.png; sourceTree = "<group>"; };
+		FA82B47517A18E09009F76BA /* X-symbol@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "X-symbol@2x.png"; sourceTree = "<group>"; };
+		FA82B49617A19060009F76BA /* iphone_adscreen_button_notpressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone_adscreen_button_notpressed.png; sourceTree = "<group>"; };
+		FA82B49717A19060009F76BA /* iphone_adscreen_button_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone_adscreen_button_pressed.png; sourceTree = "<group>"; };
+		FA82B4A017A1926B009F76BA /* iphone_adscreen_restore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone_adscreen_restore.png; sourceTree = "<group>"; };
 		FAC35EBA1759D39C00432679 /* ZonesButtonConf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZonesButtonConf.h; sourceTree = "<group>"; };
 		FAC3984616FCD07400A6CC0C /* Slide3DView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slide3DView.h; sourceTree = "<group>"; };
 		FAC3984716FCD07400A6CC0C /* Slide3DView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Slide3DView.m; sourceTree = "<group>"; };
@@ -4316,6 +4376,7 @@
 				BC876AC114DFAF23008AC06C /* StationListCell.xib */,
 				BC876AC214DFAF23008AC06C /* StationListViewController.xib */,
 				FAF497131705A2490054C0D2 /* HtmlWithVideoView.xib */,
+				FA82B46917A174D6009F76BA /* SettingsViewController_iPad.xib */,
 			);
 			name = NIBs;
 			sourceTree = "<group>";
@@ -4438,6 +4499,17 @@
 				FAC90673179EA06C00A31A7D /* unlocker_button_pressed.png */,
 				FAC90674179EA07200A31A7D /* unlocker_button_unpressed.png */,
 				FAC90689179EA0AA00A31A7D /* unlocker_bg-ipad.jpg */,
+				FA82B46E17A18E09009F76BA /* ipad_button_nonpressed.png */,
+				FA82B46F17A18E09009F76BA /* ipad_button_nonpressed@2x.png */,
+				FA82B47017A18E09009F76BA /* ipad_button_pressed.png */,
+				FA82B47117A18E09009F76BA /* ipad_button_pressed@2x.png */,
+				FA82B47317A18E09009F76BA /* reload@2x.png */,
+				FA82B47417A18E09009F76BA /* reload.png */,
+				FA82B47217A18E09009F76BA /* X-symbol.png */,
+				FA82B47517A18E09009F76BA /* X-symbol@2x.png */,
+				FA82B49617A19060009F76BA /* iphone_adscreen_button_notpressed.png */,
+				FA82B49717A19060009F76BA /* iphone_adscreen_button_pressed.png */,
+				FA82B4A017A1926B009F76BA /* iphone_adscreen_restore.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -5671,6 +5743,18 @@
 				FAC9068A179EA0AC00A31A7D /* unlocker_bg-ipad.jpg in Resources */,
 				FAC90690179EAD0900A31A7D /* unlocker_bg-iphone.png in Resources */,
 				FAC90694179EAD0900A31A7D /* unlocker_bg-iphone5.png in Resources */,
+				FA82B46A17A174D6009F76BA /* SettingsViewController_iPad.xib in Resources */,
+				FA82B47617A18E09009F76BA /* ipad_button_nonpressed.png in Resources */,
+				FA82B47A17A18E0A009F76BA /* ipad_button_nonpressed@2x.png in Resources */,
+				FA82B47E17A18E0A009F76BA /* ipad_button_pressed.png in Resources */,
+				FA82B48217A18E0A009F76BA /* ipad_button_pressed@2x.png in Resources */,
+				FA82B48617A18E0A009F76BA /* X-symbol.png in Resources */,
+				FA82B48A17A18E0A009F76BA /* reload@2x.png in Resources */,
+				FA82B48E17A18E0A009F76BA /* reload.png in Resources */,
+				FA82B49217A18E0A009F76BA /* X-symbol@2x.png in Resources */,
+				FA82B49817A19060009F76BA /* iphone_adscreen_button_notpressed.png in Resources */,
+				FA82B49C17A19060009F76BA /* iphone_adscreen_button_pressed.png in Resources */,
+				FA82B4A117A1926B009F76BA /* iphone_adscreen_restore.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6253,6 +6337,18 @@
 				FAC9068B179EA0AC00A31A7D /* unlocker_bg-ipad.jpg in Resources */,
 				FAC90691179EAD0900A31A7D /* unlocker_bg-iphone.png in Resources */,
 				FAC90695179EAD0900A31A7D /* unlocker_bg-iphone5.png in Resources */,
+				FA82B46B17A174D6009F76BA /* SettingsViewController_iPad.xib in Resources */,
+				FA82B47717A18E0A009F76BA /* ipad_button_nonpressed.png in Resources */,
+				FA82B47B17A18E0A009F76BA /* ipad_button_nonpressed@2x.png in Resources */,
+				FA82B47F17A18E0A009F76BA /* ipad_button_pressed.png in Resources */,
+				FA82B48317A18E0A009F76BA /* ipad_button_pressed@2x.png in Resources */,
+				FA82B48717A18E0A009F76BA /* X-symbol.png in Resources */,
+				FA82B48B17A18E0A009F76BA /* reload@2x.png in Resources */,
+				FA82B48F17A18E0A009F76BA /* reload.png in Resources */,
+				FA82B49317A18E0A009F76BA /* X-symbol@2x.png in Resources */,
+				FA82B49917A19060009F76BA /* iphone_adscreen_button_notpressed.png in Resources */,
+				FA82B49D17A19060009F76BA /* iphone_adscreen_button_pressed.png in Resources */,
+				FA82B4A217A1926B009F76BA /* iphone_adscreen_restore.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6828,6 +6924,18 @@
 				FAC9068C179EA0AC00A31A7D /* unlocker_bg-ipad.jpg in Resources */,
 				FAC90692179EAD0900A31A7D /* unlocker_bg-iphone.png in Resources */,
 				FAC90696179EAD0900A31A7D /* unlocker_bg-iphone5.png in Resources */,
+				FA82B46C17A174D6009F76BA /* SettingsViewController_iPad.xib in Resources */,
+				FA82B47817A18E0A009F76BA /* ipad_button_nonpressed.png in Resources */,
+				FA82B47C17A18E0A009F76BA /* ipad_button_nonpressed@2x.png in Resources */,
+				FA82B48017A18E0A009F76BA /* ipad_button_pressed.png in Resources */,
+				FA82B48417A18E0A009F76BA /* ipad_button_pressed@2x.png in Resources */,
+				FA82B48817A18E0A009F76BA /* X-symbol.png in Resources */,
+				FA82B48C17A18E0A009F76BA /* reload@2x.png in Resources */,
+				FA82B49017A18E0A009F76BA /* reload.png in Resources */,
+				FA82B49417A18E0A009F76BA /* X-symbol@2x.png in Resources */,
+				FA82B49A17A19060009F76BA /* iphone_adscreen_button_notpressed.png in Resources */,
+				FA82B49E17A19060009F76BA /* iphone_adscreen_button_pressed.png in Resources */,
+				FA82B4A317A1926B009F76BA /* iphone_adscreen_restore.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7406,6 +7514,18 @@
 				FAC9068D179EA0AC00A31A7D /* unlocker_bg-ipad.jpg in Resources */,
 				FAC90693179EAD0900A31A7D /* unlocker_bg-iphone.png in Resources */,
 				FAC90697179EAD0900A31A7D /* unlocker_bg-iphone5.png in Resources */,
+				FA82B46D17A174D6009F76BA /* SettingsViewController_iPad.xib in Resources */,
+				FA82B47917A18E0A009F76BA /* ipad_button_nonpressed.png in Resources */,
+				FA82B47D17A18E0A009F76BA /* ipad_button_nonpressed@2x.png in Resources */,
+				FA82B48117A18E0A009F76BA /* ipad_button_pressed.png in Resources */,
+				FA82B48517A18E0A009F76BA /* ipad_button_pressed@2x.png in Resources */,
+				FA82B48917A18E0A009F76BA /* X-symbol.png in Resources */,
+				FA82B48D17A18E0A009F76BA /* reload@2x.png in Resources */,
+				FA82B49117A18E0A009F76BA /* reload.png in Resources */,
+				FA82B49517A18E0A009F76BA /* X-symbol@2x.png in Resources */,
+				FA82B49B17A19060009F76BA /* iphone_adscreen_button_notpressed.png in Resources */,
+				FA82B49F17A19060009F76BA /* iphone_adscreen_button_pressed.png in Resources */,
+				FA82B4A417A1926B009F76BA /* iphone_adscreen_restore.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

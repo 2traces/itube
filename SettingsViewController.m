@@ -55,7 +55,6 @@
         self.feedback = [NSArray arrayWithObjects:NSLocalizedString(@"FeedbackRate",@"FeedbackRate"),NSLocalizedString(@"FeedbackMail",@"FeedbackMail"),NSLocalizedString(@"FeedbackTell",@"FeedbackTell"), nil];
         
         isFirstTime=YES;
-        [self loadImages];
     }
     return self;
 }
@@ -205,7 +204,6 @@
         CGFloat parentWidth = [[UIScreen mainScreen] bounds].size.width;
         CGFloat imageHeight;
         CGFloat yOffset = 0;
-        NSLog(@"width: %f", parentWidth);
         if (IS_IPAD) {
             imageHeight = 1496 * parentWidth / 1536;
         }else{
@@ -216,16 +214,15 @@
                 yOffset = -70;
             }
         }
-        self.imagesScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, yOffset, parentWidth, imageHeight)];
-        [self.view addSubview:self.imagesScrollView];
         self.imagesScrollView.pagingEnabled = YES;
+        self.imagesScrollView.frame = CGRectMake(0, yOffset, parentWidth, imageHeight);
         self.imagesScrollView.contentSize = CGSizeMake(parentWidth * imagePaths.count, imageHeight);
         if(imagePaths){
             for (int i = 0; i < imagePaths.count; i++) {
                 NSString *imagePath = [imagePaths objectAtIndex:i];
                 NSString *localizedPath = [LCUtil getLocalizedPhotoPathWithMapDirectory:appdelegate.mapDirectoryPath withPath:imagePath iphone5:appdelegate.isIPHONE5];
-                CGFloat offset = i * parentWidth;
-                UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(offset, 0, parentWidth, imageHeight)];
+                CGFloat xOffset = i * parentWidth;
+                UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(xOffset, 0, parentWidth, imageHeight)];
                 UIImage *image = [UIImage imageWithContentsOfFile:localizedPath];
                 imageView.image = image;
                 [self.imagesScrollView addSubview:imageView];
@@ -237,16 +234,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    SSThemeManager *theme = [SSThemeManager sharedTheme];
-        
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapChanged:) name:kMapChanged object:nil];
-    
-	
     [TubeAppIAPHelper sharedHelper];
+    NSLog(@"width %f, height %f", self.view.bounds.size.width, self.view.bounds.size.height);
+    [self loadImages];
 }
 
 -(void)setCurrentMapSelectedPath
