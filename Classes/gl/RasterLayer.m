@@ -815,11 +815,13 @@ static long DownloadCacheSize = 0;
 
 -(void)purgeUnusedCache
 {
+    if([plusCache count] > 0 || [minusCache count] > 0) {
 #ifdef DEBUG
-    NSLog(@"remove %i objects from plusCache and %i objects from minusCache", [plusCache count], [minusCache count]);
+        NSLog(@"remove %i objects from plusCache and %i objects from minusCache", [plusCache count], [minusCache count]);
 #endif
-    [plusCache removeAllObjects];
-    [minusCache removeAllObjects];
+        [plusCache removeAllObjects];
+        [minusCache removeAllObjects];
+    }
 }
 
 -(void)cancelPieceLoading:(RPiece *)piece
@@ -1034,11 +1036,13 @@ static long DownloadCacheSize = 0;
 
 -(void)purgeUnusedCache
 {
+    if([plusCache count] > 0 || [minusCache count] > 0) {
 #ifdef DEBUG
-    NSLog(@"remove %i objects from plusCache and %i objects from minusCache", [plusCache count], [minusCache count]);
+        NSLog(@"remove %i objects from plusCache and %i objects from minusCache", [plusCache count], [minusCache count]);
 #endif
-    [plusCache removeAllObjects];
-    [minusCache removeAllObjects];
+        [plusCache removeAllObjects];
+        [minusCache removeAllObjects];
+    }
 }
 
 -(void)cancelPieceLoading:(RPiece *)piece
@@ -1851,7 +1855,7 @@ static long DownloadCacheSize = 0;
     [loader purgeUnusedCache];
     dcs -= DownloadCacheSize;
 #ifdef DEBUG
-    NSLog(@"free %li bytes", dcs);
+    if(dcs > 0) NSLog(@"free %li bytes", dcs);
 #endif
     if(piecesCount > 20) {
         int dropPieces = piecesCount / 3;

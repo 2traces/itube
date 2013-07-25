@@ -340,9 +340,18 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(void)setGeoPosition:(CGPoint)geoPoint
 {
+    geoPos = geoPoint;
     [self setPosition:translateFromGeoToMap(geoPoint)];
+    [self updateDistanceToUser];
+}
+
+-(void)updateDistanceToUser
+{
     // distance from user to pin
-    distanceToUser = calcGeoDistanceFrom(geoPoint, userGeoPosition);
+    if(!CGPointEqualToPoint(geoPos, CGPointZero) && !CGPointEqualToPoint(userGeoPosition, CGPointZero))
+        distanceToUser = calcGeoDistanceFrom(geoPos, userGeoPosition);
+    else
+        distanceToUser = 0;
 }
 
 -(CGPoint)position
@@ -1475,6 +1484,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
     position.y = (y1 + y2) * 0.5f;
     scale = MIN(256.f / r.size.height, 256.f / rect.size.width);
     targetTimer = 0.f;
+
+    [self sendMapMovedNotification];
 }
 
 -(void)setGeoPosition:(CGPoint)geoCoords withZoom:(CGFloat)zoom
@@ -1488,6 +1499,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
     position.x = - geoCoords.y * mult;
     position.y = y + 2.f / scale;
     targetTimer = 0.f;
+
+    [self sendMapMovedNotification];
 }
 
 -(void)scrollToGeoPosition:(CGPoint)geoCoords withZoom:(CGFloat)zoom
@@ -1512,11 +1525,14 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(void)setUserGeoPosition:(CGPoint)point
 {
     userGeoPosition = point;
+    for (Pin *p in pinsArray) {
+        [p updateDistanceToUser];
+    }
     CGPoint up = translateFromGeoToMap(point);
     userPosition = up;
     Pin *p = [pinsArray objectAtIndex:0];
     if(p != nil) [p setPosition:up];
-    [self setGeoPosition:userGeoPosition withZoom:-1];
+    if(followUserGPS) [self setGeoPosition:userGeoPosition withZoom:-1];
 }
 
 -(void)setUserHeading:(double)heading
@@ -1527,7 +1543,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 - (void) centerMapOnUser {
     followUserGPS = YES;
-    [self scrollToGeoPosition:userGeoPosition withZoom:-1];
+    if(CGPointEqualToPoint(position, CGPointZero)) [self setGeoPosition:userGeoPosition withZoom:-1];
+    else [self scrollToGeoPosition:userGeoPosition withZoom:-1];
 }
 
 

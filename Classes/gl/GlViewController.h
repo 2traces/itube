@@ -20,7 +20,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_LOCATION=2, PIN_STAR=3, PIN_FAVORIT
 
 @interface Pin : NSObject {
     int _id;
-    CGPoint pos;
+    CGPoint pos, geoPos;
     GlSprite *sprite;
     SmallPanel *sp;
     CGFloat size;
