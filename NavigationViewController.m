@@ -131,7 +131,6 @@
         photosMode = HCPhotosVisibleFully;
     
     currentPlacePin = -1;
-   
 
 }
 
