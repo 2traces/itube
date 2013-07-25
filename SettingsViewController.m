@@ -202,15 +202,13 @@
             NSLog(@"Error reading JSON: %@, %@", [error localizedFailureReason], [error localizedDescription]);
         }
         NSArray *imagePaths = [json objectForKey:@"images"];
-        CGFloat parentWidth;
+        CGFloat parentWidth = [[UIScreen mainScreen] bounds].size.width;
         CGFloat imageHeight;
         CGFloat yOffset = 0;
         NSLog(@"width: %f", parentWidth);
         if (IS_IPAD) {
-            parentWidth = 540;
             imageHeight = 1496 * parentWidth / 1536;
         }else{
-            parentWidth = [[UIScreen mainScreen] bounds].size.width;
             if(appdelegate.isIPHONE5){
                 imageHeight = 393;
             }else{

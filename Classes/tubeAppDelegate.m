@@ -671,14 +671,6 @@ void uncaughtExceptionHandler(NSException *exception) {
     [self.navigationViewController showSettings];
 }
 
-- (void)showSettingsCrossDevices {
-    if (IS_IPAD) {
-        [self.mainViewController showiPadSettingsModalView];
-    }else{
-        [self.navigationViewController showSettings];
-    }
-}
-
 #pragma mark - Mail methods
 
 // Displays an email composition interface inside the app // and populates all the Mail fields.

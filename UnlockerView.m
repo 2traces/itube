@@ -68,7 +68,7 @@
 }
 
 - (void)showSettings{
-    [self.appDelegate showSettingsCrossDevices];
+    [self.appDelegate showSettings];
 }
 
 /*

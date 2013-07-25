@@ -72,7 +72,6 @@ NSString* DisplayStationName(NSString* stName);
 -(void)showBookmarks;
 -(void)hideBookmarks;
 - (void)showSettings;
-- (void)showSettingsCrossDevices;
 -(void)errorWithGeoLocation;
 
 - (void)placeAddedToFavorites:(MPlace*)place;
