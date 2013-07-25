@@ -19,7 +19,7 @@
 
 @protocol SettingsViewControllerDelegate;
 
-@interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate,DownloadServerListener>
+@interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate,DownloadServerListener, UIScrollViewDelegate>
 {
     NSArray *maps;
     
@@ -44,6 +44,11 @@
 @property (nonatomic, assign) id <SettingsViewControllerDelegate> delegate;
 @property (nonatomic, retain) NSArray *maps;
 @property (nonatomic, retain) IBOutlet UIScrollView *imagesScrollView;
+@property (nonatomic, retain) IBOutlet UIButton *buyButton;
+@property (nonatomic, retain) IBOutlet UIButton *buyAllButton;
+@property (nonatomic, retain) IBOutlet UIButton *reloadButton;
+@property (nonatomic, retain) IBOutlet UIPageControl *paging;
+
 @property (nonatomic, retain) NSIndexPath *selectedPath;
 @property (assign) int purchaseIndex;
 @property (nonatomic, retain) NSMutableArray *servers;

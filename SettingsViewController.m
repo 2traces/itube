@@ -35,6 +35,10 @@
 @synthesize languages;
 @synthesize feedback;
 @synthesize purchaseIndex;
+@synthesize buyAllButton;
+@synthesize buyButton;
+@synthesize reloadButton;
+@synthesize paging;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -194,6 +198,7 @@
     tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
     NSString *configPath = [NSString stringWithFormat:@"%@/settings_images.json", appdelegate.mapDirectoryPath];
     NSData *jsonData = [NSData dataWithContentsOfFile:configPath];
+    self.imagesScrollView.delegate = self;
     if (jsonData) {
         NSError *error = nil;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
@@ -217,6 +222,7 @@
         self.imagesScrollView.pagingEnabled = YES;
         self.imagesScrollView.frame = CGRectMake(0, yOffset, parentWidth, imageHeight);
         self.imagesScrollView.contentSize = CGSizeMake(parentWidth * imagePaths.count, imageHeight);
+        self.paging.numberOfPages = imagePaths.count;
         if(imagePaths){
             for (int i = 0; i < imagePaths.count; i++) {
                 NSString *imagePath = [imagePaths objectAtIndex:i];
@@ -283,7 +289,7 @@
     [servers release];
     [timer release];
     [progressArrows release];
-    
+    self.imagesScrollView.delegate = nil;
     [imagesScrollView release];
     
     [selectedLanguages release];
@@ -930,6 +936,22 @@
     NSLog(@"timeout");
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)sender {
+    // Update the page when more than 50% of the previous/next page is visible
+    CGFloat pageWidth = self.imagesScrollView.frame.size.width;
+    int page = floor((self.imagesScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    self.paging.currentPage = page;
+}
+
+- (IBAction)changePage {
+    // update the scroll view to the appropriate page
+    CGRect frame;
+    frame.origin.x = self.imagesScrollView.frame.size.width * self.paging.currentPage;
+    frame.origin.y = 0;
+    frame.size = self.imagesScrollView.frame.size;
+    [self.imagesScrollView scrollRectToVisible:frame animated:YES];
+}
+
 -(IBAction)donePressed:(id)sender 
 {
     for (DownloadServer *server in servers) {
@@ -1004,6 +1026,10 @@
     [mailAlertView release];
     [resultTitle release];
     [resultMsg release];
+    [buyAllButton release];
+    [buyButton release];
+    [reloadButton release];
+    [paging release];
     [self dismissModalViewControllerAnimated:YES];
 }
 
