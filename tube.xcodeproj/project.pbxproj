@@ -3418,7 +3418,6 @@
 		BC6890CC157611C4002232E6 /* it_settingsstation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "it_settingsstation@2x.png"; path = "images/it_settingsstation@2x.png"; sourceTree = "<group>"; };
 		BC6890CD157611C4002232E6 /* it_stationsstation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = it_stationsstation.png; path = images/it_stationsstation.png; sourceTree = "<group>"; };
 		BC6890CE157611C4002232E6 /* it_stationsstation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "it_stationsstation@2x.png"; path = "images/it_stationsstation@2x.png"; sourceTree = "<group>"; };
-		BC6890EC15761C58002232E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
 		BC6C097915D8FE2F00EAA6D2 /* RightiPadPathViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RightiPadPathViewController.xib; path = Resources/RightiPadPathViewController.xib; sourceTree = "<group>"; };
 		BC6FEB6E14E252530066D6E6 /* bottomtabbarstation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bottomtabbarstation.png; path = images/bottomtabbarstation.png; sourceTree = "<group>"; };
 		BC6FEB6F14E252530066D6E6 /* bottomtabbarstation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bottomtabbarstation@2x.png"; path = "images/bottomtabbarstation@2x.png"; sourceTree = "<group>"; };
@@ -3746,6 +3745,11 @@
 		FAD133431757DAB4004859C1 /* to_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "to_right@2x.png"; sourceTree = "<group>"; };
 		FAD133441757DAB4004859C1 /* citymap-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "citymap-button.png"; sourceTree = "<group>"; };
 		FAD133451757DAB4004859C1 /* like-button-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-button-01.png"; sourceTree = "<group>"; };
+		FAE1BEF117A272FC00B0FBBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
+		FAE1BEF317A2730A00B0FBBE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SettingsViewController.strings; sourceTree = "<group>"; };
+		FAE1BEF517A2731600B0FBBE /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SettingsViewController.strings; sourceTree = "<group>"; };
+		FAE1BEF717A2731D00B0FBBE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SettingsViewController.strings; sourceTree = "<group>"; };
+		FAE1BEF917A2732600B0FBBE /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SettingsViewController.strings; sourceTree = "<group>"; };
 		FAF4970C170493E80054C0D2 /* MediaTypeFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTypeFactory.h; sourceTree = "<group>"; };
 		FAF4970D170493E80054C0D2 /* MediaTypeFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaTypeFactory.m; sourceTree = "<group>"; };
 		FAF497131705A2490054C0D2 /* HtmlWithVideoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HtmlWithVideoView.xib; sourceTree = "<group>"; };
@@ -5137,6 +5141,7 @@
 				fr,
 				de,
 				it,
+				Base,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -8032,7 +8037,11 @@
 		BC6890ED15761C58002232E6 /* SettingsViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				BC6890EC15761C58002232E6 /* en */,
+				FAE1BEF117A272FC00B0FBBE /* Base */,
+				FAE1BEF317A2730A00B0FBBE /* en */,
+				FAE1BEF517A2731600B0FBBE /* fr */,
+				FAE1BEF717A2731D00B0FBBE /* de */,
+				FAE1BEF917A2732600B0FBBE /* it */,
 			);
 			name = SettingsViewController.xib;
 			path = Resources;
@@ -8215,7 +8224,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -8234,7 +8243,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
