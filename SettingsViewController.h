@@ -14,6 +14,7 @@
 #import "DownloadServer.h"
 #import "MBProgressHUD.h"
 #import "DemoMapViewController.h"
+#import "ProductMarcos.h"
 
 @class MyNavigationBar;
 
@@ -63,6 +64,7 @@
 -(BOOL)isProductPurchased:(NSString*)prodID;
 -(BOOL)isProductAvailable:(NSString*)prodID;
 -(IBAction)donePressed:(id)sender;
+- (IBAction)buyFullProduct:(id)sender;
 
 
 @end

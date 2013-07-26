@@ -265,12 +265,15 @@
     }
 }
 
+- (IBAction)buyFullProduct:(id)sender{
+    [self buyMap:[self.maps objectAtIndex:FULL_PRODUCT_INDEX]];
+}
+
 - (void) resetPositions{
     for (UIView *subview in self.view.subviews){
         RectObject *rect = [self.subviewPositions objectForKey:[NSNumber numberWithInt: subview.tag]];
         if (rect != nil) {
             if(subview.autoresizingMask == 13){
-                NSLog(@" autoresizingMask is flexible bottom margin");
                 CGFloat delta = [UIScreen mainScreen].bounds.size.height - 480;
                 subview.frame = CGRectMake(rect.rect.origin.x, rect.rect.origin.y + delta,
                                            rect.rect.size.width, rect.rect.size.height);
@@ -685,7 +688,7 @@
 -(void)buyMap:(NSDictionary*)map
 {
     NSString *prodID = [map valueForKey:@"prodID"];
-    
+    NSLog(@"buy map");
     if ([self isProductStatusAvailable:prodID]) {
         [self purchaseProduct:prodID];
     } else if ([self isProductStatusPurchased:prodID]) {
@@ -882,7 +885,7 @@
     for (SKProduct *product in products) {
         if ([product.productIdentifier isEqual:prodID]) {
             
-            //NSLog(@"Buying %@...", product.productIdentifier);
+            NSLog(@"Buying %@...", product.productIdentifier);
             [[TubeAppIAPHelper sharedHelper] buyProductIdentifier:product.productIdentifier];
             
             [self performSelector:@selector(timeout:) withObject:nil afterDelay:130.0];
@@ -973,7 +976,6 @@
     CGFloat pageWidth = [[UIScreen mainScreen] bounds].size.width;
     int page = floor((self.imagesScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     self.paging.currentPage = page;
-    NSLog(@"closeButton %@", self.quitButton);
 }
 
 - (void)viewDidAppear:(BOOL)animated{

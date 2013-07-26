@@ -295,6 +295,24 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">buyFullProduct:</string>
+						<reference key="source" ref="56759524"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">155</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">updatePressed:</string>
+						<reference key="source" ref="505535868"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">156</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">donePressed:</string>
 						<reference key="source" ref="830070057"/>
 						<reference key="destination" ref="372490531"/>
@@ -399,7 +417,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">154</int>
+			<int key="maxID">156</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -414,17 +432,30 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">SettingsViewController</string>
 					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">donePressed:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">donePressed:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="buyFullProduct:">id</string>
+						<string key="donePressed:">id</string>
+						<string key="openAppStoreLink:">NSDictionary</string>
+						<string key="updatePressed:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="buyFullProduct:">
+							<string key="name">buyFullProduct:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="donePressed:">
 							<string key="name">donePressed:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+						<object class="IBActionInfo" key="openAppStoreLink:">
+							<string key="name">openAppStoreLink:</string>
+							<string key="candidateClassName">NSDictionary</string>
+						</object>
+						<object class="IBActionInfo" key="updatePressed:">
+							<string key="name">updatePressed:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="buyAllButton">UIButton</string>
 						<string key="buyButton">UIButton</string>

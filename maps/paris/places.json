@@ -233,6 +233,7 @@
             "lat":2.350009,
             "index":1,
             "accessLevel":0,
+            "hideLevel":1,
             "media_type":"unlocker",
             "categories":[ 2 ]
     },

@@ -3714,6 +3714,7 @@
 		FA160EA617A2BBA9009C7722 /* SettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsView.m; sourceTree = "<group>"; };
 		FA160EAB17A2CB9F009C7722 /* RectObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RectObject.h; sourceTree = "<group>"; };
 		FA160EAC17A2CB9F009C7722 /* RectObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RectObject.m; sourceTree = "<group>"; };
+		FA160EB117A2DC76009C7722 /* ProductMarcos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductMarcos.h; sourceTree = "<group>"; };
 		FA1A08C5170C18B1000CD689 /* MediaViewEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaViewEvents.h; sourceTree = "<group>"; };
 		FA1B84BA1739313400D8A05F /* DebugUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugUIImage.h; sourceTree = "<group>"; };
 		FA1B84BB1739313400D8A05F /* DebugUIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugUIImage.m; sourceTree = "<group>"; };
@@ -4144,6 +4145,7 @@
 				BCF52DCC14CAD69400D76E0F /* FastAccessTableViewController.m */,
 				BC3D14E114C338360059A17E /* LineListViewController.h */,
 				BC3D14E214C338360059A17E /* LineListViewController.m */,
+				FA160EB117A2DC76009C7722 /* ProductMarcos.h */,
 				BC3D14E414C338370059A17E /* SettingsViewController.h */,
 				BC3D14E514C338370059A17E /* SettingsViewController.m */,
 				FA160EA517A2BBA9009C7722 /* SettingsView.h */,
