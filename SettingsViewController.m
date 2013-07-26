@@ -221,7 +221,7 @@
                 imageHeight = 393;
             }else{
                 imageHeight = 393;
-                yOffset = -70;
+                yOffset = -85;
             }
         }
         self.imagesScrollView.pagingEnabled = YES;
@@ -269,7 +269,14 @@
     for (UIView *subview in self.view.subviews){
         RectObject *rect = [self.subviewPositions objectForKey:[NSNumber numberWithInt: subview.tag]];
         if (rect != nil) {
-            subview.frame = rect.rect;
+            if(subview.autoresizingMask == 13){
+                NSLog(@" autoresizingMask is flexible bottom margin");
+                CGFloat delta = [UIScreen mainScreen].bounds.size.height - 480;
+                subview.frame = CGRectMake(rect.rect.origin.x, rect.rect.origin.y + delta,
+                                           rect.rect.size.width, rect.rect.size.height);
+            }else{
+                subview.frame = rect.rect;
+            }
         }
     }
 }
