@@ -14,34 +14,20 @@
 #import "DownloadServer.h"
 #import "MBProgressHUD.h"
 #import "DemoMapViewController.h"
+#import "ProductMarcos.h"
 
 @class MyNavigationBar;
 
 @protocol SettingsViewControllerDelegate;
 
-@interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate,DownloadServerListener,DemoMapProtocol>
+@interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate,DownloadServerListener, UIScrollViewDelegate>
 {
-    IBOutlet UITableView *langTableView;
-    IBOutlet UITableView *cityTableView;
-    IBOutlet UITableView *feedbackTableView;
-    
-    IBOutlet UILabel *textLabel1;
-    IBOutlet UILabel *textLabel2;   
-    IBOutlet UILabel *textLabel3;   
-    IBOutlet UILabel *textLabel4;   
-    
-    IBOutlet UIButton *updateButton;
-    IBOutlet UIScrollView *scrollView;
-    IBOutlet UIImageView *updateImageView;
-    
     NSArray *maps;
     
     NSString *mapID;
     
     NSIndexPath *selectedPath;
     MBProgressHUD *_hud;
-    
-    IBOutlet UIImageView *progressArrows;
     
     int requested_file_type;
     
@@ -57,34 +43,33 @@
 }
 
 @property (nonatomic, assign) id <SettingsViewControllerDelegate> delegate;
-@property (retain, nonatomic) IBOutlet UITableView *langTableView;
-@property (nonatomic, retain) IBOutlet UITableView *cityTableView;
-@property (nonatomic, retain) IBOutlet UITableView *feedbackTableView;
 @property (nonatomic, retain) NSArray *maps;
-@property (nonatomic, retain) IBOutlet UILabel *textLabel1;
-@property (nonatomic, retain) IBOutlet UILabel *textLabel2;
-@property (nonatomic, retain) IBOutlet UILabel *textLabel3;
-@property (nonatomic, retain) IBOutlet UILabel *textLabel4;
-@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (retain) IBOutlet UIScrollView *imagesScrollView;
+@property (retain) IBOutlet UIButton *buyButton;
+@property (retain) IBOutlet UIButton *buyAllButton;
+@property (retain) IBOutlet UIButton *reloadButton;
+@property (retain) IBOutlet UIButton *quitButton;
+@property (retain) IBOutlet UIPageControl *paging;
+@property (retain) NSMutableDictionary *subviewPositions;
+
 @property (nonatomic, retain) NSIndexPath *selectedPath;
-@property (retain) MBProgressHUD *hud;
 @property (assign) int purchaseIndex;
 @property (nonatomic, retain) NSMutableArray *servers;
 @property (nonatomic, retain) NSTimer *timer;
 @property (nonatomic, retain) UIImageView *progressArrows;
 @property (nonatomic, retain) NSArray *languages;
 @property (nonatomic, retain) NSArray *feedback;
-@property (nonatomic, retain) IBOutlet UIButton *updateButton;
-@property (nonatomic, retain) IBOutlet UIImageView *updateImageView;
 
 -(BOOL)isProductInstalled:(NSString*)prodID;
 -(BOOL)isProductPurchased:(NSString*)prodID;
 -(BOOL)isProductAvailable:(NSString*)prodID;
+-(IBAction)donePressed:(id)sender;
+- (IBAction)buyFullProduct:(id)sender;
+
 
 @end
 
 @protocol SettingsViewControllerDelegate
 
--(void)donePressed;
 
 @end

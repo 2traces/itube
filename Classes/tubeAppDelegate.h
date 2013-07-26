@@ -9,8 +9,8 @@
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import "GlViewController.h"
+#import "CrossDeviceMarcos.h"
 
-#define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 
 @class MainViewController;
 @class NavigationViewController;
@@ -72,7 +72,6 @@ NSString* DisplayStationName(NSString* stName);
 -(void)showBookmarks;
 -(void)hideBookmarks;
 - (void)showSettings;
-- (void)showSettingsCrossDevices;
 -(void)errorWithGeoLocation;
 
 - (void)placeAddedToFavorites:(MPlace*)place;

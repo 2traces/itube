@@ -76,7 +76,7 @@
         [self loadAnimHtmlWithPath: fullPath];
     }
     if([request.URL.absoluteString hasPrefix:@"settings"]){
-        [self.appDelegate showSettingsCrossDevices];
+        [self.appDelegate showSettings];
     }
     return YES;
 }

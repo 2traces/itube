@@ -13,6 +13,7 @@
 #import "HtmlGallery.h"
 #import "NativeGallery.h"
 #import "LCUtil.h"
+#import "UnlockerView.h"
 
 
 @implementation MediaTypeFactory
@@ -77,6 +78,7 @@
     UIImage *image = [self imageForMedia:media];
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     UIView *mediaView = nil;
+    CGRect initialFrame = CGRectMake(0, 0, 10, 10);
     if ([media.mediaType isEqualToString:@"3dview"]) {
         NSString *prefix = [NSString stringWithFormat:@"%@/photos/%@", appDelegate.mapDirectoryPath, media.photosSet.photosPrefix];
         NSString *iPadPrefix;
@@ -89,7 +91,7 @@
         }
         Slide3DView *imageView = [[Slide3DView alloc]
                                        initWithImage:image
-                                       withFrame:CGRectMake(0, 0, 10, 10)
+                                       withFrame:initialFrame
                                        withPrefix:prefix
                                        withExt:media.photosSet.photosExt
                                        withSlidesCount:[media.photosSet.photosCount intValue]];
@@ -97,8 +99,11 @@
     }else if ([media.mediaType isEqualToString:@"native_gallery"]){
         NativeGallery *nativeGallery = [[NativeGallery alloc] initWithFrame:CGRectMake(0, 0, 50, 50) withGalleryPictures:media.galleryPictures withAppDelegate:appDelegate];
         mediaView = nativeGallery;
+    }else if ([media.mediaType isEqualToString:@"unlocker"]){
+        UnlockerView *unlockerView = [[UnlockerView alloc] initWithFrame:initialFrame withAppDelegate:appDelegate];
+        mediaView = unlockerView;
     }else if ([media.mediaType isEqualToString:@"html"]) {
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:initialFrame];
         webView.scrollView.bounces = NO;
         mediaView = webView;
         NSString *htmlPath = [LCUtil getLocalizedPath:[NSString stringWithFormat:@"%@/%@", appDelegate.mapDirectoryPath, media.filename]];

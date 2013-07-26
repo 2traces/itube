@@ -8,6 +8,7 @@
 
 #import "SettingsNavController.h"
 #import "SettingsViewController.h"
+#import "CrossDeviceMarcos.h"
 
 @interface SettingsNavController ()
 
@@ -28,8 +29,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
+    NSString *controllerName;
+    if (IS_IPAD) {
+        controllerName = @"SettingsViewController_iPad";
+    }else{
+        controllerName = @"SettingsViewController";
+    }
+    SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:controllerName bundle:[NSBundle mainBundle]];
     
     controller.delegate = self;
     controller.purchaseIndex = purchaseIndex;
@@ -38,8 +44,7 @@
     
     [controller release];
 
-    [self.view addSubview:[navController view]]; 
-    
+    [self.view addSubview:[navController view]];
 }
 
 -(void)donePressed
@@ -57,18 +62,12 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    } else {
-        return YES;
-    }
+    return (interfaceOrientation -= UIInterfaceOrientationPortrait);
 }
 
 -(NSUInteger)supportedInterfaceOrientations
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
-        return UIInterfaceOrientationMaskPortrait;
-    return UIInterfaceOrientationMaskAll;
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 -(void) dealloc
