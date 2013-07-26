@@ -195,8 +195,7 @@
 }
 
 - (void) resetViewPositions{
-    self.buyButton.frame = CGRectMake(384, 784, 583, 63);
-    
+    NSLog(@"buy button %@", self.buyButton.description);
 }
 
 - (void) loadImages{
@@ -224,9 +223,10 @@
                 yOffset = -70;
             }
         }
-        self.imagesScrollView.pagingEnabled = YES;
         self.imagesScrollView.frame = CGRectMake(0, yOffset, parentWidth, imageHeight);
         self.imagesScrollView.contentSize = CGSizeMake(parentWidth * imagePaths.count, imageHeight);
+        NSLog(@"imageScrollView %@", self.imagesScrollView.description);
+        NSLog(@"contentSize %f", self.imagesScrollView.contentSize.width);
         self.paging.numberOfPages = imagePaths.count;
         if(imagePaths){
             for (int i = 0; i < imagePaths.count; i++) {

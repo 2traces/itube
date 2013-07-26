@@ -514,10 +514,7 @@ NSInteger const toolbarWidth=320;
 -(void) showSettings
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (IS_IPAD)
-        [appDelegate.mainViewController showiPadSettingsModalView];
-    else
-        [appDelegate showSettings];
+    [appDelegate showSettings];
 }
 
 -(void) changeZones

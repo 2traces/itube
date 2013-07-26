@@ -612,10 +612,7 @@ CGPoint translateFromGeoToMap(CGPoint pm)
 -(void) showSettings
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (IS_IPAD)
-        [self showiPadSettingsModalView];
-    else
-        [appDelegate showSettings];
+    [appDelegate showSettings];
 }
 
 - (void)showPurchases:(int)index

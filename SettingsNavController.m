@@ -35,7 +35,7 @@
     }else{
         controllerName = @"SettingsViewController";
     }
-    SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
+    SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:controllerName bundle:[NSBundle mainBundle]];
     
     controller.delegate = self;
     controller.purchaseIndex = purchaseIndex;

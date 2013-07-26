@@ -45,11 +45,7 @@
 @synthesize teasers;
 
 - (IBAction)showSettings:(id)sender {
-   // [self.navigationDelegate showSettings];
-    if (IS_IPAD)
-        [self showiPadSettingsModalView];
-    else
-        [self.navigationDelegate showSettings];
+    [self.navigationDelegate showSettings];
 }
 
 -(void)showiPadSettingsModalView
