@@ -194,15 +194,13 @@
     }
 }
 
-- (void) resetViewPositions{
-    self.imagesScrollView.frame = [UIScreen mainScreen].bounds;
-}
-
 - (void) loadImages{
     tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
     NSString *configPath = [NSString stringWithFormat:@"%@/settings_images.json", appdelegate.mapDirectoryPath];
     NSData *jsonData = [NSData dataWithContentsOfFile:configPath];
     self.imagesScrollView.delegate = self;
+    self.imagesScrollView.clipsToBounds = NO;
+    self.imagesScrollView.autoresizingMask = UIViewAutoresizingNone;
     if (jsonData) {
         NSError *error = nil;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
@@ -244,16 +242,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.autoresizesSubviews = NO;
+    self.view.clipsToBounds = NO;
+    self.view.autoresizingMask = UIViewAutoresizingNone;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapChanged:) name:kMapChanged object:nil];
     [TubeAppIAPHelper sharedHelper];
     [self loadImages];
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [self resetViewPositions];
 }
 
 -(void)setCurrentMapSelectedPath
@@ -270,7 +267,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self processPurchases];    
+    [self processPurchases];
     [super viewWillAppear:animated];
 }
 
@@ -981,6 +978,11 @@
     [delegate donePressed];
 }
 
+
+- (void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    self.imagesScrollView.frame = [UIScreen mainScreen].bounds;
+}
 
 #pragma mark - Mail methods
 

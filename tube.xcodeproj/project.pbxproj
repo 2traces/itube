@@ -2696,6 +2696,10 @@
 		FA160E9817A283A4009C7722 /* SettingsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA160E9C17A283A4009C7722 /* SettingsViewController_iPad.xib */; };
 		FA160E9917A283A4009C7722 /* SettingsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA160E9C17A283A4009C7722 /* SettingsViewController_iPad.xib */; };
 		FA160E9A17A283A4009C7722 /* SettingsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA160E9C17A283A4009C7722 /* SettingsViewController_iPad.xib */; };
+		FA160EA717A2BBA9009C7722 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA160EA617A2BBA9009C7722 /* SettingsView.m */; };
+		FA160EA817A2BBA9009C7722 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA160EA617A2BBA9009C7722 /* SettingsView.m */; };
+		FA160EA917A2BBA9009C7722 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA160EA617A2BBA9009C7722 /* SettingsView.m */; };
+		FA160EAA17A2BBA9009C7722 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA160EA617A2BBA9009C7722 /* SettingsView.m */; };
 		FA1B84BC1739313400D8A05F /* DebugUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1B84BB1739313400D8A05F /* DebugUIImage.m */; };
 		FA1B84BD1739313400D8A05F /* DebugUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1B84BB1739313400D8A05F /* DebugUIImage.m */; };
 		FA1B84BE1739313400D8A05F /* DebugUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1B84BB1739313400D8A05F /* DebugUIImage.m */; };
@@ -3697,11 +3701,13 @@
 		FA0DABD21709E88800CF48B4 /* HtmlWithVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlWithVideoView.h; sourceTree = "<group>"; };
 		FA0DABD31709E88800CF48B4 /* HtmlWithVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlWithVideoView.m; sourceTree = "<group>"; };
 		FA160E9617A2816A009C7722 /* CrossDeviceMarcos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrossDeviceMarcos.h; sourceTree = "<group>"; };
-		FA160E9D17A283A8009C7722 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file; name = Base; path = Base.lproj/SettingsViewController_iPad.xib; sourceTree = "<group>"; };
+		FA160E9D17A283A8009C7722 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SettingsViewController_iPad.xib; sourceTree = "<group>"; };
 		FA160E9F17A283AD009C7722 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SettingsViewController_iPad.strings; sourceTree = "<group>"; };
 		FA160EA117A283AE009C7722 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SettingsViewController_iPad.strings; sourceTree = "<group>"; };
 		FA160EA317A283AF009C7722 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SettingsViewController_iPad.strings; sourceTree = "<group>"; };
 		FA160EA417A283C2009C7722 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SettingsViewController_iPad.strings; sourceTree = "<group>"; };
+		FA160EA517A2BBA9009C7722 /* SettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsView.h; sourceTree = "<group>"; };
+		FA160EA617A2BBA9009C7722 /* SettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsView.m; sourceTree = "<group>"; };
 		FA1A08C5170C18B1000CD689 /* MediaViewEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaViewEvents.h; sourceTree = "<group>"; };
 		FA1B84BA1739313400D8A05F /* DebugUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugUIImage.h; sourceTree = "<group>"; };
 		FA1B84BB1739313400D8A05F /* DebugUIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugUIImage.m; sourceTree = "<group>"; };
@@ -4134,6 +4140,8 @@
 				BC3D14E214C338360059A17E /* LineListViewController.m */,
 				BC3D14E414C338370059A17E /* SettingsViewController.h */,
 				BC3D14E514C338370059A17E /* SettingsViewController.m */,
+				FA160EA517A2BBA9009C7722 /* SettingsView.h */,
+				FA160EA617A2BBA9009C7722 /* SettingsView.m */,
 				289233A80DB2D0DB0083E9F9 /* MainViewController.h */,
 				289233A90DB2D0DB0083E9F9 /* MainViewController.m */,
 				BC108FF015D8F38E00B81989 /* RightiPadPathViewController.h */,
@@ -7657,6 +7665,7 @@
 				F75DAC1B178E779600677F13 /* WeatherXMLParser.m in Sources */,
 				F734DB7E178FF57A009E08F7 /* WeatherView.m in Sources */,
 				FAC9066C179E6E1B00A31A7D /* UnlockerView.m in Sources */,
+				FA160EA717A2BBA9009C7722 /* SettingsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7775,6 +7784,7 @@
 				F75DAC1C178E779600677F13 /* WeatherXMLParser.m in Sources */,
 				F734DB7F178FF57A009E08F7 /* WeatherView.m in Sources */,
 				FAC9066D179E6E1B00A31A7D /* UnlockerView.m in Sources */,
+				FA160EA817A2BBA9009C7722 /* SettingsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7893,6 +7903,7 @@
 				F75DAC1D178E779600677F13 /* WeatherXMLParser.m in Sources */,
 				F734DB80178FF57A009E08F7 /* WeatherView.m in Sources */,
 				FAC9066E179E6E1B00A31A7D /* UnlockerView.m in Sources */,
+				FA160EA917A2BBA9009C7722 /* SettingsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8011,6 +8022,7 @@
 				F75DAC1E178E779600677F13 /* WeatherXMLParser.m in Sources */,
 				F734DB81178FF57A009E08F7 /* WeatherView.m in Sources */,
 				FAC9066F179E6E1B00A31A7D /* UnlockerView.m in Sources */,
+				FA160EAA17A2BBA9009C7722 /* SettingsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

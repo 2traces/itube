@@ -44,8 +44,7 @@
     
     [controller release];
 
-    [self.view addSubview:[navController view]]; 
-    
+    [self.view addSubview:[navController view]];
 }
 
 -(void)donePressed
@@ -63,18 +62,12 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    } else {
-        return YES;
-    }
+    return (interfaceOrientation -= UIInterfaceOrientationPortrait);
 }
 
 -(NSUInteger)supportedInterfaceOrientations
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
-        return UIInterfaceOrientationMaskPortrait;
-    return UIInterfaceOrientationMaskAll;
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 -(void) dealloc
