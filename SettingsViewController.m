@@ -245,17 +245,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.clipsToBounds = NO;
-    self.view.autoresizesSubviews = NO;
-    self.view.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleRightMargin;
     NSLog(@"mask %i", self.view.autoresizingMask);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapChanged:) name:kMapChanged object:nil];
     [TubeAppIAPHelper sharedHelper];
-    [self rememberPositions];
     [self loadImages];
+    [self rememberPositions];
+    
 }
 
 -(void)rememberPositions{
