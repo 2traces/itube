@@ -245,7 +245,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"mask %i", self.view.autoresizingMask);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
@@ -264,7 +263,6 @@
         RectObject *rect = [RectObject rectWithCGRect:subview.frame];
         [self.subviewPositions setObject:rect forKey:[NSNumber numberWithInt: tag]];
     }
-    NSLog(@"self.subviewPositions %@", self.subviewPositions.description);
 }
 
 - (void) resetPositions{
