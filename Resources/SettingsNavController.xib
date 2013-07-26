@@ -40,7 +40,6 @@
 				<string key="NSFrameSize">{320, 480}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -48,23 +47,6 @@
 					<object class="NSColorSpace" key="NSCustomColorSpace">
 						<int key="NSID">2</int>
 					</object>
-				</object>
-				<object class="IBUIScreenMetrics" key="IBUISimulatedDestinationMetrics">
-					<string key="IBUISimulatedSizeMetricsClass">IBUIScreenMetrics</string>
-					<object class="NSMutableDictionary" key="IBUINormalizedOrientationToSizeMap">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<array key="dict.sortedKeys">
-							<integer value="1"/>
-							<integer value="3"/>
-						</array>
-						<array key="dict.values">
-							<string>{320, 480}</string>
-							<string>{480, 320}</string>
-						</array>
-					</object>
-					<string key="IBUITargetRuntime">IBCocoaTouchFramework</string>
-					<string key="IBUIDisplayName">Retina 3.5 Full Screen</string>
-					<int key="IBUIType">0</int>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -89,7 +71,6 @@
 				<array class="NSMutableArray" key="IBUIViewControllers">
 					<object class="IBUIViewController" id="910692202">
 						<object class="IBUINavigationItem" key="IBUINavigationItem" id="275601477">
-							<reference key="IBUINavigationBar"/>
 							<string key="IBUITitle">Root View Controller</string>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>

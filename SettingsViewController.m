@@ -195,7 +195,7 @@
 }
 
 - (void) resetViewPositions{
-    NSLog(@"buy button %@", self.buyButton.description);
+    self.imagesScrollView.frame = [UIScreen mainScreen].bounds;
 }
 
 - (void) loadImages{
@@ -223,10 +223,9 @@
                 yOffset = -70;
             }
         }
+        self.imagesScrollView.pagingEnabled = YES;
         self.imagesScrollView.frame = CGRectMake(0, yOffset, parentWidth, imageHeight);
         self.imagesScrollView.contentSize = CGSizeMake(parentWidth * imagePaths.count, imageHeight);
-        NSLog(@"imageScrollView %@", self.imagesScrollView.description);
-        NSLog(@"contentSize %f", self.imagesScrollView.contentSize.width);
         self.paging.numberOfPages = imagePaths.count;
         if(imagePaths){
             for (int i = 0; i < imagePaths.count; i++) {
@@ -250,8 +249,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapChanged:) name:kMapChanged object:nil];
     [TubeAppIAPHelper sharedHelper];
-    [self resetViewPositions];
     [self loadImages];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [self resetViewPositions];
 }
 
 -(void)setCurrentMapSelectedPath
@@ -943,7 +945,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
     // Update the page when more than 50% of the previous/next page is visible
-    CGFloat pageWidth = self.imagesScrollView.frame.size.width;
+    CGFloat pageWidth = [[UIScreen mainScreen] bounds].size.width;
     int page = floor((self.imagesScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     self.paging.currentPage = page;
 }
