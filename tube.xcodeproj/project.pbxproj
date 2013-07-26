@@ -64,7 +64,6 @@
 		51D4D935160EF39400C9D02B /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 51D4D92D160EF35500C9D02B /* Shader.vsh */; };
 		51D4D947160EF88300C9D02B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D4D946160EF88300C9D02B /* OpenGLES.framework */; };
 		51D4D94A160EF8AF00C9D02B /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D4D949160EF8AF00C9D02B /* GLKit.framework */; };
-		51DCC9E61673F5D7005BAB6C /* paris-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51DCC9E51673F5D7005BAB6C /* paris-Info.plist */; };
 		51F15F7714D99A3800D11B79 /* VectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F15F7614D99A3800D11B79 /* VectorLayer.m */; };
 		51F3F9F3169092820078B006 /* current_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 51F3F9F1169092820078B006 /* current_location.png */; };
 		51F3F9F4169092820078B006 /* current_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 51F3F9F1169092820078B006 /* current_location.png */; };
@@ -379,7 +378,6 @@
 		5758354C168B2E9F00C96F5C /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 57583549168B2E9F00C96F5C /* UIImage+animatedGIF.m */; };
 		5758354D168B2E9F00C96F5C /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 57583549168B2E9F00C96F5C /* UIImage+animatedGIF.m */; };
 		5758354F168B303200C96F5C /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5758354E168B303200C96F5C /* ImageIO.framework */; };
-		5758F1751672913F00A12E35 /* berlin-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107310486CEB800E47090 /* berlin-Info.plist */; };
 		5766026316A47D7600493495 /* bt_corner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5766026216A47D7600493495 /* bt_corner@2x.png */; };
 		5766026416A47D7600493495 /* bt_corner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5766026216A47D7600493495 /* bt_corner@2x.png */; };
 		5766026516A47D7600493495 /* bt_corner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5766026216A47D7600493495 /* bt_corner@2x.png */; };
@@ -4372,10 +4370,10 @@
 				BC8F052C14EBB18F007D0C7B /* MyriadPro-Semibold.otf */,
 				BC787C3D153574F20020915A /* MyriadPr-It.otf */,
 				BC6890501575E075002232E6 /* SelectingTabBarViewController.xib */,
-				BC6890ED15761C58002232E6 /* SettingsViewController.xib */,
 				BC876AC114DFAF23008AC06C /* StationListCell.xib */,
 				BC876AC214DFAF23008AC06C /* StationListViewController.xib */,
 				FAF497131705A2490054C0D2 /* HtmlWithVideoView.xib */,
+				BC6890ED15761C58002232E6 /* SettingsViewController.xib */,
 				FA82B46917A174D6009F76BA /* SettingsViewController_iPad.xib */,
 			);
 			name = NIBs;
@@ -5124,7 +5122,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "tube" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -5510,7 +5508,6 @@
 				5778E2CC166D1065009716BC /* bt_mode_metro@2x.png in Resources */,
 				577DEBA5166E312D006BA43A /* paris in Resources */,
 				577DEBCE166E3E34006BA43A /* iTunesArtwork in Resources */,
-				51DCC9E61673F5D7005BAB6C /* paris-Info.plist in Resources */,
 				576843231675FA9200FA36AE /* no_image.jpeg in Resources */,
 				5768436C167636BE00FA36AE /* arrow.png in Resources */,
 				57684370167636BE00FA36AE /* arrow@2x.png in Resources */,
@@ -6115,7 +6112,6 @@
 				577DE6E2166E2F15006BA43A /* bt_mode_metro@2x.png in Resources */,
 				577DEBA3166E3126006BA43A /* berlin in Resources */,
 				577DEBD9166E3E42006BA43A /* iTunesArtwork in Resources */,
-				5758F1751672913F00A12E35 /* berlin-Info.plist in Resources */,
 				576843241675FA9200FA36AE /* no_image.jpeg in Resources */,
 				5768436D167636BE00FA36AE /* arrow.png in Resources */,
 				57684371167636BE00FA36AE /* arrow@2x.png in Resources */,
@@ -8067,9 +8063,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "paris-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "HC Paris";
 				PROVISIONING_PROFILE = "52876630-7C6B-4723-932E-E14E547AEC82";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -8084,9 +8081,10 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "paris-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "HC Paris";
 				PROVISIONING_PROFILE = "52876630-7C6B-4723-932E-E14E547AEC82";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -8107,6 +8105,7 @@
 					DEBUG,
 					"NEW_THEME=1",
 				);
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "berlin-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
@@ -8125,6 +8124,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "NEW_THEME=1";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "berlin-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
@@ -8143,6 +8143,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "venice-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
@@ -8158,6 +8159,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "venice-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
@@ -8175,6 +8177,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "nyc-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
@@ -8190,6 +8193,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "nyc-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
@@ -8208,6 +8212,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
@@ -8226,6 +8231,7 @@
 				);
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
