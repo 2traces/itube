@@ -19,6 +19,7 @@
 #import "SSTheme.h"
 #import "CustomPhotoViewerViewController.h"
 #import "LCUtil.h"
+#import "RectObject.h"
 
 #define plist_ 1
 #define zip_  2
@@ -39,11 +40,14 @@
 @synthesize buyButton;
 @synthesize reloadButton;
 @synthesize paging;
+@synthesize quitButton;
+@synthesize subviewPositions;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.subviewPositions = [NSMutableDictionary dictionary];
         self.maps = [self getMapsList];
         self.servers = [[[NSMutableArray alloc] init] autorelease];
         tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -199,8 +203,7 @@
     NSString *configPath = [NSString stringWithFormat:@"%@/settings_images.json", appdelegate.mapDirectoryPath];
     NSData *jsonData = [NSData dataWithContentsOfFile:configPath];
     self.imagesScrollView.delegate = self;
-    self.imagesScrollView.clipsToBounds = NO;
-    self.imagesScrollView.autoresizingMask = UIViewAutoresizingNone;
+    self.imagesScrollView.showsHorizontalScrollIndicator = NO;
     if (jsonData) {
         NSError *error = nil;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
@@ -242,15 +245,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.autoresizesSubviews = NO;
     self.view.clipsToBounds = NO;
-    self.view.autoresizingMask = UIViewAutoresizingNone;
+    self.view.autoresizesSubviews = NO;
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleRightMargin;
+    NSLog(@"mask %i", self.view.autoresizingMask);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapChanged:) name:kMapChanged object:nil];
     [TubeAppIAPHelper sharedHelper];
+    [self rememberPositions];
     [self loadImages];
+}
+
+-(void)rememberPositions{
+    int tag = 0;
+    for (UIView *subview in self.view.subviews){
+        tag += 1;
+        subview.tag = tag;
+        RectObject *rect = [RectObject rectWithCGRect:subview.frame];
+        [self.subviewPositions setObject:rect forKey:[NSNumber numberWithInt: tag]];
+    }
+    NSLog(@"self.subviewPositions %@", self.subviewPositions.description);
+}
+
+- (void) resetPositions{
+    for (UIView *subview in self.view.subviews){
+        RectObject *rect = [self.subviewPositions objectForKey:[NSNumber numberWithInt: subview.tag]];
+        if (rect != nil) {
+            subview.frame = rect.rect;
+        }
+    }
 }
 
 -(void)setCurrentMapSelectedPath
@@ -945,6 +970,11 @@
     CGFloat pageWidth = [[UIScreen mainScreen] bounds].size.width;
     int page = floor((self.imagesScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     self.paging.currentPage = page;
+    NSLog(@"closeButton %@", self.quitButton);
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [self resetPositions];
 }
 
 - (IBAction)changePage {
@@ -978,11 +1008,6 @@
     [delegate donePressed];
 }
 
-
-- (void) viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    self.imagesScrollView.frame = [UIScreen mainScreen].bounds;
-}
 
 #pragma mark - Mail methods
 
@@ -1039,6 +1064,8 @@
     [buyButton release];
     [reloadButton release];
     [paging release];
+    [quitButton release];
+    [subviewPositions release];
     [self dismissModalViewControllerAnimated:YES];
 }
 

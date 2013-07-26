@@ -43,11 +43,13 @@
 
 @property (nonatomic, assign) id <SettingsViewControllerDelegate> delegate;
 @property (nonatomic, retain) NSArray *maps;
-@property (nonatomic, retain) IBOutlet UIScrollView *imagesScrollView;
-@property (nonatomic, retain) IBOutlet UIButton *buyButton;
-@property (nonatomic, retain) IBOutlet UIButton *buyAllButton;
-@property (nonatomic, retain) IBOutlet UIButton *reloadButton;
-@property (nonatomic, retain) IBOutlet UIPageControl *paging;
+@property (retain) IBOutlet UIScrollView *imagesScrollView;
+@property (retain) IBOutlet UIButton *buyButton;
+@property (retain) IBOutlet UIButton *buyAllButton;
+@property (retain) IBOutlet UIButton *reloadButton;
+@property (retain) IBOutlet UIButton *quitButton;
+@property (retain) IBOutlet UIPageControl *paging;
+@property (retain) NSMutableDictionary *subviewPositions;
 
 @property (nonatomic, retain) NSIndexPath *selectedPath;
 @property (assign) int purchaseIndex;

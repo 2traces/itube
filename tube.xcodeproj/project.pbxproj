@@ -2700,6 +2700,10 @@
 		FA160EA817A2BBA9009C7722 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA160EA617A2BBA9009C7722 /* SettingsView.m */; };
 		FA160EA917A2BBA9009C7722 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA160EA617A2BBA9009C7722 /* SettingsView.m */; };
 		FA160EAA17A2BBA9009C7722 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA160EA617A2BBA9009C7722 /* SettingsView.m */; };
+		FA160EAD17A2CB9F009C7722 /* RectObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FA160EAC17A2CB9F009C7722 /* RectObject.m */; };
+		FA160EAE17A2CB9F009C7722 /* RectObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FA160EAC17A2CB9F009C7722 /* RectObject.m */; };
+		FA160EAF17A2CB9F009C7722 /* RectObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FA160EAC17A2CB9F009C7722 /* RectObject.m */; };
+		FA160EB017A2CB9F009C7722 /* RectObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FA160EAC17A2CB9F009C7722 /* RectObject.m */; };
 		FA1B84BC1739313400D8A05F /* DebugUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1B84BB1739313400D8A05F /* DebugUIImage.m */; };
 		FA1B84BD1739313400D8A05F /* DebugUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1B84BB1739313400D8A05F /* DebugUIImage.m */; };
 		FA1B84BE1739313400D8A05F /* DebugUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1B84BB1739313400D8A05F /* DebugUIImage.m */; };
@@ -3708,6 +3712,8 @@
 		FA160EA417A283C2009C7722 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SettingsViewController_iPad.strings; sourceTree = "<group>"; };
 		FA160EA517A2BBA9009C7722 /* SettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsView.h; sourceTree = "<group>"; };
 		FA160EA617A2BBA9009C7722 /* SettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsView.m; sourceTree = "<group>"; };
+		FA160EAB17A2CB9F009C7722 /* RectObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RectObject.h; sourceTree = "<group>"; };
+		FA160EAC17A2CB9F009C7722 /* RectObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RectObject.m; sourceTree = "<group>"; };
 		FA1A08C5170C18B1000CD689 /* MediaViewEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaViewEvents.h; sourceTree = "<group>"; };
 		FA1B84BA1739313400D8A05F /* DebugUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugUIImage.h; sourceTree = "<group>"; };
 		FA1B84BB1739313400D8A05F /* DebugUIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugUIImage.m; sourceTree = "<group>"; };
@@ -4142,6 +4148,8 @@
 				BC3D14E514C338370059A17E /* SettingsViewController.m */,
 				FA160EA517A2BBA9009C7722 /* SettingsView.h */,
 				FA160EA617A2BBA9009C7722 /* SettingsView.m */,
+				FA160EAB17A2CB9F009C7722 /* RectObject.h */,
+				FA160EAC17A2CB9F009C7722 /* RectObject.m */,
 				289233A80DB2D0DB0083E9F9 /* MainViewController.h */,
 				289233A90DB2D0DB0083E9F9 /* MainViewController.m */,
 				BC108FF015D8F38E00B81989 /* RightiPadPathViewController.h */,
@@ -7666,6 +7674,7 @@
 				F734DB7E178FF57A009E08F7 /* WeatherView.m in Sources */,
 				FAC9066C179E6E1B00A31A7D /* UnlockerView.m in Sources */,
 				FA160EA717A2BBA9009C7722 /* SettingsView.m in Sources */,
+				FA160EAD17A2CB9F009C7722 /* RectObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7785,6 +7794,7 @@
 				F734DB7F178FF57A009E08F7 /* WeatherView.m in Sources */,
 				FAC9066D179E6E1B00A31A7D /* UnlockerView.m in Sources */,
 				FA160EA817A2BBA9009C7722 /* SettingsView.m in Sources */,
+				FA160EAE17A2CB9F009C7722 /* RectObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7904,6 +7914,7 @@
 				F734DB80178FF57A009E08F7 /* WeatherView.m in Sources */,
 				FAC9066E179E6E1B00A31A7D /* UnlockerView.m in Sources */,
 				FA160EA917A2BBA9009C7722 /* SettingsView.m in Sources */,
+				FA160EAF17A2CB9F009C7722 /* RectObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8023,6 +8034,7 @@
 				F734DB81178FF57A009E08F7 /* WeatherView.m in Sources */,
 				FAC9066F179E6E1B00A31A7D /* UnlockerView.m in Sources */,
 				FA160EAA17A2BBA9009C7722 /* SettingsView.m in Sources */,
+				FA160EB017A2CB9F009C7722 /* RectObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
