@@ -896,8 +896,7 @@
 
 - (void)productPurchased:(NSNotification *)notification {
     
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];  
     
     NSString *productIdentifier = (NSString *) notification.object;
     //NSLog(@"Purchased: %@", productIdentifier);
