@@ -37,6 +37,10 @@
 		51383BB01683DD0A00397AF5 /* user_pos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51383B251683DD0A00397AF5 /* user_pos@2x.png */; };
 		51383BB11683DD0A00397AF5 /* user_pos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51383B251683DD0A00397AF5 /* user_pos@2x.png */; };
 		514EFC04163B0E44000F1A3E /* GlSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 514EFC03163B0E44000F1A3E /* GlSprite.m */; };
+		5151D2FA17A150B200C2F4EA /* RASTER in Resources */ = {isa = PBXBuildFile; fileRef = 5151D2F917A150B200C2F4EA /* RASTER */; };
+		5151D2FB17A150B200C2F4EA /* RASTER in Resources */ = {isa = PBXBuildFile; fileRef = 5151D2F917A150B200C2F4EA /* RASTER */; };
+		5151D2FC17A150B200C2F4EA /* RASTER in Resources */ = {isa = PBXBuildFile; fileRef = 5151D2F917A150B200C2F4EA /* RASTER */; };
+		5151D2FD17A150B200C2F4EA /* RASTER in Resources */ = {isa = PBXBuildFile; fileRef = 5151D2F917A150B200C2F4EA /* RASTER */; };
 		515D75151534BB9700C25074 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 515D75141534BB9700C25074 /* libxml2.dylib */; };
 		51839DE115360BE5003A8E23 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 51839DE015360BE5003A8E23 /* TBXML.m */; };
 		51A40586178D805D00279164 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A40585178D805D00279164 /* CoreMotion.framework */; };
@@ -2837,6 +2841,7 @@
 		51383B251683DD0A00397AF5 /* user_pos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_pos@2x.png"; sourceTree = "<group>"; };
 		514EFC02163B0E44000F1A3E /* GlSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlSprite.h; sourceTree = "<group>"; };
 		514EFC03163B0E44000F1A3E /* GlSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlSprite.m; sourceTree = "<group>"; };
+		5151D2F917A150B200C2F4EA /* RASTER */ = {isa = PBXFileReference; lastKnownFileType = folder; path = RASTER; sourceTree = "<group>"; };
 		515D75141534BB9700C25074 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		51839DDF15360BE5003A8E23 /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBXML.h; path = Classes/TBXML/TBXML.h; sourceTree = "<group>"; };
 		51839DE015360BE5003A8E23 /* TBXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBXML.m; path = Classes/TBXML/TBXML.m; sourceTree = "<group>"; };
@@ -3809,6 +3814,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				5151D2F917A150B200C2F4EA /* RASTER */,
 				963351491769550300EDD376 /* paris-Default-Landscape@2x~ipad.png */,
 				96335147176954FA00EDD376 /* paris-Default-Landscape~ipad.png */,
 				96335145176954F000EDD376 /* paris-Default-Portrait@2x~ipad.png */,
@@ -5617,6 +5623,7 @@
 				F7A3FC201795432100946E0A /* today_thunder@2x.png in Resources */,
 				F72C99B117965BAF000DFFB3 /* today_rain.png in Resources */,
 				F72C99B517965BAF000DFFB3 /* today_rain@2x.png in Resources */,
+				5151D2FA17A150B200C2F4EA /* RASTER in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6192,6 +6199,7 @@
 				F7A3FC211795432100946E0A /* today_thunder@2x.png in Resources */,
 				F72C99B217965BAF000DFFB3 /* today_rain.png in Resources */,
 				F72C99B617965BAF000DFFB3 /* today_rain@2x.png in Resources */,
+				5151D2FB17A150B200C2F4EA /* RASTER in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6760,6 +6768,7 @@
 				F7A3FC221795432100946E0A /* today_thunder@2x.png in Resources */,
 				F72C99B317965BAF000DFFB3 /* today_rain.png in Resources */,
 				F72C99B717965BAF000DFFB3 /* today_rain@2x.png in Resources */,
+				5151D2FC17A150B200C2F4EA /* RASTER in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7331,6 +7340,7 @@
 				F7A3FC231795432100946E0A /* today_thunder@2x.png in Resources */,
 				F72C99B417965BAF000DFFB3 /* today_rain.png in Resources */,
 				F72C99B817965BAF000DFFB3 /* today_rain@2x.png in Resources */,
+				5151D2FD17A150B200C2F4EA /* RASTER in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7865,7 +7875,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Zuev (2AEQRC3ZN4)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -7875,7 +7884,6 @@
 				INFOPLIST_FILE = "paris-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "HC Paris";
-				PROVISIONING_PROFILE = "52876630-7C6B-4723-932E-E14E547AEC82";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -7884,7 +7892,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Zuev (2AEQRC3ZN4)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = tube_Prefix.pch;
@@ -7892,7 +7899,6 @@
 				INFOPLIST_FILE = "paris-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "HC Paris";
-				PROVISIONING_PROFILE = "52876630-7C6B-4723-932E-E14E547AEC82";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
