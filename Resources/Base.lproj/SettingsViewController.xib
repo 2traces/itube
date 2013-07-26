@@ -58,7 +58,7 @@
 					<object class="IBUIButton" id="493404440">
 						<reference key="NSNextResponder" ref="621751158"/>
 						<int key="NSvFlags">289</int>
-						<string key="NSFrame">{{283.5, 17.5}, {17, 16}}</string>
+						<string key="NSFrame">{{272.5, 8}, {39, 35}}</string>
 						<reference key="NSSuperview" ref="621751158"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="687404980"/>
@@ -193,6 +193,7 @@
 						<string key="NSFrame">{{122, 471}, {145, 21}}</string>
 						<reference key="NSSuperview" ref="621751158"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -460,7 +461,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="X-symbol.png">{17, 16}</string>
+			<string key="X-symbol.png">{39, 35}</string>
 			<string key="iphone_adscreen_button_notpressed.png">{581, 95}</string>
 			<string key="iphone_adscreen_button_pressed.png">{581, 95}</string>
 			<string key="reload.png">{18, 20}</string>

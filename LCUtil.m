@@ -7,8 +7,7 @@
 //
 
 #import "LCUtil.h"
-
-#define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+#import "CrossDeviceMarcos.h"
 
 @implementation LCUtil
 

@@ -3696,6 +3696,7 @@
 		F7E89527177C17EF0027F333 /* PhotosViewController5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosViewController5.xib; sourceTree = "<group>"; };
 		FA0DABD21709E88800CF48B4 /* HtmlWithVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlWithVideoView.h; sourceTree = "<group>"; };
 		FA0DABD31709E88800CF48B4 /* HtmlWithVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlWithVideoView.m; sourceTree = "<group>"; };
+		FA160E9617A2816A009C7722 /* CrossDeviceMarcos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrossDeviceMarcos.h; sourceTree = "<group>"; };
 		FA1A08C5170C18B1000CD689 /* MediaViewEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaViewEvents.h; sourceTree = "<group>"; };
 		FA1B84BA1739313400D8A05F /* DebugUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugUIImage.h; sourceTree = "<group>"; };
 		FA1B84BB1739313400D8A05F /* DebugUIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugUIImage.m; sourceTree = "<group>"; };
@@ -4153,6 +4154,7 @@
 				579D28DC164815F70061B8F6 /* PhotosViewController.m */,
 				5772FBD016668D83007B7661 /* PhotoViewerViewController.h */,
 				5772FBD116668D83007B7661 /* PhotoViewerViewController.m */,
+				FA160E9617A2816A009C7722 /* CrossDeviceMarcos.h */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

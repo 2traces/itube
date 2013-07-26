@@ -8,6 +8,7 @@
 
 #import "SettingsNavController.h"
 #import "SettingsViewController.h"
+#import "CrossDeviceMarcos.h"
 
 @interface SettingsNavController ()
 
@@ -28,7 +29,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    NSString *controllerName;
+    if (IS_IPAD) {
+        controllerName = @"SettingsViewController_iPad";
+    }else{
+        controllerName = @"SettingsViewController";
+    }
     SettingsViewController *controller = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
     
     controller.delegate = self;

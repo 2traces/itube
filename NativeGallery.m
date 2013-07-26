@@ -14,9 +14,7 @@
 #import "DebugUIImage.h"
 #import "LCUtil.h"
 #import "ColorFactory.h"
-
-
-#define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+#import "CrossDeviceMarcos.h"
 
 @implementation NativeGallery
 

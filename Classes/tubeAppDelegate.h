@@ -9,8 +9,8 @@
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import "GlViewController.h"
+#import "CrossDeviceMarcos.h"
 
-#define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 
 @class MainViewController;
 @class NavigationViewController;
