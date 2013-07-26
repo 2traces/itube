@@ -194,6 +194,11 @@
     }
 }
 
+- (void) resetViewPositions{
+    self.buyButton.frame = CGRectMake(384, 784, 583, 63);
+    
+}
+
 - (void) loadImages{
     tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
     NSString *configPath = [NSString stringWithFormat:@"%@/settings_images.json", appdelegate.mapDirectoryPath];
@@ -245,7 +250,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapChanged:) name:kMapChanged object:nil];
     [TubeAppIAPHelper sharedHelper];
-    NSLog(@"width %f, height %f", self.view.bounds.size.width, self.view.bounds.size.height);
+    [self resetViewPositions];
     [self loadImages];
 }
 
