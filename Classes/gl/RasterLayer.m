@@ -696,9 +696,9 @@ static long DownloadCacheSize = 0;
         } else {
             // any other error
             [dp->piece rasterLoaded];
-            dp->piece->level = -1;
             [queue removeByConnection:connection];
             [minusCache addObject:[[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil] autorelease]];
+            dp->piece->level = -1;
             [target performSelector:erSelector];
             [dp release];
         }
