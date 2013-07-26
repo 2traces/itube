@@ -904,6 +904,7 @@
 
     [self markProductAsPurchased:productIdentifier];
     [self resortMapArray];
+    [self quitController];
 }
 
 -(void)markProductAsPurchased:(NSString*)prodID
@@ -992,6 +993,10 @@
 
 -(IBAction)donePressed:(id)sender 
 {
+    [self quitController];
+}
+
+- (void)quitController{
     for (DownloadServer *server in servers) {
         [server cancel];
     }
@@ -1008,7 +1013,6 @@
         
         [[NSNotificationCenter defaultCenter] postNotificationName:kLangChanged object:nil];
     }
-    
     [delegate donePressed];
 }
 
