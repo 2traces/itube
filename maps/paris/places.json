@@ -233,10 +233,8 @@
       "lat":2.337625,
       "index":1,
       "accessLevel":0,
-      "media_type":"html_with_video",
-      "filename":"html/louvre.html",
-      "video_preview_path":"html/hidden-cities_files/louvre.png",
-      "video_path":"html/hidden-cities_files/louvre.mp4",
+      "hideLevel":1,
+      "media_type":"unlocker",
       "categories":[
         2
       ]
