@@ -165,6 +165,7 @@
     if (IS_IPAD) {
         [appDelegate.mainViewController hideiPadLeftPathView];
     }
+    [self showRasterMap];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -191,7 +192,6 @@
         [self showCutMap];
 
     }
-
 }
 
 - (void)didReceiveMemoryWarning

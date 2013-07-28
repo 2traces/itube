@@ -1502,6 +1502,10 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(void)scrollToGeoPosition:(CGPoint)geoCoords withZoom:(CGFloat)zoom
 {
+    if(CGPointEqualToPoint(position, CGPointZero)) {
+        [self setGeoPosition:geoCoords withZoom:zoom];
+        return ;
+    }
     const static double mult = 256.0 / 360.0;
     float y = atanhf(sinf(geoCoords.x * M_PI / 180.f));
     y = y * 256.f / (M_PI*2.f);
