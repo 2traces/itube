@@ -386,6 +386,12 @@
     }
 }
 
+-(void)showDownloadingProgress: (long)part withWhole:(long)whole{
+    self.buyButton.enabled = NO;
+    NSString *title = [NSString stringWithFormat:@"%@... %li/%li", NSLocalizedString(@"Downloading", @"Downloading"), part, whole];
+    [self.buyButton setTitle:title forState:UIControlStateDisabled];
+}
+
 -(void)downloadFailed:(DownloadServer*)myid
 {
     if (requested_file_type==plist_) {
@@ -393,8 +399,13 @@
     }
     
     [servers removeObject:myid];
-    
     //    [self.updatButton enabled];
+    [self setBuyButtonDownloadMapState];
+}
+
+- (void)setBuyButtonDownloadMapState{
+    [self.buyButton setTitle:NSLocalizedString(@"DownloadMap", @"DownloadMap") forState:UIControlStateNormal];
+    self.buyButton.enabled = YES;
 }
 
 #pragma mark - some helpers
