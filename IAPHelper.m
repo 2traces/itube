@@ -40,6 +40,7 @@
 - (void)requestProducts {
     
     self.request = [[[SKProductsRequest alloc] initWithProductIdentifiers:_productIdentifiers] autorelease];
+    NSLog(@"Request products with ids %@", _productIdentifiers);
     _request.delegate = self;
     [_request start];
     
