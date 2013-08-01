@@ -80,7 +80,7 @@
                     [map setValue:@"ZIP" forKey:@"status"];
                 }
             }
-            [self performSelectorOnMainThread:@selector(updateFreakingButton:) withObject:mapIndexPath waitUntilDone:NO];
+            [self performSelectorOnMainThread:@selector(refreshButton:) withObject:mapIndexPath waitUntilDone:NO];
             //[self updateFreakingButton:mapIndexPath];
             
         }
@@ -336,6 +336,7 @@
 
 -(void)downloadedBytes:(long)part outOfBytes:(long)whole prodID:(NSString*)prodID
 {
+    NSLog(@"downloaded bytes %li/%li, prodID %@", part, whole, prodID);
     if (requested_file_type==zip_) {
         NSIndexPath *mapIndexPath = [self getIndexPathProdID:prodID];
         
@@ -355,6 +356,7 @@
 
 -(void)downloadedBytes:(float)part prodID:(NSString*)prodID
 {
+    NSLog(@"downloaded bytes %f, prodId %@", part, prodID);
     if (requested_file_type==zip_) {
         NSIndexPath *mapIndexPath = [self getIndexPathProdID:prodID];
         
@@ -372,7 +374,7 @@
 }
 
 -(void)startDownloading:(NSString*)prodID
-{    
+{
     if (requested_file_type==zip_) {
         NSIndexPath *mapIndexPath = [self getIndexPathProdID:prodID];
         
@@ -386,14 +388,19 @@
     }
 }
 
--(void)showDownloadingProgress: (long)part withWhole:(long)whole{
+-(void)refreshButton:(NSIndexPath*)path
+{
     self.buyButton.enabled = NO;
-    NSString *title = [NSString stringWithFormat:@"%@... %li/%li", NSLocalizedString(@"Downloading", @"Downloading"), part, whole];
-    [self.buyButton setTitle:title forState:UIControlStateDisabled];
+    NSDictionary *map = [self.maps objectAtIndex:path.row];
+    CGFloat part = (float)[[map objectForKey:@"progressPart"] longValue] / (1024.0f*1024.0f);
+    CGFloat whole = (float)[[map objectForKey:@"progressWhole"] longValue] / (1024.0f*1024.0f);
+    NSString *title = [NSString stringWithFormat:@"%@... %.1f/%.1f Mb", NSLocalizedString(@"Downloading", @"Downloading"), part, whole];
+    [self.buyButton setTitle:title forState:whole];
 }
 
 -(void)downloadFailed:(DownloadServer*)myid
 {
+    NSLog(@"Downloading failed");
     if (requested_file_type==plist_) {
         [self stopTimer];
     }
@@ -557,6 +564,7 @@
 
 -(void)processPlistFromServer:(NSMutableData*)data
 {
+    NSLog(@"process plist from server");
     NSDictionary *dict = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:nil errorDescription:nil];
     
     NSArray *array = [dict allKeys];
@@ -699,7 +707,7 @@
 -(void)buyMap:(NSDictionary*)map
 {
     NSString *prodID = [map valueForKey:@"prodID"];
-    NSLog(@"buy map");
+    NSLog(@"Process prodID %@", prodID);
     if ([self isProductStatusAvailable:prodID]) {
         [self purchaseProduct:prodID];
     } else if ([self isProductStatusPurchased:prodID]) {
@@ -820,6 +828,7 @@
 
 -(void)downloadProduct:(NSString*)prodID
 {
+    NSLog(@"downloadProduct with prodID %@", prodID);
     DownloadServer *server = [[[DownloadServer alloc] init] autorelease];
     server.listener=self;
     server.prodID = prodID;
@@ -964,7 +973,6 @@
 - (void)productPurchaseFailed:(NSNotification *)notification {
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     SKPaymentTransaction * transaction = (SKPaymentTransaction *) notification.object;    
     if (transaction.error.code != SKErrorPaymentCancelled) {    
