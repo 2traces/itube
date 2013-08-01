@@ -77,9 +77,9 @@
     }else{
         NSLog(@"Full product is not purchased");
     }
-//    if ([self isProductStatusInstalled:prodID]){
-//        [self setBuyButtonDownloadCompleteState];
-//    }
+    if ([self isProductStatusInstalled:[map objectForKey: @"prodID"]]){
+        [self setBuyButtonDownloadCompleteState];
+    }
 }
 
 -(void)downloadDone:(NSMutableData *)data prodID:(NSString*)prodID server:(DownloadServer *)myid
