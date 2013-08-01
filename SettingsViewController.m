@@ -71,13 +71,9 @@
 -(void)checkFullProductInitialState{
     NSDictionary *map = [self.maps objectAtIndex:FULL_PRODUCT_INDEX];
     NSString *prodID = [map valueForKey:@"prodID"];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSInteger accessLevel = [[defaults objectForKey:@"additionalContentAccessLevel"] integerValue];
-    if(accessLevel == 1) {
-        self.fullProductPurchased = YES;
+    self.fullProductPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:prodID];
+    if(self.fullProductPurchased) {
         [self setBuyButtonDownloadMapState];
-    }else{
-        self.fullProductPurchased = NO;
     }
     if ([self isProductInstalled:prodID]){
         [self setBuyButtonDownloadCompleteState];
@@ -586,7 +582,7 @@
 
 -(void)processPlistFromServer:(NSMutableData*)data
 {
-    NSLog(@"process plist from server");
+    NSLog(@"Process plist from server");
     NSDictionary *dict = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:nil errorDescription:nil];
     
     NSArray *array = [dict allKeys];
@@ -620,7 +616,7 @@
         NSSet *newProductIdentifiers = [[[NSSet alloc] initWithArray:array] autorelease];    
         
         [[TubeAppIAPHelper sharedHelper] setProductIdentifiers:newProductIdentifiers];
-        
+        NSLog(@"Request products, new products ids: %@", newProductIdentifiers.description);
         [[TubeAppIAPHelper sharedHelper] requestProducts];
     }
     
@@ -850,7 +846,7 @@
 
 -(void)downloadProduct:(NSString*)prodID
 {
-    NSLog(@"downloadProduct with prodID %@", prodID);
+    NSLog(@"Download product with prodID %@", prodID);
     DownloadServer *server = [[[DownloadServer alloc] init] autorelease];
     server.listener=self;
     server.prodID = prodID;
