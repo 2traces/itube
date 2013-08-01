@@ -64,7 +64,6 @@
         self.feedback = [NSArray arrayWithObjects:NSLocalizedString(@"FeedbackRate",@"FeedbackRate"),NSLocalizedString(@"FeedbackMail",@"FeedbackMail"),NSLocalizedString(@"FeedbackTell",@"FeedbackTell"), nil];
         
         isFirstTime=YES;
-        [self checkFullProductInitialState];
     }
     return self;
 }
@@ -270,7 +269,7 @@
     [TubeAppIAPHelper sharedHelper];
     [self loadImages];
     [self rememberPositions];
-    
+    [self checkFullProductInitialState];
 }
 
 -(void)rememberPositions{
