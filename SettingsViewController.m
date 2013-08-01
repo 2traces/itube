@@ -77,7 +77,7 @@
     }else{
         NSLog(@"Full product is not purchased");
     }
-    if ([self isProductStatusInstalled:[map objectForKey: @"prodID"]]){
+    if ([self isProductDownloaded:[map objectForKey: @"prodID"]]){
         [self setBuyButtonDownloadCompleteState];
     }
 }
@@ -452,7 +452,10 @@
             return  YES;
         }
     }
-    
+    return [self isProductDownloaded:mapName];
+}
+
+- (BOOL) isProductDownloaded:(NSString*)mapName{
     NSFileManager *manager = [NSFileManager defaultManager];
     NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *mapDirPath = [cacheDir stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@",[mapName lowercaseString]]];
@@ -474,7 +477,7 @@
                 trpNewFile=YES;
             }
         }
-    } 
+    }
     if (mapFile && (trpFile || trpNewFile)) {
         return YES;
     }
