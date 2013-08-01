@@ -95,7 +95,7 @@
                     [map setValue:@"ZIP" forKey:@"status"];
                 }
             }
-            [self performSelectorOnMainThread:@selector(refreshButton:) withObject:mapIndexPath waitUntilDone:NO];
+            [self performSelectorOnMainThread:@selector(setBuyButtonDownloadCompleteState:) withObject:mapIndexPath waitUntilDone:NO];
             //[self updateFreakingButton:mapIndexPath];
             
         }
@@ -364,7 +364,7 @@
                 }
             }
             
-            [self performSelectorOnMainThread:@selector(refreshButton:) withObject:mapIndexPath waitUntilDone:NO];
+            [self performSelectorOnMainThread:@selector(setBuyButtonDownloadingState:) withObject:mapIndexPath waitUntilDone:NO];
         }
     }
 }
@@ -383,7 +383,7 @@
                 }
             }
 
-            [self performSelectorOnMainThread:@selector(refreshButton:) withObject:mapIndexPath waitUntilDone:NO];
+            [self performSelectorOnMainThread:@selector(setBuyButtonDownloadingState:) withObject:mapIndexPath waitUntilDone:NO];
         }
     }
 }
@@ -403,14 +403,14 @@
     }
 }
 
--(void)refreshButton:(NSIndexPath*)path
+-(void)setBuyButtonDownloadingState:(NSIndexPath*)path
 {
     self.buyButton.enabled = NO;
     NSDictionary *map = [self.maps objectAtIndex:path.row];
     CGFloat part = (float)[[map objectForKey:@"progressPart"] longValue] / (1024.0f*1024.0f);
     CGFloat whole = (float)[[map objectForKey:@"progressWhole"] longValue] / (1024.0f*1024.0f);
     NSString *title = [NSString stringWithFormat:@"%@... %.1f/%.1f Mb", NSLocalizedString(@"Downloading", @"Downloading"), part, whole];
-    [self.buyButton setTitle:title forState:whole];
+    [self.buyButton setTitle:title forState:UIControlStateDisabled];
 }
 
 -(void)downloadFailed:(DownloadServer*)myid
@@ -433,6 +433,10 @@
 - (void)setBuyButtonDownloadCompleteState{
     [self.buyButton setTitle:NSLocalizedString(@"DownloadComplete", @"DownloadComplete") forState:UIControlStateDisabled];
     self.buyButton.enabled = NO;
+}
+
+- (void)setBuyButtonDownloadCompleteState:(NSIndexPath*)path{
+    [self setBuyButtonDownloadCompleteState];
 }
 
 #pragma mark - some helpers
@@ -672,42 +676,40 @@
     //SHOULD BE ASYNC!
     __block BOOL success = NO;
     
-        success = [SSZipArchive unzipFileAtPath:path toDestination:cacheDir];
+    success = [SSZipArchive unzipFileAtPath:path toDestination:cacheDir];
+    
+    
+    // delete file from temp
+    NSFileManager *manager = [NSFileManager defaultManager];
+    [manager removeItemAtPath:path error:nil];
+    
+    if (success) {
+        [self markProductAsInstalled:prodID];
+    }
+    
+    [self resortMapArray];
+    
+    // если мы скачали новую версию нашей текущей карты - то обновить ее
+    
+    tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    NSString *mapName = [self getMapNameForProduct:prodID];
+    
+    if ([[[appdelegate cityMap] thisMapName] isEqual:mapName])
+    {
+        // перегрузить карту
+        //  NSLog(@"перегружаю активную карту");
         
+        NSString *cityName;
         
-        // delete file from temp
-        NSFileManager *manager = [NSFileManager defaultManager];
-        [manager removeItemAtPath:path error:nil];
-        
-        if (success) {
-            [self markProductAsInstalled:prodID];
-        }
-        
-        [self resortMapArray];
-        
-        // если мы скачали новую версию нашей текущей карты - то обновить ее
-        
-        tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
-        
-        NSString *mapName = [self getMapNameForProduct:prodID];
-        
-        if ([[[appdelegate cityMap] thisMapName] isEqual:mapName])
-        {
-            // перегрузить карту
-            //  NSLog(@"перегружаю активную карту");
-            
-            NSString *cityName;
-            
-            for (NSDictionary *dict in self.maps) {
-                if ([[dict objectForKey:@"filename"] isEqual:mapName]) {
-                    cityName = [dict objectForKey:@"name"];
-                }
+        for (NSDictionary *dict in self.maps) {
+            if ([[dict objectForKey:@"filename"] isEqual:mapName]) {
+                cityName = [dict objectForKey:@"name"];
             }
-            
         }
-        [self performSelectorOnMainThread:@selector(updateFreakingButton:) withObject:mapIndexPath waitUntilDone:NO];
-
-
+        
+    }
+    
 }
 
 -(IBAction)updatePressed:(id)sender
