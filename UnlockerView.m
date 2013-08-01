@@ -8,6 +8,7 @@
 
 #import "UnlockerView.h"
 #import "ColorFactory.h"
+#import "LCUtil.h"
 
 @implementation UnlockerView
 
@@ -30,12 +31,11 @@
         self.bg.contentMode =  UIViewContentModeScaleAspectFill;
         [self.bg setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         CGRect buttonFrame;
-        NSString *bgImageName;
         NSString *buttonBgPressedName;
         NSString *buttonBgName;
-        NSString *buttonTitle = @"Unlock Full Guide";//TODO: localize that
+        NSString *bgImageName =[LCUtil getLocalizedPhotoPathWithMapDirectory:tubeAppDelegate.mapDirectoryPath withPath:@"unlocker_images/unlocker_bg.png" iphone5:tubeAppDelegate.isIPHONE5];
+        NSString *buttonTitle  =  NSLocalizedString(@"Unlock Full Guide", @"Unlock Full Guide");
         if (IS_IPAD) {
-            bgImageName = @"unlocker_bg-ipad.jpg";
             buttonFrame = BUTTON_FRAME_IPAD;
             buttonBgName = @"unlocker_button_ipad_unpressed";
             buttonBgPressedName = @"unlocker_button_ipad_pressed";
@@ -43,10 +43,8 @@
             buttonBgName = @"unlocker_button_unpressed";
             buttonBgPressedName = @"unlocker_button_pressed";
             if([tubeAppDelegate isIPHONE5]){
-                bgImageName = @"unlocker_bg-iphone5.png";
                 buttonFrame = BUTTON_FRAME_IPHONE5;
             }else{
-                bgImageName = @"unlocker_bg-iphone.png";
                 buttonFrame = BUTTON_FRAME_IPHONE;
             }
         }
