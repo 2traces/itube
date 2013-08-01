@@ -70,14 +70,16 @@
 
 -(void)checkFullProductInitialState{
     NSDictionary *map = [self.maps objectAtIndex:FULL_PRODUCT_INDEX];
-    NSString *prodID = [map valueForKey:@"prodID"];
-    self.fullProductPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:prodID];
+    self.fullProductPurchased = ([[NSUserDefaults standardUserDefaults] integerForKey:@"additionalContentAccessLevel"] == 1);
     if(self.fullProductPurchased) {
+        NSLog(@"Full product is puchased");
         [self setBuyButtonDownloadMapState];
+    }else{
+        NSLog(@"Full product is not purchased");
     }
-    if ([self isProductInstalled:prodID]){
-        [self setBuyButtonDownloadCompleteState];
-    }
+//    if ([self isProductStatusInstalled:prodID]){
+//        [self setBuyButtonDownloadCompleteState];
+//    }
 }
 
 -(void)downloadDone:(NSMutableData *)data prodID:(NSString*)prodID server:(DownloadServer *)myid
