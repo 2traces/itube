@@ -59,6 +59,7 @@
 @property (nonatomic, retain) UIImageView *progressArrows;
 @property (nonatomic, retain) NSArray *languages;
 @property (nonatomic, retain) NSArray *feedback;
+@property BOOL fullProductPurchased;
 
 -(BOOL)isProductInstalled:(NSString*)prodID;
 -(BOOL)isProductPurchased:(NSString*)prodID;

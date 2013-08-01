@@ -42,6 +42,7 @@
 @synthesize paging;
 @synthesize quitButton;
 @synthesize subviewPositions;
+@synthesize fullProductPurchased;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -63,8 +64,25 @@
         self.feedback = [NSArray arrayWithObjects:NSLocalizedString(@"FeedbackRate",@"FeedbackRate"),NSLocalizedString(@"FeedbackMail",@"FeedbackMail"),NSLocalizedString(@"FeedbackTell",@"FeedbackTell"), nil];
         
         isFirstTime=YES;
+        [self checkFullProductInitialState];
     }
     return self;
+}
+
+-(void)checkFullProductInitialState{
+    NSDictionary *map = [self.maps objectAtIndex:FULL_PRODUCT_INDEX];
+    NSString *prodID = [map valueForKey:@"prodID"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger accessLevel = [[defaults objectForKey:@"additionalContentAccessLevel"] integerValue];
+    if(accessLevel == 1) {
+        self.fullProductPurchased = YES;
+        [self setBuyButtonDownloadMapState];
+    }else{
+        self.fullProductPurchased = NO;
+    }
+    if ([self isProductInstalled:prodID]){
+        [self setBuyButtonDownloadCompleteState];
+    }
 }
 
 -(void)downloadDone:(NSMutableData *)data prodID:(NSString*)prodID server:(DownloadServer *)myid
@@ -413,6 +431,11 @@
 - (void)setBuyButtonDownloadMapState{
     [self.buyButton setTitle:NSLocalizedString(@"DownloadMap", @"DownloadMap") forState:UIControlStateNormal];
     self.buyButton.enabled = YES;
+}
+         
+- (void)setBuyButtonDownloadCompleteState{
+    [self.buyButton setTitle:NSLocalizedString(@"DownloadComplete", @"DownloadComplete") forState:UIControlStateDisabled];
+    self.buyButton.enabled = NO;
 }
 
 #pragma mark - some helpers
