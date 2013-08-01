@@ -33,7 +33,7 @@
         CGRect buttonFrame;
         NSString *buttonBgPressedName;
         NSString *buttonBgName;
-        NSString *bgImageName =[LCUtil getLocalizedPhotoPathWithMapDirectory:tubeAppDelegate.mapDirectoryPath withPath:@"unlocker_images/unlocker_bg.png" iphone5:tubeAppDelegate.isIPHONE5];
+        NSString *bgImagePath =[LCUtil getLocalizedPhotoPathWithMapDirectory:tubeAppDelegate.mapDirectoryPath withPath:@"unlocker_images/unlocker_bg.png" iphone5:tubeAppDelegate.isIPHONE5];
         NSString *buttonTitle  =  NSLocalizedString(@"Unlock Full Guide", @"Unlock Full Guide");
         if (IS_IPAD) {
             buttonFrame = BUTTON_FRAME_IPAD;
@@ -48,7 +48,7 @@
                 buttonFrame = BUTTON_FRAME_IPHONE;
             }
         }
-        self.bg.image = [UIImage imageNamed:bgImageName];
+        self.bg.image = [UIImage imageWithContentsOfFile:bgImagePath];
         self.bg.userInteractionEnabled = YES;
         self.tapGR = [[UITapGestureRecognizer alloc] init];
         [self.bg addGestureRecognizer:self.tapGR];

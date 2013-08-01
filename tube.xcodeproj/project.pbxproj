@@ -2280,8 +2280,6 @@
 		96C7CB2517A2F69F004EEBCF /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47417A18E09009F76BA /* reload.png */; };
 		96C7CB2617A2F6A1004EEBCF /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47417A18E09009F76BA /* reload.png */; };
 		96C7CB2717A2F6A1004EEBCF /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B47417A18E09009F76BA /* reload.png */; };
-		96C7CB2817A2F6B1004EEBCF /* unlocker_bg-iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC9068E179EAD0100A31A7D /* unlocker_bg-iphone.png */; };
-		96C7CB2C17A2F6B6004EEBCF /* unlocker_bg-iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC9068F179EAD0400A31A7D /* unlocker_bg-iphone5.png */; };
 		96C7CB3017A2F6BB004EEBCF /* iphone_adscreen_button_notpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B49617A19060009F76BA /* iphone_adscreen_button_notpressed.png */; };
 		96C7CB3117A2F6BC004EEBCF /* iphone_adscreen_button_notpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B49617A19060009F76BA /* iphone_adscreen_button_notpressed.png */; };
 		96C7CB3317A2F6BE004EEBCF /* iphone_adscreen_button_notpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B49617A19060009F76BA /* iphone_adscreen_button_notpressed.png */; };
@@ -2294,22 +2292,12 @@
 		96C7CB3B17A2F6DC004EEBCF /* iphone_adscreen_restore.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B4A017A1926B009F76BA /* iphone_adscreen_restore.png */; };
 		96C7CB3C17A2F6DD004EEBCF /* iphone_adscreen_restore.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B4A017A1926B009F76BA /* iphone_adscreen_restore.png */; };
 		96C7CB3D17A2F6DE004EEBCF /* iphone_adscreen_restore.png in Resources */ = {isa = PBXBuildFile; fileRef = FA82B4A017A1926B009F76BA /* iphone_adscreen_restore.png */; };
-		96C7CB3E17A2F6EE004EEBCF /* unlocker_bg-ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAC90689179EA0AA00A31A7D /* unlocker_bg-ipad.jpg */; };
-		96C7CB3F17A2F6EE004EEBCF /* unlocker_bg-ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAC90689179EA0AA00A31A7D /* unlocker_bg-ipad.jpg */; };
-		96C7CB4017A2F6EE004EEBCF /* unlocker_bg-ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAC90689179EA0AA00A31A7D /* unlocker_bg-ipad.jpg */; };
-		96C7CB4117A2F6EF004EEBCF /* unlocker_bg-ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAC90689179EA0AA00A31A7D /* unlocker_bg-ipad.jpg */; };
 		96C7CB4217A2F6FA004EEBCF /* unlocker_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC90673179EA06C00A31A7D /* unlocker_button_pressed.png */; };
 		96C7CB4317A2F6FA004EEBCF /* unlocker_button_unpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC90674179EA07200A31A7D /* unlocker_button_unpressed.png */; };
-		96C7CB4417A2F6FB004EEBCF /* unlocker_bg-iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC9068E179EAD0100A31A7D /* unlocker_bg-iphone.png */; };
-		96C7CB4517A2F6FB004EEBCF /* unlocker_bg-iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC9068F179EAD0400A31A7D /* unlocker_bg-iphone5.png */; };
 		96C7CB4617A2F6FB004EEBCF /* unlocker_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC90673179EA06C00A31A7D /* unlocker_button_pressed.png */; };
 		96C7CB4717A2F6FB004EEBCF /* unlocker_button_unpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC90674179EA07200A31A7D /* unlocker_button_unpressed.png */; };
-		96C7CB4817A2F6FB004EEBCF /* unlocker_bg-iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC9068E179EAD0100A31A7D /* unlocker_bg-iphone.png */; };
-		96C7CB4917A2F6FB004EEBCF /* unlocker_bg-iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC9068F179EAD0400A31A7D /* unlocker_bg-iphone5.png */; };
 		96C7CB4A17A2F6FB004EEBCF /* unlocker_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC90673179EA06C00A31A7D /* unlocker_button_pressed.png */; };
 		96C7CB4B17A2F6FB004EEBCF /* unlocker_button_unpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC90674179EA07200A31A7D /* unlocker_button_unpressed.png */; };
-		96C7CB4C17A2F6FB004EEBCF /* unlocker_bg-iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC9068E179EAD0100A31A7D /* unlocker_bg-iphone.png */; };
-		96C7CB4D17A2F6FB004EEBCF /* unlocker_bg-iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC9068F179EAD0400A31A7D /* unlocker_bg-iphone5.png */; };
 		96C7CB4E17A2F6FB004EEBCF /* unlocker_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC90673179EA06C00A31A7D /* unlocker_button_pressed.png */; };
 		96C7CB4F17A2F6FB004EEBCF /* unlocker_button_unpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC90674179EA07200A31A7D /* unlocker_button_unpressed.png */; };
 		96C7CB5017A3EBA9004EEBCF /* SettingsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA160E9C17A283A4009C7722 /* SettingsViewController_iPad.xib */; };
@@ -3755,9 +3743,6 @@
 		FAC90672179EA06800A31A7D /* unlocker_button_ipad_unpressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlocker_button_ipad_unpressed.png; sourceTree = "<group>"; };
 		FAC90673179EA06C00A31A7D /* unlocker_button_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlocker_button_pressed.png; sourceTree = "<group>"; };
 		FAC90674179EA07200A31A7D /* unlocker_button_unpressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlocker_button_unpressed.png; sourceTree = "<group>"; };
-		FAC90689179EA0AA00A31A7D /* unlocker_bg-ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "unlocker_bg-ipad.jpg"; sourceTree = "<group>"; };
-		FAC9068E179EAD0100A31A7D /* unlocker_bg-iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unlocker_bg-iphone.png"; sourceTree = "<group>"; };
-		FAC9068F179EAD0400A31A7D /* unlocker_bg-iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unlocker_bg-iphone5.png"; sourceTree = "<group>"; };
 		FAD1333C1757DAB4004859C1 /* citymap-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "citymap-button@2x.png"; sourceTree = "<group>"; };
 		FAD1333D1757DAB4004859C1 /* like-button-01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-button-01@2x.png"; sourceTree = "<group>"; };
 		FAD1333E1757DAB4004859C1 /* metro-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metro-button.png"; sourceTree = "<group>"; };
@@ -4524,13 +4509,10 @@
 				FAFD419A172832CD006AC5BF /* scroll_btn_next@2x.png */,
 				FAFD419B172832CD006AC5BF /* scroll_btn_prev.png */,
 				FAFD419C172832CD006AC5BF /* scroll_btn_prev@2x.png */,
-				FAC9068E179EAD0100A31A7D /* unlocker_bg-iphone.png */,
-				FAC9068F179EAD0400A31A7D /* unlocker_bg-iphone5.png */,
 				FAC90671179EA06400A31A7D /* unlocker_button_ipad_pressed.png */,
 				FAC90672179EA06800A31A7D /* unlocker_button_ipad_unpressed.png */,
 				FAC90673179EA06C00A31A7D /* unlocker_button_pressed.png */,
 				FAC90674179EA07200A31A7D /* unlocker_button_unpressed.png */,
-				FAC90689179EA0AA00A31A7D /* unlocker_bg-ipad.jpg */,
 				FA82B46E17A18E09009F76BA /* ipad_button_nonpressed.png */,
 				FA82B46F17A18E09009F76BA /* ipad_button_nonpressed@2x.png */,
 				FA82B47017A18E09009F76BA /* ipad_button_pressed.png */,
@@ -5779,12 +5761,9 @@
 				96C7CB1C17A2F675004EEBCF /* ipad_button_pressed@2x.png in Resources */,
 				96C7CB2017A2F697004EEBCF /* reload@2x.png in Resources */,
 				96C7CB2417A2F69F004EEBCF /* reload.png in Resources */,
-				96C7CB2817A2F6B1004EEBCF /* unlocker_bg-iphone.png in Resources */,
-				96C7CB2C17A2F6B6004EEBCF /* unlocker_bg-iphone5.png in Resources */,
 				96C7CB3017A2F6BB004EEBCF /* iphone_adscreen_button_notpressed.png in Resources */,
 				96C7CB3517A2F6D2004EEBCF /* iphone_adscreen_button_pressed.png in Resources */,
 				96C7CB3917A2F6D7004EEBCF /* iphone_adscreen_restore.png in Resources */,
-				96C7CB3E17A2F6EE004EEBCF /* unlocker_bg-ipad.jpg in Resources */,
 				96C7CB4217A2F6FA004EEBCF /* unlocker_button_pressed.png in Resources */,
 				96C7CB4317A2F6FA004EEBCF /* unlocker_button_unpressed.png in Resources */,
 				96C7CB5017A3EBA9004EEBCF /* SettingsViewController_iPad.xib in Resources */,
@@ -6376,9 +6355,6 @@
 				96C7CB3117A2F6BC004EEBCF /* iphone_adscreen_button_notpressed.png in Resources */,
 				96C7CB3617A2F6D3004EEBCF /* iphone_adscreen_button_pressed.png in Resources */,
 				96C7CB3C17A2F6DD004EEBCF /* iphone_adscreen_restore.png in Resources */,
-				96C7CB3F17A2F6EE004EEBCF /* unlocker_bg-ipad.jpg in Resources */,
-				96C7CB4417A2F6FB004EEBCF /* unlocker_bg-iphone.png in Resources */,
-				96C7CB4517A2F6FB004EEBCF /* unlocker_bg-iphone5.png in Resources */,
 				96C7CB4617A2F6FB004EEBCF /* unlocker_button_pressed.png in Resources */,
 				96C7CB4717A2F6FB004EEBCF /* unlocker_button_unpressed.png in Resources */,
 				96C7CB5117A3EBA9004EEBCF /* SettingsViewController_iPad.xib in Resources */,
@@ -6964,9 +6940,6 @@
 				96C7CB3417A2F6BF004EEBCF /* iphone_adscreen_button_notpressed.png in Resources */,
 				96C7CB3717A2F6D3004EEBCF /* iphone_adscreen_button_pressed.png in Resources */,
 				96C7CB3B17A2F6DC004EEBCF /* iphone_adscreen_restore.png in Resources */,
-				96C7CB4017A2F6EE004EEBCF /* unlocker_bg-ipad.jpg in Resources */,
-				96C7CB4817A2F6FB004EEBCF /* unlocker_bg-iphone.png in Resources */,
-				96C7CB4917A2F6FB004EEBCF /* unlocker_bg-iphone5.png in Resources */,
 				96C7CB4A17A2F6FB004EEBCF /* unlocker_button_pressed.png in Resources */,
 				96C7CB4B17A2F6FB004EEBCF /* unlocker_button_unpressed.png in Resources */,
 				96C7CB5217A3EBAA004EEBCF /* SettingsViewController_iPad.xib in Resources */,
@@ -7555,9 +7528,6 @@
 				96C7CB3317A2F6BE004EEBCF /* iphone_adscreen_button_notpressed.png in Resources */,
 				96C7CB3817A2F6D4004EEBCF /* iphone_adscreen_button_pressed.png in Resources */,
 				96C7CB3D17A2F6DE004EEBCF /* iphone_adscreen_restore.png in Resources */,
-				96C7CB4117A2F6EF004EEBCF /* unlocker_bg-ipad.jpg in Resources */,
-				96C7CB4C17A2F6FB004EEBCF /* unlocker_bg-iphone.png in Resources */,
-				96C7CB4D17A2F6FB004EEBCF /* unlocker_bg-iphone5.png in Resources */,
 				96C7CB4E17A2F6FB004EEBCF /* unlocker_button_pressed.png in Resources */,
 				96C7CB4F17A2F6FB004EEBCF /* unlocker_button_unpressed.png in Resources */,
 				96C7CB5317A3EBAB004EEBCF /* SettingsViewController_iPad.xib in Resources */,
