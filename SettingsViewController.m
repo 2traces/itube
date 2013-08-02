@@ -70,7 +70,8 @@
 
 -(void)checkFullProductInitialState{
     NSDictionary *map = [self.maps objectAtIndex:FULL_PRODUCT_INDEX];
-    self.fullProductPurchased = ([[NSUserDefaults standardUserDefaults] integerForKey:@"additionalContentAccessLevel"] == 1);
+    NSString *prodID = [map objectForKey:@"prodID"];
+    self.fullProductPurchased = ([[NSUserDefaults standardUserDefaults] integerForKey:@"additionalContentAccessLevel"] == 1) || [self isProductStatusPurchased:prodID];
     if(self.fullProductPurchased) {
         NSLog(@"Full product is puchased");
         [self setBuyButtonDownloadMapState];
@@ -434,7 +435,7 @@
     }else{
         image = [UIImage imageNamed:@"download_map_iphone"];
     }
-    [self.buyButton setImage:image forState:UIControlStateNormal];
+    [self.buyButton setBackgroundImage:image forState:UIControlStateNormal];
 }
          
 - (void)setBuyButtonDownloadCompleteState{
