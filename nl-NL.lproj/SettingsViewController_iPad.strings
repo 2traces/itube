@@ -1,0 +1,9 @@
+
+/* Class = "IBUIButton"; normalTitle = "Buy Paris Guides"; ObjectID = "18"; */
+"18.normalTitle" = "Buy Paris Guides";
+
+/* Class = "IBUIButton"; normalTitle = "Buy All Guides"; ObjectID = "21"; */
+"21.normalTitle" = "Buy All Guides";
+
+/* Class = "IBUILabel"; text = "Restore Purchases"; ObjectID = "74"; */
+"74.text" = "Restore Purchases";

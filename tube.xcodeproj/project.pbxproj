@@ -3731,12 +3731,12 @@
 		FA1B84C7173A9B3600D8A05F /* DebugUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugUIImageView.m; sourceTree = "<group>"; };
 		FA38296B1774BE2A003BCCE0 /* LCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCUtil.h; sourceTree = "<group>"; };
 		FA38296C1774BE2A003BCCE0 /* LCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCUtil.m; sourceTree = "<group>"; };
-		FA44BDC017AC5FA70009E8B9 /* nl-NL */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "nl-NL"; path = "nl-NL.lproj/SettingsViewController.xib"; sourceTree = "<group>"; };
-		FA44BDC117AC5FA70009E8B9 /* nl-NL */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "nl-NL"; path = "nl-NL.lproj/SettingsViewController_iPad.xib"; sourceTree = "<group>"; };
 		FA44BDC217AC5FA80009E8B9 /* nl-NL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nl-NL"; path = "nl-NL.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		FA44BDC317AC5FDD0009E8B9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/SettingsViewController.strings; sourceTree = "<group>"; };
-		FA44BDC417AC5FDD0009E8B9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/SettingsViewController_iPad.xib; sourceTree = "<group>"; };
 		FA44BDC517AC5FF70009E8B9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FA44BDC717AC61770009E8B9 /* nl-NL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nl-NL"; path = "nl-NL.lproj/SettingsViewController.strings"; sourceTree = "<group>"; };
+		FA44BDC917AC61860009E8B9 /* nl-NL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nl-NL"; path = "nl-NL.lproj/SettingsViewController_iPad.strings"; sourceTree = "<group>"; };
+		FA44BDCA17AC61890009E8B9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/SettingsViewController_iPad.strings; sourceTree = "<group>"; };
 		FA4BA174171309CF0066BA71 /* HtmlGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlGallery.h; sourceTree = "<group>"; };
 		FA4BA175171309CF0066BA71 /* HtmlGallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlGallery.m; sourceTree = "<group>"; };
 		FA4BA1D0171471C80066BA71 /* NativeGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeGallery.h; sourceTree = "<group>"; };
@@ -8104,8 +8104,8 @@
 				FAE1BEF517A2731600B0FBBE /* fr */,
 				FAE1BEF717A2731D00B0FBBE /* de */,
 				FAE1BEF917A2732600B0FBBE /* it */,
-				FA44BDC017AC5FA70009E8B9 /* nl-NL */,
 				FA44BDC317AC5FDD0009E8B9 /* ru */,
+				FA44BDC717AC61770009E8B9 /* nl-NL */,
 			);
 			name = SettingsViewController.xib;
 			path = Resources;
@@ -8131,8 +8131,8 @@
 				FA160EA117A283AE009C7722 /* de */,
 				FA160EA317A283AF009C7722 /* it */,
 				FA160EA417A283C2009C7722 /* en */,
-				FA44BDC117AC5FA70009E8B9 /* nl-NL */,
-				FA44BDC417AC5FDD0009E8B9 /* ru */,
+				FA44BDC917AC61860009E8B9 /* nl-NL */,
+				FA44BDCA17AC61890009E8B9 /* ru */,
 			);
 			name = SettingsViewController_iPad.xib;
 			sourceTree = "<group>";
