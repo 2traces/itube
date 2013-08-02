@@ -949,7 +949,7 @@
 
     [self markProductAsPurchased:productIdentifier];
     [self resortMapArray];
-    [self quitController];
+    [self setBuyButtonDownloadMapState];
 }
 
 -(void)markProductAsPurchased:(NSString*)prodID
