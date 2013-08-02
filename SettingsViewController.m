@@ -720,7 +720,7 @@
         }
         
     }
-    
+    [self quitController];
 }
 
 -(IBAction)updatePressed:(id)sender
