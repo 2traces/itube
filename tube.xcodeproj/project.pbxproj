@@ -2844,6 +2844,22 @@
 		FAD1336B1757DAB4004859C1 /* like-button-01.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD133451757DAB4004859C1 /* like-button-01.png */; };
 		FAD1336C1757DAB4004859C1 /* like-button-01.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD133451757DAB4004859C1 /* like-button-01.png */; };
 		FAD1336D1757DAB4004859C1 /* like-button-01.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD133451757DAB4004859C1 /* like-button-01.png */; };
+		FAE5DE8217AC01D000C0C56C /* download_map_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE5DE7E17AC01D000C0C56C /* download_map_iphone.png */; };
+		FAE5DE8317AC01D000C0C56C /* download_map_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE5DE7E17AC01D000C0C56C /* download_map_iphone.png */; };
+		FAE5DE8417AC01D000C0C56C /* download_map_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE5DE7E17AC01D000C0C56C /* download_map_iphone.png */; };
+		FAE5DE8517AC01D000C0C56C /* download_map_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE5DE7E17AC01D000C0C56C /* download_map_iphone.png */; };
+		FAE5DE8617AC01D000C0C56C /* download_map_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE5DE7F17AC01D000C0C56C /* download_map_iphone@2x.png */; };
+		FAE5DE8717AC01D000C0C56C /* download_map_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE5DE7F17AC01D000C0C56C /* download_map_iphone@2x.png */; };
+		FAE5DE8817AC01D000C0C56C /* download_map_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE5DE7F17AC01D000C0C56C /* download_map_iphone@2x.png */; };
+		FAE5DE8917AC01D000C0C56C /* download_map_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE5DE7F17AC01D000C0C56C /* download_map_iphone@2x.png */; };
+		FAE5DE8A17AC01D000C0C56C /* download_map.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE5DE8017AC01D000C0C56C /* download_map.png */; };
+		FAE5DE8B17AC01D000C0C56C /* download_map.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE5DE8017AC01D000C0C56C /* download_map.png */; };
+		FAE5DE8C17AC01D000C0C56C /* download_map.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE5DE8017AC01D000C0C56C /* download_map.png */; };
+		FAE5DE8D17AC01D000C0C56C /* download_map.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE5DE8017AC01D000C0C56C /* download_map.png */; };
+		FAE5DE8E17AC01D000C0C56C /* download_map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE5DE8117AC01D000C0C56C /* download_map@2x.png */; };
+		FAE5DE8F17AC01D000C0C56C /* download_map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE5DE8117AC01D000C0C56C /* download_map@2x.png */; };
+		FAE5DE9017AC01D000C0C56C /* download_map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE5DE8117AC01D000C0C56C /* download_map@2x.png */; };
+		FAE5DE9117AC01D000C0C56C /* download_map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE5DE8117AC01D000C0C56C /* download_map@2x.png */; };
 		FAF4970E170493E80054C0D2 /* MediaTypeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF4970D170493E80054C0D2 /* MediaTypeFactory.m */; };
 		FAF4970F170493E80054C0D2 /* MediaTypeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF4970D170493E80054C0D2 /* MediaTypeFactory.m */; };
 		FAF49710170493E80054C0D2 /* MediaTypeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF4970D170493E80054C0D2 /* MediaTypeFactory.m */; };
@@ -3758,6 +3774,10 @@
 		FAE1BEF517A2731600B0FBBE /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SettingsViewController.strings; sourceTree = "<group>"; };
 		FAE1BEF717A2731D00B0FBBE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SettingsViewController.strings; sourceTree = "<group>"; };
 		FAE1BEF917A2732600B0FBBE /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SettingsViewController.strings; sourceTree = "<group>"; };
+		FAE5DE7E17AC01D000C0C56C /* download_map_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download_map_iphone.png; sourceTree = "<group>"; };
+		FAE5DE7F17AC01D000C0C56C /* download_map_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download_map_iphone@2x.png"; sourceTree = "<group>"; };
+		FAE5DE8017AC01D000C0C56C /* download_map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download_map.png; sourceTree = "<group>"; };
+		FAE5DE8117AC01D000C0C56C /* download_map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download_map@2x.png"; sourceTree = "<group>"; };
 		FAF4970C170493E80054C0D2 /* MediaTypeFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTypeFactory.h; sourceTree = "<group>"; };
 		FAF4970D170493E80054C0D2 /* MediaTypeFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaTypeFactory.m; sourceTree = "<group>"; };
 		FAF497131705A2490054C0D2 /* HtmlWithVideoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HtmlWithVideoView.xib; sourceTree = "<group>"; };
@@ -4401,6 +4421,10 @@
 		577DEBAB166E3871006BA43A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				FAE5DE7E17AC01D000C0C56C /* download_map_iphone.png */,
+				FAE5DE7F17AC01D000C0C56C /* download_map_iphone@2x.png */,
+				FAE5DE8017AC01D000C0C56C /* download_map.png */,
+				FAE5DE8117AC01D000C0C56C /* download_map@2x.png */,
 				51A4058A178D8EC800279164 /* current_location-with-direction.png */,
 				51A4058B178D8EC800279164 /* current_location-with-direction@2x.png */,
 				572B62B61653F4BA00B415DC /* bookmarks_bg@2x.png */,
@@ -5767,6 +5791,10 @@
 				96C7CB4217A2F6FA004EEBCF /* unlocker_button_pressed.png in Resources */,
 				96C7CB4317A2F6FA004EEBCF /* unlocker_button_unpressed.png in Resources */,
 				96C7CB5017A3EBA9004EEBCF /* SettingsViewController_iPad.xib in Resources */,
+				FAE5DE8217AC01D000C0C56C /* download_map_iphone.png in Resources */,
+				FAE5DE8617AC01D000C0C56C /* download_map_iphone@2x.png in Resources */,
+				FAE5DE8A17AC01D000C0C56C /* download_map.png in Resources */,
+				FAE5DE8E17AC01D000C0C56C /* download_map@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6358,6 +6386,10 @@
 				96C7CB4617A2F6FB004EEBCF /* unlocker_button_pressed.png in Resources */,
 				96C7CB4717A2F6FB004EEBCF /* unlocker_button_unpressed.png in Resources */,
 				96C7CB5117A3EBA9004EEBCF /* SettingsViewController_iPad.xib in Resources */,
+				FAE5DE8317AC01D000C0C56C /* download_map_iphone.png in Resources */,
+				FAE5DE8717AC01D000C0C56C /* download_map_iphone@2x.png in Resources */,
+				FAE5DE8B17AC01D000C0C56C /* download_map.png in Resources */,
+				FAE5DE8F17AC01D000C0C56C /* download_map@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6943,6 +6975,10 @@
 				96C7CB4A17A2F6FB004EEBCF /* unlocker_button_pressed.png in Resources */,
 				96C7CB4B17A2F6FB004EEBCF /* unlocker_button_unpressed.png in Resources */,
 				96C7CB5217A3EBAA004EEBCF /* SettingsViewController_iPad.xib in Resources */,
+				FAE5DE8417AC01D000C0C56C /* download_map_iphone.png in Resources */,
+				FAE5DE8817AC01D000C0C56C /* download_map_iphone@2x.png in Resources */,
+				FAE5DE8C17AC01D000C0C56C /* download_map.png in Resources */,
+				FAE5DE9017AC01D000C0C56C /* download_map@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7531,6 +7567,10 @@
 				96C7CB4E17A2F6FB004EEBCF /* unlocker_button_pressed.png in Resources */,
 				96C7CB4F17A2F6FB004EEBCF /* unlocker_button_unpressed.png in Resources */,
 				96C7CB5317A3EBAB004EEBCF /* SettingsViewController_iPad.xib in Resources */,
+				FAE5DE8517AC01D000C0C56C /* download_map_iphone.png in Resources */,
+				FAE5DE8917AC01D000C0C56C /* download_map_iphone@2x.png in Resources */,
+				FAE5DE8D17AC01D000C0C56C /* download_map.png in Resources */,
+				FAE5DE9117AC01D000C0C56C /* download_map@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -428,6 +428,13 @@
 - (void)setBuyButtonDownloadMapState{
     [self.buyButton setTitle:NSLocalizedString(@"DownloadMap", @"DownloadMap") forState:UIControlStateNormal];
     self.buyButton.enabled = YES;
+    UIImage *image;
+    if (IS_IPAD) {
+        image = [UIImage imageNamed:@"download_map"];
+    }else{
+        image = [UIImage imageNamed:@"download_map_iphone"];
+    }
+    [self.buyButton setImage:image forState:UIControlStateNormal];
 }
          
 - (void)setBuyButtonDownloadCompleteState{
