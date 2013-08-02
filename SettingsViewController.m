@@ -443,6 +443,12 @@
     self.buyButton.enabled = NO;
 }
 
+
+- (void)setBuyButtonUnpackingState{
+    [self.buyButton setTitle:NSLocalizedString(@"Unpacking", @"Unpacking") forState:UIControlStateDisabled];
+    self.buyButton.enabled = NO;
+}
+
 - (void)setBuyButtonDownloadCompleteState:(NSIndexPath*)path{
     [self setBuyButtonDownloadCompleteState];
 }
@@ -675,7 +681,7 @@
         }
     
     }
-    
+    [self setBuyButtonUnpackingState];
     // save data to file in tmp 
     NSString *tempDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [tempDir stringByAppendingPathComponent:[NSString stringWithFormat:@"1.zip"]];
