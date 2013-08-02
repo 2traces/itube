@@ -96,7 +96,7 @@
                     [map setValue:@"ZIP" forKey:@"status"];
                 }
             }
-            [self performSelectorOnMainThread:@selector(setBuyButtonDownloadCompleteState:) withObject:mapIndexPath waitUntilDone:NO];
+            [self performSelectorOnMainThread:@selector(setBuyButtonUnpackingState:) withObject:mapIndexPath waitUntilDone:NO];
             //[self updateFreakingButton:mapIndexPath];
             
         }
@@ -449,8 +449,8 @@
     self.buyButton.enabled = NO;
 }
 
-- (void)setBuyButtonDownloadCompleteState:(NSIndexPath*)path{
-    [self setBuyButtonDownloadCompleteState];
+- (void)setBuyButtonUnpackingState:(NSIndexPath*)path{
+    [self setBuyButtonUnpackingState];
 }
 
 #pragma mark - some helpers
@@ -681,8 +681,8 @@
         }
     
     }
-    [self setBuyButtonUnpackingState];
-    // save data to file in tmp 
+    
+    // save data to file in tmp
     NSString *tempDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [tempDir stringByAppendingPathComponent:[NSString stringWithFormat:@"1.zip"]];
     
