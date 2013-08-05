@@ -1,9 +1,9 @@
 
 /* Class = "IBUIButton"; normalTitle = "Buy Paris Guides"; ObjectID = "18"; */
-"18.normalTitle" = "Купить гид по Парижу";
+"18.normalTitle" = "Купить гид по Парижу, 99р.";
 
 /* Class = "IBUIButton"; normalTitle = "Buy All Guides"; ObjectID = "21"; */
-"21.normalTitle" = "Купить 4 путеводителя";
+"21.normalTitle" = "Венеция, Лондон, Париж, Берлин, 273р.";
 
 /* Class = "IBUILabel"; text = "Restore Purchases"; ObjectID = "74"; */
 "74.text" = "Восстановить покупки";
