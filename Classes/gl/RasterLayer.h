@@ -140,9 +140,10 @@
     NSMutableSet *minusCache, *plusCache;
     id target;
     SEL selector, erSelector;
-    NSString *altSource;
+    NSString *altSource1, *altSource2;
 }
-@property (nonatomic, retain) NSString* altSource;
+@property (nonatomic, retain) NSString* altSource1;
+@property (nonatomic, retain) NSString* altSource2;
 
 -(id)initWithUrl:(NSString*)url;
 -(void)setTarget:(id)t selector:(SEL)sel andErrorSelector:(SEL)sel2;
