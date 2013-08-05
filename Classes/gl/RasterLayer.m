@@ -582,7 +582,7 @@ static long DownloadCacheSize = 0;
 /***** RasterDownloader *****/
 
 @implementation RasterDownloader
-@synthesize altSource;
+@synthesize altSource1, altSource2;
 
 -(id)initWithUrl:(NSString *)url
 {
@@ -657,14 +657,27 @@ static long DownloadCacheSize = 0;
 
 -(BOOL)altLoadPiece:(RPiece*)p
 {
-    NSString *pt = [NSString stringWithFormat:@"%@/%d/%d/%d.jpg", altSource, p->level, p->x, p->y];
-    const char* fileName = [pt UTF8String];
-    CGDataProviderRef dataProvider = CGDataProviderCreateWithFilename(fileName);
-    if(dataProvider != nil) {
-        p->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
-        p->layer->piecesCount ++;
-        [p rasterLoaded];
-        return YES;
+    if(nil != altSource1 && [altSource1 length] > 0) {
+        NSString *pt = [NSString stringWithFormat:@"%@/%d/%d/%d.jpg", altSource1, p->level, p->x, p->y];
+        const char* fileName = [pt UTF8String];
+        CGDataProviderRef dataProvider = CGDataProviderCreateWithFilename(fileName);
+        if(dataProvider != nil) {
+            p->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
+            p->layer->piecesCount ++;
+            [p rasterLoaded];
+            return YES;
+        }
+    }
+    if(nil != altSource2 || [altSource2 length] > 0) {
+        NSString* pt = [NSString stringWithFormat:@"%@/%d/%d/%d.jpg", altSource2, p->level, p->x, p->y];
+        const char* fileName = [pt UTF8String];
+        CGDataProviderRef dataProvider = CGDataProviderCreateWithFilename(fileName);
+        if(dataProvider != nil) {
+            p->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
+            p->layer->piecesCount ++;
+            [p rasterLoaded];
+            return YES;
+        }
     }
     return NO;
 }
@@ -763,7 +776,7 @@ static long DownloadCacheSize = 0;
 -(void)loadPiece:(RPiece*)piece
 {
     if([self checkCache:piece]) return;
-    if(altSource != nil && [self altLoadPiece:piece]) return;
+    if([self altLoadPiece:piece]) return;
     if([queue count] > MAX_QUEUE) {
         [secondQueue insertObject:piece atIndex:0];
     } else {
@@ -779,7 +792,8 @@ static long DownloadCacheSize = 0;
 
 -(void)dealloc
 {
-    [altSource release];
+    [altSource1 release];
+    [altSource2 release];
     [baseUrl release];
     [queue release];
     [secondQueue release];
@@ -1194,7 +1208,8 @@ static long DownloadCacheSize = 0;
         //NSString* vurlstr = [vurl absoluteString];
         vloader = [[[VectorDownloader alloc] initWithUrl:url1] autorelease];
         rloader1 = [[[RasterDownloader alloc] initWithUrl:url1] autorelease];
-        rloader1.altSource = [[NSBundle mainBundle] pathForResource:@"RASTER" ofType:nil]; //[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        rloader1.altSource1 = [[NSBundle mainBundle] pathForResource:@"RASTER" ofType:nil];
+        rloader1.altSource2 = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         rloader2 = [[[RasterDownloader alloc] initWithUrl:url2] autorelease];
         //rloader2.altSource = [[NSBundle mainBundle] pathForResource:@"RASTER" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
         dm.vectorDownloader = vloader;

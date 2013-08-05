@@ -1,0 +1,16 @@
+
+/* Class = "IBUIButton"; normalTitle = "Buy All 4 Guides"; ObjectID = "96"; */
+<<<<<<< HEAD:Resources/nl-NL.lproj/SettingsViewController.strings
+"96.normalTitle" = "Venice, Paris, Berlin, London, 8.07 €";
+
+/* Class = "IBUIButton"; normalTitle = "Buy Paris Guide"; ObjectID = "97"; */
+"97.normalTitle" = "Parijs stadsgids , 2,69 €";
+=======
+"96.normalTitle" = "Buy All 4 Guides (NL)";
+
+/* Class = "IBUIButton"; normalTitle = "Buy Paris Guide"; ObjectID = "97"; */
+"97.normalTitle" = "Buy Paris Guide (NL)";
+>>>>>>> a69a8c5f9be55fbe7cb6c76beaae4e3637b2d039:Resources/nl.lproj/SettingsViewController.strings
+
+/* Class = "IBUILabel"; text = "Restore Purchases"; ObjectID = "149"; */
+"149.text" = "Restore Purchases (NL)";
