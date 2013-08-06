@@ -246,7 +246,7 @@
       "long":48.86057,
       "lat":2.337625,
       "index":3,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_gallery",
       "filename":"html/louvre_t1.html",
       "categories":[
@@ -258,7 +258,7 @@
       "long":48.86057,
       "lat":2.337625,
       "index":4,
-      "accessLevel":0,
+      "accessLevel":1,
       "media_type":"html_gallery",
       "filename":"html/louvre_t2.html",
       "categories":[
@@ -270,7 +270,7 @@
       "long":48.86057,
       "lat":2.337625,
       "index":2,
-      "accessLevel":0,
+      "accessLevel":1,
       "media_type":"3dview",
       "photos_prefix":"3d/louvre/test_.RGB_color.00",
       "photos_count":40,
@@ -347,7 +347,7 @@
       "long":48.842153,
       "lat":2.322083,
       "index":10,
-      "accessLevel":0,
+      "accessLevel":1,
       "media_type":"native_gallery",
       "pictures":[
         {
@@ -515,7 +515,7 @@
       "long":48.853014,
       "lat":2.349896,
       "index":36,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_with_video",
       "filename":"html/notre.html",
       "video_preview_path":"html/hidden-cities_files/notre.png",
@@ -776,7 +776,7 @@
       "long":48.870375,
       "lat":2.32557,
       "index":72,
-      "accessLevel":0,
+      "accessLevel":1,
       "media_type":"html_with_video",
       "filename":"html/metro.html",
       "video_preview_path":"html/hidden-cities_files/metro.png",
@@ -836,7 +836,7 @@
       ]
     },
     {
-      "name":"Unlock full guide",
+      "name":" ",
       "long":48.863727,
       "lat":2.313692,
       "index":200,
@@ -848,7 +848,7 @@
       ]
     },
         {
-      "name":"Unlock full guide",
+      "name":" ",
       "long":48.863727,
       "lat":2.313692,
       "index":201,
@@ -860,7 +860,7 @@
       ]
     },
         {
-      "name":"Unlock full guide",
+      "name":" ",
       "long":48.863727,
       "lat":2.313692,
       "index":202,
@@ -927,7 +927,7 @@
       "long":48.892571,
       "lat":2.23604,
       "index":79,
-      "accessLevel":1,
+      "accessLevel":0,
       "media_type":"html_with_video",
       "filename":"html/arc2.html",
       "video_preview_path":"html/hidden-cities_files/arc2.png",
