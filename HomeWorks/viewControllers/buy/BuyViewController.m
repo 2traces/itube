@@ -13,8 +13,6 @@
 #import "HomeworksIAPHelper.h"
 #import "IAPHelper.h"
 
-@end
-
 @implementation BuyViewController
 {
 	DejalActivityView *activityView;
@@ -61,7 +59,6 @@
 {
 	NSLog(@"buying");
 	activityView = [DejalBezelActivityView activityViewForView:self.view.window withLabel:@""];
-    successfulPurchase = YES;
 	[self.purchaseService purchaseSubscription:indexPath.section == 0 ? self.monthlySubscriptionIAP : self.yearlySubscriptionIAP];
 }
 
