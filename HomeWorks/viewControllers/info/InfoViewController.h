@@ -10,4 +10,7 @@
 
 
 @interface InfoViewController : HomeworksTableViewController
+
+@property (nonatomic, strong) IBOutlet UILabel *lbSubscription;
+
 @end

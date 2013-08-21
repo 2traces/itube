@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MKStoreManager.h"
+#import <Parse/Parse.h>
+#import "HomeworksIAPHelper.h"
 
 @implementation AppDelegate
 
@@ -20,8 +22,17 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 	[NSURLCache setSharedURLCache:URLCache];
 
-	[MKStoreManager sharedManager];
+//	[MKStoreManager sharedManager];
 
+    [Parse setApplicationId:@"2wqftsBZHPXzTiA1DPeggSwicLdOkIJpXymMc5IM"
+                  clientKey:@"mN2tTXVIBEqaO6PzKF5thqfgWiyeGsKdPm5OZK6g"];
+    
+    [[HomeworksIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+        if (success) {
+            self.products = products;
+        }
+    }];
+    
 	return YES;
 }
 

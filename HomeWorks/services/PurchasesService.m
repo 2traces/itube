@@ -9,7 +9,8 @@
 #import "PurchasesService.h"
 #import "NSObject+homeWorksServiceLocator.h"
 #import "MKStoreManager.h"
-
+#import "HomeworksIAPHelper.h"
+#import "AppDelegate.h"
 
 @implementation PurchasesService
 {
@@ -33,25 +34,29 @@
 		return YES;
 	}
 
-	if([[MKStoreManager sharedManager] isSubscriptionActive:self.yearlySubscriptionIAP])
-	{
-		return YES;
-	}
-
-	if([[MKStoreManager sharedManager] isSubscriptionActive:self.monthlySubscriptionIAP])
-	{
-		return YES;
-	}
+    if ([[HomeworksIAPHelper sharedInstance] daysRemainingOnSubscription] > 0) {
+        return YES;
+    }
 
 	return NO;
 }
 
 - (void)purchaseSubscription:(NSString *)subscriptionId WithComplete:(void (^)())complete andError:(void (^)())error
 {
-	[[MKStoreManager sharedManager] buyFeature:subscriptionId onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads)
-	{
-		complete();
-	} onCancelled:error];
+    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    for (SKProduct *product in appDelegate.products) {
+        if ([product.productIdentifier isEqualToString:subscriptionId]) {
+            NSLog(@"Buying %@...", subscriptionId);
+            [[HomeworksIAPHelper sharedInstance] buyProduct:product];
+            break;
+        }
+    }
+    
+//	[[MKStoreManager sharedManager] buyFeature:subscriptionId onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads)
+//	{
+//		complete();
+//	} onCancelled:error];
+    
 }
 
 @end

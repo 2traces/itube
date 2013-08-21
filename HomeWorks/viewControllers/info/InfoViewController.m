@@ -10,7 +10,8 @@
 #import "DejalActivityView.h"
 #import "AFHTTPRequestOperation.h"
 #import "NSObject+homeWorksServiceLocator.h"
-
+#import "HomeworksIAPHelper.h"
+#import <Parse/Parse.h>
 
 @implementation InfoViewController
 {
@@ -33,6 +34,14 @@
 												  forBarMetrics:UIBarMetricsDefault];
 	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
 												  forBarMetrics:UIBarMetricsLandscapePhone];
+    if ([[HomeworksIAPHelper sharedInstance] daysRemainingOnSubscription] > 0) {
+        self.lbSubscription.hidden = NO;
+        self.lbSubscription.text = [NSString stringWithFormat:@"Ваша подписка закончится %@", [[HomeworksIAPHelper sharedInstance] getExpiryDateString]];
+    }
+    else {
+        self.lbSubscription.hidden = YES;
+    }
+
 }
 
 - (IBAction)tlDismissMe:(id)sender
@@ -92,13 +101,41 @@
 {
 	[DejalBezelActivityView activityViewForView:self.view.window withLabel:@""].showNetworkActivityIndicator = YES;    
     
-	[[MKStoreManager sharedManager] restorePreviousTransactionsOnComplete:^()
-     {
-          [DejalBezelActivityView removeView];
-     } onError:^(NSError *restoreError)
-     {
-         [DejalBezelActivityView removeView];
-     }];
+//	[[MKStoreManager sharedManager] restorePreviousTransactionsOnComplete:^()
+//     {
+//          [DejalBezelActivityView removeView];
+//     } onError:^(NSError *restoreError)
+//     {
+//         [DejalBezelActivityView removeView];
+//     }];
+
+    //1
+    if ([PFUser currentUser].isAuthenticated) {
+//        [[HomeworksIAPHelper sharedInstance] restoreCompletedTransactions];
+
+        PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+        
+        [query getObjectInBackgroundWithId:[PFUser currentUser].objectId block:^(PFObject *object, NSError *error) {
+            
+            //2
+            NSDate *serverDate = [[object objectForKey:@"ExpirationDate"] lastObject];
+            
+            [[NSUserDefaults standardUserDefaults] setObject:serverDate forKey:@"ExpirationDate"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            [self.tableView reloadData];
+            [DejalBezelActivityView removeView];
+
+            NSLog(@"Restore Complete!");
+        }];
+    } else {
+        [DejalBezelActivityView removeView];
+        [[[UIAlertView alloc]
+          initWithTitle:@"Ошибка"
+          message:@"Внимание! Чтобы восстановить покупки, вам необходимо войти в приложение."
+          delegate:nil cancelButtonTitle:@"OK"
+          otherButtonTitles:nil] show];
+    }
 }
 
 @end

@@ -14,12 +14,12 @@
 
 -(NSString *)monthlySubscriptionIAP
 {
-	return @"monthly";
+	return @"ru.homeworks.month";
 }
 
 -(NSString *)yearlySubscriptionIAP
 {
-	return @"yearly";
+	return @"ru.homeworks.year";
 }
 
 - (NSString *)pageURLStringFormat

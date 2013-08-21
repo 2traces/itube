@@ -3,18 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>Consumables</key>
-	<dict>
-	</dict>
+	<dict/>
 	<key>Non-Consumables</key>
 	<array>
+		<string>ru.homeworks.month</string>
+		<string>ru.homeworks.year</string>
 	</array>
 	<key>Subscriptions</key>
-	<dict>
-		<key>monthly</key>
-		<integer>1</integer>
-
-		<key>yearly</key>
-		<integer>12</integer>
-	</dict>
+	<dict/>
 </dict>
 </plist>
