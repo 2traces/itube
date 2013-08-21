@@ -13,6 +13,8 @@
 
 NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurchasedNotification";
 
+NSString *const IAPHelperProductFailedNotification = @"IAPHelperProductFailedNotification";
+
 @interface IAPHelper () <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 @end
 
@@ -83,6 +85,7 @@ NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurcha
             [self provideContentForProductIdentifier:transaction.payment.productIdentifier];
         } else {
             NSLog(@"Failed to validate receipt.");
+            [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperProductFailedNotification object:transaction.payment.productIdentifier userInfo:nil];
             [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
         }
     }];
@@ -233,6 +236,7 @@ NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurcha
     if (transaction.error.code != SKErrorPaymentCancelled)
     {
         NSLog(@"Transaction error: %@", transaction.error.localizedDescription);
+        [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperProductFailedNotification object:transaction.payment.productIdentifier userInfo:nil];
     }
     
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];

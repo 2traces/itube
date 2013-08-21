@@ -10,7 +10,10 @@
 #import "NSObject+homeWorksServiceLocator.h"
 #import "PurchasesService.h"
 #import "DejalActivityView.h"
+#import "HomeworksIAPHelper.h"
+#import "IAPHelper.h"
 
+@end
 
 @implementation BuyViewController
 {
@@ -20,6 +23,32 @@
 -(IBAction)cancel
 {
 	[self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchaseFailed:) name:@"IAPHelperProductFailedNotification" object:nil];
+
+}
+
+- (void)productPurchased:(NSNotification *)notification {
+    NSString * productIdentifier = notification.object;
+    [activityView removeFromSuperview];
+    [self finish:YES];
+}
+
+
+- (void)productPurchaseFailed:(NSNotification *)notification {
+    NSString * productIdentifier = notification.object;
+    [activityView removeFromSuperview];
+
+    [[[UIAlertView alloc]
+      initWithTitle:@"Ошибка"
+      message:@"Внимание! Покупка не удалась и деньги не снялись. Попробуйте позднее."
+      delegate:nil cancelButtonTitle:@"OK"
+      otherButtonTitles:nil] show];
+    [self finish:NO];
 }
 
 -(void)finish:(BOOL)result
@@ -32,31 +61,9 @@
 {
 	NSLog(@"buying");
 	activityView = [DejalBezelActivityView activityViewForView:self.view.window withLabel:@""];
-	[self.purchaseService purchaseSubscription:indexPath.section == 0 ? self.monthlySubscriptionIAP : self.yearlySubscriptionIAP
-			WithComplete:^()
-			{
-				[activityView removeFromSuperview];
-				[self finish:YES];
-			} andError:^()
-	{
-		[self removeActivityView:activityView];
-		[self finish:NO];
-	}];
-	[self performSelector:@selector(removeActivityView:) withObject:activityView afterDelay:30];
+    successfulPurchase = YES;
+	[self.purchaseService purchaseSubscription:indexPath.section == 0 ? self.monthlySubscriptionIAP : self.yearlySubscriptionIAP];
 }
 
-- (void)removeActivityView:(DejalActivityView *)activityViewToRemove
-{
-	if (activityViewToRemove.superview != nil)
-	{
-		[activityViewToRemove removeFromSuperview];
-		[[[UIAlertView alloc]
-				initWithTitle:@"Ошибка"
-					  message:@"Внимание! Покупка не удалась и деньги не снялись. Попробуйте позднее."
-					 delegate:nil cancelButtonTitle:@"OK"
-			otherButtonTitles:nil] show];
-		[self finish:NO];
-	}
-}
 
 @end

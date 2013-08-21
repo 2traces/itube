@@ -41,7 +41,7 @@
 	return NO;
 }
 
-- (void)purchaseSubscription:(NSString *)subscriptionId WithComplete:(void (^)())complete andError:(void (^)())error
+- (void)purchaseSubscription:(NSString *)subscriptionId
 {
     AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     for (SKProduct *product in appDelegate.products) {
