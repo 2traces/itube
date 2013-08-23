@@ -7,8 +7,6 @@ pod 'DejalActivityView', '~> 1.0'
 
 pod 'RaptureXML', '~> 1.0.1'
 
-pod 'MKStoreKit', '~> 4.99'
-
 pod 'JMImageCache', '~> 0.4.0'
 
 pod 'FRLayeredNavigationController', '~> 0.4.4'
