@@ -6,7 +6,6 @@
 
 
 #import "InfoViewController.h"
-#import "MKStoreManager.h"
 #import "DejalActivityView.h"
 #import "AFHTTPRequestOperation.h"
 #import "NSObject+homeWorksServiceLocator.h"
@@ -58,7 +57,7 @@
 
 - (IBAction)tlDismissMe:(id)sender
 {
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -100,7 +99,8 @@
 		// Check that file is parsed fine
 		if ([rxml attribute:@"baseurl"])
 		{
-			[self.catalogRxml initFromXMLData:operation.responseData];
+			id obj = [self.catalogRxml initFromXMLData:operation.responseData];
+            NSLog(@"Silenting compilation warning due to bad architecture. Object created: %@", obj);
 			[operation.responseString writeToFile:self.catalogFilePath atomically:YES encoding:operation.responseStringEncoding error:nil];
 		}
 

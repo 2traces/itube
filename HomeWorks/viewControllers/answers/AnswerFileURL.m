@@ -9,6 +9,7 @@
 
 
 @implementation AnswerFileURL
+
 {
 	NSString *title;
 }

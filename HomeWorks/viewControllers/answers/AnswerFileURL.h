@@ -11,6 +11,8 @@
 
 @interface AnswerFileURL : NSURL<QLPreviewItem>
 
+@property(readonly) NSURL * previewItemURL;
+
 +(NSURL *)fileURLWithPath:(NSString *)path previewTitle:(NSString *)title;
 
 - (id)initWithFileURLWithPath:(NSString *)path previewTitle:(NSString *)title;

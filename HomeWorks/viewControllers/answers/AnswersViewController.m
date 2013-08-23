@@ -145,7 +145,7 @@ NSString *kFooterID = @"collectionFooter";
 	if (!self.purchased)
 	{
 		UINavigationController *buyNagivationController = [self.storyboard instantiateViewControllerWithIdentifier:@"buy"];
-		BuyViewController *buyViewController = [buyNagivationController topViewController];
+		BuyViewController *buyViewController = (BuyViewController*)[buyNagivationController topViewController];
 
 		buyViewController.delegate = self;
 		[self presentViewController:buyNagivationController animated:YES completion:nil];

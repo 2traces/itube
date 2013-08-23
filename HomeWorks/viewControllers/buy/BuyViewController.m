@@ -31,14 +31,14 @@
 }
 
 - (void)productPurchased:(NSNotification *)notification {
-    NSString * productIdentifier = notification.object;
+//    NSString * productIdentifier = notification.object;
     [activityView removeFromSuperview];
     [self finish:YES];
 }
 
 
 - (void)productPurchaseFailed:(NSNotification *)notification {
-    NSString * productIdentifier = notification.object;
+//    NSString * productIdentifier = notification.object;
     [activityView removeFromSuperview];
 
     [[[UIAlertView alloc]

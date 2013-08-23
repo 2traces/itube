@@ -151,7 +151,7 @@ static NSUInteger kFeedbackSection = 2;
 		AnswersViewController *targetViewController = segue.destinationViewController;
 		if([segue.destinationViewController isKindOfClass:[UINavigationController class]])
 		{
-			targetViewController = [segue.destinationViewController topViewController];
+			targetViewController = (AnswersViewController*)[segue.destinationViewController topViewController];
 		}
 		targetViewController.term = _term;
 		targetViewController.subject = _subject;

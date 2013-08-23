@@ -54,7 +54,7 @@
 		BooksViewController *targetViewController = segue.destinationViewController;
 		if([segue.destinationViewController isKindOfClass:[UINavigationController class]])
 		{
-			targetViewController = [segue.destinationViewController topViewController];
+			targetViewController = (BooksViewController*)[segue.destinationViewController topViewController];
 
 		}
 		targetViewController.term = _term;

@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "MKStoreManager.h"
 #import <Parse/Parse.h>
 #import "HomeworksIAPHelper.h"
 
