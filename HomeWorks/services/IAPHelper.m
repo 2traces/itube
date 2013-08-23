@@ -48,9 +48,56 @@ NSString *const IAPHelperProductFailedNotification = @"IAPHelperProductFailedNot
         // Add self as transaction observer
         [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
         
+        //Initialize errors
+        self.backendErrors = [NSDictionary dictionaryWithObjectsAndKeys:
+                              @"Произошла непредвиденная ошибка. Попробуйте повторить запрос позже.", @-1,
+                              @"Произошла непредвиденная ошибка. Попробуйте повторить запрос позже.", @1,
+                              @"Ошибка подключения. Попробуйте повторить запрос позже.", @100,
+                              @"Пользователя с указанной комбинацией логина и пароля не найдено. Проверьте правильность введенных данных.", @101,
+                              @"Произошла непредвиденная ошибка.", @102,
+                              @"Произошла непредвиденная ошибка.", @103,
+                              @"Произошла непредвиденная ошибка.", @104,
+                              @"Произошла непредвиденная ошибка.", @105,
+                              @"Произошла непредвиденная ошибка.", @106,
+                              @"Произошла непредвиденная ошибка.", @107,
+                              @"Произошла непредвиденная ошибка.", @108,
+                              @"Произошла непредвиденная ошибка.", @109,
+                              @"Произошла непредвиденная ошибка.", @111,
+                              @"Произошла непредвиденная ошибка.", @112,
+                              @"Произошла непредвиденная ошибка.", @115,
+                              @"Произошла непредвиденная ошибка.", @116,
+                              @"Произошла непредвиденная ошибка.", @119,
+                              @"Произошла непредвиденная ошибка.", @120,
+                              @"Произошла непредвиденная ошибка.", @121,
+                              @"Произошла непредвиденная ошибка.", @122,
+                              @"Произошла непредвиденная ошибка.", @123,
+                              @"Произошла непредвиденная ошибка.", @124,
+                              @"Некорректный адрес электронной почты.", @125,
+                              @"Произошла непредвиденная ошибка.", @137,
+                              @"Произошла непредвиденная ошибка.", @139,
+                              @"Превышен лимит запросов. Попробуйте повторить запрос позже.", @140,
+                              @"Произошла непредвиденная ошибка.", @141,
+                              @"Отсутствует имя пользователя", @200,
+                              @"Отсутствует пароль", @201,
+                              @"Пользователь с таким адресом электронной почты уже существует.", @202,
+                              @"Пользователь с таким адресом электронной почты уже существует.", @203,
+                              @"Отсутствует адрес электронной почты.", @204,
+                              @"Указанный электронный адрес не найден.", @205,
+                              @"Произошла непредвиденная ошибка.", @206,
+                              @"Произошла непредвиденная ошибка.", @207,
+                              @"Произошла непредвиденная ошибка.", @208,
+                              @"Произошла непредвиденная ошибка.", @250,
+                              @"Произошла непредвиденная ошибка.", @251,
+                              @"Произошла непредвиденная ошибка.", @252,
+                              nil];
+        
     }
     return self;
     
+}
+
+- (NSString*)errorWithCode:(NSNumber*)code {
+    return [self.backendErrors objectForKey:code];
 }
 
 - (void)requestProductsWithCompletionHandler:(RequestProductsCompletionHandler)completionHandler {
@@ -131,6 +178,34 @@ NSString *const IAPHelperProductFailedNotification = @"IAPHelperProductFailedNot
 	[dateComp setMonth:months];
 	[dateComp setDay:1]; //an extra days grace because I am nice...
 	return [[NSCalendar currentCalendar] dateByAddingComponents:dateComp toDate:originDate options:0];
+}
+
+- (void)updateSubscriptionInfo {
+    NSDate * localDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"ExpirationDate"];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+    NSString *objectId = @"";
+    
+    if ([PFUser currentUser].isAuthenticated) {
+        objectId = [PFUser currentUser].objectId;
+    }
+    
+    NSError *error;
+    
+    PFObject *object = [query getObjectWithId:objectId error:&error];
+    NSDate * serverDate = [[object objectForKey:@"ExpirationDate"] lastObject];
+    
+    if (!localDate || [serverDate compare:localDate] == NSOrderedDescending) { //if server date is more recent, update local date
+        [[NSUserDefaults standardUserDefaults] setObject:serverDate forKey:@"ExpirationDate"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    else {
+        [object addObject:localDate forKey:@"ExpirationDate"];
+    }
+    [object addUniqueObject:[[[UIDevice currentDevice] identifierForVendor] UUIDString] forKey:@"deviceId"];
+    [object saveInBackground];
+
+    NSLog(@"Date updated!");
 }
 
 -(void)purchaseSubscriptionWithMonths:(int)months {

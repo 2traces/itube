@@ -61,6 +61,8 @@
 		575667B517C34E2600CE795B /* HomeworksIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 575667B317C34E2600CE795B /* HomeworksIAPHelper.m */; };
 		575667B817C35BC400CE795B /* VerificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 575667B717C35BC300CE795B /* VerificationController.m */; };
 		575667BB17C35DE100CE795B /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 575667BA17C35DE100CE795B /* NSData+Base64.m */; };
+		5756684D17C4CC9300CE795B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5756684A17C4CC9300CE795B /* LoginViewController.m */; };
+		5756684E17C4CC9300CE795B /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5756684C17C4CC9300CE795B /* RegisterViewController.m */; };
 		A56A1034972868831A7211DD /* bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A56A123732927F7AE32EE906 /* bar@2x.png */; };
 		A56A10639268BA2550715291 /* BuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A56A17C1587480F6A36D089C /* BuyViewController.m */; };
 		A56A10811B2A13937FF3217B /* BooksService.m in Sources */ = {isa = PBXBuildFile; fileRef = A56A10D1BAE4A2C27AC1F082 /* BooksService.m */; };
@@ -227,6 +229,10 @@
 		575667B717C35BC300CE795B /* VerificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationController.m; sourceTree = "<group>"; };
 		575667B917C35DE000CE795B /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		575667BA17C35DE100CE795B /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		5756684917C4CC9300CE795B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = "login & register/LoginViewController.h"; sourceTree = "<group>"; };
+		5756684A17C4CC9300CE795B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = "login & register/LoginViewController.m"; sourceTree = "<group>"; };
+		5756684B17C4CC9300CE795B /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterViewController.h; path = "login & register/RegisterViewController.h"; sourceTree = "<group>"; };
+		5756684C17C4CC9300CE795B /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterViewController.m; path = "login & register/RegisterViewController.m"; sourceTree = "<group>"; };
 		A56A100983717C68C80AB82B /* TermTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermTableViewCell.h; sourceTree = "<group>"; };
 		A56A1014B5638168D3E42519 /* ShowIpadListSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowIpadListSegue.h; sourceTree = "<group>"; };
 		A56A10372EFAFB2A4F58F41F /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
@@ -406,6 +412,17 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
+		5756684F17C4CC9700CE795B /* login/register */ = {
+			isa = PBXGroup;
+			children = (
+				5756684917C4CC9300CE795B /* LoginViewController.h */,
+				5756684A17C4CC9300CE795B /* LoginViewController.m */,
+				5756684B17C4CC9300CE795B /* RegisterViewController.h */,
+				5756684C17C4CC9300CE795B /* RegisterViewController.m */,
+			);
+			name = login/register;
+			sourceTree = "<group>";
+		};
 		A56A1059B6BFA3324D097AD5 /* answersGrid */ = {
 			isa = PBXGroup;
 			children = (
@@ -461,6 +478,7 @@
 		A56A16856FEF5E8A631AEEB1 /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5756684F17C4CC9700CE795B /* login/register */,
 				A56A143B1C8BA7D44994BB80 /* terms */,
 				A56A14D518501F59E9988978 /* subjects */,
 				A56A1C54C11EB8827D96804B /* books */,
@@ -813,6 +831,8 @@
 				575667B517C34E2600CE795B /* HomeworksIAPHelper.m in Sources */,
 				575667B817C35BC400CE795B /* VerificationController.m in Sources */,
 				575667BB17C35DE100CE795B /* NSData+Base64.m in Sources */,
+				5756684D17C4CC9300CE795B /* LoginViewController.m in Sources */,
+				5756684E17C4CC9300CE795B /* RegisterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,5 +12,6 @@
 @interface InfoViewController : HomeworksTableViewController
 
 @property (nonatomic, strong) IBOutlet UILabel *lbSubscription;
+@property (nonatomic, strong) IBOutlet UILabel *lbLogin;
 
 @end

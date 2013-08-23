@@ -18,6 +18,24 @@
 
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if ([PFUser currentUser].isAuthenticated) {
+        self.lbLogin.text = [NSString stringWithFormat:@"Выйти (%@)", [PFUser currentUser].username];
+    }
+    else {
+        self.lbLogin.text = @"Авторизация";
+    }
+    
+    if ([[HomeworksIAPHelper sharedInstance] daysRemainingOnSubscription] > 0) {
+        self.lbSubscription.hidden = NO;
+        self.lbSubscription.text = [NSString stringWithFormat:@"Ваша подписка закончится %@", [[HomeworksIAPHelper sharedInstance] getExpiryDateString]];
+    }
+    else {
+        self.lbSubscription.hidden = YES;
+    }
+}
+
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
@@ -34,13 +52,7 @@
 												  forBarMetrics:UIBarMetricsDefault];
 	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
 												  forBarMetrics:UIBarMetricsLandscapePhone];
-    if ([[HomeworksIAPHelper sharedInstance] daysRemainingOnSubscription] > 0) {
-        self.lbSubscription.hidden = NO;
-        self.lbSubscription.text = [NSString stringWithFormat:@"Ваша подписка закончится %@", [[HomeworksIAPHelper sharedInstance] getExpiryDateString]];
-    }
-    else {
-        self.lbSubscription.hidden = YES;
-    }
+
 
 }
 
@@ -59,11 +71,17 @@
 		case 2:
 			[self updateCatalog];
 			break;
+        case 3:
+            [self loginRegister];
 		default:
 			break;
 	}
 
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)loginRegister {
+    
 }
 
 - (void)updateCatalog
@@ -113,6 +131,16 @@
     if ([PFUser currentUser].isAuthenticated) {
 //        [[HomeworksIAPHelper sharedInstance] restoreCompletedTransactions];
 
+        if (![[[PFUser currentUser] objectForKey:@"emailVerified"] boolValue]) {
+            [[PFUser currentUser] refresh];
+            if (![[[PFUser currentUser] objectForKey:@"emailVerified"] boolValue]) {
+                UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Внимание! Чтобы восстановить покупки, вам необходимо подтвердить адрес электронной почты." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [errorAlertView show];
+                [DejalBezelActivityView removeView];
+                return;
+            }
+        }
+        
         PFQuery *query = [PFQuery queryWithClassName:@"_User"];
         
         [query getObjectInBackgroundWithId:[PFUser currentUser].objectId block:^(PFObject *object, NSError *error) {
@@ -132,7 +160,7 @@
         [DejalBezelActivityView removeView];
         [[[UIAlertView alloc]
           initWithTitle:@"Ошибка"
-          message:@"Внимание! Чтобы восстановить покупки, вам необходимо войти в приложение."
+          message:@"Внимание! Чтобы восстановить покупки, вам необходимо авторизоваться."
           delegate:nil cancelButtonTitle:@"OK"
           otherButtonTitles:nil] show];
     }

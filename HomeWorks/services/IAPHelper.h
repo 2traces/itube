@@ -19,10 +19,14 @@ typedef void (^RequestProductsCompletionHandler)(BOOL success, NSArray * product
 - (void)buyProduct:(SKProduct *)product;
 - (BOOL)productPurchased:(NSString *)productIdentifier;
 - (void)restoreCompletedTransactions;
+- (void)updateSubscriptionInfo;
+- (NSString*)errorWithCode:(NSNumber*)code;
 
 -(int)daysRemainingOnSubscription;
 -(NSString *)getExpiryDateString;
 -(NSDate *)getExpiryDateForMonths:(int)months;
 -(void)purchaseSubscriptionWithMonths:(int)months;
+
+@property (nonatomic, strong) NSDictionary *backendErrors;
 
 @end
