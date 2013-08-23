@@ -112,7 +112,9 @@
 
 		[operationQueue addOperation:catalogDownloadOperation];
 	}
-	return [AnswerFileURL fileURLWithPath:pageFilePath previewTitle:[NSString stringWithFormat:@"%@", answerFile]];
+    NSURL *ans = [AnswerFileURL fileURLWithPath:pageFilePath previewTitle:[NSString stringWithFormat:@"%@", answerFile]];
+    
+	return ans;
 }
 
 - (void)dealloc

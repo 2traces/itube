@@ -21,6 +21,7 @@
 - (id)initWithFileURLWithPath:(NSString *)path previewTitle:(NSString *)previewTitle
 {
 	if(self = [super initFileURLWithPath:path isDirectory:NO]) {
+        _previewItemURL = [[NSURL alloc] initFileURLWithPath:path];
 		title = previewTitle;
 	}
 
