@@ -20,4 +20,7 @@
 
 @property (nonatomic, assign) id<BuyViewControllerDelegate> delegate;
 
+- (IBAction)buyMonth:(id)sender;
+- (IBAction)buyYear:(id)sender;
+
 @end

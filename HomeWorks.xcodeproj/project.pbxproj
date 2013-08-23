@@ -63,6 +63,8 @@
 		575667BB17C35DE100CE795B /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 575667BA17C35DE100CE795B /* NSData+Base64.m */; };
 		5756684D17C4CC9300CE795B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5756684A17C4CC9300CE795B /* LoginViewController.m */; };
 		5756684E17C4CC9300CE795B /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5756684C17C4CC9300CE795B /* RegisterViewController.m */; };
+		57D56E9217C7569B0067ECF2 /* buyButtonBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D56E9017C7569B0067ECF2 /* buyButtonBg.png */; };
+		57D56E9317C7569B0067ECF2 /* buyButtonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D56E9117C7569B0067ECF2 /* buyButtonBg@2x.png */; };
 		A56A1034972868831A7211DD /* bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A56A123732927F7AE32EE906 /* bar@2x.png */; };
 		A56A10639268BA2550715291 /* BuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A56A17C1587480F6A36D089C /* BuyViewController.m */; };
 		A56A10811B2A13937FF3217B /* BooksService.m in Sources */ = {isa = PBXBuildFile; fileRef = A56A10D1BAE4A2C27AC1F082 /* BooksService.m */; };
@@ -233,6 +235,8 @@
 		5756684A17C4CC9300CE795B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = "login & register/LoginViewController.m"; sourceTree = "<group>"; };
 		5756684B17C4CC9300CE795B /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterViewController.h; path = "login & register/RegisterViewController.h"; sourceTree = "<group>"; };
 		5756684C17C4CC9300CE795B /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterViewController.m; path = "login & register/RegisterViewController.m"; sourceTree = "<group>"; };
+		57D56E9017C7569B0067ECF2 /* buyButtonBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buyButtonBg.png; path = HomeWorks/images/table/buyButtonBg.png; sourceTree = SOURCE_ROOT; };
+		57D56E9117C7569B0067ECF2 /* buyButtonBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "buyButtonBg@2x.png"; path = "HomeWorks/images/table/buyButtonBg@2x.png"; sourceTree = SOURCE_ROOT; };
 		A56A100983717C68C80AB82B /* TermTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermTableViewCell.h; sourceTree = "<group>"; };
 		A56A1014B5638168D3E42519 /* ShowIpadListSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowIpadListSegue.h; sourceTree = "<group>"; };
 		A56A10372EFAFB2A4F58F41F /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
@@ -493,6 +497,8 @@
 		A56A182F2E6501D14FAD716D /* buy */ = {
 			isa = PBXGroup;
 			children = (
+				57D56E9017C7569B0067ECF2 /* buyButtonBg.png */,
+				57D56E9117C7569B0067ECF2 /* buyButtonBg@2x.png */,
 				A56A17C1587480F6A36D089C /* BuyViewController.m */,
 				A56A10C3BF5677611FE7BB40 /* BuyViewController.h */,
 			);
@@ -775,6 +781,8 @@
 				4933777A1722EAE5008E0CDA /* table_button_top.png in Resources */,
 				4933777B1722EAE5008E0CDA /* tableBackgroundIpad@2x.png in Resources */,
 				A56A1951B82594A613DF41E7 /* MKStoreKitConfigs.plist in Resources */,
+				57D56E9217C7569B0067ECF2 /* buyButtonBg.png in Resources */,
+				57D56E9317C7569B0067ECF2 /* buyButtonBg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -66,7 +66,7 @@
 	NSString *bookId = [_book attribute:@"id"];
 	NSString *answerExt = [_book attribute:@"ext"];
 	NSString *answerFile = answer.text;
-	NSString *pageFilePath = [NSString stringWithFormat:self.pageFilePathStringFormat,
+	__block NSString *pageFilePath = [NSString stringWithFormat:self.pageFilePathStringFormat,
 														termId,
 														subjectId,
 														bookId,
@@ -106,7 +106,9 @@
 				[weakController refreshCurrentPreviewItem];
 			}
 
-		}                                               failure:nil];
+		}                                               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Failed to download item...");
+        }];
 
 		[operationQueue addOperation:catalogDownloadOperation];
 	}

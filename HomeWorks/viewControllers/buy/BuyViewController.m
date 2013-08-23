@@ -57,10 +57,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSLog(@"buying");
-	activityView = [DejalBezelActivityView activityViewForView:self.view.window withLabel:@""];
-	[self.purchaseService purchaseSubscription:indexPath.section == 0 ? self.monthlySubscriptionIAP : self.yearlySubscriptionIAP];
+
 }
 
+- (IBAction)buyMonth:(id)sender {
+	NSLog(@"buying");
+	activityView = [DejalBezelActivityView activityViewForView:self.view.window withLabel:@""];
+	[self.purchaseService purchaseSubscription:self.monthlySubscriptionIAP];
+}
+
+- (IBAction)buyYear:(id)sender {
+	NSLog(@"buying");
+	activityView = [DejalBezelActivityView activityViewForView:self.view.window withLabel:@""];
+	[self.purchaseService purchaseSubscription:self.yearlySubscriptionIAP];
+}
 
 @end

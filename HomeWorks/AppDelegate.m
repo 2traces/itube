@@ -23,8 +23,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 //	[MKStoreManager sharedManager];
 
-    [Parse setApplicationId:@"2wqftsBZHPXzTiA1DPeggSwicLdOkIJpXymMc5IM"
-                  clientKey:@"mN2tTXVIBEqaO6PzKF5thqfgWiyeGsKdPm5OZK6g"];
+    [Parse setApplicationId:@"4xkE7I5Ku3iOFNPypTxPpj5GS7hH3oKYas2kuV1Y"
+                  clientKey:@"eDZbfw2GRcQt0EvsaaxFK089AkP6xmbMeJjEc6qp"];
     
     [[HomeworksIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
         if (success) {
