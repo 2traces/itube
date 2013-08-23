@@ -497,8 +497,6 @@
 		A56A182F2E6501D14FAD716D /* buy */ = {
 			isa = PBXGroup;
 			children = (
-				57D56E9017C7569B0067ECF2 /* buyButtonBg.png */,
-				57D56E9117C7569B0067ECF2 /* buyButtonBg@2x.png */,
 				A56A17C1587480F6A36D089C /* BuyViewController.m */,
 				A56A10C3BF5677611FE7BB40 /* BuyViewController.h */,
 			);
@@ -517,6 +515,8 @@
 		A56A1A674AA3AC927722B01B /* images */ = {
 			isa = PBXGroup;
 			children = (
+				57D56E9017C7569B0067ECF2 /* buyButtonBg.png */,
+				57D56E9117C7569B0067ECF2 /* buyButtonBg@2x.png */,
 				A56A1CFF76D5161507E78277 /* bar */,
 				A56A1D440C6C3AA40B080EB8 /* table */,
 				A56A1D6031AAC11A60497107 /* icons */,
