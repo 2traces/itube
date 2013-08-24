@@ -12,7 +12,6 @@
 #import "AnswerFileURL.h"
 #import "AFHTTPRequestOperation.h"
 
-
 @interface ConcreateAnswerViewController () <QLPreviewControllerDataSource>
 @end
 
@@ -33,6 +32,7 @@
 		self.subject = subject;
 		self.book = book;
 		self.purchased = purchased;
+
 	}
 
 	return self;
@@ -49,7 +49,10 @@
 	fileAlreadyDownloading = [NSMutableDictionary dictionary];
 	operationQueue = [[NSOperationQueue alloc] init];
 	[operationQueue setMaxConcurrentOperationCount:1];
+    
+
 }
+
 
 - (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller
 {

@@ -18,6 +18,7 @@
 #import "UIViewController+tlDismissMe.h"
 #import "BooksService.h"
 #import "BuyViewController.h"
+#import "IAPHelper.h"
 
 NSString *kCellID = @"answerCell";
 NSString *kLockedCellID = @"lockedAnswerCell";
@@ -70,6 +71,13 @@ NSString *kFooterID = @"collectionFooter";
 	self.collectionView.backgroundColor = [UIColor clearColor];
 
 	operationQueue = [[NSOperationQueue alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
+
+}
+
+
+- (void)productPurchased:(NSNotification *)notification {
+    [self buyControllerDidFinish:YES];
 }
 
 - (void)buyControllerDidFinish:(BOOL)success
@@ -93,6 +101,7 @@ NSString *kFooterID = @"collectionFooter";
 	if (value)
 	{
 		[self updateAllFilesDownloadedStatus];
+        [self.collectionView reloadData];
 	}
 	else
 	{
@@ -276,7 +285,15 @@ NSString *kFooterID = @"collectionFooter";
 	else if (indexPath.item < 2 || self.purchased)
 	{
 		cell = [cv dequeueReusableCellWithReuseIdentifier:kCellID forIndexPath:indexPath];
-		cell.label.text = [NSString stringWithFormat:@"%@", [[answers objectAtIndex:indexPath.item] text]];
+        NSString *num = [[answers objectAtIndex:indexPath.item] text];
+        NSArray *components = [num componentsSeparatedByString:@"_"];
+        num = [components lastObject];
+        if (num && ![num isEqualToString:@""]) {
+            cell.label.text = num;
+        }
+        else {
+            cell.label.text = [[answers objectAtIndex:indexPath.item] text];
+        }
 		return cell;
 	}
 	else

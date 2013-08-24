@@ -236,6 +236,8 @@ NSString *const IAPHelperProductFailedNotification = @"IAPHelperProductFailedNot
         [[NSUserDefaults standardUserDefaults] setObject:expiryDate forKey:@"ExpirationDate"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
+        [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperProductPurchasedNotification object:nil userInfo:nil];
+
         NSLog(@"Subscription Complete!");
     }];
 }
@@ -308,7 +310,7 @@ NSString *const IAPHelperProductFailedNotification = @"IAPHelperProductFailedNot
 - (void)failedTransaction:(SKPaymentTransaction *)transaction {
     
     NSLog(@"failedTransaction...");
-    if (transaction.error.code != SKErrorPaymentCancelled)
+    //if (transaction.error.code != SKErrorPaymentCancelled)
     {
         NSLog(@"Transaction error: %@", transaction.error.localizedDescription);
         [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperProductFailedNotification object:transaction.payment.productIdentifier userInfo:nil];
