@@ -9,6 +9,7 @@
 #import "MKStoreManager.h"
 #import "DejalActivityView.h"
 
+NSString *kAppStoreURL = @"https://itunes.apple.com/ru/app/angry-birds/id343200656?l=en&mt=8";
 
 @implementation InfoViewController
 {
@@ -40,6 +41,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0) {
+#ifndef HW_PRO
+        [[UIApplication sharedApplication] openURL: [NSURL URLWithString:kAppStoreURL]];
+#endif
+        return;
+    }
 	if (indexPath.section != 1)
 	{
 		return;
