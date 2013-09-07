@@ -47,7 +47,12 @@ NSString *kFooterID = @"collectionFooter";
 	NSString *bookId = [_book attribute:@"id"];
 
 	featureId = [NSString stringWithFormat:self.bookIAPStringFormat, termId, subjectId, bookId];
-	self.purchased = [MKStoreManager isFeaturePurchased:featureId];
+#ifdef HW_PRO
+    self.purchased = YES;
+#else
+    self.purchased = [MKStoreManager isFeaturePurchased:featureId];
+#endif
+    
 
 	self.collectionView.allowsMultipleSelection = NO;
 

@@ -36,7 +36,11 @@
 										   [_term attribute:@"id"],
 										   [_subject attribute:@"id"],
 										   [_book attribute:@"id"]];
+#ifdef HW_PRO
+	purchased = YES;
+#else
 	purchased = [MKStoreManager isFeaturePurchased:featureId];
+#endif
 	self.dataSource = self;
 
 	fileAlreadyDownloading = [NSMutableDictionary dictionary];

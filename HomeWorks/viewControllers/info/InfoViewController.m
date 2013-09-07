@@ -65,4 +65,13 @@ NSString *kAppStoreURL = @"https://itunes.apple.com/ru/app/angry-birds/id3432006
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+#ifdef HW_PRO
+    return 1;
+#else
+    return 2;
+#endif
+}
+
 @end

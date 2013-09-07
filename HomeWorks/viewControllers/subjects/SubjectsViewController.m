@@ -55,7 +55,25 @@
         default:
             break;
     }
-    return 0;}
+    return 0;
+}
+
+
+//Returning same text to be sure header will have correct height.
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            return nil;
+            break;
+        case 1: {
+            return @"Школьные учебники \n(ссылка на отдельный сайт)";
+            break;
+        }
+        default:
+            break;
+    }
+    return nil;
+}
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
