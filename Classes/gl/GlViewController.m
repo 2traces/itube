@@ -113,6 +113,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     int newPinId;
     
     CGPoint userPosition;
+    int objectsLOD;
 }
 @property (strong, nonatomic) EAGLContext *context;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
@@ -127,6 +128,116 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(void)drawPins;
 @end
+
+@implementation Object
+
+-(NSString*)decode:(id)val
+{
+    if([val isKindOfClass:[NSNull class]]) {
+        return @"";
+    } else if([val isKindOfClass:[NSString class]]) {
+        return [val stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    } else {
+        return [val description];
+    }
+}
+
+-(id)initWithDictionary:(NSDictionary *)data
+{
+    if((self = [super init])) {
+        self.address = [self decode:[data objectForKey:@"address"]];
+        self.city = [self decode:[data objectForKey:@"city"]];
+        self.comment = [self decode:[data objectForKey:@"comment"]];
+        self.country = [self decode:[data objectForKey:@"country"]];
+        self.hours = [self decode:[data objectForKey:@"hours"]];
+        self.ID = [data objectForKey:@"ID"];
+        self.kind = [self decode:[data objectForKey:@"kind"]];
+        self.state = [self decode:[data objectForKey:@"data"]];
+        self.street = [self decode:[data objectForKey:@"street"]];
+        self.title = [self decode:[data objectForKey:@"title"]];
+        CGPoint g;
+        g.x = [[data objectForKey:@"lat"] floatValue];
+        g.y = [[data objectForKey:@"lng"] floatValue];
+        self.geoP = g;
+        CGPoint c;
+        c.x = 128 - [[data objectForKey:@"x"] floatValue];
+        c.y = 128 - [[data objectForKey:@"y"] floatValue];
+        self.coords = c;
+        self.pinID = -1;
+    }
+    return self;
+}
+
+-(NSString*)description
+{
+    return [NSString stringWithFormat:@"[Object address: %@ city: %@ comment: %@ country: %@ hours: %@ kind: %@ lat: %f lng: %f state: %@ street: %@ title: %@ x: %f y: %f]",
+            self.address, self.city, self.comment, self.country, self.hours, self.kind, self.geoP.x, self.geoP.y, self.state, self.street, self.title, self.coords.x, self.coords.y];
+}
+
+-(void)dealloc
+{
+    [_address release];
+    [_city release];
+    [_comment release];
+    [_country release];
+    [_hours release];
+    [_ID release];
+    [_kind release];
+    [_state release];
+    [_street release];
+    [_title release];
+    [super dealloc];
+}
+
+@end
+
+@implementation Cluster
+
+@synthesize center, objects = _objects, pinID;
+
+-(id)initWithRadius:(CGFloat)r
+{
+    if((self = [super init])) {
+        radius = r;
+        _objects = [[NSMutableArray alloc] init];
+        center = sumCoord = CGPointZero;
+        pinID = -1;
+    }
+    return self;
+}
+
+-(BOOL)accept:(id)element
+{
+    CGPoint el;
+    if([element isKindOfClass:[Object class]]) el = [element coords];
+    else if([element isKindOfClass:[Cluster class]]) el = [element center];
+    else return NO;
+    if(CGPointEqualToPoint(center, CGPointZero)) {
+        [_objects addObject:element];
+        center = el;
+    } else {
+        CGPoint delta = CGPointMake(el.x - center.x, el.y - center.y);
+        delta.x *= delta.x;
+        delta.y *= delta.y;
+        CGFloat len = sqrtf(delta.x + delta.y);
+        if(len > radius) return NO;
+        [_objects addObject:element];
+        sumCoord.x += el.x;
+        sumCoord.y += el.y;
+        center.x = sumCoord.x / [_objects count];
+        center.y = sumCoord.y / [_objects count];
+    }
+    return YES;
+}
+
+-(void)dealloc
+{
+    [_objects release];
+    [super dealloc];
+}
+
+@end
+
 
 @implementation Pin
 @synthesize Id = _id;
@@ -164,9 +275,9 @@ CGPoint translateFromMapToGeo(CGPoint p)
     return self;
 }
 
--(id)initLocationPos
+-(id)initObjectPos
 {
-    type = PIN_LOCATION;
+    type = PIN_OBJECT;
     size = 1.f / [UIScreen mainScreen].scale;
     if((self = [super init])) {
         _id = -1;
@@ -231,10 +342,10 @@ CGPoint translateFromMapToGeo(CGPoint p)
     return self;
 }
 
--(id) initStarWithId:(int)pinId color:(int)color andText:(NSString*)text
+-(id) initClusterWithId:(int)pinId color:(int)color andText:(NSString*)text
 {
     size = 1.f / [UIScreen mainScreen].scale;
-    type = PIN_STAR;
+    type = PIN_CLUSTER;
     if((self = [super init])) {
         _id = pinId;
         switch (color%12) {
@@ -409,9 +520,9 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(CGRect)bounds
 {
-    size = 32.f / lastScale;
-    const CGFloat s2 = size * 0.5f;
-    return CGRectMake(pos.x-s2, pos.y-s2-offset, size, size);
+    CGFloat ssize = 32.f / lastScale;
+    const CGFloat s2 = ssize * 0.5f;
+    return CGRectMake(pos.x-s2, pos.y-s2-offset, ssize, ssize);
 }
 
 -(void)dealloc
@@ -453,6 +564,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     [_context release];
     //[_effect release];
     [rasterLayer release];
+    [clusters release];
     [super dealloc];
 }
 
@@ -463,6 +575,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
 
     pinsArray = [[NSMutableArray alloc] init];
+    clusters = [[NSMutableArray alloc] init];
+    objectsLOD = -1;
 
     CGRect scrollSize,settingsRect,shadowRect,zonesRect,cornerRect;
     
@@ -573,6 +687,11 @@ CGPoint translateFromMapToGeo(CGPoint p)
     [pinsArray addObject:p];
     [p setPosition:userPosition];
     newPinId = 1;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self loadObjectsOnScreen];
 }
 
 - (void) moveModeButtonToFullScreen {
@@ -804,6 +923,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
             started = NO;
             
             [self sendMapMovedNotification];
+            [self updatePinsForLevel:[self getLevelForScale:scale]];
 
             break;
         case UIGestureRecognizerStateFailed:
@@ -1100,7 +1220,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     float dist = 256.f/scale;
     [p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
     [pinsArray addObject:p];
-    [p setGeoPosition:coordinate];
+    [p setPosition:coordinate];
     return newId;
 }
 
@@ -1108,9 +1228,9 @@ CGPoint translateFromMapToGeo(CGPoint p)
 {
     int newId = newPinId;
     newPinId ++;
-    Pin *p = [[Pin alloc] initStarWithId:newId color:color andText:name];
+    Pin *p = [[Pin alloc] initClusterWithId:newId color:color andText:name];
     [pinsArray addObject:p];
-    [p setGeoPosition:coordinate];
+    [p setPosition:coordinate];
     return newId;
 }
 
@@ -1147,7 +1267,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
             return -1;
         }
     }
-    Pin *loc = [[[Pin alloc] initLocationPos] autorelease];
+    Pin *loc = [[[Pin alloc] initObjectPos] autorelease];
     [loc setGeoPosition:coordinate];
     [pinsArray addObject:loc];
     return -1;
@@ -1581,6 +1701,129 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(void)purgeUnusedCache
 {
     [rasterLayer purgeUnusedCache];
+}
+
+-(void)loadObjectsOnScreen
+{
+    CGRect frame;
+    frame.origin = position;
+    frame.size = self.view.frame.size;
+    frame.size.width /= scale;
+    frame.size.height /= scale;
+    frame.origin.x -= frame.size.width * 0.5f;
+    frame.origin.y -= frame.size.height * 0.5f;
+    [self loadObjectsForRect:frame];
+}
+
+-(void)loadObjectsForRect:(CGRect)rect
+{
+    NSString *url=[NSString stringWithFormat:@"http://37.230.115.4/index.php?x1=%f&y1=%f&x2=%f&y2=%f", rect.origin.x, rect.origin.y, rect.origin.x+rect.size.width, rect.origin.y+rect.size.height];
+    
+    NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    NSURLResponse *resp = nil;
+    NSError *err = nil;
+    
+    NSData *response = [NSURLConnection sendSynchronousRequest: theRequest returningResponse: &resp error: &err];
+    
+    //    NSString * theString = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+    //    NSLog(@"response: %@", theString);
+    
+    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData: response options: NSJSONReadingMutableContainers error: &err];
+    
+    if (!jsonArray) {
+        NSLog(@"Error parsing JSON: %@", err);
+    } else {
+        for(NSDictionary *item in jsonArray) {
+            Object *ob = [[Object alloc] initWithDictionary:item];
+            BOOL accepted = NO;
+            for (Cluster* cl in clusters) {
+                if([cl accept:ob]) {
+                    accepted = YES;
+                    break;
+                }
+            }
+            if(!accepted) {
+                [clusters addObject:[[Cluster alloc] initWithRadius:0.001f]];
+                [[clusters lastObject] accept:ob];
+            }
+            
+            NSLog(@" %@", ob);
+        }
+    }
+    [self updatePinsForLevel:[self getLevelForScale:scale]];
+}
+
+-(void)updatePinsForLevel:(int)level
+{
+    int newObjectsLOD = -1;
+    if(level > 13) {
+        newObjectsLOD = 0;
+    } else if(level > 1) {
+        newObjectsLOD = 1;
+    } else {
+        newObjectsLOD = 2;
+    }
+    if(objectsLOD == newObjectsLOD) return;
+    switch (objectsLOD) {
+        case -1:
+        default:
+            // initial state, no any objects
+            break;
+        case 0:
+            // show objects
+            [self removeAllPins];
+            for (Cluster *cl in clusters) {
+                for (Object *ob in cl.objects) {
+                    ob.pinID = -1;
+                }
+            }
+            break;
+        case 1:
+            // show clusters
+            [self removeAllPins];
+            for (Cluster *cl in clusters) {
+                cl.pinID = -1;
+            }
+            break;
+        case 2:
+            // don't show anything
+            break;
+    }
+    switch (newObjectsLOD) {
+        case -1:
+        default:
+            // initial state, no any objects
+            break;
+        case 0:
+            // show objects
+            for (Cluster *cl in clusters) {
+                for (Object *ob in cl.objects) {
+                    ob.pinID = [self newPin:ob.coords color:1 name:ob.title];
+                }
+            }
+            break;
+        case 1:
+            // show clusters
+            for (Cluster *cl in clusters) {
+                cl.pinID = [self newStar:cl.center color:1 name:@"cluster"];
+            }
+            break;
+        case 2:
+            // don't show anything
+            break;
+    }
+    objectsLOD = newObjectsLOD;
+}
+
+-(int)getLevelForScale:(CGFloat)scale
+{
+    int _sc = 1, _lvl = 0;
+    while (scale > _sc) {
+        _sc *= 2;
+        _lvl ++;
+    }
+    return _lvl;
 }
 
 @end

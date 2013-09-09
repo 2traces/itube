@@ -9,9 +9,7 @@
 #import "SettingsViewController.h"
 #import "CityCell.h"
 #import "MyNavigationBar.h"
-#import "CityMap.h"
 #import "tubeAppDelegate.h"
-#import "MainViewController.h"
 #import "Reachability.h"
 #import "TubeAppIAPHelper.h"
 #import "DemoMapViewController.h"
@@ -51,8 +49,6 @@
         self.subviewPositions = [NSMutableDictionary dictionary];
         self.maps = [self getMapsList];
         self.servers = [[[NSMutableArray alloc] init] autorelease];
-        tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
-        self.languages=appdelegate.cityMap.languages;
         
         int currentLanguageIndex = [[MHelper sharedHelper] languageIndex];
         if (currentLanguageIndex == 2 && [self.languages count] == 2) {
@@ -196,23 +192,9 @@
     [sortDescriptor2 release];
 //    [sortDescriptor1 release];
     
-    [self setCurrentMapSelectedPath];
 }
 
 #pragma mark - View lifecycle
-
-- (void)mapChanged:(NSNotification*)note
-{
-    tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
-    self.languages=appdelegate.cityMap.languages;
-    
-    int currentLanguageIndex = [[MHelper sharedHelper] languageIndex];
-    if (currentLanguageIndex == 2 && [self.languages count] == 2) {
-        selectedLanguages = [[NSMutableArray alloc] initWithObjects:[languages objectAtIndex:0],[languages objectAtIndex:1], nil];
-    } else {
-        selectedLanguages = [[NSMutableArray alloc] initWithObjects:[languages objectAtIndex:currentLanguageIndex], nil];
-    }
-}
 
 - (void) loadImages{
     tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -264,7 +246,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapChanged:) name:kMapChanged object:nil];
     [TubeAppIAPHelper sharedHelper];
     [self loadImages];
     [self rememberPositions];
@@ -300,19 +281,6 @@
     }
 }
 
--(void)setCurrentMapSelectedPath
-{
-    int mapsC = [self.maps count];
-    
-    NSString *currentMap = [[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] thisMapName];
-    
-    for (int i=0;i<mapsC;i++) {
-        if ([[[self.maps objectAtIndex:i] objectForKey:@"filename"] isEqual:currentMap]) {
-            self.selectedPath=[NSIndexPath indexPathForRow:i inSection:0];
-        }
-    }
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [self processPurchases];
     [super viewWillAppear:animated];
@@ -335,7 +303,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductsLoadedNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductPurchasedNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductPurchaseFailedNotification object: nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kMapChanged object:nil];
     
     [servers release];
     [timer release];
@@ -708,24 +675,7 @@
     
     // если мы скачали новую версию нашей текущей карты - то обновить ее
     
-    tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
     
-    NSString *mapName = [self getMapNameForProduct:prodID];
-    
-    if ([[[appdelegate cityMap] thisMapName] isEqual:mapName])
-    {
-        // перегрузить карту
-        //  NSLog(@"перегружаю активную карту");
-        
-        NSString *cityName;
-        
-        for (NSDictionary *dict in self.maps) {
-            if ([[dict objectForKey:@"filename"] isEqual:mapName]) {
-                cityName = [dict objectForKey:@"name"];
-            }
-        }
-        
-    }
     [self quitController];
 }
 
@@ -1069,9 +1019,7 @@
             [[MHelper sharedHelper] saveLanguageIndex:[languages indexOfObject:[selectedLanguages lastObject]]];
         }
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:kLangChanged object:nil];
     }
-    [delegate donePressed];
 }
 
 

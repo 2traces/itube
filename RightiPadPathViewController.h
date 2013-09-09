@@ -7,20 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PathScrollView.h"
-#import "VertPathScrollView.h"
 #import "StatusViewController.h"
 
-@interface RightiPadPathViewController : UIViewController <PathScrollViewProtocol>
+@interface RightiPadPathViewController : UIViewController
 {
     NSTimer *timer;
     BOOL isPathExists;
     BOOL isStatusAvailable;
 }
 
-@property (nonatomic,retain) PathScrollView *horizontalPathesScrollView;
 @property (nonatomic,retain) NSTimer *timer;
-@property (nonatomic,retain) VertPathScrollView *pathScrollView;
 @property (nonatomic,retain) StatusViewController *statusViewController;
 @property (nonatomic,retain) UIButton *switchButton;
 @property (nonatomic,retain) UIImageView *toolbar;

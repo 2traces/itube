@@ -16,7 +16,44 @@
 #import "GlPanel.h"
 #import "SettingsViewController.h"
 
-typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_LOCATION=2, PIN_STAR=3, PIN_FAVORITE=4} PinType;
+typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORITE=4} PinType;
+
+@interface Object: NSObject {
+}
+
+@property (nonatomic, strong) NSString *address;
+@property (nonatomic, strong) NSString *city;
+@property (nonatomic, strong) NSString *comment;
+@property (nonatomic, strong) NSString *country;
+@property (nonatomic, strong) NSString *hours;
+@property (nonatomic, strong) NSString *ID;
+@property (nonatomic, strong) NSString *kind;
+@property (nonatomic, strong) NSString *state;
+@property (nonatomic, strong) NSString *street;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, assign) CGPoint geoP;
+@property (nonatomic, assign) CGPoint coords;
+@property (nonatomic, assign) NSInteger pinID;
+
+-(id)initWithDictionary:(NSDictionary*)data;
+
+@end
+
+@interface Cluster : NSObject {
+    CGFloat radius;
+    NSMutableArray *_objects;
+    CGPoint sumCoord;
+}
+
+@property (nonatomic, assign) CGPoint center;
+@property (nonatomic, readonly) NSArray *objects;
+@property (nonatomic, assign) NSInteger pinID;
+
+-(id)initWithRadius:(CGFloat)r;
+
+-(BOOL)accept:(id)element;
+
+@end
 
 @interface Pin : NSObject {
     int _id;
@@ -38,10 +75,10 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_LOCATION=2, PIN_STAR=3, PIN_FAVORIT
 @property (nonatomic, assign) double rotation;
 
 -(id)initUserPos;
--(id)initLocationPos;
+-(id)initObjectPos;
 -(id)initWithId:(int)pinId andColor:(int)color;
 -(id)initWithId:(int)pinId color:(int)color andText:(NSString*)text;
--(id)initStarWithId:(int)pinId color:(int)color andText:(NSString*)text;
+-(id)initClusterWithId:(int)pinId color:(int)color andText:(NSString*)text;
 -(id)initFavWithId:(int)pinId color:(int)color andText:(NSString*)text;
 -(void)draw;
 -(void)drawWithScale:(CGFloat)scale;
@@ -54,6 +91,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_LOCATION=2, PIN_STAR=3, PIN_FAVORIT
 
 @interface GlViewController : GLKViewController<UIPopoverControllerDelegate,SettingsViewControllerDelegate> {
     UIPopoverController *popover;
+    NSMutableArray *clusters;
 }
 
 @property (nonatomic, assign) MItem *currentSelection;
@@ -106,5 +144,8 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_LOCATION=2, PIN_STAR=3, PIN_FAVORIT
 -(void)purgeUnusedCache;
 -(void)showSettings;
 -(void)showPurchases:(int)index;
+
+-(void)loadObjectsOnScreen;
+-(void)loadObjectsForRect:(CGRect)rect;
 
 @end

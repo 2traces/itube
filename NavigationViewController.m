@@ -8,10 +8,6 @@
 
 #import "NavigationViewController.h"
 #import "CategoriesViewController.h"
-#import "PhotosViewController.h"
-#import "MainViewController.h"
-#import "MainView.h"
-#import "TopTwoStationsView.h"
 #import "HCBookmarksViewController.h"
 #import "ReaderViewController.h"
 #import "ManagedObjects.h"
@@ -26,8 +22,6 @@
 @implementation NavigationViewController
 
 @synthesize categoriesController;
-@synthesize photosController;
-@synthesize mainController;
 @synthesize glController;
 @synthesize bookmarksController;
 @synthesize readerController;
@@ -50,25 +44,15 @@
     [controller release];
 }
 
-- (BOOL) photosOpen {
-    if (photosMode == HCPhotosVisibleFully) {
-        return YES;
-    }
-    return NO;
-}
-
 - (BOOL) categoriesOpen {
     return categoriesOpen;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(MainViewController*)mainViewController glViewController:(GlViewController*)glViewController
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil glViewController:(GlViewController*)glViewController
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.mainController = mainViewController;
-        self.mainController.navigationViewController = self;
-
         self.glController = glViewController;
         self.glController.navigationViewController = self;
     }
@@ -78,58 +62,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-//
-//    CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
-//    self.view.frame = windowBounds;
     
     self.categoriesController = [[[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:[NSBundle mainBundle]] autorelease];
     self.categoriesController.navigationDelegate = self;
-    if (IS_IPAD)
-        self.photosController = [[[PhotosViewController alloc] initWithNibName:@"PhotosViewController-iPad" bundle:[NSBundle mainBundle]]  autorelease];
-    else {
-        if ([(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] isIPHONE5]) {
-            self.photosController = [[[PhotosViewController alloc] initWithNibName:@"PhotosViewController5" bundle:[NSBundle mainBundle]]  autorelease];
-        } else {
-            self.photosController = [[[PhotosViewController alloc] initWithNibName:@"PhotosViewController" bundle:[NSBundle mainBundle]]  autorelease];
-        }
-    }
-    self.photosController.navigationDelegate = self;
-    self.mainController.view.layer.cornerRadius = self.photosController.view.layer.cornerRadius = self.glController.view.layer.cornerRadius = self.separatingView.layer.cornerRadius = 5;
-    self.mainController.view.layer.masksToBounds = self.photosController.view.layer.masksToBounds = YES;
+    self.glController.view.layer.cornerRadius = self.separatingView.layer.cornerRadius = 5;
     [self.view insertSubview:[self.categoriesController view] belowSubview:self.separatingView];
-    [self.view insertSubview:[self.mainController view] aboveSubview:self.separatingView];
-    [self.view insertSubview:[self.photosController view] aboveSubview:self.mainController.view];
+    [self.view insertSubview:[self.glController view] aboveSubview:self.separatingView];
     
     self.categoriesController.view.layer.cornerRadius = 5;
     self.categoriesController.view.clipsToBounds = YES;
     
-    CGRect mainViewFrame = self.mainController.view.frame;
-    self.mainController.view.frame = self.glController.view.frame = mainViewFrame;
+    CGRect mainViewFrame = self.glController.view.frame;
+    self.glController.view.frame = mainViewFrame;
     
     rectMapFull = mainViewFrame;
     rectMapCut = rectMapFull;
     
     CGFloat delta;
     
-    if (IS_IPAD)
-        delta = self.photosController.view.frame.size.height - 96;
-    else
-        delta = self.photosController.view.frame.size.height - 70;
-    
     rectMapCut.size.height -= delta;
     rectMapCut.origin.y += delta;
     
-    fMetroMode = YES;
-    layerMode = HCMetroLayer;
-    if (IS_IPAD)
-    {
-        photosMode = HCPhotosHiddenFully;
+    layerMode = HCOSMLayer;
 
-        [self transitPhotosToMode:HCPhotosVisibleFully animated:false];
-    } else
-        photosMode = HCPhotosVisibleFully;
-    
     currentPlacePin = -1;
 
 }
@@ -162,9 +117,6 @@
         appDelegate.shouldShowRateScreen = NO;
     }
     
-    if (IS_IPAD) {
-        [appDelegate.mainViewController hideiPadLeftPathView];
-    }
     [self showRasterMap];
 }
 
@@ -188,10 +140,6 @@
         self.shadow.frame = frame;
     }
     
-    if (photosMode == HCPhotosVisibleFully) {
-        [self showCutMap];
-
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -203,23 +151,19 @@
 - (void) showCategories:(id)sender {
 
     [UIView animateWithDuration:0.5f animations:^{
-        CGRect mainViewFrame = self.mainController.view.frame;
         CGRect glViewFrame = self.glController.view.frame;
-        CGRect photosViewFrame = self.photosController.view.frame;
         CGRect separatingFrame = self.separatingView.frame;
 
-        if (mainViewFrame.origin.x == 0) {
-            mainViewFrame.origin.x = photosViewFrame.origin.x = separatingFrame.origin.x = glViewFrame.origin.x = 227;
+        if (glViewFrame.origin.x == 0) {
+            separatingFrame.origin.x = glViewFrame.origin.x = 227;
             categoriesOpen = YES;
         }
         else {
-            mainViewFrame.origin.x = photosViewFrame.origin.x = separatingFrame.origin.x = glViewFrame.origin.x =  0;
+            separatingFrame.origin.x = glViewFrame.origin.x =  0;
             categoriesOpen = NO;
 
         }
-        self.mainController.view.frame = self.bookmarksController.view.frame = mainViewFrame;
-        self.glController.view.frame = glViewFrame;
-        self.photosController.view.frame = photosViewFrame;
+        self.bookmarksController.view.frame = self.glController.view.frame = glViewFrame;
         self.separatingView.frame = separatingFrame;
     }];
     
@@ -228,46 +172,39 @@
 
 - (void) hideCategoriesAnimated:(BOOL)animated {
     CGFloat duration = animated ? 0.5f : 0;
-    //[UIView animateWithDuration:duration animations:^{
-        CGRect mainViewFrame = self.mainController.view.frame;
+        CGRect mainViewFrame = self.glController.view.frame;
         CGRect separatingFrame = self.separatingView.frame;
-        CGRect photosViewFrame = self.photosController.view.frame;
-        mainViewFrame.origin.x = photosViewFrame.origin.x = separatingFrame.origin.x = 0;
+        mainViewFrame.origin.x = separatingFrame.origin.x = 0;
         categoriesOpen = NO;
-        self.mainController.view.frame = self.glController.view.frame = mainViewFrame;
-        self.photosController.view.frame = photosViewFrame;
+        self.glController.view.frame = mainViewFrame;
         self.separatingView.frame = separatingFrame;
-    //}];
 }
 
 - (void) showFullMap {
-    CGRect newRect = self.mainController.view.frame;
+    CGRect newRect = self.glController.view.frame;
     newRect.origin.y = rectMapFull.origin.y;
     newRect.size.height = rectMapFull.size.height;
     
-    self.mainController.view.frame = self.glController.view.frame = newRect;
+    self.glController.view.frame = newRect;
     [self.glController moveModeButtonToFullScreen];
-    [self.mainController moveModeButtonToFullScreen];
 }
 
 - (void) showCutMap {
-    CGRect newRect = self.mainController.view.frame;
+    CGRect newRect = self.glController.view.frame;
     newRect.origin.y = rectMapCut.origin.y;
     newRect.size.height = rectMapCut.size.height;
     
-    self.mainController.view.frame = newRect;
+    self.glController.view.frame = newRect;
     
     CGRect specialMapRect = newRect;
     specialMapRect.origin.y += 40;
     specialMapRect.size.height -= 40;
     self.glController.view.frame = specialMapRect;
     [self.glController moveModeButtonToCutScreen];
-    [self.mainController moveModeButtonToCutScreen];
 }
 
 - (void) centerMapOnUser {
     [self.glController centerMapOnUser];
-    [self.mainController centerMapOnUser];
 }
 
 - (void) reloadCategories {
@@ -282,303 +219,20 @@
     }
     else {
         [self hideBookmarksLayer];
-        [self transitPhotosToMode:HCPhotosVisibleFully animated:YES];
     }
 }
 
-- (void) stickThePanelBackToPhotos {
-    CGRect panelFrame = self.photosController.panelView.frame;
-    
-    if (IS_IPAD)
-        panelFrame.origin = CGPointMake(0, 745);
-    else {
-        if ([(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] isIPHONE5]) {
-            panelFrame.origin = CGPointMake(0, 392);
-        } else {
-            panelFrame.origin = CGPointMake(0, 304);
-        }
-    }
-    [self.photosController.view addSubview:self.photosController.panelView];
-    self.photosController.panelView.frame = panelFrame;
-}
-
-- (void)transitPhotosToMode:(HCPhotosPresentationMode)mode animated:(BOOL)animated {
-    if (photosMode == mode) {
-        return;
-    }
-    
-    NSInteger oldMode = photosMode;
-    
-    photosMode = mode;
-
-    CGRect photosViewFrame = self.photosController.view.frame;
-    CGRect panelFrame = self.photosController.panelView.frame;
-    CGFloat animationDuration = animated ? 0.5 : 0;
-    
-    photosViewFrame.origin.x = 0;
-    if (IS_IPAD)
-    {
-        panelFrame.origin = CGPointMake(0, 745);
-        //panelFrame.size = CGSizeMake(panelFrame.size.width, 90);
-    } else {
-        if ([(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] isIPHONE5]) {
-            panelFrame.origin = CGPointMake(0, 392);
-        } else {
-            panelFrame.origin = CGPointMake(0, 304);
-        }
-    }
-    [self.photosController.view addSubview:self.photosController.panelView];
-    self.photosController.panelView.frame = panelFrame;
-    self.photosController.view.frame = photosViewFrame;
-    
-    switch (mode) {
-        case HCPhotosVisibleFully:
-            self.photosController.disappearingView.alpha = 0;
-            //[self.mainController toggleTap];
-            [self.mainController removeVerticalPathView];
-            [self.mainController clearPath];
-            if (IS_IPAD)
-                [self.mainController hideiPadLeftPathView];
-            [UIView animateWithDuration:animationDuration animations:^{
-                CGRect photosViewFrame = self.photosController.view.frame;
-                photosViewFrame.origin.y = 0;
-                self.photosController.disappearingView.alpha = 1.0f;
-                self.photosController.view.frame = photosViewFrame;
-                self.photosController.placeNamePanel.hidden = NO;
-                self.photosController.distanceContainer.hidden = NO;
-            } completion:^(BOOL finished) {
-                [self showCutMap];
-                MainView *mainView = (MainView*)[self.mainController view];
-                [mainView changedToLandscape:NO];
-                
-                //the crap below makes map centering properly
-                [mainView layoutSubviews];
-                [self.photosController updateInfoForCurrentPage];
-            }];
-            break;
-        case HCPhotosHiddenFully:
-            self.photosController.disappearingView.alpha = 1;
-            self.photosController.placeNamePanel.hidden = NO;
-            self.photosController.distanceContainer.hidden = NO;
-            [self showFullMap];
-
-            [UIView animateWithDuration:animationDuration animations:^{
-                CGRect photosViewFrame = self.photosController.view.frame;
-                if (IS_IPAD)
-                    photosViewFrame.origin.y = -745;
-                else {
-                    if ([(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] isIPHONE5]) {
-                        photosViewFrame.origin.y = -392;
-                    } else {
-                        photosViewFrame.origin.y = -304;
-                    }
-                }
-                self.photosController.disappearingView.alpha = 0;
-                self.photosController.view.frame = photosViewFrame;
-                self.photosController.placeNamePanel.hidden = NO;
-                self.photosController.distanceContainer.hidden = NO;
-            } completion:^(BOOL finished) {
-                MainView *mainView = (MainView*)[self.mainController view];
-                [mainView changedToLandscape:YES];
-            }];
-            break;
-        case HCPhotosHiddenMetroDefault:
-            self.photosController.disappearingView.alpha = 1;
-            self.photosController.placeNamePanel.hidden = NO;
-            self.photosController.distanceContainer.hidden = NO;
-            [self showFullMap];
-            returningFromLandscape = NO;
-            
-            if (oldMode != HCPhotosHiddenMetroPath) {
-                //Here we should set the destination station
-                Station *station = [self.photosController stationForCurrentPhoto];
-                MStation *stationObject = [[MHelper sharedHelper] getStationWithName:station.name forLine:station.line.name];
-                [self.mainController resetBothStationsInASpecialWay];
-                
-                //[self.mainController resetFromStation];
-                
-                Station *userStation = [self.mainController nearestStation];
-                if (userStation) {
-                    //MStation *stationUserObject = [[MHelper sharedHelper] getStationWithName:userStation.name forLine:userStation.line.name];
-                    //[self.mainController returnFromSelection:[NSArray arrayWithObjects:nil, stationObject, nil]];
-                    self.mainController.toStation = stationObject;
-                    [self.mainController.stationsView setFromStation:nil];
-                    [self.mainController.stationsView setToStation:stationObject];
-                    [((MainView*)(self.mainController.view)) centerMapOnUser];
-                    
-                }
-                else {
-                    [self.mainController returnFromSelection:[NSArray arrayWithObject:stationObject]];
-                }
-            }
-            
-            
-            [UIView animateWithDuration:animationDuration animations:^{
-                CGRect photosViewFrame = self.photosController.view.frame;
-                if (IS_IPAD)
-                    photosViewFrame.origin.y = -702;
-                else {
-                    if ([(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] isIPHONE5]) {
-                        photosViewFrame.origin.y = -349;
-                    } else {
-                        photosViewFrame.origin.y = -261;
-                    }
-                }
-                self.photosController.disappearingView.alpha = 0;
-                self.photosController.view.frame = photosViewFrame;
-            } completion:^(BOOL finished) {                
-                CGRect photosViewFrame = self.photosController.view.frame;
-                CGRect panelFrame = self.photosController.panelView.frame;
-                if (IS_IPAD) {
-                    photosViewFrame.origin.x = self.view.frame.size.width;
-                    panelFrame.origin = CGPointMake(0, 745 - 702);
-                } else {
-                    if ([(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] isIPHONE5]) {
-                        photosViewFrame.origin.x = 408;
-                        panelFrame.origin = CGPointMake(0, 392 - 349);
-                    } else {
-                        photosViewFrame.origin.x = 320;
-                        panelFrame.origin = CGPointMake(0, 304 - 261);
-                    }                    
-                }
-                [self.mainController.view insertSubview:self.photosController.panelView aboveSubview:self.mainController.stationsView];
-                self.photosController.panelView.frame = panelFrame;
-                self.photosController.view.frame = photosViewFrame;
-                
-                MainView *mainView = (MainView*)[self.mainController view];
-                [mainView changedToLandscape:YES];
-        
-            }];
-            break;
-        case HCPhotosHiddenMetroPath:
-            [self.mainController toggleTap];
-            self.photosController.disappearingView.alpha = 1;
-            self.photosController.placeNamePanel.hidden = NO;
-            self.photosController.distanceContainer.hidden = NO;
-            [self showFullMap];
-
-            [UIView animateWithDuration:animationDuration animations:^{
-                CGRect photosViewFrame = self.photosController.view.frame;
-                if (IS_IPAD)
-                    photosViewFrame.origin.y = -702;
-                else {
-                    if ([(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] isIPHONE5]) {
-                        photosViewFrame.origin.y = -349;
-                    } else {
-                        photosViewFrame.origin.y = -261;
-                    }
-                }
-                self.photosController.disappearingView.alpha = 0;
-                self.photosController.view.frame = photosViewFrame;
-            } completion:^(BOOL finished) {
-                if (returningFromLandscape) {
-                    returningFromLandscape = NO;
-                    return;
-                }
-                if (!IS_IPAD)
-                    self.photosController.placeNamePanel.hidden = YES;
-                self.photosController.distanceContainer.hidden = YES;
-                CGRect photosViewFrame = self.photosController.view.frame;
-                CGRect panelFrame = self.photosController.panelView.frame;
-                if (IS_IPAD) {
-                    photosViewFrame.origin.x = self.view.frame.size.width;
-                    panelFrame.origin = CGPointMake(0, 745 - 702);
-                } else {
-                    if ([(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] isIPHONE5]) {
-                        photosViewFrame.origin.x = 408;
-                        panelFrame.origin = CGPointMake(0, 392 - 349 - (44 - 28));
-                    } else {
-                        photosViewFrame.origin.x = 320;
-                        panelFrame.origin = CGPointMake(0, 304 - 261 - (44 - 28));
-                    }
-                }
-                
-                [self.mainController.view insertSubview:self.photosController.panelView aboveSubview:self.mainController.stationsView];
-                
-                self.photosController.panelView.frame = panelFrame;
-                self.photosController.view.frame = photosViewFrame;
-                
-                MainView *mainView = (MainView*)[self.mainController view];
-                [mainView changedToLandscape:YES];
-            }];
-            break;
-            
-        default:
-            break;
-    }
-}
-
-- (void)transitToPathMode{
-    [self transitPhotosToMode:HCPhotosHiddenMetroPath animated:NO];
-}
-
-- (void)transitToNormalMode {
-    [self transitPhotosToMode:HCPhotosHiddenMetroDefault animated:NO];
-}
-
-
-- (void)placeAddedToFavorites:(MPlace*)place {
-    MainView* map = (MainView*)[self.mainController view];
-    CGPoint placePoint = CGPointMake([place.posX floatValue], [place.posY floatValue]);
-
-    Station *nearestStation = [map stationNearestToGeoPosition:placePoint];
-
-    [self.glController setStarAtPlace:place color:nearestStation.line.pinColor];
-    [self.mainController setStarAtStation:nearestStation];
-}
-
-- (void)placeRemovedFromFavorites:(MPlace*)place {
-    MainView* map = (MainView*)[self.mainController view];
-    CGPoint placePoint = CGPointMake([place.posX floatValue], [place.posY floatValue]);
-
-    Station *nearestStation = [map stationNearestToGeoPosition:placePoint];
-    [self.glController removePinAtPlace:place];
-    [self.mainController removeStarFromStation:nearestStation.name];
-}
-
-- (void) showHidePhotos:(id)sender {
-    if (categoriesOpen) {
-        return;
-    }
-    if (layerMode == HCBookmarksLayer) {
-        [self hideBookmarksLayer];
-        [self transitPhotosToMode:HCPhotosVisibleFully animated:YES];
-        return;
-    }
-    if (photosMode != HCPhotosVisibleFully) {
-        [self transitPhotosToMode:HCPhotosVisibleFully animated:YES];
-    }
-    else {
-        if (layerMode == HCMetroLayer) {
-            [self transitPhotosToMode:HCPhotosHiddenMetroDefault animated:YES];
-        }
-        else {
-            [self transitPhotosToMode:HCPhotosHiddenFully animated:YES];
-        }
-    }
- }
 
 - (void) switchToLayerMode:(HCLayerMode)mode {
     if (mode == layerMode) {
         //If we're trying to set same layer, do nothing
         return;
     }
-    HCLayerMode oldMode = layerMode;
 
     if (layerMode == HCBookmarksLayer) {
         //As bookmarks layer is just placed ABOVE map/metro layer, we need to first dismiss it
         [self.bookmarksController.view removeFromSuperview];
-        [self.photosController.btShowHideBookmarks setImage:[UIImage imageNamed:@"bt_photo_like"] forState:UIControlStateNormal];
-        self.photosController.placeNamePanel.hidden = NO;
-        self.photosController.btShowHideBookmarks.enabled = YES;
-
-        [self.photosController updateInfoForCurrentPage];
-        if (fMetroMode) {
-            layerMode = HCMetroLayer;
-        }
-        else {
-            layerMode = HCOSMLayer;
-        }
+        layerMode = HCOSMLayer;
     }
     //As layerMode could have changed after removing bookmarks layer, check once more
     if (mode != layerMode) {
@@ -592,56 +246,17 @@
                 frame.origin = CGPointMake(0, 0);
                 self.bookmarksController.view.frame = frame;
 //                [self.photosController.btShowHideBookmarks setImage:[UIImage imageNamed:@"bt_bookmarks_map"] forState:UIControlStateNormal];
-                self.photosController.btShowHideBookmarks.enabled = NO;
-                if (fMetroMode) {
-                    [self.view insertSubview:self.bookmarksController.view aboveSubview:self.mainController.view];
-                }
-                else {
-                    [self.view insertSubview:self.bookmarksController.view aboveSubview:self.glController.view];
-                }
-                [self transitPhotosToMode:HCPhotosHiddenFully animated:YES];
+                [self.view insertSubview:self.bookmarksController.view aboveSubview:self.glController.view];
                 layerMode = HCBookmarksLayer;
-                self.photosController.placeNamePanel.text = @"Bookmarks";
 
                 break;
-            case HCMetroLayer:
-                [self.view insertSubview:self.mainController.view belowSubview:self.glController.view];
-                [self.glController.view removeFromSuperview];
-                fMetroMode = YES;
-                layerMode = HCMetroLayer;
-                break;
             case HCOSMLayer:
-                [self.view insertSubview:self.glController.view belowSubview:self.mainController.view];
-                [self.mainController.view removeFromSuperview];
-                fMetroMode = NO;
                 layerMode = HCOSMLayer;
                 break; 
                 
             default:
                 break;
         }
-    }
-    //Adjust photos position
-    switch (layerMode) {
-        case HCBookmarksLayer:
-            [self transitPhotosToMode:HCPhotosHiddenFully animated:YES];
-            break;
-        case HCMetroLayer:
-            if (oldMode == HCBookmarksLayer) {
-                [self transitPhotosToMode:HCPhotosVisibleFully animated:YES];
-            }
-            else if (photosMode == HCPhotosHiddenFully) {
-                [self transitPhotosToMode:HCPhotosHiddenMetroDefault animated:YES];
-            }
-            break;
-        case HCOSMLayer:
-            if (photosMode == HCPhotosHiddenMetroDefault || photosMode == HCPhotosHiddenMetroPath) {
-                [self transitPhotosToMode:HCPhotosHiddenFully animated:YES];
-            }
-            break;
-            
-        default:
-            break;
     }
 }
 
@@ -650,20 +265,12 @@
 
 }
 
-- (void) showMetroMap {
-    [self switchToLayerMode:HCMetroLayer];
-}
-
 - (void) showBookmarksLayer {
     [self switchToLayerMode:HCBookmarksLayer];
 }
 
-- (BOOL) isMetroMode {
-    return fMetroMode;
-}
-
 - (void) hideBookmarksLayer {
-    [self switchToLayerMode:fMetroMode ? HCMetroLayer : HCOSMLayer];
+    [self switchToLayerMode:HCOSMLayer];
 }
 
 - (void) showReaderWithItems:(NSArray*)items activePage:(NSInteger)activePage {
@@ -679,16 +286,12 @@
     self.currentPlaces = [[MHelper sharedHelper] getPlacesForCategoryIndex:index];
     MCategory * category = self.categoriesController.categories[index - 1];
     self.currentCategory = category.name;
-    [photosController loadPlaces:self.currentPlaces];
 
 }
 
 - (void) centerMapOnPlace:(MPlace*)place {
     CGPoint placePosition = CGPointMake([place.posX floatValue], [place.posY floatValue]);
-    MainView *mv = (MainView*)(self.mainController.view);
-    mv.followUserGPS = NO;
     self.glController.followUserGPS = NO;
-    [mv setGeoPosition:placePosition withZoom:-1];
     [self.glController setGeoPosition:placePosition withZoom:-1];
 }
 
@@ -696,14 +299,8 @@
     MPlace *place = [[MHelper sharedHelper] getPlaceWithIndex:index];
     CGPoint placePosition = CGPointMake([place.posX floatValue], [place.posY floatValue]);
     
-    MainView *mv = (MainView*)(self.mainController.view);
-    mv.followUserGPS = NO;
     self.glController.followUserGPS = NO;
-    [mv setGeoPosition:placePosition withZoom:100500];
     [self.glController scrollToGeoPosition:placePosition withZoom:60000];
-    //if (currentPlacePin != -1) {
-    //    [self.glController removePin:currentPlacePin];
-    //}
     currentPlacePin = [self.glController setLocation:placePosition];
     Pin *pin = [self.glController getPin:currentPlacePin];
     return pin.distanceToUser;
@@ -745,67 +342,33 @@
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    MainView *mainView = (MainView*)[self.mainController view];
     if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
         returningFromLandscape = YES;
-        [mainView changedToLandscape:NO];
-        if (!IS_IPAD)
-        {
-            photosMode = HCPhotosHiddenFully;
-            [self transitPhotosToMode:HCPhotosVisibleFully animated:NO];
-        } else
-        {
-            if (photosMode != HCPhotosVisibleFully)
-            {
-                photosMode = HCPhotosVisibleFully;
-                [self transitPhotosToMode:HCPhotosHiddenMetroPath animated:NO];
-            }
-        }
-        self.photosController.view.hidden = self.categoriesController.view.hidden = self.photosController.panelView.hidden = NO;
-
     } else {
-        [mainView changedToLandscape:YES];
         if (layerMode == HCBookmarksLayer) {
             //As bookmarks layer is just placed ABOVE map/metro layer, we need to first dismiss it
             [self.bookmarksController.view removeFromSuperview];
-            [self.photosController.btShowHideBookmarks setImage:[UIImage imageNamed:@"bt_photo_like"] forState:UIControlStateNormal];
-            self.photosController.placeNamePanel.hidden = NO;
-            if (fMetroMode) {
-                layerMode = HCMetroLayer;
-            }
-            else {
-                layerMode = HCOSMLayer;
-            }
+            layerMode = HCOSMLayer;
         }
         if (self.presentedViewController) {
             [self.presentedViewController dismissModalViewControllerAnimated:YES];
         }
 
         [self hideCategoriesAnimated:NO];
-        //[self transitPhotosToMode:HCPhotosVisibleFully animated:NO];
         if (IS_IPAD)
         {
             self.categoriesController.view.hidden = YES;
             
-            /*if (photosMode != HCPhotosVisibleFully)
-            {
-                photosMode = HCPhotosVisibleFully;
-                [self transitPhotosToMode:HCPhotosHiddenMetroPath animated:NO];
-            } else*/
-                [self transitPhotosToMode:photosMode animated:NO];
         }
         else
         {
-            self.photosController.view.hidden = self.categoriesController.view.hidden = self.photosController.panelView.hidden = YES;
-        
             [self showFullMap];
         }
     }
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    if (IS_IPAD)
-        [self.photosController reloadScrollView]; // TODO: save current position
+
 }
 
 

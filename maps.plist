@@ -2,26 +2,26 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>com.zuev.highlight.paris</key>
+	<key>default</key>
 	<dict>
 		<key>url1</key>
-		<string>http://parismetromaps.info/maps/paris/osm</string>
+		<string>http://parismetromaps.info/maps/wifipro/</string>
 		<key>url2</key>
-		<string>http://parismetromaps.info/maps/paris/osm</string>
+		<string></string>
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>
-		<string>Paris</string>
+		<string>World</string>
 		<key>filename</key>
-		<string>paris</string>
+		<string>world</string>
 		<key>description</key>
-		<string>paris.txt</string>
+		<string>world.txt</string>
 		<key>picture</key>
-		<string>preview_paris.png</string>
+		<string>world.png</string>
 		<key>picture_content</key>
-		<string>preview_paris_content.png</string>
+		<string>world_content.png</string>
 		<key>icon</key>
-		<string>tr_paris.png</string>
+		<string>tr_world.png</string>
 		<key>appstore_link</key>
 		<string>http://itunes.apple.com/app/paris.metro/id513581498</string>
 		<key>rate_link</key>
@@ -44,85 +44,6 @@
 		<string>https://www.youtube.com/watch?v=f-qDgqTJehg</string>
 		<key>weather_info</key>
 		<string>http://api.openweathermap.org/data/2.5/forecast/daily?q=Paris&amp;mode=xml&amp;cnt=4</string>
-	</dict>
-	<key>com.zuev.highlight.berlin</key>
-	<dict>
-		<key>url1</key>
-		<string>http://parismetromaps.info/maps/berlin/osm/osm</string>
-		<key>url2</key>
-		<string>http://parismetromaps.info/maps/berlin/osm/osm</string>
-		<key>ver</key>
-		<string>1</string>
-		<key>name</key>
-		<string>Berlin</string>
-		<key>filename</key>
-		<string>berlin</string>
-		<key>description</key>
-		<string>berlin.txt</string>
-		<key>picture</key>
-		<string>preview_berlin.png</string>
-		<key>icon</key>
-		<string>tr_berlin.png</string>
-		<key>appstore_link</key>
-		<string>http://itunes.apple.com/app/berlin-metro-maps/id517540610</string>
-		<key>rate_link</key>
-		<string>http://itunes.apple.com/app/berlin-metro-maps/id517540610</string>
-		<key>statusURL</key>
-		<string>   </string>
-	</dict>
-	<key>com.zuev.highlight.nyc</key>
-	<dict>
-		<key>url1</key>
-		<string>http://www.x-provocation.com/maps/cuba/OSM</string>
-		<key>url2</key>
-		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
-		<key>ver</key>
-		<string>1</string>
-		<key>name</key>
-		<string>NYC</string>
-		<key>filename</key>
-		<string>nyc</string>
-		<key>description</key>
-		<string>nyc.txt</string>
-		<key>picture</key>
-		<string>preview_nyc.png</string>
-		<key>icon</key>
-		<string>tr_nyc.png</string>
-		<key>appstore_link</key>
-		<string>http://itunes.apple.com/app/subway-nyc-maps/id547106753</string>
-		<key>rate_link</key>
-		<string>http://itunes.apple.com/app/subway-nyc-maps/id547106753</string>
-		<key>statusURL</key>
-		<string>http://metro.dim0xff.com/nyc/data_RU.txt</string>
-		<key>altStatusURL</key>
-		<string>http://metro.dim0xff.com/nyc/data.txt</string>
-	</dict>
-	<key>com.zuev.highlight.nyc1</key>
-	<dict>
-		<key>url1</key>
-		<string>http://www.x-provocation.com/maps/cuba/OSM</string>
-		<key>url2</key>
-		<string>http://www.x-provocation.com/maps/cuba/RASTER</string>
-		<key>ver</key>
-		<string>1</string>
-		<key>name</key>
-		<string>Venice</string>
-		<key>filename</key>
-		<string>nyc</string>
-		<key>description</key>
-		<string>nyc.txt</string>
-		<key>picture</key>
-		<string>preview_nyc.png</string>
-		<key>icon</key>
-		<string>tr_venice.png</string>
-		<key>appstore_link</key>
-		<string>http://itunes.apple.com/app/venice-transport-maps/id517758059</string>
-		<key>rate_link</key>
-		<string>http://itunes.apple.com/app/venice-transport-maps/id517758059</string>
-		<key>statusURL</key>
-		<string>http://metro.dim0xff.com/nyc/data_RU.txt</string>
-		<key>altStatusURL</key>
-		<string>http://metro.dim0xff.com/nyc/data.txt</string>
 	</dict>
 </dict>
 </plist>

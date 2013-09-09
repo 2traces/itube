@@ -8,8 +8,6 @@
 
 #import "SplashViewController.h"
 #import "tubeAppDelegate.h"
-#import "MainViewController.h"
-#import "CityMap.h"
 
 @implementation SplashViewController
 
@@ -44,19 +42,11 @@
 - (void)fadeScreen
 {
     tubeAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	delegate.mainViewController.view.alpha = 0.0;
+	delegate.glViewController.view.alpha = 0.0;
 //	[self.view addSubview:delegate.mainViewController.view];
-    [delegate.window addSubview:delegate.mainViewController.view];
+    [delegate.window addSubview:delegate.glViewController.view];
 	
 //	timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(fadeScreen) userInfo:nil repeats:NO];
-
-    CityMap *cm = [[CityMap alloc] init];
-    NSString *mapName =[delegate nameCurrentMap];
-    //    [cm loadMap:mapName];
-    [cm loadMap:@"Metro"];
-    
-    delegate.cityMap = cm;
-    [cm release];
 
 	[UIView beginAnimations:nil context:nil]; // begins animation block
 	[UIView setAnimationDuration:0.75];        // sets animation duration
@@ -74,7 +64,7 @@
 	[UIView beginAnimations:nil context:nil]; // begins animation block
 	[UIView setAnimationDuration:0.75];        // sets animation duration
 	self.view.alpha = 1.0;   // fades the view to 1.0 alpha over 0.75 seconds
-	delegate.mainViewController.view.alpha = 1.0;
+	delegate.glViewController.view.alpha = 1.0;
 	[UIView commitAnimations];   // commits the animation block.  This Block is done.
 	[splashImageView removeFromSuperview];
 }

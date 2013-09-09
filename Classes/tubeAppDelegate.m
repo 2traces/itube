@@ -7,16 +7,12 @@
 //
 
 #import "tubeAppDelegate.h"
-#import "MainViewController.h"
-#import "CityMap.h"
 #import "TubeAppIAPHelper.h"
 #import "TubeSplitViewController.h"
 #import "StatusViewController.h"
 #import <MapKit/MapKit.h>
 #import "ManagedObjects.h"
-#import "MainView.h"
 #import "NavigationViewController.h"
-#import "PhotosViewController.h"
 #import "CategoriesViewController.h"
 #import "RatePopupViewController.h"
 #import "WeatherHelper.h"
@@ -30,9 +26,7 @@ NSString* DisplayStationName(NSString* stName) {
 @implementation tubeAppDelegate
 
 @synthesize window;
-@synthesize mainViewController;
 @synthesize glViewController = gl;
-@synthesize cityMap;
 @synthesize cityName;
 @synthesize parseQueue;
 @synthesize navigationViewController;
@@ -50,9 +44,6 @@ void uncaughtExceptionHandler(NSException *exception) {
     BOOL firstSet = CGPointEqualToPoint(userGeoP, CGPointZero);
     userGeoP = userGeoPosition;
     [gl setUserGeoPosition:userGeoP];
-    MainView *mv = (MainView*)mainViewController.view;
-    if(mv.followUserGPS) [mv setGeoPosition:userGeoPosition withZoom:mv.containerView.zoomScale];
-    if(firstSet) [self.navigationViewController.photosController updateInfoForCurrentPage];
 }
 
 -(CGPoint)userGeoPosition
@@ -77,11 +68,9 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 - (void)placeAddedToFavorites:(MPlace*)place {
-    [self.navigationViewController placeAddedToFavorites:place];
 }
 
 - (void)placeRemovedFromFavorites:(MPlace*)place {
-    [self.navigationViewController placeRemovedFromFavorites:place];
 }
 
 - (void)centerMapOnPlace:(MPlace*)place {
@@ -93,17 +82,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     gl = [[GlViewController alloc] initWithNibName:@"GlViewController" bundle:[NSBundle mainBundle]];
-	MainViewController *aController = [[MainViewController alloc] init];
 
-	self.mainViewController = aController;
-    self.navigationViewController = [[[NavigationViewController alloc] initWithNibName:@"NavigationViewController" bundle:[NSBundle mainBundle] mainViewController:self.mainViewController glViewController:gl] autorelease];
-	[aController release];
-    CityMap *cm = [[CityMap alloc] init];
-    NSString *mapName =[self nameCurrentMap];
-    [cm loadMap:mapName];
-    
-    self.cityMap = cm;
-    [cm release];
+    self.navigationViewController = [[[NavigationViewController alloc] initWithNibName:@"NavigationViewController" bundle:[NSBundle mainBundle] glViewController:gl] autorelease];
     
     self.cityName= [self nameCurrentCity];
     
@@ -116,39 +96,21 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     if (IS_IPAD) {
         TubeSplitViewController *splitController = [[TubeSplitViewController alloc] init];
-        splitController.mainViewController = self.mainViewController;
-        
-        
-                
-        //navController = [[UINavigationController alloc] initWithRootViewController:self.navigationViewController];
-        //navController.navigationBarHidden = YES;
-        //   CGRect main = [UIScreen mainScreen].applicationFrame;
-       // mainViewController.view.frame = self.navigationViewController.view.frame = [UIScreen mainScreen].applicationFrame;
-       // CGRect mainViewFrame = mainViewController.view.frame;
-       // mainViewFrame.origin.y = 0;
-        //mainViewController.view.frame = mainViewFrame;
-        ///navController.view.layer.cornerRadius = 5;
-        //window.layer.cornerRadius = 5;
-        //[window addSubview:[navController view]];
-        //[window setRootViewController:navController];
+        splitController.glViewController = gl;
         
         [window addSubview:[splitController view]];
-        
-        
-         [window setRootViewController:splitController];
-         navController = splitController.navigationController;
-         //[splitController release];
-         //[window makeKeyAndVisible];
+
+        [window setRootViewController:splitController];
+        navController = splitController.navigationController;
 
         [window makeKeyAndVisible];
     } else {
         navController = [[UINavigationController alloc] initWithRootViewController:self.navigationViewController];
         navController.navigationBarHidden = YES;
-     //   CGRect main = [UIScreen mainScreen].applicationFrame;
-        mainViewController.view.frame = self.navigationViewController.view.frame = [UIScreen mainScreen].applicationFrame;
-        CGRect mainViewFrame = mainViewController.view.frame;
+        gl.view.frame = self.navigationViewController.view.frame = [UIScreen mainScreen].applicationFrame;
+        CGRect mainViewFrame = gl.view.frame;
         mainViewFrame.origin.y = 0;
-        mainViewController.view.frame = mainViewFrame;
+        gl.view.frame = mainViewFrame;
         navController.view.layer.cornerRadius = 5;
         window.layer.cornerRadius = 5;
         [window addSubview:[navController view]];
@@ -402,7 +364,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 -(void)applicationWillEnterForeground:(UIApplication *)application
 {
-    [self.mainViewController.statusViewController refreshStatusInfo];
 }
 
 -(void)applicationDidEnterBackground:(UIApplication *)application
@@ -448,215 +409,89 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 - (NSString*)getAppStoreUrl {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    if (![manager fileExistsAtPath:path]) {
-        NSBundle *bundle = [NSBundle mainBundle];
-        NSError *error = nil;
-        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
-        
-        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
-    }
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
-    NSDictionary *map = [dict objectForKey:bundleIdentifier];
-    if (map) {
-        return [map objectForKey:@"appstore_link"];
-    }
-    return nil;
+    [self loadConfig];
+    return [config objectForKey:@"appstore_link"];
 }
 
 - (NSString*)getRateUrl {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    if (![manager fileExistsAtPath:path]) {
-        NSBundle *bundle = [NSBundle mainBundle];
-        NSError *error = nil;
-        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
-        
-        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
-    }
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
-    NSDictionary *map = [dict objectForKey:bundleIdentifier];
-    if (map) {
-        return [map objectForKey:@"rate_link"];
+    [self loadConfig];
+    return [config objectForKey:@"rate_link"];
 
-    }
-    return nil;
 }
 
 - (NSArray*)getTeasersForMaps {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    if (![manager fileExistsAtPath:path]) {
-        NSBundle *bundle = [NSBundle mainBundle];
-        NSError *error = nil;
-        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
-        
-        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
-    }
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
-    
-    NSMutableArray *teasers = [NSMutableArray arrayWithCapacity:3];
-    
-    NSArray *keys = [dict allKeys];
-    for (NSString *key in keys) {
-        if ([key isEqualToString:bundleIdentifier]) {
-            continue;
-        }
-        NSDictionary *city = [dict objectForKey:key];
-        HCTeaserObject *teaser = [HCTeaserObject teaserObjectWithName:[city objectForKey:@"name"]
-                                                                image:[UIImage imageNamed:[city objectForKey:@"icon"]]
-                                                                  url:[city objectForKey:@"appstore_link"]];
-        [teasers addObject:teaser];
-    }
-    
-    [dict release];
-    
-    return teasers;
+    return @[];
 }
 
 -(NSString*)getDefaultMapName
 {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    if (![manager fileExistsAtPath:path]) {
-        NSBundle *bundle = [NSBundle mainBundle]; 
-        NSError *error = nil; 
-        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"]; 
-        
-        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
-    }
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
-
-    NSString *filename = [[dict objectForKey:bundleIdentifier] objectForKey:@"filename"];
+    [self loadConfig];
+    NSString *filename = [config objectForKey:@"filename"];
     
     NSString *mapFileName =[NSString stringWithString:filename];
-    [dict release];
-    
+
     return mapFileName;
 }
 
 -(NSString*)getDefaultCityName
 {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    if (![manager fileExistsAtPath:path]) {
-        NSBundle *bundle = [NSBundle mainBundle]; 
-        NSError *error = nil; 
-        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"]; 
-        
-        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
-    }
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
-
-    NSString *cityFileName =[NSString stringWithString:[[dict objectForKey:bundleIdentifier] objectForKey:@"name"]];
-    [dict release];
-    
-    return cityFileName;
+    [self loadConfig];
+    return [NSString stringWithString:[config objectForKey:@"name"]];
 }
 
 -(NSString*)getDefaultMapUrl1
 {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    if (![manager fileExistsAtPath:path]) {
-        NSBundle *bundle = [NSBundle mainBundle];
-        NSError *error = nil;
-        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
-        
-        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
-    }
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
-
-    NSString *mapUrl =[NSString stringWithString:[[dict objectForKey:bundleIdentifier] objectForKey:@"url1"]];
-    [dict release];
+    [self loadConfig];
+    NSString *mapUrl =[NSString stringWithString:[config objectForKey:@"url1"]];
     
     return mapUrl;
 }
 
 -(NSString*)getDefaultMapUrl2
 {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    if (![manager fileExistsAtPath:path]) {
-        NSBundle *bundle = [NSBundle mainBundle];
-        NSError *error = nil;
-        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
-        
-        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
-    }
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
-
-    NSString *mapUrl =[NSString stringWithString:[[dict objectForKey:bundleIdentifier] objectForKey:@"url2"]];
-    [dict release];
-    
+    [self loadConfig];
+    NSString *mapUrl =[NSString stringWithString:[config objectForKey:@"url2"]];
     return mapUrl;
+}
+
+-(void)loadConfig
+{
+    if(nil == config) {
+        NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+        
+        NSFileManager *manager = [NSFileManager defaultManager];
+        
+        if (![manager fileExistsAtPath:path]) {
+            NSBundle *bundle = [NSBundle mainBundle];
+            NSError *error = nil;
+            NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
+            
+            [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
+        }
+        
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+        NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+        config = [dict objectForKey:bundleIdentifier];
+        if(nil == config)
+            config = [dict objectForKey:@"default"];
+        [config retain];
+        [dict release];
+    }
 }
 
 #pragma mark - manage maps
 
 -(void)showRasterMap
 {
-    CGRect pos;
-    NSMutableArray *data = [NSMutableArray array];
-    MainView *mv = (MainView*)mainViewController.view;
-    pos = [mv getMapVisibleRect];
-    pos = [cityMap getGeoCoordsForRect:pos coordinates:data];
     [self.navigationViewController showRasterMap];
     [gl removeAllPins];
-    [gl setGeoPosition:pos];
-    if([data count] > 0) {
-        [gl setStationsPosition:data withMarks:!CGRectIsNull(cityMap.activeExtent)];
-    }
-}
-
--(void)showMetroMap
-{
-    [self.navigationViewController showMetroMap];
+    //[gl setGeoPosition:pos];
 }
 
 -(void)switchMapMode
 {
-    BOOL isMetro = [self.navigationViewController isMetroMode];
-    if (isMetro)
-        [self showRasterMap];
-    else
-        [self showMetroMap];
+    [self showRasterMap];
 }
 
 -(void)showBookmarks
@@ -727,28 +562,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    /*if ([MKDirectionsRequest isDirectionsRequestURL:url]) {
-
-        MKDirectionsRequest *request = [[MKDirectionsRequest alloc] initWithContentsOfURL:url];
-        
-        MKMapItem *startItem = [request source];
-        MKMapItem *endItem = [request destination];
-        
-        CGPoint startPoint = CGPointMake(startItem.placemark.coordinate.latitude, startItem.placemark.coordinate.longitude);
-        CGPoint endPoint = CGPointMake(endItem.placemark.coordinate.latitude, endItem.placemark.coordinate.longitude);
-        
-        Station *startStation  = [cityMap findNearestStationTo:startPoint];
-        Station *endStation  = [cityMap findNearestStationTo:endPoint];
-        
-        [request release];
-
-        MStation *mStartStation = [[MHelper sharedHelper] getStationWithIndex:startStation.index andLineIndex:startStation.line.index];
-        MStation *mEndStation = [[MHelper sharedHelper] getStationWithIndex:endStation.index andLineIndex:endStation.line.index];
-        
-        [mainViewController returnFromSelection:[NSArray arrayWithObjects:mStartStation, mEndStation,nil]];
-        
-        return YES;
-    }*/
     
     return NO;
 }
@@ -780,9 +593,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)dealloc {
     [gl release];
-    [mainViewController release];
     [window release];
-    [cityMap release];
     [super dealloc];
 }
 

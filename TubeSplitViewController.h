@@ -6,17 +6,15 @@
 //
 //
 
-#import "MainViewController.h"
-
 #import <UIKit/UIKit.h>
 
-@class MainViewController;
 @class RightiPadPathViewController;
+@class GlViewController;
 
 @interface TubeSplitViewController : UIViewController {
     UIView *pathView;
     UIView *mapView;
-    MainViewController *mainViewController;
+    GlViewController *glViewController;
     RightiPadPathViewController *rightPathController;
     UINavigationController * navController;
     BOOL isRightShown;
@@ -24,7 +22,7 @@
 
 @property (nonatomic,retain) UIView *pathView;
 @property (nonatomic,retain) UIView *mapView;
-@property (nonatomic,retain) MainViewController *mainViewController;
+@property (nonatomic, retain) GlViewController* glViewController;
 @property (nonatomic,retain) RightiPadPathViewController *rightPathController;
 @property (nonatomic, readonly) UINavigationController *navigationController;
 

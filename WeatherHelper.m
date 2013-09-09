@@ -8,7 +8,6 @@
 
 #import "WeatherHelper.h"
 #import "tubeAppDelegate.h"
-#import "CityMap.h"
 #import "Reachability.h"
 #import "StatusDownloader.h"
 #import "WeatherXMLParser.h"
@@ -37,7 +36,6 @@ static WeatherHelper * _sharedHelper;
 	if ((self=[super init]))
 	{
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapChanged:) name:@"kMapChanged" object:nil];
-        self.weatherURL = [self getCityWeatherURL];
         self.lastUpdate = nil;
         self.isRequesting = NO;
         
@@ -47,38 +45,6 @@ static WeatherHelper * _sharedHelper;
 	}
 	
 	return self;
-}
-
--(NSString*)getCityWeatherURL
-{
-    NSMutableString *mainURL=nil;
-    
-    NSString *currentMap = [[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] thisMapName];
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    
-    NSArray *mapIDs = [dict allKeys];
-    for (NSString* mapID in mapIDs) {
-        NSDictionary *map = [dict objectForKey:mapID];
-        if ([[map objectForKey:@"filename"] isEqual:currentMap]) {
-            if ([map objectForKey:@"weather_info"]) {
-                mainURL = [NSMutableString stringWithString:[map objectForKey:@"weather_info"]];
-
-                BOOL isMetric = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
-                
-                if (isMetric) {
-                    [mainURL appendString:@"&units=metric"];
-                } else {
-                    [mainURL appendString:@"&units=imperial"];
-                }
-            }
-        }
-    }
-    
-    [dict release];
-    
-    return mainURL;
 }
 
 -(void)recieveWeatherInfo
@@ -155,7 +121,6 @@ static WeatherHelper * _sharedHelper;
 
 - (void)mapChanged:(NSNotification*)note
 {
-    self.weatherURL = [self getCityWeatherURL];
     self.lastUpdate = nil;
     self.isRequesting = NO;
     self.infoDictionary = nil;

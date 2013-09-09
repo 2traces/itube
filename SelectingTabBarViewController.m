@@ -12,12 +12,10 @@
 #import "SettingsViewController.h"
 #import "SettingsNavController.h"
 #import "BookmarkViewController.h"
-#import "HistoryViewController.h"
 #import "CustomTabBar.h"
 #import "ManagedObjects.h"
 #import "MBProgressHUD.h"
 #import "tubeAppDelegate.h"
-#import "MainViewController.h"
 
 @implementation SelectingTabBarViewController
 
@@ -64,10 +62,9 @@
     StationListViewController *viewController1 = [[[StationListViewController alloc] initWithNibName:@"StationListViewController" bundle:nil] autorelease];
     LineListViewController *viewController2 = [[[LineListViewController alloc] initWithNibName:@"LineListViewController" bundle:nil] autorelease];
     BookmarkViewController *viewController3 = [[[BookmarkViewController alloc] initWithNibName:@"BookmarkViewController" bundle:nil] autorelease];
-    HistoryViewController *viewController4 = [[[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil] autorelease];
     
     self.tabBarController = [[[CustomTabBar alloc] init] autorelease];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:  viewController1, viewController2, viewController3,viewController4, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:  viewController1, viewController2, viewController3, nil];
 
     [self.tabBarController.view setFrame:CGRectMake(0,63,320,407)]; //460-63-39+49 64 было сделал 63 белая полоска, 406 чтобы пропал эффект наезжания внизу
     
@@ -92,9 +89,8 @@
     StationListViewController *viewController1 = [[[StationListViewController alloc] initWithNibName:@"StationListViewController" bundle:nil] autorelease];
     LineListViewController *viewController2 = [[[LineListViewController alloc] initWithNibName:@"LineListViewController" bundle:nil] autorelease];
     BookmarkViewController *viewController3 = [[[BookmarkViewController alloc] initWithNibName:@"BookmarkViewController" bundle:nil] autorelease];
-    HistoryViewController *viewController4 = [[[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil] autorelease];
     
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:  viewController1, viewController2, viewController3,viewController4, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:  viewController1, viewController2, viewController3, nil];
 }
 
 -(void)languageChanged:(NSNotification*)note
@@ -102,9 +98,8 @@
     StationListViewController *viewController1 = [[[StationListViewController alloc] initWithNibName:@"StationListViewController" bundle:nil] autorelease];
     LineListViewController *viewController2 = [[[LineListViewController alloc] initWithNibName:@"LineListViewController" bundle:nil] autorelease];
     BookmarkViewController *viewController3 = [[[BookmarkViewController alloc] initWithNibName:@"BookmarkViewController" bundle:nil] autorelease];
-    HistoryViewController *viewController4 = [[[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil] autorelease];
     
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:  viewController1, viewController2, viewController3,viewController4, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:  viewController1, viewController2, viewController3, nil];
 }
 
 - (void)viewDidUnload
@@ -170,8 +165,7 @@
 -(IBAction)settingsPressed:(id)sender
 {
     if (IS_IPAD) {
-        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-        [appDelegate.mainViewController showiPadSettingsModalView];
+
     } else {
         SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];
         [self presentModalViewController:controller animated:YES];
@@ -182,8 +176,6 @@
 -(IBAction)backPressed:(id)sender
 {
     [self dismissModalViewControllerAnimated:YES];
-    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate.mainViewController returnFromSelection:[NSArray array]];
 }
 
 

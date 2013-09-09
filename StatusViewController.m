@@ -9,7 +9,6 @@
 #import "StatusViewController.h"
 #import "Classes/tubeAppDelegate.h"
 #import "Reachability.h"
-#import "CityMap.h"
 
 @implementation StatusViewController
 
@@ -320,43 +319,6 @@
 
 -(void)processPlistFromServer:(NSMutableData*)data
 {
-    NSDictionary *dict = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:nil errorDescription:nil];
-    
-    NSString *newVersionN = [self getCurrentMapVersionFromDict:dict];
-    
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSMutableDictionary *mapFile = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *oldVersionN = [self getCurrentMapVersionFromDict:mapFile];
-    
-    if (newVersionN && oldVersionN) {
-        if ([oldVersionN integerValue]<[newVersionN integerValue]) {
-            isNewMapAvailable=YES;
-        } else {
-            isNewMapAvailable=NO;
-        }
-    }
-    
-    [mapFile release];
-}
-
--(NSString*)getCurrentMapVersionFromDict:(NSDictionary*)dict
-{
-    NSString *verNumber = nil;
-    
-    NSString *currentMap = [[(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] cityMap] thisMapName];
-    
-    NSArray *mapIDs = [dict allKeys];
-    
-    for (NSString* mapID in mapIDs) {
-        NSDictionary *map = [dict objectForKey:mapID];
-        if ([[map objectForKey:@"filename"] isEqual:currentMap]) {
-            verNumber = [NSString stringWithString:[map objectForKey:@"ver"]];
-        }
-    }
-    
-    return verNumber;
 }
 
 -(void)updateMaps

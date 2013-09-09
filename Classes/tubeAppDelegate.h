@@ -11,10 +11,7 @@
 #import "GlViewController.h"
 #import "CrossDeviceMarcos.h"
 
-
-@class MainViewController;
 @class NavigationViewController;
-@class CityMap;
 
 static void RGBtoHSV( float r, float g, float b, float *h, float *s, float *v );
 
@@ -28,9 +25,7 @@ NSString* DisplayStationName(NSString* stName);
     UIWindow *window;
     GlViewController *gl;
     NavigationViewController *navigationViewController;
-    MainViewController *mainViewController;
     UINavigationController *navController;
-    CityMap *cityMap;
     NSString *cityName;
     CGPoint userGeoP;
     double userH;
@@ -42,13 +37,13 @@ NSString* DisplayStationName(NSString* stName);
     NSString *mapDirectoryPath;
     
     BOOL shouldShowRateScreen;
+    
+    NSDictionary *config;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) MainViewController *mainViewController;
 @property (nonatomic, retain) NavigationViewController *navigationViewController;
 @property (nonatomic, readonly) GlViewController *glViewController;
-@property (nonatomic, retain) CityMap *cityMap;
 @property (nonatomic, retain) NSString *cityName;
 @property (nonatomic, retain) NSOperationQueue *parseQueue;
 @property (nonatomic, assign) CGPoint userGeoPosition;
@@ -67,7 +62,6 @@ NSString* DisplayStationName(NSString* stName);
 -(BOOL)isIPHONE5;
 
 -(void)showRasterMap;
--(void)showMetroMap;
 -(void)switchMapMode;
 -(void)showBookmarks;
 -(void)hideBookmarks;

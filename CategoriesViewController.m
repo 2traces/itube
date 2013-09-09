@@ -50,8 +50,7 @@
 
 -(void)showiPadSettingsModalView
 {
-    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate.mainViewController showiPadSettingsModalView];
+
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -144,8 +143,8 @@
     currentIndex = 1;
     
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:currentIndex inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
-    MCategory *category = self.categories[1];
-    [self.navigationDelegate selectCategoryWithIndex:[category.index integerValue]];
+    //MCategory *category = self.categories[1];
+    //[self.navigationDelegate selectCategoryWithIndex:[category.index integerValue]];
     
     [self initializeTeasers];
 }

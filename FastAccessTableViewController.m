@@ -10,7 +10,6 @@
 #import "ManagedObjects.h"
 #import "StationListCell.h"
 #import "tubeAppDelegate.h"
-#import "MainViewController.h"
 
 @implementation FastAccessTableViewController
 
@@ -189,9 +188,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    [appDelegate.mainViewController returnFromSelectionFastAccess:[NSArray arrayWithObject:[self.filteredStation objectAtIndex:indexPath.row]]];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -276,10 +272,6 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    [appDelegate.mainViewController returnFromSelectionFastAccess:nil];
-    
     [textField resignFirstResponder];
 
     return YES;

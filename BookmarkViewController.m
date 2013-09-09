@@ -10,7 +10,6 @@
 #import "ManagedObjects.h"
 #import "StationListCell.h"
 #import "tubeAppDelegate.h"
-#import "MainViewController.h"
 
 @implementation BookmarkViewController
 
@@ -168,13 +167,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MStation  *station = [self.stationList objectAtIndex:indexPath.row];
-    
-//    NSLog(@"%@",[station name]); 
-    
-    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:station]];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

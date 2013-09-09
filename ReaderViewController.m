@@ -9,7 +9,6 @@
 #import "ReaderViewController.h"
 #import "ReaderItemViewController.h"
 #import "ManagedObjects.h"
-#import "PhotoViewerViewController.h"
 #import "tubeAppDelegate.h"
 
 @interface ReaderViewController ()
@@ -132,13 +131,6 @@
 }
 
 - (void)photoTapped:(UITapGestureRecognizer *)recognizer {
-    MPlace* place = self.items[currentPage];
-    ReaderItemViewController *itemVC = [self itemViewControllerForIndex:currentPage];
-    NSInteger currentPhoto = [itemVC currentPage];
-    PhotoViewerViewController *viewer = [[PhotoViewerViewController alloc] initWithPlace:place index:currentPhoto];
-    viewer.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    
-    [self presentModalViewController:[viewer autorelease] animated:YES];
 }
 
 

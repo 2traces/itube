@@ -10,7 +10,6 @@
 #import "HCBookmarkItemView.h"
 #import "ManagedObjects.h"
 #import "tubeAppDelegate.h"
-#import "MainView.h"
 #import "UIImage+animatedGIF.h"
 #import "MediaTypeFactory.h"
 
@@ -73,8 +72,6 @@
         [subview removeFromSuperview];
     }
     [self.items removeAllObjects];
-    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    MainView* map = (MainView*)[appDelegate.mainViewController view];
     
     CGFloat offset = 50;
     
@@ -93,8 +90,6 @@
         if ([place.photos count]) {
             firstPhoto = [place.photos anyObject];
         }
-        CGPoint placePoint = CGPointMake([place.posX floatValue], [place.posY floatValue]);
-        Station *nearestStation = [map stationNearestToGeoPosition:placePoint];
         itemView.tag = [place.index integerValue];
         [self.items addObject:itemView];
         [self.scrollView addSubview:itemView];
@@ -107,7 +102,6 @@
             mediaView = [MediaTypeFactory viewForMedia:firstPhoto withParent:itemView.mainView withOrientation:self.interfaceOrientation withIndex:[place.index integerValue] withMoviePlayers:nil];
         }
         mediaView.frame = CGRectMake(0, 0, itemView.mainView.frame.size.width, itemView.mainView.frame.size.height);
-        [itemView setView:mediaView text:place.text placeName:place.name placeDistance:nearestStation.name];
     }
     self.scrollView.contentSize = CGSizeMake(320.0f, offset);
 

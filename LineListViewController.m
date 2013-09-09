@@ -12,7 +12,6 @@
 #import "SectionInfo.h"
 #import "SectionHeaderView.h"
 #import "tubeAppDelegate.h"
-#import "MainViewController.h"
 #import "UIColor-enhanced.h"
 
 #define DEFAULT_ROW_HEIGHT 38
@@ -294,14 +293,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MLine *line = [self.lineList objectAtIndex:[indexPath section]];
     
-    NSArray *stations = [dataSource getStationsForLine:line];
-    
-    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:[stations objectAtIndex:indexPath.row]]];
-
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

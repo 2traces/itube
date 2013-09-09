@@ -10,7 +10,6 @@
 #import "ManagedObjects.h"
 #import "StationListCell.h"
 #import "tubeAppDelegate.h"
-#import "MainViewController.h"
 #import "UIColor-enhanced.h"
 
 @implementation StationListViewController
@@ -344,35 +343,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if  (tableView == self.mySearchDC.searchResultsTableView || isTextFieldInUse)
-	{
-        //        NSLog(@"%@",[[self.filteredStation objectAtIndex:indexPath.row] name]); 
-        
-        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-        
-        [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:[self.filteredStation objectAtIndex:indexPath.row]]];
-    }
-	else
-	{	
-        NSString *alphabet = [stationIndex objectAtIndex:indexPath.section];
-        
-        NSPredicate *predicate;
-        
-        if ([[MHelper sharedHelper] languageIndex]%2) {
-            predicate = [NSPredicate predicateWithFormat:@"altname beginswith[c] %@", alphabet];
-        } else {
-            predicate = [NSPredicate predicateWithFormat:@"name beginswith[c] %@", alphabet];
-        }
-
-        NSArray *stations = [self.stationList filteredArrayUsingPredicate:predicate];
-        
-        //        NSLog(@"%@",[[stations objectAtIndex:indexPath.row] name]); 
-        
-        tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-        
-        [appDelegate.mainViewController returnFromSelection:[NSArray arrayWithObject:[stations objectAtIndex:indexPath.row]]];
-        
-    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
