@@ -285,23 +285,49 @@ static long DownloadCacheSize = 0;
 
 -(void) drawGlRect:(CGRect)r
 {
-    float plane0[4] = {r.size.height, 0, 0, -r.origin.x * r.size.height};
-    float plane1[4] = {0, -r.size.width, 0, r.size.width * (r.origin.y+r.size.height)};
-    float plane2[4] = {-r.size.height, 0, 0, r.size.height * (r.origin.x+r.size.width)};
-    float plane3[4] = {0, r.size.width, 0, -r.size.width * r.origin.y};
-    glClipPlanef(GL_CLIP_PLANE0, plane0);
-    glClipPlanef(GL_CLIP_PLANE1, plane1);
-    glClipPlanef(GL_CLIP_PLANE2, plane2);
-    glClipPlanef(GL_CLIP_PLANE3, plane3);
-    glEnable(GL_CLIP_PLANE0);
-    glEnable(GL_CLIP_PLANE1);
-    glEnable(GL_CLIP_PLANE2);
-    glEnable(GL_CLIP_PLANE3);
-    [self drawGl];
-    glDisable(GL_CLIP_PLANE0);
-    glDisable(GL_CLIP_PLANE1);
-    glDisable(GL_CLIP_PLANE2);
-    glDisable(GL_CLIP_PLANE3);
+    const static int bufSize = (3*4 + 2*4) * sizeof(float);
+    float buf[bufSize];
+    
+    buf[0] = r.origin.x;
+    buf[1] = r.origin.y;
+    buf[2] = 0.f; //z
+    buf[3] = (r.origin.x - rect.origin.x)/rect.size.width; //u
+    buf[4] = (r.origin.y - rect.origin.y)/rect.size.height; //v
+    buf[5] = r.origin.x+r.size.width;
+    buf[6] = r.origin.y;
+    buf[7] = 0.f; //z
+    buf[8] = (r.origin.x + r.size.width - rect.origin.x)/rect.size.width; //u
+    buf[9] = buf[4]; //v
+    buf[10] = r.origin.x;
+    buf[11] = r.origin.y+r.size.height;
+    buf[12] = 0.f; //z
+    buf[13] = buf[3]; //u
+    buf[14] = (r.origin.y + r.size.height - rect.origin.y)/rect.size.height; //v
+    buf[15] = r.origin.x+r.size.width;
+    buf[16] = r.origin.y+r.size.height;
+    buf[17] = 0.f; //z
+    buf[18] = buf[8]; //u
+    buf[19] = buf[14]; //v
+    
+    if(!gltex && image) [self prepareGL];
+    if(gltex) {
+        glColor4f(1.f, 1.f, 1.f, 1.f);
+        glActiveTexture( GL_TEXTURE0 );
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, gltex);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glEnableVertexAttribArray(GLKVertexAttribPosition);
+        glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
+        glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 20, buf);
+        glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, 20, buf+3);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    }
+    if([objects count] > 0) {
+        for (RObject *ob in objects) {
+            [ob drawGl];
+        }
+    }
+
 }
 
 -(void) skip

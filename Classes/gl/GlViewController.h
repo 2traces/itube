@@ -15,6 +15,7 @@
 #import "GlSprite.h"
 #import "GlPanel.h"
 #import "SettingsViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
 typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORITE=4} PinType;
 
@@ -89,7 +90,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 
 @class NavigationViewController;
 
-@interface GlViewController : GLKViewController<UIPopoverControllerDelegate,SettingsViewControllerDelegate> {
+@interface GlViewController : GLKViewController<UIPopoverControllerDelegate,SettingsViewControllerDelegate, CLLocationManagerDelegate> {
     UIPopoverController *popover;
     NSMutableArray *clusters;
 }

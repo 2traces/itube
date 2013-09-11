@@ -13,7 +13,6 @@
 #import "SelectingTabBarViewController.h"
 #import "GlView.h"
 #import "ZonesButtonConf.h"
-#import <CoreLocation/CoreLocation.h>
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 #define d2r (M_PI / 180.0)
@@ -114,6 +113,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     
     CGPoint userPosition;
     int objectsLOD;
+    CLLocationManager *locationManager;
 }
 @property (strong, nonatomic) EAGLContext *context;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
@@ -210,11 +210,11 @@ CGPoint translateFromMapToGeo(CGPoint p)
 {
     CGPoint el;
     if([element isKindOfClass:[Object class]]) el = [element coords];
-    else if([element isKindOfClass:[Cluster class]]) el = [element center];
+    else if([element isKindOfClass:[Cluster class]]) el = [(Cluster*)element center];
     else return NO;
-    if(CGPointEqualToPoint(center, CGPointZero)) {
+    if([_objects count] <= 0) {
         [_objects addObject:element];
-        center = el;
+        sumCoord = center = el;
     } else {
         CGPoint delta = CGPointMake(el.x - center.x, el.y - center.y);
         delta.x *= delta.x;
@@ -687,6 +687,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
     [pinsArray addObject:p];
     [p setPosition:userPosition];
     newPinId = 1;
+    
+    [self enableUserLocation];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -1217,8 +1219,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
         p = [[Pin alloc] initWithId:newId color:color andText:name];
     else
         p = [[Pin alloc] initWithId:newId andColor:color];
-    float dist = 256.f/scale;
-    [p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
+    //float dist = 256.f/scale;
+    //[p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
     [pinsArray addObject:p];
     [p setPosition:coordinate];
     return newId;
@@ -1255,7 +1257,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
         }
     }
     [pinsArray removeAllObjects];
-    [pinsArray addObjectsFromArray:temp];
+    [pinsArray removeObjectsInArray:temp];
     [temp removeAllObjects];
 }
 
@@ -1653,7 +1655,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     userPosition = up;
     Pin *p = [pinsArray objectAtIndex:0];
     if(p != nil) [p setPosition:up];
-    if(followUserGPS) [self setGeoPosition:userGeoPosition withZoom:-1];
+    if(followUserGPS) [self setGeoPosition:userGeoPosition withZoom:64];
 }
 
 -(void)setUserHeading:(double)heading
@@ -1744,7 +1746,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
                 }
             }
             if(!accepted) {
-                [clusters addObject:[[Cluster alloc] initWithRadius:0.001f]];
+                [clusters addObject:[[Cluster alloc] initWithRadius:0.03f]];
                 [[clusters lastObject] accept:ob];
             }
             
@@ -1759,7 +1761,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     int newObjectsLOD = -1;
     if(level > 13) {
         newObjectsLOD = 0;
-    } else if(level > 1) {
+    } else if(level > 9) {
         newObjectsLOD = 1;
     } else {
         newObjectsLOD = 2;
@@ -1825,6 +1827,28 @@ CGPoint translateFromMapToGeo(CGPoint p)
     }
     return _lvl;
 }
+
+#pragma mark gps stuff
+-(BOOL) enableUserLocation
+{
+    [locationManager release];
+    locationManager = nil;
+    if([CLLocationManager locationServicesEnabled]) {
+        locationManager = [[CLLocationManager alloc] init];
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+        locationManager.distanceFilter = 500;
+        [locationManager startUpdatingLocation];
+        return YES;
+    } else return NO;
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    CGPoint curPos = CGPointMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+    [(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] setUserGeoPosition:curPos];
+}
+
 
 @end
 

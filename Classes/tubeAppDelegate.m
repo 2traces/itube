@@ -43,6 +43,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 {
     BOOL firstSet = CGPointEqualToPoint(userGeoP, CGPointZero);
     userGeoP = userGeoPosition;
+    gl.followUserGPS = firstSet;
     [gl setUserGeoPosition:userGeoP];
 }
 
