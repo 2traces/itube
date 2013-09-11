@@ -598,4 +598,14 @@ void uncaughtExceptionHandler(NSException *exception) {
     [super dealloc];
 }
 
+-(void)selectObject:(Object *)ob
+{
+    // show selected object on GUI
+}
+
+-(void)selectCluster:(Cluster *)cl
+{
+    // show selected objects on GUI
+}
+
 @end

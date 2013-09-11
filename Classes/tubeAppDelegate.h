@@ -84,5 +84,8 @@ NSString* DisplayStationName(NSString* stName);
 - (NSString*)getAppStoreUrl;
 - (NSString*)getRateUrl;
 
+-(void)selectObject:(Object*)ob;
+-(void)selectCluster:(Cluster*)cl;
+
 @end
 

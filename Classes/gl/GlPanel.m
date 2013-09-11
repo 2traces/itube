@@ -98,7 +98,7 @@
         default:
             break;
         case RISING:
-            alpha += time * 2.f;
+            alpha += time * 4.f;
             if(alpha >= 1.f) {
                 state = SHOWN;
                 alpha = 1.f;
@@ -107,7 +107,7 @@
         case SHOWN:
             break;
         case HIDING:
-            alpha -= time * 2.f;
+            alpha -= time * 4.f;
             if(alpha <= 0.f) {
                 state = HIDDEN;
                 alpha = 0.f;

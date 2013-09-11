@@ -49,6 +49,8 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 @property (nonatomic, assign) CGPoint center;
 @property (nonatomic, readonly) NSArray *objects;
 @property (nonatomic, assign) NSInteger pinID;
+@property (nonatomic, readonly) NSString *title;
+@property (nonatomic, readonly) CGFloat radius;
 
 -(id)initWithRadius:(CGFloat)r;
 
@@ -148,5 +150,8 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 
 -(void)loadObjectsOnScreen;
 -(void)loadObjectsForRect:(CGRect)rect;
+
+-(NSArray*)getObjectsNear:(CGPoint)center withRadius:(CGFloat)radius;
+-(NSArray*)getObjectsNearUserWithRadius:(CGFloat)radius;
 
 @end

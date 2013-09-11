@@ -30,6 +30,10 @@ GLint uniforms[NUM_UNIFORMS];
 
 static CGPoint userGeoPosition;
 
+float sqr(float x)
+{
+    return x*x;
+}
 
 //calculate haversine distance for linear distance
 double haversine_km(double lat1, double long1, double lat2, double long2)
@@ -193,7 +197,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 @implementation Cluster
 
-@synthesize center, objects = _objects, pinID;
+@synthesize center, objects = _objects, pinID, radius = radius;
 
 -(id)initWithRadius:(CGFloat)r
 {
@@ -204,6 +208,11 @@ CGPoint translateFromMapToGeo(CGPoint p)
         pinID = -1;
     }
     return self;
+}
+
+-(NSString*)title
+{
+    return [NSString stringWithFormat:@"%d %@", [_objects count], NSLocalizedString(@"wi-fi nearby", @"")];
 }
 
 -(BOOL)accept:(id)element
@@ -633,7 +642,10 @@ CGPoint translateFromMapToGeo(CGPoint p)
     [view addGestureRecognizer:rec2];
     UIPinchGestureRecognizer *rec3 = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
     [view addGestureRecognizer:rec3];
-    UILongPressGestureRecognizer *rec4 = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    //UILongPressGestureRecognizer *rec4 = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    UITapGestureRecognizer *rec4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    rec4.numberOfTapsRequired = 1;
+    rec4.numberOfTouchesRequired = 1;
     [view addGestureRecognizer:rec4];
     [self setupGL];
     
@@ -879,12 +891,29 @@ CGPoint translateFromMapToGeo(CGPoint p)
             pin.active = NO;
         }
     }
+    for (Pin *pin in pinsArray) if(pin.active) {
+        pin.active = NO;
+    }
     if([selected count] > 0) {
-        for (Pin *pin in selected) {
-            pin.active = NO;
-        }
         // select one lucky pin
         [[selected objectAtIndex:0] setActive:YES];
+        int pid = [[selected objectAtIndex:0] Id];
+        tubeAppDelegate *delegate = (tubeAppDelegate*)[UIApplication sharedApplication].delegate;
+        if(objectsLOD == 0) {
+            for (Cluster *cl in clusters) {
+                for (Object *ob in cl.objects) {
+                    if(ob.pinID == pid) {
+                        [delegate selectObject:ob];
+                    }
+                }
+            }
+        } else if(objectsLOD == 1) {
+            for (Cluster *cl in clusters) {
+                if(cl.pinID == pid) {
+                    [delegate selectCluster:cl];
+                }
+            }
+        }
     }
 }
 
@@ -1808,7 +1837,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
         case 1:
             // show clusters
             for (Cluster *cl in clusters) {
-                cl.pinID = [self newStar:cl.center color:1 name:@"cluster"];
+                cl.pinID = [self newStar:cl.center color:1 name:cl.title];
             }
             break;
         case 2:
@@ -1826,6 +1855,27 @@ CGPoint translateFromMapToGeo(CGPoint p)
         _lvl ++;
     }
     return _lvl;
+}
+
+-(NSArray*)getObjectsNear:(CGPoint)center withRadius:(CGFloat)radius
+{
+    NSMutableArray *result = [NSMutableArray array];
+    CGFloat r2 = radius*radius;
+    for (Cluster *cl in clusters) {
+        CGFloat len2 = sqr(cl.center.x-center.x) + sqr(cl.center.y-center.y);
+        if(len2 <= (cl.radius*cl.radius + r2)) {
+            for (Object *ob in cl.objects) {
+                CGFloat olen2 = sqr(ob.coords.x-center.x) + sqr(ob.coords.y-center.y);
+                if(olen2 <= r2) [result addObject:ob];
+            }
+        }
+    }
+    return [NSArray arrayWithArray:result];
+}
+
+-(NSArray*)getObjectsNearUserWithRadius:(CGFloat)radius
+{
+    return [self getObjectsNear:userPosition withRadius:radius];
 }
 
 #pragma mark gps stuff
