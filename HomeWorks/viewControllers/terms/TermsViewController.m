@@ -51,6 +51,8 @@
 {
 	static NSString *cellIdentifier = @"termCell";
 	TermTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    cell.numLabel.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:cell.numLabel.font.pointSize];
+    cell.classLabel.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:cell.classLabel.font.pointSize];
 
 	RXMLElement *term = [[self.catalogRxml children:@"term"] objectAtIndex:indexPath.row];
 	cell.numLabel.text = [term attribute:@"num"];

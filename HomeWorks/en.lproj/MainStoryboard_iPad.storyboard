@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="lLy-XU-F77">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12F37" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="lLy-XU-F77">
     <dependencies>
         <development version="4600" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
@@ -13,6 +13,10 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="bottom_logo@2x.png" id="FvQ-Bh-mrk">
+                            <rect key="frame" x="0.0" y="128" width="768" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="termCell" rowHeight="62" id="vGi-29-9sZ" customClass="TermTableViewCell">
                                 <rect key="frame" x="0.0" y="54" width="768" height="64"/>
@@ -22,21 +26,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="l13-lB-iZC">
-                                            <rect key="frame" x="9" y="14" width="42" height="33"/>
+                                            <rect key="frame" x="81" y="17" width="42" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="класс" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ID7-oF-TyP">
-                                            <rect key="frame" x="51" y="20" width="387" height="21"/>
+                                            <rect key="frame" x="123" y="23" width="501" height="21"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="qZI-OY-6Gx">
-                                            <rect key="frame" x="598" y="3" width="55" height="55"/>
+                                            <rect key="frame" x="8" y="3" width="55" height="55"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -68,6 +72,10 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="bottom_logo@2x.png" id="uQ7-Ug-Xcf">
+                            <rect key="frame" x="0.0" y="447" width="768" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <sections>
                             <tableViewSection id="Wsu-ho-uSz">
                                 <cells>
@@ -101,13 +109,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="Ответы более чем к 500 русским и украинским учебникам." textAlignment="center" id="bMc-6N-oa9">
-                                                    <rect key="frame" x="22" y="20" width="635" height="35"/>
+                                                    <rect key="frame" x="22" y="9" width="635" height="49"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Ваша подписка закончится 12/12/2014" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" id="A8y-yW-rOw">
-                                                    <rect key="frame" x="22" y="58" width="636" height="21"/>
+                                                    <rect key="frame" x="22" y="66" width="636" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -133,7 +141,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Восстановить покупки" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bqc-Ja-kSJ">
-                                                    <rect key="frame" x="171" y="15" width="337" height="21"/>
+                                                    <rect key="frame" x="171" y="18" width="337" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -159,7 +167,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Обновить каталог" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bNm-8R-Jmx">
-                                                    <rect key="frame" x="204" y="15" width="271" height="21"/>
+                                                    <rect key="frame" x="204" y="18" width="271" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -181,7 +189,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Авторизация" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vAm-qJ-NDN">
-                                                    <rect key="frame" x="204" y="15" width="271" height="21"/>
+                                                    <rect key="frame" x="204" y="18" width="271" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -227,6 +235,10 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="bottom_logo@2x.png" id="Hfe-Wg-Jrw">
+                            <rect key="frame" x="0.0" y="128" width="768" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="subjectCell" rowHeight="62" id="t9o-u4-btH" customClass="SubjectTableVIewCell">
                                 <rect key="frame" x="0.0" y="54" width="768" height="64"/>
@@ -236,15 +248,15 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Математика" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wab-pn-GuN">
-                                            <rect key="frame" x="20" y="11" width="555" height="40"/>
+                                            <rect key="frame" x="87" y="14" width="537" height="40"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="center" id="DJd-Zx-1NZ">
-                                            <rect key="frame" x="598" y="3" width="55" height="55"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <rect key="frame" x="20" y="3" width="55" height="55"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -274,6 +286,10 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="bottom_logo@2x.png" id="Ywx-lx-JKr">
+                            <rect key="frame" x="0.0" y="246" width="768" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="bookCell" rowHeight="100" id="iMU-bq-7p7" customClass="BookTableViewCell">
                                 <rect key="frame" x="0.0" y="54" width="768" height="101"/>
@@ -283,7 +299,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Материалы по математике. 6 класс." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hNq-cL-hEQ">
-                                            <rect key="frame" x="85" y="10" width="568" height="44"/>
+                                            <rect key="frame" x="85" y="13" width="568" height="44"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -294,7 +310,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Чесноков А.С., Нешков К.И., 2000-2011гг." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nme-9m-bvh">
-                                            <rect key="frame" x="88" y="58" width="565" height="32"/>
+                                            <rect key="frame" x="88" y="61" width="565" height="32"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -318,7 +334,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Не нашли необходимый решебник?  Сообщите нам об этом, мы постараемся включить его в ближайшей версии." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FRY-6w-gjg">
-                                            <rect key="frame" x="10" y="0.0" width="639" height="79"/>
+                                            <rect key="frame" x="10" y="3" width="639" height="79"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -350,28 +366,28 @@
                         <rect key="frame" x="0.0" y="64" width="540" height="556"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="u9h-j5-S1x">
-                            <size key="itemSize" width="87" height="87"/>
-                            <size key="headerReferenceSize" width="50" height="100"/>
+                            <size key="itemSize" width="155" height="135"/>
+                            <size key="headerReferenceSize" width="50" height="150"/>
                             <size key="footerReferenceSize" width="50" height="62"/>
-                            <inset key="sectionInset" minX="9" minY="0.0" maxX="9" maxY="0.0"/>
+                            <inset key="sectionInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="answerCell" id="eDq-od-dnn" customClass="AnswerViewCell">
-                                <rect key="frame" x="9" y="100" width="87" height="87"/>
+                                <rect key="frame" x="15" y="150" width="155" height="135"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="87" height="87"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="155" height="135"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="element.png" id="Bey-nf-cUm">
-                                            <rect key="frame" x="17" y="17" width="56" height="56"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="element@2x.png" id="Bey-nf-cUm">
+                                            <rect key="frame" x="0.0" y="0.0" width="155" height="135"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="7" id="n5x-CD-SM2">
-                                            <rect key="frame" x="17" y="28" width="56" height="31"/>
+                                            <rect key="frame" x="0.0" y="5" width="155" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -384,14 +400,14 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="lockedAnswerCell" id="gNK-fd-Anf" customClass="AnswerViewCell">
-                                <rect key="frame" x="96" y="100" width="87" height="87"/>
+                                <rect key="frame" x="192.5" y="150" width="155" height="135"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="87" height="87"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="155" height="135"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="element-locked.png" id="hpI-WV-2Xi">
-                                            <rect key="frame" x="17" y="17" width="56" height="56"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="element-locked@2x.png" id="hpI-WV-2Xi">
+                                            <rect key="frame" x="0.0" y="0.0" width="155" height="135"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -403,10 +419,10 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="emptyAnswerCell" id="Hd2-ft-dgl" customClass="AnswerViewCell">
-                                <rect key="frame" x="183" y="100" width="87" height="87"/>
+                                <rect key="frame" x="370" y="150" width="155" height="135"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="87" height="87"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="155" height="135"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -414,36 +430,53 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionHeader" id="ebB-KM-zvp" customClass="AnswersViewHeader">
-                            <rect key="frame" x="0.0" y="0.0" width="540" height="100"/>
+                            <rect key="frame" x="0.0" y="0.0" width="540" height="150"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="bLs-bb-lOw">
-                                    <rect key="frame" x="9" y="0.0" width="522" height="100"/>
+                                    <rect key="frame" x="9" y="0.0" width="522" height="150"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </imageView>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Материалы по математике. 6 класс." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n84-QY-e9I">
-                                    <rect key="frame" x="20" y="4" width="500" height="46"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n84-QY-e9I">
+                                    <rect key="frame" x="20" y="4" width="500" height="45"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                    <string key="text">Материалы по математике. 6 класс.Материалы по математике. 6 класс.Материалы по математике. 6 класс.Материалы по математике. 6 класс.Материалы по математике. 6 класс.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Чесноков А.С., Нешков К.И., 2000-2011гг." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E4z-Sn-5Cw">
-                                    <rect key="frame" x="20" y="52" width="500" height="41"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Чесноков А.С., Нешков К.И., 2000-2011гг.Чесноков А.С., Нешков К.И., 2000-2011гг.Чесноков А.С., Нешков К.И., 2000-2011гг." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E4z-Sn-5Cw">
+                                    <rect key="frame" x="20" y="43" width="500" height="48"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GNc-0D-VZD">
+                                    <rect key="frame" x="120" y="99" width="300" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="Button" backgroundImage="buyDownloadBt@2x.png">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="rightBarButtonItemPresses" destination="Cte-lC-5NO" eventType="touchUpInside" id="31S-hx-jBT"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <connections>
                                 <outlet property="authorsLabel" destination="E4z-Sn-5Cw" id="bgK-42-JCq"/>
                                 <outlet property="backgroundImage" destination="bLs-bb-lOw" id="A3f-E8-XhB"/>
+                                <outlet property="buyButton" destination="GNc-0D-VZD" id="PDJ-Gd-cge"/>
                                 <outlet property="nameLabel" destination="n84-QY-e9I" id="jfY-Jo-R7Y"/>
                             </connections>
                         </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionFooter" id="Jst-hS-Mx1" customClass="AnswersViewFooter">
-                            <rect key="frame" x="0.0" y="187" width="540" height="62"/>
+                            <rect key="frame" x="0.0" y="285" width="540" height="62"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="yG9-en-P4V">
@@ -460,11 +493,6 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="CQ6-r4-hmT">
                             <connections>
                                 <action selector="tlDismissMe:" destination="Cte-lC-5NO" id="ihg-bp-ejE"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Купить все за 0.99$" id="giU-zE-vW2">
-                            <connections>
-                                <action selector="rightBarButtonItemPresses" destination="Cte-lC-5NO" id="qPX-rf-hP0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -592,11 +620,111 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="Ko8-yt-qsh">
+                            <rect key="frame" x="0.0" y="0.0" width="768" height="223"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="top" image="tableBackgroundIpad@2x.png" id="mw8-cf-9zO">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="223"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="buy_bg@2x.png" id="3qG-Po-kWK">
+                                    <rect key="frame" x="210" y="0.0" width="362" height="223"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="o4V-dt-VGh">
+                                    <rect key="frame" x="192" y="146" width="109" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="33 руб." backgroundImage="buy_bt@2x.png">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="buyMonth:" destination="3pT-wc-C4P" eventType="touchUpInside" id="4Mj-r8-ack"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uva-Z5-QOl">
+                                    <rect key="frame" x="479" y="146" width="109" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="99 руб." backgroundImage="buy_bt@2x.png">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="buyYear:" destination="3pT-wc-C4P" eventType="touchUpInside" id="4l9-nx-xWB"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2BM-ab-zJ2">
+                                    <rect key="frame" x="241" y="5" width="287" height="60"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <attributedString key="attributedText">
+                                        <fragment content="Неограниченный доступ ко всем решебникам">
+                                            <attributes>
+                                                <color key="NSColor" red="0.73565051020408156" green="0.53620704468343494" blue="0.255569868775534" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="17" name="Helvetica"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="owo-v9-acr">
+                                    <rect key="frame" x="251" y="56" width="280" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <attributedString key="attributedText">
+                                        <fragment content="ВСЕ решебники будут доступны офлайн">
+                                            <attributes>
+                                                <color key="NSColor" red="0.73565051020408156" green="0.53620704468343494" blue="0.255569868775534" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="11" name="Helvetica"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Aay-GJ-DS5">
+                                    <rect key="frame" x="157" y="116" width="178" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <attributedString key="attributedText">
+                                        <fragment content="На целый месяц">
+                                            <attributes>
+                                                <color key="NSColor" red="0.73565051020408156" green="0.53620704468343494" blue="0.255569868775534" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="14" name="Helvetica"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QqI-DC-cuC">
+                                    <rect key="frame" x="445" y="116" width="176" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <attributedString key="attributedText">
+                                        <fragment content="На весь учебный год">
+                                            <attributes>
+                                                <color key="NSColor" red="0.73565051020408156" green="0.53620704468343494" blue="0.255569868775534" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="14" name="Helvetica"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </view>
                         <sections>
                             <tableViewSection id="747-SH-KJw">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="294" id="NRS-Tg-mJw">
-                                        <rect key="frame" x="0.0" y="30" width="768" height="296"/>
+                                    <tableViewCell hidden="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="294" id="NRS-Tg-mJw">
+                                        <rect key="frame" x="0.0" y="233" width="768" height="296"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="45" y="1" width="678" height="293"/>
@@ -674,9 +802,6 @@
                                                             </fragment>
                                                         </attributedString>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="buyMonth:" destination="3pT-wc-C4P" eventType="touchUpInside" id="MpJ-jF-IwW"/>
-                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="4rD-Uk-yGv">
                                                     <rect key="frame" x="421" y="117" width="111" height="118"/>
@@ -698,9 +823,6 @@
                                                             </fragment>
                                                         </attributedString>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="buyYear:" destination="3pT-wc-C4P" eventType="touchUpInside" id="Hl4-Aw-j4C"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -722,6 +844,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <connections>
+                        <outlet property="bgImage" destination="mw8-cf-9zO" id="EnL-aT-8Yd"/>
+                        <outlet property="lbHeading1" destination="2BM-ab-zJ2" id="5Aj-O0-BY3"/>
+                        <outlet property="lbHeading2" destination="owo-v9-acr" id="M79-Pc-xtG"/>
+                        <outlet property="lbHeadingM" destination="Aay-GJ-DS5" id="0A9-PQ-kOs"/>
+                        <outlet property="lbHeadingY" destination="QqI-DC-cuC" id="7gd-1a-esh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xtq-JD-C7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -754,6 +883,10 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="bottom_logo@2x.png" id="1ge-LW-uhn">
+                            <rect key="frame" x="0.0" y="304" width="768" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <sections>
                             <tableViewSection id="ARM-p5-rRD">
                                 <cells>
@@ -780,11 +913,11 @@
                                                     <rect key="frame" x="247" y="107" width="204" height="37"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="Войти" backgroundImage="table_button_down.png">
+                                                    <state key="normal" title="Войти" backgroundImage="table_button_single@2x.png">
                                                         <color key="titleColor" red="0.00320734779" green="0.005105987371" blue="0.0086694834179999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <state key="highlighted">
+                                                    <state key="highlighted" backgroundImage="table_button_single_pressed@2x.png">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -792,7 +925,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Новый пользователь?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="P4I-dc-5l6">
-                                                    <rect key="frame" x="184" y="181" width="310" height="21"/>
+                                                    <rect key="frame" x="194" y="181" width="310" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
@@ -801,11 +934,11 @@
                                                     <rect key="frame" x="247" y="210" width="204" height="37"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="Регистрация" backgroundImage="table_button_down.png">
+                                                    <state key="normal" title="Регистрация" backgroundImage="table_button_single@2x.png">
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <state key="highlighted">
+                                                    <state key="highlighted" backgroundImage="table_button_single_pressed@2x.png">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -831,7 +964,7 @@
             </objects>
             <point key="canvasLocation" x="2164" y="1671"/>
         </scene>
-        <!--Register View Controller - Регистрация-->
+        <!--Register View Controller-->
         <scene sceneID="Dc9-BH-tEn">
             <objects>
                 <tableViewController id="pwy-md-ayj" customClass="RegisterViewController" sceneMemberID="viewController">
@@ -839,6 +972,10 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="bottom_logo@2x.png" id="GuU-PU-TwD">
+                            <rect key="frame" x="0.0" y="209" width="768" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <sections>
                             <tableViewSection id="NhO-5Q-RCZ">
                                 <cells>
@@ -865,11 +1002,11 @@
                                                     <rect key="frame" x="230" y="113" width="218" height="37"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="Зарегистрироваться" backgroundImage="table_button_down.png">
+                                                    <state key="normal" title="Зарегистрироваться" backgroundImage="table_button_single@2x.png">
                                                         <color key="titleColor" red="0.00066358919799999999" green="0.0010564111800000001" blue="0.001793686224" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <state key="highlighted">
+                                                    <state key="highlighted" backgroundImage="table_button_single_pressed@2x.png">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -884,7 +1021,9 @@
                             </tableViewSection>
                         </sections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Регистрация" id="r7R-hY-xVB"/>
+                    <navigationItem key="navigationItem" id="r7R-hY-xVB">
+                        <nil key="title"/>
+                    </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
                         <outlet property="passwordRegisterTextField" destination="c1K-F1-9zR" id="TOs-Op-fpX"/>
@@ -897,13 +1036,19 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bottom_logo@2x.png" width="640" height="76"/>
         <image name="buyButtonBg.png" width="108" height="107"/>
-        <image name="element-locked.png" width="56" height="56"/>
-        <image name="element.png" width="56" height="56"/>
+        <image name="buyDownloadBt@2x.png" width="597" height="88"/>
+        <image name="buy_bg@2x.png" width="640" height="303"/>
+        <image name="buy_bt@2x.png" width="218" height="61"/>
+        <image name="element-locked@2x.png" width="310" height="270"/>
+        <image name="element@2x.png" width="310" height="270"/>
         <image name="icon144-no-borders.png" width="144" height="144"/>
         <image name="icon_2.png" width="47" height="47"/>
         <image name="restore_purchases@2x.png" width="94" height="94"/>
-        <image name="table_button_down.png" width="300" height="55"/>
+        <image name="tableBackgroundIpad@2x.png" width="1536" height="100"/>
+        <image name="table_button_single@2x.png" width="600" height="127"/>
+        <image name="table_button_single_pressed@2x.png" width="600" height="127"/>
     </resources>
     <classes>
         <class className="AnswerViewCell" superclassName="UICollectionViewCell">
@@ -915,6 +1060,9 @@
         </class>
         <class className="AnswersViewController" superclassName="UICollectionViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="buyButton" candidateClass="UIButton"/>
+            </relationships>
         </class>
         <class className="AnswersViewFooter" superclassName="UICollectionReusableView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewFooter.h"/>
@@ -927,6 +1075,7 @@
             <relationships>
                 <relationship kind="outlet" name="authorsLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="buyButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
@@ -946,6 +1095,11 @@
             <relationships>
                 <relationship kind="action" name="buyMonth:"/>
                 <relationship kind="action" name="buyYear:"/>
+                <relationship kind="outlet" name="bgImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="lbHeading1" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lbHeading2" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lbHeadingM" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lbHeadingY" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="HomeworksTableViewController" superclassName="UITableViewController">
@@ -990,6 +1144,7 @@
         <class className="TermTableViewCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TermTableViewCell.h"/>
             <relationships>
+                <relationship kind="outlet" name="classLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="iconImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="numLabel" candidateClass="UILabel"/>
             </relationships>

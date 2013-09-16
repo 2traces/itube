@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "HomeworksIAPHelper.h"
+#import <QuickLook/QuickLook.h>
 
 @implementation AppDelegate
 
@@ -18,11 +19,43 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 	NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:16 * 1024 * 1024
 														 diskCapacity:100 * 1024 * 1024
 															 diskPath:nil];
-
+    //[[UILabel appearance] setFont:[UIFont fontWithName:@"HelveticaNeueCyr-Light" size:]];
 	[NSURLCache setSharedURLCache:URLCache];
 
 //	[MKStoreManager sharedManager];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"back_bt"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 5)]
+                                                      forState:UIControlStateNormal
+                                                    barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackgroundImage:[UIImage new]
+                                                      forState:UIControlStateNormal
+                                                    barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:84.0f/255.0f green:186.0f/255.0f blue:231.0f/255.0f alpha:1]];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIColor whiteColor], UITextAttributeTextColor,
+      [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:24.0], UITextAttributeFont,nil]];
+    
+    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:3 forBarMetrics:UIBarMetricsDefault];
 
+    [[UILabel appearance] setFont:[UIFont fontWithName:@"HelveticaNeueCyr-Light" size:17]];
+    [[UITextView appearance] setFont:[UIFont fontWithName:@"HelveticaNeueCyr-Light" size:17]];
+    [[UITextField appearance] setFont:[UIFont fontWithName:@"HelveticaNeueCyr-Light" size:17]];
+
+
+    [[UIButton appearance] setTitleEdgeInsets:UIEdgeInsetsMake(3, 0, 0, 0)];
+    UIImage *navigationBarBackgroundImage = [[UIImage imageNamed:@"bar"] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 5.0, 1.0, 5.0)];
+	//[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundImage:navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
+    [[UIToolbar appearance] setTintColor:[UIColor colorWithRed:84.0f/255.0f green:186.0f/255.0f blue:231.0f/255.0f alpha:1]];
+    
+    [[UIBarButtonItem appearance] setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIColor whiteColor], UITextAttributeTextColor,
+      [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:16.0], UITextAttributeFont,nil] forState:UIControlStateNormal];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, 3) forBarMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, 3) forBarMetrics:UIBarMetricsDefault];
+    
     [Parse setApplicationId:@"4xkE7I5Ku3iOFNPypTxPpj5GS7hH3oKYas2kuV1Y"
                   clientKey:@"eDZbfw2GRcQt0EvsaaxFK089AkP6xmbMeJjEc6qp"];
     

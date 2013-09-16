@@ -49,11 +49,11 @@ NSString *kFooterID = @"collectionFooter";
 	self.collectionView.allowsMultipleSelection = NO;
 
 	[self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:121.0 / 255.0 green:166.0 / 255.0 blue:191.0 / 255.0 alpha:1.0]];
-	[self.navigationController.navigationBar setTitleTextAttributes:
-			@{
-					UITextAttributeTextShadowColor : [UIColor blackColor],
-					UITextAttributeTextShadowOffset : [NSValue valueWithUIOffset:UIOffsetMake(0.0, 1.0)]
-			}];
+//	[self.navigationController.navigationBar setTitleTextAttributes:
+//			@{
+//					UITextAttributeTextShadowColor : [UIColor blackColor],
+//					UITextAttributeTextShadowOffset : [NSValue valueWithUIOffset:UIOffsetMake(0.0, 1.0)]
+//			}];
 
 	UIImage *navigationBarBackgroundImage = [[UIImage imageNamed:@"bar"] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 5.0, 1.0, 5.0)];
 	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
@@ -105,7 +105,7 @@ NSString *kFooterID = @"collectionFooter";
 	}
 	else
 	{
-		self.navigationItem.rightBarButtonItem.title = @"посмотреть все ответы";
+		[self.buyButton setTitle:@"посмотреть все ответы" forState:UIControlStateNormal];
 	}
 }
 
@@ -173,13 +173,14 @@ NSString *kFooterID = @"collectionFooter";
 
 	if(![self.booksService isAvailableOfflineWithTermId:termId withSubjectId:subjectId withBookId:bookId])
 	{
-		self.navigationItem.rightBarButtonItem.title = @"Загрузить все ответы";
+        [self.buyButton setTitle:@"Загрузить все ответы" forState:UIControlStateNormal];
+
 		return NO;
 	}
 
 	if (self.purchased)
 	{
-		self.navigationItem.rightBarButtonItem = nil;
+        self.buyButton.hidden = YES;
 	}
 
 	return YES;
@@ -200,6 +201,7 @@ NSString *kFooterID = @"collectionFooter";
 		activityView.activityLabel.text = [NSString stringWithFormat:@"Загружено %d из %d",
 																	 succesfullyDownloaded,
 																	 answers.count];
+        activityView.activityLabel.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:activityView.activityLabel.font.pointSize];
 
 		if (operationQueue.operationCount == 0)
 		{
@@ -278,13 +280,28 @@ NSString *kFooterID = @"collectionFooter";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 {
 	AnswerViewCell *cell;
+
 	if (indexPath.item >= answers.count)
 	{
-		return [cv dequeueReusableCellWithReuseIdentifier:kEmptyCellID forIndexPath:indexPath];
+        cell = [cv dequeueReusableCellWithReuseIdentifier:kEmptyCellID forIndexPath:indexPath];
+        cell.label.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:cell.label.font.pointSize];
+        
+        NSString *num = [[answers objectAtIndex:indexPath.item] text];
+        NSArray *components = [num componentsSeparatedByString:@"_"];
+        num = [components lastObject];
+        if (num && ![num isEqualToString:@""]) {
+            cell.label.text = num;
+        }
+        else {
+            cell.label.text = [[answers objectAtIndex:indexPath.item] text];
+        }
+		return cell;
 	}
 	else if (indexPath.item < 2 || self.purchased)
 	{
 		cell = [cv dequeueReusableCellWithReuseIdentifier:kCellID forIndexPath:indexPath];
+        cell.label.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:cell.label.font.pointSize];
+
         NSString *num = [[answers objectAtIndex:indexPath.item] text];
         NSArray *components = [num componentsSeparatedByString:@"_"];
         num = [components lastObject];
@@ -307,16 +324,23 @@ NSString *kFooterID = @"collectionFooter";
 	if ([kind isEqualToString:UICollectionElementKindSectionHeader])
 	{
 		AnswersViewHeader *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:kHeaderID forIndexPath:indexPath];
+        headerView.nameLabel.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:headerView.nameLabel.font.pointSize];
+        headerView.authorsLabel.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:headerView.authorsLabel.font.pointSize];
 
-		[headerView.backgroundImage setImage:[[UIImage imageNamed:@"table_button_top"] stretchableImageWithLeftCapWidth:10 topCapHeight:10]];
+		//[headerView.backgroundImage setImage:[[UIImage imageNamed:@"table_button_top"] stretchableImageWithLeftCapWidth:10 topCapHeight:10]];
 		headerView.nameLabel.text = [_book attribute:@"name"];
 		headerView.authorsLabel.text = [_book attribute:@"authors"];
+        self.buyButton = headerView.buyButton;
+        //[self setPurchased:self.purchased];
+        NSString *title = self.purchased ? @"Загрузить все ответы" : @"посмотреть все ответы";
+        [self.buyButton setTitle:title forState:UIControlStateNormal];
+
 		return headerView;
 	}
 	else if ([kind isEqualToString:UICollectionElementKindSectionFooter])
 	{
 		AnswersViewHeader *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:kFooterID forIndexPath:indexPath];
-		[footerView.backgroundImage setImage:[UIImage imageNamed:@"table_button_top"]];
+		//[footerView.backgroundImage setImage:[UIImage imageNamed:@"table_button_top"]];
 		footerView.backgroundImage.transform = CGAffineTransformMakeRotation(M_PI);
 		return footerView;
 	}

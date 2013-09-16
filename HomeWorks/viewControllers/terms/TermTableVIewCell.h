@@ -12,5 +12,6 @@
 
 @property(nonatomic) IBOutlet UIImageView *iconImageView;
 @property(nonatomic) IBOutlet UILabel *numLabel;
+@property(nonatomic) IBOutlet UILabel *classLabel;
 
 @end

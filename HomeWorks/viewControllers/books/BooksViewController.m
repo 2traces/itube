@@ -98,6 +98,9 @@ static NSUInteger kFeedbackSection = 2;
 	NSArray *sectionBooks = indexPath.section == 0 ? paidBooks : freeBooks;
 	RXMLElement *book = [sectionBooks objectAtIndex:indexPath.row];
 
+    cell.nameLabel.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:cell.nameLabel.font.pointSize];
+    cell.authorsLabel.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:cell.authorsLabel.font.pointSize];
+    
 	cell.nameLabel.text = [book attribute:@"name"];
 	cell.authorsLabel.text = [book attribute:@"authors"];
 

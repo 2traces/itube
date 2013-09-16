@@ -36,9 +36,11 @@
             break;
         case 1: {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 0)];
+
             label.backgroundColor = [UIColor clearColor];
-            label.textColor = [UIColor whiteColor];
-            label.font = [UIFont boldSystemFontOfSize:20];
+            label.textColor = [UIColor blackColor];
+            label.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:20];
+
             label.textAlignment = NSTextAlignmentCenter;
             label.numberOfLines = 2;
             label.text = @"Школьные учебники \n(ссылка на отдельный сайт)";
@@ -88,11 +90,12 @@
 {
     SubjectTableVIewCell *cell = nil;
 	static NSString *cellIdentifier = @"subjectCell";
-    
+
     switch (indexPath.section) {
         case 0: {
             cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-            
+            cell.nameLabel.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:cell.nameLabel.font.pointSize];
+
             RXMLElement *subject = [[_term children:@"subject"] objectAtIndex:indexPath.row];
             cell.nameLabel.text = [subject attribute:@"name"];
             [cell.iconImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"icon_%d", [[subject attribute:@"icon"] intValue]]]];
@@ -100,7 +103,8 @@
         }
         case 1: {
             cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-            
+            cell.nameLabel.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:cell.nameLabel.font.pointSize];
+
             cell.nameLabel.text = [NSString stringWithFormat:@"по %i-му классу", [_term attributeAsInt:@"num"]];
             cell.nameLabel.textColor = [UIColor colorWithRed:48/255.0f green:102/255.0f blue:112/255.0f alpha:1.0f];
             [cell.iconImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"icon_6"]]];

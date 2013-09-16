@@ -28,6 +28,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchaseFailed:) name:@"IAPHelperProductFailedNotification" object:nil];
 
+    self.lbHeading1.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:17];
+    self.lbHeading2.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:11];
+    self.lbHeadingM.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:14];
+    self.lbHeadingY.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:14];
+    
+    self.bgImage.image = [[UIImage imageNamed:@"tableBackgroundIpad"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile];
 }
 
 - (void)productPurchased:(NSNotification *)notification {

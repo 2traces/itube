@@ -12,4 +12,5 @@
 @property (nonatomic) IBOutlet UIImageView *backgroundImage;
 @property(nonatomic) IBOutlet UILabel *nameLabel;
 @property(nonatomic) IBOutlet UILabel *authorsLabel;
+@property(nonatomic) IBOutlet UIButton *buyButton;
 @end
