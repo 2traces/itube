@@ -1899,6 +1899,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     [(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] setUserGeoPosition:curPos];
 }
 
+//http://nominatim.openstreetmap.org/search?q=135+pilkington+avenue,+birmingham&format=xml&addressdetails=1&accept-language=en_EN&email=zuev.sergey@gmail.com
 
 @end
 
