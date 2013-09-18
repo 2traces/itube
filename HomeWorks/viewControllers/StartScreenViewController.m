@@ -61,6 +61,7 @@
 		{
 			[self.catalogRxml initFromXMLData:operation.responseData];
 			[operation.responseString writeToFile:self.catalogFilePath atomically:YES encoding:operation.responseStringEncoding error:nil];
+            [self addSkipBackupAttributeToItemAtPath:self.catalogFilePath];
 		}
 
 		[self prepareProducts];
@@ -72,6 +73,25 @@
 	}];
 
 	[catalogDownloadOperation start];
+}
+
+- (BOOL)addSkipBackupAttributeToItemAtPath:(NSString *)path
+{
+    NSURL *url = [NSURL fileURLWithPath:path];
+    
+    assert([[NSFileManager defaultManager] fileExistsAtPath: [url path]]);
+    
+    NSError *error = nil;
+    BOOL success = [url setResourceValue: [NSNumber numberWithBool: YES]
+                                  forKey: NSURLIsExcludedFromBackupKey error: &error];
+    if(!success){
+        NSLog(@"Error excluding %@ from backup %@", [url lastPathComponent], error);
+    }
+    else {
+        //NSLog(@"Successfully excluded file from backup: %@", [url lastPathComponent]);
+    }
+    
+    return success;
 }
 
 - (void)prepareProducts
