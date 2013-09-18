@@ -19,6 +19,8 @@
 
 typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORITE=4} PinType;
 
+#define nSEARCH_RESULTS_READY @"Search results ready"
+
 @interface Object: NSObject {
 }
 
@@ -103,6 +105,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 @property (nonatomic, retain) TopRasterView *stationsView;
 @property (nonatomic, retain) NavigationViewController *navigationViewController;
 @property (nonatomic, assign) BOOL followUserGPS;
+@property (nonatomic, readonly) NSArray *searchResults;
 
 -(FastAccessTableViewController*)showTableView;
 -(void)returnFromSelectionFastAccess:(NSArray *)stations;
@@ -153,5 +156,6 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 
 -(NSArray*)getObjectsNear:(CGPoint)center withRadius:(CGFloat)radius;
 -(NSArray*)getObjectsNearUserWithRadius:(CGFloat)radius;
+-(void)loadCitiesLikeThis:(NSString*)cityName;
 
 @end

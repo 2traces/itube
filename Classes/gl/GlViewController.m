@@ -118,6 +118,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     CGPoint userPosition;
     int objectsLOD;
     CLLocationManager *locationManager;
+    NSMutableArray *lastSearchResults;
 }
 @property (strong, nonatomic) EAGLContext *context;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
@@ -553,7 +554,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 @synthesize stationsView;
 @synthesize navigationViewController;
 @synthesize followUserGPS;
-
+@synthesize searchResults = lastSearchResults;
 
 - (CGFloat) radialOffsetToPoint:(CGPoint)point
 {
@@ -1899,7 +1900,38 @@ CGPoint translateFromMapToGeo(CGPoint p)
     [(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] setUserGeoPosition:curPos];
 }
 
-//http://nominatim.openstreetmap.org/search?q=135+pilkington+avenue,+birmingham&format=xml&addressdetails=1&accept-language=en_EN&email=zuev.sergey@gmail.com
+-(void)loadCitiesLikeThis:(NSString*)cityName
+{
+    
+    NSString *url = [NSString stringWithFormat:@"http://nominatim.openstreetmap.org/search?q=%@&format=json&accept-language=en_EN&email=zuev.sergey@gmail.com", [cityName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60.0];
+    [NSURLConnection sendAsynchronousRequest:theRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if(nil != error) {
+            NSLog(@"Error during search a city: %@", error);
+        } else {
+            NSError *err = nil;
+            id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&err];
+            if(nil != err) {
+                NSLog(@"Error while parsing JSON: %@", err);
+            } else {
+                if(nil == lastSearchResults) lastSearchResults = [NSMutableArray array];
+                else [lastSearchResults removeAllObjects];
+                for (NSDictionary *pl in result) {
+                    if([pl[@"class"] isEqualToString:@"place"]) {
+                        [lastSearchResults addObject:@{@"lat": [NSNumber numberWithFloat:[pl[@"lat"] floatValue]],
+                         @"lon": [NSNumber numberWithFloat:[pl[@"lon"] floatValue]],
+                         @"type": pl[@"type"],
+                         @"name": pl[@"display_name"]}];
+                    }
+                }
+#ifdef DEBUG
+                NSLog(@"I've got a list of cities: %@", lastSearchResults);
+#endif
+                [[NSNotificationCenter defaultCenter] postNotificationName:nSEARCH_RESULTS_READY object:lastSearchResults];
+            }
+        }
+    }];
+}
 
 @end
 
