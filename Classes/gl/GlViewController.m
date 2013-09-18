@@ -1753,37 +1753,36 @@ CGPoint translateFromMapToGeo(CGPoint p)
     
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     
-    NSURLResponse *resp = nil;
-    NSError *err = nil;
-    
-    NSData *response = [NSURLConnection sendSynchronousRequest: theRequest returningResponse: &resp error: &err];
-    
-    //    NSString * theString = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-    //    NSLog(@"response: %@", theString);
-    
-    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData: response options: NSJSONReadingMutableContainers error: &err];
-    
-    if (!jsonArray) {
-        NSLog(@"Error parsing JSON: %@", err);
-    } else {
-        for(NSDictionary *item in jsonArray) {
-            Object *ob = [[Object alloc] initWithDictionary:item];
-            BOOL accepted = NO;
-            for (Cluster* cl in clusters) {
-                if([cl accept:ob]) {
-                    accepted = YES;
-                    break;
+    [NSURLConnection sendAsynchronousRequest:theRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if(nil != error) {
+            NSLog(@"Load objects error: %@", error);
+        } else {
+            NSError *err = nil;
+            NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &err];
+            if (!jsonArray) {
+                NSLog(@"Error parsing JSON: %@", err);
+            } else {
+                for(NSDictionary *item in jsonArray) {
+                    Object *ob = [[Object alloc] initWithDictionary:item];
+                    BOOL accepted = NO;
+                    for (Cluster* cl in clusters) {
+                        if([cl accept:ob]) {
+                            accepted = YES;
+                            break;
+                        }
+                    }
+                    if(!accepted) {
+                        [clusters addObject:[[Cluster alloc] initWithRadius:0.03f]];
+                        [[clusters lastObject] accept:ob];
+                    }
+                    
+                    NSLog(@" %@", ob);
                 }
             }
-            if(!accepted) {
-                [clusters addObject:[[Cluster alloc] initWithRadius:0.03f]];
-                [[clusters lastObject] accept:ob];
-            }
-            
-            NSLog(@" %@", ob);
+            [self updatePinsForLevel:[self getLevelForScale:scale]];
         }
-    }
-    [self updatePinsForLevel:[self getLevelForScale:scale]];
+        
+    }];
 }
 
 -(void)updatePinsForLevel:(int)level
@@ -1902,8 +1901,10 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(void)loadCitiesLikeThis:(NSString*)cityName
 {
-    
-    NSString *url = [NSString stringWithFormat:@"http://nominatim.openstreetmap.org/search?q=%@&format=json&accept-language=en_EN&email=zuev.sergey@gmail.com", [cityName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSString *lang = @"en_EN";
+    NSArray *langs = [[NSBundle mainBundle] preferredLocalizations];
+    if([langs count] > 0) lang = langs[0];
+    NSString *url = [NSString stringWithFormat:@"http://nominatim.openstreetmap.org/search?q=%@&format=json&accept-language=%@&email=zuev.sergey@gmail.com", [cityName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],  lang];
     NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60.0];
     [NSURLConnection sendAsynchronousRequest:theRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if(nil != error) {
