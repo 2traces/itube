@@ -105,6 +105,8 @@
 			id obj = [self.catalogRxml initFromXMLData:operation.responseData];
             NSLog(@"Silenting compilation warning due to bad architecture. Object created: %@", obj);
 			[operation.responseString writeToFile:self.catalogFilePath atomically:YES encoding:operation.responseStringEncoding error:nil];
+            
+            [self addSkipBackupAttributeToItemAtPath:self.catalogFilePath];
 		}
 
 		[DejalBezelActivityView removeView];
@@ -116,6 +118,26 @@
 	}];
 
 	[catalogDownloadOperation start];
+}
+
+
+- (BOOL)addSkipBackupAttributeToItemAtPath:(NSString *)path
+{
+    NSURL *url = [NSURL fileURLWithPath:path];
+    
+    assert([[NSFileManager defaultManager] fileExistsAtPath: [url path]]);
+    
+    NSError *error = nil;
+    BOOL success = [url setResourceValue: [NSNumber numberWithBool: YES]
+                                  forKey: NSURLIsExcludedFromBackupKey error: &error];
+    if(!success){
+        NSLog(@"Error excluding %@ from backup %@", [url lastPathComponent], error);
+    }
+    else {
+        //NSLog(@"Successfully excluded file from backup: %@", [url lastPathComponent]);
+    }
+    
+    return success;
 }
 
 - (void)restorePurchases

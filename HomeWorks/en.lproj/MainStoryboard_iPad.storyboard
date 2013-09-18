@@ -13,6 +13,7 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="separatorColor" cocoaTouchSystemColor="darkTextColor"/>
                         <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="bottom_logo@2x.png" id="FvQ-Bh-mrk">
                             <rect key="frame" x="0.0" y="128" width="768" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

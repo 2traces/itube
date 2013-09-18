@@ -88,7 +88,7 @@
 														   answerExt];
 
 		NSLog(@"starting downloading for %@", urlAsString);
-
+        
 		NSURL *url = [NSURL URLWithString:urlAsString];
 		NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
@@ -104,6 +104,8 @@
 		{
 			[operation.responseData writeToFile:pageFilePath atomically:NO];
 
+            [self addSkipBackupAttributeToItemAtPath:pageFilePath];
+            
 			if (weakController.currentPreviewItemIndex == index)
 			{
 				[weakController refreshCurrentPreviewItem];
@@ -119,6 +121,26 @@
     
 	return ans;
 }
+
+- (BOOL)addSkipBackupAttributeToItemAtPath:(NSString *)path
+{
+    NSURL *url = [NSURL fileURLWithPath:path];
+    
+    assert([[NSFileManager defaultManager] fileExistsAtPath: [url path]]);
+    
+    NSError *error = nil;
+    BOOL success = [url setResourceValue: [NSNumber numberWithBool: YES]
+                                  forKey: NSURLIsExcludedFromBackupKey error: &error];
+    if(!success){
+        NSLog(@"Error excluding %@ from backup %@", [url lastPathComponent], error);
+    }
+    else {
+        //NSLog(@"Successfully excluded file from backup: %@", [url lastPathComponent]);
+    }
+    
+    return success;
+}
+
 
 - (void)dealloc
 {

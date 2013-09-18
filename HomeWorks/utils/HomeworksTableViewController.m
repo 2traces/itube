@@ -12,6 +12,8 @@
 @implementation HomeworksTableViewController
 {
 
+	UIImage *tableButtonDownImageNoSeparator;
+	UIImage *tableButtonMidImageNoSeparator;
 	UIImage *tableButtomTopImage;
 	UIImage *tableButtomTopPressedImage;
 	UIImage *tableButtonMidImage;
@@ -55,7 +57,8 @@
 	}
 	self.tableView.backgroundColor = [UIColor clearColor];
 
-
+    tableButtonDownImageNoSeparator = [[UIImage imageNamed:@"table_button_down_s"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    tableButtonMidImageNoSeparator = [[UIImage imageNamed:@"table_button_mid_s"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
 
                         
     
@@ -64,12 +67,95 @@
 	tableButtonDownImage = [[UIImage imageNamed:@"table_button_down"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
 	tableButtonSingleImage = [[UIImage imageNamed:@"table_button_single"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
 	tableButtonSinglePressedImage = [[UIImage imageNamed:@"table_button_single_pressed"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
+
+
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(6_0) {
+    NSArray *paths = [tableView indexPathsForVisibleRows];
+    for (NSIndexPath *path in paths) {
+        if ([path isEqual:indexPath]) {
+            [self highlightTableCellWithArgs:[NSDictionary dictionaryWithObjectsAndKeys:path, @"indexPath", [NSNumber numberWithBool:YES], @"shouldHighlight", nil]];
+        }
+        else {
+            [self highlightTableCellWithArgs:[NSDictionary dictionaryWithObjectsAndKeys:path, @"indexPath", [NSNumber numberWithBool:NO], @"shouldHighlight", nil]];
+        }
+    }
+//    NSIndexPath *path = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
+//	NSInteger  numberOfRowsInSection = [tableView.dataSource tableView:tableView numberOfRowsInSection:indexPath.section];
+//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:path];
+//    if (cell) {
+//        if(numberOfRowsInSection == 1)
+//        {
+//
+//        }
+//        else if(indexPath.row  >= 0 && indexPath.row < (numberOfRowsInSection - 1))
+//        {
+//            cell.backgroundView = [[UIImageView alloc] initWithImage:tableButtonMidImageNoSeparator];
+//        }
+//        else if(indexPath.row == numberOfRowsInSection - 1)
+//        {
+//
+//            cell.backgroundView = [[UIImageView alloc] initWithImage:tableButtonDownImageNoSeparator];
+//        }
+//
+//    }
+}
+
+- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(6_0) {
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    
+    }
+    else {
+        [self performSelector:@selector(highlightTableCellWithArgs:) withObject:[NSDictionary dictionaryWithObjectsAndKeys:indexPath, @"indexPath", [NSNumber numberWithBool:NO], @"shouldHighlight", nil] afterDelay:1.0f];
+
+    }
+}
+
+- (void)highlightTableCellWithArgs:(NSDictionary*)args {
+    NSIndexPath *indexPath = [args objectForKey:@"indexPath"];
+    BOOL shouldHighlight = [[args objectForKey:@"shouldHighlight"] boolValue];
+    //UITableViewCell *currentCell = [self.tableView cellForRowAtIndexPath:indexPath];
+    NSIndexPath *nextIndexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
+    UITableViewCell *lowerCell = [self.tableView cellForRowAtIndexPath:nextIndexPath];
+    NSInteger  numberOfRowsInSection = [self.tableView.dataSource tableView:self.tableView numberOfRowsInSection:indexPath.section];
+    if (lowerCell) {
+        if(numberOfRowsInSection == 1)
+        {
+            
+        }
+        else if(nextIndexPath.row  >= 0 && nextIndexPath.row < (numberOfRowsInSection - 1))
+        {
+            lowerCell.backgroundView = [[UIImageView alloc] initWithImage: shouldHighlight ? tableButtonMidImageNoSeparator : tableButtonMidImage];
+        }
+        else if(nextIndexPath.row == numberOfRowsInSection - 1)
+        {
+            lowerCell.backgroundView = [[UIImageView alloc] initWithImage: shouldHighlight ? tableButtonDownImageNoSeparator : tableButtonDownImage];
+        }
+        
+    }
+
+
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+//    [self.tableView reloadData];
+}
+
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSInteger  numberOfRowsInSection = [tableView.dataSource tableView:tableView numberOfRowsInSection:indexPath.section];
-	
+	NSInteger selectedRow = INT_MAX;
+    NSInteger selectedSection = INT_MAX;
+    
+    if (tableView.indexPathForSelectedRow) {
+        selectedRow = tableView.indexPathForSelectedRow.row;
+        selectedSection = tableView.indexPathForSelectedRow.section;
+    }
+    
 	if(numberOfRowsInSection == 1)
 	{
 		cell.backgroundView = [[UIImageView alloc] initWithImage:tableButtonSingleImage];
@@ -77,8 +163,15 @@
 	}
 	else if(indexPath.row  > 0 && indexPath.row < (numberOfRowsInSection - 1))
 	{
-		cell.backgroundView = [[UIImageView alloc] initWithImage:tableButtonMidImage];
-		cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:tableButtonMidPressedImage];
+        if (indexPath.row - 1 == selectedRow && indexPath.section == selectedSection) {
+            cell.backgroundView = [[UIImageView alloc] initWithImage:tableButtonMidImageNoSeparator];
+            cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:tableButtonMidPressedImage];
+        }
+        else {
+            cell.backgroundView = [[UIImageView alloc] initWithImage:tableButtonMidImage];
+            cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:tableButtonMidPressedImage];
+        }
+
 	}
 	else if(indexPath.row == 0)
 	{
@@ -87,8 +180,15 @@
 	}
 	else if(indexPath.row == numberOfRowsInSection - 1)
 	{
-		cell.backgroundView = [[UIImageView alloc] initWithImage:tableButtonDownImage];
-		cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:tableButtonDownPressedImage];
+        if (indexPath.row - 1 == selectedRow && indexPath.section == selectedSection) {
+            cell.backgroundView = [[UIImageView alloc] initWithImage:tableButtonDownImageNoSeparator];
+            cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:tableButtonDownPressedImage];
+        }
+        else {
+            cell.backgroundView = [[UIImageView alloc] initWithImage:tableButtonDownImage];
+            cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:tableButtonDownPressedImage];
+        }
 	}
 }
+
 @end

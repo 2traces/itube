@@ -186,6 +186,26 @@ NSString *kFooterID = @"collectionFooter";
 	return YES;
 }
 
+
+- (BOOL)addSkipBackupAttributeToItemAtPath:(NSString *)path
+{
+    NSURL *url = [NSURL fileURLWithPath:path];
+    
+    assert([[NSFileManager defaultManager] fileExistsAtPath: [url path]]);
+    
+    NSError *error = nil;
+    BOOL success = [url setResourceValue: [NSNumber numberWithBool: YES]
+                                  forKey: NSURLIsExcludedFromBackupKey error: &error];
+    if(!success){
+        NSLog(@"Error excluding %@ from backup %@", [url lastPathComponent], error);
+    }
+    else {
+        //NSLog(@"Successfully excluded file from backup: %@", [url lastPathComponent]);
+    }
+    
+    return success;
+}
+
 - (void)downloadAll
 {
 	NSString *termId = [_term attribute:@"id"];
@@ -211,6 +231,8 @@ NSString *kFooterID = @"collectionFooter";
 																subjectId,
 																bookId];
 			[[NSData data] writeToFile:offlineFilePath atomically:NO];
+            [self addSkipBackupAttributeToItemAtPath:offlineFilePath];
+            
 			[weakSelf updateAllFilesDownloadedStatus];
 			[weakSelf.collectionView reloadData];
 		}
@@ -242,6 +264,8 @@ NSString *kFooterID = @"collectionFooter";
 			[catalogDownloadOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
 			{
 				[operation.responseData writeToFile:pageFilePath atomically:YES];
+                [self addSkipBackupAttributeToItemAtPath:pageFilePath];
+                
 				succesfullyDownloaded++;
 				successOrFailure();
 
