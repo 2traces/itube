@@ -88,7 +88,6 @@
 														   answerExt];
 
 		NSLog(@"starting downloading for %@", urlAsString);
-        
 		NSURL *url = [NSURL URLWithString:urlAsString];
 		NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
@@ -111,14 +110,19 @@
 				[weakController refreshCurrentPreviewItem];
 			}
 
-		}                                               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		}  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Failed to download item...");
         }];
 
 		[operationQueue addOperation:catalogDownloadOperation];
 	}
     NSURL *ans = [AnswerFileURL fileURLWithPath:pageFilePath previewTitle:[NSString stringWithFormat:@"%@", answerFile]];
-    
+    if ([[NSFileManager defaultManager] fileExistsAtPath: [ans path]]) {
+        NSLog(@"Giving away existing file url.");
+    }
+    else {
+        NSLog(@"Giving away missing file url.");
+    }
 	return ans;
 }
 

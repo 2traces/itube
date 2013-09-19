@@ -23,9 +23,15 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 	[NSURLCache setSharedURLCache:URLCache];
 
 //	[MKStoreManager sharedManager];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"back_bt"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 5)]
-                                                      forState:UIControlStateNormal
-                                                    barMetrics:UIBarMetricsDefault];
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        
+    }
+    else {
+        [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"back_bt"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 5)]
+                                                          forState:UIControlStateNormal
+                                                        barMetrics:UIBarMetricsDefault];
+    }
+
     [[UIBarButtonItem appearance] setBackgroundImage:[UIImage new]
                                                       forState:UIControlStateNormal
                                                     barMetrics:UIBarMetricsDefault];
@@ -46,14 +52,22 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     [[UIButton appearance] setTitleEdgeInsets:UIEdgeInsetsMake(3, 0, 0, 0)];
     UIImage *navigationBarBackgroundImage = [[UIImage imageNamed:@"bar"] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 5.0, 1.0, 5.0)];
 	//[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setBackgroundImage:navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
-    [[UIToolbar appearance] setTintColor:[UIColor colorWithRed:84.0f/255.0f green:186.0f/255.0f blue:231.0f/255.0f alpha:1]];
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:4.0f/255.0f green:192.0f/255.0f blue:237.0f/255.0f alpha:1]];
+    }
+    else {
+        [[UINavigationBar appearance] setBackgroundImage:navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
+        [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, 3) forBarMetrics:UIBarMetricsDefault];
+
+    }
+    
+    [[UIToolbar appearance] setTintColor:[UIColor colorWithRed:4.0f/255.0f green:192.0f/255.0f blue:237.0f/255.0f alpha:1]];
     
     [[UIBarButtonItem appearance] setTitleTextAttributes:
      [NSDictionary dictionaryWithObjectsAndKeys:
       [UIColor whiteColor], UITextAttributeTextColor,
       [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:16.0], UITextAttributeFont,nil] forState:UIControlStateNormal];
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, 3) forBarMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, 3) forBarMetrics:UIBarMetricsDefault];
     
     [Parse setApplicationId:@"4xkE7I5Ku3iOFNPypTxPpj5GS7hH3oKYas2kuV1Y"

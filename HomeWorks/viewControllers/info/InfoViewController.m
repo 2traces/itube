@@ -42,18 +42,18 @@
 {
 	[super viewDidLoad];
 
-	[self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:121.0 / 255.0 green:166.0 / 255.0 blue:191.0 / 255.0 alpha:1.0]];
+//	[self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:121.0 / 255.0 green:166.0 / 255.0 blue:191.0 / 255.0 alpha:1.0]];
 //	[self.navigationController.navigationBar setTitleTextAttributes:
 //			@{
 //					UITextAttributeTextShadowColor : [UIColor blackColor],
 //					UITextAttributeTextShadowOffset : [NSValue valueWithUIOffset:UIOffsetMake(0.0, 1.0)]
 //			}];
 
-	UIImage *navigationBarBackgroundImage = [[UIImage imageNamed:@"bar"] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 5.0, 1.0, 5.0)];
-	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
-												  forBarMetrics:UIBarMetricsDefault];
-	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
-												  forBarMetrics:UIBarMetricsLandscapePhone];
+//	UIImage *navigationBarBackgroundImage = [[UIImage imageNamed:@"bar"] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 5.0, 1.0, 5.0)];
+//	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
+//												  forBarMetrics:UIBarMetricsDefault];
+//	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
+//												  forBarMetrics:UIBarMetricsLandscapePhone];
 
 
 }

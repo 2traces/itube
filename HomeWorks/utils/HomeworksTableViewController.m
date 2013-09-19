@@ -28,47 +28,74 @@
 {
 	[super viewDidLoad];
 
-	[self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:121.0 / 255.0 green:166.0 / 255.0 blue:191.0 / 255.0 alpha:1.0]];
+//	[self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:121.0 / 255.0 green:166.0 / 255.0 blue:191.0 / 255.0 alpha:1.0]];
 //	[self.navigationController.navigationBar setTitleTextAttributes:
 //			@{
 //					UITextAttributeTextShadowColor : [UIColor blackColor],
 //					UITextAttributeTextShadowOffset : [NSValue valueWithUIOffset:UIOffsetMake(0.0, 1.0)]
 //			}];
 
-	UIImage *navigationBarBackgroundImage = [[UIImage imageNamed:@"bar"] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 5.0, 1.0, 5.0)];
-	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
-												  forBarMetrics:UIBarMetricsDefault];
-	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
-												  forBarMetrics:UIBarMetricsLandscapePhone];
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-	{
-		self.tableView.backgroundView  = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableBackgroundIpad"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile]];
-        tableButtomTopPressedImage = [[UIImage imageNamed:@"table_button_top_pressed_ipad"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-        tableButtonMidPressedImage = [[UIImage imageNamed:@"table_button_mid_pressed_ipad"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-        tableButtonDownPressedImage = [[UIImage imageNamed:@"table_button_down_pressed_ipad"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-	}
-	else
-	{
-		self.tableView.backgroundView  = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableBackground"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile]];
-        tableButtomTopPressedImage = [[UIImage imageNamed:@"table_button_top_pressed"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-        tableButtonMidPressedImage = [[UIImage imageNamed:@"table_button_mid_pressed"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-        tableButtonDownPressedImage = [[UIImage imageNamed:@"table_button_down_pressed"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-
-	}
-	self.tableView.backgroundColor = [UIColor clearColor];
-
-    tableButtonDownImageNoSeparator = [[UIImage imageNamed:@"table_button_down_s"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-    tableButtonMidImageNoSeparator = [[UIImage imageNamed:@"table_button_mid_s"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-
-                        
+//	UIImage *navigationBarBackgroundImage = [[UIImage imageNamed:@"bar"] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 5.0, 1.0, 5.0)];
+//	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
+//												  forBarMetrics:UIBarMetricsDefault];
+//	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
+//												  forBarMetrics:UIBarMetricsLandscapePhone];
     
-	tableButtomTopImage = [[UIImage imageNamed:@"table_button_top"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-	tableButtonMidImage = [[UIImage imageNamed:@"table_button_mid"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-	tableButtonDownImage = [[UIImage imageNamed:@"table_button_down"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-	tableButtonSingleImage = [[UIImage imageNamed:@"table_button_single"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-	tableButtonSinglePressedImage = [[UIImage imageNamed:@"table_button_single_pressed"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {
+            self.tableView.backgroundView  = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableBackgroundIpad"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile]];
+            tableButtomTopPressedImage = [[UIImage imageNamed:@"table_button_mid_pressed_ios7_ipad"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+            tableButtonMidPressedImage = [[UIImage imageNamed:@"table_button_mid_pressed_ios7_ipad"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+            tableButtonDownPressedImage = [[UIImage imageNamed:@"table_button_mid_pressed_ios7_ipad"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+        }
+        else
+        {
+            self.tableView.backgroundView  = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableBackground"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile]];
+            tableButtomTopPressedImage = [[UIImage imageNamed:@"table_button_mid_pressed_ios7"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+            tableButtonMidPressedImage = [[UIImage imageNamed:@"table_button_mid_pressed_ios7"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+            tableButtonDownPressedImage = [[UIImage imageNamed:@"table_button_mid_pressed_ios7"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+            
+        }
+//
+//        tableButtonDownImageNoSeparator = [[UIImage imageNamed:@"table_button_mid"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+//        tableButtonMidImageNoSeparator = [[UIImage imageNamed:@"table_button_mid"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+//        
+//        tableButtomTopImage = [[UIImage imageNamed:@"table_button_mid"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+//        tableButtonMidImage = [[UIImage imageNamed:@"table_button_mid"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+//        tableButtonDownImage = [[UIImage imageNamed:@"table_button_mid"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+//        tableButtonSingleImage = [[UIImage imageNamed:@"table_button_mid"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+        tableButtonSinglePressedImage = [[UIImage imageNamed:@"table_button_single_pressed"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    }
+    else {
+    	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {
+            self.tableView.backgroundView  = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableBackgroundIpad"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile]];
+            tableButtomTopPressedImage = [[UIImage imageNamed:@"table_button_top_pressed_ipad"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+            tableButtonMidPressedImage = [[UIImage imageNamed:@"table_button_mid_pressed_ipad"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+            tableButtonDownPressedImage = [[UIImage imageNamed:@"table_button_down_pressed_ipad"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+        }
+        else
+        {
+            self.tableView.backgroundView  = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"tableBackground"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile]];
+            tableButtomTopPressedImage = [[UIImage imageNamed:@"table_button_top_pressed"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+            tableButtonMidPressedImage = [[UIImage imageNamed:@"table_button_mid_pressed"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+            tableButtonDownPressedImage = [[UIImage imageNamed:@"table_button_down_pressed"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+            
+        }
+        self.tableView.backgroundColor = [UIColor clearColor];
+        
+        tableButtonDownImageNoSeparator = [[UIImage imageNamed:@"table_button_down_s"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+        tableButtonMidImageNoSeparator = [[UIImage imageNamed:@"table_button_mid_s"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+        
+        tableButtomTopImage = [[UIImage imageNamed:@"table_button_top"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+        tableButtonMidImage = [[UIImage imageNamed:@"table_button_mid"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+        tableButtonDownImage = [[UIImage imageNamed:@"table_button_down"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+        tableButtonSingleImage = [[UIImage imageNamed:@"table_button_single"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+        tableButtonSinglePressedImage = [[UIImage imageNamed:@"table_button_single_pressed"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    }
     
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 
