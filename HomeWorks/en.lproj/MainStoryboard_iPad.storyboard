@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12F37" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="VML-az-uhE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="VML-az-uhE">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Terms View Controller - ГДЗ-->
         <scene sceneID="tYi-FV-Hzu">
             <objects>
                 <tableViewController id="zdj-T7-EVQ" customClass="TermsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="62" sectionHeaderHeight="10" sectionFooterHeight="10" id="vue-PW-ESh">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="62" sectionHeaderHeight="10" sectionFooterHeight="10" id="vue-PW-ESh">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="termCell" rowHeight="62" id="vGi-29-9sZ" customClass="TermTableViewCell">
                                 <rect key="frame" x="0.0" y="54" width="768" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vGi-29-9sZ" id="gC2-jh-T6h">
                                     <rect key="frame" x="45" y="1" width="658" height="61"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -39,8 +39,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
+                                </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.90446671199999995" green="0.90446671199999995" blue="0.90446671199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="iconImageView" destination="qZI-OY-6Gx" id="9Vn-nY-nhI"/>
@@ -52,8 +51,8 @@
                         <sections/>
                     </tableView>
                     <navigationItem key="navigationItem" title="ГДЗ" id="WaN-Ho-da1"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PDA-1q-lf8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -63,8 +62,8 @@
         <scene sceneID="Tgh-Dn-pS6">
             <objects>
                 <tableViewController id="1nz-D4-ysO" customClass="InfoViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="u1V-xe-oD2">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="u1V-xe-oD2">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -73,7 +72,7 @@
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="80" id="lOV-7X-FnI">
                                         <rect key="frame" x="0.0" y="30" width="768" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lOV-7X-FnI" id="IIH-ZC-g5g">
                                             <rect key="frame" x="45" y="1" width="678" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -89,13 +88,12 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="100" id="IzV-C4-3N8">
                                         <rect key="frame" x="0.0" y="111" width="768" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IzV-C4-3N8" id="2bl-4O-glH">
                                             <rect key="frame" x="45" y="0.0" width="678" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -106,8 +104,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -116,11 +113,11 @@
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="53" id="iGc-uq-NeD">
                                         <rect key="frame" x="0.0" y="232" width="768" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iGc-uq-NeD" id="c6f-lz-Ye2">
                                             <rect key="frame" x="45" y="1" width="678" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="restore_purchases@2x.png" id="85S-OA-hCR">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="restore_purchases.png" id="85S-OA-hCR">
                                                     <rect key="frame" x="10" y="4" width="44" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -132,8 +129,7 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -150,7 +146,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WK5-Go-XzC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -161,21 +157,21 @@
             <objects>
                 <viewController id="VML-az-uhE" customClass="StartScreenViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5b9-eV-jDF">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" image="Default-Portrait~ipad.png" id="ogU-Ka-hqn">
-                                <rect key="frame" x="0.0" y="-20" width="768" height="1024"/>
+                            <imageView userInteractionEnabled="NO" contentMode="center" image="Default-Portrait.png" id="ogU-Ka-hqn">
+                                <rect key="frame" x="0.0" y="-20" width="768" height="1044"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="gray" id="NgK-Pk-934">
-                                <rect key="frame" x="374" y="482" width="20" height="20"/>
+                                <rect key="frame" x="374" y="491" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
                     <connections>
                         <outlet property="backgroundView" destination="ogU-Ka-hqn" id="a08-yc-Ebo"/>
                         <segue destination="quw-t9-1cs" kind="custom" identifier="showList" customClass="ShowIpadListSegue" id="PRs-qE-pD2"/>
@@ -189,15 +185,15 @@
         <scene sceneID="Sxc-Vi-NCR">
             <objects>
                 <tableViewController id="OLA-iT-fat" customClass="SubjectsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="62" sectionHeaderHeight="10" sectionFooterHeight="10" id="1qk-vC-iMn">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="62" sectionHeaderHeight="10" sectionFooterHeight="10" id="1qk-vC-iMn">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="subjectCell" rowHeight="62" id="t9o-u4-btH" customClass="SubjectTableVIewCell">
                                 <rect key="frame" x="0.0" y="54" width="768" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t9o-u4-btH" id="K2N-IA-qJ8">
                                     <rect key="frame" x="45" y="1" width="658" height="61"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -213,8 +209,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
+                                </tableViewCellContentView>
                                 <connections>
                                     <outlet property="iconImageView" destination="DJd-Zx-1NZ" id="wXN-yp-FIR"/>
                                     <outlet property="nameLabel" destination="Wab-pn-GuN" id="h6I-kJ-mfP"/>
@@ -225,8 +220,8 @@
                         <sections/>
                     </tableView>
                     <navigationItem key="navigationItem" title="5 класс" id="Mkf-KN-3f1"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L0P-qp-Ksk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -236,15 +231,15 @@
         <scene sceneID="sgS-eU-Kgt">
             <objects>
                 <tableViewController id="5A0-sP-PoW" customClass="BooksViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="62" sectionHeaderHeight="10" sectionFooterHeight="10" id="yzs-oY-HpO">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="62" sectionHeaderHeight="10" sectionFooterHeight="10" id="yzs-oY-HpO">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="bookCell" rowHeight="100" id="iMU-bq-7p7" customClass="BookTableViewCell">
                                 <rect key="frame" x="0.0" y="54" width="768" height="101"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iMU-bq-7p7" id="fuJ-38-01y">
                                     <rect key="frame" x="45" y="1" width="658" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -267,8 +262,7 @@
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
+                                </tableViewCellContentView>
                                 <connections>
                                     <outlet property="authorsLabel" destination="nme-9m-bvh" id="m8D-79-sWe"/>
                                     <outlet property="bookImage" destination="Bb3-WT-qQw" id="S7t-bt-IyY"/>
@@ -279,7 +273,7 @@
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="findCell" rowHeight="80" id="kgz-TB-ahi" customClass="BookTableViewCell">
                                 <rect key="frame" x="0.0" y="155" width="768" height="81"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kgz-TB-ahi" id="tQR-vZ-EgR">
                                     <rect key="frame" x="45" y="0.0" width="658" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -298,8 +292,7 @@
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
+                                </tableViewCellContentView>
                                 <connections>
                                     <outlet property="nameLabel" destination="FRY-6w-gjg" id="le8-Gl-vkf"/>
                                 </connections>
@@ -308,8 +301,8 @@
                         <sections/>
                     </tableView>
                     <navigationItem key="navigationItem" title="Математика" id="iZf-wj-hP8"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K0m-Bx-RLM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -320,7 +313,7 @@
             <objects>
                 <viewController id="Cte-lC-5NO" customClass="AnswersViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="Y0s-jv-IT8" customClass="PSUICollectionView">
-                        <rect key="frame" x="0.0" y="64" width="540" height="556"/>
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="u9h-j5-S1x">
                             <size key="itemSize" width="87" height="87"/>
@@ -330,18 +323,18 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="answerCell" id="eDq-od-dnn" customClass="AnswerViewCell">
-                                <rect key="frame" x="9" y="100" width="87" height="87"/>
+                                <rect key="frame" x="9" y="164" width="87" height="87"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="87" height="87"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="element.png" id="Bey-nf-cUm">
-                                            <rect key="frame" x="16.5" y="16.5" width="56" height="56"/>
+                                            <rect key="frame" x="17" y="17" width="56" height="56"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="7" id="n5x-CD-SM2">
-                                            <rect key="frame" x="16.5" y="28" width="56" height="31"/>
+                                            <rect key="frame" x="16" y="28" width="56" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -357,14 +350,14 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="lockedAnswerCell" id="gNK-fd-Anf" customClass="AnswerViewCell">
-                                <rect key="frame" x="96" y="100" width="87" height="87"/>
+                                <rect key="frame" x="96" y="164" width="87" height="87"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="87" height="87"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="element-locked.png" id="hpI-WV-2Xi">
-                                            <rect key="frame" x="16.5" y="16.5" width="56" height="56"/>
+                                            <rect key="frame" x="17" y="17" width="56" height="56"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -376,7 +369,7 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="emptyAnswerCell" id="Hd2-ft-dgl" customClass="AnswerViewCell">
-                                <rect key="frame" x="183" y="100" width="87" height="87"/>
+                                <rect key="frame" x="183" y="164" width="87" height="87"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="87" height="87"/>
@@ -387,7 +380,7 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionHeader" id="ebB-KM-zvp" customClass="AnswersViewHeader">
-                            <rect key="frame" x="0.0" y="0.0" width="540" height="100"/>
+                            <rect key="frame" x="0.0" y="64" width="540" height="100"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="bLs-bb-lOw">
@@ -402,7 +395,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Чесноков А.С., Нешков К.И., 2000-2011гг." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E4z-Sn-5Cw">
-                                    <rect key="frame" x="20" y="52" width="500" height="41"/>
+                                    <rect key="frame" x="20" y="52" width="500" height="40.999999999999986"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -416,7 +409,7 @@
                             </connections>
                         </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionFooter" id="Jst-hS-Mx1" customClass="AnswersViewFooter">
-                            <rect key="frame" x="0.0" y="187" width="540" height="62"/>
+                            <rect key="frame" x="0.0" y="251" width="540" height="62"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="yG9-en-P4V">
@@ -442,8 +435,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <value key="contentSizeForViewInPopover" type="size" width="400" height="960"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bM2-rm-sbB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -454,7 +447,7 @@
             <objects>
                 <navigationController storyboardIdentifier="infoViewController" modalTransitionStyle="flipHorizontal" modalPresentationStyle="formSheet" id="gmQ-Z8-RPk" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7jL-kj-SA7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -542,93 +535,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Default-Portrait~ipad.png" width="768" height="1024"/>
+        <image name="Default-Portrait.png" width="768" height="1024"/>
         <image name="element-locked.png" width="56" height="56"/>
         <image name="element.png" width="56" height="56"/>
         <image name="icon144-no-borders.png" width="144" height="144"/>
-        <image name="restore_purchases@2x.png" width="94" height="94"/>
+        <image name="restore_purchases.png" width="47" height="47"/>
     </resources>
-    <classes>
-        <class className="AnswerViewCell" superclassName="PSUICollectionViewCell_">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswerViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="AnswersViewController" superclassName="PSUICollectionViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewController.h"/>
-        </class>
-        <class className="AnswersViewFooter" superclassName="PSUICollectionReusableView_">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewFooter.h"/>
-        </class>
-        <class className="AnswersViewHeader" superclassName="PSUICollectionReusableView_">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswersViewHeader.h"/>
-            <relationships>
-                <relationship kind="outlet" name="authorsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="BookTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BookTableViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="authorsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="bookImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="BooksViewController" superclassName="HomeworksTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BooksViewController.h"/>
-        </class>
-        <class className="HomeworksTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeworksTableViewController.h"/>
-        </class>
-        <class className="InfoViewController" superclassName="HomeworksTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InfoViewController.h"/>
-        </class>
-        <class className="PSTCollectionReusableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSTCollectionReusableView.h"/>
-        </class>
-        <class className="PSTCollectionViewCell" superclassName="PSTCollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSTCollectionViewCell.h"/>
-        </class>
-        <class className="PSUICollectionReusableView_" superclassName="PSTCollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSUICollectionReusableView_.h"/>
-        </class>
-        <class className="PSUICollectionViewCell_" superclassName="PSTCollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSUICollectionViewCell_.h"/>
-        </class>
-        <class className="StartScreenViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StartScreenViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="backgroundView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="SubjectTableVIewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SubjectTableVIewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="iconImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SubjectsViewController" superclassName="HomeworksTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SubjectsViewController.h"/>
-        </class>
-        <class className="TermTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TermTableViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="iconImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="numLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TermsViewController" superclassName="HomeworksTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TermsViewController.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
+        <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>

@@ -9,6 +9,7 @@
 
 
 @implementation AnswerFileURL
+
 {
 	NSString *title;
 }
@@ -21,8 +22,9 @@
 {
 	if(self = [super initFileURLWithPath:path isDirectory:NO]) {
 		title = previewTitle;
+        self.urlPath = path;
 	}
-
+    
 	return self;
 }
 
@@ -30,5 +32,13 @@
 {
 	return title;
 }
+
+
+- (NSURL *)previewItemURL
+{
+	return [NSURL fileURLWithPath:self.urlPath];
+}
+
+
 
 @end
