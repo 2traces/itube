@@ -20,14 +20,21 @@ NSString *kAppStoreURL = @"https://itunes.apple.com/ru/app/angry-birds/id3432006
 {
 	[super viewDidLoad];
 
-	[self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:121.0 / 255.0 green:166.0 / 255.0 blue:191.0 / 255.0 alpha:1.0]];
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+        
+    }
+    else {
+        [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:121.0 / 255.0 green:166.0 / 255.0 blue:191.0 / 255.0 alpha:1.0]];
+        
+    }
 	[self.navigationController.navigationBar setTitleTextAttributes:
 			@{
 					UITextAttributeTextShadowColor : [UIColor blackColor],
 					UITextAttributeTextShadowOffset : [NSValue valueWithUIOffset:UIOffsetMake(0.0, 1.0)]
 			}];
 
-	UIImage *navigationBarBackgroundImage = [[UIImage imageNamed:@"bar"] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 5.0, 1.0, 5.0)];
+    UIImage *navigationBarBackgroundImage = [[UIImage imageNamed:@"bar"] resizableImageWithCapInsets:UIEdgeInsetsMake(22.0, 5.0, 22.0, 5.0)];
 	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage
 												  forBarMetrics:UIBarMetricsDefault];
 	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage

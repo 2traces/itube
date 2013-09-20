@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MKStoreManager.h"
+#import <QuickLook/QuickLook.h>
 
 @implementation AppDelegate
 
@@ -24,6 +25,31 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 	//[[UITableView appearance] setBackgroundView:nil];
 
+    //Setting up app appearence
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            [[UIBarButtonItem appearance] setTintColor:[UIColor blackColor]];
+
+        }
+        else {
+            [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+
+        }
+
+    }
+    else {
+
+    }
+    
+    
+//    UIImage *navigationBarBackgroundImage = [[UIImage imageNamed:@"bar"] resizableImageWithCapInsets:UIEdgeInsetsMake(22.0, 5.0, 22.0, 5.0)];
+//    
+//    [[UINavigationBar appearance] setBackgroundImage:navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
+
+    
+    
+    
 	return YES;
 }
 

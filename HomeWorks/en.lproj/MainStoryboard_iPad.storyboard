@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="VML-az-uhE">
     <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
@@ -191,10 +192,10 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="subjectCell" rowHeight="62" id="t9o-u4-btH" customClass="SubjectTableVIewCell">
-                                <rect key="frame" x="0.0" y="54" width="768" height="64"/>
+                                <rect key="frame" x="0.0" y="119" width="768" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t9o-u4-btH" id="K2N-IA-qJ8">
-                                    <rect key="frame" x="45" y="1" width="658" height="61"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="735" height="61"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Математика" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wab-pn-GuN">
@@ -237,10 +238,10 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="bookCell" rowHeight="100" id="iMU-bq-7p7" customClass="BookTableViewCell">
-                                <rect key="frame" x="0.0" y="54" width="768" height="101"/>
+                                <rect key="frame" x="0.0" y="119" width="768" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iMU-bq-7p7" id="fuJ-38-01y">
-                                    <rect key="frame" x="45" y="1" width="658" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="735" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Материалы по математике. 6 класс." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hNq-cL-hEQ">
@@ -267,14 +268,14 @@
                                     <outlet property="authorsLabel" destination="nme-9m-bvh" id="m8D-79-sWe"/>
                                     <outlet property="bookImage" destination="Bb3-WT-qQw" id="S7t-bt-IyY"/>
                                     <outlet property="nameLabel" destination="hNq-cL-hEQ" id="smk-Z9-VD3"/>
-                                    <segue destination="eYV-tI-KB9" kind="modal" identifier="showBook" customClass="PushLayerSegue" modalPresentationStyle="formSheet" modalTransitionStyle="flipHorizontal" id="12p-eF-HVl"/>
+                                    <segue destination="eYV-tI-KB9" kind="custom" identifier="showBook" customClass="PushLayerSegue" id="12p-eF-HVl"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="findCell" rowHeight="80" id="kgz-TB-ahi" customClass="BookTableViewCell">
-                                <rect key="frame" x="0.0" y="155" width="768" height="81"/>
+                                <rect key="frame" x="0.0" y="219" width="768" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kgz-TB-ahi" id="tQR-vZ-EgR">
-                                    <rect key="frame" x="45" y="0.0" width="658" height="79"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="735" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FRY-6w-gjg">
@@ -313,28 +314,28 @@
             <objects>
                 <viewController id="Cte-lC-5NO" customClass="AnswersViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="Y0s-jv-IT8" customClass="PSUICollectionView">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="u9h-j5-S1x">
-                            <size key="itemSize" width="87" height="87"/>
+                            <size key="itemSize" width="93" height="87"/>
                             <size key="headerReferenceSize" width="50" height="100"/>
                             <size key="footerReferenceSize" width="50" height="62"/>
                             <inset key="sectionInset" minX="9" minY="0.0" maxX="9" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="answerCell" id="eDq-od-dnn" customClass="AnswerViewCell">
-                                <rect key="frame" x="9" y="164" width="87" height="87"/>
+                                <rect key="frame" x="9" y="164" width="93" height="87"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="87" height="87"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="93" height="87"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="element.png" id="Bey-nf-cUm">
-                                            <rect key="frame" x="17" y="17" width="56" height="56"/>
+                                            <rect key="frame" x="20" y="17" width="56" height="56"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="7" id="n5x-CD-SM2">
-                                            <rect key="frame" x="16" y="28" width="56" height="31"/>
+                                            <rect key="frame" x="17" y="28" width="60" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -350,14 +351,14 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="lockedAnswerCell" id="gNK-fd-Anf" customClass="AnswerViewCell">
-                                <rect key="frame" x="96" y="164" width="87" height="87"/>
+                                <rect key="frame" x="103" y="164" width="93" height="87"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="87" height="87"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="93" height="87"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="element-locked.png" id="hpI-WV-2Xi">
-                                            <rect key="frame" x="17" y="17" width="56" height="56"/>
+                                            <rect key="frame" x="20" y="17" width="56" height="56"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -369,10 +370,10 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="emptyAnswerCell" id="Hd2-ft-dgl" customClass="AnswerViewCell">
-                                <rect key="frame" x="183" y="164" width="87" height="87"/>
+                                <rect key="frame" x="197" y="164" width="93" height="87"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="87" height="87"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="93" height="87"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -380,22 +381,22 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionHeader" id="ebB-KM-zvp" customClass="AnswersViewHeader">
-                            <rect key="frame" x="0.0" y="64" width="540" height="100"/>
+                            <rect key="frame" x="0.0" y="64" width="768" height="100"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="bLs-bb-lOw">
-                                    <rect key="frame" x="8" y="0.0" width="524" height="100"/>
+                                    <rect key="frame" x="9" y="0.0" width="750" height="100"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </imageView>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Материалы по математике. 6 класс." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n84-QY-e9I">
-                                    <rect key="frame" x="20" y="4" width="500" height="46"/>
+                                    <rect key="frame" x="20" y="4" width="728" height="46"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Чесноков А.С., Нешков К.И., 2000-2011гг." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E4z-Sn-5Cw">
-                                    <rect key="frame" x="20" y="52" width="500" height="40.999999999999986"/>
+                                    <rect key="frame" x="20" y="51.999999999999986" width="728" height="41"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -409,11 +410,11 @@
                             </connections>
                         </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionFooter" id="Jst-hS-Mx1" customClass="AnswersViewFooter">
-                            <rect key="frame" x="0.0" y="251" width="540" height="62"/>
+                            <rect key="frame" x="0.0" y="251" width="768" height="62"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="yG9-en-P4V">
-                                    <rect key="frame" x="8" y="0.0" width="524" height="62"/>
+                                    <rect key="frame" x="9" y="0.0" width="750" height="62"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </imageView>
                             </subviews>
@@ -423,11 +424,6 @@
                         </collectionReusableView>
                     </collectionView>
                     <navigationItem key="navigationItem" id="qPl-l2-1iG">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="CQ6-r4-hmT">
-                            <connections>
-                                <action selector="tlDismissMe:" destination="Cte-lC-5NO" id="ihg-bp-ejE"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Купить все за 0.99$" id="giU-zE-vW2">
                             <connections>
                                 <action selector="rightBarButtonItemPresses" destination="Cte-lC-5NO" id="qPX-rf-hP0"/>
