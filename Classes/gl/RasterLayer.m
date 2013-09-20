@@ -761,15 +761,30 @@ static long DownloadCacheSize = 0;
             }
             [d release];
         }
-        [dp->piece rasterLoaded];
         [queue removeByConnection:connection];
         if(notFound) {
+            dp->piece->numberTry ++;
+            if(dp->piece->numberTry > 1) {
+                // finally not found
+                [dp->piece rasterLoaded];
+                [minusCache addObject:[[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil] autorelease]];
+                dp->piece->level = -1;
+                [target performSelector:erSelector];
+            } else {
+                // try to download with alternative url
+                NSString *url = [NSString stringWithFormat:@"%@/%d/%d/%d.jpeg", baseUrl, dp->piece->level, dp->piece->x, dp->piece->y];
+                // Create the request.
+                NSURLRequest *newRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+                NSURLConnection *newConnection=[[NSURLConnection alloc] initWithRequest:newRequest delegate:self];
+                if (newConnection) {
+                    dp->connection = newConnection;
+                    [queue put:dp];
+                    [dp retain];
 #ifdef DEBUG
-            //NSLog(@"Download failed from '%@'", connection.originalRequest.URL.absoluteString);
+                    NSLog(@"redownload piece from %@", newRequest.URL.absoluteString);
 #endif
-            [minusCache addObject:[[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil] autorelease]];
-            dp->piece->level = -1;
-            [target performSelector:erSelector];
+                }
+            }
         } else {
 #ifdef DEBUG
             NSLog(@"Piece was downloaded from '%@'", connection.originalRequest.URL.absoluteString);

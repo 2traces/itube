@@ -56,6 +56,7 @@
     RasterLayer *layer;
     NSMutableArray *objects;
     unsigned int gltex, vertexBuffer;
+    int numberTry;
     //float *coords, *uv;
 }
 
