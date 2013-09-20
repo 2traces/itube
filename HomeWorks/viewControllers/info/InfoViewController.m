@@ -36,7 +36,7 @@ NSString *kAppStoreURL = @"https://itunes.apple.com/ru/app/angry-birds/id3432006
 
 - (IBAction)tlDismissMe:(id)sender
 {
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

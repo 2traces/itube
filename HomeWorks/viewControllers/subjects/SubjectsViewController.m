@@ -35,7 +35,7 @@
 
 - (void)showInfo
 {
-	[self presentModalViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"infoViewController"] animated:YES];
+	[self presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"infoViewController"] animated:YES completion:nil];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -149,7 +149,7 @@
 		BooksViewController *targetViewController = segue.destinationViewController;
 		if([segue.destinationViewController isKindOfClass:[UINavigationController class]])
 		{
-			targetViewController = [segue.destinationViewController topViewController];
+			targetViewController = (BooksViewController*)[segue.destinationViewController topViewController];
 
 		}
 		targetViewController.term = _term;

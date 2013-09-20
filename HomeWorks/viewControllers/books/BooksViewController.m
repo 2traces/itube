@@ -44,7 +44,7 @@ static NSString *cellIdentifier = @"bookCell";
 
 - (void)showInfo
 {
-	[self presentModalViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"infoViewController"] animated:YES];
+	[self presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"infoViewController"] animated:YES completion:nil];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -116,7 +116,7 @@ static NSString *cellIdentifier = @"bookCell";
 			mailViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 		}
 
-		[self presentModalViewController:mailViewController animated:YES];
+		[self presentViewController:mailViewController animated:YES completion:nil];
 	}
 }
 
@@ -127,7 +127,7 @@ static NSString *cellIdentifier = @"bookCell";
 		AnswersViewController *targetViewController = segue.destinationViewController;
 		if([segue.destinationViewController isKindOfClass:[UINavigationController class]])
 		{
-			targetViewController = [segue.destinationViewController topViewController];
+			targetViewController = (AnswersViewController*)[segue.destinationViewController topViewController];
 		}
 		targetViewController.term = _term;
 		targetViewController.subject = _subject;
@@ -137,7 +137,7 @@ static NSString *cellIdentifier = @"bookCell";
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:nil];
 	[self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
 
 }

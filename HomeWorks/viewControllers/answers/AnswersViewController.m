@@ -102,7 +102,7 @@ NSString *kFooterID = @"collectionFooter";
 
 - (IBAction)tlDismissMe:(id)sender
 {
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)collectionView:(PSTCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -126,7 +126,7 @@ NSString *kFooterID = @"collectionFooter";
 
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 	{
-		[self presentModalViewController:previewController animated:YES];
+		[self presentViewController:previewController animated:YES completion:nil];
 	}
 	else
 	{
@@ -138,7 +138,7 @@ NSString *kFooterID = @"collectionFooter";
 		navigationControllerForPreview.navigationBar.barStyle = UIBarStyleBlack;
 		navigationControllerForPreview.toolbar.barStyle = UIBarStyleBlack;
 
-		[self presentModalViewController:navigationControllerForPreview animated:YES];
+		[self presentViewController:navigationControllerForPreview animated:YES completion:nil];
 	}
 }
 

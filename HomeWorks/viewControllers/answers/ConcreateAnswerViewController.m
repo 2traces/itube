@@ -32,13 +32,14 @@
 
 	answers = [_book children:@"a"];
 
-	NSString *featureId = [NSString stringWithFormat:self.bookIAPStringFormat,
-										   [_term attribute:@"id"],
-										   [_subject attribute:@"id"],
-										   [_book attribute:@"id"]];
+
 #ifdef HW_PRO
 	purchased = YES;
 #else
+    NSString *featureId = [NSString stringWithFormat:self.bookIAPStringFormat,
+                           [_term attribute:@"id"],
+                           [_subject attribute:@"id"],
+                           [_book attribute:@"id"]];
 	purchased = [MKStoreManager isFeaturePurchased:featureId];
 #endif
 	self.dataSource = self;

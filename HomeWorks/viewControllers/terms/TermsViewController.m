@@ -33,7 +33,7 @@
 
 - (void)showInfo
 {
-	[self presentModalViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"infoViewController"] animated:YES];
+	[self presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"infoViewController"] animated:YES completion:nil];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -67,7 +67,7 @@
 		SubjectsViewController *targetViewController = segue.destinationViewController;
 		if ([segue.destinationViewController isKindOfClass:[UINavigationController class]])
 		{
-			targetViewController = [segue.destinationViewController topViewController];
+			targetViewController = (SubjectsViewController*)[segue.destinationViewController topViewController];
 
 		}
 		targetViewController.term = [[self.catalogRxml children:@"term"] objectAtIndex:self.tableView.indexPathForSelectedRow.row];
