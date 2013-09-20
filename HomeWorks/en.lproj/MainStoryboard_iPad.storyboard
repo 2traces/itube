@@ -318,7 +318,7 @@
                                     <outlet property="authorsLabel" destination="nme-9m-bvh" id="m8D-79-sWe"/>
                                     <outlet property="bookImage" destination="Bb3-WT-qQw" id="S7t-bt-IyY"/>
                                     <outlet property="nameLabel" destination="hNq-cL-hEQ" id="smk-Z9-VD3"/>
-                                    <segue destination="eYV-tI-KB9" kind="modal" identifier="showBook" customClass="PushLayerSegue" modalPresentationStyle="formSheet" modalTransitionStyle="flipHorizontal" id="12p-eF-HVl"/>
+                                    <segue destination="eYV-tI-KB9" kind="custom" identifier="showBook" customClass="PushLayerSegue" id="12p-eF-HVl"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="findCell" rowHeight="80" id="kgz-TB-ahi" customClass="BookTableViewCell">
@@ -357,7 +357,7 @@
             <objects>
                 <viewController id="Cte-lC-5NO" customClass="AnswersViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="Y0s-jv-IT8" customClass="PSUICollectionView">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="u9h-j5-S1x">
                             <size key="itemSize" width="155" height="135"/>
@@ -367,7 +367,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="answerCell" id="eDq-od-dnn" customClass="AnswerViewCell">
-                                <rect key="frame" x="15" y="150" width="155" height="135"/>
+                                <rect key="frame" x="15" y="214" width="155" height="135"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="155" height="135"/>
@@ -394,7 +394,7 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="lockedAnswerCell" id="gNK-fd-Anf" customClass="AnswerViewCell">
-                                <rect key="frame" x="192.5" y="150" width="155" height="135"/>
+                                <rect key="frame" x="209" y="214" width="155" height="135"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="155" height="135"/>
@@ -413,7 +413,7 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="emptyAnswerCell" id="Hd2-ft-dgl" customClass="AnswerViewCell">
-                                <rect key="frame" x="370" y="150" width="155" height="135"/>
+                                <rect key="frame" x="404" y="214" width="155" height="135"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="155" height="135"/>
@@ -424,15 +424,15 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionHeader" id="ebB-KM-zvp" customClass="AnswersViewHeader">
-                            <rect key="frame" x="0.0" y="0.0" width="540" height="150"/>
+                            <rect key="frame" x="0.0" y="64" width="768" height="150"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="bLs-bb-lOw">
-                                    <rect key="frame" x="9" y="0.0" width="522" height="150"/>
+                                    <rect key="frame" x="9" y="0.0" width="750" height="150"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </imageView>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n84-QY-e9I">
-                                    <rect key="frame" x="20" y="4" width="500" height="45"/>
+                                    <rect key="frame" x="20" y="4" width="728" height="45"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     <string key="text">Материалы по математике. 6 класс.Материалы по математике. 6 класс.Материалы по математике. 6 класс.Материалы по математике. 6 класс.Материалы по математике. 6 класс.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -440,7 +440,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Чесноков А.С., Нешков К.И., 2000-2011гг.Чесноков А.С., Нешков К.И., 2000-2011гг.Чесноков А.С., Нешков К.И., 2000-2011гг." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E4z-Sn-5Cw">
-                                    <rect key="frame" x="20" y="43" width="500" height="48"/>
+                                    <rect key="frame" x="20" y="43" width="728" height="48"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -470,11 +470,11 @@
                             </connections>
                         </collectionReusableView>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionFooter" id="Jst-hS-Mx1" customClass="AnswersViewFooter">
-                            <rect key="frame" x="0.0" y="285" width="540" height="62"/>
+                            <rect key="frame" x="0.0" y="349" width="768" height="62"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="yG9-en-P4V">
-                                    <rect key="frame" x="9" y="0.0" width="522" height="62"/>
+                                    <rect key="frame" x="9" y="0.0" width="750" height="62"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </imageView>
                             </subviews>
@@ -483,13 +483,7 @@
                             </connections>
                         </collectionReusableView>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="qPl-l2-1iG">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="CQ6-r4-hmT">
-                            <connections>
-                                <action selector="tlDismissMe:" destination="Cte-lC-5NO" id="ihg-bp-ejE"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="qPl-l2-1iG"/>
                     <value key="contentSizeForViewInPopover" type="size" width="400" height="960"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
@@ -1019,9 +1013,16 @@
     </scenes>
     <resources>
         <image name="bottom_logo.png" width="320" height="38"/>
+        <image name="bottom_logo.png" width="320" height="38"/>
+        <image name="bottom_logo.png" width="320" height="38"/>
+        <image name="bottom_logo.png" width="320" height="38"/>
+        <image name="bottom_logo.png" width="320" height="38"/>
+        <image name="bottom_logo.png" width="320" height="38"/>
+        <image name="buyButtonBg.png" width="108" height="107"/>
         <image name="buyButtonBg.png" width="108" height="107"/>
         <image name="buyDownloadBt.png" width="299" height="44"/>
         <image name="buy_bg.png" width="320" height="152"/>
+        <image name="buy_bt.png" width="109" height="31"/>
         <image name="buy_bt.png" width="109" height="31"/>
         <image name="element-locked.png" width="155" height="135"/>
         <image name="element.png" width="155" height="135"/>
@@ -1030,6 +1031,10 @@
         <image name="restore_purchases.png" width="47" height="47"/>
         <image name="tableBackgroundIpad.png" width="768" height="50"/>
         <image name="table_button_single.png" width="300" height="64"/>
+        <image name="table_button_single.png" width="300" height="64"/>
+        <image name="table_button_single.png" width="300" height="64"/>
+        <image name="table_button_single_pressed.png" width="300" height="64"/>
+        <image name="table_button_single_pressed.png" width="300" height="64"/>
         <image name="table_button_single_pressed.png" width="300" height="64"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
