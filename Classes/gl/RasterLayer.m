@@ -722,6 +722,7 @@ static long DownloadCacheSize = 0;
     if(dp != nil) {
         if(error.code == -1001) {
             // timeout
+            [dp->data setLength:0];
             [queue removeByConnection:connection];
             NSURLRequest *newRequest=[NSURLRequest requestWithURL:connection.originalRequest.URL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
             NSURLConnection *newConnection=[[NSURLConnection alloc] initWithRequest:newRequest delegate:self];
@@ -772,6 +773,7 @@ static long DownloadCacheSize = 0;
                 [target performSelector:erSelector];
             } else {
                 // try to download with alternative url
+                [dp->data setLength:0];
                 NSString *url = [NSString stringWithFormat:@"%@/%d/%d/%d.jpeg", baseUrl, dp->piece->level, dp->piece->x, dp->piece->y];
                 // Create the request.
                 NSURLRequest *newRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
