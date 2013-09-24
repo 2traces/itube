@@ -876,6 +876,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     //[self setGeoPosition:userGeoPosition withZoom:-1];
     
     [self sendMapMovedNotification];
+    [self updatePinsForLevel:[self getLevelForScale:scale]];
 }
 
 -(void)handleSingleTap:(UITapGestureRecognizer*)recognizer
