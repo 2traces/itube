@@ -109,6 +109,96 @@ NSString *kFooterID = @"collectionFooter";
 	}
 }
 
+
+- (void)downloadAll
+{
+	NSString *termId = [_term attribute:@"id"];
+	NSString *subjectId = [_subject attribute:@"id"];
+	NSString *bookId = [_book attribute:@"id"];
+    
+	__weak __typeof (&*self) weakSelf = self;
+    
+	__block int succesfullyDownloaded = 0;
+    
+	void (^successOrFailure)() = ^
+	{
+		activityView.activityLabel.text = [NSString stringWithFormat:@"Загружено %d из %d",
+                                           succesfullyDownloaded,
+                                           answers.count];
+        activityView.activityLabel.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:activityView.activityLabel.font.pointSize];
+        
+		if (operationQueue.operationCount == 0)
+		{
+			[DejalBezelActivityView removeView];
+			NSString *offlineFilePath = [NSString stringWithFormat:self.offlineFilePathStringFormat,
+                                         termId,
+                                         subjectId,
+                                         bookId];
+			[[NSData data] writeToFile:offlineFilePath atomically:NO];
+            [self addSkipBackupAttributeToItemAtPath:offlineFilePath];
+            
+			[weakSelf updateAllFilesDownloadedStatus];
+			[weakSelf.collectionView reloadData];
+		}
+	};
+    
+	[operationQueue cancelAllOperations];
+	[operationQueue setSuspended:YES];
+	NSString *bookAnswerExt = [_book attribute:@"ext"];
+    
+	for (RXMLElement *answer in answers)
+	{
+		NSString *answerFile = answer.text;
+        NSString *answerExt = [answer attribute:@"ext"];
+        if (!answerExt || ![answerExt length]) {
+            answerExt = bookAnswerExt;
+        }
+		NSString *pageFilePath = [NSString stringWithFormat:self.pageFilePathStringFormat,
+                                  termId,
+                                  subjectId,
+                                  bookId,
+                                  answerFile,
+                                  answerExt];
+        
+		if (![[NSFileManager defaultManager] fileExistsAtPath:pageFilePath])
+		{
+			NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:self.pageURLStringFormat,
+                                                                                       termId,
+                                                                                       subjectId,
+                                                                                       bookId,
+                                                                                       answerFile,
+                                                                                       answerExt]]];
+            
+			AFHTTPRequestOperation *catalogDownloadOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+			[catalogDownloadOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+             {
+                 [operation.responseData writeToFile:pageFilePath atomically:YES];
+                 [self addSkipBackupAttributeToItemAtPath:pageFilePath];
+                 
+                 succesfullyDownloaded++;
+                 successOrFailure();
+                 
+             }                                               failure:^(AFHTTPRequestOperation *operation, NSError *error)
+             {
+                 successOrFailure();
+             }];
+            
+			[operationQueue addOperation:catalogDownloadOperation];
+		}
+		else
+		{
+			succesfullyDownloaded++;
+		}
+	}
+	if (operationQueue.operationCount > 0)
+	{
+		activityView = [DejalBezelActivityView activityViewForView:self.view withLabel:@"" width:200];
+		successOrFailure();
+	}
+	[operationQueue setSuspended:NO];
+}
+
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (indexPath.item >= answers.count)
@@ -204,89 +294,6 @@ NSString *kFooterID = @"collectionFooter";
     }
     
     return success;
-}
-
-- (void)downloadAll
-{
-	NSString *termId = [_term attribute:@"id"];
-	NSString *subjectId = [_subject attribute:@"id"];
-	NSString *bookId = [_book attribute:@"id"];
-
-	__weak __typeof (&*self) weakSelf = self;
-
-	__block int succesfullyDownloaded = 0;
-
-	void (^successOrFailure)() = ^
-	{
-		activityView.activityLabel.text = [NSString stringWithFormat:@"Загружено %d из %d",
-																	 succesfullyDownloaded,
-																	 answers.count];
-        activityView.activityLabel.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:activityView.activityLabel.font.pointSize];
-
-		if (operationQueue.operationCount == 0)
-		{
-			[DejalBezelActivityView removeView];
-			NSString *offlineFilePath = [NSString stringWithFormat:self.offlineFilePathStringFormat,
-																termId,
-																subjectId,
-																bookId];
-			[[NSData data] writeToFile:offlineFilePath atomically:NO];
-            [self addSkipBackupAttributeToItemAtPath:offlineFilePath];
-            
-			[weakSelf updateAllFilesDownloadedStatus];
-			[weakSelf.collectionView reloadData];
-		}
-	};
-
-	[operationQueue cancelAllOperations];
-	[operationQueue setSuspended:YES];
-	NSString *answerExt = [_book attribute:@"ext"];
-	for (RXMLElement *answer in answers)
-	{
-		NSString *answerFile = answer.text;
-		NSString *pageFilePath = [NSString stringWithFormat:self.pageFilePathStringFormat,
-															termId,
-															subjectId,
-															bookId,
-															answerFile,
-															answerExt];
-
-		if (![[NSFileManager defaultManager] fileExistsAtPath:pageFilePath])
-		{
-			NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:self.pageURLStringFormat,
-																												 termId,
-																												 subjectId,
-																												 bookId,
-																												 answerFile,
-																												 answerExt]]];
-
-			AFHTTPRequestOperation *catalogDownloadOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-			[catalogDownloadOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-			{
-				[operation.responseData writeToFile:pageFilePath atomically:YES];
-                [self addSkipBackupAttributeToItemAtPath:pageFilePath];
-                
-				succesfullyDownloaded++;
-				successOrFailure();
-
-			}                                               failure:^(AFHTTPRequestOperation *operation, NSError *error)
-			{
-				successOrFailure();
-			}];
-
-			[operationQueue addOperation:catalogDownloadOperation];
-		}
-		else
-		{
-			succesfullyDownloaded++;
-		}
-	}
-	if (operationQueue.operationCount > 0)
-	{
-		activityView = [DejalBezelActivityView activityViewForView:self.view withLabel:@"" width:200];
-		successOrFailure();
-	}
-	[operationQueue setSuspended:NO];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView

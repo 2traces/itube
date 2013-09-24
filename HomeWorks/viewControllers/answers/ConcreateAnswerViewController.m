@@ -23,6 +23,81 @@
 	NSOperationQueue *operationQueue;
 }
 
+
+- (id <QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index
+{
+    
+	RXMLElement *answer = [answers objectAtIndex:index];
+    
+	NSString *termId = [_term attribute:@"id"];
+	NSString *subjectId = [_subject attribute:@"id"];
+	NSString *bookId = [_book attribute:@"id"];
+	NSString *answerExt = [answer attribute:@"ext"];
+    if (!answerExt || ![answerExt length]) {
+        answerExt = [_book attribute:@"ext"];
+    }
+    //    else {
+    //        NSLog(@"New extenstion implemented!");
+    //    }
+	NSString *answerFile = answer.text;
+	__block NSString *pageFilePath = [NSString stringWithFormat:self.pageFilePathStringFormat,
+                                      termId,
+                                      subjectId,
+                                      bookId,
+                                      answerFile,
+                                      answerExt];
+    
+	if (![[NSFileManager defaultManager] fileExistsAtPath:pageFilePath] && [fileAlreadyDownloading valueForKey:pageFilePath] == nil)
+	{
+		__weak __typeof (&*controller) weakController = controller;
+		[fileAlreadyDownloading setObject:@(YES) forKey:pageFilePath];
+		NSString *urlAsString = [NSString stringWithFormat:self.pageURLStringFormat,
+                                 termId,
+                                 subjectId,
+                                 bookId,
+                                 answerFile,
+                                 answerExt];
+        
+		NSLog(@"starting downloading for %@", urlAsString);
+		NSURL *url = [NSURL URLWithString:urlAsString];
+		NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        
+		AFHTTPRequestOperation *catalogDownloadOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+        
+		if (index == controller.currentPreviewItemIndex)
+		{
+			[operationQueue cancelAllOperations];
+			catalogDownloadOperation.queuePriority = NSOperationQueuePriorityHigh;
+		}
+        
+		[catalogDownloadOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+         {
+             [operation.responseData writeToFile:pageFilePath atomically:NO];
+             
+             [self addSkipBackupAttributeToItemAtPath:pageFilePath];
+             
+             if (weakController.currentPreviewItemIndex == index)
+             {
+                 [weakController refreshCurrentPreviewItem];
+             }
+             
+         }  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Failed to download item...");
+         }];
+        
+		[operationQueue addOperation:catalogDownloadOperation];
+	}
+    NSURL *ans = [AnswerFileURL fileURLWithPath:pageFilePath previewTitle:[NSString stringWithFormat:@"%@", answerFile]];
+    if ([[NSFileManager defaultManager] fileExistsAtPath: [ans path]]) {
+        NSLog(@"Giving away existing file url.");
+    }
+    else {
+        NSLog(@"Giving away missing file url.");
+    }
+	return ans;
+}
+
+
 - (id)initWithTerm:(RXMLElement *)term subject:(RXMLElement *)subject book:(RXMLElement *)book purchased:(BOOL)purchased
 {
 	self = [super init];
@@ -57,73 +132,6 @@
 - (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller
 {
 	return _purchased ? answers.count : 2;
-}
-
-- (id <QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index
-{
-
-	RXMLElement *answer = [answers objectAtIndex:index];
-
-	NSString *termId = [_term attribute:@"id"];
-	NSString *subjectId = [_subject attribute:@"id"];
-	NSString *bookId = [_book attribute:@"id"];
-	NSString *answerExt = [_book attribute:@"ext"];
-	NSString *answerFile = answer.text;
-	__block NSString *pageFilePath = [NSString stringWithFormat:self.pageFilePathStringFormat,
-														termId,
-														subjectId,
-														bookId,
-														answerFile,
-														answerExt];
-
-	if (![[NSFileManager defaultManager] fileExistsAtPath:pageFilePath] && [fileAlreadyDownloading valueForKey:pageFilePath] == nil)
-	{
-		__weak __typeof (&*controller) weakController = controller;
-		[fileAlreadyDownloading setObject:@(YES) forKey:pageFilePath];
-		NSString *urlAsString = [NSString stringWithFormat:self.pageURLStringFormat,
-														   termId,
-														   subjectId,
-														   bookId,
-														   answerFile,
-														   answerExt];
-
-		NSLog(@"starting downloading for %@", urlAsString);
-		NSURL *url = [NSURL URLWithString:urlAsString];
-		NSURLRequest *request = [NSURLRequest requestWithURL:url];
-
-		AFHTTPRequestOperation *catalogDownloadOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-
-		if (index == controller.currentPreviewItemIndex)
-		{
-			[operationQueue cancelAllOperations];
-			catalogDownloadOperation.queuePriority = NSOperationQueuePriorityHigh;
-		}
-
-		[catalogDownloadOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-		{
-			[operation.responseData writeToFile:pageFilePath atomically:NO];
-
-            [self addSkipBackupAttributeToItemAtPath:pageFilePath];
-            
-			if (weakController.currentPreviewItemIndex == index)
-			{
-				[weakController refreshCurrentPreviewItem];
-			}
-
-		}  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Failed to download item...");
-        }];
-
-		[operationQueue addOperation:catalogDownloadOperation];
-	}
-    NSURL *ans = [AnswerFileURL fileURLWithPath:pageFilePath previewTitle:[NSString stringWithFormat:@"%@", answerFile]];
-    if ([[NSFileManager defaultManager] fileExistsAtPath: [ans path]]) {
-        NSLog(@"Giving away existing file url.");
-    }
-    else {
-        NSLog(@"Giving away missing file url.");
-    }
-	return ans;
 }
 
 - (BOOL)addSkipBackupAttributeToItemAtPath:(NSString *)path
