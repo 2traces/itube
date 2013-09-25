@@ -54,6 +54,9 @@ typedef enum {
     BOOL returningFromLandscape; //another freaking dummy flag to keep old and new UI consistent and synchronized...
 }
 
+-(IBAction)searchButton:(UIButton*)sender;
+-(IBAction)searchText:(UITextField*)sender;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil glViewController:(GlViewController*)glViewController;
 
 - (void)transitToPathMode;
@@ -70,5 +73,6 @@ typedef enum {
 @property (nonatomic, retain) ReaderViewController *readerController;
 @property (nonatomic, retain) HCBookmarksViewController *bookmarksController;
 @property (nonatomic, retain) GlViewController *glController;
+@property (nonatomic, strong) IBOutlet UITextField *textField;
 
 @end

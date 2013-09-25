@@ -14,6 +14,7 @@
 #import "NavigationViewController.h"
 #import "GlSprite.h"
 #import "GlPanel.h"
+#import "GlView.h"
 #import "SettingsViewController.h"
 #import <CoreLocation/CoreLocation.h>
 
@@ -106,6 +107,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 @property (nonatomic, retain) NavigationViewController *navigationViewController;
 @property (nonatomic, assign) BOOL followUserGPS;
 @property (nonatomic, readonly) NSArray *searchResults;
+@property (nonatomic, strong) IBOutlet GlView* glView;
 
 -(FastAccessTableViewController*)showTableView;
 -(void)returnFromSelectionFastAccess:(NSArray *)stations;

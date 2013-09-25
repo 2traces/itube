@@ -30,6 +30,16 @@
 @synthesize separatingView;
 @synthesize shadow;
 
+-(IBAction)searchButton:(UIButton *)sender
+{
+    [_textField resignFirstResponder];
+}
+
+-(IBAction)searchText:(UITextField *)sender
+{
+    [glController loadCitiesLikeThis:sender.text];
+}
+
 - (void) showSettings
 {
     SettingsNavController *controller = [[SettingsNavController alloc] initWithNibName:@"SettingsNavController" bundle:[NSBundle mainBundle]];

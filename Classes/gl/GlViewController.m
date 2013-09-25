@@ -11,7 +11,6 @@
 #import "SettingsNavController.h"
 #import "tubeAppDelegate.h"
 #import "SelectingTabBarViewController.h"
-#import "GlView.h"
 #import "ZonesButtonConf.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
@@ -555,6 +554,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
 @synthesize navigationViewController;
 @synthesize followUserGPS;
 @synthesize searchResults = lastSearchResults;
+@synthesize glView;
+
 
 - (CGFloat) radialOffsetToPoint:(CGPoint)point
 {
@@ -632,29 +633,27 @@ CGPoint translateFromMapToGeo(CGPoint p)
     position = CGPointZero;
     scale = 1.f;
     
-    GlView *view = (GlView *)self.view;
-    view.context = self.context;
-    view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
+    glView.context = self.context;
+    glView.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     UIPanGestureRecognizer *rec = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
-    [view addGestureRecognizer:rec];
+    [glView addGestureRecognizer:rec];
     UITapGestureRecognizer *rec2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
     rec2.numberOfTapsRequired = 2;
     rec2.numberOfTouchesRequired = 1;
-    [view addGestureRecognizer:rec2];
+    [glView addGestureRecognizer:rec2];
     UIPinchGestureRecognizer *rec3 = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
-    [view addGestureRecognizer:rec3];
-    //UILongPressGestureRecognizer *rec4 = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    [glView addGestureRecognizer:rec3];
     UITapGestureRecognizer *rec4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     rec4.numberOfTapsRequired = 1;
     rec4.numberOfTouchesRequired = 1;
-    [view addGestureRecognizer:rec4];
+    [glView addGestureRecognizer:rec4];
     [self setupGL];
     
     rasterLayer = [[RasterLayer alloc] initWithRect:CGRectMake(0, 0, 256, 256) mapName:@"cuba"];
     //[rasterLayer setSignal:self selector:@selector(redrawRect:)];
     
     stationsView = [[TopRasterView alloc] initWithFrame:CGRectMake(0,0,320,44)];
-    [view addSubview:stationsView];
+    [glView addSubview:stationsView];
     
     int adDelta = 0;
     
@@ -670,7 +669,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     [sourceData setImage:[UIImage imageNamed:@"terrain"] forState:UIControlStateSelected];
     sourceData.frame = CGRectMake(15, 420 - adDelta, 44, 27);
     [sourceData addTarget:self action:@selector(changeSource) forControlEvents:UIControlStateHighlighted];
-    [view addSubview:sourceData];
+    [glView addSubview:sourceData];
 
     zones = [UIButton buttonWithType:UIButtonTypeCustom];
     if(IS_IPAD){
@@ -684,8 +683,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
     }
     
     [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:zones];
-    view.zonesButton = zones;
+    [glView addSubview:zones];
+    glView.zonesButton = zones;
 
     
     cornerButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -693,7 +692,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     [cornerButton setFrame:zonesRect];
     [cornerButton addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
 
-    [view addSubview:cornerButton];
+    [glView addSubview:cornerButton];
     
     // user geo position
     Pin *p = [[Pin alloc] initUserPos];
@@ -702,6 +701,9 @@ CGPoint translateFromMapToGeo(CGPoint p)
     newPinId = 1;
     
     [self enableUserLocation];
+    
+    // TEST
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -1916,7 +1918,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
             if(nil != err) {
                 NSLog(@"Error while parsing JSON: %@", err);
             } else {
-                if(nil == lastSearchResults) lastSearchResults = [NSMutableArray array];
+                if(nil == lastSearchResults) lastSearchResults = [[NSMutableArray alloc] init];
                 else [lastSearchResults removeAllObjects];
                 for (NSDictionary *pl in result) {
                     if([pl[@"class"] isEqualToString:@"place"]) {
@@ -1925,6 +1927,10 @@ CGPoint translateFromMapToGeo(CGPoint p)
                          @"type": pl[@"type"],
                          @"name": pl[@"display_name"]}];
                     }
+                }
+                if([lastSearchResults count] > 0) {
+                    NSDictionary *firstObject = [lastSearchResults objectAtIndex:0];
+                    [self scrollToGeoPosition:CGPointMake([firstObject[@"lat"] floatValue], [firstObject[@"lon"] floatValue]) withZoom:-1];
                 }
 #ifdef DEBUG
                 NSLog(@"I've got a list of cities: %@", lastSearchResults);

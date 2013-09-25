@@ -109,13 +109,13 @@ void uncaughtExceptionHandler(NSException *exception) {
         navController = [[UINavigationController alloc] initWithRootViewController:self.navigationViewController];
         navController.navigationBarHidden = YES;
         gl.view.frame = self.navigationViewController.view.frame = [UIScreen mainScreen].applicationFrame;
-        CGRect mainViewFrame = gl.view.frame;
-        mainViewFrame.origin.y = 0;
-        gl.view.frame = mainViewFrame;
+//        CGRect mainViewFrame = gl.view.frame;
+//        mainViewFrame.origin.y = 0;
+//        gl.view.frame = mainViewFrame;
         navController.view.layer.cornerRadius = 5;
         window.layer.cornerRadius = 5;
-        [window addSubview:[navController view]];
-        [window setRootViewController:navController];
+        [window addSubview:self.navigationViewController.view];
+        [window setRootViewController:self.navigationViewController];
         [window makeKeyAndVisible];
     }
 }
