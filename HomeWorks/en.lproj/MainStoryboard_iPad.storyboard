@@ -373,24 +373,43 @@
                                     <rect key="frame" x="0.0" y="0.0" width="155" height="135"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="element.png" id="Bey-nf-cUm">
-                                            <rect key="frame" x="0.0" y="0.0" width="155" height="135"/>
+                                        <view autoresizesSubviews="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="dcR-dS-m3v">
+                                            <rect key="frame" x="6" y="6" width="143" height="123"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="7" id="n5x-CD-SM2">
-                                            <rect key="frame" x="0.0" y="5" width="155" height="24"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Zex-Ch-ouo">
+                                                    <rect key="frame" x="0.0" y="0.0" width="143" height="123"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="element_heading.png" id="Nfr-tn-9Bq">
+                                                    <rect key="frame" x="0.0" y="0.0" width="143" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="7" id="MYg-nY-ZGA">
+                                                    <rect key="frame" x="0.0" y="0.0" width="143" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Загрузка..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h6u-sU-XeK">
+                                                    <rect key="frame" x="0.0" y="60" width="143" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="backgroundImage" destination="Bey-nf-cUm" id="DdH-NY-mSz"/>
-                                    <outlet property="label" destination="n5x-CD-SM2" id="9an-Jg-rqR"/>
+                                    <outlet property="backgroundClippingView" destination="dcR-dS-m3v" id="ouT-Y3-Bim"/>
+                                    <outlet property="itemImage" destination="Zex-Ch-ouo" id="JBc-ms-XpI"/>
+                                    <outlet property="label" destination="MYg-nY-ZGA" id="q7j-6B-efD"/>
+                                    <outlet property="loadingLabel" destination="h6u-sU-XeK" id="c8P-iP-wGh"/>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="lockedAnswerCell" id="gNK-fd-Anf" customClass="AnswerViewCell">
@@ -400,16 +419,48 @@
                                     <rect key="frame" x="0.0" y="0.0" width="155" height="135"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="element-locked.png" id="hpI-WV-2Xi">
-                                            <rect key="frame" x="0.0" y="0.0" width="155" height="135"/>
+                                        <view autoresizesSubviews="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="t9e-d9-FRZ">
+                                            <rect key="frame" x="6" y="6" width="143" height="123"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        </imageView>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="unh-Gj-5w9">
+                                                    <rect key="frame" x="0.0" y="0.0" width="143" height="123"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <view alpha="0.5" contentMode="scaleToFill" id="5tY-bm-m61">
+                                                    <rect key="frame" x="0.0" y="0.0" width="143" height="123"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="element_heading.png" id="KNV-B8-QYj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="143" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="7" id="SuB-ea-6g6">
+                                                    <rect key="frame" x="0.0" y="0.0" width="143" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Загрузка..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ci5-MZ-r4W">
+                                                    <rect key="frame" x="0.0" y="60" width="143" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="backgroundImage" destination="hpI-WV-2Xi" id="PEt-Go-BK4"/>
+                                    <outlet property="backgroundClippingView" destination="t9e-d9-FRZ" id="heB-H0-515"/>
+                                    <outlet property="itemImage" destination="unh-Gj-5w9" id="XjB-bC-Tl7"/>
+                                    <outlet property="label" destination="SuB-ea-6g6" id="wsf-Db-fNi"/>
+                                    <outlet property="loadingLabel" destination="ci5-MZ-r4W" id="1tC-Mh-FDK"/>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="emptyAnswerCell" id="Hd2-ft-dgl" customClass="AnswerViewCell">
@@ -420,7 +471,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionHeader" id="ebB-KM-zvp" customClass="AnswersViewHeader">
@@ -1013,28 +1063,16 @@
     </scenes>
     <resources>
         <image name="bottom_logo.png" width="320" height="38"/>
-        <image name="bottom_logo.png" width="320" height="38"/>
-        <image name="bottom_logo.png" width="320" height="38"/>
-        <image name="bottom_logo.png" width="320" height="38"/>
-        <image name="bottom_logo.png" width="320" height="38"/>
-        <image name="bottom_logo.png" width="320" height="38"/>
-        <image name="buyButtonBg.png" width="108" height="107"/>
         <image name="buyButtonBg.png" width="108" height="107"/>
         <image name="buyDownloadBt.png" width="299" height="44"/>
         <image name="buy_bg.png" width="320" height="152"/>
         <image name="buy_bt.png" width="109" height="31"/>
-        <image name="buy_bt.png" width="109" height="31"/>
-        <image name="element-locked.png" width="155" height="135"/>
-        <image name="element.png" width="155" height="135"/>
+        <image name="element_heading.png" width="149" height="25"/>
         <image name="icon144-no-borders.png" width="144" height="144"/>
         <image name="icon_2.png" width="47" height="47"/>
         <image name="restore_purchases.png" width="47" height="47"/>
         <image name="tableBackgroundIpad.png" width="768" height="50"/>
         <image name="table_button_single.png" width="300" height="64"/>
-        <image name="table_button_single.png" width="300" height="64"/>
-        <image name="table_button_single.png" width="300" height="64"/>
-        <image name="table_button_single_pressed.png" width="300" height="64"/>
-        <image name="table_button_single_pressed.png" width="300" height="64"/>
         <image name="table_button_single_pressed.png" width="300" height="64"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

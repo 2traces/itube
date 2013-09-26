@@ -7,9 +7,10 @@
 
 #import "AnswerViewCell.h"
 
-
 @implementation AnswerViewCell
 {
 
 }
+
+
 @end

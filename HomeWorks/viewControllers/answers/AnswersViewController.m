@@ -19,6 +19,7 @@
 #import "BooksService.h"
 #import "BuyViewController.h"
 #import "IAPHelper.h"
+#import <QuartzCore/QuartzCore.h>
 
 NSString *kCellID = @"answerCell";
 NSString *kLockedCellID = @"lockedAnswerCell";
@@ -33,6 +34,7 @@ NSString *kFooterID = @"collectionFooter";
 @implementation AnswersViewController
 {
 	NSArray *answers;
+	NSMutableDictionary *fileAlreadyDownloading;
 
 	NSOperationQueue *operationQueue;
 	DejalActivityView *activityView;
@@ -41,7 +43,7 @@ NSString *kFooterID = @"collectionFooter";
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-
+    fileAlreadyDownloading = [NSMutableDictionary dictionary];
 	answers = [_book children:@"a"];
 
 	[self buyControllerDidFinish:NO];
@@ -315,39 +317,93 @@ NSString *kFooterID = @"collectionFooter";
 	if (indexPath.item >= answers.count)
 	{
         cell = [cv dequeueReusableCellWithReuseIdentifier:kEmptyCellID forIndexPath:indexPath];
-        cell.label.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:cell.label.font.pointSize];
-        
-        NSString *num = [[answers objectAtIndex:indexPath.item] text];
-        NSArray *components = [num componentsSeparatedByString:@"_"];
-        num = [components lastObject];
-        if (num && ![num isEqualToString:@""]) {
-            cell.label.text = num;
-        }
-        else {
-            cell.label.text = [[answers objectAtIndex:indexPath.item] text];
-        }
-		return cell;
+        return cell;
 	}
 	else if (indexPath.item < 2 || self.purchased)
 	{
 		cell = [cv dequeueReusableCellWithReuseIdentifier:kCellID forIndexPath:indexPath];
-        cell.label.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:cell.label.font.pointSize];
-
-        NSString *num = [[answers objectAtIndex:indexPath.item] text];
-        NSArray *components = [num componentsSeparatedByString:@"_"];
-        num = [components lastObject];
-        if (num && ![num isEqualToString:@""]) {
-            cell.label.text = num;
-        }
-        else {
-            cell.label.text = [[answers objectAtIndex:indexPath.item] text];
-        }
-		return cell;
 	}
 	else
 	{
-		return [cv dequeueReusableCellWithReuseIdentifier:kLockedCellID forIndexPath:indexPath];
+		cell = [cv dequeueReusableCellWithReuseIdentifier:kLockedCellID forIndexPath:indexPath];
 	}
+    
+    cell.backgroundClippingView.layer.cornerRadius = 10.0f;
+
+    cell.label.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:cell.label.font.pointSize];
+    
+    NSString *num = [[answers objectAtIndex:indexPath.item] text];
+    NSArray *components = [num componentsSeparatedByString:@"_"];
+    num = [components lastObject];
+    if (num && ![num isEqualToString:@""]) {
+        cell.label.text = num;
+    }
+    else {
+        cell.label.text = [[answers objectAtIndex:indexPath.item] text];
+    }
+    
+    //Start loading the image or simply load it from file
+    RXMLElement *answer = [answers objectAtIndex:indexPath.item];
+    
+    NSString *termId = [_term attribute:@"id"];
+    NSString *subjectId = [_subject attribute:@"id"];
+    NSString *bookId = [_book attribute:@"id"];
+    NSString *answerExt = [answer attribute:@"ext"];
+    if (!answerExt || ![answerExt length]) {
+        answerExt = [_book attribute:@"ext"];
+    }
+    NSString *answerFile = answer.text;
+    __block NSString *pageFilePath = [NSString stringWithFormat:self.pageFilePathStringFormat,
+                                      termId,
+                                      subjectId,
+                                      bookId,
+                                      answerFile,
+                                      answerExt];
+        
+    if (![[NSFileManager defaultManager] fileExistsAtPath:pageFilePath])
+    {
+        [cell.activityView startAnimating];
+        cell.loadingLabel.hidden = NO;
+        
+        cell.itemImage.image = nil;
+        if ([fileAlreadyDownloading valueForKey:pageFilePath] == nil) {
+            [fileAlreadyDownloading setObject:@(YES) forKey:pageFilePath];
+            NSString *urlAsString = [NSString stringWithFormat:self.pageURLStringFormat,
+                                     termId,
+                                     subjectId,
+                                     bookId,
+                                     answerFile,
+                                     answerExt];
+            
+            NSLog(@"starting downloading for %@", urlAsString);
+            NSURL *url = [NSURL URLWithString:urlAsString];
+            NSURLRequest *request = [NSURLRequest requestWithURL:url];
+            
+            AFHTTPRequestOperation *catalogDownloadOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+            
+            [catalogDownloadOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+             {
+                 [operation.responseData writeToFile:pageFilePath atomically:NO];
+                 
+                 [self addSkipBackupAttributeToItemAtPath:pageFilePath];
+                 
+                 [self.collectionView reloadData];
+                 
+             }  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                 NSLog(@"Failed to download item...");
+             }];
+            
+            [operationQueue addOperation:catalogDownloadOperation];
+        }
+        
+    }
+    else {
+        UIImage *image = [[UIImage alloc] initWithContentsOfFile:pageFilePath];
+        cell.itemImage.image = image;
+        [cell.activityView stopAnimating];
+        cell.loadingLabel.hidden = YES;
+    }
+    return cell;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath

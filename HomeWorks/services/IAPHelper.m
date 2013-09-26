@@ -139,7 +139,6 @@ NSString *const IAPHelperProductFailedNotification = @"IAPHelperProductFailedNot
 }
 
 -(int)daysRemainingOnSubscription {
-    
     NSDate * expiryDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"ExpirationDate"];
     
     NSDateFormatter *dateformatter = [NSDateFormatter new];
