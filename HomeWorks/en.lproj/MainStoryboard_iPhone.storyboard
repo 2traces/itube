@@ -383,46 +383,34 @@
                                     <rect key="frame" x="0.0" y="0.0" width="155" height="135"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="center" id="DnS-H3-hMX">
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="0Ei-ni-5OC">
+                                            <rect key="frame" x="6" y="6" width="143" height="123"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="7" id="lmP-qK-jo1">
+                                            <rect key="frame" x="6" y="6" width="143" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.0" green="0.64705882349999999" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="element_mask.png" id="JfK-e4-Lhf">
                                             <rect key="frame" x="0.0" y="0.0" width="155" height="135"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <view autoresizesSubviews="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="G7t-oI-RFe">
-                                                    <rect key="frame" x="6" y="6" width="143" height="123"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ZZG-Xr-w5A">
-                                                            <rect key="frame" x="0.0" y="0.0" width="143" height="123"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="element_heading.png" id="dqn-KZ-LpS">
-                                                            <rect key="frame" x="0.0" y="0.0" width="143" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="2Kc-2G-i7h">
-                                                            <rect key="frame" x="63" y="52" width="20" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                        </activityIndicatorView>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="7" id="2QM-aC-R54">
-                                                            <rect key="frame" x="0.0" y="0.0" width="143" height="24"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
-                                            </subviews>
-                                        </view>
+                                        </imageView>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="ZBE-8s-rBZ">
+                                            <rect key="frame" x="67" y="62" width="20" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <outlet property="activityView" destination="2Kc-2G-i7h" id="7qT-cA-s92"/>
-                                    <outlet property="backgroundClippingView" destination="G7t-oI-RFe" id="DdD-a4-jSA"/>
-                                    <outlet property="itemImage" destination="ZZG-Xr-w5A" id="jsO-nQ-dOj"/>
-                                    <outlet property="label" destination="2QM-aC-R54" id="QMo-uq-Els"/>
+                                    <outlet property="activityView" destination="ZBE-8s-rBZ" id="MHu-3h-VD5"/>
+                                    <outlet property="itemImage" destination="0Ei-ni-5OC" id="nm8-Z7-ZV6"/>
+                                    <outlet property="label" destination="lmP-qK-jo1" id="Ugx-Nu-RdY"/>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="lockedAnswerCell" id="tbo-Y6-Rql" customClass="AnswerViewCell">
@@ -432,51 +420,39 @@
                                     <rect key="frame" x="0.0" y="0.0" width="155" height="135"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="center" id="QA6-hk-hHi">
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="QtT-tO-seq">
+                                            <rect key="frame" x="6" y="6" width="143" height="123"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </imageView>
+                                        <view alpha="0.5" contentMode="scaleToFill" id="sFN-pn-kXv">
+                                            <rect key="frame" x="6" y="6" width="143" height="123"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="7" id="gHZ-pC-EV5">
+                                            <rect key="frame" x="6" y="6" width="143" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.0" green="0.64705882349999999" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="element_mask.png" id="5z9-So-efN">
                                             <rect key="frame" x="0.0" y="0.0" width="155" height="135"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <view autoresizesSubviews="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="8WG-Sx-gTr">
-                                                    <rect key="frame" x="6" y="6" width="143" height="123"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Ean-sw-wjB">
-                                                            <rect key="frame" x="0.0" y="0.0" width="143" height="123"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="QXM-gE-y85">
-                                                            <rect key="frame" x="63" y="52" width="20" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                        </activityIndicatorView>
-                                                        <view alpha="0.49999999999999994" contentMode="scaleToFill" id="TjX-bD-xju">
-                                                            <rect key="frame" x="0.0" y="0.0" width="143" height="123"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </view>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="element_heading.png" id="a0Q-er-bsP">
-                                                            <rect key="frame" x="0.0" y="0.0" width="143" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="7" id="sjU-78-e2x">
-                                                            <rect key="frame" x="0.0" y="0.0" width="143" height="24"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
-                                            </subviews>
-                                        </view>
+                                        </imageView>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="Jcr-Ig-bKW">
+                                            <rect key="frame" x="67" y="62" width="20" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <outlet property="activityView" destination="QXM-gE-y85" id="pVv-ZH-dTK"/>
-                                    <outlet property="backgroundClippingView" destination="8WG-Sx-gTr" id="Uzk-Rc-rGd"/>
-                                    <outlet property="itemImage" destination="Ean-sw-wjB" id="sza-ek-DSS"/>
-                                    <outlet property="label" destination="sjU-78-e2x" id="GeE-5M-tMK"/>
+                                    <outlet property="activityView" destination="Jcr-Ig-bKW" id="Tmk-UX-P5b"/>
+                                    <outlet property="itemImage" destination="QtT-tO-seq" id="zFp-Pf-hEo"/>
+                                    <outlet property="label" destination="gHZ-pC-EV5" id="Waf-a8-Vri"/>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="emptyAnswerCell" id="Wjj-Gy-mNP" customClass="AnswerViewCell">
@@ -501,7 +477,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Чесноков А.С., Нешков К.И., 2000-2011гг. Чесноков А.С., Нешков К.И., 2000-2011гг. " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MjR-eW-8J6">
-                                    <rect key="frame" x="20" y="58" width="280" height="34"/>
+                                    <rect key="frame" x="20" y="57.999999999999993" width="280" height="34"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -982,7 +958,7 @@
         <image name="buyDownloadBt.png" width="299" height="44"/>
         <image name="buy_bg.png" width="320" height="152"/>
         <image name="buy_bt.png" width="109" height="31"/>
-        <image name="element_heading.png" width="149" height="25"/>
+        <image name="element_mask.png" width="155" height="135"/>
         <image name="icon144-no-borders.png" width="144" height="144"/>
         <image name="icon_2.png" width="47" height="47"/>
         <image name="restore_purchases.png" width="47" height="47"/>

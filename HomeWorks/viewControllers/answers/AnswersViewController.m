@@ -328,19 +328,11 @@ NSString *kFooterID = @"collectionFooter";
 		cell = [cv dequeueReusableCellWithReuseIdentifier:kLockedCellID forIndexPath:indexPath];
 	}
     
-    cell.backgroundClippingView.layer.cornerRadius = 10.0f;
-
-    cell.label.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:cell.label.font.pointSize];
+//  Had to replace this with a clipping image — setting up view layer was the
+// main reason for a very, very poor performance.
+//    cell.backgroundClippingView.layer.cornerRadius = 10.0f;
+//
     
-    NSString *num = [[answers objectAtIndex:indexPath.item] text];
-    NSArray *components = [num componentsSeparatedByString:@"_"];
-    num = [components lastObject];
-    if (num && ![num isEqualToString:@""]) {
-        cell.label.text = num;
-    }
-    else {
-        cell.label.text = [[answers objectAtIndex:indexPath.item] text];
-    }
     
     //Start loading the image or simply load it from file
     RXMLElement *answer = [answers objectAtIndex:indexPath.item];
@@ -363,7 +355,7 @@ NSString *kFooterID = @"collectionFooter";
     if (![[NSFileManager defaultManager] fileExistsAtPath:pageFilePath])
     {
         [cell.activityView startAnimating];
-        cell.loadingLabel.hidden = NO;
+        cell.label.text = @"Загрузка...";
         
         cell.itemImage.image = nil;
         if ([fileAlreadyDownloading valueForKey:pageFilePath] == nil) {
@@ -398,10 +390,19 @@ NSString *kFooterID = @"collectionFooter";
         
     }
     else {
+        NSString *num = [[answers objectAtIndex:indexPath.item] text];
+        NSArray *components = [num componentsSeparatedByString:@"_"];
+        num = [components lastObject];
+        if (num && ![num isEqualToString:@""]) {
+            cell.label.text = num;
+        }
+        else {
+            cell.label.text = [[answers objectAtIndex:indexPath.item] text];
+        }
+
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:pageFilePath];
         cell.itemImage.image = image;
         [cell.activityView stopAnimating];
-        cell.loadingLabel.hidden = YES;
     }
     return cell;
 }
