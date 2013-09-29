@@ -76,9 +76,16 @@
              
              [self addSkipBackupAttributeToItemAtPath:pageFilePath];
              
-             if (weakController.currentPreviewItemIndex == index)
+//             if (ABS(weakController.currentPreviewItemIndex - index) < 1)
+             if (weakController.currentPreviewItemIndex == index || weakController.currentPreviewItemIndex + 1 == index)
              {
-                 [weakController refreshCurrentPreviewItem];
+                [weakController refreshCurrentPreviewItem];
+                 //[weakController reloadData];
+//                 NSLog(@"Current preview index is %i and we've just downloaded %i, so... Refreshing!", weakController.currentPreviewItemIndex, index);
+
+             }
+             else {
+//                 NSLog(@"Current preview index is %i and we've just downloaded %i, so... Not refreshing.", weakController.currentPreviewItemIndex, index);
              }
              
          }  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -97,6 +104,10 @@
 	return ans;
 }
 
+- (BOOL)previewController:(QLPreviewController *)controller shouldOpenURL:(NSURL *)url forPreviewItem:(id <QLPreviewItem>)item {
+    NSLog(@"Opening URL: %@", [url absoluteString]);
+    return YES;
+}
 
 - (id)initWithTerm:(RXMLElement *)term subject:(RXMLElement *)subject book:(RXMLElement *)book purchased:(BOOL)purchased
 {
