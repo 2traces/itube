@@ -42,7 +42,7 @@
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="qZI-OY-6Gx">
                                             <rect key="frame" x="20" y="3" width="55" height="55"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -83,7 +83,7 @@
                                         <rect key="frame" x="0.0" y="99" width="768" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lOV-7X-FnI" id="F5K-n6-27d">
-                                            <rect key="frame" x="45" y="1" width="678" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="icon144-no-borders.png" id="FqA-DE-ARD">
@@ -91,7 +91,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Готовые Домашние Задания" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OiF-qp-fsd">
-                                                    <rect key="frame" x="92" y="12" width="495" height="55"/>
+                                                    <rect key="frame" x="104" y="12" width="560" height="55"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -469,8 +469,8 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GNc-0D-VZD">
-                                    <rect key="frame" x="120" y="99" width="300" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <rect key="frame" x="234" y="99" width="300" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                     <state key="normal" title="Button" backgroundImage="buyDownloadBt.png">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -631,7 +631,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="Ko8-yt-qsh">
-                            <rect key="frame" x="0.0" y="0.0" width="768" height="223"/>
+                            <rect key="frame" x="0.0" y="64" width="768" height="223"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="top" image="tableBackgroundIpad.png" id="mw8-cf-9zO">
@@ -734,7 +734,7 @@
                             <tableViewSection id="747-SH-KJw">
                                 <cells>
                                     <tableViewCell hidden="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="294" id="NRS-Tg-mJw">
-                                        <rect key="frame" x="0.0" y="233" width="768" height="296"/>
+                                        <rect key="frame" x="0.0" y="287" width="768" height="294"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NRS-Tg-mJw" id="5vW-EY-hp6">
                                             <rect key="frame" x="45" y="1" width="678" height="293"/>
@@ -1032,6 +1032,129 @@
             </objects>
             <point key="canvasLocation" x="3036" y="1694"/>
         </scene>
+        <!--Buy View Controller-->
+        <scene sceneID="dnQ-q5-4wW">
+            <objects>
+                <viewController storyboardIdentifier="buyVC" id="7kU-mp-E8F" customClass="BuyViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BZf-Th-8Ne">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="buy_bg.png" id="Hea-TA-G72">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4Xn-oO-UvL">
+                                <rect key="frame" x="20" y="105" width="109" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="33 руб." backgroundImage="buy_bt.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buyMonth:" destination="7kU-mp-E8F" eventType="touchUpInside" id="0SR-E3-MEg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ef5-Tz-dvG">
+                                <rect key="frame" x="185" y="105" width="109" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="99 руб." backgroundImage="buy_bt.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buyYear:" destination="7kU-mp-E8F" eventType="touchUpInside" id="UNY-Ib-lpI"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="K2v-l6-Uai">
+                                <rect key="frame" x="52" y="3" width="217" height="45"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Неограниченный доступ ко всем решебникам">
+                                        <attributes>
+                                            <color key="NSColor" red="0.73565051020408156" green="0.53620704468343494" blue="0.255569868775534" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="17" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Qg-RV-qBM">
+                                <rect key="frame" x="20" y="39" width="280" height="29"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="ВСЕ решебники будут доступны офлайн">
+                                        <attributes>
+                                            <color key="NSColor" red="0.73565051020408156" green="0.53620704468343494" blue="0.255569868775534" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="11" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WFI-a6-Nlq">
+                                <rect key="frame" x="20" y="76" width="114" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="На целый месяц">
+                                        <attributes>
+                                            <color key="NSColor" red="0.73565051020408156" green="0.53620704468343494" blue="0.255569868775534" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="14" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EgP-d7-RjS">
+                                <rect key="frame" x="170" y="76" width="138" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="На весь учебный год">
+                                        <attributes>
+                                            <color key="NSColor" red="0.73565051020408156" green="0.53620704468343494" blue="0.255569868775534" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="14" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xae-Qx-Wwm">
+                                <rect key="frame" x="292" y="7" width="22" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="close_bt.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="hidePurchaseView:" destination="7kU-mp-E8F" eventType="touchUpInside" id="ZOf-Lh-Eg6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="bgImage" destination="Hea-TA-G72" id="Nvk-4U-fiV"/>
+                        <outlet property="lbHeading1" destination="K2v-l6-Uai" id="ut1-TB-pH1"/>
+                        <outlet property="lbHeading2" destination="0Qg-RV-qBM" id="kIR-UX-nGA"/>
+                        <outlet property="lbHeadingM" destination="WFI-a6-Nlq" id="gHB-eG-Czw"/>
+                        <outlet property="lbHeadingY" destination="EgP-d7-RjS" id="8p1-UG-R6i"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H6M-kt-vuP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="293" y="1402"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bottom_logo.png" width="320" height="38"/>
@@ -1039,6 +1162,7 @@
         <image name="buyDownloadBt.png" width="299" height="44"/>
         <image name="buy_bg.png" width="320" height="152"/>
         <image name="buy_bt.png" width="109" height="31"/>
+        <image name="close_bt.png" width="30" height="30"/>
         <image name="element_mask.png" width="155" height="135"/>
         <image name="icon144-no-borders.png" width="144" height="144"/>
         <image name="icon_2.png" width="47" height="47"/>

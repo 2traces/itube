@@ -131,14 +131,70 @@
 	answers = [_book children:@"a"];
 
 	self.dataSource = self;
-
+    
 	fileAlreadyDownloading = [NSMutableDictionary dictionary];
 	operationQueue = [[NSOperationQueue alloc] init];
 	[operationQueue setMaxConcurrentOperationCount:1];
     
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [[self.navigationController navigationBar] setBarTintColor:[UIColor whiteColor]];
+        
+        
+        UIImage *navigationBarBackgroundImage = [[UIImage imageNamed:@"bar_bg_white"] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 1.0, 1.0, 1.0)];
+        
+        [self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
+        self.navigationController.navigationBar.shadowImage = [UIImage imageNamed:@"bar_shadow"];
+        
+        [[UIBarButtonItem appearance] setTitleTextAttributes:
+         [NSDictionary dictionaryWithObjectsAndKeys:
+          [UIColor grayColor], UITextAttributeTextColor,
+          [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:16.0], UITextAttributeFont,nil] forState:UIControlStateNormal];
+        
+        [[self.navigationController navigationBar] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                           [UIColor grayColor], UITextAttributeTextColor, [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:16.0], UITextAttributeFont, nil]];
+    }
+    else {
+    
+    }
+
+
+
+
+    
+    
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+
+    self.view.backgroundColor = [UIColor whiteColor];
 
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    UIToolbar *toolbar = self.navigationController.toolbar;
+    toolbar.hidden = YES;
+    [toolbar removeFromSuperview];
+    [self.navigationController setToolbarHidden:YES animated:NO];
+    NSArray *gr = self.view.gestureRecognizers;
+    for (UIGestureRecognizer *g in gr) {
+        if ([g isKindOfClass:[UITapGestureRecognizer class]]) {
+            [self.view removeGestureRecognizer:g];
+        }
+    }
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIColor whiteColor], UITextAttributeTextColor,
+      [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:16.0], UITextAttributeFont,nil] forState:UIControlStateNormal];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleDefault;
+}
 
 - (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller
 {

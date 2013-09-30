@@ -241,15 +241,55 @@ NSString *kFooterID = @"collectionFooter";
 	return YES;
 }
 
+
 - (IBAction)rightBarButtonItemPresses
 {
 	if (!self.purchased)
 	{
-		UINavigationController *buyNagivationController = [self.storyboard instantiateViewControllerWithIdentifier:@"buy"];
-		BuyViewController *buyViewController = (BuyViewController*)[buyNagivationController topViewController];
+        if (!self.buyViewController) {
+            self.buyViewController = (BuyViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"buyVC"];
+        }
+        
+        self.buyView = self.buyViewController.view;
+        
+        CGRect temp = self.view.frame;
+        temp = self.view.bounds;
+        
+        CGRect frame = self.buyView.frame;
+        frame.size = CGSizeMake(320, 150);
+        CGFloat shift = 0;
+        
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+            shift = 64;
+        }
+        else {
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
 
-		buyViewController.delegate = self;
-		[self presentViewController:buyNagivationController animated:YES completion:nil];
+            }
+            else {
+                shift = 44;
+            }
+        }
+
+        frame.origin = CGPointMake((self.view.frame.size.width - 320)/2, -frame.size.height + shift);
+        self.buyView.frame = frame;
+        [self.view addSubview:self.buyView];
+        frame.origin.y = 0 + shift;
+        
+        
+        [UIView animateWithDuration:0.4f animations:^{
+            self.buyView.frame = frame;
+        }];
+        
+        // Animate
+        
+//        [UIView transitionWithView:header duration:0.5f options: UIViewAnimationOptionCurveLinear animations:animateChangeHeight completion:nil];
+        
+//		UINavigationController *buyNagivationController = [self.storyboard instantiateViewControllerWithIdentifier:@"buy"];
+//		BuyViewController *buyViewController = (BuyViewController*)[buyNagivationController topViewController];
+//
+//		buyViewController.delegate = self;
+//		[self presentViewController:buyNagivationController animated:YES completion:nil];
 	}
 	else
 	{
@@ -407,6 +447,8 @@ NSString *kFooterID = @"collectionFooter";
     return cell;
 }
 
+
+
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
 	if ([kind isEqualToString:UICollectionElementKindSectionHeader])
@@ -422,7 +464,7 @@ NSString *kFooterID = @"collectionFooter";
         //[self setPurchased:self.purchased];
         NSString *title = self.purchased ? @"Загрузить все ответы" : @"посмотреть все ответы";
         [self.buyButton setTitle:title forState:UIControlStateNormal];
-
+        
 		return headerView;
 	}
 	else if ([kind isEqualToString:UICollectionElementKindSectionFooter])

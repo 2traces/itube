@@ -177,11 +177,11 @@
                                         <rect key="frame" x="0.0" y="445" width="320" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IyI-LZ-iPv" id="q7i-VR-4w3">
-                                            <rect key="frame" x="10" y="1" width="300" height="52"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Авторизация" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nyi-bv-Whi">
-                                                    <rect key="frame" x="20" y="18" width="258" height="21"/>
+                                                    <rect key="frame" x="21" y="18" width="275" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -471,21 +471,21 @@
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Материалы по математике. 6 класс." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xul-dF-liS">
                                     <rect key="frame" x="20" y="2" width="280" height="50"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Чесноков А.С., Нешков К.И., 2000-2011гг. Чесноков А.С., Нешков К.И., 2000-2011гг. " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MjR-eW-8J6">
-                                    <rect key="frame" x="20" y="57.999999999999993" width="280" height="34"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                    <rect key="frame" x="20" y="58" width="280" height="34"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="UPL-Ze-RqJ">
                                     <rect key="frame" x="10" y="100" width="300" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                     <state key="normal" title="Button" backgroundImage="buyDownloadBt.png">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -502,6 +502,7 @@
                             <connections>
                                 <outlet property="authorsLabel" destination="MjR-eW-8J6" id="KKF-XT-q37"/>
                                 <outlet property="buyButton" destination="UPL-Ze-RqJ" id="MCK-13-m54"/>
+                                <outlet property="buyView" destination="7eA-1w-toY" id="exd-iA-Yec"/>
                                 <outlet property="nameLabel" destination="Xul-dF-liS" id="wuX-hu-MXe"/>
                             </connections>
                         </collectionReusableView>
@@ -521,247 +522,137 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="UL9-b6-CMu"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <connections>
+                        <outlet property="buyView" destination="7eA-1w-toY" id="Z5l-z8-9lv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nyp-7J-QsT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1884" y="226"/>
         </scene>
         <!--Buy View Controller-->
-        <scene sceneID="c7j-oF-xwl">
+        <scene sceneID="FZd-63-QaN">
             <objects>
-                <tableViewController id="ivZ-nd-sWM" customClass="BuyViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bounces="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="P8Y-O8-zEL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="1PG-at-TTh">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="151"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="buy_bg.png" id="Nt4-B4-oo0">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="151"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </imageView>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nIY-Ib-gQ7">
-                                    <rect key="frame" x="20" y="101" width="109" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" title="33 руб." backgroundImage="buy_bt.png">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <state key="highlighted">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="buyMonth:" destination="ivZ-nd-sWM" eventType="touchUpInside" id="Zfv-qG-cUh"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NbA-bg-Eop">
-                                    <rect key="frame" x="185" y="101" width="109" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" title="99 руб." backgroundImage="buy_bt.png">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <state key="highlighted">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="buyYear:" destination="ivZ-nd-sWM" eventType="touchUpInside" id="X5w-27-QVX"/>
-                                    </connections>
-                                </button>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fI5-D0-20L">
-                                    <rect key="frame" x="52" y="5" width="217" height="45"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <attributedString key="attributedText">
-                                        <fragment content="Неограниченный доступ ко всем решебникам">
-                                            <attributes>
-                                                <color key="NSColor" red="0.73565051020408156" green="0.53620704468343494" blue="0.255569868775534" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="17" name="Helvetica"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kZw-4u-tPc">
-                                    <rect key="frame" x="20" y="41" width="280" height="29"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <attributedString key="attributedText">
-                                        <fragment content="ВСЕ решебники будут доступны офлайн">
-                                            <attributes>
-                                                <color key="NSColor" red="0.73565051020408156" green="0.53620704468343494" blue="0.255569868775534" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="11" name="Helvetica"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b5D-iO-T7K">
-                                    <rect key="frame" x="20" y="71" width="114" height="29"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <attributedString key="attributedText">
-                                        <fragment content="На целый месяц">
-                                            <attributes>
-                                                <color key="NSColor" red="0.73565051020408156" green="0.53620704468343494" blue="0.255569868775534" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="14" name="Helvetica"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2HD-qu-TBq">
-                                    <rect key="frame" x="170" y="71" width="138" height="29"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <attributedString key="attributedText">
-                                        <fragment content="На весь учебный год">
-                                            <attributes>
-                                                <color key="NSColor" red="0.73565051020408156" green="0.53620704468343494" blue="0.255569868775534" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="14" name="Helvetica"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                        </view>
-                        <sections>
-                            <tableViewSection id="rxn-Ui-Chp">
-                                <cells>
-                                    <tableViewCell hidden="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="294" id="gpj-Kf-Kob">
-                                        <rect key="frame" x="0.0" y="161" width="320" height="296"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gpj-Kf-Kob" id="A7c-DS-pfT">
-                                            <rect key="frame" x="10" y="1" width="300" height="293"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZZv-oH-vad">
-                                                    <rect key="frame" x="9" y="25" width="283" height="54"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <attributedString key="attributedText">
-                                                        <fragment>
-                                                            <string key="content">неограниченный 
-доступ ко всем решебникам</string>
-                                                            <attributes>
-                                                                <color key="NSColor" red="0.3636214967757937" green="0.36159009176587303" blue="0.3656529017857143" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="21" name="TrebuchetMS"/>
-                                                                <font key="NSOriginalFont" size="21" name="TrebuchetMS"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                                <integer key="NSUnderline" value="1"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lfU-kh-drB">
-                                                    <rect key="frame" x="9" y="243" width="283" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="ВСЕ">
-                                                            <attributes>
-                                                                <color key="NSColor" red="0.3636214967757937" green="0.36159009176587303" blue="0.3656529017857143" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="14" name="TrebuchetMS"/>
-                                                                <font key="NSOriginalFont" size="14" name="TrebuchetMS"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                                <integer key="NSUnderline" value="1"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                        <fragment content=" решебники будут доступны оффлайн">
-                                                            <attributes>
-                                                                <color key="NSColor" red="0.3636214967757937" green="0.36159009176587303" blue="0.3656529017857143" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="14" name="TrebuchetMS"/>
-                                                                <font key="NSOriginalFont" size="14" name="TrebuchetMS"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <view contentMode="scaleToFill" id="EKX-RZ-It3">
-                                                    <rect key="frame" x="0.0" y="100" width="300" height="1"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.81405452806122447" green="0.81405452806122447" blue="0.81405452806122447" alpha="1" colorSpace="calibratedRGB"/>
-                                                </view>
-                                                <view contentMode="scaleToFill" id="4uO-Y6-gkx">
-                                                    <rect key="frame" x="0.0" y="101" width="300" height="1"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="ltk-j1-Vkc">
-                                                    <rect key="frame" x="20" y="118" width="111" height="118"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <state key="normal" backgroundImage="buyButtonBg.png">
-                                                        <attributedString key="attributedTitle">
-                                                            <fragment>
-                                                                <string key="content">на целый 
-месяц
-
-за 33 р.</string>
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.0" green="0.21176472306251526" blue="0.27843138575553894" alpha="1" colorSpace="deviceRGB"/>
-                                                                    <font key="NSFont" size="22" name="TrebuchetMS-Bold"/>
-                                                                    <font key="NSOriginalFont" size="22" name="MyriadPro-Semibold"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
-                                                    </state>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="Uwz-cw-Ipy">
-                                                    <rect key="frame" x="157" y="118" width="111" height="118"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <state key="normal" backgroundImage="buyButtonBg.png">
-                                                        <attributedString key="attributedTitle">
-                                                            <fragment>
-                                                                <string key="content">на весь 
-учебный
-год
-за 99 р.</string>
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.0" green="0.21176472306251526" blue="0.27843138575553894" alpha="1" colorSpace="deviceRGB"/>
-                                                                    <font key="NSFont" size="22" name="TrebuchetMS-Bold"/>
-                                                                    <font key="NSOriginalFont" size="22" name="TrebuchetMS-Bold"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
-                                                    </state>
-                                                </button>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="ivZ-nd-sWM" id="5p8-rR-4CZ"/>
-                            <outlet property="delegate" destination="ivZ-nd-sWM" id="vEJ-0s-VYc"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="SGP-FE-y0A">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="5hx-lc-0zs">
-                            <connections>
-                                <action selector="cancel" destination="ivZ-nd-sWM" id="VPB-0z-bzX"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                <viewController storyboardIdentifier="buyVC" id="ILy-1a-hnx" customClass="BuyViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7eA-1w-toY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="buy_bg.png" id="4uo-mV-CTG">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HA2-uW-Zh7">
+                                <rect key="frame" x="20" y="105" width="109" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="33 руб." backgroundImage="buy_bt.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buyMonth:" destination="ILy-1a-hnx" eventType="touchUpInside" id="Ife-2F-YI2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="81z-wx-Eh8">
+                                <rect key="frame" x="185" y="105" width="109" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="99 руб." backgroundImage="buy_bt.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buyYear:" destination="ILy-1a-hnx" eventType="touchUpInside" id="QtM-uL-Peg"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Xy-Iv-0LU">
+                                <rect key="frame" x="52" y="3" width="217" height="45"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Неограниченный доступ ко всем решебникам">
+                                        <attributes>
+                                            <color key="NSColor" red="0.73565051020408156" green="0.53620704468343494" blue="0.255569868775534" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="17" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k3K-od-Poq">
+                                <rect key="frame" x="20" y="39" width="280" height="29"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="ВСЕ решебники будут доступны офлайн">
+                                        <attributes>
+                                            <color key="NSColor" red="0.73565051020408156" green="0.53620704468343494" blue="0.255569868775534" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="11" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lSr-VK-6gX">
+                                <rect key="frame" x="20" y="76" width="114" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="На целый месяц">
+                                        <attributes>
+                                            <color key="NSColor" red="0.73565051020408156" green="0.53620704468343494" blue="0.255569868775534" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="14" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="exV-Vg-Tm1">
+                                <rect key="frame" x="170" y="76" width="138" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="На весь учебный год">
+                                        <attributes>
+                                            <color key="NSColor" red="0.73565051020408156" green="0.53620704468343494" blue="0.255569868775534" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="14" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" alpha="0.49999999999999961" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6gz-5m-Enj">
+                                <rect key="frame" x="292" y="7" width="22" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="close_bt.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="hidePurchaseView:" destination="ILy-1a-hnx" eventType="touchUpInside" id="WGk-6r-Fw5"/>
+                                    <action selector="hidePurchaseView:" destination="L1f-qM-Cej" eventType="touchUpInside" id="c87-jB-dDg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="lbHeading1" destination="fI5-D0-20L" id="KWS-zV-nTu"/>
-                        <outlet property="lbHeading2" destination="kZw-4u-tPc" id="88W-RV-CzD"/>
-                        <outlet property="lbHeadingM" destination="b5D-iO-T7K" id="EpT-Be-Swl"/>
-                        <outlet property="lbHeadingY" destination="2HD-qu-TBq" id="e86-lF-yG5"/>
+                        <outlet property="bgImage" destination="4uo-mV-CTG" id="JYL-1S-Sjb"/>
+                        <outlet property="lbHeading1" destination="1Xy-Iv-0LU" id="3qI-aa-eak"/>
+                        <outlet property="lbHeading2" destination="k3K-od-Poq" id="MJg-kv-PO0"/>
+                        <outlet property="lbHeadingM" destination="lSr-VK-6gX" id="Gzg-Qg-cx5"/>
+                        <outlet property="lbHeadingY" destination="exV-Vg-Tm1" id="hFd-z9-z1A"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VFd-UL-8ia" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="saQ-sx-lUB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2805" y="226"/>
+            <point key="canvasLocation" x="175" y="796"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lTu-8F-meA">
@@ -791,9 +682,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="ivZ-nd-sWM" kind="relationship" relationship="rootViewController" id="YAA-Ow-aEk"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EJr-tJ-GNQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -893,33 +781,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleToFill" image="bottom_logo.png" id="KUa-PW-GKd">
-                            <rect key="frame" x="0.0" y="189" width="320" height="38"/>
+                            <rect key="frame" x="0.0" y="276" width="320" height="38"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <sections>
                             <tableViewSection id="JcK-59-8rf">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="167" id="saT-1B-DwM">
-                                        <rect key="frame" x="0.0" y="10" width="320" height="169"/>
+                                        <rect key="frame" x="0.0" y="99" width="320" height="167"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="saT-1B-DwM" id="wS4-Zf-eeG">
-                                            <rect key="frame" x="10" y="1" width="300" height="166"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="166"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail" minimumFontSize="17" id="rJc-HT-lHD">
-                                                    <rect key="frame" x="41" y="19" width="218" height="31"/>
+                                                    <rect key="frame" x="51" y="19" width="218" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" minimumFontSize="17" id="S0P-Ua-QMc">
-                                                    <rect key="frame" x="41" y="63" width="218" height="31"/>
+                                                    <rect key="frame" x="51" y="63" width="218" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="o42-M5-OFY">
-                                                    <rect key="frame" x="41" y="113" width="218" height="37"/>
+                                                    <rect key="frame" x="51" y="113" width="218" height="37"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Зарегистрироваться" backgroundImage="table_button_single.png">
                                                         <color key="titleColor" red="0.00066358919801697523" green="0.001056411180299821" blue="0.0017936862244898322" alpha="1" colorSpace="calibratedRGB"/>
@@ -954,10 +842,10 @@
     </scenes>
     <resources>
         <image name="bottom_logo.png" width="320" height="38"/>
-        <image name="buyButtonBg.png" width="108" height="107"/>
         <image name="buyDownloadBt.png" width="299" height="44"/>
         <image name="buy_bg.png" width="320" height="152"/>
         <image name="buy_bt.png" width="109" height="31"/>
+        <image name="close_bt.png" width="30" height="30"/>
         <image name="element_mask.png" width="155" height="135"/>
         <image name="icon144-no-borders.png" width="144" height="144"/>
         <image name="icon_2.png" width="47" height="47"/>

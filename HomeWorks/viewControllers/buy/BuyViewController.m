@@ -33,7 +33,6 @@
     self.lbHeadingM.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:14];
     self.lbHeadingY.font = [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:14];
     
-    self.bgImage.image = [[UIImage imageNamed:@"tableBackgroundIpad"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile];
 }
 
 - (void)productPurchased:(NSNotification *)notification {
@@ -42,6 +41,16 @@
     [self finish:YES];
 }
 
+- (IBAction)hidePurchaseView:(id)sender {
+    CGRect frame = self.view.frame;
+    frame.origin.y = -frame.size.height;
+    
+    [UIView animateWithDuration:0.4f animations:^{
+        self.view.frame = frame;
+    } completion:^(BOOL finished) {
+        [self.view removeFromSuperview];
+    }];
+}
 
 - (void)productPurchaseFailed:(NSNotification *)notification {
 //    NSString * productIdentifier = notification.object;
@@ -68,12 +77,15 @@
 
 - (IBAction)buyMonth:(id)sender {
 	NSLog(@"buying");
+    [self hidePurchaseView:nil];
 	activityView = [DejalBezelActivityView activityViewForView:self.view.window withLabel:@""];
 	[self.purchaseService purchaseSubscription:self.monthlySubscriptionIAP];
 }
 
 - (IBAction)buyYear:(id)sender {
 	NSLog(@"buying");
+    [self hidePurchaseView:nil];
+
 	activityView = [DejalBezelActivityView activityViewForView:self.view.window withLabel:@""];
 	[self.purchaseService purchaseSubscription:self.yearlySubscriptionIAP];
 }

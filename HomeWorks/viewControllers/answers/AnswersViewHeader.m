@@ -12,4 +12,21 @@
 {
 
 }
+
+- (void) hideShowBuyView {
+    CGRect frame = self.buyView.frame;
+    if (frame.origin.y == 0) {
+        frame.origin.y = -151;
+    }
+    else {
+        frame.origin.y = 0;
+    }
+    
+//    [UIView animateWithDuration:0.5f animations:^{
+        self.buyView.frame = frame;
+        self.buyButton.alpha = 0;
+//    }];
+    
+}
+
 @end

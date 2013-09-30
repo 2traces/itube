@@ -13,4 +13,8 @@
 @property(nonatomic) IBOutlet UILabel *nameLabel;
 @property(nonatomic) IBOutlet UILabel *authorsLabel;
 @property(nonatomic) IBOutlet UIButton *buyButton;
+@property(nonatomic) IBOutlet UIView *buyView;
+
+- (void) hideShowBuyView;
+
 @end

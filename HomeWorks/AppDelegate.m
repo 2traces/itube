@@ -43,7 +43,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
       [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:24.0], UITextAttributeFont,nil]];
     
     [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:3 forBarMetrics:UIBarMetricsDefault];
-
+    
     [[UILabel appearance] setFont:[UIFont fontWithName:@"HelveticaNeueCyr-Light" size:17]];
     [[UITextView appearance] setFont:[UIFont fontWithName:@"HelveticaNeueCyr-Light" size:17]];
     [[UITextField appearance] setFont:[UIFont fontWithName:@"HelveticaNeueCyr-Light" size:17]];

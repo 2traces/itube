@@ -16,7 +16,7 @@
 
 @end
 
-@interface BuyViewController : HomeworksTableViewController
+@interface BuyViewController : UIViewController
 
 @property (nonatomic, assign) id<BuyViewControllerDelegate> delegate;
 @property (nonatomic, weak) IBOutlet UILabel *lbHeading1;
@@ -28,5 +28,6 @@
 
 - (IBAction)buyMonth:(id)sender;
 - (IBAction)buyYear:(id)sender;
+- (IBAction)hidePurchaseView:(id)sender;
 
 @end
