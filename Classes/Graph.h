@@ -15,6 +15,7 @@
 }
 
 @property (nonatomic, readonly, retain) NSSet *nodes;
+@property (nonatomic, assign) BOOL blockMultiTransfers;
 
 - (NSDictionary*)getPaths:(GraphNode*)source to:(GraphNode*)target;
 - (NSArray*)getWays:(GraphNode *)source to:(GraphNode *)target withoutStations:(NSSet*)clNodes;

@@ -267,6 +267,7 @@ typedef enum {NAME_NORMAL=0, NAME_ALTERNATIVE=1, NAME_BOTH=2} DrawNameType;
     CGFloat gpsCircleScale;
     UIColor *backgroundColor;
     BOOL hasAltNames;
+    BOOL UnrealTransfers;
 @public
     CGFloat PredrawScale;
     CGFloat LineWidth;
