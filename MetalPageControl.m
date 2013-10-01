@@ -88,15 +88,33 @@
     if(mImageCurrent || mImageNormal)
     {
         // Get subviews
-        NSArray* dotViews = self.subviews;
-        for(int i = 0; i < dotViews.count; ++i)
+        NSArray* dotViews = self.subviews ;
+        
+        for (int i = 0; i < dotViews.count; i++)
         {
-            UIImageView* dot = [dotViews objectAtIndex:i];
-            // Set image
-            dot.image = (i == self.currentPage) ? mImageCurrent : mImageNormal;
-        }
+            UIView* dotView = [self.subviews objectAtIndex:i];
+            UIImageView* dot = nil;
+            
+            for (UIView* subview in dotView.subviews)
+            {
+                if ([subview isKindOfClass:[UIImageView class]])
+                {
+                    dot = (UIImageView*)subview;
+                    break;
+                }
+            }
+            
+            if (dot == nil)
+            {
+                dot = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, dotView.frame.size.width, dotView.frame.size.height)];
+                [dotView addSubview:dot];
+            }
+            
+            dot.image = (i == self.currentPage) ? mImageCurrent : mImageNormal;        }
     }
 }
+
+
 
 @end
 

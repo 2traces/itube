@@ -53,6 +53,8 @@
 	<true/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleBlackOpaque</string>
+	<key>UIStatusBarHidden</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array/>
 	<key>UIAppFonts</key>
@@ -62,5 +64,7 @@
 		<string>MyriadPro-Regular.otf</string>
 		<string>MyriadPr-Bold.otf</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

@@ -9,6 +9,9 @@
 #import "StationTextField.h"
 #import "SSTheme.h"
 #import <QuartzCore/QuartzCore.h>
+#import "tubeAppDelegate.h"
+
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 @implementation StationTextField
 
@@ -370,7 +373,19 @@
     CGSize textBounds = [self.text sizeWithFont:self.font];
     
     newFrame.origin.x=[[SSThemeManager sharedTheme] stationTextFieldDrawTextInRectAdjust]; //3.0 _original
-    newFrame.origin.y=3.0;
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        if (self.state == StationTextFieldStylePath) {
+            if (IS_IPAD) {
+                newFrame.origin.y=15.0;
+            } else {
+                newFrame.origin.y=6.0;
+            }
+        } else {
+            newFrame.origin.y=15.0;
+        }
+    } else {
+        newFrame.origin.y=3.0;
+    }
     newFrame.size.width=rect.size.width-self.leftView.frame.size.width-5.0 ;//10
     newFrame.size.height = textBounds.height;
     
@@ -404,7 +419,15 @@
     CGSize textBounds = [self.placeholder sizeWithFont:self.font];
     
     newFrame.origin.x=18.0;
-    newFrame.origin.y=3.0;
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        if (self.state == StationTextFieldStylePath) {
+            newFrame.origin.y=3.0;
+        } else {
+            newFrame.origin.y=14.0;
+        }
+    } else {
+        newFrame.origin.y=3.0;
+    }
     newFrame.size.width=rect.size.width-10.0;
     newFrame.size.height = textBounds.height;
     

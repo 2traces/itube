@@ -42,6 +42,8 @@
     } else {
         return [self initWithFrame:CGRectMake(0.0, 0.0, deviceWidth, viewHeight)];
     }
+    
+    self.autoresizesSubviews = YES;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -155,6 +157,43 @@
     toStationField.station=toStation;
 }
 
+-(void)layoutSubviews
+{
+    if (IS_IPAD) {
+        
+        fromStationField.frame = CGRectMake(self.frame.size.width-fieldWidth*2, fieldDelta, fromStationField.frame.size.width, fromStationField.frame.size.height);
+        toStationField.frame = CGRectMake(self.frame.size.width-toStationField.frame.size.width, fieldDelta, toStationField.frame.size.width, toStationField.frame.size.height);
+        
+        firstButton.frame = CGRectMake(self.frame.size.width-fieldWidth*2, fieldDelta, fieldWidth-30.0, fieldHeight);
+        secondButton.frame = CGRectMake(self.frame.size.width-fieldWidth, fieldDelta, fieldWidth-30.0, fieldHeight);
+        
+        CGFloat desireOrigin = (toStationField.frame.origin.x - fromStationField.frame.origin.x - fromStationField.frame.size.width)/2.0+7.0;
+        
+        arrowView.frame = CGRectMake(toStationField.frame.origin.x-desireOrigin, [[SSThemeManager sharedTheme] isNewTheme] ? 22 : 15, arrowView.frame.size.width, arrowView.frame.size.height);
+        
+        if ([[SSThemeManager sharedTheme] isNewTheme]) {
+            leftButton.frame = CGRectMake(self.frame.size.width-fieldWidth*2.0-31.0, 8, 25, 44);
+        }
+        
+//        if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+//            if (![[SSThemeManager sharedTheme] isNewTheme]) {
+//                if (self.frame.size.width<deviceHeight) {
+//                    [self.leftButton setImage:[UIImage imageNamed:@"close_ipad_button.png"] forState:UIControlStateNormal];
+//                } else {
+//                    [self.leftButton setImage:[UIImage imageNamed:@"inv_close_ipad_button.png"] forState:UIControlStateNormal];
+//                }
+//            }
+//        } else {
+//            if (![[SSThemeManager sharedTheme] isNewTheme]) {
+//                if (self.frame.size.width<deviceWidth) {
+//                    [self.leftButton setImage:[UIImage imageNamed:@"close_ipad_button.png"] forState:UIControlStateNormal];
+//                } else {
+//                    [self.leftButton setImage:[UIImage imageNamed:@"inv_close_ipad_button.png"] forState:UIControlStateNormal];
+//                }
+//            }
+//        }
+    }
+}
 
 -(void)adjustSubviews:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -216,7 +255,7 @@
         [delegate setCurrentSelection:0];
         StationListViewController *controller =  (StationListViewController *)[delegate showiPadLiveSearchView];
         fromStationField.delegate = controller;
-        controller.isTextFieldInUse=YES;
+        controller.isTextFieldInUse=NO;
         [fromStationField becomeFirstResponder];
     } else {
         FastAccessTableViewController *controller =(FastAccessTableViewController*) [delegate showTableView];
@@ -276,7 +315,7 @@
         [delegate setCurrentSelection:1];
         StationListViewController *controller = [delegate showiPadLiveSearchView];
         toStationField.delegate = controller;
-        controller.isTextFieldInUse=YES;
+        controller.isTextFieldInUse=NO;
         [toStationField becomeFirstResponder];
     } else {
         FastAccessTableViewController *controller = [delegate showTableView];

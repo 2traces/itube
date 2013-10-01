@@ -1404,10 +1404,10 @@
 		51F15F7514D99A3800D11B79 /* VectorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VectorLayer.h; path = Classes/VectorLayer.h; sourceTree = "<group>"; };
 		51F15F7614D99A3800D11B79 /* VectorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VectorLayer.m; path = Classes/VectorLayer.m; sourceTree = "<group>"; };
 		571D5C3617157D0900ECDC2B /* newdes_download_popup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newdes_download_popup@2x.png"; path = "images/newdes_download_popup@2x.png"; sourceTree = "<group>"; };
-		572B26AB17258EC300AAB894 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = "en.lproj/download_popup@2x.png"; sourceTree = "<group>"; };
-		572B26AD17258ED000AAB894 /* de */ = {isa = PBXFileReference; lastKnownFileType = file; name = de; path = "de.lproj/download_popup@2x.png"; sourceTree = "<group>"; };
-		572B26AE17258ED000AAB894 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file; name = fr; path = "fr.lproj/download_popup@2x.png"; sourceTree = "<group>"; };
-		572B26AF17258ED100AAB894 /* it */ = {isa = PBXFileReference; lastKnownFileType = file; name = it; path = "it.lproj/download_popup@2x.png"; sourceTree = "<group>"; };
+		572B26AB17258EC300AAB894 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/download_popup@2x.png"; sourceTree = "<group>"; };
+		572B26AD17258ED000AAB894 /* de */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = de; path = "de.lproj/download_popup@2x.png"; sourceTree = "<group>"; };
+		572B26AE17258ED000AAB894 /* fr */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fr; path = "fr.lproj/download_popup@2x.png"; sourceTree = "<group>"; };
+		572B26AF17258ED100AAB894 /* it */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = it; path = "it.lproj/download_popup@2x.png"; sourceTree = "<group>"; };
 		572B26B017258F9E00AAB894 /* ru */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ru; path = ru.lproj/Default.png; sourceTree = "<group>"; };
 		572B26B117258F9E00AAB894 /* ru */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ru; path = "ru.lproj/Default@2x.png"; sourceTree = "<group>"; };
 		572B26B217258F9E00AAB894 /* ru */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ru; path = "ru.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
@@ -1418,7 +1418,7 @@
 		572B26B717258F9E00AAB894 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/SelectingTabBarViewController.xib; sourceTree = "<group>"; };
 		572B26B817258F9E00AAB894 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/SelectingTabBarViewControllerNDiPad.xib; sourceTree = "<group>"; };
 		572B26B917258F9E00AAB894 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
-		572B26BA17258F9E00AAB894 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file; name = ru; path = "ru.lproj/download_popup@2x.png"; sourceTree = "<group>"; };
+		572B26BA17258F9E00AAB894 /* ru */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ru; path = "ru.lproj/download_popup@2x.png"; sourceTree = "<group>"; };
 		572B26BB17258FB000AAB894 /* es */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = es; path = es.lproj/Default.png; sourceTree = "<group>"; };
 		572B26BC17258FB000AAB894 /* es */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = es; path = "es.lproj/Default@2x.png"; sourceTree = "<group>"; };
 		572B26BD17258FB000AAB894 /* es */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = es; path = "es.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
@@ -1429,7 +1429,7 @@
 		572B26C217258FB100AAB894 /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = es.lproj/SelectingTabBarViewController.xib; sourceTree = "<group>"; };
 		572B26C317258FB100AAB894 /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = es.lproj/SelectingTabBarViewControllerNDiPad.xib; sourceTree = "<group>"; };
 		572B26C417258FB100AAB894 /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = es.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
-		572B26C517258FB100AAB894 /* es */ = {isa = PBXFileReference; lastKnownFileType = file; name = es; path = "es.lproj/download_popup@2x.png"; sourceTree = "<group>"; };
+		572B26C517258FB100AAB894 /* es */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = es; path = "es.lproj/download_popup@2x.png"; sourceTree = "<group>"; };
 		572B26C617258FC100AAB894 /* pt */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pt; path = pt.lproj/Default.png; sourceTree = "<group>"; };
 		572B26C717258FC100AAB894 /* pt */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pt; path = "pt.lproj/Default@2x.png"; sourceTree = "<group>"; };
 		572B26C817258FC100AAB894 /* pt */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pt; path = "pt.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
@@ -1440,7 +1440,7 @@
 		572B26CD17258FC200AAB894 /* pt */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = pt; path = pt.lproj/SelectingTabBarViewController.xib; sourceTree = "<group>"; };
 		572B26CE17258FC200AAB894 /* pt */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = pt; path = pt.lproj/SelectingTabBarViewControllerNDiPad.xib; sourceTree = "<group>"; };
 		572B26CF17258FC200AAB894 /* pt */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = pt; path = pt.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
-		572B26D017258FC200AAB894 /* pt */ = {isa = PBXFileReference; lastKnownFileType = file; name = pt; path = "pt.lproj/download_popup@2x.png"; sourceTree = "<group>"; };
+		572B26D017258FC200AAB894 /* pt */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pt; path = "pt.lproj/download_popup@2x.png"; sourceTree = "<group>"; };
 		572B26D117258FD200AAB894 /* zh */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zh; path = zh.lproj/Default.png; sourceTree = "<group>"; };
 		572B26D217258FD200AAB894 /* zh */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zh; path = "zh.lproj/Default@2x.png"; sourceTree = "<group>"; };
 		572B26D317258FD200AAB894 /* zh */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zh; path = "zh.lproj/Default-Portrait.png"; sourceTree = "<group>"; };
@@ -1451,7 +1451,7 @@
 		572B26D817258FD300AAB894 /* zh */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh; path = zh.lproj/SelectingTabBarViewController.xib; sourceTree = "<group>"; };
 		572B26D917258FD300AAB894 /* zh */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh; path = zh.lproj/SelectingTabBarViewControllerNDiPad.xib; sourceTree = "<group>"; };
 		572B26DA17258FD300AAB894 /* zh */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh; path = zh.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
-		572B26DB17258FD300AAB894 /* zh */ = {isa = PBXFileReference; lastKnownFileType = file; name = zh; path = "zh.lproj/download_popup@2x.png"; sourceTree = "<group>"; };
+		572B26DB17258FD300AAB894 /* zh */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zh; path = "zh.lproj/download_popup@2x.png"; sourceTree = "<group>"; };
 		57A6ECB31709BB4600F8660D /* maps_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = maps_button.png; path = images/maps_button.png; sourceTree = "<group>"; };
 		57A6ECB41709BB4600F8660D /* maps_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "maps_button@2x.png"; path = "images/maps_button@2x.png"; sourceTree = "<group>"; };
 		57FD886817058FDB00100651 /* AdvancedCityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AdvancedCityCell.xib; path = Resources/AdvancedCityCell.xib; sourceTree = "<group>"; };

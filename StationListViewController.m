@@ -71,6 +71,13 @@
     
     self.colorDictionary = [[[NSMutableDictionary alloc] init] autorelease];
     
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        self.mytableView.sectionIndexBackgroundColor = [UIColor clearColor];
+        if (IS_IPAD) {
+            self.mytableView.sectionIndexColor = [UIColor grayColor];
+        }
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
 
 }
@@ -498,6 +505,8 @@
 
 -(void)textDidChange:(NSNotification *)note
 {
+    isTextFieldInUse=YES;
+    
     UITextField *tf = [note object];
     [self filterContentForSearchText:tf.text scope:nil];
     
