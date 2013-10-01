@@ -144,12 +144,26 @@
 
 -(id)initWithText:(NSString *)str
 {
+    return [self initWithText:str andSubtitle:nil];
+}
+
+-(id)initWithText:(NSString *)str andSubtitle:(NSString*)subtit
+{
     if((self = [super init])) {
         panel = [[GlPanel alloc] initWithBackground:@"big-blue-frame-with-shadow" position:CGPointZero andRect:CGRectMake(-120, -110, 240, 120)];
-        text = [[GlText alloc] initWithText:str font:@"Arial" fontSize:12.f andRect:CGRectMake(-70, -90, 140, 60)];
+        text = [[GlText alloc] initWithText:str font:@"Arial" fontSize:16.f fontColor:[UIColor whiteColor] andRect:CGRectMake(-70, -120, 140, 60)];
+        if(nil != subtit) {
+            subtitle = [[GlText alloc] initWithText:str font:@"Arial" fontSize:12.f fontColor:[UIColor blackColor] andRect:CGRectMake(-70, -70, 140, 60)];
+        }
         //[self show];
     }
     return self;
+}
+
+-(void) dealloc
+{
+    [subtitle release];
+    [super dealloc];
 }
 
 @end

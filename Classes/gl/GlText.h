@@ -23,6 +23,7 @@
 @property (nonatomic, assign) CGFloat alpha;
 
 -(id)initWithText:(NSString*)text font:(NSString*)font fontSize:(CGFloat)fontSize andRect:(CGRect)rect;
+-(id)initWithText:(NSString *)text font:(NSString *)font fontSize:(CGFloat)fontSize fontColor:(UIColor*)color andRect:(CGRect)rect;
 -(void)drawInto:(CGRect)rect;
 -(void)drawWithScale:(CGFloat)scale;
 

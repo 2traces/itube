@@ -1011,8 +1011,8 @@ static long DownloadCacheSize = 0;
         [dp->data appendBytes:&term length:1];
         [queue removeByConnection:connection];
         [dp->piece vectorLoaded];
-        NSString *contents = [NSString stringWithCString:(const char*)([dp->data bytes]) encoding:NSUTF8StringEncoding];
-        if([[contents substringToIndex:2] isEqualToString:@"<!"]) {
+        NSString *contents = [[[NSString alloc] initWithData:dp->data encoding:NSUTF8StringEncoding] autorelease];
+        if([contents length] > 2 && [[contents substringToIndex:2] isEqualToString:@"<!"]) {
             // html, probably there is an error
             contents = nil;
         }

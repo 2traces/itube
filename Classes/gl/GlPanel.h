@@ -52,8 +52,9 @@
 @end
 
 @interface BigPanel : AbstractPanel {
-    
+    GlText *subtitle;
 }
 -(id)initWithText:(NSString*)str;
+-(id)initWithText:(NSString*)str andSubtitle:(NSString*)subtitle;
 
 @end

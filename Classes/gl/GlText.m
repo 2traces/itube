@@ -18,6 +18,11 @@
 
 -(id)initWithText:(NSString *)text font:(NSString *)font fontSize:(CGFloat)fontSize andRect:(CGRect)rect
 {
+    return [self initWithText:text font:font fontSize:fontSize fontColor:nil andRect:rect];
+}
+
+-(id)initWithText:(NSString *)text font:(NSString *)font fontSize:(CGFloat)fontSize fontColor:(UIColor*)color andRect:(CGRect)rect
+{
     if((self = [super init])) {
         const int scale = [[UIScreen mainScreen] scale];
         CGRect rect2 = rect;
@@ -34,6 +39,7 @@
         label.lineBreakMode = UILineBreakModeWordWrap;
         label.numberOfLines = 10;
         label.text = text;
+        if(nil != color) label.textColor = color;
         UIGraphicsBeginImageContext(label.frame.size);
         [label.layer drawInContext:UIGraphicsGetCurrentContext()];
         UIImage *layerImage = UIGraphicsGetImageFromCurrentImageContext();

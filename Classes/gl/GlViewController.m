@@ -309,6 +309,11 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(id) initWithId:(int)pinId color:(int)color andText:(NSString*)text
 {
+    return [self initWithId:pinId color:color text:text andSubtitle:nil];
+}
+
+-(id) initWithId:(int)pinId color:(int)color text:(NSString*)text andSubtitle:(NSString*)subtitle
+{
     type = PIN_DEFAULT;
     size = 1.f / [UIScreen mainScreen].scale;
     if((self = [super init])) {
@@ -352,7 +357,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
                 sprite = [[GlSprite alloc] initWithPicture:@"pin-yell"];
                 break;
         }
-        sp = [[BigPanel alloc] initWithText:text];
+        sp = [[BigPanel alloc] initWithText:text andSubtitle:subtitle];
     }
     return self;
 }
@@ -1252,13 +1257,21 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(int)newPin:(CGPoint)coordinate color:(int)color name:(NSString*)name
 {
+    return [self newPin:coordinate color:color name:name subtitle:nil];
+}
+
+-(int)newPin:(CGPoint)coordinate color:(int)color name:(NSString *)name subtitle:(NSString*)subtitle
+{
     int newId = newPinId;
     newPinId ++;
     Pin *p = nil;
-    if(name != nil)
+    if(nil != subtitle) {
+        p = [[Pin alloc] initWithId:newId color:color text:name andSubtitle:subtitle];
+    } else if(name != nil) {
         p = [[Pin alloc] initWithId:newId color:color andText:name];
-    else
+    } else {
         p = [[Pin alloc] initWithId:newId andColor:color];
+    }
     //float dist = 256.f/scale;
     //[p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
     [pinsArray addObject:p];
@@ -1789,7 +1802,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
                         [[clusters lastObject] accept:ob];
                     }
                     
-                    NSLog(@" %@", ob);
+                    //NSLog(@" %@", ob);
                 }
             }
             [self updatePinsForLevel:[self getLevelForScale:scale]];
@@ -1843,7 +1856,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
             // show objects
             for (Cluster *cl in clusters) {
                 for (Object *ob in cl.objects) {
-                    ob.pinID = [self newPin:ob.coords color:1 name:ob.title];
+                    ob.pinID = [self newPin:ob.coords color:1 name:ob.title subtitle:ob.comment];
                 }
             }
             break;
