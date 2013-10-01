@@ -383,15 +383,15 @@
         
         if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
             if ([appDelegate isIPHONE5]) {
-                [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 0, 568, 320-20)];
+                [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 0, 568, 320)];
             } else {
-                [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 0, 480, 320-20)];
+                [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 0, 480, 320)];
             }
         } else {
             if ([appDelegate isIPHONE5]) {
-                [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 40, 320, 568-60)];
+                [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 40, 320, 568-40)];
             } else {
-                [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 40, 320, 480-60)];
+                [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 40, 320, 480-40)];
             }
         }
     }
@@ -551,9 +551,9 @@
     }
     
     if ([appDelegate isIPHONE5]) {
-        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, viewDelatY, 320, 568-viewDelatY-20.0)];
+        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, viewDelatY, 320, 568-viewDelatY)];
     } else {
-        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, viewDelatY, 320, 480-viewDelatY-20.0)];
+        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, viewDelatY, 320, 480-viewDelatY)];
     }
     
     if ([self.horizontalPathesScrollView numberOfPages]>1) {
@@ -607,9 +607,9 @@
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
     
     if ([appDelegate isIPHONE5]) {
-        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 44, 320, 568-64)];
+        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 44, 320, 568-44)];
     } else {
-        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 44, 320, 480-64)];
+        [[(MainView*)self.view containerView] setFrame:CGRectMake(0, 44, 320, 480-44)];
     }
     
     

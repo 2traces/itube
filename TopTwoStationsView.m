@@ -255,7 +255,7 @@
         [delegate setCurrentSelection:0];
         StationListViewController *controller =  (StationListViewController *)[delegate showiPadLiveSearchView];
         fromStationField.delegate = controller;
-        controller.isTextFieldInUse=YES;
+        controller.isTextFieldInUse=NO;
         [fromStationField becomeFirstResponder];
     } else {
         FastAccessTableViewController *controller =(FastAccessTableViewController*) [delegate showTableView];
@@ -315,7 +315,7 @@
         [delegate setCurrentSelection:1];
         StationListViewController *controller = [delegate showiPadLiveSearchView];
         toStationField.delegate = controller;
-        controller.isTextFieldInUse=YES;
+        controller.isTextFieldInUse=NO;
         [toStationField becomeFirstResponder];
     } else {
         FastAccessTableViewController *controller = [delegate showTableView];

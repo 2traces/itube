@@ -61,9 +61,9 @@ NSInteger const toolbarWidth=320;
     CGRect scrollSize,settingsRect,shadowRect,zonesRect;
     
     scrollSize = CGRectMake(0, 44,(320),(480-64));
-    settingsRect = CGRectMake(285, 420, 27, 27);
+    settingsRect = CGRectMake(285, 440, 27, 27);
     shadowRect = CGRectMake(0, 44, 480, 61);
-    zonesRect = CGRectMake(25, 420, 43, 25);
+    zonesRect = CGRectMake(25, 440, 43, 25);
     
     if (IS_IPAD) {
         scrollSize = CGRectMake(0, 44, 768, (1024-74));
@@ -78,9 +78,9 @@ NSInteger const toolbarWidth=320;
             
             if(result.height == 1136){
                 scrollSize = CGRectMake(0,44,(320),(568-64));
-                settingsRect = CGRectMake(285, 508, 27, 27);
+                settingsRect = CGRectMake(285, 528, 27, 27);
                 shadowRect = CGRectMake(0, 44, 568, 61);
-                zonesRect = CGRectMake(25, 508, 43, 25);
+                zonesRect = CGRectMake(25, 528, 43, 25);
             }
         }
     }
