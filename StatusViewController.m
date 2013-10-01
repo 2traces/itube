@@ -279,12 +279,11 @@
     textView.scrollEnabled=YES;
     [textView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
     
-    
     [UIView animateWithDuration:0.55 animations:^{
         self.view.frame = CGRectMake([[SSThemeManager sharedTheme] statusViewStartX], 0, [[SSThemeManager sharedTheme] statusViewWidth], 354);
         [self layoutSubviews];
     }];
-
+    
     self.shadowView.frame=CGRectMake(0, 44, [[SSThemeManager sharedTheme] statusViewWidth], 20);
 }
 
@@ -329,6 +328,7 @@
                 textView.frame = CGRectMake(10.0, viewUpdateY+60.0f+8.0f, viewWidth-20.0f, 354.0-viewUpdateY-60.0f-8.0f);
             } else {
                 textView.frame = CGRectMake(10.0, viewTextY, viewWidth-20.0f, 354.0-viewTextY-10.0);
+                [textView sizeToFit];
                 updateTextView.hidden=YES;
                 yellowView.hidden=YES;
             }

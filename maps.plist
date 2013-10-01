@@ -13,9 +13,9 @@
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>
-		<string>New York</string>
+		<string>Paris</string>
 		<key>filename</key>
-		<string>newyork</string>
+		<string>paris</string>
 		<key>description</key>
 		<string>newyork.txt</string>
 		<key>picture</key>
@@ -23,7 +23,7 @@
 		<key>zip_download</key>
 		<string>/maps/newyork/newyork1.zip</string>
 		<key>statusURL</key>
-		<string></string>
+		<string>http://metro.dim0xff.com/london/lines.txt</string>
 		<key>position</key>
 		<integer>0</integer>
 	</dict>
@@ -84,9 +84,9 @@
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>
-		<string>Berlin</string>
+		<string>Paris</string>
 		<key>filename</key>
-		<string>berlin</string>
+		<string>paris</string>
 		<key>description</key>
 		<string>berlin.txt</string>
 		<key>picture</key>
