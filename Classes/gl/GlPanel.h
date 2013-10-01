@@ -30,7 +30,7 @@
     enum {HIDDEN=0, RISING, SHOWN, HIDING} state;
     float alpha;
     GlPanel *panel;
-    GlText *text;
+    NSArray *texts;
     CGPoint origin;
 }
 
@@ -52,7 +52,7 @@
 @end
 
 @interface BigPanel : AbstractPanel {
-    GlText *subtitle;
+
 }
 -(id)initWithText:(NSString*)str;
 -(id)initWithText:(NSString*)str andSubtitle:(NSString*)subtitle;

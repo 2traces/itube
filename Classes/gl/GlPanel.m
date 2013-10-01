@@ -55,7 +55,9 @@
 {
     origin = position;
     panel.position = position;
-    text.position = position;
+    for (GlText *t in texts) {
+        t.position = position;
+    }
 }
 
 -(CGPoint)position
@@ -86,9 +88,11 @@
 {
     if(state == HIDDEN) return;
     panel.alpha = alpha;
-    text.alpha = alpha;
     [panel drawWithScale:scale];
-    [text drawWithScale:scale];
+    for (GlText *t in texts) {
+        t.alpha = alpha;
+        [t drawWithScale:scale];
+    }
 }
 
 -(void)update:(CGFloat)time
@@ -120,7 +124,7 @@
 -(void) dealloc
 {
     [panel release];
-    [text release];
+    [texts release];
     [super dealloc];
 }
 
@@ -132,7 +136,9 @@
 {
     if((self = [super init])) {
         panel = [[GlPanel alloc] initWithBackground:@"small-frame-with-shadow" position:CGPointZero andRect:CGRectMake(-54, -83, 109, 83)];
-        text = [[GlText alloc] initWithText:str font:@"Arial" fontSize:12.f andRect:CGRectMake(-41, -77, 82, 50)];
+        GlText *text = [[GlText alloc] initWithText:str font:@"Arial" fontSize:12.f andRect:CGRectMake(-41, -77, 82, 50)];
+        texts = @[text];
+        [texts retain];
         //[self show];
     }
     return self;
@@ -151,19 +157,18 @@
 {
     if((self = [super init])) {
         panel = [[GlPanel alloc] initWithBackground:@"big-blue-frame-with-shadow" position:CGPointZero andRect:CGRectMake(-120, -110, 240, 120)];
-        text = [[GlText alloc] initWithText:str font:@"Arial" fontSize:16.f fontColor:[UIColor whiteColor] andRect:CGRectMake(-70, -120, 140, 60)];
+        GlText *text = [[GlText alloc] initWithText:str font:@"Arial" fontSize:16.f fontColor:[UIColor whiteColor] andRect:CGRectMake(-70, -115, 140, 60)];
         if(nil != subtit) {
-            subtitle = [[GlText alloc] initWithText:str font:@"Arial" fontSize:12.f fontColor:[UIColor blackColor] andRect:CGRectMake(-70, -70, 140, 60)];
+            GlText *subtitle = [[GlText alloc] initWithText:subtit font:@"Arial" fontSize:12.f andRect:CGRectMake(-70, -70, 140, 60)];
+            texts = @[text, subtitle];
+        } else {
+            texts = @[text];
         }
+        [texts retain];
         //[self show];
     }
     return self;
 }
 
--(void) dealloc
-{
-    [subtitle release];
-    [super dealloc];
-}
 
 @end
