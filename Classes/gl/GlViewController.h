@@ -65,7 +65,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
     int _id;
     CGPoint pos, geoPos;
     GlSprite *sprite;
-    SmallPanel *sp;
+    BigPanel *sp;
     CGFloat size;
     CGFloat offset, speed, constOffset;
     float lastScale;

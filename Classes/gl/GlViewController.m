@@ -154,7 +154,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
         self.comment = [self decode:[data objectForKey:@"comment"]];
         self.country = [self decode:[data objectForKey:@"country"]];
         self.hours = [self decode:[data objectForKey:@"hours"]];
-        self.ID = [data objectForKey:@"ID"];
+        self.ID = [data objectForKey:@"id"];
         self.kind = [self decode:[data objectForKey:@"kind"]];
         self.state = [self decode:[data objectForKey:@"data"]];
         self.street = [self decode:[data objectForKey:@"street"]];
@@ -218,8 +218,14 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(BOOL)accept:(id)element
 {
     CGPoint el;
-    if([element isKindOfClass:[Object class]]) el = [element coords];
-    else if([element isKindOfClass:[Cluster class]]) el = [(Cluster*)element center];
+    if([element isKindOfClass:[Object class]]) {
+        for (id o in _objects) {
+            if([o isKindOfClass:Object.class] && [[o ID] isEqualToString:[element ID]]) {
+                return YES;
+            }
+        }
+        el = [element coords];
+    } else if([element isKindOfClass:[Cluster class]]) el = [(Cluster*)element center];
     else return NO;
     if([_objects count] <= 0) {
         [_objects addObject:element];
@@ -279,7 +285,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
         } else {
             sprite = [[GlSprite alloc] initWithPicture:@"current_location"];
         }
-        sp = [[SmallPanel alloc] initWithText:@"You are here!"];
+        sp = [[BigPanel alloc] initWithText:@"You are here!"];
     }
     return self;
 }
@@ -291,7 +297,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     if((self = [super init])) {
         _id = -1;
         sprite = [[GlSprite alloc] initWithPicture:@"station_mark"];
-        sp = [[SmallPanel alloc] initWithText:@"You are gonna be there!"];
+        sp = [[BigPanel alloc] initWithText:@"You are gonna be there!"];
     }
     return self;
 }
@@ -346,7 +352,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
                 sprite = [[GlSprite alloc] initWithPicture:@"pin-yell"];
                 break;
         }
-        sp = [[SmallPanel alloc] initWithText:text];
+        sp = [[BigPanel alloc] initWithText:text];
     }
     return self;
 }
@@ -396,7 +402,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
                 sprite = [[GlSprite alloc] initWithPicture:@"star-yell"];
                 break;
         }
-        sp = [[SmallPanel alloc] initWithText:text];
+        sp = [[BigPanel alloc] initWithText:text];
     }
     return self;
 }
@@ -447,7 +453,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
                 sprite = [[GlSprite alloc] initWithPicture:@"fav-yell"];
                 break;
         }
-        sp = [[SmallPanel alloc] initWithText:text];
+        sp = [[BigPanel alloc] initWithText:text];
     }
     return self;
 }
@@ -859,6 +865,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
             if(panVelocity.y > maxVel) panVelocity.y = maxVel;
             panTime = 0.f;
             
+            [self loadObjectsOnScreen];
             [self sendMapMovedNotification];
         }
             break;
@@ -1331,6 +1338,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
             scale = targetScale;
             position = targetPosition;
             targetTimer = 0.f;
+            [self loadObjectsOnScreen];
         }
     }
     if(panTime == 0.f && (panVelocity.x != 0.f || panVelocity.y != 0.f)) {
@@ -1637,6 +1645,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     scale = MIN(256.f / r.size.height, 256.f / rect.size.width);
     targetTimer = 0.f;
 
+    [self loadObjectsOnScreen];
     [self sendMapMovedNotification];
 }
 
@@ -1652,6 +1661,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     position.y = y + 2.f / scale;
     targetTimer = 0.f;
 
+    [self loadObjectsOnScreen];
     [self sendMapMovedNotification];
 }
 
@@ -1752,7 +1762,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(void)loadObjectsForRect:(CGRect)rect
 {
-    NSString *url=[NSString stringWithFormat:@"http://37.230.115.4/index.php?x1=%f&y1=%f&x2=%f&y2=%f", rect.origin.x, rect.origin.y, rect.origin.x+rect.size.width, rect.origin.y+rect.size.height];
+    NSString *url=[NSString stringWithFormat:@"http://5.175.192.184/index.php?x1=%f&y1=%f&x2=%f&y2=%f", rect.origin.x, rect.origin.y, rect.origin.x+rect.size.width, rect.origin.y+rect.size.height];
     
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     

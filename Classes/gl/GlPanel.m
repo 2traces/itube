@@ -145,7 +145,7 @@
 -(id)initWithText:(NSString *)str
 {
     if((self = [super init])) {
-        panel = [[GlPanel alloc] initWithBackground:@"big-frame-with-shadow" position:CGPointZero andRect:CGRectMake(-120, -110, 240, 120)];
+        panel = [[GlPanel alloc] initWithBackground:@"big-blue-frame-with-shadow" position:CGPointZero andRect:CGRectMake(-120, -110, 240, 120)];
         text = [[GlText alloc] initWithText:str font:@"Arial" fontSize:12.f andRect:CGRectMake(-70, -90, 140, 60)];
         //[self show];
     }
