@@ -54,7 +54,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 	//[self.navigationController.navigationBar setBackgroundImage:navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
     
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:4.0f/255.0f green:192.0f/255.0f blue:237.0f/255.0f alpha:1]];
+        [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:18.0f/255.0f green:157.0f/255.0f blue:221.0f/255.0f alpha:1]];
     }
     else {
         [[UINavigationBar appearance] setBackgroundImage:navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];

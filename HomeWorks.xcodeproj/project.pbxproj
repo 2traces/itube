@@ -50,9 +50,7 @@
 		5795CB7C17E7633900B6E791 /* back_bt.png in Resources */ = {isa = PBXBuildFile; fileRef = 5795CB7A17E7633900B6E791 /* back_bt.png */; };
 		5795CB7D17E7633900B6E791 /* bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 5795CB7B17E7633900B6E791 /* bar.png */; };
 		5795CB9017E7635700B6E791 /* bottom_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5795CB7E17E7635600B6E791 /* bottom_logo.png */; };
-		5795CB9117E7635700B6E791 /* buy_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5795CB7F17E7635600B6E791 /* buy_bg.png */; };
 		5795CB9217E7635700B6E791 /* buy_bt.png in Resources */ = {isa = PBXBuildFile; fileRef = 5795CB8017E7635600B6E791 /* buy_bt.png */; };
-		5795CB9317E7635700B6E791 /* buyButtonBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5795CB8117E7635600B6E791 /* buyButtonBg.png */; };
 		5795CB9417E7635700B6E791 /* buyDownloadBt.png in Resources */ = {isa = PBXBuildFile; fileRef = 5795CB8217E7635700B6E791 /* buyDownloadBt.png */; };
 		5795CB9517E7635700B6E791 /* table_button_down_pressed_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5795CB8317E7635700B6E791 /* table_button_down_pressed_ipad.png */; };
 		5795CB9617E7635700B6E791 /* table_button_down_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 5795CB8417E7635700B6E791 /* table_button_down_pressed.png */; };
@@ -234,7 +232,6 @@
 		5795CB7A17E7633900B6E791 /* back_bt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_bt.png; sourceTree = "<group>"; };
 		5795CB7B17E7633900B6E791 /* bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar.png; sourceTree = "<group>"; };
 		5795CB7E17E7635600B6E791 /* bottom_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottom_logo.png; sourceTree = "<group>"; };
-		5795CB7F17E7635600B6E791 /* buy_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buy_bg.png; sourceTree = "<group>"; };
 		5795CB8017E7635600B6E791 /* buy_bt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buy_bt.png; sourceTree = "<group>"; };
 		5795CB8117E7635600B6E791 /* buyButtonBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buyButtonBg.png; sourceTree = "<group>"; };
 		5795CB8217E7635700B6E791 /* buyDownloadBt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buyDownloadBt.png; sourceTree = "<group>"; };
@@ -612,7 +609,6 @@
 				5795CBA217E83B6200B6E791 /* table_button_down_s@2x.png */,
 				5795CBA317E83B6200B6E791 /* table_button_mid_s@2x.png */,
 				5795CB7E17E7635600B6E791 /* bottom_logo.png */,
-				5795CB7F17E7635600B6E791 /* buy_bg.png */,
 				5795CB8017E7635600B6E791 /* buy_bt.png */,
 				5795CB8117E7635600B6E791 /* buyButtonBg.png */,
 				5795CB8217E7635700B6E791 /* buyDownloadBt.png */,
@@ -725,7 +721,7 @@
 		49750CE9170B5A1300ED9AA4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Trylogic;
 			};
 			buildConfigurationList = 49750CEC170B5A1300ED9AA4 /* Build configuration list for PBXProject "HomeWorks" */;
@@ -811,9 +807,7 @@
 				5795CB7C17E7633900B6E791 /* back_bt.png in Resources */,
 				5795CB7D17E7633900B6E791 /* bar.png in Resources */,
 				5795CB9017E7635700B6E791 /* bottom_logo.png in Resources */,
-				5795CB9117E7635700B6E791 /* buy_bg.png in Resources */,
 				5795CB9217E7635700B6E791 /* buy_bt.png in Resources */,
-				5795CB9317E7635700B6E791 /* buyButtonBg.png in Resources */,
 				5795CB9417E7635700B6E791 /* buyDownloadBt.png in Resources */,
 				57AF628417EB37B000A3C51B /* table_button_mid_pressed_ios7@2x.png in Resources */,
 				5795CB9517E7635700B6E791 /* table_button_down_pressed_ipad.png in Resources */,

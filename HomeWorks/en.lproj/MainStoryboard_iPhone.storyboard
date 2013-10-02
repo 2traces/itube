@@ -135,7 +135,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Восстановить покупки" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KqR-gu-naR">
-                                                    <rect key="frame" x="64" y="18" width="198" height="21"/>
+                                                    <rect key="frame" x="64" y="18" width="197.99999999999997" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -160,7 +160,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Обновить каталог" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WZB-cI-ART">
-                                                    <rect key="frame" x="63" y="18" width="237" height="21"/>
+                                                    <rect key="frame" x="63.000000000000021" y="18" width="237" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -535,15 +535,15 @@
             <objects>
                 <viewController storyboardIdentifier="buyVC" id="ILy-1a-hnx" customClass="BuyViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7eA-1w-toY">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="163"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="buy_bg.png" id="4uo-mV-CTG">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="165"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HA2-uW-Zh7">
-                                <rect key="frame" x="20" y="105" width="109" height="30"/>
+                                <rect key="frame" x="20" y="113" width="109" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="33 руб." backgroundImage="buy_bt.png">
@@ -558,7 +558,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="81z-wx-Eh8">
-                                <rect key="frame" x="185" y="105" width="109" height="30"/>
+                                <rect key="frame" x="185" y="113" width="109" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="99 руб." backgroundImage="buy_bt.png">
@@ -601,7 +601,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lSr-VK-6gX">
-                                <rect key="frame" x="20" y="76" width="114" height="29"/>
+                                <rect key="frame" x="20" y="80" width="114" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="На целый месяц">
@@ -615,7 +615,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="exV-Vg-Tm1">
-                                <rect key="frame" x="170" y="76" width="138" height="29"/>
+                                <rect key="frame" x="170" y="80" width="138" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="На весь учебный год">

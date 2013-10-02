@@ -256,7 +256,7 @@ NSString *kFooterID = @"collectionFooter";
         temp = self.view.bounds;
         
         CGRect frame = self.buyView.frame;
-        frame.size = CGSizeMake(320, 150);
+        frame.size = CGSizeMake(320, 165);
         CGFloat shift = 0;
         
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
@@ -432,7 +432,13 @@ NSString *kFooterID = @"collectionFooter";
     else {
         NSString *num = [[answers objectAtIndex:indexPath.item] text];
         NSArray *components = [num componentsSeparatedByString:@"_"];
-        num = [components lastObject];
+        NSInteger count = [components count];
+        if ([num length] > 6 && count > 1) {
+            num = [NSString stringWithFormat:@"%@_%@", components[count - 2], components[count - 1]];
+        }
+        else {
+            num = [components lastObject];
+        }
         if (num && ![num isEqualToString:@""]) {
             cell.label.text = num;
         }
