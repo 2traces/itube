@@ -369,8 +369,24 @@ NSString *kFooterID = @"collectionFooter";
 	else if (indexPath.item < 2 || self.purchased)
 	{
 		cell = [cv dequeueReusableCellWithReuseIdentifier:kCellID forIndexPath:indexPath];
-		cell.label.text = [NSString stringWithFormat:@"%@", [[answers objectAtIndex:indexPath.item] text]];
-		return cell;
+        
+        NSString *num = [[answers objectAtIndex:indexPath.item] text];
+        NSArray *components = [num componentsSeparatedByString:@"_"];
+        NSInteger count = [components count];
+        if ([num length] > 6 && count > 1) {
+            num = [NSString stringWithFormat:@"%@_%@", components[count - 2], components[count - 1]];
+        }
+        else {
+            num = [components lastObject];
+        }
+        if (num && ![num isEqualToString:@""]) {
+            cell.label.text = num;
+        }
+        else {
+            cell.label.text = [[answers objectAtIndex:indexPath.item] text];
+        }
+        
+        return cell;
 	}
 	else
 	{

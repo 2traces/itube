@@ -1,4 +1,5 @@
 platform :ios, '5.0'
+xcodeproj 'HomeWorks.xcodeproj'
 
 pod 'AFNetworking', '~> 1.0'
 
