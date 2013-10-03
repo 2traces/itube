@@ -154,7 +154,7 @@
     ImageDownloader *imageDownloader = [imageDownloadsInProgress objectForKey:myfilename];
     if (imageDownloader == nil) 
     {
-        NSString *mainurl = @"http://findmystation.info/maps";
+        NSString *mainurl = @"http://parismetromaps.info/maps";
         NSString *path = [mainurl stringByAppendingPathComponent:[self getDemoMapFileName:product]];
         imageDownloader = [[ImageDownloader alloc] init];
         imageDownloader.delegate = self;
