@@ -1008,7 +1008,7 @@
         // print train
         int exitNumb = [[exits objectAtIndex:j-start] intValue];
         if (exitNumb!=0) {
-            NSString *trainName = [NSString stringWithFormat:@"http:/findmystation.info/maps/%@/train%d.png",appDelegate.cityMap.thisMapName,exitNumb];
+            NSString *trainName = [NSString stringWithFormat:@"http://parismetromaps.info/maps/%@/train%d.png",appDelegate.cityMap.thisMapName,exitNumb];
             NSString *kk = @"\"";
             body = [body stringByAppendingFormat:@"<TR><TD colspan=\"2\"><img src=%@%@%@ alt=%@%@%@></TD></TR>",kk,trainName,kk,kk,@"train",kk];
 //            NSLog(@"%@",trainName);
@@ -1043,7 +1043,7 @@
     NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
     NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     NSString *appURL = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppStoreURL"];
-    NSString *iconURLString = [NSString stringWithFormat:@"<img src=\"%@\" alt=\"appIcon\">",[NSString stringWithFormat:@"http:/findmystation.info/maps/%@/icon.png",appDelegate.cityMap.thisMapName]];
+    NSString *iconURLString = [NSString stringWithFormat:@"<img src=\"%@\" alt=\"appIcon\">",[NSString stringWithFormat:@"http://parismetromaps.info/maps/%@/icon.png",appDelegate.cityMap.thisMapName]];
     
     body = [body stringByAppendingFormat:@"</table><p>Sent from <a href=\"%@\">%@ ver. %@</a><p>%@<p></html>",appURL,appName,appVersion,iconURLString];
     

@@ -15,7 +15,7 @@
 @synthesize listener;
 @synthesize prodID;
 
-NSString *regularMainUrl = @"http://findmystation.info";
+NSString *regularMainUrl = @"http://parismetromaps.info";
 
 - (id)init
 {
