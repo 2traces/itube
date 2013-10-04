@@ -404,7 +404,14 @@ NSString *offlineMapsUrl = @"http://parismetromaps.info";
 
 -(IBAction)openAppStoreLinkPressed:(id)sender
 {
-    AdvancedCityCell *cell = (AdvancedCityCell*)[[sender superview] superview];
+    AdvancedCityCell *cell;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        cell = (AdvancedCityCell*)[[[sender superview] superview] superview];
+    } else {
+        cell = (AdvancedCityCell*)[[sender superview] superview];
+    }
+
     NSMutableDictionary *map = [maps objectAtIndex:[cityTableView indexPathForCell:cell].row];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[map objectForKey:@"appstore_link"]]];
 }
@@ -1234,14 +1241,28 @@ NSString *offlineMapsUrl = @"http://parismetromaps.info";
 }
 
 - (IBAction)mapItemPressed:(id)sender {
-    CityCell *cell = (CityCell*)[[sender superview] superview];
 
+    CityCell *cell;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        cell = (CityCell*)[[[sender superview] superview] superview];
+    } else {
+        cell = (CityCell*)[[sender superview] superview];
+    }
+    
     [self mapItemSelectedWithIndex:[self.cityTableView indexPathForCell:cell]];
 }
 
 -(IBAction)buyButtonPressed:(id)sender 
 {
-    CityCell *cell = (CityCell*)[[sender superview] superview];  
+    CityCell *cell;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        cell = (CityCell*)[[[sender superview] superview] superview];
+    } else {
+        cell = (CityCell*)[[sender superview] superview];
+    }
+
     NSMutableDictionary *map = [maps objectAtIndex:[cityTableView indexPathForCell:cell].row];
     NSString *prodID = [map valueForKey:@"prodID"];
     
