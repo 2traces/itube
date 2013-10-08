@@ -152,6 +152,12 @@
         
         [[self.navigationController navigationBar] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                            [UIColor grayColor], UITextAttributeTextColor, [UIFont fontWithName:@"HelveticaNeueCyr-Light" size:16.0], UITextAttributeFont, nil]];
+
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+            [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+        }
+
+        
     }
     else {
     
