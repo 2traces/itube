@@ -10,12 +10,8 @@
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import <QuartzCore/QuartzCore.h>
-#import "Server.h"
 #import "DownloadServer.h"
-#import "MBProgressHUD.h"
 #import "ProductMarcos.h"
-
-@class MyNavigationBar;
 
 @protocol SettingsViewControllerDelegate;
 
@@ -26,7 +22,6 @@
     NSString *mapID;
     
     NSIndexPath *selectedPath;
-    MBProgressHUD *_hud;
     
     int requested_file_type;
     

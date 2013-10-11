@@ -7,7 +7,6 @@
 //
 
 #import "SettingsViewController.h"
-#import "MyNavigationBar.h"
 #import "tubeAppDelegate.h"
 #import "Reachability.h"
 #import "TubeAppIAPHelper.h"
