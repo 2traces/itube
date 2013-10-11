@@ -9,39 +9,26 @@
 #import <UIKit/UIKit.h>
 #import "GlViewController.h"
 
-@class CategoriesViewController;
 @class GlViewController;
-@class HCBookmarksViewController;
-@class ReaderViewController;
 
 @protocol NavigationDelegate <NSObject>
 
 - (void) showCategories:(id)sender;
-- (void) showBookmarks:(id)sender;
 - (void) showRasterMap;
-- (void) showBookmarksLayer;
-- (void) hideBookmarksLayer;
-- (void) showReaderWithItems:(NSArray*)items activePage:(NSInteger)activePage;
-- (void) selectCategoryWithIndex:(NSInteger)index;
 - (CGFloat) selectPlaceWithIndex:(NSInteger)index;
 - (CGFloat) radialDirectionOffsetToPlaceWithIndex:(NSInteger)index;
 - (void) showSettings;
 - (BOOL) categoriesOpen;
 - (void) centerMapOnUser;
-- (void) reloadCategories;
 - (void) showPurchases:(int)index;
 
 @end
 
 typedef enum {
-    HCOSMLayer,
-    HCBookmarksLayer,
+    HCOSMLayer
 } HCLayerMode;
 
 @interface NavigationViewController : UIViewController <NavigationDelegate> {
-    CategoriesViewController *categoriesController;
-    HCBookmarksViewController *bookmarksController;
-    ReaderViewController *readerController;
     GlViewController *glController;
     UIView *separatingView;
     BOOL categoriesOpen;
@@ -58,10 +45,6 @@ typedef enum {
 -(IBAction)searchText:(UITextField*)sender;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil glViewController:(GlViewController*)glViewController;
-
-- (void)transitToPathMode;
-- (void)transitToNormalMode;
-
 - (void) centerMapOnPlace:(MPlace*)place;
 
 
@@ -69,9 +52,6 @@ typedef enum {
 @property (nonatomic, retain) IBOutlet UIImageView *shadow;
 @property (nonatomic, retain) NSArray *currentPlaces;
 @property (nonatomic, retain) NSString *currentCategory;
-@property (nonatomic, retain) CategoriesViewController *categoriesController;
-@property (nonatomic, retain) ReaderViewController *readerController;
-@property (nonatomic, retain) HCBookmarksViewController *bookmarksController;
 @property (nonatomic, retain) GlViewController *glController;
 @property (nonatomic, strong) IBOutlet UITextField *textField;
 

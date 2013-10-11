@@ -7,13 +7,9 @@
 //
 
 #import "NavigationViewController.h"
-#import "CategoriesViewController.h"
-#import "HCBookmarksViewController.h"
-#import "ReaderViewController.h"
 #import "ManagedObjects.h"
 #import "SettingsNavController.h"
 #import "tubeAppDelegate.h"
-#import "WeatherHelper.h"
 
 @interface NavigationViewController ()
 
@@ -21,10 +17,7 @@
 
 @implementation NavigationViewController
 
-@synthesize categoriesController;
 @synthesize glController;
-@synthesize bookmarksController;
-@synthesize readerController;
 @synthesize currentPlaces;
 @synthesize currentCategory;
 @synthesize separatingView;
@@ -73,14 +66,8 @@
 {
     [super viewDidLoad];
     
-    self.categoriesController = [[[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:[NSBundle mainBundle]] autorelease];
-    self.categoriesController.navigationDelegate = self;
     self.glController.view.layer.cornerRadius = self.separatingView.layer.cornerRadius = 5;
-    [self.view insertSubview:[self.categoriesController view] belowSubview:self.separatingView];
     [self.view insertSubview:[self.glController view] aboveSubview:self.separatingView];
-    
-    self.categoriesController.view.layer.cornerRadius = 5;
-    self.categoriesController.view.clipsToBounds = YES;
     
     CGRect mainViewFrame = self.glController.view.frame;
     self.glController.view.frame = mainViewFrame;
@@ -173,11 +160,10 @@
             categoriesOpen = NO;
 
         }
-        self.bookmarksController.view.frame = self.glController.view.frame = glViewFrame;
+        self.glController.view.frame = glViewFrame;
         self.separatingView.frame = separatingFrame;
     }];
     
-    [[WeatherHelper sharedHelper] getWeatherInformation];
 }
 
 - (void) hideCategoriesAnimated:(BOOL)animated {
@@ -217,49 +203,15 @@
     [self.glController centerMapOnUser];
 }
 
-- (void) reloadCategories {
-    [self.categoriesController reloadCategories];
-}
-
-
-
-- (void) showBookmarks:(id)sender {
-    if (layerMode != HCBookmarksLayer) {
-        [self showBookmarksLayer];
-    }
-    else {
-        [self hideBookmarksLayer];
-    }
-}
-
-
 - (void) switchToLayerMode:(HCLayerMode)mode {
     if (mode == layerMode) {
         //If we're trying to set same layer, do nothing
         return;
     }
 
-    if (layerMode == HCBookmarksLayer) {
-        //As bookmarks layer is just placed ABOVE map/metro layer, we need to first dismiss it
-        [self.bookmarksController.view removeFromSuperview];
-        layerMode = HCOSMLayer;
-    }
     //As layerMode could have changed after removing bookmarks layer, check once more
     if (mode != layerMode) {
         switch (mode) {
-            case HCBookmarksLayer:
-                //Also, as bookmarks layer is simply placed ABOVE any other layer, if we need to show it, we just do
-                if (!self.bookmarksController) {
-                    self.bookmarksController = [[[HCBookmarksViewController alloc] initWithNibName:@"HCBookmarksViewController" bundle:[NSBundle mainBundle]] autorelease];
-                }
-                CGRect frame = self.bookmarksController.view.frame;
-                frame.origin = CGPointMake(0, 0);
-                self.bookmarksController.view.frame = frame;
-//                [self.photosController.btShowHideBookmarks setImage:[UIImage imageNamed:@"bt_bookmarks_map"] forState:UIControlStateNormal];
-                [self.view insertSubview:self.bookmarksController.view aboveSubview:self.glController.view];
-                layerMode = HCBookmarksLayer;
-
-                break;
             case HCOSMLayer:
                 layerMode = HCOSMLayer;
                 break; 
@@ -272,30 +224,6 @@
 
 - (void) showRasterMap {
     [self switchToLayerMode:HCOSMLayer];
-
-}
-
-- (void) showBookmarksLayer {
-    [self switchToLayerMode:HCBookmarksLayer];
-}
-
-- (void) hideBookmarksLayer {
-    [self switchToLayerMode:HCOSMLayer];
-}
-
-- (void) showReaderWithItems:(NSArray*)items activePage:(NSInteger)activePage {
-    if (categoriesOpen) {
-        [self showCategories:nil];
-        return;
-    }
-    self.readerController = [[[ReaderViewController alloc] initWithReaderItems:items currentItemIndex:activePage] autorelease];
-    [self.navigationController pushViewController:self.readerController animated:YES];
-}
-
-- (void) selectCategoryWithIndex:(NSInteger)index {
-    self.currentPlaces = [[MHelper sharedHelper] getPlacesForCategoryIndex:index];
-    MCategory * category = self.categoriesController.categories[index - 1];
-    self.currentCategory = category.name;
 
 }
 
@@ -330,7 +258,7 @@
     if (IS_IPAD)
         return interfaceOrientation == UIInterfaceOrientationPortrait;// || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown;
     
-    if (layerMode == HCBookmarksLayer || self.presentedViewController) {
+    if (self.presentedViewController) {
             return (interfaceOrientation == UIInterfaceOrientationPortrait);
     }
     return (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
@@ -343,7 +271,7 @@
 -(NSUInteger)supportedInterfaceOrientations{
     if (IS_IPAD)
         return UIInterfaceOrientationMaskPortrait ;//| UIInterfaceOrientationMaskPortraitUpsideDown;
-    if (layerMode == HCBookmarksLayer || self.presentedViewController) {
+    if (self.presentedViewController) {
         return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
     }
     return UIInterfaceOrientationMaskAll;
@@ -355,11 +283,6 @@
     if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
         returningFromLandscape = YES;
     } else {
-        if (layerMode == HCBookmarksLayer) {
-            //As bookmarks layer is just placed ABOVE map/metro layer, we need to first dismiss it
-            [self.bookmarksController.view removeFromSuperview];
-            layerMode = HCOSMLayer;
-        }
         if (self.presentedViewController) {
             [self.presentedViewController dismissModalViewControllerAnimated:YES];
         }
@@ -367,7 +290,6 @@
         [self hideCategoriesAnimated:NO];
         if (IS_IPAD)
         {
-            self.categoriesController.view.hidden = YES;
             
         }
         else

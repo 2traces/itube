@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "StationListViewController.h"
-#import "LineListViewController.h"
-#import "BookmarkViewController.h"
 #import "FastAccessTableViewController.h"
 
 
@@ -117,7 +114,7 @@
 @property (nonatomic, retain) NSSet *stations;
 @end
 
-@interface MHelper : NSObject <StationListViewProtocol, LineListViewProtocol, BookmarkViewProtocol, FastAccessTableViewProtocol, NSFetchedResultsControllerDelegate> {
+@interface MHelper : NSObject <FastAccessTableViewProtocol, NSFetchedResultsControllerDelegate> {
 }
 
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;

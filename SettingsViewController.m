@@ -7,15 +7,11 @@
 //
 
 #import "SettingsViewController.h"
-#import "CityCell.h"
 #import "MyNavigationBar.h"
 #import "tubeAppDelegate.h"
 #import "Reachability.h"
 #import "TubeAppIAPHelper.h"
-#import "DemoMapViewController.h"
 #import "SSZipArchive.h"
-#import "SSTheme.h"
-#import "CustomPhotoViewerViewController.h"
 #import "LCUtil.h"
 #import "RectObject.h"
 

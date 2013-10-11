@@ -10,7 +10,6 @@
 #import <GLKit/GLKit.h>
 #import "FastAccessTableViewController.h"
 #import "ManagedObjects.h"
-#import "TopRasterView.h"
 #import "NavigationViewController.h"
 #import "GlSprite.h"
 #import "GlPanel.h"
@@ -102,16 +101,12 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 }
 
 @property (nonatomic, assign) MItem *currentSelection;
-@property (nonatomic, retain) MItem *fromStation;
-@property (nonatomic, retain) MItem *toStation;
-@property (nonatomic, retain) TopRasterView *stationsView;
 @property (nonatomic, retain) NavigationViewController *navigationViewController;
 @property (nonatomic, assign) BOOL followUserGPS;
 @property (nonatomic, readonly) NSArray *searchResults;
 @property (nonatomic, strong) IBOutlet GlView* glView;
 
 -(FastAccessTableViewController*)showTableView;
--(void)returnFromSelectionFastAccess:(NSArray *)stations;
 -(void)setGeoPosition:(CGRect)rect;
 
 //Center map on point with long/lat
@@ -148,8 +143,6 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 - (void) moveModeButtonToCutScreen;
 
 -(void)removeTableView;
--(void)pressedSelectFromStation;
--(void)pressedSelectToStation;
 -(void)purgeUnusedCache;
 -(void)showSettings;
 -(void)showPurchases:(int)index;

@@ -12,7 +12,6 @@
 @implementation RightiPadPathViewController
 
 @synthesize timer;
-@synthesize statusViewController;
 @synthesize switchButton;
 @synthesize toolbar;
 @synthesize statusLabel;
@@ -32,7 +31,6 @@
     [super viewDidLoad];
     
     isPathExists=NO;
-    isStatusAvailable=NO;
     
 	// Do any additional setup after loading the view.
     self.toolbar = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44.0)] autorelease];
@@ -50,8 +48,6 @@
     [self.view addSubview:self.statusLabel];
     self.statusLabel.hidden=YES;
     
-    [self addStatusView];
-    
     self.switchButton = [self createSwitchButton];
     [self.view addSubview:switchButton];
 }
@@ -67,38 +63,10 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(void)addStatusView
-{
-    StatusViewController *statusView = [[StatusViewController alloc] init];
-    [self.view addSubview:statusView.view];
-    self.statusViewController =statusView;
-    [self.statusViewController recieveStatusInfo];
-    [statusView release];
-}
-
--(void)removeStatusView
-{
-    [self.statusViewController.view removeFromSuperview];
-    self.statusViewController=nil;
-}
-
--(void)changeStatusView
-{
-    [self removeStatusView];
-    [self addStatusView];
-}
-
-
 -(BOOL)isReadyToShow
 {
     
-    if ([self.statusViewController isNewMapAvailable] || [self.statusViewController isStatusRecieved]) {
-        isStatusAvailable=YES;
-    } else {
-        isStatusAvailable=NO;
-    }
-    
-    if (isPathExists || isStatusAvailable) {
+    if (isPathExists) {
         return YES;
     }
     
@@ -108,8 +76,6 @@
 -(void)prepareToShow
 {
     isPathExists=NO;
-    
-    [self.statusViewController layoutSubviews];
     
     [self layoutSubviews];
 }
@@ -176,16 +142,10 @@
     return changeViewButton;
 }
 
--(void)refreshStatusInfo
-{
-    [self.statusViewController refreshStatusInfo];
-}
-
 -(void)dealloc
 {
     [timer release];
     [statusShadowView release];
-    [statusViewController release];
     [switchButton release];
     [toolbar release];
     [statusLabel release];

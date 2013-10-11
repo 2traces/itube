@@ -7,17 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StatusViewController.h"
 
 @interface RightiPadPathViewController : UIViewController
 {
     NSTimer *timer;
     BOOL isPathExists;
-    BOOL isStatusAvailable;
 }
 
 @property (nonatomic,retain) NSTimer *timer;
-@property (nonatomic,retain) StatusViewController *statusViewController;
 @property (nonatomic,retain) UIButton *switchButton;
 @property (nonatomic,retain) UIImageView *toolbar;
 @property (nonatomic,retain) UILabel *statusLabel;
@@ -29,7 +26,5 @@
 
 -(BOOL)isReadyToShow;
 -(void)prepareToShow;
--(void)refreshStatusInfo;
--(void)changeStatusView;
 
 @end

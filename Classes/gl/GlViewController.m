@@ -10,7 +10,6 @@
 #import "RasterLayer.h"
 #import "SettingsNavController.h"
 #import "tubeAppDelegate.h"
-#import "SelectingTabBarViewController.h"
 #import "ZonesButtonConf.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
@@ -107,7 +106,6 @@ CGPoint translateFromMapToGeo(CGPoint p)
     MItem *currentSelection;
     MItem *fromStation;
     MItem *toStation;
-    TopRasterView *stationsView;
     
     CGPoint panVelocity;
     CGFloat panTime;
@@ -559,9 +557,6 @@ CGPoint translateFromMapToGeo(CGPoint p)
 @synthesize context = _context;
 //@synthesize effect = _effect;
 @synthesize currentSelection;
-@synthesize toStation;
-@synthesize fromStation;
-@synthesize stationsView;
 @synthesize navigationViewController;
 @synthesize followUserGPS;
 @synthesize searchResults = lastSearchResults;
@@ -582,7 +577,6 @@ CGPoint translateFromMapToGeo(CGPoint p)
 - (void)dealloc
 {
     [pinsArray release];
-    [stationsView release];
     [_context release];
     //[_effect release];
     [rasterLayer release];
@@ -662,9 +656,6 @@ CGPoint translateFromMapToGeo(CGPoint p)
     
     rasterLayer = [[RasterLayer alloc] initWithRect:CGRectMake(0, 0, 256, 256) mapName:@"cuba"];
     //[rasterLayer setSignal:self selector:@selector(redrawRect:)];
-    
-    stationsView = [[TopRasterView alloc] initWithFrame:CGRectMake(0,0,320,44)];
-    [glView addSubview:stationsView];
     
     int adDelta = 0;
     
@@ -1091,130 +1082,11 @@ CGPoint translateFromMapToGeo(CGPoint p)
     //((MainView*)self.view).shouldNotDropPins = NO;
 }
 
--(void)returnFromSelection2:(NSArray*)items
-{
-    /*MainView *mainView = (MainView*)self.view;
-    if ([items count]) {
-        self.fromStation = [items objectAtIndex:0];
-        [stationsView setFromStation:self.fromStation];
-        if(![mainView centerMapOnUserAndItemWithID:[self.fromStation.index integerValue]]) {
-#ifdef DEBUG
-            NSLog(@"object %@ not found!", self.fromStation.index);
-#endif
-        }
-        else {
-            [self setPinForItem:[self.fromStation.index integerValue]];
-        }
-    }
-    else {
-        self.fromStation=nil;
-    }
-    
-	mainView.mapView.stationSelected=false;
-     */
-}
-
-
--(void)returnFromSelectionFastAccess:(NSArray *)stations
-{
-    [self removeTableView];
-    if (stations) {
-        if (currentSelection==nil) {
-            if ([stations objectAtIndex:0]==self.toStation) {
-                self.fromStation=nil;
-                [stationsView resetFromStation];
-            } else {
-                [self returnFromSelection:stations];
-            }
-        } else {
-            if ([stations objectAtIndex:0]==self.fromStation) {
-                self.toStation=nil;
-                [stationsView resetToStation];
-            } else {
-                [self returnFromSelection:stations];
-            }
-        }     
-        
-        //      [self returnFromSelection:stations];
-    } else {
-        if (currentSelection==nil) {
-            [stationsView setFromStation:self.fromStation];
-        } else {
-            [stationsView setToStation:self.toStation];
-        }
-    }
-}
-
--(void)showTabBarViewController
-{
-    SelectingTabBarViewController *controller = [[SelectingTabBarViewController alloc] initWithNibName:@"SelectingTabBarViewController" bundle:[NSBundle mainBundle]];
-    controller.delegate = self;
-    
-    CGRect frame = controller.view.frame;
-    frame.origin.y = self.view.frame.size.height;
-    controller.view.frame = frame;
-    
-    [self.view addSubview:controller.view];
-    frame.origin.y = 0;
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.3f];
-    controller.view.frame = frame;
-    
-    [UIView commitAnimations];
-    
-    //(self.view).shouldNotDropPins = YES;
-    
-    [controller autorelease];
-}
-
 -(void) changeZones
 {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate showMetroMap];
     //[self dismissModalViewControllerAnimated:YES];
-}
-
--(void)pressedSelectFromStation
-{
-    currentSelection=fromStation;
-    [self showTabBarViewController];
-}
-
--(void)pressedSelectToStation
-{
-    currentSelection=toStation;
-    [self showTabBarViewController];
-}
-
--(void)resetFromStation
-{
-    currentSelection=fromStation;
-    [stationsView setToStation:self.toStation];
-    [self returnFromSelection:[NSArray array]];
-}
-
--(void)resetToStation
-{
-    currentSelection=toStation;
-    [stationsView setFromStation:self.fromStation];
-    [self returnFromSelection:[NSArray array]];
-}
-
--(void)resetBothStations
-{
-    MItem *tempSelection = currentSelection;
-    
-    currentSelection=fromStation;
-    [stationsView setToStation:nil];
-    [stationsView setFromStation:nil];
-    
-    self.fromStation=nil;
-    self.toStation=nil;
-    
-    [self returnFromSelection2:[NSArray array]];
-    
-    currentSelection=tempSelection;
 }
 
 - (void) removePinAtPlace:(MPlace*)place {
