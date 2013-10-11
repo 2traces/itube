@@ -1054,7 +1054,6 @@
 		577DEB8F166E2F21006BA43A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1146C81466EAF200EF5A28 /* QuartzCore.framework */; };
 		577DEB90166E2F21006BA43A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE94E278146D0F7900D6BD43 /* CoreLocation.framework */; };
 		577DEBA3166E3126006BA43A /* berlin in Resources */ = {isa = PBXBuildFile; fileRef = 577DEBA2166E3126006BA43A /* berlin */; };
-		577DEBA5166E312D006BA43A /* paris in Resources */ = {isa = PBXBuildFile; fileRef = 577DEBA4166E312D006BA43A /* paris */; };
 		577DEBA7166E3137006BA43A /* venice in Resources */ = {isa = PBXBuildFile; fileRef = 577DEBA6166E3137006BA43A /* venice */; };
 		577DEBA9166E37C1006BA43A /* nyc in Resources */ = {isa = PBXBuildFile; fileRef = 577DEBA8166E37C1006BA43A /* nyc */; };
 		577DEBC7166E3E0B006BA43A /* venice-Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 577DEBC6166E3E0B006BA43A /* venice-Default@2x.png */; };
@@ -1594,7 +1593,6 @@
 		577DE971166E2F1D006BA43A /* HC Venice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HC Venice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		577DEB94166E2F21006BA43A /* HC NYC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HC NYC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		577DEBA2166E3126006BA43A /* berlin */ = {isa = PBXFileReference; lastKnownFileType = folder; name = berlin; path = maps/berlin; sourceTree = "<group>"; };
-		577DEBA4166E312D006BA43A /* paris */ = {isa = PBXFileReference; lastKnownFileType = folder; name = paris; path = maps/paris; sourceTree = "<group>"; };
 		577DEBA6166E3137006BA43A /* venice */ = {isa = PBXFileReference; lastKnownFileType = folder; name = venice; path = maps/venice; sourceTree = "<group>"; };
 		577DEBA8166E37C1006BA43A /* nyc */ = {isa = PBXFileReference; lastKnownFileType = folder; name = nyc; path = maps/nyc; sourceTree = "<group>"; };
 		577DEBC6166E3E0B006BA43A /* venice-Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "venice-Default@2x.png"; path = "Service/Venice/venice-Default@2x.png"; sourceTree = "<group>"; };
@@ -2296,7 +2294,6 @@
 				577DEBCA166E3E34006BA43A /* iTunesArtwork */,
 				577DEBCC166E3E34006BA43A /* icon.png */,
 				577DEBDE166E404C006BA43A /* icon@2x.png */,
-				577DEBA4166E312D006BA43A /* paris */,
 			);
 			name = Paris;
 			sourceTree = "<group>";
@@ -2933,7 +2930,6 @@
 				57D098031650434000467C1D /* categories_bg@2x.png in Resources */,
 				57D09805165044D800467C1D /* btn_download@2x.png in Resources */,
 				57755582166BC7D900072AFE /* bg_teasers@2x.png in Resources */,
-				577DEBA5166E312D006BA43A /* paris in Resources */,
 				577DEBCE166E3E34006BA43A /* iTunesArtwork in Resources */,
 				576843231675FA9200FA36AE /* no_image.jpeg in Resources */,
 				5768439C167636BE00FA36AE /* home paris metro_small.png in Resources */,
