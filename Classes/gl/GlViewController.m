@@ -531,7 +531,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 {
     scale *= 1.5f;
     panVelocity = CGPointZero;
-    [self loadPlacesLikeThis:@"Montmartre" andCountryCodes:@"fr"];
+    //[self loadPlacesOnCurrentScreen:@"Montmartre"];
 }
 
 -(void)handleSingleTap:(UITapGestureRecognizer*)recognizer
@@ -1325,7 +1325,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     mapRect.size.width = s.x - mapRect.origin.x;
     mapRect.size.height = s.y - mapRect.origin.y;
     
-    [self loadPlacesLikeThis:placeName withBBox:mapRect];
+    [self loadPlacesLikeThis:placeName withBBox:mapRect andCountryCodes:nil];
 }
 
 -(void)loadPlacesLikeThis:(NSString *)placeName andCountryCodes:(NSString*)country
@@ -1340,7 +1340,12 @@ CGPoint translateFromMapToGeo(CGPoint p)
     if([langs count] > 0) lang = langs[0];
     NSString *url = [NSString stringWithFormat:@"http://nominatim.openstreetmap.org/search?q=%@&format=json&accept-language=%@&email=zuev.sergey@gmail.com", [placeName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],  lang];
     if(!CGRectEqualToRect(bbox, CGRectZero)) {
-        url = [NSString stringWithFormat:@"%@&bounded=1&viewbox=%f,%f,%f,%f", url, bbox.origin.x, bbox.origin.y+bbox.size.height, bbox.origin.x+bbox.size.width, bbox.origin.y];
+        url = [NSString stringWithFormat:@"%@&bounded=1&viewbox=%f,%f,%f,%f", url,
+               bbox.origin.y,
+               bbox.origin.x+bbox.size.width,
+               bbox.origin.y+bbox.size.height,
+               bbox.origin.x
+               ];
     }
     if(nil != country && country.length > 0) {
         url = [NSString stringWithFormat:@"%@&countrycodes=%@", url, country];
