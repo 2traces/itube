@@ -14,6 +14,7 @@
 #import "SSTheme.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
+#define d2r (M_PI / 180.0)
 
 // Uniform index.
 enum
@@ -26,6 +27,57 @@ enum
 };
 GLint uniforms[NUM_UNIFORMS];
 
+static float sqr(float x)
+{
+    return x*x;
+}
+
+//calculate haversine distance for linear distance
+double haversine_km(double lat1, double long1, double lat2, double long2)
+{
+    double dlong = (long2 - long1) * d2r;
+    double dlat = (lat2 - lat1) * d2r;
+    double a = pow(sin(dlat/2.0), 2) + cos(lat1*d2r) * cos(lat2*d2r) * pow(sin(dlong/2.0), 2);
+    double c = 2 * atan2(sqrt(a), sqrt(1-a));
+    double d = 6367 * c;
+    
+    return d;
+}
+
+
+CGFloat calcGeoDistanceFrom(CGPoint p1, CGPoint p2)
+{
+    //    static const float cc = M_PI / 180.f;
+    //    float dis = 6371.21f * acosf(sinf(p1.x*cc)*sinf(p2.x*cc) + cosf(p1.x*cc)*cosf(p2.x*cc)*cosf(p1.y*cc+p2.y*cc));
+    
+    double dlong = (p2.y - p1.y) * d2r;
+    double dlat = (p2.x - p1.x) * d2r;
+    double a = pow(sin(dlat/2.0), 2) + cos(p1.x*d2r) * cos(p2.x*d2r) * pow(sin(dlong/2.0), 2);
+    double c = 2 * atan2(sqrt(a), sqrt(1-a));
+    float d = 6367 * c;
+    
+    return d;
+}
+
+CGPoint translateFromGeoToMap(CGPoint pm)
+{
+    const static double mult = 256.0 / 360.0;
+    float y = atanhf(sinf(pm.x * M_PI / 180.f));
+    y = y * 256.f / (M_PI*2.f);
+    CGPoint p;
+    p.x = 128.f + pm.y * mult;
+    p.y = 128.f - y;
+    return p;
+}
+
+CGPoint translateFromMapToGeo(CGPoint p)
+{
+    const static double mult = 256.0 / 360.0;
+    CGPoint pm;
+    pm.y = (-p.x) / mult;
+    pm.x = asinf(tanhf((p.y) * (M_PI*2.f) / 256.f)) * 180.f / M_PI;
+    return pm;
+}
 
 @interface GlViewController () {
     GLuint _program;
@@ -35,8 +87,8 @@ GLint uniforms[NUM_UNIFORMS];
     //float _rotation;
     
     RasterLayer *rasterLayer;
-    CGPoint position, prevPosition;
-    CGFloat scale, prevScale;
+    CGPoint position, prevPosition, targetPosition;
+    CGFloat scale, prevScale, targetScale, targetTimer;
     UIButton *sourceData, *settings, *zones, *downloadPopup;
     
     MStation *currentSelection;
@@ -50,6 +102,7 @@ GLint uniforms[NUM_UNIFORMS];
     int newPinId;
     
     CGPoint userPosition, userGeoPosition;
+    NSMutableArray *lastSearchResults;
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (nonatomic, retain) NSTimer *timer;
@@ -262,6 +315,7 @@ GLint uniforms[NUM_UNIFORMS];
 @synthesize toStation;
 @synthesize fromStation;
 @synthesize stationsView;
+@synthesize searchResults = lastSearchResults;
 
 - (void)dealloc
 {
@@ -477,6 +531,7 @@ GLint uniforms[NUM_UNIFORMS];
 {
     scale *= 1.5f;
     panVelocity = CGPointZero;
+    [self loadPlacesLikeThis:@"Montmartre" andCountryCodes:@"fr"];
 }
 
 -(void)handleSingleTap:(UITapGestureRecognizer*)recognizer
@@ -854,6 +909,17 @@ GLint uniforms[NUM_UNIFORMS];
 
 - (void)update
 {
+    if(targetTimer > 0.f) {
+        scale = (prevScale - targetScale) * targetTimer + targetScale;
+        position.x = (prevPosition.x - targetPosition.x) * targetTimer + targetPosition.x;
+        position.y = (prevPosition.y - targetPosition.y) * targetTimer + targetPosition.y;
+        targetTimer -= self.timeSinceLastUpdate;
+        if(targetTimer <= 0.f) {
+            scale = targetScale;
+            position = targetPosition;
+            targetTimer = 0.f;
+        }
+    }
     if(panTime == 0.f && (panVelocity.x != 0.f || panVelocity.y != 0.f)) {
         position.x += panVelocity.x * self.timeSinceLastUpdate;
         position.y += panVelocity.y * self.timeSinceLastUpdate;
@@ -1172,6 +1238,7 @@ GLint uniforms[NUM_UNIFORMS];
     position.x = -(r.origin.y + r.size.height * 0.5f);
     position.y = (y1 + y2) * 0.5f;
     scale = MIN(256.f / r.size.height, 256.f / rect.size.width);
+    targetTimer = 0.f;
 }
 
 -(void)setGeoPosition:(CGPoint)geoCoords withZoom:(CGFloat)zoom
@@ -1179,9 +1246,35 @@ GLint uniforms[NUM_UNIFORMS];
     const static double mult = 256.0 / 360.0;
     float y = atanhf(sinf(geoCoords.x * M_PI / 180.f));
     y = y * 256.f / (M_PI*2.f);
+    if (zoom != -1) {
+        scale = zoom;
+    }
     position.x = - geoCoords.y * mult;
     position.y = y + 120.f/zoom;
     scale = zoom;
+    targetTimer = 0.f;
+}
+
+-(void)scrollToGeoPosition:(CGPoint)geoCoords withZoom:(CGFloat)zoom
+{
+    if(CGPointEqualToPoint(position, CGPointZero)) {
+        [self setGeoPosition:geoCoords withZoom:zoom];
+        return ;
+    }
+    const static double mult = 256.0 / 360.0;
+    float y = atanhf(sinf(geoCoords.x * M_PI / 180.f));
+    y = y * 256.f / (M_PI*2.f);
+    prevScale = scale;
+    if (zoom != -1) {
+        targetScale = zoom;
+    } else {
+        targetScale = scale;
+    }
+    prevPosition = position;
+    targetPosition.x = - geoCoords.y * mult;
+    targetPosition.y = y + 2.f / scale;
+    targetTimer = 1.f;
+    
 }
 
 -(void)setUserGeoPosition:(CGPoint)point
@@ -1209,6 +1302,82 @@ GLint uniforms[NUM_UNIFORMS];
 {
     
 }
+
+
+-(void)loadPlacesLikeThis:(NSString*)placeName
+{
+    [self loadPlacesLikeThis:placeName withBBox:CGRectZero];
+}
+
+-(void)loadPlacesOnCurrentScreen:(NSString*)placeName
+{
+    CGRect frame;
+    frame.origin = position;
+    frame.size = self.view.frame.size;
+    frame.size.width /= scale;
+    frame.size.height /= scale;
+    frame.origin.x -= frame.size.width * 0.5f;
+    frame.origin.y -= frame.size.height * 0.5f;
+    
+    CGRect mapRect;
+    mapRect.origin = translateFromMapToGeo(frame.origin);
+    CGPoint s = translateFromMapToGeo(CGPointMake(frame.origin.x + frame.size.width, frame.origin.y + frame.size.height));
+    mapRect.size.width = s.x - mapRect.origin.x;
+    mapRect.size.height = s.y - mapRect.origin.y;
+    
+    [self loadPlacesLikeThis:placeName withBBox:mapRect];
+}
+
+-(void)loadPlacesLikeThis:(NSString *)placeName andCountryCodes:(NSString*)country
+{
+    [self loadPlacesLikeThis:placeName withBBox:CGRectZero andCountryCodes:country];
+}
+
+-(void)loadPlacesLikeThis:(NSString*)placeName withBBox:(CGRect)bbox andCountryCodes:(NSString*)country
+{
+    NSString *lang = @"en_EN";
+    NSArray *langs = [[NSBundle mainBundle] preferredLocalizations];
+    if([langs count] > 0) lang = langs[0];
+    NSString *url = [NSString stringWithFormat:@"http://nominatim.openstreetmap.org/search?q=%@&format=json&accept-language=%@&email=zuev.sergey@gmail.com", [placeName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],  lang];
+    if(!CGRectEqualToRect(bbox, CGRectZero)) {
+        url = [NSString stringWithFormat:@"%@&bounded=1&viewbox=%f,%f,%f,%f", url, bbox.origin.x, bbox.origin.y+bbox.size.height, bbox.origin.x+bbox.size.width, bbox.origin.y];
+    }
+    if(nil != country && country.length > 0) {
+        url = [NSString stringWithFormat:@"%@&countrycodes=%@", url, country];
+    }
+    NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60.0];
+    [NSURLConnection sendAsynchronousRequest:theRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if(nil != error) {
+            NSLog(@"Error during search a city: %@", error);
+        } else {
+            NSError *err = nil;
+            id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&err];
+            if(nil != err) {
+                NSLog(@"Error while parsing JSON: %@", err);
+            } else {
+                if(nil == lastSearchResults) lastSearchResults = [[NSMutableArray alloc] init];
+                else [lastSearchResults removeAllObjects];
+                for (NSDictionary *pl in result) {
+                    if([pl[@"class"] isEqualToString:@"place"]) {
+                        [lastSearchResults addObject:@{@"lat": [NSNumber numberWithFloat:[pl[@"lat"] floatValue]],
+                                                       @"lon": [NSNumber numberWithFloat:[pl[@"lon"] floatValue]],
+                                                       @"type": pl[@"type"],
+                                                       @"name": pl[@"display_name"]}];
+                    }
+                }
+                if([lastSearchResults count] > 0) {
+                    NSDictionary *firstObject = [lastSearchResults objectAtIndex:0];
+                    [self scrollToGeoPosition:CGPointMake([firstObject[@"lat"] floatValue], [firstObject[@"lon"] floatValue]) withZoom:-1];
+                }
+#ifdef DEBUG
+                NSLog(@"I've got a list of cities: %@", lastSearchResults);
+#endif
+                [[NSNotificationCenter defaultCenter] postNotificationName:nSEARCH_RESULTS_READY object:lastSearchResults];
+            }
+        }
+    }];
+}
+
 
 @end
 

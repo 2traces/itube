@@ -15,6 +15,8 @@
 #import "TopTwoStationsView.h"
 #import "SelectingTabBarViewController.h"
 
+#define nSEARCH_RESULTS_READY @"Search results ready"
+
 @interface Pin : NSObject {
     int _id;
     CGPoint pos;
@@ -45,11 +47,13 @@
 @property (nonatomic, retain) MStation *fromStation;
 @property (nonatomic, retain) MStation *toStation;
 @property (nonatomic, retain) TopTwoStationsView *stationsView;
+@property (nonatomic, readonly) NSArray *searchResults;
 
 -(FastAccessTableViewController*)showTableView;
 -(void)returnFromSelectionFastAccess:(NSArray *)stations;
 -(void)setGeoPosition:(CGRect)rect;
 -(void)setGeoPosition:(CGPoint)geoCoords withZoom:(CGFloat)zoom;
+-(void)scrollToGeoPosition:(CGPoint)geoCoords withZoom:(CGFloat)zoom;
 -(void)setUserGeoPosition:(CGPoint)point;
 -(void)setStationsPosition:(NSArray*)data withMarks:(BOOL)marks;
 -(void)errorWithGeoLocation;
@@ -59,5 +63,10 @@
 -(Pin*)getPin:(int)pinId;
 -(void) showSettings;
 - (void) showDownloadPopup;
+
+-(void)loadPlacesLikeThis:(NSString*)placeName;
+-(void)loadPlacesLikeThis:(NSString*)placeName withBBox:(CGRect)bbox;
+-(void)loadPlacesLikeThis:(NSString *)placeName andCountryCodes:(NSString*)country;
+-(void)loadPlacesLikeThis:(NSString*)placeName withBBox:(CGRect)bbox andCountryCodes:(NSString*)country;
 
 @end
