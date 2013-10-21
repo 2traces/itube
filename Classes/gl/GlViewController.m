@@ -882,6 +882,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
     
     [self sendMapMovedNotification];
     [self updatePinsForLevel:[self getLevelForScale:scale]];
+    
+    [self downloadVisibleMap:3 withOffset:0];
 }
 
 -(void)handleSingleTap:(UITapGestureRecognizer*)recognizer
@@ -1834,6 +1836,19 @@ CGPoint translateFromMapToGeo(CGPoint p)
             }
         }
     }];
+}
+
+-(void)downloadVisibleMap:(NSInteger)depth withOffset:(NSInteger)offset
+{
+    int _sc = 1, _lvl = 0;
+    while (scale > _sc) {
+        _sc *= 2;
+        _lvl ++;
+    }
+    float W = self.view.bounds.size.width, W2 = W*0.5f, H = self.view.bounds.size.height, H2 = H*0.5f;
+    CGFloat off = offset/scale;
+    CGRect frame = CGRectMake(128 - position.x - W2/scale - off, 128 - position.y - H2/scale - off, W/scale + 2.f*off, H/scale + 2.f*off);
+    [rasterLayer downloadToCache:frame fromScale:_lvl toScale:_lvl+depth];
 }
 
 @end
