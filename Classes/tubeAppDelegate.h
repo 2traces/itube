@@ -36,7 +36,7 @@ NSString* DisplayStationName(NSString* stName);
     //soj
     NSDictionary *mapsInfo;
     NSMutableArray *purchasedMaps;
-
+    NSDictionary *config;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -54,6 +54,7 @@ NSString* DisplayStationName(NSString* stName);
 -(NSString*)getDefaultCityName;
 -(NSString*)getDefaultMapUrl1;
 -(NSString*)getDefaultMapUrl2;
+-(CGRect)getDefaultSearchBox;
 
 -(BOOL)isIPHONE5;
 - (BOOL)isIPodTouch4thGen;

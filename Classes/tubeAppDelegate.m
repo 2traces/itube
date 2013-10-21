@@ -329,90 +329,87 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 -(NSString*)getDefaultMapName
 {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+    [self loadConfig];
+    NSString *filename = [config objectForKey:@"filename"];
     
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    if (![manager fileExistsAtPath:path]) {
-        NSBundle *bundle = [NSBundle mainBundle]; 
-        NSError *error = nil; 
-        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"]; 
-        
-        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
-    }
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *mapFileName =[NSString stringWithString:[[dict objectForKey:@"default"] objectForKey:@"filename"]];
-    [dict release];
+    NSString *mapFileName =[NSString stringWithString:filename];
     
     return mapFileName;
 }
 
 -(NSString*)getDefaultCityName
 {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    if (![manager fileExistsAtPath:path]) {
-        NSBundle *bundle = [NSBundle mainBundle]; 
-        NSError *error = nil; 
-        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"]; 
-        
-        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
-    }
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *cityFileName =[NSString stringWithString:[[dict objectForKey:@"default"] objectForKey:@"name"]];
-    [dict release];
-    
-    return cityFileName;
+    [self loadConfig];
+    return [NSString stringWithString:[config objectForKey:@"name"]];
 }
 
 -(NSString*)getDefaultMapUrl1
 {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    if (![manager fileExistsAtPath:path]) {
-        NSBundle *bundle = [NSBundle mainBundle];
-        NSError *error = nil;
-        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
-        
-        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
-    }
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *mapUrl =[NSString stringWithString:[[dict objectForKey:@"default"] objectForKey:@"url1"]];
-    [dict release];
+    [self loadConfig];
+    NSString *mapUrl =[NSString stringWithString:[config objectForKey:@"url1"]];
     
     return mapUrl;
 }
 
 -(NSString*)getDefaultMapUrl2
 {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    if (![manager fileExistsAtPath:path]) {
-        NSBundle *bundle = [NSBundle mainBundle];
-        NSError *error = nil;
-        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
-        
-        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
-    }
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *mapUrl =[NSString stringWithString:[[dict objectForKey:@"default"] objectForKey:@"url2"]];
-    [dict release];
-    
+    [self loadConfig];
+    NSString *mapUrl =[NSString stringWithString:[config objectForKey:@"url2"]];
     return mapUrl;
+}
+
+-(CGRect)getDefaultSearchBox
+{
+    [self loadConfig];
+    NSString *searchBox = [config objectForKey:@"searchBox"];
+    if(nil != searchBox && searchBox.length > 0) {
+        NSArray *coords = [searchBox componentsSeparatedByString:@";"];
+        if(coords.count >= 4) {
+            CGRect r;
+            r.origin.x = [[coords objectAtIndex:0] floatValue];
+            r.origin.y = [[coords objectAtIndex:1] floatValue];
+            r.size.width = [[coords objectAtIndex:2] floatValue] - r.origin.x;
+            r.size.height = [[coords objectAtIndex:3] floatValue] - r.origin.y;
+            
+            if(r.size.width < 0) {
+                r.origin.x += r.size.width;
+                r.size.width = -r.size.width;
+            }
+            if(r.size.height < 0) {
+                r.origin.y += r.size.height;
+                r.size.height = -r.size.height;
+            }
+            
+            return r;
+        }
+    }
+    return CGRectZero;
+}
+
+-(void)loadConfig
+{
+    if(nil == config) {
+        NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+        
+        NSFileManager *manager = [NSFileManager defaultManager];
+        
+        if (![manager fileExistsAtPath:path]) {
+            NSBundle *bundle = [NSBundle mainBundle];
+            NSError *error = nil;
+            NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
+            
+            [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
+        }
+        
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+        NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+        config = [dict objectForKey:bundleIdentifier];
+        if(nil == config)
+            config = [dict objectForKey:@"default"];
+        [config retain];
+        [dict release];
+    }
 }
 
 #pragma mark - manage maps

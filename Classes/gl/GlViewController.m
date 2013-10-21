@@ -1302,10 +1302,10 @@ CGPoint translateFromMapToGeo(CGPoint p)
     
 }
 
-
 -(void)loadPlacesLikeThis:(NSString*)placeName
 {
-    [self loadPlacesLikeThis:placeName withBBox:CGRectZero];
+    CGRect r = [((tubeAppDelegate*)[UIApplication sharedApplication].delegate) getDefaultSearchBox];
+    [self loadPlacesLikeThis:placeName withBBox:r andCountryCodes:nil];
 }
 
 -(void)loadPlacesOnCurrentScreen:(NSString*)placeName
