@@ -883,7 +883,6 @@ CGPoint translateFromMapToGeo(CGPoint p)
     [self sendMapMovedNotification];
     [self updatePinsForLevel:[self getLevelForScale:scale]];
     
-    [self downloadVisibleMap:3 withOffset:0];
 }
 
 -(void)handleSingleTap:(UITapGestureRecognizer*)recognizer
