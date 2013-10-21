@@ -369,8 +369,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     if (!self.context) {
         NSLog(@"Failed to create ES context");
     }
-    position = CGPointZero;
-    scale = 1.f;
+    if(scale == 0) scale = 1.f;
     
     GlView *view = (GlView *)self.view;
     view.context = self.context;

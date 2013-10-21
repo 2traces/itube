@@ -7,9 +7,9 @@
 		<key>icon</key>
 		<string>icon_paris</string>
 		<key>url1</key>
-		<string>http://parismetromaps.info/maps/nyc/osm/</string>
+		<string>http://parismetromaps.info/maps/paris/osm/</string>
 		<key>url2</key>
-		<string>http://parismetromaps.info/maps/nyc/osm/</string>
+		<string>http://parismetromaps.info/maps/paris/osm/</string>
 		<key>ver</key>
 		<string>1</string>
 		<key>name</key>
@@ -17,13 +17,13 @@
 		<key>filename</key>
 		<string>paris</string>
 		<key>description</key>
-		<string>newyork.txt</string>
+		<string>paris.txt</string>
 		<key>picture</key>
 		<string>poster_paris</string>
 		<key>zip_download</key>
-		<string>/maps/newyork/newyork1.zip</string>
+		<string>/maps/paris/paris1.zip</string>
 		<key>statusURL</key>
-		<string>http://metro.dim0xff.com/london/lines.txt</string>
+		<string>http://metro.dim0xff.com/paris/lines.txt</string>
 		<key>position</key>
 		<integer>0</integer>
 	</dict>

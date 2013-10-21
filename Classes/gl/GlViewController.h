@@ -65,7 +65,6 @@
 - (void) showDownloadPopup;
 
 -(void)loadPlacesLikeThis:(NSString*)placeName;
--(void)loadPlacesLikeThis:(NSString*)placeName withBBox:(CGRect)bbox;
 -(void)loadPlacesLikeThis:(NSString *)placeName andCountryCodes:(NSString*)country;
 -(void)loadPlacesLikeThis:(NSString*)placeName withBBox:(CGRect)bbox andCountryCodes:(NSString*)country;
 
