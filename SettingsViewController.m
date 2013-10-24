@@ -9,7 +9,6 @@
 #import "SettingsViewController.h"
 #import "tubeAppDelegate.h"
 #import "Reachability.h"
-#import "TubeAppIAPHelper.h"
 #import "SSZipArchive.h"
 #import "LCUtil.h"
 #import "RectObject.h"
@@ -238,10 +237,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
-    [TubeAppIAPHelper sharedHelper];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
+//    [TubeAppIAPHelper sharedHelper];
     [self loadImages];
     [self rememberPositions];
     [self checkFullProductInitialState];
@@ -295,9 +294,9 @@
 
 - (void)dealloc {
 
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductsLoadedNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductPurchasedNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductPurchaseFailedNotification object: nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductsLoadedNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductPurchasedNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductPurchaseFailedNotification object: nil];
     
     [servers release];
     [timer release];
@@ -600,16 +599,16 @@
         
         NSSet *newProductIdentifiers = [[[NSSet alloc] initWithArray:array] autorelease];    
         
-        [[TubeAppIAPHelper sharedHelper] setProductIdentifiers:newProductIdentifiers];
-        NSLog(@"Request products, new products ids: %@", newProductIdentifiers.description);
-        [[TubeAppIAPHelper sharedHelper] requestProducts];
+//        [[TubeAppIAPHelper sharedHelper] setProductIdentifiers:newProductIdentifiers];
+//        NSLog(@"Request products, new products ids: %@", newProductIdentifiers.description);
+//        [[TubeAppIAPHelper sharedHelper] requestProducts];
     }
     
     BOOL onceRestored = [[NSUserDefaults standardUserDefaults] boolForKey:@"restored"];
     
     if (!onceRestored) {
         // запрашиваем старые покупки
-        [[TubeAppIAPHelper sharedHelper] restoreCompletedTransactions];
+//        [[TubeAppIAPHelper sharedHelper] restoreCompletedTransactions];
         NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
 
         // если вышла новая версия дефолтной карты то ее сразу закачиваем
@@ -842,12 +841,12 @@
     if (netStatus == NotReachable) {        
         NSLog(@"No internet connection!");        
     } else {
-        if ([TubeAppIAPHelper sharedHelper].products == nil) {
-            [[TubeAppIAPHelper sharedHelper] requestProducts];
-        } else { 
-            [self enableProducts];
-            [self resortMapArray];
-        }
+//        if ([TubeAppIAPHelper sharedHelper].products == nil) {
+//            [[TubeAppIAPHelper sharedHelper] requestProducts];
+//        } else { 
+//            [self enableProducts];
+//            [self resortMapArray];
+//        }
     }
 }
 
@@ -864,53 +863,53 @@
     [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
     [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     
-    for (NSMutableDictionary *map in self.maps) {
-        if ([[map valueForKey:@"status"] isEqual:@"D"]) {
-            for (SKProduct *product in [TubeAppIAPHelper sharedHelper].products) {
-                if ([product.productIdentifier isEqual:[map valueForKey:@"prodID"]]) {
-                    [map setObject:@"V" forKey:@"status"];
-                    
-                    [numberFormatter setLocale:product.priceLocale];
-                    NSString *formattedString = [numberFormatter stringFromNumber:product.price];
-                    
-                    [map setObject:formattedString forKey:@"price"];
-                }
-            }
-        }
-    }
+//    for (NSMutableDictionary *map in self.maps) {
+//        if ([[map valueForKey:@"status"] isEqual:@"D"]) {
+//            for (SKProduct *product in [TubeAppIAPHelper sharedHelper].products) {
+//                if ([product.productIdentifier isEqual:[map valueForKey:@"prodID"]]) {
+//                    [map setObject:@"V" forKey:@"status"];
+//                    
+//                    [numberFormatter setLocale:product.priceLocale];
+//                    NSString *formattedString = [numberFormatter stringFromNumber:product.price];
+//                    
+//                    [map setObject:formattedString forKey:@"price"];
+//                }
+//            }
+//        }
+//    }
     
     [numberFormatter release];
 }
 
--(void)purchaseProduct:(NSString*)prodID
-{
-    NSArray *products = [TubeAppIAPHelper sharedHelper].products;
-    
-    for (SKProduct *product in products) {
-        if ([product.productIdentifier isEqual:prodID]) {
-            
-            NSLog(@"Buying %@...", product.productIdentifier);
-            [[TubeAppIAPHelper sharedHelper] buyProductIdentifier:product.productIdentifier];
-            
-            [self performSelector:@selector(timeout:) withObject:nil afterDelay:130.0];
-            
-        }
-    }    
-}
+//-(void)purchaseProduct:(NSString*)prodID
+//{
+//    NSArray *products = [TubeAppIAPHelper sharedHelper].products;
+//    
+//    for (SKProduct *product in products) {
+//        if ([product.productIdentifier isEqual:prodID]) {
+//            
+//            NSLog(@"Buying %@...", product.productIdentifier);
+//            [[TubeAppIAPHelper sharedHelper] buyProductIdentifier:product.productIdentifier];
+//            
+//            [self performSelector:@selector(timeout:) withObject:nil afterDelay:130.0];
+//            
+//        }
+//    }    
+//}
 
-- (void)productPurchased:(NSNotification *)notification {
-    
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];  
-    
-    NSString *productIdentifier = (NSString *) notification.object;
-    //NSLog(@"Purchased: %@", productIdentifier);
-    //[self downloadProduct:productIdentifier];
-
-    [self markProductAsPurchased:productIdentifier];
-    [self resortMapArray];
-    [self setBuyButtonDownloadMapState];
-}
-
+//- (void)productPurchased:(NSNotification *)notification {
+//    
+//    [NSObject cancelPreviousPerformRequestsWithTarget:self];  
+//    
+//    NSString *productIdentifier = (NSString *) notification.object;
+//    //NSLog(@"Purchased: %@", productIdentifier);
+//    //[self downloadProduct:productIdentifier];
+//
+//    [self markProductAsPurchased:productIdentifier];
+//    [self resortMapArray];
+//    [self setBuyButtonDownloadMapState];
+//}
+//
 -(void)markProductAsPurchased:(NSString*)prodID
 {
     NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
@@ -958,16 +957,16 @@
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     
-    SKPaymentTransaction * transaction = (SKPaymentTransaction *) notification.object;    
-    if (transaction.error.code != SKErrorPaymentCancelled) {    
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error!" 
-                                                         message:transaction.error.localizedDescription 
-                                                        delegate:nil 
-                                               cancelButtonTitle:nil 
-                                               otherButtonTitles:@"OK", nil] autorelease];
-        
-        [alert show];
-    }
+//    SKPaymentTransaction * transaction = (SKPaymentTransaction *) notification.object;    
+//    if (transaction.error.code != SKErrorPaymentCancelled) {    
+//        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error!" 
+//                                                         message:transaction.error.localizedDescription 
+//                                                        delegate:nil 
+//                                               cancelButtonTitle:nil 
+//                                               otherButtonTitles:@"OK", nil] autorelease];
+//        
+//        [alert show];
+//    }
 }
 
 - (void)timeout:(id)arg {

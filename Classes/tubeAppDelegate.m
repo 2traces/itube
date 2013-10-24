@@ -7,7 +7,6 @@
 //
 
 #import "tubeAppDelegate.h"
-#import "TubeAppIAPHelper.h"
 #import "TubeSplitViewController.h"
 #import <MapKit/MapKit.h>
 #import "ManagedObjects.h"
@@ -86,7 +85,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     self.cityName= [self nameCurrentCity];
     
     // Override point for customization after application launch.
-    [[SKPaymentQueue defaultQueue] addTransactionObserver:[TubeAppIAPHelper sharedHelper]];
+//    [[SKPaymentQueue defaultQueue] addTransactionObserver:[TubeAppIAPHelper sharedHelper]];
     
     self.parseQueue = [[NSOperationQueue alloc] init];
     
