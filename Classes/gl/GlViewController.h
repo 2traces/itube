@@ -41,7 +41,7 @@
 -(CGRect)bounds;
 @end
 
-@interface GlViewController : GLKViewController <TwoStationsViewProtocol, SelectingTabBarProtocol>
+@interface GlViewController : GLKViewController <TwoStationsViewProtocol, SelectingTabBarProtocol, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, assign) MStation *currentSelection;
 @property (nonatomic, retain) MStation *fromStation;

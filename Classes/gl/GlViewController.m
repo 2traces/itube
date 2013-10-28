@@ -12,6 +12,7 @@
 #import "tubeAppDelegate.h"
 #import "GlView.h"
 #import "SSTheme.h"
+#import "StationTextField.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 #define d2r (M_PI / 180.0)
@@ -103,6 +104,9 @@ CGPoint translateFromMapToGeo(CGPoint p)
     
     CGPoint userPosition, userGeoPosition;
     NSMutableArray *lastSearchResults;
+    StationTextField *searchbox;
+    UITableView *plList;
+    NSInteger keyboardHeight;
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (nonatomic, retain) NSTimer *timer;
@@ -327,6 +331,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     [_context release];
     //[_effect release];
     [rasterLayer release];
+    [searchbox release];
     [super dealloc];
 }
 
@@ -444,13 +449,25 @@ CGPoint translateFromMapToGeo(CGPoint p)
     downloadPopup.frame = downloadPopupRect;
     [downloadPopup addTarget:self action:@selector(openSettings) forControlEvents:UIControlEventTouchUpInside];
     
+    UIImageView *searchbg = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 45)] autorelease];
+    [searchbg setImage:[[[SSThemeManager sharedTheme] topToolbarBackgroundImage] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 149.0, 45-4.0, 167.0)]];
+    [searchbg setUserInteractionEnabled:YES];
+    searchbg.autoresizesSubviews = YES;
+    searchbg.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [view addSubview:searchbg];
 
+    searchbox = [[StationTextField alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width , 45) andStyle:StationTextFieldStyleDefault];
+    searchbox.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [searchbg addSubview:searchbox];
+    searchbox.delegate = self;
     
     // user geo position
     Pin *p = [[[Pin alloc] initWithId:0 color:0 andText:@"You are here!"] autorelease];
     [pinsArray addObject:p];
     [p setPosition:userPosition];
     newPinId = 1;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 }
 
 - (void) showDownloadPopup {
@@ -1337,7 +1354,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     NSString *lang = @"en_EN";
     NSArray *langs = [[NSBundle mainBundle] preferredLocalizations];
     if([langs count] > 0) lang = langs[0];
-    NSString *url = [NSString stringWithFormat:@"http://nominatim.openstreetmap.org/search?q=%@&format=json&accept-language=%@&email=zuev.sergey@gmail.com", [placeName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],  lang];
+    NSString *url = [NSString stringWithFormat:@"http://nominatim.openstreetmap.org/search?q=%@&format=json&accept-language=%@&email=zuev.sergey@gmail.com&addressdetails=1", [placeName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],  lang];
     if(!CGRectEqualToRect(bbox, CGRectZero)) {
         url = [NSString stringWithFormat:@"%@&bounded=1&viewbox=%f,%f,%f,%f", url,
                bbox.origin.y,
@@ -1349,6 +1366,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     if(nil != country && country.length > 0) {
         url = [NSString stringWithFormat:@"%@&countrycodes=%@", url, country];
     }
+    NSLog(@"Url: %@", url);
     NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60.0];
     [NSURLConnection sendAsynchronousRequest:theRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if(nil != error) {
@@ -1362,9 +1380,10 @@ CGPoint translateFromMapToGeo(CGPoint p)
                 if(nil == lastSearchResults) lastSearchResults = [[NSMutableArray alloc] init];
                 else [lastSearchResults removeAllObjects];
                 for (NSDictionary *pl in result) {
-                    if([pl[@"class"] isEqualToString:@"place"]) {
+                    if(!CGRectEqualToRect(bbox, CGRectZero) && CGRectContainsPoint(bbox, CGPointMake([pl[@"lat"] floatValue], [pl[@"lon"] floatValue]))) {
                         [lastSearchResults addObject:@{@"lat": [NSNumber numberWithFloat:[pl[@"lat"] floatValue]],
                                                        @"lon": [NSNumber numberWithFloat:[pl[@"lon"] floatValue]],
+                                                       @"class": pl[@"class"],
                                                        @"type": pl[@"type"],
                                                        @"name": pl[@"display_name"]}];
                     }
@@ -1374,14 +1393,95 @@ CGPoint translateFromMapToGeo(CGPoint p)
                     [self scrollToGeoPosition:CGPointMake([firstObject[@"lat"] floatValue], [firstObject[@"lon"] floatValue]) withZoom:-1];
                 }
 #ifdef DEBUG
-                NSLog(@"I've got a list of cities: %@", lastSearchResults);
+                NSLog(@"I've got a list of places: %@", lastSearchResults);
 #endif
                 [[NSNotificationCenter defaultCenter] postNotificationName:nSEARCH_RESULTS_READY object:lastSearchResults];
+                if(searchbox.isFirstResponder) {
+                    [self updateSearchResults];
+                }
             }
         }
     }];
 }
 
+-(void)updateSearchResults
+{
+    if(nil == plList) {
+        CGRect fr = CGRectMake(0, searchbox.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - searchbox.frame.size.height - keyboardHeight);
+        plList = [[UITableView alloc] initWithFrame:fr style:UITableViewStylePlain];
+        [self.view addSubview:plList];
+        plList.dataSource = self;
+        plList.delegate = self;
+    } else {
+        [plList reloadData];
+    }
+}
+
+- (void)keyboardWillShow:(NSNotification *)note
+{
+    CGRect keyboardBounds;
+    NSValue *aValue = [note.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey];
+    
+    [aValue getValue:&keyboardBounds];
+    keyboardHeight = keyboardBounds.size.height;
+}
+
+#pragma mark - UITextFieldDelegate
+
+-(BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *txt = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    [self loadPlacesLikeThis:txt];
+    return YES;
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    textField.text = @"";
+    if(nil != plList) {
+        [plList removeFromSuperview];
+        [plList release];
+        plList = nil;
+    }
+    return NO;
+}
+
+#pragma mark - UITableViewDataSource
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *it = [lastSearchResults objectAtIndex:indexPath.row];
+    CGPoint pp = CGPointMake([it[@"lat"] floatValue], [it[@"lon"] floatValue]);
+    [self scrollToGeoPosition:pp withZoom:scale*1.5f];
+    [self textFieldShouldReturn:searchbox];
+    [self newPin:pp color:3 name:it[@"name"]];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return lastSearchResults.count;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"StationCell";
+    
+    NSDictionary *it = [lastSearchResults objectAtIndex:indexPath.row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewStylePlain reuseIdentifier:CellIdentifier];
+    }
+    [cell.textLabel setText:it[@"name"]];
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
 
 @end
 

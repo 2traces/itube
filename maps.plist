@@ -26,6 +26,8 @@
 		<string>http://metro.dim0xff.com/paris/lines.txt</string>
 		<key>position</key>
 		<integer>0</integer>
+		<key>searchBox</key>
+		<string>48.342529;1.995242;49.138836;2.782073</string>
 	</dict>
 	<key>com.zuev.itube.paris.london</key>
 	<dict>
