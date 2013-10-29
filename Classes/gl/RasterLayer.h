@@ -247,6 +247,8 @@
 -(void) stopLoadingBut:(CGFloat)scale;
 -(void) purgeUnusedCache;
 
+-(void)downloadToCache:(CGRect)rect fromScale:(NSInteger)minScale toScale:(NSInteger)maxScale;
+
 //Получить координаты точки в системе координат UIView карты, в которую нужно будет положить пин
 - (CGPoint) pointOnMapViewForItemWithID:(NSInteger)itemID; 
 

@@ -794,7 +794,7 @@ static long DownloadCacheSize = 0;
             CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((CFDataRef)dp->data);
             if(dataProvider != nil) {
                 dp->piece->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
-                dp->piece->layer->piecesCount ++;
+                if(nil != dp->piece->layer) dp->piece->layer->piecesCount ++;
             }
             [plusCache addObject:[[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:dp->data] autorelease]];
             [target performSelector:selector withObject:dp->piece];
@@ -1119,7 +1119,7 @@ static long DownloadCacheSize = 0;
 
 -(void)rasterComplete:(RPiece*)piece
 {
-    [target performSelector:selector withObject:[NSValue valueWithCGRect:piece->rect]];
+    [target performSelector:selector withObject:piece];
 }
 
 -(void)rasterNotFound
@@ -1129,7 +1129,7 @@ static long DownloadCacheSize = 0;
 
 -(void)vectorComplete:(RPiece*)piece
 {
-    [target performSelector:selector withObject:[NSValue valueWithCGRect:piece->rect]];
+    [target performSelector:selector withObject:piece];
 }
 
 -(void)setRasterDownloader:(id)_rasterDownloader
@@ -1170,12 +1170,10 @@ static long DownloadCacheSize = 0;
 -(void)load:(RPiece *)piece
 {
     if(rasterDownloader != nil) {
-        //[rasterDownloader performSelectorOnMainThread:@selector(loadPiece:) withObject:piece waitUntilDone:NO];
         [rasterDownloader loadPiece:piece];
     } else
         [piece rasterLoaded];
     if(vectorDownloader != nil) {
-        //[vectorDownloader performSelectorOnMainThread:@selector(loadPiece:) withObject:piece waitUntilDone:NO];
         [vectorDownloader loadPiece:piece];
     } else 
         [piece vectorLoaded];
@@ -1413,7 +1411,7 @@ static long DownloadCacheSize = 0;
     }];
 }
 
--(void)complete:(NSValue*)value
+-(void)complete:(RPiece*)piece
 {
     [lock lock];
     emptyLayer = NO;
@@ -1428,7 +1426,17 @@ static long DownloadCacheSize = 0;
     if([l count] <= 0) [levels removeObjectForKey:[NSNumber numberWithInt:level]];
     [lock unlock];
     if(target != nil) {
-        [target performSelector:selector withObject:value];
+        [target performSelector:selector withObject:[NSValue valueWithCGRect:piece->rect]];
+    }
+    if(nil == piece->layer && ![piece empty]) {
+        // load piece for cache
+        NSData *jpg = UIImageJPEGRepresentation([UIImage imageWithCGImage:piece->image], 0.9f);
+        NSString* pt = [NSString stringWithFormat:@"%@/%d/%d/%d.jpg", rloader1.altSource2, piece->level, piece->x, piece->y];
+        if([[NSFileManager defaultManager] createDirectoryAtPath:[NSString stringWithFormat:@"%@/%d/%d", rloader1.altSource2, piece->level, piece->x] withIntermediateDirectories:YES attributes:nil error:nil] && [jpg writeToFile:pt atomically:YES]) {
+#ifdef DEBUG
+            NSLog(@"download to cache %d %d %d", piece->level, piece->x, piece->y);
+#endif
+        }
     }
 }
 
@@ -1778,6 +1786,52 @@ static long DownloadCacheSize = 0;
     
     [lock unlock];
     [loader debugStatus];
+}
+
+-(void)downloadToCache:(CGRect)rect fromScale:(NSInteger)minScale toScale:(NSInteger)maxScale
+{
+    [lock lock];
+    for(int lvl = minScale; lvl <= maxScale; lvl++) {
+        if(lvl < 0) lvl = 0;
+        NSNumber *n = [NSNumber numberWithInt:lvl];
+        NSMutableArray *lev = [levels objectForKey:n];
+        int size = 1 << lvl;
+        double dx = (double)allRect.size.width / size, dy = (double)allRect.size.height / size;
+        double x1 = rect.origin.x / dx, y1 = rect.origin.y / dy;
+        double x2 = (rect.origin.x + rect.size.width) / dx, y2 = (rect.origin.y + rect.size.height) / dy;
+        for(int X=x1; X<=x2; X++) {
+            if(X < 0 || X >= size) continue;
+            for(int Y=y1; Y<=y2; Y++) {
+                if(Y < 0 || Y >= size) continue;
+                BOOL found = NO;
+                if(nil != lev && nil != rloader1.altSource2) {
+                    for (RPiece *p in lev) {
+                        if(p->x == X && p->y == Y) {
+                            if(![p empty]) {
+                                // save piece
+                                NSData *jpg = UIImageJPEGRepresentation([UIImage imageWithCGImage:p->image], 0.9f);
+                                NSString* pt = [NSString stringWithFormat:@"%@/%d/%d/%d.jpg", rloader1.altSource2, p->level, p->x, p->y];
+                                if([[NSFileManager defaultManager] createDirectoryAtPath:[NSString stringWithFormat:@"%@/%d/%d", rloader1.altSource2, p->level, p->x] withIntermediateDirectories:YES attributes:nil error:nil] && [jpg writeToFile:pt atomically:YES]) {
+                                    found = YES;
+#ifdef DEBUG
+                                    NSLog(@"save to cache %d %d %d", p->level, p->x, p->y);
+#endif
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+                if(!found) {
+                    // loading
+                    CGRect r = CGRectMake(dx*X, dy*Y, dx, dy);
+                    RPiece *p = [[[RPiece alloc] initWithRect:r level:lvl x:X y:Y] autorelease];
+                    [loader load:p];
+                }
+            }
+        }
+    }
+    [lock unlock];
 }
 
 -(void)setSignal:(id)_target selector:(SEL)_selector
