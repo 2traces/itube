@@ -1377,27 +1377,34 @@ CGPoint translateFromMapToGeo(CGPoint p)
             if(nil != err) {
                 NSLog(@"Error while parsing JSON: %@", err);
             } else {
-                if(nil == lastSearchResults) lastSearchResults = [[NSMutableArray alloc] init];
-                else [lastSearchResults removeAllObjects];
+                NSMutableArray *newSearchResults = [[NSMutableArray alloc] init];
+                //if(nil == lastSearchResults) lastSearchResults = [[NSMutableArray alloc] init];
+                //else [lastSearchResults removeAllObjects];
                 for (NSDictionary *pl in result) {
                     if(!CGRectEqualToRect(bbox, CGRectZero) && CGRectContainsPoint(bbox, CGPointMake([pl[@"lat"] floatValue], [pl[@"lon"] floatValue]))) {
-                        [lastSearchResults addObject:@{@"lat": [NSNumber numberWithFloat:[pl[@"lat"] floatValue]],
+                        [newSearchResults addObject:@{@"lat": [NSNumber numberWithFloat:[pl[@"lat"] floatValue]],
                                                        @"lon": [NSNumber numberWithFloat:[pl[@"lon"] floatValue]],
                                                        @"class": pl[@"class"],
                                                        @"type": pl[@"type"],
                                                        @"name": pl[@"display_name"]}];
                     }
                 }
-                if([lastSearchResults count] > 0) {
+                /*if([lastSearchResults count] > 0) {
                     NSDictionary *firstObject = [lastSearchResults objectAtIndex:0];
                     [self scrollToGeoPosition:CGPointMake([firstObject[@"lat"] floatValue], [firstObject[@"lon"] floatValue]) withZoom:-1];
-                }
+                }*/
 #ifdef DEBUG
-                NSLog(@"I've got a list of places: %@", lastSearchResults);
+                NSLog(@"I've got a list of places: %@", newSearchResults);
 #endif
-                [[NSNotificationCenter defaultCenter] postNotificationName:nSEARCH_RESULTS_READY object:lastSearchResults];
-                if(searchbox.isFirstResponder) {
-                    [self updateSearchResults];
+                if(newSearchResults.count <= 0 && lastSearchResults.count > 0) {
+                    [newSearchResults release];
+                } else {
+                    [lastSearchResults release];
+                    lastSearchResults = newSearchResults;
+                    [[NSNotificationCenter defaultCenter] postNotificationName:nSEARCH_RESULTS_READY object:lastSearchResults];
+                    if(searchbox.isFirstResponder) {
+                        [self updateSearchResults];
+                    }
                 }
             }
         }
