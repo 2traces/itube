@@ -117,6 +117,14 @@
 		5755E25F18197C6C0097CC11 /* paris-Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 5755E25818197C6C0097CC11 /* paris-Default~iphone.png */; };
 		5755E26018197C6C0097CC11 /* paris-Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5755E25918197C6C0097CC11 /* paris-Default@2x.png */; };
 		5755E26218197D400097CC11 /* paris-Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5755E26118197D400097CC11 /* paris-Default-Landscape~ipad.png */; };
+		5755E264181AAFD90097CC11 /* navbar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5755E263181AAFD90097CC11 /* navbar_bg@2x.png */; };
+		5755E267181AB9F70097CC11 /* navbar_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5755E266181AB9F70097CC11 /* navbar_shadow@2x.png */; };
+		5755E269181ABD770097CC11 /* download_bt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5755E268181ABD770097CC11 /* download_bt@2x.png */; };
+		5755E26C181ABF3C0097CC11 /* distance_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5755E26A181ABF3C0097CC11 /* distance_bg@2x.png */; };
+		5755E26D181ABF3C0097CC11 /* distance_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5755E26B181ABF3C0097CC11 /* distance_icon@2x.png */; };
+		5755E26F181AC0AE0097CC11 /* list_bt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5755E26E181AC0AE0097CC11 /* list_bt@2x.png */; };
+		5755E273181AC38C0097CC11 /* SpotsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5755E271181AC38C0097CC11 /* SpotsListViewController.m */; };
+		5755E274181AC38C0097CC11 /* SpotsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5755E272181AC38C0097CC11 /* SpotsListViewController.xib */; };
 		5758354F168B303200C96F5C /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5758354E168B303200C96F5C /* ImageIO.framework */; };
 		576843231675FA9200FA36AE /* no_image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 576843221675FA9200FA36AE /* no_image.jpeg */; };
 		5768439C167636BE00FA36AE /* home paris metro_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 57684334167636BE00FA36AE /* home paris metro_small.png */; };
@@ -498,6 +506,15 @@
 		5755E25818197C6C0097CC11 /* paris-Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "paris-Default~iphone.png"; path = "Service/paris-Default~iphone.png"; sourceTree = "<group>"; };
 		5755E25918197C6C0097CC11 /* paris-Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "paris-Default@2x.png"; path = "Service/paris-Default@2x.png"; sourceTree = "<group>"; };
 		5755E26118197D400097CC11 /* paris-Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "paris-Default-Landscape~ipad.png"; path = "Service/paris-Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		5755E263181AAFD90097CC11 /* navbar_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navbar_bg@2x.png"; path = "wifi assets/navbar_bg@2x.png"; sourceTree = "<group>"; };
+		5755E266181AB9F70097CC11 /* navbar_shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navbar_shadow@2x.png"; path = "wifi assets/navbar_shadow@2x.png"; sourceTree = "<group>"; };
+		5755E268181ABD770097CC11 /* download_bt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "download_bt@2x.png"; path = "wifi assets/download_bt@2x.png"; sourceTree = "<group>"; };
+		5755E26A181ABF3C0097CC11 /* distance_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "distance_bg@2x.png"; path = "wifi assets/distance_bg@2x.png"; sourceTree = "<group>"; };
+		5755E26B181ABF3C0097CC11 /* distance_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "distance_icon@2x.png"; path = "wifi assets/distance_icon@2x.png"; sourceTree = "<group>"; };
+		5755E26E181AC0AE0097CC11 /* list_bt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "list_bt@2x.png"; path = "wifi assets/list_bt@2x.png"; sourceTree = "<group>"; };
+		5755E270181AC38C0097CC11 /* SpotsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotsListViewController.h; sourceTree = "<group>"; };
+		5755E271181AC38C0097CC11 /* SpotsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotsListViewController.m; sourceTree = "<group>"; };
+		5755E272181AC38C0097CC11 /* SpotsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpotsListViewController.xib; sourceTree = "<group>"; };
 		5758354E168B303200C96F5C /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		576843221675FA9200FA36AE /* no_image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = no_image.jpeg; path = images/hidden_cities/no_image.jpeg; sourceTree = "<group>"; };
 		57684334167636BE00FA36AE /* home paris metro_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home paris metro_small.png"; path = "images/home paris metro_small.png"; sourceTree = "<group>"; };
@@ -893,6 +910,7 @@
 				5755E21C18196F940097CC11 /* Service */,
 				51DCC9E51673F5D7005BAB6C /* Wifi-Spots-Info.plist */,
 				576843221675FA9200FA36AE /* no_image.jpeg */,
+				5755E265181AAFDB0097CC11 /* wifi */,
 				577DEBAB166E3871006BA43A /* Images */,
 				577DEBAA166E385B006BA43A /* NIBs */,
 				57D097FE1650430B00467C1D /* Hidden Cities */,
@@ -1049,6 +1067,8 @@
 				579D28D116480E990061B8F6 /* NavigationViewController.h */,
 				579D28D216480E990061B8F6 /* NavigationViewController.m */,
 				FA160E9617A2816A009C7722 /* CrossDeviceMarcos.h */,
+				5755E270181AC38C0097CC11 /* SpotsListViewController.h */,
+				5755E271181AC38C0097CC11 /* SpotsListViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1097,9 +1117,23 @@
 			name = Service;
 			sourceTree = "<group>";
 		};
+		5755E265181AAFDB0097CC11 /* wifi */ = {
+			isa = PBXGroup;
+			children = (
+				5755E26E181AC0AE0097CC11 /* list_bt@2x.png */,
+				5755E26A181ABF3C0097CC11 /* distance_bg@2x.png */,
+				5755E26B181ABF3C0097CC11 /* distance_icon@2x.png */,
+				5755E268181ABD770097CC11 /* download_bt@2x.png */,
+				5755E263181AAFD90097CC11 /* navbar_bg@2x.png */,
+				5755E266181AB9F70097CC11 /* navbar_shadow@2x.png */,
+			);
+			name = wifi;
+			sourceTree = "<group>";
+		};
 		577DEBAA166E385B006BA43A /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
+				5755E272181AC38C0097CC11 /* SpotsListViewController.xib */,
 				57CD10071682F9810070D8B6 /* RatePopupViewController.xib */,
 				579D28D8164815DC0061B8F6 /* CategoriesViewController.xib */,
 				579D28D316480E990061B8F6 /* NavigationViewController.xib */,
@@ -1516,6 +1550,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC787C3E1535750E0020915A /* MyriadPr-It.otf in Resources */,
+				5755E26C181ABF3C0097CC11 /* distance_bg@2x.png in Resources */,
 				BC3D150D14C338EE0059A17E /* maps.plist in Resources */,
 				BC876ACA14DFAF23008AC06C /* MainWindow.xib in Resources */,
 				BC876ACB14DFAF23008AC06C /* MyriadPro-Regular.otf in Resources */,
@@ -1529,6 +1564,7 @@
 				BC876AF214DFAFF1008AC06C /* settings_icon.png in Resources */,
 				BC876AF314DFAFF1008AC06C /* settings_icon@2x.png in Resources */,
 				5755E23018196F9E0097CC11 /* icon.png in Resources */,
+				5755E26F181AC0AE0097CC11 /* list_bt@2x.png in Resources */,
 				BC876AF414DFAFF1008AC06C /* settings_mail.png in Resources */,
 				BC876AF514DFAFF1008AC06C /* settings_mail@2x.png in Resources */,
 				BC876AF614DFAFF1008AC06C /* settings_update.png in Resources */,
@@ -1626,6 +1662,7 @@
 				BC6890741575F195002232E6 /* de_pr_bookmarkstation@2x.png in Resources */,
 				BC6890751575F195002232E6 /* de_pr_settingsstation.png in Resources */,
 				BC6890761575F195002232E6 /* de_pr_stationsstation@2x.png in Resources */,
+				5755E26D181ABF3C0097CC11 /* distance_icon@2x.png in Resources */,
 				BC6890771575F195002232E6 /* de_pr_backstation.png in Resources */,
 				BC6890781575F195002232E6 /* de_pr_bookmarkstation.png in Resources */,
 				6CBAB82B17FAF0FE000176A7 /* big-blue-frame-with-shadow.png in Resources */,
@@ -1639,6 +1676,7 @@
 				BC6890801575F195002232E6 /* de_backstation@2x.png in Resources */,
 				BC6890811575F195002232E6 /* de_bookmarkstation.png in Resources */,
 				BC6890821575F195002232E6 /* de_historystation.png in Resources */,
+				5755E269181ABD770097CC11 /* download_bt@2x.png in Resources */,
 				BC6890831575F195002232E6 /* de_historystation@2x.png in Resources */,
 				BC6890841575F195002232E6 /* de_bookmarkstation@2x.png in Resources */,
 				BC6890851575F195002232E6 /* de_stationsstation.png in Resources */,
@@ -1669,6 +1707,7 @@
 				57D098021650434000467C1D /* categories_bg.png in Resources */,
 				57D098031650434000467C1D /* categories_bg@2x.png in Resources */,
 				57D09805165044D800467C1D /* btn_download@2x.png in Resources */,
+				5755E267181AB9F70097CC11 /* navbar_shadow@2x.png in Resources */,
 				57755582166BC7D900072AFE /* bg_teasers@2x.png in Resources */,
 				5755E23118196F9E0097CC11 /* icon@2x.png in Resources */,
 				576843231675FA9200FA36AE /* no_image.jpeg in Resources */,
@@ -1710,6 +1749,7 @@
 				5768444C167636BE00FA36AE /* toolbar_bg.png in Resources */,
 				57684450167636BE00FA36AE /* toolbar_bg1.png in Resources */,
 				57684454167636BE00FA36AE /* toolbar_bg2.png in Resources */,
+				5755E274181AC38C0097CC11 /* SpotsListViewController.xib in Resources */,
 				57684458167636BE00FA36AE /* toolbar_bg2@2x.png in Resources */,
 				5768445C167636BE00FA36AE /* toolbar_text_bg_lighted2.png in Resources */,
 				57684460167636BE00FA36AE /* toolbar_text_bg_lighted2@2x.png in Resources */,
@@ -1726,6 +1766,7 @@
 				57CD101C1682FE6D0070D8B6 /* rate_bt_2@2x.png in Resources */,
 				51383BAA1683DD0A00397AF5 /* user_pos.png in Resources */,
 				51383BAE1683DD0A00397AF5 /* user_pos@2x.png in Resources */,
+				5755E264181AAFD90097CC11 /* navbar_bg@2x.png in Resources */,
 				51F3F9F3169092820078B006 /* current_location.png in Resources */,
 				51F3F9F7169092820078B006 /* current_location@2x.png in Resources */,
 				51F3FA38169092A70078B006 /* fav-aqua.png in Resources */,
@@ -1872,6 +1913,7 @@
 				579D28D416480E990061B8F6 /* NavigationViewController.m in Sources */,
 				578579431671FC05005770F1 /* GlPanel.m in Sources */,
 				578579491671FC1C005770F1 /* GlText.m in Sources */,
+				5755E273181AC38C0097CC11 /* SpotsListViewController.m in Sources */,
 				57CD10081682F9810070D8B6 /* RatePopupViewController.m in Sources */,
 				FA1B84BC1739313400D8A05F /* DebugUIImage.m in Sources */,
 				FA1B84C8173A9B3600D8A05F /* DebugUIImageView.m in Sources */,

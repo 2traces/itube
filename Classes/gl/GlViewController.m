@@ -319,40 +319,40 @@ CGPoint translateFromMapToGeo(CGPoint p)
         switch (color%12) {
             case 0:
             default:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin-aqua"];
+                sprite = [[GlSprite alloc] initWithPicture:@"fav-aqua"];
                 break;
             case 1:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin-blue-aqua"];
+                sprite = [[GlSprite alloc] initWithPicture:@"fav-blue-aqua"];
                 break;
             case 2:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin-blue-pink"];
+                sprite = [[GlSprite alloc] initWithPicture:@"fav-blue-pink"];
                 break;
             case 3:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin-blue"];
+                sprite = [[GlSprite alloc] initWithPicture:@"fav-blue"];
                 break;
             case 4:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin-green-yellow"];
+                sprite = [[GlSprite alloc] initWithPicture:@"fav-green-yellow"];
                 break;
             case 5:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin-green"];
+                sprite = [[GlSprite alloc] initWithPicture:@"fav-green"];
                 break;
             case 6:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin-pink-blue"];
+                sprite = [[GlSprite alloc] initWithPicture:@"fav-pink-blue"];
                 break;
             case 7:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin-pink"];
+                sprite = [[GlSprite alloc] initWithPicture:@"fav-pink"];
                 break;
             case 8:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin-red-pink"];
+                sprite = [[GlSprite alloc] initWithPicture:@"fav-red-pink"];
                 break;
             case 9:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin-red-yellow"];
+                sprite = [[GlSprite alloc] initWithPicture:@"fav-red-yellow"];
                 break;
             case 10:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin-red"];
+                sprite = [[GlSprite alloc] initWithPicture:@"fav-red"];
                 break;
             case 11:
-                sprite = [[GlSprite alloc] initWithPicture:@"pin-yell"];
+                sprite = [[GlSprite alloc] initWithPicture:@"fav-yell"];
                 break;
         }
         sp = [[BigPanel alloc] initWithText:text andSubtitle:subtitle];
@@ -673,20 +673,20 @@ CGPoint translateFromMapToGeo(CGPoint p)
     [sourceData addTarget:self action:@selector(changeSource) forControlEvents:UIControlStateHighlighted];
     [glView addSubview:sourceData];
 
-    zones = [UIButton buttonWithType:UIButtonTypeCustom];
-    if(IS_IPAD){
-        [zones setImage:[UIImage imageNamed:@"metro-button"] forState:UIControlStateNormal];
-        [zones setImage:[UIImage imageNamed:@"metro-button"] forState:UIControlStateHighlighted];
-        zones.frame = zonesRect;
-    }else{
-        [zones setImage:[UIImage imageNamed:@"bt_mode_metro_up"] forState:UIControlStateNormal];
-        [zones setImage:[UIImage imageNamed:@"bt_mode_metro"] forState:UIControlStateHighlighted];
-        zones.frame = zonesRect;
-    }
-    
-    [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
-    [glView addSubview:zones];
-    glView.zonesButton = zones;
+//    zones = [UIButton buttonWithType:UIButtonTypeCustom];
+//    if(IS_IPAD){
+//        [zones setImage:[UIImage imageNamed:@"metro-button"] forState:UIControlStateNormal];
+//        [zones setImage:[UIImage imageNamed:@"metro-button"] forState:UIControlStateHighlighted];
+//        zones.frame = zonesRect;
+//    }else{
+//        [zones setImage:[UIImage imageNamed:@"bt_mode_metro_up"] forState:UIControlStateNormal];
+//        [zones setImage:[UIImage imageNamed:@"bt_mode_metro"] forState:UIControlStateHighlighted];
+//        zones.frame = zonesRect;
+//    }
+//    
+//    [zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
+//    [glView addSubview:zones];
+//    glView.zonesButton = zones;
 
     
     cornerButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -921,6 +921,10 @@ CGPoint translateFromMapToGeo(CGPoint p)
                 }
             }
         }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"distanceUpdated" object:[NSNumber numberWithFloat:[[selected objectAtIndex:0] distanceToUser]]];
+    }
+    else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"distanceUpdated" object:[NSNumber numberWithFloat:-1.0f]];
     }
 }
 

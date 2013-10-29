@@ -49,7 +49,15 @@ typedef enum {
 
 
 @property (nonatomic, retain) IBOutlet UIView *separatingView;
+@property (nonatomic, retain) IBOutlet UIView *distanceView;
+@property (nonatomic, retain) IBOutlet UIView *headingView;
+@property (nonatomic, retain) IBOutlet UILabel *distanceLabel;
+@property (nonatomic, retain) IBOutlet UIButton *listButton;
+@property (nonatomic, retain) IBOutlet UIButton *downloadButton;
+@property (nonatomic, retain) IBOutlet UIImageView *distanceBg;
 @property (nonatomic, retain) IBOutlet UIImageView *shadow;
+@property (nonatomic, retain) IBOutlet UIImageView *headingBg;
+@property (nonatomic, retain) IBOutlet UIImageView *textBg;
 @property (nonatomic, retain) NSArray *currentPlaces;
 @property (nonatomic, retain) NSString *currentCategory;
 @property (nonatomic, retain) GlViewController *glController;

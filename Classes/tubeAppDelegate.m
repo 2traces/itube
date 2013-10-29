@@ -245,9 +245,18 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
 }
 
+
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
 - (NSUInteger) application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
     
-    return [self.navigationViewController supportedInterfaceOrientations];
+    if (IS_IPAD)
+        return UIInterfaceOrientationMaskAll ;//| UIInterfaceOrientationMaskPortraitUpsideDown;
+    else {
+        return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
+    }
 }
 
 -(NSString*)getAppName
