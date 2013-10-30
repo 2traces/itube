@@ -74,6 +74,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 
 @property (nonatomic, readonly) int Id;
 @property (nonatomic, readonly) CGPoint position;
+@property (nonatomic, readonly) CGPoint geoPosition;
 @property (nonatomic, assign) BOOL active;
 @property (nonatomic, assign) CGFloat distanceToUser;
 @property (nonatomic, readonly) PinType type;

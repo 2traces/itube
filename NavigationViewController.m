@@ -26,6 +26,8 @@
 @synthesize headingBg;
 @synthesize textBg;
 
+//static NSDictionary *distanceAttributes;
+
 -(IBAction)searchButton:(UIButton *)sender
 {
     [_textField resignFirstResponder];
@@ -68,6 +70,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    distanceAttributes = [[NSDictionary dictionaryWithObjectsAndKeys:
+//     [UIFont fontWithName:@"HelveticaNeue-Italic" size:17], UITextAttributeFont,
+//     [UIColor colorWithRed:124.0/255.0f green:124.0/255.0f blue:124.0/255.0f alpha:1.0f], UITextAttributeTextColor,
+//     [UIColor whiteColor], UITextAttributeTextShadowColor,
+//                           [NSValue valueWithUIOffset:UIOffsetMake(-0.5, 0.5)], UITextAttributeTextShadowOffset, nil] retain];
 //
 //    self.glController.view.layer.cornerRadius = self.separatingView.layer.cornerRadius = 5;
 //    [self.view insertSubview:[self.glController view] aboveSubview:self.separatingView];
@@ -96,7 +103,10 @@
 //    layerMode = HCOSMLayer;
 //
 //    currentPlacePin = -1;
+    
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(distanceUpdated:) name: @"distanceUpdated" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(distanceUpdated:) name: @"kMapMoved" object:nil];
     if (![CLLocationManager locationServicesEnabled]) {
         self.distanceView.hidden = YES;
     }
@@ -128,7 +138,7 @@
     } else {
 
     }
-
+    [self distanceUpdated:nil];
 }
 
 -(IBAction)showSpotsList:(id)sender {
@@ -139,17 +149,31 @@
     }];
 }
 
+-(IBAction)distanceTapped:(id)sender {
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    GlViewController *gl = appDelegate.glViewController;
+    [gl centerMapOnUser];
+//    self.distanceLabel.attributedText = [[[NSAttributedString alloc] initWithString:@"0 km" attributes:distanceAttributes] autorelease];
+    self.distanceLabel.text = @"0 km";
+}
+
 - (void)distanceUpdated:(NSNotification*)notification {
-    NSNumber *d = notification.object;
-    if (d && [d floatValue] >=0) {
-        //Show panel
-        self.distanceView.hidden = NO;
-        self.distanceLabel.text = [NSString stringWithFormat:@"%.2f", [d floatValue]];
+    tubeAppDelegate *appd = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+    CGFloat distance = [appd.glViewController distanceToMapCenter];
+    CGFloat direction = [appd.glViewController radialOffsetToMapCenter];
+    
+    NSString *distanceString = nil;
+    if (distance < 10.0) {
+        distanceString = [NSString stringWithFormat:@"%.1f km", distance];
+    } else {
+        distanceString = [NSString stringWithFormat:@"%.0f km", distance];
     }
-    else {
-        //Hide panel
-        self.distanceView.hidden = YES;
-    }
+    
+//    self.distanceLabel.attributedText = [[[NSAttributedString alloc] initWithString:distanceString attributes:distanceAttributes] autorelease];
+    self.distanceLabel.text = distanceString;
+    
+    self.directionArrow.transform = CGAffineTransformMakeRotation(0);
+    self.directionArrow.transform = CGAffineTransformMakeRotation(direction+M_PI);
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -495,6 +495,12 @@ CGPoint translateFromMapToGeo(CGPoint p)
     return pos;
 }
 
+
+-(CGPoint)geoPosition
+{
+    return geoPos;
+}
+
 -(void)draw
 {
     CGSize s;
@@ -1603,6 +1609,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
     Pin *p = [pinsArray objectAtIndex:0];
     if(p != nil) [p setPosition:up];
     if(followUserGPS) [self setGeoPosition:userGeoPosition withZoom:64];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"distanceUpdated" object:nil];
+
 }
 
 -(void)setUserHeading:(double)heading

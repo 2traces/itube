@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavigationViewController">
             <connections>
+                <outlet property="directionArrow" destination="b6a-OZ-gTg" id="3JK-Ka-Ewt"/>
                 <outlet property="distanceBg" destination="EXn-0j-ucc" id="Ypu-H9-4DW"/>
                 <outlet property="distanceLabel" destination="qsW-bi-Oyf" id="dn1-EM-q5O"/>
                 <outlet property="distanceView" destination="WYa-W4-zht" id="7Sv-DM-Xe3"/>
@@ -80,24 +81,37 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <view hidden="YES" contentMode="scaleToFill" id="WYa-W4-zht">
+                <view contentMode="scaleToFill" id="WYa-W4-zht">
                     <rect key="frame" x="10" y="430" width="75" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RF2-c2-yMu">
+                            <rect key="frame" x="0.0" y="0.0" width="75" height="35"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="distanceTapped:" destination="-1" eventType="touchUpInside" id="89F-D0-GU5"/>
+                            </connections>
+                        </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="distance_bg.png" id="EXn-0j-ucc">
                             <rect key="frame" x="0.0" y="0.0" width="75" height="35"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="distance_icon.png" id="b6a-OZ-gTg">
-                            <rect key="frame" x="41" y="1" width="30" height="30"/>
+                            <rect key="frame" x="48" y="7" width="20" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" id="qsW-bi-Oyf">
-                            <rect key="frame" x="8" y="7" width="36" height="21"/>
+                            <rect key="frame" x="8" y="4" width="42" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="14"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="17"/>
+                            <color key="textColor" red="0.48627450980392156" green="0.48627450980392156" blue="0.48627450980392156" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
+                            <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <size key="shadowOffset" width="-1" height="1"/>
                         </label>
                     </subviews>
                 </view>
@@ -108,7 +122,7 @@
     </objects>
     <resources>
         <image name="distance_bg.png" width="75" height="35"/>
-        <image name="distance_icon.png" width="35" height="35"/>
+        <image name="distance_icon.png" width="20" height="20"/>
         <image name="download_bt.png" width="52" height="65"/>
         <image name="list_bt.png" width="59" height="38"/>
     </resources>

@@ -10,6 +10,7 @@
 #import "SpotItemCell.h"
 #import "GlViewController.h"
 #import "tubeAppDelegate.h"
+#import "SpotInfoViewController.h"
 
 @interface SpotsListViewController ()
 
@@ -65,6 +66,7 @@
     [bt addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
     [bt setBackgroundImage:[UIImage imageNamed:@"list_bt"] forState:UIControlStateNormal];
     [self.view addSubview:bt];
+    
 }
 
 - (void)hide {
@@ -102,8 +104,19 @@
     
     cell.titleLabel.text = item.title;
     cell.subtitleLabel.text = [NSString stringWithFormat:@"%.0f м", distance];
+    cell.accessoryImage.image = [UIImage imageNamed:@"arrow"];
+    cell.typeImage.image = [UIImage imageNamed:@"type_0"];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    SpotInfoViewController *svc = [[SpotInfoViewController alloc] initWithNibName:@"SpotInfoViewController" bundle:[NSBundle mainBundle]];
+    Object *item = [self.items objectAtIndex:indexPath.row];
+
+    svc.spotInfo = item;
+    [self.navigationController pushViewController:svc animated:YES];
+    [svc autorelease];
 }
 
 

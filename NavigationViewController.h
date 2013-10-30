@@ -44,6 +44,7 @@ typedef enum {
 -(IBAction)searchButton:(UIButton*)sender;
 -(IBAction)searchText:(UITextField*)sender;
 -(IBAction)showSpotsList:(id)sender;
+-(IBAction)distanceTapped:(id)sender;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil glViewController:(GlViewController*)glViewController;
 - (void) centerMapOnPlace:(MPlace*)place;
@@ -56,6 +57,7 @@ typedef enum {
 @property (nonatomic, retain) IBOutlet UIButton *listButton;
 @property (nonatomic, retain) IBOutlet UIButton *downloadButton;
 @property (nonatomic, retain) IBOutlet UIImageView *distanceBg;
+@property (nonatomic, retain) IBOutlet UIImageView *directionArrow;
 @property (nonatomic, retain) IBOutlet UIImageView *shadow;
 @property (nonatomic, retain) IBOutlet UIImageView *headingBg;
 @property (nonatomic, retain) IBOutlet UIImageView *textBg;

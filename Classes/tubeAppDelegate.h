@@ -21,7 +21,7 @@ NSString* DisplayStationName(NSString* stName);
 
 @class RatePopupViewController;
 
-@interface tubeAppDelegate : NSObject <UIApplicationDelegate,MFMailComposeViewControllerDelegate> {
+@interface tubeAppDelegate: NSObject <UIApplicationDelegate,MFMailComposeViewControllerDelegate> {
     UIWindow *window;
     GlViewController *gl;
     NavigationViewController *navigationViewController;

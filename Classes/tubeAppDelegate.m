@@ -114,6 +114,9 @@ void uncaughtExceptionHandler(NSException *exception) {
         [window setRootViewController:self.navigationViewController];
         [window makeKeyAndVisible];
     }
+    
+    [[UIBarButtonItem appearance] setTintColor:[UIColor lightGrayColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor lightGrayColor]];
 }
 
 - (void)awakeFromNib

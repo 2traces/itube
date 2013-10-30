@@ -36,6 +36,8 @@
 		label.font = [UIFont fontWithName:font size:fontSize];
         label.textAlignment = UITextAlignmentCenter;
 		label.backgroundColor = [UIColor clearColor];
+        label.shadowColor = [UIColor whiteColor];
+        label.shadowOffset = CGSizeMake(0, 1);
         label.lineBreakMode = UILineBreakModeWordWrap;
         label.numberOfLines = 10;
         label.text = text;
