@@ -43,6 +43,7 @@ typedef enum {
 
 -(IBAction)searchButton:(UIButton*)sender;
 -(IBAction)searchText:(UITextField*)sender;
+-(IBAction)showSpotsList:(id)sender;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil glViewController:(GlViewController*)glViewController;
 - (void) centerMapOnPlace:(MPlace*)place;

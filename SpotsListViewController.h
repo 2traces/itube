@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SpotsListViewController : UIViewController
+@interface SpotsListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, retain) NSArray *items;
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
+
+- (void)loadItems:(NSArray*)items;
 
 @end

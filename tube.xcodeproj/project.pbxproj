@@ -96,6 +96,8 @@
 		51F3FB20169092A70078B006 /* star-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 51F3FA36169092A70078B006 /* star-red.png */; };
 		51F3FB24169092A70078B006 /* star-yell.png in Resources */ = {isa = PBXBuildFile; fileRef = 51F3FA37169092A70078B006 /* star-yell.png */; };
 		57187B82168C89C600D1527E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57187B81168C89C600D1527E /* MediaPlayer.framework */; };
+		5750AE32181FD046008CE598 /* SpotItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5750AE31181FD046008CE598 /* SpotItemCell.m */; };
+		5750AE34181FD08E008CE598 /* SpotItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5750AE33181FD08E008CE598 /* SpotItemCell.xib */; };
 		5755E23018196F9E0097CC11 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5755E21F18196F9E0097CC11 /* icon.png */; };
 		5755E23118196F9E0097CC11 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5755E22018196F9E0097CC11 /* icon@2x.png */; };
 		5755E23218196F9E0097CC11 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 5755E22118196F9E0097CC11 /* iTunesArtwork */; };
@@ -485,6 +487,9 @@
 		51F3FA36169092A70078B006 /* star-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-red.png"; sourceTree = "<group>"; };
 		51F3FA37169092A70078B006 /* star-yell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-yell.png"; sourceTree = "<group>"; };
 		57187B81168C89C600D1527E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		5750AE30181FD046008CE598 /* SpotItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotItemCell.h; sourceTree = "<group>"; };
+		5750AE31181FD046008CE598 /* SpotItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotItemCell.m; sourceTree = "<group>"; };
+		5750AE33181FD08E008CE598 /* SpotItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpotItemCell.xib; sourceTree = "<group>"; };
 		5755E21F18196F9E0097CC11 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Service/icon.png; sourceTree = "<group>"; };
 		5755E22018196F9E0097CC11 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "Service/icon@2x.png"; sourceTree = "<group>"; };
 		5755E22118196F9E0097CC11 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Service/iTunesArtwork; sourceTree = "<group>"; };
@@ -1133,6 +1138,7 @@
 		577DEBAA166E385B006BA43A /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
+				5750AE33181FD08E008CE598 /* SpotItemCell.xib */,
 				5755E272181AC38C0097CC11 /* SpotsListViewController.xib */,
 				57CD10071682F9810070D8B6 /* RatePopupViewController.xib */,
 				579D28D8164815DC0061B8F6 /* CategoriesViewController.xib */,
@@ -1443,6 +1449,8 @@
 			children = (
 				BC3D14C414C338280059A17E /* StationListCell.h */,
 				BC3D14C614C3382A0059A17E /* StationListCell.m */,
+				5750AE30181FD046008CE598 /* SpotItemCell.h */,
+				5750AE31181FD046008CE598 /* SpotItemCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1684,6 +1692,7 @@
 				5755E25D18197C6C0097CC11 /* Default-Landscape~ipad@2x.png in Resources */,
 				BCDFF0F115CCDCEA00E004E6 /* MainWindow-iPad.xib in Resources */,
 				BC14872815CD50C200DA7F99 /* MainViewController.xib in Resources */,
+				5750AE34181FD08E008CE598 /* SpotItemCell.xib in Resources */,
 				BC6C097A15D8FE2F00EAA6D2 /* RightiPadPathViewController.xib in Resources */,
 				51D4D92F160EF35500C9D02B /* GlViewController.xib in Resources */,
 				51D4D934160EF39000C9D02B /* Shader.fsh in Resources */,
@@ -1911,6 +1920,7 @@
 				514EFC04163B0E44000F1A3E /* GlSprite.m in Sources */,
 				51AFA7391647CAB80086E1BA /* GlView.m in Sources */,
 				579D28D416480E990061B8F6 /* NavigationViewController.m in Sources */,
+				5750AE32181FD046008CE598 /* SpotItemCell.m in Sources */,
 				578579431671FC05005770F1 /* GlPanel.m in Sources */,
 				578579491671FC1C005770F1 /* GlText.m in Sources */,
 				5755E273181AC38C0097CC11 /* SpotsListViewController.m in Sources */,

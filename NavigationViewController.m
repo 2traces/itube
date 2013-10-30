@@ -10,6 +10,7 @@
 #import "ManagedObjects.h"
 #import "SettingsNavController.h"
 #import "tubeAppDelegate.h"
+#import "SpotsListViewController.h"
 
 @interface NavigationViewController ()
 
@@ -96,6 +97,9 @@
 //
 //    currentPlacePin = -1;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(distanceUpdated:) name: @"distanceUpdated" object:nil];
+    if (![CLLocationManager locationServicesEnabled]) {
+        self.distanceView.hidden = YES;
+    }
     if(IS_IPAD){
         self.listButton.hidden = YES;
         self.distanceBg.hidden = YES;
@@ -127,6 +131,14 @@
 
 }
 
+-(IBAction)showSpotsList:(id)sender {
+    SpotsListViewController *vc = [[SpotsListViewController alloc] initWithNibName:@"SpotsListViewController" bundle:[NSBundle mainBundle]];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nvc animated:YES completion:^{
+        
+    }];
+}
+
 - (void)distanceUpdated:(NSNotification*)notification {
     NSNumber *d = notification.object;
     if (d && [d floatValue] >=0) {
@@ -145,20 +157,20 @@
     CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
     //self.view.frame = windowBounds;
     
-    if (windowBounds.size.height > 480) {
-        if (IS_IPAD)
-            self.shadow.image = [UIImage imageNamed:@"navigation_shadow_higher_ipad.png"];
-        else
-            self.shadow.image = [UIImage imageNamed:@"navigation_shadow_higher.png"];
-        CGRect frame = self.shadow.frame;
-        if (IS_IPAD)
-        {
-            frame.size.height = 1004;
-        }
-        else
-            frame.size.height = 548;
-        self.shadow.frame = frame;
-    }
+//    if (windowBounds.size.height > 480) {
+//        if (IS_IPAD)
+//            self.shadow.image = [UIImage imageNamed:@"navigation_shadow_higher_ipad.png"];
+//        else
+//            self.shadow.image = [UIImage imageNamed:@"navigation_shadow_higher.png"];
+//        CGRect frame = self.shadow.frame;
+//        if (IS_IPAD)
+//        {
+//            frame.size.height = 1004;
+//        }
+//        else
+//            frame.size.height = 548;
+//        self.shadow.frame = frame;
+//    }
 
     
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -176,20 +188,20 @@
     CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
     //self.view.frame = windowBounds;
     
-    if (windowBounds.size.height > 480) {
-        if (IS_IPAD)
-            self.shadow.image = [UIImage imageNamed:@"navigation_shadow_higher_ipad.png"];
-        else
-            self.shadow.image = [UIImage imageNamed:@"navigation_shadow_higher.png"];
-        CGRect frame = self.shadow.frame;
-        if (IS_IPAD)
-        {
-            frame.size.height = 1004;
-        }
-        else
-            frame.size.height = 548;
-        self.shadow.frame = frame;
-    }
+//    if (windowBounds.size.height > 480) {
+//        if (IS_IPAD)
+//            self.shadow.image = [UIImage imageNamed:@"navigation_shadow_higher_ipad.png"];
+//        else
+//            self.shadow.image = [UIImage imageNamed:@"navigation_shadow_higher.png"];
+//        CGRect frame = self.shadow.frame;
+//        if (IS_IPAD)
+//        {
+//            frame.size.height = 1004;
+//        }
+//        else
+//            frame.size.height = 548;
+//        self.shadow.frame = frame;
+//    }
     
 }
 

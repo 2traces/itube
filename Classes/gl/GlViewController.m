@@ -27,6 +27,7 @@ enum
 GLint uniforms[NUM_UNIFORMS];
 
 static CGPoint userGeoPosition;
+static NSMutableArray *objectsTypes;
 
 float sqr(float x)
 {
@@ -147,6 +148,12 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(id)initWithDictionary:(NSDictionary *)data
 {
     if((self = [super init])) {
+        if (!objectsTypes) {
+            objectsTypes = [[NSMutableArray arrayWithCapacity:5] retain];
+        }
+        if (![objectsTypes containsObject:[data objectForKey:@"kind"]]) {
+            [objectsTypes addObject:[data objectForKey:@"kind"]];
+        }
         self.address = [self decode:[data objectForKey:@"address"]];
         self.city = [self decode:[data objectForKey:@"city"]];
         self.comment = [self decode:[data objectForKey:@"comment"]];
@@ -563,6 +570,14 @@ CGPoint translateFromMapToGeo(CGPoint p)
 @synthesize glView;
 
 
+- (CGFloat)distanceToMapCenter {
+    return [self calcGeoDistanceFrom:userGeoPosition to:[self getCenterMapGeoCoordinates]];
+}
+
+- (CGFloat) radialOffsetToMapCenter {
+    return [self radialOffsetToPoint:[self getCenterMapGeoCoordinates]];
+}
+
 - (CGFloat) radialOffsetToPoint:(CGPoint)point
 {
     CGPoint off = userGeoPosition;
@@ -887,6 +902,9 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(void)handleSingleTap:(UITapGestureRecognizer*)recognizer
 {
+    //NSArray *sorted = [objectsTypes sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+    //NSLog(@"%@", sorted);
+
     if(recognizer.state != UIGestureRecognizerStateEnded) return;
     CGPoint p = [recognizer locationInView:self.view];
     float x = (p.x - self.view.bounds.size.width*0.5f)/scale + 128 - position.x, y = (p.y - self.view.bounds.size.height*0.5f)/scale + 128 - position.y;
@@ -922,10 +940,6 @@ CGPoint translateFromMapToGeo(CGPoint p)
                 }
             }
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"distanceUpdated" object:[NSNumber numberWithFloat:[[selected objectAtIndex:0] distanceToUser]]];
-    }
-    else {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"distanceUpdated" object:[NSNumber numberWithFloat:-1.0f]];
     }
 }
 

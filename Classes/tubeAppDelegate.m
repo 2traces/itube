@@ -102,8 +102,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 
         [window makeKeyAndVisible];
     } else {
-        navController = [[UINavigationController alloc] initWithRootViewController:self.navigationViewController];
-        navController.navigationBarHidden = YES;
+//        navController = [[UINavigationController alloc] initWithRootViewController:self.navigationViewController];
+//        navController.navigationBarHidden = YES;
         gl.view.frame = self.navigationViewController.view.frame = [UIScreen mainScreen].applicationFrame;
 //        CGRect mainViewFrame = gl.view.frame;
 //        mainViewFrame.origin.y = 0;

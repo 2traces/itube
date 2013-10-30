@@ -142,6 +142,9 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 - (void) moveModeButtonToFullScreen;
 - (void) moveModeButtonToCutScreen;
 
+- (CGFloat)distanceToMapCenter;
+- (CGFloat) radialOffsetToMapCenter;
+
 -(void)removeTableView;
 -(void)purgeUnusedCache;
 -(void)showSettings;
@@ -155,5 +158,6 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 -(void)loadCitiesLikeThis:(NSString*)cityName;
 
 -(void)downloadVisibleMap:(NSInteger)depth withOffset:(NSInteger)offset;
+-(NSArray*)getObjectsNearUserWithRadius:(CGFloat)radius;
 
 @end
