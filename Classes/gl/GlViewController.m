@@ -453,11 +453,13 @@ CGPoint translateFromMapToGeo(CGPoint p)
     [searchbg setImage:[[[SSThemeManager sharedTheme] topToolbarBackgroundImage] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 149.0, 45-4.0, 167.0)]];
     [searchbg setUserInteractionEnabled:YES];
     searchbg.autoresizesSubviews = YES;
-    searchbg.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    //searchbg.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [view addSubview:searchbg];
 
-    searchbox = [[StationTextField alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width , 45) andStyle:StationTextFieldStyleDefault];
-    searchbox.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    CGRect searchFrame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width , 45);
+    searchbox = [[StationTextField alloc] initWithFrame:searchFrame andStyle:StationTextFieldStyleDefault];
+    [searchbox changeStyleTo:StationTextFieldStyleStation withFrame:searchFrame animated:NO];
+    //searchbox.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [searchbg addSubview:searchbox];
     searchbox.delegate = self;
     

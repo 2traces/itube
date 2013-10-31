@@ -249,6 +249,7 @@
 
 -(IBAction)resetStation
 {
+    self.text = @"";
     [parentView resetStation:self];
 }
 
@@ -315,12 +316,14 @@
 
 -(UIImage*)imageWithColor:(MLine*)line
 {
+    if(nil == line) return nil;
     UIImage *image = [self drawCircleView:[line color]];
     return image;
 }
 
 -(UIImage*)biggerImageWithColor:(MLine*)line
 {
+    if(nil == line) return nil;
     UIImage *image = [self drawBiggerCircleView:[line color]];
     return image;
 }
