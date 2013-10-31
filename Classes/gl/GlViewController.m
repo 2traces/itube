@@ -110,15 +110,18 @@ CGPoint translateFromMapToGeo(CGPoint p)
     
     CGPoint panVelocity;
     CGFloat panTime;
-    NSMutableArray *pinsArray;
     int newPinId;
     
     CGPoint userPosition;
     int objectsLOD;
     CLLocationManager *locationManager;
     NSMutableArray *lastSearchResults;
+    EAGLContext *secondContext;
+    BOOL backgroundThreadShouldFinish;
+    int shouldUpdatePinsForLevel;
 }
 @property (strong, nonatomic) EAGLContext *context;
+@property (retain, atomic) NSArray *pinsArray;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
 
 - (void)setupGL;
@@ -597,7 +600,9 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 - (void)dealloc
 {
-    [pinsArray release];
+    backgroundThreadShouldFinish = YES;
+    [secondContext release];
+    self.pinsArray = nil;
     [_context release];
     //[_effect release];
     [rasterLayer release];
@@ -608,10 +613,11 @@ CGPoint translateFromMapToGeo(CGPoint p)
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    shouldUpdatePinsForLevel = -1;
     followUserGPS = YES;
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
 
-    pinsArray = [[NSMutableArray alloc] init];
+    self.pinsArray = @[];
     clusters = [[NSMutableArray alloc] init];
     objectsLOD = -1;
 
@@ -719,14 +725,15 @@ CGPoint translateFromMapToGeo(CGPoint p)
     
     // user geo position
     Pin *p = [[Pin alloc] initUserPos];
-    [pinsArray addObject:p];
+    self.pinsArray = [_pinsArray arrayByAddingObject:p];
     [p setPosition:userPosition];
     newPinId = 1;
     
     [self enableUserLocation];
     
-    // TEST
-    
+    secondContext = [[EAGLContext alloc] initWithAPI:glView.context.API sharegroup:glView.context.sharegroup];
+    backgroundThreadShouldFinish = NO;
+    [NSThread detachNewThreadSelector:@selector(backgroundThreadWithContext:) toTarget:self withObject:secondContext];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -828,7 +835,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     controller.delegate=self;
     UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:controller];
     navcontroller.modalPresentationStyle=UIModalPresentationFormSheet;
-    [self presentModalViewController:navcontroller animated:YES];
+    [self presentViewController:navcontroller animated:YES completion:nil];
 
     [controller release];
     [navcontroller release];
@@ -844,7 +851,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     controller.delegate=self;
     UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:controller];
     navcontroller.modalPresentationStyle=UIModalPresentationFormSheet;
-    [self presentModalViewController:navcontroller animated:YES];
+    [self presentViewController:navcontroller animated:YES completion:nil];
     
     [controller release];
     [navcontroller release];
@@ -852,7 +859,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(void)donePressed
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)handlePanGesture:(UIPanGestureRecognizer*)recognizer
@@ -902,8 +909,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     //[self setGeoPosition:userGeoPosition withZoom:-1];
     
     [self sendMapMovedNotification];
-    [self updatePinsForLevel:[self getLevelForScale:scale]];
-    
+    shouldUpdatePinsForLevel = [self getLevelForScale:scale];
 }
 
 -(void)handleSingleTap:(UITapGestureRecognizer*)recognizer
@@ -915,7 +921,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     CGPoint p = [recognizer locationInView:self.view];
     float x = (p.x - self.view.bounds.size.width*0.5f)/scale + 128 - position.x, y = (p.y - self.view.bounds.size.height*0.5f)/scale + 128 - position.y;
     NSMutableArray *selected = [NSMutableArray array];
-    for (Pin *pin in pinsArray) {
+    for (Pin *pin in _pinsArray) {
         CGRect r = [pin bounds];
         if(CGRectContainsPoint(r, CGPointMake(x, y))) {
             [selected addObject: pin];
@@ -923,7 +929,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
             pin.active = NO;
         }
     }
-    for (Pin *pin in pinsArray) if(pin.active) {
+    for (Pin *pin in _pinsArray) if(pin.active) {
         pin.active = NO;
     }
     if([selected count] > 0) {
@@ -986,8 +992,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
             started = NO;
             
             [self sendMapMovedNotification];
-            [self updatePinsForLevel:[self getLevelForScale:scale]];
-
+            shouldUpdatePinsForLevel = [self getLevelForScale:scale];
             break;
         case UIGestureRecognizerStateFailed:
         case UIGestureRecognizerStateCancelled:
@@ -1062,6 +1067,18 @@ CGPoint translateFromMapToGeo(CGPoint p)
         _program = 0;
     }
 }
+    
+    -(void)backgroundThreadWithContext:(EAGLContext*)context
+    {
+        [EAGLContext setCurrentContext:context];
+        while (!backgroundThreadShouldFinish) {
+            if(shouldUpdatePinsForLevel >= 0) {
+                [self updatePinsForLevel:[NSNumber numberWithInt:shouldUpdatePinsForLevel]];
+                shouldUpdatePinsForLevel = -1;
+            }
+            [NSThread sleepForTimeInterval:0.1f];
+        }
+    }
 
 #pragma mark - others methods
 
@@ -1132,7 +1149,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
         p = [[Pin alloc] initWithId:newId andColor:color];
     //float dist = 256.f/scale;
     //[p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
-    [pinsArray addObject:p];
+    self.pinsArray = [_pinsArray arrayByAddingObject:p];
     [p setGeoPosition:coordinate];
     return p.distanceToUser;
 }
@@ -1147,7 +1164,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     p = [[Pin alloc] initFavWithId:newId color:color andText:place.name];
     //float dist = 256.f/scale;
     //[p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
-    [pinsArray addObject:p];
+    self.pinsArray = [_pinsArray arrayByAddingObject:p];
     [p setGeoPosition:coordinate];
     return p.distanceToUser;
 }
@@ -1171,7 +1188,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     }
     //float dist = 256.f/scale;
     //[p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
-    [pinsArray addObject:p];
+    self.pinsArray = [_pinsArray arrayByAddingObject:p];
     [p setPosition:coordinate];
     return newId;
 }
@@ -1181,39 +1198,31 @@ CGPoint translateFromMapToGeo(CGPoint p)
     int newId = newPinId;
     newPinId ++;
     Pin *p = [[Pin alloc] initClusterWithId:newId color:color andText:name];
-    [pinsArray addObject:p];
+    self.pinsArray = [_pinsArray arrayByAddingObject:p];
     [p setPosition:coordinate];
     return newId;
 }
 
 -(void)removePin:(int)pinId
 {
-    Pin *found = nil;
-    for (Pin *p in pinsArray) {
-        if(p.Id == pinId) {
-            found = p;
-            break;
-        }
-    }
-    if(found) [pinsArray removeObject:found];
+    self.pinsArray = [_pinsArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        return [evaluatedObject Id] != pinId;
+    }]];
 }
 
 -(void)removeAllPins
 {
-    NSMutableArray *temp = [NSMutableArray array];
-    for (Pin *p in pinsArray) {
-        if(p.type != PIN_DEFAULT) {
-            [temp addObject:p];
-        }
+    Pin *p = [self getPin:0];
+    if(nil == p) {
+        self.pinsArray = @[];
+    } else {
+        self.pinsArray = @[p];
     }
-    [pinsArray removeAllObjects];
-    [pinsArray removeObjectsInArray:temp];
-    [temp removeAllObjects];
 }
 
 -(int)setLocation:(CGPoint)coordinate
 {
-    for (Pin *p in pinsArray) {
+    for (Pin *p in _pinsArray) {
         if(p.Id == -1) {
             [p setGeoPosition:coordinate];
             return -1;
@@ -1221,13 +1230,13 @@ CGPoint translateFromMapToGeo(CGPoint p)
     }
     Pin *loc = [[[Pin alloc] initObjectPos] autorelease];
     [loc setGeoPosition:coordinate];
-    [pinsArray addObject:loc];
+    self.pinsArray = [_pinsArray arrayByAddingObject:loc];
     return -1;
 }
 
 -(Pin*)getPin:(int)pinId
 {
-    for (Pin *p in pinsArray) {
+    for (Pin *p in _pinsArray) {
         if(p.Id == pinId) {
             return p;
         }
@@ -1298,7 +1307,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     _modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
     
     //_rotation += self.timeSinceLastUpdate * 0.5f;
-    for (Pin *p in pinsArray) {
+    for (Pin *p in _pinsArray) {
         [p update:self.timeSinceLastUpdate];
     }
 }
@@ -1370,10 +1379,10 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(void)drawPins
 {
-    for (Pin *p in pinsArray) {
+    for (Pin *p in _pinsArray) {
         [p drawWithScale:scale];
     }
-    for (Pin *p in pinsArray) if(p.active) {
+    for (Pin *p in _pinsArray) if(p.active) {
         [p drawPanelWithScale:scale];
     }
 }
@@ -1601,12 +1610,12 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(void)setUserGeoPosition:(CGPoint)point
 {
     userGeoPosition = point;
-    for (Pin *p in pinsArray) {
+    for (Pin *p in _pinsArray) {
         [p updateDistanceToUser];
     }
     CGPoint up = translateFromGeoToMap(point);
     userPosition = up;
-    Pin *p = [pinsArray objectAtIndex:0];
+    Pin *p = [_pinsArray objectAtIndex:0];
     if(p != nil) [p setPosition:up];
     if(followUserGPS) [self setGeoPosition:userGeoPosition withZoom:64];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"distanceUpdated" object:nil];
@@ -1615,7 +1624,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(void)setUserHeading:(double)heading
 {
-    Pin *p = [pinsArray objectAtIndex:0];
+    Pin *p = [_pinsArray objectAtIndex:0];
     if(p != nil) [p setRotation:heading / 180.0 * M_PI];
 }
 
@@ -1634,7 +1643,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
         [self newPin:r.origin color:[[[data objectAtIndex:i] valueForKey:@"pinColor"] intValue] name:[[data objectAtIndex:i] valueForKey:@"name"]];
         if([[[data objectAtIndex:i] valueForKey:@"ending" ] length] > 0) {
         //if(marks && (i == 0 || i == [coords count]-1)) {
-            [[pinsArray lastObject] setActive:YES];
+            [[_pinsArray lastObject] setActive:YES];
         }
     }
 }
@@ -1704,14 +1713,15 @@ CGPoint translateFromMapToGeo(CGPoint p)
                     //NSLog(@" %@", ob);
                 }
             }
-            [self updatePinsForLevel:[self getLevelForScale:scale]];
+            shouldUpdatePinsForLevel = [self getLevelForScale:scale];
         }
         
     }];
 }
 
--(void)updatePinsForLevel:(int)level
+-(void)updatePinsForLevel:(NSNumber*)nLevel
 {
+    int level = nLevel.intValue;
     int newObjectsLOD = -1;
     if(level > 13) {
         newObjectsLOD = 0;
@@ -1875,7 +1885,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     CGRect frame = CGRectMake(128 - position.x - W2/scale - off, 128 - position.y - H2/scale - off, W/scale + 2.f*off, H/scale + 2.f*off);
     [rasterLayer downloadToCache:frame fromScale:_lvl toScale:_lvl+depth];
 }
-
+    
 @end
 
 void SetColor(float r, float g, float b, float a) {
