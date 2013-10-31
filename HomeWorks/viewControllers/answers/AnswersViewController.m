@@ -11,6 +11,7 @@
 #import "NSObject+homeWorksServiceLocator.h"
 #import "AnswersViewHeader.h"
 #import "MKStoreManager.h"
+#import "MKStoreManager+customPurchases.h"
 #import "DejalActivityView.h"
 #import "AnswerFileURL.h"
 #import "AnswerViewCell.h"
@@ -50,7 +51,7 @@ NSString *kFooterID = @"collectionFooter";
 #ifdef HW_PRO
     self.purchased = YES;
 #else
-    self.purchased = [MKStoreManager isFeaturePurchased:featureId];
+    self.purchased  = [MKStoreManager isBookAlreadyPurchased:featureId];
 #endif
     
 
@@ -291,19 +292,21 @@ NSString *kFooterID = @"collectionFooter";
 
 - (void)purchase
 {
-	NSLog(@"buying %@", featureId);
 	activityView = [DejalBezelActivityView activityViewForView:self.view.window withLabel:@""];
 
+    NSString* firstAvailablePurchaseID = [MKStoreManager firstUnusedAppstoreID];
+    
 	NSMutableArray *purchasableObjects = [MKStoreManager sharedManager].purchasableObjects;
 	for (SKProduct *product in purchasableObjects)
 	{
-		if ([[product productIdentifier] isEqualToString:featureId])
+		if ([[product productIdentifier] isEqualToString:firstAvailablePurchaseID])
 		{
-			[[MKStoreManager sharedManager] buyFeature:featureId onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads)
+			[[MKStoreManager sharedManager] buyFeature:firstAvailablePurchaseID onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads)
 			{
 				[activityView removeFromSuperview];
 				self.purchased = YES;
 				[self.collectionView reloadData];
+                [MKStoreManager saveBuyedBookId:featureId withAppStoreId:firstAvailablePurchaseID];
 			}                              onCancelled:^
 			{
 				[self removeActivityView:activityView];

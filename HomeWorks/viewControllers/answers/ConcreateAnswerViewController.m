@@ -8,6 +8,7 @@
 
 #import "RaptureXML/RXMLElement.h"
 #import "MKStoreKit/MKStoreManager.h"
+#import "MKStoreManager+customPurchases.h"
 #import "ConcreateAnswerViewController.h"
 #import "NSObject+homeWorksServiceLocator.h"
 #import "AnswerFileURL.h"
@@ -114,7 +115,8 @@
                            [_term attribute:@"id"],
                            [_subject attribute:@"id"],
                            [_book attribute:@"id"]];
-	purchased = [MKStoreManager isFeaturePurchased:featureId];
+
+    purchased = [MKStoreManager isBookAlreadyPurchased:featureId];
 #endif
 	self.dataSource = self;
 

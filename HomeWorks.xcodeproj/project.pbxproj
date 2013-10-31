@@ -57,6 +57,7 @@
 		49EEE1FF17181047009E1BBF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EEE1FE17181047009E1BBF /* Default@2x.png */; };
 		49EEE2011718105B009E1BBF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EEE2001718105B009E1BBF /* Default-568h@2x.png */; };
 		49EEE20317181074009E1BBF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EEE20217181074009E1BBF /* Default.png */; };
+		50F0BE011822849000D8A5A2 /* MKStoreManager+customPurchases.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F0BE001822849000D8A5A2 /* MKStoreManager+customPurchases.m */; };
 		57DA35CC17DA1BCD000E41D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49750D00170B5A1300ED9AA4 /* main.m */; };
 		57DA35CD17DA1BCD000E41D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49750D04170B5A1300ED9AA4 /* AppDelegate.m */; };
 		57DA35CE17DA1BCD000E41D9 /* StartScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A56A156E4079E3000BCFF927 /* StartScreenViewController.m */; };
@@ -346,6 +347,8 @@
 		49EEE2001718105B009E1BBF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "images/Default-568h@2x.png"; sourceTree = "<group>"; };
 		49EEE20217181074009E1BBF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = images/Default.png; sourceTree = "<group>"; };
 		4E79B826762A42AB88472CC9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		50F0BDFF1822849000D8A5A2 /* MKStoreManager+customPurchases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKStoreManager+customPurchases.h"; sourceTree = "<group>"; };
+		50F0BE001822849000D8A5A2 /* MKStoreManager+customPurchases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKStoreManager+customPurchases.m"; sourceTree = "<group>"; };
 		57DA364217DA1BCD000E41D9 /* HomeWorks Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HomeWorks Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57DA364317DA1BCD000E41D9 /* HomeWorks-Pro-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "HomeWorks-Pro-Info.plist"; path = "/Users/alexeystarovoitov/XCode Projects/itube/HomeWorks-Pro-Info.plist"; sourceTree = "<absolute>"; };
 		A56A100983717C68C80AB82B /* TermTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermTableViewCell.h; sourceTree = "<group>"; };
@@ -557,6 +560,8 @@
 				A56A1014B5638168D3E42519 /* ShowIpadListSegue.h */,
 				A56A125A8CEB591F9529E586 /* PushLayerSegue.m */,
 				A56A19F4FB3F8AAC05013DDD /* PushLayerSegue.h */,
+				50F0BDFF1822849000D8A5A2 /* MKStoreManager+customPurchases.h */,
+				50F0BE001822849000D8A5A2 /* MKStoreManager+customPurchases.m */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -982,6 +987,7 @@
 				49750D05170B5A1300ED9AA4 /* AppDelegate.m in Sources */,
 				A56A1DAAC803AE916AA6AE9D /* StartScreenViewController.m in Sources */,
 				A56A1B09BAB020D7465E9989 /* NSObject+homeWorksServiceLocator.m in Sources */,
+				50F0BE011822849000D8A5A2 /* MKStoreManager+customPurchases.m in Sources */,
 				A56A122A29BD55618022CC21 /* TermsViewController.m in Sources */,
 				A56A18585FE5D760441D5563 /* SubjectsViewController.m in Sources */,
 				A56A1D58E05945C3DEE0BDBF /* BooksViewController.m in Sources */,

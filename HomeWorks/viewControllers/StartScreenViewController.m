@@ -9,7 +9,7 @@
 #import "AFHTTPRequestOperation.h"
 #import "NSObject+homeWorksServiceLocator.h"
 #import "MKStoreManager.h"
-
+#import "MKStoreManager+customPurchases.h"
 
 @interface StartScreenViewController () <SKProductsRequestDelegate>
 @end
@@ -96,24 +96,8 @@
 
 - (void)prepareProducts
 {
-	NSMutableSet *productsSet = [NSMutableSet set];
-
-	[self.catalogRxml iterate:@"term" usingBlock:^(RXMLElement *term)
-	{
-		[term iterate:@"subject" usingBlock:^(RXMLElement *subject)
-		{
-			[subject iterate:@"book" usingBlock:^(RXMLElement *book)
-			{
-				[productsSet addObject:[NSString stringWithFormat:self.bookIAPStringFormat,
-																  [term attribute:@"id"],
-																  [subject attribute:@"id"],
-																  [book attribute:@"id"]]];
-			}];
-		}];
-	}];
-
-
-	SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productsSet];
+    NSArray* purchaseIds = [MKStoreManager appStorePurchaseIDs];
+    SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithArray:purchaseIds]];
 	productsRequest.delegate = self;
 	[productsRequest start];
 }
