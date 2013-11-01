@@ -84,7 +84,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DFc-k9-NHe">
-                    <rect key="frame" x="268" y="415" width="52" height="65"/>
+                    <rect key="frame" x="292" y="431" width="28" height="49"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <state key="normal" backgroundImage="download_bt.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>

@@ -43,9 +43,7 @@
     
     self.navigationItem.title = self.spotInfo.title;
     
-    UIImageView *shadow = [[UIImageView alloc] initWithFrame:CGRectMake(0, yOffset, 320, 34)];
-    shadow.image = [[UIImage imageNamed:@"navbar_shadow"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
-    [self.view addSubview:shadow];
+
     
     UIButton *bt = [UIButton buttonWithType:UIButtonTypeCustom];
     bt.frame = CGRectMake(0, 0, 320, 44);
@@ -60,13 +58,22 @@
     self.navigationItem.titleView = bt;
     
     if (self.navBarVC.bar) {
-        self.navBarVC.bar.items = @[self.navigationItem];
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(goBack)] autorelease];
+        [self.navBarVC.bar setItems:@[self.navigationItem] animated:YES];
+    }
+    else {
+        UIImageView *shadow = [[UIImageView alloc] initWithFrame:CGRectMake(0, yOffset, 320, 34)];
+        shadow.image = [[UIImage imageNamed:@"navbar_shadow"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
+        [self.view addSubview:shadow];
     }
     
 //    UITapGestureRecognizer *rec2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
 //    [self.navigationItem.titleView addGestureRecognizer:rec2];
 }
 
+- (void)goBack {
+    [self.navBarVC popVC];
+}
 
 -(void)handleTap:(id)sender
 {

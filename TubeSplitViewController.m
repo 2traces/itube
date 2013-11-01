@@ -257,16 +257,16 @@ static float koefficient = 0.0f;
 	
     [super viewWillAppear:animated];
     
-	[rightPathController viewWillAppear:animated];
-	[glViewController viewWillAppear:animated];
+	[self.listViewController viewWillAppear:animated];
+	[self.mapViewController viewWillAppear:animated];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
 	
     [super viewDidAppear:animated];
 	
-    [rightPathController viewDidAppear:animated];
-	[glViewController viewDidAppear:animated];
+    [self.listViewController viewDidAppear:animated];
+	[self.mapViewController viewDidAppear:animated];
     
     // it's Needed to fix a bug with 20px near the statusbar
      /*
@@ -279,15 +279,15 @@ static float koefficient = 0.0f;
 - (void)viewWillDisappear:(BOOL)animated {
 	
     [super viewWillDisappear:animated];
-	[rightPathController viewWillDisappear:animated];
-	[glViewController viewWillDisappear:animated];
+	[self.listViewController viewWillDisappear:animated];
+	[self.mapViewController viewWillDisappear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
 	
     [super viewDidDisappear:animated];
-	[rightPathController viewDidDisappear:animated];
-	[glViewController viewDidDisappear:animated];
+	[self.listViewController viewDidDisappear:animated];
+	[self.mapViewController viewDidDisappear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -297,35 +297,35 @@ static float koefficient = 0.0f;
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-	[rightPathController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-	[glViewController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	[self.listViewController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	[self.mapViewController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
     //    [self layoutSubviews];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-	[rightPathController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-	[glViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+	[self.listViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+	[self.mapViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     [self layoutSubviews];
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-	[rightPathController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-	[glViewController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	[self.listViewController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	[self.mapViewController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
 - (void)willAnimateFirstHalfOfRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-	[rightPathController willAnimateFirstHalfOfRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-	[glViewController willAnimateFirstHalfOfRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	[self.listViewController willAnimateFirstHalfOfRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	[self.mapViewController willAnimateFirstHalfOfRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
 - (void)didAnimateFirstHalfOfRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-	[rightPathController didAnimateFirstHalfOfRotationToInterfaceOrientation:toInterfaceOrientation];
-	[glViewController didAnimateFirstHalfOfRotationToInterfaceOrientation:toInterfaceOrientation];
+	[self.listViewController didAnimateFirstHalfOfRotationToInterfaceOrientation:toInterfaceOrientation];
+	[self.mapViewController didAnimateFirstHalfOfRotationToInterfaceOrientation:toInterfaceOrientation];
 }
 
 - (void)willAnimateSecondHalfOfRotationFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation duration:(NSTimeInterval)duration {
-	[rightPathController willAnimateSecondHalfOfRotationFromInterfaceOrientation:fromInterfaceOrientation duration:duration];
-	[glViewController willAnimateSecondHalfOfRotationFromInterfaceOrientation:fromInterfaceOrientation duration:duration];
+	[self.listViewController willAnimateSecondHalfOfRotationFromInterfaceOrientation:fromInterfaceOrientation duration:duration];
+	[self.mapViewController willAnimateSecondHalfOfRotationFromInterfaceOrientation:fromInterfaceOrientation duration:duration];
 }
 
 @end

@@ -32,8 +32,16 @@
     // Do any additional setup after loading the view from its nib.
     self.list = [[[SpotsListViewController alloc] initWithNibName:@"SpotsListViewController" bundle:[NSBundle mainBundle]] autorelease];
     self.list.navBarVC = self;
+    self.list.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.list.view.frame = CGRectMake(0, 0, self.container.frame.size.width, self.container.frame.size.height);
     [self.container addSubview:self.list.view];
-    
+    CGFloat yOffset = 44;
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        yOffset += 20;
+    }
+    UIImageView *shadow = [[UIImageView alloc] initWithFrame:CGRectMake(0, yOffset, 320, 34)];
+    shadow.image = [[UIImage imageNamed:@"navbar_shadow"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
+    [self.view addSubview:shadow];
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,11 +51,40 @@
 }
 
 - (void)pushVC:(SpotInfoViewController*)vc {
-    
+    self.info = vc;
+    self.info.navBarVC = self;
+    self.info.view.frame = CGRectMake(self.list.view.frame.size.width, 0, self.list.view.frame.size.width, self.list.view.frame.size.height);
+    self.info.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [self.container addSubview:self.info.view];
+    [UIView animateWithDuration:0.5f animations:^{
+        CGRect infoFrame = self.info.view.frame;
+        CGRect listFrame = self.list.view.frame;
+        
+        infoFrame.origin.x = 0;
+        listFrame.origin.x = - listFrame.size.width;
+        
+        self.info.view.frame = infoFrame;
+        self.list.view.frame = listFrame;
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 - (void)popVC {
-
+    [self.bar setItems:@[self.list.navigationItem] animated:NO];
+    [UIView animateWithDuration:0.5f animations:^{
+        CGRect infoFrame = self.info.view.frame;
+        CGRect listFrame = self.list.view.frame;
+        
+        infoFrame.origin.x = listFrame.size.width;
+        listFrame.origin.x = 0;
+        
+        self.info.view.frame = infoFrame;
+        self.list.view.frame = listFrame;
+    } completion:^(BOOL finished) {
+        [self.info.view removeFromSuperview];
+        self.info = nil;
+    }];
 }
 
 @end

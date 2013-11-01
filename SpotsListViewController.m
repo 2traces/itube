@@ -32,6 +32,15 @@
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     GlViewController *gl = appDelegate.glViewController;
     self.items = [gl getObjectsNearUserWithRadius:2000];
+//    NSMutableArray *temp = [NSMutableArray arrayWithCapacity:5];
+//    for (int i = 0; i < 100; i++) {
+//        Object *obj = [Object new];
+//        obj.comments = @[@"comment 1", @"comment 2", @"comment 3"];
+//        obj.title = [NSString stringWithFormat:@"Object #%i", i+1];
+//        obj.ID = @"";
+//        [temp addObject:obj];
+//    }
+//    self.items = [NSArray arrayWithArray:temp];
     [self.tableView reloadData];
 }
 
@@ -63,9 +72,7 @@
         }
     }
     
-    UIImageView *shadow = [[UIImageView alloc] initWithFrame:CGRectMake(0, yOffset, 320, 34)];
-    shadow.image = [[UIImage imageNamed:@"navbar_shadow"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
-    [self.view addSubview:shadow];
+
     
     if (self.navBarVC.bar) {
         [self.navBarVC.bar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -90,6 +97,9 @@
     
     }
     else {
+        UIImageView *shadow = [[UIImageView alloc] initWithFrame:CGRectMake(0, yOffset, 320, 34)];
+        shadow.image = [[UIImage imageNamed:@"navbar_shadow"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
+        [self.view addSubview:shadow];
         UIButton *bt = [[UIButton alloc] initWithFrame:CGRectMake(231, yOffset, 59, 39)];
         [bt addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
         [bt setBackgroundImage:[UIImage imageNamed:@"list_bt"] forState:UIControlStateNormal];
@@ -150,7 +160,13 @@
     Object *item = [self.items objectAtIndex:indexPath.row];
 
     svc.spotInfo = item;
-    [self.navigationController pushViewController:svc animated:YES];
+    
+    if (self.navBarVC) {
+        [self.navBarVC pushVC:svc];
+    }
+    else {
+        [self.navigationController pushViewController:svc animated:YES];
+    }
     [svc autorelease];
 }
 

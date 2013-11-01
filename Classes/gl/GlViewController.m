@@ -142,7 +142,10 @@ CGPoint translateFromMapToGeo(CGPoint p)
     if([val isKindOfClass:[NSNull class]]) {
         return @"";
     } else if([val isKindOfClass:[NSString class]]) {
-        return [val stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        if ([val stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]) {
+            return [val stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        }
+        return val;
     } else {
         if ([val description]) {
             return [val description];
@@ -1708,7 +1711,12 @@ CGPoint translateFromMapToGeo(CGPoint p)
             if (!jsonArray) {
                 NSLog(@"Error parsing JSON: %@", err);
             } else {
+                NSInteger counter = 0;
                 for(NSDictionary *item in jsonArray) {
+//                    if (counter == 100) {
+//                        break;
+//                    }
+                    counter++;
                     Object *ob = [[Object alloc] initWithDictionary:item];
                     BOOL accepted = NO;
                     for (Cluster* cl in clusters) {
@@ -1726,6 +1734,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
                     [ob release];
                     //NSLog(@" %@", ob);
                 }
+                NSLog(@"Updated spots. %i of them!", counter);
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"distanceUpdated" object:nil];
             }
             shouldUpdatePinsForLevel = [self getLevelForScale:scale];
