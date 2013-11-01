@@ -232,6 +232,7 @@ void ResetColor();
 
 -(void) draw
 {
+    if(!gltex || !vertexBuffer) return;
     SetColor(1.f, 1.f, 1.f, alpha);
     glActiveTexture( GL_TEXTURE0 );
     glEnable(GL_TEXTURE_2D);
