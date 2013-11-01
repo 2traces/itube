@@ -18,12 +18,15 @@
     RightiPadPathViewController *rightPathController;
     UINavigationController * navController;
     BOOL isRightShown;
+    BOOL isListShown;
 }
 
 @property (nonatomic,retain) UIView *pathView;
 @property (nonatomic,retain) UIView *mapView;
 @property (nonatomic, retain) GlViewController* glViewController;
-@property (nonatomic,retain) RightiPadPathViewController *rightPathController;
+@property (nonatomic,retain) UIViewController *rightPathController;
+@property (nonatomic,retain) UIViewController *listViewController;
+@property (nonatomic,retain) UIViewController *mapViewController;
 @property (nonatomic, readonly) UINavigationController *navigationController;
 
 -(void)refreshPath;

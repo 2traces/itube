@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class NavBarViewController;
+
 @interface SpotsListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, retain) NSArray *items;
+@property (nonatomic, retain) NavBarViewController *navBarVC;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 
-- (void)loadItems:(NSArray*)items;
+- (void)updateData;
 
 @end

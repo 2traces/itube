@@ -26,7 +26,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *city;
-@property (nonatomic, strong) NSString *comment;
+@property (nonatomic, strong) NSArray *comments;
 @property (nonatomic, strong) NSString *country;
 @property (nonatomic, strong) NSString *hours;
 @property (nonatomic, strong) NSString *ID;

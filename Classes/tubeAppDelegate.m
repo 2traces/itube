@@ -12,6 +12,8 @@
 #import "ManagedObjects.h"
 #import "NavigationViewController.h"
 #import "RatePopupViewController.h"
+#import "SpotsListViewController.h"
+#import "NavBarViewController.h"
 
 NSString* DisplayStationName(NSString* stName) {
     NSString *tmpStr = [[stName stringByReplacingOccurrencesOfString:@"_" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -95,12 +97,24 @@ void uncaughtExceptionHandler(NSException *exception) {
         TubeSplitViewController *splitController = [[TubeSplitViewController alloc] init];
         splitController.glViewController = gl;
         
+
+
+        splitController.mapViewController = self.navigationViewController;
+        
+        NavBarViewController *nc = [[[NavBarViewController alloc] initWithNibName:@"NavBarViewController" bundle:[NSBundle mainBundle]] autorelease];
+        
+//        UIViewController *tvc = [[UIViewController alloc] init];
+//        tvc.view.frame = vc.view.frame;
+//        [tvc.view addSubview:nvc.view];
+        
+        splitController.listViewController = nc;
+        
         [window addSubview:[splitController view]];
-
+        
         [window setRootViewController:splitController];
-        navController = splitController.navigationController;
-
         [window makeKeyAndVisible];
+        
+//        [splitController showLeftView];
     } else {
 //        navController = [[UINavigationController alloc] initWithRootViewController:self.navigationViewController];
 //        navController.navigationBarHidden = YES;

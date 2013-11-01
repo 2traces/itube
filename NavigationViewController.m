@@ -11,6 +11,7 @@
 #import "SettingsNavController.h"
 #import "tubeAppDelegate.h"
 #import "SpotsListViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface NavigationViewController ()
 
@@ -135,15 +136,16 @@
             frame.origin.y -= 20;
             self.downloadButton.frame = frame;
         }
+        self.listSplitButton.hidden = NO;
     } else {
-
+        self.listSplitButton.hidden = YES;
     }
     [self distanceUpdated:nil];
 }
 
 -(IBAction)showSpotsList:(id)sender {
-    SpotsListViewController *vc = [[SpotsListViewController alloc] initWithNibName:@"SpotsListViewController" bundle:[NSBundle mainBundle]];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+    SpotsListViewController *vc = [[[SpotsListViewController alloc] initWithNibName:@"SpotsListViewController" bundle:[NSBundle mainBundle]] autorelease];
+    UINavigationController *nvc = [[[UINavigationController alloc] initWithRootViewController:vc] autorelease];
     [self presentViewController:nvc animated:YES completion:^{
         
     }];

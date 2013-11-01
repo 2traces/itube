@@ -203,6 +203,9 @@
 		57D098021650434000467C1D /* categories_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D098001650434000467C1D /* categories_bg.png */; };
 		57D098031650434000467C1D /* categories_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D098011650434000467C1D /* categories_bg@2x.png */; };
 		57D09805165044D800467C1D /* btn_download@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D09804165044D800467C1D /* btn_download@2x.png */; };
+		57E7A79A1823AC97006F603D /* list_bt_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57E7A7991823AC97006F603D /* list_bt_ipad@2x.png */; };
+		57E7A79E1823B5A0006F603D /* NavBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E7A79C1823B5A0006F603D /* NavBarViewController.m */; };
+		57E7A79F1823B5A0006F603D /* NavBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57E7A79D1823B5A0006F603D /* NavBarViewController.xib */; };
 		6CBAB82B17FAF0FE000176A7 /* big-blue-frame-with-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CBAB82917FAF0FE000176A7 /* big-blue-frame-with-shadow.png */; };
 		6CBAB82F17FAF0FE000176A7 /* big-blue-frame-with-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CBAB82A17FAF0FE000176A7 /* big-blue-frame-with-shadow@2x.png */; };
 		70D5230016CFFB6100D3EB60 /* select_near_station_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 70D522FE16CFFB6000D3EB60 /* select_near_station_iPad.png */; };
@@ -616,6 +619,10 @@
 		57D098001650434000467C1D /* categories_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = categories_bg.png; path = images/hidden_cities/categories_bg.png; sourceTree = "<group>"; };
 		57D098011650434000467C1D /* categories_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "categories_bg@2x.png"; path = "images/hidden_cities/categories_bg@2x.png"; sourceTree = "<group>"; };
 		57D09804165044D800467C1D /* btn_download@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_download@2x.png"; path = "images/hidden_cities/btn_download@2x.png"; sourceTree = "<group>"; };
+		57E7A7991823AC97006F603D /* list_bt_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "list_bt_ipad@2x.png"; path = "wifi assets/list_bt_ipad@2x.png"; sourceTree = "<group>"; };
+		57E7A79B1823B5A0006F603D /* NavBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavBarViewController.h; sourceTree = "<group>"; };
+		57E7A79C1823B5A0006F603D /* NavBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavBarViewController.m; sourceTree = "<group>"; };
+		57E7A79D1823B5A0006F603D /* NavBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavBarViewController.xib; sourceTree = "<group>"; };
 		6CBAB82917FAF0FE000176A7 /* big-blue-frame-with-shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "big-blue-frame-with-shadow.png"; path = "images/big-blue-frame-with-shadow.png"; sourceTree = "<group>"; };
 		6CBAB82A17FAF0FE000176A7 /* big-blue-frame-with-shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "big-blue-frame-with-shadow@2x.png"; path = "images/big-blue-frame-with-shadow@2x.png"; sourceTree = "<group>"; };
 		70D522FE16CFFB6000D3EB60 /* select_near_station_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = select_near_station_iPad.png; path = images/select_near_station_iPad.png; sourceTree = "<group>"; };
@@ -1106,6 +1113,8 @@
 				5755E271181AC38C0097CC11 /* SpotsListViewController.m */,
 				5770C3FD1821470E00E2D7CB /* SpotInfoViewController.h */,
 				5770C3FE1821470E00E2D7CB /* SpotInfoViewController.m */,
+				57E7A79B1823B5A0006F603D /* NavBarViewController.h */,
+				57E7A79C1823B5A0006F603D /* NavBarViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1157,6 +1166,7 @@
 		5755E265181AAFDB0097CC11 /* wifi */ = {
 			isa = PBXGroup;
 			children = (
+				57E7A7991823AC97006F603D /* list_bt_ipad@2x.png */,
 				5770C40218214BDB00E2D7CB /* 4sq_icon@2x.png */,
 				5770C40318214BDB00E2D7CB /* share_fb@2x.png */,
 				5770C40418214BDB00E2D7CB /* share_icon@2x.png */,
@@ -1180,6 +1190,7 @@
 		577DEBAA166E385B006BA43A /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
+				57E7A79D1823B5A0006F603D /* NavBarViewController.xib */,
 				5770C41518214EDC00E2D7CB /* SpotCommentCell.xib */,
 				5770C3FF1821470E00E2D7CB /* SpotInfoViewController.xib */,
 				5750AE33181FD08E008CE598 /* SpotItemCell.xib */,
@@ -1753,6 +1764,8 @@
 				BC2185381611B47300B59A59 /* statusButton.png in Resources */,
 				5755E243181970E90097CC11 /* icon~ipad.png in Resources */,
 				BC2185391611B47300B59A59 /* statusButtonPressed.png in Resources */,
+				57E7A79A1823AC97006F603D /* list_bt_ipad@2x.png in Resources */,
+				57E7A79F1823B5A0006F603D /* NavBarViewController.xib in Resources */,
 				BC21853C1611B47300B59A59 /* statusButton@2x.png in Resources */,
 				BC21853D1611B47300B59A59 /* statusButtonPressed@2x.png in Resources */,
 				BC24E8E51612F8B4006C3C12 /* sendToFriendPressed.png in Resources */,
@@ -1955,6 +1968,7 @@
 				BC520577166A1C0E00B1E0A0 /* (null) in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* tubeAppDelegate.m in Sources */,
+				57E7A79E1823B5A0006F603D /* NavBarViewController.m in Sources */,
 				51D20F3514B849A3007AC4BD /* ManagedObjects.m in Sources */,
 				51D20F3914B85185007AC4BD /* tubee.xcdatamodeld in Sources */,
 				BC3D14EB14C338380059A17E /* StationListCell.m in Sources */,

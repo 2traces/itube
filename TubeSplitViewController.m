@@ -10,6 +10,7 @@
 #import "tubeAppDelegate.h"
 #import "RightiPadPathViewController.h"
 #import "SettingsViewController.h"
+#import "NavigationViewController.h"
 
 #define constDividerWidth 1.0f
 #define constMasterWidth 320.0f
@@ -40,23 +41,53 @@ static float koefficient = 0.0f;
     
     self.view.frame = CGRectMake(0.0, 20.0, 768.0, 1004.0);
     
-    tubeAppDelegate *delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+//    tubeAppDelegate *delegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
     
-    navController = [[UINavigationController alloc] initWithRootViewController:delegate.navigationViewController];
-    navController.navigationBarHidden = YES;
-    [self addChildViewController:navController];
-
+//    navController = [[UINavigationController alloc] initWithRootViewController:delegate.navigationViewController];
+//    navController.navigationBarHidden = YES;
+    
     isRightShown = NO;
-    [self.view addSubview:[navController view]];
+    isListShown = NO;
     
-    RightiPadPathViewController *controller = [[RightiPadPathViewController alloc] init];
-    controller.view.frame=CGRectMake(-1320.0, 0.0, 320.0, 1004.0);
-    self.pathView=controller.view;
-    self.rightPathController=controller;
-    [self.view addSubview:controller.view];
-    [controller release];
+    self.listViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin;
+    self.mapViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [self.view addSubview:self.listViewController.view];
+    [self.view addSubview:self.mapViewController.view];
+    
+    self.listViewController.view.layer.cornerRadius = 5;
+    self.listViewController.view.layer.masksToBounds = YES;
+    
+    self.mapViewController.view.layer.cornerRadius = 5;
+    self.mapViewController.view.layer.masksToBounds = YES;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        self.mapViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+20);
+        self.listViewController.view.frame = CGRectMake(-self.listViewController.view.frame.size.width, 0, self.listViewController.view.frame.size.width, self.view.frame.size.height+20);
+    }
+    else {
+        self.mapViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        self.listViewController.view.frame = CGRectMake(-self.listViewController.view.frame.size.width, 0, self.listViewController.view.frame.size.width, self.view.frame.size.height);
+    }
+    
+    [((NavigationViewController*)(self.mapViewController)).listSplitButton addTarget:self action:@selector(hideShowSplitController) forControlEvents:UIControlEventTouchUpInside];
+    
+//    RightiPadPathViewController *controller = [[RightiPadPathViewController alloc] init];
+//    controller.view.frame=CGRectMake(-1320.0, 0.0, 320.0, 1004.0);
+//    self.pathView=controller.view;
+//    self.rightPathController=controller;
+//    [self.view addSubview:self.glViewController.view];
+//    [controller release];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pathCleared:) name:@"kPathCleared" object:nil];
+}
+
+- (void) hideShowSplitController {
+    if (isListShown) {
+        [self hideLeftView];
+    }
+    else {
+        [self showLeftView];
+    }
 }
 
 -(void) dealloc
@@ -115,32 +146,64 @@ static float koefficient = 0.0f;
 
 -(void)showLeftView
 {
-    if (isRightShown) {
-        [self hideLeftView];
-    } else {
-        if ([self.rightPathController isReadyToShow]) {
-
-            isRightShown=YES;
+    if (!isListShown) {
+        isListShown = YES;
+        CGFloat delta = self.listViewController.view.frame.size.width;
+        [UIView animateWithDuration:0.5 animations:^{
+            CGRect listFrame = self.listViewController.view.frame;
+            CGRect mapFrame = self.mapViewController.view.frame;
+            listFrame.origin.x += delta;
+            mapFrame.size.width -= delta + 1;
+            mapFrame.origin.x += delta + 1;
+            self.listViewController.view.frame = listFrame;
+            self.mapViewController.view.frame = mapFrame;
+        } completion:^(BOOL finished) {
             
-            
-            [self.rightPathController prepareToShow];
-            
-            [UIView animateWithDuration:0.5 animations:^{
-                [self layoutSubviews];
-            } completion:^(BOOL finished) {
-            }];
-        }
+        }];
     }
+    
+    
+//    if (isRightShown) {
+//        [self hideLeftView];
+//    } else {
+////        if ([self.rightPathController isReadyToShow]) {
+//
+//            isRightShown=YES;
+//            
+//            
+////            [self.rightPathController prepareToShow];
+//            
+//            [UIView animateWithDuration:0.5 animations:^{
+//                [self layoutSubviews];
+//            } completion:^(BOOL finished) {
+//            }];
+////        }
+//    }
 }
 
 -(void)hideLeftView
 {
-    isRightShown=NO;
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        [self layoutSubviews];
-    } completion:^(BOOL finished) {
-    }];
+    if (isListShown) {
+        isListShown = NO;
+        CGFloat delta = self.listViewController.view.frame.size.width;
+        [UIView animateWithDuration:0.5 animations:^{
+            CGRect listFrame = self.listViewController.view.frame;
+            CGRect mapFrame = self.mapViewController.view.frame;
+            listFrame.origin.x -= delta;
+            mapFrame.size.width += delta + 1;
+            mapFrame.origin.x -= delta + 1;
+            self.listViewController.view.frame = listFrame;
+            self.mapViewController.view.frame = mapFrame;
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+//    isRightShown=NO;
+//    
+//    [UIView animateWithDuration:0.5 animations:^{
+//        [self layoutSubviews];
+//    } completion:^(BOOL finished) {
+//    }];
 }
 
 -(void)refreshPath
@@ -148,7 +211,7 @@ static float koefficient = 0.0f;
     if (!isRightShown) {
         [self showLeftView];
     } else {
-        [self.rightPathController prepareToShow];
+//        [self.rightPathController prepareToShow];
     }
 }
 
@@ -182,12 +245,12 @@ static float koefficient = 0.0f;
 
 -(void)refreshStatusInfo
 {
-    [rightPathController refreshStatusInfo];
+//    [rightPathController refreshStatusInfo];
 }
 
 -(void)changeStatusView
 {
-    [rightPathController changeStatusView];
+//    [rightPathController changeStatusView];
 }
 
 - (void) viewWillAppear:(BOOL)animated {

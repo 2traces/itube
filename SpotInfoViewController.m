@@ -9,6 +9,7 @@
 #import "SpotInfoViewController.h"
 #import "SpotCommentCell.h"
 #import "tubeAppDelegate.h"
+#import "NavBarViewController.h"
 
 @interface SpotInfoViewController ()
 
@@ -58,6 +59,10 @@
     [bt addTarget:self action:@selector(handleTap:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = bt;
     
+    if (self.navBarVC.bar) {
+        self.navBarVC.bar.items = @[self.navigationItem];
+    }
+    
 //    UITapGestureRecognizer *rec2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
 //    [self.navigationItem.titleView addGestureRecognizer:rec2];
 }
@@ -83,7 +88,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return [self.spotInfo.comments count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -94,7 +99,7 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"SpotCommentCell" owner:self options:nil] lastObject];
     }
     
-    cell.subtitleLabel.text = self.spotInfo.comment;
+    cell.subtitleLabel.text = [self.spotInfo.comments objectAtIndex:indexPath.row];
     
     return cell;
 }

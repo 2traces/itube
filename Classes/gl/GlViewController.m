@@ -141,22 +141,34 @@ CGPoint translateFromMapToGeo(CGPoint p)
     } else if([val isKindOfClass:[NSString class]]) {
         return [val stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     } else {
-        return [val description];
+        if ([val description]) {
+            return [val description];
+        }
+        return @"";
     }
 }
 
 -(id)initWithDictionary:(NSDictionary *)data
 {
     if((self = [super init])) {
-        if (!objectsTypes) {
-            objectsTypes = [[NSMutableArray arrayWithCapacity:5] retain];
-        }
-        if (![objectsTypes containsObject:[data objectForKey:@"kind"]]) {
-            [objectsTypes addObject:[data objectForKey:@"kind"]];
-        }
+//        if (!objectsTypes) {
+//            objectsTypes = [[NSMutableArray arrayWithCapacity:5] retain];
+//        }
+//        if (![objectsTypes containsObject:[data objectForKey:@"kind"]]) {
+//            [objectsTypes addObject:[data objectForKey:@"kind"]];
+//        }
         self.address = [self decode:[data objectForKey:@"address"]];
         self.city = [self decode:[data objectForKey:@"city"]];
-        self.comment = [self decode:[data objectForKey:@"comment"]];
+        NSArray *comments = [data objectForKey:@"comment"];
+        if ([comments isKindOfClass:[NSArray class]] && [comments count]) {
+            NSMutableArray *temp = [NSMutableArray arrayWithCapacity:1];
+            for (id comment in comments) {
+                if (comment && [comment isKindOfClass:[NSString class]]) {
+                    [temp addObject:[self decode:comment]];
+                }
+            }
+            self.comments = [NSArray arrayWithArray:temp];
+        }
         self.country = [self decode:[data objectForKey:@"country"]];
         self.hours = [self decode:[data objectForKey:@"hours"]];
         self.ID = [data objectForKey:@"id"];
@@ -180,14 +192,14 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(NSString*)description
 {
     return [NSString stringWithFormat:@"[Object address: %@ city: %@ comment: %@ country: %@ hours: %@ kind: %@ lat: %f lng: %f state: %@ street: %@ title: %@ x: %f y: %f]",
-            self.address, self.city, self.comment, self.country, self.hours, self.kind, self.geoP.x, self.geoP.y, self.state, self.street, self.title, self.coords.x, self.coords.y];
+            self.address, self.city, [self.comments firstObject], self.country, self.hours, self.kind, self.geoP.x, self.geoP.y, self.state, self.street, self.title, self.coords.x, self.coords.y];
 }
 
 -(void)dealloc
 {
     [_address release];
     [_city release];
-    [_comment release];
+    [_comments release];
     [_country release];
     [_hours release];
     [_ID release];
@@ -1697,12 +1709,15 @@ CGPoint translateFromMapToGeo(CGPoint p)
                         }
                     }
                     if(!accepted) {
-                        [clusters addObject:[[Cluster alloc] initWithRadius:0.03f]];
+                        Cluster *cl = [[Cluster alloc] initWithRadius:0.03f];
+                        [clusters addObject:cl];
                         [[clusters lastObject] accept:ob];
+                        [cl release];
                     }
-                    
+                    [ob release];
                     //NSLog(@" %@", ob);
                 }
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"distanceUpdated" object:nil];
             }
             [self updatePinsForLevel:[self getLevelForScale:scale]];
         }
@@ -1755,7 +1770,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
             // show objects
             for (Cluster *cl in clusters) {
                 for (Object *ob in cl.objects) {
-                    ob.pinID = [self newPin:ob.coords color:1 name:ob.title subtitle:ob.comment];
+                    ob.pinID = [self newPin:ob.coords color:1 name:ob.title subtitle:[ob.comments firstObject]];
                 }
             }
             break;

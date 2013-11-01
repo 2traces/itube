@@ -15,6 +15,7 @@
                 <outlet property="headingBg" destination="feX-8I-b0U" id="hN8-8n-bhS"/>
                 <outlet property="headingView" destination="G4K-U9-itG" id="s5c-ea-bl7"/>
                 <outlet property="listButton" destination="AjB-5q-jLq" id="pde-JX-Gjc"/>
+                <outlet property="listSplitButton" destination="EA4-57-wDk" id="wpY-RV-Wri"/>
                 <outlet property="separatingView" destination="4" id="5"/>
                 <outlet property="shadow" destination="a6U-uV-CAY" id="JDS-KA-TrT"/>
                 <outlet property="textBg" destination="olg-yl-PHi" id="s1t-Yp-d8v"/>
@@ -45,6 +46,14 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EA4-57-wDk">
+                            <rect key="frame" x="2" y="2" width="40" height="40"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" backgroundImage="list_bt_ipad">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="oTd-t0-a5L">
                             <rect key="frame" x="20" y="0.0" width="280" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -125,5 +134,6 @@
         <image name="distance_icon.png" width="20" height="20"/>
         <image name="download_bt.png" width="52" height="65"/>
         <image name="list_bt.png" width="59" height="38"/>
+        <image name="list_bt_ipad" width="59" height="38"/>
     </resources>
 </document>

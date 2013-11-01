@@ -11,6 +11,7 @@
 #import "GlViewController.h"
 #import "tubeAppDelegate.h"
 #import "SpotInfoViewController.h"
+#import "NavBarViewController.h"
 
 @interface SpotsListViewController ()
 
@@ -27,46 +28,80 @@
     return self;
 }
 
-- (void)loadItems:(NSArray *)items {
-    self.items = items;
+- (void)updateData {
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    GlViewController *gl = appDelegate.glViewController;
+    self.items = [gl getObjectsNearUserWithRadius:2000];
     [self.tableView reloadData];
 }
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    GlViewController *gl = appDelegate.glViewController;
 
-    self.items = [gl getObjectsNearUserWithRadius:2000000];
-    [self.tableView reloadData];
+    [self updateData];
     
     CGFloat yOffset = 0;
     
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        [self.navigationController.navigationBar setBackgroundColor:[UIColor darkGrayColor]];
+        if (self.navBarVC.bar) {
+            [self.navBarVC.bar setBackgroundColor:[UIColor darkGrayColor]];
+        }
+        else {
+            [self.navigationController.navigationBar setBackgroundColor:[UIColor darkGrayColor]];
+        }
         yOffset = 64;
     }
     else {
-        [self.navigationController.navigationBar setBackgroundImage:[[UIImage imageNamed:@"navbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)] forBarMetrics:UIBarMetricsDefault];
+        if (self.navBarVC.bar) {
+            [self.navBarVC.bar setBackgroundImage:[[UIImage imageNamed:@"navbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)] forBarMetrics:UIBarMetricsDefault];
+        }
+        else {
+            [self.navigationController.navigationBar setBackgroundImage:[[UIImage imageNamed:@"navbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)] forBarMetrics:UIBarMetricsDefault];
+        }
     }
     
     UIImageView *shadow = [[UIImageView alloc] initWithFrame:CGRectMake(0, yOffset, 320, 34)];
     shadow.image = [[UIImage imageNamed:@"navbar_shadow"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
     [self.view addSubview:shadow];
     
+    if (self.navBarVC.bar) {
+        [self.navBarVC.bar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                 [UIColor colorWithRed:124.0/255.0f green:124.0/255.0f blue:124.0/255.0f alpha:1.0f], UITextAttributeTextColor,
+                                                 [UIColor whiteColor], UITextAttributeTextShadowColor,
+                                                 [NSValue valueWithUIOffset:UIOffsetMake(-0.5, 0.5)], UITextAttributeTextShadowOffset, nil]];
+    }
+    else {
+        self.navigationItem.title = @"Wifi рядом";
+        [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                         [UIColor colorWithRed:124.0/255.0f green:124.0/255.0f blue:124.0/255.0f alpha:1.0f], UITextAttributeTextColor,
+                                                                         [UIColor whiteColor], UITextAttributeTextShadowColor,
+                                                                         [NSValue valueWithUIOffset:UIOffsetMake(-0.5, 0.5)], UITextAttributeTextShadowOffset, nil]];
+    }
+    
     self.navigationItem.title = @"Wifi рядом";
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                      [UIColor colorWithRed:124.0/255.0f green:124.0/255.0f blue:124.0/255.0f alpha:1.0f], UITextAttributeTextColor,
                                                                      [UIColor whiteColor], UITextAttributeTextShadowColor,
                                                                      [NSValue valueWithUIOffset:UIOffsetMake(-0.5, 0.5)], UITextAttributeTextShadowOffset, nil]];
+    if(IS_IPAD){
     
-    UIButton *bt = [[UIButton alloc] initWithFrame:CGRectMake(231, yOffset, 59, 39)];
-    [bt addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
-    [bt setBackgroundImage:[UIImage imageNamed:@"list_bt"] forState:UIControlStateNormal];
-    [self.view addSubview:bt];
+    }
+    else {
+        UIButton *bt = [[UIButton alloc] initWithFrame:CGRectMake(231, yOffset, 59, 39)];
+        [bt addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
+        [bt setBackgroundImage:[UIImage imageNamed:@"list_bt"] forState:UIControlStateNormal];
+        [self.view addSubview:bt];
+    }
+
+    if (self.navBarVC.bar) {
+        self.navBarVC.bar.items = @[self.navigationItem];
+    }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateData) name: @"distanceUpdated" object:nil];
+
 }
 
 - (void)hide {
@@ -117,6 +152,11 @@
     svc.spotInfo = item;
     [self.navigationController pushViewController:svc animated:YES];
     [svc autorelease];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super dealloc];
 }
 
 
