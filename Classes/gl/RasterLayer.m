@@ -662,7 +662,7 @@ static long DownloadCacheSize = 0;
         NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
         if (theConnection) {
             [queue put:[[DownloadPiece alloc] initWithPiece:piece andConnection:theConnection]];
-#ifdef DEBUG
+#ifndef DEBUG
             NSLog(@"download a piece from %@", url);
 #endif
             return YES;
@@ -718,7 +718,7 @@ static long DownloadCacheSize = 0;
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     DownloadPiece *dp = [queue get:connection];
-#ifdef DEBUG
+#ifndef DEBUG
     NSLog(@"Download failed from '%@' with reason: %@", connection.originalRequest.URL.absoluteString, error);
 #endif
     if(dp != nil) {
@@ -731,7 +731,7 @@ static long DownloadCacheSize = 0;
             if (newConnection) {
                 dp->connection = newConnection;
                 [queue put:dp];
-#ifdef DEBUG
+#ifndef DEBUG
                 NSLog(@"redownload piece from %@", newRequest.URL.absoluteString);
 #endif
             }
@@ -752,7 +752,7 @@ static long DownloadCacheSize = 0;
 {
     DownloadPiece *dp = [queue get:connection];
     if(dp == nil) {
-#ifdef DEBUG
+#ifndef DEBUG
         NSLog(@"Lost piece '%@'", connection.originalRequest.URL.absoluteString);
 #endif
     } else {
@@ -784,13 +784,13 @@ static long DownloadCacheSize = 0;
                     dp->connection = newConnection;
                     [queue put:dp];
                     [dp retain];
-#ifdef DEBUG
+#ifndef DEBUG
                     NSLog(@"redownload piece from %@", newRequest.URL.absoluteString);
 #endif
                 }
             }
         } else {
-#ifdef DEBUG
+#ifndef DEBUG
             NSLog(@"Piece was downloaded from '%@'", connection.originalRequest.URL.absoluteString);
 #endif
             CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((CFDataRef)dp->data);
@@ -810,7 +810,7 @@ static long DownloadCacheSize = 0;
 {
     DownloadPiece *dp = [queue get:connection];
     if(dp == nil) {
-#ifdef DEBUG
+#ifndef DEBUG
         NSLog(@"Lost piece '%@'", connection.originalRequest.URL.absoluteString);
 #endif
         return;
@@ -875,7 +875,7 @@ static long DownloadCacheSize = 0;
 -(void)purgeUnusedCache
 {
     if([plusCache count] > 0 || [minusCache count] > 0) {
-#ifdef DEBUG
+#ifndef DEBUG
         NSLog(@"remove %i objects from plusCache and %i objects from minusCache", [plusCache count], [minusCache count]);
 #endif
         [plusCache removeAllObjects];
@@ -1096,7 +1096,7 @@ static long DownloadCacheSize = 0;
 -(void)purgeUnusedCache
 {
     if([plusCache count] > 0 || [minusCache count] > 0) {
-#ifdef DEBUG
+#ifndef DEBUG
         NSLog(@"remove %i objects from plusCache and %i objects from minusCache", [plusCache count], [minusCache count]);
 #endif
         [plusCache removeAllObjects];
@@ -1436,7 +1436,7 @@ static long DownloadCacheSize = 0;
         NSData *jpg = UIImageJPEGRepresentation([UIImage imageWithCGImage:piece->image], 0.9f);
         NSString* pt = [NSString stringWithFormat:@"%@/%d/%d/%d.jpg", rloader1.altSource2, piece->level, piece->x, piece->y];
         if([[NSFileManager defaultManager] createDirectoryAtPath:[NSString stringWithFormat:@"%@/%d/%d", rloader1.altSource2, piece->level, piece->x] withIntermediateDirectories:YES attributes:nil error:nil] && [jpg writeToFile:pt atomically:YES]) {
-#ifdef DEBUG
+#ifndef DEBUG
             NSLog(@"download to cache %d %d %d", piece->level, piece->x, piece->y);
 #endif
         }
@@ -1826,7 +1826,7 @@ static long DownloadCacheSize = 0;
                                 NSString* pt = [NSString stringWithFormat:@"%@/%d/%d/%d.jpg", rloader1.altSource2, p->level, p->x, p->y];
                                 if([[NSFileManager defaultManager] createDirectoryAtPath:[NSString stringWithFormat:@"%@/%d/%d", rloader1.altSource2, p->level, p->x] withIntermediateDirectories:YES attributes:nil error:nil] && [jpg writeToFile:pt atomically:YES]) {
                                     found = YES;
-#ifdef DEBUG
+#ifndef DEBUG
                                     NSLog(@"save to cache %d %d %d", p->level, p->x, p->y);
 #endif
                                 }
@@ -1979,13 +1979,13 @@ static long DownloadCacheSize = 0;
     long dcs = DownloadCacheSize;
     [loader purgeUnusedCache];
     dcs -= DownloadCacheSize;
-#ifdef DEBUG
+#ifndef DEBUG
     if(dcs > 0) NSLog(@"free %li bytes", dcs);
 #endif
     if(piecesCount > 20) {
         int dropPieces = piecesCount / 3;
         [self freePieces:dropPieces];
-#ifdef DEBUG
+#ifndef DEBUG
         NSLog(@"pieces count: %i", piecesCount);
 #endif
     }

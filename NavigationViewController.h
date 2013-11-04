@@ -10,6 +10,7 @@
 #import "GlViewController.h"
 
 @class GlViewController;
+@class SuggestionsViewController;
 
 @protocol NavigationDelegate <NSObject>
 
@@ -41,6 +42,7 @@ typedef enum {
     BOOL returningFromLandscape; //another freaking dummy flag to keep old and new UI consistent and synchronized...
 }
 
+-(IBAction)doneSearching:(UITextField *)sender;
 -(IBAction)searchButton:(UIButton*)sender;
 -(IBAction)searchText:(UITextField*)sender;
 -(IBAction)showSpotsList:(id)sender;
@@ -48,7 +50,7 @@ typedef enum {
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil glViewController:(GlViewController*)glViewController;
 - (void) centerMapOnPlace:(MPlace*)place;
-
+- (void) endedSearching;
 
 @property (nonatomic, retain) IBOutlet UIView *separatingView;
 @property (nonatomic, retain) IBOutlet UIView *distanceView;
@@ -66,5 +68,7 @@ typedef enum {
 @property (nonatomic, retain) NSString *currentCategory;
 @property (nonatomic, retain) GlViewController *glController;
 @property (nonatomic, strong) IBOutlet UITextField *textField;
+@property (nonatomic, retain) UIPopoverController *popover;
+@property (nonatomic, retain) SuggestionsViewController *suggestionsVC;
 
 @end

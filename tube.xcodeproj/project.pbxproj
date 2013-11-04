@@ -206,6 +206,9 @@
 		57E7A79A1823AC97006F603D /* list_bt_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57E7A7991823AC97006F603D /* list_bt_ipad@2x.png */; };
 		57E7A79E1823B5A0006F603D /* NavBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E7A79C1823B5A0006F603D /* NavBarViewController.m */; };
 		57E7A79F1823B5A0006F603D /* NavBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57E7A79D1823B5A0006F603D /* NavBarViewController.xib */; };
+		57F7C48F1827B667002149E0 /* SuggestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F7C48D1827B667002149E0 /* SuggestionsViewController.m */; };
+		57F7C4901827B667002149E0 /* SuggestionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57F7C48E1827B667002149E0 /* SuggestionsViewController.xib */; };
+		57F7C4921827D99B002149E0 /* suggestions_heading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57F7C4911827D99B002149E0 /* suggestions_heading@2x.png */; };
 		6CBAB82B17FAF0FE000176A7 /* big-blue-frame-with-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CBAB82917FAF0FE000176A7 /* big-blue-frame-with-shadow.png */; };
 		6CBAB82F17FAF0FE000176A7 /* big-blue-frame-with-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CBAB82A17FAF0FE000176A7 /* big-blue-frame-with-shadow@2x.png */; };
 		70D5230016CFFB6100D3EB60 /* select_near_station_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 70D522FE16CFFB6000D3EB60 /* select_near_station_iPad.png */; };
@@ -623,6 +626,10 @@
 		57E7A79B1823B5A0006F603D /* NavBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavBarViewController.h; sourceTree = "<group>"; };
 		57E7A79C1823B5A0006F603D /* NavBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavBarViewController.m; sourceTree = "<group>"; };
 		57E7A79D1823B5A0006F603D /* NavBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavBarViewController.xib; sourceTree = "<group>"; };
+		57F7C48C1827B667002149E0 /* SuggestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestionsViewController.h; sourceTree = "<group>"; };
+		57F7C48D1827B667002149E0 /* SuggestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestionsViewController.m; sourceTree = "<group>"; };
+		57F7C48E1827B667002149E0 /* SuggestionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestionsViewController.xib; sourceTree = "<group>"; };
+		57F7C4911827D99B002149E0 /* suggestions_heading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "suggestions_heading@2x.png"; path = "wifi assets/suggestions_heading@2x.png"; sourceTree = "<group>"; };
 		6CBAB82917FAF0FE000176A7 /* big-blue-frame-with-shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "big-blue-frame-with-shadow.png"; path = "images/big-blue-frame-with-shadow.png"; sourceTree = "<group>"; };
 		6CBAB82A17FAF0FE000176A7 /* big-blue-frame-with-shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "big-blue-frame-with-shadow@2x.png"; path = "images/big-blue-frame-with-shadow@2x.png"; sourceTree = "<group>"; };
 		70D522FE16CFFB6000D3EB60 /* select_near_station_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = select_near_station_iPad.png; path = images/select_near_station_iPad.png; sourceTree = "<group>"; };
@@ -1115,6 +1122,8 @@
 				5770C3FE1821470E00E2D7CB /* SpotInfoViewController.m */,
 				57E7A79B1823B5A0006F603D /* NavBarViewController.h */,
 				57E7A79C1823B5A0006F603D /* NavBarViewController.m */,
+				57F7C48C1827B667002149E0 /* SuggestionsViewController.h */,
+				57F7C48D1827B667002149E0 /* SuggestionsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1166,6 +1175,7 @@
 		5755E265181AAFDB0097CC11 /* wifi */ = {
 			isa = PBXGroup;
 			children = (
+				57F7C4911827D99B002149E0 /* suggestions_heading@2x.png */,
 				57E7A7991823AC97006F603D /* list_bt_ipad@2x.png */,
 				5770C40218214BDB00E2D7CB /* 4sq_icon@2x.png */,
 				5770C40318214BDB00E2D7CB /* share_fb@2x.png */,
@@ -1190,6 +1200,7 @@
 		577DEBAA166E385B006BA43A /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
+				57F7C48E1827B667002149E0 /* SuggestionsViewController.xib */,
 				57E7A79D1823B5A0006F603D /* NavBarViewController.xib */,
 				5770C41518214EDC00E2D7CB /* SpotCommentCell.xib */,
 				5770C3FF1821470E00E2D7CB /* SpotInfoViewController.xib */,
@@ -1786,6 +1797,7 @@
 				5770C41018214BDB00E2D7CB /* share_twitter@2x.png in Resources */,
 				57755582166BC7D900072AFE /* bg_teasers@2x.png in Resources */,
 				5755E23118196F9E0097CC11 /* icon@2x.png in Resources */,
+				57F7C4901827B667002149E0 /* SuggestionsViewController.xib in Resources */,
 				576843231675FA9200FA36AE /* no_image.jpeg in Resources */,
 				5768439C167636BE00FA36AE /* home paris metro_small.png in Resources */,
 				576843A0167636BE00FA36AE /* home paris metro.png in Resources */,
@@ -1906,6 +1918,7 @@
 				51F3FB0C169092A70078B006 /* star-green.png in Resources */,
 				51F3FB10169092A70078B006 /* star-pink-blue.png in Resources */,
 				5770C41618214EDC00E2D7CB /* SpotCommentCell.xib in Resources */,
+				57F7C4921827D99B002149E0 /* suggestions_heading@2x.png in Resources */,
 				51F3FB14169092A70078B006 /* star-pink.png in Resources */,
 				51F3FB18169092A70078B006 /* star-red-pink.png in Resources */,
 				51F3FB1C169092A70078B006 /* star-red-yellow.png in Resources */,
@@ -2003,6 +2016,7 @@
 				FA1B84C8173A9B3600D8A05F /* DebugUIImageView.m in Sources */,
 				FA38296D1774BE2A003BCCE0 /* LCUtil.m in Sources */,
 				FA160EA717A2BBA9009C7722 /* SettingsView.m in Sources */,
+				57F7C48F1827B667002149E0 /* SuggestionsViewController.m in Sources */,
 				FA160EAD17A2CB9F009C7722 /* RectObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2071,7 +2085,7 @@
 				INFOPLIST_FILE = "Wifi-Spots-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "Wi-fi Spots";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "952BC737-6338-44B9-BDB9-2BE35945CD2F";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2090,7 +2104,7 @@
 				INFOPLIST_FILE = "Wifi-Spots-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "Wi-fi Spots";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "952BC737-6338-44B9-BDB9-2BE35945CD2F";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
