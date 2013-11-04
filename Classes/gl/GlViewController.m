@@ -931,7 +931,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 {
     //NSArray *sorted = [objectsTypes sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
     //NSLog(@"%@", sorted);
-
+    [self.view.superview.superview endEditing:YES];
     if(recognizer.state != UIGestureRecognizerStateEnded) return;
     CGPoint p = [recognizer locationInView:self.view];
     float x = (p.x - self.view.bounds.size.width*0.5f)/scale + 128 - position.x, y = (p.y - self.view.bounds.size.height*0.5f)/scale + 128 - position.y;
@@ -1886,7 +1886,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
                 }
                 if([lastSearchResults count] > 0) {
                     NSDictionary *firstObject = [lastSearchResults objectAtIndex:0];
-                    [self scrollToGeoPosition:CGPointMake([firstObject[@"lat"] floatValue], [firstObject[@"lon"] floatValue]) withZoom:-1];
+//                    [self scrollToGeoPosition:CGPointMake([firstObject[@"lat"] floatValue], [firstObject[@"lon"] floatValue]) withZoom:-1];
                 }
 #ifdef DEBUG
                 NSLog(@"I've got a list of cities: %@", lastSearchResults);

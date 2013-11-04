@@ -58,9 +58,10 @@
                             <rect key="frame" x="20" y="0.0" width="280" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             <connections>
-                                <action selector="searchText:" destination="-1" eventType="editingDidEndOnExit" id="4br-03-1Mb"/>
+                                <action selector="doneSearching:" destination="-1" eventType="editingDidEndOnExit" id="42X-jS-fD6"/>
+                                <action selector="searchText:" destination="-1" eventType="editingChanged" id="YdA-K3-ft4"/>
                             </connections>
                         </textField>
                     </subviews>

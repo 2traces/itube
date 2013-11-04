@@ -12,6 +12,7 @@
 #import "tubeAppDelegate.h"
 #import "SpotsListViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "SuggestionsViewController.h"
 
 @interface NavigationViewController ()
 
@@ -29,14 +30,57 @@
 
 //static NSDictionary *distanceAttributes;
 
--(IBAction)searchButton:(UIButton *)sender
-{
-    [_textField resignFirstResponder];
+-(IBAction)doneSearching:(UITextField *)sender {
+    [self endedSearching];
 }
 
 -(IBAction)searchText:(UITextField *)sender
 {
     [glController loadCitiesLikeThis:sender.text];
+    
+    if (IS_IPAD) {
+        if ([sender.text length]) {
+            if (!self.popover.isPopoverVisible) {
+                [self.popover presentPopoverFromRect:sender.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+            }
+        }
+        else {
+            [self.popover dismissPopoverAnimated:YES];
+        }
+
+    }
+    else {
+        if ([sender.text length]) {
+            [self.separatingView addSubview:self.suggestionsVC.tableView];
+            self.suggestionsVC.tableView.frame = CGRectMake(0, 64, 320, self.separatingView.frame.size.height - 215 - 44);
+            self.suggestionsVC.tableView.hidden = NO;
+        }
+        else {
+            self.suggestionsVC.tableView.hidden = YES;
+
+        }
+    }
+}
+
+- (void) endedSearching {
+    [self.view endEditing:YES];
+    if (IS_IPAD) {
+        [self.popover dismissPopoverAnimated:YES];
+    }
+    else {
+        self.suggestionsVC.tableView.hidden = YES;
+    }
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    //do whatever you need
+
+    if (IS_IPAD) {
+//        [self.popover dismissPopoverAnimated:YES];
+    }
+    else {
+        self.suggestionsVC.tableView.hidden = YES;
+    }
 }
 
 - (void) showSettings
@@ -79,6 +123,21 @@
 //
 //    self.glController.view.layer.cornerRadius = self.separatingView.layer.cornerRadius = 5;
 //    [self.view insertSubview:[self.glController view] aboveSubview:self.separatingView];
+    self.suggestionsVC = [[[SuggestionsViewController alloc] initWithNibName:@"SuggestionsViewController" bundle:[NSBundle mainBundle]] autorelease];
+    self.suggestionsVC.navVC = self;
+    [self.suggestionsVC view];
+    if (IS_IPAD) {
+        self.popover = [[[UIPopoverController alloc] initWithContentViewController:self.suggestionsVC] autorelease];
+        self.popover.popoverContentSize = CGSizeMake(320, 44+73+20);
+        if ([self.popover respondsToSelector:@selector(setBackgroundColor:)]) {
+            [self.popover setBackgroundColor:[UIColor colorWithRed:223.0f/255.0f green:223.0f/255.0f blue:223.0f/255.0f alpha:1.0f]];
+        }
+    }
+    else {
+        [self.separatingView addSubview:self.suggestionsVC.tableView];
+        self.suggestionsVC.tableView.frame = CGRectMake(0, 64, 320, self.separatingView.frame.size.height - 215 - 44);
+        self.suggestionsVC.tableView.hidden = YES;
+    }
     CGRect frame = self.glController.view.frame;
     frame.size = self.separatingView.frame.size;
     frame.origin = CGPointMake(0, 0);
@@ -108,6 +167,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(distanceUpdated:) name: @"distanceUpdated" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(distanceUpdated:) name: @"kMapMoved" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     if (![CLLocationManager locationServicesEnabled]) {
         self.distanceView.hidden = YES;
     }
@@ -141,6 +201,27 @@
         self.listSplitButton.hidden = YES;
     }
     [self distanceUpdated:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateData:) name:nSEARCH_RESULTS_READY object:nil];
+    
+}
+
+- (void)updateData:(NSNotification*)notification {
+    NSArray *items = [notification object];
+    if (IS_IPAD) {
+        NSInteger count = [items count];
+        if (count > 10) {
+            count = 10;
+        }
+        self.popover.popoverContentSize = CGSizeMake(320, 44*count+73+20);
+    }
+    else {
+        if ([items count] == 0) {
+            self.suggestionsVC.tableView.hidden = YES;
+        }
+        else {
+            self.suggestionsVC.tableView.hidden = NO;
+        }
+    }
 }
 
 -(IBAction)showSpotsList:(id)sender {
