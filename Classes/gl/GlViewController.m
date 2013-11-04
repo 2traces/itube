@@ -15,6 +15,9 @@
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 #define d2r (M_PI / 180.0)
 
+#define LEVEL_WIFI_POINT 13
+#define LEVEL_WIFI_CLUSTER 10
+
 // Uniform index.
 enum
 {
@@ -1632,7 +1635,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     userPosition = up;
     Pin *p = [_pinsArray objectAtIndex:0];
     if(p != nil) [p setPosition:up];
-    if(followUserGPS) [self setGeoPosition:userGeoPosition withZoom:64];
+    if(followUserGPS) [self setGeoPosition:userGeoPosition withZoom:1 << LEVEL_WIFI_POINT];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"distanceUpdated" object:nil];
 
 }
@@ -1640,7 +1643,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(void)setUserHeading:(double)heading
 {
     Pin *p = [_pinsArray objectAtIndex:0];
-    if(p != nil) [p setRotation:heading / 180.0 * M_PI];
+    if(p != nil) [p setRotation:-(heading / 180.0 * M_PI)];
 }
 
 - (void) centerMapOnUser {
@@ -1686,6 +1689,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(void)loadObjectsOnScreen
 {
+    if([self getLevelForScale:scale] < LEVEL_WIFI_CLUSTER) return;
     CGRect frame;
     frame.origin = position;
     frame.size = self.view.frame.size;
@@ -1694,6 +1698,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     frame.origin.x -= frame.size.width * 0.5f;
     frame.origin.y -= frame.size.height * 0.5f;
     [self loadObjectsForRect:frame];
+    [self unloadFarObjectsFromRect:frame];
 }
 
 -(void)loadObjectsForRect:(CGRect)rect
@@ -1743,13 +1748,29 @@ CGPoint translateFromMapToGeo(CGPoint p)
     }];
 }
 
+-(void)unloadFarObjectsFromRect:(CGRect)rect
+{
+    CGRect r = rect;
+    r.origin.x -= r.size.width;
+    r.origin.y -= r.size.height;
+    r.size.width *= 3;
+    r.size.height *= 3;
+    NSMutableArray *toRemove = [NSMutableArray array];
+    for(Cluster* cl in clusters) {
+        if(!CGRectContainsPoint(r, cl.center)) {
+            [toRemove addObject:cl];
+        }
+    }
+    [clusters removeObjectsInArray:toRemove];
+}
+
 -(void)updatePinsForLevel:(NSNumber*)nLevel
 {
     int level = nLevel.intValue;
     int newObjectsLOD = -1;
-    if(level > 13) {
+    if(level > LEVEL_WIFI_POINT) {
         newObjectsLOD = 0;
-    } else if(level > 9) {
+    } else if(level > LEVEL_WIFI_CLUSTER) {
         newObjectsLOD = 1;
     } else {
         newObjectsLOD = 2;
@@ -1840,6 +1861,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 #pragma mark gps stuff
 -(BOOL) enableUserLocation
 {
+    BOOL result = NO;
     [locationManager release];
     locationManager = nil;
     if([CLLocationManager locationServicesEnabled]) {
@@ -1848,14 +1870,49 @@ CGPoint translateFromMapToGeo(CGPoint p)
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
         locationManager.distanceFilter = 500;
         [locationManager startUpdatingLocation];
-        return YES;
-    } else return NO;
+        result = YES;
+    } else result = NO;
+    if([CLLocationManager headingAvailable]) {
+        locationManager.headingFilter = kCLHeadingFilterNone;
+        [locationManager startUpdatingHeading];
+#ifdef DEBUG
+        NSLog(@"Good news: magnetometer have found!");
+#endif
+    } else {
+#ifdef DEBUG
+        NSLog(@"Sorry: there aren't any magnetometer in the device.");
+#endif  
+    }
+    return result;
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     CGPoint curPos = CGPointMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
     [(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] setUserGeoPosition:curPos];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
+{
+    CLLocationDirection dir = 0;
+    if(newHeading.trueHeading >= 0) dir = newHeading.trueHeading;
+    else dir = newHeading.magneticHeading;
+    switch ([UIApplication sharedApplication].statusBarOrientation) {
+        default:
+        case UIInterfaceOrientationPortrait:
+            break;
+        case UIInterfaceOrientationPortraitUpsideDown:
+            dir -= 190;
+            break;
+        case UIInterfaceOrientationLandscapeLeft:
+            dir -= 90;
+            break;
+        case UIInterfaceOrientationLandscapeRight:
+            dir += 90;
+            break;
+    }
+    
+    [(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] setUserHeading:dir];
 }
 
 -(void)loadCitiesLikeThis:(NSString*)cityName

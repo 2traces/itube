@@ -276,6 +276,7 @@ static long DownloadCacheSize = 0;
         glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, 20, BUFFER_OFFSET(12));
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
+    actuality = 0;
     if([objects count] > 0) {
         for (RObject *ob in objects) {
             [ob drawGl];
@@ -322,6 +323,7 @@ static long DownloadCacheSize = 0;
         glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, 20, buf+3);
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
+    actuality = 0;
     if([objects count] > 0) {
         for (RObject *ob in objects) {
             [ob drawGl];
@@ -654,7 +656,7 @@ static long DownloadCacheSize = 0;
     if(piece->image == nil) {
         NSString *url = [NSString stringWithFormat:@"%@/%d/%d/%d.jpg", baseUrl, piece->level, piece->x, piece->y];
         // Create the request.
-        NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+        NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:120.0];
         // create the connection with the request
         // and start loading the data
         NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
@@ -765,7 +767,7 @@ static long DownloadCacheSize = 0;
         [queue removeByConnection:connection];
         if(notFound) {
             dp->piece->numberTry ++;
-            if(dp->piece->numberTry > 1) {
+            if(dp->piece->numberTry > 1 || dp->piece->actuality > 0) {
                 // finally not found
                 [dp->piece rasterLoaded];
                 [minusCache addObject:[[[DownloadCache alloc] initWithLevel:dp->piece->level x:dp->piece->x y:dp->piece->y data:nil] autorelease]];
@@ -1200,6 +1202,7 @@ static long DownloadCacheSize = 0;
 
 -(void)advance:(RPiece*)piece
 {
+    piece->actuality = 0;
     [rasterDownloader advance:piece];
     [vectorDownloader advance:piece];
 }
@@ -1708,15 +1711,9 @@ static long DownloadCacheSize = 0;
             }
         }
     }
-    //[loader.lock unlock];
     [lock unlock];
-    //if(allLoaded) NSLog(@"raster drawing complete at level %d, %d pieces", level, piecesCount);
-    //else NSLog(@"raster drawing not complete at level %d, %d pieces", level, piecesCount);
     [loader debugStatus];
 
-    /*if(allLoaded) while(piecesCount > MAX_PIECES) {
-        [self freeSomeMemory];
-    }*/
     return allLoaded;
 }
 
