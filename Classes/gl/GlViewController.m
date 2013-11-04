@@ -125,6 +125,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (retain, atomic) NSArray *pinsArray;
+@property (strong, nonatomic) NSArray *clusters;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
 
 - (void)setupGL;
@@ -624,7 +625,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     [_context release];
     //[_effect release];
     [rasterLayer release];
-    [clusters release];
+    self.clusters = nil;
     [super dealloc];
 }
 
@@ -636,7 +637,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
 
     self.pinsArray = @[];
-    clusters = [[NSMutableArray alloc] init];
+    self.clusters = @[];
     objectsLOD = -1;
 
     CGRect scrollSize,settingsRect,shadowRect,zonesRect,cornerRect;
@@ -956,7 +957,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
         int pid = [[selected objectAtIndex:0] Id];
         tubeAppDelegate *delegate = (tubeAppDelegate*)[UIApplication sharedApplication].delegate;
         if(objectsLOD == 0) {
-            for (Cluster *cl in clusters) {
+            for (Cluster *cl in _clusters) {
                 for (Object *ob in cl.objects) {
                     if(ob.pinID == pid) {
                         [delegate selectObject:ob];
@@ -964,7 +965,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
                 }
             }
         } else if(objectsLOD == 1) {
-            for (Cluster *cl in clusters) {
+            for (Cluster *cl in _clusters) {
                 if(cl.pinID == pid) {
                     [delegate selectCluster:cl];
                 }
@@ -1724,7 +1725,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
                     counter++;
                     Object *ob = [[Object alloc] initWithDictionary:item];
                     BOOL accepted = NO;
-                    for (Cluster* cl in clusters) {
+                    for (Cluster* cl in _clusters) {
                         if([cl accept:ob]) {
                             accepted = YES;
                             break;
@@ -1732,8 +1733,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
                     }
                     if(!accepted) {
                         Cluster *cl = [[Cluster alloc] initWithRadius:0.03f];
-                        [clusters addObject:cl];
-                        [[clusters lastObject] accept:ob];
+                        self.clusters = [self.clusters arrayByAddingObject:cl];
+                        [[_clusters lastObject] accept:ob];
                         [cl release];
                     }
                     [ob release];
@@ -1755,13 +1756,16 @@ CGPoint translateFromMapToGeo(CGPoint p)
     r.origin.y -= r.size.height;
     r.size.width *= 3;
     r.size.height *= 3;
-    NSMutableArray *toRemove = [NSMutableArray array];
-    for(Cluster* cl in clusters) {
-        if(!CGRectContainsPoint(r, cl.center)) {
-            [toRemove addObject:cl];
-        }
-    }
-    [clusters removeObjectsInArray:toRemove];
+//    NSMutableArray *toRemove = [NSMutableArray array];
+//    for(Cluster* cl in _clusters) {
+//        if(!CGRectContainsPoint(r, cl.center)) {
+//            [toRemove addObject:cl];
+//        }
+//    }
+//    [clusters removeObjectsInArray:toRemove];
+    self.clusters = [_clusters filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        return CGRectContainsPoint(r,  [evaluatedObject center]);
+    }]];
 }
 
 -(void)updatePinsForLevel:(NSNumber*)nLevel
@@ -1784,7 +1788,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
         case 0:
             // show objects
             [self removeAllPins];
-            for (Cluster *cl in clusters) {
+            for (Cluster *cl in _clusters) {
                 for (Object *ob in cl.objects) {
                     ob.pinID = -1;
                 }
@@ -1793,7 +1797,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
         case 1:
             // show clusters
             [self removeAllPins];
-            for (Cluster *cl in clusters) {
+            for (Cluster *cl in _clusters) {
                 cl.pinID = -1;
             }
             break;
@@ -1808,7 +1812,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
             break;
         case 0:
             // show objects
-            for (Cluster *cl in clusters) {
+            for (Cluster *cl in _clusters) {
                 for (Object *ob in cl.objects) {
                     ob.pinID = [self newPin:ob.coords color:1 name:ob.title subtitle:[ob.comments firstObject]];
                 }
@@ -1816,7 +1820,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
             break;
         case 1:
             // show clusters
-            for (Cluster *cl in clusters) {
+            for (Cluster *cl in _clusters) {
                 cl.pinID = [self newStar:cl.center color:1 name:cl.title];
             }
             break;
@@ -1841,7 +1845,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 {
     NSMutableArray *result = [NSMutableArray array];
     CGFloat r2 = radius*radius;
-    for (Cluster *cl in clusters) {
+    for (Cluster *cl in _clusters) {
         CGFloat len2 = sqr(cl.center.x-center.x) + sqr(cl.center.y-center.y);
         if(len2 <= (cl.radius*cl.radius + r2)) {
             for (Object *ob in cl.objects) {

@@ -1780,6 +1780,22 @@ static long DownloadCacheSize = 0;
             }
         }
     }
+    /*for (id key in levels) {
+        NSMutableArray *l = [levels objectForKey:key];
+        NSMutableArray *rm = [NSMutableArray array];
+        if([l count] > 0) for (RPiece *p in l) {
+            if(p.empty && p->actuality > 10) {
+                [rm addObject:p];
+#ifdef DEBUG
+                NSLog(@"Stop loading the tile from layer %d, x: %d, y: %d", p->level, p->x, p->y);
+#endif
+                [loader cancelPieceLoading:p];
+                piecesCount --;
+            }
+        }
+        [l removeObjectsInArray:rm];
+    }*/
+
     
     [lock unlock];
     [loader debugStatus];

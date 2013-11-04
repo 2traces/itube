@@ -98,7 +98,6 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 
 @interface GlViewController : GLKViewController<UIPopoverControllerDelegate,SettingsViewControllerDelegate, CLLocationManagerDelegate> {
     UIPopoverController *popover;
-    NSMutableArray *clusters;
 }
 
 @property (nonatomic, assign) MItem *currentSelection;
