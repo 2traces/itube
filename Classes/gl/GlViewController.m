@@ -1643,7 +1643,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(void)setUserHeading:(double)heading
 {
     Pin *p = [_pinsArray objectAtIndex:0];
-    if(p != nil) [p setRotation:heading / 180.0 * M_PI];
+    if(p != nil) [p setRotation:-(heading / 180.0 * M_PI)];
 }
 
 - (void) centerMapOnUser {
@@ -1861,6 +1861,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 #pragma mark gps stuff
 -(BOOL) enableUserLocation
 {
+    BOOL result = NO;
     [locationManager release];
     locationManager = nil;
     if([CLLocationManager locationServicesEnabled]) {
@@ -1869,14 +1870,49 @@ CGPoint translateFromMapToGeo(CGPoint p)
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
         locationManager.distanceFilter = 500;
         [locationManager startUpdatingLocation];
-        return YES;
-    } else return NO;
+        result = YES;
+    } else result = NO;
+    if([CLLocationManager headingAvailable]) {
+        locationManager.headingFilter = kCLHeadingFilterNone;
+        [locationManager startUpdatingHeading];
+#ifdef DEBUG
+        NSLog(@"Good news: magnetometer have found!");
+#endif
+    } else {
+#ifdef DEBUG
+        NSLog(@"Sorry: there aren't any magnetometer in the device.");
+#endif  
+    }
+    return result;
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     CGPoint curPos = CGPointMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
     [(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] setUserGeoPosition:curPos];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
+{
+    CLLocationDirection dir = 0;
+    if(newHeading.trueHeading >= 0) dir = newHeading.trueHeading;
+    else dir = newHeading.magneticHeading;
+    switch ([UIApplication sharedApplication].statusBarOrientation) {
+        default:
+        case UIInterfaceOrientationPortrait:
+            break;
+        case UIInterfaceOrientationPortraitUpsideDown:
+            dir -= 190;
+            break;
+        case UIInterfaceOrientationLandscapeLeft:
+            dir -= 90;
+            break;
+        case UIInterfaceOrientationLandscapeRight:
+            dir += 90;
+            break;
+    }
+    
+    [(tubeAppDelegate*)[[UIApplication sharedApplication] delegate] setUserHeading:dir];
 }
 
 -(void)loadCitiesLikeThis:(NSString*)cityName
