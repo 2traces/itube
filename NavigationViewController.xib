@@ -90,6 +90,9 @@
                     <state key="normal" backgroundImage="download_bt.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="downloadOfflineMap:" destination="-1" eventType="touchUpInside" id="0GQ-Ti-GM1"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" id="WYa-W4-zht">
                     <rect key="frame" x="10" y="430" width="75" height="35"/>

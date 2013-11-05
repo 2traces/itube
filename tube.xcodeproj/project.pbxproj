@@ -193,6 +193,14 @@
 		579D28D416480E990061B8F6 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579D28D216480E990061B8F6 /* NavigationViewController.m */; };
 		579D28D516480E990061B8F6 /* NavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 579D28D316480E990061B8F6 /* NavigationViewController.xib */; };
 		579D28DA164815DC0061B8F6 /* CategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 579D28D8164815DC0061B8F6 /* CategoriesViewController.xib */; };
+		57AAAA1E1829129300EF3D7D /* download_bt_cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57AAAA181829129200EF3D7D /* download_bt_cancel@2x.png */; };
+		57AAAA1F1829129300EF3D7D /* download_bt_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57AAAA191829129200EF3D7D /* download_bt_close@2x.png */; };
+		57AAAA201829129300EF3D7D /* download_bt_ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57AAAA1A1829129200EF3D7D /* download_bt_ok@2x.png */; };
+		57AAAA211829129300EF3D7D /* download_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57AAAA1B1829129200EF3D7D /* download_logo@2x.png */; };
+		57AAAA221829129300EF3D7D /* download_lower_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57AAAA1C1829129200EF3D7D /* download_lower_bg@2x.png */; };
+		57AAAA231829129300EF3D7D /* download_upper_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57AAAA1D1829129300EF3D7D /* download_upper_bg@2x.png */; };
+		57AAAA2718291FD900EF3D7D /* DownloadMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AAAA2518291FD900EF3D7D /* DownloadMapViewController.m */; };
+		57AAAA2818291FD900EF3D7D /* DownloadMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57AAAA2618291FD900EF3D7D /* DownloadMapViewController.xib */; };
 		57CC000F182126CA00E71F13 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57CC000C182126CA00E71F13 /* arrow@2x.png */; };
 		57CC0010182126CA00E71F13 /* lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57CC000D182126CA00E71F13 /* lock@2x.png */; };
 		57CD10081682F9810070D8B6 /* RatePopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CD10061682F9810070D8B6 /* RatePopupViewController.m */; };
@@ -206,6 +214,8 @@
 		57E7A79A1823AC97006F603D /* list_bt_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57E7A7991823AC97006F603D /* list_bt_ipad@2x.png */; };
 		57E7A79E1823B5A0006F603D /* NavBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E7A79C1823B5A0006F603D /* NavBarViewController.m */; };
 		57E7A79F1823B5A0006F603D /* NavBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57E7A79D1823B5A0006F603D /* NavBarViewController.xib */; };
+		57F60EF2182903DC001D0E77 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F60EF1182903DC001D0E77 /* Social.framework */; };
+		57F60EF4182903E2001D0E77 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F60EF3182903E2001D0E77 /* Accounts.framework */; };
 		57F7C48F1827B667002149E0 /* SuggestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F7C48D1827B667002149E0 /* SuggestionsViewController.m */; };
 		57F7C4901827B667002149E0 /* SuggestionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57F7C48E1827B667002149E0 /* SuggestionsViewController.xib */; };
 		57F7C4921827D99B002149E0 /* suggestions_heading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57F7C4911827D99B002149E0 /* suggestions_heading@2x.png */; };
@@ -611,6 +621,15 @@
 		579D28D216480E990061B8F6 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
 		579D28D316480E990061B8F6 /* NavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationViewController.xib; sourceTree = "<group>"; };
 		579D28D8164815DC0061B8F6 /* CategoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoriesViewController.xib; sourceTree = "<group>"; };
+		57AAAA181829129200EF3D7D /* download_bt_cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "download_bt_cancel@2x.png"; path = "wifi assets/download_bt_cancel@2x.png"; sourceTree = "<group>"; };
+		57AAAA191829129200EF3D7D /* download_bt_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "download_bt_close@2x.png"; path = "wifi assets/download_bt_close@2x.png"; sourceTree = "<group>"; };
+		57AAAA1A1829129200EF3D7D /* download_bt_ok@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "download_bt_ok@2x.png"; path = "wifi assets/download_bt_ok@2x.png"; sourceTree = "<group>"; };
+		57AAAA1B1829129200EF3D7D /* download_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "download_logo@2x.png"; path = "wifi assets/download_logo@2x.png"; sourceTree = "<group>"; };
+		57AAAA1C1829129200EF3D7D /* download_lower_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "download_lower_bg@2x.png"; path = "wifi assets/download_lower_bg@2x.png"; sourceTree = "<group>"; };
+		57AAAA1D1829129300EF3D7D /* download_upper_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "download_upper_bg@2x.png"; path = "wifi assets/download_upper_bg@2x.png"; sourceTree = "<group>"; };
+		57AAAA2418291FD900EF3D7D /* DownloadMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadMapViewController.h; sourceTree = "<group>"; };
+		57AAAA2518291FD900EF3D7D /* DownloadMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadMapViewController.m; sourceTree = "<group>"; };
+		57AAAA2618291FD900EF3D7D /* DownloadMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadMapViewController.xib; sourceTree = "<group>"; };
 		57CC000C182126CA00E71F13 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow@2x.png"; path = "wifi assets/arrow@2x.png"; sourceTree = "<group>"; };
 		57CC000D182126CA00E71F13 /* lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lock@2x.png"; path = "wifi assets/lock@2x.png"; sourceTree = "<group>"; };
 		57CD10051682F9810070D8B6 /* RatePopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatePopupViewController.h; sourceTree = "<group>"; };
@@ -626,6 +645,8 @@
 		57E7A79B1823B5A0006F603D /* NavBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavBarViewController.h; sourceTree = "<group>"; };
 		57E7A79C1823B5A0006F603D /* NavBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavBarViewController.m; sourceTree = "<group>"; };
 		57E7A79D1823B5A0006F603D /* NavBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavBarViewController.xib; sourceTree = "<group>"; };
+		57F60EF1182903DC001D0E77 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		57F60EF3182903E2001D0E77 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		57F7C48C1827B667002149E0 /* SuggestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestionsViewController.h; sourceTree = "<group>"; };
 		57F7C48D1827B667002149E0 /* SuggestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestionsViewController.m; sourceTree = "<group>"; };
 		57F7C48E1827B667002149E0 /* SuggestionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestionsViewController.xib; sourceTree = "<group>"; };
@@ -872,6 +893,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57F60EF4182903E2001D0E77 /* Accounts.framework in Frameworks */,
+				57F60EF2182903DC001D0E77 /* Social.framework in Frameworks */,
 				51A40586178D805D00279164 /* CoreMotion.framework in Frameworks */,
 				57187B82168C89C600D1527E /* MediaPlayer.framework in Frameworks */,
 				5758354F168B303200C96F5C /* ImageIO.framework in Frameworks */,
@@ -973,6 +996,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				57F60EF3182903E2001D0E77 /* Accounts.framework */,
+				57F60EF1182903DC001D0E77 /* Social.framework */,
 				51A40585178D805D00279164 /* CoreMotion.framework */,
 				57187B81168C89C600D1527E /* MediaPlayer.framework */,
 				5758354E168B303200C96F5C /* ImageIO.framework */,
@@ -1124,6 +1149,8 @@
 				57E7A79C1823B5A0006F603D /* NavBarViewController.m */,
 				57F7C48C1827B667002149E0 /* SuggestionsViewController.h */,
 				57F7C48D1827B667002149E0 /* SuggestionsViewController.m */,
+				57AAAA2418291FD900EF3D7D /* DownloadMapViewController.h */,
+				57AAAA2518291FD900EF3D7D /* DownloadMapViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1175,6 +1202,12 @@
 		5755E265181AAFDB0097CC11 /* wifi */ = {
 			isa = PBXGroup;
 			children = (
+				57AAAA181829129200EF3D7D /* download_bt_cancel@2x.png */,
+				57AAAA191829129200EF3D7D /* download_bt_close@2x.png */,
+				57AAAA1A1829129200EF3D7D /* download_bt_ok@2x.png */,
+				57AAAA1B1829129200EF3D7D /* download_logo@2x.png */,
+				57AAAA1C1829129200EF3D7D /* download_lower_bg@2x.png */,
+				57AAAA1D1829129300EF3D7D /* download_upper_bg@2x.png */,
 				57F7C4911827D99B002149E0 /* suggestions_heading@2x.png */,
 				57E7A7991823AC97006F603D /* list_bt_ipad@2x.png */,
 				5770C40218214BDB00E2D7CB /* 4sq_icon@2x.png */,
@@ -1200,6 +1233,7 @@
 		577DEBAA166E385B006BA43A /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
+				57AAAA2618291FD900EF3D7D /* DownloadMapViewController.xib */,
 				57F7C48E1827B667002149E0 /* SuggestionsViewController.xib */,
 				57E7A79D1823B5A0006F603D /* NavBarViewController.xib */,
 				5770C41518214EDC00E2D7CB /* SpotCommentCell.xib */,
@@ -1681,6 +1715,7 @@
 				BC876B6614DFB32B008AC06C /* pr_bookmarkstation.png in Resources */,
 				5755E244181970E90097CC11 /* icon~ipad@2x.png in Resources */,
 				BC876B6714DFB32B008AC06C /* pr_bookmarkstation@2x.png in Resources */,
+				57AAAA201829129300EF3D7D /* download_bt_ok@2x.png in Resources */,
 				BC876B6814DFB32B008AC06C /* pr_historystation.png in Resources */,
 				BC876B6914DFB32B008AC06C /* pr_historystation@2x.png in Resources */,
 				BC876B6A14DFB32B008AC06C /* pr_linesstation.png in Resources */,
@@ -1705,12 +1740,14 @@
 				BC9D4D3B14E3A84100FF2A91 /* radial.png in Resources */,
 				BCCC308414E4DAAB00102064 /* settings_back_button.png in Resources */,
 				BCCC308514E4DAAB00102064 /* settings_back_button@2x.png in Resources */,
+				57AAAA231829129300EF3D7D /* download_upper_bg@2x.png in Resources */,
 				BCCC308614E4DAAB00102064 /* settings_top_bar.png in Resources */,
 				BCCC308714E4DAAB00102064 /* settings_top_bar@2x.png in Resources */,
 				BCCC308814E4DAAB00102064 /* settings_upd_button.png in Resources */,
 				BCCC308914E4DAAB00102064 /* settings_upd_button@2x.png in Resources */,
 				BC88780C14EB90D600E7BEF7 /* switch_to_map_high.png in Resources */,
 				6CBAB82F17FAF0FE000176A7 /* big-blue-frame-with-shadow@2x.png in Resources */,
+				57AAAA1F1829129300EF3D7D /* download_bt_close@2x.png in Resources */,
 				BC88780D14EB90D600E7BEF7 /* switch_to_map_high@2x.png in Resources */,
 				BC88780E14EB90D600E7BEF7 /* switch_to_map.png in Resources */,
 				BC88780F14EB90D600E7BEF7 /* switch_to_map@2x.png in Resources */,
@@ -1785,10 +1822,12 @@
 				BC24E8E81612F8B4006C3C12 /* sendToFriend.png in Resources */,
 				BC24E8E91612F8B4006C3C12 /* wrongPathPressed@2x.png in Resources */,
 				BC24E8EA1612F8B4006C3C12 /* sendToFriendPressed@2x.png in Resources */,
+				57AAAA2818291FD900EF3D7D /* DownloadMapViewController.xib in Resources */,
 				BC24E8EB1612F8B4006C3C12 /* wrongPath@2x.png in Resources */,
 				BC24E8EC1612F8B4006C3C12 /* sendToFriend@2x.png in Resources */,
 				BC234C4D16145AE600F3D35B /* InitialDefaults.plist in Resources */,
 				579D28D516480E990061B8F6 /* NavigationViewController.xib in Resources */,
+				57AAAA1E1829129300EF3D7D /* download_bt_cancel@2x.png in Resources */,
 				579D28DA164815DC0061B8F6 /* CategoriesViewController.xib in Resources */,
 				57D098021650434000467C1D /* categories_bg.png in Resources */,
 				57D098031650434000467C1D /* categories_bg@2x.png in Resources */,
@@ -1882,6 +1921,7 @@
 				51F3FA84169092A70078B006 /* fav-red-yellow@2x.png in Resources */,
 				51F3FA88169092A70078B006 /* fav-red.png in Resources */,
 				51F3FA8C169092A70078B006 /* fav-red@2x.png in Resources */,
+				57AAAA211829129300EF3D7D /* download_logo@2x.png in Resources */,
 				51F3FA90169092A70078B006 /* fav-yell.png in Resources */,
 				51F3FA94169092A70078B006 /* fav-yell@2x.png in Resources */,
 				51F3FA98169092A70078B006 /* pin-aqua.png in Resources */,
@@ -1930,6 +1970,7 @@
 				70D5230A16CFFC3B00D3EB60 /* select_near_station_bw_iPad.png in Resources */,
 				70D5230E16CFFC3B00D3EB60 /* select_near_station_bw_iPad@2x.png in Resources */,
 				FAFD419D172832CD006AC5BF /* scroll_btn_next.png in Resources */,
+				57AAAA221829129300EF3D7D /* download_lower_bg@2x.png in Resources */,
 				FAFD41A1172832CD006AC5BF /* scroll_btn_next@2x.png in Resources */,
 				FAFD41A5172832CD006AC5BF /* scroll_btn_prev.png in Resources */,
 				5770C4011821470E00E2D7CB /* SpotInfoViewController.xib in Resources */,
@@ -2015,6 +2056,7 @@
 				FA1B84BC1739313400D8A05F /* DebugUIImage.m in Sources */,
 				FA1B84C8173A9B3600D8A05F /* DebugUIImageView.m in Sources */,
 				FA38296D1774BE2A003BCCE0 /* LCUtil.m in Sources */,
+				57AAAA2718291FD900EF3D7D /* DownloadMapViewController.m in Sources */,
 				FA160EA717A2BBA9009C7722 /* SettingsView.m in Sources */,
 				57F7C48F1827B667002149E0 /* SuggestionsViewController.m in Sources */,
 				FA160EAD17A2CB9F009C7722 /* RectObject.m in Sources */,

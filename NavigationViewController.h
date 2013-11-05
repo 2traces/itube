@@ -11,6 +11,7 @@
 
 @class GlViewController;
 @class SuggestionsViewController;
+@class DownloadMapViewController;
 
 @protocol NavigationDelegate <NSObject>
 
@@ -47,6 +48,7 @@ typedef enum {
 -(IBAction)searchText:(UITextField*)sender;
 -(IBAction)showSpotsList:(id)sender;
 -(IBAction)distanceTapped:(id)sender;
+-(IBAction)downloadOfflineMap:(id)sender;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil glViewController:(GlViewController*)glViewController;
 - (void) centerMapOnPlace:(MPlace*)place;
@@ -70,5 +72,6 @@ typedef enum {
 @property (nonatomic, strong) IBOutlet UITextField *textField;
 @property (nonatomic, retain) UIPopoverController *popover;
 @property (nonatomic, retain) SuggestionsViewController *suggestionsVC;
+@property (nonatomic, retain) DownloadMapViewController *downloadVC;
 
 @end

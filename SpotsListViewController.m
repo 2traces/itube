@@ -31,16 +31,16 @@
 - (void)updateData {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     GlViewController *gl = appDelegate.glViewController;
-    self.items = [gl getObjectsNearUserWithRadius:2000];
-//    NSMutableArray *temp = [NSMutableArray arrayWithCapacity:5];
-//    for (int i = 0; i < 100; i++) {
-//        Object *obj = [Object new];
-//        obj.comments = @[@"comment 1", @"comment 2", @"comment 3"];
-//        obj.title = [NSString stringWithFormat:@"Object #%i", i+1];
-//        obj.ID = @"";
-//        [temp addObject:obj];
-//    }
-//    self.items = [NSArray arrayWithArray:temp];
+//    self.items = [gl getObjectsNearUserWithRadius:2000];
+    NSMutableArray *temp = [NSMutableArray arrayWithCapacity:5];
+    for (int i = 0; i < 100; i++) {
+        Object *obj = [Object new];
+        obj.comments = @[@"comment 1", @"comment 2", @"comment 3"];
+        obj.title = [NSString stringWithFormat:@"Object #%i", i+1];
+        obj.ID = @"";
+        [temp addObject:obj];
+    }
+    self.items = [NSArray arrayWithArray:temp];
     [self.tableView reloadData];
 }
 

@@ -13,6 +13,7 @@
 #import "SpotsListViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SuggestionsViewController.h"
+#import "DownloadMapViewController.h"
 
 @interface NavigationViewController ()
 
@@ -29,6 +30,40 @@
 @synthesize textBg;
 
 //static NSDictionary *distanceAttributes;
+
+-(IBAction)downloadOfflineMap:(id)sender {
+    if (!self.downloadVC) {
+        self.downloadVC = [[[DownloadMapViewController alloc] initWithNibName:@"DownloadMapViewController" bundle:[NSBundle mainBundle]] autorelease];
+    }
+    self.downloadVC.view.frame = self.view.frame;
+    if (IS_IPAD) {
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+            CGRect frame = self.downloadVC.view.frame;
+            frame.origin.y += 20;
+            frame.size.height -= 40;
+            self.downloadVC.view.frame = frame;
+        }
+    }
+    else {
+        CGRect frame = self.downloadVC.view.frame;
+
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+            frame.origin.y += 20;
+        }
+        else {
+            frame.origin.y -= 20;
+        }
+        self.downloadVC.view.frame = frame;
+
+    }
+
+    self.downloadVC.view.alpha = 0;
+    [self.view addSubview:self.downloadVC.view];
+    [UIView animateWithDuration:0.5f animations:^{
+        self.downloadVC.view.alpha = 1;
+    }];
+    
+}
 
 -(IBAction)doneSearching:(UITextField *)sender {
     [self endedSearching];
