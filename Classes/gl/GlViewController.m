@@ -1828,15 +1828,19 @@ CGPoint translateFromMapToGeo(CGPoint p)
     r.origin.y -= r.size.height;
     r.size.width *= 3;
     r.size.height *= 3;
-//    NSMutableArray *toRemove = [NSMutableArray array];
-//    for(Cluster* cl in _clusters) {
-//        if(!CGRectContainsPoint(r, cl.center)) {
-//            [toRemove addObject:cl];
-//        }
-//    }
-//    [clusters removeObjectsInArray:toRemove];
+    for(Cluster* cl in _clusters) {
+        if(!CGRectContainsPoint(r, cl.center)) {
+            if(cl.pinID > 0) {
+                [self removePin:cl.pinID];
+            }
+            for (Object *o in cl.objects) {
+                if(o.pinID > 0)
+                    [self removePin:o.pinID];
+            }
+        }
+    }
     self.clusters = [_clusters filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        return CGRectContainsPoint(r,  [evaluatedObject center]);
+        return CGRectContainsPoint(r,  [((Cluster*)evaluatedObject) center]);
     }]];
 }
 
@@ -1851,7 +1855,32 @@ CGPoint translateFromMapToGeo(CGPoint p)
     } else {
         newObjectsLOD = 2;
     }
-    if(objectsLOD == newObjectsLOD) return;
+    if(objectsLOD == newObjectsLOD) {
+        switch (objectsLOD) {
+            default:
+            case -1:
+                break;
+            case 0:
+                // show objects
+                for (Cluster *cl in _clusters) {
+                    for (Object *ob in cl.objects) {
+                        if(ob.pinID < 0)
+                            ob.pinID = [self newPin:ob.coords color:1 name:ob.title subtitle:[ob.comments firstObject]];
+                    }
+                }
+                break;
+            case 1:
+                // show clusters
+                for (Cluster *cl in _clusters) {
+                    if(cl.pinID < 0)
+                        cl.pinID = [self newStar:cl.center color:1 name:cl.title];
+                }
+                break;
+            case 2:
+                break;
+        }
+        return;
+    }
     switch (objectsLOD) {
         case -1:
         default:
