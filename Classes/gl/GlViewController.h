@@ -70,6 +70,8 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
     float lastScale;
     float distanceToUser;
     PinType type;
+    
+    NSString *pinText, *pinSubtitle, *pinTexture;
 }
 
 @property (nonatomic, readonly) int Id;
@@ -79,6 +81,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 @property (nonatomic, assign) CGFloat distanceToUser;
 @property (nonatomic, readonly) PinType type;
 @property (nonatomic, assign) double rotation;
+@property (nonatomic, readonly) BOOL loaded;
 
 -(id)initUserPos;
 -(id)initObjectPos;
@@ -87,11 +90,13 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 -(id)initWithId:(int)pinId color:(int)color text:(NSString*)text andSubtitle:(NSString*)subtitle;
 -(id)initClusterWithId:(int)pinId color:(int)color andText:(NSString*)text;
 -(id)initFavWithId:(int)pinId color:(int)color andText:(NSString*)text;
--(void)draw;
+//-(void)draw;
 -(void)drawWithScale:(CGFloat)scale;
 -(void)drawPanelWithScale:(CGFloat)scale;
 -(void)fallFrom:(CGFloat)distance at:(CGFloat)speed;
 -(CGRect)bounds;
+-(void)load;
+-(void)unload;
 @end
 
 @class NavigationViewController;
