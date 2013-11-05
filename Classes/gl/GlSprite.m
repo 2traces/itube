@@ -10,8 +10,28 @@
 #import <GLKit/GLKit.h>
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
+NSMutableDictionary *textureCache = nil;
+
 void SetColor(float r, float g, float b, float a);
 void ResetColor();
+
+@implementation TexCache
+
+-(id) initWithTexID:(GLuint)tid width:(NSInteger)w height:(NSInteger)h originalWidth:(NSInteger)ow originalHeight:(NSInteger)oh mU:(CGFloat)u mV:(CGFloat)v
+{
+    if((self = [super init])) {
+        texID = tid;
+        width = w;
+        height = h;
+        origWidth = ow;
+        origHeight = oh;
+        mU = u;
+        mV = v;
+    }
+    return self;
+}
+
+@end
 
 @implementation GlSprite
 
@@ -21,52 +41,84 @@ void ResetColor();
 @synthesize origHeight = oheight;
 @synthesize origWidth = owidth;
 
++(TexCache*)getTexture:(NSString *)textureName
+{
+    TexCache *tc = textureCache[textureCache];
+    return tc;
+}
+
++(void)setTexture:(TexCache*)texCache forName:(NSString *)textureName
+{
+    if(nil == textureCache) {
+        textureCache = [[NSMutableDictionary alloc] init];
+    }
+    textureCache[textureName] = texCache;
+}
+
 -(id)initWithPicture:(NSString *)pictureFile
 {
     if((self = [super init])) {
         alpha = 1.f;
-        UIImage *img = [UIImage imageNamed:pictureFile];
-        CGImageRef image = [img CGImage];
-        mU = 1.f;
-        mV = 1.f;
-
-        owidth = width = CGImageGetWidth(image);
-        oheight = height = CGImageGetHeight(image);
-        unsigned int w2=1, h2=1;
-        while (w2 < width) w2 <<= 1;
-        while (h2 < height) h2 <<= 1;
-        GLubyte * spriteData = (GLubyte *) calloc(width*height*4, sizeof(GLubyte));
-        CGContextRef spriteContext = CGBitmapContextCreate(spriteData, width, height, 8, width*4,
-                                                           CGImageGetColorSpace(image), kCGImageAlphaPremultipliedLast);
+        TexCache *tc = [GlSprite getTexture:pictureFile];
+        if(nil != tc) {
+            gltex = tc->texID;
+            width = tc->width;
+            height = tc->height;
+            owidth = tc->origWidth;
+            oheight = tc->origHeight;
+            mU = tc->mU;
+            mV = tc->mV;
+            texCached = YES;
+            
+        } else {
         
-        CGContextDrawImage(spriteContext, CGRectMake(0, 0, width, height), image);
-        CGContextRelease(spriteContext);
-        
-        if( w2 != width || h2 != height) {
-            GLubyte * data2 = (GLubyte *) calloc(w2*h2*4, sizeof(GLubyte));
-            for (int y=0; y<height; y++) {
-                for(int x=0; x<width; x++) {
-                    unsigned int p1 = (y*width + x) * 4, p2 = (y*w2 + x) * 4;
-                    data2[p2] = spriteData[p1];
-                    data2[p2 + 1] = spriteData[p1 + 1];
-                    data2[p2 + 2] = spriteData[p1 + 2];
-                    data2[p2 + 3] = spriteData[p1 + 3];
+            UIImage *img = [UIImage imageNamed:pictureFile];
+            CGImageRef image = [img CGImage];
+            mU = 1.f;
+            mV = 1.f;
+            
+            owidth = width = CGImageGetWidth(image);
+            oheight = height = CGImageGetHeight(image);
+            unsigned int w2=1, h2=1;
+            while (w2 < width) w2 <<= 1;
+            while (h2 < height) h2 <<= 1;
+            GLubyte * spriteData = (GLubyte *) calloc(width*height*4, sizeof(GLubyte));
+            CGContextRef spriteContext = CGBitmapContextCreate(spriteData, width, height, 8, width*4,
+                                                               CGImageGetColorSpace(image), kCGImageAlphaPremultipliedLast);
+            
+            CGContextDrawImage(spriteContext, CGRectMake(0, 0, width, height), image);
+            CGContextRelease(spriteContext);
+            
+            if( w2 != width || h2 != height) {
+                GLubyte * data2 = (GLubyte *) calloc(w2*h2*4, sizeof(GLubyte));
+                for (int y=0; y<height; y++) {
+                    for(int x=0; x<width; x++) {
+                        unsigned int p1 = (y*width + x) * 4, p2 = (y*w2 + x) * 4;
+                        data2[p2] = spriteData[p1];
+                        data2[p2 + 1] = spriteData[p1 + 1];
+                        data2[p2 + 2] = spriteData[p1 + 2];
+                        data2[p2 + 3] = spriteData[p1 + 3];
+                    }
                 }
+                free(spriteData);
+                spriteData = data2;
+                mU = (float)width / w2;
+                mV = (float)height / h2;
+                width = w2;
+                height = h2;
             }
+            
+            glGenTextures(1, &gltex);
+            glBindTexture(GL_TEXTURE_2D, gltex);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
+            
             free(spriteData);
-            spriteData = data2;
-            mU = (float)width / w2;
-            mV = (float)height / h2;
-            width = w2;
-            height = h2;
+            
+            TexCache *tc = [[TexCache alloc] initWithTexID:gltex width:width height:height originalWidth:owidth originalHeight:oheight mU:mU mV:mV];
+            [GlSprite setTexture:tc forName:pictureFile];
+            texCached = YES;
         }
-        
-        glGenTextures(1, &gltex);
-        glBindTexture(GL_TEXTURE_2D, gltex);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
-        
-        free(spriteData);
 
         glGenBuffers(1, &vertexBuffer);
     }
@@ -84,6 +136,7 @@ void ResetColor();
         unsigned int w2=1, h2=1;
         while (w2 < width) w2 <<= 1;
         while (h2 < height) h2 <<= 1;
+        texCached = NO;
         GLubyte * spriteData = (GLubyte *) calloc(width*height*4, sizeof(GLubyte));
         CGContextRef spriteContext = CGBitmapContextCreate(spriteData, width, height, 8, width*4,
                                                            CGImageGetColorSpace(image), kCGImageAlphaPremultipliedLast);
@@ -109,14 +162,14 @@ void ResetColor();
             width = w2;
             height = h2;
         }
-
+        
         glGenTextures(1, &gltex);
         glBindTexture(GL_TEXTURE_2D, gltex);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
         
         free(spriteData);
-        
+
         //coords = (float*)calloc(4*4, sizeof(float));
         //uv = (float*)calloc(4*4, sizeof(float));
         int bufSize = (3*4 + 2*4) * sizeof(float);
@@ -155,7 +208,7 @@ void ResetColor();
 -(void)dealloc
 {
     if(vertexBuffer != 0) glDeleteBuffers(1, &vertexBuffer);
-    if(gltex != 0) glDeleteTextures(1, &gltex);
+    if(gltex != 0 && !texCached) glDeleteTextures(1, &gltex);
     //if(image) CGImageRelease(image);
     [super dealloc];
 }

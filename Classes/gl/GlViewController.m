@@ -30,7 +30,6 @@ enum
 GLint uniforms[NUM_UNIFORMS];
 
 static CGPoint userGeoPosition;
-static NSMutableArray *objectsTypes;
 
 float sqr(float x)
 {
@@ -125,6 +124,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (retain, atomic) NSArray *pinsArray;
+@property (strong, nonatomic) NSArray *clusters;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
 
 - (void)setupGL;
@@ -135,7 +135,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 - (BOOL)linkProgram:(GLuint)prog;
 - (BOOL)validateProgram:(GLuint)prog;
 
--(void)drawPins;
+-(void)drawPinsInRect:(CGRect)r;
 @end
 
 @implementation Object
@@ -289,15 +289,17 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(void)setActive:(BOOL)active
 {
     if(active) {
+        [self loadPanel];
         [sp show];
     } else {
         [sp hide];
+        [self unloadPanel];
     }
 }
 
 -(BOOL)active
 {
-    return !sp.closed;
+    return sp != nil && !sp.closed;
 }
 
 -(id)initUserPos
@@ -307,11 +309,15 @@ CGPoint translateFromMapToGeo(CGPoint p)
     if((self = [super init])) {
         _id = 0;
         if([CLLocationManager headingAvailable]) {
-            sprite = [[GlSprite alloc] initWithPicture:@"current_location-with-direction"];
+            //sprite = [[GlSprite alloc] initWithPicture:@"current_location-with-direction"];
+            pinTexture = @"current_location-with-direction";
         } else {
-            sprite = [[GlSprite alloc] initWithPicture:@"current_location"];
+            //sprite = [[GlSprite alloc] initWithPicture:@"current_location"];
+            pinTexture = @"current_location";
         }
-        sp = [[BigPanel alloc] initWithText:@"You are here!"];
+        //sp = [[BigPanel alloc] initWithText:@"You are here!"];
+        pinText = @"You are here!";
+        _loaded = NO;
     }
     return self;
 }
@@ -322,8 +328,11 @@ CGPoint translateFromMapToGeo(CGPoint p)
     size = 1.f / [UIScreen mainScreen].scale;
     if((self = [super init])) {
         _id = -1;
-        sprite = [[GlSprite alloc] initWithPicture:@"station_mark"];
-        sp = [[BigPanel alloc] initWithText:@"You are gonna be there!"];
+        //sprite = [[GlSprite alloc] initWithPicture:@"station_mark"];
+        //sp = [[BigPanel alloc] initWithText:@"You are gonna be there!"];
+        pinTexture = @"station_mark";
+        pinText = @"You are gonna be there!";
+        _loaded = NO;
     }
     return self;
 }
@@ -347,43 +356,58 @@ CGPoint translateFromMapToGeo(CGPoint p)
         switch (color%12) {
             case 0:
             default:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-aqua"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-aqua"];
+                pinTexture = @"fav-aqua";
                 break;
             case 1:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-blue-aqua"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-blue-aqua"];
+                pinTexture = @"fav-blue-aqua";
                 break;
             case 2:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-blue-pink"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-blue-pink"];
+                pinTexture = @"fav-blue-pink";
                 break;
             case 3:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-blue"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-blue"];
+                pinTexture = @"fav-blue";
                 break;
             case 4:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-green-yellow"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-green-yellow"];
+                pinTexture = @"fav-green-yellow";
                 break;
             case 5:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-green"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-green"];
+                pinTexture = @"fav-green";
                 break;
             case 6:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-pink-blue"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-pink-blue"];
+                pinTexture = @"fav-pink-blue";
                 break;
             case 7:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-pink"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-pink"];
+                pinTexture = @"fav-pink";
                 break;
             case 8:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-red-pink"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-red-pink"];
+                pinTexture = @"fav-red-pink";
                 break;
             case 9:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-red-yellow"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-red-yellow"];
+                pinTexture = @"fav-red-yellow";
                 break;
             case 10:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-red"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-red"];
+                pinTexture = @"fav-red";
                 break;
             case 11:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-yell"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-yell"];
+                pinTexture = @"fav-yell";
                 break;
         }
-        sp = [[BigPanel alloc] initWithText:text andSubtitle:subtitle];
+        //sp = [[BigPanel alloc] initWithText:text andSubtitle:subtitle];
+        pinText = [text retain];
+        pinSubtitle = [subtitle retain];
+        _loaded = NO;
     }
     return self;
 }
@@ -397,43 +421,57 @@ CGPoint translateFromMapToGeo(CGPoint p)
         switch (color%12) {
             default:
             case 0:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-aqua"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"star-aqua"];
+                pinTexture = @"star-aqua";
                 break;
             case 1:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-blue-aqua"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"star-blue-aqua"];
+                pinTexture = @"star-blue-aqua";
                 break;
             case 2:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-blue-pink"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"star-blue-pink"];
+                pinTexture = @"star-blue-pink";
                 break;
             case 3:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-blue"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"star-blue"];
+                pinTexture = @"star-blue";
                 break;
             case 4:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-green-yellow"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"star-green-yellow"];
+                pinTexture = @"star-green-yellow";
                 break;
             case 5:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-green"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"star-green"];
+                pinTexture = @"star-green";
                 break;
             case 6:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-pink-blue"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"star-pink-blue"];
+                pinTexture = @"star-pink-blue";
                 break;
             case 7:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-pink"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"star-pink"];
+                pinTexture = @"star-pink";
                 break;
             case 8:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-red-pink"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"star-red-pink"];
+                pinTexture = @"star-red-pink";
                 break;
             case 9:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-red-yellow"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"star-red-yellow"];
+                pinTexture = @"star-red-yellow";
                 break;
             case 10:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-red"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"star-red"];
+                pinTexture = @"star-red";
                 break;
             case 11:
-                sprite = [[GlSprite alloc] initWithPicture:@"star-yell"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"star-yell"];
+                pinTexture = @"star-yell";
                 break;
         }
-        sp = [[BigPanel alloc] initWithText:text];
+        //sp = [[BigPanel alloc] initWithText:text];
+        pinText = [text retain];
+        _loaded = NO;
     }
     return self;
 }
@@ -448,45 +486,91 @@ CGPoint translateFromMapToGeo(CGPoint p)
         switch (color%12) {
             default:
             case 0:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-aqua"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-aqua"];
+                pinTexture = @"fav-aqua";
                 break;
             case 1:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-blue-aqua"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-blue-aqua"];
+                pinTexture = @"fav-blue-aqua";
                 break;
             case 2:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-blue-pink"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-blue-pink"];
+                pinTexture = @"fav-blue-pink";
                 break;
             case 3:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-blue"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-blue"];
+                pinTexture = @"fav-blue";
                 break;
             case 4:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-green-yellow"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-green-yellow"];
+                pinTexture = @"fav-green-yellow";
                 break;
             case 5:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-green"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-green"];
+                pinTexture = @"fav-green";
                 break;
             case 6:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-pink-blue"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-pink-blue"];
+                pinTexture = @"fav-pink-blue";
                 break;
             case 7:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-pink"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-pink"];
+                pinTexture = @"fav-pink";
                 break;
             case 8:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-red-pink"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-red-pink"];
+                pinTexture = @"fav-red-pink";
                 break;
             case 9:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-red-yellow"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-red-yellow"];
+                pinTexture = @"fav-red-yellow";
                 break;
             case 10:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-red"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-red"];
+                pinTexture = @"fav-red";
                 break;
             case 11:
-                sprite = [[GlSprite alloc] initWithPicture:@"fav-yell"];
+                //sprite = [[GlSprite alloc] initWithPicture:@"fav-yell"];
+                pinTexture = @"fav-yell";
                 break;
         }
-        sp = [[BigPanel alloc] initWithText:text];
+        //sp = [[BigPanel alloc] initWithText:text];
+        pinText = [text retain];
+        _loaded = NO;
     }
     return self;
+}
+
+-(void)load
+{
+    if(!_loaded) {
+        sprite = [[GlSprite alloc] initWithPicture:pinTexture];
+        _loaded = YES;
+    }
+}
+
+-(void)unload
+{
+    [sprite release];
+    sprite = nil;
+    _loaded = NO;
+}
+
+-(void)loadPanel
+{
+    if(nil == sp) {
+        if(nil != pinSubtitle) {
+            sp = [[BigPanel alloc] initWithText:pinText andSubtitle:pinSubtitle];
+        } else {
+            sp = [[BigPanel alloc] initWithText:pinText];
+        }
+    }
+}
+
+-(void)unloadPanel
+{
+    [sp release];
+    sp = nil;
 }
 
 -(void)setPosition:(CGPoint)point
@@ -522,22 +606,24 @@ CGPoint translateFromMapToGeo(CGPoint p)
     return geoPos;
 }
 
--(void)draw
-{
-    CGSize s;
-    s.width = size * sprite.origWidth;
-    s.height = size * sprite.origHeight;
-    if(rotation != 0) {
-        [sprite setRect:CGRectMake(pos.x-s.width*0.5f, pos.y-s.height*0.5f-offset-constOffset, s.width, s.height) withRotation:rotation];
-    } else {
-        [sprite setRect:CGRectMake(pos.x-s.width*0.5f, pos.y-s.height*0.5f-offset-constOffset, s.width, s.height)];
-    }
-    [sprite draw];
-    [sp drawWithScale:1.f];
-}
+//-(void)draw
+//{
+//    if(!_loaded) [self load];
+//    CGSize s;
+//    s.width = size * sprite.origWidth;
+//    s.height = size * sprite.origHeight;
+//    if(rotation != 0) {
+//        [sprite setRect:CGRectMake(pos.x-s.width*0.5f, pos.y-s.height*0.5f-offset-constOffset, s.width, s.height) withRotation:rotation];
+//    } else {
+//        [sprite setRect:CGRectMake(pos.x-s.width*0.5f, pos.y-s.height*0.5f-offset-constOffset, s.width, s.height)];
+//    }
+//    [sprite draw];
+//    [sp drawWithScale:1.f];
+//}
 
 -(void)drawWithScale:(CGFloat)scale
 {
+    if(!_loaded) [self load];
     lastScale = scale;
     CGSize s;
     s.width = size * sprite.origWidth / scale;
@@ -579,6 +665,9 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(void)dealloc
 {
+    [pinTexture release];
+    [pinText release];
+    [pinSubtitle release];
     [sp release];
     [sprite release];
     [super dealloc];
@@ -624,7 +713,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     [_context release];
     //[_effect release];
     [rasterLayer release];
-    [clusters release];
+    self.clusters = nil;
     [super dealloc];
 }
 
@@ -636,14 +725,12 @@ CGPoint translateFromMapToGeo(CGPoint p)
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
 
     self.pinsArray = @[];
-    clusters = [[NSMutableArray alloc] init];
+    self.clusters = @[];
     objectsLOD = -1;
 
-    CGRect scrollSize,settingsRect,shadowRect,zonesRect,cornerRect;
+    CGRect settingsRect,zonesRect,cornerRect;
     
-    //scrollSize = CGRectMake(0, 44,(320),(480-64));
     //settingsRect=CGRectMake(285, 420, 27, 27);
-    //shadowRect = CGRectMake(0, 44, 480, 61);
     if ([appDelegate isIPHONE5]) {
         zonesRect=CGRectMake(250, 498, 71, 43);
         cornerRect=CGRectMake(0, 489, 36, 60);
@@ -654,22 +741,18 @@ CGPoint translateFromMapToGeo(CGPoint p)
     }
     
     if (IS_IPAD) {
-        //scrollSize = CGRectMake(0, 44, 768, (1024-74));
         //settingsRect=CGRectMake(-285, -420, 27, 27);
-        //shadowRect = CGRectMake(0, 44, 1024, 61);
         zonesRect=IPAD_CITYMAP_ZONES_RECT;
 
         //zonesRect=CGRectMake(self.view.bounds.size.width-70, self.view.bounds.size.height-50, 43, 25);
     } else {
         if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
             CGSize result = [[UIScreen mainScreen] bounds].size;
-            CGFloat scale = [UIScreen mainScreen].scale;
-            result = CGSizeMake(result.width * scale, result.height * scale);
+            CGFloat sc = [UIScreen mainScreen].scale;
+            result = CGSizeMake(result.width * sc, result.height * sc);
             
             if(result.height == 1136){
-                //scrollSize = CGRectMake(0,44,(320),(568-64));
                 //settingsRect=CGRectMake(285, 508, 27, 27);
-                //shadowRect = CGRectMake(0, 44, 568, 61);
                 settingsRect=CGRectMake(55, 508, 27, 27);
             }
         }
@@ -838,13 +921,6 @@ CGPoint translateFromMapToGeo(CGPoint p)
     }
 }
 
-- (void) popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
-{
-    // Stop holding onto the popover
-    popover = nil;
-    [self returnFromSelectionFastAccess:nil];
-}
-
 -(void)showiPadSettingsModalView
 {
     if (popover) [popover dismissPopoverAnimated:YES];
@@ -956,7 +1032,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
         int pid = [[selected objectAtIndex:0] Id];
         tubeAppDelegate *delegate = (tubeAppDelegate*)[UIApplication sharedApplication].delegate;
         if(objectsLOD == 0) {
-            for (Cluster *cl in clusters) {
+            for (Cluster *cl in _clusters) {
                 for (Object *ob in cl.objects) {
                     if(ob.pinID == pid) {
                         [delegate selectObject:ob];
@@ -964,7 +1040,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
                 }
             }
         } else if(objectsLOD == 1) {
-            for (Cluster *cl in clusters) {
+            for (Cluster *cl in _clusters) {
                 if(cl.pinID == pid) {
                     [delegate selectCluster:cl];
                 }
@@ -1047,6 +1123,9 @@ CGPoint translateFromMapToGeo(CGPoint p)
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc. that aren't in use.
     [rasterLayer purgeUnusedCache];
+    for (Pin *p in self.pinsArray) {
+        [p unload];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -1137,16 +1216,9 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(void)returnFromSelection:(NSArray*)stations
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     [self performSelector:@selector(returnFromSelection2:) withObject:stations afterDelay:0.1];
     //((MainView*)self.view).shouldNotDropPins = NO;
-}
-
--(void) changeZones
-{
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate showMetroMap];
-    //[self dismissModalViewControllerAnimated:YES];
 }
 
 - (void) removePinAtPlace:(MPlace*)place {
@@ -1390,17 +1462,18 @@ CGPoint translateFromMapToGeo(CGPoint p)
     //if(sc < 3.f) sc = 3.f;
     //if(sc > 2000.f) sc = 2000.f;
     float W = self.view.bounds.size.width, W2 = W*0.5f, H = self.view.bounds.size.height, H2 = H*0.5f;
-    [rasterLayer drawGlInRect:CGRectMake(128 - position.x - W2/scale, 128 - position.y - H2/scale, W/scale, H/scale) withScale:sc];
+    CGRect r = CGRectMake(128 - position.x - W2/scale, 128 - position.y - H2/scale, W/scale, H/scale);
+    [rasterLayer drawGlInRect:r withScale:sc];
     
-    [self drawPins];
+    [self drawPinsInRect:r];
 }
 
--(void)drawPins
+-(void)drawPinsInRect:(CGRect)r
 {
     for (Pin *p in _pinsArray) {
-        [p drawWithScale:scale];
+        if(CGRectContainsPoint(r, p.position)) [p drawWithScale:scale];
     }
-    for (Pin *p in _pinsArray) if(p.active) {
+    for (Pin *p in _pinsArray) if(CGRectContainsPoint(r, p.position) && p.active) {
         [p drawPanelWithScale:scale];
     }
 }
@@ -1724,7 +1797,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
                     counter++;
                     Object *ob = [[Object alloc] initWithDictionary:item];
                     BOOL accepted = NO;
-                    for (Cluster* cl in clusters) {
+                    for (Cluster* cl in _clusters) {
                         if([cl accept:ob]) {
                             accepted = YES;
                             break;
@@ -1732,8 +1805,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
                     }
                     if(!accepted) {
                         Cluster *cl = [[Cluster alloc] initWithRadius:0.03f];
-                        [clusters addObject:cl];
-                        [[clusters lastObject] accept:ob];
+                        self.clusters = [self.clusters arrayByAddingObject:cl];
+                        [[_clusters lastObject] accept:ob];
                         [cl release];
                     }
                     [ob release];
@@ -1755,13 +1828,20 @@ CGPoint translateFromMapToGeo(CGPoint p)
     r.origin.y -= r.size.height;
     r.size.width *= 3;
     r.size.height *= 3;
-    NSMutableArray *toRemove = [NSMutableArray array];
-    for(Cluster* cl in clusters) {
+    for(Cluster* cl in _clusters) {
         if(!CGRectContainsPoint(r, cl.center)) {
-            [toRemove addObject:cl];
+            if(cl.pinID > 0) {
+                [self removePin:cl.pinID];
+            }
+            for (Object *o in cl.objects) {
+                if(o.pinID > 0)
+                    [self removePin:o.pinID];
+            }
         }
     }
-    [clusters removeObjectsInArray:toRemove];
+    self.clusters = [_clusters filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        return CGRectContainsPoint(r,  [((Cluster*)evaluatedObject) center]);
+    }]];
 }
 
 -(void)updatePinsForLevel:(NSNumber*)nLevel
@@ -1775,7 +1855,32 @@ CGPoint translateFromMapToGeo(CGPoint p)
     } else {
         newObjectsLOD = 2;
     }
-    if(objectsLOD == newObjectsLOD) return;
+    if(objectsLOD == newObjectsLOD) {
+        switch (objectsLOD) {
+            default:
+            case -1:
+                break;
+            case 0:
+                // show objects
+                for (Cluster *cl in _clusters) {
+                    for (Object *ob in cl.objects) {
+                        if(ob.pinID < 0)
+                            ob.pinID = [self newPin:ob.coords color:1 name:ob.title subtitle:[ob.comments firstObject]];
+                    }
+                }
+                break;
+            case 1:
+                // show clusters
+                for (Cluster *cl in _clusters) {
+                    if(cl.pinID < 0)
+                        cl.pinID = [self newStar:cl.center color:1 name:cl.title];
+                }
+                break;
+            case 2:
+                break;
+        }
+        return;
+    }
     switch (objectsLOD) {
         case -1:
         default:
@@ -1784,7 +1889,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
         case 0:
             // show objects
             [self removeAllPins];
-            for (Cluster *cl in clusters) {
+            for (Cluster *cl in _clusters) {
                 for (Object *ob in cl.objects) {
                     ob.pinID = -1;
                 }
@@ -1793,7 +1898,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
         case 1:
             // show clusters
             [self removeAllPins];
-            for (Cluster *cl in clusters) {
+            for (Cluster *cl in _clusters) {
                 cl.pinID = -1;
             }
             break;
@@ -1808,7 +1913,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
             break;
         case 0:
             // show objects
-            for (Cluster *cl in clusters) {
+            for (Cluster *cl in _clusters) {
                 for (Object *ob in cl.objects) {
                     ob.pinID = [self newPin:ob.coords color:1 name:ob.title subtitle:[ob.comments firstObject]];
                 }
@@ -1816,7 +1921,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
             break;
         case 1:
             // show clusters
-            for (Cluster *cl in clusters) {
+            for (Cluster *cl in _clusters) {
                 cl.pinID = [self newStar:cl.center color:1 name:cl.title];
             }
             break;
@@ -1827,10 +1932,10 @@ CGPoint translateFromMapToGeo(CGPoint p)
     objectsLOD = newObjectsLOD;
 }
 
--(int)getLevelForScale:(CGFloat)scale
+-(int)getLevelForScale:(CGFloat)sc
 {
     int _sc = 1, _lvl = 0;
-    while (scale > _sc) {
+    while (sc > _sc) {
         _sc *= 2;
         _lvl ++;
     }
@@ -1841,7 +1946,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 {
     NSMutableArray *result = [NSMutableArray array];
     CGFloat r2 = radius*radius;
-    for (Cluster *cl in clusters) {
+    for (Cluster *cl in _clusters) {
         CGFloat len2 = sqr(cl.center.x-center.x) + sqr(cl.center.y-center.y);
         if(len2 <= (cl.radius*cl.radius + r2)) {
             for (Object *ob in cl.objects) {
@@ -1941,10 +2046,10 @@ CGPoint translateFromMapToGeo(CGPoint p)
                          @"name": pl[@"display_name"]}];
                     }
                 }
-                if([lastSearchResults count] > 0) {
-                    NSDictionary *firstObject = [lastSearchResults objectAtIndex:0];
+//                if([lastSearchResults count] > 0) {
+//                    NSDictionary *firstObject = [lastSearchResults objectAtIndex:0];
 //                    [self scrollToGeoPosition:CGPointMake([firstObject[@"lat"] floatValue], [firstObject[@"lon"] floatValue]) withZoom:-1];
-                }
+//                }
 #ifdef DEBUG
                 NSLog(@"I've got a list of cities: %@", lastSearchResults);
 #endif
