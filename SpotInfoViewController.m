@@ -332,4 +332,22 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     [cell setBackgroundColor:[UIColor clearColor]];
 }
 
+- (BOOL)tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canPerformAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
+{
+    return (action == @selector(copy:));
+}
+
+- (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
+{
+    if (action == @selector(copy:)) {
+        SpotCommentCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+        [[UIPasteboard generalPasteboard] setString:cell.subtitleLabel.text];
+    }
+}
+
 @end

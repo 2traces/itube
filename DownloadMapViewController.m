@@ -29,24 +29,22 @@
 - (IBAction)download:(id)sender {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     GlViewController *gl = appDelegate.glViewController;
-    [gl downloadVisibleMap:3 withOffset:0];
+    
+    self.loadingView.hidden = NO;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [gl downloadVisibleMap:3 withOffset:1];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            self.loadingView.hidden = YES;
+            [self close:nil];
+        });
+    });
+
+    
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    self.bottomBg.image = [[UIImage imageNamed:@"download_lower_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
-    self.topBg.image = [[UIImage imageNamed:@"download_upper_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     if (IS_IPAD) {
         
     }
@@ -68,8 +66,26 @@
         
         self.downloadBt.frame = frame;
         self.downloadBt.autoresizingMask = UIViewAutoresizingNone;
-
+        
     }
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    self.bottomBg.image = [[UIImage imageNamed:@"download_lower_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
+    self.topBg.image = [[UIImage imageNamed:@"download_upper_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
+
 }
 
 - (void)didReceiveMemoryWarning

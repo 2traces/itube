@@ -10,6 +10,7 @@
                 <outlet property="bottomBg" destination="52s-Bb-faf" id="aDe-6o-wE3"/>
                 <outlet property="cancelBt" destination="Rh3-ro-wZs" id="Ufd-ZR-Lyz"/>
                 <outlet property="downloadBt" destination="eIC-NI-fB0" id="ajG-Gd-iDb"/>
+                <outlet property="loadingView" destination="2Vy-xy-qON" id="wdk-fr-Jxk"/>
                 <outlet property="topBg" destination="s7P-q2-Iiw" id="CV4-GE-CFy"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -19,6 +20,17 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view hidden="YES" contentMode="scaleToFill" id="2Vy-xy-qON">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="568"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" id="okT-IY-sx7">
+                            <rect key="frame" x="365" y="300" width="37" height="37"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="download_upper_bg.png" id="s7P-q2-Iiw">
                     <rect key="frame" x="0.0" y="0.0" width="768" height="312"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
