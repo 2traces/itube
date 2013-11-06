@@ -156,11 +156,24 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    SpotInfoViewController *svc = [[SpotInfoViewController alloc] initWithNibName:@"SpotInfoViewController" bundle:[NSBundle mainBundle]];
     Object *item = [self.items objectAtIndex:indexPath.row];
 
-    svc.spotInfo = item;
+#ifdef SPOTS_FREE
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    GlViewController *gl = appDelegate.glViewController;
+    Pin *pin = [gl getPin:item.pinID];
+    CGFloat distance = pin.distanceToUser;
+    if (distance > 150) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Free version" message:@"You can't view spots further than 150m in a free app. Please, purchase a full version." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Show in AppStore", nil];
+        [alertView show];
+        [alertView release];
+        return;
+    }
+#endif
     
+    SpotInfoViewController *svc = [[SpotInfoViewController alloc] initWithNibName:@"SpotInfoViewController" bundle:[NSBundle mainBundle]];
+
+    svc.spotInfo = item;
     if (self.navBarVC) {
         [self.navBarVC pushVC:svc];
     }
@@ -168,6 +181,21 @@
         [self.navigationController pushViewController:svc animated:YES];
     }
     [svc autorelease];
+
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+            
+            break;
+        case 1:
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:APPSTORE_URL_FULL]];
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)dealloc {

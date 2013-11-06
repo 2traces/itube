@@ -11,7 +11,6 @@
 #import "tubeAppDelegate.h"
 #import "NavBarViewController.h"
 
-#define APPSTORE_URL @"https://itunes.apple.com/en/app/angry-birds/id343200656#"
 #define SHARE_FORMAT @"I've just found free Wi-Fi with WiFi Spots app! Check it out: %@"
 
 @interface SpotInfoViewController ()
@@ -25,7 +24,7 @@
 //    {
         self.mySLComposerSheet = [[[SLComposeViewController alloc] init] autorelease]; //initiate the Social Controller
         self.mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook]; //Tell him with what social plattform to use it, e.g. facebook or twitter
-        [self.mySLComposerSheet setInitialText:[NSString stringWithFormat:SHARE_FORMAT, APPSTORE_URL]]; //the message you want to post
+        [self.mySLComposerSheet setInitialText:[NSString stringWithFormat:SHARE_FORMAT, APPSTORE_URL_FULL]]; //the message you want to post
         [self presentViewController:self.mySLComposerSheet animated:YES completion:nil];
         [self.mySLComposerSheet setCompletionHandler:^(SLComposeViewControllerResult result) {
             NSString *output;
@@ -57,7 +56,7 @@
 //    {
         self.mySLComposerSheet = [[[SLComposeViewController alloc] init] autorelease]; //initiate the Social Controller
         self.mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter]; //Tell him with what social plattform to use it, e.g. facebook or twitter
-        [self.mySLComposerSheet setInitialText:[NSString stringWithFormat:SHARE_FORMAT, APPSTORE_URL]]; //the message you want to post
+        [self.mySLComposerSheet setInitialText:[NSString stringWithFormat:SHARE_FORMAT, APPSTORE_URL_FULL]]; //the message you want to post
         [self presentViewController:self.mySLComposerSheet animated:YES completion:nil];
         [self.mySLComposerSheet setCompletionHandler:^(SLComposeViewControllerResult result) {
             NSString *output;
@@ -129,7 +128,7 @@
 	[picker setSubject:@"Check out this awesome app!"];
 	
 	// Fill out the email body text
-	NSString *emailBody = [NSString stringWithFormat:SHARE_FORMAT, APPSTORE_URL];
+	NSString *emailBody = [NSString stringWithFormat:SHARE_FORMAT, APPSTORE_URL_FULL];
 	[picker setMessageBody:emailBody isHTML:NO];
 	
 	[self presentViewController:picker animated:YES completion:NULL];
@@ -151,7 +150,7 @@
     
     // You can specify the initial message text that will appear in the message
     // composer view controller.
-    picker.body = [NSString stringWithFormat:SHARE_FORMAT, APPSTORE_URL];
+    picker.body = [NSString stringWithFormat:SHARE_FORMAT, APPSTORE_URL_FULL];
     
 	[self presentViewController:picker animated:YES completion:NULL];
 }

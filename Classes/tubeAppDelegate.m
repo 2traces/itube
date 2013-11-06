@@ -292,14 +292,14 @@ void uncaughtExceptionHandler(NSException *exception) {
 -(void)askForRate
 {
     
-    RatePopupViewController *rateVC = [[RatePopupViewController alloc] initWithNibName:@"RatePopupViewController" bundle:[NSBundle mainBundle]];
-    rateVC.view.alpha = 0;
-    [self.window addSubview:rateVC.view];
-
-    [UIView animateWithDuration:0.5 animations:^{
-        rateVC.view.alpha = 1;
-
-    }];
+//    RatePopupViewController *rateVC = [[RatePopupViewController alloc] initWithNibName:@"RatePopupViewController" bundle:[NSBundle mainBundle]];
+//    rateVC.view.alpha = 0;
+//    [self.window addSubview:rateVC.view];
+//
+//    [UIView animateWithDuration:0.5 animations:^{
+//        rateVC.view.alpha = 1;
+//
+//    }];
     
 //    NSString *cancelButtonLabel = NSLocalizedString(@"No, Thanks", @"No, Thanks");
 //    NSString *remindButtonLabel = NSLocalizedString(@"Remind Me Later", @"Remind Me Later");

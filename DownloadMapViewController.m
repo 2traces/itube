@@ -30,6 +30,7 @@
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     GlViewController *gl = appDelegate.glViewController;
     
+#ifdef SPOTS_FULL
     self.loadingView.hidden = NO;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -39,9 +40,30 @@
             [self close:nil];
         });
     });
+#elif SPOTS_FREE
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Free version" message:@"You can't download offline map in a free version. Please, purchase a full version." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Show in AppStore", nil];
+    [alertView show];
+    [alertView release];
+#endif
+
 
     
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+            
+            break;
+        case 1:
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:APPSTORE_URL_FULL]];
+            break;
+        default:
+            break;
+    }
+}
+
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
