@@ -73,9 +73,11 @@
     else {
         CGRect frame = self.cancelBt.frame;
         
-        frame.origin.x = 0;
-        frame.size.height = frame.size.height * (160.0f/frame.size.width);
-        frame.size.width = 160;
+        frame.origin.x = 20;
+        frame.origin.y += 30;
+
+        frame.size.height = frame.size.height * (140.0f/frame.size.width);
+        frame.size.width = 140;
         
         self.cancelBt.frame = frame;
         self.cancelBt.autoresizingMask = UIViewAutoresizingNone;
@@ -83,11 +85,26 @@
         frame = self.downloadBt.frame;
         
         frame.origin.x = 160;
-        frame.size.height = frame.size.height * (160.0f/frame.size.width);
-        frame.size.width = 160;
+        frame.origin.y += 30;
+        frame.size.height = frame.size.height * (140.0f/frame.size.width);
+        frame.size.width = 140;
         
         self.downloadBt.frame = frame;
         self.downloadBt.autoresizingMask = UIViewAutoresizingNone;
+        
+        UIFont *font = self.downloadBt.titleLabel.font;
+        
+        self.downloadBt.titleLabel.font = [font fontWithSize:14];
+        self.cancelBt.titleLabel.font = [font fontWithSize:14];
+        
+        frame = self.downloadLb.frame;
+        frame.size.width -= 50;
+        frame.origin.x += 25;
+        self.downloadLb.frame = frame;
+        
+        frame = self.bottomBg.frame;
+        frame.origin.y += 50;
+        self.bottomBg.frame = frame;
         
     }
 }

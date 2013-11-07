@@ -85,7 +85,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DFc-k9-NHe">
-                    <rect key="frame" x="292" y="431" width="28" height="49"/>
+                    <rect key="frame" x="268" y="415" width="52" height="65"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <state key="normal" backgroundImage="download_bt.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -138,6 +138,6 @@
         <image name="distance_icon.png" width="20" height="20"/>
         <image name="download_bt.png" width="52" height="65"/>
         <image name="list_bt.png" width="59" height="38"/>
-        <image name="list_bt_ipad" width="320" height="400"/>
+        <image name="list_bt_ipad" width="70" height="312"/>
     </resources>
 </document>

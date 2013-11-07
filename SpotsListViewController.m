@@ -164,6 +164,15 @@
     cell.accessoryImage.image = [UIImage imageNamed:@"arrow"];
     cell.typeImage.image = [UIImage imageNamed:@"type_0"];
     
+#ifdef SPOTS_FREE
+    if (distance > 150) {
+        cell.accessoryImage.image = [UIImage imageNamed:@"lock"];
+    }
+    else {
+        cell.accessoryImage.image = [UIImage imageNamed:@"arrow"];
+    }
+#endif
+    
     return cell;
 }
 

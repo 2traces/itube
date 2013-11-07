@@ -16,7 +16,11 @@
 #import "DownloadMapViewController.h"
 #import "TubeSplitViewController.h"
 
-@interface NavigationViewController ()
+@interface NavigationViewController () {
+    BOOL isSearching;
+}
+
+
 
 @end
 
@@ -92,6 +96,8 @@
 {
     [glController loadCitiesLikeThis:sender.text];
     
+    isSearching = YES;
+    
     if (IS_IPAD) {
         if ([sender.text length]) {
             if (!self.popover.isPopoverVisible) {
@@ -108,21 +114,28 @@
             [self.separatingView addSubview:self.suggestionsVC.tableView];
             self.suggestionsVC.tableView.frame = CGRectMake(0, 64, 320, self.separatingView.frame.size.height - 215 - 44);
             self.suggestionsVC.tableView.hidden = NO;
+            self.listButton.hidden = YES;
+
         }
         else {
             self.suggestionsVC.tableView.hidden = YES;
+            self.listButton.hidden = NO;
+
 
         }
     }
 }
 
 - (void) endedSearching {
+    isSearching = NO;
     [self.view endEditing:YES];
     if (IS_IPAD) {
         [self.popover dismissPopoverAnimated:YES];
     }
     else {
         self.suggestionsVC.tableView.hidden = YES;
+        self.listButton.hidden = NO;
+
     }
 }
 
@@ -134,6 +147,7 @@
     }
     else {
         self.suggestionsVC.tableView.hidden = YES;
+        self.listButton.hidden = NO;
     }
 }
 
@@ -192,6 +206,8 @@
         [self.separatingView addSubview:self.suggestionsVC.tableView];
         self.suggestionsVC.tableView.frame = CGRectMake(0, 64, 320, self.separatingView.frame.size.height - 215 - 44);
         self.suggestionsVC.tableView.hidden = YES;
+        self.listButton.hidden = NO;
+
     }
     CGRect frame = self.glController.view.frame;
     frame.size = self.separatingView.frame.size;
@@ -272,9 +288,16 @@
     else {
         if ([items count] == 0) {
             self.suggestionsVC.tableView.hidden = YES;
+            self.listButton.hidden = NO;
+
         }
         else {
-            self.suggestionsVC.tableView.hidden = NO;
+            if (isSearching) {
+                self.suggestionsVC.tableView.hidden = NO;
+                self.listButton.hidden = YES;
+            }
+
+
         }
     }
 }
