@@ -41,7 +41,7 @@
         });
     });
 #elif SPOTS_FREE
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Free version" message:@"You can't download offline map in a free version. Please, purchase a full version." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Show in AppStore", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Free version heading", @"") message:NSLocalizedString(@"Free version message 2", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") otherButtonTitles:NSLocalizedString(@"Free version appstore button", @""), nil];
     [alertView show];
     [alertView release];
 #endif
@@ -108,6 +108,10 @@
     self.bottomBg.image = [[UIImage imageNamed:@"download_lower_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
     self.topBg.image = [[UIImage imageNamed:@"download_upper_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
 
+    
+    [self.downloadBt setTitle:NSLocalizedString(@"Download button", @"") forState:UIControlStateNormal];
+    [self.cancelBt setTitle:NSLocalizedString(@"Cancel", @"") forState:UIControlStateNormal];
+    self.downloadLb.text = NSLocalizedString(@"Download label", @"");
 }
 
 - (void)didReceiveMemoryWarning

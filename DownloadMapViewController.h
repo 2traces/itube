@@ -14,6 +14,7 @@
 @property (nonatomic, retain) IBOutlet UIImageView *bottomBg;
 @property (nonatomic, retain) IBOutlet UIButton *cancelBt;
 @property (nonatomic, retain) IBOutlet UIButton *downloadBt;
+@property (nonatomic, retain) IBOutlet UILabel *downloadLb;
 @property (nonatomic, retain) IBOutlet UIView *loadingView;
 
 - (IBAction)close:(id)sender;

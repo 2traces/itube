@@ -328,4 +328,13 @@ static float koefficient = 0.0f;
 	[self.mapViewController willAnimateSecondHalfOfRotationFromInterfaceOrientation:fromInterfaceOrientation duration:duration];
 }
 
+- (CGSize)viewSize {
+    CGSize size = CGSizeZero;
+    size.height = self.mapViewController.view.frame.size.height;
+    size.width = self.mapViewController.view.frame.size.width;
+    size.width += isListShown ? self.listViewController.view.frame.size.width + 2 : 0;
+    return size;
+}
+
+
 @end

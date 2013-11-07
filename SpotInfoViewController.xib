@@ -7,9 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SpotInfoViewController">
             <connections>
+                <outlet property="shareLabel" destination="zIt-6d-7Mi" id="mCq-OP-GyT"/>
                 <outlet property="shareView" destination="Dtf-Tm-7Pi" id="bzn-TU-Sny"/>
-                <outlet property="tableView" destination="Xem-JG-3P1" id="N84-Ft-cOR"/>
-                <outlet property="view" destination="1" id="3"/>
+                <outlet property="tableView" destination="Xem-JG-3P1" id="Fuc-MQ-YNr"/>
+                <outlet property="view" destination="1" id="yT4-wC-puk"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

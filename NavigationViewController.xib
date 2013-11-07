@@ -18,6 +18,7 @@
                 <outlet property="listSplitButton" destination="EA4-57-wDk" id="wpY-RV-Wri"/>
                 <outlet property="separatingView" destination="4" id="5"/>
                 <outlet property="shadow" destination="a6U-uV-CAY" id="JDS-KA-TrT"/>
+                <outlet property="suggestionField" destination="oTd-t0-a5L" id="7xj-dJ-A8s"/>
                 <outlet property="textBg" destination="olg-yl-PHi" id="s1t-Yp-d8v"/>
                 <outlet property="textField" destination="oTd-t0-a5L" id="ttM-85-v8F"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -65,11 +66,10 @@
                             </connections>
                         </textField>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="a6U-uV-CAY">
-                    <rect key="frame" x="0.0" y="64" width="320" height="34"/>
+                    <rect key="frame" x="0.0" y="63" width="320" height="34"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                 </imageView>
@@ -138,6 +138,6 @@
         <image name="distance_icon.png" width="20" height="20"/>
         <image name="download_bt.png" width="52" height="65"/>
         <image name="list_bt.png" width="59" height="38"/>
-        <image name="list_bt_ipad" width="59" height="38"/>
+        <image name="list_bt_ipad" width="320" height="400"/>
     </resources>
 </document>

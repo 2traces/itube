@@ -17,6 +17,7 @@
 
 @property (nonatomic, retain) Object *spotInfo;
 @property (nonatomic, retain) IBOutlet UIView *shareView;
+@property (nonatomic, retain) IBOutlet UILabel *shareLabel;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) NavBarViewController *navBarVC;
 @property (nonatomic, retain) SLComposeViewController *mySLComposerSheet;

@@ -34,7 +34,7 @@
 
     self.headingBg.image = [[UIImage imageNamed:@"suggestions_heading"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
 
-    UIImageView *shadow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, 320, 34)];
+    UIImageView *shadow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 63, 320, 34)];
     shadow.image = [[UIImage imageNamed:@"navbar_shadow"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
     [self.view addSubview:shadow];
 

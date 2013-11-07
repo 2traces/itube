@@ -54,6 +54,7 @@ typedef enum {
 - (void) centerMapOnPlace:(MPlace*)place;
 - (void) endedSearching;
 
+@property (nonatomic, retain) IBOutlet UITextField *suggestionField;
 @property (nonatomic, retain) IBOutlet UIView *separatingView;
 @property (nonatomic, retain) IBOutlet UIView *distanceView;
 @property (nonatomic, retain) IBOutlet UIView *headingView;

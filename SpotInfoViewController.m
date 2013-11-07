@@ -11,7 +11,6 @@
 #import "tubeAppDelegate.h"
 #import "NavBarViewController.h"
 
-#define SHARE_FORMAT @"I've just found free Wi-Fi with WiFi Spots app! Check it out: %@"
 
 @interface SpotInfoViewController ()
 
@@ -24,7 +23,7 @@
 //    {
         self.mySLComposerSheet = [[[SLComposeViewController alloc] init] autorelease]; //initiate the Social Controller
         self.mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook]; //Tell him with what social plattform to use it, e.g. facebook or twitter
-        [self.mySLComposerSheet setInitialText:[NSString stringWithFormat:SHARE_FORMAT, APPSTORE_URL_FULL]]; //the message you want to post
+        [self.mySLComposerSheet setInitialText:[NSString stringWithFormat:NSLocalizedString(@"Social share format", @""), APPSTORE_URL_FULL]]; //the message you want to post
         [self presentViewController:self.mySLComposerSheet animated:YES completion:nil];
         [self.mySLComposerSheet setCompletionHandler:^(SLComposeViewControllerResult result) {
             NSString *output;
@@ -56,7 +55,7 @@
 //    {
         self.mySLComposerSheet = [[[SLComposeViewController alloc] init] autorelease]; //initiate the Social Controller
         self.mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter]; //Tell him with what social plattform to use it, e.g. facebook or twitter
-        [self.mySLComposerSheet setInitialText:[NSString stringWithFormat:SHARE_FORMAT, APPSTORE_URL_FULL]]; //the message you want to post
+        [self.mySLComposerSheet setInitialText:[NSString stringWithFormat:NSLocalizedString(@"Social share format", @""), APPSTORE_URL_FULL]]; //the message you want to post
         [self presentViewController:self.mySLComposerSheet animated:YES completion:nil];
         [self.mySLComposerSheet setCompletionHandler:^(SLComposeViewControllerResult result) {
             NSString *output;
@@ -128,7 +127,7 @@
 	[picker setSubject:@"Check out this awesome app!"];
 	
 	// Fill out the email body text
-	NSString *emailBody = [NSString stringWithFormat:SHARE_FORMAT, APPSTORE_URL_FULL];
+	NSString *emailBody = [NSString stringWithFormat:NSLocalizedString(@"Social share format", @""), APPSTORE_URL_FULL];
 	[picker setMessageBody:emailBody isHTML:NO];
 	
 	[self presentViewController:picker animated:YES completion:NULL];
@@ -150,7 +149,7 @@
     
     // You can specify the initial message text that will appear in the message
     // composer view controller.
-    picker.body = [NSString stringWithFormat:SHARE_FORMAT, APPSTORE_URL_FULL];
+    picker.body = [NSString stringWithFormat:NSLocalizedString(@"Social share format", @""), APPSTORE_URL_FULL];
     
 	[self presentViewController:picker animated:YES completion:NULL];
 }
@@ -266,13 +265,32 @@
         [self.navBarVC.bar setItems:@[self.navigationItem] animated:YES];
     }
     else {
-        UIImageView *shadow = [[UIImageView alloc] initWithFrame:CGRectMake(0, yOffset, 320, 34)];
+        UIImageView *shadow = [[UIImageView alloc] initWithFrame:CGRectMake(0, yOffset - 1, 320, 34)];
         shadow.image = [[UIImage imageNamed:@"navbar_shadow"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
         [self.view addSubview:shadow];
     }
     
+    if(IS_IPAD){
+        
+    }
+    else {
+        UIButton *bt = [[UIButton alloc] initWithFrame:CGRectMake(231, yOffset, 59, 39)];
+        [bt addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
+        [bt setBackgroundImage:[UIImage imageNamed:@"list_bt"] forState:UIControlStateNormal];
+        [self.view addSubview:bt];
+    }
+    
+    self.shareLabel.text = NSLocalizedString(@"Share label", @"");
+    
 //    UITapGestureRecognizer *rec2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
 //    [self.navigationItem.titleView addGestureRecognizer:rec2];
+}
+
+
+- (void)hide {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (void)goBack {
@@ -331,22 +349,22 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     [cell setBackgroundColor:[UIColor clearColor]];
 }
 
-- (BOOL)tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canPerformAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
-{
-    return (action == @selector(copy:));
-}
-
-- (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
-{
-    if (action == @selector(copy:)) {
-        SpotCommentCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-        [[UIPasteboard generalPasteboard] setString:cell.subtitleLabel.text];
-    }
-}
+//- (BOOL)tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return YES;
+//}
+//
+//- (BOOL)tableView:(UITableView *)tableView canPerformAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
+//{
+//    return (action == @selector(copy:));
+//}
+//
+//- (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
+//{
+//    if (action == @selector(copy:)) {
+//        SpotCommentCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+//        [[UIPasteboard generalPasteboard] setString:cell.subtitleLabel.text];
+//    }
+//}
 
 @end

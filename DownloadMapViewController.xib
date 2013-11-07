@@ -10,6 +10,7 @@
                 <outlet property="bottomBg" destination="52s-Bb-faf" id="aDe-6o-wE3"/>
                 <outlet property="cancelBt" destination="Rh3-ro-wZs" id="Ufd-ZR-Lyz"/>
                 <outlet property="downloadBt" destination="eIC-NI-fB0" id="ajG-Gd-iDb"/>
+                <outlet property="downloadLb" destination="j9a-gF-TFs" id="qcM-w8-4tT"/>
                 <outlet property="loadingView" destination="2Vy-xy-qON" id="wdk-fr-Jxk"/>
                 <outlet property="topBg" destination="s7P-q2-Iiw" id="CV4-GE-CFy"/>
                 <outlet property="view" destination="1" id="3"/>

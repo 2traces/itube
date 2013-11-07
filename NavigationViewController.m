@@ -14,6 +14,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "SuggestionsViewController.h"
 #import "DownloadMapViewController.h"
+#import "TubeSplitViewController.h"
 
 @interface NavigationViewController ()
 
@@ -35,8 +36,18 @@
     if (!self.downloadVC) {
         self.downloadVC = [[[DownloadMapViewController alloc] initWithNibName:@"DownloadMapViewController" bundle:[NSBundle mainBundle]] autorelease];
     }
-    self.downloadVC.view.frame = self.view.frame;
+    tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    UIViewController *root = appDelegate.window.rootViewController;
+    if ([root isKindOfClass:[TubeSplitViewController class]]) {
+        self.downloadVC.view.frame = CGRectMake(0, 0, [root viewSize].width, [root viewSize].height);
+
+    }
+    else {
+        self.downloadVC.view.frame = self.view.frame;
+
+    }
     if (IS_IPAD) {
+        
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
             CGRect frame = self.downloadVC.view.frame;
             frame.origin.y += 20;
@@ -58,7 +69,15 @@
     }
 
     self.downloadVC.view.alpha = 0;
-    [self.view addSubview:self.downloadVC.view];
+    
+
+    if ([root isKindOfClass:[TubeSplitViewController class]]) {
+        [root.view addSubview:self.downloadVC.view];
+    }
+    else {
+        [self.view addSubview:self.downloadVC.view];
+    }
+    
     [UIView animateWithDuration:0.5f animations:^{
         self.downloadVC.view.alpha = 1;
     }];
@@ -158,6 +177,7 @@
 //
 //    self.glController.view.layer.cornerRadius = self.separatingView.layer.cornerRadius = 5;
 //    [self.view insertSubview:[self.glController view] aboveSubview:self.separatingView];
+    self.suggestionField.placeholder = NSLocalizedString(@"City search", @"");
     self.suggestionsVC = [[[SuggestionsViewController alloc] initWithNibName:@"SuggestionsViewController" bundle:[NSBundle mainBundle]] autorelease];
     self.suggestionsVC.navVC = self;
     [self.suggestionsVC view];

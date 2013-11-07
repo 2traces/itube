@@ -34,5 +34,7 @@
 -(void)hideLeftView;
 -(void)refreshStatusInfo;
 -(void)changeStatusView;
+- (CGSize)viewSize;
+
 
 @end
