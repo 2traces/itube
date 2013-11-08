@@ -37,9 +37,9 @@
 //static NSDictionary *distanceAttributes;
 
 -(IBAction)downloadOfflineMap:(id)sender {
-    if (!self.downloadVC) {
+//    if (!self.downloadVC) {
         self.downloadVC = [[[DownloadMapViewController alloc] initWithNibName:@"DownloadMapViewController" bundle:[NSBundle mainBundle]] autorelease];
-    }
+//    }
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     UIViewController *root = appDelegate.window.rootViewController;
     if ([root isKindOfClass:[TubeSplitViewController class]]) {
