@@ -152,13 +152,12 @@
     
     Object *item = [self.items objectAtIndex:indexPath.row];
     GlViewController *gl = appDelegate.glViewController;
-    Pin *pin = [gl getPin:item.pinID];
-    CGFloat distance = pin.distanceToUser;
+    CGFloat distance = [gl calcGeoDistanceFrom:item.geoP to:appDelegate.userGeoPosition];
     
     NSLog(@"Type: %@", item.kind);
     
     cell.titleLabel.text = item.title;
-    cell.subtitleLabel.text = [NSString stringWithFormat:@"%.0f м", distance];
+    cell.subtitleLabel.text = [NSString stringWithFormat:@"%.3f км", distance];
     cell.accessoryImage.image = [UIImage imageNamed:@"arrow"];
     cell.typeImage.image = [UIImage imageNamed:@"type_0"];
     
@@ -177,9 +176,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Object *item = [self.items objectAtIndex:indexPath.row];
 
-#ifdef SPOTS_FREE
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     GlViewController *gl = appDelegate.glViewController;
+#ifdef SPOTS_FREE
     Pin *pin = [gl getPin:item.pinID];
     CGFloat distance = pin.distanceToUser;
     if (distance > 150) {
@@ -200,6 +199,10 @@
         [self.navigationController pushViewController:svc animated:YES];
     }
     [svc autorelease];
+    
+    if(item.pinID >= 0) {
+        [gl setPin:item.pinID active:YES];
+    }
 
 }
 

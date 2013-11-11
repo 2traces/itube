@@ -305,6 +305,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(id)initUserPos
 {
     type = PIN_USER;
+    alpha = 1.f;
     size = 1.f / [UIScreen mainScreen].scale;
     if((self = [super init])) {
         _id = 0;
@@ -325,6 +326,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(id)initObjectPos
 {
     type = PIN_OBJECT;
+    alpha = 1.f;
     size = 1.f / [UIScreen mainScreen].scale;
     if((self = [super init])) {
         _id = -1;
@@ -350,6 +352,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(id) initWithId:(int)pinId color:(int)color text:(NSString*)text andSubtitle:(NSString*)subtitle
 {
     type = PIN_DEFAULT;
+    alpha = 1.f;
     size = 1.f / [UIScreen mainScreen].scale;
     if((self = [super init])) {
         _id = pinId;
@@ -407,6 +410,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
         //sp = [[BigPanel alloc] initWithText:text andSubtitle:subtitle];
         pinText = [text retain];
         pinSubtitle = [subtitle retain];
+        pinActiveTexture = @"fav-yell";
         _loaded = NO;
     }
     return self;
@@ -415,6 +419,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(id) initClusterWithId:(int)pinId color:(int)color andText:(NSString*)text
 {
     size = 1.f / [UIScreen mainScreen].scale;
+    alpha = 1.f;
     type = PIN_CLUSTER;
     if((self = [super init])) {
         _id = pinId;
@@ -479,6 +484,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(id) initFavWithId:(int)pinId color:(int)color andText:(NSString*)text
 {
     size = 1.f / [UIScreen mainScreen].scale;
+    alpha = 1.f;
     constOffset = 20;
     type = PIN_FAVORITE;
     if((self = [super init])) {
@@ -544,7 +550,11 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(void)load
 {
     if(!_loaded) {
-        sprite = [[GlSprite alloc] initWithPicture:pinTexture];
+        if(_highlighted && nil != pinActiveTexture) {
+            sprite = [[GlSprite alloc] initWithPicture:pinActiveTexture];
+        } else {
+            sprite = [[GlSprite alloc] initWithPicture:pinTexture];
+        }
         _loaded = YES;
     }
 }
@@ -633,6 +643,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     } else {
         [sprite setRect:CGRectMake(pos.x-s.width*0.5f, pos.y-s.height*0.5f-offset-constOffset/scale, s.width, s.height)];
     }
+    sprite.alpha = alpha;
     [sprite draw];
 }
 
@@ -647,6 +658,23 @@ CGPoint translateFromMapToGeo(CGPoint p)
         offset -= dTime * speed;
         if(offset < 0.f) offset = 0.f;
     }
+    if(alphaSpeed > 0.f) {
+        if(alpha < targetAlpha) {
+            alpha += dTime * alphaSpeed;
+            if(alpha >= targetAlpha) {
+                alpha = targetAlpha;
+                alphaSpeed = 0.f;
+            }
+        } else if(alpha > targetAlpha) {
+            alpha -= dTime * alphaSpeed;
+            if(alpha <= targetAlpha) {
+                alpha = targetAlpha;
+                alphaSpeed = 0.f;
+            }
+        } else {
+            alphaSpeed = 0.f;
+        }
+    }
     [sp update:dTime];
 }
 
@@ -654,6 +682,40 @@ CGPoint translateFromMapToGeo(CGPoint p)
 {
     offset = distance;
     speed = spd;
+}
+
+-(void)fadeIn:(CGFloat)time
+{
+    targetAlpha = 1.f;
+    alpha = 0.f;
+    alphaSpeed = 1.f / time;
+}
+
+-(void)fadeOut:(CGFloat)time
+{
+    targetAlpha = 0.f;
+    alphaSpeed = 1.f / time;
+}
+
+-(void)setHighlighted:(BOOL)highlighted
+{
+    if(nil != pinActiveTexture && highlighted && !_highlighted) {
+        if(_loaded) {
+            [self unload];
+            _highlighted = YES;
+            [self load];
+        } else {
+            _highlighted = YES;
+        }
+    } else if(nil != pinTexture && !highlighted && _highlighted) {
+        if(_loaded) {
+            [self unload];
+            _highlighted = NO;
+            [self load];
+        } else {
+            _highlighted = NO;
+        }
+    }
 }
 
 -(CGRect)bounds
@@ -1278,6 +1340,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     }
     //float dist = 256.f/scale;
     //[p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
+    [p fadeIn:0.5f];
     self.pinsArray = [_pinsArray arrayByAddingObject:p];
     [p setPosition:coordinate];
     return newId;
@@ -1288,6 +1351,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     int newId = newPinId;
     newPinId ++;
     Pin *p = [[Pin alloc] initClusterWithId:newId color:color andText:name];
+    [p fadeIn:0.5f];
     self.pinsArray = [_pinsArray arrayByAddingObject:p];
     [p setPosition:coordinate];
     return newId;
@@ -1332,6 +1396,19 @@ CGPoint translateFromMapToGeo(CGPoint p)
         }
     }
     return nil;
+}
+
+-(void)setPin:(int)pinID active:(BOOL)active
+{
+    Pin *p = [self getPin:pinID];
+    if(nil == p) return;
+    if(active) {
+        for (Pin *p in self.pinsArray) {
+            if(p.highlighted) p.highlighted = NO;
+        }
+        [self scrollToGeoPosition:p.geoPosition withZoom:-1];
+    }
+    p.highlighted = active;
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
@@ -1771,6 +1848,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
     frame.origin.x -= frame.size.width * 0.5f;
     frame.origin.y -= frame.size.height * 0.5f;
     [self loadObjectsForRect:frame];
+    frame.origin.x = 128.f - frame.origin.x;
+    frame.origin.y = 128.f - frame.origin.y;
     [self unloadFarObjectsFromRect:frame];
 }
 
@@ -1864,8 +1943,11 @@ CGPoint translateFromMapToGeo(CGPoint p)
                 // show objects
                 for (Cluster *cl in _clusters) {
                     for (Object *ob in cl.objects) {
-                        if(ob.pinID < 0)
+                        if(ob.pinID < 0) {
                             ob.pinID = [self newPin:ob.coords color:1 name:ob.title subtitle:[ob.comments firstObject]];
+                            Pin *p = [self getPin:ob.pinID];
+                            [p setGeoPosition:ob.geoP];
+                        }
                     }
                 }
                 break;
@@ -1916,6 +1998,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
             for (Cluster *cl in _clusters) {
                 for (Object *ob in cl.objects) {
                     ob.pinID = [self newPin:ob.coords color:1 name:ob.title subtitle:[ob.comments firstObject]];
+                    Pin* p = [self getPin:ob.pinID];
+                    [p setGeoPosition:ob.geoP];
                 }
             }
             break;

@@ -70,14 +70,16 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
     float lastScale;
     float distanceToUser;
     PinType type;
+    CGFloat alpha, targetAlpha, alphaSpeed;
     
-    NSString *pinText, *pinSubtitle, *pinTexture;
+    NSString *pinText, *pinSubtitle, *pinTexture, *pinActiveTexture;
 }
 
 @property (nonatomic, readonly) int Id;
 @property (nonatomic, readonly) CGPoint position;
 @property (nonatomic, readonly) CGPoint geoPosition;
 @property (nonatomic, assign) BOOL active;
+@property (nonatomic, assign) BOOL highlighted;
 @property (nonatomic, assign) CGFloat distanceToUser;
 @property (nonatomic, readonly) PinType type;
 @property (nonatomic, assign) double rotation;
@@ -94,6 +96,8 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 -(void)drawWithScale:(CGFloat)scale;
 -(void)drawPanelWithScale:(CGFloat)scale;
 -(void)fallFrom:(CGFloat)distance at:(CGFloat)speed;
+-(void)fadeIn:(CGFloat)time;
+-(void)fadeOut:(CGFloat)time;
 -(CGRect)bounds;
 -(void)load;
 -(void)unload;
@@ -122,6 +126,8 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 -(CGFloat)calcGeoDistanceFrom:(CGPoint)p1 to:(CGPoint)p2;
 //Set pin
 -(int)newPin:(CGPoint)coordinate color:(int)color name:(NSString*)name;
+// activate pin and center map on it
+-(void)setPin:(int)pinID active:(BOOL)active;
 
 - (void) centerMapOnUser;
 -(CGPoint)getCenterMapGeoCoordinates;
@@ -136,6 +142,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 -(void)removeAllPins;
 -(int)setLocation:(CGPoint)coordinate;
 -(Pin*)getPin:(int)pinId;
+-(void)setPin:(int)pinID active:(BOOL)active;
 
 - (CGFloat) setPinAtPlace:(MPlace*)place color:(int)color;
 - (CGFloat) setStarAtPlace:(MPlace*)place color:(int)color;
