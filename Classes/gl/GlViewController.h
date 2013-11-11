@@ -70,6 +70,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
     float lastScale;
     float distanceToUser;
     PinType type;
+    CGFloat alpha, targetAlpha, alphaSpeed;
     
     NSString *pinText, *pinSubtitle, *pinTexture;
 }

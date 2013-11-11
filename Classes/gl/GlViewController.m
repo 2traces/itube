@@ -305,6 +305,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(id)initUserPos
 {
     type = PIN_USER;
+    alpha = 1.f;
     size = 1.f / [UIScreen mainScreen].scale;
     if((self = [super init])) {
         _id = 0;
@@ -325,6 +326,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(id)initObjectPos
 {
     type = PIN_OBJECT;
+    alpha = 1.f;
     size = 1.f / [UIScreen mainScreen].scale;
     if((self = [super init])) {
         _id = -1;
@@ -350,6 +352,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(id) initWithId:(int)pinId color:(int)color text:(NSString*)text andSubtitle:(NSString*)subtitle
 {
     type = PIN_DEFAULT;
+    alpha = 1.f;
     size = 1.f / [UIScreen mainScreen].scale;
     if((self = [super init])) {
         _id = pinId;
@@ -415,6 +418,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(id) initClusterWithId:(int)pinId color:(int)color andText:(NSString*)text
 {
     size = 1.f / [UIScreen mainScreen].scale;
+    alpha = 1.f;
     type = PIN_CLUSTER;
     if((self = [super init])) {
         _id = pinId;
@@ -479,6 +483,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(id) initFavWithId:(int)pinId color:(int)color andText:(NSString*)text
 {
     size = 1.f / [UIScreen mainScreen].scale;
+    alpha = 1.f;
     constOffset = 20;
     type = PIN_FAVORITE;
     if((self = [super init])) {
@@ -633,6 +638,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     } else {
         [sprite setRect:CGRectMake(pos.x-s.width*0.5f, pos.y-s.height*0.5f-offset-constOffset/scale, s.width, s.height)];
     }
+    sprite.alpha = alpha;
     [sprite draw];
 }
 
@@ -647,6 +653,23 @@ CGPoint translateFromMapToGeo(CGPoint p)
         offset -= dTime * speed;
         if(offset < 0.f) offset = 0.f;
     }
+    if(alphaSpeed > 0.f) {
+        if(alpha < targetAlpha) {
+            alpha += dTime * alphaSpeed;
+            if(alpha >= targetAlpha) {
+                alpha = targetAlpha;
+                alphaSpeed = 0.f;
+            }
+        } else if(alpha > targetAlpha) {
+            alpha -= dTime * alphaSpeed;
+            if(alpha <= targetAlpha) {
+                alpha = targetAlpha;
+                alphaSpeed = 0.f;
+            }
+        } else {
+            alphaSpeed = 0.f;
+        }
+    }
     [sp update:dTime];
 }
 
@@ -654,6 +677,19 @@ CGPoint translateFromMapToGeo(CGPoint p)
 {
     offset = distance;
     speed = spd;
+}
+
+-(void)fadeIn:(CGFloat)time
+{
+    targetAlpha = 1.f;
+    alpha = 0.f;
+    alphaSpeed = 1.f / time;
+}
+
+-(void)fadeOut:(CGFloat)time
+{
+    targetAlpha = 0.f;
+    alphaSpeed = 1.f / time;
 }
 
 -(CGRect)bounds
@@ -1278,6 +1314,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     }
     //float dist = 256.f/scale;
     //[p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
+    [p fadeIn:0.5f];
     self.pinsArray = [_pinsArray arrayByAddingObject:p];
     [p setPosition:coordinate];
     return newId;
@@ -1288,6 +1325,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     int newId = newPinId;
     newPinId ++;
     Pin *p = [[Pin alloc] initClusterWithId:newId color:color andText:name];
+    [p fadeIn:0.5f];
     self.pinsArray = [_pinsArray arrayByAddingObject:p];
     [p setPosition:coordinate];
     return newId;
