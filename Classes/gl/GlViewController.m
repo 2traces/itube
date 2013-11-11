@@ -410,6 +410,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
         //sp = [[BigPanel alloc] initWithText:text andSubtitle:subtitle];
         pinText = [text retain];
         pinSubtitle = [subtitle retain];
+        pinActiveTexture = @"fav-yell";
         _loaded = NO;
     }
     return self;
@@ -549,7 +550,11 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(void)load
 {
     if(!_loaded) {
-        sprite = [[GlSprite alloc] initWithPicture:pinTexture];
+        if(_highlighted && nil != pinActiveTexture) {
+            sprite = [[GlSprite alloc] initWithPicture:pinActiveTexture];
+        } else {
+            sprite = [[GlSprite alloc] initWithPicture:pinTexture];
+        }
         _loaded = YES;
     }
 }
@@ -690,6 +695,27 @@ CGPoint translateFromMapToGeo(CGPoint p)
 {
     targetAlpha = 0.f;
     alphaSpeed = 1.f / time;
+}
+
+-(void)setHighlighted:(BOOL)highlighted
+{
+    if(nil != pinActiveTexture && highlighted && !_highlighted) {
+        if(_loaded) {
+            [self unload];
+            _highlighted = YES;
+            [self load];
+        } else {
+            _highlighted = YES;
+        }
+    } else if(nil != pinTexture && !highlighted && _highlighted) {
+        if(_loaded) {
+            [self unload];
+            _highlighted = NO;
+            [self load];
+        } else {
+            _highlighted = NO;
+        }
+    }
 }
 
 -(CGRect)bounds
@@ -1370,6 +1396,19 @@ CGPoint translateFromMapToGeo(CGPoint p)
         }
     }
     return nil;
+}
+
+-(void)setPin:(int)pinID active:(BOOL)active
+{
+    Pin *p = [self getPin:pinID];
+    if(nil == p) return;
+    if(active) {
+        for (Pin *p in self.pinsArray) {
+            if(p.highlighted) p.highlighted = NO;
+        }
+        [self scrollToGeoPosition:p.geoPosition withZoom:-1];
+    }
+    p.highlighted = active;
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods

@@ -178,9 +178,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Object *item = [self.items objectAtIndex:indexPath.row];
 
-#ifdef SPOTS_FREE
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     GlViewController *gl = appDelegate.glViewController;
+#ifdef SPOTS_FREE
     Pin *pin = [gl getPin:item.pinID];
     CGFloat distance = pin.distanceToUser;
     if (distance > 150) {
@@ -201,6 +201,10 @@
         [self.navigationController pushViewController:svc animated:YES];
     }
     [svc autorelease];
+    
+    if(item.pinID >= 0) {
+        [gl setPin:item.pinID active:YES];
+    }
 
 }
 
