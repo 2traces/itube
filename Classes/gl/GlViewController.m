@@ -1904,8 +1904,11 @@ CGPoint translateFromMapToGeo(CGPoint p)
                 // show objects
                 for (Cluster *cl in _clusters) {
                     for (Object *ob in cl.objects) {
-                        if(ob.pinID < 0)
+                        if(ob.pinID < 0) {
                             ob.pinID = [self newPin:ob.coords color:1 name:ob.title subtitle:[ob.comments firstObject]];
+                            Pin *p = [self getPin:ob.pinID];
+                            [p setGeoPosition:ob.geoP];
+                        }
                     }
                 }
                 break;
@@ -1956,6 +1959,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
             for (Cluster *cl in _clusters) {
                 for (Object *ob in cl.objects) {
                     ob.pinID = [self newPin:ob.coords color:1 name:ob.title subtitle:[ob.comments firstObject]];
+                    Pin* p = [self getPin:ob.pinID];
+                    [p setGeoPosition:ob.geoP];
                 }
             }
             break;
