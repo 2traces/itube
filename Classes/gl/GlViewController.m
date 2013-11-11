@@ -1398,16 +1398,17 @@ CGPoint translateFromMapToGeo(CGPoint p)
     return nil;
 }
 
--(void)setPin:(int)pinID active:(BOOL)active
+-(void)setPinForObject:(Object*)ob active:(BOOL)active
 {
-    Pin *p = [self getPin:pinID];
-    if(nil == p) return;
     if(active) {
         for (Pin *p in self.pinsArray) {
             if(p.highlighted) p.highlighted = NO;
         }
-        [self scrollToGeoPosition:p.geoPosition withZoom:-1];
+        CGFloat z = [self getScaleForLevel:LEVEL_WIFI_POINT+1];
+        [self scrollToGeoPosition:ob.geoP withZoom:MAX(z, scale)];
     }
+    Pin *p = [self getPin:ob.pinID];
+    if(nil == p) return;
     p.highlighted = active;
 }
 
@@ -1424,6 +1425,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
             scale = targetScale;
             position = targetPosition;
             targetTimer = 0.f;
+            shouldUpdatePinsForLevel = [self getLevelForScale:scale];
             [self loadObjectsOnScreen];
         }
     }
@@ -2024,6 +2026,12 @@ CGPoint translateFromMapToGeo(CGPoint p)
         _lvl ++;
     }
     return _lvl;
+}
+
+-(CGFloat)getScaleForLevel:(int)level
+{
+    int sc = 1 << level;
+    return sc;
 }
 
 -(NSArray*)getObjectsNear:(CGPoint)center withRadius:(CGFloat)radius

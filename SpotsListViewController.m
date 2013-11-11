@@ -200,9 +200,7 @@
     }
     [svc autorelease];
     
-    if(item.pinID >= 0) {
-        [gl setPin:item.pinID active:YES];
-    }
+    [gl setPinForObject:item active:YES];
 
 }
 

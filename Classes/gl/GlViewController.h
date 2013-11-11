@@ -127,7 +127,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 //Set pin
 -(int)newPin:(CGPoint)coordinate color:(int)color name:(NSString*)name;
 // activate pin and center map on it
--(void)setPin:(int)pinID active:(BOOL)active;
+-(void)setPinForObject:(Object*)ob active:(BOOL)active;
 
 - (void) centerMapOnUser;
 -(CGPoint)getCenterMapGeoCoordinates;
