@@ -1771,6 +1771,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
     frame.origin.x -= frame.size.width * 0.5f;
     frame.origin.y -= frame.size.height * 0.5f;
     [self loadObjectsForRect:frame];
+    frame.origin.x = 128.f - frame.origin.x;
+    frame.origin.y = 128.f - frame.origin.y;
     [self unloadFarObjectsFromRect:frame];
 }
 
