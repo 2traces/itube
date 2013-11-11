@@ -16,7 +16,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *titleLabel;
-@property (nonatomic, retain) IBOutlet UILabel *subtitleLabel;
+@property (nonatomic, retain) IBOutlet UITextView *subtitleLabel;
 @property (nonatomic, retain) IBOutlet UIImageView *typeImage;
 @property BOOL copyActive;
 

@@ -43,7 +43,7 @@
     tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     UIViewController *root = appDelegate.window.rootViewController;
     if ([root isKindOfClass:[TubeSplitViewController class]]) {
-        self.downloadVC.view.frame = CGRectMake(0, 0, [root viewSize].width, [root viewSize].height);
+        self.downloadVC.view.frame = CGRectMake(0, 0, [((TubeSplitViewController*)root) viewSize].width, [((TubeSplitViewController*)root) viewSize].height);
 
     }
     else {

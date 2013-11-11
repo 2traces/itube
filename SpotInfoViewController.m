@@ -329,14 +329,33 @@
     }
     
     cell.subtitleLabel.text = [self.spotInfo.comments objectAtIndex:indexPath.row];
+    cell.subtitleLabel.userInteractionEnabled = YES;
+    [cell.contentView setUserInteractionEnabled: NO];
+//    CGFloat delta = cell.subtitleLabel.contentSize.height - cell.subtitleLabel.frame.size.height;
+//    CGRect frame = cell.frame;
+//
+//    frame.size.height += delta;
+//    if (frame.size.height < 44) {
+//        frame.size.height = 44;
+//    }
+//    cell.frame = frame;
+//    [cell.subtitleLabel becomeFirstResponder];
     
     return cell;
+}
+
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *text = [self.spotInfo.comments objectAtIndex:indexPath.row];
+    UIFont *font = [UIFont fontWithName:@"HelveticaNeue" size:14.0f];
+    CGFloat height = [text sizeWithFont:font constrainedToSize:CGSizeMake(273, MAXFLOAT)].height + 20;
+    return MAX(height, 44);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 81;
 }
-
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     return self.shareView;
@@ -347,6 +366,12 @@
 forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [cell setBackgroundColor:[UIColor clearColor]];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    SpotCommentCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.subtitleLabel.userInteractionEnabled = YES;
+    [cell.subtitleLabel becomeFirstResponder];
 }
 
 //- (BOOL)tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath

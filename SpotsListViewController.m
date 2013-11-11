@@ -35,7 +35,7 @@
 //    NSMutableArray *temp = [NSMutableArray arrayWithCapacity:5];
 //    for (int i = 0; i < 100; i++) {
 //        Object *obj = [Object new];
-//        obj.comments = @[@"comment 1 comment 1 comment 1 comment 1 comment 1 comment 1 comment 1 comment 1 comment 1 comment 1 comment 1 comment 1 comment 1 comment 1 ", @"comment 2", @"comment 3"];
+//        obj.comments = @[@"comment 1 comment 1 comment 1 comment 1 comment 1 comment 1 comment 1 comment 1 comment 1 comment 1 comment 1 comment 1 comment 1 comment 1 ", @"comment 2", @"comment 3", @"comment asdfasdf asdfas dfasdf asdf sfafd asfd asdfasdf asdf asdfasdf asdfasdasd asdf as asdf asdf asdfadsf asdf asdfsadfa sdfa", @"dsfa", @"safas asdfas r asdf sad fd asd dsfas asdf sd a df ads dsafadsf dsf sdfs sdf sdf sf", @"d df asdfadf sdfasd sd sdf dfas sd sdf asdf asdf df asdf adsf asdf asdf sdfasdf asdfasdf asdfddf d"];
 //        obj.title = [NSString stringWithFormat:@"Object #%i", i+1];
 //        obj.ID = @"";
 //        [temp addObject:obj];
@@ -65,13 +65,12 @@
         }
         else {
             if (self.navBarVC.bar) {
-                [self.navBarVC.bar setBackgroundColor:[UIColor darkGrayColor]];
+                [self.navBarVC.bar setBackgroundImage:[[UIImage imageNamed:@"navbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 20)] forBarMetrics:UIBarMetricsDefault];
             }
             else {
-                [self.navigationController.navigationBar setBackgroundColor:[UIColor darkGrayColor]];
+                [self.navigationController.navigationBar setBackgroundImage:[[UIImage imageNamed:@"navbar_bg_ios7"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)] forBarMetrics:UIBarMetricsDefault];
             }
         }
-
 
         yOffset = 64;
     }
@@ -83,7 +82,6 @@
             [self.navigationController.navigationBar setBackgroundImage:[[UIImage imageNamed:@"navbar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)] forBarMetrics:UIBarMetricsDefault];
         }
     }
-    
 
     
     if (self.navBarVC.bar) {
