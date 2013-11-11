@@ -1469,7 +1469,7 @@ static long DownloadCacheSize = 0;
         _sc *= 2;
         _lvl ++;
     }
-    if((scale / _sc) > 0.75f) _lvl ++;
+    //if((scale / _sc) > 0.75f) _lvl ++;
     return !emptyLayer || level >= _lvl;
 }
 
