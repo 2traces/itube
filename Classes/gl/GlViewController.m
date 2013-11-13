@@ -290,6 +290,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 {
     if(active) {
         [self loadPanel];
+        sp.position = pos;
         [sp show];
     } else {
         [sp hide];
