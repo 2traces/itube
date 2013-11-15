@@ -162,7 +162,7 @@
     cell.typeImage.image = [UIImage imageNamed:@"type_0"];
     
 #ifdef SPOTS_FREE
-    if (distance > 150) {
+    if (distance > 0.15f) {
         cell.accessoryImage.image = [UIImage imageNamed:@"lock"];
     }
     else {
@@ -179,9 +179,8 @@
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     GlViewController *gl = appDelegate.glViewController;
 #ifdef SPOTS_FREE
-    Pin *pin = [gl getPin:item.pinID];
-    CGFloat distance = pin.distanceToUser;
-    if (distance > 150) {
+    CGFloat distance = [gl calcGeoDistanceFrom:item.geoP to:appDelegate.userGeoPosition];
+    if (distance > 0.15f) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Free version heading", @"") message:NSLocalizedString(@"Free version message 1", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") otherButtonTitles:NSLocalizedString(@"Free version appstore button", @""), nil];
         [alertView show];
         [alertView release];
