@@ -27,4 +27,6 @@
 - (IBAction)shareMail:(id)sender;
 - (IBAction)shareSMS:(id)sender;
 
+- (void)setup;
+
 @end

@@ -10,6 +10,7 @@
 
 @class RightiPadPathViewController;
 @class GlViewController;
+@class Object;
 
 @interface TubeSplitViewController : UIViewController {
     UIView *pathView;
@@ -35,6 +36,6 @@
 -(void)refreshStatusInfo;
 -(void)changeStatusView;
 - (CGSize)viewSize;
-
+- (void)showInfoForObject:(Object*)object;
 
 @end

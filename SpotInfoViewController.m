@@ -229,6 +229,48 @@
     return self;
 }
 
+- (void)setup {
+    self.navigationItem.title = self.spotInfo.title;
+    
+    for (UIView *subview in [self.navigationItem.titleView subviews]) {
+        [subview removeFromSuperview];
+    }
+    
+    CGFloat yOffset = 0;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        yOffset = 64;
+    }
+    else {
+        
+    }
+    
+    UIButton *bt = [UIButton buttonWithType:UIButtonTypeCustom];
+    bt.frame = CGRectMake(0, 0, 320, 44);
+    [bt setTitle:self.spotInfo.title forState:UIControlStateNormal];
+    [bt setTitleColor:[UIColor colorWithRed:124.0/255.0f green:124.0/255.0f blue:124.0/255.0f alpha:1.0f] forState:UIControlStateNormal];
+    [bt setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    bt.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
+    bt.titleLabel.shadowColor = [UIColor whiteColor];
+    bt.titleLabel.shadowOffset = CGSizeMake(-0.5, 0.5);
+    
+    [bt addTarget:self action:@selector(handleTap:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.titleView = bt;
+    
+    if (self.navBarVC.bar) {
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(goBack)] autorelease];
+        [self.navBarVC.bar setItems:@[self.navigationItem] animated:YES];
+    }
+    else {
+        UIImageView *shadow = [[UIImageView alloc] initWithFrame:CGRectMake(0, yOffset - 1, 320, 34)];
+        shadow.image = [[UIImage imageNamed:@"navbar_shadow"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
+        [self.view addSubview:shadow];
+    }
+    
+    [self.tableView reloadData];
+
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -245,8 +287,6 @@
     [self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
     
     self.navigationItem.title = self.spotInfo.title;
-    
-
     
     UIButton *bt = [UIButton buttonWithType:UIButtonTypeCustom];
     bt.frame = CGRectMake(0, 0, 320, 44);
@@ -294,7 +334,7 @@
 }
 
 - (void)goBack {
-    [self.navBarVC popVC];
+    [self.navBarVC popVCAnimated:YES];
 }
 
 -(void)handleTap:(id)sender

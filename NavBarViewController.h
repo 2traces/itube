@@ -18,7 +18,7 @@
 @property (nonatomic, retain) SpotsListViewController *list;
 @property (nonatomic, retain) SpotInfoViewController *info;
 
-- (void)pushVC:(SpotInfoViewController*)vc;
-- (void)popVC;
+- (void)pushVC:(SpotInfoViewController*)vc animated:(BOOL)animated;
+- (void)popVCAnimated:(BOOL)animated;
 
 @end

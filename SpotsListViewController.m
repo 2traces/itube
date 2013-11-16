@@ -28,6 +28,24 @@
     return self;
 }
 
+- (void)showInfoForObject:(Object*)item animated:(BOOL)animated {
+    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    GlViewController *gl = appDelegate.glViewController;
+    
+    SpotInfoViewController *svc = [[SpotInfoViewController alloc] initWithNibName:@"SpotInfoViewController" bundle:[NSBundle mainBundle]];
+    
+    svc.spotInfo = item;
+    if (self.navBarVC) {
+        [self.navBarVC pushVC:svc animated:animated];
+    }
+    else {
+        [self.navigationController pushViewController:svc animated:animated];
+    }
+    [svc autorelease];
+    
+    [gl setPinForObject:item active:YES];
+}
+
 - (void)updateData {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     GlViewController *gl = appDelegate.glViewController;
@@ -192,7 +210,7 @@
 
     svc.spotInfo = item;
     if (self.navBarVC) {
-        [self.navBarVC pushVC:svc];
+        [self.navBarVC pushVC:svc animated:YES];
     }
     else {
         [self.navigationController pushViewController:svc animated:YES];

@@ -302,6 +302,15 @@
     }
 }
 
+- (void)showSpotsListWithObject:(Object*)object {
+    SpotsListViewController *vc = [[[SpotsListViewController alloc] initWithNibName:@"SpotsListViewController" bundle:[NSBundle mainBundle]] autorelease];
+    UINavigationController *nvc = [[[UINavigationController alloc] initWithRootViewController:vc] autorelease];
+    [vc showInfoForObject:object animated:NO];
+    [self presentViewController:nvc animated:YES completion:^{
+        
+    }];
+}
+
 -(IBAction)showSpotsList:(id)sender {
     SpotsListViewController *vc = [[[SpotsListViewController alloc] initWithNibName:@"SpotsListViewController" bundle:[NSBundle mainBundle]] autorelease];
     UINavigationController *nvc = [[[UINavigationController alloc] initWithRootViewController:vc] autorelease];

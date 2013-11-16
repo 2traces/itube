@@ -11,6 +11,8 @@
 #import "RightiPadPathViewController.h"
 #import "SettingsViewController.h"
 #import "NavigationViewController.h"
+#import "NavBarViewController.h"
+#import "SpotsListViewController.h"
 
 #define constDividerWidth 1.0f
 #define constMasterWidth 320.0f
@@ -24,6 +26,14 @@ static float koefficient = 0.0f;
 @synthesize mapView;
 @synthesize glViewController, rightPathController;
 @synthesize navigationController = navController;
+
+- (void)showInfoForObject:(Object*)object {
+    BOOL animated = isListShown ? YES : NO;
+    [((NavBarViewController*)self.listViewController).list showInfoForObject:object animated:animated];
+    if (!isListShown) {
+        [self showLeftView];
+    }
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

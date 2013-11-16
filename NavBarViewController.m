@@ -50,13 +50,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)pushVC:(SpotInfoViewController*)vc {
+- (void)pushVC:(SpotInfoViewController*)vc animated:(BOOL)animated {
+    if (self.info) {
+        self.info.spotInfo = vc.spotInfo;
+        [self.info setup];
+        return;
+    }
     self.info = vc;
     self.info.navBarVC = self;
     self.info.view.frame = CGRectMake(self.list.view.frame.size.width, 0, self.list.view.frame.size.width, self.list.view.frame.size.height);
     self.info.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self.container addSubview:self.info.view];
-    [UIView animateWithDuration:0.5f animations:^{
+    CGFloat duration = animated ? 0.5f : 0;
+    [UIView animateWithDuration:duration animations:^{
         CGRect infoFrame = self.info.view.frame;
         CGRect listFrame = self.list.view.frame;
         
@@ -70,9 +76,10 @@
     }];
 }
 
-- (void)popVC {
+- (void)popVCAnimated:(BOOL)animated {
     [self.bar setItems:@[self.list.navigationItem] animated:NO];
-    [UIView animateWithDuration:0.5f animations:^{
+    CGFloat duration = animated ? 0.5f : 0;
+    [UIView animateWithDuration:duration animations:^{
         CGRect infoFrame = self.info.view.frame;
         CGRect listFrame = self.list.view.frame;
         

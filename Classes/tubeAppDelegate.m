@@ -620,14 +620,39 @@ void uncaughtExceptionHandler(NSException *exception) {
     [super dealloc];
 }
 
+
 -(void)selectObject:(Object *)ob
 {
+#ifdef SPOTS_FREE
+    GlViewController *gl = self.glViewController;
+    CGFloat distance = [gl calcGeoDistanceFrom:ob.geoP to:self.userGeoPosition];
+    if (distance > 0.15f) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Free version heading", @"") message:NSLocalizedString(@"Free version message 1", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") otherButtonTitles:NSLocalizedString(@"Free version appstore button", @""), nil];
+        [alertView show];
+        [alertView release];
+        return;
+    }
+#endif
     // show selected object on GUI
+    UIViewController *root = self.window.rootViewController;
+    if ([root isKindOfClass:[NavigationViewController class]]) {
+        [((NavigationViewController*)root) showSpotsListWithObject:ob];
+    }
+    else if ([root isKindOfClass:[TubeSplitViewController class]]) {
+        [((TubeSplitViewController*)root) showInfoForObject:ob];
+    }
 }
 
 -(void)selectCluster:(Cluster *)cl
 {
     // show selected objects on GUI
+    UIViewController *root = self.window.rootViewController;
+    if ([root isKindOfClass:[NavigationViewController class]]) {
+
+    }
+    else if ([root isKindOfClass:[TubeSplitViewController class]]) {
+        [((TubeSplitViewController*)root) showLeftView];
+    }
 }
 
 @end

@@ -12,6 +12,7 @@
 @class GlViewController;
 @class SuggestionsViewController;
 @class DownloadMapViewController;
+@class Object;
 
 @protocol NavigationDelegate <NSObject>
 
@@ -53,6 +54,7 @@ typedef enum {
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil glViewController:(GlViewController*)glViewController;
 - (void) centerMapOnPlace:(MPlace*)place;
 - (void) endedSearching;
+- (void)showSpotsListWithObject:(Object*)object;
 
 @property (nonatomic, retain) IBOutlet UITextField *suggestionField;
 @property (nonatomic, retain) IBOutlet UIView *separatingView;
