@@ -803,6 +803,17 @@ CGPoint translateFromMapToGeo(CGPoint p)
     return CGRectMake(pos.x-s2, pos.y-s2-offset, ssize, ssize);
 }
 
+-(CGRect)panelBounds
+{
+    if(!self.active) return CGRectZero;
+    CGRect r = sp.bounds;
+    r.origin.x = r.origin.x / lastScale + pos.x;
+    r.origin.y = r.origin.y / lastScale + pos.y;
+    r.size.width /= lastScale;
+    r.size.height /= lastScale;
+    return r;
+}
+
 -(void)dealloc
 {
     [pinTexture release];
@@ -1157,6 +1168,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 {
     //NSArray *sorted = [objectsTypes sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
     //NSLog(@"%@", sorted);
+    tubeAppDelegate *delegate = (tubeAppDelegate*)[UIApplication sharedApplication].delegate;
     [self.view.superview.superview endEditing:YES];
     if(recognizer.state != UIGestureRecognizerStateEnded) return;
     CGPoint p = [recognizer locationInView:self.view];
@@ -1164,26 +1176,43 @@ CGPoint translateFromMapToGeo(CGPoint p)
     NSMutableArray *selected = [NSMutableArray array];
     for (Pin *pin in _pinsArray) {
         CGRect r = [pin bounds];
-        if(CGRectContainsPoint(r, CGPointMake(x, y))) {
+        CGRect pr = pin.panelBounds;
+        CGPoint p = CGPointMake(x, y);
+        if(CGRectContainsPoint(pr, p)) {
+            int pid = pin.Id;
+            if(objectsLOD == 0) {
+                for (NSString *key in _clusters) {
+                    Cluster *cl = _clusters[key];
+                    for (WifiObject *ob in cl.objects) {
+                        if(ob.pinID == pid) {
+                            [delegate selectObject:ob byPanel:YES];
+                        }
+                    }
+                }
+            } else if(objectsLOD == 1) {
+                for (NSString *key in _clusters) {
+                    Cluster *cl = _clusters[key];
+                    if(cl.pinID == pid) {
+                        [delegate selectCluster:cl byPanel:YES];
+                    }
+                }
+            }
+            return;
+        } else if(CGRectContainsPoint(r, p)) {
             [selected addObject: pin];
-        } else if(pin.active) {
-            pin.active = NO;
         }
-    }
-    for (Pin *pin in _pinsArray) if(pin.active) {
         pin.active = NO;
     }
     if([selected count] > 0) {
         // select one lucky pin
         [[selected objectAtIndex:0] setActive:YES];
         int pid = [[selected objectAtIndex:0] Id];
-        tubeAppDelegate *delegate = (tubeAppDelegate*)[UIApplication sharedApplication].delegate;
         if(objectsLOD == 0) {
             for (NSString *key in _clusters) {
                 Cluster *cl = _clusters[key];
                 for (WifiObject *ob in cl.objects) {
                     if(ob.pinID == pid) {
-                        [delegate selectObject:ob];
+                        [delegate selectObject:ob byPanel:NO];
                     }
                 }
             }
@@ -1191,7 +1220,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
             for (NSString *key in _clusters) {
                 Cluster *cl = _clusters[key];
                 if(cl.pinID == pid) {
-                    [delegate selectCluster:cl];
+                    [delegate selectCluster:cl byPanel:NO];
                 }
             }
         }

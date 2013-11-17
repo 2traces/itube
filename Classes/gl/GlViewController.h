@@ -101,6 +101,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 -(void)fadeIn:(CGFloat)time;
 -(void)fadeOut:(CGFloat)time;
 -(CGRect)bounds;
+-(CGRect)panelBounds;
 -(void)load;
 -(void)unload;
 @end
@@ -144,7 +145,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 -(void)removeAllPins;
 -(int)setLocation:(CGPoint)coordinate;
 -(Pin*)getPin:(int)pinId;
--(void)setPin:(int)pinID active:(BOOL)active;
+//-(void)setPin:(int)pinID active:(BOOL)active;
 
 - (CGFloat) setPinAtPlace:(MPlace*)place color:(int)color;
 - (CGFloat) setStarAtPlace:(MPlace*)place color:(int)color;

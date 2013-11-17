@@ -37,6 +37,11 @@
     [super dealloc];
 }
 
+-(CGRect)bounds
+{
+    return frame;
+}
+
 @end
 
 @implementation AbstractPanel
@@ -126,6 +131,11 @@
     [panel release];
     [texts release];
     [super dealloc];
+}
+
+-(CGRect)bounds
+{
+    return panel.bounds;
 }
 
 @end

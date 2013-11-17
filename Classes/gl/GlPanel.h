@@ -19,6 +19,7 @@
 
 @property (nonatomic, assign) CGPoint position;
 @property (nonatomic, assign) CGFloat alpha;
+@property (nonatomic, readonly) CGRect bounds;
 
 -(id)initWithBackground:(NSString*)fileName position:(CGPoint)position andRect:(CGRect)rect;
 -(void)drawWithScale:(CGFloat)scale;
@@ -36,6 +37,7 @@
 
 @property (nonatomic, assign) CGPoint position;
 @property (nonatomic, readonly) BOOL closed;
+@property (nonatomic, readonly) CGRect bounds;
 
 -(void)show;
 -(void)hide;
