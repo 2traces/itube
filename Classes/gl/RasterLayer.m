@@ -691,7 +691,7 @@ static long DownloadCacheSize = 0;
         CGDataProviderRef dataProvider = CGDataProviderCreateWithFilename(fileName);
         if(dataProvider != nil) {
             p->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
-            p->layer->piecesCount ++;
+            if(nil != p->layer) p->layer->piecesCount ++;
             [p rasterLoaded];
             return YES;
         }
@@ -702,7 +702,7 @@ static long DownloadCacheSize = 0;
         CGDataProviderRef dataProvider = CGDataProviderCreateWithFilename(fileName);
         if(dataProvider != nil) {
             p->image = CGImageCreateWithJPEGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
-            p->layer->piecesCount ++;
+            if(nil != p->layer) p->layer->piecesCount ++;
             [p rasterLoaded];
             return YES;
         }

@@ -1,0 +1,14 @@
+***************
+*** 22,26 ****
+  -(id)initWithPicture:(NSString*)pictureFile;
+  -(void) draw;
+  -(void)setRect:(CGRect)rect;
+  
+  @end
+--- 22,27 ----
+  -(id)initWithPicture:(NSString*)pictureFile;
+  -(void) draw;
+  -(void)setRect:(CGRect)rect;
++ -(void)setRect:(CGRect)rect withRotation:(double)rotation;
+  
+  @end

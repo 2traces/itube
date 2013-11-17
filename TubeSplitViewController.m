@@ -27,7 +27,7 @@ static float koefficient = 0.0f;
 @synthesize glViewController, rightPathController;
 @synthesize navigationController = navController;
 
-- (void)showInfoForObject:(Object*)object {
+- (void)showInfoForObject:(WifiObject*)object {
     BOOL animated = isListShown ? YES : NO;
     [((NavBarViewController*)self.listViewController).list showInfoForObject:object animated:animated];
     if (!isListShown) {

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class NavBarViewController;
-@class Object;
+@class WifiObject;
 
 @interface SpotsListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
@@ -18,6 +18,6 @@
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 
 - (void)updateData;
-- (void)showInfoForObject:(Object*)item animated:(BOOL)animated;
+- (void)showInfoForObject:(WifiObject*)item animated:(BOOL)animated;
 
 @end

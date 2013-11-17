@@ -18,6 +18,9 @@
 #define LEVEL_WIFI_POINT 13
 #define LEVEL_WIFI_CLUSTER 10
 
+#define CLUSTER_RADIUS 0.03f
+#define MAX_LOADS_PER_FRAME 10
+
 // Uniform index.
 enum
 {
@@ -30,6 +33,7 @@ enum
 GLint uniforms[NUM_UNIFORMS];
 
 static CGPoint userGeoPosition;
+static NSInteger LoadedPinsPerFrame;
 
 float sqr(float x)
 {
@@ -121,10 +125,11 @@ CGPoint translateFromMapToGeo(CGPoint p)
     EAGLContext *secondContext;
     BOOL backgroundThreadShouldFinish;
     int shouldUpdatePinsForLevel;
+    NSMutableDictionary *savedClusters;
 }
 @property (strong, nonatomic) EAGLContext *context;
-@property (retain, atomic) NSArray *pinsArray;
-@property (strong, nonatomic) NSArray *clusters;
+@property (retain, atomic) NSMutableArray *pinsArray;
+@property (strong, nonatomic) NSMutableDictionary *clusters;
 //@property (strong, nonatomic) GLKBaseEffect *effect;
 
 - (void)setupGL;
@@ -138,7 +143,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(void)drawPinsInRect:(CGRect)r;
 @end
 
-@implementation Object
+@implementation WifiObject
 
 -(NSString*)decode:(id)val
 {
@@ -176,7 +181,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
                     [temp addObject:[self decode:comment]];
                 }
             }
-            self.comments = [NSArray arrayWithArray:temp];
+            self.comments = temp;
         }
         self.country = [self decode:[data objectForKey:@"country"]];
         self.hours = [self decode:[data objectForKey:@"hours"]];
@@ -219,19 +224,57 @@ CGPoint translateFromMapToGeo(CGPoint p)
     [super dealloc];
 }
 
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    if((self = [super init])) {
+        self.address = [aDecoder decodeObjectForKey:@"address"];
+        self.city = [aDecoder decodeObjectForKey:@"city"];
+        self.comments = [aDecoder decodeObjectForKey:@"comments"];
+        self.country = [aDecoder decodeObjectForKey:@"coutry"];
+        self.hours = [aDecoder decodeObjectForKey:@"hours"];
+        self.ID = [aDecoder decodeObjectForKey:@"ID"];
+        self.kind = [aDecoder decodeObjectForKey:@"kind"];
+        self.state = [aDecoder decodeObjectForKey:@"state"];
+        self.street = [aDecoder decodeObjectForKey:@"street"];
+        self.title = [aDecoder decodeObjectForKey:@"title"];
+        _geoP = [aDecoder decodeCGPointForKey:@"geoP"];
+        _coords = [aDecoder decodeCGPointForKey:@"coords"];
+        _pinID = -1;
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_address forKey:@"address"];
+    [aCoder encodeObject:_city forKey:@"city"];
+    [aCoder encodeObject:_comments forKey:@"comments"];
+    [aCoder encodeObject:_country forKey:@"county"];
+    [aCoder encodeObject:_hours forKey:@"hours"];
+    [aCoder encodeObject:_ID forKey:@"ID"];
+    [aCoder encodeObject:_kind forKey:@"kind"];
+    [aCoder encodeObject:_state forKey:@"state"];
+    [aCoder encodeObject:_street forKey:@"street"];
+    [aCoder encodeObject:_title forKey:@"title"];
+    [aCoder encodeCGPoint:_geoP forKey:@"geoP"];
+    [aCoder encodeCGPoint:_coords forKey:@"coords"];
+}
+
 @end
 
 @implementation Cluster
 
-@synthesize center, objects = _objects, pinID, radius = radius;
+@synthesize center, objects = _objects, pinID; //, radius = radius;
 
--(id)initWithRadius:(CGFloat)r
+-(id)initWithCenter:(CGPoint)p
 {
     if((self = [super init])) {
-        radius = r;
+        //radius = r;
         _objects = [[NSMutableArray alloc] init];
-        center = sumCoord = CGPointZero;
+        center = p;
+        //sumCoord = CGPointZero;
         pinID = -1;
+        _empty = YES;
     }
     return self;
 }
@@ -243,6 +286,9 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(BOOL)accept:(id)element
 {
+    [_objects addObject:element];
+    _empty = NO;
+    /*
     CGPoint el;
     if([element isKindOfClass:[Object class]]) {
         for (id o in _objects) {
@@ -268,13 +314,42 @@ CGPoint translateFromMapToGeo(CGPoint p)
         center.x = sumCoord.x / [_objects count];
         center.y = sumCoord.y / [_objects count];
     }
+     */
     return YES;
+}
+
+-(void)unload
+{
+    _empty = YES;
+    [_objects removeAllObjects];
 }
 
 -(void)dealloc
 {
     [_objects release];
     [super dealloc];
+}
+
+-(void)save
+{
+    if(_empty) return;
+    NSData * data = [NSKeyedArchiver archivedDataWithRootObject:_objects];
+    NSString *fname = [NSString stringWithFormat:@"%@/%d.cache", [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0], _clid];
+    [data writeToFile:fname atomically:YES];
+}
+
+-(BOOL)load
+{
+    if(!_empty) return YES;
+    NSString *fname = [NSString stringWithFormat:@"%@/%d.cache", [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0], _clid];
+    NSData *data = [NSData dataWithContentsOfFile:fname];
+    if(nil == data) return NO;
+    NSArray *ar = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    [_objects addObjectsFromArray:ar];
+    for (WifiObject *o in _objects) {
+        o.pinID = -1;
+    }
+    return YES;
 }
 
 @end
@@ -550,13 +625,14 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(void)load
 {
-    if(!_loaded) {
+    if(!_loaded && LoadedPinsPerFrame < MAX_LOADS_PER_FRAME) {
         if(_highlighted && nil != pinActiveTexture) {
             sprite = [[GlSprite alloc] initWithPicture:pinActiveTexture];
         } else {
             sprite = [[GlSprite alloc] initWithPicture:pinTexture];
         }
         _loaded = YES;
+        LoadedPinsPerFrame ++;
     }
 }
 
@@ -635,6 +711,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 -(void)drawWithScale:(CGFloat)scale
 {
     if(!_loaded) [self load];
+    if(!_loaded) return;
     lastScale = scale;
     CGSize s;
     s.width = size * sprite.origWidth / scale;
@@ -772,6 +849,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
 {
     backgroundThreadShouldFinish = YES;
     [secondContext release];
+    [savedClusters release];
     self.pinsArray = nil;
     [_context release];
     //[_effect release];
@@ -784,11 +862,17 @@ CGPoint translateFromMapToGeo(CGPoint p)
 {
     [super viewDidLoad];
     shouldUpdatePinsForLevel = -1;
+    NSString *fname = [NSString stringWithFormat:@"%@/savedClusters.cache", [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]];
+    NSData *d = [NSData dataWithContentsOfFile:fname];
+    if(d != nil)
+        savedClusters = [[NSKeyedUnarchiver unarchiveObjectWithData:d] retain];
+    else
+        savedClusters = [[NSMutableDictionary dictionary] retain];
     followUserGPS = YES;
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
 
-    self.pinsArray = @[];
-    self.clusters = @[];
+    self.pinsArray = [NSMutableArray array];
+    self.clusters = [NSMutableDictionary dictionary];
     objectsLOD = -1;
 
     CGRect settingsRect,zonesRect,cornerRect;
@@ -888,8 +972,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
     [glView addSubview:cornerButton];
     
     // user geo position
-    Pin *p = [[Pin alloc] initUserPos];
-    self.pinsArray = [_pinsArray arrayByAddingObject:p];
+    Pin *p = [[[Pin alloc] initUserPos] autorelease];
+    [self.pinsArray addObject:p];
     [p setPosition:userPosition];
     newPinId = 1;
     
@@ -1095,15 +1179,17 @@ CGPoint translateFromMapToGeo(CGPoint p)
         int pid = [[selected objectAtIndex:0] Id];
         tubeAppDelegate *delegate = (tubeAppDelegate*)[UIApplication sharedApplication].delegate;
         if(objectsLOD == 0) {
-            for (Cluster *cl in _clusters) {
-                for (Object *ob in cl.objects) {
+            for (NSString *key in _clusters) {
+                Cluster *cl = _clusters[key];
+                for (WifiObject *ob in cl.objects) {
                     if(ob.pinID == pid) {
                         [delegate selectObject:ob];
                     }
                 }
             }
         } else if(objectsLOD == 1) {
-            for (Cluster *cl in _clusters) {
+            for (NSString *key in _clusters) {
+                Cluster *cl = _clusters[key];
                 if(cl.pinID == pid) {
                     [delegate selectCluster:cl];
                 }
@@ -1149,7 +1235,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
             started = NO;
             
             [self sendMapMovedNotification];
-            shouldUpdatePinsForLevel = [self getLevelForScale:scale];
+            [self loadObjectsOnScreen];
             break;
         case UIGestureRecognizerStateFailed:
         case UIGestureRecognizerStateCancelled:
@@ -1188,6 +1274,9 @@ CGPoint translateFromMapToGeo(CGPoint p)
     [rasterLayer purgeUnusedCache];
     for (Pin *p in self.pinsArray) {
         [p unload];
+    }
+    for (NSString *key in _clusters) {
+        [_clusters[key] unload];
     }
 }
 
@@ -1297,12 +1386,12 @@ CGPoint translateFromMapToGeo(CGPoint p)
     }
     Pin *p = nil;
     if(place.name != nil)
-        p = [[Pin alloc] initWithId:newId color:color andText:place.name];
+        p = [[[Pin alloc] initWithId:newId color:color andText:place.name] autorelease];
     else
-        p = [[Pin alloc] initWithId:newId andColor:color];
+        p = [[[Pin alloc] initWithId:newId andColor:color] autorelease];
     //float dist = 256.f/scale;
     //[p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
-    self.pinsArray = [_pinsArray arrayByAddingObject:p];
+    [self.pinsArray addObject:p];
     [p setGeoPosition:coordinate];
     return p.distanceToUser;
 }
@@ -1314,10 +1403,10 @@ CGPoint translateFromMapToGeo(CGPoint p)
         return [[self getPin:newId] distanceToUser];
     }
     Pin *p = nil;
-    p = [[Pin alloc] initFavWithId:newId color:color andText:place.name];
+    p = [[[Pin alloc] initFavWithId:newId color:color andText:place.name] autorelease];
     //float dist = 256.f/scale;
     //[p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
-    self.pinsArray = [_pinsArray arrayByAddingObject:p];
+    [self.pinsArray addObject:p];
     [p setGeoPosition:coordinate];
     return p.distanceToUser;
 }
@@ -1333,16 +1422,16 @@ CGPoint translateFromMapToGeo(CGPoint p)
     newPinId ++;
     Pin *p = nil;
     if(nil != subtitle) {
-        p = [[Pin alloc] initWithId:newId color:color text:name andSubtitle:subtitle];
+        p = [[[Pin alloc] initWithId:newId color:color text:name andSubtitle:subtitle] autorelease];
     } else if(name != nil) {
-        p = [[Pin alloc] initWithId:newId color:color andText:name];
+        p = [[[Pin alloc] initWithId:newId color:color andText:name] autorelease];
     } else {
-        p = [[Pin alloc] initWithId:newId andColor:color];
+        p = [[[Pin alloc] initWithId:newId andColor:color] autorelease];
     }
     //float dist = 256.f/scale;
     //[p fallFrom:(dist * (1.f+0.05f*(rand()%20))) at: dist*2];
     [p fadeIn:0.5f];
-    self.pinsArray = [_pinsArray arrayByAddingObject:p];
+    [self.pinsArray addObject:p];
     [p setPosition:coordinate];
     return newId;
 }
@@ -1351,28 +1440,34 @@ CGPoint translateFromMapToGeo(CGPoint p)
 {
     int newId = newPinId;
     newPinId ++;
-    Pin *p = [[Pin alloc] initClusterWithId:newId color:color andText:name];
+    Pin *p = [[[Pin alloc] initClusterWithId:newId color:color andText:name] autorelease];
     [p fadeIn:0.5f];
-    self.pinsArray = [_pinsArray arrayByAddingObject:p];
+    [self.pinsArray addObject:p];
     [p setPosition:coordinate];
     return newId;
 }
 
 -(void)removePin:(int)pinId
 {
-    self.pinsArray = [_pinsArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        return [evaluatedObject Id] != pinId;
-    }]];
+    for (Pin *p in _pinsArray) {
+        if(p.Id == pinId) {
+            [_pinsArray removeObject:p];
+            return;
+        }
+    }
+//    self.pinsArray = [_pinsArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+//        return [evaluatedObject Id] != pinId;
+//    }]];
 }
 
 -(void)removeAllPins
 {
-    Pin *p = [self getPin:0];
-    if(nil == p) {
-        self.pinsArray = @[];
-    } else {
-        self.pinsArray = @[p];
+    Pin *p = [[self getPin:0] retain];
+    [self.pinsArray removeAllObjects];
+    if(nil != p) {
+        [_pinsArray addObject:p];
     }
+    [p release];
 }
 
 -(int)setLocation:(CGPoint)coordinate
@@ -1385,7 +1480,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     }
     Pin *loc = [[[Pin alloc] initObjectPos] autorelease];
     [loc setGeoPosition:coordinate];
-    self.pinsArray = [_pinsArray arrayByAddingObject:loc];
+    [self.pinsArray addObject:loc];
     return -1;
 }
 
@@ -1399,7 +1494,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     return nil;
 }
 
--(void)setPinForObject:(Object*)ob active:(BOOL)active
+-(void)setPinForObject:(WifiObject*)ob active:(BOOL)active
 {
     if(active) {
         for (Pin *p in self.pinsArray) {
@@ -1476,8 +1571,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
     
     _modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
     
-    //_rotation += self.timeSinceLastUpdate * 0.5f;
-    for (Pin *p in _pinsArray) {
+    for (int pid = 0; pid < _pinsArray.count; pid ++) {
+        Pin *p = _pinsArray[pid];
         [p update:self.timeSinceLastUpdate];
     }
 }
@@ -1550,11 +1645,16 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(void)drawPinsInRect:(CGRect)r
 {
-    for (Pin *p in _pinsArray) {
+    LoadedPinsPerFrame = 0;
+    for (int pid = 0; pid < _pinsArray.count; pid ++) {
+        Pin *p = _pinsArray[pid];
         if(CGRectContainsPoint(r, p.position)) [p drawWithScale:scale];
     }
-    for (Pin *p in _pinsArray) if(CGRectContainsPoint(r, p.position) && p.active) {
-        [p drawPanelWithScale:scale];
+    for (int pid = 0; pid < _pinsArray.count; pid ++) {
+        Pin *p = _pinsArray[pid];
+        if(CGRectContainsPoint(r, p.position) && p.active) {
+            [p drawPanelWithScale:scale];
+        }
     }
 }
 
@@ -1842,7 +1942,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
 
 -(void)loadObjectsOnScreen
 {
-    if([self getLevelForScale:scale] < LEVEL_WIFI_CLUSTER) return;
+    int lvl = [self getLevelForScale:scale];
+    if(lvl < LEVEL_WIFI_CLUSTER) return;
     CGRect frame;
     frame.origin = position;
     frame.size = self.view.frame.size;
@@ -1850,12 +1951,43 @@ CGPoint translateFromMapToGeo(CGPoint p)
     frame.size.height /= scale;
     frame.origin.x -= frame.size.width * 0.5f;
     frame.origin.y -= frame.size.height * 0.5f;
-    [self loadObjectsForRect:frame];
-    frame.origin.x = 128.f - frame.origin.x;
-    frame.origin.y = 128.f - frame.origin.y;
-    [self unloadFarObjectsFromRect:frame];
+    if(lvl < LEVEL_WIFI_POINT) {
+        [self loadClustersForRect:frame withObjects:NO];
+    } else {
+        CGRect sframe = frame;
+        sframe.origin.x = 128.f - sframe.origin.x;
+        sframe.origin.y = 128.f - sframe.origin.y;
+        NSMutableArray *sclusters = [NSMutableArray array];
+        [self loadSavedClustersForRect:sframe];
+        for (NSString *key in _clusters) {
+            Cluster *cl = _clusters[key];
+            if(CGRectContainsPoint(sframe, cl.center)) {
+                [sclusters addObject:key];
+            }
+        }
+        if(sclusters.count > 0) [self loadObjectsForClusters:sclusters andSave:NO];
+        [self loadClustersForRect:frame withObjects:YES];
+    }
+//    [self unloadFarObjectsFromRect:frame];
 }
 
+-(void)loadSavedClustersForRect:(CGRect)frame
+{
+    for (NSString *key in savedClusters) {
+        CGPoint p = [savedClusters[key] CGPointValue];
+        if(CGRectContainsPoint(frame, p)) {
+            Cluster *cl = _clusters[key];
+            if(nil == cl) {
+                cl = [[[Cluster alloc] initWithCenter:p] autorelease];
+                cl.clid = [key integerValue];
+                _clusters[key] = cl;
+            }
+            [cl load];
+        }
+    }
+}
+
+/*
 -(void)loadObjectsForRect:(CGRect)rect
 {
     NSString *url=[NSString stringWithFormat:@"http://5.175.192.184/index.php?x1=%f&y1=%f&x2=%f&y2=%f", rect.origin.x, rect.origin.y, rect.origin.x+rect.size.width, rect.origin.y+rect.size.height];
@@ -1902,6 +2034,92 @@ CGPoint translateFromMapToGeo(CGPoint p)
         
     }];
 }
+*/
+-(void)loadClustersForRect:(CGRect)rect withObjects:(BOOL)loadObjects
+{
+    NSString *url=[NSString stringWithFormat:@"http://5.175.192.184/?x1=%f&y1=%f&x2=%f&y2=%f&what=cluster", rect.origin.x, rect.origin.y, rect.origin.x+rect.size.width, rect.origin.y+rect.size.height];
+    
+    NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    [NSURLConnection sendAsynchronousRequest:theRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if(nil != error) {
+            NSLog(@"Load objects error: %@", error);
+        } else {
+            NSError *err = nil;
+            NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &err];
+            if (!jsonArray) {
+                NSLog(@"Error parsing JSON: %@", err);
+            } else {
+                NSMutableArray *keys = nil;
+                if(loadObjects) keys = [NSMutableArray array];
+                for (NSDictionary *it in jsonArray) {
+                    Cluster *cl = _clusters[it[@"id"]];
+                    if(nil == cl) {
+                        cl = [[[Cluster alloc] initWithCenter:CGPointMake(128.f - [it[@"x"] floatValue], 128.f - [it[@"y"] floatValue])] autorelease];
+                        cl.clid = [it[@"id"] integerValue];
+                        _clusters[it[@"id"]] = cl;
+                        if(![cl load]) {
+                            if(loadObjects) [keys addObject:it[@"id"]];
+                        }
+                    }
+                }
+                shouldUpdatePinsForLevel = [self getLevelForScale:scale];
+                if(loadObjects) [self loadObjectsForClusters:keys andSave:NO];
+            }
+        }
+    }];
+}
+
+-(void)loadObjectsForClusters:(NSArray*)clusters andSave:(BOOL)needSave
+{
+    if(nil == clusters || clusters.count <= 0) return;
+    NSString *url=@"http://5.175.192.184/?cluster=";
+    int idx = 0;
+    for (NSString *key in clusters) {
+        if (idx > 0) {
+            url = [url stringByAppendingFormat:@",%@", key];
+        } else {
+            url = [url stringByAppendingString:key];
+        }
+        idx ++;
+    }
+    
+    NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    [NSURLConnection sendAsynchronousRequest:theRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if(nil != error) {
+            NSLog(@"Load objects error: %@", error);
+        } else {
+            NSError *err = nil;
+            NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error: &err];
+            if (!jsonArray) {
+                NSLog(@"Error parsing JSON: %@", err);
+            } else {
+                NSInteger counter = 0;
+                for(NSDictionary *item in jsonArray) {
+                    counter++;
+                    Cluster *cl = _clusters[item[@"cluster"]];
+                    if(nil == cl) {
+                        NSLog(@"Cluster %@ not found!", item[@"cluster"]);
+                    } else {
+                        WifiObject *ob = [[[WifiObject alloc] initWithDictionary:item] autorelease];
+                        [cl accept:ob];
+                    }
+                }
+                NSLog(@"Updated spots. %i of them!", counter);
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"distanceUpdated" object:nil];
+                shouldUpdatePinsForLevel = [self getLevelForScale:scale];
+                if(needSave) {
+                    for (NSString *key in clusters) {
+                        Cluster *cl = _clusters[key];
+                        [self saveCluster:cl];
+                    }
+                }
+            }
+        }
+        
+    }];
+}
 
 -(void)unloadFarObjectsFromRect:(CGRect)rect
 {
@@ -1910,20 +2128,24 @@ CGPoint translateFromMapToGeo(CGPoint p)
     r.origin.y -= r.size.height;
     r.size.width *= 3;
     r.size.height *= 3;
-    for(Cluster* cl in _clusters) {
+    NSMutableArray *rmkeys = [NSMutableArray array];
+    for(NSString *key in _clusters.allKeys) {
+        Cluster *cl = _clusters[key];
         if(!CGRectContainsPoint(r, cl.center)) {
             if(cl.pinID > 0) {
                 [self removePin:cl.pinID];
             }
-            for (Object *o in cl.objects) {
+            for (WifiObject *o in cl.objects) {
                 if(o.pinID > 0)
                     [self removePin:o.pinID];
             }
+            [rmkeys addObject:key];
         }
     }
-    self.clusters = [_clusters filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        return CGRectContainsPoint(r,  [((Cluster*)evaluatedObject) center]);
-    }]];
+    [_clusters removeObjectsForKeys:rmkeys];
+//    self.clusters = [_clusters filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+//        return CGRectContainsPoint(r,  [((Cluster*)evaluatedObject) center]);
+//    }]];
 }
 
 -(void)updatePinsForLevel:(NSNumber*)nLevel
@@ -1944,8 +2166,10 @@ CGPoint translateFromMapToGeo(CGPoint p)
                 break;
             case 0:
                 // show objects
-                for (Cluster *cl in _clusters) {
-                    for (Object *ob in cl.objects) {
+                for (NSString *key in _clusters) {
+                    Cluster *cl = _clusters[key];
+                    for (int obid = 0; obid < cl.objects.count; obid ++) {
+                        WifiObject *ob = cl.objects[obid];
                         if(ob.pinID < 0) {
                             ob.pinID = [self newPin:ob.coords color:1 name:ob.title subtitle:[ob.comments firstObject]];
                             Pin *p = [self getPin:ob.pinID];
@@ -1956,7 +2180,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
                 break;
             case 1:
                 // show clusters
-                for (Cluster *cl in _clusters) {
+                for (NSString *key in _clusters) {
+                    Cluster *cl = _clusters[key];
                     if(cl.pinID < 0)
                         cl.pinID = [self newStar:cl.center color:1 name:cl.title];
                 }
@@ -1974,8 +2199,9 @@ CGPoint translateFromMapToGeo(CGPoint p)
         case 0:
             // show objects
             [self removeAllPins];
-            for (Cluster *cl in _clusters) {
-                for (Object *ob in cl.objects) {
+            for (NSString *key in _clusters) {
+                Cluster *cl = _clusters[key];
+                for (WifiObject *ob in cl.objects) {
                     ob.pinID = -1;
                 }
             }
@@ -1983,7 +2209,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
         case 1:
             // show clusters
             [self removeAllPins];
-            for (Cluster *cl in _clusters) {
+            for (NSString *key in _clusters) {
+                Cluster *cl = _clusters[key];
                 cl.pinID = -1;
             }
             break;
@@ -1998,8 +2225,9 @@ CGPoint translateFromMapToGeo(CGPoint p)
             break;
         case 0:
             // show objects
-            for (Cluster *cl in _clusters) {
-                for (Object *ob in cl.objects) {
+            for (NSString *key in _clusters) {
+                Cluster *cl = _clusters[key];
+                for (WifiObject *ob in cl.objects) {
                     ob.pinID = [self newPin:ob.coords color:1 name:ob.title subtitle:[ob.comments firstObject]];
                     Pin* p = [self getPin:ob.pinID];
                     [p setGeoPosition:ob.geoP];
@@ -2008,7 +2236,8 @@ CGPoint translateFromMapToGeo(CGPoint p)
             break;
         case 1:
             // show clusters
-            for (Cluster *cl in _clusters) {
+            for (NSString *key in _clusters) {
+                Cluster *cl = _clusters[key];
                 cl.pinID = [self newStar:cl.center color:1 name:cl.title];
             }
             break;
@@ -2039,16 +2268,17 @@ CGPoint translateFromMapToGeo(CGPoint p)
 {
     NSMutableArray *result = [NSMutableArray array];
     CGFloat r2 = radius*radius;
-    for (Cluster *cl in _clusters) {
+    for (NSString *key in _clusters) {
+        Cluster *cl = _clusters[key];
         CGFloat len2 = sqr(cl.center.x-center.x) + sqr(cl.center.y-center.y);
-        if(len2 <= (cl.radius*cl.radius + r2)) {
-            for (Object *ob in cl.objects) {
+        if(len2 <= (CLUSTER_RADIUS*CLUSTER_RADIUS + r2)) {
+            for (WifiObject *ob in cl.objects) {
                 CGFloat olen2 = sqr(ob.coords.x-center.x) + sqr(ob.coords.y-center.y);
                 if(olen2 <= r2) [result addObject:ob];
             }
         }
     }
-    return [NSArray arrayWithArray:result];
+    return result;
 }
 
 -(NSArray*)getObjectsNearUserWithRadius:(CGFloat)radius
@@ -2163,6 +2393,30 @@ CGPoint translateFromMapToGeo(CGPoint p)
     CGFloat off = offset/scale;
     CGRect frame = CGRectMake(128 - position.x - W2/scale - off, 128 - position.y - H2/scale - off, W/scale + 2.f*off, H/scale + 2.f*off);
     [rasterLayer downloadToCache:frame fromScale:_lvl toScale:_lvl+depth];
+
+    NSMutableArray *cload = [NSMutableArray array];
+    for (NSString *key in _clusters) {
+        Cluster *cl = _clusters[key];
+        if(CGRectContainsPoint(frame, cl.center)) {
+            if(cl.empty) {
+                [cload addObject:[NSString stringWithFormat:@"%d", cl.clid]];
+            } else {
+                [self saveCluster:cl];
+            }
+        }
+    }
+    if(cload.count > 0) {
+        [self loadObjectsForClusters:cload andSave:YES];
+    }
+}
+
+-(void)saveCluster:(Cluster*)cl
+{
+    [cl save];
+    savedClusters[[NSString stringWithFormat:@"%d", cl.clid]] = [NSValue valueWithCGPoint:cl.center];
+    NSData *d = [NSKeyedArchiver archivedDataWithRootObject:savedClusters];
+    NSString *fname = [NSString stringWithFormat:@"%@/savedClusters.cache", [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]];
+    [d writeToFile:fname atomically:YES];
 }
     
 @end

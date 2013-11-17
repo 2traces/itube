@@ -21,7 +21,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 
 #define nSEARCH_RESULTS_READY @"Search results ready"
 
-@interface Object: NSObject {
+@interface WifiObject: NSObject <NSCoding> {
 }
 
 @property (nonatomic, strong) NSString *address;
@@ -43,20 +43,22 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 @end
 
 @interface Cluster : NSObject {
-    CGFloat radius;
+    //CGFloat radius;
     NSMutableArray *_objects;
-    CGPoint sumCoord;
+    //CGPoint sumCoord;
 }
 
 @property (nonatomic, assign) CGPoint center;
 @property (nonatomic, readonly) NSArray *objects;
 @property (nonatomic, assign) NSInteger pinID;
 @property (nonatomic, readonly) NSString *title;
-@property (nonatomic, readonly) CGFloat radius;
+@property (nonatomic, readonly) BOOL empty;
+@property (nonatomic, assign) NSInteger clid;
+//@property (nonatomic, readonly) CGFloat radius;
 
--(id)initWithRadius:(CGFloat)r;
-
+-(id)initWithCenter:(CGPoint)p;
 -(BOOL)accept:(id)element;
+-(void)unload;
 
 @end
 
@@ -127,7 +129,7 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 //Set pin
 -(int)newPin:(CGPoint)coordinate color:(int)color name:(NSString*)name;
 // activate pin and center map on it
--(void)setPinForObject:(Object*)ob active:(BOOL)active;
+-(void)setPinForObject:(WifiObject*)ob active:(BOOL)active;
 
 - (void) centerMapOnUser;
 -(CGPoint)getCenterMapGeoCoordinates;
@@ -163,7 +165,9 @@ typedef enum {PIN_DEFAULT=0, PIN_USER=1, PIN_OBJECT=2, PIN_CLUSTER=3, PIN_FAVORI
 -(void)showPurchases:(int)index;
 
 -(void)loadObjectsOnScreen;
--(void)loadObjectsForRect:(CGRect)rect;
+//-(void)loadObjectsForRect:(CGRect)rect;
+-(void)loadClustersForRect:(CGRect)rect withObjects:(BOOL)loadObjects;
+-(void)loadObjectsForClusters:(NSArray*)clusters andSave:(BOOL)needSave;
 
 -(NSArray*)getObjectsNear:(CGPoint)center withRadius:(CGFloat)radius;
 -(NSArray*)getObjectsNearUserWithRadius:(CGFloat)radius;

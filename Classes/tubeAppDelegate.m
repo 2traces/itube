@@ -621,7 +621,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 
--(void)selectObject:(Object *)ob
+-(void)selectObject:(WifiObject *)ob
 {
 #ifdef SPOTS_FREE
     GlViewController *gl = self.glViewController;
