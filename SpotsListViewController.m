@@ -50,6 +50,14 @@
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     GlViewController *gl = appDelegate.glViewController;
     self.items = [gl getObjectsNearUserWithRadius:2000];
+    for (WifiObject *object in self.items) {
+        object.distance = [gl calcGeoDistanceFrom:object.geoP to:appDelegate.userGeoPosition];
+    }
+    self.items = [self.items sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        NSNumber *first = [NSNumber numberWithFloat:[(WifiObject*)a distance]];
+        NSNumber *second = [NSNumber numberWithFloat:[(WifiObject*)b distance]];
+        return [first compare:second];
+    }];
 //    NSMutableArray *temp = [NSMutableArray arrayWithCapacity:5];
 //    for (int i = 0; i < 100; i++) {
 //        Object *obj = [Object new];
@@ -161,7 +169,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"SpotItemCell";
-    tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
 
     SpotItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -169,18 +176,24 @@
     }
     
     WifiObject *item = [self.items objectAtIndex:indexPath.row];
-    GlViewController *gl = appDelegate.glViewController;
-    CGFloat distance = [gl calcGeoDistanceFrom:item.geoP to:appDelegate.userGeoPosition];
     
-    NSLog(@"Type: %@", item.kind);
+//    NSLog(@"Type: %@", item.kind);
     
     cell.titleLabel.text = item.title;
-    cell.subtitleLabel.text = [NSString stringWithFormat:@"%.3f км", distance];
+    if (item.distance < 1) {
+        cell.subtitleLabel.text = [NSString stringWithFormat:@"%i м", (int)(item.distance*1000.0f)];
+    }
+    else {
+        cell.subtitleLabel.text = [NSString stringWithFormat:@"%.2f км", item.distance];
+    }
+    if ([item.address length]) {
+        cell.subtitleLabel.text = [NSString stringWithFormat:@"%@, %@", cell.subtitleLabel.text, item.address];
+    }
     cell.accessoryImage.image = [UIImage imageNamed:@"arrow"];
     cell.typeImage.image = [UIImage imageNamed:@"type_0"];
     
 #ifdef SPOTS_FREE
-    if (distance > 0.15f) {
+    if (item.distance > 0.15f) {
         cell.accessoryImage.image = [UIImage imageNamed:@"lock"];
     }
     else {
@@ -197,8 +210,7 @@
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     GlViewController *gl = appDelegate.glViewController;
 #ifdef SPOTS_FREE
-    CGFloat distance = [gl calcGeoDistanceFrom:item.geoP to:appDelegate.userGeoPosition];
-    if (distance > 0.15f) {
+    if (item.distance > 0.15f) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Free version heading", @"") message:NSLocalizedString(@"Free version message 1", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") otherButtonTitles:NSLocalizedString(@"Free version appstore button", @""), nil];
         [alertView show];
         [alertView release];
