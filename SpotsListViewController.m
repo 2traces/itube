@@ -28,7 +28,7 @@
     return self;
 }
 
-- (void)showInfoForObject:(Object*)item animated:(BOOL)animated {
+- (void)showInfoForObject:(WifiObject*)item animated:(BOOL)animated {
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     GlViewController *gl = appDelegate.glViewController;
     
@@ -168,7 +168,7 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"SpotItemCell" owner:self options:nil] lastObject];
     }
     
-    Object *item = [self.items objectAtIndex:indexPath.row];
+    WifiObject *item = [self.items objectAtIndex:indexPath.row];
     GlViewController *gl = appDelegate.glViewController;
     CGFloat distance = [gl calcGeoDistanceFrom:item.geoP to:appDelegate.userGeoPosition];
     
@@ -192,7 +192,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Object *item = [self.items objectAtIndex:indexPath.row];
+    WifiObject *item = [self.items objectAtIndex:indexPath.row];
 
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     GlViewController *gl = appDelegate.glViewController;

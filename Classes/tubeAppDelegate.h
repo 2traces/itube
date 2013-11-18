@@ -84,8 +84,8 @@ NSString* DisplayStationName(NSString* stName);
 - (NSString*)getAppStoreUrl;
 - (NSString*)getRateUrl;
 
--(void)selectObject:(Object*)ob;
--(void)selectCluster:(Cluster*)cl;
+-(void)selectObject:(WifiObject*)ob byPanel:(BOOL)panel;
+-(void)selectCluster:(Cluster*)cl byPanel:(BOOL)panel;
 
 @end
 

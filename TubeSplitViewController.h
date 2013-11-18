@@ -10,7 +10,7 @@
 
 @class RightiPadPathViewController;
 @class GlViewController;
-@class Object;
+@class WifiObject;
 
 @interface TubeSplitViewController : UIViewController {
     UIView *pathView;
@@ -36,6 +36,6 @@
 -(void)refreshStatusInfo;
 -(void)changeStatusView;
 - (CGSize)viewSize;
-- (void)showInfoForObject:(Object*)object;
+- (void)showInfoForObject:(WifiObject*)object;
 
 @end

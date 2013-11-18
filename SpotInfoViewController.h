@@ -15,7 +15,7 @@
 
 @interface SpotInfoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 
-@property (nonatomic, retain) Object *spotInfo;
+@property (nonatomic, retain) WifiObject *spotInfo;
 @property (nonatomic, retain) IBOutlet UIView *shareView;
 @property (nonatomic, retain) IBOutlet UILabel *shareLabel;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;

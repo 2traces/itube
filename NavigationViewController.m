@@ -317,7 +317,7 @@
     }
 }
 
-- (void)showSpotsListWithObject:(Object*)object {
+- (void)showSpotsListWithObject:(WifiObject*)object {
     SpotsListViewController *vc = [[[SpotsListViewController alloc] initWithNibName:@"SpotsListViewController" bundle:[NSBundle mainBundle]] autorelease];
     UINavigationController *nvc = [[[UINavigationController alloc] initWithRootViewController:vc] autorelease];
     [vc showInfoForObject:object animated:NO];
