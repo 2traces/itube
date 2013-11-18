@@ -18,6 +18,7 @@
 
 @interface NavigationViewController () {
     BOOL isSearching;
+    NSDate *lastSearchDate; //we may need this workaround, as events that are dispatched sometimes get messed up and we receive textEdited events after we actually select something in suggestions list
 }
 
 
@@ -94,6 +95,10 @@
 
 -(IBAction)searchText:(UITextField *)sender
 {
+    if (lastSearchDate && [lastSearchDate timeIntervalSinceNow] > -1.0f) {
+        return;
+    }
+    NSLog(@"Text edited! Asking for a list of cities... Time since last search: %f", [lastSearchDate timeIntervalSinceNow]);
     [glController loadCitiesLikeThis:sender.text];
     
     isSearching = YES;
@@ -113,6 +118,8 @@
         if ([sender.text length]) {
             [self.separatingView addSubview:self.suggestionsVC.tableView];
             self.suggestionsVC.tableView.frame = CGRectMake(0, 64, 320, self.separatingView.frame.size.height - 215 - 44);
+            NSLog(@"Showing suggestions table view!");
+
             self.suggestionsVC.tableView.hidden = NO;
             self.listButton.hidden = YES;
 
@@ -127,6 +134,12 @@
 }
 
 - (void) endedSearching {
+    NSLog(@"I've found what I was looking for, enough!");
+    if (lastSearchDate) {
+        [lastSearchDate release];
+    }
+    lastSearchDate = [[NSDate date] retain];
+    
     isSearching = NO;
     [self.view endEditing:YES];
     if (IS_IPAD) {
@@ -183,6 +196,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
 //    distanceAttributes = [[NSDictionary dictionaryWithObjectsAndKeys:
 //     [UIFont fontWithName:@"HelveticaNeue-Italic" size:17], UITextAttributeFont,
 //     [UIColor colorWithRed:124.0/255.0f green:124.0/255.0f blue:124.0/255.0f alpha:1.0f], UITextAttributeTextColor,
@@ -293,6 +307,7 @@
         }
         else {
             if (isSearching) {
+                NSLog(@"Showing suggestions table view!");
                 self.suggestionsVC.tableView.hidden = NO;
                 self.listButton.hidden = YES;
             }

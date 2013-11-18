@@ -44,6 +44,8 @@
 }
 
 - (void)updateData:(NSNotification*)notification {
+    NSLog(@"Updated data in suggestions controller");
+
     NSArray *items = [notification object];
     if ([items isKindOfClass:[NSArray class]]) {
         self.items = items;
