@@ -349,6 +349,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
     for (WifiObject *o in _objects) {
         o.pinID = -1;
     }
+    _empty = NO;
     return YES;
 }
 
@@ -1980,12 +1981,13 @@ CGPoint translateFromMapToGeo(CGPoint p)
     frame.size.height /= scale;
     frame.origin.x -= frame.size.width * 0.5f;
     frame.origin.y -= frame.size.height * 0.5f;
+    CGRect sframe = frame;
+    sframe.origin.x = 128.f - sframe.origin.x - sframe.size.width;
+    sframe.origin.y = 128.f - sframe.origin.y - sframe.size.height;
     if(lvl < LEVEL_WIFI_POINT) {
+        [self loadSavedClustersForRect:sframe];
         [self loadClustersForRect:frame withObjects:NO];
     } else {
-        CGRect sframe = frame;
-        sframe.origin.x = 128.f - sframe.origin.x;
-        sframe.origin.y = 128.f - sframe.origin.y;
         NSMutableArray *sclusters = [NSMutableArray array];
         [self loadSavedClustersForRect:sframe];
         for (NSString *key in _clusters) {
@@ -1995,6 +1997,10 @@ CGPoint translateFromMapToGeo(CGPoint p)
             }
         }
         if(sclusters.count > 0) [self loadObjectsForClusters:sclusters andSave:NO];
+        frame.origin.x -= CLUSTER_RADIUS;
+        frame.origin.y -= CLUSTER_RADIUS;
+        frame.size.width += CLUSTER_RADIUS*2.f;
+        frame.size.height += CLUSTER_RADIUS*2.f;
         [self loadClustersForRect:frame withObjects:YES];
     }
 //    [self unloadFarObjectsFromRect:frame];
@@ -2092,10 +2098,10 @@ CGPoint translateFromMapToGeo(CGPoint p)
                         }
                     }
                 }
-                shouldUpdatePinsForLevel = [self getLevelForScale:scale];
                 if(loadObjects) [self loadObjectsForClusters:keys andSave:NO];
             }
         }
+        shouldUpdatePinsForLevel = [self getLevelForScale:scale];
     }];
 }
 
@@ -2137,7 +2143,6 @@ CGPoint translateFromMapToGeo(CGPoint p)
                 }
                 NSLog(@"Updated spots. %i of them!", counter);
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"distanceUpdated" object:nil];
-                shouldUpdatePinsForLevel = [self getLevelForScale:scale];
                 if(needSave) {
                     for (NSString *key in clusters) {
                         Cluster *cl = _clusters[key];
@@ -2146,7 +2151,7 @@ CGPoint translateFromMapToGeo(CGPoint p)
                 }
             }
         }
-        
+        shouldUpdatePinsForLevel = [self getLevelForScale:scale];
     }];
 }
 

@@ -1256,7 +1256,7 @@ static long DownloadCacheSize = 0;
         rloader1.altSource2 = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         rloader2 = [[[RasterDownloader alloc] initWithUrl:url2] autorelease];
         //rloader2.altSource = [[NSBundle mainBundle] pathForResource:@"RASTER" ofType:nil inDirectory:[NSString stringWithFormat:@"maps/%@", mapName]];
-        dm.vectorDownloader = vloader;
+        //dm.vectorDownloader = vloader;
         dm.rasterDownloader = rloader1;
         loader = dm;
         
