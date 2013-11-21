@@ -296,7 +296,6 @@ NSString *kFooterID = @"collectionFooter";
 
 - (void)purchase
 {
-	NSLog(@"buying %@", featureId);
 	activityView = [DejalBezelActivityView activityViewForView:self.view.window withLabel:@""];
 
     [[IAPManager sharedManager] buyFeature:featureId onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads)
