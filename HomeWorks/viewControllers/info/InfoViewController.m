@@ -6,7 +6,7 @@
 
 
 #import "InfoViewController.h"
-#import "MKStoreManager.h"
+#import "IAPManager.h"
 #import "DejalActivityView.h"
 
 NSString *kAppStoreURL = @"https://itunes.apple.com/ru/app/angry-birds/id343200656?l=en&mt=8";
@@ -61,7 +61,7 @@ NSString *kAppStoreURL = @"https://itunes.apple.com/ru/app/angry-birds/id3432006
 
 	[DejalBezelActivityView activityViewForView:self.view.window withLabel:@""].showNetworkActivityIndicator = YES;
 
-	[[MKStoreManager sharedManager] restorePreviousTransactionsOnComplete:^
+	[[IAPManager sharedManager] restorePreviousTransactionsOnComplete:^
 	{
 		[DejalBezelActivityView removeView];
 	}                                                             onError:^(NSError *error)

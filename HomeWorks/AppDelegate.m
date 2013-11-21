@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "MKStoreManager.h"
+#import "IAPManager.h"
 #import <QuickLook/QuickLook.h>
 
 @implementation AppDelegate
@@ -21,8 +21,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 	[NSURLCache setSharedURLCache:URLCache];
 
-	[MKStoreManager sharedManager];
-
+    [IAPManager sharedManager];
+    
 	//[[UITableView appearance] setBackgroundView:nil];
 
     //Setting up app appearence

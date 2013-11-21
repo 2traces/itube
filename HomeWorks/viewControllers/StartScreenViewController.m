@@ -8,10 +8,10 @@
 #import "StartScreenViewController.h"
 #import "AFHTTPRequestOperation.h"
 #import "NSObject+homeWorksServiceLocator.h"
-#import "MKStoreManager.h"
+#import "IAPManager.h"
 
 
-@interface StartScreenViewController () <SKProductsRequestDelegate>
+@interface StartScreenViewController ()
 @end
 
 @implementation StartScreenViewController
@@ -96,26 +96,7 @@
 
 - (void)prepareProducts
 {
-	NSMutableSet *productsSet = [NSMutableSet set];
-
-	[self.catalogRxml iterate:@"term" usingBlock:^(RXMLElement *term)
-	{
-		[term iterate:@"subject" usingBlock:^(RXMLElement *subject)
-		{
-			[subject iterate:@"book" usingBlock:^(RXMLElement *book)
-			{
-				[productsSet addObject:[NSString stringWithFormat:self.bookIAPStringFormat,
-																  [term attribute:@"id"],
-																  [subject attribute:@"id"],
-																  [book attribute:@"id"]]];
-			}];
-		}];
-	}];
-
-
-	SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productsSet];
-	productsRequest.delegate = self;
-	[productsRequest start];
+	[[IAPManager sharedManager] requestPurchasesWithDelegate:self];
 }
 
 - (void)continueApplicationLoading
@@ -123,20 +104,5 @@
 	[self performSegueWithIdentifier:@"showList" sender:self];
 }
 
-- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
-{
-	[[MKStoreManager sharedManager] productsRequest:request didReceiveResponse:response];
-}
-
-- (void)requestDidFinish:(SKRequest *)request
-{
-	[self continueApplicationLoading];
-}
-
-- (void)request:(SKRequest *)request didFailWithError:(NSError *)error
-{
-	[[MKStoreManager sharedManager] request:request didFailWithError:error];
-	[self continueApplicationLoading];
-}
 
 @end

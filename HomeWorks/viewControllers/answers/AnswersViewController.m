@@ -10,7 +10,7 @@
 #import "AnswersViewController.h"
 #import "NSObject+homeWorksServiceLocator.h"
 #import "AnswersViewHeader.h"
-#import "MKStoreManager.h"
+#import "IAPManager.h"
 #import "DejalActivityView.h"
 #import "AnswerFileURL.h"
 #import "AnswerViewCell.h"
@@ -50,7 +50,7 @@ NSString *kFooterID = @"collectionFooter";
 #ifdef HW_PRO
     self.purchased = YES;
 #else
-    self.purchased = [MKStoreManager isFeaturePurchased:featureId];
+    self.purchased = [[IAPManager sharedManager] isFeaturePurchased:featureId];
 #endif
     
 
@@ -103,7 +103,12 @@ NSString *kFooterID = @"collectionFooter";
 	}
 	else
 	{
-		self.navigationItem.rightBarButtonItem.title = @"Купить все за 0.99$";
+        if ([[IAPManager sharedManager] remainingDownloads] > 0) {
+            self.navigationItem.rightBarButtonItem.title = @"Скачать";
+        }
+        else {
+            self.navigationItem.rightBarButtonItem.title = @"Купить все за 0.99$";
+        }
 	}
 }
 
@@ -294,25 +299,19 @@ NSString *kFooterID = @"collectionFooter";
 	NSLog(@"buying %@", featureId);
 	activityView = [DejalBezelActivityView activityViewForView:self.view.window withLabel:@""];
 
-	NSMutableArray *purchasableObjects = [MKStoreManager sharedManager].purchasableObjects;
-	for (SKProduct *product in purchasableObjects)
-	{
-		if ([[product productIdentifier] isEqualToString:featureId])
-		{
-			[[MKStoreManager sharedManager] buyFeature:featureId onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads)
-			{
-				[activityView removeFromSuperview];
-				self.purchased = YES;
-				[self.collectionView reloadData];
-			}                              onCancelled:^
-			{
-				[self removeActivityView:activityView];
-			}];
-			return;
-		}
-	}
+    [[IAPManager sharedManager] buyFeature:featureId onComplete:^(NSString *purchasedFeature, NSData *purchasedReceipt, NSArray *availableDownloads)
+    {
+        [activityView removeFromSuperview];
+        self.purchased = YES;
+        [self.collectionView reloadData];
+    }                              onCancelled:^
+    {
+        [self removeActivityView:activityView];
+    }];
+//    return;
 
-	[self performSelector:@selector(removeActivityView:) withObject:activityView afterDelay:5];
+
+//	[self performSelector:@selector(removeActivityView:) withObject:activityView afterDelay:5];
 }
 
 - (BOOL)addSkipBackupAttributeToItemAtPath:(NSString *)path
