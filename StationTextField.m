@@ -7,6 +7,9 @@
 //
 
 #import "StationTextField.h"
+#import "tubeAppDelegate.h"
+
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 @implementation StationTextField
 
@@ -22,13 +25,13 @@
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 
 - (CGRect)rightViewRectForBounds:(CGRect)bounds
 {
@@ -70,20 +73,44 @@
     CGSize textBounds = [self.text sizeWithFont:self.font];
     
     newFrame.origin.x=3.0;
-    newFrame.origin.y=3.0;
+
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        if (self.state == TubeStationStatePath) {
+            if (IS_IPAD) {
+                newFrame.origin.y=15.0;
+            } else {
+                newFrame.origin.y=6.0;
+            }
+        } else {
+            newFrame.origin.y=15.0;
+        }
+    } else {
+        newFrame.origin.y=3.0;
+    }
+    
     newFrame.size.width=rect.size.width-10.0;
     newFrame.size.height = textBounds.height;
     
     [super drawTextInRect:newFrame];
 }
 
-- (void)drawPlaceholderInRect:(CGRect)rect 
+- (void)drawPlaceholderInRect:(CGRect)rect
 {
     CGRect newFrame;
     CGSize textBounds = [self.placeholder sizeWithFont:self.font];
     
     newFrame.origin.x=18.0;
-    newFrame.origin.y=3.0;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        if (self.state == TubeStationStatePath) {
+            newFrame.origin.y=3.0;
+        } else {
+            newFrame.origin.y=14.0;
+        }
+    } else {
+        newFrame.origin.y=3.0;
+    }
+
     newFrame.size.width=rect.size.width-10.0;
     newFrame.size.height = textBounds.height;
     
@@ -92,10 +119,10 @@
 
 
 /*
-- (void) drawPlaceholderInRect:(CGRect)rect {
-    [[UIColor blueColor] setFill];
-    [[self placeholder] drawInRect:rect withFont:[UIFont systemFontOfSize:16]];
-}
-*/
+ - (void) drawPlaceholderInRect:(CGRect)rect {
+ [[UIColor blueColor] setFill];
+ [[self placeholder] drawInRect:rect withFont:[UIFont systemFontOfSize:16]];
+ }
+ */
 
 @end

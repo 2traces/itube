@@ -777,10 +777,10 @@
     FastAccessTableViewController *tableViewC=[[[FastAccessTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
     
     tubeAppDelegate *appDelegate = (tubeAppDelegate *) [[UIApplication sharedApplication] delegate];
-    tableViewC.view.frame=CGRectMake(0,44,320,200);
+    tableViewC.view.frame=CGRectMake(0,44,320,220);
     
     if ([appDelegate isIPHONE5]) {
-        tableViewC.view.frame=CGRectMake(0,44,320,288);
+        tableViewC.view.frame=CGRectMake(0,44,320,308);
         [[(MainView*)self.view viewWithTag:554] setFrame:CGRectMake(0,44,320,528)];
     }
     
