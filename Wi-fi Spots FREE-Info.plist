@@ -15,13 +15,8 @@
 			<key>CFBundleIconFiles</key>
 			<array>
 				<string>icon-ios7</string>
-				<string>icon-iPad@2x.png</string>
-				<string>icon-iPad.png</string>
-				<string>icon.png</string>
-				<string>icon@2x.png</string>
+				<string>icon</string>
 			</array>
-			<key>UIPrerenderedIcon</key>
-			<true/>
 		</dict>
 	</dict>
 	<key>CFBundleIcons~ipad</key>
@@ -30,16 +25,11 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
+				<string>icon~ipad</string>
 				<string>icon-ios7~ipad</string>
 				<string>icon-ios7</string>
-				<string>icon~ipad</string>
-				<string>icon-iPad@2x.png</string>
-				<string>icon-iPad.png</string>
-				<string>icon.png</string>
-				<string>icon@2x.png</string>
+				<string>icon</string>
 			</array>
-			<key>UIPrerenderedIcon</key>
-			<true/>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
