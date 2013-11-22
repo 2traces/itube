@@ -13,6 +13,7 @@
 #import "tubeAppDelegate.h"
 #import "WeatherHelper.h"
 #import "WeatherView.h"
+#import "tubeAppDelegate.h"
 
 @interface CategoriesViewController ()
 
@@ -43,6 +44,7 @@
 @synthesize navigationDelegate;
 @synthesize categories;
 @synthesize teasers;
+@synthesize teaserImage;
 
 - (IBAction)showSettings:(id)sender {
     [self.navigationDelegate showSettings];
@@ -134,6 +136,21 @@
 
     CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
     //self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, windowBounds.size.height);
+    
+    self.tableView.backgroundColor = [UIColor clearColor];
+    
+    // fixing strange behavior of view on iPad with iOS7.0.3 - 20 points lower screen
+    
+    if (IS_IPAD && SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        CGRect buttonSettingsRect = buttonSettings.frame;
+        buttonSettings.frame = CGRectMake(buttonSettingsRect.origin.x, buttonSettingsRect.origin.y-20, buttonSettingsRect.size.width, buttonSettingsRect.size.height);
+        
+        CGRect scrollViewRect = scrollView.frame;
+        scrollView.frame = CGRectMake(scrollViewRect.origin.x, scrollViewRect.origin.y-20, scrollViewRect.size.width, scrollViewRect.size.height);
+
+        CGRect teaserImageRect = teaserImage.frame;
+        teaserImage.frame = CGRectMake(teaserImageRect.origin.x, teaserImageRect.origin.y-20, teaserImageRect.size.width, teaserImageRect.size.height);
+    }
     
     [self reloadCategories];
 }

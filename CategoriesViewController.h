@@ -36,6 +36,7 @@
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UIButton *buttonSettings;
+@property (nonatomic, retain) IBOutlet UIImageView *teaserImage;
 @property (nonatomic, assign) id<NavigationDelegate> navigationDelegate;
 
 - (IBAction)showSettings:(id)sender;

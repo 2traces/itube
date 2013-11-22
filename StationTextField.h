@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StationTextField : UITextField
-{
-    int state;
-}
+typedef NS_ENUM(NSInteger, TubeStationState) {
+    TubeStationStateDefault,
+    TubeStationStatePath,
+};
 
-@property (nonatomic,assign) int state;
+@interface StationTextField : UITextField
+
+@property (nonatomic,assign) TubeStationState state;
 
 @end

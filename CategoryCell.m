@@ -29,7 +29,7 @@
         self.labelCategory.backgroundColor = [UIColor clearColor];
         self.selectedBackgroundView = [[[UIView alloc] initWithFrame:self.frame] autorelease];
         self.selectedBackgroundView.backgroundColor = [UIColor whiteColor];
-
+        self.backgroundColor = [UIColor clearColor];
         
         self.labelCategory.text = title;
         

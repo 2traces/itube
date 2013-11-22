@@ -11,6 +11,7 @@
 #import "StationListCell.h"
 #import "tubeAppDelegate.h"
 #import "MainViewController.h"
+#import "tubeAppDelegate.h"
 
 @implementation FastAccessTableViewController
 
@@ -69,7 +70,7 @@
 {
     if ([self.colorDictionary objectForKey:[line name]]) {
         return [self.colorDictionary objectForKey:[line name]];
-    } 
+    }
     
     UIImage *image = [self drawCircleView:[line color]];
     [self.colorDictionary setObject:image forKey:[line name]];
@@ -141,7 +142,7 @@
     } else {
         cellValue = station.name;
     }
-
+    
     BOOL duplicate = NO;
     NSString *stN = lang ? DisplayStationName(station.altname) : DisplayStationName(station.name);
     for (MStation *st in self.filteredStation) {
@@ -167,7 +168,7 @@
     cell.mylabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:20.0f];
     cell.mylabel.textColor = [UIColor blackColor];
     
-    NSUInteger indexForTag = [self.stationList indexOfObject:[self.filteredStation objectAtIndex:indexPath.row]];  
+    NSUInteger indexForTag = [self.stationList indexOfObject:[self.filteredStation objectAtIndex:indexPath.row]];
     
     // звездочка
     [[cell mybutton] setTag:indexForTag];
@@ -180,7 +181,7 @@
     }
     
     UIImageView *myImageView = (UIImageView*) [cell viewWithTag:102];
-    myImageView.image = [self imageWithColor:[(MStation*)[self.filteredStation objectAtIndex:indexPath.row] lines]];    
+    myImageView.image = [self imageWithColor:[(MStation*)[self.filteredStation objectAtIndex:indexPath.row] lines]];
     
     return cell;
 }
@@ -195,7 +196,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
+{
     return 38.0;
 }
 
@@ -209,7 +210,15 @@
         [[self.stationList objectAtIndex:rowOfButton] setIsFavorite:[NSNumber numberWithInt:1]];
     }
     
-    UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
+    //    UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
+    
+    UITableViewCell *cell;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        cell = (UITableViewCell*)[[[sender superview] superview] superview];
+    } else {
+        cell = (UITableViewCell*)[[sender superview] superview];
+    }
     
     NSIndexPath *path = [self.tableView indexPathForCell:cell];
     
@@ -251,7 +260,7 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-	[filteredStation removeAllObjects]; 
+	[filteredStation removeAllObjects];
 	
 	for (MStation* station in self.stationList)
 	{
@@ -281,10 +290,10 @@
     [appDelegate.mainViewController returnFromSelectionFastAccess:nil];
     
     [textField resignFirstResponder];
-
+    
     return YES;
 }
-     
+
 -(void)dealloc
 {
     self.dataSource=nil;

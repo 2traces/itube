@@ -390,7 +390,15 @@
         [[self.stationList objectAtIndex:rowOfButton] setIsFavorite:[NSNumber numberWithInt:1]];
     }
     
-    UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
+//    UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
+    
+    UITableViewCell *cell;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        cell = (UITableViewCell*)[[[sender superview] superview] superview];
+    } else {
+        cell = (UITableViewCell*)[[sender superview] superview];
+    }
     
     if (self.mySearchDC.active) {
         
@@ -486,6 +494,8 @@
 
 -(void)textDidChange:(NSNotification *)note
 {
+    isTextFieldInUse=YES;
+    
     UITextField *tf = [note object];
     [self filterContentForSearchText:tf.text scope:nil];
     

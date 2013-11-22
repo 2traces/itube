@@ -255,7 +255,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     
-    if (alertView.tag=1) {
+    if (alertView.tag==1) {
 //        if (buttonIndex == 0) {
 //            
 //            NSUserDefaults	*prefs = [NSUserDefaults standardUserDefaults];
@@ -335,7 +335,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)resizeAlertView:(UIAlertView *)alertView
 {
-    if (alertView.tag=1) {
+    if (alertView.tag==1) {
         NSInteger imageCount = 0;
         CGFloat offset = 0.0f;
         CGFloat messageOffset = 0.0f;

@@ -580,14 +580,14 @@ CGPoint translateFromMapToGeo(CGPoint p)
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     if ([appDelegate isIPHONE5]) {
-        zonesRect=CGRectMake(250, 498, 71, 43);
-        cornerRect=CGRectMake(0, 489, 36, 60);
+        zonesRect=CGRectMake(250, 518, 71, 43);
+        cornerRect=CGRectMake(0, 509, 36, 60);
     } else if (IS_IPAD)  {
-        cornerRect=CGRectMake(0, 945, 36, 60);
+        cornerRect=CGRectMake(0, 965, 36, 60);
         zonesRect=IPAD_CITYMAP_ZONES_RECT;
     } else {
-        zonesRect=CGRectMake(250, 410, 71, 43);
-        cornerRect=CGRectMake(0, 401, 36, 60);
+        zonesRect=CGRectMake(250, 430, 71, 43);
+        cornerRect=CGRectMake(0, 421, 36, 60);
     }
     
     zones.frame = zonesRect;
@@ -601,17 +601,17 @@ CGPoint translateFromMapToGeo(CGPoint p)
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     if ([appDelegate isIPHONE5]) {
-        zonesRect=CGRectMake(250, 498, 71, 43);
-        cornerRect=CGRectMake(0, 489, 36, 60);
+        zonesRect=CGRectMake(250, 518, 71, 43);
+        cornerRect=CGRectMake(0, 509, 36, 60);
 
     }
     else if (IS_IPAD)  {
-        cornerRect=CGRectMake(0, 945, 36, 60);
+        cornerRect=CGRectMake(0, 965, 36, 60);
         zonesRect=IPAD_CITYMAP_ZONES_RECT;
         
     }else {
-        zonesRect=CGRectMake(250, 410, 71, 43);
-        cornerRect=CGRectMake(0, 401, 36, 60);
+        zonesRect=CGRectMake(250, 430, 71, 43);
+        cornerRect=CGRectMake(0, 421, 36, 60);
     }
     
     if ([appDelegate isIPHONE5]) {

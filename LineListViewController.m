@@ -314,7 +314,15 @@
 - (void)buttonPressed:(id)sender
 {
     
-    UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
+//    UITableViewCell *cell = (UITableViewCell*)[[sender superview] superview];
+    
+    UITableViewCell *cell;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        cell = (UITableViewCell*)[[[sender superview] superview] superview];
+    } else {
+        cell = (UITableViewCell*)[[sender superview] superview];
+    }
     
     NSIndexPath *path = [self.mytableView indexPathForCell:cell];
     

@@ -259,6 +259,9 @@
         [toolbar release];
         
     }
+    
+    firstStation.state=TubeStationStateDefault;
+    secondStation.state=TubeStationStateDefault;
 }
 
 -(void)adjustSubviews:(UIInterfaceOrientation)interfaceOrientation
@@ -325,7 +328,7 @@
         StationListViewController *controller = [appDelegate.mainViewController showiPadLiveSearchView];
         firstStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
         firstStation.delegate = controller;
-        controller.isTextFieldInUse=YES;
+        controller.isTextFieldInUse=NO;
         [firstStation becomeFirstResponder];
     } else {
         tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -352,6 +355,9 @@
         
         firstButton.userInteractionEnabled=YES;
         secondButton.userInteractionEnabled=YES;
+        
+        firstStation.state=TubeStationStateDefault;
+        secondStation.state=TubeStationStateDefault;
         
         if (IS_IPAD) {
             firstStation.frame = CGRectMake(self.frame.size.width-iPadFieldWidth*2, 0, iPadFieldWidth, iPadTbHeight);
@@ -406,7 +412,7 @@
         StationListViewController *controller = [appDelegate.mainViewController showiPadLiveSearchView];
         secondStation.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
         secondStation.delegate = controller;
-        controller.isTextFieldInUse=YES;
+        controller.isTextFieldInUse=NO;
         [secondStation becomeFirstResponder];
     } else {
         tubeAppDelegate *appDelegate = 	(tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -433,6 +439,9 @@
         
         firstButton.userInteractionEnabled=YES;
         secondButton.userInteractionEnabled=YES;
+        
+        firstStation.state=TubeStationStateDefault;
+        secondStation.state=TubeStationStateDefault;
         
         secondStation.background = [[UIImage imageNamed:@"toolbar_bg.png"] stretchableImageWithLeftCapWidth:20.0 topCapHeight:0];
 
@@ -471,7 +480,8 @@
         firstStation.background = [UIImage imageNamed:@"pixeldummy.png"];
         secondStation.background = [UIImage imageNamed:@"pixeldummy.png"];
         
-        firstStation.state=3;
+        firstStation.state=TubeStationStatePath;
+        secondStation.state=TubeStationStatePath;
         
         UIImage *crossImage = [UIImage imageNamed:@"cross_red.png"];
         //        UIImage *crossImageHighlighted = [UIImage imageNamed:@"cross_opaq.png"];

@@ -60,15 +60,15 @@ NSInteger const toolbarWidth=320;
     CGRect scrollSize,settingsRect,shadowRect,zonesRect,cornerRect;
     
     scrollSize = CGRectMake(0, 44,(320),(480-64));
-    settingsRect=CGRectMake(285, 420, 27, 27);
+    settingsRect=CGRectMake(285, 440, 27, 27);
     shadowRect = CGRectMake(0, 44, 480, 61);
     
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-
+    
     CGRect selfFrame = self.frame;
     
     if ([appDelegate isIPHONE5]) {
-        zonesRect=CGRectMake(250, 498, 71, 43);
+        zonesRect=CGRectMake(250, 518, 71, 43);
         cornerRect=CGRectMake(0, 498, 36, 60);
         selfFrame.size.height = 568;
     }
@@ -78,7 +78,7 @@ NSInteger const toolbarWidth=320;
     } else {
         zonesRect=CGRectMake(630, 945, 73, 53);
         cornerRect=CGRectMake(0, 410, 36, 60);
-
+        selfFrame.size.height = 480;
     }
     
     self.frame = selfFrame;
@@ -165,8 +165,8 @@ NSInteger const toolbarWidth=320;
      CLController.delegate = self;
      [CLController.locMgr startUpdatingLocation];
      */
-//	UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
-//	[containerView addGestureRecognizer:singleTap];
+    //	UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
+    //	[containerView addGestureRecognizer:singleTap];
     
     stationMark = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"station_mark"]];
     stationMark.hidden = YES;
@@ -194,8 +194,8 @@ NSInteger const toolbarWidth=320;
         [corner2Button addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:corner2Button];
     }
-
-
+    
+    
     destinationButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [destinationButton setImage:[UIImage imageNamed:@"dst_button_normal"] forState:UIControlStateNormal];
     [destinationButton setImage:[UIImage imageNamed:@"dst_button_pressed"] forState:UIControlStateHighlighted];
@@ -214,7 +214,7 @@ NSInteger const toolbarWidth=320;
     settings.frame = settingsRect;
     [settings addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
     //[self addSubview:settings];
-
+    
     zones = [UIButton buttonWithType:UIButtonTypeCustom];
     if(IS_IPAD){
         [zones setImage:[UIImage imageNamed:@"citymap-button"] forState:UIControlStateNormal];
@@ -227,7 +227,7 @@ NSInteger const toolbarWidth=320;
     }[zones addTarget:self action:@selector(changeZones) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview:zones];
-
+    
     UIImageView *shadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainscreen_shadow"]] autorelease];
     if (IS_IPAD)
         shadow.autoresizingMask = UIViewAutoresizingFlexibleHeight;
@@ -252,19 +252,17 @@ NSInteger const toolbarWidth=320;
 - (void) moveModeButtonToFullScreen {
     CGRect zonesRect, cornerRect;
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
-
+    
     if ([appDelegate isIPHONE5]) {
-        zonesRect=CGRectMake(250, 498, 71, 43);
-        cornerRect=CGRectMake(0, 489, 36, 60);
-    }
-    else if (IS_IPAD)  {
-        cornerRect=CGRectMake(0, 945, 36, 60);
+        zonesRect=CGRectMake(250, 518, 71, 43);
+        cornerRect=CGRectMake(0, 509, 36, 60);
+    } else if (IS_IPAD)  {
+        cornerRect=CGRectMake(0, 965, 36, 60);
         zonesRect=IPAD_METRO_ZONES_RECT;
         corner2Button.frame = cornerRect;
-    }
-    else {
-        zonesRect=CGRectMake(250, 410, 71, 43);
-        cornerRect=CGRectMake(0, 401, 36, 60);
+    } else {
+        zonesRect=CGRectMake(250, 430, 71, 43);
+        cornerRect=CGRectMake(0, 421, 36, 60);
     }
     
     zones.frame = zonesRect;
@@ -276,16 +274,15 @@ NSInteger const toolbarWidth=320;
     tubeAppDelegate *appDelegate = (tubeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     if ([appDelegate isIPHONE5]) {
-        zonesRect=CGRectMake(250, 498, 71, 43);
-        cornerRect=CGRectMake(0, 489, 36, 60);
-
-    }else{
+        zonesRect=CGRectMake(250, 518, 71, 43);
+        cornerRect=CGRectMake(0, 509, 36, 60);
+    } else {
         if (IS_IPAD)  {
-            cornerRect=CGRectMake(0, 945, 36, 60);
+            cornerRect=CGRectMake(0, 965, 36, 60);
             zonesRect=IPAD_METRO_ZONES_RECT;
         } else {
-            zonesRect=CGRectMake(250, 410, 71, 43);
-            cornerRect=CGRectMake(0, 401, 36, 60);
+            zonesRect=CGRectMake(250, 430, 71, 43);
+            cornerRect=CGRectMake(0, 421, 36, 60);
         }
     }
     
@@ -293,15 +290,15 @@ NSInteger const toolbarWidth=320;
         zonesRect.origin.y -= 383;
         cornerRect.origin.y -= 383;
     }else{
-    if (IS_IPAD)  {
-        corner2Button.frame = cornerRect;
-        
-        zonesRect.origin.y -= 734;
-        cornerRect.origin.y -= 734;
-    } else {
-        zonesRect.origin.y -= 295;
-        cornerRect.origin.y -= 295;
-    }
+        if (IS_IPAD)  {
+            corner2Button.frame = cornerRect;
+            
+            zonesRect.origin.y -= 734;
+            cornerRect.origin.y -= 734;
+        } else {
+            zonesRect.origin.y -= 295;
+            cornerRect.origin.y -= 295;
+        }
     }
     
     zones.frame = zonesRect;
@@ -311,7 +308,7 @@ NSInteger const toolbarWidth=320;
 -(void)layoutSubviews
 {
     if (IS_IPAD) {
-       [containerView setFrame:CGRectMake(0, 44,self.bounds.size.width,self.bounds.size.height-44)];
+        [containerView setFrame:CGRectMake(0, 44,self.bounds.size.width,self.bounds.size.height-44)];
     } else {
         [containerView setFrame:CGRectMake(0, 44,self.bounds.size.width,self.bounds.size.height-44)];
     }
@@ -412,7 +409,7 @@ NSInteger const toolbarWidth=320;
         if(pos.y > 380) pos.y = 380;
     }
     sourceButton.hidden = NO;
-
+    
     [UIView animateWithDuration:0.25f animations:^{ sourceButton.center = CGPointMake(pos.x-60, pos.y+20); }];
     [UIView animateWithDuration:0.25f animations:^{ destinationButton.center = CGPointMake(pos.x+60, pos.y+20); }];
     
@@ -435,7 +432,7 @@ NSInteger const toolbarWidth=320;
     p.x = -40;
     [UIView animateWithDuration:0.125f animations:^{ sourceButton.center = p; } completion:^(BOOL finished) {
         sourceButton.hidden = YES;
-    
+        
     }];
     p = destinationButton.center;
     if (IS_IPAD) {
@@ -564,8 +561,8 @@ NSInteger const toolbarWidth=320;
     }
     
     [containerView setContentOffset:CGPointMake(st.pos.x * zoom - containerView.bounds.size.width*0.5f, st.pos.y * zoom - containerView.bounds.size.height*0.5f ) animated:YES];
-
-//    [mapView sendMapMovedNotification];
+    
+    //    [mapView sendMapMovedNotification];
 }
 
 -(CGPoint)getCenterMapGeoCoordinates
