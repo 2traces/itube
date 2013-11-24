@@ -84,6 +84,8 @@
         CGFloat originX = (320 - stationW - linesW) /3.0;
         stationButton.frame=CGRectMake(originX, stationButton.frame.origin.y, stationButton.frame.size.width, stationButton.frame.size.height);
         linesButton.frame=CGRectMake(2*originX+stationButton.frame.size.width, linesButton.frame.origin.y, linesButton.frame.size.width, linesButton.frame.size.height);
+        
+        settingsButton.hidden = YES;
     }
 }
 
