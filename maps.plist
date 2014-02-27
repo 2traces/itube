@@ -14,6 +14,8 @@
 		<string>Paris</string>
 		<key>filename</key>
 		<string>paris</string>
+		<key>zipFile</key>
+		<string>http://parismetromaps.info/maps/paris/paris.zip</string>
 		<key>description</key>
 		<string>paris.txt</string>
 		<key>picture</key>
@@ -57,6 +59,8 @@
 		<string>Berlin</string>
 		<key>filename</key>
 		<string>berlin</string>
+		<key>zipFile</key>
+		<string>http://parismetromaps.info/maps/berlin/berlin.zip</string>
 		<key>description</key>
 		<string>berlin.txt</string>
 		<key>picture</key>
@@ -82,6 +86,8 @@
 		<string>NYC</string>
 		<key>filename</key>
 		<string>nyc</string>
+		<key>zipFile</key>
+		<string>http://parismetromaps.info/maps/nyc/nyc.zip</string>
 		<key>description</key>
 		<string>nyc.txt</string>
 		<key>picture</key>
@@ -109,6 +115,8 @@
 		<string>Venice</string>
 		<key>filename</key>
 		<string>nyc</string>
+		<key>zipFile</key>
+		<string>http://parismetromaps.info/maps/nyc/nyc.zip</string>
 		<key>description</key>
 		<string>nyc.txt</string>
 		<key>picture</key>

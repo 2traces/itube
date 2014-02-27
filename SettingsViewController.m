@@ -119,8 +119,10 @@
 
 -(NSArray*)getMapsList
 {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+    //NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    //NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"maps" ofType:@"plist"];
+
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
     NSArray *mapIDs = [dict allKeys];
@@ -829,6 +831,17 @@
     return nil;
 }
 
+-(NSString*)getZipFileForProduct:(NSString*)prodID
+{
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID]) {
+            return [map valueForKey:@"zipFile"];
+        }
+    }
+    
+    return nil;
+}
+
 - (void)startTimer {
     self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
 }
@@ -874,11 +887,10 @@
     
     [servers addObject:server];
     
-    NSString *mapName = [self getMapNameForProduct:prodID];   
+    NSString *zipFile = [self getZipFileForProduct:prodID];
     
-    NSString *mapFilePath = [NSString stringWithFormat:@"%@/%@.zip",mapName,mapName];
     requested_file_type=zip_;
-    [server loadFileAtURL:mapFilePath];
+    [server loadFileAtFullURL:[NSURL URLWithString:zipFile]];
 }
 
 -(void)returnWithPurchase:(NSString *)prodID

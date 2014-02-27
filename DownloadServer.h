@@ -25,6 +25,7 @@
 @property(nonatomic, retain) NSString *prodID;
 
 -(void)loadFileAtURL:(NSString*)url;
+-(void)loadFileAtFullURL:(NSURL*)url;
 -(void)cancel;
 
 @end

@@ -48,11 +48,16 @@ NSString *mainurl = @"http://parismetromaps.info/maps";
 
 -(void)loadFileAtURL:(NSString *)suburl
 {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[self makeFullURL:suburl] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60.0];
+    [self loadFileAtFullURL:[self makeFullURL:suburl]];
+}
+
+-(void)loadFileAtFullURL:(NSURL *)url
+{
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60.0];
     
     self.connection = [[[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES] autorelease];
     [request release];
-    request=nil;    
+    request=nil;
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response

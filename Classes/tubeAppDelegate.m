@@ -447,51 +447,36 @@ void uncaughtExceptionHandler(NSException *exception) {
     return currentCity;
 }
 
-- (NSString*)getAppStoreUrl {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    if (![manager fileExistsAtPath:path]) {
-        NSBundle *bundle = [NSBundle mainBundle];
-        NSError *error = nil;
-        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
+-(NSDictionary*)mapsPlist
+{
+    static NSDictionary *_maps = nil;
+    if(nil == _maps) {
+        NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
         
-        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
+        NSFileManager *manager = [NSFileManager defaultManager];
+        
+        if (![manager fileExistsAtPath:path]) {
+            NSBundle *bundle = [NSBundle mainBundle];
+            NSError *error = nil;
+            NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
+            
+            [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
+        }
+        
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+        NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+        _maps = [dict objectForKey:bundleIdentifier];
     }
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
-    NSDictionary *map = [dict objectForKey:bundleIdentifier];
-    if (map) {
-        return [map objectForKey:@"appstore_link"];
-    }
-    return nil;
+    return _maps;
+}
+
+- (NSString*)getAppStoreUrl {
+    return [self.mapsPlist objectForKey:@"appstore_link"];
 }
 
 - (NSString*)getRateUrl {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    if (![manager fileExistsAtPath:path]) {
-        NSBundle *bundle = [NSBundle mainBundle];
-        NSError *error = nil;
-        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
-        
-        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
-    }
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
-    NSDictionary *map = [dict objectForKey:bundleIdentifier];
-    if (map) {
-        return [map objectForKey:@"rate_link"];
-
-    }
-    return nil;
+    return [self.mapsPlist objectForKey:@"rate_link"];
 }
 
 - (NSArray*)getTeasersForMaps {
@@ -532,100 +517,22 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 -(NSString*)getDefaultMapName
 {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    if (![manager fileExistsAtPath:path]) {
-        NSBundle *bundle = [NSBundle mainBundle]; 
-        NSError *error = nil; 
-        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"]; 
-        
-        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
-    }
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
-
-    NSString *filename = [[dict objectForKey:bundleIdentifier] objectForKey:@"filename"];
-    
-    NSString *mapFileName =[NSString stringWithString:filename];
-    [dict release];
-    
-    return mapFileName;
+    return [self.mapsPlist objectForKey:@"filename"];
 }
 
 -(NSString*)getDefaultCityName
 {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    if (![manager fileExistsAtPath:path]) {
-        NSBundle *bundle = [NSBundle mainBundle]; 
-        NSError *error = nil; 
-        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"]; 
-        
-        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
-    }
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
-
-    NSString *cityFileName =[NSString stringWithString:[[dict objectForKey:bundleIdentifier] objectForKey:@"name"]];
-    [dict release];
-    
-    return cityFileName;
+    return [self.mapsPlist objectForKey:@"name"];
 }
 
 -(NSString*)getDefaultMapUrl1
 {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    if (![manager fileExistsAtPath:path]) {
-        NSBundle *bundle = [NSBundle mainBundle];
-        NSError *error = nil;
-        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
-        
-        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
-    }
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
-
-    NSString *mapUrl =[NSString stringWithString:[[dict objectForKey:bundleIdentifier] objectForKey:@"url1"]];
-    [dict release];
-    
-    return mapUrl;
+    return [self.mapsPlist objectForKey:@"url1"];
 }
 
 -(NSString*)getDefaultMapUrl2
 {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
-    
-    NSFileManager *manager = [NSFileManager defaultManager];
-    
-    if (![manager fileExistsAtPath:path]) {
-        NSBundle *bundle = [NSBundle mainBundle];
-        NSError *error = nil;
-        NSString *mapsBundlePath = [bundle pathForResource:@"maps" ofType:@"plist"];
-        
-        [manager copyItemAtPath:mapsBundlePath toPath:path error:&error];
-    }
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
-
-    NSString *mapUrl =[NSString stringWithString:[[dict objectForKey:bundleIdentifier] objectForKey:@"url2"]];
-    [dict release];
-    
-    return mapUrl;
+    return [self.mapsPlist objectForKey:@"url2"];
 }
 
 #pragma mark - manage maps
