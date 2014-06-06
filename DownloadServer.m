@@ -8,12 +8,20 @@
 
 #import "DownloadServer.h"
 
-@implementation DownloadServer
+@interface DownloadServer ()
+
+@property (nonatomic, retain) NSFileHandle *file;
+
+@end
+
+@implementation DownloadServer {
+    long counter;
+}
 
 @synthesize connection;
 @synthesize responseData;
 @synthesize listener;
-@synthesize prodID;
+@synthesize prodID, filename, file;
 
 NSString *mainurl = @"http://parismetromaps.info/maps";
 
@@ -60,6 +68,17 @@ NSString *mainurl = @"http://parismetromaps.info/maps";
     request=nil;
 }
 
+-(void)loadFileAtFullURL:(NSURL *)url toFile:(NSString *)fileName
+{
+    filename = [fileName retain];
+    NSError *err = nil;
+    [[NSFileManager defaultManager] removeItemAtPath:filename error:&err];
+    if(err) {
+        NSLog(@"Can't remove file %@\nError: %@", filename, err);
+    }
+    [self loadFileAtFullURL:url];
+}
+
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     expectedBytes = [response expectedContentLength];
@@ -67,10 +86,22 @@ NSString *mainurl = @"http://parismetromaps.info/maps";
 }
 
 -(void)connection:(NSURLConnection *)fconnection didReceiveData:(NSData *)data {
-    if (fconnection==self.connection) {
-        [responseData appendData:data];
-        //float part = (float)[responseData length]/(float)expectedBytes;
-        [listener downloadedBytes:(long)[responseData length] outOfBytes:(long)expectedBytes prodID:prodID];
+    @autoreleasepool {
+        if (fconnection==self.connection) {
+            counter += [data length];
+            if(filename) {
+                if(!file) {
+                    [[NSFileManager defaultManager] createFileAtPath:filename contents:data attributes:nil];
+                    file = [[NSFileHandle fileHandleForWritingAtPath:filename] retain];
+                    [file seekToEndOfFile];
+                } else {
+                    [file writeData:data];
+                }
+            } else {
+                [responseData appendData:data];
+            }
+            [listener downloadedBytes:counter outOfBytes:(long)expectedBytes prodID:prodID];
+        }
     }
 }
 
@@ -79,6 +110,11 @@ NSString *mainurl = @"http://parismetromaps.info/maps";
         [listener downloadFailed:self];
         self.responseData=nil;
         self.connection=nil;
+        if(file) {
+            [file closeFile];
+            [file release];
+            file = nil;
+        }
     }
 }
 
@@ -87,6 +123,11 @@ NSString *mainurl = @"http://parismetromaps.info/maps";
         [listener downloadDone:self.responseData prodID:(NSString*)self.prodID server:self]; 
         self.responseData=nil;
         self.connection=nil;
+        if(file) {
+            [file closeFile];
+            [file release];
+            file = nil;
+        }
     }    
 }
 
@@ -100,9 +141,12 @@ NSString *mainurl = @"http://parismetromaps.info/maps";
     
     NSLog(@"server dealloc");
     self.listener=nil;
+    file = nil;
     [prodID release];
 	[connection release];
 	[responseData release];
+    [filename release];
+    [file release];
 	[super dealloc];
 }
 

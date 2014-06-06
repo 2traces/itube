@@ -20,18 +20,14 @@
 
 @protocol SettingsViewControllerDelegate;
 
-@interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate,DownloadServerListener, UIScrollViewDelegate>
+@interface SettingsViewController : UIViewController <MFMailComposeViewControllerDelegate, UIScrollViewDelegate>
 {
-    NSArray *maps;
     
-    NSString *mapID;
     
     NSIndexPath *selectedPath;
     MBProgressHUD *_hud;
     
-    int requested_file_type;
     
-    NSMutableArray *servers;
     NSMutableArray *selectedLanguages;
     
     NSTimer *timer;
@@ -43,7 +39,6 @@
 }
 
 @property (nonatomic, assign) id <SettingsViewControllerDelegate> delegate;
-@property (nonatomic, retain) NSArray *maps;
 @property (retain) IBOutlet UIScrollView *imagesScrollView;
 @property (retain) IBOutlet UIButton *buyButton;
 @property (retain) IBOutlet UIButton *buyAllButton;
@@ -54,16 +49,12 @@
 
 @property (nonatomic, retain) NSIndexPath *selectedPath;
 @property (assign) int purchaseIndex;
-@property (nonatomic, retain) NSMutableArray *servers;
 @property (nonatomic, retain) NSTimer *timer;
 @property (nonatomic, retain) UIImageView *progressArrows;
 @property (nonatomic, retain) NSArray *languages;
 @property (nonatomic, retain) NSArray *feedback;
 @property BOOL fullProductPurchased;
 
--(BOOL)isProductInstalled:(NSString*)prodID;
--(BOOL)isProductPurchased:(NSString*)prodID;
--(BOOL)isProductAvailable:(NSString*)prodID;
 -(IBAction)donePressed:(id)sender;
 - (IBAction)buyFullProduct:(id)sender;
 

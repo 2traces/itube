@@ -20,6 +20,11 @@
 #import "CategoriesViewController.h"
 #import "RatePopupViewController.h"
 #import "WeatherHelper.h"
+#import "Reachability.h"
+#import "SSZipArchive.h"
+
+#define plist_ 1
+#define zip_  2
 
 NSString* DisplayStationName(NSString* stName) {
     NSString *tmpStr = [[stName stringByReplacingOccurrencesOfString:@"_" withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -27,7 +32,11 @@ NSString* DisplayStationName(NSString* stName) {
     return [[tmpStr stringByReplacingOccurrencesOfString:@"." withString:@""] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
-@implementation tubeAppDelegate
+@implementation tubeAppDelegate {
+void(^downloadBlock)(int result, NSString* product);
+    int requested_file_type;
+    NSString *mapID;
+}
 
 @synthesize window;
 @synthesize mainViewController;
@@ -38,11 +47,18 @@ NSString* DisplayStationName(NSString* stName) {
 @synthesize navigationViewController;
 @synthesize mapDirectoryPath;
 @synthesize shouldShowRateScreen;
+@synthesize servers;
+@synthesize maps;
 
 void uncaughtExceptionHandler(NSException *exception) {
     NSLog(@"CRASH: %@", exception);
     NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
     // Internal error reporting
+}
+
++(tubeAppDelegate*)instance
+{
+    return (tubeAppDelegate*)[UIApplication sharedApplication].delegate;
 }
 
 -(void)setUserGeoPosition:(CGPoint)userGeoPosition
@@ -90,6 +106,12 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
+    
+    self.servers = [[[NSMutableArray alloc] init] autorelease];
+    self.maps = [self getMapsList];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
     
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     gl = [[GlViewController alloc] initWithNibName:@"GlViewController" bundle:[NSBundle mainBundle]];
@@ -155,6 +177,74 @@ void uncaughtExceptionHandler(NSException *exception) {
         [window setRootViewController:navController];
         [window makeKeyAndVisible];
     }
+}
+
+
+-(NSArray*)getMapsList
+{
+    //NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    //NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"maps" ofType:@"plist"];
+    
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSArray *mapIDs = [dict allKeys];
+    NSMutableArray *mapsInfoArray = [[[NSMutableArray alloc] initWithCapacity:[mapIDs count]] autorelease];
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    
+    NSMutableDictionary *productContent = nil;
+    NSString *contentID = nil;
+    
+    for (NSString* mapId in mapIDs) {
+        NSMutableDictionary *product = [[NSMutableDictionary alloc] initWithDictionary:[dict objectForKey:mapId]];
+        [product setObject:@"3" forKey:@"sortingPosition"];
+        [product setObject:mapId forKey:@"prodID"];
+        
+        if ([mapId isEqual:bundleIdentifier]) {
+            [product setObject:@"1" forKey:@"sortingPosition"];
+            
+            [product setObject:@"D" forKey:@"status"];
+            productContent = [NSMutableDictionary dictionaryWithDictionary:product];
+            [productContent setObject:@"2" forKey:@"sortingPosition"];
+            
+            contentID = [NSString stringWithFormat:@"%@.content", mapId];
+            [productContent setObject:contentID forKey:@"prodID"];
+            if ([self isProductInstalled:contentID]) {
+                [productContent setObject:@"I" forKey:@"status"];
+            }
+            if ([self isProductPurchased:bundleIdentifier]) {
+                [product setObject:@"P" forKey:@"status"];
+            }
+        } else if ([self isProductPurchased:mapId]) {
+            if ([self isProductInstalled:[product valueForKey:@"filename"]]) {
+                [product setObject:@"I" forKey:@"status"];
+            } else {
+                [product setObject:@"P" forKey:@"status"];
+            }
+        } else {
+            [product setObject:@"Z" forKey:@"status"];
+        };
+        
+        [mapsInfoArray addObject:product];
+        [product release];
+    }
+    
+    if (productContent) {
+        [mapsInfoArray addObject:productContent];
+    }
+    
+    
+    [dict release];
+    
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    
+    [mapsInfoArray sortUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil]];
+    
+    [sortDescriptor2 release];
+    [sortDescriptor1 release];
+    
+    return mapsInfoArray;
 }
 
 - (void)awakeFromNib
@@ -358,7 +448,7 @@ void uncaughtExceptionHandler(NSException *exception) {
                 else if ([label.text isEqualToString:alertView.message])
                 {
                     label.alpha = 1.0f;
-                    label.lineBreakMode = UILineBreakModeWordWrap;
+                    label.lineBreakMode = NSLineBreakByWordWrapping;
                     label.numberOfLines = 0;
                     [label sizeToFit];
                     offset += label.frame.size.height + 20 - frame.size.height;
@@ -592,7 +682,7 @@ void uncaughtExceptionHandler(NSException *exception) {
             picker.mailComposeDelegate = self;
             [picker setSubject:[NSString stringWithString:[self getAppName]]];
             [picker setToRecipients:[NSArray arrayWithObject:[NSString stringWithFormat:@"oxana.bakuma@hotmail.com"]]];
-            [self.navigationViewController presentModalViewController:picker animated:YES];
+            [self.navigationViewController presentViewController:picker animated:YES completion:nil];
             [picker release];
         } else {
             // Device is not configured for sending emails, so notify user.
@@ -629,7 +719,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     [mailAlertView release];
     [resultTitle release];
     [resultMsg release];
-    [self.navigationViewController dismissModalViewControllerAnimated:YES];
+    [self.navigationViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
@@ -686,11 +776,548 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductPurchaseFailedNotification object: nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductPurchasedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductsLoadedNotification object:nil];
+    [servers release];
+    [maps release];
     [gl release];
     [mainViewController release];
     [window release];
     [cityMap release];
     [super dealloc];
+}
+
+#pragma mark - Purchase & Download
+
+-(void) processPurchases
+{
+    Reachability *reach = [Reachability reachabilityForInternetConnection];
+    NetworkStatus netStatus = [reach currentReachabilityStatus];
+    
+    if (netStatus == NotReachable) {
+        NSLog(@"No internet connection!");
+    } else {
+        if ([TubeAppIAPHelper sharedHelper].products == nil) {
+            [[TubeAppIAPHelper sharedHelper] requestProducts];
+        } else {
+            [self enableProducts];
+            [self resortMapArray];
+        }
+    }
+}
+
+- (void)productsLoaded:(NSNotification *)notification
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self enableProducts];
+    [self resortMapArray];
+}
+
+-(void)purchaseProduct:(NSString*)prodID
+{
+    NSArray *products = [TubeAppIAPHelper sharedHelper].products;
+    
+    for (SKProduct *product in products) {
+        if ([product.productIdentifier isEqual:prodID]) {
+            
+            NSLog(@"Buying %@...", product.productIdentifier);
+            [[TubeAppIAPHelper sharedHelper] buyProductIdentifier:product.productIdentifier];
+            
+            [self performSelector:@selector(timeout:) withObject:nil afterDelay:130.0];
+            
+        }
+    }
+}
+
+- (void)timeout:(id)arg {
+    NSLog(@"timeout");
+}
+
+-(void)downloadProduct:(NSString*)prodID withBlock:(void (^)(int result, NSString* product))block
+{
+    downloadBlock = Block_copy(block);
+    NSLog(@"Download product with prodID %@", prodID);
+    DownloadServer *server = [[[DownloadServer alloc] init] autorelease];
+    server.listener=self;
+    server.prodID = prodID;
+    
+    [servers addObject:server];
+    
+    NSString *zipFile = [self getZipFileForProduct:prodID];
+    
+    requested_file_type=zip_;
+    NSString *tempDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [tempDir stringByAppendingPathComponent:[NSString stringWithFormat:@"1.zip"]];
+    [server loadFileAtFullURL:[NSURL URLWithString:zipFile] toFile:path];
+}
+
+
+
+- (void)productPurchaseFailed:(NSNotification *)notification {
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    
+    SKPaymentTransaction * transaction = (SKPaymentTransaction *) notification.object;
+    if (transaction.error.code != SKErrorPaymentCancelled) {
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error!"
+                                                         message:transaction.error.localizedDescription
+                                                        delegate:nil
+                                               cancelButtonTitle:nil
+                                               otherButtonTitles:@"OK", nil] autorelease];
+        
+        [alert show];
+    }
+}
+
+-(void)downloadDone:(NSMutableData *)data prodID:(NSString*)prodID server:(DownloadServer *)myid
+{
+    if (requested_file_type==plist_) {
+        [self processPlistFromServer:data];
+    } else if (requested_file_type==zip_) {
+        NSIndexPath *mapIndexPath = [self getIndexPathProdID:prodID];
+        
+        if (mapIndexPath) {
+            for (NSDictionary *map in self.maps) {
+                if ([[map objectForKey:@"prodID"] isEqual:prodID]) {
+                    [map setValue:@"ZIP" forKey:@"status"];
+                }
+            }
+        }
+        mapID = [prodID retain];
+        [self performSelector:@selector(processZipFromServer:) withObject:myid.filename afterDelay:1];
+    }
+    
+    [servers removeObject:myid];
+}
+
+
+-(void)downloadFailed:(DownloadServer*)myid
+{
+    NSLog(@"Downloading failed");
+    [servers removeObject:myid];
+    if(downloadBlock) downloadBlock(2, myid.prodID);
+}
+
+-(void)downloadedBytes:(long)part outOfBytes:(long)whole prodID:(NSString*)prodID
+{
+    NSLog(@"downloaded bytes %li/%li, prodID %@", part, whole, prodID);
+    if (requested_file_type==zip_) {
+        NSIndexPath *mapIndexPath = [self getIndexPathProdID:prodID];
+        
+        if (mapIndexPath) {
+            for (NSDictionary *map in self.maps) {
+                if ([[map objectForKey:@"prodID"] isEqual:prodID]) {
+                    [map setValue:@"N" forKey:@"status"];
+                    [map setValue:[NSNumber numberWithLong:part] forKey:@"progressPart"];
+                    [map setValue:[NSNumber numberWithLong:whole] forKey:@"progressWhole"];
+                }
+            }
+        }
+    }
+    if(downloadBlock) downloadBlock(0, prodID);
+}
+
+-(void)downloadedBytes:(float)part prodID:(NSString*)prodID
+{
+    NSLog(@"downloaded bytes %f, prodId %@", part, prodID);
+    if (requested_file_type==zip_) {
+        NSIndexPath *mapIndexPath = [self getIndexPathProdID:prodID];
+        
+        if (mapIndexPath) {
+            for (NSDictionary *map in self.maps) {
+                if ([[map objectForKey:@"prodID"] isEqual:prodID]) {
+                    [map setValue:@"N" forKey:@"status"];
+                    [map setValue:[NSNumber numberWithFloat:part] forKey:@"progress"];
+                }
+            }
+        }
+    }
+    if(downloadBlock) downloadBlock(0, prodID);
+}
+
+-(void)cancelDownloading
+{
+    for (DownloadServer *server in servers) {
+        [server cancel];
+    }
+    
+    [servers removeAllObjects];
+}
+
+-(void)startDownloading:(NSString*)prodID
+{
+    if (requested_file_type==zip_) {
+        NSIndexPath *mapIndexPath = [self getIndexPathProdID:prodID];
+        
+        if (mapIndexPath) {
+            for (NSDictionary *map in self.maps) {
+                if ([[map objectForKey:@"prodID"] isEqual:prodID]) {
+                    [map setValue:@"N" forKey:@"status"];
+                }
+            }
+        }
+    }
+}
+
+- (void)productPurchased:(NSNotification *)notification
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    NSString *productIdentifier = (NSString *) notification.object;
+    
+    [self markProductAsPurchased:productIdentifier];
+    [self resortMapArray];
+}
+
+-(void)markProductAsPurchased:(NSString*)prodID
+{
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    NSString *contentIdentifier = [NSString stringWithFormat:@"%@.content", bundleIdentifier];
+    
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID] && ([[map valueForKey:@"status"] isEqual:@"V"] || [[map valueForKey:@"status"] isEqual:@"Z"]) ) {
+            [map setObject:@"P" forKey:@"status"];
+            if ([prodID isEqualToString:bundleIdentifier]) {
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:bundleIdentifier];
+                [self markProductAsInstalled:contentIdentifier];
+            }
+        }
+    }
+    
+    if ([prodID isEqualToString:contentIdentifier]) {
+        [self markProductAsInstalled:prodID];
+    }
+    
+}
+
+-(void)markProductAsInstalled:(NSString*)prodID
+{
+    
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID]) {
+            [map setObject:@"I" forKey:@"status"];
+        }
+    }
+    NSString *contentIdentifier = [NSString stringWithFormat:@"%@.content", bundleIdentifier];
+    if ([prodID isEqualToString:contentIdentifier]) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setValue:[NSNumber numberWithInt:1] forKey:@"additionalContentAccessLevel"];
+        [defaults synchronize];
+        tubeAppDelegate *appdelegate = (tubeAppDelegate*)[[UIApplication sharedApplication] delegate];
+        [appdelegate reloadContent];
+    }
+    
+}
+
+-(void)processZipFromServer:(NSString*)fn {
+    [tubeAppDelegate.instance processZipFromServer:fn prodID:mapID];
+}
+
+-(void)processZipFromServer:(NSString*)fn prodID:(NSString*)prodID
+{
+    NSIndexPath *mapIndexPath = [self getIndexPathProdID:prodID];
+    
+    if (mapIndexPath) {
+        for (NSDictionary *map in self.maps) {
+            if ([[map objectForKey:@"prodID"] isEqual:prodID]) {
+                [map setValue:@"ZIP" forKey:@"status"];
+            }
+        }
+        
+    }
+    
+    // save data to file in tmp
+    NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    
+    //SHOULD BE ASYNC!
+    __block BOOL success = NO;
+    
+    success = [SSZipArchive unzipFileAtPath:fn toDestination:cacheDir];
+    
+    
+    // delete file from temp
+    NSFileManager *manager = [NSFileManager defaultManager];
+    [manager removeItemAtPath:fn error:nil];
+    
+    if (success) {
+        [self markProductAsInstalled:prodID];
+        NSLog(@"Product installed!");
+    }
+    
+    [self resortMapArray];
+    if(downloadBlock) {
+        downloadBlock(1, prodID);
+        [downloadBlock release];
+        downloadBlock = nil;
+    }
+}
+
+
+-(void)processPlistFromServer:(NSMutableData*)data
+{
+    NSLog(@"Process plist from server");
+    NSDictionary *dict = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:nil errorDescription:nil];
+    
+    NSArray *array = [dict allKeys];
+    
+    NSMutableArray *productToDonwload = [NSMutableArray array];
+    
+    if ([array count]>0) {
+        NSString *tempDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString *path = [tempDir stringByAppendingPathComponent:[NSString stringWithFormat:@"maps.plist"]];
+        [data writeToFile:path atomically:YES];
+        NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+        
+        
+        /*
+        for (NSDictionary *mmap in self.maps) {
+            if ([self isProductPurchased:[mmap objectForKey:@"prodID"]] || [[mmap objectForKey:@"prodID"] isEqual:bundleIdentifier]) {
+                for (NSString *prodId in array) {
+                    if ([prodId isEqual:[mmap objectForKey:@"prodID"]]) {
+                        if ([[mmap objectForKey:@"ver"] integerValue]<[[[dict objectForKey:prodId] objectForKey:@"ver"] integerValue]) {
+                            [productToDonwload addObject:[mmap objectForKey:@"prodID"]];
+                        }
+                    }
+                }
+            }
+        }
+         */
+        
+        self.maps = [self getMapsList];
+        
+        [self enableProducts];
+        [self resortMapArray];
+        
+        NSSet *newProductIdentifiers = [[[NSSet alloc] initWithArray:array] autorelease];
+        
+        [[TubeAppIAPHelper sharedHelper] setProductIdentifiers:newProductIdentifiers];
+        NSLog(@"Request products, new products ids: %@", newProductIdentifiers.description);
+        [[TubeAppIAPHelper sharedHelper] requestProducts];
+    }
+    
+    BOOL onceRestored = [[NSUserDefaults standardUserDefaults] boolForKey:@"restored"];
+    
+    if (!onceRestored) {
+        // запрашиваем старые покупки
+        [[TubeAppIAPHelper sharedHelper] restoreCompletedTransactions];
+        NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+        
+        // если вышла новая версия дефолтной карты то ее сразу закачиваем
+        for (NSString *prodId in productToDonwload) {
+            if ([prodId isEqual:bundleIdentifier]) {
+                [self downloadProduct:prodId withBlock:downloadBlock];
+            }
+        }
+    } else {
+        for (NSString *prodId in productToDonwload ) {
+            [self downloadProduct:prodId withBlock:downloadBlock];
+        }
+    }
+    
+    if(downloadBlock) downloadBlock(1, nil);
+}
+
+
+#pragma mark - some helpers
+
+-(BOOL)isProductInstalled:(NSString*)mapName
+{
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    NSString *contentIdentifier = [NSString stringWithFormat:@"%@.content", bundleIdentifier];
+    
+    if ([mapName isEqualToString:contentIdentifier]) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        if ([[defaults objectForKey:@"additionalContentAccessLevel"] integerValue] > 0) {
+            return  YES;
+        }
+    }
+    return [self isProductDownloaded:mapName];
+}
+
+- (BOOL) isProductDownloaded:(NSString*)mapName
+{
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *mapDirPath = [cacheDir stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@",[mapName lowercaseString]]];
+    
+    BOOL mapFile = NO;
+    BOOL trpFile = NO;
+    BOOL trpNewFile = NO;
+    
+    if ([[manager contentsOfDirectoryAtPath:mapDirPath error:nil] count]>0) {
+        NSDirectoryEnumerator *dirEnum = [manager enumeratorAtPath:mapDirPath];
+        NSString *file;
+        
+        while (file = [dirEnum nextObject]) {
+            if ([[file pathExtension] isEqualToString: @"map"]) {
+                mapFile=YES;
+            } else if ([[file pathExtension] isEqualToString: @"trp"]) {
+                trpFile=YES;
+            } else if ([[file pathExtension] isEqualToString: @"trpnew"]) {
+                trpNewFile=YES;
+            }
+        }
+    }
+    if (mapFile && (trpFile || trpNewFile)) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+-(BOOL)isProductPurchased:(NSString*)prodID
+{
+    //   NSMutableSet *purchasedProducts = [[TubeAppIAPHelper sharedHelper] purchasedProducts];
+    //   return [purchasedProducts intersectsSet:[NSMutableSet setWithArray:[NSArray arrayWithObject:prodID]]];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:prodID];
+}
+
+-(BOOL)isProductAvailable:(NSString*)prodID
+{
+    return YES;
+}
+
+-(BOOL)isProductStatusDownloading:(NSString*)prodID
+{
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:@"N"]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+-(BOOL)isProductStatusUnpacking:(NSString*)prodID
+{
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:@"ZIP"]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+-(BOOL)isProductStatusInstalled:(NSString*)prodID
+{
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:@"I"]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+-(BOOL)isProductStatusPurchased:(NSString*)prodID
+{
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:@"P"]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+-(BOOL)isProductStatusAvailable:(NSString*)prodID
+{
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID] && [[map valueForKey:@"status"] isEqual:@"V"]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+-(BOOL)isProductStatusDefault:(NSString*)prodID
+{
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    
+    if ([prodID isEqual:bundleIdentifier]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+
+-(BOOL)isProductContentPurchase:(NSString*)prodID
+{
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    
+    NSString *purchaseId = [NSString stringWithFormat:@"%@.content", bundleIdentifier];
+    
+    if ([prodID isEqual:purchaseId]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+-(void)resortMapArray
+{
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"sortingPosition" ascending:YES];
+    
+    NSMutableArray *temp = [NSMutableArray arrayWithArray:self.maps];
+    
+    [temp sortUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor2, nil]];
+    
+    self.maps = [NSArray arrayWithArray:temp];
+    
+    [sortDescriptor2 release];
+}
+
+-(void)enableProducts
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"status"] isEqual:@"D"]) {
+            for (SKProduct *product in [TubeAppIAPHelper sharedHelper].products) {
+                if ([product.productIdentifier isEqual:[map valueForKey:@"prodID"]]) {
+                    [map setObject:@"V" forKey:@"status"];
+                    
+                    [numberFormatter setLocale:product.priceLocale];
+                    NSString *formattedString = [numberFormatter stringFromNumber:product.price];
+                    
+                    [map setObject:formattedString forKey:@"price"];
+                }
+            }
+        }
+    }
+    
+    [numberFormatter release];
+}
+
+-(NSIndexPath*)getIndexPathProdID:(NSString*)prodID
+{
+    int mapsC = [self.maps count];
+    
+    for (int i=0;i<mapsC;i++) {
+        if ([[[self.maps objectAtIndex:i] objectForKey:@"prodID"] isEqual:prodID]) {
+            return [NSIndexPath indexPathForRow:i inSection:0];
+        }
+    }
+    return nil;
+}
+
+
+-(NSString*)getZipFileForProduct:(NSString*)prodID
+{
+    for (NSMutableDictionary *map in self.maps) {
+        if ([[map valueForKey:@"prodID"] isEqual:prodID]) {
+            return [map valueForKey:@"zipFile"];
+        }
+    }
+    
+    return nil;
 }
 
 @end

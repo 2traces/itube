@@ -25,7 +25,7 @@ NSString* DisplayStationName(NSString* stName);
 
 @class RatePopupViewController;
 
-@interface tubeAppDelegate : NSObject <UIApplicationDelegate,MFMailComposeViewControllerDelegate> {
+@interface tubeAppDelegate : NSObject <UIApplicationDelegate,MFMailComposeViewControllerDelegate, DownloadServerListener> {
     UIWindow *window;
     GlViewController *gl;
     NavigationViewController *navigationViewController;
@@ -43,6 +43,8 @@ NSString* DisplayStationName(NSString* stName);
     NSString *mapDirectoryPath;
     
     BOOL shouldShowRateScreen;
+    NSMutableArray *servers;
+    NSArray *maps;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -56,6 +58,10 @@ NSString* DisplayStationName(NSString* stName);
 @property (nonatomic, assign) double userHeading;
 @property (nonatomic, retain) NSString *mapDirectoryPath;
 @property (nonatomic, assign) BOOL shouldShowRateScreen;
+@property (nonatomic, retain) NSMutableArray *servers;
+@property (nonatomic, retain) NSArray *maps;
+
++(tubeAppDelegate*)instance;
 
 -(NSString*)nameCurrentMap;
 -(NSString*)nameCurrentCity;
@@ -90,6 +96,31 @@ NSString* DisplayStationName(NSString* stName);
 
 - (NSString*)getAppStoreUrl;
 - (NSString*)getRateUrl;
+
+#pragma mark - Purchase & Download
+
+-(void) processPurchases;
+-(void)purchaseProduct:(NSString*)prodID;
+-(void)downloadProduct:(NSString*)prodID withBlock:(void(^)(int result, NSString* product))block;
+-(void)cancelDownloading;
+-(void)resortMapArray;
+
+#pragma mark - some helpers
+
+-(BOOL)isProductInstalled:(NSString*)mapName;
+- (BOOL) isProductDownloaded:(NSString*)mapName;
+-(BOOL)isProductPurchased:(NSString*)prodID;
+-(BOOL)isProductAvailable:(NSString*)prodID;
+-(BOOL)isProductStatusDownloading:(NSString*)prodID;
+-(BOOL)isProductStatusUnpacking:(NSString*)prodID;
+-(BOOL)isProductStatusInstalled:(NSString*)prodID;
+-(BOOL)isProductStatusPurchased:(NSString*)prodID;
+-(BOOL)isProductStatusAvailable:(NSString*)prodID;
+-(BOOL)isProductStatusDefault:(NSString*)prodID;
+-(BOOL)isProductContentPurchase:(NSString*)prodID;
+-(NSIndexPath*)getIndexPathProdID:(NSString*)prodID;
+-(void)enableProducts;
+-(void)processZipFromServer:(NSString*)fn prodID:(NSString*)prodID;
 
 @end
 

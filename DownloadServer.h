@@ -23,9 +23,11 @@
 @property(nonatomic, retain) NSMutableData *responseData;
 @property(nonatomic, assign) id <DownloadServerListener> listener;
 @property(nonatomic, retain) NSString *prodID;
+@property(nonatomic, retain) NSString *filename;
 
 -(void)loadFileAtURL:(NSString*)url;
 -(void)loadFileAtFullURL:(NSURL*)url;
+-(void)loadFileAtFullURL:(NSURL*)url toFile:(NSString*)fileName;
 -(void)cancel;
 
 @end

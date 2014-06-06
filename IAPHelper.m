@@ -144,10 +144,14 @@
 - (void)buyProductIdentifier:(NSString *)productIdentifier {
     
     NSLog(@"Buying %@...", productIdentifier);
-    
-    SKPayment *payment = [SKPayment paymentWithProductIdentifier:productIdentifier];
-    [[SKPaymentQueue defaultQueue] addPayment:payment];
-    
+    for(SKProduct *pr in self.products) {
+        if([pr.productIdentifier isEqualToString:productIdentifier]) {
+            SKPayment *payment = [SKPayment paymentWithProduct:pr];
+            [[SKPaymentQueue defaultQueue] addPayment:payment];
+            return;
+        }
+    }
+    NSLog(@"Error! Unknown product: %@", productIdentifier);
 }
 
 - (void)dealloc

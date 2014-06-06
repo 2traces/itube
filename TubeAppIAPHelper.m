@@ -28,14 +28,14 @@ static TubeAppIAPHelper * _sharedHelper;
     NSString *path = [documentsDir stringByAppendingPathComponent:@"maps.plist"];
     
     NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithContentsOfFile:path] autorelease];
-    NSArray *array = [dict allKeys];
+    //NSArray *array = [dict allKeys];
     NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
     NSString *contentIdentifier = [NSString stringWithFormat:@"%@.content", bundleIdentifier];
     
     NSSet *productIdentifiers = [[[NSSet alloc] initWithObjects:bundleIdentifier, contentIdentifier, nil] autorelease];
     
     if ((self = [super initWithProductIdentifiers:productIdentifiers])) {                
-        
+        [self requestProducts];
     }
 
     return self;
